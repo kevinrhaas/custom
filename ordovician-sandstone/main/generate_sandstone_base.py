@@ -9,26 +9,24 @@ The base uses the same reference geometry (bottom ring of the sandstone model)
 and extends downward by a specified distance, optionally flaring outward to
 create a wider platter, vase, or planter shape.
 
-This enables converting a sandstone lamp into a flower pot or vase by:
-  1. Generating a sandstone lamp with --hollow and --base options
-  2. Generating a matching base with this script
-  3. Printing and assembling both pieces
+The top edge of this piece is contiguous with the bottom of the sandstone
+lamp — same ring of vertices, same organic profile.
 
 Usage examples:
-  # Tall platter base (80mm down from sandstone bottom)
-  python3 generate_sandstone_base.py --height 80
+  # Simple 40mm solid platter base
+  python3 generate_sandstone_base.py --height 40
 
-  # Base with 20% flare (vase style)
-  python3 generate_sandstone_base.py --height 80 --flare 1.2
+  # Hollow base (2mm wall default)
+  python3 generate_sandstone_base.py --height 40 --wall 2
 
-  # Platter with solid bottom
-  python3 generate_sandstone_base.py --height 30 --solid
+  # Base with outward flare (vase/planter style)
+  python3 generate_sandstone_base.py --height 80 --flare 1.3
 
-  # Match a specific sandstone model's bottom geometry
-  python3 generate_sandstone_base.py --height 50 --match-model sandstone_120mm.scad
+  # Tall hollow vase base with thick walls
+  python3 generate_sandstone_base.py --height 60 --wall 3
 
-  # Hollow platter with thick walls
-  python3 generate_sandstone_base.py --height 40 --wall 3
+  # Drain hole for planter use
+  python3 generate_sandstone_base.py --height 40 --drain 10
 
   # Output to custom file
   python3 generate_sandstone_base.py --height 60 -o my_vase_base.scad
@@ -44,9 +42,9 @@ from pathlib import Path
 
 
 # ── Constants ────────────────────────────────────────────────────────────────
-BASELINE_HEIGHT = 120.0       # mm – original sandstone model height
-BASELINE_NUM_LAYERS = 111     # original ring count
-POINTS_PER_RING = 120         # angular samples per ring (3° spacing)
+BASELINE_HEIGHT = 120.0
+BASELINE_NUM_LAYERS = 111
+POINTS_PER_RING = 120
 SCRIPT_DIR = Path(__file__).parent
 DEFAULT_SOURCE = SCRIPT_DIR / ".." / "raw" / "1-illinois_sandstone_cylinder_v3.scad"
 
@@ -69,324 +67,459 @@ def parse_original_scad(filepath):
                 z = float(m.group(3))
                 points.append((x, y, z))
 
-    n_ring_points = BASELINE_NUM_LAYERS * POINTS_PER_RING
-    total = len(points)
-
-    # Extract first ring (bottom of original model)
+    # First ring = bottom of original model (ring 0)
     bottom_ring = points[0:POINTS_PER_RING]
-    center_bot = points[total - 2]
+    return bottom_ring
 
-    return bottom_ring, center_bot
 
+# ── Geometry Helpers ─────────────────────────────────────────────────────────
 
 def lerp(a, b, t):
-    """Linear interpolation between scalars."""
     return a + (b - a) * t
 
 
-def lerp_point(p1, p2, t):
-    """Linearly interpolate between two 3D points."""
-    return (lerp(p1[0], p2[0], t),
-            lerp(p1[1], p2[1], t),
-            lerp(p1[2], p2[2], t))
-
-
-# ── Base Ring Generation ─────────────────────────────────────────────────────
-
-def get_ring_radius_at_angle(ring, angle_deg):
-    """Compute the radius of a ring at a specific angle (degrees)."""
-    angle_rad = math.radians(angle_deg)
-    for (x, y, z) in ring:
-        pt_angle = math.atan2(y, x)
-        pt_angle_deg = math.degrees(pt_angle)
-        if pt_angle_deg < 0:
-            pt_angle_deg += 360.0
-        if abs(pt_angle_deg - angle_deg) < 1.5:
-            return math.hypot(x, y)
-    return None
-
-
 def get_avg_ring_radius(ring):
-    """Get average radius of a ring."""
-    radii = [math.hypot(p[0], p[1]) for p in ring]
-    return sum(radii) / len(radii)
+    return sum(math.hypot(p[0], p[1]) for p in ring) / len(ring)
+
+
+def offset_ring_inward(ring, wall_thickness):
+    """Offset a ring inward by wall_thickness in XY, preserving Z."""
+    cx = sum(p[0] for p in ring) / len(ring)
+    cy = sum(p[1] for p in ring) / len(ring)
+    inner = []
+    for (x, y, z) in ring:
+        dx, dy = x - cx, y - cy
+        dist = math.hypot(dx, dy)
+        if dist < 1e-9:
+            inner.append((x, y, z))
+        else:
+            ux, uy = dx / dist, dy / dist
+            inner.append((x - ux * wall_thickness,
+                          y - uy * wall_thickness, z))
+    return inner
 
 
 def generate_flared_ring(reference_ring, z_height, flare_factor=1.0):
-    """Generate a ring at a new height with optional radial flare.
-
-    flare_factor > 1.0 expands the ring outward (creates platter)
-    flare_factor < 1.0 shrinks the ring inward
-    flare_factor = 1.0 keeps the same cross-section
-    """
+    """Generate a ring at a new Z with optional radial flare."""
     ring = []
     for (x, y, _) in reference_ring:
         angle = math.atan2(y, x)
         radius = math.hypot(x, y) * flare_factor
-        new_x = radius * math.cos(angle)
-        new_y = radius * math.sin(angle)
-        ring.append((new_x, new_y, z_height))
+        ring.append((radius * math.cos(angle),
+                      radius * math.sin(angle),
+                      z_height))
     return ring
 
 
-def interpolate_base_rings(bottom_reference_ring, base_height, num_layers,
-                           flare_factor=1.0):
-    """Generate interpolated rings from top (reference) to bottom.
+def generate_hole_ring(reference_ring, hole_radius, z):
+    """Generate a hole ring matching angular positions of reference_ring."""
+    ring = []
+    for (x, y, _) in reference_ring:
+        angle = math.atan2(y, x)
+        ring.append((hole_radius * math.cos(angle),
+                      hole_radius * math.sin(angle), z))
+    return ring
 
-    Top ring (z=0) matches bottom_reference_ring exactly.
-    Bottom ring (z=-base_height) is flared by flare_factor.
-    Intermediate rings interpolate both Z and flare smoothly.
+
+# ── Ring Generation ──────────────────────────────────────────────────────────
+
+def generate_base_rings(bottom_reference_ring, base_height, num_layers,
+                        flare_factor=1.0):
+    """Generate rings from top (z=0, matches lamp bottom) down to z=-base_height.
+
+    Top ring matches the reference exactly.
+    Bottom ring is optionally flared.
+    Intermediate rings interpolate Z and flare smoothly.
     """
     rings = []
-    avg_radius = get_avg_ring_radius(bottom_reference_ring)
-
     for i in range(num_layers):
-        if num_layers == 1:
-            t = 0.0
-        else:
-            t = i / (num_layers - 1)
-
-        # Height: from 0 (top) to -base_height (bottom)
+        t = i / max(1, num_layers - 1)
         z = -base_height * t
-
-        # Flare: interpolate from 1.0 to flare_factor
         current_flare = lerp(1.0, flare_factor, t)
-
         ring = generate_flared_ring(bottom_reference_ring, z, current_flare)
         rings.append(ring)
-
     return rings
 
 
-# ── Face Generation ─────────────────────────────────────────────────────────
+# ── Mesh Building ────────────────────────────────────────────────────────────
 
-def generate_closed_base_faces(rings, num_rings, pts_per_ring, solid=False):
-    """Generate triangle faces for the base.
+def build_solid_mesh(rings, base_height):
+    """Build a completely solid (filled) base mesh.
 
-    If solid=True, generates a solid platter with a flat bottom.
-    If solid=False, generates a hollow platter (open at bottom).
+    Structure:
+      - Side wall (organic rings)
+      - Flat top cap (fan from center at z=0)
+      - Flat bottom cap (fan from center at z=-base_height)
     """
-    P = pts_per_ring
-    faces = []
+    P = POINTS_PER_RING
+    num_rings = len(rings)
 
-    # Side faces (connect successive rings)
-    for i in range(num_rings - 1):
-        for j in range(P):
-            j_next = (j + 1) % P
-
-            # Outer-facing triangles
-            a = i * P + j
-            b = i * P + j_next
-            c = (i + 1) * P + j_next
-            d = (i + 1) * P + j
-
-            faces.append([a, b, c])
-            faces.append([a, c, d])
-
-    if solid:
-        # Solid bottom: fan from bottom center to bottom ring
-        # Last ring (deepest) is the base
-        last_ring_start = (num_rings - 1) * P
-
-        # Center point at the bottom
-        center_idx = num_rings * P
-
-        for j in range(P):
-            j_next = (j + 1) % P
-            # Reverse winding so normals point downward
-            v1 = last_ring_start + j
-            v2 = last_ring_start + j_next
-            faces.append([center_idx, v2, v1])
-
-        # Top (open edge) cap with flat ring
-        top_ring_start = 0
-        top_center_idx = num_rings * P + 1
-
-        for j in range(P):
-            j_next = (j + 1) % P
-            v1 = top_ring_start + j
-            v2 = top_ring_start + j_next
-            faces.append([top_center_idx, v1, v2])
-
-    return faces
-
-
-def write_stl(filename, points, faces):
-    """Write mesh as STL (binary format)."""
-    with open(filename, 'wb') as f:
-        # 80-byte header
-        header = b'Parametric Sandstone Strata Base\x00' * 2
-        f.write(header[:80])
-
-        # Triangle count
-        num_triangles = len(faces)
-        f.write(struct.pack('<I', num_triangles))
-
-        # Each triangle
-        for face in faces:
-            p1 = points[face[0]]
-            p2 = points[face[1]]
-            p3 = points[face[2]]
-
-            # Compute normal
-            v1 = (p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2])
-            v2 = (p3[0] - p1[0], p3[1] - p1[1], p3[2] - p1[2])
-            nx = v1[1] * v2[2] - v1[2] * v2[1]
-            ny = v1[2] * v2[0] - v1[0] * v2[2]
-            nz = v1[0] * v2[1] - v1[1] * v2[0]
-            n_len = math.sqrt(nx * nx + ny * ny + nz * nz)
-            if n_len > 1e-9:
-                nx /= n_len
-                ny /= n_len
-                nz /= n_len
-
-            f.write(struct.pack('<fff', nx, ny, nz))
-            f.write(struct.pack('<fff', p1[0], p1[1], p1[2]))
-            f.write(struct.pack('<fff', p2[0], p2[1], p2[2]))
-            f.write(struct.pack('<fff', p3[0], p3[1], p3[2]))
-            f.write(b'\x00\x00')  # Attribute byte count
-
-
-def write_scad(filename, rings, num_rings, pts_per_ring, solid=False, wall_thickness=2.0):
-    """Write OpenSCAD polyhedron source."""
-    P = pts_per_ring
-
-    points = []
-    for ring in rings:
-        points.extend(ring)
-
-    if solid:
-        # Center points for solid bottom/top
-        center_bot = (0, 0, rings[-1][0][2])
-        center_top = (0, 0, rings[0][0][2])
-        points.append(center_bot)
-        points.append(center_top)
-
-    faces = generate_closed_base_faces(rings, num_rings, P, solid=solid)
-
-    with open(filename, 'w') as f:
-        f.write("// Parametric Sandstone Strata Base/Platter\n")
-        f.write(f"// Height: {rings[-1][0][2] - rings[0][0][2]:.2f} mm\n")
-        if solid:
-            f.write("// Mode: SOLID\n")
-        else:
-            f.write("// Mode: HOLLOW\n")
-        f.write("\n")
-        f.write("fine_tune_scale = 1.0;  // Overall scale multiplier\n\n")
-        f.write("polyhedron(\n")
-        f.write("  points = [\n")
-
-        for i, pt in enumerate(points):
-            f.write(f"    [{pt[0]:.6f}, {pt[1]:.6f}, {pt[2]:.6f}]")
-            if i < len(points) - 1:
-                f.write(",")
-            f.write("\n")
-
-        f.write("  ],\n")
-        f.write("  faces = [\n")
-
-        for i, face in enumerate(faces):
-            f.write(f"    [{face[0]}, {face[1]}, {face[2]}]")
-            if i < len(faces) - 1:
-                f.write(",")
-            f.write("\n")
-
-        f.write("  ],\n")
-        f.write("  convexity = 2\n")
-        f.write(");\n\n")
-        f.write("// Optional: scale by fine_tune_scale\n")
-        f.write("// scale(fine_tune_scale) { children(); }\n")
-
-
-# ── Main ─────────────────────────────────────────────────────────────────────
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="Generate a parametric base/platter for sandstone lamps."
-    )
-    parser.add_argument('--height', type=float, default=50.0,
-                        help='Base height downward from sandstone bottom (mm) [50]')
-    parser.add_argument('--layers', type=int, default=None,
-                        help='Number of interpolation layers [auto: height/1.0]')
-    parser.add_argument('--flare', type=float, default=1.0,
-                        help='Radial flare factor (>1=wider, <1=narrower) [1.0]')
-    parser.add_argument('--solid', action='store_true', default=False,
-                        help='Solid platter (with flat bottom) [hollow]')
-    parser.add_argument('--wall', type=float, default=2.0,
-                        help='Wall thickness if hollow (mm) [2.0]')
-    parser.add_argument('--match-model', type=str, default=None,
-                        help='Extract bottom ring from a generated sandstone .scad file')
-    parser.add_argument('-o', dest='output', type=str, default=None,
-                        help='Output filename (auto-generated if omitted)')
-    parser.add_argument('--source', type=str, default=str(DEFAULT_SOURCE),
-                        help=f'Path to source SCAD polyhedron [{DEFAULT_SOURCE}]')
-
-    args = parser.parse_args()
-
-    # Auto-compute layer count
-    if args.layers is None:
-        args.layers = max(2, int(round(args.height / 1.0)))
-
-    print(f"\nGenerating parametric base:")
-    print(f"  Height         : {args.height:.1f} mm (downward)")
-    print(f"  Layers         : {args.layers}")
-    print(f"  Flare factor   : {args.flare:.2f}x")
-    print(f"  Mode           : {'SOLID' if args.solid else 'HOLLOW'}")
-    if not args.solid:
-        print(f"  Wall thickness : {args.wall:.1f} mm")
-
-    # Parse source to get bottom ring
-    source_path = Path(args.source)
-    if not source_path.exists():
-        print(f"\n✗ Source file not found: {source_path}")
-        sys.exit(1)
-
-    print(f"\nParsing original: {source_path}")
-    bottom_ring, center = parse_original_scad(source_path)
-    print(f"  → {len(bottom_ring)} points in reference ring")
-
-    # Generate base rings
-    rings = interpolate_base_rings(bottom_ring, args.height, args.layers,
-                                   flare_factor=args.flare)
-
-    # Prepare all points
     all_points = []
     for ring in rings:
         all_points.extend(ring)
 
-    if args.solid:
-        all_points.extend([
-            (0, 0, rings[-1][0][2]),  # center bottom
-            (0, 0, rings[0][0][2])     # center top
-        ])
+    # Center points for top and bottom caps
+    center_top_idx = len(all_points)
+    all_points.append((0.0, 0.0, 0.0))
 
-    # Generate faces
-    faces = generate_closed_base_faces(rings, args.layers, POINTS_PER_RING,
-                                       solid=args.solid)
+    center_bot_idx = len(all_points)
+    all_points.append((0.0, 0.0, -base_height))
 
-    # Auto-generate output filename
-    if args.output is None:
-        flare_str = f"_flare{args.flare:.2f}".replace('.', '_') if args.flare != 1.0 else ""
-        mode_str = f"_wall{args.wall:.1f}".replace('.', '_') if not args.solid else "_solid"
-        args.output = f"illinois_sandstone_parametric_base_{args.height:.0f}mm_{args.layers}L{flare_str}{mode_str}.scad"
+    faces = []
 
-    output_path = Path(args.output)
+    # Side faces (outward normals)
+    for i in range(num_rings - 1):
+        for j in range(P):
+            j_next = (j + 1) % P
+            a = i * P + j
+            b = i * P + j_next
+            c = (i + 1) * P + j_next
+            d = (i + 1) * P + j
+            faces.append([a, b, c])
+            faces.append([a, c, d])
 
-    # Write SCAD
-    write_scad(str(output_path), rings, args.layers, POINTS_PER_RING,
-               solid=args.solid, wall_thickness=args.wall)
-    print(f"\n✓ SCAD: {output_path}")
+    # Top cap (z=0): normals pointing up (CCW from above)
+    for j in range(P):
+        j_next = (j + 1) % P
+        faces.append([center_top_idx, j, j_next])
 
-    # Write STL
-    stl_path = output_path.with_suffix('.stl')
-    write_stl(str(stl_path), all_points, faces)
-    stl_size_mb = stl_path.stat().st_size / (1024 * 1024)
-    print(f"✓ STL:  {stl_path}  ({stl_size_mb:.1f} MB)")
+    # Bottom cap (z=-base_height): normals pointing down (CW from above)
+    bot_start = (num_rings - 1) * P
+    for j in range(P):
+        j_next = (j + 1) % P
+        faces.append([center_bot_idx, bot_start + j_next, bot_start + j])
 
-    print(f"\nPoints: {len(all_points)}  |  Faces: {len(faces)}")
-    print(f"  Height: {rings[-1][0][2]:.1f} mm (down from top)")
-    print(f"  Flare:  {args.flare:.2f}x")
-    print(f"  Mode:   {'solid' if args.solid else 'hollow'}")
+    return all_points, faces
+
+
+def build_hollow_mesh(rings, base_height, wall_thickness,
+                      drain_diameter=0.0):
+    """Build a hollow base with inner and outer walls — proper closed manifold.
+
+    Structure:
+      - Outer shell: all rings (top to bottom)
+      - Inner shell: all rings offset inward by wall_thickness
+      - Top annulus: connects outer ring 0 to inner ring 0 (z=0)
+      - Bottom closure: solid floor or drain hole annulus
+    """
+    P = POINTS_PER_RING
+    num_rings = len(rings)
+
+    # Outer rings
+    all_points = []
+    for ring in rings:
+        all_points.extend(ring)
+    outer_count = len(all_points)
+
+    # Inner rings (offset inward)
+    inner_rings = [offset_ring_inward(ring, wall_thickness) for ring in rings]
+    for ring in inner_rings:
+        all_points.extend(ring)
+
+    faces = []
+
+    # ── Outer side faces (outward normals) ───────────────────────────────
+    for i in range(num_rings - 1):
+        for j in range(P):
+            j_next = (j + 1) % P
+            a = i * P + j
+            b = i * P + j_next
+            c = (i + 1) * P + j_next
+            d = (i + 1) * P + j
+            faces.append([a, b, c])
+            faces.append([a, c, d])
+
+    # ── Inner side faces (inward normals = reversed winding) ─────────────
+    for i in range(num_rings - 1):
+        for j in range(P):
+            j_next = (j + 1) % P
+            a = outer_count + i * P + j
+            b = outer_count + i * P + j_next
+            c = outer_count + (i + 1) * P + j_next
+            d = outer_count + (i + 1) * P + j
+            faces.append([a, c, b])
+            faces.append([a, d, c])
+
+    # ── Top annulus (z=0): outer ring 0 → inner ring 0, normals up ───────
+    top_outer_start = 0
+    top_inner_start = outer_count
+    for j in range(P):
+        j_next = (j + 1) % P
+        o_a = top_outer_start + j
+        o_b = top_outer_start + j_next
+        i_a = top_inner_start + j
+        i_b = top_inner_start + j_next
+        faces.append([o_a, o_b, i_b])
+        faces.append([o_a, i_b, i_a])
+
+    # ── Bottom closure ───────────────────────────────────────────────────
+    bot_outer_start = (num_rings - 1) * P
+    bot_inner_start = outer_count + (num_rings - 1) * P
+    hole_radius = drain_diameter / 2.0 if drain_diameter > 0 else 0.0
+
+    if hole_radius > 0:
+        # Bottom outer annulus: outer last ring → hole ring at z=-base_height
+        hole_outer_ring = generate_hole_ring(rings[-1], hole_radius,
+                                             -base_height)
+        hole_outer_start = len(all_points)
+        all_points.extend(hole_outer_ring)
+
+        # Outer bottom annulus (normals down)
+        for j in range(P):
+            j_next = (j + 1) % P
+            faces.append([bot_outer_start + j,
+                          hole_outer_start + j_next,
+                          hole_outer_start + j])
+            faces.append([bot_outer_start + j,
+                          bot_outer_start + j_next,
+                          hole_outer_start + j_next])
+
+        # Inner bottom annulus: inner last ring → hole ring at z=-base_height
+        hole_inner_ring = generate_hole_ring(inner_rings[-1], hole_radius,
+                                             -base_height)
+        hole_inner_start = len(all_points)
+        all_points.extend(hole_inner_ring)
+
+        # Inner bottom annulus (normals up = reversed)
+        for j in range(P):
+            j_next = (j + 1) % P
+            faces.append([bot_inner_start + j,
+                          hole_inner_start + j,
+                          hole_inner_start + j_next])
+            faces.append([bot_inner_start + j,
+                          hole_inner_start + j_next,
+                          bot_inner_start + j_next])
+
+        # Hole tube: connect outer hole ring to inner hole ring (inward normals)
+        for j in range(P):
+            j_next = (j + 1) % P
+            a = hole_outer_start + j
+            b = hole_outer_start + j_next
+            c = hole_inner_start + j_next
+            d = hole_inner_start + j
+            faces.append([a, d, c])
+            faces.append([a, c, b])
+    else:
+        # Solid bottom floor: two discs (outer down-facing, inner up-facing)
+        # Outer bottom disc (normals down)
+        center_outer_idx = len(all_points)
+        all_points.append((0.0, 0.0, -base_height))
+
+        for j in range(P):
+            j_next = (j + 1) % P
+            faces.append([center_outer_idx,
+                          bot_outer_start + j_next,
+                          bot_outer_start + j])
+
+        # Inner bottom disc (normals up)
+        center_inner_idx = len(all_points)
+        all_points.append((0.0, 0.0, -base_height))
+
+        for j in range(P):
+            j_next = (j + 1) % P
+            faces.append([center_inner_idx,
+                          bot_inner_start + j,
+                          bot_inner_start + j_next])
+
+    return all_points, faces
+
+
+# ── Output ───────────────────────────────────────────────────────────────────
+
+def cross(u, v):
+    return (u[1]*v[2] - u[2]*v[1],
+            u[2]*v[0] - u[0]*v[2],
+            u[0]*v[1] - u[1]*v[0])
+
+
+def normalize(v):
+    length = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+    if length < 1e-12:
+        return (0.0, 0.0, 0.0)
+    return (v[0]/length, v[1]/length, v[2]/length)
+
+
+def write_stl(filepath, all_points, faces):
+    """Write binary STL."""
+    with open(filepath, 'wb') as f:
+        header = b'Binary STL - Parametric Sandstone Base'
+        f.write(header.ljust(80, b'\0'))
+        f.write(struct.pack('<I', len(faces)))
+
+        for face in faces:
+            p0 = all_points[face[0]]
+            p1 = all_points[face[1]]
+            p2 = all_points[face[2]]
+            u = (p1[0]-p0[0], p1[1]-p0[1], p1[2]-p0[2])
+            v = (p2[0]-p0[0], p2[1]-p0[1], p2[2]-p0[2])
+            n = normalize(cross(u, v))
+            f.write(struct.pack('<3f', *n))
+            f.write(struct.pack('<3f', *p0))
+            f.write(struct.pack('<3f', *p1))
+            f.write(struct.pack('<3f', *p2))
+            f.write(struct.pack('<H', 0))
+
+
+def write_scad(filepath, all_points, faces, base_height, num_layers,
+               wall_thickness, flare_factor, drain_diameter, is_hollow):
+    """Write OpenSCAD polyhedron source."""
+    with open(filepath, 'w') as f:
+        f.write(f"""\
+// ═══════════════════════════════════════════════════════════════════════════
+// Parametric Illinois Sandstone Strata Base / Platter
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// Generated by generate_sandstone_base.py
+//
+// This piece connects seamlessly to the bottom of a sandstone lamp
+// generated by generate_sandstone.py — the top edge (z=0) matches
+// the lamp's bottom ring exactly.
+//
+// Parameters:
+//   base_height    = {base_height:.2f} mm (extends downward)
+//   num_layers     = {num_layers}
+//   flare          = {flare_factor:.2f}x
+""")
+        if is_hollow:
+            f.write(f"//   wall_thickness = {wall_thickness:.2f} mm\n")
+            if drain_diameter > 0:
+                f.write(f"//   drain_hole     = ⌀{drain_diameter:.2f} mm\n")
+            f.write(f"//   mode           = HOLLOW\n")
+        else:
+            f.write(f"//   mode           = SOLID\n")
+
+        f.write(f"""//
+// ── OpenSCAD Fine-Tuning ────────────────────────────────────────────────
+
+/* [Scale] */
+fine_tune_scale = 1.0;  // [0.25:0.01:4.0]
+
+// ── Render ──────────────────────────────────────────────────────────────
+
+scale([1, 1, fine_tune_scale])
+""")
+        f.write("polyhedron(\n")
+        f.write("  points = [\n")
+
+        for idx, (x, y, z) in enumerate(all_points):
+            comma = "," if idx < len(all_points) - 1 else ""
+            f.write(f"        [{x:.5f}, {y:.5f}, {z:.5f}]{comma}\n")
+
+        f.write("      ],\n")
+        f.write("      faces = [\n")
+
+        for idx, face in enumerate(faces):
+            comma = "," if idx < len(faces) - 1 else ""
+            f.write(f"        [{face[0]}, {face[1]}, {face[2]}]{comma}\n")
+
+        f.write("      ],\n")
+        f.write("      convexity = 10\n")
+        f.write("    );\n")
+
+
+# ── CLI ──────────────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Generate a parametric base/platter for sandstone lamps.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__
+    )
+    parser.add_argument('--height', type=float, default=40.0,
+                        help='Base height downward from lamp bottom (mm) [40]')
+    parser.add_argument('--layers', type=int, default=None,
+                        help='Number of interpolation layers [auto: ~1mm/layer]')
+    parser.add_argument('--flare', type=float, default=1.0,
+                        help='Radial flare factor at bottom (>1=wider) [1.0]')
+    parser.add_argument('--wall', type=float, default=None,
+                        help='Wall thickness (mm) — makes it hollow [solid if omitted]')
+    parser.add_argument('--drain', type=float, nargs='?', const=10.0, default=None,
+                        help='Drain hole diameter at bottom (mm) — for planter use. '
+                             '--drain alone = 10mm, or --drain 15 [no hole]')
+    parser.add_argument('--source', type=str, default=str(DEFAULT_SOURCE),
+                        help=f'Path to source SCAD polyhedron')
+    parser.add_argument('-o', dest='output', type=str, default=None,
+                        help='Output filename (auto-generated if omitted)')
+
+    args = parser.parse_args()
+
+    # Auto-compute layers
+    if args.layers is None:
+        args.layers = max(2, int(round(args.height / 1.0)))
+
+    # Resolve hollow vs solid
+    wall_thickness = args.wall if args.wall is not None else 2.0
+    is_hollow = args.wall is not None or args.drain is not None
+    drain_diameter = args.drain if args.drain is not None else 0.0
+
+    if drain_diameter > 0 and not is_hollow:
+        is_hollow = True
+
+    # Parse source
+    source_path = Path(args.source).resolve()
+    if not source_path.exists():
+        print(f"\n✗ Source file not found: {source_path}", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"\nParsing original: {source_path}")
+    bottom_ring = parse_original_scad(source_path)
+    avg_r = get_avg_ring_radius(bottom_ring)
+    print(f"  → {len(bottom_ring)} points in reference ring")
+    print(f"  → Average radius: {avg_r:.1f} mm")
+
+    # Generate rings
+    rings = generate_base_rings(bottom_ring, args.height, args.layers,
+                                flare_factor=args.flare)
+
+    print(f"\nGenerating parametric base:")
+    print(f"  Height       : {args.height:.1f} mm (downward from z=0)")
+    print(f"  Layers       : {args.layers}")
+    print(f"  Flare factor : {args.flare:.2f}x")
+    if is_hollow:
+        print(f"  Mode         : HOLLOW (wall = {wall_thickness:.1f} mm)")
+        if drain_diameter > 0:
+            print(f"  Drain hole   : ⌀{drain_diameter:.1f} mm")
+    else:
+        print(f"  Mode         : SOLID")
+
+    # Build mesh
+    if is_hollow:
+        all_points, faces = build_hollow_mesh(
+            rings, args.height, wall_thickness, drain_diameter)
+    else:
+        all_points, faces = build_solid_mesh(rings, args.height)
+
+    # Output filenames
+    if args.output:
+        base_output = args.output
+        if base_output.lower().endswith(('.scad', '.stl')):
+            base_output = base_output.rsplit('.', 1)[0]
+    else:
+        flare_str = f"_flare{args.flare:.0f}p{int((args.flare%1)*100):02d}" if args.flare != 1.0 else ""
+        if is_hollow:
+            mode_str = f"_wall{wall_thickness:.0f}"
+            if drain_diameter > 0:
+                mode_str += f"_drain{drain_diameter:.0f}"
+        else:
+            mode_str = "_solid"
+        base_output = str(SCRIPT_DIR /
+            f"illinois_sandstone_parametric_base_{args.height:.0f}mm"
+            f"_{args.layers}L{flare_str}{mode_str}")
+
+    scad_path = base_output + '.scad'
+    stl_path = base_output + '.stl'
+
+    # Write
+    write_scad(scad_path, all_points, faces, args.height, args.layers,
+               wall_thickness, args.flare, drain_diameter, is_hollow)
+    write_stl(stl_path, all_points, faces)
+
+    stl_mb = os.path.getsize(stl_path) / (1024 * 1024)
+
+    print(f"\n✓ SCAD: {scad_path}")
+    print(f"✓ STL:  {stl_path}  ({stl_mb:.1f} MB)")
+    print(f"\n  Points: {len(all_points):,}  |  Faces: {len(faces):,}")
+    print(f"  Top edge at z=0 matches sandstone lamp bottom exactly.")
     print()
 
 
