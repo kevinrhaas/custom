@@ -29,28 +29,28 @@ bottom_thickness     = 0;  // mm
 min_center_thickness = 0.8;  // mm (>=0.6 recommended)
 
 ///////////////////////
-// CENTER CAP (VISUAL FLATNESS)
+// CENTER CAP (VISUAL FLATNESS) 
 ///////////////////////
 
 // NEW: Inner floor is capped with an annulus + small center ring instead of a single center vertex.
 // This removes the “dimple” shading artifact in OpenSCAD and improves triangulation.
-cap_center_radius = 2.0;   // mm (0 disables ring and reverts to center-point fan)
-cap_center_verts  = 24;    // (12–48 typical)
+cap_center_radius = 0.0;   // mm (0 disables ring and reverts to center-point fan)
+cap_center_verts  = 0;    // (12–48 typical)
 
 ///////////////////////
 // MAIN SHAPE PARAMETERS
 ///////////////////////
-base_radius     = 35;   // mm (outer radius at underside edge)
-height          = 40;   // mm
+base_radius     = 60;   // mm (outer radius at underside edge)
+height          = 20;   // mm
 pitch_deg       = 40;   // degrees
-wall_thickness  = 2;  // mm
+wall_thickness  = 5;  // mm
 
 ///////////////////////
 // RADIAL SCALLOPS
 ///////////////////////
-rim_waves       = 3;
-outer_rim_waves = 3;
-inner_rim_waves = 3;
+rim_waves       = 12;
+outer_rim_waves = 12;
+inner_rim_waves = 12;
 
 rim_amp         = 3.0;
 outer_rim_amp   = 4.0;
@@ -58,8 +58,8 @@ inner_rim_amp   = 2.0;
 
 // Band placement along height (0..1). Width is fraction of height (0..1).
 rim_band_center   = 0.88;  rim_band_width   = 0.0;
-outer_band_center = 0.55;  outer_band_width = 0.00;
-inner_band_center = 0.25;  inner_band_width = 0.00;
+outer_band_center = 0.55;  outer_band_width = 0.0;
+inner_band_center = 0.25;  inner_band_width = 0.0;
 
 rim_phase_deg       = 45;
 outer_rim_phase_deg = 360/(max(outer_rim_waves,1)*2);
@@ -69,7 +69,7 @@ inner_rim_phase_deg = 360/(max(inner_rim_waves,1)*3);
 // TOP RIM HEIGHT WAVINESS
 ///////////////////////
 rim_z_waves         = 3;
-rim_z_amp           = 10.0;
+rim_z_amp           = 9.0;
 rim_z_irregular     = 0.45;
 rim_z_phase_deg     = 0;
 rim_z_falloff_width = 0.99;
@@ -77,13 +77,13 @@ rim_z_falloff_width = 0.99;
 ///////////////////////
 // INTERIOR BASE DISH (CONCAVE)
 ///////////////////////
-inner_base_dish_depth       = 2.0;   // mm (0 disables)
+inner_base_dish_depth       = 5.0;   // mm (0 disables)
 inner_base_dish_radius_frac = 0.85;  // 0..1
 
 ///////////////////////
 // OUTSIDE SHIMMER
 ///////////////////////
-shimmer_amp       = 0.0;
+shimmer_amp       = 0;
 shimmer_waves     = 0;
 shimmer_z_waves   = 0;
 shimmer_irregular = 0;

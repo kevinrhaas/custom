@@ -53,6 +53,15 @@ Usage examples:
 
   # Hollow with solid base + 79mm center hole
   python3 generate_sandstone.py --hollow --base 9.46 --base-hole 79
+
+  # Sharp, pronounced strata ledges (more dramatic effect)
+  python3 generate_sandstone.py --height 180 --sharp
+
+  # Vase mode: create a cylindrical vase for a 78mm × 176mm cylinder
+  # with 3mm wall and 3mm base
+  python3 generate_sandstone.py --vase --vase-interior-diameter 78 \\
+                                 --vase-interior-height 176 \\
+                                 --vase-wall 3 --vase-base 3
 """
 
 import argparse
@@ -135,19 +144,23 @@ def lerp_point(p1, p2, t):
             lerp(p1[2], p2[2], t))
 
 
-def interpolate_rings(original_rings, ring_avg_z, num_new_layers, target_height):
+def interpolate_rings(original_rings, ring_avg_z, num_new_layers, target_height,
+                      sharp=False):
     """Generate new rings by interpolating original ring data.
 
-    Strategy:
-      - Each original ring sits at a normalized position t_i = i / (N_orig - 1)
-      - Each new ring sits at t_k = k / (N_new - 1)
-      - For each new ring, find the bracketing originals and interpolate
-      - X and Y are interpolated (preserving cross-section shape transitions)
-      - Z is interpolated and then scaled to the target height
+    Two modes:
+      sharp=False (default):
+        XY profiles are linearly blended between the two bracketing
+        original rings.  Produces smooth, natural strata that match the
+        look of the original model.
 
-    This preserves the organic strata character: undulations are smoothly
-    blended between neighboring original layers, and the overall profile
-    (wavy cylinder with varying radii) is maintained.
+      sharp=True:
+        XY profiles snap to the NEAREST original ring (nearest-neighbor).
+        Creates crisp, pronounced ledges — a more dramatic strata effect.
+
+    In both modes, Z is positioned at the correct height for the target
+    scale, with the original per-vertex Z undulation offset preserved
+    proportionally.
     """
     n_orig = len(original_rings)
     z_scale = target_height / BASELINE_HEIGHT
@@ -166,18 +179,27 @@ def interpolate_rings(original_rings, ring_avg_z, num_new_layers, target_height)
         i_hi = min(i_lo + 1, n_orig - 1)
         alpha = orig_pos - i_lo
 
+        # For sharp mode: snap to the nearest original ring for XY
+        if sharp:
+            i_nearest = i_lo if alpha < 0.5 else i_hi
+
         ring = []
         for j in range(POINTS_PER_RING):
+            if sharp:
+                # Nearest-neighbor: exact XY from closest original ring
+                p_src = original_rings[i_nearest][j]
+                x = p_src[0]
+                y = p_src[1]
+            else:
+                # Linear blend of XY between bracketing rings (default)
+                p_lo = original_rings[i_lo][j]
+                p_hi = original_rings[i_hi][j]
+                x = lerp(p_lo[0], p_hi[0], alpha)
+                y = lerp(p_lo[1], p_hi[1], alpha)
+
+            # Z: interpolate then scale (always smooth for vertical position)
             p_lo = original_rings[i_lo][j]
             p_hi = original_rings[i_hi][j]
-
-            # Interpolate XY directly (shape blending)
-            x = lerp(p_lo[0], p_hi[0], alpha)
-            y = lerp(p_lo[1], p_hi[1], alpha)
-
-            # For Z: interpolate then scale
-            # The original Z values encode both the layer's base height
-            # and the organic undulation offset from that base.
             z_interp = lerp(p_lo[2], p_hi[2], alpha)
             z = z_interp * z_scale
 
@@ -186,6 +208,48 @@ def interpolate_rings(original_rings, ring_avg_z, num_new_layers, target_height)
         new_rings.append(ring)
 
     return new_rings
+
+
+# ── Vase Generation ──────────────────────────────────────────────────────────
+
+def generate_vase_rings(interior_diameter, interior_height, wall_thickness, num_layers):
+    """Generate rings for a simple cylindrical vase.
+    
+    Creates a uniformly cylindrical vase sized to contain an interior cylinder.
+    The exterior diameter is interior_diameter + 2*wall_thickness.
+    
+    Args:
+        interior_diameter : diameter of the interior cavity (mm)
+        interior_height   : height of the interior cavity (mm)
+        wall_thickness    : wall thickness (mm)
+        num_layers        : number of rings to generate
+        
+    Returns:
+        rings : list of ring point lists
+    """
+    exterior_radius = (interior_diameter + 2 * wall_thickness) / 2.0
+    
+    rings = []
+    for i in range(num_layers):
+        # Normalize height position [0, 1]
+        if num_layers == 1:
+            t = 0.5
+        else:
+            t = i / (num_layers - 1)
+        
+        z = t * interior_height
+        
+        # Generate ring of points at this height on the exterior cylinder
+        ring = []
+        for j in range(POINTS_PER_RING):
+            angle = 2.0 * math.pi * j / POINTS_PER_RING
+            x = exterior_radius * math.cos(angle)
+            y = exterior_radius * math.sin(angle)
+            ring.append((x, y, z))
+        
+        rings.append(ring)
+    
+    return rings
 
 
 # ── Face Generation ──────────────────────────────────────────────────────────
@@ -320,8 +384,150 @@ def generate_hole_ring_matched(reference_ring, hole_radius, z):
     return ring
 
 
-def build_hollow_mesh(new_rings, target_height, wall_thickness,
-                      solid_base=0.0, base_hole_diameter=0.0):
+def build_hollow_vase_mesh(outer_rings, inner_diameter, target_height, solid_base=0.0):
+    """Build a manifold hollow vase: organic sandstone outer shell, cylindrical inner bore.
+
+    Strategy for a watertight manifold mesh
+    ─────────────────────────────────────────
+    We keep the inner ring Z values **identical** to the corresponding
+    outer ring Z values (point-for-point).  This avoids T-junctions and
+    non-manifold edges caused by mismatched heights.
+
+    Layout
+    ──────
+    Ring index k spans 0 … N-1 where
+        ring 0      = flat cap at z=0          (outer + inner)
+        rings 1..N-2 = organic strata           (outer + inner)
+        ring N-1    = flat cap at z=H           (outer + inner)
+
+    Point array layout
+    ──────────────────
+    [0  … N_outer-1]  outer rings flattened  (N rings × P pts)
+    [N_outer … end]   inner rings flattened  (N rings × P pts)
+
+    Faces
+    ─────
+    1. Outer side quads  (outward-facing)
+    2. Inner side quads  (inward-facing, reversed winding)
+    3. Bottom annulus    (downward-facing) — outer ring 0 ↔ inner ring 0
+    4. Top annulus       (upward-facing)   — outer ring N-1 ↔ inner ring N-1
+    5. Floor annulus     (upward-facing)   — at z≈solid_base, outer ↔ inner
+       + vertical inner wall from z=0 to z=solid_base if solid_base > 0
+    """
+    P = POINTS_PER_RING
+    inner_radius = inner_diameter / 2.0
+
+    # ── Build outer ring list ──────────────────────────────────────────
+    # Force first ring to z=0 and last ring to z=target_height
+    # so cap faces never share edges with side faces.
+    all_outer = []
+    for k, ring in enumerate(outer_rings):
+        if k == 0:
+            all_outer.append([(p[0], p[1], 0.0) for p in ring])
+        elif k == len(outer_rings) - 1:
+            all_outer.append([(p[0], p[1], target_height) for p in ring])
+        else:
+            all_outer.append(list(ring))
+    N = len(all_outer)   # total ring count
+
+    # ── Build matching inner rings: same Z as outer, but at inner_radius ─
+    all_inner = []
+    for ring in all_outer:
+        inner_ring = []
+        for (x, y, z) in ring:
+            angle = math.atan2(y, x)
+            inner_ring.append((inner_radius * math.cos(angle),
+                                inner_radius * math.sin(angle),
+                                z))
+        all_inner.append(inner_ring)
+
+    # ── Flatten points ─────────────────────────────────────────────────
+    all_points = []
+    for ring in all_outer:
+        all_points.extend(ring)
+    O = len(all_points)          # offset to first inner point
+    for ring in all_inner:
+        all_points.extend(ring)
+
+    def o(ring_i, j):   # outer point index
+        return ring_i * P + j
+    def inn(ring_i, j): # inner point index
+        return O + ring_i * P + j
+
+    faces = []
+
+    # ── Pre-compute floor_idx if solid base ────────────────────────────
+    def avg_z(ring):
+        return sum(p[2] for p in ring) / len(ring)
+
+    if solid_base > 0:
+        floor_idx = 1
+        for idx in range(1, N):
+            if avg_z(all_outer[idx]) >= solid_base - 1e-6:
+                floor_idx = idx
+                break
+    else:
+        floor_idx = 0
+
+    faces = []
+
+    # ── 1. Outer side quads ────────────────────────────────────────────
+    for i in range(N - 1):
+        for j in range(P):
+            jn = (j + 1) % P
+            a, b = o(i, j),    o(i, jn)
+            c, d = o(i+1, jn), o(i+1, j)
+            faces.append([a, b, c])
+            faces.append([a, c, d])
+
+    # ── 2. Inner side quads (only above floor) ──────────────────────────
+    inner_start = floor_idx if solid_base > 0 else 0
+    for i in range(inner_start, N - 1):
+        for j in range(P):
+            jn = (j + 1) % P
+            a, b = inn(i, j),    inn(i, jn)
+            c, d = inn(i+1, jn), inn(i+1, j)
+            faces.append([a, c, b])
+            faces.append([a, d, c])
+
+    # ── 3. Bottom face ──────────────────────────────────────────────────
+    if solid_base > 0:
+        # Solid base: bottom is a full disc (outer ring 0 fanned to center)
+        center_bot_idx = len(all_points)
+        all_points.append((0.0, 0.0, 0.0))
+        for j in range(P):
+            jn = (j + 1) % P
+            faces.append([center_bot_idx, o(0, jn), o(0, j)])
+    else:
+        # Open tube: bottom is an annulus outer↔inner at z=0
+        for j in range(P):
+            jn = (j + 1) % P
+            faces.append([o(0, j),  inn(0, j),  inn(0, jn)])
+            faces.append([o(0, j),  inn(0, jn), o(0, jn)])
+
+    # ── 4. Top annulus (z=H face, looking upward) ──────────────────────
+    for j in range(P):
+        jn = (j + 1) % P
+        faces.append([o(N-1, j),  o(N-1, jn),  inn(N-1, jn)])
+        faces.append([o(N-1, j),  inn(N-1, jn), inn(N-1, j)])
+
+    # ── 5. Solid base floor ─────────────────────────────────────────────
+    if solid_base > 0:
+        # Floor disc: fan from inn(floor_idx) ring down to a center point.
+        # This is entirely within the inner cylinder — no outer ring edges
+        # are reused, so no manifold violations.
+        floor_z = avg_z(all_inner[floor_idx])
+        center_floor_idx = len(all_points)
+        all_points.append((0.0, 0.0, floor_z))
+
+        for j in range(P):
+            jn = (j + 1) % P
+            # Upward-facing (CCW from above)
+            faces.append([center_floor_idx, inn(floor_idx, j), inn(floor_idx, jn)])
+
+    return all_points, faces
+
+
     """Build a hollow tube mesh with inner and outer walls.
 
     Structure:
@@ -627,11 +833,49 @@ def write_stl(filepath, all_points, faces):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a parametric sandstone strata cylinder SCAD file.",
+        description="Generate a parametric sandstone strata cylinder SCAD file, or a vase.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__
     )
 
+    # ── Vase vs Sandstone mode selection ─────────────────────────────────
+    parser.add_argument(
+        "--vase", action="store_true", default=False,
+        help="Generate a simple cylindrical vase instead of sandstone model"
+    )
+    parser.add_argument(
+        "--vase-sandstone", action="store_true", default=False,
+        help="Generate sandstone with vase dimensions (organic exterior, hollow interior)"
+    )
+
+    parser.add_argument(
+        "--vase-solid", action="store_true", default=False,
+        help="Generate solid sandstone scaled to vase exterior dimensions (no bore)"
+    )
+
+    # ── Vase-specific arguments ──────────────────────────────────────────
+    parser.add_argument(
+        "--vase-interior-diameter", type=float, default=78.0,
+        help="Interior diameter of the vase cavity (mm, default 78.0)"
+    )
+    parser.add_argument(
+        "--vase-interior-height", type=float, default=176.0,
+        help="Interior height of the vase cavity (mm, default 176.0)"
+    )
+    parser.add_argument(
+        "--vase-wall", type=float, default=3.0,
+        help="Vase wall thickness (mm, default 3.0)"
+    )
+    parser.add_argument(
+        "--vase-base", type=float, default=3.0,
+        help="Vase solid base thickness (mm, default 3.0)"
+    )
+    parser.add_argument(
+        "--vase-layers", type=int, default=50,
+        help="Number of layers for vase rings (default 50)"
+    )
+
+    # ── Sandstone-specific arguments ─────────────────────────────────────
     height_group = parser.add_mutually_exclusive_group()
     height_group.add_argument(
         "--height", type=float, default=None,
@@ -653,6 +897,11 @@ def main():
     parser.add_argument(
         "--layer-scale", type=float, default=None,
         help="Scale factor for number of layers (1.0 = baseline count)"
+    )
+    parser.add_argument(
+        "--sharp", action="store_true", default=False,
+        help="Use sharp nearest-neighbor XY snapping for crisp, "
+             "pronounced strata ledges (default: smooth blending)"
     )
     parser.add_argument(
         "--hollow", action="store_true", default=False,
@@ -684,7 +933,202 @@ def main():
 
     args = parser.parse_args()
 
-    # ── Resolve target height ────────────────────────────────────────────
+    # ── VASE MODE (simple cylindrical) ───────────────────────────────────
+    if args.vase and not args.vase_sandstone:
+        print("Generating VASE model")
+        interior_diameter = args.vase_interior_diameter
+        interior_height = args.vase_interior_height
+        wall_thickness = args.vase_wall
+        solid_base = args.vase_base
+        num_layers = args.vase_layers
+        
+        print(f"  Interior: ⌀{interior_diameter:.1f}mm × {interior_height:.1f}mm")
+        print(f"  Wall:     {wall_thickness:.2f}mm")
+        print(f"  Base:     {solid_base:.2f}mm")
+        print(f"  Layers:   {num_layers}")
+        
+        # Generate simple cylindrical vase rings
+        new_rings = generate_vase_rings(interior_diameter, interior_height, 
+                                        wall_thickness, num_layers)
+        target_height = interior_height
+        
+        # Build hollow mesh
+        all_points, faces = build_hollow_mesh(
+            new_rings, target_height, wall_thickness,
+            solid_base, 0.0)
+        n_pts = len(all_points)
+        n_faces = len(faces)
+        
+        # Output filename
+        if args.output:
+            base_output = args.output
+            if base_output.lower().endswith('.scad'):
+                base_output = base_output[:-5]
+            elif base_output.lower().endswith('.stl'):
+                base_output = base_output[:-4]
+        else:
+            d_tag = f"{interior_diameter:.0f}mm"
+            h_tag = f"{interior_height:.0f}mm"
+            w_tag = f"wall{wall_thickness:.0f}"
+            b_tag = f"base{solid_base:.0f}"
+            base_output = f"vase_{d_tag}x{h_tag}_{w_tag}_{b_tag}"
+        
+        scad_path = base_output + '.scad'
+        stl_path = base_output + '.stl'
+        
+        # Write outputs
+        write_scad(scad_path, all_points, faces, target_height, num_layers)
+        write_stl(stl_path, all_points, faces)
+        
+        stl_size = os.path.getsize(stl_path)
+        stl_mb = stl_size / (1024 * 1024)
+        
+        print(f"\n✓ SCAD: {scad_path}")
+        print(f"✓ STL:  {stl_path}  ({stl_mb:.1f} MB)")
+        print(f"  Points: {n_pts:,}  |  Faces: {n_faces:,}")
+        print(f"  Interior cavity: ⌀{interior_diameter:.1f}mm × {interior_height:.1f}mm")
+        print(f"  Wall thickness:  {wall_thickness:.2f}mm")
+        print(f"  Base thickness:  {solid_base:.2f}mm")
+        return
+    
+    # ── VASE-SOLID MODE (solid sandstone scaled to vase exterior) ────────
+    if args.vase_solid:
+        interior_diameter = args.vase_interior_diameter
+        interior_height = args.vase_interior_height
+        wall_thickness = args.vase_wall
+        target_height = interior_height
+        exterior_diameter = interior_diameter + 2 * wall_thickness
+        exterior_radius = exterior_diameter / 2.0
+        num_layers = args.vase_layers if args.vase_layers != 50 else max(2, int(round(BASELINE_NUM_LAYERS * (target_height / BASELINE_HEIGHT))))
+        print(f"Generating SOLID SANDSTONE vase shell")
+        print(f"  Exterior: ⌀{exterior_diameter:.1f}mm × {target_height:.1f}mm")
+        print(f"  Layers:   {num_layers}")
+        source_path = args.source
+        if not os.path.exists(source_path):
+            print(f"ERROR: Source file not found: {source_path}", file=sys.stderr)
+            sys.exit(1)
+        rings, center_bot, center_top, ring_avg_z = parse_original_scad(source_path)
+        new_rings = interpolate_rings(rings, ring_avg_z, num_layers, target_height, sharp=args.sharp)
+        first_ring = new_rings[0]
+        current_radius = sum(math.sqrt(p[0]**2 + p[1]**2) for p in first_ring) / len(first_ring)
+        scale_factor = exterior_radius / current_radius if current_radius > 1e-6 else 1.0
+        print(f"  Scaling: {scale_factor:.3f}x  ({current_radius:.2f}mm → {exterior_radius:.2f}mm radius)")
+        scaled_rings = [[(p[0]*scale_factor, p[1]*scale_factor, p[2]) for p in ring] for ring in new_rings]
+        all_points, faces = build_mesh(scaled_rings, target_height)
+        n_pts = len(all_points)
+        n_faces = len(faces)
+        if args.output:
+            base_output = args.output
+            if base_output.lower().endswith('.scad'): base_output = base_output[:-5]
+            elif base_output.lower().endswith('.stl'): base_output = base_output[:-4]
+        else:
+            base_output = f"vase_solid_sandstone_{exterior_diameter:.0f}mmx{target_height:.0f}mm_{num_layers}L"
+        scad_path = base_output + '.scad'
+        stl_path  = base_output + '.stl'
+        write_scad(scad_path, all_points, faces, target_height, num_layers)
+        write_stl(stl_path, all_points, faces)
+        stl_mb = os.path.getsize(stl_path) / (1024*1024)
+        print(f"\n✓ SCAD: {scad_path}")
+        print(f"✓ STL:  {stl_path}  ({stl_mb:.1f} MB)")
+        print(f"  Points: {n_pts:,}  |  Faces: {n_faces:,}")
+        print(f"  Exterior: ⌀{exterior_diameter:.1f}mm × {target_height:.1f}mm  (solid, no bore)")
+        return
+
+    # ── VASE-SANDSTONE MODE (sandstone exterior with vase interior) ──────
+    if args.vase_sandstone:
+        print("Generating VASE with SANDSTONE exterior")
+        interior_diameter = args.vase_interior_diameter
+        interior_height = args.vase_interior_height
+        wall_thickness = args.vase_wall
+        solid_base = args.vase_base
+        target_height = interior_height
+        
+        # Resolve vase layer count
+        num_layers = args.vase_layers if args.vase_layers != 50 else max(2, int(round(BASELINE_NUM_LAYERS * (interior_height / BASELINE_HEIGHT))))
+        
+        print(f"  Interior: ⌀{interior_diameter:.1f}mm × {interior_height:.1f}mm")
+        print(f"  Wall:     {wall_thickness:.2f}mm")
+        print(f"  Base:     {solid_base:.2f}mm")
+        print(f"  Layers:   {num_layers}")
+        
+        # Parse original sandstone
+        source_path = args.source
+        if not os.path.exists(source_path):
+            print(f"ERROR: Source file not found: {source_path}", file=sys.stderr)
+            sys.exit(1)
+        
+        print(f"\nParsing sandstone strata from: {source_path}")
+        rings, center_bot, center_top, ring_avg_z = parse_original_scad(source_path)
+        
+        # Generate sandstone rings at vase height
+        new_rings = interpolate_rings(rings, ring_avg_z, num_layers, target_height,
+                                      sharp=args.sharp)
+        
+        # Scale rings to fit vase exterior dimensions
+        # Interior diameter + 2 wall thickness = exterior diameter
+        exterior_diameter = interior_diameter + 2 * wall_thickness
+        exterior_radius = exterior_diameter / 2.0
+        
+        # Find current average radius (average distance of ring points from origin)
+        first_ring = new_rings[0]
+        radius_sum = sum(math.sqrt(p[0]**2 + p[1]**2) for p in first_ring)
+        current_radius = radius_sum / len(first_ring)
+        
+        scale_factor = exterior_radius / current_radius if current_radius > 1e-6 else 1.0
+        
+        print(f"  Current radius:  {current_radius:.2f}mm")
+        print(f"  Target radius:   {exterior_radius:.2f}mm")
+        print(f"  Scaling rings:   {scale_factor:.3f}x (for ⌀{exterior_diameter:.1f}mm exterior)")
+        
+        # Apply scaling to rings
+        scaled_rings = []
+        for ring in new_rings:
+            scaled_ring = [(p[0]*scale_factor, p[1]*scale_factor, p[2]) for p in ring]
+            scaled_rings.append(scaled_ring)
+        
+        # Build hollow mesh with perfect cylindrical interior
+        all_points, faces = build_hollow_vase_mesh(
+            scaled_rings, interior_diameter, target_height, solid_base)
+        n_pts = len(all_points)
+        n_faces = len(faces)
+        
+        # Output filename
+        if args.output:
+            base_output = args.output
+            if base_output.lower().endswith('.scad'):
+                base_output = base_output[:-5]
+            elif base_output.lower().endswith('.stl'):
+                base_output = base_output[:-4]
+        else:
+            d_tag = f"{interior_diameter:.0f}mm"
+            h_tag = f"{interior_height:.0f}mm"
+            w_tag = f"wall{wall_thickness:.0f}"
+            b_tag = f"base{solid_base:.0f}"
+            l_tag = f"{num_layers}L"
+            base_output = f"vase_sandstone_{d_tag}x{h_tag}_{w_tag}_{b_tag}_{l_tag}"
+        
+        scad_path = base_output + '.scad'
+        stl_path = base_output + '.stl'
+        
+        # Write outputs
+        write_scad(scad_path, all_points, faces, target_height, num_layers)
+        write_stl(stl_path, all_points, faces)
+        
+        stl_size = os.path.getsize(stl_path)
+        stl_mb = stl_size / (1024 * 1024)
+        
+        print(f"\n✓ SCAD: {scad_path}")
+        print(f"✓ STL:  {stl_path}  ({stl_mb:.1f} MB)")
+        print(f"  Points: {n_pts:,}  |  Faces: {n_faces:,}")
+        print(f"  Interior cavity: ⌀{interior_diameter:.1f}mm × {interior_height:.1f}mm")
+        print(f"  Exterior shell: ⌀{exterior_diameter:.1f}mm × {interior_height:.1f}mm")
+        print(f"  Wall thickness:  {wall_thickness:.2f}mm")
+        print(f"  Base thickness:  {solid_base:.2f}mm")
+        print(f"  Strata layers:   {num_layers}")
+        return
+    
+    # ── SANDSTONE MODE ───────────────────────────────────────────────────
+    # Resolve target height
     if args.height is not None:
         target_height = args.height
     elif args.height_percent is not None:
@@ -694,16 +1138,19 @@ def main():
     else:
         target_height = BASELINE_HEIGHT
 
-    # ── Resolve number of layers ─────────────────────────────────────────
+    # Resolve number of layers
     if args.layers is not None:
         num_layers = max(2, args.layers)  # minimum 2 rings
     elif args.layer_scale is not None:
         num_layers = max(2, int(round(BASELINE_NUM_LAYERS * args.layer_scale)))
     else:
-        # Default: scale layers proportionally with height
+        # Default: scale layers proportionally with height so strata
+        # density matches the original (~1.09mm per layer).
+        # Nearest-neighbor XY interpolation preserves sharp ledges
+        # even when extra layers are added.
         num_layers = max(2, int(round(BASELINE_NUM_LAYERS * (target_height / BASELINE_HEIGHT))))
 
-    # ── Parse original ───────────────────────────────────────────────────
+    # Parse original
     source_path = args.source
     if not os.path.exists(source_path):
         print(f"ERROR: Source file not found: {source_path}", file=sys.stderr)
@@ -714,7 +1161,7 @@ def main():
     print(f"  → {len(rings)} rings × {POINTS_PER_RING} points/ring")
     print(f"  → Original height: {BASELINE_HEIGHT}mm")
 
-    # ── Generate new rings ───────────────────────────────────────────────
+    # Generate new rings
     print(f"\nGenerating parametric model:")
     print(f"  Target height : {target_height:.1f} mm "
           f"({target_height/BASELINE_HEIGHT*100:.0f}% of baseline)")
@@ -722,8 +1169,10 @@ def main():
           f"({num_layers/BASELINE_NUM_LAYERS*100:.0f}% of baseline)")
     layer_thickness = target_height / max(1, num_layers - 1)
     print(f"  Avg layer step: {layer_thickness:.2f} mm")
+    print(f"  Strata mode : {'SHARP (nearest-neighbor)' if args.sharp else 'SMOOTH (blended)'}")
 
-    new_rings = interpolate_rings(rings, ring_avg_z, num_layers, target_height)
+    new_rings = interpolate_rings(rings, ring_avg_z, num_layers, target_height,
+                                   sharp=args.sharp)
 
     # ── Resolve hollow / wall / base / hole ───────────────────────────────
     wall_thickness = None
@@ -790,8 +1239,7 @@ def main():
             if base_hole_diameter > 0:
                 hole_str = f"{base_hole_diameter:.2f}".rstrip('0').rstrip('.')
                 w_tag += f"_hole{hole_str}"
-        base_output = str(SCRIPT_DIR /
-            f"illinois_sandstone_parametric_{h_tag}_{l_tag}{w_tag}")
+        base_output = f"illinois_sandstone_parametric_{h_tag}_{l_tag}{w_tag}"
 
     scad_path = base_output + '.scad'
     stl_path = base_output + '.stl'
