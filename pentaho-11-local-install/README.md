@@ -51,6 +51,21 @@ Then open **http://localhost:8080/pentaho** (default port; allow ~5–10 min for
 
 **Login:** `admin` / `password`
 
+### Install plugins
+
+Once the server is up, install the plugins listed in your env file
+(`PLUGINS_TYPICAL` + `PLUGINS_SPECIAL` — PAZ, PIR, PDD, PAS scheduler, webttle, etc.):
+
+```bash
+./local-deploy-plugins.sh local.env                 # install all configured plugins
+./local-deploy-plugins.sh local.env <url-or-name>   # install a single plugin
+```
+
+The script waits for the server to report `Server startup in …`, downloads each plugin from JFrog,
+copies it into the running container, extracts it to the right location (system folder, or the
+special locations for `webttle` / `app-shell`), clears the Karaf cache, and restarts the container
+once at the end. Local `file://` plugins are read from `work/downloads/plugins/<version>/`.
+
 ## Configuration
 
 All settings live in `local.env` (copied from `local.env.template`). Key values:
@@ -92,11 +107,7 @@ docker compose -f docker-compose-postgres.yaml up -d        # start again
 | Auth | Okta → AWS, SSH key, VPN | None |
 | Image source | JFrog (downloaded onto EC2) | JFrog (downloaded locally) — same artifacts |
 | Default port | `80` | `8080` (no root needed) |
-| Plugins | `20-deploy-all-plugins.sh` etc. | Not included here — add later if needed |
-
-> **Plugins:** the SE repo installs PAZ/PIR/PDD/etc. after the server is up. This local install brings
-> up the base server only. The same plugin zips (from the `PLUGINS_TYPICAL` URLs in the SE env files)
-> can be dropped into the compose directory's `softwareOverride/` or installed via the User Console.
+| Plugins | `20-deploy-all-plugins.sh` etc. | `local-deploy-plugins.sh` (same logic, local container) |
 
 ## Troubleshooting
 
