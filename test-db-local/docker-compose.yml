@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: ${LOCAL_PG_IMAGE:-postgres:17}
+    container_name: ${LOCAL_CONTAINER_NAME:-test-db-local}
+    environment:
+      POSTGRES_USER: ${LOCAL_SUPERUSER:-postgres}
+      POSTGRES_PASSWORD: ${LOCAL_PASSWORD:-postgres}
+      POSTGRES_DB: ${LOCAL_DEFAULT_DB:-postgres}
+    ports:
+      - "${LOCAL_PORT:-5433}:5432"
+    volumes:
+      - test-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LOCAL_SUPERUSER:-postgres} -d ${LOCAL_DEFAULT_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+volumes:
+  test-db-data:
