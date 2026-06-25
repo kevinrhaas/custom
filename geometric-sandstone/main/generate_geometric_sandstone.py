@@ -311,6 +311,88 @@ def make_ring_from_corners(corners, subdiv, z):
     return ring
 
 
+def _hash01(*ints):
+    """Deterministic pseudo-random in [0,1) from a tuple of ints (FNV-ish)."""
+    h = 2166136261
+    for v in ints:
+        h = ((h ^ (int(v) & 0xFFFFFFFF)) * 16777619) & 0xFFFFFFFF
+    return h / 0xFFFFFFFF
+
+
+def _tooth_weight(u, teeth):
+    """Triangular tooth profile along a wall: u in [0,1), `teeth` slots.
+    Returns (slot_index, weight) where weight peaks 1 at the slot centre and
+    falls to 0 at the slot edges -> a sharp triangular tooth."""
+    if teeth <= 0:
+        return 0, 0.0
+    x = u * teeth
+    m = min(int(x), teeth - 1)
+    return m, max(0.0, 1.0 - abs((x - m) - 0.5) * 2.0)
+
+
+def build_rings(profile, facets, subdiv, layers, height, overhang_limit,
+                wall_teeth=0, teeth_height=0.0, teeth_density=0.45,
+                teeth_row_mm=5.0, seed=42):
+    """Build every ring as facets*subdiv surface points, with optional WALL
+    TEETH and a per-point printability clamp.
+
+    Wall teeth: each flat wall carries `wall_teeth` triangular teeth.  A tooth
+    is on/off per (wall-slot, ~`teeth_row_mm` row) — so going up the body teeth
+    appear and vanish in discrete rows, neighbouring teeth sometimes line up
+    into a flat span (combine) and then break apart (jagged), exactly the
+    "5 mm rows of steps that come together and split" look.
+
+    The overhang clamp runs per surface-point column, so the toothed walls stay
+    support-free too."""
+    ts = [k / (layers - 1) for k in range(layers)]
+    P = facets * subdiv
+    row_h = max(1.0, teeth_row_mm)
+
+    raw = []                                   # raw[k] = [(x, y), ...]
+    for t in ts:
+        z = t * height
+        row = int(z / row_h)
+        ang = [profile.corner_angle(f, t) for f in range(facets)]
+        rad = [profile.corner_radius(f, t, ang[f]) for f in range(facets)]
+        cx = [rad[f] * math.cos(ang[f]) for f in range(facets)]
+        cy = [rad[f] * math.sin(ang[f]) for f in range(facets)]
+        ring = []
+        for f in range(facets):
+            x0, y0 = cx[f], cy[f]
+            x1, y1 = cx[(f + 1) % facets], cy[(f + 1) % facets]
+            for s in range(subdiv):
+                u = s / subdiv
+                x = x0 + (x1 - x0) * u
+                y = y0 + (y1 - y0) * u
+                if wall_teeth > 0 and teeth_height > 0:
+                    slot, w = _tooth_weight(u, wall_teeth)
+                    if w > 0 and _hash01(f, slot, row, seed) < teeth_density:
+                        d = math.hypot(x, y)
+                        if d > 1e-9:
+                            disp = teeth_height * profile.R0 * w
+                            x += x / d * disp
+                            y += y / d * disp
+                ring.append((x, y))
+        raw.append(ring)
+
+    # Per-point overhang clamp: cap how fast any surface point grows outward.
+    if overhang_limit and overhang_limit > 0:
+        slope = math.tan(math.radians(overhang_limit))
+        for p in range(P):
+            for k in range(1, layers):
+                dz = (ts[k] - ts[k - 1]) * height
+                x, y = raw[k][p]
+                r = math.hypot(x, y)
+                rp = math.hypot(*raw[k - 1][p])
+                cap = rp + slope * dz
+                if r > cap and r > 1e-9:
+                    fct = cap / r
+                    raw[k][p] = (x * fct, y * fct)
+
+    return [[(x, y, ts[k] * height) for (x, y) in raw[k]]
+            for k in range(layers)]
+
+
 def offset_ring_inward(ring, wall):
     """Offset every point toward the Z axis by *wall* (radial)."""
     out = []
@@ -559,12 +641,19 @@ def main():
                     help="Per-face constant radius offset so the sides are "
                          "clearly unequal from the top (default 0; try 0.08)")
     ap.add_argument("--teeth", type=float, default=0.0,
-                    help="Outward tooth protrusion on the flat faces, fraction "
-                         "of radius — stacked geometric teeth (default 0; "
-                         "try 0.10)")
-    ap.add_argument("--teeth-density", type=float, default=0.4,
-                    help="Fraction of (face,band) cells that grow a tooth "
-                         "(default 0.4)")
+                    help="Tooth protrusion height, fraction of radius. With "
+                         "--wall-teeth it makes sharp triangular wall teeth; "
+                         "otherwise it nudges whole corners (default 0; try 0.12)")
+    ap.add_argument("--wall-teeth", type=int, default=0,
+                    help="Sharp triangular teeth PER FLAT WALL (e.g. 3 -> a "
+                         "serrated cross-section). 0 = smooth walls (default 0)")
+    ap.add_argument("--teeth-row", type=float, default=5.0,
+                    help="Height of each tooth on/off row in mm — teeth toggle "
+                         "per row so they combine and split up the body "
+                         "(default 5)")
+    ap.add_argument("--teeth-density", type=float, default=0.45,
+                    help="Fraction of (slot,row) cells that grow a tooth "
+                         "(default 0.45)")
     ap.add_argument("--strata-amp", type=float, default=0.03,
                     help="Smooth rounded swell over the bands — the curvy "
                          "component; keep low for an angular look (default 0.03)")
@@ -607,18 +696,22 @@ def main():
     subdiv = max(1, args.subdiv)
     twist_rad = math.radians(args.twist)
 
+    # Corner teeth (old mechanism) only when wall teeth are off.
+    corner_teeth = args.teeth if args.wall_teeth == 0 else 0.0
     profile = StrataProfile(args.radius, args.strata_amp, args.facet_jitter,
                             args.taper, args.seed, args.strata_bands,
                             args.band_amp, args.band_blend, facets, twist_rad,
                             args.angle_irregular,
                             math.radians(args.twist_wander), args.band_warp,
                             args.band_thick_var, args.face_radius_irregular,
-                            args.teeth, args.teeth_density)
+                            corner_teeth, args.teeth_density)
 
-    cols = build_corner_columns(profile, facets, layers, height,
-                                args.overhang_limit)
-    rings = [make_ring_from_corners(cols[k], subdiv, k / (layers - 1) * height)
-             for k in range(layers)]
+    rings = build_rings(profile, facets, subdiv, layers, height,
+                        args.overhang_limit,
+                        wall_teeth=args.wall_teeth,
+                        teeth_height=(args.teeth if args.wall_teeth > 0 else 0.0),
+                        teeth_density=args.teeth_density,
+                        teeth_row_mm=args.teeth_row, seed=args.seed)
 
     if args.solid:
         pts, faces = build_solid_mesh(rings, height)

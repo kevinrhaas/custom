@@ -120,8 +120,10 @@ python3 render_stl.py mylamp.stl -o mylamp.svg --az 22 --el 58
 | `--band-blend` | Ramp width: 0 = hard ledges, 1 = long merged ramps | 0.35 |
 | `--band-thick-var` | How unequal the shelf heights are, 0..0.95 | 0.7 |
 | `--band-warp` | Tilt strata so layers merge **and** split | 0.0 |
-| `--teeth` | Tooth protrusion on faces, fraction of radius | 0.0 |
-| `--teeth-density` | Fraction of (face,band) cells that grow a tooth | 0.4 |
+| `--teeth` | Tooth height, fraction of radius | 0.0 |
+| `--wall-teeth` | Sharp triangular teeth per flat wall (serrated section) | 0 |
+| `--teeth-row` | Height of each tooth on/off row, mm (combine & split) | 5.0 |
+| `--teeth-density` | Fraction of (slot,row) cells that grow a tooth | 0.45 |
 | `--strata-amp` | Smooth (curvy) swell — keep low for angular | 0.03 |
 | `--facet-jitter` | Per-corner jaggedness, fraction of radius | 0.05 |
 | `--angle-irregular` | Uneven angular side widths, 0..0.85 | 0.0 |
@@ -151,6 +153,13 @@ python3 render_stl.py mylamp.stl -o mylamp.svg --az 22 --el 58
     shelf heights, clearly unequal sides, wandering vertical edges.
   - *teeth* (`6sides_twist0`, `8sides_twist15`, `5sides_twist30`) — stacked
     geometric tooth protrusions on the faces.
+- **`files/lamp/serrated/`** — the current direction:
+  - *sharp* (`sharp_5sides`, `sharp_6sides`) — crisp hard ledges, support-free.
+  - *teeth* (`teeth_5sides/6sides/8sides`) — `--wall-teeth` serrated cross-
+    section: each wall carries sharp triangular teeth that toggle in ~6 mm rows
+    so they combine into flat spans and split apart up the body. **Print note:**
+    the sharp tooth undersides are genuine overhangs (a minority of faces up to
+    ~75°) — fine as a diffuser but may want light supports or a brim.
 - Every shade has a `…_with_base` twin (puck fused on) under `with_base/`.
 
 ## Base attachment (twist-lock for the Bambu LED module)
