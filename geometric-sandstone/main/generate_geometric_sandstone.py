@@ -113,21 +113,46 @@ class StrataProfile:
     """
 
     def __init__(self, mean_radius, strata_amp, facet_jitter, taper, seed,
-                 strata_bands=22, band_amp=0.07, band_blend=0.4):
+                 strata_bands=22, band_amp=0.07, band_blend=0.4,
+                 facets=7, twist_rad=0.0, angle_irregular=0.0,
+                 twist_wander=0.0, band_warp=0.0):
         self.R0 = mean_radius
         self.strata_amp = strata_amp
         self.facet_jitter = facet_jitter
         self.taper = taper
         self.band_amp = band_amp
         self.band_blend = max(1e-3, min(1.0, band_blend))
+        self.facets = facets
+        self.twist = twist_rad
+        self.band_warp = band_warp
         # Independent noise channels
         self.n_strata = ValueNoise1D(seed * 7 + 1)
         self.n_corner = ValueNoise1D(seed * 13 + 5)
+        self.n_wander = ValueNoise1D(seed * 37 + 9)
         # Randomised but seed-stable phases for the sine bands
         nseed = ValueNoise1D(seed * 101 + 3)
         self.p1 = nseed.at(0.5) * math.pi
         self.p2 = nseed.at(1.5) * math.pi
         self.p3 = nseed.at(2.5) * math.pi
+        # Phases for the strata warp (merging/splitting)
+        self.wp1 = nseed.at(3.5) * math.pi
+        self.wp2 = nseed.at(4.5) * math.pi
+
+        # ── Irregular polygon: uneven angular spacing of the corners ──
+        # Per-corner gap weights > 0 so cumulative angles stay strictly
+        # increasing (never cross).  angle_irregular=0 -> perfectly regular.
+        ai = max(0.0, min(0.85, angle_irregular))
+        gaps = [1.0 + ai * v for v in _lcg_list(seed * 53 + 6, facets, -1, 1)]
+        gtot = sum(gaps)
+        self.base_ang = []
+        acc = 0.0
+        for g in gaps:
+            self.base_ang.append(2 * math.pi * acc / gtot)
+            acc += g
+        self.min_gap = min(gaps) / gtot * 2 * math.pi
+        # Wandering twist: each corner spirals up by its own drifting offset.
+        # Clamp amplitude to < ~0.4*min_gap so neighbours never cross.
+        self.wander_amp = min(twist_wander, 0.4 * self.min_gap)
 
         # ── Build the stacked strata bands ──
         B = max(2, strata_bands)
@@ -140,6 +165,23 @@ class StrataProfile:
         self.centers = [(edges[i] + edges[i + 1]) / 2 for i in range(B)]
         self.offs = _lcg_list(seed * 29 + 4, B, -1, 1)   # per-band shelf radius
         self.B = B
+
+    def corner_angle(self, f, t):
+        """Angle (rad) of corner *f* at height *t*: irregular base spacing +
+        uniform twist + per-corner wandering spiral that grows up the height."""
+        wander = self.wander_amp * self.n_wander.at(f * 3.1 + t * 4.0) * t
+        return self.base_ang[f] + self.twist * t + wander
+
+    def warp_t(self, theta, t):
+        """Warp the height coordinate the strata are sampled at, as a smooth
+        periodic function of angle + height.  This tilts the bands so they
+        pinch out (split) and converge (merge) around the body instead of
+        staying perfectly horizontal — the real-sandstone look."""
+        if self.band_warp <= 0:
+            return t
+        w = (0.6 * math.sin(theta + self.wp1 + 2 * math.pi * 0.8 * t)
+             + 0.4 * math.sin(2 * theta + self.wp2 + 2 * math.pi * 1.3 * t))
+        return min(1.0, max(0.0, t + self.band_warp * 0.5 * w))
 
     def band(self, t):
         """Stacked-shelf strata value in [-1, 1].
@@ -159,22 +201,33 @@ class StrataProfile:
             i += 1
         u = (t - c[i]) / (c[i + 1] - c[i])               # 0..1 between centres
         h = self.band_blend * 0.5
-        # Flat shelves with a transition of width ~band_blend around u=0.5
+        # Flat shelves with a LINEAR (angular) ramp of width ~band_blend around
+        # u=0.5 — straight chamfers and sharp vertices, not rounded S-curves.
         w = max(0.0, min(1.0, (u - (0.5 - h)) / (2 * h)))
-        return self.offs[i] + (self.offs[i + 1] - self.offs[i]) * _smoothstep(w)
+        return self.offs[i] + (self.offs[i + 1] - self.offs[i]) * w
 
     def strata(self, t):
-        """Smooth global swell/pinch in [-1, 1] layered over the bands."""
+        """Smooth global swell/pinch in [-1, 1] layered over the bands.
+
+        Kept low by default — this is the rounded/curvy component, so the
+        angular band shelves dominate the silhouette."""
         s = (0.55 * math.sin(2 * math.pi * 3.5 * t + self.p1)
              + 0.30 * math.sin(2 * math.pi * 7.0 * t + self.p2)
              + 0.15 * math.sin(2 * math.pi * 13.0 * t + self.p3))
         s += 0.35 * self.n_strata.at(t * 9.0)
         return max(-1.0, min(1.0, s))
 
-    def corner_radius(self, facet, t):
-        """Exterior radius (mm) of corner *facet* at height fraction *t*."""
-        rel = (self.band_amp * self.band(t)
-               + self.strata_amp * self.strata(t))
+    def corner_radius(self, facet, t, theta=None):
+        """Exterior radius (mm) of corner *facet* at height fraction *t*.
+
+        *theta* (corner angle) drives the strata warp so the bands tilt and
+        merge/split around the body; if omitted it is derived from the corner's
+        own angle."""
+        if theta is None:
+            theta = self.corner_angle(facet, t)
+        te = self.warp_t(theta, t)
+        rel = (self.band_amp * self.band(te)
+               + self.strata_amp * self.strata(te))
         base = self.R0 * (1.0 + rel)
         # Per-corner jitter drifts slowly up the height -> jagged but flowing
         jit = self.n_corner.at(facet * 4.7 + t * 6.0)
@@ -185,30 +238,47 @@ class StrataProfile:
 
 # ── Ring (faceted cross-section) generation ──────────────────────────────────
 
-def make_ring(profile, facets, subdiv, t, height, twist_rad):
-    """Build one faceted ring as facets*subdiv points on straight chords.
+def build_corner_columns(profile, facets, layers, height, overhang_limit):
+    """Per-corner (radius, angle) at every layer, with the outward radius slope
+    clamped so downward-facing overhangs stay printable.
 
-    Corner f sits at angle (2π f / facets + twist*t) and radius from the
-    strata profile.  Points between corner f and f+1 are linearly interpolated
-    along the straight chord, so each facet edge is perfectly flat.
-    """
-    z = t * height
-    # Corner positions for this layer
-    corners = []
-    for f in range(facets):
-        ang = 2 * math.pi * f / facets + twist_rad * t
-        r = profile.corner_radius(f, t)
-        corners.append((r * math.cos(ang), r * math.sin(ang)))
+    Returns cols[k][f] = (x, y).  The clamp marches up each corner column:
+    radius may grow at most tan(overhang_limit) per mm of rise, so the steepest
+    underside chamfer equals overhang_limit from vertical (≈45-55° prints
+    cleanly without supports).  Radius is free to shrink (self-supporting)."""
+    ts = [k / (layers - 1) for k in range(layers)]
+    ang = [[profile.corner_angle(f, t) for f in range(facets)] for t in ts]
+    rad = [[profile.corner_radius(f, t, ang[k][f]) for f in range(facets)]
+           for k, t in enumerate(ts)]
 
+    if overhang_limit and overhang_limit > 0:
+        slope = math.tan(math.radians(overhang_limit))   # max d(r)/d(z) outward
+        for f in range(facets):
+            for k in range(1, layers):
+                dz = (ts[k] - ts[k - 1]) * height
+                cap = rad[k - 1][f] + slope * dz
+                if rad[k][f] > cap:
+                    rad[k][f] = cap
+
+    cols = []
+    for k in range(layers):
+        cols.append([(rad[k][f] * math.cos(ang[k][f]),
+                      rad[k][f] * math.sin(ang[k][f])) for f in range(facets)])
+    return cols
+
+
+def make_ring_from_corners(corners, subdiv, z):
+    """One faceted ring: straight chords between precomputed corner XY points,
+    each subdivided so walls stay flat while caps/holes stay round."""
+    facets = len(corners)
     ring = []
     for f in range(facets):
         c0 = corners[f]
         c1 = corners[(f + 1) % facets]
         for s in range(subdiv):
             u = s / subdiv
-            x = c0[0] + (c1[0] - c0[0]) * u
-            y = c0[1] + (c1[1] - c0[1]) * u
-            ring.append((x, y, z))
+            ring.append((c0[0] + (c1[0] - c0[0]) * u,
+                         c0[1] + (c1[1] - c0[1]) * u, z))
     return ring
 
 
@@ -447,14 +517,27 @@ def main():
                     help="Number of stacked sediment bands/shelves (default 22)")
     ap.add_argument("--band-amp", type=float, default=0.07,
                     help="Strata shelf depth, fraction of radius (default 0.07)")
-    ap.add_argument("--band-blend", type=float, default=0.4,
-                    help="0 = hard ledges (distinct layers), 1 = fully merged/"
-                         "blended layers (default 0.4)")
-    ap.add_argument("--strata-amp", type=float, default=0.05,
-                    help="Smooth swell layered over the bands, fraction of "
-                         "radius (default 0.05)")
+    ap.add_argument("--band-blend", type=float, default=0.35,
+                    help="Width of the angular ramp between shelves: 0 = hard "
+                         "ledges, 1 = long ramps / merged layers (default 0.35)")
+    ap.add_argument("--band-warp", type=float, default=0.06,
+                    help="Tilt/warp the strata around the body so layers merge "
+                         "AND split like real sandstone (default 0.06; 0 = flat "
+                         "horizontal bands)")
+    ap.add_argument("--strata-amp", type=float, default=0.03,
+                    help="Smooth rounded swell over the bands — the curvy "
+                         "component; keep low for an angular look (default 0.03)")
     ap.add_argument("--facet-jitter", type=float, default=0.05,
                     help="Per-corner jaggedness, fraction of radius (default 0.05)")
+    ap.add_argument("--angle-irregular", type=float, default=0.0,
+                    help="Unevenness of the polygon sides, 0..0.85 (default 0 = "
+                         "regular; 0.5 = sides clearly different widths)")
+    ap.add_argument("--twist-wander", type=float, default=0.0,
+                    help="Per-corner irregular spiral: each edge wanders up by "
+                         "its own drift, degrees of swing (default 0)")
+    ap.add_argument("--overhang-limit", type=float, default=45.0,
+                    help="Cap downward overhang to this angle from vertical so "
+                         "it prints without supports (default 45; 0 = no clamp)")
     ap.add_argument("--taper", type=float, default=0.0,
                     help="Top narrowing, fraction of radius over full height "
                          "(default 0.0 = straight)")
@@ -485,10 +568,14 @@ def main():
 
     profile = StrataProfile(args.radius, args.strata_amp, args.facet_jitter,
                             args.taper, args.seed, args.strata_bands,
-                            args.band_amp, args.band_blend)
+                            args.band_amp, args.band_blend, facets, twist_rad,
+                            args.angle_irregular,
+                            math.radians(args.twist_wander), args.band_warp)
 
-    rings = [make_ring(profile, facets, subdiv, k / (layers - 1), height,
-                       twist_rad) for k in range(layers)]
+    cols = build_corner_columns(profile, facets, layers, height,
+                                args.overhang_limit)
+    rings = [make_ring_from_corners(cols[k], subdiv, k / (layers - 1) * height)
+             for k in range(layers)]
 
     if args.solid:
         pts, faces = build_solid_mesh(rings, height)
@@ -519,9 +606,12 @@ def main():
     print(f"Geometric Sandstone Lamp  [{mode}]")
     print(f"  Height : {height:.1f} mm   Facets : {facets}   Layers : {layers}")
     print(f"  Mean r : {args.radius:.1f} mm   bands {args.strata_bands}"
-          f"(±{args.band_amp*100:.0f}%, blend {args.band_blend:.2f})"
-          f"   swell±{args.strata_amp*100:.0f}%"
-          f"   jitter±{args.facet_jitter*100:.0f}%   twist {args.twist:.0f}°")
+          f"(±{args.band_amp*100:.0f}%, blend {args.band_blend:.2f}, "
+          f"warp {args.band_warp:.2f})   swell±{args.strata_amp*100:.0f}%")
+    print(f"  Sides  : irregular {args.angle_irregular:.2f}   "
+          f"twist {args.twist:.0f}°+wander {args.twist_wander:.0f}°   "
+          f"jitter±{args.facet_jitter*100:.0f}%   "
+          f"overhang≤{args.overhang_limit:.0f}°")
     if not args.solid:
         print(f"  Wall   : {args.wall:.2f} mm   Base : {args.base:.2f} mm"
               f"   Hole : ⌀{args.base_hole:.1f} mm")
