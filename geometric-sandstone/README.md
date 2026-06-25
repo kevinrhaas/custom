@@ -63,11 +63,13 @@ geometric-sandstone/
 ├── main/
 │   ├── geometric_sandstone_lamp.scad     # Live-tunable OpenSCAD Customizer model
 │   ├── generate_geometric_sandstone.py   # Baked .scad + .stl exporter
+│   ├── attach_base.py                     # Fuse the twist-lock puck onto a shade
 │   └── preview_svg.py                     # Dependency-free side/iso previews
 ├── files/
 │   └── lamp/
-│       ├── geometric_sandstone_default.*  # Default 150mm print
-│       └── variations/                    # More faces / more twist
+│       ├── geometric_sandstone_default.*  # Default 150mm print (shade only)
+│       ├── variations/                    # More faces / more twist
+│       └── with_base/                     # Shades fused with the twist-lock puck
 └── previews/                              # Schematics (.svg / .png)
 ```
 
@@ -128,13 +130,30 @@ python3 preview_svg.py --view side --facets 16 --twist 45 -o preview.svg
 - **`files/lamp/variations/`** — `12fac_twist30`, `16fac_twist45`,
   `10fac_twist60`, `20fac_twist90`.
 
-## Base attachment
+## Base attachment (twist-lock for the Bambu LED module)
 
-The standard connector is the **80 mm "twisted puck"** (`../ordovician-sandstone/
-files/connect/`): a ~66 mm diameter body, ~9.5 mm tall, with 80 mm flanges top
-and bottom. The lamp's 66 mm base hole + 9.46 mm solid base match that interface
-(same as the original lamp). A positive screw/twist-lock attachment on the
-bottom is a planned addition — see project notes.
+The lamp uses the project's existing **80 mm "twisted puck"** twist-lock
+receiver (`../ordovician-sandstone/files/connect/…twisted_puck.stl`): a 9.46 mm
+disc with a ⌀66 body / ⌀80 flange and a ⌀63 internal bore with twist-lock tabs.
+The Bambu LED module drops into that bore from below and twists ~30° to lock —
+the same connector the original sandstone lamp uses (see its
+`…-to80mmtwistedpuck` files).
+
+The shade is generated with a matching 9.46 mm solid base and ⌀66 bore, so the
+puck nests into the bottom with **zero alignment** (both centred, both flush at
+z0). `attach_base.py` fuses the two into one print-ready, multi-body STL — the
+slicer unions the overlapping solids, exactly like the original:
+
+```bash
+# Generate a shade, then fuse the twist-lock puck onto its base
+python3 generate_geometric_sandstone.py -o mylamp
+python3 attach_base.py mylamp.stl -o mylamp_with_base.stl
+```
+
+Pre-fused files are in **`files/lamp/with_base/`** (default + all variations).
+The standalone shades in `files/lamp/` print without the connector if you'd
+rather drop a separately-printed puck in. Use `attach_base.py --dz/--rotate`
+or `--connector` to align a different puck.
 
 ## Tools
 
