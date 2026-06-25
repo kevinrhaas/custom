@@ -90,16 +90,36 @@ class ValueNoise1D:
 
 # ── Procedural strata profile ────────────────────────────────────────────────
 
+def _lcg_list(seed, count, lo=-1.0, hi=1.0):
+    """Deterministic list of `count` values in [lo, hi] from a tiny LCG."""
+    state = (seed * 1103515245 + 12345) & 0x7FFFFFFF
+    out = []
+    for _ in range(count):
+        state = (state * 1103515245 + 12345) & 0x7FFFFFFF
+        out.append(lo + (hi - lo) * (state / 0x7FFFFFFF))
+    return out
+
+
 class StrataProfile:
     """Computes the exterior radius of a facet corner at a given height and
-    facet index, blending a global strata "motion" with per-corner jitter.
+    facet index.
+
+    Three layered ingredients, matching the look of the original sandstone:
+      1. discrete strata BANDS  — stacked shelves with their own radius, the
+         dominant sedimentary look.  `band_blend` controls how sharply each
+         ledge cuts vs. how much neighbouring layers MERGE and blend.
+      2. a smooth strata 'motion' — gentle sine swell/pinch over the bands.
+      3. per-corner jitter        — the jagged, irregular angles.
     """
 
-    def __init__(self, mean_radius, strata_amp, facet_jitter, taper, seed):
+    def __init__(self, mean_radius, strata_amp, facet_jitter, taper, seed,
+                 strata_bands=22, band_amp=0.07, band_blend=0.4):
         self.R0 = mean_radius
         self.strata_amp = strata_amp
         self.facet_jitter = facet_jitter
         self.taper = taper
+        self.band_amp = band_amp
+        self.band_blend = max(1e-3, min(1.0, band_blend))
         # Independent noise channels
         self.n_strata = ValueNoise1D(seed * 7 + 1)
         self.n_corner = ValueNoise1D(seed * 13 + 5)
@@ -109,12 +129,42 @@ class StrataProfile:
         self.p2 = nseed.at(1.5) * math.pi
         self.p3 = nseed.at(2.5) * math.pi
 
-    def strata(self, t):
-        """Global radial 'motion' in [-1, 1]-ish as a function of height t∈[0,1].
+        # ── Build the stacked strata bands ──
+        B = max(2, strata_bands)
+        # Uneven band thicknesses -> natural, irregular layering
+        thick = [1.0 + 0.6 * v for v in _lcg_list(seed * 17 + 2, B, -1, 1)]
+        total = sum(thick)
+        edges = [0.0]
+        for th in thick:
+            edges.append(edges[-1] + th / total)        # 0 .. 1
+        self.centers = [(edges[i] + edges[i + 1]) / 2 for i in range(B)]
+        self.offs = _lcg_list(seed * 29 + 4, B, -1, 1)   # per-band shelf radius
+        self.B = B
 
-        Layered sine bands of different frequencies plus a slow noise drift
-        give the swelling/pinching strata bands seen in sandstone.
+    def band(self, t):
+        """Stacked-shelf strata value in [-1, 1].
+
+        Each band is a near-flat shelf at its own radius; between band centres
+        the value transitions.  `band_blend`→0 makes hard ledges (distinct
+        layers); →1 makes the layers merge/blend smoothly.
         """
+        c = self.centers
+        if t <= c[0]:
+            return self.offs[0]
+        if t >= c[-1]:
+            return self.offs[-1]
+        # find the bracketing band centres
+        i = 0
+        while i < self.B - 1 and not (c[i] <= t <= c[i + 1]):
+            i += 1
+        u = (t - c[i]) / (c[i + 1] - c[i])               # 0..1 between centres
+        h = self.band_blend * 0.5
+        # Flat shelves with a transition of width ~band_blend around u=0.5
+        w = max(0.0, min(1.0, (u - (0.5 - h)) / (2 * h)))
+        return self.offs[i] + (self.offs[i + 1] - self.offs[i]) * _smoothstep(w)
+
+    def strata(self, t):
+        """Smooth global swell/pinch in [-1, 1] layered over the bands."""
         s = (0.55 * math.sin(2 * math.pi * 3.5 * t + self.p1)
              + 0.30 * math.sin(2 * math.pi * 7.0 * t + self.p2)
              + 0.15 * math.sin(2 * math.pi * 13.0 * t + self.p3))
@@ -123,7 +173,9 @@ class StrataProfile:
 
     def corner_radius(self, facet, t):
         """Exterior radius (mm) of corner *facet* at height fraction *t*."""
-        base = self.R0 * (1.0 + self.strata_amp * self.strata(t))
+        rel = (self.band_amp * self.band(t)
+               + self.strata_amp * self.strata(t))
+        base = self.R0 * (1.0 + rel)
         # Per-corner jitter drifts slowly up the height -> jagged but flowing
         jit = self.n_corner.at(facet * 4.7 + t * 6.0)
         base += self.R0 * self.facet_jitter * jit
@@ -384,23 +436,32 @@ def main():
                     help=f"Target height in mm (default {BASELINE_HEIGHT:.0f})")
     ap.add_argument("--layers", type=int, default=None,
                     help="Strata layer count (default scales with height)")
-    ap.add_argument("--facets", type=int, default=10,
-                    help="Polygon sides per cross-section (default 10)")
+    ap.add_argument("--facets", type=int, default=7,
+                    help="Polygon sides per cross-section (default 7)")
     ap.add_argument("--subdiv", type=int, default=8,
                     help="Mesh points per facet edge — keeps walls flat while "
                          "caps/holes stay round (default 8)")
     ap.add_argument("--radius", type=float, default=MEAN_RADIUS,
                     help=f"Mean exterior radius in mm (default {MEAN_RADIUS:.0f})")
-    ap.add_argument("--strata-amp", type=float, default=0.10,
-                    help="Strata radial swell, fraction of radius (default 0.10)")
+    ap.add_argument("--strata-bands", type=int, default=22,
+                    help="Number of stacked sediment bands/shelves (default 22)")
+    ap.add_argument("--band-amp", type=float, default=0.07,
+                    help="Strata shelf depth, fraction of radius (default 0.07)")
+    ap.add_argument("--band-blend", type=float, default=0.4,
+                    help="0 = hard ledges (distinct layers), 1 = fully merged/"
+                         "blended layers (default 0.4)")
+    ap.add_argument("--strata-amp", type=float, default=0.05,
+                    help="Smooth swell layered over the bands, fraction of "
+                         "radius (default 0.05)")
     ap.add_argument("--facet-jitter", type=float, default=0.05,
                     help="Per-corner jaggedness, fraction of radius (default 0.05)")
     ap.add_argument("--taper", type=float, default=0.0,
                     help="Top narrowing, fraction of radius over full height "
                          "(default 0.0 = straight)")
-    ap.add_argument("--twist", type=float, default=0.0,
-                    help="Total facet rotation over the height, degrees "
-                         "(default 0 = vertical edges)")
+    ap.add_argument("--twist", type=float, default=12.0,
+                    help="Total facet rotation over the height, degrees. "
+                         "Combined with --facet-jitter this gives the jagged, "
+                         "spiralling strata (default 12; 0 = vertical edges)")
     ap.add_argument("--seed", type=int, default=42,
                     help="Random seed for the procedural rock (default 42)")
     ap.add_argument("--wall", type=float, default=2.0,
@@ -423,7 +484,8 @@ def main():
     twist_rad = math.radians(args.twist)
 
     profile = StrataProfile(args.radius, args.strata_amp, args.facet_jitter,
-                            args.taper, args.seed)
+                            args.taper, args.seed, args.strata_bands,
+                            args.band_amp, args.band_blend)
 
     rings = [make_ring(profile, facets, subdiv, k / (layers - 1), height,
                        twist_rad) for k in range(layers)]
@@ -456,7 +518,9 @@ def main():
     stl_mb = os.path.getsize(stl_path) / (1024 * 1024)
     print(f"Geometric Sandstone Lamp  [{mode}]")
     print(f"  Height : {height:.1f} mm   Facets : {facets}   Layers : {layers}")
-    print(f"  Mean r : {args.radius:.1f} mm   strata±{args.strata_amp*100:.0f}%"
+    print(f"  Mean r : {args.radius:.1f} mm   bands {args.strata_bands}"
+          f"(±{args.band_amp*100:.0f}%, blend {args.band_blend:.2f})"
+          f"   swell±{args.strata_amp*100:.0f}%"
           f"   jitter±{args.facet_jitter*100:.0f}%   twist {args.twist:.0f}°")
     if not args.solid:
         print(f"  Wall   : {args.wall:.2f} mm   Base : {args.base:.2f} mm"
