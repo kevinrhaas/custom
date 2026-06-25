@@ -28,7 +28,8 @@ taper       = 0.0;   // [0:0.005:0.4]  top narrowing over full height
 strata_bands = 22;   // [2:60]          number of stacked sediment shelves
 band_amp     = 0.07; // [0:0.005:0.25]  shelf depth, fraction of radius
 band_blend   = 0.35; // [0.02:0.02:1]   ramp width: 0=hard ledges, 1=long ramps
-band_warp    = 0.06; // [0:0.005:0.20]  tilt strata so layers merge AND split
+band_thick_var = 0.7;// [0:0.05:0.95]   how unequal the shelf heights are
+band_warp    = 0.0;  // [0:0.005:0.20]  tilt strata so layers merge AND split
 
 /* [Jaggedness] */
 strata_amp  = 0.03;  // [0:0.005:0.30]  smooth (curvy) swell — keep low for angular
@@ -36,7 +37,10 @@ jitter_amp  = 0.05;  // [0:0.005:0.20]  per-corner jaggedness, fraction of radiu
 twist_deg   = 12;    // [-90:90]        uniform facet rotation over the height
 twist_wander = 0;    // [0:1:30]        per-corner irregular spiral (deg of swing)
 angle_irregular = 0; // [0:0.05:0.85]   uneven side widths (0 = regular polygon)
+face_radius_irregular = 0; // [0:0.01:0.2]  per-face radius offset (unequal sides)
 seed        = 42;    // [0:200]         which procedural rock
+// NOTE: the "teeth" protrusions and the printable overhang clamp are applied by
+// generate_geometric_sandstone.py, not in this live model.
 
 /* [Lamp Base Fit] */
 hollow      = true;
@@ -70,7 +74,8 @@ function cangle(f, t) = baseang(f) + twist_deg * t + wander(f, t);
 B     = max(2, strata_bands);
 rthk  = rands(0, 1, B, seed * 17 + 2);             // band thickness noise
 boff  = rands(-1, 1, B, seed * 29 + 4);            // per-band shelf radius
-thk   = [ for (i = [0 : B - 1]) 1 + 0.6 * (rthk[i] * 2 - 1) ];
+thk   = [ for (i = [0 : B - 1]) 1 + band_thick_var * (rthk[i] * 2 - 1) ];
+fr    = rands(-1, 1, facets, seed * 71 + 8);   // per-face radius offset
 function _sum(v, i = 0) = i >= len(v) ? 0 : v[i] + _sum(v, i + 1);
 total = _sum(thk);
 function edge(i) = i <= 0 ? 0 : edge(i - 1) + thk[i - 1] / total;  // 0..1
@@ -107,6 +112,7 @@ function rcorner(f, t, theta, shrink) =
     let (te = warp_t(theta, t))
     (mean_r * (1 + band_amp * band(te)
                  + strata_amp * strata(te)
+                 + face_radius_irregular * fr[f]
                  + jitter_amp * jit(f, t)))
         * (1 - taper * t) - shrink;
 

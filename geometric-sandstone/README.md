@@ -31,14 +31,18 @@ support-free overhangs. See `files/lamp/angular/` for the irregular set.)*
   linear ramps** (not rounded S-curves) so the silhouette is angular with sharp
   vertices. `band_blend` sets ramp width: **0 = hard ledges**, **1 = long
   merged ramps**.
-- **Merging *and* splitting layers.** `band_warp` tilts the strata as a smooth
-  function of angle, so a shelf pinches out (splits) on one side and converges
-  (merges) with its neighbour on another — the real-sandstone look, instead of
-  perfectly horizontal rings.
-- **Irregular faceting.** `angle_irregular` gives the polygon uneven side
-  widths (some alike, none forced equal); `twist` spins the section uniformly
-  and `twist_wander` adds a per-corner irregular spiral that grows up the
-  height, so each vertical edge wanders.
+- **Uneven shelf heights.** `band_thick_var` makes the sediment shelves clearly
+  different thicknesses/heights (some thin, some thick) rather than evenly
+  spaced. (`band_warp`, which tilts strata to merge/split, is off by default —
+  it read as too subtle.)
+- **Teeth.** `teeth` grows angular tooth-like protrusions on the flat faces;
+  consecutive protruding bands stack into multi-level teeth, several levels in
+  some spots and fewer in others — jagged but regular and geometric.
+- **Irregular faceting.** `angle_irregular` (uneven angular widths) plus
+  `face_radius_irregular` (per-face radius offset) make the sides clearly
+  unequal from the top; `twist` spins the section uniformly and `twist_wander`
+  adds a per-corner spiral that grows up the height, so each vertical edge
+  wanders irregularly instead of rising in a straight line.
 - **Printable overhangs.** `overhang_limit` clamps how fast the radius may grow
   upward, capping every downward-facing chamfer to a support-free angle
   (default 45° from vertical) — ~6× fewer steep overhangs than rounded bulges.
@@ -71,7 +75,8 @@ geometric-sandstone/
 │   └── lamp/
 │       ├── geometric_sandstone_default.*  # Default 150mm print (shade only)
 │       ├── variations/                    # More / fewer facets, more twist
-│       ├── angular/                        # Irregular + wandering + merge/split set
+│       ├── angular/                        # Earlier angular set
+│       ├── jagged/                          # Irregular + teeth set (current)
 │       │   └── with_base/                  #   …each fused with the twist-lock puck
 │       └── with_base/                     # Default + variations fused with the puck
 └── previews/                              # Shaded renders (.svg / .png)
@@ -113,10 +118,14 @@ python3 render_stl.py mylamp.stl -o mylamp.svg --az 22 --el 58
 | `--strata-bands` | Number of stacked sediment shelves | 22 |
 | `--band-amp` | Shelf depth, fraction of radius | 0.07 |
 | `--band-blend` | Ramp width: 0 = hard ledges, 1 = long merged ramps | 0.35 |
-| `--band-warp` | Tilt strata so layers merge **and** split | 0.06 |
+| `--band-thick-var` | How unequal the shelf heights are, 0..0.95 | 0.7 |
+| `--band-warp` | Tilt strata so layers merge **and** split | 0.0 |
+| `--teeth` | Tooth protrusion on faces, fraction of radius | 0.0 |
+| `--teeth-density` | Fraction of (face,band) cells that grow a tooth | 0.4 |
 | `--strata-amp` | Smooth (curvy) swell — keep low for angular | 0.03 |
 | `--facet-jitter` | Per-corner jaggedness, fraction of radius | 0.05 |
-| `--angle-irregular` | Uneven side widths, 0..0.85 (0 = regular) | 0.0 |
+| `--angle-irregular` | Uneven angular side widths, 0..0.85 | 0.0 |
+| `--face-radius-irregular` | Per-face radius offset (unequal sides) | 0.0 |
 | `--twist` | Uniform facet rotation over the height, degrees | 12 |
 | `--twist-wander` | Per-corner irregular spiral, degrees of swing | 0.0 |
 | `--overhang-limit` | Cap overhang from vertical, support-free (0 = off) | 45 |
@@ -135,9 +144,13 @@ python3 render_stl.py mylamp.stl -o mylamp.svg --az 22 --el 58
   Seats on the standard 80 mm lamp-connect base.
 - **`files/lamp/variations/`** — `12fac_twist30`, `16fac_twist45`,
   `10fac_twist60`, `20fac_twist90` (regular polygons, varied twist).
-- **`files/lamp/angular/`** — the irregular set: `5sides_twist25`,
-  `6sides_twist40`, `9sides_twist12`, `11sides_twist60`, `13sides_twist0`,
-  each with irregular sides, wandering edges, and merging/splitting strata.
+- **`files/lamp/angular/`** — earlier angular set: `5/6/9/11/13 sides` with
+  varied twist (uses the now-default-off `band_warp`).
+- **`files/lamp/jagged/`** — the current set, two styles:
+  - *irregular* (`7sides_twist8`, `9sides_twist20`, `5sides_twist0`) — uneven
+    shelf heights, clearly unequal sides, wandering vertical edges.
+  - *teeth* (`6sides_twist0`, `8sides_twist15`, `5sides_twist30`) — stacked
+    geometric tooth protrusions on the faces.
 - Every shade has a `…_with_base` twin (puck fused on) under `with_base/`.
 
 ## Base attachment (twist-lock for the Bambu LED module)
