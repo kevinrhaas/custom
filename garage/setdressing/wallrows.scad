@@ -965,13 +965,13 @@ module bw_crate(s) {
 
 // Shrinking pyramid of boxes stacked on a base until ~target tall (recursive;
 // each level strictly smaller & centred over the one below -> no overhang).
-module bw_stack(cx, cy, w, d, z, target, seed, lvl=1) {
-  if (z < target - 1.8 && lvl <= 4) {
+module bw_stack(cx, cy, w, d, z, target, seed, lvl=1, gap=1.8, maxlvl=4) {
+  if (z < target - gap && lvl <= maxlvl) {
     w2 = w * r(seed,   lvl, 0.70, 0.85);
     d2 = d * r(seed+1, lvl, 0.72, 0.88);
     h2 = min(max(3.2, r(seed+2, lvl, 3.4, 5.4)), target - z + BW_EMBED);
     translate([cx, cy, z - BW_EMBED]) box(w2, d2, h2);
-    bw_stack(cx, cy, w2, d2, z - BW_EMBED + h2, target, seed+5, lvl+1);
+    bw_stack(cx, cy, w2, d2, z - BW_EMBED + h2, target, seed+5, lvl+1, gap, maxlvl);
   }
 }
 
@@ -1111,11 +1111,134 @@ module box_wall(W, mixed=false, seed=1) {
 }
 
 // ===========================================================================
+// BOX-MOUND COLLECTIONS -- deep piles, 4-5x deeper than the box-wall rows
+// ===========================================================================
+// Same wall-side width W (40/60/80, the widest, exact), but instead of a single
+// thin row the boxes pile FORWARD into a deep mound ~BM_DEPTH mm deep.  Profile:
+// TALL against the wall, sloping DOWN toward the front edge (a talus of boxes
+// leaning on the wall) -- and along the run the back ridge rises into separate
+// MOUNDS (peaks) with lower saddles between, so an 80 mm piece reads as a few
+// piles collected along its length rather than one even ridge.
+//   - The field is a grid of box columns; each column is an independent floor
+//     pyramid (shrinks upward -> no overhang).  Neighbours overlap in X and Y
+//     and the bonded raft ties the whole pile into ONE solid.
+//   - mixed=true adds tire stacks + drums along the FRONT edge (gap-bonded).
+BM_DEPTH = 40;     // mound depth (Y) -- ~4.5x the box-wall row depth
+BM_XP    = 8.6;    // column pitch along the wall
+BM_YP    = 6.8;    // row pitch into the depth
+BM_HMAX  = 19.2;   // back-ridge peak ceiling (< 20)
+BM_OVL   = 0.9;    // cube interpenetration (deep -> robust union, no slivers)
+
+// Height field of a deep box pile: the upper envelope of several 2D (elliptical)
+// mounds whose CENTRES are biased toward the wall, over a floor that tapers from
+// the wall to the front.  Result: piles collected irregularly along the run,
+// tall against the wall, sloping down to a low front lip.
+function bm_floor(y, dep) = 6.2 - 3.4 * (y / dep);          // 6.2 wall -> 2.8 front
+function bm_Hxy(x, y, mcx, mcy, mh, mwx, mwy, dep) =
+  max(bm_floor(y, dep),
+      max([for (i = [0:len(mh)-1])
+             mh[i] * (1 - pow((x - mcx[i])/mwx, 2) - pow((y - mcy[i])/mwy, 2))]));
+
+// Cheap sharp-edged box for the dense mound field (a plain cube unions far
+// faster in CGAL than rbox's 4-cylinder hull, and the 0.35 mm rounding is
+// invisible at 1:64).  Centred in X/Y, base on the bed.
+module bm_box(w, d, h) { translate([0, 0, h/2]) cube([w, d, h], center=true); }
+
+// Cube version of bw_stack -- shrinking pyramid, each level smaller & centred.
+module bm_stack(cx, cy, w, d, z, target, seed, lvl=1) {
+  if (z < target - 0.7 && lvl <= 5) {
+    w2 = w * r(seed,   lvl, 0.70, 0.85);
+    d2 = d * r(seed+1, lvl, 0.72, 0.88);
+    h2 = min(max(3.2, r(seed+2, lvl, 3.4, 5.4)), target - z + BW_EMBED);
+    translate([cx, cy, z - BW_EMBED]) bm_box(w2, d2, h2);
+    bm_stack(cx, cy, w2, d2, z - BW_EMBED + h2, target, seed+5, lvl+1);
+  }
+}
+
+// One column of the mound: a box on the floor, a shrinking pyramid if tall, or
+// a varied cap (crate/bin/milk crate) if short -- for piled-clutter variety.
+module bm_cell(cx, cy, w, d, target, seed, square) {
+  hb = min(target, max(3.6, r(seed+1, 1, 4.4, 6.6)));
+  translate([cx, cy, 0]) bm_box(w, d, hb);
+  if (target > hb + 1.2)
+    bm_stack(cx, cy, w, d, hb, target, seed+10, 1);
+  else if (r(seed+2, 2) > 0.55)                       // plain-cube cap: a smaller
+    translate([cx, cy, hb - BW_EMBED])                // box perched on the pile
+      bm_box(w * r(seed+4, 3, 0.66, 0.84), d * r(seed+5, 4, 0.66, 0.84),
+             max(2.8, target * 0.55));
+}
+
+// Low-poly tire ring + stack for the mounds (cheaper than the $fn=64 tire()).
+module bm_tire(od, w, id) {
+  rotate_extrude($fn=28)
+    translate([id/2, 0]) offset(r=0.5) offset(r=-0.5) square([(od-id)/2, w]);
+}
+module bm_tire_stack(n, seed, od, w, id) {
+  for (i = [0:n-1])
+    translate([0, 0, i*(w - 0.3)]) rotate([0,0, r(seed, i, 0, 360)]) bm_tire(od, w, id);
+}
+
+// Tire stacks + drums spaced along the FRONT edge of a mixed mound; each round
+// part GAP-bonds to the box field's front row via the raft (no penetration).
+module bm_mixed_front(W, seed, dep) {
+  tod = 10.0;
+  // field front face sits at dep + BM_OVL/2; place round parts a clean 0.45 mm
+  // BEYOND it so the raft bridges the gap and nothing grazes the flat cube faces.
+  yf  = dep + BM_OVL/2 + 0.45;                // back edge of the round parts
+  n   = max(2, round(W / 26));
+  for (i = [0:n-1]) {
+    cx = (i + 0.5)/n * W + r(seed, i, -3, 3);
+    if (r(seed+1, i) < 0.55)
+      translate([cx, yf + tod/2, 0])
+        bm_tire_stack(2 + floor(r(seed+2, i, 0, 2.99)), seed+i, od=tod, w=3.2, id=4.4);
+    else
+      translate([cx, yf + drum_d/2, 0])
+        rotate([0,0, r(seed+3, i, 0, 360)]) drum(d=drum_d, h=drum_h*r(seed+4, i, 0.7, 0.92));
+  }
+}
+
+// Full deep mound.  W = wall-side width; mixed toggles the tire/drum accents.
+module box_mound(W, mixed=false, seed=1) {
+  // mixed mounds give up some box-field depth to the tire/drum row in front, so
+  // the finished depth stays close to the square version (~4.5x the row depth).
+  dep    = mixed ? BM_DEPTH - 8 : BM_DEPTH;
+  inset  = BM_OVL/2 + BOND_GROW;
+  spanX  = W - 2*inset;
+  nx     = max(3, round(spanX / BM_XP));
+  xslots = bw_slots(spanX, nx, seed);
+  ny     = max(4, round(dep / BM_YP));
+  yslots = bw_slots(dep, ny, seed + 500);
+  // scattered 2D mounds, centres biased toward the wall (y small), the ones
+  // nearest the wall built tallest so the pile leans on the wall.
+  nm  = max(3, round(W * dep / 430));
+  mcx = [for (i = [0:nm-1]) r(seed+600, i, 1, W - 1)];
+  mcy = [for (i = [0:nm-1]) r(seed+602, i, 0, dep * 0.5)];
+  mh  = [for (i = [0:nm-1])
+           r(seed+601, i, 15.5, BM_HMAX) * (1 - 0.28 * mcy[i] / dep)];
+  mwx = 13.0;  mwy = 13.5;
+  for (i = [0:nx-1]) {
+    sx = xslots[i];  x0 = inset + sum_first(xslots, i);  cx = x0 + sx/2;  w = sx + BM_OVL;
+    // jitter only INTERIOR columns/rows so cube faces rarely align (kills CGAL
+    // coplanar slivers); edge cells stay fixed so the width/depth stay exact.
+    jx = (i > 0 && i < nx-1) ? r(seed+750, i*20, -0.30, 0.30) : 0;
+    for (j = [0:ny-1]) {
+      sy  = yslots[j];  y0 = sum_first(yslots, j);  cy = y0 + sy/2;  d = sy + BM_OVL;
+      jy  = (j > 0 && j < ny-1) ? r(seed+751, i*20 + j, -0.30, 0.30) : 0;
+      tgt = min(BW_HMAX,
+                max(3.0, bm_Hxy(cx, cy, mcx, mcy, mh, mwx, mwy, dep)
+                         * r(seed+700, i*20 + j, 0.84, 1.08)));
+      bm_cell(cx + jx, cy + jy, w, d, tgt, seed + 800 + i*40 + j, !mixed);
+    }
+  }
+  if (mixed) bm_mixed_front(W, seed + 900, dep);
+}
+
+// ===========================================================================
 // DISPATCH
 // ===========================================================================
 part = "all";
 
-// Box-wall width (mm along the wall) -- override per export: -D 'bw_W=40'
+// Box-wall / box-mound width (mm along the wall) -- override: -D 'bw_W=40'
 bw_W = 60;
 
 if      (part == "barrels")      plate_barrels();
@@ -1134,6 +1257,11 @@ else if (part == "bw-sq1")       maybe_bond() box_wall(bw_W, false, 11);
 else if (part == "bw-sq2")       maybe_bond() box_wall(bw_W, false, 27);
 else if (part == "bw-mx1")       maybe_bond() box_wall(bw_W, true,  41);
 else if (part == "bw-mx2")       maybe_bond() box_wall(bw_W, true,  63);
+// box-mound collections (deep piles) -- use with -D 'bw_W=40|60|80'
+else if (part == "bm-sq1")       maybe_bond() box_mound(bw_W, false, 11);
+else if (part == "bm-sq2")       maybe_bond() box_mound(bw_W, false, 27);
+else if (part == "bm-mx1")       maybe_bond() box_mound(bw_W, true,  41);
+else if (part == "bm-mx2")       maybe_bond() box_mound(bw_W, true,  63);
 else if (part == "bw-all") {
   translate([0,   0, 0]) box_wall(40, false, 11);
   translate([0, -22, 0]) box_wall(40, true,  41);
