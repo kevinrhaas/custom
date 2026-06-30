@@ -1234,11 +1234,111 @@ module box_mound(W, mixed=false, seed=1) {
 }
 
 // ===========================================================================
+// BOX-PYRAMID COLLECTIONS -- rough stepped pyramids of boxes against the wall
+// ===========================================================================
+// Each pyramid's APEX is at the back-centre (against the wall, top); it steps
+// DOWN to the front and DOWN to both ends, with a triangular footprint that is
+// widest at the wall and tapers forward.  Built as stacked COURSES (tiers) of
+// varied boxes, each course shrinking toward the apex -> a stepped pyramid with
+// visible courses.  Highly irregular: jittered course extents, dropped edge
+// boxes, occasional boxes poking up a step.  40/60 = one pyramid; 80 = 2-4
+// sub-pyramids tiled along the run.  mixed=true tucks tire stacks + drums in
+// front of each pyramid base.
+BP_TIER = 3.5;     // nominal course (tier) height
+BP_HMAX = 19.5;    // apex ceiling (< 20)
+
+// A column of stacked course-cubes from the floor up to height H (a multiple of
+// th).  Each course is slightly smaller than the one below -> visible "box"
+// courses and no overhang within the column.
+module bp_stack(cx, cy, w, d, H, th, seed) {
+  nc = max(1, round(H / th));
+  for (c = [0:nc-1]) {
+    zb = max(0, c*th - BW_EMBED);
+    zt = (c == nc-1) ? H : (c+1)*th;
+    translate([cx, cy, zb]) bm_box(w*(1 - 0.045*c), d*(1 - 0.045*c), zt - zb);
+  }
+}
+
+// One rough stepped pyramid: a height field over the base footprint, apex at
+// the back-centre (cx, wall).  Height ~ apexH * (1 - |dx|/baseHw - y/baseDep)
+// (a linear/L1 pyramid -> TRIANGULAR footprint, widest at the wall, tapering to
+// a point at the front), quantised to courses and roughened per column.  The
+// wall row is always filled full width (exact W, solid wall edge); front cells
+// outside the triangle stay empty (open floor for the mixed tire/drum clutter).
+module rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed) {
+  th  = apexH / max(4, round(apexH / BP_TIER));
+  nxx = max(2, round(2*baseHw / 7.2));
+  nyy = max(2, round(baseDep  / 6.6));
+  xs  = bw_slots(2*baseHw, nxx, seed);
+  ys  = bw_slots(baseDep,  nyy, seed + 1);
+  xl  = cx - baseHw;
+  for (a = [0:nxx-1]) {
+    sx = xs[a];  x0 = xl + sum_first(xs, a);  bxc = x0 + sx/2;
+    for (b = [0:nyy-1]) {
+      sy   = ys[b];  y0 = sum_first(ys, b);  byc = y0 + sy/2;
+      // small central PLATEAU (around the OFF-CENTRE apexX) then a super-linear
+      // falloff: apex columns reach full height, edges drop into stepped faces.
+      fx   = max(0, abs(bxc - apexX)/baseHw - 0.16);
+      fy   = max(0, byc/baseDep - 0.10);
+      P    = 1 - pow(fx/0.84, 1.6) - pow(fy/0.90, 1.35);
+      Pr   = P + r(seed+9, a*20+b, -0.14, 0.16);          // ragged faces
+      intr = (a > 0 && a < nxx-1 && b > 0 && b < nyy-1);
+      jx   = intr ? r(seed+7, a*20+b, -0.3, 0.3) : 0;     // interior jitter only
+      jy   = intr ? r(seed+8, a*20+b, -0.3, 0.3) : 0;
+      // ragged outline: drop some low perimeter cells (never the wall row)
+      drop = (b > 0) && (Pr < 0.22) && r(seed+11, a*20+b) < 0.30;
+      if ((b == 0 || Pr > 0.06) && !drop) {               // wall row always solid
+        Hc    = (P >= 0.92)  ? apexH                       // plateau -> full apex
+              : (b == 0)     ? apexH * max(Pr, 0.17)       // wall row min 1 step
+              :                apexH * max(0, Pr);
+        poke  = (r(seed+12, a*20+b) > 0.85) ? th : 0;     // a few boxes a step up
+        Hq    = min(BP_HMAX, th * max(1, round(Hc / th)) + poke);   // <20, courses
+        bp_stack(bxc + jx, byc + jy, sx + BM_OVL, sy + BM_OVL, Hq, th,
+                 seed + a*50 + b);
+      }
+    }
+  }
+}
+
+// Full unit: 1 pyramid (40/60) or 2-4 sub-pyramids (80) tiled along the wall,
+// widths summing so the wall side is exactly W.  mixed adds front tire/drums.
+module box_pyramids(W, mixed=false, seed=1) {
+  inset  = BM_OVL/2 + BOND_GROW;
+  span   = W - 2*inset;
+  npyr   = (W <= 60) ? 1 : (2 + floor(r(seed+990, 0, 0, 2.99)));   // 80 -> 2..4
+  bslots = bw_slots(span, npyr, seed + 700);
+  for (p = [0:npyr-1]) {
+    bwid    = bslots[p];
+    x0      = inset + sum_first(bslots, p);
+    cx      = x0 + bwid/2;
+    baseHw  = bwid/2;                                    // exact slot (+OVL in tiling)
+    apexH   = min(BP_HMAX, r(seed+p, 20, 16.5, 19.5));
+    // deepest point ~30 mm (independent of sub-pyramid width, so the 80's
+    // narrow sub-pyramids aren't shallow).  mixed pyramids run shallower so the
+    // pyramid PLUS the tire/drum clutter in front still totals ~30 mm deep.
+    baseDep = mixed ? r(seed+p, 21, 16.0, 19.5)
+                    : min(30, r(seed+p, 21, 25.0, 30.0));
+    apexX   = cx + r(seed+p, 22, -0.18, 0.18) * bwid;   // apex near or off centre
+    rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed + p*60);
+    if (mixed) {                                         // tire + drum in front
+      // the pyramid reaches deepest along apexX (~baseDep); cluster the round
+      // parts there so they raft-bond to the deep centre-front (the tapered
+      // sides recede too far for a fixed-y placement to reach).
+      yf = baseDep + 0.9;                                // clean ~0.4mm raft gap
+      translate([apexX - 4.0, yf + 5.0, 0])
+        bm_tire_stack(2 + floor(r(seed+p, 30, 0, 2.49)), seed+p*3, od=10, w=3.2, id=4.4);
+      translate([apexX + 4.6, yf + drum_d/2, 0])
+        rotate([0,0, r(seed+p, 31, 0, 360)]) drum(d=drum_d, h=drum_h*r(seed+p, 32, 0.70, 0.90));
+    }
+  }
+}
+
+// ===========================================================================
 // DISPATCH
 // ===========================================================================
 part = "all";
 
-// Box-wall / box-mound width (mm along the wall) -- override: -D 'bw_W=40'
+// Box-wall / box-mound / box-pyramid width (mm) -- override: -D 'bw_W=40'
 bw_W = 60;
 
 if      (part == "barrels")      plate_barrels();
@@ -1262,6 +1362,11 @@ else if (part == "bm-sq1")       maybe_bond() box_mound(bw_W, false, 11);
 else if (part == "bm-sq2")       maybe_bond() box_mound(bw_W, false, 27);
 else if (part == "bm-mx1")       maybe_bond() box_mound(bw_W, true,  41);
 else if (part == "bm-mx2")       maybe_bond() box_mound(bw_W, true,  63);
+// box-pyramid collections (rough stepped pyramids) -- use with -D 'bw_W=40|60|80'
+else if (part == "bp-sq1")       maybe_bond() box_pyramids(bw_W, false, 11);
+else if (part == "bp-sq2")       maybe_bond() box_pyramids(bw_W, false, 27);
+else if (part == "bp-mx1")       maybe_bond() box_pyramids(bw_W, true,  41);
+else if (part == "bp-mx2")       maybe_bond() box_pyramids(bw_W, true,  63);
 else if (part == "bw-all") {
   translate([0,   0, 0]) box_wall(40, false, 11);
   translate([0, -22, 0]) box_wall(40, true,  41);

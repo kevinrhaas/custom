@@ -1,0 +1,4454 @@
+solid OpenSCAD_Model
+  facet normal -0 0 1
+    outer loop
+      vertex 32.0817 20.0018 3.21568
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.3424 27.2301 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.0817 13.4356 3.21568
+      vertex 32.2862 19.1636 3.21568
+      vertex 32.0817 20.0018 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.0817 20.0018 3.21568
+      vertex 32.2862 19.1636 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 3.21568
+      vertex 23.9485 20.1848 3.21568
+      vertex 32.0817 20.0018 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.6416 27.2301 3.21568
+      vertex 23.9485 20.1848 3.21568
+      vertex 32.3424 27.2301 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.9485 20.1848 3.21568
+      vertex 15.6416 27.2301 3.21568
+      vertex 15.8187 20.1848 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.6416 20.3532 3.21568
+      vertex 15.8187 20.1848 3.21568
+      vertex 15.6416 27.2301 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.8187 20.1848 3.21568
+      vertex 15.6416 20.3532 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.8187 20.1848 3.21568
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.6271 13.6959 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.8187 20.1848 3.21568
+      vertex 15.6271 13.6959 3.21568
+      vertex 15.8187 13.5133 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.6271 13.6959 3.21568
+      vertex 8.73468 13.5133 3.21568
+      vertex 15.8187 13.5133 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.54999 13.6959 3.21568
+      vertex 8.73468 13.5133 3.21568
+      vertex 15.6271 13.6959 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.54999 13.4787 3.21568
+      vertex 8.73468 13.5133 3.21568
+      vertex 8.54999 13.6959 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.73468 13.5133 3.21568
+      vertex 8.54999 13.4787 3.21568
+      vertex 8.73468 6.11441 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.54999 13.4787 3.21568
+      vertex 0.59874 6.11441 3.21568
+      vertex 8.73468 6.11441 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 3.21568
+      vertex 0.59874 6.11441 3.21568
+      vertex 0.4 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0.4 13.4787 3.21568
+      vertex 0.59874 6.11441 3.21568
+      vertex 8.54999 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.5766 13.6182 3.21568
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.5766 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.5766 13.6182 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.0817 13.4356 3.21568
+      vertex 32.3721 13.4356 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.2862 19.1636 3.21568
+      vertex 32.0817 13.4356 3.21568
+      vertex 32.2862 13.6182 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 3.21568
+      vertex 39.4165 13.2961 3.21568
+      vertex 39.6 -0.45 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.5766 13.4787 3.21568
+      vertex 39.4165 13.2961 3.21568
+      vertex 39.6 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3721 13.2961 3.21568
+      vertex 32.5766 13.4787 3.21568
+      vertex 32.3721 13.4356 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.5766 13.4787 3.21568
+      vertex 32.3721 13.2961 3.21568
+      vertex 39.4165 13.2961 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 39.4165 -0.298901 3.21568
+      vertex 39.6 -0.45 3.21568
+      vertex 39.4165 13.2961 3.21568
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0.59874 -0.298901 3.21568
+      vertex 39.6 -0.45 3.21568
+      vertex 39.4165 -0.298901 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.59874 -0.298901 3.21568
+      vertex 0.4 -0.45 3.21568
+      vertex 39.6 -0.45 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.59874 6.11441 3.21568
+      vertex 0.4 -0.45 3.21568
+      vertex 0.59874 -0.298901 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.0817 20.0018 3.21568
+      vertex 23.9485 20.1848 3.21568
+      vertex 23.9485 20.0018 3.21568
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 40 -0.449997 0
+      vertex 39.9864 -0.553528 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 40 -0.449997 0
+      vertex 32.8766 13.8786 0
+      vertex 40 13.4787 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 39.9864 -0.553528 0
+      vertex 39.9464 -0.649994 0
+    endloop
+  endfacet
+  facet normal -0 -0 -1
+    outer loop
+      vertex 39.6 13.8786 0
+      vertex 40 13.4787 0
+      vertex 32.8766 13.8786 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 39.9464 -0.649994 0
+      vertex 39.8828 -0.732834 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 40 -0.449997 0
+      vertex 39.6 -0.849991 0
+      vertex 32.8766 13.8786 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 39.8828 -0.732834 0
+      vertex 39.8 -0.796402 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 40 13.4787 0
+      vertex 39.6 13.8786 0
+      vertex 39.9864 13.5822 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 39.8 -0.796402 0
+      vertex 39.7035 -0.836365 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.9464 13.6786 0
+      vertex 39.6 13.8786 0
+      vertex 39.8828 13.7615 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.8828 13.7615 0
+      vertex 39.6 13.8786 0
+      vertex 39.8 13.8251 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.8 13.8251 0
+      vertex 39.6 13.8786 0
+      vertex 39.7035 13.865 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 39.9864 13.5822 0
+      vertex 39.6 13.8786 0
+      vertex 39.9464 13.6786 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 14.002 0
+      vertex 32.8766 13.8786 0
+      vertex 39.6 -0.849991 0
+    endloop
+  endfacet
+  facet normal -0 -0 -1
+    outer loop
+      vertex 32.7766 13.9646 0
+      vertex 32.8766 13.8786 0
+      vertex 32.6862 14.002 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.8766 13.8786 0
+      vertex 32.7766 13.9646 0
+      vertex 32.8594 13.901 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.2271 14.0959 0
+      vertex 32.6862 18.9602 0
+      vertex 32.6862 14.002 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 32.3424 27.6301 0
+      vertex 32.6252 27.513 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6252 27.513 0
+      vertex 32.3424 27.6301 0
+      vertex 32.5424 27.5765 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.5424 27.5765 0
+      vertex 32.3424 27.6301 0
+      vertex 32.4459 27.6165 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 15.2416 20.4588 0
+      vertex 32.3424 27.6301 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.2271 14.0959 0
+      vertex 32.6862 14.002 0
+      vertex 39.6 -0.849991 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 32.3424 27.6301 0
+      vertex 15.2416 20.4588 0
+      vertex 15.6416 27.6301 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.2416 27.2301 0
+      vertex 15.6416 27.6301 0
+      vertex 15.2416 20.4588 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.6416 27.6301 0
+      vertex 15.2416 27.2301 0
+      vertex 15.5381 27.6165 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.5381 27.6165 0
+      vertex 15.2416 27.2301 0
+      vertex 15.4416 27.5765 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.4416 27.5765 0
+      vertex 15.2416 27.2301 0
+      vertex 15.3588 27.513 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.3588 27.513 0
+      vertex 15.2416 27.2301 0
+      vertex 15.2952 27.4301 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 15.2271 20.3532 0
+      vertex 15.2416 20.4588 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 15.2271 14.0959 0
+      vertex 15.2271 20.3532 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.399994 -0.849991 0
+      vertex 15.2271 14.0959 0
+      vertex 39.6 -0.849991 0
+    endloop
+  endfacet
+  facet normal 0 -0 -1
+    outer loop
+      vertex 8.19644 13.8786 0
+      vertex 15.2271 14.0959 0
+      vertex 0.399994 -0.849991 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 8.54997 14.0959 0
+      vertex 8.19644 13.8786 0
+      vertex 8.44644 14.0822 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 8.44644 14.0822 0
+      vertex 8.19644 13.8786 0
+      vertex 8.34998 14.0423 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 8.34998 14.0423 0
+      vertex 8.19644 13.8786 0
+      vertex 8.26714 13.9787 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 8.26714 13.9787 0
+      vertex 8.19644 13.8786 0
+      vertex 8.20357 13.8959 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 15.2271 14.0959 0
+      vertex 8.19644 13.8786 0
+      vertex 8.54997 14.0959 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 8.19644 13.8786 0
+      vertex 0.399994 -0.849991 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0.399994 -0.849991 0
+      vertex 0.296463 -0.836365 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 13.4787 0
+      vertex 8.19644 13.8786 0
+      vertex 0 -0.449997 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0.296463 -0.836365 0
+      vertex 0.199997 -0.796402 0
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 8.19644 13.8786 0
+      vertex 0 13.4787 0
+      vertex 0.399994 13.8786 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0.199997 -0.796402 0
+      vertex 0.117157 -0.732834 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.399994 13.8786 0
+      vertex 0 13.4787 0
+      vertex 0.296463 13.865 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0.117157 -0.732834 0
+      vertex 0.0535889 -0.649994 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.296463 13.865 0
+      vertex 0 13.4787 0
+      vertex 0.199997 13.8251 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0.0535889 -0.649994 0
+      vertex 0.0136261 -0.553528 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.199997 13.8251 0
+      vertex 0 13.4787 0
+      vertex 0.117157 13.7615 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.117157 13.7615 0
+      vertex 0 13.4787 0
+      vertex 0.0535889 13.6786 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 0.0535889 13.6786 0
+      vertex 0 13.4787 0
+      vertex 0.0136261 13.5822 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 32.7424 19.1636 0
+      vertex 32.7288 19.0601 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6252 27.513 0
+      vertex 32.7424 19.1636 0
+      vertex 32.6862 18.9602 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 32.7288 19.0601 0
+      vertex 32.6888 18.9636 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.7424 19.1636 0
+      vertex 32.6252 27.513 0
+      vertex 32.7424 27.2301 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.7424 27.2301 0
+      vertex 32.6252 27.513 0
+      vertex 32.7288 27.3336 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 32.7288 27.3336 0
+      vertex 32.6252 27.513 0
+      vertex 32.6888 27.4301 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.2952 27.4301 0
+      vertex 15.2416 27.2301 0
+      vertex 15.2552 27.3336 0
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 15.2416 20.4588 0
+      vertex 15.2271 20.3532 0
+      vertex 15.2408 20.4568 0
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.4 13.4787 3.21568
+      vertex 0.4 13.4787 0.4
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 0.4 13.4787 3.21568
+      vertex 0.4 -0.45 0.4
+      vertex 0.4 -0.45 3.21568
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 39.6 -0.45 3.21568
+      vertex 0.4 -0.45 3.21568
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 39.6 -0.45 3.21568
+      vertex 0.4 -0.45 0.4
+      vertex 39.6 -0.45 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.9485 20.1848 6.43135
+      vertex 23.757 20.0164 6.43135
+      vertex 23.9485 20.0018 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.9485 20.1848 6.43135
+      vertex 16.0102 20.0164 6.43135
+      vertex 23.757 20.0164 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.8187 20.1848 6.43135
+      vertex 16.0102 20.0164 6.43135
+      vertex 23.9485 20.1848 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.8187 13.5133 6.43135
+      vertex 16.0102 20.0164 6.43135
+      vertex 15.8187 20.1848 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.0102 20.0164 6.43135
+      vertex 15.8187 13.5133 6.43135
+      vertex 16.0102 13.3308 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.8187 13.5133 6.43135
+      vertex 8.91938 13.3308 6.43135
+      vertex 16.0102 13.3308 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.73468 13.5133 6.43135
+      vertex 8.91938 13.3308 6.43135
+      vertex 15.8187 13.5133 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.73468 6.11441 6.43135
+      vertex 8.91938 13.3308 6.43135
+      vertex 8.73468 13.5133 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.91938 13.3308 6.43135
+      vertex 8.73468 6.11441 6.43135
+      vertex 8.91938 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.73468 6.11441 6.43135
+      vertex 8.70228 5.96331 6.43135
+      vertex 8.91938 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 5.96331 6.43135
+      vertex 0.59874 6.11441 6.43135
+      vertex 8.70228 -0.147801 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0.59874 6.11441 6.43135
+      vertex 8.70228 5.96331 6.43135
+      vertex 8.73468 6.11441 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.0817 20.0018 6.43135
+      vertex 31.8772 19.8334 6.43135
+      vertex 32.0817 13.4356 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.9485 20.0018 6.43135
+      vertex 31.8772 19.8334 6.43135
+      vertex 32.0817 20.0018 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.9485 20.0018 6.43135
+      vertex 23.757 19.8334 6.43135
+      vertex 31.8772 19.8334 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.757 19.8334 6.43135
+      vertex 23.9485 20.0018 6.43135
+      vertex 23.757 20.0164 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3721 13.4356 6.43135
+      vertex 32.1676 13.2531 6.43135
+      vertex 32.3721 13.2961 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.0817 13.4356 6.43135
+      vertex 32.1676 13.2531 6.43135
+      vertex 32.3721 13.4356 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.0817 13.4356 6.43135
+      vertex 31.8772 13.2531 6.43135
+      vertex 32.1676 13.2531 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.8772 13.2531 6.43135
+      vertex 32.0817 13.4356 6.43135
+      vertex 31.8772 19.8334 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.4165 13.2961 6.43135
+      vertex 39.2329 13.1136 6.43135
+      vertex 39.4165 -0.298901 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.3721 13.2961 6.43135
+      vertex 39.2329 13.1136 6.43135
+      vertex 39.4165 13.2961 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.1676 13.1136 6.43135
+      vertex 32.3721 13.2961 6.43135
+      vertex 32.1676 13.2531 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3721 13.2961 6.43135
+      vertex 32.1676 13.1136 6.43135
+      vertex 39.2329 13.1136 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 39.2329 -0.147801 6.43135
+      vertex 39.4165 -0.298901 6.43135
+      vertex 39.2329 13.1136 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 6.43135
+      vertex 39.4165 -0.298901 6.43135
+      vertex 39.2329 -0.147801 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 6.43135
+      vertex 0.59874 -0.298901 6.43135
+      vertex 39.4165 -0.298901 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.59874 -0.298901 6.43135
+      vertex 8.70228 -0.147801 6.43135
+      vertex 0.59874 6.11441 6.43135
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.8976 13.0221 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.6095 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 0.59874 -0.298901 3.21568
+      vertex 0.59874 6.11441 6.43135
+      vertex 0.59874 6.11441 3.21568
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 0.59874 6.11441 6.43135
+      vertex 0.59874 -0.298901 3.21568
+      vertex 0.59874 -0.298901 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 8.73468 6.11441 3.21568
+      vertex 0.59874 6.11441 6.43135
+      vertex 8.73468 6.11441 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 0.59874 6.11441 6.43135
+      vertex 8.73468 6.11441 3.21568
+      vertex 0.59874 6.11441 3.21568
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 0.59874 -0.298901 3.21568
+      vertex 39.4165 -0.298901 6.43135
+      vertex 0.59874 -0.298901 6.43135
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 39.4165 -0.298901 6.43135
+      vertex 0.59874 -0.298901 3.21568
+      vertex 39.4165 -0.298901 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 8.54999 13.4787 0.4
+      vertex 0.4 13.4787 3.21568
+      vertex 8.54999 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 0.4 13.4787 3.21568
+      vertex 8.54999 13.4787 0.4
+      vertex 0.4 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.91938 5.96331 9.64703
+      vertex 16.0543 6.10267 9.64703
+      vertex 8.91938 13.3308 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.0543 6.10267 9.64703
+      vertex 8.91938 5.96331 9.64703
+      vertex 15.9875 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.91938 5.96331 9.64703
+      vertex 8.88698 5.81221 9.64703
+      vertex 15.9875 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.88698 5.81221 9.64703
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.88698 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.88698 5.81221 9.64703
+      vertex 8.91938 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.2018 13.3735 9.64703
+      vertex 23.4179 13.1206 9.64703
+      vertex 23.5654 13.3735 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.4179 13.1206 9.64703
+      vertex 16.2018 13.3735 9.64703
+      vertex 16.0543 13.1206 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.5654 19.848 9.64703
+      vertex 23.757 19.8334 9.64703
+      vertex 23.757 20.0164 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.4179 6.10267 9.64703
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.6095 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.757 19.8334 9.64703
+      vertex 23.5654 13.3735 9.64703
+      vertex 23.6095 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.757 19.8334 9.64703
+      vertex 23.5654 19.848 9.64703
+      vertex 23.5654 13.3735 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.757 20.0164 9.64703
+      vertex 16.2018 19.848 9.64703
+      vertex 23.5654 19.848 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.0102 13.3308 9.64703
+      vertex 16.2018 13.3735 9.64703
+      vertex 16.2018 19.848 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.2018 13.3735 9.64703
+      vertex 16.0102 13.3308 9.64703
+      vertex 16.0543 13.1206 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.0102 13.3308 9.64703
+      vertex 16.2018 19.848 9.64703
+      vertex 16.0102 20.0164 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.0102 20.0164 9.64703
+      vertex 16.2018 19.848 9.64703
+      vertex 23.757 20.0164 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.4179 13.1206 9.64703
+      vertex 23.6095 13.0221 9.64703
+      vertex 23.5654 13.3735 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.6095 13.0221 9.64703
+      vertex 23.4179 13.1206 9.64703
+      vertex 23.4179 6.10267 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.4179 6.10267 9.64703
+      vertex 23.5799 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.4179 6.10267 9.64703
+      vertex 16.2162 5.81221 9.64703
+      vertex 23.5799 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.9875 5.81221 9.64703
+      vertex 16.2162 5.81221 9.64703
+      vertex 16.0543 6.10267 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.0543 6.10267 9.64703
+      vertex 16.2162 5.81221 9.64703
+      vertex 23.4179 6.10267 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.8772 19.8334 9.64703
+      vertex 31.6727 19.665 9.64703
+      vertex 31.8772 13.2531 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.757 19.8334 9.64703
+      vertex 31.6727 19.665 9.64703
+      vertex 31.8772 19.8334 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.6095 13.0221 9.64703
+      vertex 23.8117 19.665 9.64703
+      vertex 23.757 19.8334 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.6727 19.665 9.64703
+      vertex 23.757 19.8334 9.64703
+      vertex 23.8117 19.665 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.1676 13.2531 9.64703
+      vertex 31.9632 13.0705 9.64703
+      vertex 32.1676 13.1136 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 31.8772 13.2531 9.64703
+      vertex 31.9632 13.0705 9.64703
+      vertex 32.1676 13.2531 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.6727 13.1905 9.64703
+      vertex 31.8772 13.2531 9.64703
+      vertex 31.6727 19.665 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 31.6727 13.1905 9.64703
+      vertex 31.9632 13.0705 9.64703
+      vertex 31.8772 13.2531 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.6727 13.1905 9.64703
+      vertex 24.1021 13.0705 9.64703
+      vertex 31.9632 13.0705 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.1021 13.0705 9.64703
+      vertex 23.8976 13.0221 9.64703
+      vertex 24.1021 6.05266 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.8117 13.1905 9.64703
+      vertex 24.1021 13.0705 9.64703
+      vertex 31.6727 13.1905 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8117 13.1905 9.64703
+      vertex 23.8976 13.0221 9.64703
+      vertex 24.1021 13.0705 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8117 13.1905 9.64703
+      vertex 23.6095 13.0221 9.64703
+      vertex 23.8976 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8117 19.665 9.64703
+      vertex 23.6095 13.0221 9.64703
+      vertex 23.8117 13.1905 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.9632 6.05266 9.64703
+      vertex 39.2329 13.1136 9.64703
+      vertex 32.1676 13.1136 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.9632 6.05266 9.64703
+      vertex 32.1676 13.1136 9.64703
+      vertex 31.9632 13.0705 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.2329 13.1136 9.64703
+      vertex 31.9632 6.05266 9.64703
+      vertex 39.2329 -0.147801 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.729 0.0032959 9.64703
+      vertex 31.9632 6.05266 9.64703
+      vertex 31.729 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.9632 6.05266 9.64703
+      vertex 31.729 0.0032959 9.64703
+      vertex 39.2329 -0.147801 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.8679 0.0032959 9.64703
+      vertex 39.2329 -0.147801 9.64703
+      vertex 31.729 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8679 5.81221 9.64703
+      vertex 23.5799 5.81221 9.64703
+      vertex 23.8679 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5799 0.0032959 9.64703
+      vertex 23.8679 0.0032959 9.64703
+      vertex 23.5799 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.5799 0.0032959 9.64703
+      vertex 39.2329 -0.147801 9.64703
+      vertex 23.8679 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 9.64703
+      vertex 23.5799 0.0032959 9.64703
+      vertex 16.2162 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.91938 13.3308 9.64703
+      vertex 16.0543 13.1206 9.64703
+      vertex 16.0102 13.3308 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.91938 13.3308 9.64703
+      vertex 16.0543 6.10267 9.64703
+      vertex 16.0543 13.1206 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.2162 5.81221 9.64703
+      vertex 15.9875 5.81221 9.64703
+      vertex 16.2162 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.9875 0.0032959 9.64703
+      vertex 16.2162 0.0032959 9.64703
+      vertex 15.9875 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 9.64703
+      vertex 16.2162 0.0032959 9.64703
+      vertex 15.9875 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 9.64703
+      vertex 15.9875 0.0032959 9.64703
+      vertex 8.88698 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5799 0.0032959 9.64703
+      vertex 8.70228 -0.147801 9.64703
+      vertex 39.2329 -0.147801 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.70228 -0.147801 9.64703
+      vertex 8.88698 0.0032959 9.64703
+      vertex 8.70228 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.1021 6.05266 9.64703
+      vertex 31.729 5.81221 9.64703
+      vertex 31.9632 6.05266 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8976 5.96331 9.64703
+      vertex 24.1021 6.05266 9.64703
+      vertex 23.8976 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8679 5.81221 9.64703
+      vertex 24.1021 6.05266 9.64703
+      vertex 23.8976 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.1021 6.05266 9.64703
+      vertex 23.8679 5.81221 9.64703
+      vertex 31.729 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5799 5.81221 9.64703
+      vertex 23.8679 5.81221 9.64703
+      vertex 23.6095 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.8679 5.81221 9.64703
+      vertex 23.8976 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 8.70228 -0.147801 6.43135
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.70228 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.70228 -0.147801 6.43135
+      vertex 8.70228 -0.147801 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 8.91938 5.96331 6.43135
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.91938 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.70228 5.96331 9.64703
+      vertex 8.91938 5.96331 6.43135
+      vertex 8.70228 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 8.70228 -0.147801 6.43135
+      vertex 39.2329 -0.147801 9.64703
+      vertex 8.70228 -0.147801 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 39.2329 -0.147801 9.64703
+      vertex 8.70228 -0.147801 6.43135
+      vertex 39.2329 -0.147801 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 15.9875 0.0032959 12.8627
+      vertex 15.9875 5.81221 9.64703
+      vertex 15.9875 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 15.9875 5.81221 9.64703
+      vertex 15.9875 0.0032959 12.8627
+      vertex 15.9875 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.9875 5.81221 12.8627
+      vertex 15.8028 5.66111 12.8627
+      vertex 15.9875 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.9875 5.81221 12.8627
+      vertex 9.07167 5.66111 12.8627
+      vertex 15.8028 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9.07167 5.66111 12.8627
+      vertex 8.88698 5.81221 12.8627
+      vertex 9.07167 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.88698 5.81221 12.8627
+      vertex 9.07167 5.66111 12.8627
+      vertex 15.9875 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.8028 0.154395 12.8627
+      vertex 15.9875 0.0032959 12.8627
+      vertex 15.8028 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 9.07167 0.154395 12.8627
+      vertex 15.9875 0.0032959 12.8627
+      vertex 15.8028 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9.07167 0.154395 12.8627
+      vertex 8.88698 0.0032959 12.8627
+      vertex 15.9875 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.88698 0.0032959 12.8627
+      vertex 9.07167 0.154395 12.8627
+      vertex 8.88698 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 8.88698 0.0032959 9.64703
+      vertex 8.88698 5.81221 12.8627
+      vertex 8.88698 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 8.88698 5.81221 12.8627
+      vertex 8.88698 0.0032959 9.64703
+      vertex 8.88698 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.9875 5.81221 9.64703
+      vertex 8.88698 5.81221 12.8627
+      vertex 15.9875 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.88698 5.81221 12.8627
+      vertex 15.9875 5.81221 9.64703
+      vertex 8.88698 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 8.88698 0.0032959 9.64703
+      vertex 15.9875 0.0032959 12.8627
+      vertex 8.88698 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 15.9875 0.0032959 12.8627
+      vertex 8.88698 0.0032959 9.64703
+      vertex 15.9875 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 15.8028 0.154395 16.0784
+      vertex 15.8028 5.66111 12.8627
+      vertex 15.8028 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 15.8028 5.66111 12.8627
+      vertex 15.8028 0.154395 16.0784
+      vertex 15.8028 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 9.07167 5.66111 16.0784
+      vertex 15.8028 0.154395 16.0784
+      vertex 15.8028 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.8028 0.154395 16.0784
+      vertex 9.07167 5.66111 16.0784
+      vertex 9.07167 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 9.07167 0.154395 12.8627
+      vertex 9.07167 5.66111 16.0784
+      vertex 9.07167 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 9.07167 5.66111 16.0784
+      vertex 9.07167 0.154395 12.8627
+      vertex 9.07167 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.8028 5.66111 12.8627
+      vertex 9.07167 5.66111 16.0784
+      vertex 15.8028 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 9.07167 5.66111 16.0784
+      vertex 15.8028 5.66111 12.8627
+      vertex 9.07167 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 9.07167 0.154395 12.8627
+      vertex 15.8028 0.154395 16.0784
+      vertex 9.07167 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 15.8028 0.154395 16.0784
+      vertex 9.07167 0.154395 12.8627
+      vertex 15.8028 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 8.54999 13.4787 0.4
+      vertex 8.54999 13.6959 3.21568
+      vertex 8.54999 13.6959 0.4
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 8.54999 13.6959 3.21568
+      vertex 8.54999 13.4787 0.4
+      vertex 8.54999 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.6271 13.6959 0.4
+      vertex 8.54999 13.6959 3.21568
+      vertex 15.6271 13.6959 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.54999 13.6959 3.21568
+      vertex 15.6271 13.6959 0.4
+      vertex 8.54999 13.6959 0.4
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 8.73468 6.11441 3.21568
+      vertex 8.73468 13.5133 6.43135
+      vertex 8.73468 13.5133 3.21568
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 8.73468 13.5133 6.43135
+      vertex 8.73468 6.11441 3.21568
+      vertex 8.73468 6.11441 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.8187 13.5133 3.21568
+      vertex 8.73468 13.5133 6.43135
+      vertex 15.8187 13.5133 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.73468 13.5133 6.43135
+      vertex 15.8187 13.5133 3.21568
+      vertex 8.73468 13.5133 3.21568
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 8.91938 5.96331 6.43135
+      vertex 8.91938 13.3308 9.64703
+      vertex 8.91938 13.3308 6.43135
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 8.91938 13.3308 9.64703
+      vertex 8.91938 5.96331 6.43135
+      vertex 8.91938 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 16.0102 13.3308 6.43135
+      vertex 8.91938 13.3308 9.64703
+      vertex 16.0102 13.3308 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.91938 13.3308 9.64703
+      vertex 16.0102 13.3308 6.43135
+      vertex 8.91938 13.3308 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.8976 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.6095 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.5799 0.0032959 12.8627
+      vertex 23.5799 5.81221 9.64703
+      vertex 23.5799 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.5799 5.81221 9.64703
+      vertex 23.5799 0.0032959 12.8627
+      vertex 23.5799 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5799 5.81221 12.8627
+      vertex 23.3883 5.66111 12.8627
+      vertex 23.5799 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5799 5.81221 12.8627
+      vertex 16.4078 5.66111 12.8627
+      vertex 23.3883 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.4078 5.66111 12.8627
+      vertex 16.2162 5.81221 12.8627
+      vertex 16.4078 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.2162 5.81221 12.8627
+      vertex 16.4078 5.66111 12.8627
+      vertex 23.5799 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.3883 0.154395 12.8627
+      vertex 23.5799 0.0032959 12.8627
+      vertex 23.3883 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.4078 0.154395 12.8627
+      vertex 23.5799 0.0032959 12.8627
+      vertex 23.3883 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.4078 0.154395 12.8627
+      vertex 16.2162 0.0032959 12.8627
+      vertex 23.5799 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.2162 0.0032959 12.8627
+      vertex 16.4078 0.154395 12.8627
+      vertex 16.2162 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.2162 0.0032959 9.64703
+      vertex 16.2162 5.81221 12.8627
+      vertex 16.2162 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.2162 5.81221 12.8627
+      vertex 16.2162 0.0032959 9.64703
+      vertex 16.2162 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.5799 5.81221 9.64703
+      vertex 16.2162 5.81221 12.8627
+      vertex 23.5799 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.2162 5.81221 12.8627
+      vertex 23.5799 5.81221 9.64703
+      vertex 16.2162 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.2162 0.0032959 9.64703
+      vertex 23.5799 0.0032959 12.8627
+      vertex 16.2162 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.5799 0.0032959 12.8627
+      vertex 16.2162 0.0032959 9.64703
+      vertex 23.5799 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.3883 0.154395 16.0784
+      vertex 23.3883 5.66111 12.8627
+      vertex 23.3883 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.3883 5.66111 12.8627
+      vertex 23.3883 0.154395 16.0784
+      vertex 23.3883 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.3883 5.66111 16.0784
+      vertex 23.1968 5.51001 16.0784
+      vertex 23.3883 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.3883 5.66111 16.0784
+      vertex 16.5993 5.51001 16.0784
+      vertex 23.1968 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.5993 5.51001 16.0784
+      vertex 16.4078 5.66111 16.0784
+      vertex 16.5993 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.4078 5.66111 16.0784
+      vertex 16.5993 5.51001 16.0784
+      vertex 23.3883 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.1968 0.305494 16.0784
+      vertex 23.3883 0.154395 16.0784
+      vertex 23.1968 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.5993 0.305494 16.0784
+      vertex 23.3883 0.154395 16.0784
+      vertex 23.1968 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.5993 0.305494 16.0784
+      vertex 16.4078 0.154395 16.0784
+      vertex 23.3883 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.4078 0.154395 16.0784
+      vertex 16.5993 0.305494 16.0784
+      vertex 16.4078 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.4078 0.154395 12.8627
+      vertex 16.4078 5.66111 16.0784
+      vertex 16.4078 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.4078 5.66111 16.0784
+      vertex 16.4078 0.154395 12.8627
+      vertex 16.4078 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.3883 5.66111 12.8627
+      vertex 16.4078 5.66111 16.0784
+      vertex 23.3883 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.4078 5.66111 16.0784
+      vertex 23.3883 5.66111 12.8627
+      vertex 16.4078 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.4078 0.154395 12.8627
+      vertex 23.3883 0.154395 16.0784
+      vertex 16.4078 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.3883 0.154395 16.0784
+      vertex 16.4078 0.154395 12.8627
+      vertex 23.3883 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.1968 0.305494 19.2941
+      vertex 23.1968 5.51001 16.0784
+      vertex 23.1968 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.1968 5.51001 16.0784
+      vertex 23.1968 0.305494 19.2941
+      vertex 23.1968 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.5993 5.51001 19.2941
+      vertex 23.1968 0.305494 19.2941
+      vertex 23.1968 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.1968 0.305494 19.2941
+      vertex 16.5993 5.51001 19.2941
+      vertex 16.5993 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.5993 0.305494 16.0784
+      vertex 16.5993 5.51001 19.2941
+      vertex 16.5993 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.5993 5.51001 19.2941
+      vertex 16.5993 0.305494 16.0784
+      vertex 16.5993 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.1968 5.51001 16.0784
+      vertex 16.5993 5.51001 19.2941
+      vertex 23.1968 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.5993 5.51001 19.2941
+      vertex 23.1968 5.51001 16.0784
+      vertex 16.5993 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.5993 0.305494 16.0784
+      vertex 23.1968 0.305494 19.2941
+      vertex 16.5993 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.1968 0.305494 19.2941
+      vertex 16.5993 0.305494 16.0784
+      vertex 23.1968 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.6095 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.6095 5.96331 9.64703
+      vertex 23.6095 5.96331 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.4179 6.10267 12.8627
+      vertex 23.4179 13.1206 9.64703
+      vertex 23.4179 13.1206 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.4179 13.1206 9.64703
+      vertex 23.4179 6.10267 12.8627
+      vertex 23.4179 6.10267 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.4179 13.1206 12.8627
+      vertex 23.2264 12.938 12.8627
+      vertex 23.4179 6.10267 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.4179 13.1206 12.8627
+      vertex 16.2458 12.938 12.8627
+      vertex 23.2264 12.938 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.2458 12.938 12.8627
+      vertex 16.0543 13.1206 12.8627
+      vertex 16.2458 6.28522 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.0543 13.1206 12.8627
+      vertex 16.2458 12.938 12.8627
+      vertex 23.4179 13.1206 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.2264 6.28522 12.8627
+      vertex 23.4179 6.10267 12.8627
+      vertex 23.2264 12.938 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.2458 6.28522 12.8627
+      vertex 23.4179 6.10267 12.8627
+      vertex 23.2264 6.28522 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.2458 6.28522 12.8627
+      vertex 16.0543 6.10267 12.8627
+      vertex 23.4179 6.10267 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 16.0543 6.10267 12.8627
+      vertex 16.2458 6.28522 12.8627
+      vertex 16.0543 13.1206 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.0543 6.10267 9.64703
+      vertex 16.0543 13.1206 12.8627
+      vertex 16.0543 13.1206 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.0543 13.1206 12.8627
+      vertex 16.0543 6.10267 9.64703
+      vertex 16.0543 6.10267 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.4179 13.1206 9.64703
+      vertex 16.0543 13.1206 12.8627
+      vertex 23.4179 13.1206 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.0543 13.1206 12.8627
+      vertex 23.4179 13.1206 9.64703
+      vertex 16.0543 13.1206 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.0543 6.10267 9.64703
+      vertex 23.4179 6.10267 12.8627
+      vertex 16.0543 6.10267 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.4179 6.10267 12.8627
+      vertex 16.0543 6.10267 9.64703
+      vertex 23.4179 6.10267 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.2264 6.28522 16.0784
+      vertex 23.2264 12.938 12.8627
+      vertex 23.2264 12.938 16.0784
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.2264 12.938 12.8627
+      vertex 23.2264 6.28522 16.0784
+      vertex 23.2264 6.28522 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.2458 12.938 16.0784
+      vertex 23.2264 6.28522 16.0784
+      vertex 23.2264 12.938 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.2264 6.28522 16.0784
+      vertex 16.2458 12.938 16.0784
+      vertex 16.2458 6.28522 16.0784
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.2458 6.28522 12.8627
+      vertex 16.2458 12.938 16.0784
+      vertex 16.2458 12.938 12.8627
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.2458 12.938 16.0784
+      vertex 16.2458 6.28522 12.8627
+      vertex 16.2458 6.28522 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.2264 12.938 12.8627
+      vertex 16.2458 12.938 16.0784
+      vertex 23.2264 12.938 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.2458 12.938 16.0784
+      vertex 23.2264 12.938 12.8627
+      vertex 16.2458 12.938 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.2458 6.28522 12.8627
+      vertex 23.2264 6.28522 16.0784
+      vertex 16.2458 6.28522 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.2264 6.28522 16.0784
+      vertex 16.2458 6.28522 12.8627
+      vertex 23.2264 6.28522 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 15.6271 13.6959 0.4
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.6271 20.3532 0.4
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.6271 13.6959 0.4
+      vertex 15.6271 13.6959 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.6416 20.3532 0.4
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.6416 20.3532 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 15.6271 20.3532 3.21568
+      vertex 15.6416 20.3532 0.4
+      vertex 15.6271 20.3532 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.9485 20.0018 6.43135
+      vertex 23.9485 20.1848 3.21568
+      vertex 23.9485 20.1848 6.43135
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.9485 20.1848 3.21568
+      vertex 23.9485 20.0018 6.43135
+      vertex 23.9485 20.0018 3.21568
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 15.8187 13.5133 3.21568
+      vertex 15.8187 20.1848 6.43135
+      vertex 15.8187 20.1848 3.21568
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 15.8187 20.1848 6.43135
+      vertex 15.8187 13.5133 3.21568
+      vertex 15.8187 13.5133 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.9485 20.1848 3.21568
+      vertex 15.8187 20.1848 6.43135
+      vertex 23.9485 20.1848 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 15.8187 20.1848 6.43135
+      vertex 23.9485 20.1848 3.21568
+      vertex 15.8187 20.1848 3.21568
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.757 19.8334 9.64703
+      vertex 23.757 20.0164 6.43135
+      vertex 23.757 20.0164 9.64703
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.757 20.0164 6.43135
+      vertex 23.757 19.8334 9.64703
+      vertex 23.757 19.8334 6.43135
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.0102 13.3308 6.43135
+      vertex 16.0102 20.0164 9.64703
+      vertex 16.0102 20.0164 6.43135
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.0102 20.0164 9.64703
+      vertex 16.0102 13.3308 6.43135
+      vertex 16.0102 13.3308 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.757 20.0164 6.43135
+      vertex 16.0102 20.0164 9.64703
+      vertex 23.757 20.0164 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.0102 20.0164 9.64703
+      vertex 23.757 20.0164 6.43135
+      vertex 16.0102 20.0164 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 23.5654 13.3735 12.8627
+      vertex 23.5654 19.848 9.64703
+      vertex 23.5654 19.848 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 23.5654 19.848 9.64703
+      vertex 23.5654 13.3735 12.8627
+      vertex 23.5654 13.3735 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 16.2018 19.848 12.8627
+      vertex 23.5654 13.3735 12.8627
+      vertex 23.5654 19.848 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.5654 13.3735 12.8627
+      vertex 16.2018 19.848 12.8627
+      vertex 16.2018 13.3735 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 16.2018 13.3735 9.64703
+      vertex 16.2018 19.848 12.8627
+      vertex 16.2018 19.848 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 16.2018 19.848 12.8627
+      vertex 16.2018 13.3735 9.64703
+      vertex 16.2018 13.3735 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.5654 19.848 9.64703
+      vertex 16.2018 19.848 12.8627
+      vertex 23.5654 19.848 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 16.2018 19.848 12.8627
+      vertex 23.5654 19.848 9.64703
+      vertex 16.2018 19.848 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 16.2018 13.3735 9.64703
+      vertex 23.5654 13.3735 12.8627
+      vertex 16.2018 13.3735 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.5654 13.3735 12.8627
+      vertex 16.2018 13.3735 9.64703
+      vertex 23.5654 13.3735 9.64703
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 15.6416 20.3532 0.4
+      vertex 15.6416 27.2301 3.21568
+      vertex 15.6416 27.2301 0.4
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 15.6416 27.2301 3.21568
+      vertex 15.6416 20.3532 0.4
+      vertex 15.6416 20.3532 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 15.6416 27.2301 3.21568
+      vertex 32.3424 27.2301 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 15.6416 27.2301 3.21568
+      vertex 32.3424 27.2301 0.4
+      vertex 15.6416 27.2301 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.729 0.0032959 12.8627
+      vertex 31.729 5.81221 9.64703
+      vertex 31.729 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.729 5.81221 9.64703
+      vertex 31.729 0.0032959 12.8627
+      vertex 31.729 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.729 5.81221 12.8627
+      vertex 31.5245 5.66111 12.8627
+      vertex 31.729 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.729 5.81221 12.8627
+      vertex 24.0724 5.66111 12.8627
+      vertex 31.5245 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.0724 5.66111 12.8627
+      vertex 23.8679 5.81221 12.8627
+      vertex 24.0724 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.8679 5.81221 12.8627
+      vertex 24.0724 5.66111 12.8627
+      vertex 31.729 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 31.5245 0.154395 12.8627
+      vertex 31.729 0.0032959 12.8627
+      vertex 31.5245 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.0724 0.154395 12.8627
+      vertex 31.729 0.0032959 12.8627
+      vertex 31.5245 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.0724 0.154395 12.8627
+      vertex 23.8679 0.0032959 12.8627
+      vertex 31.729 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.8679 0.0032959 12.8627
+      vertex 24.0724 0.154395 12.8627
+      vertex 23.8679 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 23.8679 0.0032959 9.64703
+      vertex 23.8679 5.81221 12.8627
+      vertex 23.8679 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 23.8679 5.81221 12.8627
+      vertex 23.8679 0.0032959 9.64703
+      vertex 23.8679 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.729 5.81221 9.64703
+      vertex 23.8679 5.81221 12.8627
+      vertex 31.729 5.81221 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 23.8679 5.81221 12.8627
+      vertex 31.729 5.81221 9.64703
+      vertex 23.8679 5.81221 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 23.8679 0.0032959 9.64703
+      vertex 31.729 0.0032959 12.8627
+      vertex 23.8679 0.0032959 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 31.729 0.0032959 12.8627
+      vertex 23.8679 0.0032959 9.64703
+      vertex 31.729 0.0032959 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.5245 0.154395 16.0784
+      vertex 31.5245 5.66111 12.8627
+      vertex 31.5245 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.5245 5.66111 12.8627
+      vertex 31.5245 0.154395 16.0784
+      vertex 31.5245 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.5245 5.66111 16.0784
+      vertex 31.32 5.51001 16.0784
+      vertex 31.5245 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.5245 5.66111 16.0784
+      vertex 24.2769 5.51001 16.0784
+      vertex 31.32 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.2769 5.51001 16.0784
+      vertex 24.0724 5.66111 16.0784
+      vertex 24.2769 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.0724 5.66111 16.0784
+      vertex 24.2769 5.51001 16.0784
+      vertex 31.5245 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 31.32 0.305494 16.0784
+      vertex 31.5245 0.154395 16.0784
+      vertex 31.32 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.2769 0.305494 16.0784
+      vertex 31.5245 0.154395 16.0784
+      vertex 31.32 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.2769 0.305494 16.0784
+      vertex 24.0724 0.154395 16.0784
+      vertex 31.5245 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 24.0724 0.154395 16.0784
+      vertex 24.2769 0.305494 16.0784
+      vertex 24.0724 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 24.0724 0.154395 12.8627
+      vertex 24.0724 5.66111 16.0784
+      vertex 24.0724 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 24.0724 5.66111 16.0784
+      vertex 24.0724 0.154395 12.8627
+      vertex 24.0724 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.5245 5.66111 12.8627
+      vertex 24.0724 5.66111 16.0784
+      vertex 31.5245 5.66111 16.0784
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 24.0724 5.66111 16.0784
+      vertex 31.5245 5.66111 12.8627
+      vertex 24.0724 5.66111 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 24.0724 0.154395 12.8627
+      vertex 31.5245 0.154395 16.0784
+      vertex 24.0724 0.154395 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 31.5245 0.154395 16.0784
+      vertex 24.0724 0.154395 12.8627
+      vertex 31.5245 0.154395 12.8627
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.32 0.305494 19.2941
+      vertex 31.32 5.51001 16.0784
+      vertex 31.32 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.32 5.51001 16.0784
+      vertex 31.32 0.305494 19.2941
+      vertex 31.32 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.2769 5.51001 19.2941
+      vertex 31.32 0.305494 19.2941
+      vertex 31.32 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.32 0.305494 19.2941
+      vertex 24.2769 5.51001 19.2941
+      vertex 24.2769 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 24.2769 0.305494 16.0784
+      vertex 24.2769 5.51001 19.2941
+      vertex 24.2769 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 24.2769 5.51001 19.2941
+      vertex 24.2769 0.305494 16.0784
+      vertex 24.2769 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.32 5.51001 16.0784
+      vertex 24.2769 5.51001 19.2941
+      vertex 31.32 5.51001 19.2941
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 24.2769 5.51001 19.2941
+      vertex 31.32 5.51001 16.0784
+      vertex 24.2769 5.51001 16.0784
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 24.2769 0.305494 16.0784
+      vertex 31.32 0.305494 19.2941
+      vertex 24.2769 0.305494 19.2941
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 31.32 0.305494 19.2941
+      vertex 24.2769 0.305494 16.0784
+      vertex 31.32 0.305494 16.0784
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.5766 13.4787 3.21568
+      vertex 32.5766 13.6182 0.4
+      vertex 32.5766 13.6182 3.21568
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.5766 13.6182 0.4
+      vertex 32.5766 13.4787 3.21568
+      vertex 32.5766 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.5766 13.6182 0.4
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.5766 13.6182 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.5766 13.6182 0.4
+      vertex 32.2862 13.6182 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.3721 13.2961 6.43135
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.3721 13.4356 6.43135
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.3721 13.2961 6.43135
+      vertex 32.3721 13.2961 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.0817 13.4356 6.43135
+      vertex 32.3721 13.4356 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.0817 13.4356 6.43135
+      vertex 32.3721 13.4356 3.21568
+      vertex 32.0817 13.4356 3.21568
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.1676 13.1136 9.64703
+      vertex 32.1676 13.2531 6.43135
+      vertex 32.1676 13.2531 9.64703
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.1676 13.2531 6.43135
+      vertex 32.1676 13.1136 9.64703
+      vertex 32.1676 13.1136 6.43135
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.8976 13.0221 9.64703
+      vertex 23.8976 13.0221 6.43135
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 23.8976 13.0221 9.64703
+      vertex 23.8976 5.96331 6.43135
+      vertex 23.8976 5.96331 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.1676 13.2531 6.43135
+      vertex 31.8772 13.2531 9.64703
+      vertex 32.1676 13.2531 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 31.8772 13.2531 9.64703
+      vertex 32.1676 13.2531 6.43135
+      vertex 31.8772 13.2531 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.9632 6.05266 12.8627
+      vertex 31.9632 13.0705 9.64703
+      vertex 31.9632 13.0705 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.9632 13.0705 9.64703
+      vertex 31.9632 6.05266 12.8627
+      vertex 31.9632 6.05266 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 24.1021 13.0705 12.8627
+      vertex 31.9632 6.05266 12.8627
+      vertex 31.9632 13.0705 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.9632 6.05266 12.8627
+      vertex 24.1021 13.0705 12.8627
+      vertex 24.1021 6.05266 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 24.1021 6.05266 9.64703
+      vertex 24.1021 13.0705 12.8627
+      vertex 24.1021 13.0705 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 24.1021 13.0705 12.8627
+      vertex 24.1021 6.05266 9.64703
+      vertex 24.1021 6.05266 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.9632 13.0705 9.64703
+      vertex 24.1021 13.0705 12.8627
+      vertex 31.9632 13.0705 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 24.1021 13.0705 12.8627
+      vertex 31.9632 13.0705 9.64703
+      vertex 24.1021 13.0705 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 24.1021 6.05266 9.64703
+      vertex 31.9632 6.05266 12.8627
+      vertex 24.1021 6.05266 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 31.9632 6.05266 12.8627
+      vertex 24.1021 6.05266 9.64703
+      vertex 31.9632 6.05266 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.2862 19.1636 0.4
+      vertex 32.2862 19.1636 3.21568
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.2862 19.1636 0.4
+      vertex 32.2862 13.6182 3.21568
+      vertex 32.2862 13.6182 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.0817 13.4356 6.43135
+      vertex 32.0817 20.0018 3.21568
+      vertex 32.0817 20.0018 6.43135
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.0817 20.0018 3.21568
+      vertex 32.0817 13.4356 6.43135
+      vertex 32.0817 13.4356 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.0817 20.0018 3.21568
+      vertex 23.9485 20.0018 6.43135
+      vertex 32.0817 20.0018 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 23.9485 20.0018 6.43135
+      vertex 32.0817 20.0018 3.21568
+      vertex 23.9485 20.0018 3.21568
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.8772 13.2531 9.64703
+      vertex 31.8772 19.8334 6.43135
+      vertex 31.8772 19.8334 9.64703
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.8772 19.8334 6.43135
+      vertex 31.8772 13.2531 9.64703
+      vertex 31.8772 13.2531 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.8772 19.8334 6.43135
+      vertex 23.757 19.8334 9.64703
+      vertex 31.8772 19.8334 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 23.757 19.8334 9.64703
+      vertex 31.8772 19.8334 6.43135
+      vertex 23.757 19.8334 6.43135
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.8976 13.0221 9.64703
+      vertex 23.6095 13.0221 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.8976 13.0221 9.64703
+      vertex 23.6095 13.0221 6.43135
+      vertex 23.8976 13.0221 6.43135
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 31.6727 13.1905 12.8627
+      vertex 31.6727 19.665 9.64703
+      vertex 31.6727 19.665 12.8627
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 31.6727 19.665 9.64703
+      vertex 31.6727 13.1905 12.8627
+      vertex 31.6727 13.1905 9.64703
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 23.8117 19.665 12.8627
+      vertex 31.6727 13.1905 12.8627
+      vertex 31.6727 19.665 12.8627
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 31.6727 13.1905 12.8627
+      vertex 23.8117 19.665 12.8627
+      vertex 23.8117 13.1905 12.8627
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 23.8117 13.1905 9.64703
+      vertex 23.8117 19.665 12.8627
+      vertex 23.8117 19.665 9.64703
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 23.8117 19.665 12.8627
+      vertex 23.8117 13.1905 9.64703
+      vertex 23.8117 13.1905 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 31.6727 19.665 9.64703
+      vertex 23.8117 19.665 12.8627
+      vertex 31.6727 19.665 12.8627
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 23.8117 19.665 12.8627
+      vertex 31.6727 19.665 9.64703
+      vertex 23.8117 19.665 9.64703
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 23.8117 13.1905 9.64703
+      vertex 31.6727 13.1905 12.8627
+      vertex 23.8117 13.1905 12.8627
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 31.6727 13.1905 12.8627
+      vertex 23.8117 13.1905 9.64703
+      vertex 31.6727 13.1905 9.64703
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.3424 27.2301 0.4
+      vertex 32.3424 27.2301 3.21568
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.3424 19.1636 0.4
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 32.2862 19.1636 0.4
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.2862 19.1636 3.21568
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 32.3424 19.1636 3.21568
+      vertex 32.2862 19.1636 0.4
+      vertex 32.3424 19.1636 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 39.6 -0.45 3.21568
+      vertex 39.6 13.4787 0.4
+      vertex 39.6 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 39.6 -0.45 3.21568
+      vertex 39.6 -0.45 0.4
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 39.4165 -0.298901 6.43135
+      vertex 39.4165 13.2961 3.21568
+      vertex 39.4165 13.2961 6.43135
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 39.4165 13.2961 3.21568
+      vertex 39.4165 -0.298901 6.43135
+      vertex 39.4165 -0.298901 3.21568
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 39.2329 -0.147801 9.64703
+      vertex 39.2329 13.1136 6.43135
+      vertex 39.2329 13.1136 9.64703
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 39.2329 13.1136 6.43135
+      vertex 39.2329 -0.147801 9.64703
+      vertex 39.2329 -0.147801 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 32.5766 13.4787 3.21568
+      vertex 39.6 13.4787 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.5766 13.4787 3.21568
+      vertex 39.6 13.4787 0.4
+      vertex 32.5766 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 39.4165 13.2961 3.21568
+      vertex 32.3721 13.2961 6.43135
+      vertex 39.4165 13.2961 6.43135
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.3721 13.2961 6.43135
+      vertex 39.4165 13.2961 3.21568
+      vertex 32.3721 13.2961 3.21568
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 39.2329 13.1136 6.43135
+      vertex 32.1676 13.1136 9.64703
+      vertex 39.2329 13.1136 9.64703
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.1676 13.1136 9.64703
+      vertex 39.2329 13.1136 6.43135
+      vertex 32.1676 13.1136 6.43135
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.7424 27.2301 0.4
+      vertex 32.7288 27.3336 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.7424 27.2301 0.4
+      vertex 32.3424 27.2301 0.4
+      vertex 32.7424 19.1636 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.7288 27.3336 0.4
+      vertex 32.6888 27.4301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 19.1636 0.4
+      vertex 32.7424 19.1636 0.4
+      vertex 32.3424 27.2301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.7288 19.0601 0.4
+      vertex 32.3424 19.1636 0.4
+      vertex 32.6888 18.9636 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.7424 19.1636 0.4
+      vertex 32.3424 19.1636 0.4
+      vertex 32.7288 19.0601 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.6888 27.4301 0.4
+      vertex 32.6252 27.513 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 40 13.4787 0.4
+      vertex 39.9864 13.5822 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 40 13.4787 0.4
+      vertex 39.6 13.4787 0.4
+      vertex 40 -0.449997 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 39.9864 13.5822 0.4
+      vertex 39.9464 13.6786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 -0.45 0.4
+      vertex 40 -0.449997 0.4
+      vertex 39.6 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 39.9464 13.6786 0.4
+      vertex 39.8828 13.7615 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 40 -0.449997 0.4
+      vertex 39.6 -0.45 0.4
+      vertex 39.9864 -0.553528 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 39.8828 13.7615 0.4
+      vertex 39.8 13.8251 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.9864 -0.553528 0.4
+      vertex 39.6 -0.45 0.4
+      vertex 39.9464 -0.649994 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.4787 0.4
+      vertex 39.8 13.8251 0.4
+      vertex 39.7035 13.865 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.9464 -0.649994 0.4
+      vertex 39.6 -0.45 0.4
+      vertex 39.8828 -0.732834 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.8828 -0.732834 0.4
+      vertex 39.6 -0.45 0.4
+      vertex 39.8 -0.796402 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 13.8786 0.4
+      vertex 39.6 13.4787 0.4
+      vertex 39.7035 13.865 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.8766 13.8786 0.4
+      vertex 39.6 13.4787 0.4
+      vertex 39.6 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.5766 13.6182 0.4
+      vertex 32.8594 13.901 0.4
+      vertex 32.7766 13.9646 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.5766 13.6182 0.4
+      vertex 32.7766 13.9646 0.4
+      vertex 32.6862 14.002 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 32.2862 19.1636 0.4
+      vertex 32.6862 18.9602 0.4
+      vertex 32.3424 19.1636 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.8594 13.901 0.4
+      vertex 32.5766 13.6182 0.4
+      vertex 32.8766 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.5766 13.4787 0.4
+      vertex 32.8766 13.8786 0.4
+      vertex 32.5766 13.6182 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.8766 13.8786 0.4
+      vertex 32.5766 13.4787 0.4
+      vertex 39.6 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.8 -0.796402 0.4
+      vertex 39.6 -0.45 0.4
+      vertex 39.7035 -0.836365 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 39.6 -0.45 0.4
+      vertex 39.6 -0.849991 0.4
+      vertex 39.7035 -0.836365 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 39.6 -0.849991 0.4
+      vertex 39.6 -0.45 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.399994 -0.849991 0.4
+      vertex 39.6 -0.849991 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 13.4787 0.4
+      vertex 0 13.4787 0.4
+      vertex 0.4 -0.45 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.399994 13.8786 0.4
+      vertex 0.296463 13.865 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0 -0.449997 0.4
+      vertex 0.4 -0.45 0.4
+      vertex 0 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.296463 13.865 0.4
+      vertex 0.199997 13.8251 0.4
+    endloop
+  endfacet
+  facet normal 0 -0 1
+    outer loop
+      vertex 0.0136261 -0.553528 0.4
+      vertex 0.4 -0.45 0.4
+      vertex 0 -0.449997 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.199997 13.8251 0.4
+      vertex 0.117157 13.7615 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.296463 -0.836365 0.4
+      vertex 0.399994 -0.849991 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.117157 13.7615 0.4
+      vertex 0.0535889 13.6786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.199997 -0.796402 0.4
+      vertex 0.296463 -0.836365 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.0535889 13.6786 0.4
+      vertex 0.0136261 13.5822 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.117157 -0.732834 0.4
+      vertex 0.199997 -0.796402 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.0535889 -0.649994 0.4
+      vertex 0.117157 -0.732834 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0.4 -0.45 0.4
+      vertex 0.0136261 -0.553528 0.4
+      vertex 0.0535889 -0.649994 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.6301 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 32.3424 27.2301 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.6416 27.6301 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 32.3424 27.6301 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.5381 27.6165 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.6416 27.6301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.2416 20.4588 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.2416 27.2301 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.4416 27.5765 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.5381 27.6165 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.6416 27.2301 0.4
+      vertex 15.2416 20.4588 0.4
+      vertex 15.6416 20.3532 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.3588 27.513 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.4416 27.5765 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.2952 27.4301 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.3588 27.513 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 15.2552 27.3336 0.4
+      vertex 15.6416 27.2301 0.4
+      vertex 15.2952 27.4301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.6416 27.2301 0.4
+      vertex 15.2552 27.3336 0.4
+      vertex 15.2416 27.2301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.6416 20.3532 0.4
+      vertex 15.2416 20.4588 0.4
+      vertex 15.6271 20.3532 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.2271 20.3532 0.4
+      vertex 15.6271 20.3532 0.4
+      vertex 15.2416 20.4588 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.2271 20.3532 0.4
+      vertex 15.2416 20.4588 0.4
+      vertex 15.2408 20.4568 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.2271 14.0959 0.4
+      vertex 15.6271 20.3532 0.4
+      vertex 15.2271 20.3532 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.6271 20.3532 0.4
+      vertex 15.2271 14.0959 0.4
+      vertex 15.6271 13.6959 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 15.2271 14.0959 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 15.6271 13.6959 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.54997 14.0959 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 15.2271 14.0959 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.44644 14.0822 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 8.54997 14.0959 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.34998 14.0423 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 8.44644 14.0822 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.26714 13.9787 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 8.34998 14.0423 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 8.20357 13.8959 0.4
+      vertex 8.54999 13.6959 0.4
+      vertex 8.26714 13.9787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.54999 13.6959 0.4
+      vertex 8.20357 13.8959 0.4
+      vertex 8.19644 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.54999 13.6959 0.4
+      vertex 8.19644 13.8786 0.4
+      vertex 8.54999 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 8.19644 13.8786 0.4
+      vertex 0.4 13.4787 0.4
+      vertex 8.54999 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0.4 13.4787 0.4
+      vertex 0.399994 13.8786 0.4
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 0.399994 13.8786 0.4
+      vertex 0.4 13.4787 0.4
+      vertex 8.19644 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.6252 27.513 0.4
+      vertex 32.5424 27.5765 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.5424 27.5765 0.4
+      vertex 32.4459 27.6165 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.3424 27.2301 0.4
+      vertex 32.4459 27.6165 0.4
+      vertex 32.3424 27.6301 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.6888 18.9636 0.4
+      vertex 32.3424 19.1636 0.4
+      vertex 32.6862 18.9602 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.6862 18.9602 0.4
+      vertex 32.2862 19.1636 0.4
+      vertex 32.6862 14.002 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.6862 14.002 0.4
+      vertex 32.2862 19.1636 0.4
+      vertex 32.2862 13.6182 0.4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 32.6862 14.002 0.4
+      vertex 32.2862 13.6182 0.4
+      vertex 32.5766 13.6182 0.4
+    endloop
+  endfacet
+  facet normal 0.382613 -0.923909 0
+    outer loop
+      vertex 39.7035 -0.836365 0
+      vertex 39.8 -0.796402 0.4
+      vertex 39.7035 -0.836365 0.4
+    endloop
+  endfacet
+  facet normal 0.382613 -0.923909 0
+    outer loop
+      vertex 39.8 -0.796402 0.4
+      vertex 39.7035 -0.836365 0
+      vertex 39.8 -0.796402 0
+    endloop
+  endfacet
+  facet normal 0.608962 -0.793199 0
+    outer loop
+      vertex 39.8 -0.796402 0
+      vertex 39.8828 -0.732834 0.4
+      vertex 39.8 -0.796402 0.4
+    endloop
+  endfacet
+  facet normal 0.608962 -0.793199 0
+    outer loop
+      vertex 39.8828 -0.732834 0.4
+      vertex 39.8 -0.796402 0
+      vertex 39.8828 -0.732834 0
+    endloop
+  endfacet
+  facet normal 0.793193 -0.60897 0
+    outer loop
+      vertex 39.8828 -0.732834 0.4
+      vertex 39.9464 -0.649994 0
+      vertex 39.9464 -0.649994 0.4
+    endloop
+  endfacet
+  facet normal 0.793193 -0.60897 0
+    outer loop
+      vertex 39.9464 -0.649994 0
+      vertex 39.8828 -0.732834 0.4
+      vertex 39.8828 -0.732834 0
+    endloop
+  endfacet
+  facet normal 0.923736 -0.383031 0
+    outer loop
+      vertex 39.9464 -0.649994 0.4
+      vertex 39.9864 -0.553528 0
+      vertex 39.9864 -0.553528 0.4
+    endloop
+  endfacet
+  facet normal 0.923736 -0.383031 0
+    outer loop
+      vertex 39.9864 -0.553528 0
+      vertex 39.9464 -0.649994 0.4
+      vertex 39.9464 -0.649994 0
+    endloop
+  endfacet
+  facet normal 0.991482 -0.130243 0
+    outer loop
+      vertex 39.9864 -0.553528 0.4
+      vertex 40 -0.449997 0
+      vertex 40 -0.449997 0.4
+    endloop
+  endfacet
+  facet normal 0.991482 -0.130243 0
+    outer loop
+      vertex 40 -0.449997 0
+      vertex 39.9864 -0.553528 0.4
+      vertex 39.9864 -0.553528 0
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 40 -0.449997 0.4
+      vertex 40 13.4787 0
+      vertex 40 13.4787 0.4
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 40 13.4787 0
+      vertex 40 -0.449997 0.4
+      vertex 40 -0.449997 0
+    endloop
+  endfacet
+  facet normal 0.991477 0.130281 0
+    outer loop
+      vertex 40 13.4787 0.4
+      vertex 39.9864 13.5822 0
+      vertex 39.9864 13.5822 0.4
+    endloop
+  endfacet
+  facet normal 0.991477 0.130281 0
+    outer loop
+      vertex 39.9864 13.5822 0
+      vertex 40 13.4787 0.4
+      vertex 40 13.4787 0
+    endloop
+  endfacet
+  facet normal 0.923643 0.383254 0
+    outer loop
+      vertex 39.9864 13.5822 0.4
+      vertex 39.9464 13.6786 0
+      vertex 39.9464 13.6786 0.4
+    endloop
+  endfacet
+  facet normal 0.923643 0.383254 0
+    outer loop
+      vertex 39.9464 13.6786 0
+      vertex 39.9864 13.5822 0.4
+      vertex 39.9864 13.5822 0
+    endloop
+  endfacet
+  facet normal 0.793406 0.608693 0
+    outer loop
+      vertex 39.9464 13.6786 0.4
+      vertex 39.8828 13.7615 0
+      vertex 39.8828 13.7615 0.4
+    endloop
+  endfacet
+  facet normal 0.793406 0.608693 0
+    outer loop
+      vertex 39.8828 13.7615 0
+      vertex 39.9464 13.6786 0.4
+      vertex 39.9464 13.6786 0
+    endloop
+  endfacet
+  facet normal 0.609155 0.793051 -0
+    outer loop
+      vertex 39.8828 13.7615 0
+      vertex 39.8 13.8251 0.4
+      vertex 39.8828 13.7615 0.4
+    endloop
+  endfacet
+  facet normal 0.609155 0.793051 0
+    outer loop
+      vertex 39.8 13.8251 0.4
+      vertex 39.8828 13.7615 0
+      vertex 39.8 13.8251 0
+    endloop
+  endfacet
+  facet normal 0.382098 0.924122 -0
+    outer loop
+      vertex 39.8 13.8251 0
+      vertex 39.7035 13.865 0.4
+      vertex 39.8 13.8251 0.4
+    endloop
+  endfacet
+  facet normal 0.382098 0.924122 0
+    outer loop
+      vertex 39.7035 13.865 0.4
+      vertex 39.8 13.8251 0
+      vertex 39.7035 13.865 0
+    endloop
+  endfacet
+  facet normal 0.130281 0.991477 -0
+    outer loop
+      vertex 39.7035 13.865 0
+      vertex 39.6 13.8786 0.4
+      vertex 39.7035 13.865 0.4
+    endloop
+  endfacet
+  facet normal 0.130281 0.991477 0
+    outer loop
+      vertex 39.6 13.8786 0.4
+      vertex 39.7035 13.865 0
+      vertex 39.6 13.8786 0
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 39.6 13.8786 0
+      vertex 32.8766 13.8786 0.4
+      vertex 39.6 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 32.8766 13.8786 0.4
+      vertex 39.6 13.8786 0
+      vertex 32.8766 13.8786 0
+    endloop
+  endfacet
+  facet normal 0.79315 0.609026 0
+    outer loop
+      vertex 32.8766 13.8786 0.4
+      vertex 32.8594 13.901 0
+      vertex 32.8594 13.901 0.4
+    endloop
+  endfacet
+  facet normal 0.79315 0.609026 0
+    outer loop
+      vertex 32.8594 13.901 0
+      vertex 32.8766 13.8786 0.4
+      vertex 32.8766 13.8786 0
+    endloop
+  endfacet
+  facet normal 0.609155 0.793051 -0
+    outer loop
+      vertex 32.8594 13.901 0
+      vertex 32.7766 13.9646 0.4
+      vertex 32.8594 13.901 0.4
+    endloop
+  endfacet
+  facet normal 0.609155 0.793051 0
+    outer loop
+      vertex 32.7766 13.9646 0.4
+      vertex 32.8594 13.901 0
+      vertex 32.7766 13.9646 0
+    endloop
+  endfacet
+  facet normal 0.382292 0.924042 -0
+    outer loop
+      vertex 32.7766 13.9646 0
+      vertex 32.6862 14.002 0.4
+      vertex 32.7766 13.9646 0.4
+    endloop
+  endfacet
+  facet normal 0.382292 0.924042 0
+    outer loop
+      vertex 32.6862 14.002 0.4
+      vertex 32.7766 13.9646 0
+      vertex 32.6862 14.002 0
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.6862 14.002 0.4
+      vertex 32.6862 18.9602 0
+      vertex 32.6862 18.9602 0.4
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.6862 18.9602 0
+      vertex 32.6862 14.002 0.4
+      vertex 32.6862 14.002 0
+    endloop
+  endfacet
+  facet normal 0.794358 -0.60745 0
+    outer loop
+      vertex 32.6862 18.9602 0.4
+      vertex 32.6888 18.9636 0
+      vertex 32.6888 18.9636 0.4
+    endloop
+  endfacet
+  facet normal 0.794358 -0.60745 0
+    outer loop
+      vertex 32.6888 18.9636 0
+      vertex 32.6862 18.9602 0.4
+      vertex 32.6862 18.9602 0
+    endloop
+  endfacet
+  facet normal 0.923783 -0.382915 0
+    outer loop
+      vertex 32.6888 18.9636 0.4
+      vertex 32.7288 19.0601 0
+      vertex 32.7288 19.0601 0.4
+    endloop
+  endfacet
+  facet normal 0.923783 -0.382915 0
+    outer loop
+      vertex 32.7288 19.0601 0
+      vertex 32.6888 18.9636 0.4
+      vertex 32.6888 18.9636 0
+    endloop
+  endfacet
+  facet normal 0.991477 -0.130281 0
+    outer loop
+      vertex 32.7288 19.0601 0.4
+      vertex 32.7424 19.1636 0
+      vertex 32.7424 19.1636 0.4
+    endloop
+  endfacet
+  facet normal 0.991477 -0.130281 0
+    outer loop
+      vertex 32.7424 19.1636 0
+      vertex 32.7288 19.0601 0.4
+      vertex 32.7288 19.0601 0
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 32.7424 19.1636 0.4
+      vertex 32.7424 27.2301 0
+      vertex 32.7424 27.2301 0.4
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 32.7424 27.2301 0
+      vertex 32.7424 19.1636 0.4
+      vertex 32.7424 19.1636 0
+    endloop
+  endfacet
+  facet normal 0.991477 0.130281 0
+    outer loop
+      vertex 32.7424 27.2301 0.4
+      vertex 32.7288 27.3336 0
+      vertex 32.7288 27.3336 0.4
+    endloop
+  endfacet
+  facet normal 0.991477 0.130281 0
+    outer loop
+      vertex 32.7288 27.3336 0
+      vertex 32.7424 27.2301 0.4
+      vertex 32.7424 27.2301 0
+    endloop
+  endfacet
+  facet normal 0.923783 0.382915 0
+    outer loop
+      vertex 32.7288 27.3336 0.4
+      vertex 32.6888 27.4301 0
+      vertex 32.6888 27.4301 0.4
+    endloop
+  endfacet
+  facet normal 0.923783 0.382915 0
+    outer loop
+      vertex 32.6888 27.4301 0
+      vertex 32.7288 27.3336 0.4
+      vertex 32.7288 27.3336 0
+    endloop
+  endfacet
+  facet normal 0.793406 0.608693 0
+    outer loop
+      vertex 32.6888 27.4301 0.4
+      vertex 32.6252 27.513 0
+      vertex 32.6252 27.513 0.4
+    endloop
+  endfacet
+  facet normal 0.793406 0.608693 0
+    outer loop
+      vertex 32.6252 27.513 0
+      vertex 32.6888 27.4301 0.4
+      vertex 32.6888 27.4301 0
+    endloop
+  endfacet
+  facet normal 0.608552 0.793514 -0
+    outer loop
+      vertex 32.6252 27.513 0
+      vertex 32.5424 27.5765 0.4
+      vertex 32.6252 27.513 0.4
+    endloop
+  endfacet
+  facet normal 0.608552 0.793514 0
+    outer loop
+      vertex 32.5424 27.5765 0.4
+      vertex 32.6252 27.513 0
+      vertex 32.5424 27.5765 0
+    endloop
+  endfacet
+  facet normal 0.382915 0.923783 -0
+    outer loop
+      vertex 32.5424 27.5765 0
+      vertex 32.4459 27.6165 0.4
+      vertex 32.5424 27.5765 0.4
+    endloop
+  endfacet
+  facet normal 0.382915 0.923783 0
+    outer loop
+      vertex 32.4459 27.6165 0.4
+      vertex 32.5424 27.5765 0
+      vertex 32.4459 27.6165 0
+    endloop
+  endfacet
+  facet normal 0.130281 0.991477 -0
+    outer loop
+      vertex 32.4459 27.6165 0
+      vertex 32.3424 27.6301 0.4
+      vertex 32.4459 27.6165 0.4
+    endloop
+  endfacet
+  facet normal 0.130281 0.991477 0
+    outer loop
+      vertex 32.3424 27.6301 0.4
+      vertex 32.4459 27.6165 0
+      vertex 32.3424 27.6301 0
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 32.3424 27.6301 0
+      vertex 15.6416 27.6301 0.4
+      vertex 32.3424 27.6301 0.4
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 15.6416 27.6301 0.4
+      vertex 32.3424 27.6301 0
+      vertex 15.6416 27.6301 0
+    endloop
+  endfacet
+  facet normal -0.130281 0.991477 0
+    outer loop
+      vertex 15.6416 27.6301 0
+      vertex 15.5381 27.6165 0.4
+      vertex 15.6416 27.6301 0.4
+    endloop
+  endfacet
+  facet normal -0.130281 0.991477 0
+    outer loop
+      vertex 15.5381 27.6165 0.4
+      vertex 15.6416 27.6301 0
+      vertex 15.5381 27.6165 0
+    endloop
+  endfacet
+  facet normal -0.382915 0.923783 0
+    outer loop
+      vertex 15.5381 27.6165 0
+      vertex 15.4416 27.5765 0.4
+      vertex 15.5381 27.6165 0.4
+    endloop
+  endfacet
+  facet normal -0.382915 0.923783 0
+    outer loop
+      vertex 15.4416 27.5765 0.4
+      vertex 15.5381 27.6165 0
+      vertex 15.4416 27.5765 0
+    endloop
+  endfacet
+  facet normal -0.608552 0.793514 0
+    outer loop
+      vertex 15.4416 27.5765 0
+      vertex 15.3588 27.513 0.4
+      vertex 15.4416 27.5765 0.4
+    endloop
+  endfacet
+  facet normal -0.608552 0.793514 0
+    outer loop
+      vertex 15.3588 27.513 0.4
+      vertex 15.4416 27.5765 0
+      vertex 15.3588 27.513 0
+    endloop
+  endfacet
+  facet normal -0.793406 0.608693 0
+    outer loop
+      vertex 15.2952 27.4301 0
+      vertex 15.3588 27.513 0.4
+      vertex 15.3588 27.513 0
+    endloop
+  endfacet
+  facet normal -0.793406 0.608693 0
+    outer loop
+      vertex 15.3588 27.513 0.4
+      vertex 15.2952 27.4301 0
+      vertex 15.2952 27.4301 0.4
+    endloop
+  endfacet
+  facet normal -0.923783 0.382915 0
+    outer loop
+      vertex 15.2552 27.3336 0
+      vertex 15.2952 27.4301 0.4
+      vertex 15.2952 27.4301 0
+    endloop
+  endfacet
+  facet normal -0.923783 0.382915 0
+    outer loop
+      vertex 15.2952 27.4301 0.4
+      vertex 15.2552 27.3336 0
+      vertex 15.2552 27.3336 0.4
+    endloop
+  endfacet
+  facet normal -0.991477 0.130281 0
+    outer loop
+      vertex 15.2416 27.2301 0
+      vertex 15.2552 27.3336 0.4
+      vertex 15.2552 27.3336 0
+    endloop
+  endfacet
+  facet normal -0.991477 0.130281 0
+    outer loop
+      vertex 15.2552 27.3336 0.4
+      vertex 15.2416 27.2301 0
+      vertex 15.2416 27.2301 0.4
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 15.2416 20.4588 0
+      vertex 15.2416 27.2301 0.4
+      vertex 15.2416 27.2301 0
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 15.2416 27.2301 0.4
+      vertex 15.2416 20.4588 0
+      vertex 15.2416 20.4588 0.4
+    endloop
+  endfacet
+  facet normal -0.928477 0.371391 0
+    outer loop
+      vertex 15.2408 20.4568 0
+      vertex 15.2416 20.4588 0.4
+      vertex 15.2416 20.4588 0
+    endloop
+  endfacet
+  facet normal -0.928477 0.371391 0
+    outer loop
+      vertex 15.2416 20.4588 0.4
+      vertex 15.2408 20.4568 0
+      vertex 15.2408 20.4568 0.4
+    endloop
+  endfacet
+  facet normal -0.991369 0.131098 0
+    outer loop
+      vertex 15.2271 20.3532 0
+      vertex 15.2408 20.4568 0.4
+      vertex 15.2408 20.4568 0
+    endloop
+  endfacet
+  facet normal -0.991369 0.131098 0
+    outer loop
+      vertex 15.2408 20.4568 0.4
+      vertex 15.2271 20.3532 0
+      vertex 15.2271 20.3532 0.4
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 15.2271 14.0959 0
+      vertex 15.2271 20.3532 0.4
+      vertex 15.2271 20.3532 0
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 15.2271 20.3532 0.4
+      vertex 15.2271 14.0959 0
+      vertex 15.2271 14.0959 0.4
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 15.2271 14.0959 0
+      vertex 8.54997 14.0959 0.4
+      vertex 15.2271 14.0959 0.4
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 8.54997 14.0959 0.4
+      vertex 15.2271 14.0959 0
+      vertex 8.54997 14.0959 0
+    endloop
+  endfacet
+  facet normal -0.131185 0.991358 0
+    outer loop
+      vertex 8.54997 14.0959 0
+      vertex 8.44644 14.0822 0.4
+      vertex 8.54997 14.0959 0.4
+    endloop
+  endfacet
+  facet normal -0.131185 0.991358 0
+    outer loop
+      vertex 8.44644 14.0822 0.4
+      vertex 8.54997 14.0959 0
+      vertex 8.44644 14.0822 0
+    endloop
+  endfacet
+  facet normal -0.382233 0.924066 0
+    outer loop
+      vertex 8.44644 14.0822 0
+      vertex 8.34998 14.0423 0.4
+      vertex 8.44644 14.0822 0.4
+    endloop
+  endfacet
+  facet normal -0.382233 0.924066 0
+    outer loop
+      vertex 8.34998 14.0423 0.4
+      vertex 8.44644 14.0822 0
+      vertex 8.34998 14.0423 0
+    endloop
+  endfacet
+  facet normal -0.60897 0.793193 0
+    outer loop
+      vertex 8.34998 14.0423 0
+      vertex 8.26714 13.9787 0.4
+      vertex 8.34998 14.0423 0.4
+    endloop
+  endfacet
+  facet normal -0.60897 0.793193 0
+    outer loop
+      vertex 8.26714 13.9787 0.4
+      vertex 8.34998 14.0423 0
+      vertex 8.26714 13.9787 0
+    endloop
+  endfacet
+  facet normal -0.79319 0.608974 0
+    outer loop
+      vertex 8.20357 13.8959 0
+      vertex 8.26714 13.9787 0.4
+      vertex 8.26714 13.9787 0
+    endloop
+  endfacet
+  facet normal -0.79319 0.608974 0
+    outer loop
+      vertex 8.26714 13.9787 0.4
+      vertex 8.20357 13.8959 0
+      vertex 8.20357 13.8959 0.4
+    endloop
+  endfacet
+  facet normal -0.924556 0.381045 0
+    outer loop
+      vertex 8.19644 13.8786 0
+      vertex 8.20357 13.8959 0.4
+      vertex 8.20357 13.8959 0
+    endloop
+  endfacet
+  facet normal -0.924556 0.381045 0
+    outer loop
+      vertex 8.20357 13.8959 0.4
+      vertex 8.19644 13.8786 0
+      vertex 8.19644 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 8.19644 13.8786 0
+      vertex 0.399994 13.8786 0.4
+      vertex 8.19644 13.8786 0.4
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 0.399994 13.8786 0.4
+      vertex 8.19644 13.8786 0
+      vertex 0.399994 13.8786 0
+    endloop
+  endfacet
+  facet normal -0.130243 0.991482 0
+    outer loop
+      vertex 0.399994 13.8786 0
+      vertex 0.296463 13.865 0.4
+      vertex 0.399994 13.8786 0.4
+    endloop
+  endfacet
+  facet normal -0.130243 0.991482 0
+    outer loop
+      vertex 0.296463 13.865 0.4
+      vertex 0.399994 13.8786 0
+      vertex 0.296463 13.865 0
+    endloop
+  endfacet
+  facet normal -0.382213 0.924074 0
+    outer loop
+      vertex 0.296463 13.865 0
+      vertex 0.199997 13.8251 0.4
+      vertex 0.296463 13.865 0.4
+    endloop
+  endfacet
+  facet normal -0.382213 0.924074 0
+    outer loop
+      vertex 0.199997 13.8251 0.4
+      vertex 0.296463 13.865 0
+      vertex 0.199997 13.8251 0
+    endloop
+  endfacet
+  facet normal -0.60897 0.793193 0
+    outer loop
+      vertex 0.199997 13.8251 0
+      vertex 0.117157 13.7615 0.4
+      vertex 0.199997 13.8251 0.4
+    endloop
+  endfacet
+  facet normal -0.60897 0.793193 0
+    outer loop
+      vertex 0.117157 13.7615 0.4
+      vertex 0.199997 13.8251 0
+      vertex 0.117157 13.7615 0
+    endloop
+  endfacet
+  facet normal -0.793554 0.6085 0
+    outer loop
+      vertex 0.0535889 13.6786 0
+      vertex 0.117157 13.7615 0.4
+      vertex 0.117157 13.7615 0
+    endloop
+  endfacet
+  facet normal -0.793554 0.6085 0
+    outer loop
+      vertex 0.117157 13.7615 0.4
+      vertex 0.0535889 13.6786 0
+      vertex 0.0535889 13.6786 0.4
+    endloop
+  endfacet
+  facet normal -0.923769 0.38295 0
+    outer loop
+      vertex 0.0136261 13.5822 0
+      vertex 0.0535889 13.6786 0.4
+      vertex 0.0535889 13.6786 0
+    endloop
+  endfacet
+  facet normal -0.923769 0.38295 0
+    outer loop
+      vertex 0.0535889 13.6786 0.4
+      vertex 0.0136261 13.5822 0
+      vertex 0.0136261 13.5822 0.4
+    endloop
+  endfacet
+  facet normal -0.991445 0.130527 0
+    outer loop
+      vertex 0 13.4787 0
+      vertex 0.0136261 13.5822 0.4
+      vertex 0.0136261 13.5822 0
+    endloop
+  endfacet
+  facet normal -0.991445 0.130527 0
+    outer loop
+      vertex 0.0136261 13.5822 0.4
+      vertex 0 13.4787 0
+      vertex 0 13.4787 0.4
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 0 -0.449997 0
+      vertex 0 13.4787 0.4
+      vertex 0 13.4787 0
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 0 13.4787 0.4
+      vertex 0 -0.449997 0
+      vertex 0 -0.449997 0.4
+    endloop
+  endfacet
+  facet normal -0.99145 -0.130488 0
+    outer loop
+      vertex 0.0136261 -0.553528 0
+      vertex 0 -0.449997 0.4
+      vertex 0 -0.449997 0
+    endloop
+  endfacet
+  facet normal -0.99145 -0.130488 0
+    outer loop
+      vertex 0 -0.449997 0.4
+      vertex 0.0136261 -0.553528 0
+      vertex 0.0136261 -0.553528 0.4
+    endloop
+  endfacet
+  facet normal -0.923862 -0.382727 0
+    outer loop
+      vertex 0.0535889 -0.649994 0
+      vertex 0.0136261 -0.553528 0.4
+      vertex 0.0136261 -0.553528 0
+    endloop
+  endfacet
+  facet normal -0.923862 -0.382727 0
+    outer loop
+      vertex 0.0136261 -0.553528 0.4
+      vertex 0.0535889 -0.649994 0
+      vertex 0.0535889 -0.649994 0.4
+    endloop
+  endfacet
+  facet normal -0.793341 -0.608778 0
+    outer loop
+      vertex 0.117157 -0.732834 0
+      vertex 0.0535889 -0.649994 0.4
+      vertex 0.0535889 -0.649994 0
+    endloop
+  endfacet
+  facet normal -0.793341 -0.608778 0
+    outer loop
+      vertex 0.0535889 -0.649994 0.4
+      vertex 0.117157 -0.732834 0
+      vertex 0.117157 -0.732834 0.4
+    endloop
+  endfacet
+  facet normal -0.608777 -0.793341 0
+    outer loop
+      vertex 0.117157 -0.732834 0
+      vertex 0.199997 -0.796402 0.4
+      vertex 0.117157 -0.732834 0.4
+    endloop
+  endfacet
+  facet normal -0.608777 -0.793341 -0
+    outer loop
+      vertex 0.199997 -0.796402 0.4
+      vertex 0.117157 -0.732834 0
+      vertex 0.199997 -0.796402 0
+    endloop
+  endfacet
+  facet normal -0.382728 -0.923861 0
+    outer loop
+      vertex 0.199997 -0.796402 0
+      vertex 0.296463 -0.836365 0.4
+      vertex 0.199997 -0.796402 0.4
+    endloop
+  endfacet
+  facet normal -0.382728 -0.923861 -0
+    outer loop
+      vertex 0.296463 -0.836365 0.4
+      vertex 0.199997 -0.796402 0
+      vertex 0.296463 -0.836365 0
+    endloop
+  endfacet
+  facet normal -0.130487 -0.99145 0
+    outer loop
+      vertex 0.296463 -0.836365 0
+      vertex 0.399994 -0.849991 0.4
+      vertex 0.296463 -0.836365 0.4
+    endloop
+  endfacet
+  facet normal -0.130487 -0.99145 -0
+    outer loop
+      vertex 0.399994 -0.849991 0.4
+      vertex 0.296463 -0.836365 0
+      vertex 0.399994 -0.849991 0
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 0.399994 -0.849991 0
+      vertex 39.6 -0.849991 0.4
+      vertex 0.399994 -0.849991 0.4
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 39.6 -0.849991 0.4
+      vertex 0.399994 -0.849991 0
+      vertex 39.6 -0.849991 0
+    endloop
+  endfacet
+  facet normal 0.130526 -0.991445 0
+    outer loop
+      vertex 39.6 -0.849991 0
+      vertex 39.7035 -0.836365 0.4
+      vertex 39.6 -0.849991 0.4
+    endloop
+  endfacet
+  facet normal 0.130526 -0.991445 0
+    outer loop
+      vertex 39.7035 -0.836365 0.4
+      vertex 39.6 -0.849991 0
+      vertex 39.7035 -0.836365 0
+    endloop
+  endfacet
+endsolid OpenSCAD_Model
