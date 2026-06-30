@@ -16,8 +16,34 @@
 
 use <setdressing.scad>
 
-$fn = 48;
+// QUALITY = "high" (default, smooth) or "low" (slicer-friendly).
+// Override on CLI:  -D 'QUALITY="low"'
+QUALITY = "high";
+$fn       = QUALITY == "high" ? 48 : 24;
+fn_tire   = QUALITY == "high" ? 72 : 36;
+n_tread   = QUALITY == "high" ? 18 : 12;
+fn_rim    = QUALITY == "high" ? 48 : 24;
 EPS = 0.01;
+
+// BONDED = true adds an invisible 0.4mm raft under each cluster so the
+// whole cluster prints as one piece (items merged by a slim base).
+// Override on CLI:  -D 'BONDED=true'
+BONDED = false;
+BOND_GROW = 0.4;   // outward expansion of the raft (bridges gaps between items)
+BOND_H    = 0.4;   // raft thickness (2 layers @ 0.2mm = barely visible)
+
+// Apply the bonded raft if BONDED is on, else pass through.
+module bond(grow=BOND_GROW, h=BOND_H) {
+  union() {
+    children();
+    linear_extrude(h) offset(r=grow) projection(cut=false) children();
+  }
+}
+
+module maybe_bond() {
+  if (BONDED) bond() children();
+  else        children();
+}
 
 drum_d  = 9.0;   drum_h  = 13.7;
 tire_od = 10.0;  tire_w  = 3.2;  tire_id = 4.4;
@@ -93,7 +119,7 @@ module barrel_corner(arm=4, seed=10) {
 // tire-like silhouette at 1:64.)
 module tire2(od=tire_od, w=tire_w, id=tire_id) {
   difference() {
-    rotate_extrude($fn=72) {
+    rotate_extrude($fn=fn_tire) {
       offset(r=0.30) offset(r=-0.30)
         polygon([
           [id/2,        0.0    ],
@@ -105,15 +131,15 @@ module tire2(od=tire_od, w=tire_w, id=tire_id) {
         ]);
     }
     // tread blocks: radial slots in the OD band
-    for (a=[0:360/18:359])
+    for (a=[0:360/n_tread:359])
       rotate([0,0, a]) translate([od/2 - 0.10, 0, w/2])
         cube([0.80, 0.45, w*0.58], center=true);
     // rim recess ring on top + bottom (shows the wheel hub area)
     for (zz=[-EPS, w-0.32+EPS])
       translate([0, 0, zz])
         difference() {
-          cylinder(d=id*1.62, h=0.40, $fn=48);
-          cylinder(d=id*1.12, h=0.50, $fn=48);
+          cylinder(d=id*1.62, h=0.40, $fn=fn_rim);
+          cylinder(d=id*1.12, h=0.50, $fn=fn_rim);
         }
   }
 }
@@ -464,54 +490,436 @@ module mixed_corner3(seed=22) {
 }
 
 // ===========================================================================
+// BARRELS-BIG -- dense, deep, irregular corner-fill barrels
+// ===========================================================================
+// Hex-packed back rows (k%2 offsets X by s/2); random skips + height variation.
+module barrels_big_corner(arm_x=5, arm_y=5, max_d=3, seed=30) {
+  s = drum_d * 1.02;
+  s_back = drum_d * 0.92;
+  for (i=[0:arm_x-1]) {
+    d_here = max(1, floor(r(seed, i, 1, max_d+0.99)));
+    for (k=[0:d_here-1])
+      if (r(seed+50, i*10+k) > 0.09) {
+        h_mult = (r(seed+60, i*10+k) > 0.86)
+          ? r(seed+61, i*10+k, 0.55, 0.78)
+          : r(seed+62, i*10+k, 0.88, 1.00);
+        translate([drum_d/2 + i*s + (k%2)*s/2, drum_d/2 + k*s_back, 0])
+          rotate([0,0, r(seed+i, k, 0, 360)])
+            drum(d=drum_d, h=drum_h*h_mult);
+      }
+  }
+  for (j=[1:arm_y-1]) {
+    d_here = max(1, floor(r(seed+100, j, 1, max_d+0.99)));
+    for (k=[0:d_here-1])
+      if (r(seed+150, j*10+k) > 0.09) {
+        h_mult = (r(seed+160, j*10+k) > 0.86)
+          ? r(seed+161, j*10+k, 0.55, 0.78)
+          : r(seed+162, j*10+k, 0.88, 1.00);
+        translate([drum_d/2 + k*s_back, drum_d/2 + j*s + (k%2)*s/2, 0])
+          rotate([0,0, r(seed+j+200, k, 0, 360)])
+            drum(d=drum_d, h=drum_h*h_mult);
+      }
+  }
+}
+
+module barrels_big_row(n=10, max_d=3, seed=31) {
+  s = drum_d * 1.02;
+  s_back = drum_d * 0.92;
+  for (i=[0:n-1]) {
+    d_here = max(1, floor(r(seed, i, 1, max_d+0.99)));
+    for (k=[0:d_here-1])
+      if (r(seed+50, i*10+k) > 0.09) {
+        h_mult = (r(seed+60, i*10+k) > 0.86)
+          ? r(seed+61, i*10+k, 0.55, 0.78)
+          : r(seed+62, i*10+k, 0.88, 1.00);
+        translate([drum_d/2 + i*s + (k%2)*s/2, drum_d/2 + k*s_back, 0])
+          rotate([0,0, r(seed+i, k, 0, 360)])
+            drum(d=drum_d, h=drum_h*h_mult);
+      }
+  }
+}
+
+module barrels_big_pile(w=6, d=4, seed=32) {
+  s = drum_d * 1.02;
+  s_back = drum_d * 0.92;
+  for (i=[0:w-1])
+    for (j=[0:d-1])
+      if (r(seed+50, i*10+j) > 0.05) {
+        h_mult = (r(seed+60, i*10+j) > 0.86)
+          ? r(seed+61, i*10+j, 0.55, 0.78)
+          : r(seed+62, i*10+j, 0.88, 1.00);
+        translate([drum_d/2 + i*s + (j%2)*s/2, drum_d/2 + j*s_back, 0])
+          rotate([0,0, r(seed+i, j, 0, 360)])
+            drum(d=drum_d, h=drum_h*h_mult);
+      }
+}
+
+// ===========================================================================
+// TIRES-BIG -- big multi-deep tire piles, mixed sizes & heights
+// ===========================================================================
+// Each column has a single tire size; depth varies per column; height per stack.
+module tires_big_cluster(across=7, max_deep=4, seed=40) {
+  sizes_x = [for (i=[0:across-1]) pick_tire(seed+100, i)];
+  ods_x   = [for (sz=sizes_x) sz[0]];
+  for (i=[0:across-1]) {
+    sz = sizes_x[i];
+    d_here = max(1, floor(r(seed+200, i, 1, max_deep+0.99)));
+    x_off = sum_first(ods_x, i) + i*0.30 + sz[0]/2;
+    for (k=[0:d_here-1])
+      if (r(seed+300, i*10+k) > 0.08) {
+        h = max(2, floor(r(seed+500, i*10+k, 2, 7)));
+        y_off = sz[0]/2 + k*(sz[0] + 0.30);
+        translate([x_off, y_off, 0])
+          tire_stack(h, seed+i*10+k,
+                     od=sz[0], w=sz[1], id=sz[2]);
+      }
+  }
+}
+
+// ===========================================================================
+// SQUARES-BIG -- long box/crate/bin/milk-crate clusters
+// ===========================================================================
+// Open-top rectangular bin
+module bin(w=6, d=5, h=4, wall=0.5) {
+  difference() {
+    rbox(w, d, h, 0.3);
+    translate([0, 0, wall])
+      rbox(w-2*wall, d-2*wall, h, 0.2);
+  }
+}
+
+// Slatted milk crate
+module milk_crate(s=5) {
+  difference() {
+    rbox(s, s, s*0.85, 0.2);
+    translate([0, 0, 0.5])
+      rbox(s-1.0, s-1.0, s*0.85, 0.15);
+    for (zz=[s*0.30, s*0.55])
+      for (rot=[0, 90, 180, 270])
+        rotate([0,0, rot])
+          translate([0, s/2, zz])
+            cube([s-1.6, 1.5, s*0.12], center=true);
+  }
+}
+
+module squares_big_long(seed=50) {
+  translate([3,    2.5, 0])    box(6, 5, 4.5);
+  translate([3,    2.5, 4.55]) box(4.5, 4, 3);
+  translate([9,    3.5, 0])    crate(7);
+  translate([9,    3.5, 7.05]) crate(5.5);
+  translate([15,   3.0, 0])    bin(6, 5, 5);
+  translate([21,   3.0, 0])    box(7, 5.5, 4);
+  translate([21,   3.0, 4.05]) box(5.5, 4.5, 3.2);
+  translate([28,   3.0, 0])    milk_crate(6);
+  translate([34,   3.5, 0])    crate(6.5);
+  translate([34,   3.5, 6.55]) box(5, 4, 3);
+  translate([40,   2.5, 0])    box(5, 4.5, 4);
+  translate([3,    8.0, 0])    box(4.5, 4, 3.5);
+  translate([15,   8.0, 0])    crate(5);
+  translate([28,   8.5, 0])    bin(5.5, 4.5, 4);
+}
+
+module squares_big_pile(seed=51) {
+  translate([3,   2.5, 0])    box(7, 5, 4.5);
+  translate([3,   2.5, 4.55]) box(5.5, 4.5, 3.2);
+  translate([10,  3.5, 0])    crate(7);
+  translate([10,  3.5, 7.05]) crate(5.5);
+  translate([17,  2.5, 0])    box(6, 5, 4);
+  translate([17,  2.5, 4.05]) milk_crate(4.5);
+  translate([24,  3.0, 0])    bin(6, 5, 5);
+  translate([3,   8.0, 0])    crate(6);
+  translate([10,  8.5, 0])    box(5.5, 4.5, 4);
+  translate([10,  8.5, 4.05]) box(4, 3.5, 2.8);
+  translate([17,  8.0, 0])    milk_crate(5);
+  translate([24,  8.0, 0])    box(5, 4, 3.5);
+  translate([3,   13.5, 0])   box(4, 3.5, 3);
+  translate([17,  13.0, 0])   crate(5);
+}
+
+module squares_big_corner(seed=52) {
+  translate([3.5,  3.0, 0])    box(6, 5, 4.5);
+  translate([3.5,  3.0, 4.55]) box(4.5, 4, 3);
+  translate([10,   3.5, 0])    crate(7);
+  translate([10,   3.5, 7.05]) crate(5);
+  translate([17,   3.0, 0])    bin(6, 5, 5);
+  translate([23,   3.0, 0])    milk_crate(6);
+  translate([29,   2.5, 0])    box(5, 4.5, 4);
+  translate([3.5,  10,   0])   crate(7);
+  translate([3.0,  17,   0])   box(6, 5, 4.5);
+  translate([3.0,  17, 4.55])  box(4.5, 4, 3);
+  translate([3.0,  23.5, 0])   bin(6, 5, 5);
+  translate([10,   8.0, 0])    box(5, 4, 3.5);
+  translate([17,   8.0, 0])    box(4.5, 4, 3.0);
+  translate([8.5,  10,   0])   milk_crate(5);
+  translate([8.0,  17.5, 0])   crate(5);
+}
+
+// ===========================================================================
+// MIXED-BIG -- big multi-type clusters with depth
+// ===========================================================================
+module mixed_big_wide(seed=60) {
+  s = drum_d * 1.02;
+  for (i=[0:2])
+    translate([drum_d/2 + i*s, drum_d/2, 0])
+      rotate([0,0, r(seed,i,0,360)]) drum();
+  tx = 3*s + tire_od/2;
+  translate([tx, tire_od/2, 0]) tire_stack(5, seed+10);
+  cx = tx + tire_od/2 + 4;
+  translate([cx, 3.5, 0])    crate(7);
+  translate([cx, 3.5, 7.05]) crate(5.5);
+  bx = cx + 7.5;
+  translate([bx, 3, 0])      box(6, 5, 4.5);
+  translate([bx, 3, 4.55])   rotate([0,0, 7]) box(4.5, 4, 3);
+  dx = bx + 6 + drum_d/2;
+  translate([dx,       drum_d/2, 0]) rotate([0,0, r(seed,5,0,360)]) drum();
+  translate([dx + s,   drum_d/2, 0]) rotate([0,0, r(seed,6,0,360)]) drum();
+  translate([dx + 2*s + 3, 3, 0]) bin(6, 5, 5);
+  // back row partials
+  translate([drum_d/2, drum_d/2 + s*0.87, 0])
+    rotate([0,0, r(seed,20,0,360)]) drum(d=drum_d, h=drum_h*0.7);
+  translate([cx, 3.5+8, 0]) crate(5);
+}
+
+module mixed_big_pallet(seed=61) {
+  pal_x = 18; pal_y = 13;
+  translate([pal_x/2, pal_y/2, 0]) pallet(x=pal_x, y=pal_y, h=2.2);
+  translate([4,  3.5, 2.25]) crate(6);
+  translate([11, 3.5, 2.25]) crate(6);
+  translate([4,  3.5, 8.25]) crate(4.5);
+  translate([11, 9,   2.25]) box(6, 5, 4);
+  translate([4,  9,   2.25]) box(5, 5, 3.5);
+  translate([4,  9,   5.8])  box(4.0, 4.0, 2.8);
+  s = drum_d * 1.02;
+  for (i=[0:2])
+    translate([pal_x + 1 + drum_d/2 + i*s, drum_d/2, 0])
+      rotate([0,0, r(seed,i,0,360)]) drum();
+  translate([pal_x + 1 + 3*s + tire_od/2, tire_od/2, 0])
+    tire_stack(5, seed+5);
+  translate([pal_x + 1 + drum_d/2, drum_d/2 + s*0.87, 0])
+    rotate([0,0, r(seed,10,0,360)]) drum();
+}
+
+module mixed_big_jerry(seed=62) {
+  jw=5.2; jd=2.6;
+  for (i=[0:3])
+    translate([jw/2 + i*(jw+0.2), jd/2, 0])
+      rotate([0,0, r(seed,i,-10,10)]) jerrycan();
+  bd = 4.8;
+  translate([2*jw, jd + 0.6 + bd/2, 0])      bucket();
+  translate([2*jw, jd + 0.6 + bd/2, 1.6])    bucket();
+  s = drum_d * 1.02;
+  dx = 4*(jw+0.2) + 0.5;
+  for (i=[0:2])
+    translate([dx + drum_d/2 + i*s, drum_d/2, 0])
+      rotate([0,0, r(seed,5+i,0,360)]) drum();
+  bx = dx + 3*s + 4;
+  translate([bx, 3, 0])    box(6, 5, 4.5);
+  translate([bx, 3, 4.55]) rotate([0,0, 7]) box(4.5, 4, 3);
+  translate([bx + 6.5, 3.5, 0]) crate(6.5);
+}
+
+module mixed_big_corner(seed=63) {
+  pal_x = 13; pal_y = 13;
+  translate([pal_x/2, pal_y/2, 0]) pallet(x=pal_x, y=pal_y, h=2.2);
+  translate([3.5, 3.5, 2.25]) crate(5);
+  translate([9.0, 3.5, 2.25]) crate(4.5);
+  translate([3.5, 9.0, 2.25]) crate(4.5);
+  translate([9.0, 9.0, 2.25]) box(5, 4.5, 4);
+  s = drum_d * 1.02;
+  for (i=[0:2])
+    translate([pal_x + 0.5 + drum_d/2 + i*s, drum_d/2, 0])
+      rotate([0,0, r(seed,i,0,360)]) drum();
+  translate([pal_x + 0.5 + 3*s + tire_od/2, tire_od/2, 0])
+    tire_stack(5, seed+5);
+  translate([pal_x + 0.5 + drum_d/2, drum_d/2 + drum_d*0.87, 0])
+    rotate([0,0, r(seed,10,0,360)]) drum();
+  translate([3.0, pal_y + 2.5, 0])    box(6, 5, 4.5);
+  translate([3.0, pal_y + 2.5, 4.55]) rotate([0,0, 8]) box(4.5, 4, 3);
+  translate([3.5, pal_y + 8.5, 0])    crate(6.5);
+  jw=5.2; jd=2.6;
+  translate([jw/2,            pal_y + 14, 0]) rotate([0,0, r(seed,15,-10,10)]) jerrycan();
+  translate([jw/2 + jw + 0.2, pal_y + 14, 0]) rotate([0,0, r(seed,16,-10,10)]) jerrycan();
+}
+
+// ===========================================================================
+// WORKSHOP -- iconic shop items (designed for upright print, no bridges >5mm)
+// ===========================================================================
+module workbench(w=22, d=8, h=12) {
+  end_th = 1.0; top_th = 1.2;
+  // solid end-walls (not corner legs -- top slab gets full-span support)
+  for (sx=[-1,1])
+    translate([sx*(w/2 - end_th/2), 0, 0])
+      rbox(end_th, d, h - top_th, 0.2);
+  // top
+  translate([0, 0, h - top_th])
+    rbox(w, d, top_th, 0.3);
+  // ground stretcher (visual)
+  translate([0, 0, 0.5])
+    cube([w - 2*end_th - 0.4, d*0.55, 1.0], center=true);
+  // vise on top, +X end
+  translate([w/2 - 3.5, -d/2 + 2.5, h]) {
+    rbox(3, 2.5, 1.8, 0.25);
+    translate([0, -1.6, 0.7])
+      cube([2.5, 0.6, 1.2], center=true);
+  }
+  // parts tray on top, -X end
+  translate([-w/2 + 4, d/2 - 2, h])
+    rbox(4, 2.5, 0.7, 0.2);
+}
+
+module compressor(d=8, h=22) {
+  cylinder(d=d, h=h*0.75);
+  translate([0, 0, h*0.75])
+    cylinder(d1=d, d2=d*0.7, h=h*0.08);
+  translate([0, 0, h*0.83])
+    rbox(d*0.62, d*0.62, h*0.12, 0.3);
+  translate([0, 0, h*0.95])
+    cylinder(d=d*0.32, h=h*0.05);
+}
+
+module floor_jack(L=18, W=6, H=4) {
+  rbox(L, W, H, 0.4);
+  // saddle near front
+  translate([L*0.25, 0, H])
+    cylinder(d=2.8, h=0.5);
+  translate([L*0.25, 0, H + 0.5])
+    cylinder(d=1.7, h=0.3);
+  // vertical handle stub at rear
+  translate([-L/2 + 0.7, 0, H])
+    cylinder(d=0.9, h=H*1.4);
+}
+
+module jack_stand(base=4, h=11) {
+  // 3 legs sloping inward (taper-up -- prints fine, no overhang accumulation)
+  for (a=[0, 120, 240])
+    rotate([0,0,a])
+      hull() {
+        translate([base/2, 0, 0])
+          cube([1.0, 1.4, 0.5], center=true);
+        translate([0.1, 0, h*0.5])
+          cube([0.8, 0.8, 0.5], center=true);
+      }
+  translate([0, 0, h*0.5])
+    cylinder(d=1.0, h=h*0.45);
+  translate([0, 0, h*0.95]) {
+    rbox(1.8, 1.8, 0.5, 0.2);
+    difference() {
+      translate([0, 0, 0.5])
+        cylinder(d=1.6, h=0.5);
+      translate([0, 0, 0.8])
+        cube([2, 0.6, 1], center=true);
+    }
+  }
+}
+
+// Combos for the workshop plate
+module shop_combo_A(seed=70) {
+  workbench(w=22, d=8, h=12);
+  translate([-2, 11, 0]) jack_stand(base=3.5, h=10);
+  translate([ 3, 11, 0]) jack_stand(base=3.5, h=10);
+}
+
+module shop_combo_B(seed=71) {
+  compressor(d=8, h=22);
+  translate([13, 0, 0]) toolchest();
+}
+
+module shop_combo_C(seed=72) {
+  floor_jack(L=16, W=5, H=3.5);
+  translate([-6, 8, 0]) jack_stand(base=3.5, h=10);
+  translate([ 0, 8, 0]) jack_stand(base=3.5, h=10);
+  translate([16, 4, 0]) tire_stack(4, seed,   od=11.5, w=3.8, id=4.8);
+  translate([16, -5, 0]) tire_stack(3, seed+1, od=11.5, w=3.8, id=4.8);
+}
+
+module shop_combo_D(seed=73) {
+  workbench(w=18, d=8, h=12);
+  translate([16, 0, 0]) compressor(d=8, h=22);
+}
+
+// ===========================================================================
 // PLATES -- 4 straight variations + 1 corner per type
 // ===========================================================================
 module plate_barrels() {
-  translate([0,    0, 0]) barrel_row(n=4, seed=1, depth=1);
-  translate([0, -22, 0]) barrel_row(n=5, seed=2, depth=1);
-  translate([0, -44, 0]) barrel_row(n=6, seed=3, depth=2);
-  translate([0, -76, 0]) barrel_row(n=7, seed=4, depth=2);
-  translate([0,-115, 0]) barrel_corner(arm=4, seed=10);
+  translate([0,    0, 0]) maybe_bond() barrel_row(n=4, seed=1, depth=1);
+  translate([0, -22, 0]) maybe_bond() barrel_row(n=5, seed=2, depth=1);
+  translate([0, -44, 0]) maybe_bond() barrel_row(n=6, seed=3, depth=2);
+  translate([0, -76, 0]) maybe_bond() barrel_row(n=7, seed=4, depth=2);
+  translate([0,-115, 0]) maybe_bond() barrel_corner(arm=4, seed=10);
 }
 
 module plate_tires() {
-  translate([0,    0, 0]) tires_row([5,3,6,4],   seed=1);
-  translate([0, -25, 0]) tires_row([4,6,3,5,4], seed=2);
-  translate([0, -50, 0]) tires_row([3,4,5,3],   seed=3);
-  translate([0, -75, 0]) tires_and_boxes(seed=4);
-  translate([0,-110, 0]) tires_corner(seed=11);
+  translate([0,    0, 0]) maybe_bond() tires_row([5,3,6,4],   seed=1);
+  translate([0, -25, 0]) maybe_bond() tires_row([4,6,3,5,4], seed=2);
+  translate([0, -50, 0]) maybe_bond() tires_row([3,4,5,3],   seed=3);
+  translate([0, -75, 0]) maybe_bond() tires_and_boxes(seed=4);
+  translate([0,-110, 0]) maybe_bond() tires_corner(seed=11);
 }
 
 module plate_boxes() {
-  translate([0,    0, 0]) box_row(seed=1, len=4);
-  translate([0, -18, 0]) box_row(seed=2, len=5);
-  translate([0, -36, 0]) box_row(seed=3, len=4);
-  translate([0, -54, 0]) box_row(seed=4, len=5);
-  translate([0, -82, 0]) box_corner(seed=12);
+  translate([0,    0, 0]) maybe_bond() box_row(seed=1, len=4);
+  translate([0, -18, 0]) maybe_bond() box_row(seed=2, len=5);
+  translate([0, -36, 0]) maybe_bond() box_row(seed=3, len=4);
+  translate([0, -54, 0]) maybe_bond() box_row(seed=4, len=5);
+  translate([0, -82, 0]) maybe_bond() box_corner(seed=12);
 }
 
 module plate_mixed() {
-  translate([0,    0, 0]) mixed_A(seed=1);
-  translate([0, -22, 0]) mixed_B(seed=2);
-  translate([0, -44, 0]) mixed_C(seed=3);
-  translate([0, -68, 0]) mixed_A(seed=4);
-  translate([0,-100, 0]) mixed_corner(seed=20);
+  translate([0,    0, 0]) maybe_bond() mixed_A(seed=1);
+  translate([0, -22, 0]) maybe_bond() mixed_B(seed=2);
+  translate([0, -44, 0]) maybe_bond() mixed_C(seed=3);
+  translate([0, -68, 0]) maybe_bond() mixed_A(seed=4);
+  translate([0,-100, 0]) maybe_bond() mixed_corner(seed=20);
 }
 
 module plate_mixed2() {
-  translate([0,    0, 0]) mixed_D(seed=4);
-  translate([0, -16, 0]) mixed_E(seed=5);
-  translate([0, -34, 0]) mixed_F(seed=6);
-  translate([0, -52, 0]) mixed_G(seed=7);
-  translate([0, -78, 0]) mixed_corner2(seed=21);
+  translate([0,    0, 0]) maybe_bond() mixed_D(seed=4);
+  translate([0, -16, 0]) maybe_bond() mixed_E(seed=5);
+  translate([0, -34, 0]) maybe_bond() mixed_F(seed=6);
+  translate([0, -52, 0]) maybe_bond() mixed_G(seed=7);
+  translate([0, -78, 0]) maybe_bond() mixed_corner2(seed=21);
 }
 
 module plate_mixed3() {
-  translate([0,    0, 0]) mixed_H(seed=8);
-  translate([0, -16, 0]) mixed_I(seed=9);
-  translate([0, -36, 0]) mixed_J(seed=10);
-  translate([0, -56, 0]) mixed_K(seed=11);
-  translate([0, -82, 0]) mixed_corner3(seed=22);
+  translate([0,    0, 0]) maybe_bond() mixed_H(seed=8);
+  translate([0, -16, 0]) maybe_bond() mixed_I(seed=9);
+  translate([0, -36, 0]) maybe_bond() mixed_J(seed=10);
+  translate([0, -56, 0]) maybe_bond() mixed_K(seed=11);
+  translate([0, -82, 0]) maybe_bond() mixed_corner3(seed=22);
+}
+
+// ---- BIG / WORKSHOP PLATES ------------------------------------------------
+module plate_barrels_big() {
+  translate([0,    0, 0]) maybe_bond() barrels_big_row(n=10, max_d=3, seed=31);
+  translate([0, -42, 0]) maybe_bond() barrels_big_row(n=8,  max_d=2, seed=33);
+  translate([0, -72, 0]) maybe_bond() barrels_big_pile(w=6, d=4, seed=32);
+  translate([0,-118, 0]) maybe_bond() barrels_big_corner(arm_x=5, arm_y=5, max_d=3, seed=30);
+}
+
+module plate_tires_big() {
+  translate([0,    0, 0]) maybe_bond() tires_big_cluster(across=7, max_deep=3, seed=40);
+  translate([0, -55, 0]) maybe_bond() tires_big_cluster(across=6, max_deep=4, seed=42);
+  translate([0,-125, 0]) maybe_bond() tires_big_cluster(across=8, max_deep=2, seed=44);
+}
+
+module plate_squares_big() {
+  translate([0,    0, 0]) maybe_bond() squares_big_long(seed=50);
+  translate([0, -28, 0]) maybe_bond() squares_big_pile(seed=51);
+  translate([0, -72, 0]) maybe_bond() squares_big_corner(seed=52);
+}
+
+module plate_mixed_big() {
+  translate([0,    0, 0]) maybe_bond() mixed_big_wide(seed=60);
+  translate([0, -32, 0]) maybe_bond() mixed_big_pallet(seed=61);
+  translate([0, -65, 0]) maybe_bond() mixed_big_jerry(seed=62);
+  translate([0,-105, 0]) maybe_bond() mixed_big_corner(seed=63);
+}
+
+module plate_workshop() {
+  translate([0,    0, 0]) maybe_bond() shop_combo_A(seed=70);
+  translate([0, -32, 0]) maybe_bond() shop_combo_B(seed=71);
+  translate([0, -62, 0]) maybe_bond() shop_combo_C(seed=72);
+  translate([0, -92, 0]) maybe_bond() shop_combo_D(seed=73);
 }
 
 // ===========================================================================
@@ -519,12 +927,17 @@ module plate_mixed3() {
 // ===========================================================================
 part = "all";
 
-if      (part == "barrels") plate_barrels();
-else if (part == "tires")   plate_tires();
-else if (part == "boxes")   plate_boxes();
-else if (part == "mixed")   plate_mixed();
-else if (part == "mixed2")  plate_mixed2();
-else if (part == "mixed3")  plate_mixed3();
+if      (part == "barrels")      plate_barrels();
+else if (part == "tires")        plate_tires();
+else if (part == "boxes")        plate_boxes();
+else if (part == "mixed")        plate_mixed();
+else if (part == "mixed2")       plate_mixed2();
+else if (part == "mixed3")       plate_mixed3();
+else if (part == "barrels-big")  plate_barrels_big();
+else if (part == "tires-big")    plate_tires_big();
+else if (part == "squares-big")  plate_squares_big();
+else if (part == "mixed-big")    plate_mixed_big();
+else if (part == "workshop")     plate_workshop();
 else if (part == "all") {
   translate([  0, 0, 0]) plate_barrels();
   translate([ 60, 0, 0]) plate_tires();
