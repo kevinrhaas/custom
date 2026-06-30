@@ -923,9 +923,200 @@ module plate_workshop() {
 }
 
 // ===========================================================================
+// BOX-WALL COLLECTIONS  -- flat against a wall, tall centre, irregular ends
+// ===========================================================================
+// One printable unit = a low-relief "pile" of boxes/crates lining a wall.
+//   - WIDTH W runs ALONG the wall (X) and is the WIDEST dimension, measured at
+//     the wall side (y~0): ~40 / 60 / 80 mm.  Height peaks at the centre and
+//     never exceeds ~20 mm.
+//   - Silhouette: a tall stack in the middle, lower irregular clusters at the
+//     two ends -- stuff that piled up against the wall over the years.
+//   - Items are placed ADJACENT (a hair of overlap), never hull-merged; the
+//     BONDED raft + the overlaps fuse every footprint into ONE solid so the
+//     whole row prints as a single piece (incl. the very end items).
+//   - mixed=false: only rectangular boxes / cube crates / bins / milk crates,
+//     all axis-aligned -> zero overhangs.
+//   - mixed=true : mostly boxes, plus tire stacks, drum pairs and a crate at
+//     the ends; round parts print upright with no overhang either.
+//
+// BONDING NOTE: the old box rows let stacked boxes float 0.05 mm above their
+// base (a separate body that the raft never reached).  Here every stacked box
+// EMBEDS BW_EMBED into the one below and every neighbour OVERLAPS by BW_OVL, so
+// a bonded render is always a single connected solid (CGAL "Volumes: 2").
+BW_OVL   = 0.50;   // horizontal overlap of neighbours (guarantees fusion)
+BW_EMBED = 0.50;   // vertical embed of a stacked box (clears the tape-seam slot
+                   // in the box below -> a clean fuse, never a coplanar shard)
+BW_HMAX  = 19.4;   // tallest allowed (< 20 mm)
+BW_BD    = 6.0;    // nominal back-row depth used as the front-overlap datum
+
+// Sliver-proof crate (cube) for the dense box-wall packs.  Detail is done with
+// RAISED battens (additive -> they simply fuse when a neighbour overlaps them,
+// never shearing into loose bars the way incised grooves do).  Battens live on
+// the +Y (front) face + front corner posts only; the +/-X side faces and the
+// -Y back face stay smooth so neighbours tile flush and the back sits on the
+// wall.  Placed back-flush by the caller (translate y = s/2).
+module bw_crate(s) {
+  rbox(s, s, s, 0.4);                                         // solid core
+  for (zz = [s*0.22, s*0.5, s*0.78])                          // front slats
+    translate([0, s/2, zz]) cube([s - 1.4, 0.5, 0.55], center=true);
+  for (sx = [-1, 1])                                          // front posts
+    translate([sx*(s/2 - 0.5), s/2, s/2]) cube([0.7, 0.6, s], center=true);
+}
+
+// Shrinking pyramid of boxes stacked on a base until ~target tall (recursive;
+// each level strictly smaller & centred over the one below -> no overhang).
+module bw_stack(cx, cy, w, d, z, target, seed, lvl=1) {
+  if (z < target - 1.8 && lvl <= 4) {
+    w2 = w * r(seed,   lvl, 0.70, 0.85);
+    d2 = d * r(seed+1, lvl, 0.72, 0.88);
+    h2 = min(max(3.2, r(seed+2, lvl, 3.4, 5.4)), target - z + BW_EMBED);
+    translate([cx, cy, z - BW_EMBED]) box(w2, d2, h2);
+    bw_stack(cx, cy, w2, d2, z - BW_EMBED + h2, target, seed+5, lvl+1);
+  }
+}
+
+// One low back-row floor item, BACK-FLUSH to the wall (back face at y=0) and
+// always FULL SLOT WIDTH w in X so it overlaps its neighbours (cube crates
+// take side=w, so they tile the wall instead of leaving gaps).
+// Only SOLID shapes (box / crate) are used here: thin-walled bins & milk
+// crates would get their walls sheared into loose bars by the neighbour
+// overlap, so those are reserved for un-overlapped "cap" positions.
+// A cube crate's height == its width, so only allow it where the slot is
+// narrow enough that the cube stays near the target height -- otherwise a wide
+// end slot would spike up as a tall cube and wreck the centre-peaked profile.
+module bw_floor_item(cx, w, d, tgt, seed, square=true) {
+  t       = r(seed, 0);
+  use_box = (t > (square ? 0.52 : 0.62)) || (w > tgt + 1.5);
+  bh      = max(3.8, tgt * r(seed+1, 1, 0.84, 1.0));
+  if (use_box) translate([cx, d/2, 0]) box(w, d, bh);
+  else         translate([cx, w/2, 0]) bw_crate(w);                  // cube
+}
+
+// A small "cap" item that sits ON TOP of something (only its base is embedded,
+// walls are free) -- a safe place for the open bin / milk-crate variety since
+// nothing overlaps their thin walls from the side.
+module bw_cap_item(w, d, h, seed, square=true) {
+  t = r(seed, 0);
+  if      (t < 0.42) box(w, d, h);
+  else if (t < 0.66) bw_crate(min(w, d));
+  else if (t < 0.84) bin(w, d, max(h, 3.6));
+  else               milk_crate(min(w, d));
+}
+
+// Back-row slot widths that sum EXACTLY to W (renormalised random fractions).
+function bw_slots(W, n, seed) =
+  let(raw = [for (i = [0:n-1]) r(seed, i, 0.72, 1.30)],
+      tot = sum_first(raw, n))
+  [for (x = raw) x / tot * W];
+
+// The wall-hugging back row.  It tiles an INSET span so that, after the
+// neighbour overlap and the bonded raft both grow outward, the finished
+// wall-side width is exactly W (the piece's widest, target, dimension).
+module bw_back_row(W, seed, square=true, bd_fix=0) {
+  inset = BW_OVL/2 + BOND_GROW;                     // raft+overlap grow-out
+  span  = W - 2*inset;
+  n     = max(3, round(W / 8.6));
+  slots = bw_slots(span, n, seed);
+  c     = W / 2;
+  half  = W / 2;
+  for (i = [0:n-1]) {
+    s    = slots[i];
+    x0   = inset + sum_first(slots, i);
+    cx   = x0 + s/2;
+    bw   = s + BW_OVL;                              // overlap the neighbour
+    bd   = bd_fix > 0 ? bd_fix : r(seed+20, i, 6.0, 7.6);
+    hill = pow(1 - pow((cx - c)/half, 2), 1.7);     // peaked: 1 centre -> 0 ends
+    tgt  = min(BW_HMAX, (4.5 + (BW_HMAX - 4.5)*hill) * r(seed+30, i, 0.82, 1.04));
+    if (tgt > 11) {                                 // tall column -> box+pyramid
+      hb = min(tgt, r(seed+40, i, 5.0, 6.6));
+      translate([cx, bd/2, 0]) box(bw, bd, hb);
+      bw_stack(cx, bd/2, bw, bd, hb, tgt, seed+50+i);
+    } else {                                        // low column -> varied item
+      bw_floor_item(cx, bw, bd, tgt, seed+60+i, square);
+    }
+  }
+}
+
+// A few small front-row items (in +Y) for the "grouped irregularly" look.
+// They TILE the band [x_lo,x_hi] with mutual overlap and anchor DEEP into the
+// back row, so each item solidly fuses to the pile (no isolated shards).
+module bw_front_cluster(x_lo, x_hi, seed, square=true) {
+  span = x_hi - x_lo;
+  k    = max(2, round(span / 6.5));                  // ~6.5 mm items, stay small
+  for (j = [0:k-1]) {
+    sw  = span / k;
+    cxj = x_lo + j*sw + sw/2;
+    fw  = sw + BW_OVL;                               // overlap the neighbour
+    fd  = r(seed+3, j, 4.2, 5.6);
+    fh  = r(seed+4, j, 3.2, 5.4);                    // low front clutter
+    cy  = 2.8 + fd/2;                                // anchor DEEP into back row
+    translate([cxj, cy, 0])                          // axis-aligned -> robust fuse
+      box(fw, fd, fh);                               // SOLID base (overlapped)
+    if (r(seed+7, j) > 0.5)                          // varied cap on top (free)
+      translate([cxj, cy, fh - BW_EMBED])
+        bw_cap_item(fw*0.74, fd*0.74, fh*0.6, seed+8+j, square);
+  }
+}
+
+// Mixed extras: tire stack + drum at the left end, drum + crate stack at the
+// right.  The back row here has a FIXED shallow depth BW_MX_BD; tires GAP-bond
+// to it (raft bridges, nothing penetrates their tread/rim cuts) while drums and
+// the battened crate (additive detail) simply overlap.  All < the centre stack.
+BW_MX_BD = 6.2;                          // fixed mixed back-row depth (datum)
+
+// Tire stack for the mixed packs.  Uses the PLAIN tire() ring (no tread/rim
+// cuts) and overlaps each tire 0.3 mm into the one below, so the stack welds
+// into a single body -- the detailed tire2 leaves coplanar rim faces and shard
+// rings at the joints that CGAL won't weld.
+module bw_tire_stack(n, seed, od, w, id) {
+  for (i = [0:n-1])
+    translate([0, 0, i*(w - 0.3)])
+      rotate([0,0, r(seed, i, 0, 360)]) tire(od=od, w=w, id=id);
+}
+
+module bw_mixed_extras(W, seed) {
+  tod = 10.0;
+  front = BW_MX_BD + 0.4;                // round parts GAP-bond at this back edge
+  // Round parts (tire/drum) sit just in front of the back row with a 0.4 mm gap
+  // that the raft bridges -- never a solid overlap, which would either shear
+  // their cut detail or graze the flat back face into a thin tangent sliver.
+  // LEFT end -- tire stack + drum
+  translate([tod/2 + 0.8, front + tod/2, 0])
+    bw_tire_stack(3, seed, od=tod, w=3.2, id=4.4);
+  translate([tod + 2.6 + drum_d/2, front + drum_d/2, 0])
+    rotate([0,0, r(seed, 1, 0, 360)]) drum(d=drum_d, h=drum_h*0.90);
+  // RIGHT end -- drum + a 2-high crate stack (battened crate overlaps cleanly)
+  translate([W - drum_d/2 - 0.8, front + drum_d/2, 0])
+    rotate([0,0, r(seed, 2, 0, 360)]) drum(d=drum_d, h=drum_h*0.86);
+  translate([W - drum_d - 3.2 - 3.5, 3.5, 0])              bw_crate(7);
+  translate([W - drum_d - 3.2 - 3.5, 3.5, 7.0 - BW_EMBED]) bw_crate(5.0);
+}
+
+// Full unit.  W = width along the wall; mixed toggles the two families.
+module box_wall(W, mixed=false, seed=1) {
+  ins = BW_OVL/2 + BOND_GROW;                        // keep clusters within W
+  if (!mixed) {
+    bw_back_row(W, seed, square=true);
+    bw_front_cluster(ins,        min(14.0, W*0.32),  seed+200, square=true);
+    bw_front_cluster(W-14.0,     W-ins,              seed+300, square=true);
+  } else {
+    bw_back_row(W, seed, square=false, bd_fix=BW_MX_BD);
+    bw_mixed_extras(W, seed+400);
+    // front boxes only in the clear gap between the end clusters (tire/drum on
+    // the left, drum/crate on the right) -- on the 40 mm piece they fill the
+    // whole width, so there is no room and we skip it.
+    if (W - 45 >= 9)
+      bw_front_cluster(24, W - 21, seed+500, square=false);
+  }
+}
+
+// ===========================================================================
 // DISPATCH
 // ===========================================================================
 part = "all";
+
+// Box-wall width (mm along the wall) -- override per export: -D 'bw_W=40'
+bw_W = 60;
 
 if      (part == "barrels")      plate_barrels();
 else if (part == "tires")        plate_tires();
@@ -938,6 +1129,19 @@ else if (part == "tires-big")    plate_tires_big();
 else if (part == "squares-big")  plate_squares_big();
 else if (part == "mixed-big")    plate_mixed_big();
 else if (part == "workshop")     plate_workshop();
+// box-wall collections (use with -D 'bw_W=40|60|80')
+else if (part == "bw-sq1")       maybe_bond() box_wall(bw_W, false, 11);
+else if (part == "bw-sq2")       maybe_bond() box_wall(bw_W, false, 27);
+else if (part == "bw-mx1")       maybe_bond() box_wall(bw_W, true,  41);
+else if (part == "bw-mx2")       maybe_bond() box_wall(bw_W, true,  63);
+else if (part == "bw-all") {
+  translate([0,   0, 0]) box_wall(40, false, 11);
+  translate([0, -22, 0]) box_wall(40, true,  41);
+  translate([50,  0, 0]) box_wall(60, false, 27);
+  translate([50,-22, 0]) box_wall(60, true,  63);
+  translate([120, 0, 0]) box_wall(80, false, 11);
+  translate([120,-22,0]) box_wall(80, true,  41);
+}
 else if (part == "all") {
   translate([  0, 0, 0]) plate_barrels();
   translate([ 60, 0, 0]) plate_tires();
