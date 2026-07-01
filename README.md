@@ -6,6 +6,7 @@ A collection of original, custom-designed 3D-printable models — spanning decor
 
 | Project | Description |
 |---------|-------------|
+| [bamboo-vase](bamboo-vase/) | Parametric "Wave Ring" fluted vase for lucky bamboo — six variants + centering collar, pure-Python STL generator |
 | [chicago-star](chicago-star/) | Chicago flag six-pointed star coasters and mesh art pieces, modeled in Blender |
 | [garage](garage/) | Custom garage door header trim pieces, modeled in Blender |
 | [gridfinity-rationell](gridfinity-rationell/) | Gridfinity adapter for IKEA Rationell drawer organizers |
