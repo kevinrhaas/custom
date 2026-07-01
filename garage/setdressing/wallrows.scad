@@ -1259,13 +1259,43 @@ module bp_stack(cx, cy, w, d, H, th, seed) {
   }
 }
 
+// Like bp_stack but each box is nudged and varied in size ("askance"), so the
+// column reads as hand-stacked, not a perfect grid.  Everything is axis-aligned
+// (rotating boxes spawns CGAL slivers); the look comes from the offsets, the
+// varied rectangular sizes and a smaller box perched (offset) on some columns --
+// which also supplies the "small box" size class.  Generous overlap keeps every
+// box fused despite the nudges; perched boxes are clamped under 20 mm.
+module bp_stack_askew(cx, cy, w, d, H, th, seed) {
+  nc = max(1, round(H / th));
+  for (c = [0:nc-1]) {
+    zb  = max(0, c*th - BW_EMBED);
+    hh  = ((c == nc-1) ? H : (c+1)*th) - zb;
+    shx = r(seed+10, c, -0.6, 0.6);                          // lateral nudge
+    shy = r(seed+11, c, -0.55, 0.55);
+    fw  = (w*(1 - 0.04*c) + 1.7)  * r(seed+13, c, 0.98, 1.28);  // rectangular,
+    fd  = (d*(1 - 0.04*c) + 1.6)  * r(seed+14, c, 0.96, 1.18);  // deep overlap
+    hv  = min(hh * r(seed+15, c, 0.90, 1.14), BP_HMAX - zb);    // keep top < 20
+    translate([cx + shx, cy + shy, zb]) bm_box(fw, fd, hv);
+    // perched smaller box on ~40% of columns (a "small" box, hand-stacked look)
+    if (r(seed+16, c) > 0.60) {
+      ptop = min(hv + min(2.8, hv*0.55), BP_HMAX - zb);     // absolute top < 20
+      pb   = hv - BW_EMBED;
+      if (ptop > pb + 1.2)
+        translate([cx + shx + r(seed+17, c, -0.9, 0.9),
+                   cy + shy + r(seed+18, c, -0.8, 0.8), zb + pb])
+          bm_box(fw * r(seed+19, c, 0.45, 0.72),
+                 fd * r(seed+20, c, 0.5, 0.75), ptop - pb);
+    }
+  }
+}
+
 // One rough stepped pyramid: a height field over the base footprint, apex at
 // the back-centre (cx, wall).  Height ~ apexH * (1 - |dx|/baseHw - y/baseDep)
 // (a linear/L1 pyramid -> TRIANGULAR footprint, widest at the wall, tapering to
 // a point at the front), quantised to courses and roughened per column.  The
 // wall row is always filled full width (exact W, solid wall edge); front cells
 // outside the triangle stay empty (open floor for the mixed tire/drum clutter).
-module rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed) {
+module rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed, askew=false) {
   th  = apexH / max(4, round(apexH / BP_TIER));
   nxx = max(2, round(2*baseHw / 7.2));
   nyy = max(2, round(baseDep  / 6.6));
@@ -1293,8 +1323,13 @@ module rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed) {
               :                apexH * max(0, Pr);
         poke  = (r(seed+12, a*20+b) > 0.85) ? th : 0;     // a few boxes a step up
         Hq    = min(BP_HMAX, th * max(1, round(Hc / th)) + poke);   // <20, courses
-        bp_stack(bxc + jx, byc + jy, sx + BM_OVL, sy + BM_OVL, Hq, th,
-                 seed + a*50 + b);
+        // edge columns stay neat (bp_stack) so the wall-side width is exact;
+        // interior columns get the askew hand-stacked treatment.
+        if (askew && a > 0 && a < nxx-1)
+          bp_stack_askew(bxc + jx, byc + jy, sx, sy, Hq, th, seed + a*50 + b);
+        else
+          bp_stack(bxc + jx, byc + jy, sx + BM_OVL, sy + BM_OVL, Hq, th,
+                   seed + a*50 + b);
       }
     }
   }
@@ -1302,7 +1337,7 @@ module rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed) {
 
 // Full unit: 1 pyramid (40/60) or 2-4 sub-pyramids (80) tiled along the wall,
 // widths summing so the wall side is exactly W.  mixed adds front tire/drums.
-module box_pyramids(W, mixed=false, seed=1) {
+module box_pyramids(W, mixed=false, seed=1, askew=false) {
   inset  = BM_OVL/2 + BOND_GROW;
   span   = W - 2*inset;
   npyr   = (W <= 60) ? 1 : (2 + floor(r(seed+990, 0, 0, 2.99)));   // 80 -> 2..4
@@ -1319,7 +1354,15 @@ module box_pyramids(W, mixed=false, seed=1) {
     baseDep = mixed ? r(seed+p, 21, 16.0, 19.5)
                     : min(30, r(seed+p, 21, 25.0, 30.0));
     apexX   = cx + r(seed+p, 22, -0.18, 0.18) * bwid;   // apex near or off centre
-    rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed + p*60);
+    // askew boxes are nudged, so trim the back flush to the wall (y >= -0.6);
+    // the cut also flattens the ragged back so it sits against a wall.
+    if (askew)
+      intersection() {
+        rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed + p*60, true);
+        translate([cx - baseHw - 3, -0.6, -1]) cube([2*baseHw + 6, 80, 40]);
+      }
+    else
+      rough_pyramid(cx, apexX, baseHw, baseDep, apexH, seed + p*60, false);
     if (mixed) {                                         // tire + drum in front
       // the pyramid reaches deepest along apexX (~baseDep); cluster the round
       // parts there so they raft-bond to the deep centre-front (the tapered
@@ -1367,6 +1410,11 @@ else if (part == "bp-sq1")       maybe_bond() box_pyramids(bw_W, false, 11);
 else if (part == "bp-sq2")       maybe_bond() box_pyramids(bw_W, false, 27);
 else if (part == "bp-mx1")       maybe_bond() box_pyramids(bw_W, true,  41);
 else if (part == "bp-mx2")       maybe_bond() box_pyramids(bw_W, true,  63);
+// askew ("hand-stacked") box-pyramids -- shifted/rotated, more varied boxes
+else if (part == "ap-sq1")       maybe_bond() box_pyramids(bw_W, false, 11, true);
+else if (part == "ap-sq2")       maybe_bond() box_pyramids(bw_W, false, 27, true);
+else if (part == "ap-mx1")       maybe_bond() box_pyramids(bw_W, true,  41, true);
+else if (part == "ap-mx2")       maybe_bond() box_pyramids(bw_W, true,  63, true);
 else if (part == "bw-all") {
   translate([0,   0, 0]) box_wall(40, false, 11);
   translate([0, -22, 0]) box_wall(40, true,  41);
