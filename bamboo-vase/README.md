@@ -137,6 +137,28 @@ the beads first, stand the bunch, then slide the collar down over the stalks to
 rest on the rim — it pins the bunch dead-center. **Print it flange-side down**
 (fully support-free).
 
+## Wall test coupons (finish testing)
+
+`stl/test-coupon-zen-classic.stl` is a small slice of the zen-classic side wall
+for trying out exterior finishes (paints, primers, sanding, spray textures)
+before you commit a whole vase.
+
+- It reproduces the **real** wall: true cylinder curvature, true wall
+  cross-section (2.8 mm at the valley up to ~9.8 mm at the crest), and a **full
+  flute** — a crest with a valley on each side (~26 mm wide × 20 mm tall).
+- It prints **standing up**, the same orientation the wall has on the vase, so
+  the layer lines run across the exterior exactly as they will on the finished
+  piece — the finish behaves the same.
+- A small fused foot (~19 × 34 × 4 mm) keeps the thin panel from tipping on the
+  bed. Print it as-is, no supports.
+
+Print several copies and change the painting/finishing approach per copy in the
+slicer. Regenerate (or make coupons for other variants) with:
+
+```bash
+python3 generate_test_coupon.py      # edit `variant`/settings at the top
+```
+
 ### Stability rule of thumb
 
 A 610 mm plant wants a low, heavy anchor. With ~0.5–1 kg of glass beads plus
@@ -164,7 +186,8 @@ triangles).
 bamboo-vase/
 ├─ generate_bamboo_vase.py   # parametric vase + collar generator
 ├─ generate_previews.py      # SVG preview generator
-├─ stl/                      # 6 vases + 2 collars (binary STL)
+├─ generate_test_coupon.py   # wall test coupon for finish testing
+├─ stl/                      # 6 vases + 2 collars + wall coupon (binary STL)
 ├─ img/
 │  ├─ ref-wave-ring.jpeg     # the reference "Wave Ring" card
 │  ├─ bamboo-height.jpeg     # plant height reference (~24 in)
