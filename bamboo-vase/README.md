@@ -159,6 +159,44 @@ slicer. Regenerate (or make coupons for other variants) with:
 python3 generate_test_coupon.py      # edit `variant`/settings at the top
 ```
 
+## Fuzzy-skin finish coupons (labeled)
+
+`stl/fuzzy/fuzzy-coupon-*.stl` are nine coupons for auditioning **fuzzy skin**
+textures on the actual wall. Each is the same zen-classic wall slice (true
+curvature + one full flute, printed standing so the layer lines match the vase)
+sitting on a **nameplate with the finish name raised on top** — the fluted test
+face itself stays completely clean.
+
+Fuzzy skin is a **slicer** setting, not part of the mesh: print one coupon per
+row below and set the matching parameters in OrcaSlicer / Bambu Studio. The
+embossed name tells them apart afterwards.
+
+**For every coupon:** Fuzzy skin = **Contour**, Generator mode = **Displacement**,
+Apply to first layer = **off**. Then set the noise-specific values:
+
+| Coupon | Noise type | Point dist | Thickness | Feature size | Octaves | Persistence | Look |
+|---|---|---|---|---|---|---|---|
+| **CLASSIC** | Classic | 0.3 | 0.2 | – | – | – | The original random jitter; even, sandy tooth. |
+| **PERLIN** | Perlin | 0.3 | 0.2 | 1.0 | 4 | 0.5 | Smooth, organic, gently rolling. |
+| **BILLOW** | Billow | 0.3 | 0.2 | 1.0 | 4 | 0.5 | Puffy, cloud-like lumps. |
+| **RIDGED** | Ridged Multifractal | 0.3 | 0.2 | 1.0 | 4 | – | Sharp veiny ridges between valleys. |
+| **VORONOI** | Voronoi | 0.3 | 0.2 | 1.0 | – | – | Cellular, cracked-leather stipple. |
+| **BARK** ✨ | Voronoi | 0.6 | 0.55 | 2.5 | – | – | Chunky organic bark / hide — big deep cells. |
+| **SUEDE** ✨ | Perlin | 0.2 | 0.12 | 0.5 | 5 | 0.55 | Soft velvety micro-grain, barely-there tooth. |
+| **RIPPLE** ✨ | Ridged Multifractal | 0.25 | 0.35 | 3.5 | 2 | – | Flowing directional ridges that echo the flutes. |
+| **CRYSTAL** ✨ | Voronoi | 0.9 | 0.4 | 5.0 | – | – | Large faceted crystalline cells, almost geode-like. |
+
+✨ = curated recipes beyond the stock defaults. Rows 1–5 are the five stock
+noise types straight from the fuzzy-skin dropdown.
+
+**Tips for a fair test:** print all nine at the same **0.2 mm layer height** and
+same speed; fuzzy skin can't render features finer than your nozzle, so keep
+point distance ≥ ~0.2 mm. Print them **standing, no supports** (as modeled).
+
+```bash
+python3 generate_fuzzy_coupons.py    # edit COUPONS / settings at the top
+```
+
 ### Stability rule of thumb
 
 A 610 mm plant wants a low, heavy anchor. With ~0.5–1 kg of glass beads plus
@@ -187,7 +225,9 @@ bamboo-vase/
 ├─ generate_bamboo_vase.py   # parametric vase + collar generator
 ├─ generate_previews.py      # SVG preview generator
 ├─ generate_test_coupon.py   # wall test coupon for finish testing
+├─ generate_fuzzy_coupons.py # labeled fuzzy-skin finish coupons (9)
 ├─ stl/                      # 6 vases + 2 collars + wall coupon (binary STL)
+│  └─ fuzzy/                 # 9 labeled fuzzy-skin coupons
 ├─ img/
 │  ├─ ref-wave-ring.jpeg     # the reference "Wave Ring" card
 │  ├─ bamboo-height.jpeg     # plant height reference (~24 in)
