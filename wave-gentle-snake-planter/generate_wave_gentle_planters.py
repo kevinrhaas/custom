@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Wave Gentle snake-plant planter family.
+Wave Gentle snake-plant planter family, v2.
 
-Generates six paired STL designs:
-  - planter body with 180 mm mouth, smooth interior, drain holes, chamfered lip
-  - integrated-looking 20 mm drip tray with a printable 3-lug twist lock
+This version restudies the reference image:
+  - squat rounded bowl silhouette, flatter foot, plump middle, tucked mouth
+  - ribs are wandering ribbons that split and rejoin, not even bamboo flutes
+  - support-free tray system using five broad raised support discs/mounds
+  - pot floor stays 6 mm thick with drain openings around support zones
 
-The mesh is generated explicitly as closed STL surfaces. No CAD boolean engine
-or third-party Python package is required.
+No third-party packages are required.
 """
 
 import math
@@ -16,21 +17,28 @@ import struct
 from dataclasses import dataclass
 from pathlib import Path
 
+
 OUT_DIR = Path(__file__).resolve().parent
 
-MOUTH_INNER_DIA = 180.0
-MOUTH_INNER_R = MOUTH_INNER_DIA / 2.0
-WALL = 3.2
-FLOOR_T = 6.0
+MOUTH_INNER_R = 90.0
 BODY_H = 150.0
-BODY_BOTTOM_R = 69.0
-TRAY_H = 20.0
+FLOOR_T = 6.0
+WALL = 3.4
+TRAY_WALL_H = 20.0
 TRAY_FLOOR_T = 3.2
-ASSEMBLY_GAP = 5.0
+SUPPORT_H = 25.0
 
-N_THETA = 288
-N_Z = 96
+N_THETA = 336
+N_Z = 112
 FLOOR_SEG = N_THETA
+
+SUPPORTS = [
+    (0.0, 0.0, 18.0),
+    (43.0, 0.0, 19.5),
+    (0.0, 43.0, 19.5),
+    (-43.0, 0.0, 19.5),
+    (0.0, -43.0, 19.5),
+]
 
 
 def smoothstep(a, b, x):
@@ -38,6 +46,10 @@ def smoothstep(a, b, x):
         return 0.0 if x < a else 1.0
     t = max(0.0, min(1.0, (x - a) / (b - a)))
     return t * t * (3.0 - 2.0 * t)
+
+
+def clamp(x, a, b):
+    return max(a, min(b, x))
 
 
 def sub(a, b):
@@ -75,9 +87,12 @@ class Mesh:
         self.add(a, b, c, ref)
         self.add(a, c, d, ref)
 
+    def extend(self, other):
+        self.tris.extend(other.tris)
+
     def write_stl(self, path):
         with open(path, "wb") as f:
-            f.write(b"Wave Gentle planter STL".ljust(80, b"\0"))
+            f.write(b"Wave Gentle planter v2".ljust(80, b"\0"))
             f.write(struct.pack("<I", len(self.tris)))
             for a, b, c in self.tris:
                 n = norm(cross(sub(b, a), sub(c, a)))
@@ -104,22 +119,22 @@ class Mesh:
 @dataclass
 class Variant:
     name: str
-    waves: int
+    ribs: int
     amp: float
+    branch: float
+    drift: float
+    width: float
     belly: float
-    twist_deg: float
-    randomness: float
-    phase2: float
-    lug_sweep: float
+    seed: float
 
 
 VARIANTS = [
-    Variant("01-soft-current", 18, 3.0, 5.0, 8.0, 0.25, 0.2, 34.0),
-    Variant("02-calm-flute", 24, 2.2, 3.0, 4.0, 0.10, 1.4, 28.0),
-    Variant("03-deep-tide", 14, 4.6, 7.0, 12.0, 0.18, 2.1, 38.0),
-    Variant("04-organic-drift", 17, 3.8, 6.0, -7.0, 0.55, 3.0, 36.0),
-    Variant("05-fine-ripple", 30, 1.8, 2.5, 16.0, 0.20, 0.9, 26.0),
-    Variant("06-broad-swell", 11, 5.4, 8.0, -12.0, 0.15, 2.6, 42.0),
+    Variant("01-reference-soft-bowl", 15, 5.6, 0.52, 0.16, 0.060, 18.0, 0.2),
+    Variant("02-tall-gentle-current", 17, 4.7, 0.45, 0.20, 0.052, 15.0, 1.1),
+    Variant("03-deep-branching-wave", 13, 6.7, 0.66, 0.22, 0.070, 20.0, 2.0),
+    Variant("04-quiet-many-ribbons", 21, 3.9, 0.36, 0.13, 0.044, 14.0, 2.8),
+    Variant("05-organic-split-flow", 16, 5.9, 0.72, 0.25, 0.058, 19.0, 3.7),
+    Variant("06-broad-soft-swell", 11, 7.4, 0.58, 0.18, 0.082, 21.0, 4.6),
 ]
 
 
@@ -127,65 +142,67 @@ def angle_delta(a, b):
     return (a - b + math.pi) % (2.0 * math.pi) - math.pi
 
 
-def wave_term(theta, zfrac, v):
-    twist = math.radians(v.twist_deg) * zfrac
-    base = 0.5 + 0.5 * math.cos(v.waves * (theta - twist))
-    secondary = 0.5 + 0.5 * math.cos((v.waves - 3) * theta + v.phase2 + 1.7 * zfrac)
-    tertiary = 0.5 + 0.5 * math.cos(3 * theta - v.phase2 + 2.5 * zfrac)
-    raw = (1.0 - v.randomness) * base + v.randomness * (0.72 * base + 0.20 * secondary + 0.08 * tertiary)
-    return max(0.0, min(1.0, raw))
+def polar(r, t, z):
+    return (r * math.cos(t), r * math.sin(t), z)
 
 
 def inner_radius(zfrac):
-    # Snake-plant friendly: narrower base for soil control, 180 mm clear mouth.
-    return BODY_BOTTOM_R + (MOUTH_INNER_R - BODY_BOTTOM_R) * (zfrac ** 0.82)
+    # Smooth printable interior: narrower bottom, full 180 mm mouth.
+    return 62.0 + (MOUTH_INNER_R - 62.0) * (smoothstep(0.02, 1.0, zfrac) ** 0.62)
 
 
-def belly(zfrac, v):
-    return v.belly * math.sin(math.pi * zfrac)
+def bowl_bulge(zfrac, v):
+    # Reference silhouette: flat-ish foot, round shoulder, tucked mouth.
+    belly = v.belly * (math.sin(math.pi * zfrac) ** 0.82)
+    lower_round = 5.0 * smoothstep(0.02, 0.22, zfrac) * (1.0 - smoothstep(0.36, 0.62, zfrac))
+    rim_tuck = 3.2 * smoothstep(0.84, 1.0, zfrac)
+    return belly + lower_round - rim_tuck
 
 
-def lug_extra(theta, z, v):
-    # Three bayonet lugs grown directly into the lower wall, with printable ramps.
-    if z < 7.0 or z > 17.0:
-        return 0.0
-    zshape = smoothstep(7.0, 10.0, z) * (1.0 - smoothstep(14.0, 17.0, z))
-    sweep = math.radians(v.lug_sweep)
-    extra = 0.0
-    for k in range(3):
-        center = 2.0 * math.pi * k / 3.0 + math.radians(10.0)
-        d = abs(angle_delta(theta, center))
-        if d < sweep / 2.0:
-            circum = 0.5 + 0.5 * math.cos(math.pi * d / (sweep / 2.0))
-            ramp = 0.82 + 0.18 * math.sin(angle_delta(theta, center) * 2.2)
-            extra = max(extra, 7.0 * zshape * circum * ramp)
-    return extra
+def ridge_center(base, zfrac, i, v):
+    ph = v.seed + i * 1.731
+    drift = v.drift * math.sin(2.0 * math.pi * zfrac + ph)
+    drift += 0.45 * v.drift * math.sin(4.0 * math.pi * zfrac + ph * 0.71)
+    drift += 0.025 * math.sin(7.0 * math.pi * zfrac + ph)
+    return base + drift
+
+
+def ridge_field(theta, zfrac, v):
+    # Ribs split in the middle and rejoin near foot/rim. The split is smooth,
+    # not a hard Y-junction, so the surface remains printable and calm.
+    total = 0.0
+    max_possible = 0.0
+    split_profile = math.sin(math.pi * zfrac) ** 1.25
+    rim_fade = 1.0 - 0.52 * smoothstep(0.88, 1.0, zfrac)
+    foot_fade = smoothstep(0.02, 0.13, zfrac)
+    for i in range(v.ribs):
+        base = 2.0 * math.pi * i / v.ribs
+        ph = v.seed + i * 0.91
+        c = ridge_center(base, zfrac, i, v)
+        local_amp = 0.82 + 0.18 * math.sin(ph)
+        split = v.branch * (2.0 * math.pi / v.ribs) * split_profile * (0.75 + 0.25 * math.sin(ph * 1.7))
+        width = v.width * (0.88 + 0.18 * math.sin(ph + 2.0 * zfrac))
+        # One ribbon becomes two soft shoulders through the middle.
+        for off, weight in ((-split, 0.55), (split, 0.55), (0.0, 0.20 * (1.0 - split_profile))):
+            d = angle_delta(theta, c + off)
+            g = math.exp(-0.5 * (d / width) ** 2)
+            total += local_amp * weight * g
+            max_possible += weight
+    return clamp(total * foot_fade * rim_fade, 0.0, 1.55)
 
 
 def outer_radius(theta, z, v):
     zfrac = z / BODY_H
-    rim_soften = 1.0 - 0.85 * smoothstep(0.955, 1.0, zfrac)
-    lip_chamfer = 2.4 * smoothstep(0.965, 1.0, zfrac)
-    return (
-        inner_radius(zfrac)
-        + WALL
-        + belly(zfrac, v)
-        + v.amp * wave_term(theta, zfrac, v) * rim_soften
-        - lip_chamfer
-        + lug_extra(theta, z, v)
-    )
-
-
-def polar_point(r, theta, z):
-    return (r * math.cos(theta), r * math.sin(theta), z)
+    base = inner_radius(zfrac) + WALL + bowl_bulge(zfrac, v)
+    ribs = v.amp * ridge_field(theta, zfrac, v)
+    lip_chamfer = 2.5 * smoothstep(0.965, 1.0, zfrac)
+    return base + ribs - lip_chamfer
 
 
 def add_ring_wall(mesh, rings, outward=True):
-    n_z = len(rings) - 1
-    n_t = len(rings[0])
-    for iz in range(n_z):
-        for it in range(n_t):
-            it2 = (it + 1) % n_t
+    for iz in range(len(rings) - 1):
+        for it in range(len(rings[0])):
+            it2 = (it + 1) % len(rings[0])
             a, b = rings[iz][it], rings[iz][it2]
             c, d = rings[iz + 1][it2], rings[iz + 1][it]
             mx = (a[0] + b[0] + c[0] + d[0]) / 4.0
@@ -194,23 +211,30 @@ def add_ring_wall(mesh, rings, outward=True):
             mesh.quad(a, b, c, d, ref)
 
 
-def drain_open(radial_mid, theta_mid):
-    # Center drain plus six softened radial drain slots. Slots are aligned to
-    # the polar mesh so their through-walls are explicit and closed.
-    if radial_mid < 7.0:
-        return True
-    if 17.0 < radial_mid < 45.0:
-        for k in range(6):
-            center = 2.0 * math.pi * k / 6.0 + math.radians(30.0)
-            if abs(angle_delta(theta_mid, center)) < math.radians(5.8):
+def point_in_support(x, y, clearance=4.0):
+    for sx, sy, sr in SUPPORTS:
+        if (x - sx) ** 2 + (y - sy) ** 2 < (sr + clearance) ** 2:
+            return True
+    return False
+
+
+def drain_open(rm, tm):
+    x, y = rm * math.cos(tm), rm * math.sin(tm)
+    if point_in_support(x, y, 7.0):
+        return False
+    # Four long curved drains between the support discs. All openings have
+    # vertical walls and stay away from the floor perimeter.
+    if 22.0 < rm < 54.0:
+        for k in range(4):
+            center = math.radians(45.0 + 90.0 * k)
+            if abs(angle_delta(tm, center)) < math.radians(7.0):
                 return True
     return False
 
 
 def add_drain_floor(mesh, radius, z0, z1):
-    # Radial levels are denser near slot boundaries and the central drain.
-    radial = [7.0, 10.5, 14.0, 17.0, 22.0, 28.0, 34.0, 40.0, 45.0, 51.0, 58.0, radius]
-    radial = sorted(set(r for r in radial if r < radius - 0.5) | {radius})
+    radial = [8.0, 16.0, 22.0, 30.0, 38.0, 46.0, 54.0, radius]
+    radial = sorted(set(r for r in radial if r < radius - 0.25) | {radius})
     thetas = [2.0 * math.pi * i / FLOOR_SEG for i in range(FLOOR_SEG)]
 
     def p(r, t, z):
@@ -218,13 +242,18 @@ def add_drain_floor(mesh, radius, z0, z1):
 
     solid = {}
     for ir in range(len(radial) - 1):
-        r0, r1 = radial[ir], radial[ir + 1]
-        rm = 0.5 * (r0 + r1)
+        rm = 0.5 * (radial[ir] + radial[ir + 1])
         for it in range(FLOOR_SEG):
-            t0, t1 = thetas[it], thetas[(it + 1) % FLOOR_SEG]
-            # unwrap final cell midpoint cleanly
-            tm = t0 + math.pi / FLOOR_SEG
+            tm = thetas[it] + math.pi / FLOOR_SEG
             solid[(ir, it)] = not drain_open(rm, tm)
+
+    center0 = (0.0, 0.0, z0)
+    center1 = (0.0, 0.0, z1)
+    r_center = radial[0]
+    for it in range(FLOOR_SEG):
+        t0, t1 = thetas[it], thetas[(it + 1) % FLOOR_SEG]
+        mesh.add(center1, p(r_center, t0, z1), p(r_center, t1, z1), (0, 0, 1))
+        mesh.add(center0, p(r_center, t0, z0), p(r_center, t1, z0), (0, 0, -1))
 
     for (ir, it), is_solid in solid.items():
         if not is_solid:
@@ -235,7 +264,6 @@ def add_drain_floor(mesh, radius, z0, z1):
         a1, b1, c1, d1 = p(r0, t0, z1), p(r1, t0, z1), p(r1, t1, z1), p(r0, t1, z1)
         mesh.quad(a1, b1, c1, d1, (0, 0, 1))
         mesh.quad(a0, b0, c0, d0, (0, 0, -1))
-
         neighbors = [
             ((ir - 1, it), (a0, d0, d1, a1), (-math.cos((t0 + t1) / 2), -math.sin((t0 + t1) / 2), 0)),
             ((ir + 1, it), (b0, c0, c1, b1), (math.cos((t0 + t1) / 2), math.sin((t0 + t1) / 2), 0)),
@@ -243,6 +271,8 @@ def add_drain_floor(mesh, radius, z0, z1):
             ((ir, (it + 1) % FLOOR_SEG), (d0, c0, c1, d1), (math.sin(t1), -math.cos(t1), 0)),
         ]
         for nkey, quad, ref in neighbors:
+            if nkey[0] < 0:
+                continue
             if nkey[0] >= len(radial) - 1:
                 continue
             if nkey not in solid or not solid[nkey]:
@@ -252,142 +282,120 @@ def add_drain_floor(mesh, radius, z0, z1):
 def build_pot(v):
     mesh = Mesh()
     thetas = [2.0 * math.pi * i / N_THETA for i in range(N_THETA)]
-    outer = []
-    inner = []
+    outer, inner = [], []
     for iz in range(N_Z + 1):
         z = BODY_H * iz / N_Z
-        zfrac = z / BODY_H
-        outer.append([polar_point(outer_radius(t, z, v), t, z) for t in thetas])
+        outer.append([polar(outer_radius(t, z, v), t, z) for t in thetas])
         zi = FLOOR_T + (BODY_H - FLOOR_T) * iz / N_Z
-        inner.append([polar_point(inner_radius(zi / BODY_H), t, zi) for t in thetas])
+        inner.append([polar(inner_radius(zi / BODY_H), t, zi) for t in thetas])
 
-    add_ring_wall(mesh, outer, outward=True)
-    add_ring_wall(mesh, inner, outward=False)
+    add_ring_wall(mesh, outer, True)
+    add_ring_wall(mesh, inner, False)
 
-    # Chamfered top lip annulus.
     for it in range(N_THETA):
         it2 = (it + 1) % N_THETA
         mesh.quad(outer[-1][it], outer[-1][it2], inner[-1][it2], inner[-1][it], (0, 0, 1))
 
-    # Drainage floor with one center hole plus six radial drain slots.
     floor_r = inner_radius(FLOOR_T / BODY_H)
     add_drain_floor(mesh, floor_r, 0.0, FLOOR_T)
-
-    # Lower exterior bottom annulus outside the drainage floor.
     for it, t in enumerate(thetas):
         it2 = (it + 1) % N_THETA
         t2 = thetas[it2]
-        r = floor_r
         mesh.quad(
             outer[0][it], outer[0][it2],
-            polar_point(r, t2, 0.0), polar_point(r, t, 0.0),
+            polar(floor_r, t2, 0.0), polar(floor_r, t, 0.0),
             (0, 0, -1),
         )
-
     return mesh
 
 
-def tray_outer_radius(theta, zfrac, v):
-    # Matches the pot's lower visual rhythm, softened for a saucer wall.
-    base = BODY_BOTTOM_R + WALL + 2.0
-    return base + 0.55 * v.amp * wave_term(theta, 0.08 + 0.12 * zfrac, v)
+def tray_radius(theta, zfrac, v):
+    low = 77.0 + 1.6 * ridge_field(theta, 0.05, v)
+    high = 92.5 + 1.2 * ridge_field(theta, 0.12, v)
+    return low + (high - low) * smoothstep(0.0, 1.0, zfrac)
 
 
-def shelf_extra(theta, z, v):
-    # Internal bayonet shelves, leaving three open lead-in gaps.
-    if z < 12.0 or z > 17.5:
-        return 0.0
-    zshape = smoothstep(12.0, 14.0, z) * (1.0 - smoothstep(16.2, 17.5, z))
-    sweep = math.radians(v.lug_sweep + 12.0)
-    extra = 0.0
-    for k in range(3):
-        center = 2.0 * math.pi * k / 3.0 + math.radians(44.0)
-        d = abs(angle_delta(theta, center))
-        if d < sweep / 2.0:
-            extra = max(extra, 7.8 * zshape * (0.5 + 0.5 * math.cos(math.pi * d / (sweep / 2.0))))
-    return extra
+def cylinder(cx, cy, r, z0, z1, n=96, cap_bottom=False):
+    mesh = Mesh()
+    angles = [2.0 * math.pi * i / n for i in range(n)]
+    bottom = [(cx + r * math.cos(a), cy + r * math.sin(a), z0) for a in angles]
+    top = [(cx + r * math.cos(a), cy + r * math.sin(a), z1) for a in angles]
+    ctop = (cx, cy, z1)
+    cbottom = (cx, cy, z0)
+    for i in range(n):
+        i2 = (i + 1) % n
+        mx = 0.5 * (top[i][0] + top[i2][0]) - cx
+        my = 0.5 * (top[i][1] + top[i2][1]) - cy
+        mesh.quad(bottom[i], bottom[i2], top[i2], top[i], (mx, my, 0))
+        mesh.add(ctop, top[i], top[i2], (0, 0, 1))
+        if cap_bottom:
+            mesh.add(cbottom, bottom[i], bottom[i2], (0, 0, -1))
+    return mesh
 
 
 def build_tray(v):
     mesh = Mesh()
-    n_z = 36
+    n_z = 38
     thetas = [2.0 * math.pi * i / N_THETA for i in range(N_THETA)]
-    outer = []
-    inner = []
+    outer, inner = [], []
     for iz in range(n_z + 1):
-        z = TRAY_H * iz / n_z
-        zfrac = z / TRAY_H
-        # Taper out slightly toward the top, like the blue reference.
-        outer.append([polar_point(tray_outer_radius(t, zfrac, v) + 2.5 * zfrac, t, z) for t in thetas])
-        zi = TRAY_FLOOR_T + (TRAY_H - TRAY_FLOOR_T) * iz / n_z
-        zifrac = zi / TRAY_H
-        inner_base = tray_outer_radius(thetas[0], zifrac, v) - 5.0
-        row = []
-        for t in thetas:
-            ir = inner_base - shelf_extra(t, zi, v)
-            row.append(polar_point(ir, t, zi))
-        inner.append(row)
+        z = TRAY_WALL_H * iz / n_z
+        zf = z / TRAY_WALL_H
+        outer.append([polar(tray_radius(t, zf, v), t, z) for t in thetas])
+        zi = TRAY_FLOOR_T + (TRAY_WALL_H - TRAY_FLOOR_T) * iz / n_z
+        zif = zi / TRAY_WALL_H
+        inner.append([polar(tray_radius(t, zif, v) - 5.2, t, zi) for t in thetas])
+    add_ring_wall(mesh, outer, True)
+    add_ring_wall(mesh, inner, False)
 
-    add_ring_wall(mesh, outer, outward=True)
-    add_ring_wall(mesh, inner, outward=False)
-
-    # Top rim annulus.
     for it in range(N_THETA):
         it2 = (it + 1) % N_THETA
         mesh.quad(outer[-1][it], outer[-1][it2], inner[-1][it2], inner[-1][it], (0, 0, 1))
+        mesh.add((0, 0, 0), outer[0][it], outer[0][it2], (0, 0, -1))
+        mesh.add((0, 0, TRAY_FLOOR_T), inner[0][it], inner[0][it2], (0, 0, 1))
 
-    # Saucer floor, closed underside and open basin above.
-    floor_top = []
-    floor_bot = []
-    center_top = (0.0, 0.0, TRAY_FLOOR_T)
-    center_bot = (0.0, 0.0, 0.0)
-    for it, t in enumerate(thetas):
-        floor_top.append(inner[0][it])
-        floor_bot.append(polar_point(tray_outer_radius(t, 0, v), t, 0.0))
-    for it in range(N_THETA):
-        it2 = (it + 1) % N_THETA
-        mesh.add(center_top, floor_top[it], floor_top[it2], (0, 0, 1))
-        mesh.add(center_bot, floor_bot[it], floor_bot[it2], (0, 0, -1))
-
+    # Five broad support mounds. They overlap the saucer floor slightly so
+    # slicers merge them into one printed part; no thin load-bearing walls.
+    for sx, sy, sr in SUPPORTS:
+        mesh.extend(cylinder(sx, sy, sr, TRAY_FLOOR_T - 0.15, SUPPORT_H, 96, True))
     return mesh
 
 
-def write_manifest(rows):
+def write_readme(rows):
+    notes = {
+        "01-reference-soft-bowl": "closest to the reference: plump silhouette, moderate branching",
+        "02-tall-gentle-current": "slightly calmer and more vertical",
+        "03-deep-branching-wave": "stronger split/rejoin ribs and deeper shadows",
+        "04-quiet-many-ribbons": "more numerous fine ribbons, less dramatic",
+        "05-organic-split-flow": "most wandering and organic",
+        "06-broad-soft-swell": "fewest, broadest, roundest waves",
+    }
     lines = [
         "# Wave Gentle Snake Planter STL Set",
         "",
+        "V2 restudies the reference image: squat rounded bowl silhouette, tucked 180 mm mouth, and ribs that split and rejoin as smooth ribbons.",
+        "",
         "Common dimensions:",
-        f"- clear mouth opening: {MOUTH_INNER_DIA:.0f} mm",
-        f"- planter body height: {BODY_H:.0f} mm",
-        f"- minimum wall at wave valleys: {WALL:.1f} mm",
-        f"- drainage floor thickness: {FLOOR_T:.1f} mm",
-        f"- drip tray height: {TRAY_H:.0f} mm",
-        f"- intended assembled visual gap: {ASSEMBLY_GAP:.0f} mm between tray rim and pot bottom",
+        "- clear inner mouth opening: 180 mm",
+        f"- planter height: {BODY_H:.0f} mm",
+        f"- pot floor thickness: {FLOOR_T:.0f} mm",
+        f"- tray rim height: {TRAY_WALL_H:.0f} mm",
+        f"- support mound top height: {SUPPORT_H:.0f} mm, leaving about 5 mm visual gap above the tray rim",
+        "- support system: five broad tray mounds under solid floor zones; drain openings sit around the mounds",
         "",
-        "Each variation has a matching pot STL and tray STL. The twist lock uses three rounded bayonet lugs;",
-        "drop the pot into the tray openings and turn clockwise until the lugs sit under the internal shelves.",
-        "",
-        "| Variation | Waves | Wave depth | Belly | Twist | Notes |",
-        "|---|---:|---:|---:|---:|---|",
+        "| Variation | Ribs | Branching | Note |",
+        "|---|---:|---:|---|",
     ]
-    notes = {
-        "01-soft-current": "balanced hero, close to the reference card",
-        "02-calm-flute": "denser and quieter vertical flow",
-        "03-deep-tide": "deeper broad waves, more sculptural",
-        "04-organic-drift": "most irregular, natural movement",
-        "05-fine-ripple": "finest texture, modern and restrained",
-        "06-broad-swell": "boldest broad lobes, most rounded",
-    }
     for v, _, _ in rows:
-        lines.append(f"| {v.name} | {v.waves} | {v.amp:.1f} mm | {v.belly:.1f} mm | {v.twist_deg:.0f} deg | {notes[v.name]} |")
+        lines.append(f"| {v.name} | {v.ribs} | {v.branch:.2f} | {notes[v.name]} |")
     lines += [
         "",
-        "Printing notes:",
-        "- Print both parts upright.",
-        "- Use at least 3-4 perimeters; the floor and rim are intentionally thick.",
-        "- The pot has drain holes, so use a normal solid-wall profile, not vase mode.",
-        "- For a water-holding planter, seal the inside after printing; FDM is not reliably waterproof by itself.",
-        "- The lock is designed with clearance, but first test-fit gently and sand the tray shelves if your filament over-extrudes.",
+        "Print notes:",
+        "- Print pot and tray upright, no supports.",
+        "- Use a normal solid-wall profile, not vase mode.",
+        "- Use at least 4 perimeters and enough bottom layers for the 6 mm floor.",
+        "- The tray mounds are intentionally broad discs to carry weight safely.",
+        "- FDM planters can seep; seal the pot interior if it will hold wet soil directly.",
     ]
     (OUT_DIR / "README.md").write_text("\n".join(lines) + "\n")
 
@@ -402,8 +410,8 @@ def main():
         pot.write_stl(pot_path)
         tray.write_stl(tray_path)
         rows.append((v, pot, tray))
-        print(f"{v.name}: pot tris={len(pot.tris)} edges={pot.edge_report()} | tray tris={len(tray.tris)} edges={tray.edge_report()}")
-    write_manifest(rows)
+        print(f"{v.name}: pot tris={len(pot.tris)} edges={pot.edge_report()} tray tris={len(tray.tris)} edges={tray.edge_report()}")
+    write_readme(rows)
 
 
 if __name__ == "__main__":
