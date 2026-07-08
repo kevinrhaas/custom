@@ -119,6 +119,24 @@ Lucky bamboo only needs ~1–2 in (25–50 mm) of water over the roots, so the
 sealed zone really only has to be the lower third — but coating the whole
 interior is easiest and safest.
 
+### Alternative: the PETG liner cup (no coating needed)
+
+`stl/liner-zen-classic-petg.stl` is a plain straight-walled cup that drops into
+the zen-classic bore and holds the water for you — so the decorative PLA shell
+never touches water. **Print it in PETG:** PETG bonds between layers far better
+than PLA, so with solid walls + floor it comes out watertight on its own (a
+spray-rubber coat is then just optional insurance).
+
+- **Fit:** body OD 104 mm slip-fits the 105 mm bore (0.5 mm/side); it rests on
+  the vase floor, and a short flared rim (OD 109 mm) seats on the lip, hides the
+  gap, and gives you a grip to lift it out. Interior ID 100 mm → ~12 mm of bead
+  room around the 76 mm bunch. Holds ~1 L to the brim.
+- **Print:** upright, open end up, **no supports** (the rim is a gentle cone).
+  PETG ~240 °C / bed ~75–80 °C, **4 wall loops**, **5+ bottom layers**, 3-shell
+  minimum for a leak-free vessel. Do a sink water-test before planting.
+- Glass beads + bunch go **inside the liner** now; the liner + beads sit low in
+  the shell, so the ballast still works exactly the same.
+
 ## Glass beads: centering + ballast
 
 The beads do two jobs: **center** the bunch and **weigh the vase down low**.
@@ -197,6 +215,20 @@ point distance ≥ ~0.2 mm. Print them **standing, no supports** (as modeled).
 python3 generate_fuzzy_coupons.py    # edit COUPONS / settings at the top
 ```
 
+### Light mesh (for fuzzy skin / move-queue-limited printers)
+
+`stl/bamboo-vase-zen-classic-light.stl` is a reduced-poly zen-classic (128
+facets, ~45k tris vs ~90k). The base mesh deviates only ~19 µm from a true
+circle — invisible, and utterly hidden under fuzzy skin. Use it when combining
+this vase with fuzzy skin on a printer whose motion planner chokes on dense
+g-code: the Flashforge AD5M throws **`E0017: Move queue overflow`** with the
+full-res mesh + fuzzy skin, because it can't process the flood of tiny moves.
+The light mesh (plus fuzzy point distance ≥ 0.8, resolution ≥ 0.1, arc fitting
+**off**, and gap fill **off**) keeps the move rate under the AD5M's limit.
+
+Regenerate any variant at a chosen resolution via the `n_theta` argument to
+`build_vase()` in `generate_bamboo_vase.py` (256 = smooth default, 128 = light).
+
 ### Stability rule of thumb
 
 A 610 mm plant wants a low, heavy anchor. With ~0.5–1 kg of glass beads plus
@@ -226,7 +258,10 @@ bamboo-vase/
 ├─ generate_previews.py      # SVG preview generator
 ├─ generate_test_coupon.py   # wall test coupon for finish testing
 ├─ generate_fuzzy_coupons.py # labeled fuzzy-skin finish coupons (9)
-├─ stl/                      # 6 vases + 2 collars + wall coupon (binary STL)
+├─ generate_liner.py         # watertight PETG inner liner cup
+├─ stl/                      # vases + collars + coupon + light mesh + liner
+│  ├─ bamboo-vase-zen-classic-light.stl  # reduced-poly (AD5M/fuzzy-friendly)
+│  ├─ liner-zen-classic-petg.stl         # watertight PETG liner cup
 │  └─ fuzzy/                 # 9 labeled fuzzy-skin coupons
 ├─ img/
 │  ├─ ref-wave-ring.jpeg     # the reference "Wave Ring" card
