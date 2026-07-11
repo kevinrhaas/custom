@@ -114,6 +114,14 @@ The `files/lamp/` directory includes ready-to-print files for:
 The v2 connected releases standardize these at 111L, 139L, and 166L,
 respectively, all with the 80 mm connector and 115 mm screw-base compatibility.
 
+## Recommended screw base
+
+Use `files/base/sandstonelayers-base-v4-smooth-drilled.3mf` with the connected
+lamp releases. Base v4 preserves the v3 screw and core geometry, replaces only
+the outer body with a tangent-continuous curve into the flat top, and retains
+the existing drill/cord mesh as an active Bambu Studio negative part. Regenerate
+it with `main/generate_base_v4.py`.
+
 ## Tools
 
 - Python 3 (no external dependencies)

@@ -1,0 +1,56 @@
+{
+  "generator": "generate_base_v4.py",
+  "source": "files/base/sandstonelayers-base-v3-final.3mf",
+  "output": "sandstonelayers-base-v4-smooth-drilled.3mf",
+  "positive_mesh": {
+    "source_faces": 81722,
+    "old_outer_faces_removed": 15092,
+    "functional_faces_preserved": 66630,
+    "new_outer_faces": 25920,
+    "new_total_faces": 92550
+  },
+  "outer_body": {
+    "watertight": true,
+    "outer_radius_mm": 57.5,
+    "outer_diameter_mm": 115.0,
+    "inner_overlap_radius_mm": 32.8,
+    "flat_top_radius_mm": 47.0,
+    "body_height_mm": 15.0,
+    "side_height_mm": 7.5,
+    "bottom_fillet_mm": 2.0,
+    "circumference_segments": 360,
+    "shoulder_segments": 24,
+    "bottom_fillet_segments": 8,
+    "bounds_min_mm": [
+      -57.5,
+      -57.5,
+      -11.0707216
+    ],
+    "bounds_max_mm": [
+      57.5,
+      57.5,
+      3.9292783999999994
+    ]
+  },
+  "negative_drill": {
+    "included": true,
+    "bambu_subtype": "negative_part",
+    "vertices": 231,
+    "faces": 458,
+    "geometry_and_transform": "copied unchanged from source 3MF"
+  },
+  "functional_geometry": {
+    "components_preserved": 5,
+    "geometry": "screw interface, core, slots, and upper features copied unchanged"
+  },
+  "source_outer_bounds_min_mm": [
+    -57.5026703,
+    -57.5068588,
+    -11.0707216
+  ],
+  "source_outer_bounds_max_mm": [
+    57.5026703,
+    57.5068588,
+    3.92927837
+  ]
+}
