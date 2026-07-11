@@ -28,14 +28,22 @@ ordovician-sandstone/
 │   ├── generate_sandstone.py      # Original parametric generator
 │   ├── generate_sandstone_v2.py   # Detail-preserving watertight lamp generator
 │   ├── test_generate_sandstone_v2.py
+│   ├── generate_coupon.py         # Transparency test-coupon generator
 │   └── archive/                   # Previous generator versions (v1–v4)
 ├── raw/                           # Original hand-sculpted SCAD source files
 ├── files/
 │   ├── lamp/                      # Generated parametric lamp files (.scad, .stl, .3mf)
 │   │   └── nonparametric/         # Earlier non-parametric slicer projects
+│   ├── coupon/                    # Filament light-transparency test coupons
 │   └── base/                      # Lamp attachment base pieces
 └── additional/                    # Extra STL exports and experimental variants
 ```
+
+## Transparency Test Coupons
+
+Before printing a full 180 mm shade, test how a filament transmits light with a
+small, support-free coupon that reproduces the real 2 mm lamp wall and strata
+texture. See [`files/coupon/`](files/coupon/) and `main/generate_coupon.py`.
 
 ## Usage
 
