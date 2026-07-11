@@ -6,12 +6,12 @@ Parametric, geology-inspired cylindrical lamp shades that mimic the layered stra
 
 The original model is a hand-sculpted polyhedron cylinder with 111 rings of 120 vertices each, capturing a naturalistic sandstone strata surface. The parametric generator reads this source geometry and regenerates it at any target size, interpolating between rings to preserve the organic character.
 
-For connected lamps, use **v4** (`main/generate_sandstone_v4.py`). It retains
+For connected lamps, use **v5** (`main/generate_sandstone_v5.py`). It retains
 every original source ring, preserves the gentle rounded inward-return top lip,
-and Boolean-unifies the prepared 80 mm connector with the shell. The 120, 150,
-and 180 mm v4 releases are single watertight solids with a continuous interior
-floor, eliminating the multipart non-manifold and dashed-rim artifacts in v2.
-Earlier generators remain available for compatibility with existing files.
+and Boolean-unifies the prepared 80 mm connector below a clean interior finish
+plane. The connector is recessed 0.20 mm below the 9.46 mm floor so no Boolean
+micro-fragments appear as dashed arcs in the slicer. Earlier generators remain
+available for compatibility with existing files.
 
 ### Features
 
@@ -33,6 +33,8 @@ ordovician-sandstone/
 │   ├── generate_sandstone_v4.py   # Single-body connected lamp Boolean generator
 │   ├── repair_connector_v4.py     # Prepares the legacy 80 mm connector
 │   ├── test_generate_sandstone_v4.py
+│   ├── generate_sandstone_v5.py   # Clean interior-finish connected lamp
+│   ├── test_generate_sandstone_v5.py
 │   ├── generate_coupon.py         # Transparency test-coupon generator
 │   └── archive/                   # Previous generator versions (v1–v4)
 ├── raw/                           # Original hand-sculpted SCAD source files
@@ -55,11 +57,11 @@ texture. See [`files/coupon/`](files/coupon/) and `main/generate_coupon.py`.
 ```bash
 cd ordovician-sandstone/main
 
-# Recommended connected v4 releases (automatically 111L, 139L, and 166L)
+# Recommended connected v5 releases (automatically 111L, 139L, and 166L)
 python3 -m pip install -r requirements-v4.txt
-python3 generate_sandstone_v4.py --height 120
-python3 generate_sandstone_v4.py --height 150
-python3 generate_sandstone_v4.py --height 180
+python3 generate_sandstone_v5.py --height 120
+python3 generate_sandstone_v5.py --height 150
+python3 generate_sandstone_v5.py --height 180
 
 # Default — recreate original (120mm, 111 layers)
 python3 generate_sandstone.py
@@ -93,11 +95,11 @@ python3 generate_sandstone.py --height-percent 150
 | `--height-scale` | Height as scale factor | 1.0 |
 | `-o` | Output filename | *(auto-generated)* |
 
-V4 uses `--hole` instead of `--base-hole`, supports `--top-lip-segments`, and
+V5 uses `--hole` instead of `--base-hole`, supports `--top-lip-segments`, and
 writes STL, 3MF, SCAD, and a validation report into
-`files/lamp/v4/connected/` by default. The repaired 80 mm threaded connector
-is Boolean-unified unless `--no-connector` is specified. See
-`files/lamp/v4/connected/README.md` for the complete v4 preset.
+`files/lamp/v5/connected/` by default. The repaired 80 mm threaded connector
+is Boolean-unified 0.20 mm below the visible floor. See
+`files/lamp/v5/connected/README.md` for the complete v5 preset.
 
 ## Generated File Naming
 
@@ -116,14 +118,14 @@ The `files/lamp/` directory includes ready-to-print files for:
 - **150mm** — medium tall (138L, wall 2mm)
 - **180mm** — tall (165–166L, wall 2mm, with/without base hole)
 
-The v4 connected releases standardize these at 111L, 139L, and 166L,
+The v5 connected releases standardize these at 111L, 139L, and 166L,
 respectively, all with a manifold 80 mm connector and 115 mm screw-base
 compatibility.
 
 ## Recommended screw base
 
 Use `files/base/sandstonelayers-base-v4-smooth-drilled.3mf` with the connected
-lamp v4 releases. Base v4 preserves the v3 screw and core geometry, replaces only
+lamp v5 releases. Base v4 preserves the v3 screw and core geometry, replaces only
 the outer body with a tangent-continuous curve into the flat top, and retains
 the existing drill/cord mesh as an active Bambu Studio negative part. Regenerate
 it with `main/generate_base_v4.py`.
