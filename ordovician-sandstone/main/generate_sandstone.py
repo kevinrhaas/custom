@@ -528,6 +528,8 @@ def build_hollow_vase_mesh(outer_rings, inner_diameter, target_height, solid_bas
     return all_points, faces
 
 
+def build_hollow_mesh(new_rings, target_height, wall_thickness,
+                      solid_base=0.0, base_hole_diameter=0.0):
     """Build a hollow tube mesh with inner and outer walls.
 
     Structure:
