@@ -1,0 +1,127 @@
+{
+  "generator": "generate_sandstone_v4.py",
+  "parameters": {
+    "height": 180.0,
+    "layers": 166,
+    "wall": 2.0,
+    "base": 9.46,
+    "hole": 66.0,
+    "top_lip_segments": 8,
+    "source": "raw/1-illinois_sandstone_cylinder_v3.scad",
+    "connector": "files/connect/80mm-lamp-attach-base-manifold-v4.stl"
+  },
+  "construction": {
+    "outer_rings": 166,
+    "inner_rings": 157,
+    "points_per_ring": 120,
+    "first_organic_inner_outer_ring": 10,
+    "first_organic_inner_min_z_mm": 10.048755,
+    "floor_z_mm": 9.46,
+    "radial_wall_mm": 2.0,
+    "hole_diameter_mm": 66.0,
+    "top_lip_radius_mm": 1.0,
+    "top_lip_segments": 8,
+    "top_lip_join_z_mm": 179.0,
+    "top_lip_crest_z_mm": 180.0,
+    "source_rings_retained": 111,
+    "connector_boolean_union": true,
+    "continuous_interior_floor": true
+  },
+  "validation": {
+    "lamp_body": {
+      "vertices": 39840,
+      "faces": 79680,
+      "unique_edges": 119520,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 123957.21327518308,
+      "minimum_triangle_area_mm2": 0.3246215700179578,
+      "bounds_min_mm": [
+        -48.59345,
+        -47.87653,
+        0.0
+      ],
+      "bounds_max_mm": [
+        48.90704,
+        47.3558,
+        180.0
+      ],
+      "size_mm": [
+        97.50049,
+        95.23233,
+        180.0
+      ],
+      "watertight": true
+    },
+    "connector": {
+      "vertices": 6823,
+      "faces": 13646,
+      "unique_edges": 20469,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 16631.11801516805,
+      "minimum_triangle_area_mm2": 2.6939233066514134e-09,
+      "bounds_min_mm": [
+        -40.0,
+        -40.0,
+        0.0
+      ],
+      "bounds_max_mm": [
+        40.0,
+        40.0,
+        9.460000038146973
+      ],
+      "size_mm": [
+        80.0,
+        80.0,
+        9.460000038146973
+      ],
+      "watertight": true
+    },
+    "final": {
+      "vertices": 43259,
+      "faces": 86518,
+      "unique_edges": 129777,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 125437.75449336602,
+      "minimum_triangle_area_mm2": 6.258330207134726e-10,
+      "bounds_min_mm": [
+        -48.593448638916016,
+        -47.876529693603516,
+        0.0
+      ],
+      "bounds_max_mm": [
+        48.907039642333984,
+        47.35580062866211,
+        180.0
+      ],
+      "size_mm": [
+        97.50048828125,
+        95.23233032226562,
+        180.0
+      ],
+      "watertight": true
+    },
+    "boolean_engine": "manifold3d 3.5.2",
+    "single_body_boolean_union": true,
+    "internal_floor_coplanar_duplicate_faces": 0
+  },
+  "outputs": [
+    "illinois_sandstone_v4_180mm_166L_wall2_base9.46_hole66_connector80.stl",
+    "illinois_sandstone_v4_180mm_166L_wall2_base9.46_hole66_connector80.3mf",
+    "illinois_sandstone_v4_180mm_166L_wall2_base9.46_hole66_connector80.scad"
+  ]
+}

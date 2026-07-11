@@ -1,0 +1,199 @@
+{
+  "source": "/Users/khaas/Library/Mobile Documents/com~apple~CloudDocs/projects/custom/ordovician-sandstone/files/connect/80mm-lamp-attach-base.stl",
+  "source_components": 27,
+  "repaired_components": 1,
+  "components": [
+    {
+      "index": 0,
+      "source_faces": 5638,
+      "output_faces": 5364,
+      "repaired": true
+    },
+    {
+      "index": 1,
+      "source_faces": 2880,
+      "output_faces": 2880,
+      "repaired": false
+    },
+    {
+      "index": 2,
+      "source_faces": 2880,
+      "output_faces": 2880,
+      "repaired": false
+    },
+    {
+      "index": 3,
+      "source_faces": 82,
+      "output_faces": 82,
+      "repaired": false
+    },
+    {
+      "index": 4,
+      "source_faces": 70,
+      "output_faces": 70,
+      "repaired": false
+    },
+    {
+      "index": 5,
+      "source_faces": 68,
+      "output_faces": 68,
+      "repaired": false
+    },
+    {
+      "index": 6,
+      "source_faces": 66,
+      "output_faces": 66,
+      "repaired": false
+    },
+    {
+      "index": 7,
+      "source_faces": 66,
+      "output_faces": 66,
+      "repaired": false
+    },
+    {
+      "index": 8,
+      "source_faces": 64,
+      "output_faces": 64,
+      "repaired": false
+    },
+    {
+      "index": 9,
+      "source_faces": 60,
+      "output_faces": 60,
+      "repaired": false
+    },
+    {
+      "index": 10,
+      "source_faces": 60,
+      "output_faces": 60,
+      "repaired": false
+    },
+    {
+      "index": 11,
+      "source_faces": 60,
+      "output_faces": 60,
+      "repaired": false
+    },
+    {
+      "index": 12,
+      "source_faces": 58,
+      "output_faces": 58,
+      "repaired": false
+    },
+    {
+      "index": 13,
+      "source_faces": 54,
+      "output_faces": 54,
+      "repaired": false
+    },
+    {
+      "index": 14,
+      "source_faces": 48,
+      "output_faces": 48,
+      "repaired": false
+    },
+    {
+      "index": 15,
+      "source_faces": 46,
+      "output_faces": 46,
+      "repaired": false
+    },
+    {
+      "index": 16,
+      "source_faces": 44,
+      "output_faces": 44,
+      "repaired": false
+    },
+    {
+      "index": 17,
+      "source_faces": 42,
+      "output_faces": 42,
+      "repaired": false
+    },
+    {
+      "index": 18,
+      "source_faces": 40,
+      "output_faces": 40,
+      "repaired": false
+    },
+    {
+      "index": 19,
+      "source_faces": 40,
+      "output_faces": 40,
+      "repaired": false
+    },
+    {
+      "index": 20,
+      "source_faces": 40,
+      "output_faces": 40,
+      "repaired": false
+    },
+    {
+      "index": 21,
+      "source_faces": 40,
+      "output_faces": 40,
+      "repaired": false
+    },
+    {
+      "index": 22,
+      "source_faces": 34,
+      "output_faces": 34,
+      "repaired": false
+    },
+    {
+      "index": 23,
+      "source_faces": 34,
+      "output_faces": 34,
+      "repaired": false
+    },
+    {
+      "index": 24,
+      "source_faces": 34,
+      "output_faces": 34,
+      "repaired": false
+    },
+    {
+      "index": 25,
+      "source_faces": 32,
+      "output_faces": 32,
+      "repaired": false
+    },
+    {
+      "index": 26,
+      "source_faces": 32,
+      "output_faces": 32,
+      "repaired": false
+    }
+  ],
+  "boolean_engine": "manifold3d 3.5.2",
+  "mesh": {
+    "vertices": 6823,
+    "faces": 13646,
+    "unique_edges": 20469,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "connected_components": 1,
+    "unused_vertices": 0,
+    "degenerate_faces": 0,
+    "duplicate_faces": 0,
+    "signed_volume_mm3": 16631.11801516805,
+    "minimum_triangle_area_mm2": 2.6939233066514134e-09,
+    "bounds_min_mm": [
+      -40.0,
+      -40.0,
+      0.0
+    ],
+    "bounds_max_mm": [
+      40.0,
+      40.0,
+      9.460000038146973
+    ],
+    "size_mm": [
+      80.0,
+      80.0,
+      9.460000038146973
+    ],
+    "watertight": true
+  }
+}
