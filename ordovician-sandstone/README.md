@@ -6,6 +6,11 @@ Parametric, geology-inspired cylindrical lamp shades that mimic the layered stra
 
 The original model is a hand-sculpted polyhedron cylinder with 111 rings of 120 vertices each, capturing a naturalistic sandstone strata surface. The parametric generator reads this source geometry and regenerates it at any target size, interpolating between rings to preserve the organic character.
 
+For the 180 mm lamp, use **v2** (`main/generate_sandstone_v2.py`). It retains
+every original source ring, produces one watertight shell/base/hole mesh, and
+adds a rounded inward-return top lip. The earlier generator remains available
+for compatibility with its existing files.
+
 ### Features
 
 - **Height control** — scale to any height (default 120 mm)
@@ -20,7 +25,9 @@ The original model is a hand-sculpted polyhedron cylinder with 111 rings of 120 
 ```
 ordovician-sandstone/
 ├── main/
-│   ├── generate_sandstone.py      # Parametric generator (current version)
+│   ├── generate_sandstone.py      # Original parametric generator
+│   ├── generate_sandstone_v2.py   # Detail-preserving watertight lamp generator
+│   ├── test_generate_sandstone_v2.py
 │   └── archive/                   # Previous generator versions (v1–v4)
 ├── raw/                           # Original hand-sculpted SCAD source files
 ├── files/
@@ -34,6 +41,9 @@ ordovician-sandstone/
 
 ```bash
 cd ordovician-sandstone/main
+
+# Recommended 180mm lamp: 166 layers, 2mm wall, 9.46mm base, 66mm hole
+python3 generate_sandstone_v2.py
 
 # Default — recreate original (120mm, 111 layers)
 python3 generate_sandstone.py
@@ -66,6 +76,10 @@ python3 generate_sandstone.py --height-percent 150
 | `--height-percent` | Height as percentage of baseline | 100 |
 | `--height-scale` | Height as scale factor | 1.0 |
 | `-o` | Output filename | *(auto-generated)* |
+
+V2 uses `--hole` instead of `--base-hole`, adds `--top-lip-segments`, and
+writes STL, 3MF, SCAD, and a validation report into `files/lamp/v2/` by
+default. See `files/lamp/v2/README.md` for the complete v2 preset.
 
 ## Generated File Naming
 

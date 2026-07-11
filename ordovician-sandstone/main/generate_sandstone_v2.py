@@ -629,7 +629,7 @@ def write_report(
         "parameters": asdict(parameters),
         "construction": build_metadata,
         "mesh": asdict(report),
-        "outputs": [str(output) for output in outputs],
+        "outputs": [output.name for output in outputs],
     }
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
@@ -683,6 +683,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     preserved = source_preserving_resample(source_rings, args.layers)
     outer_rings = scale_rings_to_height(preserved, args.height)
 
+    try:
+        source_display = str(source_path.relative_to(SCRIPT_DIR.parent))
+    except ValueError:
+        source_display = str(source_path)
+
     parameters = Parameters(
         height=args.height,
         layers=args.layers,
@@ -690,7 +695,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         base=args.base,
         hole=args.hole,
         top_lip_segments=args.top_lip_segments,
-        source=str(source_path),
+        source=source_display,
     )
     mesh, build_metadata = build_lamp_mesh(
         outer_rings,
