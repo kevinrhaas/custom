@@ -1,0 +1,224 @@
+{
+  "generator": "generate_sandstone_v7.py",
+  "parameters": {
+    "height": 120.0,
+    "layers": 111,
+    "wall": 2.0,
+    "base": 9.46,
+    "hole": 66.0,
+    "top_lip_segments": 8,
+    "source": "raw/1-illinois_sandstone_cylinder_v3.scad",
+    "connector": "files/connect/80mm-lamp-attach-base-manifold-v4.stl"
+  },
+  "construction": {
+    "outer_rings": 111,
+    "inner_rings": 102,
+    "points_per_ring": 120,
+    "first_organic_inner_outer_ring": 10,
+    "first_organic_inner_min_z_mm": 9.936956166666667,
+    "floor_z_mm": 9.46,
+    "radial_wall_mm": 2.0,
+    "hole_diameter_mm": 66.0,
+    "top_lip_radius_mm": 1.0,
+    "top_lip_segments": 8,
+    "top_lip_join_z_mm": 119.0,
+    "top_lip_crest_z_mm": 120.0,
+    "source_rings_retained": 111,
+    "connector_boolean_union": true,
+    "connector_top_clearance_mm": 0.2,
+    "smooth_inner_lead_in_depth_mm": 1.5,
+    "smooth_inner_lead_in_bottom_z_mm": 7.960000000000001,
+    "connector_bore_cut_radius_mm": 33.05,
+    "connector_geometry_on_finish_plane": false,
+    "connector_geometry_in_smooth_lead_in": false,
+    "continuous_interior_floor": true,
+    "top_taper_curve": "raised cosine",
+    "top_taper_height_mm": 8.0,
+    "top_taper_inset_mm": 1.5,
+    "top_taper_start_z_mm": 111.0,
+    "organic_profile_height_mm": 119.0,
+    "last_organic_segment_height_mm": 1.0657243333333355,
+    "top_transition_total_height_mm": 9.0,
+    "geometry_only_3mf": true
+  },
+  "validation": {
+    "lamp_body": {
+      "vertices": 26640,
+      "faces": 53280,
+      "unique_edges": 79920,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 90353.13867183264,
+      "minimum_triangle_area_mm2": 0.2431830710662075,
+      "bounds_min_mm": [
+        -48.59345,
+        -47.87653,
+        0.0
+      ],
+      "bounds_max_mm": [
+        48.90704,
+        47.3558,
+        120.0
+      ],
+      "size_mm": [
+        97.50049,
+        95.23233,
+        120.0
+      ],
+      "watertight": true
+    },
+    "source_connector": {
+      "vertices": 6823,
+      "faces": 13646,
+      "unique_edges": 20469,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 16631.11801516805,
+      "minimum_triangle_area_mm2": 2.6939233066514134e-09,
+      "bounds_min_mm": [
+        -40.0,
+        -40.0,
+        0.0
+      ],
+      "bounds_max_mm": [
+        40.0,
+        40.0,
+        9.460000038146973
+      ],
+      "size_mm": [
+        80.0,
+        80.0,
+        9.460000038146973
+      ],
+      "watertight": true
+    },
+    "smoothed_connector": {
+      "vertices": 4884,
+      "faces": 9768,
+      "unique_edges": 14652,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 15950.57298000517,
+      "minimum_triangle_area_mm2": 3.631157596828416e-08,
+      "bounds_min_mm": [
+        -40.0,
+        -40.0,
+        0.0
+      ],
+      "bounds_max_mm": [
+        40.0,
+        40.0,
+        9.260000228881836
+      ],
+      "size_mm": [
+        80.0,
+        80.0,
+        9.260000228881836
+      ],
+      "watertight": true
+    },
+    "final": {
+      "vertices": 29052,
+      "faces": 58104,
+      "unique_edges": 87156,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "connected_components": 1,
+      "unused_vertices": 0,
+      "degenerate_faces": 0,
+      "duplicate_faces": 0,
+      "signed_volume_mm3": 91487.87248322155,
+      "minimum_triangle_area_mm2": 6.676801556294894e-10,
+      "bounds_min_mm": [
+        -48.593448638916016,
+        -47.876529693603516,
+        0.0
+      ],
+      "bounds_max_mm": [
+        48.907039642333984,
+        47.35580062866211,
+        120.0
+      ],
+      "size_mm": [
+        97.50048828125,
+        95.23233032226562,
+        120.0
+      ],
+      "watertight": true
+    },
+    "connector_top_clearance_mm": 0.2,
+    "smooth_lead_in": {
+      "top_z_mm": 9.46,
+      "bottom_z_mm": 7.960000000000001,
+      "depth_mm": 1.5,
+      "nominal_bore_radius_mm": 33.0,
+      "connector_cut_radius_mm": 33.05,
+      "connector_intruding_vertices": 0,
+      "exact_dash_cap_vertices": 0,
+      "exact_dash_cap_faces": 0,
+      "dashed_zone_faces": 0,
+      "clean": true
+    },
+    "finish_plane": {
+      "z_mm": 9.46,
+      "faces": 240,
+      "expected_faces": 240,
+      "upward_faces": 240,
+      "downward_faces": 0,
+      "minimum_triangle_area_mm2": 6.010366598051405,
+      "micro_triangles": 0,
+      "minimum_radius_mm": 32.99999825410598,
+      "maximum_radius_mm": 46.87965724018645,
+      "clean": true
+    },
+    "top_taper": {
+      "curve": "raised cosine",
+      "crest_z_mm": 120.0,
+      "rounded_lip_join_z_mm": 119.0,
+      "organic_profile_height_mm": 119.0,
+      "taper_start_z_mm": 111.0,
+      "taper_height_mm": 8.0,
+      "radial_inset_mm": 1.5,
+      "total_transition_height_to_crest_mm": 9.0,
+      "affected_outer_rings": 8,
+      "top_outer_radius_before_min_mm": 38.99950196164177,
+      "top_outer_radius_before_max_mm": 46.59397791410388,
+      "top_outer_radius_after_min_mm": 37.49950196164177,
+      "top_outer_radius_after_max_mm": 45.09397791410388,
+      "minimum_inner_rim_radius_mm": 35.49950196164177,
+      "minimum_inner_rim_diameter_mm": 70.99900392328354,
+      "maximum_slope_mm_per_mm": 0.2945243112740431,
+      "maximum_angle_from_vertical_degrees": 16.410983008800088,
+      "validation_layer_height_mm": 0.16,
+      "maximum_radial_shift_per_layer_mm": 0.0471238898038469,
+      "validation_line_width_mm": 0.4,
+      "minimum_line_overlap_percent": 82.30146543930736,
+      "last_organic_segment_height_mm": 1.0657243333333355,
+      "maximum_last_segment_slope_mm_per_mm": 0.44246336401731584,
+      "maximum_last_segment_angle_from_vertical_degrees": 23.867634666946735,
+      "maximum_last_segment_radial_shift_per_layer_mm": 0.07079413824277053,
+      "endpoint_tangent_start": 0.0,
+      "endpoint_tangent_end": 0.0,
+      "printable_without_support": true
+    },
+    "single_body_boolean_union": true,
+    "geometry_only_3mf": true
+  },
+  "outputs": [
+    "illinois_sandstone_v7_120mm_111L_wall2_base9.46_hole66_connector80.stl",
+    "illinois_sandstone_v7_120mm_111L_wall2_base9.46_hole66_connector80.3mf",
+    "illinois_sandstone_v7_120mm_111L_wall2_base9.46_hole66_connector80.scad"
+  ]
+}

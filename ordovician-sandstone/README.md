@@ -6,12 +6,12 @@ Parametric, geology-inspired cylindrical lamp shades that mimic the layered stra
 
 The original model is a hand-sculpted polyhedron cylinder with 111 rings of 120 vertices each, capturing a naturalistic sandstone strata surface. The parametric generator reads this source geometry and regenerates it at any target size, interpolating between rings to preserve the organic character.
 
-For connected lamps, use **v6** (`main/generate_sandstone_v6.py`). It retains
-every original source ring, preserves the gentle rounded inward-return top lip,
-and adds a 1.50 mm smooth cylindrical lead-in below the 66 mm inner rim. This
-keeps the upper screw profile from projecting as repeated dashed divots while
-preserving 7.96 mm of lower connector engagement. Earlier generators remain
-available for compatibility with existing files.
+For connected lamps, use **v7** (`main/generate_sandstone_v7.py`). It retains
+every original source ring and all v6 connector/interior fixes, then eases the
+upper wall inward by 1.5 mm across 8 mm before flowing into the existing 1 mm
+rounded inward-return lip. The resulting 9 mm transition is gentle,
+support-free, and only reduces the opening diameter by 3 mm. Earlier generators
+remain available for compatibility with existing files.
 
 ### Features
 
@@ -37,6 +37,8 @@ ordovician-sandstone/
 │   ├── test_generate_sandstone_v5.py
 │   ├── generate_sandstone_v6.py   # Smooth inner-rim lead-in connected lamp
 │   ├── test_generate_sandstone_v6.py
+│   ├── generate_sandstone_v7.py   # Gentle tapered-top connected lamp
+│   ├── test_generate_sandstone_v7.py
 │   ├── generate_coupon.py         # Transparency test-coupon generator
 │   └── archive/                   # Previous generator versions (v1–v4)
 ├── raw/                           # Original hand-sculpted SCAD source files
@@ -59,11 +61,11 @@ texture. See [`files/coupon/`](files/coupon/) and `main/generate_coupon.py`.
 ```bash
 cd ordovician-sandstone/main
 
-# Recommended connected v6 releases (automatically 111L, 139L, and 166L)
+# Recommended connected v7 releases (automatically 111L, 139L, and 166L)
 python3 -m pip install -r requirements-v4.txt
-python3 generate_sandstone_v6.py --height 120
-python3 generate_sandstone_v6.py --height 150
-python3 generate_sandstone_v6.py --height 180
+python3 generate_sandstone_v7.py --height 120
+python3 generate_sandstone_v7.py --height 150
+python3 generate_sandstone_v7.py --height 180
 
 # Default — recreate original (120mm, 111 layers)
 python3 generate_sandstone.py
@@ -97,11 +99,12 @@ python3 generate_sandstone.py --height-percent 150
 | `--height-scale` | Height as scale factor | 1.0 |
 | `-o` | Output filename | *(auto-generated)* |
 
-V6 uses `--hole` instead of `--base-hole`, supports `--top-lip-segments`, and
-writes STL, 3MF, SCAD, and a validation report into
-`files/lamp/v6/connected/` by default. The repaired 80 mm threaded connector
-is Boolean-unified below a smooth 1.50 mm inner-rim lead-in. See
-`files/lamp/v6/connected/README.md` for the complete v6 preset.
+V7 uses `--hole` instead of `--base-hole`, supports `--top-lip-segments`,
+`--top-taper-height`, and `--top-taper-inset`, and writes STL, geometry-only
+3MF, SCAD, and a validation report into `files/lamp/v7/connected/` by default.
+The repaired 80 mm threaded connector is Boolean-unified below a smooth 1.50 mm
+inner-rim lead-in. See `files/lamp/v7/connected/README.md` for the complete v7
+preset.
 
 ## Generated File Naming
 
@@ -120,14 +123,14 @@ The `files/lamp/` directory includes ready-to-print files for:
 - **150mm** — medium tall (138L, wall 2mm)
 - **180mm** — tall (165–166L, wall 2mm, with/without base hole)
 
-The v6 connected releases standardize these at 111L, 139L, and 166L,
+The v7 connected releases standardize these at 111L, 139L, and 166L,
 respectively, all with a manifold 80 mm connector and 115 mm screw-base
 compatibility.
 
 ## Recommended screw base
 
 Use `files/base/sandstonelayers-base-v4-smooth-drilled.3mf` with the connected
-lamp v6 releases. Base v4 preserves the v3 screw and core geometry, replaces only
+lamp v7 releases. Base v4 preserves the v3 screw and core geometry, replaces only
 the outer body with a tangent-continuous curve into the flat top, and retains
 the existing drill/cord mesh as an active Bambu Studio negative part. Regenerate
 it with `main/generate_base_v4.py`.
