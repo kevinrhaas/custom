@@ -8,8 +8,9 @@ The original model is a hand-sculpted polyhedron cylinder with 111 rings of 120 
 
 For the 180 mm lamp, use **v2** (`main/generate_sandstone_v2.py`). It retains
 every original source ring, produces one watertight shell/base/hole mesh, and
-adds a rounded inward-return top lip. The earlier generator remains available
-for compatibility with its existing files.
+adds a rounded inward-return top lip. Current 120, 150, and 180 mm releases
+also embed the 80 mm lamp connector that mates with `base-115mm-v3.stl`. The
+earlier generator remains available for compatibility with its existing files.
 
 ### Features
 
@@ -50,7 +51,9 @@ texture. See [`files/coupon/`](files/coupon/) and `main/generate_coupon.py`.
 ```bash
 cd ordovician-sandstone/main
 
-# Recommended 180mm lamp: 166 layers, 2mm wall, 9.46mm base, 66mm hole
+# Recommended connected releases (automatically 111L, 139L, and 166L)
+python3 generate_sandstone_v2.py --height 120
+python3 generate_sandstone_v2.py --height 150
 python3 generate_sandstone_v2.py
 
 # Default — recreate original (120mm, 111 layers)
@@ -86,8 +89,10 @@ python3 generate_sandstone.py --height-percent 150
 | `-o` | Output filename | *(auto-generated)* |
 
 V2 uses `--hole` instead of `--base-hole`, adds `--top-lip-segments`, and
-writes STL, 3MF, SCAD, and a validation report into `files/lamp/v2/` by
-default. See `files/lamp/v2/README.md` for the complete v2 preset.
+writes STL, 3MF, SCAD, and a validation report into
+`files/lamp/v2/connected/` by default. The original 80 mm threaded connector
+is included unless `--no-connector` is specified. See
+`files/lamp/v2/README.md` for the complete v2 preset.
 
 ## Generated File Naming
 
@@ -105,6 +110,9 @@ The `files/lamp/` directory includes ready-to-print files for:
 - **120mm** — original size (110L and 111L variants, wall 1–2mm)
 - **150mm** — medium tall (138L, wall 2mm)
 - **180mm** — tall (165–166L, wall 2mm, with/without base hole)
+
+The v2 connected releases standardize these at 111L, 139L, and 166L,
+respectively, all with the 80 mm connector and 115 mm screw-base compatibility.
 
 ## Tools
 

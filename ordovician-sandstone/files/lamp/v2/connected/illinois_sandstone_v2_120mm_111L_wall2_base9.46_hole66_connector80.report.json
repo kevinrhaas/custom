@@ -1,0 +1,81 @@
+{
+  "generator": "generate_sandstone_v2.py",
+  "parameters": {
+    "height": 120.0,
+    "layers": 111,
+    "wall": 2.0,
+    "base": 9.46,
+    "hole": 66.0,
+    "top_lip_segments": 8,
+    "source": "raw/1-illinois_sandstone_cylinder_v3.scad",
+    "connector": "files/connect/80mm-lamp-attach-base.stl"
+  },
+  "construction": {
+    "outer_rings": 111,
+    "inner_rings": 102,
+    "points_per_ring": 120,
+    "first_organic_inner_outer_ring": 10,
+    "first_organic_inner_min_z_mm": 10.02046,
+    "floor_z_mm": 9.46,
+    "radial_wall_mm": 2.0,
+    "hole_diameter_mm": 66.0,
+    "top_lip_radius_mm": 1.0,
+    "top_lip_segments": 8,
+    "top_lip_join_z_mm": 119.0,
+    "top_lip_crest_z_mm": 120.0
+  },
+  "mesh": {
+    "vertices": 26640,
+    "faces": 53280,
+    "unique_edges": 79920,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "connected_components": 1,
+    "unused_vertices": 0,
+    "degenerate_faces": 0,
+    "duplicate_faces": 0,
+    "signed_volume_mm3": 90467.64807245789,
+    "minimum_triangle_area_mm2": 0.08898595935892359,
+    "bounds_min_mm": [
+      -48.59345,
+      -47.87653,
+      0.0
+    ],
+    "bounds_max_mm": [
+      48.90704,
+      47.3558,
+      120.0
+    ],
+    "size_mm": [
+      97.50049,
+      95.23233,
+      120.0
+    ],
+    "watertight": true
+  },
+  "assembly": {
+    "type": "overlapping multipart print assembly",
+    "connector_source": "files/connect/80mm-lamp-attach-base.stl",
+    "connector_vertices": 6351,
+    "connector_faces": 12612,
+    "connector_bounds_min_mm": [
+      -40.0,
+      -40.0,
+      0.0
+    ],
+    "connector_bounds_max_mm": [
+      40.0,
+      40.0,
+      9.460000038146973
+    ],
+    "connector_outer_diameter_mm": 80.00001188415948,
+    "connector_minimum_radius_mm": 31.460946801070346,
+    "placement": "centered at x=0, y=0; z=0..base height",
+    "mates_with": "files/base/base-115mm-v3.stl"
+  },
+  "outputs": [
+    "illinois_sandstone_v2_120mm_111L_wall2_base9.46_hole66_connector80.stl",
+    "illinois_sandstone_v2_120mm_111L_wall2_base9.46_hole66_connector80.3mf",
+    "illinois_sandstone_v2_120mm_111L_wall2_base9.46_hole66_connector80.scad"
+  ]
+}
