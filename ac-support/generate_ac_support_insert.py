@@ -2,8 +2,8 @@
 """Generate the AC screen support insert and fit gauges as manifold STL meshes.
 
 All dimensions are millimeters. The production part is designed for nominal
-20 x 20 x 1 mm square aluminum tube (18 mm nominal inside width) and an
-M5 x 7.1 x 9.5 mm heat-set insert.
+20 x 20 x 1 mm square aluminum tube (18 mm nominal inside width), ASA-CF,
+and an M5 x 7.1 x 9.5 mm heat-set insert.
 """
 
 from __future__ import annotations
@@ -93,15 +93,15 @@ class MeshBuilder:
         return np.asarray(self.vertices, dtype=float), np.asarray(self.faces, dtype=np.int64)
 
 
-def make_insert(stem_width: float = 17.6) -> tuple[np.ndarray, np.ndarray]:
+def make_insert(stem_width: float = 17.7) -> tuple[np.ndarray, np.ndarray]:
     flange_width = 23.0
     flange_radius = 1.8
     flange_thickness = 3.0
-    stem_radius = 1.2
+    stem_radius = 1.5
     insertion_depth = 40.0
     tip_chamfer = 1.0
     pilot_diameter = 6.4
-    pocket_depth = 10.8
+    pocket_depth = 10.5
     entrance_chamfer = 0.5
 
     mesh = MeshBuilder()
@@ -213,7 +213,7 @@ def write_ascii_stl(path: Path, vertices: np.ndarray, faces: np.ndarray, name: s
 
 
 def main() -> None:
-    jobs = [("ac_support_insert_17.6mm.stl", make_insert(17.6), (23.0, 23.0, 43.0))]
+    jobs = [("ac_support_insert_17.7mm_ASA-CF.stl", make_insert(17.7), (23.0, 23.0, 43.0))]
     for width in (17.5, 17.7, 17.9):
         jobs.append(
             (
