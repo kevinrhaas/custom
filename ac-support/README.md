@@ -17,7 +17,7 @@ internal corner radii, flow calibration, and ASA-CF shrinkage all affect fit.
 
 ## Production part dimensions
 
-- Stem: 17.7 × 17.7 mm rounded square
+- Stem options: 17.7 × 17.7, 17.9 × 17.9, or 18.0 × 18.0 mm rounded square
 - Stem corner radius: 1.5 mm
 - Insertion depth: 40.0 mm
 - Flange: 23 × 23 × 3 mm
@@ -49,8 +49,8 @@ optional washer is used.
   so the screw remains coaxial with the insert.
 - Do not use an M5 × 35 mm screw with this 20 mm tube and 9.5 mm insert; it is
   likely to bottom out before clamping.
-- The 17.7 mm stem leaves 5.65 mm of plastic around the 6.4 mm pocket at its
-  narrowest section and 32.5 mm behind the 10.5 mm-deep pocket.
+- Even the 17.7 mm stem leaves 5.65 mm of plastic around the 6.4 mm pocket at
+  its narrowest section; every version has 32.5 mm behind the 10.5 mm-deep pocket.
 - For serviceable retention of the plug inside its tube, add a separate M3
   cross-screw through the aluminum and the solid portion of the stem, well behind
   the 10.5 mm insert pocket.
