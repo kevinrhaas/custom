@@ -213,7 +213,11 @@ def write_ascii_stl(path: Path, vertices: np.ndarray, faces: np.ndarray, name: s
 
 
 def main() -> None:
-    jobs = [("ac_support_insert_17.7mm_ASA-CF.stl", make_insert(17.7), (23.0, 23.0, 43.0))]
+    jobs = [
+        ("ac_support_insert_17.7mm_ASA-CF.stl", make_insert(17.7), (23.0, 23.0, 43.0)),
+        ("ac_support_insert_17.9mm_ASA-CF.stl", make_insert(17.9), (23.0, 23.0, 43.0)),
+        ("ac_support_insert_18.0mm_ASA-CF.stl", make_insert(18.0), (23.0, 23.0, 43.0)),
+    ]
     for width in (17.5, 17.7, 17.9):
         jobs.append(
             (
