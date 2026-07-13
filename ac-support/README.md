@@ -1,6 +1,6 @@
 # AC screen support insert
 
-This folder contains an ASA-CF production insert and three quick fit gauges for
+This folder contains three full-length ASA-CF inserts and three quick fit gauges for
 nominal 20 × 20 × 1 mm square aluminum tube (18 mm nominal inside width).
 
 ## Start here
@@ -8,8 +8,9 @@ nominal 20 × 20 × 1 mm square aluminum tube (18 mm nominal inside width).
 1. Print the three fit gauges in ASA-CF using the same printer/profile as the final part.
 2. Test them in an actual cut end of the aluminum tube. Use the largest size that
    seats fully by firm hand pressure without hammering or splitting the tube seam.
-3. The production STL is 17.7 mm. If a different gauge wins, change
-   `make_insert(17.7)` near the bottom of the generator and rerun it.
+3. Full-length 17.7, 17.9, and 18.0 mm STLs are included. Start with 17.9 mm if
+   its gauge fits correctly. The 18.0 mm version has zero nominal clearance and
+   should only be used if the matching gauge seats without excessive force.
 
 Do not assume the nominal 18 mm opening is exact. Powder coat, extrusion tolerance,
 internal corner radii, flow calibration, and ASA-CF shrinkage all affect fit.
@@ -56,7 +57,9 @@ optional washer is used.
 
 ## Files
 
-- `ac_support_insert_17.7mm_ASA-CF.stl` — production part
+- `ac_support_insert_17.7mm_ASA-CF.stl` — full-length 17.7 mm option
+- `ac_support_insert_17.9mm_ASA-CF.stl` — full-length 17.9 mm option
+- `ac_support_insert_18.0mm_ASA-CF.stl` — full-length 18.0 mm option
 - `fit_gauge_17.5mm.stl` — 10 mm-deep fit gauge
 - `fit_gauge_17.7mm.stl` — 10 mm-deep fit gauge
 - `fit_gauge_17.9mm.stl` — 10 mm-deep fit gauge
