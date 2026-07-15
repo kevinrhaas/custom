@@ -5,10 +5,10 @@ Glass-insert bamboo sleeve — fluted planter that takes a straight glass cylind
 
 The printed part is now a decorative fluted SLEEVE; a straight glass vase drops
 inside and holds the water (so no waterproofing at all). Instead of a flat
-sliced rim, the top FLUTES FADE and the rim ROLLS OVER in a rounded dome
-(quarter-ellipse: vertical where it leaves the body, horizontal at the top) that
-curves up and over to meet the glass — a soft, rounded transition from the
-printed body up into the glass cylinder.
+sliced rim, the top FLUTES FADE and the wall swells into a full, soft
+HAND-THROWN ROUNDED TOP (a domed shoulder that bulges out then rolls over) which
+curves up to meet the glass — an organic transition from the printed body up
+into the glass cylinder.
 
 Glass insert (measured):
   * Height    148 mm
@@ -40,8 +40,9 @@ WALL_MIN = 3.5              # body wall, bore -> flute valley
 FLOOR = 4.0                 # solid floor thickness
 FLOOR_HOLE_DIA = 22.0       # center push-hole (pop the glass out / drain spills)
 SLEEVE_H = 127.0            # overall printed height (glass reveal = GLASS_H+FLOOR - SLEEVE_H)
-NECK_H = 15.0              # height of the rounded rim roll-over at the top
-RIM_LIP = 1.2               # rim wall thickness where the roll-over meets the glass
+NECK_H = 18.0              # height of the rounded hand-thrown top
+RIM_BULGE = 2.5            # how far the rounded shoulder swells out (0 = plain dome)
+RIM_LIP = 1.2               # rim wall thickness where the top meets the glass
 N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
@@ -58,11 +59,14 @@ def build_sleeve(n_waves, amp, belly=0.0):
         base = r_bore + WALL_MIN + belly * math.sin(math.pi * min(z, z_neck) / z_neck)
         if z <= z_neck:
             return base
-        # Quarter-ellipse round-over: vertical tangent where it leaves the body,
-        # rolling to a horizontal tangent at the rim -> a rounded dome lip that
-        # curves up and over to meet the glass.
+        # Hand-thrown rounded top: a quarter-ellipse dome (vertical tangent at
+        # the body, horizontal at the rim) plus a smooth outward swell so the
+        # shoulder bulges into a full, soft rounded curve before it rolls over to
+        # the glass — like a pot shaped by hand.
         u = (z - z_neck) / NECK_H
-        return top_r + (base - top_r) * math.sqrt(max(0.0, 1.0 - u * u))
+        dome = top_r + (base - top_r) * math.sqrt(max(0.0, 1.0 - u * u))
+        swell = RIM_BULGE * 0.5 * (1.0 - math.cos(2.0 * math.pi * u))
+        return dome + swell
 
     def env(z):
         if z <= z_neck:
