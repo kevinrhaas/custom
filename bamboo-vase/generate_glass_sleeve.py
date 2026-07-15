@@ -5,10 +5,9 @@ Glass-insert bamboo sleeve — fluted planter that takes a straight glass cylind
 
 The printed part is now a decorative fluted SLEEVE; a straight glass vase drops
 inside and holds the water (so no waterproofing at all). Instead of a flat
-sliced rim, the top FLUTES FADE and the wall swells into a full, soft
-HAND-THROWN ROUNDED TOP (a domed shoulder that bulges out then rolls over) which
-curves up to meet the glass — an organic transition from the printed body up
-into the glass cylinder.
+sliced rim, the top FLUTES FADE and the wall rounds over in a SIMPLE SMOOTH
+ROUNDED LIP (a single convex curve, no bulge) up to meet the glass — a clean
+transition from the printed body into the glass cylinder.
 
 Glass insert (measured):
   * Height    148 mm
@@ -40,9 +39,9 @@ WALL_MIN = 3.5              # body wall, bore -> flute valley
 FLOOR = 4.0                 # solid floor thickness
 FLOOR_HOLE_DIA = 22.0       # center push-hole (pop the glass out / drain spills)
 SLEEVE_H = 127.0            # overall printed height (glass reveal = GLASS_H+FLOOR - SLEEVE_H)
-NECK_H = 18.0              # height of the rounded hand-thrown top
-RIM_BULGE = 2.5            # how far the rounded shoulder swells out (0 = plain dome)
-RIM_LIP = 1.2               # rim wall thickness where the top meets the glass
+NECK_H = 12.0              # height of the simple rounded lip at the top
+RIM_BULGE = 0.0            # 0 = plain smooth rounded lip (no outward swell)
+RIM_LIP = 1.2               # rim wall thickness where the lip meets the glass
 N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
