@@ -43,9 +43,9 @@ N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
 
-def build_sleeve(n_waves, amp, belly=0.0):
+def build_sleeve(n_waves, amp, belly=0.0, clearance=CLEARANCE):
     r_glass = GLASS_OD / 2.0
-    r_bore = r_glass + CLEARANCE                 # 50.95
+    r_bore = r_glass + clearance                 # 50.95 at default clearance
     r_hole = FLOOR_HOLE_DIA / 2.0
     H = SLEEVE_H
     z_round = H - ROUNDOVER_R                     # where the top-edge bevel begins
@@ -145,9 +145,15 @@ def main():
         mesh, info = build_sleeve(n, amp, belly)
         path = os.path.join(out, f"glass-sleeve-{name}.stl")
         nt = mesh.write_binary_stl(path)
-        print(f"[{name:13s}] ribs={info['n_waves']:2d} depth={info['amp']:.1f}  "
+        print(f"[{name:16s}] ribs={info['n_waves']:2d} depth={info['amp']:.1f}  "
               f"bore={info['bore']:.1f}  OD valley/crest={info['outer_valley']:.0f}/{info['outer_crest']:.0f}  "
               f"H={info['height']:.0f} reveal={info['reveal']:.0f}mm tris={nt}")
+
+    # looser-fit backup of the print-in-progress (14rib-bow10) — bore 102.5mm
+    # (0.8mm/side) in case the printed hole comes out snug on the 100.9mm glass.
+    mesh, info = build_sleeve(14, 4.0, 10.0, clearance=0.8)
+    nt = mesh.write_binary_stl(os.path.join(out, "glass-sleeve-14rib-bow10-loose.stl"))
+    print(f"[14rib-bow10-loose] bore={info['bore']:.1f}mm (0.8mm/side) tris={nt}")
 
 
 if __name__ == "__main__":
