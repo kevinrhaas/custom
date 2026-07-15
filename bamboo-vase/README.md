@@ -236,6 +236,52 @@ water in the bottom of any of these vessels, the center of gravity sits within
 the base footprint and it won't tip in normal use. If the plant leans a lot to
 one side, prefer **zen-squat** (widest base) and load beads generously.
 
+## Glass-insert sleeve (takes a glass cylinder)
+
+`stl/glass-sleeve/glass-sleeve-*.stl` is a separate line of fluted sleeves built
+around a **store-bought straight glass cylinder** that does the water-holding —
+so the printed part needs **no waterproofing at all**. The glass drops in, holds
+the water, and lifts out to refill.
+
+Built for this insert (measure yours — glass varies):
+
+| Glass insert | Value |
+|---|---|
+| Height | 148 mm |
+| Outer diameter | 100.3–100.9 mm |
+| Wall | 3.5 mm |
+
+**Design notes:**
+- **Bore 101.9 mm** — 0.5 mm/side slip fit over the glass. Drop a felt dot or a
+  bead of silicone in the bottom to stop any rattle.
+- **Coved top, not a sliced rim.** Over the top ~22 mm the ribs fade out and the
+  wall coves inward, ending tangent to the glass in a thin ~1.2 mm rim, so the
+  fluted body flows smoothly up into the glass cylinder. ~25 mm of glass (plus
+  its rounded lip) rises above the collar.
+- **Closed floor with a 22 mm push-hole** — the glass rests on the floor; poke a
+  finger/dowel through the hole to pop the snug glass back out, and it drains any
+  spill.
+- Interior is a plumb cylinder (the glass bore); exterior is bore + wall + flute,
+  vertical ribs → no overhangs. 128-facet mesh (AD5M/fuzzy-friendly).
+
+**Rib variants** (side-profile previews in [`img/previews-glass/`](img/previews-glass)):
+
+| Variant | Ribs | Depth | Outer ∅ (valley→crest) | Character |
+|---|---|---|---|---|
+| **14rib-base** | 14 | 4.0 mm | 109 → 117 mm | zen-classic rib match |
+| **11rib-medium** | 11 | 5.5 mm | 109 → 120 mm | beefier |
+| **8rib-chunky** | 8 | 7.0 mm | 109 → 123 mm | bold rounded lobes |
+| **6rib-bold** | 6 | 8.5 mm | 109 → 126 mm | dramatic scallops |
+
+**Print:** upright, no supports; same fuzzy-skin recipe as the vases. Any glass
+size or look is a one-liner in `generate_glass_sleeve.py`: `CLEARANCE` (fit),
+`SLEEVE_H` (glass reveal — lower shows more glass), `WALL_MIN`/`NECK_H` (how
+dramatically the top necks in), and the `VARIANTS` table (ribs).
+
+```bash
+python3 generate_glass_sleeve.py     # edit the constants / VARIANTS at the top
+```
+
 ## Generating / customizing
 
 No third-party libraries required.
@@ -259,15 +305,18 @@ bamboo-vase/
 ├─ generate_test_coupon.py   # wall test coupon for finish testing
 ├─ generate_fuzzy_coupons.py # labeled fuzzy-skin finish coupons (9)
 ├─ generate_liner.py         # watertight PETG inner liner cup
+├─ generate_glass_sleeve.py  # fluted sleeve for a glass cylinder insert
 ├─ stl/                      # vases + collars + coupon + light mesh + liner
 │  ├─ bamboo-vase-zen-classic-light.stl  # reduced-poly (AD5M/fuzzy-friendly)
 │  ├─ liner-zen-classic-petg.stl         # watertight PETG liner cup
+│  ├─ glass-sleeve/          # 4 rib variants for the glass insert
 │  └─ fuzzy/                 # 9 labeled fuzzy-skin coupons
 ├─ img/
 │  ├─ ref-wave-ring.jpeg     # the reference "Wave Ring" card
 │  ├─ bamboo-height.jpeg     # plant height reference (~24 in)
 │  ├─ bunch-depth.jpeg       # bunch diameter reference (~3 in)
-│  └─ previews/*.svg         # per-variant top + side previews
+│  ├─ previews/*.svg         # per-variant top + side previews
+│  └─ previews-glass/*.svg   # glass-sleeve side profiles (with reveal)
 └─ README.md
 ```
 
