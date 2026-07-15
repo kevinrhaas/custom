@@ -16,9 +16,9 @@ Glass insert (measured):
 Fit / proportions (defaults):
   * Bore ID 101.9 mm  -> 0.5 mm/side slip fit over the glass.
   * Solid closed floor (4 mm) — the glass rests on it (no drainage hole).
-  * Glass rests on the floor; sleeve is 127 mm tall so ~25 mm of glass + its
-    rounded rim rises above the coved collar.
-  * Body wall (bore -> flute valley) 3.5 mm; ribs add on top of that.
+  * Sleeve height = glass height + floor, so the glass sits FLUSH with the rim.
+  * Body wall (bore -> flute valley) 5.5 mm; the fluted body bows out (barrel)
+    via `belly`; a 5 mm quarter-round bevel softens the top rim edge.
 
 Interior stays a plumb cylinder (the glass bore). Exterior = bore + wall + flute,
 with the flutes fading and the wall coving in over the top `neck_h`. Vertical
@@ -33,12 +33,12 @@ GLASS_OD = 100.9
 GLASS_H = 148.0
 
 # ---- fit / build ----
-CLEARANCE = 0.5              # radial slip fit over the glass
-WALL_MIN = 3.5              # body wall, bore -> flute valley
+CLEARANCE = 0.5             # radial slip fit over the glass
+WALL_MIN = 5.5              # body wall, bore -> flute valley (thick enough for a 5mm bevel)
 FLOOR = 4.0                 # solid floor thickness
 FLOOR_HOLE_DIA = 0.0        # center push-hole diameter (0 = solid floor)
-SLEEVE_H = 127.0            # overall printed height (glass reveal = GLASS_H+FLOOR - SLEEVE_H)
-ROUNDOVER_R = 2.0          # tiny quarter-round bevel on the top rim edge (<= wall)
+SLEEVE_H = GLASS_H + FLOOR  # printed height = flush with the top of the glass
+ROUNDOVER_R = 5.0           # quarter-round bevel on the top rim edge (<= WALL_MIN)
 N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
@@ -50,16 +50,22 @@ def build_sleeve(n_waves, amp, belly=0.0):
     H = SLEEVE_H
     z_round = H - ROUNDOVER_R                     # where the top-edge bevel begins
 
+    def r_body(theta, z):
+        # fluted body that bows out (barrel) via `belly`, peaking at mid-height
+        # and returning to the wall at the base and rim (so the bevel always has
+        # a full WALL_MIN to work with).
+        bow = belly * math.sin(math.pi * z / H)
+        return r_bore + WALL_MIN + bow + amp * (0.5 + 0.5 * math.cos(n_waves * theta))
+
     def r_out(theta, z):
-        # Plumb, fluted body full height (like the zen-classic), with a flat top
-        # rim -- but the sharp top OUTER edge is softened by a tiny quarter-round
-        # bevel over the last ROUNDOVER_R mm (radius rolls in, tangent horizontal
-        # at the rim). Nothing else changes: no taper, no neck, no dome.
-        r_body = r_bore + WALL_MIN + amp * (0.5 + 0.5 * math.cos(n_waves * theta))
+        # Bowed fluted body with a flat top rim; the sharp top OUTER edge is
+        # softened by a quarter-round bevel over the last ROUNDOVER_R mm (rolls
+        # in, tangent horizontal at the rim). No taper, neck, or dome.
         if z <= z_round:
-            return r_body
+            return r_body(theta, z)
+        rb = r_body(theta, z_round)          # freeze body radius at the bevel start
         dz = z - z_round
-        return (r_body - ROUNDOVER_R) + math.sqrt(max(0.0, ROUNDOVER_R ** 2 - dz ** 2))
+        return (rb - ROUNDOVER_R) + math.sqrt(max(0.0, ROUNDOVER_R ** 2 - dz ** 2))
 
     n = N_THETA
     th = [2 * math.pi * i / n for i in range(n)]
@@ -122,11 +128,12 @@ def build_sleeve(n_waves, amp, belly=0.0):
 
 
 VARIANTS = [
-    # name          n_waves  amp   belly
-    ("14rib-base",   14,      4.0,  0.0),   # zen-classic match
-    ("11rib-medium", 11,      5.5,  0.0),   # beefier
-    ("8rib-chunky",   8,      7.0,  0.0),   # bold rounded lobes
-    ("6rib-bold",     6,      8.5,  0.0),   # dramatic scallops
+    # name           n_waves  amp   belly (bow-out at mid-height)
+    ("14rib-bow3",   14,      4.0,   3.0),   # subtle bow
+    ("14rib-bow6",   14,      4.0,   6.0),   # moderate bow (near the original)
+    ("14rib-bow10",  14,      4.0,  10.0),   # full barrel bow
+    ("11rib-bow7",   11,      5.5,   7.0),   # beefier ribs, bowed
+    ("8rib-bow8",     8,      7.0,   8.0),   # bold lobes, bowed
 ]
 
 
