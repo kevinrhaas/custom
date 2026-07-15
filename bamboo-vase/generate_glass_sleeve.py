@@ -4,10 +4,9 @@ Glass-insert bamboo sleeve — fluted planter that takes a straight glass cylind
 ================================================================================
 
 The printed part is now a decorative fluted SLEEVE; a straight glass vase drops
-inside and holds the water (so no waterproofing at all). Instead of a flat
-sliced rim, the top FLUTES FADE and the wall leans in on a simple STRAIGHT CONE
-TAPER (no curve, no lip) up to meet the glass — a clean transition from the
-printed body into the glass cylinder.
+inside and holds the water (so no waterproofing at all). It is the zen-classic
+fluted body (plumb, full-height flutes, flat top rim) bored for the glass, with
+just a TINY QUARTER-ROUND BEVEL softening the sharp top rim edge — nothing else.
 
 Glass insert (measured):
   * Height    148 mm
@@ -39,8 +38,7 @@ WALL_MIN = 3.5              # body wall, bore -> flute valley
 FLOOR = 4.0                 # solid floor thickness
 FLOOR_HOLE_DIA = 0.0        # center push-hole diameter (0 = solid floor)
 SLEEVE_H = 127.0            # overall printed height (glass reveal = GLASS_H+FLOOR - SLEEVE_H)
-NECK_H = 22.0              # height of the straight cone taper at the top
-RIM_LIP = 1.2               # rim wall thickness where the taper meets the glass
+ROUNDOVER_R = 2.0          # tiny quarter-round bevel on the top rim edge (<= wall)
 N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
@@ -49,27 +47,19 @@ def build_sleeve(n_waves, amp, belly=0.0):
     r_glass = GLASS_OD / 2.0
     r_bore = r_glass + CLEARANCE                 # 50.95
     r_hole = FLOOR_HOLE_DIA / 2.0
-    top_r = r_bore + RIM_LIP                      # outer radius at the rim
-    z_neck = SLEEVE_H - NECK_H
     H = SLEEVE_H
-
-    def outer_mean(z):
-        base = r_bore + WALL_MIN + belly * math.sin(math.pi * min(z, z_neck) / z_neck)
-        if z <= z_neck:
-            return base
-        # Straight cone taper: a simple linear lean-in from the body to the rim,
-        # no curve, no lip. The flutes fade over the taper so the top is a clean
-        # smooth cone meeting the glass.
-        u = (z - z_neck) / NECK_H
-        return base + (top_r - base) * u
-
-    def env(z):
-        if z <= z_neck:
-            return 1.0
-        return 1.0 - smoothstep(0.0, 1.0, (z - z_neck) / NECK_H)
+    z_round = H - ROUNDOVER_R                     # where the top-edge bevel begins
 
     def r_out(theta, z):
-        return outer_mean(z) + amp * env(z) * (0.5 + 0.5 * math.cos(n_waves * theta))
+        # Plumb, fluted body full height (like the zen-classic), with a flat top
+        # rim -- but the sharp top OUTER edge is softened by a tiny quarter-round
+        # bevel over the last ROUNDOVER_R mm (radius rolls in, tangent horizontal
+        # at the rim). Nothing else changes: no taper, no neck, no dome.
+        r_body = r_bore + WALL_MIN + amp * (0.5 + 0.5 * math.cos(n_waves * theta))
+        if z <= z_round:
+            return r_body
+        dz = z - z_round
+        return (r_body - ROUNDOVER_R) + math.sqrt(max(0.0, ROUNDOVER_R ** 2 - dz ** 2))
 
     n = N_THETA
     th = [2 * math.pi * i / n for i in range(n)]
@@ -78,35 +68,33 @@ def build_sleeve(n_waves, amp, belly=0.0):
 
     mesh = Mesh()
 
-    # OUTER surface (z = 0 .. H)
-    O = [[None] * n for _ in range(N_Z + 1)]
-    for j in range(N_Z + 1):
-        z = H * j / N_Z
-        for i in range(n):
-            r = r_out(th[i], z)
-            O[j][i] = (r * cs[i], r * sn[i], z)
-    for j in range(N_Z):
+    # OUTER surface: coarse up the plumb body, dense through the top roundover
+    NB = max(60, int(z_round / 1.5))
+    NR = 12
+    zs_outer = [z_round * j / NB for j in range(NB)] + \
+               [z_round + ROUNDOVER_R * k / NR for k in range(NR + 1)]
+    O = [[(r_out(th[i], z) * cs[i], r_out(th[i], z) * sn[i], z) for i in range(n)]
+         for z in zs_outer]
+    for j in range(len(zs_outer) - 1):
         for i in range(n):
             i2 = (i + 1) % n
             a, b, c, d = O[j][i], O[j][i2], O[j + 1][i2], O[j + 1][i]
             mesh.quad(a, b, c, d, (a[0] + c[0], a[1] + c[1], 0.0))
 
     # INNER bore (z = FLOOR .. H), plumb cylinder r_bore
-    I = [[None] * n for _ in range(N_Z + 1)]
-    for j in range(N_Z + 1):
-        z = FLOOR + (H - FLOOR) * j / N_Z
-        for i in range(n):
-            I[j][i] = (r_bore * cs[i], r_bore * sn[i], z)
-    for j in range(N_Z):
+    NI = max(30, int((H - FLOOR) / 3))
+    zs_inner = [FLOOR + (H - FLOOR) * j / NI for j in range(NI + 1)]
+    I = [[(r_bore * cs[i], r_bore * sn[i], z) for i in range(n)] for z in zs_inner]
+    for j in range(len(zs_inner) - 1):
         for i in range(n):
             i2 = (i + 1) % n
             a, b, c, d = I[j][i], I[j][i2], I[j + 1][i2], I[j + 1][i]
             mesh.quad(a, b, c, d, (-a[0], -a[1], 0.0))
 
-    # TOP rim (outer_top -> bore_top)
+    # TOP rim (outer_top -> bore_top) — flat annulus at z = H
     for i in range(n):
         i2 = (i + 1) % n
-        mesh.quad(O[N_Z][i], O[N_Z][i2], I[N_Z][i2], I[N_Z][i], (0, 0, 1))
+        mesh.quad(O[-1][i], O[-1][i2], I[-1][i2], I[-1][i], (0, 0, 1))
 
     if r_hole > 0.0:
         # center push-hole wall (r_hole, z = 0 .. FLOOR), faces into the hole
@@ -129,7 +117,7 @@ def build_sleeve(n_waves, amp, belly=0.0):
     reveal = (GLASS_H + FLOOR) - SLEEVE_H
     info = dict(n_waves=n_waves, amp=amp, bore=2 * r_bore,
                 outer_valley=2 * (r_bore + WALL_MIN), outer_crest=2 * (r_bore + WALL_MIN + amp),
-                height=SLEEVE_H, reveal=reveal, rim=RIM_LIP, tris=len(mesh.tris))
+                height=SLEEVE_H, reveal=reveal, bevel=ROUNDOVER_R, tris=len(mesh.tris))
     return mesh, info
 
 
