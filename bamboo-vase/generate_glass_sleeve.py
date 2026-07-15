@@ -5,9 +5,9 @@ Glass-insert bamboo sleeve — fluted planter that takes a straight glass cylind
 
 The printed part is now a decorative fluted SLEEVE; a straight glass vase drops
 inside and holds the water (so no waterproofing at all). Instead of a flat
-sliced rim, the top FLUTES FADE and the wall rounds over in a SIMPLE SMOOTH
-ROUNDED LIP (a single convex curve, no bulge) up to meet the glass — a clean
-transition from the printed body into the glass cylinder.
+sliced rim, the top FLUTES FADE and the wall leans in on a simple STRAIGHT CONE
+TAPER (no curve, no lip) up to meet the glass — a clean transition from the
+printed body into the glass cylinder.
 
 Glass insert (measured):
   * Height    148 mm
@@ -16,7 +16,7 @@ Glass insert (measured):
 
 Fit / proportions (defaults):
   * Bore ID 101.9 mm  -> 0.5 mm/side slip fit over the glass.
-  * Closed floor (4 mm) with a 22 mm center push-hole to pop the glass out.
+  * Solid closed floor (4 mm) — the glass rests on it (no drainage hole).
   * Glass rests on the floor; sleeve is 127 mm tall so ~25 mm of glass + its
     rounded rim rises above the coved collar.
   * Body wall (bore -> flute valley) 3.5 mm; ribs add on top of that.
@@ -37,11 +37,10 @@ GLASS_H = 148.0
 CLEARANCE = 0.5              # radial slip fit over the glass
 WALL_MIN = 3.5              # body wall, bore -> flute valley
 FLOOR = 4.0                 # solid floor thickness
-FLOOR_HOLE_DIA = 22.0       # center push-hole (pop the glass out / drain spills)
+FLOOR_HOLE_DIA = 0.0        # center push-hole diameter (0 = solid floor)
 SLEEVE_H = 127.0            # overall printed height (glass reveal = GLASS_H+FLOOR - SLEEVE_H)
-NECK_H = 12.0              # height of the simple rounded lip at the top
-RIM_BULGE = 0.0            # 0 = plain smooth rounded lip (no outward swell)
-RIM_LIP = 1.2               # rim wall thickness where the lip meets the glass
+NECK_H = 22.0              # height of the straight cone taper at the top
+RIM_LIP = 1.2               # rim wall thickness where the taper meets the glass
 N_THETA = 128               # AD5M/fuzzy-friendly resolution
 N_Z = 130
 
@@ -58,14 +57,11 @@ def build_sleeve(n_waves, amp, belly=0.0):
         base = r_bore + WALL_MIN + belly * math.sin(math.pi * min(z, z_neck) / z_neck)
         if z <= z_neck:
             return base
-        # Hand-thrown rounded top: a quarter-ellipse dome (vertical tangent at
-        # the body, horizontal at the rim) plus a smooth outward swell so the
-        # shoulder bulges into a full, soft rounded curve before it rolls over to
-        # the glass — like a pot shaped by hand.
+        # Straight cone taper: a simple linear lean-in from the body to the rim,
+        # no curve, no lip. The flutes fade over the taper so the top is a clean
+        # smooth cone meeting the glass.
         u = (z - z_neck) / NECK_H
-        dome = top_r + (base - top_r) * math.sqrt(max(0.0, 1.0 - u * u))
-        swell = RIM_BULGE * 0.5 * (1.0 - math.cos(2.0 * math.pi * u))
-        return dome + swell
+        return base + (top_r - base) * u
 
     def env(z):
         if z <= z_neck:
@@ -112,22 +108,23 @@ def build_sleeve(n_waves, amp, belly=0.0):
         i2 = (i + 1) % n
         mesh.quad(O[N_Z][i], O[N_Z][i2], I[N_Z][i2], I[N_Z][i], (0, 0, 1))
 
-    # center push-hole wall (r_hole, z = 0 .. FLOOR), faces into the hole
-    Hb = [(r_hole * cs[i], r_hole * sn[i], 0.0) for i in range(n)]
-    Hf = [(r_hole * cs[i], r_hole * sn[i], FLOOR) for i in range(n)]
-    for i in range(n):
-        i2 = (i + 1) % n
-        mesh.quad(Hb[i], Hb[i2], Hf[i2], Hf[i], (-cs[i], -sn[i], 0.0))
-
-    # BOTTOM cap (z=0 annulus: r_hole -> outer), faces down
-    for i in range(n):
-        i2 = (i + 1) % n
-        mesh.quad(O[0][i], O[0][i2], Hb[i2], Hb[i], (0, 0, -1))
-
-    # INNER floor cap (z=FLOOR annulus: r_hole -> r_bore), faces up
-    for i in range(n):
-        i2 = (i + 1) % n
-        mesh.quad(I[0][i], I[0][i2], Hf[i2], Hf[i], (0, 0, 1))
+    if r_hole > 0.0:
+        # center push-hole wall (r_hole, z = 0 .. FLOOR), faces into the hole
+        Hb = [(r_hole * cs[i], r_hole * sn[i], 0.0) for i in range(n)]
+        Hf = [(r_hole * cs[i], r_hole * sn[i], FLOOR) for i in range(n)]
+        for i in range(n):
+            i2 = (i + 1) % n
+            mesh.quad(Hb[i], Hb[i2], Hf[i2], Hf[i], (-cs[i], -sn[i], 0.0))
+            mesh.quad(O[0][i], O[0][i2], Hb[i2], Hb[i], (0, 0, -1))   # bottom annulus
+            mesh.quad(I[0][i], I[0][i2], Hf[i2], Hf[i], (0, 0, 1))    # inner floor annulus
+    else:
+        # solid floor: full disks (fan to center) top and bottom
+        cb = (0.0, 0.0, 0.0)
+        cf = (0.0, 0.0, FLOOR)
+        for i in range(n):
+            i2 = (i + 1) % n
+            mesh.add(cb, O[0][i], O[0][i2], (0, 0, -1))   # bottom disk, faces down
+            mesh.add(cf, I[0][i], I[0][i2], (0, 0, 1))    # inner floor disk, faces up
 
     reveal = (GLASS_H + FLOOR) - SLEEVE_H
     info = dict(n_waves=n_waves, amp=amp, bore=2 * r_bore,
