@@ -27,8 +27,10 @@
   --honey:#c8961c; --bloom:#c65790; --sky:#3f83b5; --soil:#8a6a44;
 }
 
-/* ---- aurora backdrop (fleet standard, garden-tinted) ---- */
-.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+/* ---- aurora backdrop (fleet standard, garden-tinted) ----
+   z-index:-1 keeps it behind the shell frame (rail + main) WITHOUT positioning
+   those — the shell owns their layout, incl. the mobile off-canvas drawer. */
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
 .aurora span{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);
   opacity:.22;mix-blend-mode:screen;animation:hg-drift 34s ease-in-out infinite}
 [data-theme="light"] .aurora span{mix-blend-mode:multiply;opacity:.13}
@@ -37,7 +39,6 @@
 .aurora span:nth-child(3){background:var(--bloom);top:22vmax;right:20vmax;opacity:.12;animation-delay:-20s}
 .aurora span:nth-child(4){background:var(--honey);bottom:8vmax;left:18vmax;opacity:.1;animation-delay:-7s}
 @keyframes hg-drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6vmax,4vmax) scale(1.12)}66%{transform:translate(-5vmax,3vmax) scale(.94)}}
-.ps-rail,.ps-main{position:relative;z-index:1}
 
 /* ---- view frame ---- */
 .ps-view{scroll-behavior:smooth}
