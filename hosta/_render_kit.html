@@ -1,0 +1,74 @@
+<section id="render-kit"><div class="w">
+<h2>Render kit — turning these plans into accurate images</h2>
+<p class="lede">The side elevations are demoted on purpose: they're rough massing sketches. The
+photoreal renders are what sell a design — so the workflow is to hand a stronger image model
+(GPT / DALL·E) the <b>measured top-down plan</b> and the <b>exact shopping list</b> for a design,
+generate a render, then drop it into that design's render slot. This kit is the prompt and the
+rules that make the result match the plan.</p>
+
+<div class="warn" style="max-width:900px"><b>What went wrong in the first pass.</b> The earlier
+renders were close, but the <b>borders came out far too dense</b> — plants packed shoulder-to-shoulder
+into a solid wall, with no soil, no mulch, and far more plants than the plan calls for. Hostas in a
+new planting sit <em>apart</em>, each as a distinct clump with dark mulch between them; they only
+touch years later at mature spread. The prompt below fixes that explicitly.</p></div>
+
+<div class="rk-grid">
+  <div class="rk-prompt">
+    <button class="rk-copy" type="button" data-copy="rkPrompt">Copy</button>
+    <h3>Master prompt (paste, then append the design's data)</h3>
+    <pre class="rk-pre" id="rkPrompt">Photorealistic photograph of a narrow shade garden border planted along a Chicago
+"gangway" — the 10-foot-wide grass-and-path corridor between two tall brick bungalows.
+Overcast, soft even daylight. Camera at standing eye height (~5.5 ft), looking down the
+length of the corridor so the bed recedes toward a vanishing point.
+
+THE SITE (fixed for every render):
+- Two 22-ft red-brick bungalow walls, one on each side, in deep shade. A simple path
+  or lawn strip runs down the middle.
+- The planting bed is ONE continuous strip, only 3 FEET DEEP, running ~95 feet along
+  ONE wall. It is NOT a wide mass planting.
+- Dark hardwood-mulch soil is clearly visible BETWEEN plants.
+
+PLANTING RULES (this is where past renders failed — follow exactly):
+- Plants are spaced at their mature spread and are NOT yet touching: each hosta is a
+  SEPARATE, distinct clump with a visible ring of dark mulch around it. Sparse, freshly
+  planted, breathing room — NOT a dense continuous hedge or wall of foliage.
+- Match the COUNTS and VARIETIES in the list below. Do not invent extra plants or fill
+  every gap. If in doubt, use FEWER plants, more mulch.
+- The front edge is a single thin ribbon of small mouse-ear hostas — one plant deep,
+  low and neat, with mulch showing between them. Not a solid border.
+- Keep leaf colors true to the varieties named (blue = dusty blue-grey; gold = soft
+  chartreuse; white-margined = green leaf with a clean creamy-white edge).
+- Realistic nursery-size plants (1-gallon), not giant mature specimens.
+
+STYLE: natural documentary garden photography, shallow-to-medium depth of field, no
+people, no text, no labels, true-to-life proportions for a 3-ft-deep bed.
+
+— THEN PASTE, from the design you're rendering —
+DESIGN NAME + the SHOPPING LIST table (variety, mature spread, quantity), read
+street-end (left, a little more light) to the deep shade slot. Tell it the dominant
+color story in one line (e.g. "blue anchors, crisp white margins, blue mouse-ear edge").</pre>
+  </div>
+  <div class="rk-side">
+    <div class="panel rk-note">
+      <h3>How to use it</h3>
+      <p>1. Pick a design (or a variation) above. Each has a <b>top-down plan</b> and a
+      <b>shopping list</b> — those are the source of truth.</p>
+      <p>2. Copy the master prompt, then paste that design's shopping list and its one-line
+      color story underneath.</p>
+      <p>3. Generate. Ask for a couple of variations. When one matches the plan, save it and
+      drop it into that design's <b>render slot</b>.</p>
+      <div class="rk-badfix">
+        <p><b>If the borders still look too dense,</b> add: <em>"Reduce the number of plants by
+        a third, double the visible mulch between clumps, and make sure no two plants touch."</em></p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Feeding it the data</h3>
+      <p>The base plant data (spread, colour, light, price, stock) lives in the
+      <a href="#select">Plant finder</a> — you can <b>export it as JSON</b> or hand a fresh
+      re-pull to a model with the <a href="#select">Lurvey data spec</a>. Everything the
+      renderer needs is in each design's shopping list.</p>
+    </div>
+  </div>
+</div>
+</div></section>

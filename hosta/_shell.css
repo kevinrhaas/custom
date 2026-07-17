@@ -1,0 +1,144 @@
+
+/* ===================================================================
+   GARDEN SHELL — added by build_app.py (aurora, app bar, theme toggle),
+   new components (design gallery, variations, render slots, render kit),
+   and a dark-garden theme layered over the light field-guide.
+   =================================================================== */
+:root{--bg:#f3f7ee;--bg-2:#eaf1e2;--surface:#ffffff;--surface-2:#f6faf2;
+  --border:#d8e6d4;--leaf:#2f7d4c;--leaf-2:#4faf6b;--bloom:#d96aa0;--sky:#4a92c4;--honey:#c8961c;--soil:#8a6a44;}
+#guide{position:relative;z-index:1}
+body{background:var(--bg)}
+
+/* aurora drifting blobs (fleet standard) */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora span{position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(90px);
+  opacity:.16;mix-blend-mode:multiply;animation:hg-drift 34s ease-in-out infinite}
+.aurora span:nth-child(1){background:var(--leaf-2);top:-26vmax;left:-14vmax}
+.aurora span:nth-child(2){background:var(--sky);bottom:-30vmax;right:-12vmax;animation-delay:-12s}
+.aurora span:nth-child(3){background:var(--bloom);top:24vmax;right:22vmax;opacity:.1;animation-delay:-20s}
+.aurora span:nth-child(4){background:var(--honey);bottom:10vmax;left:20vmax;opacity:.09;animation-delay:-7s}
+@keyframes hg-drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6vmax,4vmax) scale(1.12)}66%{transform:translate(-5vmax,3vmax) scale(.94)}}
+
+/* app bar above the guide */
+.hg-appbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:10px 18px;max-width:1180px;margin:0 auto}
+.hg-brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--g-deep);font-size:15px;font-weight:700}
+.hg-brand b{font-weight:800}
+.hg-mark{font-size:20px}
+.hg-appbar-r{display:flex;align-items:center;gap:12px}
+.hg-up{font-size:13px;color:var(--g-mut);text-decoration:none}
+.hg-up:hover{color:var(--g-acc)}
+.hg-theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--g-line);background:var(--g-card);
+  color:var(--g-mut);cursor:pointer;font-size:16px;transition:transform .3s,border-color .16s}
+.hg-theme:hover{transform:rotate(18deg);border-color:var(--g-acc)}
+
+/* design gallery */
+.dg-wrap{margin:8px 0 30px}
+.dg-head h3{font-size:20px;color:var(--g-deep);letter-spacing:-.01em}
+.dg-head p{color:var(--g-mut);font-size:14px;max-width:820px;margin:6px 0 18px}
+.dg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.dg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.dg-grid{grid-template-columns:1fr}}
+.dg-card{display:flex;flex-direction:column;background:var(--g-card);border:1px solid var(--g-line);
+  border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s,box-shadow .15s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.dg-card:hover{transform:translateY(-3px);border-color:var(--g-acc);box-shadow:0 12px 30px rgba(31,58,44,.14)}
+.dg-card.dg-core{border-color:color-mix(in srgb,var(--g-gold) 55%,var(--g-line))}
+.dg-img{aspect-ratio:16/10;background:var(--bg-2);overflow:hidden}
+.dg-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dg-body{display:flex;gap:10px;align-items:center;padding:11px 13px}
+.dg-n{flex:0 0 auto;width:28px;height:28px;border-radius:8px;background:var(--g-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.dg-core .dg-n{background:var(--g-gold)}
+.dg-name{font-weight:700;color:var(--g-deep);font-size:14.5px;line-height:1.2}
+.dg-sub{color:var(--g-mut);font-size:12px;margin-top:1px}
+
+/* side elevations (demoted) */
+.g-sides{margin:14px 0 6px;border:1px solid var(--g-line);border-radius:11px;background:var(--surface-2);overflow:hidden}
+.g-sides>summary{cursor:pointer;list-style:none;padding:11px 15px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.g-sides>summary::-webkit-details-marker{display:none}
+.g-sides>summary::before{content:"▸";color:var(--g-mut);margin-right:6px;font-size:12px}
+.g-sides[open]>summary::before{content:"▾"}
+.g-sides-t{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--g-mut);font-weight:700}
+.g-sides-n{font-size:12px;color:var(--g-mut);opacity:.85}
+.g-sides-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:4px 15px 15px}
+@media(max-width:640px){.g-sides-grid{grid-template-columns:1fr}}
+.g-side{margin:0}
+.g-side figcaption{font-size:11.5px;color:var(--g-mut);margin:0 0 5px}
+.g-side .g-svg{margin:0}
+
+/* render slot (awaiting a GPT image) */
+.g-board-slot{border:1.5px dashed color-mix(in srgb,var(--g-acc) 45%,var(--g-line));background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;min-height:120px;aspect-ratio:auto}
+.g-slot-in{padding:18px 22px;text-align:center;color:var(--g-mut);font-size:13px;max-width:520px}
+.g-slot-in b{display:block;color:var(--g-acc);font-size:13px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+
+/* finalization variations */
+.g-vars{margin:26px 0 4px;padding:20px;border:1px solid color-mix(in srgb,var(--g-gold) 30%,var(--g-line));
+  border-radius:14px;background:linear-gradient(180deg,color-mix(in srgb,var(--g-gold) 6%,var(--surface-2)),var(--surface-2))}
+.g-vars-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.g-core-badge{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7a5a08;
+  background:color-mix(in srgb,var(--g-gold) 18%,#fff);border:1px solid color-mix(in srgb,var(--g-gold) 45%,transparent);
+  padding:4px 9px;border-radius:20px}
+.g-vars-lede{color:var(--g-mut);font-size:13.5px;max-width:840px;margin:8px 0 4px}
+.g-var{margin:18px 0 0;padding:18px;background:var(--g-card);border:1px solid var(--g-line);border-radius:12px}
+.g-var-h{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--g-line);padding-bottom:12px;margin-bottom:12px}
+.g-var-badge{flex:0 0 auto;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+  background:var(--g-acc);padding:4px 9px;border-radius:20px;margin-top:2px}
+.g-var-h h5{margin:0;font-size:17px;color:var(--g-deep);letter-spacing:-.01em}
+.g-var-k{margin:2px 0 0;font-size:13px;color:var(--g-mut)}
+.g-var-meta{margin-left:auto;font-size:12.5px;color:var(--g-mut);align-self:center}
+.g-var-changes{font-size:13.5px;margin:0 0 12px}
+.g-swrow{display:inline-flex;gap:3px;margin-left:6px;vertical-align:1px}
+
+/* render kit */
+#render-kit{padding:44px 0 8px}
+.rk-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+@media(max-width:860px){.rk-grid{grid-template-columns:1fr}}
+.rk-prompt{background:var(--g-deep);border-radius:14px;padding:18px 18px 16px;position:relative}
+.rk-prompt h3{color:#fff;margin:0 0 8px;font-size:15px}
+.rk-pre{margin:0;white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:#e7f0e8;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:14px;max-height:420px;overflow:auto}
+.rk-copy{position:absolute;top:16px;right:16px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;
+  background:var(--g-acc);color:#fff;border:0;border-radius:7px;padding:6px 11px}
+.rk-copy:hover{filter:brightness(1.08)}
+.rk-side .panel{margin-bottom:14px}
+.rk-note b{color:var(--g-deep)}
+.rk-badfix{border-left:3px solid #b23b3b;padding-left:13px;margin:10px 0}
+.rk-badfix b{color:#8f2f2f}
+
+/* ===================================================================
+   DARK GARDEN — flips the field-guide onto a night-garden surface.
+   Photo frames & the light measured drawings stay bright (framed art);
+   all reading surfaces & text move to dark/soft-light.
+   =================================================================== */
+[data-theme="dark"]{color-scheme:dark;
+  --bg:#0d1410;--bg-2:#111b15;--surface:#16211a;--surface-2:#1c2a22;--border:#26382c;}
+[data-theme="dark"] body{background:var(--bg);color:#eaf3ea}
+[data-theme="dark"] .aurora span{mix-blend-mode:screen;opacity:.26}
+[data-theme="dark"] #guide{
+  --g-ink:#eaf3ea;--g-mut:#a7bfae;--g-line:#2a3d31;--g-bg:#0d1410;
+  --g-card:#16211a;--g-acc:#74d18f;--g-deep:#cfe8d5;--g-gold:#e0b43f}
+[data-theme="dark"] .panel,
+[data-theme="dark"] .g-garden,
+[data-theme="dark"] .g-vars,
+[data-theme="dark"] .g-var,
+[data-theme="dark"] .g-sides,
+[data-theme="dark"] .dg-card,
+[data-theme="dark"] .g-board-slot,
+[data-theme="dark"] .selpanel,
+[data-theme="dark"] .legend{background:var(--surface)!important;border-color:var(--border)}
+[data-theme="dark"] .g-var,[data-theme="dark"] .g-board-slot{background:var(--surface-2)!important}
+[data-theme="dark"] nav.g-nav{background:color-mix(in srgb,var(--bg) 82%,transparent)!important;border-bottom-color:var(--border)}
+[data-theme="dark"] nav.g-nav a{background:var(--surface-2);border-color:var(--border);color:var(--g-acc)}
+[data-theme="dark"] .g-h4{color:var(--g-mut)}
+[data-theme="dark"] .ctl input,[data-theme="dark"] .ctl select{background:var(--surface-2);color:#eaf3ea;border-color:var(--border)}
+[data-theme="dark"] .chip{background:var(--surface-2);border-color:var(--border);color:var(--g-acc)}
+[data-theme="dark"] table.seltbl thead th{background:var(--surface)}
+[data-theme="dark"] table.g-tbl tr:hover td,[data-theme="dark"] table.seltbl tr:hover td{background:color-mix(in srgb,var(--g-acc) 8%,transparent)}
+[data-theme="dark"] .hg-theme{background:var(--surface);border-color:var(--border);color:#eaf3ea}
+[data-theme="dark"] .dg-img,[data-theme="dark"] .feat-media{background:#0a0f0c}
+[data-theme="dark"] .core-badge,[data-theme="dark"] .g-core-badge{background:color-mix(in srgb,var(--g-gold) 22%,#000);color:var(--g-gold)}
+/* keep measured drawings & photos on their intended light frame */
+[data-theme="dark"] .g-svg{background:#fff}
+[data-theme="dark"] .g-board{background:#f2f0e9}

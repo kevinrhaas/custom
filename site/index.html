@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom — a workshop of made things</title>
+<meta name="description" content="A workshop of original, custom-designed projects — 3D-printable models, parametric generators, and the occasional deeply-researched garden plan. Made with care, shared in the open.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%B4%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Custom — a workshop of made things">
+<meta property="og:description" content="Original 3D-printable models, parametric generators, and a deeply-researched shade-garden plan. Made with care, shared in the open.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="./">
+    <span class="brand-mark">🪴</span>
+    <span>Cus<span class="grad">tom</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#featured">Featured</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a class="btn btn-ghost" href="https://github.com/kevinrhaas/custom" rel="noopener">GitHub ↗</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="hero-mascot">🪴</span>
+  <h1>A workshop of<br><span class="grad">made things.</span></h1>
+  <p class="hero-sub">Original, custom-designed projects — 3D-printable models, parametric
+  generators, and the occasional deeply-researched garden plan. Designed carefully, shared
+  in the open, and built to actually get made.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary btn-lg" href="hosta/">Open the Hosta Guide →</a>
+    <a class="btn btn-ghost btn-lg" href="#projects">Browse projects</a>
+  </div>
+  <p class="hero-note">Free, open, and account-free. Not part of the Polecat app fleet —
+  but built to the same standards.</p>
+</header>
+
+<main>
+  <!-- FEATURED: Hosta -->
+  <section id="featured" class="wrap">
+    <div class="section-head center">
+      <div class="kicker">Featured</div>
+      <h2>The Gangway Hosta Garden</h2>
+      <p class="lead narrow" style="margin-inline:auto">Six designed plans (plus finalization
+      variations) for ninety-five feet of deep shade between two Chicago bungalows — a real
+      site, a real budget, and the whole Lurvey hosta catalog reasoned through plant by plant.</p>
+    </div>
+    <a class="app-card feature reveal" href="hosta/" style="--c:var(--leaf)">
+      <div class="feat-media"><img src="hosta/assets/renders/design2.jpeg" alt="Photoreal render of a shaded hosta border" loading="lazy"></div>
+      <div class="feat-body">
+        <div class="app-top">
+          <span class="app-glyph">🌿</span>
+          <div><div class="app-name">Hosta Gangway Guide</div><div class="app-sub">interactive planting guide · GitHub Pages</div></div>
+        </div>
+        <p class="app-tagline">Photoreal renders, measured top-down plans, a searchable 74-variety
+        plant finder, soil &amp; slug strategy, a full build sequence and budget — and a render kit
+        for generating better images. Reorganized into one calm, navigable app.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag">6 reference designs</span>
+          <span class="tag">+6 variations</span>
+          <span class="tag">plant finder</span>
+        </div>
+        <div class="app-status"><span class="app-dot"></span>Live · open the app</div>
+      </div>
+    </a>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="band">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="kicker">The workshop</div>
+        <h2>Projects</h2>
+        <p class="lead narrow" style="margin-inline:auto">Mostly FDM-printable models — designed in
+        Blender, OpenSCAD, or generated with Python. Source files live in the repo; click through
+        to any project folder.</p>
+      </div>
+      <div class="apps-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap">
+    <div class="section-head center">
+      <div class="kicker">About</div>
+      <h2>Made carefully, shared openly</h2>
+      <p class="lead narrow" style="margin-inline:auto">Custom is a personal workshop repo: one-off
+      designs that solved a specific problem or scratched a specific itch, kept public so they're
+      useful to someone else. Everything here is designed for FDM printing or, in Hosta's case, for
+      a spade and a Saturday. It borrows the Polecat platform's front-door craft — the drifting
+      aurora backdrop, instant system-font paint, a light/dark garden palette — without being part
+      of the app fleet.</p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/kevinrhaas/custom" rel="noopener">See the source on GitHub ↗</a>
+      <a class="btn btn-ghost" href="hosta/">Open the Hosta Guide</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-brand">Cus<span class="grad">tom</span></div>
+  <div class="foot-links">
+    <a href="#featured">Featured</a>
+    <a href="#projects">Projects</a>
+    <a href="https://github.com/kevinrhaas/custom" rel="noopener">GitHub</a>
+  </div>
+  <div class="foot-meta">© 2026 · a workshop of made things · shared in the open</div>
+</footer>
+
+<script>
+// ---- theme (garden light <-> dark), remembered ----
+(function () {
+  var root = document.documentElement, btn = document.getElementById('themeToggle');
+  var saved = null;
+  try { saved = localStorage.getItem('custom.theme'); } catch (e) {}
+  if (!saved && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) saved = 'dark';
+  if (saved) root.setAttribute('data-theme', saved);
+  function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  paint();
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('custom.theme', next); } catch (e) {}
+    paint();
+  });
+})();
+
+// ---- projects grid (source-linked cards) ----
+(function () {
+  var REPO = 'https://github.com/kevinrhaas/custom/tree/main/';
+  var projects = [
+    { dir: 'bamboo-vase', name: 'Bamboo Vase', glyph: '🎍', c: 'var(--leaf-2)', tag: 'Parametric "Wave Ring" fluted vase for lucky bamboo — six variants + centering collar, pure-Python STL generator.' },
+    { dir: 'chicago-star', name: 'Chicago Star', glyph: '⭐', c: 'var(--sky)', tag: 'Chicago-flag six-pointed star coasters and mesh art pieces, modeled in Blender.' },
+    { dir: 'ordovician-sandstone', name: 'Ordovician Sandstone', glyph: '🪨', c: 'var(--soil)', tag: 'Parametric sandstone-strata lamp shade — organic geology-inspired forms via a Python/OpenSCAD pipeline.' },
+    { dir: 'geometric-sandstone', name: 'Geometric Sandstone', glyph: '🧱', c: 'var(--honey)', tag: 'Faceted geometric take on the sandstone strata form.' },
+    { dir: 'peachtree-city-bowl', name: 'Peachtree City Bowl', glyph: '🥣', c: 'var(--bloom)', tag: 'Parametric wavy-rim decorative bowl designed in OpenSCAD.' },
+    { dir: 'delaney-bowl', name: 'Delaney Bowl', glyph: '🍥', c: 'var(--leaf)', tag: 'A turned-look decorative bowl.' },
+    { dir: 'wave-gentle-snake-planter', name: 'Wave Snake Planter', glyph: '🐍', c: 'var(--leaf-2)', tag: 'Gentle-wave serpentine planter form.' },
+    { dir: 'gridfinity-rationell', name: 'Gridfinity × Rationell', glyph: '🗄️', c: 'var(--sky)', tag: 'Gridfinity adapter for IKEA Rationell drawer organizers.' },
+    { dir: 'garage', name: 'Garage Trim', glyph: '🚪', c: 'var(--soil)', tag: 'Custom garage door header trim pieces, modeled in Blender.' },
+    { dir: 'pentaho', name: 'Pentaho Logo', glyph: '🔶', c: 'var(--honey)', tag: 'Pentaho logo 3D prints, modeled in Blender from SVG source.' },
+    { dir: 'HurricanStrutBracketCover', name: 'Hurricane Strut Cover', glyph: '🌀', c: 'var(--sky)', tag: 'A cover for a hurricane strut bracket.' },
+    { dir: 'Drying-rack', name: 'Drying Rack', glyph: '🧺', c: 'var(--leaf)', tag: 'A custom drying rack.' },
+    { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
+  ];
+  var grid = document.getElementById('projectsGrid');
+  grid.innerHTML = projects.map(function (p) {
+    return '<a class="app-card reveal" href="' + REPO + p.dir + '" rel="noopener" style="--c:' + p.c + '">' +
+      '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
+      '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
+      '<p class="app-tagline">' + p.tag + '</p>' +
+      '<div class="app-status"><span class="app-dot src"></span>Source on GitHub ↗</div></a>';
+  }).join('');
+})();
+
+// ---- reveal on scroll ----
+(function () {
+  var els = [].slice.call(document.querySelectorAll('.reveal'));
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (ents) {
+    ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: .12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+</body>
+</html>
