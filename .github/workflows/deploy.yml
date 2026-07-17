@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+# Static site — no build step. Publishes the curated site/ folder (custom
+# landing + the Hosta guide app), NOT the whole repo: the repo also holds
+# ~2 GB of CAD source (.blend/.stl/.3mf) that must stay OUT of the Pages
+# artifact. Mirrors the Polecat platform deploy pattern (upload-pages-artifact
+# path: site) — the fleet's single-deploy-authority convention.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity-check inline JS parses
+        run: |
+          set -e
+          # No .js modules to check today; guard against accidental additions.
+          for f in $(git ls-files 'site/**/*.js'); do
+            node --check "$f" || { echo "SYNTAX FAIL: $f"; exit 1; }
+          done
+          echo "JS OK"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,89 @@
+<script type="application/json" id="lurveyData">__LURVEY_JSON__</script>
+<script>
+/* Base data layer — renders the plant finder from the Lurvey dataset and wires
+   export / import / refresh. Runs BEFORE the filter script so its rows exist. */
+(function(){
+  var CAT={1:['#1f3a6e','#15284d'],2:['#c8961c','#8c6913'],3:['#7a5aa8','#553e75'],
+    4:['#3d6fb5','#2a4d7e'],5:['#1f7a45','#155530'],6:['#63b394','#457d67'],
+    7:['#8f9c2b','#646d1e'],8:['#d2691e','#934915'],9:['#74a8de','#51759b'],
+    10:['#94a9cf','#677690'],11:['#e0bf2f','#9c8520'],12:['#4f9a56','#376b3c'],
+    13:['#b06a8f','#7b4a64']};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function row(r){
+    var cc=CAT[r.category]||['#888','#555'];
+    var tr=document.createElement('tr');
+    tr.dataset.cat=r.category; tr.dataset.name=String(r.name||'').toLowerCase();
+    tr.dataset.price=r.price; tr.dataset.w=r.spreadFt; tr.dataset.h=r.heightIn;
+    tr.dataset.stock=r.inStock?'1':'0'; tr.dataset.fits=r.fit; tr.dataset.zone=r.zone;
+    tr.dataset.plans=r.plansUsed||0; tr.dataset.q=String(r.search||'').toLowerCase();
+    var img=r.image?'<img loading="lazy" src="'+esc(r.image)+'" alt="">':'';
+    var star=r.star?' <span class="star">&#9733;</span>':'';
+    var note=r.note?'<div class="nt">'+esc(r.note)+'</div>':'';
+    var sizes=(r.sizes||[]).map(function(s){
+      return '<span class="sz '+(s.inStock?'in':'out')+'">'+esc(s.text)+'</span>';}).join('');
+    tr.innerHTML=
+      '<td class="c-sw"><span class="g-sw" style="background:'+cc[0]+';border-color:'+cc[1]+'"></span></td>'+
+      '<td class="c-nm"><div class="nmrow"><span class="th">'+img+'</span><div>'+
+        '<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.name)+'</a>'+star+note+'</div></div></td>'+
+      '<td class="c-cat"><a href="#c'+r.category+'">'+esc(r.categoryLabel)+'</a></td>'+
+      '<td class="c-col">'+esc(r.color)+'</td>'+
+      '<td class="c-sz">'+esc(r.leafSize)+'</td>'+
+      '<td class="c-sp">'+esc(r.spacing)+'</td>'+
+      '<td class="c-li">'+esc(r.light)+'</td>'+
+      '<td class="c-ft"><span class="fit '+(r.fitClass||'y')+'">'+esc(r.fitLabel)+'</span></td>'+
+      '<td class="c-zn"><span class="zn '+(r.zoneClass||'a')+'">'+esc(r.zoneLabel)+'</span></td>'+
+      '<td class="c-pr"><b>$'+Number(r.price||0).toFixed(2)+'</b>'+
+        '<span class="b '+(r.inStock?'in':'out')+'">'+esc(r.stockLabel)+'</span>'+
+        '<div class="szs">'+sizes+'</div></td>';
+    return tr;
+  }
+  var KEY='hosta.lurvey.override';
+  var EMB={records:[]};
+  try{ EMB=JSON.parse(document.getElementById('lurveyData').textContent); }catch(e){}
+  var override=null;
+  try{ var o=localStorage.getItem(KEY); if(o) override=JSON.parse(o); }catch(e){}
+  var active=(override&&Array.isArray(override.records))?override:EMB;
+
+  var body=document.getElementById('selbody');
+  if(body){
+    body.innerHTML='';
+    var frag=document.createDocumentFragment();
+    (active.records||[]).forEach(function(r){ frag.appendChild(row(r)); });
+    body.appendChild(frag);
+  }
+  // status + controls
+  var st=document.getElementById('dataStatus');
+  if(st){
+    st.textContent = override
+      ? 'Imported set: '+(active.count||active.records.length)+' varieties, pulled '+(active.pulledAt||'?')+'.'
+      : 'Shipped base data: '+(EMB.count||(EMB.records||[]).length)+' varieties, pulled '+(EMB.pulledAt||'?')+'.';
+  }
+  function download(name,text){
+    var b=new Blob([text],{type:'application/json'}), u=URL.createObjectURL(b),
+        a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a);
+    a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(u);},1000);
+  }
+  var ex=document.getElementById('dataExport');
+  if(ex) ex.addEventListener('click',function(){ download('lurvey-hostas.json', JSON.stringify(active,null,2)); });
+  var file=document.getElementById('dataFile');
+  if(file) file.addEventListener('change',function(){
+    var f=file.files[0]; if(!f) return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      try{
+        var p=JSON.parse(rd.result);
+        if(!p||!Array.isArray(p.records)||!p.records.length) throw new Error('no records[]');
+        localStorage.setItem(KEY, JSON.stringify(p));
+        location.reload();
+      }catch(err){ alert('Import failed: '+err.message+'\n\nExpected the lurvey-hostas/v1 shape — see the data spec.'); }
+      file.value='';
+    };
+    rd.readAsText(f);
+  });
+  var rs=document.getElementById('dataReset');
+  if(rs) rs.addEventListener('click',function(){
+    try{ localStorage.removeItem(KEY); }catch(e){} location.reload();
+  });
+})();
+</script>

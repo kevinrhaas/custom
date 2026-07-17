@@ -2,6 +2,15 @@
 
 A collection of original, custom-designed 3D-printable models — spanning decorative art, functional household parts, and organizational tools. All models are designed for FDM printing.
 
+## Live site
+
+A garden-themed landing page and the interactive **Hosta Gangway Guide** are published via GitHub Pages from the [`site/`](site/) folder:
+
+- **Landing:** `https://kevinrhaas.github.io/custom/`
+- **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
+
+The published site is only the `site/` folder (curated web content) — the CAD source in the project folders stays in the repo but out of the deploy. See [`site/`](site/) and `.github/workflows/deploy.yml`. Not part of the Polecat app fleet, but it follows the platform's static-first / aurora-backdrop / light-dark conventions. The Hosta app is generated from `hosta/hosta_gangway_guide_v3.html` by `hosta/build_app.py`.
+
 ## Projects
 
 | Project | Description |
