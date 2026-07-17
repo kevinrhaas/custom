@@ -1,0 +1,236 @@
+OrcaSlicer Process Settings Checklist
+
+Use this checklist in future sessions when requesting a complete review of an OrcaSlicer **Process** profile.  
+Provide the value for every setting listed below. The list contains the distinct settings visible in the supplied screenshots.
+
+#Quality
+
+##Layer height
+- Layer height
+- First layer height
+
+##Line width
+- Default
+- First layer
+- Outer wall
+- Inner wall
+- Top surface
+- Sparse infill
+- Internal solid infill
+- Support
+
+##Seam
+- Seam position
+- Staggered inner seams
+- Seam gap
+- Scarf joint seam (beta)
+- Role base wipe speed
+- Wipe speed
+- Wipe on loops
+- Wipe before external loop
+
+##Precision
+- Slice gap closing radius
+- Resolution
+- Arc fitting
+- X-Y hole compensation
+- X-Y contour compensation
+- Elephant foot compensation
+- Elephant foot compensation layers
+- Precise wall
+- Precise Z height
+- Convert holes to polyholes
+
+##Ironing
+- Ironing type
+
+##Wall generator
+- Wall generator
+
+##Walls and surfaces
+- Walls printing order
+- Print infill first
+- Wall loop direction
+- Top surface flow ratio
+- Bottom surface flow ratio
+- Set other flow ratios
+- Only one wall on top surfaces
+- Only one wall on first layer
+- Avoid crossing walls
+- Small area flow compensation (beta)
+
+##Bridging
+- Bridge flow ratio
+- Internal bridge flow ratio
+- External bridge density
+- Internal bridge density
+- Thick external bridges
+- Thick internal bridges
+- Extra bridge layers (beta)
+- Filter out small internal bridges
+- Bridge counterbore holes
+
+##Overhangs
+- Detect overhang walls
+- Make overhangs printable
+- Extra perimeters on overhangs
+- Reverse on even
+
+#Strength
+
+##Walls
+- Wall loops
+- Alternate extra wall
+- Detect thin walls
+
+##Top/bottom shells
+- Top shell layers
+- Top shell thickness
+- Top surface density
+- Top surface pattern
+- Bottom shell layers
+- Bottom shell thickness
+- Bottom surface density
+- Bottom surface pattern
+- Top/Bottom solid infill/wall overlap
+
+##Infill
+- Sparse infill density
+- Fill Multiline
+- Sparse infill pattern
+- Sparse infill direction
+- Sparse infill rotation template
+- Maximum length of the infill anchor
+- Sparse infill anchor length
+- Internal solid infill pattern
+- Solid infill direction
+- Solid infill rotation template
+- Apply gap fill
+- Filter out tiny gaps
+- Infill/wall overlap
+
+##Advanced
+- Align infill direction to model
+- Insert solid layers
+- External bridge infill direction
+- Internal bridge infill direction
+- Minimum sparse infill threshold
+- Infill combination
+- Detect narrow internal solid infills
+- Ensure vertical shell thickness
+
+#Speed
+
+##First layer speed
+- First layer
+- First layer infill
+- First layer travel speed
+- Number of slow layers
+
+##Other layers speed
+- Outer wall
+- Inner wall
+- Small perimeters
+- Small perimeters threshold
+- Sparse infill
+- Internal solid infill
+- Top surface
+- Gap infill
+- Support
+- Support interface
+
+##Overhang speed
+- Slow down for overhangs
+- Slow down for curled perimeters
+- Overhang speed — 10%
+- Overhang speed — 25%
+- Overhang speed — 50%
+- Overhang speed — 75%
+- Bridge speed — External
+- Bridge speed — Internal
+
+##Travel speed
+- Travel
+
+##Acceleration
+- Normal printing
+- Outer wall
+- Inner wall
+- Bridge
+- Sparse infill
+- Internal solid infill
+
+#Support
+
+##Support
+- Enable support
+- Type
+- Style
+- Threshold angle
+- Threshold overlap
+- First layer density
+- First layer expansion
+- On build plate only
+- Ignore small overhangs
+
+##Raft
+- Raft layers
+
+##Filament for Supports
+- Support/raft base
+- Support/raft interface
+
+##Support ironing
+- Ironing Support Interface
+
+##Advanced
+- Top Z distance
+- Bottom Z distance
+- Support wall loops
+- Base pattern
+- Base pattern spacing
+- Pattern angle
+- Top interface layers
+- Bottom interface layers
+- Interface pattern
+- Top interface spacing
+- Bottom interface spacing
+- Normal support expansion
+- Support/object XY distance
+- Support/object first layer gap
+- Don't support bridges
+- Independent support layer height
+
+#Others
+
+##Skirt
+- Skirt loops
+- Skirt type
+- Skirt minimum extrusion length
+- Skirt distance
+- Skirt start point
+- Skirt speed
+- Skirt height
+- Draft shield
+
+##Brim
+- Brim type
+- Brim width
+- Brim-object gap
+- Brim follows compensated outline
+
+##Special mode
+- Slicing Mode
+- Print sequence
+- Intra-layer order
+- Spiral vase
+
+##Fuzzy skin
+- Fuzzy skin
+
+##G-code output
+- Reduce infill retraction
+- Verbose G-code
+- Label objects
+- Exclude objects
+- Filename format

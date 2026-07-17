@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hosta Reference &amp; Substitution Guide — Lurvey</title>
+<style>
+:root{--ink:#1f2a24;--muted:#5d6b62;--line:#dfe6e0;--bg:#f6f8f5;--card:#fff;--accent:#3f6d4e;--gold:#b8860b;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+header{background:linear-gradient(135deg,#2f5741,#4c7a58);color:#fff;padding:34px 22px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header h1{margin:0 0 6px;font-size:30px}
+header p{margin:4px 0;opacity:.95;max-width:820px}
+.stats{margin-top:14px;font-size:14px;opacity:.95}
+.legend{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;font-size:13px;color:var(--muted)}
+.legend .wrap{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center}
+.legend b{color:var(--ink)}
+.sz{display:inline-block;font-size:12px;padding:2px 7px;border-radius:20px;margin:2px 4px 2px 0;border:1px solid var(--line)}
+.sz.in{background:#eef6ef;color:#2c6b40;border-color:#cfe6d5}
+.sz.out{background:#f3f0ee;color:#9a8f88;text-decoration:line-through;border-color:#e6ddd8}
+.b{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.03em}
+.b.in{background:#e5f4e8;color:#2c6b40} .b.out{background:#fbeaea;color:#b23b3b}
+.star{color:var(--gold);font-size:12px;font-weight:700;white-space:nowrap}
+nav.toc{background:#fff;border-bottom:1px solid var(--line);padding:16px 0}
+nav.toc h3{margin:0 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.toc div{display:flex;flex-wrap:wrap;gap:8px}
+nav.toc a{font-size:13px;text-decoration:none;color:var(--accent);background:#eef4ef;border:1px solid #dce8df;padding:5px 10px;border-radius:6px}
+nav.toc a:hover{background:#e0ede3}
+section{padding:26px 0 6px}
+section h2{font-size:22px;margin:0 0 4px;color:var(--accent)}
+.cdesc{margin:0 0 16px;color:var(--muted);max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.card.soldout{opacity:.82}
+.ph{aspect-ratio:4/3;background:#ecefe9;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.noimg{font-size:12px;color:#8a938b;text-align:center;padding:14px;text-decoration:none}
+.body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:7px}
+.nm{font-weight:700;font-size:15px;line-height:1.25}
+.nm a{color:var(--ink);text-decoration:none} .nm a:hover{text-decoration:underline}
+.meta{display:flex;align-items:center;gap:8px}
+.from{font-weight:700;color:var(--accent);font-size:14px}
+.sizes{margin:-2px 0 0}
+.note{font-size:12.5px;color:var(--muted)}
+table.spec{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:2px}
+table.spec td{padding:3px 0;vertical-align:top;border-top:1px solid #eef1ee}
+table.spec td:first-child{color:var(--muted);width:42%;padding-right:8px}
+footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
+footer a{color:var(--accent)}
+@media print{
+  body{background:#fff} header{background:#2f5741 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  nav.toc{display:none} .card{break-inside:avoid;box-shadow:none} section{break-before:auto}
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+</style></head>
+<body>
+<header><div class="wrap">
+  <h1>Hosta Reference &amp; Substitution Guide</h1>
+  <p>Every hosta variety from Lurvey&rsquo;s online shop, grouped into interchangeable landscape categories so you always have a back-up when your first choice is sold out, unavailable, or over budget.</p>
+  <p class="stats"><b>74 varieties</b> across <b>13 categories</b> &middot; 65 currently show in-stock &middot; prices &amp; stock captured July 16, 2026 from lurveys.com &middot; ★ = popular pick most likely to be in stock</p>
+</div></header>
+
+<div class="legend"><div class="wrap">
+  <span><b>How to use:</b> pick a category, choose your first-choice plant, and swap to any other card in the same category if needed &mdash; they fill the same role and space.</span>
+  <span><b>Pot sizes:</b> <span class="sz in">Std</span> / <span class="sz in">1&nbsp;qt</span> starter &middot; <span class="sz in">#1</span> ~1&nbsp;gal &middot; <span class="sz in">#3</span> ~3&nbsp;gal (bigger, more established)</span>
+  <span><b>Spacing</b> = plant this far apart, center to center (roughly the mature width).</span>
+</div></div>
+
+<nav class="toc"><div class="wrap"><h3>Categories</h3><div><a href="#c1">1. Giant Blue Specimens</a><a href="#c2">2. Giant &amp; Large Gold / Chartreuse</a><a href="#c3">3. Upright, Vase-Shaped &amp; Cream/Gold-Margined</a><a href="#c4">4. Large Blue Mounds</a><a href="#c5">5. Large Green &amp; Fragrant-Flowered</a><a href="#c6">6. Green with White Margin (classic contrast)</a><a href="#c7">7. Green / Blue with Gold or Yellow Margin</a><a href="#c8">8. Gold-Centered, Two-Tone (bright center, dark edge)</a><a href="#c9">9. Medium Blue Mounds</a><a href="#c10">10. Frosted / Misted &amp; Two-Tone Medium</a><a href="#c11">11. Small Gold &amp; Red-Petioled Accents</a><a href="#c12">12. Small Green &amp; Variegated Edgers</a><a href="#c13">13. Miniatures — Mouse Ears &amp; Tiny</a></div></div></nav>
+
+<div class="wrap">
+
+    <section id="c1">
+      <h2>1. Giant Blue Specimens</h2>
+      <p class="cdesc">Focal-point hostas, 4–6 ft across — use as a single anchor or a bold accent. Any of these can stand in for another as the 'big blue' in a bed.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Blue%20Angel%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBLUAN.jpg" alt="Blue Angel hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Blue%20Angel%20hosta&post_type=product" target="_blank" rel="noopener">Blue Angel</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span></div>
+        <div class="note">Huge frosty-blue leaves; the classic giant blue anchor.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>30-36" tall &times; 5-6 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>5-6 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Empress%20Wu%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSEMPWU.jpg" alt="Empress Wu hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Empress%20Wu%20hosta&post_type=product" target="_blank" rel="noopener">Empress Wu</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz out">Std $14.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Largest hosta grown; massive dark blue-green mound.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green-blue</td></tr>
+          <tr><td>Mature size</td><td>48-60" tall &times; 5-6 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>5-6 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Gigantosaurus%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSGIG.jpg" alt="Gigantosaurus hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Gigantosaurus%20hosta&post_type=product" target="_blank" rel="noopener">Gigantosaurus</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Giant thick blue leaves; strong slug resistance.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green</td></tr>
+          <tr><td>Mature size</td><td>30-34" tall &times; 5-6 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>5-6 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Krossa%20Regal%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSKRORE.jpg" alt="Krossa Regal hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Krossa%20Regal%20hosta&post_type=product" target="_blank" rel="noopener">Krossa Regal</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Vase-shaped, upright blue; tall lavender flower scapes.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Frosty blue</td></tr>
+          <tr><td>Mature size</td><td>30-36" tall &times; 3.5-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3.5-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c2">
+      <h2>2. Giant &amp; Large Gold / Chartreuse</h2>
+      <p class="cdesc">Bright, large-scale gold hostas for a glowing focal point; several tolerate more sun than typical hostas.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Sum%20%26%20Substance%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSUMSU.jpg" alt="Sum &amp; Substance hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Sum%20%26%20Substance%20hosta&post_type=product" target="_blank" rel="noopener">Sum &amp; Substance</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz in">#1 $16.99</span><span class="sz out">#3 $24.99</span></div>
+        <div class="note">Enormous gold leaves; takes more sun than most.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Chartreuse-gold</td></tr>
+          <tr><td>Mature size</td><td>30-36" tall &times; 5-6 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>5-6 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Coast%20to%20Coast%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSCOACO.jpg" alt="Coast to Coast hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Coast%20to%20Coast%20hosta&post_type=product" target="_blank" rel="noopener">Coast to Coast</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Giant heavily-corrugated gold; sun tolerant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Solid gold</td></tr>
+          <tr><td>Mature size</td><td>24-30" tall &times; 4-5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Terms%20of%20Endearment%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSTEREN.jpg" alt="Terms of Endearment hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Terms%20of%20Endearment%20hosta&post_type=product" target="_blank" rel="noopener">Terms of Endearment</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz in">#1 $16.99</span></div>
+        <div class="note">Big wavy gold mound; bright landscape glow.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Chartreuse-gold</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 4-5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=August%20Moon%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSAUGMO.jpg" alt="August Moon hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=August%20Moon%20hosta&post_type=product" target="_blank" rel="noopener">August Moon</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz out">#1 $11.99</span></div>
+        <div class="note">Old reliable gold; slightly puckered, sun tolerant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold</td></tr>
+          <tr><td>Mature size</td><td>18-20" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Dancing%20Queen%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSDANQU.jpg" alt="Dancing Queen hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Dancing%20Queen%20hosta&post_type=product" target="_blank" rel="noopener">Dancing Queen</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Rippled bright-gold leaves; very showy.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Bright gold</td></tr>
+          <tr><td>Mature size</td><td>18-20" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Hope%20Springs%20Eternal%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSHOPSPET.jpg" alt="Hope Springs Eternal hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Hope%20Springs%20Eternal%20hosta&post_type=product" target="_blank" rel="noopener">Hope Springs Eternal</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Large gold-centered mound with a fine green rim.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold / green edge</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 3.5-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3.5-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c3">
+      <h2>3. Upright, Vase-Shaped &amp; Cream/Gold-Margined</h2>
+      <p class="cdesc">Architectural, upright specimens with a wide light margin. Interchangeable where you want height and a formal silhouette.</p>
+      <div class="grid">
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Sagae%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSAG.jpg" alt="Sagae hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Sagae%20hosta&post_type=product" target="_blank" rel="noopener">Sagae</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $12.99</span></div>
+        <div class="sizes"><span class="sz out">Std $12.99</span><span class="sz out">#1 $12.99</span></div>
+        <div class="note">Upright vase; blue-green leaf with wide creamy-gold margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Frosty blue / gold edge</td></tr>
+          <tr><td>Mature size</td><td>24-30" tall &times; 4-5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Regal%20Splendor%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSREGSP.jpg" alt="Regal Splendor hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Regal%20Splendor%20hosta&post_type=product" target="_blank" rel="noopener">Regal Splendor</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Vase-shaped sport of Krossa Regal with cream margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-gray / cream edge</td></tr>
+          <tr><td>Mature size</td><td>30-36" tall &times; 3.5-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3.5-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Atlantis%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSATL.jpg" alt="Atlantis hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Atlantis%20hosta&post_type=product" target="_blank" rel="noopener">Atlantis</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Giant green with dramatic wide yellow-gold margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / wide gold edge</td></tr>
+          <tr><td>Mature size</td><td>30-34" tall &times; 4-5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Earth%20Angel%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSEARAN.jpg" alt="Earth Angel hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Earth%20Angel%20hosta&post_type=product" target="_blank" rel="noopener">Earth Angel</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Giant with heart-shaped leaves and creamy margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green / cream edge</td></tr>
+          <tr><td>Mature size</td><td>28-32" tall &times; 4-5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Victory%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSVIC.jpg" alt="Victory hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Victory%20hosta&post_type=product" target="_blank" rel="noopener">Victory</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Award-winning giant; shiny green with gold-cream edge.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>28-36" tall &times; 5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Olive%20Bailey%20Langdon%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSOLIBALA.jpg" alt="Olive Bailey Langdon hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Olive%20Bailey%20Langdon%20hosta&post_type=product" target="_blank" rel="noopener">Olive Bailey Langdon</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Sturdy large clump with wide gold margin, slug resistant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Liberty%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSLIB.jpg" alt="Liberty hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Liberty%20hosta&post_type=product" target="_blank" rel="noopener">Liberty</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Bold, thick leaves with very wide gold-to-cream margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green / wide gold edge</td></tr>
+          <tr><td>Mature size</td><td>20-24" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c4">
+      <h2>4. Large Blue Mounds</h2>
+      <p class="cdesc">Rounded blue mounds ~2.5–4 ft wide; classic shade texture. Easy substitutes for one another.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Big%20Daddy%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBIGDA.jpg" alt="Big Daddy hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Big%20Daddy%20hosta&post_type=product" target="_blank" rel="noopener">Big Daddy</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $18.99</span></div>
+        <div class="sizes"><span class="sz in">Std $18.99</span><span class="sz out">#1 $18.99</span></div>
+        <div class="note">Big cupped, puckered blue leaves; excellent substance.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>24-30" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Abiqua%20Drinking%20Gourd%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSABIDRGO.jpg" alt="Abiqua Drinking Gourd hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Abiqua%20Drinking%20Gourd%20hosta&post_type=product" target="_blank" rel="noopener">Abiqua Drinking Gourd</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $9.99</span></div>
+        <div class="sizes"><span class="sz in">Std $9.99</span><span class="sz out">#1 $18.99</span></div>
+        <div class="note">Deeply cupped blue leaves that hold water; unique texture.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Diamond%20Lake%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSDIALA.jpg" alt="Diamond Lake hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Diamond%20Lake%20hosta&post_type=product" target="_blank" rel="noopener">Diamond Lake</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $16.99</span><span class="sz out">#3 $29.99</span></div>
+        <div class="note">Large heart-shaped blue leaves; robust modern blue.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 4-4.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>4-4.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Elegant%20Blue%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSELE.jpg" alt="Elegant Blue hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Elegant%20Blue%20hosta&post_type=product" target="_blank" rel="noopener">Elegant Blue</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span><span class="sz out">#3 $24.99</span></div>
+        <div class="note">Rounded frosty-blue mound; dependable mid-size blue.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 2.5-3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c5">
+      <h2>5. Large Green &amp; Fragrant-Flowered</h2>
+      <p class="cdesc">Glossy green (or green-and-cream) large hostas, several with fragrant flowers. Use for lush mass and scent.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Royal%20Standard%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSROYST.jpg" alt="Royal Standard hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Royal%20Standard%20hosta&post_type=product" target="_blank" rel="noopener">Royal Standard</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Classic glossy green; very fragrant white late-summer flowers.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Glossy green</td></tr>
+          <tr><td>Mature size</td><td>20-24" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Fragrant%20Bouquet%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFRABO.jpg" alt="Fragrant Bouquet hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Fragrant%20Bouquet%20hosta&post_type=product" target="_blank" rel="noopener">Fragrant Bouquet</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Fragrant; HOTY winner; sun tolerant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Apple-green / cream edge</td></tr>
+          <tr><td>Mature size</td><td>18-24" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Guacamole%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSGUA.jpg" alt="Guacamole hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Guacamole%20hosta&post_type=product" target="_blank" rel="noopener">Guacamole</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Large fragrant, fast-growing; gold center brightens in sun.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Chartreuse / green edge</td></tr>
+          <tr><td>Mature size</td><td>18-24" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Royal%20Wedding%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSROYWE.jpg" alt="Royal Wedding hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Royal%20Wedding%20hosta&post_type=product" target="_blank" rel="noopener">Royal Wedding</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $18.99</span></div>
+        <div class="sizes"><span class="sz in">Std $18.99</span><span class="sz in">#1 $18.99</span></div>
+        <div class="note">Dark green with striking white centers; fragrant flowers.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white center</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Brother%20Stefan%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBROST.jpg" alt="Brother Stefan hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Brother%20Stefan%20hosta&post_type=product" target="_blank" rel="noopener">Brother Stefan</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Heavily corrugated; gold center with blue-green margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Paul%27s%20Glory%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSPAUGL.jpg" alt="Paul&#x27;s Glory hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Paul%27s%20Glory%20hosta&post_type=product" target="_blank" rel="noopener">Paul&#x27;s Glory</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Popular; gold center ages to cream, blue margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c6">
+      <h2>6. Green with White Margin (classic contrast)</h2>
+      <p class="cdesc">The timeless green-leaf / crisp-white-edge look. All read the same from a distance and swap freely.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Francee%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFRA.jpg" alt="Francee hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Francee%20hosta&post_type=product" target="_blank" rel="noopener">Francee</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span><span class="sz out">#3 $24.99</span></div>
+        <div class="note">The classic green-with-white-margin; extremely reliable.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Patriot%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSPAT.jpg" alt="Patriot hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Patriot%20hosta&post_type=product" target="_blank" rel="noopener">Patriot</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span><span class="sz out">#3 $24.99</span></div>
+        <div class="note">Bold, wide crisp white margin; landscape workhorse.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / wide white edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 2.5-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Minuteman%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSMIN.jpg" alt="Minuteman hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Minuteman%20hosta&post_type=product" target="_blank" rel="noopener">Minuteman</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $10.99</span></div>
+        <div class="sizes"><span class="sz in">Std $10.99</span><span class="sz out">#1 $10.99</span></div>
+        <div class="note">Thicker-leaved, more slug-resistant Patriot type.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Drop-Dead%20Gorgeous%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSDROGO.jpg" alt="Drop-Dead Gorgeous hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Drop-Dead%20Gorgeous%20hosta&post_type=product" target="_blank" rel="noopener">Drop-Dead Gorgeous</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $12.99</span></div>
+        <div class="sizes"><span class="sz in">Std $12.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Rippled dark green with bright white wavy margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white edge</td></tr>
+          <tr><td>Mature size</td><td>16-18" tall &times; 2.5-3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Night%20Before%20Christmas%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSNIGBECH.jpg" alt="Night Before Christmas hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Night%20Before%20Christmas%20hosta&post_type=product" target="_blank" rel="noopener">Night Before Christmas</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Dark green margin framing a clean white center.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white center</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=So%20Sweet%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSOSW.jpg" alt="So Sweet hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=So%20Sweet%20hosta&post_type=product" target="_blank" rel="noopener">So Sweet</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Compact, fragrant; glossy green with creamy edge.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / cream edge</td></tr>
+          <tr><td>Mature size</td><td>12-16" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Whee%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSWHE.jpg" alt="Whee hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Whee%20hosta&post_type=product" target="_blank" rel="noopener">Whee</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Intensely ruffled, wavy margins; fun texture.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / cream edge</td></tr>
+          <tr><td>Mature size</td><td>12-15" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c7">
+      <h2>7. Green / Blue with Gold or Yellow Margin</h2>
+      <p class="cdesc">Warm-edged variegation — green or blue leaves banded in gold. Interchangeable for a warm-toned bed.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Francis%20Williams%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFRAWI.jpg" alt="Francis Williams hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Francis%20Williams%20hosta&post_type=product" target="_blank" rel="noopener">Francis Williams</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span><span class="sz out">#3 $24.99</span></div>
+        <div class="note">Historic favorite; puckered blue with wide gold edge.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>20-24" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Wide%20Brim%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSWIDBR.jpg" alt="Wide Brim hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Wide%20Brim%20hosta&post_type=product" target="_blank" rel="noopener">Wide Brim</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Wide irregular gold-cream band; dense mound.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / wide gold edge</td></tr>
+          <tr><td>Mature size</td><td>18-20" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Great%20Expectations%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSGREEX.jpg" alt="Great Expectations hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Great%20Expectations%20hosta&post_type=product" target="_blank" rel="noopener">Great Expectations</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $12.99</span></div>
+        <div class="sizes"><span class="sz in">Std $12.99</span><span class="sz in">#1 $12.99</span></div>
+        <div class="note">Showpiece; blue-green margin around a gold-cream heart.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>20-22" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Twilight%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSTWI.jpg" alt="Twilight hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Twilight%20hosta&post_type=product" target="_blank" rel="noopener">Twilight</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Shiny dark green with a bold gold margin (Halcyon sport).</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c8">
+      <h2>8. Gold-Centered, Two-Tone (bright center, dark edge)</h2>
+      <p class="cdesc">A bright gold or chartreuse center framed by a darker margin. These glow and substitute well for each other.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=June%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSJUN.jpg" alt="June hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=June%20hosta&post_type=product" target="_blank" rel="noopener">June</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">One of the most popular hostas; gold center, blue margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>12-16" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Stained%20Glass%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSTAGL.jpg" alt="Stained Glass hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Stained%20Glass%20hosta&post_type=product" target="_blank" rel="noopener">Stained Glass</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Bright gold center, fragrant; glows in the border.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>15-18" tall &times; 2.5-3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade–sun</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Paradigm%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSPAR.jpg" alt="Paradigm hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Paradigm%20hosta&post_type=product" target="_blank" rel="noopener">Paradigm</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Large; gold center deepens, wide blue-green margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>18-22" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Etched%20Glass%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSETCGL.jpg" alt="Etched Glass hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Etched%20Glass%20hosta&post_type=product" target="_blank" rel="noopener">Etched Glass</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $12.99</span></div>
+        <div class="sizes"><span class="sz out">Std $12.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Fragrant; brilliant gold center with dark green edge.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>16-18" tall &times; 2.5-3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Gold%20Standard%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSGOLST.jpg" alt="Gold Standard hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Gold%20Standard%20hosta&post_type=product" target="_blank" rel="noopener">Gold Standard</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span><span class="sz out">#3 $22.99</span></div>
+        <div class="note">Classic; gold center with a thin dark green margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>20-24" tall &times; 3-4 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-4 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c9">
+      <h2>9. Medium Blue Mounds</h2>
+      <p class="cdesc">Mid-size (2–3 ft) blue hostas for the middle of a shade border. Fully interchangeable as 'medium blue.'</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Halcyon%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSHAL.jpg" alt="Halcyon hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Halcyon%20hosta&post_type=product" target="_blank" rel="noopener">Halcyon</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz in">#1 $11.99</span></div>
+        <div class="note">Best-known medium blue; heart-shaped leaves, great color.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>16-18" tall &times; 2.5-3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5-3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Hadspen%20Blue%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSHADBL.jpg" alt="Hadspen Blue hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Hadspen%20Blue%20hosta&post_type=product" target="_blank" rel="noopener">Hadspen Blue</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Intensely blue, thick leaves; holds color well.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>12-15" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Fragrant%20Blue%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFRABL.jpg" alt="Fragrant Blue hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Fragrant%20Blue%20hosta&post_type=product" target="_blank" rel="noopener">Fragrant Blue</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Blue mound with fragrant near-white flowers.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>12-14" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Blue%20Cadet%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBLUCA.jpg" alt="Blue Cadet hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Blue%20Cadet%20hosta&post_type=product" target="_blank" rel="noopener">Blue Cadet</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $11.99</span><span class="sz out">#1 $11.99</span></div>
+        <div class="note">Neat small mound; great massed or as an edger.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green</td></tr>
+          <tr><td>Mature size</td><td>10-12" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c10">
+      <h2>10. Frosted / Misted &amp; Two-Tone Medium</h2>
+      <p class="cdesc">Newer medium hostas with frosty overlays, misted margins, or white centers. Swap for a soft, modern look.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Autumn%20Frost%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSAUTFR.jpg" alt="Autumn Frost hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Autumn%20Frost%20hosta&post_type=product" target="_blank" rel="noopener">Autumn Frost</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz in">#1 $16.99</span></div>
+        <div class="note">Frosty blue with bright yellow margin aging to cream.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue / gold edge</td></tr>
+          <tr><td>Mature size</td><td>12-14" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=First%20Frost%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFIRFR.jpg" alt="First Frost hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=First%20Frost%20hosta&post_type=product" target="_blank" rel="noopener">First Frost</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">HOTY; blue leaf with gold margin that turns cream.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue-green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>12-16" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Hudson%20Bay%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSHUDBA.jpg" alt="Hudson Bay hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Hudson%20Bay%20hosta&post_type=product" target="_blank" rel="noopener">Hudson Bay</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Blue-green margin around a wide creamy-white center.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue edge / cream center</td></tr>
+          <tr><td>Mature size</td><td>16-20" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Blue%20Ivory%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBLUIV.jpg" alt="Blue Ivory hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Blue%20Ivory%20hosta&post_type=product" target="_blank" rel="noopener">Blue Ivory</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Blue center with a wide creamy-yellow margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue / cream edge</td></tr>
+          <tr><td>Mature size</td><td>12-14" tall &times; 2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Whirlwind%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSWHI.jpg" alt="Whirlwind hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Whirlwind%20hosta&post_type=product" target="_blank" rel="noopener">Whirlwind</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Twisted, swirling white-green centers; dynamic form.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white center</td></tr>
+          <tr><td>Mature size</td><td>16-20" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Miss%20America%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSMISAM.jpg" alt="Miss America hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Miss%20America%20hosta&post_type=product" target="_blank" rel="noopener">Miss America</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Tall; blue-green margin with a bright white center.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue edge / white center</td></tr>
+          <tr><td>Mature size</td><td>22-26" tall &times; 3-3.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3-3.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Sound%20of%20Music%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSOUMU.jpg" alt="Sound of Music hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Sound%20of%20Music%20hosta&post_type=product" target="_blank" rel="noopener">Sound of Music</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz out">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">White center with dark green margin; medium mound.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white center</td></tr>
+          <tr><td>Mature size</td><td>14-16" tall &times; 2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Royal%20Crest%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSROYCR.jpg" alt="Royal Crest hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Royal%20Crest%20hosta&post_type=product" target="_blank" rel="noopener">Royal Crest</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz out">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Rounded green mound with a creamy-white margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / cream edge</td></tr>
+          <tr><td>Mature size</td><td>16-18" tall &times; 3 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>3 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c11">
+      <h2>11. Small Gold &amp; Red-Petioled Accents</h2>
+      <p class="cdesc">Front-of-border brighteners, 1.5–2 ft — golds, two-tones, and red-stemmed novelties. Great in groups of 3–5.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Maui%20Buttercups%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Maui%20Buttercups%20hosta&post_type=product" target="_blank" rel="noopener">Maui Buttercups</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Thick, cupped gold leaves; compact and slug-resistant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold</td></tr>
+          <tr><td>Mature size</td><td>10-12" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Appletini%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Appletini%20hosta&post_type=product" target="_blank" rel="noopener">Appletini</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $8.99</span></div>
+        <div class="sizes"><span class="sz in">Std $8.99</span><span class="sz out">1 qt $8.99</span></div>
+        <div class="note">Small, fast bright-gold mound for the front edge.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Chartreuse-gold</td></tr>
+          <tr><td>Mature size</td><td>6-8" tall &times; 1-1.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1-1.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Curly%20Fries%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSCURFR.jpg" alt="Curly Fries hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Curly%20Fries%20hosta&post_type=product" target="_blank" rel="noopener">Curly Fries</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $11.99</span></div>
+        <div class="sizes"><span class="sz in">Std $12.99</span><span class="sz out">#1 $11.99</span></div>
+        <div class="note">Narrow, heavily rippled yellow leaves; whimsical texture.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Chartreuse</td></tr>
+          <tr><td>Mature size</td><td>6-7" tall &times; 1.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Lone%20Star%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSLONST.jpg" alt="Lone Star hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Lone%20Star%20hosta&post_type=product" target="_blank" rel="noopener">Lone Star</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz out">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Gold center with green margin; upright habit.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>14-16" tall &times; 2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Rainforest%20Sunrise%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSRAISU.jpg" alt="Rainforest Sunrise hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Rainforest%20Sunrise%20hosta&post_type=product" target="_blank" rel="noopener">Rainforest Sunrise</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Shiny gold center, dark green edge; cupped, slug-resistant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>8-10" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Island%20Breeze%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSISLBR.jpg" alt="Island Breeze hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Island%20Breeze%20hosta&post_type=product" target="_blank" rel="noopener">Island Breeze</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz in">#1 $14.99</span></div>
+        <div class="note">Gold center, dark green margin, bright red petioles.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>8-10" tall &times; 1.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Rainbow%27s%20End%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSRAIEN.jpg" alt="Rainbow&#x27;s End hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Rainbow%27s%20End%20hosta&post_type=product" target="_blank" rel="noopener">Rainbow&#x27;s End</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz out">Std $16.99</span><span class="sz in">#1 $16.99</span></div>
+        <div class="note">Glossy gold-and-green center, red petioles; showy.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold center / green edge</td></tr>
+          <tr><td>Mature size</td><td>8-12" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Fire%20%26%20Ice%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSFIRIC.jpg" alt="Fire &amp; Ice hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Fire%20%26%20Ice%20hosta&post_type=product" target="_blank" rel="noopener">Fire &amp; Ice</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">Bright white center with dark green margin (reverse Patriot).</div>
+        <table class="spec">
+          <tr><td>Color</td><td>White center / green edge</td></tr>
+          <tr><td>Mature size</td><td>10-12" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c12">
+      <h2>12. Small Green &amp; Variegated Edgers</h2>
+      <p class="cdesc">Tidy small mounds for edging and groundcover runs. Reliable, inexpensive fillers.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Golden%20Tiara%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSGOLTI.jpg" alt="Golden Tiara hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Golden%20Tiara%20hosta&post_type=product" target="_blank" rel="noopener">Golden Tiara</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $12.99</span></div>
+        <div class="sizes"><span class="sz in">Std $12.99</span><span class="sz out">#1 $12.99</span></div>
+        <div class="note">Fast, dense small mound with gold margin; great edger.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / gold edge</td></tr>
+          <tr><td>Mature size</td><td>12-16" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Allan%20P.%20McConnell%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Allan%20P.%20McConnell%20hosta&post_type=product" target="_blank" rel="noopener">Allan P. McConnell</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $8.99</span></div>
+        <div class="sizes"><span class="sz out">Std $8.99</span><span class="sz out">#1 $9.99</span><span class="sz out">1 qt $8.99</span></div>
+        <div class="note">Small dense green with narrow white edge; superb groundcover.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white edge</td></tr>
+          <tr><td>Mature size</td><td>8-10" tall &times; 1.5-2 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>1.5-2 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Lance%20Leaf%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Lance%20Leaf%20hosta&post_type=product" target="_blank" rel="noopener">Lance Leaf</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $14.99</span></div>
+        <div class="sizes"><span class="sz in">Std $14.99</span><span class="sz out">#1 $14.99</span></div>
+        <div class="note">H. lancifolia; narrow glossy green, late bloom, spreads well.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Glossy green</td></tr>
+          <tr><td>Mature size</td><td>12-18" tall &times; 2-2.5 ft wide</td></tr>
+          <tr><td>Space plants</td><td><b>2-2.5 ft</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part–full shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+    <section id="c13">
+      <h2>13. Miniatures — Mouse Ears &amp; Tiny</h2>
+      <p class="cdesc">Rock gardens, troughs, containers, and tight edging. All are tiny (under ~8 in tall) and interchangeable.</p>
+      <div class="grid">
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Blue%20Mouse%20Ears%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSBLUMOEA.jpg" alt="Blue Mouse Ears hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Blue%20Mouse%20Ears%20hosta&post_type=product" target="_blank" rel="noopener">Blue Mouse Ears</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $8.99</span></div>
+        <div class="sizes"><span class="sz in">Std $8.99</span><span class="sz in">1 qt $9.99</span></div>
+        <div class="note">Thick round blue &#x27;mouse ear&#x27; leaves; iconic mini.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue</td></tr>
+          <tr><td>Mature size</td><td>6-8" tall &times; 10-12 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10-12 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Mighty%20Mouse%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSMIGMO.jpg" alt="Mighty Mouse hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Mighty%20Mouse%20hosta&post_type=product" target="_blank" rel="noopener">Mighty Mouse</a> <span class="star" title="Popular / most likely in stock">★ Top pick</span></div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $9.99</span></div>
+        <div class="sizes"><span class="sz in">Std $9.99</span><span class="sz out">1 qt $9.99</span></div>
+        <div class="note">Blue Mouse Ears with a gold margin; tough mini.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Blue / gold edge</td></tr>
+          <tr><td>Mature size</td><td>6-8" tall &times; 10-12 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10-12 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Sun%20Mouse%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSUNMO.jpg" alt="Sun Mouse hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Sun%20Mouse%20hosta&post_type=product" target="_blank" rel="noopener">Sun Mouse</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $9.99</span></div>
+        <div class="sizes"><span class="sz out">Std $9.99</span><span class="sz in">1 qt $9.99</span></div>
+        <div class="note">Tiny gold mouse-ear; sun tolerant edging/container mini.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold</td></tr>
+          <tr><td>Mature size</td><td>4-6" tall &times; 8-10 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>8-10 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Frosted%20Mouse%20Ears%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Frosted%20Mouse%20Ears%20hosta&post_type=product" target="_blank" rel="noopener">Frosted Mouse Ears</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $8.99</span></div>
+        <div class="sizes"><span class="sz out">1 qt $8.99</span></div>
+        <div class="note">Blue mouse-ear with a crisp white margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Frosty blue / white edge</td></tr>
+          <tr><td>Mature size</td><td>6-8" tall &times; 10-12 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10-12 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card soldout">
+      <div class="ph"><a href="https://lurveys.com/?s=Mouseketeer%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSMOU.jpg" alt="Mouseketeer hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Mouseketeer%20hosta&post_type=product" target="_blank" rel="noopener">Mouseketeer</a> </div>
+        <div class="meta"><span class="b out">Sold out</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz out">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Mouse-ear with white center and green margin.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Green / white center</td></tr>
+          <tr><td>Mature size</td><td>6-8" tall &times; 10-12 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10-12 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Schoolmouse%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSSCHMO.jpg" alt="Schoolmouse hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Schoolmouse%20hosta&post_type=product" target="_blank" rel="noopener">Schoolmouse</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $9.99</span></div>
+        <div class="sizes"><span class="sz out">Std $9.99</span><span class="sz in">1 qt $9.99</span></div>
+        <div class="note">Little gold-chartreuse mouse-ear mini.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold</td></tr>
+          <tr><td>Mature size</td><td>5-6" tall &times; 10 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Pandora%27s%20Box%20hosta&post_type=product" target="_blank" rel="noopener" class="noimg">No photo on site — click to view</a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Pandora%27s%20Box%20hosta&post_type=product" target="_blank" rel="noopener">Pandora&#x27;s Box</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $8.99</span></div>
+        <div class="sizes"><span class="sz in">Std $8.99</span><span class="sz out">1 qt $8.99</span></div>
+        <div class="note">Tiny white-centered mini; rock gardens and troughs.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>White center / blue edge</td></tr>
+          <tr><td>Mature size</td><td>4-6" tall &times; 8-10 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>8-10 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="ph"><a href="https://lurveys.com/?s=Time%20in%20a%20Bottle%20hosta&post_type=product" target="_blank" rel="noopener"><img loading="lazy" src="https://lurveys.com/wp-content/uploads/HOSTIMBO.jpg" alt="Time in a Bottle hosta"></a></div>
+      <div class="body">
+        <div class="nm"><a href="https://lurveys.com/?s=Time%20in%20a%20Bottle%20hosta&post_type=product" target="_blank" rel="noopener">Time in a Bottle</a> </div>
+        <div class="meta"><span class="b in">In stock</span> <span class="from">from $16.99</span></div>
+        <div class="sizes"><span class="sz in">Std $16.99</span><span class="sz out">#1 $16.99</span></div>
+        <div class="note">Miniature wavy gold-green; charming container plant.</div>
+        <table class="spec">
+          <tr><td>Color</td><td>Gold-green</td></tr>
+          <tr><td>Mature size</td><td>4-6" tall &times; 10-12 in wide</td></tr>
+          <tr><td>Space plants</td><td><b>10-12 in</b> apart (center&#8209;to&#8209;center)</td></tr>
+          <tr><td>Light</td><td>Part shade</td></tr>
+        </table>
+      </div>
+    </div></div>
+    </section>
+<footer>
+  <p><b>Notes.</b> Prices, pot sizes, and stock reflect what Lurvey&rsquo;s website showed when this guide was built and will change &mdash; always confirm current availability on the product page (each name and photo links to the site). Mature sizes and spacing are typical values for well-grown plants in the Upper Midwest; give plants their full spread if you want them to fill in without crowding, or plant ~25% closer for a faster solid look. Nearly all hostas prefer part to full shade, moist well-drained soil, and appreciate protection from hot afternoon sun (gold-leaved types take the most sun; blues keep their color best in more shade).</p>
+  <p>Source: <a href="https://lurveys.com/shop/?_sf_s=Hosta" target="_blank" rel="noopener">Lurvey shop &mdash; Hosta search</a></p>
+</footer>
+</div>
+</body></html>
