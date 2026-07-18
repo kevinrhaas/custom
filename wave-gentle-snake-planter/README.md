@@ -3,7 +3,7 @@
 V2 restudies the reference image: squat rounded bowl silhouette, tucked 180 mm mouth, and ribs that split and rejoin as smooth ribbons.
 
 Common dimensions:
-- clear inner mouth opening: 180 mm
+- clear inner mouth opening: 180 mm at the widest (~174 mm at the tucked lip)
 - planter height: 150 mm
 - pot floor thickness: 6 mm
 - tray rim height: 20 mm

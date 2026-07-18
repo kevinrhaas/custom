@@ -27,6 +27,7 @@ WALL = 3.4
 TRAY_WALL_H = 20.0
 TRAY_FLOOR_T = 3.2
 SUPPORT_H = 25.0
+MIN_RIM_WALL = 2.0
 
 N_THETA = 336
 N_Z = 112
@@ -102,6 +103,58 @@ class Mesh:
                 f.write(struct.pack("<3f", *c))
                 f.write(struct.pack("<H", 0))
 
+    def write_3mf(self, path, name="model"):
+        """Write a minimal, valid 3MF (core spec, millimetres) holding this
+        mesh as one object. Opens directly in OrcaSlicer / Bambu Studio / any
+        3MF-aware slicer, which applies the current process settings."""
+        import zipfile
+
+        verts = {}
+        order = []
+
+        def vid(p):
+            k = (round(p[0], 5), round(p[1], 5), round(p[2], 5))
+            i = verts.get(k)
+            if i is None:
+                i = len(order)
+                verts[k] = i
+                order.append(p)
+            return i
+
+        tri_idx = [(vid(a), vid(b), vid(c)) for a, b, c in self.tris]
+        vbuf = "".join(
+            f'<vertex x="{p[0]:.5f}" y="{p[1]:.5f}" z="{p[2]:.5f}"/>' for p in order
+        )
+        tbuf = "".join(f'<triangle v1="{a}" v2="{b}" v3="{c}"/>' for a, b, c in tri_idx)
+        model = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<model unit="millimeter" xml:lang="en-US" '
+            'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">'
+            f'<metadata name="Title">{name}</metadata>'
+            '<resources><object id="1" type="model"><mesh>'
+            f"<vertices>{vbuf}</vertices><triangles>{tbuf}</triangles>"
+            '</mesh></object></resources>'
+            '<build><item objectid="1"/></build></model>'
+        )
+        content_types = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/>'
+            '</Types>'
+        )
+        rels = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Target="/3D/3dmodel.model" Id="rel0" '
+            'Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/>'
+            '</Relationships>'
+        )
+        with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
+            z.writestr("[Content_Types].xml", content_types)
+            z.writestr("_rels/.rels", rels)
+            z.writestr("3D/3dmodel.model", model)
+
     def edge_report(self):
         def key(p):
             return (round(p[0], 5), round(p[1], 5), round(p[2], 5))
@@ -146,17 +199,26 @@ def polar(r, t, z):
     return (r * math.cos(t), r * math.sin(t), z)
 
 
+def rim_tuck_amt(zfrac):
+    # Mouth tuck near the top. Applied to BOTH the inner and outer surfaces so
+    # the lip curls inward while the wall keeps a constant, printable thickness.
+    # (Previously the tuck hit only the outer wall, so the wall thinned through
+    # zero and inverted at the rim — the source of the broken top rim.)
+    return 3.2 * smoothstep(0.84, 1.0, zfrac)
+
+
 def inner_radius(zfrac):
-    # Smooth printable interior: narrower bottom, full 180 mm mouth.
-    return 62.0 + (MOUTH_INNER_R - 62.0) * (smoothstep(0.02, 1.0, zfrac) ** 0.62)
+    # Smooth printable interior: narrower bottom, full 180 mm mouth, tucked lip.
+    base = 62.0 + (MOUTH_INNER_R - 62.0) * (smoothstep(0.02, 1.0, zfrac) ** 0.62)
+    return base - rim_tuck_amt(zfrac)
 
 
 def bowl_bulge(zfrac, v):
-    # Reference silhouette: flat-ish foot, round shoulder, tucked mouth.
+    # Reference silhouette: flat-ish foot, round shoulder. The mouth tuck now
+    # lives in rim_tuck_amt (shared by inner + outer), not here.
     belly = v.belly * (math.sin(math.pi * zfrac) ** 0.82)
     lower_round = 5.0 * smoothstep(0.02, 0.22, zfrac) * (1.0 - smoothstep(0.36, 0.62, zfrac))
-    rim_tuck = 3.2 * smoothstep(0.84, 1.0, zfrac)
-    return belly + lower_round - rim_tuck
+    return belly + lower_round
 
 
 def ridge_center(base, zfrac, i, v):
@@ -173,7 +235,8 @@ def ridge_field(theta, zfrac, v):
     total = 0.0
     max_possible = 0.0
     split_profile = math.sin(math.pi * zfrac) ** 1.25
-    rim_fade = 1.0 - 0.52 * smoothstep(0.88, 1.0, zfrac)
+    # Ribs fade fully into a clean, smooth lip band at the very rim.
+    rim_fade = 1.0 - smoothstep(0.9, 1.0, zfrac)
     foot_fade = smoothstep(0.02, 0.13, zfrac)
     for i in range(v.ribs):
         base = 2.0 * math.pi * i / v.ribs
@@ -193,10 +256,14 @@ def ridge_field(theta, zfrac, v):
 
 def outer_radius(theta, z, v):
     zfrac = z / BODY_H
-    base = inner_radius(zfrac) + WALL + bowl_bulge(zfrac, v)
+    inner = inner_radius(zfrac)
+    base = inner + WALL + bowl_bulge(zfrac, v)
     ribs = v.amp * ridge_field(theta, zfrac, v)
-    lip_chamfer = 2.5 * smoothstep(0.965, 1.0, zfrac)
-    return base + ribs - lip_chamfer
+    lip_chamfer = 1.4 * smoothstep(0.965, 1.0, zfrac)
+    r = base + ribs - lip_chamfer
+    # Hard safety net: the outer wall may never dip inside the inner wall, so
+    # the rim can never invert regardless of rib phase.
+    return max(r, inner + MIN_RIM_WALL)
 
 
 def add_ring_wall(mesh, rings, outward=True):
@@ -376,7 +443,7 @@ def write_readme(rows):
         "V2 restudies the reference image: squat rounded bowl silhouette, tucked 180 mm mouth, and ribs that split and rejoin as smooth ribbons.",
         "",
         "Common dimensions:",
-        "- clear inner mouth opening: 180 mm",
+        "- clear inner mouth opening: 180 mm at the widest (~174 mm at the tucked lip)",
         f"- planter height: {BODY_H:.0f} mm",
         f"- pot floor thickness: {FLOOR_T:.0f} mm",
         f"- tray rim height: {TRAY_WALL_H:.0f} mm",
@@ -409,6 +476,10 @@ def main():
         tray_path = OUT_DIR / f"wave-gentle-{v.name}-tray.stl"
         pot.write_stl(pot_path)
         tray.write_stl(tray_path)
+        if v.name == "01-reference-soft-bowl":
+            # A clean, mesh-only 3MF for the reference pot so it can be dropped
+            # straight into a slicer to verify the corrected rim.
+            pot.write_3mf(OUT_DIR / f"wave-gentle-{v.name}-pot-fixed.3mf", f"wave-gentle-{v.name}-pot")
         rows.append((v, pot, tray))
         print(f"{v.name}: pot tris={len(pot.tris)} edges={pot.edge_report()} tray tris={len(tray.tris)} edges={tray.edge_report()}")
     write_readme(rows)
