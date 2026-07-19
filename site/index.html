@@ -23,6 +23,7 @@
   <div class="nav-links">
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
+    <a href="vehicle-2/">Corsair Finder</a>
     <a href="#about">About</a>
     <a class="btn btn-ghost" href="https://github.com/kevinrhaas/custom" rel="noopener">GitHub ↗</a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
@@ -153,7 +154,14 @@
     { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
   ];
   var grid = document.getElementById('projectsGrid');
-  grid.innerHTML = projects.map(function (p) {
+  var corsairCard = '<a class="app-card reveal" href="vehicle-2/" style="--c:#b62236">' +
+    '<div class="app-top"><span class="app-glyph">🚗</span>' +
+    '<div><div class="app-name">Corsair Finder</div><div class="app-sub">vehicle-2 · nationwide car search</div></div></div>' +
+    '<p class="app-tagline">A ranked, nationwide shortlist of 2026 Lincoln Corsairs matching a specific wishlist — ' +
+    'Red Carpet Metallic + light Smoked Truffle seats, Reserve/Premiere, AWD — with every option, price, VIN, ' +
+    'dealer, distance to Crystal Lake, and contact.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live · open the app ↗</div></a>';
+  grid.innerHTML = corsairCard + projects.map(function (p) {
     return '<a class="app-card reveal" href="' + REPO + p.dir + '" rel="noopener" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
