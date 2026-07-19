@@ -200,7 +200,10 @@ function card(v) {
       <div style="text-align:right">
         ${v.human_verified
           ? '<span class="hv-badge" title="Personally confirmed live on the dealer site">✓ human-verified</span> '
-          : '<span class="rv-badge" title="Found and checked automatically — not yet clicked by a human. Confirm with the dealer before acting.">🤖 robot-found</span> '}<span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
+          : `<span class="rv-badge" title="Found and checked automatically — not yet clicked by a human. Confirm with the dealer before acting.">
+              <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v2.5"/><circle cx="12" cy="3.6" r="0.9"/><rect x="5" y="7" width="14" height="10" rx="2.5"/><circle cx="9.5" cy="12" r="1"/><circle cx="14.5" cy="12" r="1"/><path d="M2.5 11v3M21.5 11v3"/></svg>
+              <svg class="glyph rv-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.8 2.1c-.9.6-1.3 1-1.3 2"/><path d="M12 17h.01"/></svg>
+              robot-found · not yet verified</span> `}<span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
         <div class="price" style="margin-top:8px">${money(v.price)}${condLabel(v)}</div>
         ${(() => { const vi = valueInfo(v, SEARCH.id); return vi ? `<div class="value-line"><span class="val val-${vi.cls}">${vi.label}</span><span class="fair">fair ≈ ${money(vi.fair)}${vi.msrp ? ' · MSRP ' + money(vi.msrp) : ''}</span></div>` : (v.msrp ? `<div class="value-line"><span class="fair">MSRP ${money(v.msrp)} · call for price</span></div>` : ''); })()}
       </div>
