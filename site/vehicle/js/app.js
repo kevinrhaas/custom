@@ -154,7 +154,7 @@ function sw(name) { return `<span class="swatch" style="background:${swatch(name
 /* ---- state ------------------------------------------------------------ */
 let SEARCH = null;           // active search object from data.js
 let VEHICLES = [];           // evaluated vehicles of the active search
-let state = { tier: 'all', sort: 'match', awdOnly: false, targetOnly: true, showUnavail: false };
+let state = { tier: 'all', sort: 'match', awdOnly: false, targetOnly: true, showUnavail: false, hvOnly: false };
 
 function selectSearch(id) {
   SEARCH = D.searches.find(s => s.id === id) || D.searches[0];
@@ -198,7 +198,9 @@ function card(v) {
         <div class="sub">${esc(v.exterior_color)} · ${esc(v._ic.label)} interior${v.interior_material ? ' · ' + esc(v.interior_material) : ''}</div>
       </div>
       <div style="text-align:right">
-        ${v.human_verified ? '<span class="hv-badge" title="Personally confirmed live on the dealer site">✓ human-verified</span> ' : ''}<span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
+        ${v.human_verified
+          ? '<span class="hv-badge" title="Personally confirmed live on the dealer site">✓ human-verified</span> '
+          : '<span class="rv-badge" title="Found and checked automatically — not yet clicked by a human. Confirm with the dealer before acting.">🤖 robot-found</span> '}<span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
         <div class="price" style="margin-top:8px">${money(v.price)}${condLabel(v)}</div>
         ${(() => { const vi = valueInfo(v, SEARCH.id); return vi ? `<div class="value-line"><span class="val val-${vi.cls}">${vi.label}</span><span class="fair">fair ≈ ${money(vi.fair)}${vi.msrp ? ' · MSRP ' + money(vi.msrp) : ''}</span></div>` : (v.msrp ? `<div class="value-line"><span class="fair">MSRP ${money(v.msrp)} · call for price</span></div>` : ''); })()}
       </div>
@@ -232,6 +234,7 @@ function apply() {
   if (!state.showUnavail) rows = rows.filter(v => !isGone(v));
   if (state.tier !== 'all') rows = rows.filter(v => v._tier === state.tier);
   if (state.awdOnly) rows = rows.filter(v => v.drivetrain === 'AWD');
+  if (state.hvOnly) rows = rows.filter(v => v.human_verified);
   if (state.targetOnly) rows = rows.filter(v => v._target);
   const sorters = {
     match: (a, b) => b._score - a._score,
@@ -284,6 +287,7 @@ function wire() {
     apply();
   }));
   $('#awdOnly').addEventListener('change', e => { state.awdOnly = e.target.checked; apply(); });
+  $('#hvOnly').addEventListener('change', e => { state.hvOnly = e.target.checked; apply(); });
   $('#targetOnly').addEventListener('change', e => { state.targetOnly = e.target.checked; apply(); });
   $('#showUnavail').addEventListener('change', e => { state.showUnavail = e.target.checked; stats(); apply(); });
   const t = $('#themeToggle');
