@@ -70,8 +70,8 @@ window.FINDER_DATA = {
           "dealer_phone": "(614) 863-2800",
           "dealer_email": null,
           "listing_url": "https://www.lincolnofcolumbus.com/new-inventory/5LMCJ2DA5TUL06609.htm",
-          "match_notes": "WINDOW-STICKER CONFIRMED: Red Carpet Metallic + Light Smoked Truffle Premium Leather + Reserve II + AWD + PANORAMIC VISTA ROOF — hits every single preference. MSRP $54,335 (dealer price not published — call). Bob-Boyd Lincoln, Columbus OH (~375 mi). See the attached window sticker.",
-          "available": true,
+          "match_notes": "SOLD / REMOVED — a human click on the dealer link now redirects to Bob-Boyd's inventory search (missing-VDP redirect), so this car is gone. It WAS the perfect spec (window-sticker confirmed: Red Carpet + Light Smoked Truffle Premium Leather + Reserve II + AWD + Panoramic Vista Roof, MSRP $54,335) — kept for reference; the sticker shows exactly what to hunt for.",
+          "available": false,
           "msrp": 54335,
           "distance_mi": 376,
           "sticker": "stickers/5LMCJ2DA5TUL06609.pdf"
@@ -438,6 +438,7 @@ window.FINDER_DATA = {
           "match_notes": "Exact color+interior, but FWD and a base 100A group (18\" wheels, likely NO panoramic roof). South Florida. Price not shown — confirm by phone. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 42980,
+          "human_verified": true,
           "distance_mi": 1413,
           "sticker": "stickers/5LMCJ1CA7TUL11354.pdf",
           "photo": "photos/5LMCJ1CA7TUL11354.jpg"
@@ -475,6 +476,7 @@ window.FINDER_DATA = {
           "match_notes": "Price-verified exact color+interior at a low $42,657 — but FWD and 2,793 demo miles. Orlando area. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 42980,
+          "human_verified": true,
           "distance_mi": 1196,
           "sticker": "stickers/5LMCJ1CA7TUL03397.pdf",
           "photo": "photos/5LMCJ1CA7TUL03397.jpg"
@@ -515,6 +517,7 @@ window.FINDER_DATA = {
           "match_notes": "The car Pat already spotted, and still the most complete local pick: exact Red Carpet Metallic + Light Smoked Truffle, AWD, Panoramic Vista Roof, ~17 mi away, $45,900. Certified pre-owned at 1,909 mi (essentially new). Note it's a Premiere, so the seats are Lincoln Soft Touch (leatherette), not the Reserve's Premium Leather. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 51380,
+          "human_verified": true,
           "distance_mi": 13,
           "sticker": "stickers/5LMCJ1DA2TUL06190.pdf",
           "photo": "photos/5LMCJ1DA2TUL06190.jpg"
@@ -680,6 +683,7 @@ window.FINDER_DATA = {
           "match_notes": "Loaded Reserve III AWD in Red Carpet Metallic + Panoramic Vista Roof — and the dealer page shows the interior is Medium Smoked Truffle Premium Leather (the acceptable backup), not Ebony as the aggregator claimed. Revel audio, BlueCruise, head-up display. High price $61,113 (MSRP $61,435). Phoenix. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 61435,
+          "human_verified": true,
           "distance_mi": 1682,
           "sticker": "stickers/5LMCJ2DA0TUL02144.pdf",
           "photo": "photos/5LMCJ2DA0TUL02144.jpg"
@@ -1046,6 +1050,7 @@ window.FINDER_DATA = {
           "match_notes": "Lowest price in the whole search ($34,330, price-verified) and a light Smoked Truffle interior — but FWD, no panoramic roof, base trim. The listing says only 'Truffle' (Light vs Medium unconfirmed). Florida. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 42805,
+          "human_verified": true,
           "distance_mi": 1106,
           "sticker": "stickers/5LMCJ1CAXTUL00476.pdf"
         },
@@ -1352,6 +1357,7 @@ window.FINDER_DATA = {
           "match_notes": "Red Carpet Metallic Premiere, FWD, Ebony/Medium Smoked Truffle interior. Oklahoma City area. Dealer page renders the car (note: its photo shows a grey stock image, but the spec sheet says Red Carpet Metallic — confirm by phone). Price not listed. HUMAN-VERIFIED live on the dealer site (Jul 19).",
           "available": true,
           "msrp": 42680,
+          "human_verified": true,
           "distance_mi": 820,
           "sticker": "stickers/5LMCJ1CA9TUL09864.pdf"
         },

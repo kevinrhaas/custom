@@ -57,6 +57,7 @@ function evaluateCorsair(v) {
   score += Math.max(0, (v.condition === 'new' ? 8 : 5) - (v.mileage || 0) / 1200);
   score += Math.min(6, (v.packages || []).length * 2);
   if (typeof v.distance_mi === 'number') score += Math.max(0, 6 - v.distance_mi / 150);
+  if (v.human_verified) score += 15;   // personally confirmed live — trust boost
   let tier;
   if (red && ic.rank === 5) tier = 'exact';
   else if (red && (ic.light || ic.rank >= 3)) tier = 'strong';
@@ -80,6 +81,7 @@ function evaluateForester(v) {
   score += Math.max(0, (v.condition === 'new' ? 8 : 5) - (v.mileage || 0) / 1200);
   score += v.panoramic_roof ? 4 : 0;
   if (typeof v.distance_mi === 'number') score += Math.max(0, 12 - v.distance_mi / 60); // proximity weighs more here
+  if (v.human_verified) score += 15;
   let tier;
   if (crimson && touring && hybrid) tier = 'exact';
   else if (crimson && hybrid) tier = 'strong';
@@ -196,7 +198,7 @@ function card(v) {
         <div class="sub">${esc(v.exterior_color)} · ${esc(v._ic.label)} interior${v.interior_material ? ' · ' + esc(v.interior_material) : ''}</div>
       </div>
       <div style="text-align:right">
-        <span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
+        ${v.human_verified ? '<span class="hv-badge" title="Personally confirmed live on the dealer site">✓ human-verified</span> ' : ''}<span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
         <div class="price" style="margin-top:8px">${money(v.price)}${condLabel(v)}</div>
         ${(() => { const vi = valueInfo(v, SEARCH.id); return vi ? `<div class="value-line"><span class="val val-${vi.cls}">${vi.label}</span><span class="fair">fair ≈ ${money(vi.fair)}${vi.msrp ? ' · MSRP ' + money(vi.msrp) : ''}</span></div>` : (v.msrp ? `<div class="value-line"><span class="fair">MSRP ${money(v.msrp)} · call for price</span></div>` : ''); })()}
       </div>
