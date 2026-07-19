@@ -136,8 +136,8 @@ const out = {
     {
       id: 'corsair',
       label: 'Lincoln Corsair',
-      title: "Pat's 2026 Lincoln Corsair",
-      subtitle: 'The Corsair is in its final model year. Ranked nationwide shortlist for Pat: Red Carpet Metallic, light Smoked Truffle seats, Reserve or Premiere, AWD preferred — never the Grand Touring PHEV.',
+      title: '2026 Lincoln Corsair',
+      subtitle: "Pat's search — the Corsair is in its final model year. Ranked nationwide shortlist: Red Carpet Metallic, light Smoked Truffle seats, Reserve or Premiere, AWD preferred — never the Grand Touring PHEV.",
       target_color: 'Red Carpet Metallic',
       spec_chips: [
         { dot: '#8e1425', text: '<b>1.</b>&nbsp;Red Carpet Metallic' },
