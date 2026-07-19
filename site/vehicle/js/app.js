@@ -266,6 +266,7 @@ function apply() {
 function stats() {
   const pool = state.showUnavail ? VEHICLES : VEHICLES.filter(v => !isGone(v));
   const by = t => pool.filter(v => v._tier === t).length;
+  $('#s-hv').textContent = VEHICLES.filter(v => v.human_verified && !isGone(v)).length;
   $('#s-total').textContent = pool.length;
   $('#s-exact').textContent = by('exact');
   $('#s-strong').textContent = by('strong');
