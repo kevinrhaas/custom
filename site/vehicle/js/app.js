@@ -210,7 +210,8 @@ function card(v) {
   <article class="card${isGone(v) ? ' gone' : ''}" data-tier="${v._tier}">
     ${isGone(v) ? '<div class="gone-ribbon">Sold / removed</div>' : ''}
     <div class="card-photo">
-      ${v.photo ? `<img class="real-photo" src="${esc(v.photo)}" alt="${esc(v.exterior_color)} ${esc(v.trim)}" loading="lazy">` : carSVG(v)}
+      ${carSVG(v)}
+      ${v.photo ? `<button class="photo-thumb" type="button" data-photo="${esc(v.photo)}" aria-label="View dealer photo"><img src="${esc(v.photo)}" alt="" loading="lazy"><span>📷 photo</span></button>` : ''}
       <div class="photo-badges">
         <span class="pb"><span class="swatch" style="background:${swatch(v.exterior_color)}"></span>${esc(v.exterior_color)}</span>
         <span class="pb"><span class="swatch" style="background:${swatch(v.interior_color)}"></span>${esc(v._ic.label)}</span>
@@ -281,7 +282,21 @@ function stats() {
   $('#s-backup').textContent = by('backup') + by('stretch');
 }
 
+/* lightbox for real dealer photos */
+function openLightbox(src) {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = `<img src="${esc(src)}" alt="Dealer photo"><span class="lb-hint">click anywhere to close</span>`;
+  lb.addEventListener('click', () => lb.remove());
+  document.addEventListener('keydown', function onEsc(e) { if (e.key === 'Escape') { lb.remove(); document.removeEventListener('keydown', onEsc); } });
+  document.body.appendChild(lb);
+}
+
 function wire() {
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.photo-thumb');
+    if (t) openLightbox(t.dataset.photo);
+  });
   document.querySelectorAll('[data-search-btn]').forEach(b => b.addEventListener('click', () => selectSearch(b.dataset.searchBtn)));
   document.querySelectorAll('[data-tier-btn]').forEach(b => b.addEventListener('click', () => {
     state.tier = b.dataset.tierBtn;

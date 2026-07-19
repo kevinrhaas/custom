@@ -160,8 +160,7 @@ window.FINDER_DATA = {
           "available": true,
           "msrp": 50670,
           "distance_mi": 173,
-          "sticker": "stickers/5LMCJ1DA2TUL11664.pdf",
-          "photo": "photos/5LMCJ1DA2TUL11664.jpg"
+          "sticker": "stickers/5LMCJ1DA2TUL11664.pdf"
         },
         {
           "vin": "5LMCJ1DA9TUL02265",
@@ -347,8 +346,7 @@ window.FINDER_DATA = {
           "available": true,
           "msrp": 50970,
           "distance_mi": 511,
-          "sticker": "stickers/5LMCJ1DAXTUL05577.pdf",
-          "photo": "photos/5LMCJ1DAXTUL05577.jpg"
+          "sticker": "stickers/5LMCJ1DAXTUL05577.pdf"
         },
         {
           "vin": "5LMCJ2CAXTUL04372",
