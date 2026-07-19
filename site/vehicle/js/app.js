@@ -276,7 +276,11 @@ function wire() {
     document.querySelectorAll('[data-tier-btn]').forEach(x => x.classList.toggle('on', x === b));
     apply();
   }));
-  $('#sort').addEventListener('change', e => { state.sort = e.target.value; apply(); });
+  document.querySelectorAll('[data-sort-btn]').forEach(b => b.addEventListener('click', () => {
+    state.sort = b.dataset.sortBtn;
+    document.querySelectorAll('[data-sort-btn]').forEach(x => x.classList.toggle('on', x === b));
+    apply();
+  }));
   $('#awdOnly').addEventListener('change', e => { state.awdOnly = e.target.checked; apply(); });
   $('#targetOnly').addEventListener('change', e => { state.targetOnly = e.target.checked; apply(); });
   $('#showUnavail').addEventListener('change', e => { state.showUnavail = e.target.checked; stats(); apply(); });

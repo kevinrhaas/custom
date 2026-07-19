@@ -100,6 +100,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--carpet-2); outl
 .controls .seg button { border: none; background: none; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text-2); padding: 7px 14px; border-radius: 100px; cursor: pointer; transition: all .15s; }
 .controls .seg button.on { background: var(--carpet); color: #fff; }
 .controls select, .controls input { font-family: inherit; font-size: 13px; padding: 8px 12px; border-radius: 100px; border: 1px solid var(--border-2); background: var(--surface); color: var(--text); }
+.sort-label { font-size: 12px; color: var(--text-3); font-weight: 600; }
 .controls .grow { flex: 1; min-width: 120px; }
 .controls label { font-size: 12px; color: var(--text-3); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
 

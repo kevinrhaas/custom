@@ -55,12 +55,12 @@
     <label><input type="checkbox" id="awdOnly"> AWD only</label>
     <label><input type="checkbox" id="showUnavail"> Show sold / removed</label>
     <span class="grow"></span>
-    <label for="sort">Sort</label>
-    <select id="sort">
-      <option value="match">Best match</option>
-      <option value="distance">Nearest to Crystal Lake</option>
-      <option value="price">Lowest price</option>
-    </select>
+    <span class="sort-label">Sort</span>
+    <div class="seg" role="group" aria-label="Sort order">
+      <button data-sort-btn="match" class="on">Best match</button>
+      <button data-sort-btn="distance">Nearest</button>
+      <button data-sort-btn="price">Lowest price</button>
+    </div>
   </div>
 
   <p style="font-size:13px;color:var(--text-2);margin:2px 0 6px"><b id="count">0</b> shown<span id="removedNote"></span></p>
