@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="en" data-palette="polecat" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Corsair Finder — 2026 Lincoln Corsair search for Pat</title>
+<meta name="description" content="A curated, verified search for a 2026 Lincoln Corsair in Red Carpet Metallic with a light interior, near Crystal Lake, IL.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23a11f2c'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E">
+<script>
+(function(){try{var t=localStorage.getItem('corsair.theme')||'polecat:dark';var p=t.split(':');
+document.documentElement.setAttribute('data-palette',p[0]);
+document.documentElement.setAttribute('data-theme',p[1]==='system'?'dark':p[1]);}catch(e){}})();
+</script>
+<style>/* =========================================================================
+   Polecat Shell — tokens.css (v0.1.0)
+   The fleet's design-token vocabulary. Two axes stamped on <html> by
+   theme.js: [data-palette] × [data-theme]. Palettes shipped in v1:
+
+     polecat  — warm amber/brown house style (from jobtracker/manager DNA)
+     aurora   — violet / teal
+     neon     — Miami-Vice magenta / cyan on deep violet night (for Games)
+
+   Cascade contract (order matters, blocks rely on it):
+     :root                       = base — polecat DARK values
+     [data-theme="light"]        = polecat light overrides
+     [data-palette="X"]          = X dark values  (same specificity as the
+                                   light block, but later → wins; then…)
+     [data-palette="X"][data-theme="light"] = X light (higher specificity)
+
+   Apps may define their own [data-palette] block in app CSS — the shell
+   only ever reads tokens, never palette names.
+   ========================================================================= */
+
+/* ---- polecat dark (base) ------------------------------------------------ */
+:root{
+  --bg:#0a0a0f; --bg-2:#12121c;
+  --surface:#111118; --surface-2:#18181f; --surface-3:#222230;
+  --border:#2a2a3c; --line:color-mix(in srgb, var(--border) 55%, transparent);
+  --text:#e8e8f2; --text-2:#8888aa; --text-3:#4a4a6a;
+  --brand:#d4773b; --brand-2:#e79a5f; --accent:#9333ea; --accent-2:#f4a6a6;
+  --success:#34d399; --danger:#f87171; --warning:#fbbf24; --info:#60a5fa;
+  --rail-bg:#0d0d14; --rail-bg2:#17171f; --rail-line:#23233330;
+  --rail-accent:var(--brand);
+  --shadow:0 24px 64px rgba(0,0,0,.5); --shadow-sm:0 6px 20px rgba(0,0,0,.35);
+
+  /* geometry + type — shared across every palette */
+  --radius:14px; --radius-sm:9px; --radius-lg:20px;
+  --ring:0 0 0 3px color-mix(in srgb, var(--brand) 40%, transparent);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --mono:'SF Mono','Fira Code',ui-monospace,'JetBrains Mono',monospace;
+  --font-display:var(--font);   /* apps opt in to display faces per-app */
+  --rail-w:66px; --rail-w-open:232px;
+}
+
+/* ---- polecat light ------------------------------------------------------ */
+[data-theme="light"]{
+  --bg:#f4f4fb; --bg-2:#ebebf5;
+  --surface:#ffffff; --surface-2:#ebebf5; --surface-3:#e0e0ee;
+  --border:#d0d0e4;
+  --text:#111120; --text-2:#55556e; --text-3:#9090b0;
+  --brand:#b8632e; --brand-2:#d4773b; --accent:#9333ea; --accent-2:#e08a8a;
+  --rail-bg:#ffffff; --rail-bg2:#eef0f8; --rail-line:#d0d0e480;
+  --shadow:0 24px 64px rgba(30,30,60,.18); --shadow-sm:0 6px 20px rgba(30,30,60,.10);
+}
+
+/* ---- aurora dark — violet / teal ---------------------------------------- */
+[data-palette="aurora"]{
+  --bg:#0c0b1e; --bg-2:#14122b;
+  --surface:#14122b; --surface-2:#1b1938; --surface-3:#262350;
+  --border:#2e2b55;
+  --text:#eceafb; --text-2:#9a95c8; --text-3:#5b5690;
+  --brand:#8b5cf6; --brand-2:#a78bfa; --accent:#14b8a6; --accent-2:#2dd4bf;
+  --rail-bg:#0e0d24; --rail-bg2:#191740; --rail-line:#2e2b5540;
+  --rail-accent:var(--brand);
+  --shadow:0 24px 64px rgba(0,0,0,.55); --shadow-sm:0 6px 20px rgba(0,0,0,.4);
+}
+[data-palette="aurora"][data-theme="light"]{
+  --bg:#f1f0fa; --bg-2:#e8e6f6;
+  --surface:#ffffff; --surface-2:#eae9f6; --surface-3:#dedcf0;
+  --border:#cfcce6;
+  --text:#14122b; --text-2:#4f4b74; --text-3:#8d89b4;
+  --brand:#7c3aed; --brand-2:#8b5cf6; --accent:#0d9488; --accent-2:#14b8a6;
+  --rail-bg:#ffffff; --rail-bg2:#eeecf8; --rail-line:#cfcce680;
+  --shadow:0 24px 64px rgba(50,40,110,.16); --shadow-sm:0 6px 20px rgba(50,40,110,.10);
+}
+
+/* ---- neon dark — synthwave magenta / cyan (games.polecat.live values) ---- */
+[data-palette="neon"]{
+  --bg:#0b0420; --bg-2:#150a35;
+  --surface:#1a0d40; --surface-2:#241457; --surface-3:#2f1c6b;
+  --border:#43307f;
+  --text:#e9e6ff; --text-2:#9d92c7; --text-3:#665c93;
+  --brand:#ff2e97; --brand-2:#ff6ab8; --accent:#21e6ff; --accent-2:#9b5cff;
+  --success:#5dff8f; --danger:#ff5470; --warning:#ffe14d; --info:#21e6ff;
+  --rail-bg:#0d0526; --rail-bg2:#1b0f42; --rail-line:#43307f40;
+  --rail-accent:var(--accent);
+  --shadow:0 24px 64px rgba(6,1,20,.65); --shadow-sm:0 6px 20px rgba(6,1,20,.5);
+}
+/* neon light — a dusk-pastel take on the same magenta/cyan identity */
+[data-palette="neon"][data-theme="light"]{
+  --bg:#f4effc; --bg-2:#eae2f8;
+  --surface:#ffffff; --surface-2:#efe8fa; --surface-3:#e3d9f4;
+  --border:#d4c8ec;
+  --text:#1c0e40; --text-2:#5b4f86; --text-3:#948ab8;
+  --brand:#e0187f; --brand-2:#ff2e97; --accent:#0899b8; --accent-2:#7c3aed;
+  --success:#0f9d58; --danger:#e0405c; --warning:#c98a00; --info:#0899b8;
+  --rail-bg:#ffffff; --rail-bg2:#f0e9fb; --rail-line:#d4c8ec80;
+  --shadow:0 24px 64px rgba(60,20,110,.16); --shadow-sm:0 6px 20px rgba(60,20,110,.10);
+}
+
+/* ---- compat aliases ------------------------------------------------------
+   Keep Manager-era (--brand-a/b/c) and Games-era (--ink/--ink-dim) CSS
+   working during migration. Canonical names are --brand/--brand-2/--accent
+   and --text/--text-2; these var() references track the active palette. */
+:root{
+  --brand-a:var(--brand);
+  --brand-b:var(--brand-2);
+  --brand-c:var(--accent);
+  --ink:var(--text);
+  --ink-dim:var(--text-2);
+}
+</style>
+<style>/* =========================================================================
+   Polecat Shell — shell.css (v0.1.0)
+   Component CSS for everything shell.js + ui.js build: layout (rail +
+   topbar + main), right panel, app-switcher waffle, toasts, modal / sheet /
+   popover, and the button / input / pill basics. Ported from JobTracker's
+   design system onto the tokens.css vocabulary — load tokens.css first.
+
+   Naming contract:
+   - NEW shell surfaces (layout, rail, topbar, right panel, waffle) are
+     `ps-` prefixed — shell.js owns them.
+   - Toast / modal / popover / field / control selectors are kept VERBATIM
+     from JobTracker (`#toasts .toast .modal-back .modal .pop-menu .field
+     .btn .input .pill …`) because the vendored ui.js keeps those names.
+   ========================================================================= */
+
+/* ---- base ---------------------------------------------------------------- */
+*{box-sizing:border-box}
+html,body.ps-shell{height:100%}
+body.ps-shell{
+  margin:0;font-family:var(--font);color:var(--text);background:var(--bg);
+  font-size:14px;line-height:1.5;overflow:hidden;
+  display:flex;position:relative;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+@supports (height:100dvh){ body.ps-shell{height:100dvh} }
+body.ps-shell h1,body.ps-shell h2,body.ps-shell h3,body.ps-shell h4{margin:0;font-weight:700;letter-spacing:-.01em}
+body.ps-shell a{color:var(--brand-2);text-decoration:none}
+body.ps-shell a:hover{text-decoration:underline}
+body.ps-shell button{font-family:inherit}
+.ic{display:inline-block;vertical-align:middle;flex:none}
+.muted{color:var(--text-2)}
+.tiny{font-size:12px}
+.sp{flex:1}
+.mono{font-family:var(--mono)}
+.hide{display:none!important}
+kbd{font-family:var(--mono);font-size:11px;background:var(--surface-3);border:1px solid var(--border);border-radius:6px;padding:1px 6px}
+::selection{background:color-mix(in srgb,var(--brand) 40%,transparent)}
+
+/* reduced motion: OS preference or the stored override stamped by theme.js */
+@media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+html[data-reduce-motion="1"] *{animation:none!important;transition:none!important}
+
+/* ---- buttons / controls (ui.js contract — names verbatim) ---------------- */
+.btn{display:inline-flex;align-items:center;gap:7px;justify-content:center;
+  padding:8px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text);cursor:pointer;font-size:13.5px;font-weight:600;
+  transition:transform .08s,background .15s,border-color .15s,box-shadow .15s;white-space:nowrap}
+.btn:hover{background:var(--surface-3);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--accent));border-color:transparent;color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.danger{background:color-mix(in srgb,var(--danger) 18%,var(--surface-2));border-color:color-mix(in srgb,var(--danger) 40%,var(--border));color:var(--danger)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn.icon{padding:8px;width:38px;height:38px}
+.btn.icon.sm{width:32px;height:32px;padding:6px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.block{width:100%}
+
+.input,textarea.input,select.input{
+  width:100%;padding:9px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--surface);color:var(--text);font-size:13.5px;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+.input:focus{outline:none;border-color:var(--brand);box-shadow:var(--ring)}
+textarea.input{resize:vertical;line-height:1.55}
+select.input{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239a95c8' stroke-width='2.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:.02em}
+.field .hint{font-size:11.5px;color:var(--text-3)}
+.field-row{display:flex;gap:12px;flex-wrap:wrap}
+.field-row .field{flex:1;min-width:160px}
+
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;transition:all .12s;white-space:nowrap}
+.pill:hover{border-color:var(--brand);color:var(--text)}
+.pill.on{background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;border-color:transparent}
+.pill:disabled{opacity:.5;cursor:not-allowed}
+.pill:disabled:hover{border-color:var(--border);color:var(--text-2)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--surface-3);color:var(--text-2)}
+
+/* ---- layout: rail + topbar + main (ps- — shell.js owns these) ------------ */
+.ps-rail{width:var(--rail-w);flex:none;background:linear-gradient(180deg,var(--rail-bg),var(--rail-bg2));
+  border-right:1px solid var(--border);display:flex;flex-direction:column;position:relative;
+  transition:width .22s cubic-bezier(.4,0,.2,1);overflow:hidden;z-index:30}
+.ps-rail.open{width:var(--rail-w-open)}
+.ps-rail.dragging{transition:none}
+.ps-rail-brand{display:flex;align-items:center;gap:11px;padding:16px 14px;background:none;border:none;cursor:pointer;color:var(--text);width:100%}
+.ps-rail-brand:focus-visible{outline:none;box-shadow:var(--ring)}
+.ps-rail-logo{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;box-shadow:var(--shadow-sm)}
+.ps-rail-logo svg,.ps-rail-logo img{width:22px;height:22px}
+.ps-rail-brand .bt{display:flex;flex-direction:column;line-height:1.15;opacity:0;transition:opacity .2s;text-align:left;white-space:nowrap}
+.ps-rail.open .ps-rail-brand .bt{opacity:1}
+.ps-rail-brand b{font-size:15px;font-family:var(--font-display)}
+.ps-rail-brand small{font-size:11px;color:var(--text-2)}
+.ps-rail-scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:6px 10px 56px;display:flex;flex-direction:column;gap:2px;scrollbar-width:thin}
+.ps-rail-group{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);padding:12px 10px 4px;opacity:0;transition:opacity .2s;white-space:nowrap}
+.ps-rail.open .ps-rail-group{opacity:1}
+.ps-rail-item{display:flex;align-items:center;gap:12px;padding:9px 11px;border-radius:10px;background:none;border:none;cursor:pointer;color:var(--text-2);width:100%;position:relative;transition:background .13s,color .13s}
+.ps-rail-item .lbl{opacity:0;transition:opacity .2s;white-space:nowrap;font-weight:600;font-size:13.5px}
+.ps-rail.open .ps-rail-item .lbl{opacity:1}
+.ps-rail-item:hover{background:var(--surface-2);color:var(--text)}
+.ps-rail-item:focus-visible{outline:none;box-shadow:var(--ring)}
+.ps-rail-item.active{background:color-mix(in srgb,var(--rail-accent) 16%,transparent);color:var(--text)}
+.ps-rail-item.active::before{content:'';position:absolute;left:-10px;top:8px;bottom:8px;width:3px;border-radius:3px;background:linear-gradient(var(--brand),var(--accent))}
+.ps-rail-item .badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 5px}
+.ps-rail-item .badge.tone-danger{background:var(--danger)}
+/* the count badge is empty/hidden until a section sets one — the explicit
+   display above would otherwise override the [hidden] attribute */
+.ps-rail-item .badge[hidden]{display:none}
+.ps-rail-toggle{position:absolute;bottom:12px;left:14px;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;display:grid;place-items:center;transition:transform .22s}
+.ps-rail-toggle:focus-visible{outline:none;box-shadow:var(--ring);transition:transform .22s,box-shadow .1s}
+.ps-rail.open .ps-rail-toggle{transform:rotate(180deg)}
+.ps-rail-resize{position:absolute;top:0;right:0;width:6px;height:100%;cursor:col-resize;z-index:5}
+.ps-rail-resize:hover,.ps-rail.dragging .ps-rail-resize{background:color-mix(in srgb,var(--rail-accent) 40%,transparent)}
+.ps-rail-backdrop{display:none}
+
+.ps-main{flex:1;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;isolation:isolate}
+.ps-topbar{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 70%,transparent);backdrop-filter:blur(12px);z-index:20}
+.ps-topbar h1{font-size:18px;font-family:var(--font-display)}
+.ps-topbar-menu{display:none}
+.ps-tb-left,.ps-tb-center,.ps-tb-right{display:flex;align-items:center;gap:10px;min-width:0}
+.ps-tb-center{flex:1;justify-content:center}
+.ps-view{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:22px 24px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+
+/* ---- right panel (slide-in from the right) -------------------------------- */
+.ps-rpanel-back{position:fixed;inset:0;z-index:90;background:rgba(6,4,20,.45);backdrop-filter:blur(2px);
+  opacity:0;transition:opacity .2s;pointer-events:none}
+.ps-rpanel-back.in{opacity:1;pointer-events:auto}
+.ps-rpanel{position:fixed;top:0;right:0;bottom:0;z-index:95;width:min(420px,100vw);
+  background:var(--surface);border-left:1px solid var(--border);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;transform:translateX(102%);transition:transform .24s cubic-bezier(.2,.8,.3,1);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.ps-rpanel.in{transform:none}
+.ps-rpanel:focus-visible{outline:none}
+.ps-rpanel-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border);flex:none}
+.ps-rpanel-head h2{font-size:16px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-rpanel-body{flex:1;overflow-y:auto;padding:18px 20px;-webkit-overflow-scrolling:touch}
+
+/* ---- app-switcher waffle --------------------------------------------------- */
+.ps-waffle-pop{position:fixed;z-index:120;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:12px;width:min(320px,92vw);animation:pop-in .12s ease}
+.ps-waffle-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-3);padding:0 4px 8px}
+.ps-waffle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ps-waffle-item{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px 10px;border-radius:11px;
+  color:var(--text);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background .12s,border-color .12s;text-align:center}
+.ps-waffle-item:hover{background:var(--surface-2);text-decoration:none}
+.ps-waffle-item:focus-visible{outline:none;box-shadow:var(--ring)}
+.ps-waffle-item.current{border-color:color-mix(in srgb,var(--brand) 45%,var(--border));background:color-mix(in srgb,var(--brand) 10%,transparent)}
+.ps-waffle-item.soon{opacity:.45;cursor:default}
+.ps-waffle-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;font-size:17px;font-weight:700;
+  background:linear-gradient(135deg,var(--w-accent,var(--brand)),color-mix(in srgb,var(--w-accent,var(--brand)) 55%,var(--accent)))}
+.ps-waffle-ic svg{width:20px;height:20px}
+.ps-waffle-name{font-size:11.5px;font-weight:600;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.ps-waffle-item .chip{font-size:9.5px;padding:1px 7px}
+
+/* ---- toasts (ui.js contract — selectors verbatim from JobTracker) --------- */
+#toasts{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));right:calc(20px + env(safe-area-inset-right,0px));z-index:200;display:flex;flex-direction:column;gap:10px;max-width:340px}
+.toast{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--brand);border-radius:11px;padding:12px 15px;box-shadow:var(--shadow);cursor:pointer;transform:translateX(120%);transition:transform .26s cubic-bezier(.2,.9,.3,1.2)}
+.toast.in{transform:none}
+.toast.ok{border-left-color:var(--success)} .toast.err{border-left-color:var(--danger)} .toast.info{border-left-color:var(--info)}
+.toast-title{font-weight:700;font-size:13.5px}
+.toast-body{font-size:12.5px;color:var(--text-2);margin-top:3px}
+.toast-action{margin-top:6px;padding:0;border:none;background:none;color:var(--brand-2);cursor:pointer;font-weight:600;font-size:12px;display:block}
+.toast-action:hover{text-decoration:underline}
+.toast-action:focus-visible{outline:none;box-shadow:var(--ring);border-radius:4px}
+
+/* ---- modal (ui.js contract — selectors verbatim from JobTracker) ---------- */
+.modal-back{position:fixed;inset:0;background:rgba(6,4,20,.6);backdrop-filter:blur(4px);z-index:100;display:grid;place-items:center;padding:20px;opacity:0;transition:opacity .2s}
+.modal-back.in{opacity:1}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);width:min(560px,100%);max-height:90vh;display:flex;flex-direction:column;transform:translateY(12px) scale(.98);transition:transform .2s}
+.modal:focus-visible{outline:none;box-shadow:var(--shadow),var(--ring)}
+.modal-back.in .modal{transform:none}
+.modal.wide{width:min(920px,100%)}
+.modal.full{width:min(1100px,100%);height:90vh}
+.modal-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.modal-title{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;flex:1}
+.modal-body{padding:20px;overflow-y:auto;flex:1}
+.modal-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--border);flex-wrap:wrap}
+
+/* sheet — a side-anchored variant of the modal (ui.js sheet()); rendered
+   inside the same .modal-back so stacking/Escape behavior is shared */
+.modal-back.sheet-back{place-items:stretch end;padding:0}
+.modal.sheet{border-radius:0;max-height:none;height:100%;width:min(440px,100%);
+  transform:translateX(24px);border-top:none;border-bottom:none;border-right:none}
+.modal.sheet[data-side="left"]{margin-right:auto;transform:translateX(-24px);border-left:none;border-right:1px solid var(--border)}
+.modal.sheet[data-side="bottom"]{margin-top:auto;height:auto;max-height:88vh;width:100%;transform:translateY(24px);
+  border:none;border-top:1px solid var(--border);border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.modal-back.in .modal.sheet{transform:none}
+
+/* ---- anchored popover menus (ui.js contract — verbatim) ------------------- */
+.pop-menu{position:fixed;z-index:120;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:6px;min-width:190px;display:flex;flex-direction:column;gap:2px;animation:pop-in .12s ease}
+.pop-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 11px;border:none;background:none;
+  color:var(--text);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;text-align:left}
+.pop-menu button:hover{background:var(--surface-2)}
+.pop-menu:focus-visible{outline:none;box-shadow:var(--shadow),var(--ring)}
+@keyframes pop-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* ---- confetti burst (ui.js celebrate() — verbatim) ------------------------- */
+.confetti-root{position:fixed;inset:0 0 auto 0;height:0;z-index:210;pointer-events:none;overflow:visible}
+.confetti-piece{position:absolute;top:-16px;border-radius:2px;opacity:.95;
+  animation-name:confetti-fall;animation-timing-function:cubic-bezier(.25,.46,.45,.94);animation-fill-mode:forwards}
+@keyframes confetti-fall{
+  0%{transform:translate(0,0) rotate(0deg);opacity:.95}
+  100%{transform:translate(var(--drift),100vh) rotate(var(--rot));opacity:0}
+}
+
+/* ---- responsive ------------------------------------------------------------
+   Below 860px the rail becomes an overlay drawer with a backdrop; the
+   hamburger appears in the topbar. Everything stays usable at 390px. */
+@media (max-width:860px){
+  .ps-rail{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);width:var(--rail-w-open);transition:transform .22s;
+    padding-top:env(safe-area-inset-top,0px);padding-left:env(safe-area-inset-left,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .ps-rail.open{transform:none}
+  .ps-rail-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s;z-index:25}
+  .ps-rail.open ~ .ps-rail-backdrop{opacity:1;pointer-events:auto}
+  .ps-rail-toggle,.ps-rail-resize{display:none}
+  .ps-topbar-menu{display:grid}
+  .ps-view{padding:16px 14px}
+  /* touch targets: ~44px minimum (WCAG 2.5.5) below the drawer breakpoint;
+     .icon.sm stays compact since it's only ever paired with adjacent text/controls */
+  .btn:not(.icon){min-height:44px}
+  .btn.icon{width:44px;height:44px}
+  .ps-rail-item{min-height:44px}
+}
+@media (max-width:520px){
+  .ps-topbar h1{display:none}
+  .ps-topbar{gap:4px;padding:12px 10px}
+  .ps-rpanel{width:100vw;border-left:none}
+
+  /* wide dialogs become a fixed, full-screen sheet so page content can
+     never push them wider than the viewport (JobTracker mobile pattern) */
+  .modal-back{padding:0}
+  .modal,.modal.wide,.modal.full{position:fixed;inset:0;width:auto;max-width:none;
+    height:auto;max-height:none;border-radius:0;transform:none;display:flex;flex-direction:column;
+    padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+  .modal-body{overflow-x:hidden;flex:1;min-width:0}
+  .modal-head,.modal-foot{flex:none}
+  .modal-foot{position:sticky;bottom:0;background:var(--surface)}
+  .modal *{max-width:100%}
+  .field-row{flex-direction:column;gap:0}
+}
+
+/* =========================================================================
+   Widget layer — CSS for the shell's companion modules (whatsnew.js,
+   notifications.js, views.js, settings.js, tour.js, shortcuts.js) plus the
+   sheet's inner regions. Same token vocabulary; loaded with shell.css.
+   ========================================================================= */
+
+/* ---- sheet inner regions (ui.js sheet() — mirrors modal-head/body/foot) --- */
+.sheet-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border);flex:none}
+.sheet-title{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;flex:1;min-width:0}
+.sheet-title span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-body{padding:20px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+.sheet-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 20px;border-top:1px solid var(--border);flex-wrap:wrap;flex:none}
+
+/* ---- What's-New feed (whatsnew.js) ---------------------------------------- */
+.shell-whatsnew{display:flex;flex-direction:column;gap:12px;min-height:0}
+.wn-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wn-search .input{max-width:100%}
+.wn-kinds{display:flex;gap:6px;flex-wrap:wrap}
+.filter-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;transition:all .12s}
+.filter-chip:hover{border-color:var(--brand);color:var(--text)}
+.filter-chip.on{background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;border-color:transparent}
+.wn-list{display:flex;flex-direction:column;gap:14px;overflow-y:auto;min-height:0}
+.wn-entry{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.wn-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.wn-top h3,.wn-top h4{font-size:14px;flex:1;min-width:0}
+.wn-badge{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--brand-2);background:color-mix(in srgb,var(--brand) 14%,transparent);border-radius:7px;padding:2px 8px}
+.wn-kind{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:2px 8px;background:var(--surface-3);color:var(--text-2)}
+.wn-kind.kind-feature{color:var(--success);background:color-mix(in srgb,var(--success) 14%,transparent)}
+.wn-kind.kind-fix{color:var(--danger);background:color-mix(in srgb,var(--danger) 14%,transparent)}
+.wn-kind.kind-polish{color:var(--info);background:color-mix(in srgb,var(--info) 14%,transparent)}
+.wn-date{margin:2px 0 6px}
+.wn-entry ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;color:var(--text-2);font-size:13px}
+.empty{padding:26px 10px;text-align:center}
+
+/* ---- notification bell (notifications.js) --------------------------------- */
+.notif-btn{position:relative}
+.nb-badge{position:absolute;top:2px;right:2px;min-width:16px;height:16px;border-radius:8px;background:var(--danger);color:#fff;
+  font-size:9.5px;font-weight:700;display:grid;place-items:center;padding:0 4px;pointer-events:none}
+.nb-badge[hidden]{display:none}
+.notif-panel{display:flex;flex-direction:column;max-height:min(480px,72vh);width:min(360px,92vw);padding:0}
+.notif-head{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--border);font-weight:700;font-size:13.5px}
+.notif-body{overflow-y:auto;padding:6px;display:flex;flex-direction:column;gap:2px}
+.notif-item{display:flex;gap:10px;align-items:flex-start;padding:10px 10px;border-radius:9px;transition:background .12s}
+.notif-item:hover{background:var(--surface-2)}
+.ni-ic{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--brand-2);background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.notif-item[data-kind="danger"] .ni-ic,.notif-item[data-kind="overdue"] .ni-ic{color:var(--danger);background:color-mix(in srgb,var(--danger) 12%,transparent)}
+.notif-item[data-kind="warn"] .ni-ic{color:var(--warning);background:color-mix(in srgb,var(--warning) 14%,transparent)}
+.ni-main{flex:1;min-width:0}
+.ni-title{font-weight:600;font-size:13px}
+.notif-empty{padding:30px 16px;text-align:center;color:var(--text-3);font-size:13px}
+
+/* ---- views system (views.js): pills row, dropdowns, manage dialog --------- */
+.shell-pills,.shell-views{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.filter-count{font-size:10.5px;font-weight:700;background:color-mix(in srgb,currentColor 16%,transparent);border-radius:999px;padding:1px 6px}
+.t-ic{display:inline-flex;align-items:center}
+.filter-pop{position:fixed;z-index:120;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:8px;min-width:210px;max-height:min(380px,60vh);display:flex;flex-direction:column;animation:pop-in .12s ease}
+.fp-group{overflow-y:auto;display:flex;flex-direction:column;gap:1px;padding:2px}
+.fp-row{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:8px;cursor:pointer;font-size:13px}
+.fp-row:hover{background:var(--surface-2)}
+.fp-row input[type="checkbox"]{accent-color:var(--brand)}
+.fp-row .muted{margin-left:auto}
+.fp-ic{display:inline-flex;color:var(--text-2)}
+.fp-foot{display:flex;justify-content:space-between;gap:8px;padding:8px 4px 2px;border-top:1px solid var(--border);margin-top:6px}
+.icon-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px;margin-top:4px}
+.icon-opt{display:grid;place-items:center;padding:8px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer}
+.icon-opt:hover{color:var(--text);border-color:var(--brand)}
+.icon-opt.on{color:#fff;background:linear-gradient(135deg,var(--brand),var(--accent));border-color:transparent}
+.col-check{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 0;cursor:pointer}
+.mv-row{display:flex;align-items:center;gap:8px;padding:8px 6px;border-radius:9px}
+.mv-row:hover{background:var(--surface-2)}
+.mv-ic{display:inline-flex;color:var(--text-2);flex:none}
+.mv-name{flex:1;min-width:0;font-weight:600;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn.star.on{color:var(--warning)}
+
+/* ---- settings framework (settings.js) ------------------------------------- */
+.ps-settings-section{max-width:640px;margin:0 0 30px}
+.ps-settings-section h2{font-size:16px;margin-bottom:4px}
+.ps-settings-blurb{color:var(--text-2);font-size:13px;margin:0 0 14px}
+.ps-toggle{position:relative;width:44px;height:24px;border-radius:999px;border:1px solid var(--border);background:var(--surface-3);cursor:pointer;transition:background .15s,border-color .15s;padding:0}
+.ps-toggle .ps-toggle-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--text-2);transition:transform .18s,background .15s}
+.ps-toggle.on{background:linear-gradient(135deg,var(--brand),var(--accent));border-color:transparent}
+.ps-toggle.on .ps-toggle-knob{transform:translateX(20px);background:#fff}
+.ps-toggle:focus-visible{outline:none;box-shadow:var(--ring)}
+.ps-seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.ps-seg-btn{padding:7px 14px;border:none;background:none;color:var(--text-2);font-size:12.5px;font-weight:600;cursor:pointer;border-right:1px solid var(--border)}
+.ps-seg-btn:last-child{border-right:none}
+.ps-seg-btn.on{background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff}
+
+/* ---- onboarding tour (tour.js) --------------------------------------------- */
+.tour-back{position:fixed;inset:0;z-index:150;background:rgba(6,4,20,.55);backdrop-filter:blur(2px)}
+.tour-pop{position:fixed;z-index:155;width:min(320px,calc(100vw - 24px));background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;animation:pop-in .15s ease}
+.tour-pop h3{font-size:14.5px;margin-bottom:6px}
+.tour-pop p{font-size:13px;color:var(--text-2);margin:0}
+.tour-foot{display:flex;align-items:center;gap:8px;margin-top:14px}
+.tour-dots{display:flex;gap:5px;flex:1}
+.tour-dots i{width:7px;height:7px;border-radius:50%;background:var(--surface-3)}
+.tour-dots i.on{background:var(--brand)}
+
+/* ---- shortcuts cheat sheet (shortcuts.js) ---------------------------------- */
+.shortcuts-list{display:flex;flex-direction:column;gap:2px}
+.sc-group-title{margin:12px 0 4px;text-transform:uppercase;letter-spacing:.07em;font-size:10.5px}
+.sc-group-title:first-child{margin-top:0}
+.sc-row{display:flex;align-items:center;gap:12px;padding:6px 2px}
+.sc-keys{display:flex;gap:4px;min-width:110px}
+.sc-label{font-size:13px;color:var(--text-2)}
+</style>
+<style>
+/* ---- Corsair Finder app styles (built on Polecat tokens) ---- */
+html,body.ps-shell{height:auto}
+body.ps-shell{display:block;overflow-x:hidden;overflow-y:auto}
+.wrap{max-width:1220px;margin:0 auto;padding:0 20px 80px}
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;
+  padding:14px 22px;background:color-mix(in srgb,var(--surface) 82%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.brandmark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow-sm);flex:none;font-weight:800}
+.brandtxt b{font-size:16px;font-family:var(--font-display);letter-spacing:-.01em;display:block;line-height:1.1}
+.brandtxt small{color:var(--text-2);font-size:12px}
+.hero{padding:34px 0 8px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-2)}
+.hero h1{font-size:clamp(26px,4vw,40px);line-height:1.08;margin:8px 0 10px;letter-spacing:-.02em}
+.hero p.lead{color:var(--text-2);font-size:15.5px;max-width:70ch;margin:0}
+.spec-strip{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.callout{margin:22px 0 6px;border:1px solid var(--border);border-left:4px solid var(--brand);
+  background:color-mix(in srgb,var(--brand) 7%,var(--surface));border-radius:var(--radius);padding:16px 18px}
+.callout h3{font-size:14px;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.callout p{margin:0 0 6px;color:var(--text-2);font-size:13.5px;line-height:1.6}
+.callout p:last-child{margin-bottom:0}
+.callout b{color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0 6px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px 16px}
+.stat .n{font-size:26px;font-weight:800;letter-spacing:-.02em;font-family:var(--font-display)}
+.stat .l{color:var(--text-2);font-size:12px;margin-top:2px}
+.controls{position:sticky;top:69px;z-index:30;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  margin:26px 0 18px;padding:12px;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:var(--radius)}
+.controls .search{flex:1;min-width:200px}
+.controls .grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.controls .lbl{font-size:11px;color:var(--text-3);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .12s,box-shadow .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--brand) 35%,var(--border))}
+.card.top{border-color:color-mix(in srgb,var(--success) 55%,var(--border));box-shadow:0 0 0 1px color-mix(in srgb,var(--success) 30%,transparent)}
+.swatchbar{height:8px;width:100%}
+.card-h{display:flex;gap:12px;align-items:flex-start;padding:16px 18px 8px}
+.rankbadge{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;font-weight:800;font-size:14px;
+  background:var(--surface-3);color:var(--text-2);font-family:var(--mono)}
+.card.top .rankbadge{background:linear-gradient(135deg,var(--success),#059669);color:#fff}
+.card-h .ht{flex:1;min-width:0}
+.card-h .ht .tier{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.tier-confirmed{color:var(--success)} .tier-fallback{color:var(--warning)} .tier-lead{color:var(--info)}
+.card-h .ht h2{font-size:17px;margin:3px 0 2px;letter-spacing:-.01em}
+.card-h .ht .dealer{font-size:13px;color:var(--text-2)}
+.dist{flex:none;text-align:right}
+.dist .d{font-size:18px;font-weight:800;font-family:var(--font-display);line-height:1}
+.dist .u{font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em}
+.reasons{display:flex;flex-wrap:wrap;gap:6px;padding:6px 18px 4px}
+.rz{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--border)}
+.rz.ok{color:var(--success);border-color:color-mix(in srgb,var(--success) 45%,var(--border));background:color-mix(in srgb,var(--success) 10%,transparent)}
+.rz.mid{color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--border));background:color-mix(in srgb,var(--warning) 10%,transparent)}
+.rz.no{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,var(--border));background:color-mix(in srgb,var(--danger) 9%,transparent)}
+.rz.unk{color:var(--text-2)}
+.specs{padding:10px 18px 4px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13px}
+.specs dt{color:var(--text-3);font-weight:600}
+.specs dd{margin:0;color:var(--text)}
+.sw{display:inline-block;width:13px;height:13px;border-radius:4px;vertical-align:-2px;margin-right:6px;border:1px solid rgba(255,255,255,.18)}
+.vin{font-family:var(--mono);font-size:12px;color:var(--text-2)}
+details.opts{padding:6px 18px 2px}
+details.opts summary{cursor:pointer;font-size:12.5px;color:var(--brand-2);font-weight:600;list-style:none}
+details.opts summary::-webkit-details-marker{display:none}
+details.opts ul{margin:8px 0 2px;padding-left:18px;color:var(--text-2);font-size:12.5px;line-height:1.7}
+.note{margin:8px 18px 2px;padding:10px 12px;background:var(--surface-2);border-radius:var(--radius-sm);font-size:12.5px;color:var(--text-2);line-height:1.55}
+.card-f{margin-top:auto;display:flex;gap:8px;padding:14px 18px 18px;flex-wrap:wrap}
+.card-f .btn{flex:1;min-width:104px}
+.empty{text-align:center;color:var(--text-2);padding:60px 20px}
+.footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);color:var(--text-3);font-size:12.5px;line-height:1.7}
+.footer b{color:var(--text-2)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0 2px;font-size:12px;color:var(--text-2)}
+@media (max-width:560px){ .grid{grid-template-columns:1fr} .controls{top:63px} }
+</style>
+</head>
+<body class="ps-shell">
+<div class="topbar">
+  <div class="brandmark">C</div>
+  <div class="brandtxt"><b>Corsair Finder</b><small>2026 Lincoln Corsair · curated for Pat</small></div>
+  <div class="sp"></div>
+  <select class="input" id="palette" style="width:auto" title="Palette">
+    <option value="polecat">Polecat</option><option value="aurora">Aurora</option><option value="neon">Neon</option>
+  </select>
+  <button class="btn icon" id="theme" title="Toggle light / dark">◐</button>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Nationwide Lincoln search · 2026-07-19</div>
+    <h1>The 2026 Corsair, narrowed to the ones worth a call.</h1>
+    <p class="lead">Priorities, in order: <b>Red Carpet Metallic</b> exterior and a <b>light interior</b> (Light Smoked Truffle ideal; light faux-leather is fine), <b>Reserve or Premiere</b> trim, <b>AWD</b> preferred, new or essentially new. Grand Touring (PHEV) excluded. Distances are approximate road miles from Crystal Lake, IL 60014.</p>
+    <div class="spec-strip">
+      <span class="pill on"><span class="sw" style="background:#a11f2c"></span>Red Carpet Metallic</span>
+      <span class="pill"><span class="sw" style="background:#cbb89d"></span>Light Smoked Truffle</span>
+      <span class="pill">Reserve / Premiere</span>
+      <span class="pill">AWD preferred</span>
+      <span class="pill">Panoramic Vista Roof</span>
+      <span class="pill">New / lightly used</span>
+    </div>
+
+    <div class="callout">
+      <h3>⚑ The honest read</h3>
+      <p>As of 2026-07-19, <b>no single car in national inventory hits every top preference at once</b> (Red Carpet + Reserve + AWD + a <i>light</i> Truffle leather interior). The search comes down to one real trade-off:</p>
+      <p><b>#1 — Wickstrom, Barrington (~14 mi):</b> Red Carpet Metallic + <b>Light Smoked Truffle</b> + AWD + panoramic roof, 1,909 miles, $45,900 — nails both top priorities and it's 15 minutes away. Catch: it's <b>Premiere</b>, so the light seats are Soft-Touch faux leather (which Pat has said is acceptable in a light color).</p>
+      <p><b>#2 — Camelback, Phoenix:</b> the best true <b>Reserve</b> in Red Carpet with genuine <b>leather</b> and AWD — but the interior is <b>Ebony (dark)</b> and it's ~1,800 mi away (shipping).</p>
+      <p>Everything below rank 6 is a <b>lead</b>: the dealer stocks Corsairs but hides color online — worth a quick call to ask for Red Carpet Metallic.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">4</div><div class="l">Confirmed Red Carpet (non-GT)</div></div>
+      <div class="stat"><div class="n">14 mi</div><div class="l">Closest match (Barrington)</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Within ~100 miles</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">Cars &amp; leads tracked</div></div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <input class="input search" id="q" placeholder="Search dealer, city, VIN, color…">
+    <div class="grp"><span class="lbl">Only</span>
+      <button class="pill" data-f="red">Red Carpet</button>
+      <button class="pill" data-f="lightint">Light interior</button>
+      <button class="pill" data-f="awd">AWD</button>
+      <button class="pill" data-f="reserve">Reserve</button>
+      <button class="pill" data-f="near">≤100 mi</button>
+    </div>
+    <div class="grp"><span class="lbl">Sort</span>
+      <select class="input" id="sort" style="width:auto">
+        <option value="rank">Best match</option>
+        <option value="dist">Distance</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    
+<article class="card top" data-trim="Premiere" data-red="1"
+   data-lightint="1" data-awd="1"
+   data-tier="Confirmed match" data-dist="14" data-rank="1"
+   data-price="$45,900 (≈$46,313 w/ doc fee)" data-search="wickstrom chrysler jeep dodge ram barrington il red carpet metallic tinted clearcoat light smoked truffle 5lmcj1da2tul06190 premiere">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></div>
+  <div class="card-h">
+    <div class="rankbadge">1</div>
+    <div class="ht">
+      <div class="tier tier-confirmed">Confirmed match</div>
+      <h2>2026 Corsair Premiere</h2>
+      <div class="dealer">Wickstrom Chrysler Jeep Dodge Ram · Barrington, IL</div>
+    </div>
+    <div class="dist"><div class="d">14</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz ok">● Red Carpet ✓</span><span class="rz ok">◧ Light Truffle ✓</span><span class="rz mid">◆ Premiere</span><span class="rz ok">⛓ AWD ✓</span><span class="rz ok">☀ Pano roof</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></span>Red Carpet Metallic Tinted Clearcoat</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:#cbb89d"></span>Light Smoked Truffle</dd>
+    <dt>Seats</dt><dd>Lincoln Soft Touch (micro-perforated faux leather), heated + ventilated</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Yes — Panoramic Vista Roof w/ power shade ($1,700)</dd>
+    <dt>Condition</dt><dd>Used · 1,909 mi</dd>
+    <dt>Price</dt><dd><b>$45,900 (≈$46,313 w/ doc fee)</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ1DA2TUL06190</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>Equipment Group 101A Premiere II ($3,990)</li><li>19" Bright Machined Aluminum wheels, Dark Tarnish ($750)</li><li>SiriusXM 360L ($400)</li><li>All-Weather floor liners ($160)</li><li>Connected Navigation</li><li>Lincoln Premium Audio / SYNC 4</li><li>Wireless charging</li><li>Phone As A Key</li></ul></details>
+  <div class="note">Client-found unit, verified live. Light-colored interior + AWD + pano roof, ~15 min from Crystal Lake. Only compromise: Premiere trim = Soft Touch faux leather, which Pat has said is acceptable in a light color.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.wickstromchryslerjeepdodgeram.com/used/Lincoln/2026-Lincoln-Corsair-for-sale-barrington-illinois-e74123c8ac1845c50d55c8537a7ab7c6.htm" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:8477877029">📞 (847) 787-7029</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Wickstrom+Chrysler+Jeep+Dodge+Ram+Barrington+IL" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="1"
+   data-lightint="0" data-awd="1"
+   data-tier="Confirmed match" data-dist="1779" data-rank="2"
+   data-price="≈$61,435 MSRP (cars.com listed ~$61,113 sale)" data-search="camelback ford lincoln phoenix az red carpet metallic tinted clearcoat ebony 5lmcj2da0tul02144 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></div>
+  <div class="card-h">
+    <div class="rankbadge">2</div>
+    <div class="ht">
+      <div class="tier tier-confirmed">Confirmed match</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Camelback Ford Lincoln · Phoenix, AZ</div>
+    </div>
+    <div class="dist"><div class="d">1779</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz ok">● Red Carpet ✓</span><span class="rz mid">◧ Backup interior</span><span class="rz ok">◆ Reserve</span><span class="rz ok">⛓ AWD ✓</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></span>Red Carpet Metallic Tinted Clearcoat</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:#1c1c20"></span>Ebony</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed, heated + cooled</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm (not listed)</dd>
+    <dt>Condition</dt><dd>New · 0 mi</dd>
+    <dt>Price</dt><dd><b>≈$61,435 MSRP (cars.com listed ~$61,113 sale)</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2DA0TUL02144</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>Heated + cooled leather seats</li><li>Head-Up Display</li><li>360° aerial-view camera</li><li>Adaptive cruise</li><li>Lane-keeping</li><li>WiFi hotspot</li></ul></details>
+  <div class="note">The strongest Reserve-trim red car with genuine premium leather. Interior is Ebony (dark), which conflicts with Pat's 'light seats' preference. ~26 hr drive / would need shipping.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.cars.com/vehicledetail/86e5b3dd-7cd0-4a9e-8c6f-62e8b6d75e01/" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:6026357551">📞 (602) 635-7551</a><a class="btn sm ghost" href="https://www.camelbacklincoln.com/for-sale/corsair.htm" target="_blank" rel="noopener">Dealer</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Camelback+Ford+Lincoln+Phoenix+AZ" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="1"
+   data-lightint="0" data-awd="0"
+   data-tier="Confirmed match" data-dist="1861" data-rank="3"
+   data-price="Call for price" data-search="team lincoln las vegas las vegas nv red carpet metallic tinted clearcoat unknown — call to confirm 5lmcj2ca9tul04119 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></div>
+  <div class="card-h">
+    <div class="rankbadge">3</div>
+    <div class="ht">
+      <div class="tier tier-confirmed">Confirmed match</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Team Lincoln Las Vegas · Las Vegas, NV</div>
+    </div>
+    <div class="dist"><div class="d">1861</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz ok">● Red Carpet ✓</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz mid">⛓ FWD</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></span>Red Carpet Metallic Tinted Clearcoat</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Unknown — call to confirm</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed (Reserve standard)</dd>
+    <dt>Drive</dt><dd>FWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>New</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2CA9TUL04119</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>Not published online</li></ul></details>
+  <div class="note">Confirmed Red Carpet Reserve in the listing title, but FWD and the dealer's live feed later showed only a white Reserve — this red car may have sold. Confirm by phone before relying on it.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.teamlincolnlasvegas.com/viewdetails/new/5lmcj2ca9tul04119/2026-lincoln-corsair-sport-utility" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:7027908429">📞 (702) 790-8429</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Team+Lincoln+Las+Vegas+Las+Vegas+NV" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Premiere" data-red="1"
+   data-lightint="0" data-awd="0"
+   data-tier="Confirmed match" data-dist="868" data-rank="4"
+   data-price="Call for price" data-search="diffee ford lincoln el reno ok red carpet metallic tinted clearcoat ebony / medium smoked truffle 5lmcj1ca9tul09864 premiere">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></div>
+  <div class="card-h">
+    <div class="rankbadge">4</div>
+    <div class="ht">
+      <div class="tier tier-confirmed">Confirmed match</div>
+      <h2>2026 Corsair Premiere</h2>
+      <div class="dealer">Diffee Ford Lincoln · El Reno, OK</div>
+    </div>
+    <div class="dist"><div class="d">868</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz ok">● Red Carpet ✓</span><span class="rz mid">◧ Backup interior</span><span class="rz mid">◆ Premiere</span><span class="rz mid">⛓ FWD</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#a11f2c,#6f1420)"></span>Red Carpet Metallic Tinted Clearcoat</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#9c8c73 50%,#1c1c20 50%)"></span>Ebony / Medium Smoked Truffle</dd>
+    <dt>Seats</dt><dd>Lincoln Soft Touch front captain's chairs (10-way driver / 8-way passenger)</dd>
+    <dt>Drive</dt><dd>FWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm (not listed)</dd>
+    <dt>Condition</dt><dd>New</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ1CA9TUL09864</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>SYNC 4 w/ 13.2" display</li><li>Lincoln Premium Audio (9 spkr)</li><li>Alexa Built-In</li><li>SiriusXM 360L</li><li>Lincoln Connect hotspot</li><li>Co-Pilot360</li><li>Adaptive Cruise w/ Stop-and-Go</li></ul></details>
+  <div class="note">Red Carpet Premiere with a Truffle/Ebony interior. FWD, so a fallback on drivetrain; would need shipping.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.diffeelincoln.com/viewdetails/new/5lmcj1ca9tul09864/2026-lincoln-corsair-sport-utility" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:4052624546">📞 (405) 262-4546</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Diffee+Ford+Lincoln+El+Reno+OK" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="1"
+   data-tier="Nearby fallback (not red)" data-dist="14" data-rank="5"
+   data-price="$54,936 sale (MSRP $56,795)" data-search="wickstrom lincoln barrington il harbor gray metallic clearcoat ebony 5lmcj2daxtul03334 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#7d828a,#565b63)"></div>
+  <div class="card-h">
+    <div class="rankbadge">5</div>
+    <div class="ht">
+      <div class="tier tier-fallback">Nearby fallback (not red)</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Wickstrom Lincoln · Barrington, IL</div>
+    </div>
+    <div class="dist"><div class="d">14</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz no">● Not red</span><span class="rz mid">◧ Backup interior</span><span class="rz ok">◆ Reserve</span><span class="rz ok">⛓ AWD ✓</span><span class="rz ok">☀ Pano roof</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#7d828a,#565b63)"></span>Harbor Gray Metallic Clearcoat</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:#1c1c20"></span>Ebony</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed w/ micro-perforated inserts</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Yes — Panoramic Vista Roof ($1,700)</dd>
+    <dt>Condition</dt><dd>New</dd>
+    <dt>Price</dt><dd><b>$54,936 sale (MSRP $56,795)</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2DAXTUL03334</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>Jet Appearance Package ($2,500)</li><li>Panoramic Vista Roof ($1,700)</li><li>SiriusXM 360L</li><li>Floor liners</li></ul></details>
+  <div class="note">If Reserve trim + genuine leather matters more than the red color, this is the closest new option (~15 min away, same dealer group as the top match).</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.wickstromford.com/new/Lincoln/2026-Lincoln-Corsair-7e9dcc14ac180dbb335475c0b01a1047.htm" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:8473825600">📞 (847) 382-5600</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Wickstrom+Lincoln+Barrington+IL" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Premiere" data-red="0"
+   data-lightint="0" data-awd="1"
+   data-tier="Nearby fallback (not red)" data-dist="14" data-rank="6"
+   data-price="$44,900" data-search="wickstrom chrysler jeep dodge ram barrington il white metallic ebony 5lmcj1daxtul07250 premiere">
+  <div class="swatchbar" style="background:linear-gradient(135deg,#f2f3f5,#d5d9de)"></div>
+  <div class="card-h">
+    <div class="rankbadge">6</div>
+    <div class="ht">
+      <div class="tier tier-fallback">Nearby fallback (not red)</div>
+      <h2>2026 Corsair Premiere</h2>
+      <div class="dealer">Wickstrom Chrysler Jeep Dodge Ram · Barrington, IL</div>
+    </div>
+    <div class="dist"><div class="d">14</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz no">● Not red</span><span class="rz mid">◧ Backup interior</span><span class="rz mid">◆ Premiere</span><span class="rz ok">⛓ AWD ✓</span><span class="rz ok">☀ Pano roof</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:linear-gradient(135deg,#f2f3f5,#d5d9de)"></span>White Metallic</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:#1c1c20"></span>Ebony</dd>
+    <dt>Seats</dt><dd>Lincoln Soft Touch</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Yes</dd>
+    <dt>Condition</dt><dd>Used · 4,209 mi</dd>
+    <dt>Price</dt><dd><b>$44,900</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ1DAXTUL07250</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>Equipment Group 101A Premiere II</li><li>Jet Appearance Package</li></ul></details>
+  <div class="note">Nearby, AWD, pano — but white, not red.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.wickstromchryslerjeepdodgeram.com/used/Lincoln/2026-Lincoln-Corsair-for-sale-barrington-illinois-8cb4075eac183919421268d7f0af8102.htm" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:8477877029">📞 (847) 787-7029</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Wickstrom+Chrysler+Jeep+Dodge+Ram+Barrington+IL" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="0"
+   data-tier="Lead — confirm color" data-dist="45" data-rank="7"
+   data-price="$49,797–$59,207" data-search="murgado lincoln of chicago chicago il not published — call to confirm not published 4 units — see options reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">7</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Murgado Lincoln of Chicago · Chicago, IL</div>
+    </div>
+    <div class="dist"><div class="d">45</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz unk">⛓ AWD/FWD</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed (Reserve standard)</dd>
+    <dt>Drive</dt><dd>Mixed (DA=AWD / CA=FWD)</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve ×4</dd>
+    <dt>Price</dt><dd><b>$49,797–$59,207</b></dd>
+    <dt>VIN</dt><dd class="vin">4 units — see options</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2DA0TUL04217 — $49,797, new (AWD)</li><li>VIN 5LMCJ2CA0TUL04283 — $54,172, 2,619 mi (FWD)</li><li>VIN 5LMCJ2CAXTUL04615 — $55,247, new (FWD)</li><li>VIN 5LMCJ2DA8TUL01436 — $59,207, 1,556 mi (AWD)</li></ul></details>
+  <div class="note">Closest metro Reserve inventory after Barrington. Colors aren't exposed on their site — worth a call to ask if any of the four is Red Carpet Metallic.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.murgadolincolnchicago.com/inventory/new/lincoln/corsair" target="_blank" rel="noopener">View listing ↗</a>
+    
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Murgado+Lincoln+of+Chicago+Chicago+IL" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve / Premiere" data-red="0"
+   data-lightint="0" data-awd="0"
+   data-tier="Lead — confirm color" data-dist="70" data-rank="8"
+   data-price="Call for price" data-search="gordie boucher lincoln (boucher auto group) west allis wi not published — call to confirm not published see options reserve / premiere">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">8</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve / Premiere</h2>
+      <div class="dealer">Gordie Boucher Lincoln (Boucher Auto Group) · West Allis, WI</div>
+    </div>
+    <div class="dist"><div class="d">70</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz unk">◆ Reserve / Premiere</span><span class="rz unk">⛓ AWD/FWD</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed (Reserve)</dd>
+    <dt>Drive</dt><dd>AWD (Reserve) / FWD (Premiere)</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve AWD ×2 + Premiere FWD</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">see options</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2DAXTUL06735 — Reserve AWD</li><li>VIN 5LMCJ2DA1TUL02511 — Reserve AWD</li><li>VIN 5LMCJ1CA9TUL04390 — Premiere FWD</li></ul></details>
+  <div class="note">~90 min drive. Reserve AWD units in stock; ask specifically for Red Carpet Metallic.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.boucher.com/" target="_blank" rel="noopener">View listing ↗</a>
+    
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Gordie+Boucher+Lincoln+(Boucher+Auto+Group)+West+Allis+WI" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="1"
+   data-tier="Lead — confirm color" data-dist="80" data-rank="9"
+   data-price="Call for price" data-search="heiser lincoln glendale wi not published — call to confirm not published 5lmcj2da7tul10399 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">9</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Heiser Lincoln · Glendale, WI</div>
+    </div>
+    <div class="dist"><div class="d">80</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz ok">⛓ AWD ✓</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve AWD</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2DA7TUL10399</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2DA7TUL10399 (Stock L16986)</li></ul></details>
+  <div class="note">Milwaukee area Reserve AWD. Color not exposed online.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.heiser.com/" target="_blank" rel="noopener">View listing ↗</a>
+    
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Heiser+Lincoln+Glendale+WI" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="1"
+   data-tier="Lead — confirm color" data-dist="338" data-rank="10"
+   data-price="Call for price" data-search="crest lincoln sterling heights mi not published — call to confirm not published 5lmcj2da1tul07532 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">10</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Crest Lincoln · Sterling Heights, MI</div>
+    </div>
+    <div class="dist"><div class="d">338</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz ok">⛓ AWD ✓</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve AWD</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2DA1TUL07532</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2DA1TUL07532</li></ul></details>
+  <div class="note">Detroit-area Reserve AWD; color unconfirmed.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.crestlincoln.com/" target="_blank" rel="noopener">View listing ↗</a>
+    <a class="btn sm" href="tel:5863280002">📞 (586) 328-0002</a>
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Crest+Lincoln+Sterling+Heights+MI" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="0"
+   data-tier="Lead — confirm color" data-dist="398" data-rank="11"
+   data-price="Call for price" data-search="bob-boyd lincoln columbus oh not published — call to confirm not published see options reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">11</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Bob-Boyd Lincoln · Columbus, OH</div>
+    </div>
+    <div class="dist"><div class="d">398</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz unk">⛓ AWD/FWD</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed</dd>
+    <dt>Drive</dt><dd>FWD + AWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve ×2</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">see options</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2CAXTUL04324 — Reserve FWD</li><li>VIN 5LMCJ2DA5TUL06609 — Reserve AWD</li></ul></details>
+  <div class="note">Ohio Reserve units; color unconfirmed.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.lincolnofcolumbus.com/" target="_blank" rel="noopener">View listing ↗</a>
+    
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Bob-Boyd+Lincoln+Columbus+OH" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+<article class="card" data-trim="Reserve" data-red="0"
+   data-lightint="0" data-awd="1"
+   data-tier="Lead — confirm color" data-dist="714" data-rank="12"
+   data-price="Call for price" data-search="eddy's lincoln wichita ks not published — call to confirm not published 5lmcj2da6tul00415 reserve">
+  <div class="swatchbar" style="background:linear-gradient(135deg,var(--surface-3),var(--surface-2))"></div>
+  <div class="card-h">
+    <div class="rankbadge">12</div>
+    <div class="ht">
+      <div class="tier tier-lead">Lead — confirm color</div>
+      <h2>2026 Corsair Reserve</h2>
+      <div class="dealer">Eddy's Lincoln · Wichita, KS</div>
+    </div>
+    <div class="dist"><div class="d">714</div><div class="u">mi approx</div></div>
+  </div>
+  <div class="reasons"><span class="rz unk">● Color: confirm</span><span class="rz unk">◧ Interior: confirm</span><span class="rz ok">◆ Reserve</span><span class="rz ok">⛓ AWD ✓</span></div>
+  <dl class="specs">
+    <dt>Exterior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published — call to confirm</dd>
+    <dt>Interior</dt><dd><span class="sw" style="background:var(--surface-3)"></span>Not published</dd>
+    <dt>Seats</dt><dd>Premium Leather-Trimmed</dd>
+    <dt>Drive</dt><dd>AWD</dd>
+    <dt>Pano roof</dt><dd>Call to confirm</dd>
+    <dt>Condition</dt><dd>Reserve AWD</dd>
+    <dt>Price</dt><dd><b>Call for price</b></dd>
+    <dt>VIN</dt><dd class="vin">5LMCJ2DA6TUL00415</dd>
+  </dl>
+  <details class="opts"><summary>Options &amp; packages ▾</summary><ul><li>VIN 5LMCJ2DA6TUL00415</li></ul></details>
+  <div class="note">Reserve AWD; color unconfirmed.</div>
+  <div class="card-f">
+    <a class="btn sm primary" href="https://www.eddyslincoln.com/" target="_blank" rel="noopener">View listing ↗</a>
+    
+    <a class="btn sm ghost" href="https://www.google.com/maps/dir/Crystal+Lake,+IL/Eddy's+Lincoln+Wichita+KS" target="_blank" rel="noopener">Directions</a>
+  </div>
+</article>
+  </div>
+  <div class="empty hide" id="empty">No cars match those filters. <a href="#" id="clear">Clear filters</a>.</div>
+
+  <div class="footer">
+    <div class="legend">
+      <span><span class="rz ok" style="padding:1px 8px">✓</span> meets preference</span>
+      <span><span class="rz mid" style="padding:1px 8px">~</span> acceptable backup</span>
+      <span><span class="rz no" style="padding:1px 8px">✗</span> misses preference</span>
+      <span><span class="rz unk" style="padding:1px 8px">?</span> confirm with dealer</span>
+    </div>
+    <p style="margin-top:12px"><b>How this was built.</b> A nationwide sweep of Lincoln.com, Cars.com, CarGurus, Autotrader, Edmunds and ~20 individual dealer sites, de-duplicated by VIN. Confirmed cars had their color verified in the listing; “leads” stock Corsairs but don’t publish color, so call to confirm. Many dealer pages render specs via JavaScript, so a few price/interior/roof fields read “call to confirm” rather than a guess — nothing here is invented.</p>
+    <p><b>Live inventory moves fast.</b> Cars sell and prices change daily — confirm availability, price, exact interior and options by phone or the listing link before acting. VIN patterns: <span class="vin">5LMCJ2DA…</span> = Reserve AWD · <span class="vin">5LMCJ2CA…</span> = Reserve FWD · <span class="vin">5LMCJ1DA…</span> = Premiere AWD · <span class="vin">5LMCJ1CA…</span> = Premiere FWD.</p>
+    <p style="margin-top:10px;color:var(--text-3)">Built on the Polecat platform design system · data snapshot 2026-07-19 · origin Crystal Lake, IL 60014</p>
+  </div>
+</div>
+
+<script>
+const grid=document.getElementById('grid'), cards=[...grid.children];
+const filters=new Set();
+document.querySelectorAll('.pill[data-f]').forEach(b=>b.onclick=()=>{
+  b.classList.toggle('on'); const f=b.dataset.f; filters.has(f)?filters.delete(f):filters.add(f); apply();});
+document.getElementById('q').oninput=apply;
+document.getElementById('sort').onchange=apply;
+document.getElementById('clear').onclick=e=>{e.preventDefault();filters.clear();document.querySelectorAll('.pill[data-f]').forEach(b=>b.classList.remove('on'));document.getElementById('q').value='';apply();};
+function apply(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const sort=document.getElementById('sort').value;
+  let vis=cards.filter(c=>{
+    if(filters.has('red')&&c.dataset.red!=='1')return false;
+    if(filters.has('lightint')&&c.dataset.lightint!=='1')return false;
+    if(filters.has('awd')&&c.dataset.awd!=='1')return false;
+    if(filters.has('reserve')&&!(c.dataset.trim.startsWith('Reserve')&&!c.dataset.trim.includes('Premiere')))return false;
+    if(filters.has('near')&&+c.dataset.dist>100)return false;
+    if(q&&!c.dataset.search.includes(q))return false;
+    return true;});
+  const rest=cards.filter(c=>!vis.includes(c));
+  vis.sort((a,b)=> sort==='dist' ? (+a.dataset.dist-+b.dataset.dist) : (+a.dataset.rank-+b.dataset.rank));
+  vis.forEach(c=>{c.classList.remove('hide');grid.appendChild(c);});
+  rest.forEach(c=>c.classList.add('hide'));
+  document.getElementById('empty').classList.toggle('hide',vis.length>0);
+}
+// theme
+const root=document.documentElement;
+function save(){try{localStorage.setItem('corsair.theme',root.getAttribute('data-palette')+':'+root.getAttribute('data-theme'));}catch(e){}}
+document.getElementById('theme').onclick=()=>{root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');save();};
+const psel=document.getElementById('palette');psel.value=root.getAttribute('data-palette');
+psel.onchange=()=>{root.setAttribute('data-palette',psel.value);save();};
+apply();
+</script>
+</body>
+</html>
