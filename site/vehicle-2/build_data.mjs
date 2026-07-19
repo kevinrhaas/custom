@@ -46,7 +46,9 @@ const CITY = {
   'st. augustine, fl': [29.905, -81.313], 'saint augustine, fl': [29.905, -81.313],
   'apple valley, mn': [44.732, -93.218], 'saint peters, mo': [38.780, -90.626],
   'st. peters, mo': [38.780, -90.626], 'oklahoma city, ok': [35.468, -97.516],
-  'spring, tx': [30.080, -95.417],
+  'spring, tx': [30.080, -95.417], 'el reno, ok': [35.532, -97.955],
+  'tampa, fl (parks)': [27.951, -82.457], 'wesley chapel, fl': [28.240, -82.328],
+  'longwood, fl': [28.703, -81.339],
 };
 const STATE = {
   il: [40.0, -89.0], wi: [44.5, -89.5], in: [39.9, -86.3], mi: [43.3, -84.5],

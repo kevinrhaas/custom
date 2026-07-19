@@ -365,7 +365,7 @@
     "dealer_phone": "(754) 238-6220",
     "dealer_email": null,
     "listing_url": "https://www.lincolnofcoconutcreek.com/new/Lincoln/2026-Lincoln-Corsair-74964b46ac183a6183e5cdf8276a59cf.htm",
-    "match_notes": "Exact color+interior, but FWD and a base 100A group (18\" wheels, likely NO panoramic roof). South Florida. Price not shown — confirm by phone.",
+    "match_notes": "Exact color+interior, but FWD and a base 100A group (18\" wheels, likely NO panoramic roof). South Florida. Price not shown — confirm by phone. HUMAN-VERIFIED live on the dealer site (Jul 19).",
     "available": true
   },
   {
@@ -376,7 +376,7 @@
     "mileage": 2793,
     "exterior_color": "Red Carpet Metallic Tinted Clearcoat",
     "interior_color": "Light Smoked Truffle",
-    "interior_material": "Leather-Trimmed",
+    "interior_material": "Lincoln Soft Touch",
     "drivetrain": "FWD",
     "panoramic_roof": null,
     "price": 42657,
@@ -395,10 +395,10 @@
     "dealer_name": "Parks Lincoln of Longwood",
     "dealer_city": "Longwood",
     "dealer_state": "FL",
-    "dealer_phone": "(888) 850-2417",
+    "dealer_phone": "(407) 268-5051",
     "dealer_email": null,
-    "listing_url": "https://www.cars.com/vehicledetail/b01f193a-f67a-49a6-bb55-14ef1b03af8e/",
-    "match_notes": "Price-verified exact color+interior at a low $42,657 — but FWD and 2,793 demo miles. Orlando area.",
+    "listing_url": "https://www.parkslincoln.com/new/Lincoln/2026-Lincoln-Corsair-ec4641f9ac181130ee82a3454a39c374.htm",
+    "match_notes": "Price-verified exact color+interior at a low $42,657 — but FWD and 2,793 demo miles. Orlando area. HUMAN-VERIFIED live on the dealer site (Jul 19).",
     "available": true
   },
   {
@@ -434,7 +434,7 @@
     "dealer_phone": "(847) 787-7029",
     "dealer_email": null,
     "listing_url": "https://www.wickstromchryslerjeepdodgeram.com/used/Lincoln/2026-Lincoln-Corsair-for-sale-barrington-illinois-e74123c8ac1845c50d55c8537a7ab7c6.htm",
-    "match_notes": "The car Pat already spotted, and still the most complete local pick: exact Red Carpet Metallic + Light Smoked Truffle, AWD, Panoramic Vista Roof, ~17 mi away, $45,900. Certified pre-owned at 1,909 mi (essentially new). Note it's a Premiere, so the seats are Lincoln Soft Touch (leatherette), not the Reserve's Premium Leather.",
+    "match_notes": "The car Pat already spotted, and still the most complete local pick: exact Red Carpet Metallic + Light Smoked Truffle, AWD, Panoramic Vista Roof, ~17 mi away, $45,900. Certified pre-owned at 1,909 mi (essentially new). Note it's a Premiere, so the seats are Lincoln Soft Touch (leatherette), not the Reserve's Premium Leather. HUMAN-VERIFIED live on the dealer site (Jul 19).",
     "available": true
   },
   {
@@ -559,13 +559,14 @@
     "condition": "new",
     "mileage": null,
     "exterior_color": "Red Carpet Metallic Tinted Clearcoat",
-    "interior_color": "Ebony",
+    "interior_color": "Medium Smoked Truffle",
     "interior_material": "Premium Leather-Trimmed",
     "drivetrain": "AWD",
     "panoramic_roof": true,
     "price": 61113,
     "packages": [
-      "Equipment Group 202A"
+      "Equipment Group 202A Reserve III ($6,500)",
+      "Jet Appearance Package ($2,500)"
     ],
     "options": [
       "Panoramic Vista Roof",
@@ -578,13 +579,13 @@
       "WiFi hotspot",
       "Memory seat"
     ],
-    "dealer_name": "Camelback Ford Lincoln",
+    "dealer_name": "Camelback Lincoln",
     "dealer_city": "Phoenix",
     "dealer_state": "AZ",
     "dealer_phone": "(844) 868-3128",
     "dealer_email": null,
-    "listing_url": "https://www.cars.com/vehicledetail/86e5b3dd-7cd0-4a9e-8c6f-62e8b6d75e01/",
-    "match_notes": "Fully-loaded Reserve AWD in Red Carpet Metallic WITH Panoramic Vista Roof — but Ebony interior (a listed backup, not the light seats) and a high $61,113 (MSRP $61,435). Phoenix.",
+    "listing_url": "https://www.camelbacklincoln.com/new/Lincoln/2026-Lincoln-Corsair-4e9ec5d1ac182a0dbd9c040aa4aba856.htm",
+    "match_notes": "Loaded Reserve III AWD in Red Carpet Metallic + Panoramic Vista Roof — and the dealer page shows the interior is Medium Smoked Truffle Premium Leather (the acceptable backup), not Ebony as the aggregator claimed. Revel audio, BlueCruise, head-up display. High price $61,113 (MSRP $61,435). Phoenix. HUMAN-VERIFIED live on the dealer site (Jul 19).",
     "available": true
   },
   {
@@ -913,8 +914,8 @@
     "dealer_state": "FL",
     "dealer_phone": null,
     "dealer_email": null,
-    "listing_url": "https://www.cars.com/vehicledetail/4f65e1b7-7b42-4db7-9c49-420a7a674266/",
-    "match_notes": "Lowest price in the whole search ($34,330, price-verified) and a light Smoked Truffle interior — but FWD, no panoramic roof, base trim. The listing says only 'Truffle' (Light vs Medium unconfirmed). Florida.",
+    "listing_url": "https://www.bozardlincoln.net/new-St+Augustine-2026-Lincoln-Corsair-Premiere-5LMCJ1CAXTUL00476",
+    "match_notes": "Lowest price in the whole search ($34,330, price-verified) and a light Smoked Truffle interior — but FWD, no panoramic roof, base trim. The listing says only 'Truffle' (Light vs Medium unconfirmed). Florida. HUMAN-VERIFIED live on the dealer site (Jul 19).",
     "available": true
   },
   {
@@ -1173,5 +1174,32 @@
     "listing_url": "https://www.lincolnofcutlerbay.com/new-Miami-2026-Lincoln-Corsair-Reserve-5LMCJ2CAXTUL05408",
     "match_notes": "Reserve with the Eternal Red backup interior, FWD, Pristine White (not Red Carpet). Miami. Price not captured — confirm by phone.",
     "available": false
+  },
+  {
+    "vin": "5LMCJ1CA9TUL09864",
+    "trim": "Premiere",
+    "year": 2026,
+    "condition": "new",
+    "mileage": null,
+    "exterior_color": "Red Carpet Metallic Tinted Clearcoat",
+    "interior_color": "Ebony/Medium Smoked Truffle",
+    "interior_material": "ActiveX/Lincoln Soft Touch",
+    "drivetrain": "FWD",
+    "panoramic_roof": null,
+    "price": null,
+    "packages": [],
+    "options": [
+      "SYNC 4 with 13.2\" display",
+      "Alexa Built-In",
+      "2.0L Turbocharged I-4"
+    ],
+    "dealer_name": "Diffee Lincoln",
+    "dealer_city": "El Reno",
+    "dealer_state": "OK",
+    "dealer_phone": null,
+    "dealer_email": null,
+    "listing_url": "https://www.diffeelincoln.com/viewdetails/new/5lmcj1ca9tul09864/2026-lincoln-corsair-sport-utility",
+    "match_notes": "Red Carpet Metallic Premiere, FWD, Ebony/Medium Smoked Truffle interior. Oklahoma City area. Dealer page renders the car (note: its photo shows a grey stock image, but the spec sheet says Red Carpet Metallic — confirm by phone). Price not listed. HUMAN-VERIFIED live on the dealer site (Jul 19).",
+    "available": true
   }
 ]

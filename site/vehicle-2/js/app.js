@@ -86,7 +86,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
 
 let VEHICLES = (D.vehicles || []).map(evaluate);
-let state = { tier: 'all', sort: 'match', awdOnly: false, redOnly: false, showUnavail: false };
+let state = { tier: 'all', sort: 'match', awdOnly: false, redOnly: true, showUnavail: false };
 const isGone = v => v.available === false;
 
 /* hex helpers for painting the illustration */
@@ -207,7 +207,10 @@ function apply() {
   $('#list').innerHTML = rows.length ? rows.map(card).join('') : `<div class="empty">No vehicles match these filters. Loosen them to see more of the ${VEHICLES.length} found.</div>`;
   $('#count').textContent = rows.length;
   const removed = VEHICLES.filter(isGone).length;
-  $('#removedNote').textContent = (removed && !state.showUnavail) ? ` · ${removed} sold/removed hidden` : '';
+  const notes = [];
+  if (removed && !state.showUnavail) notes.push(`${removed} sold/removed hidden`);
+  if (state.redOnly) notes.push('non–Red Carpet hidden (uncheck "Red Carpet only" to see all)');
+  $('#removedNote').textContent = notes.length ? ' · ' + notes.join(' · ') : '';
 }
 
 function stats() {
