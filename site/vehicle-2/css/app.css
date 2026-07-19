@@ -104,6 +104,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--carpet-2); outl
 .card[data-tier="exact"] { border-left-color: var(--exact); }
 .card[data-tier="strong"] { border-left-color: var(--strong); }
 .card[data-tier="backup"] { border-left-color: var(--backup); }
+.card.gone { opacity: .62; border-left-color: var(--bad) !important; }
+.card.gone .card-photo { filter: grayscale(.7); }
+.gone-ribbon { position: absolute; top: 14px; right: -34px; z-index: 3; transform: rotate(45deg);
+  background: var(--bad); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .5px;
+  padding: 4px 40px; box-shadow: 0 3px 10px rgba(0,0,0,.3); }
 .card-photo { position: relative; height: 172px; display: flex; align-items: center; justify-content: center;
   background: linear-gradient(180deg, #c9dced 0%, #dfe7ee 55%, #cdd3d8 100%); border-bottom: 1px solid var(--border); overflow: hidden; }
 :root[data-theme="dark"] .card-photo { background: linear-gradient(180deg, #223140 0%, #2a2a33 60%, #1d1c22 100%); }

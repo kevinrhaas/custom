@@ -63,6 +63,7 @@
     </div>
     <label><input type="checkbox" id="redOnly"> Red Carpet only</label>
     <label><input type="checkbox" id="awdOnly"> AWD only</label>
+    <label><input type="checkbox" id="showUnavail"> Show sold / removed</label>
     <span class="grow"></span>
     <label for="sort">Sort</label>
     <select id="sort">
@@ -72,7 +73,7 @@
     </select>
   </div>
 
-  <p style="font-size:13px;color:var(--text-2);margin:2px 0 6px"><b id="count">0</b> shown</p>
+  <p style="font-size:13px;color:var(--text-2);margin:2px 0 6px"><b id="count">0</b> shown<span id="removedNote"></span></p>
   <div class="list" id="list"></div>
 </main>
 

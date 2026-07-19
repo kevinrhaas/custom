@@ -86,7 +86,8 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
 
 let VEHICLES = (D.vehicles || []).map(evaluate);
-let state = { tier: 'all', sort: 'match', awdOnly: false, redOnly: false };
+let state = { tier: 'all', sort: 'match', awdOnly: false, redOnly: false, showUnavail: false };
+const isGone = v => v.available === false;
 
 /* hex helpers for painting the illustration */
 function hexToRgb(h) { const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h || ''); return m ? [1, 2, 3].map(i => parseInt(m[i], 16)) : [154, 146, 132]; }
@@ -148,7 +149,8 @@ function card(v) {
   if (v.dealer_phone) contact.push(`<a class="btn btn-ghost" href="tel:${esc(v.dealer_phone.replace(/[^0-9+]/g, ''))}">☎ ${esc(v.dealer_phone)}</a>`);
   if (v.dealer_email) contact.push(`<a class="btn btn-ghost" href="mailto:${esc(v.dealer_email)}">✉ Email</a>`);
   return `
-  <article class="card" data-tier="${v._tier}">
+  <article class="card${isGone(v) ? ' gone' : ''}" data-tier="${v._tier}">
+    ${isGone(v) ? '<div class="gone-ribbon">Sold / removed</div>' : ''}
     <div class="card-photo">
       ${carSVG(v)}
       <div class="photo-badges">
@@ -192,6 +194,7 @@ function card(v) {
 
 function apply() {
   let rows = VEHICLES.slice();
+  if (!state.showUnavail) rows = rows.filter(v => !isGone(v));
   if (state.tier !== 'all') rows = rows.filter(v => v._tier === state.tier);
   if (state.awdOnly) rows = rows.filter(v => v.drivetrain === 'AWD');
   if (state.redOnly) rows = rows.filter(v => v._red);
@@ -203,11 +206,14 @@ function apply() {
   rows.sort(sorters[state.sort]);
   $('#list').innerHTML = rows.length ? rows.map(card).join('') : `<div class="empty">No vehicles match these filters. Loosen them to see more of the ${VEHICLES.length} found.</div>`;
   $('#count').textContent = rows.length;
+  const removed = VEHICLES.filter(isGone).length;
+  $('#removedNote').textContent = (removed && !state.showUnavail) ? ` · ${removed} sold/removed hidden` : '';
 }
 
 function stats() {
-  const by = t => VEHICLES.filter(v => v._tier === t).length;
-  $('#s-total').textContent = VEHICLES.length;
+  const pool = state.showUnavail ? VEHICLES : VEHICLES.filter(v => !isGone(v));
+  const by = t => pool.filter(v => v._tier === t).length;
+  $('#s-total').textContent = pool.length;
   $('#s-exact').textContent = by('exact');
   $('#s-strong').textContent = by('strong');
   $('#s-backup').textContent = by('backup') + by('stretch');
@@ -224,6 +230,7 @@ function wire() {
   $('#sort').addEventListener('change', e => { state.sort = e.target.value; apply(); });
   $('#awdOnly').addEventListener('change', e => { state.awdOnly = e.target.checked; apply(); });
   $('#redOnly').addEventListener('change', e => { state.redOnly = e.target.checked; apply(); });
+  $('#showUnavail').addEventListener('change', e => { state.showUnavail = e.target.checked; stats(); apply(); });
   const t = $('#themeToggle');
   const setT = m => { document.documentElement.setAttribute('data-theme', m); t.textContent = m === 'dark' ? '☀️' : '🌙'; try { localStorage.setItem('corsair.theme', m); } catch (e) {} };
   t.addEventListener('click', () => setT(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
