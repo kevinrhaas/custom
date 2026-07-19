@@ -156,10 +156,18 @@ let SEARCH = null;           // active search object from data.js
 let VEHICLES = [];           // evaluated vehicles of the active search
 let state = { tier: 'all', sort: 'match', awdOnly: false, targetOnly: true, showUnavail: false, hvOnly: false };
 
+function syncVerifyTabs() {
+  document.querySelectorAll('[data-verify-btn]').forEach(x =>
+    x.classList.toggle('on', (x.dataset.verifyBtn === 'hv') === state.hvOnly));
+}
+
 function selectSearch(id) {
   SEARCH = D.searches.find(s => s.id === id) || D.searches[0];
   if (!SEARCH) return;
   VEHICLES = (SEARCH.vehicles || []).map(EVALUATORS[SEARCH.id] || evaluateCorsair);
+  // start on the Verified tab when this search has human-verified cars
+  state.hvOnly = VEHICLES.some(v => v.human_verified && !isGone(v));
+  syncVerifyTabs();
   document.querySelectorAll('[data-search-btn]').forEach(b => b.classList.toggle('on', b.dataset.searchBtn === SEARCH.id));
   $('#heroTitle').innerHTML = esc(SEARCH.title).replace(/(Lincoln Corsair|Forester Touring Hybrid)/, '<span class="grad">$1</span>');
   $('#heroSub').textContent = SEARCH.subtitle;
@@ -249,6 +257,7 @@ function apply() {
   $('#count').textContent = rows.length;
   const removed = VEHICLES.filter(isGone).length;
   const notes = [];
+  if (state.hvOnly) { const bots = VEHICLES.filter(v => !v.human_verified && !isGone(v)).length; if (bots) notes.push(`${bots} robot-found under "All finds"`); }
   if (removed && !state.showUnavail) notes.push(`${removed} sold/removed hidden`);
   if (state.targetOnly) notes.push(`non–${SEARCH.target_color} hidden (uncheck to see all)`);
   $('#removedNote').textContent = notes.length ? ' · ' + notes.join(' · ') : '';
@@ -290,7 +299,10 @@ function wire() {
     apply();
   }));
   $('#awdOnly').addEventListener('change', e => { state.awdOnly = e.target.checked; apply(); });
-  $('#hvOnly').addEventListener('change', e => { state.hvOnly = e.target.checked; apply(); });
+  document.querySelectorAll('[data-verify-btn]').forEach(b => b.addEventListener('click', () => {
+    state.hvOnly = b.dataset.verifyBtn === 'hv';
+    syncVerifyTabs(); apply();
+  }));
   $('#targetOnly').addEventListener('change', e => { state.targetOnly = e.target.checked; apply(); });
   $('#showUnavail').addEventListener('change', e => { state.showUnavail = e.target.checked; stats(); apply(); });
   const t = $('#themeToggle');

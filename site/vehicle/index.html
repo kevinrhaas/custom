@@ -45,6 +45,10 @@
   <div class="legend" id="legend"></div>
 
   <div class="controls">
+    <div class="seg" role="group" aria-label="Verification">
+      <button data-verify-btn="hv">✓ Verified</button>
+      <button data-verify-btn="all">All finds</button>
+    </div>
     <div class="seg">
       <button data-tier-btn="all" class="on">All</button>
       <button data-tier-btn="exact">Exact</button>
@@ -53,7 +57,6 @@
     </div>
     <label><input type="checkbox" id="targetOnly" checked> <span id="targetLabel">Target color only</span></label>
     <label><input type="checkbox" id="awdOnly"> AWD only</label>
-    <label><input type="checkbox" id="hvOnly"> ✓ Human-verified only</label>
     <label><input type="checkbox" id="showUnavail"> Show sold / removed</label>
     <span class="grow"></span>
     <span class="sort-label">Sort</span>
