@@ -1,71 +1,96 @@
-/* Corsair Finder — render + score + filter.
-   Data facts live in js/data.js (window.CORSAIR_DATA). All ranking logic is
-   here so the data file stays purely factual. Priority order (from Pat):
-     1) Red Carpet Metallic exterior            (utmost)
-     2) LIGHT seats — Light Smoked Truffle best (utmost); light grey / other
-        light faux-leather also welcome; then Medium Smoked Truffle; darker
-        (Eternal Red, Ebony) only reluctantly
-     3) Reserve or Premiere (never Grand Touring / PHEV)
-     4) AWD preferred (FWD tolerated)
-     5) panoramic roof + nicer packages preferred
-     6) new, or essentially new (lightly used) */
+/* Vehicle Finder — render + score + filter, multi-search.
+   Data facts live in js/data.js (window.FINDER_DATA.searches[]); all ranking
+   logic is here so the data stays purely factual. Two searches today:
+   - corsair:  Pat's 2026 Lincoln Corsair (Red Carpet Metallic + light seats,
+               Reserve/Premiere, AWD preferred, never the Grand Touring PHEV)
+   - forester: 2026 Subaru Forester Touring Hybrid (Crimson Red Pearl +
+               Touring Brown leather), availability centered on Crystal Lake */
 
-const D = window.CORSAIR_DATA || { vehicles: [], generated: '', spec: {} };
+const D = window.FINDER_DATA || { searches: [], generated: '' };
 const CRYSTAL_LAKE = { lat: 42.2411, lon: -88.3162 };
 
-/* ---- interior classification ---------------------------------------- */
+/* ---- corsair interior classification -------------------------------- */
 function interiorClass(v) {
   const s = (v.interior_color || '').toLowerCase();
   if (s.includes('light smoked truffle')) return { rank: 5, label: 'Light Smoked Truffle', light: true };
-  if (s.includes('medium smoked truffle')) return { rank: 3, label: 'Medium Smoked Truffle', light: false };
+  if (s.includes('medium smoked truffle')) return { rank: 3, label: v.interior_color, light: false };
   if (s.includes('smoked truffle')) return { rank: 3, label: v.interior_color, light: false };
   if (/(light gr[ae]y|grey|gray|sandstone|ceramic|dune|light|smoke)/.test(s)) return { rank: 4, label: v.interior_color, light: true };
   if (s.includes('eternal red')) return { rank: 2, label: 'Eternal Red', light: false };
   if (s.includes('ebony') || s.includes('black')) return { rank: 1, label: v.interior_color, light: false };
   return { rank: 1, label: v.interior_color || 'Unknown', light: false };
 }
-function isRedCarpet(v) { return /red carpet/.test((v.exterior_color || '').toLowerCase()); }
 
-/* swatch color for known interior/exterior names */
+/* swatch color for known color names (both vehicles) */
 function swatch(name) {
   const s = (name || '').toLowerCase();
   if (s.includes('red carpet')) return '#8e1425';
+  if (s.includes('crimson red')) return '#8c1c2c';
   if (s.includes('light smoked truffle')) return '#c9b79a';
   if (s.includes('medium smoked truffle')) return '#8a6f52';
   if (s.includes('smoked truffle')) return '#9c7f5e';
+  if (s.includes('touring brown') || s.includes('brown')) return '#6b4a35';
   if (s.includes('eternal red')) return '#6e1420';
   if (s.includes('ebony') || s.includes('black')) return '#20211f';
-  if (/(gr[ae]y|sandstone|ceramic|dune|light)/.test(s)) return '#c3c1bb';
-  if (s.includes('white')) return '#eee';
+  if (/(sandstone|ceramic|dune)/.test(s)) return '#c3c1bb';
+  if (s.includes('sand')) return '#cbb99a';
+  if (s.includes('white') || s.includes('pearl') && s.includes('crystal')) return '#e9e9e6';
   if (s.includes('blue')) return '#26374d';
-  if (s.includes('silver') || s.includes('grey')) return '#b8bcc0';
+  if (s.includes('green')) return '#42513f';
+  if (s.includes('bronze')) return '#7a5c3e';
+  if (s.includes('silver')) return '#c2c6c9';
+  if (/(gr[ae]y|magnetite|graphite)/.test(s)) return '#5c6166';
+  if (s.includes('red')) return '#8c1c2c';
   return '#9a9284';
 }
 
-/* ---- scoring + tier -------------------------------------------------- */
-function evaluate(v) {
+/* ---- per-search scoring + tier --------------------------------------- */
+function evaluateCorsair(v) {
   const ic = interiorClass(v);
-  const red = isRedCarpet(v);
+  const red = /red carpet/.test((v.exterior_color || '').toLowerCase());
   let score = 0;
   score += red ? 60 : 10;
-  score += ic.rank * 10;                         // 10..50
+  score += ic.rank * 10;
   score += /reserve/i.test(v.trim) ? 14 : /premiere/i.test(v.trim) ? 8 : 0;
   score += v.drivetrain === 'AWD' ? 10 : v.drivetrain === 'FWD' ? 2 : 5;
   score += v.panoramic_roof ? 6 : 0;
   score += Math.max(0, (v.condition === 'new' ? 8 : 5) - (v.mileage || 0) / 1200);
   score += Math.min(6, (v.packages || []).length * 2);
-  if (typeof v.distance_mi === 'number') score += Math.max(0, 6 - v.distance_mi / 150); // proximity tiebreaker
-
-  // headline tier keys off the two "utmost" prefs: exterior + light seats
+  if (typeof v.distance_mi === 'number') score += Math.max(0, 6 - v.distance_mi / 150);
   let tier;
   if (red && ic.rank === 5) tier = 'exact';
   else if (red && (ic.light || ic.rank >= 3)) tier = 'strong';
   else if (red || ic.rank === 5) tier = 'backup';
   else tier = 'stretch';
-  return { ...v, _ic: ic, _red: red, _score: score, _tier: tier };
+  return { ...v, _ic: ic, _target: red, _score: score, _tier: tier };
 }
 
-/* ---- distance -------------------------------------------------------- */
+function evaluateForester(v) {
+  const ext = (v.exterior_color || '').toLowerCase();
+  const trim = (v.trim || '').toLowerCase();
+  const crimson = /crimson red/.test(ext);
+  const touring = /touring/.test(trim);
+  const hybrid = /hybrid/.test(trim);
+  const brown = /brown/.test((v.interior_color || '').toLowerCase());
+  let score = 0;
+  score += crimson ? 60 : 10;
+  score += touring ? 30 : /limited/.test(trim) ? 15 : /sport/.test(trim) ? 10 : /premium/.test(trim) ? 8 : 4;
+  score += hybrid ? 10 : 0;
+  score += brown ? 4 : 0;
+  score += Math.max(0, (v.condition === 'new' ? 8 : 5) - (v.mileage || 0) / 1200);
+  score += v.panoramic_roof ? 4 : 0;
+  if (typeof v.distance_mi === 'number') score += Math.max(0, 12 - v.distance_mi / 60); // proximity weighs more here
+  let tier;
+  if (crimson && touring && hybrid) tier = 'exact';
+  else if (crimson && hybrid) tier = 'strong';
+  else if (touring && hybrid) tier = 'backup';
+  else tier = 'stretch';
+  return { ...v, _ic: { label: v.interior_color || '—' }, _target: crimson, _score: score, _tier: tier };
+}
+
+const EVALUATORS = { corsair: evaluateCorsair, forester: evaluateForester };
+
+/* ---- distance --------------------------------------------------------- */
 function haversine(a, b) {
   const R = 3958.8, toRad = d => d * Math.PI / 180;
   const dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon);
@@ -79,14 +104,11 @@ function distanceMi(v) {
   return null;
 }
 
-/* ---- rendering ------------------------------------------------------- */
+/* ---- helpers ---------------------------------------------------------- */
 const TIER_LABEL = { exact: 'Exact match', strong: 'Strong match', backup: 'Backup', stretch: 'For reference' };
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
-
-let VEHICLES = (D.vehicles || []).map(evaluate);
-let state = { tier: 'all', sort: 'match', awdOnly: false, redOnly: true, showUnavail: false };
 const isGone = v => v.available === false;
 
 /* hex helpers for painting the illustration */
@@ -94,15 +116,15 @@ function hexToRgb(h) { const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exe
 function rgbToHex(r) { return '#' + r.map(x => Math.max(0, Math.min(255, Math.round(x))).toString(16).padStart(2, '0')).join(''); }
 function shade(hex, amt) { const [r, g, b] = hexToRgb(hex); const f = amt < 0 ? 0 : 255, t = Math.abs(amt); return rgbToHex([r + (f - r) * t, g + (f - g) * t, b + (f - b) * t]); }
 
-/* A clean side-profile crossover, painted in the car's real exterior colour,
-   with an interior-colour cabin. Self-contained SVG — no external images. */
+/* A clean side-profile crossover painted in the car's real exterior colour,
+   with the interior colour showing through the glass. Self-contained SVG. */
 let _svgId = 0;
 function carSVG(v) {
   const ext = swatch(v.exterior_color), intc = swatch(v.interior_color);
   const light = shade(ext, 0.28), dark = shade(ext, -0.34), rim = shade(ext, -0.5);
   const id = 'g' + (_svgId++);
-  const unknown = /unconfirmed/i.test(v.exterior_color || '');
-  return `<svg viewBox="0 0 320 150" role="img" aria-label="${esc(v.exterior_color)} Lincoln Corsair">
+  const unknown = /not published|unconfirmed/i.test(v.exterior_color || '');
+  return `<svg viewBox="0 0 320 150" role="img" aria-label="${esc(v.exterior_color)}">
     <defs>
       <linearGradient id="body${id}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="${light}"/><stop offset="0.5" stop-color="${ext}"/><stop offset="1" stop-color="${dark}"/>
@@ -112,25 +134,37 @@ function carSVG(v) {
       </linearGradient>
     </defs>
     <ellipse cx="160" cy="130" rx="118" ry="9" fill="rgba(0,0,0,0.16)"/>
-    <!-- body -->
     <path d="M26,112 L28,96 Q30,86 42,83 L70,80 Q92,58 120,54 L206,52 Q236,54 256,78 L286,86 Q294,90 294,102 L294,112 Q294,116 288,116 L32,116 Q26,116 26,112 Z" fill="url(#body${id})" stroke="${rim}" stroke-width="1.5"/>
-    <!-- cabin / interior colour showing through glass -->
     <path d="M78,80 Q96,60 121,57 L162,56 L162,80 Z" fill="${intc}"/>
     <path d="M170,56 L204,57 Q230,59 246,79 L170,80 Z" fill="${intc}"/>
-    <!-- glass overlay -->
     <path d="M78,80 Q96,60 121,57 L162,56 L162,80 Z" fill="url(#glass${id})" opacity="0.72"/>
     <path d="M170,56 L204,57 Q230,59 246,79 L170,80 Z" fill="url(#glass${id})" opacity="0.72"/>
     <rect x="163" y="56" width="5" height="24" fill="${dark}"/>
-    <!-- beltline + rocker -->
     <path d="M42,83 L256,78" fill="none" stroke="${light}" stroke-width="1.4" opacity="0.7"/>
     <rect x="34" y="108" width="256" height="5" rx="2" fill="${rim}" opacity="0.7"/>
-    <!-- lights -->
     <rect x="286" y="88" width="7" height="9" rx="2" fill="#c9433f"/>
     <path d="M27,95 L37,93 L37,99 L28,100 Z" fill="#f3f0e2"/>
-    <!-- wheels -->
     ${[92, 232].map(cx => `<g><circle cx="${cx}" cy="112" r="20" fill="#15161a"/><circle cx="${cx}" cy="112" r="19" fill="none" stroke="#0a0a0c" stroke-width="2"/><circle cx="${cx}" cy="112" r="10" fill="#c9ccd1"/><circle cx="${cx}" cy="112" r="9" fill="none" stroke="#8a8f96" stroke-width="1"/><circle cx="${cx}" cy="112" r="3" fill="#6b7078"/></g>`).join('')}
     ${unknown ? '<text x="160" y="40" text-anchor="middle" font-size="13" font-family="system-ui" fill="#fff" opacity="0.9">color TBD — call dealer</text>' : ''}
   </svg>`;
+}
+
+/* Value rating + fair-price estimate.
+   Corsair: final model year — verified market discounts in this dataset run
+   ~5-8% off MSRP on clean new cars and 8-16% off on demo/aged units, so fair
+   is anchored there. Forester hybrid: in-demand, observed discounts 0-6%;
+   Touring Hybrids without a known MSRP rate against the verified market floor
+   (~$41.5-42.4k) and the $42,995 as-configured reference. */
+function valueInfo(v, searchId) {
+  if (v.price == null) return null;
+  const demo = v.condition === 'used' || (v.mileage || 0) > 500;
+  let fair = null;
+  if (v.msrp) fair = Math.round(v.msrp * (searchId === 'corsair' ? (demo ? 0.87 : 0.93) : (demo ? 0.94 : 0.955)) / 100) * 100;
+  else if (searchId === 'forester' && /touring hybrid/i.test(v.trim || '')) fair = 42500;
+  if (!fair) return null;
+  const rel = (v.price - fair) / fair;
+  const rating = rel <= -0.02 ? ['great', 'Great deal'] : rel <= 0.02 ? ['good', 'Good deal'] : rel <= 0.06 ? ['fair', 'Fair price'] : ['high', 'Above market'];
+  return { cls: rating[0], label: rating[1], fair, msrp: v.msrp || null };
 }
 
 function condLabel(v) {
@@ -142,17 +176,41 @@ function condLabel(v) {
 function attr(k, v, extra = '') { return `<div class="attr"><span class="k">${k}</span><span class="v">${extra}${esc(v)}</span></div>`; }
 function sw(name) { return `<span class="swatch" style="background:${swatch(name)}"></span>`; }
 
+/* ---- state ------------------------------------------------------------ */
+let SEARCH = null;           // active search object from data.js
+let VEHICLES = [];           // evaluated vehicles of the active search
+let state = { tier: 'all', sort: 'match', awdOnly: false, targetOnly: true, showUnavail: false };
+
+function selectSearch(id) {
+  SEARCH = D.searches.find(s => s.id === id) || D.searches[0];
+  if (!SEARCH) return;
+  VEHICLES = (SEARCH.vehicles || []).map(EVALUATORS[SEARCH.id] || evaluateCorsair);
+  document.querySelectorAll('[data-search-btn]').forEach(b => b.classList.toggle('on', b.dataset.searchBtn === SEARCH.id));
+  $('#heroTitle').innerHTML = esc(SEARCH.title).replace(/(Lincoln Corsair|Forester Touring Hybrid)/, '<span class="grad">$1</span>');
+  $('#heroSub').textContent = SEARCH.subtitle;
+  $('#specStrip').innerHTML = (SEARCH.spec_chips || []).map(c =>
+    `<span class="spec-chip">${c.dot ? `<span class="dot" style="background:${c.dot}"></span> ` : ''}${c.text}</span>`).join('');
+  $('#targetLabel').textContent = `${SEARCH.target_color} only`;
+  const t = SEARCH.tiers || {};
+  $('#legend').innerHTML = ['exact', 'strong', 'backup', 'stretch'].map(k =>
+    `<span class="item"><span class="sw" style="background:var(--${k})"></span> ${esc(t[k] || k)}</span>`).join('');
+  try { history.replaceState(null, '', '#' + SEARCH.id); } catch (e) {}
+  stats(); apply();
+}
+
 function card(v) {
   const dist = distanceMi(v);
   const opts = [...(v.packages || []), ...(v.options || [])];
   const contact = [];
   if (v.dealer_phone) contact.push(`<a class="btn btn-ghost" href="tel:${esc(v.dealer_phone.replace(/[^0-9+]/g, ''))}">☎ ${esc(v.dealer_phone)}</a>`);
   if (v.dealer_email) contact.push(`<a class="btn btn-ghost" href="mailto:${esc(v.dealer_email)}">✉ Email</a>`);
+  // hosted Monroney PDF (fetched from FordDirect and link-verified at build time)
+  if (v.sticker) contact.push(`<a class="btn btn-ghost" href="${esc(v.sticker)}" target="_blank" rel="noopener">📄 Window sticker</a>`);
   return `
   <article class="card${isGone(v) ? ' gone' : ''}" data-tier="${v._tier}">
     ${isGone(v) ? '<div class="gone-ribbon">Sold / removed</div>' : ''}
     <div class="card-photo">
-      ${carSVG(v)}
+      ${v.photo ? `<img class="real-photo" src="${esc(v.photo)}" alt="${esc(v.exterior_color)} ${esc(v.trim)}" loading="lazy">` : carSVG(v)}
       <div class="photo-badges">
         <span class="pb"><span class="swatch" style="background:${swatch(v.exterior_color)}"></span>${esc(v.exterior_color)}</span>
         <span class="pb"><span class="swatch" style="background:${swatch(v.interior_color)}"></span>${esc(v._ic.label)}</span>
@@ -160,12 +218,13 @@ function card(v) {
     </div>
     <div class="card-head">
       <div class="card-title">
-        <h3>${esc(v.year)} Lincoln Corsair ${esc(v.trim)}</h3>
+        <h3>${esc(v.year)} ${esc(SEARCH.id === 'forester' ? 'Subaru Forester' : 'Lincoln Corsair')} ${esc(v.trim)}</h3>
         <div class="sub">${esc(v.exterior_color)} · ${esc(v._ic.label)} interior${v.interior_material ? ' · ' + esc(v.interior_material) : ''}</div>
       </div>
       <div style="text-align:right">
         <span class="tier-badge ${v._tier}">${TIER_LABEL[v._tier]}</span>
         <div class="price" style="margin-top:8px">${money(v.price)}${condLabel(v)}</div>
+        ${(() => { const vi = valueInfo(v, SEARCH.id); return vi ? `<div class="value-line"><span class="val val-${vi.cls}">${vi.label}</span><span class="fair">fair ≈ ${money(vi.fair)}${vi.msrp ? ' · MSRP ' + money(vi.msrp) : ''}</span></div>` : (v.msrp ? `<div class="value-line"><span class="fair">MSRP ${money(v.msrp)} · call for price</span></div>` : ''); })()}
       </div>
     </div>
     <div class="attrs">
@@ -197,7 +256,7 @@ function apply() {
   if (!state.showUnavail) rows = rows.filter(v => !isGone(v));
   if (state.tier !== 'all') rows = rows.filter(v => v._tier === state.tier);
   if (state.awdOnly) rows = rows.filter(v => v.drivetrain === 'AWD');
-  if (state.redOnly) rows = rows.filter(v => v._red);
+  if (state.targetOnly) rows = rows.filter(v => v._target);
   const sorters = {
     match: (a, b) => b._score - a._score,
     distance: (a, b) => (distanceMi(a) ?? 1e9) - (distanceMi(b) ?? 1e9),
@@ -209,7 +268,7 @@ function apply() {
   const removed = VEHICLES.filter(isGone).length;
   const notes = [];
   if (removed && !state.showUnavail) notes.push(`${removed} sold/removed hidden`);
-  if (state.redOnly) notes.push('non–Red Carpet hidden (uncheck "Red Carpet only" to see all)');
+  if (state.targetOnly) notes.push(`non–${SEARCH.target_color} hidden (uncheck to see all)`);
   $('#removedNote').textContent = notes.length ? ' · ' + notes.join(' · ') : '';
 }
 
@@ -220,11 +279,10 @@ function stats() {
   $('#s-exact').textContent = by('exact');
   $('#s-strong').textContent = by('strong');
   $('#s-backup').textContent = by('backup') + by('stretch');
-  const nearest = VEHICLES.map(distanceMi).filter(d => d != null).sort((a, b) => a - b)[0];
-  if (nearest != null) $('#s-nearest') && ($('#s-nearest').textContent = '~' + nearest + ' mi');
 }
 
 function wire() {
+  document.querySelectorAll('[data-search-btn]').forEach(b => b.addEventListener('click', () => selectSearch(b.dataset.searchBtn)));
   document.querySelectorAll('[data-tier-btn]').forEach(b => b.addEventListener('click', () => {
     state.tier = b.dataset.tierBtn;
     document.querySelectorAll('[data-tier-btn]').forEach(x => x.classList.toggle('on', x === b));
@@ -232,12 +290,16 @@ function wire() {
   }));
   $('#sort').addEventListener('change', e => { state.sort = e.target.value; apply(); });
   $('#awdOnly').addEventListener('change', e => { state.awdOnly = e.target.checked; apply(); });
-  $('#redOnly').addEventListener('change', e => { state.redOnly = e.target.checked; apply(); });
+  $('#targetOnly').addEventListener('change', e => { state.targetOnly = e.target.checked; apply(); });
   $('#showUnavail').addEventListener('change', e => { state.showUnavail = e.target.checked; stats(); apply(); });
   const t = $('#themeToggle');
-  const setT = m => { document.documentElement.setAttribute('data-theme', m); t.textContent = m === 'dark' ? '☀️' : '🌙'; try { localStorage.setItem('corsair.theme', m); } catch (e) {} };
+  const setT = m => { document.documentElement.setAttribute('data-theme', m); t.textContent = m === 'dark' ? '☀️' : '🌙'; try { localStorage.setItem('finder.theme', m); } catch (e) {} };
   t.addEventListener('click', () => setT(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
   if ($('#genDate') && D.generated) $('#genDate').textContent = D.generated;
 }
 
-document.addEventListener('DOMContentLoaded', () => { stats(); wire(); apply(); });
+document.addEventListener('DOMContentLoaded', () => {
+  wire();
+  const hash = (location.hash || '').replace('#', '');
+  selectSearch(D.searches.some(s => s.id === hash) ? hash : 'corsair');
+});

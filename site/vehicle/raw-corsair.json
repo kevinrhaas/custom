@@ -9,12 +9,20 @@
     "interior_color": "Light Smoked Truffle",
     "interior_material": "Premium Leather-Trimmed",
     "drivetrain": "AWD",
-    "panoramic_roof": null,
+    "panoramic_roof": true,
     "price": null,
-    "packages": [],
+    "packages": [
+      "Equipment Group 201A Reserve II"
+    ],
     "options": [
-      "2.0L Turbocharged I-4 w/ Auto Start-Stop",
-      "8-Speed Automatic"
+      "Panoramic Vista Roof w/ Power Shade ($1,700)",
+      "Heated/Ventilated front seats",
+      "Heated steering wheel",
+      "Wireless charging pad",
+      "360-degree camera",
+      "Front parking sensors",
+      "Reverse Brake Assist",
+      "All-weather floor liners"
     ],
     "dealer_name": "Bob-Boyd Lincoln",
     "dealer_city": "Columbus",
@@ -22,8 +30,9 @@
     "dealer_phone": "(614) 863-2800",
     "dealer_email": null,
     "listing_url": "https://www.lincolnofcolumbus.com/new-inventory/5LMCJ2DA5TUL06609.htm",
-    "match_notes": "One of only two Reserve + AWD cars found in the exact Red Carpet Metallic + Light Smoked Truffle combo — hits all four core targets. Stock C26075. Price, panoramic roof and packages not shown on the (bot-blocked) dealer page — call to confirm.",
-    "available": true
+    "match_notes": "WINDOW-STICKER CONFIRMED: Red Carpet Metallic + Light Smoked Truffle Premium Leather + Reserve II + AWD + PANORAMIC VISTA ROOF — hits every single preference. MSRP $54,335 (dealer price not published — call). Bob-Boyd Lincoln, Columbus OH (~375 mi). See the attached window sticker.",
+    "available": true,
+    "msrp": 54335
   },
   {
     "vin": "5LMCJ2DA2TUL07457",
@@ -104,7 +113,8 @@
     "dealer_email": null,
     "listing_url": "https://www.champaignfordcitylincoln.com/new/Lincoln/2026-Lincoln-Corsair-a7d0066bac183b11f3cdb3dc4f9ec2af.htm",
     "match_notes": "In-state exact combo (~2.5 hr south). Red Carpet Metallic + Light Smoked Truffle + AWD, Premiere. Listed as 'in transit' — confirm arrival timing and price.",
-    "available": true
+    "available": true,
+    "msrp": 50670
   },
   {
     "vin": "5LMCJ1DA9TUL02265",
@@ -136,7 +146,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/24a84b70-8738-486a-8792-6e5fbf09d6b8/",
     "match_notes": "Fully price-verified exact combo: Red Carpet Metallic + Light Smoked Truffle + AWD + Panoramic Vista Roof, $46,220 (MSRP $51,720 — ~$5.5k off). Premiere trim. Shows 1,048 demo miles. Stock #26CR7.",
-    "available": true
+    "available": true,
+    "msrp": 51720
   },
   {
     "vin": "5LMCJ1DA7TUL03933",
@@ -169,7 +180,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/85035176-c614-4fb5-acb9-13ad86f29ff3/",
     "match_notes": "Sister unit to the other Crest car — same price-verified exact combo (Red Carpet + Light Smoked Truffle + AWD + Panoramic Vista Roof) at $46,220. Premiere, 1,355 demo miles.",
-    "available": true
+    "available": true,
+    "msrp": 51720
   },
   {
     "vin": "5LMCJ1DA9TUL03402",
@@ -278,7 +290,8 @@
     "dealer_email": null,
     "listing_url": "https://www.moseslincoln.com/new/Lincoln/2026-Lincoln-Corsair-0afb5da4ac184236e10863afb9b31a87.htm",
     "match_notes": "Exact combo, Premiere II AWD (Charleston WV area). Price not shown on the dealer page — confirm by phone.",
-    "available": true
+    "available": true,
+    "msrp": 50970
   },
   {
     "vin": "5LMCJ2CAXTUL04372",
@@ -366,7 +379,8 @@
     "dealer_email": null,
     "listing_url": "https://www.lincolnofcoconutcreek.com/new/Lincoln/2026-Lincoln-Corsair-74964b46ac183a6183e5cdf8276a59cf.htm",
     "match_notes": "Exact color+interior, but FWD and a base 100A group (18\" wheels, likely NO panoramic roof). South Florida. Price not shown — confirm by phone. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 42980
   },
   {
     "vin": "5LMCJ1CA7TUL03397",
@@ -399,7 +413,8 @@
     "dealer_email": null,
     "listing_url": "https://www.parkslincoln.com/new/Lincoln/2026-Lincoln-Corsair-ec4641f9ac181130ee82a3454a39c374.htm",
     "match_notes": "Price-verified exact color+interior at a low $42,657 — but FWD and 2,793 demo miles. Orlando area. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 42980
   },
   {
     "vin": "5LMCJ1DA2TUL06190",
@@ -435,7 +450,8 @@
     "dealer_email": null,
     "listing_url": "https://www.wickstromchryslerjeepdodgeram.com/used/Lincoln/2026-Lincoln-Corsair-for-sale-barrington-illinois-e74123c8ac1845c50d55c8537a7ab7c6.htm",
     "match_notes": "The car Pat already spotted, and still the most complete local pick: exact Red Carpet Metallic + Light Smoked Truffle, AWD, Panoramic Vista Roof, ~17 mi away, $45,900. Certified pre-owned at 1,909 mi (essentially new). Note it's a Premiere, so the seats are Lincoln Soft Touch (leatherette), not the Reserve's Premium Leather. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 51380
   },
   {
     "vin": "5LMCJ2DA0TUL04217",
@@ -471,7 +487,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/545e4882-b2dc-43cb-a8e1-7d141361a3af/",
     "match_notes": "The strongest LOCAL Reserve: AWD + Light Smoked Truffle Premium Leather, essentially new (5 mi), ~50 mi away in Chicago, price-verified $49,797 (MSRP $52,185). Only miss is the exterior — Asher Gray, not Red Carpet. If Pat wants the real Reserve leather AND is open on color, this is the one to see. Confirm panoramic roof.",
-    "available": true
+    "available": true,
+    "msrp": 52185
   },
   {
     "vin": "5LMCJ2CA0TUL04283",
@@ -527,7 +544,8 @@
     "dealer_email": null,
     "listing_url": "https://www.gordieboucherlincoln.net/viewdetails/new/5lmcj1daxtul10780/",
     "match_notes": "Light Smoked Truffle + AWD Premiere, ~1.5 hr away (Milwaukee). Crystal White exterior (not Red Carpet). $50,350.",
-    "available": true
+    "available": true,
+    "msrp": 52970
   },
   {
     "vin": "5LMCJ2CAXTUL05621",
@@ -550,7 +568,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/9eb55f4e-ad04-461b-9294-f24bc24baac5/",
     "match_notes": "Reserve + Light Smoked Truffle Premium Leather, the lowest-priced Reserve found ($49,446). FWD and Whisper Blue (not Red Carpet). Milwaukee, ~1.5 hr.",
-    "available": true
+    "available": true,
+    "msrp": 54495
   },
   {
     "vin": "5LMCJ2DA0TUL02144",
@@ -586,7 +605,8 @@
     "dealer_email": null,
     "listing_url": "https://www.camelbacklincoln.com/new/Lincoln/2026-Lincoln-Corsair-4e9ec5d1ac182a0dbd9c040aa4aba856.htm",
     "match_notes": "Loaded Reserve III AWD in Red Carpet Metallic + Panoramic Vista Roof — and the dealer page shows the interior is Medium Smoked Truffle Premium Leather (the acceptable backup), not Ebony as the aggregator claimed. Revel audio, BlueCruise, head-up display. High price $61,113 (MSRP $61,435). Phoenix. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 61435
   },
   {
     "vin": "5LMCJ2DA3TUL04065",
@@ -621,7 +641,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/e94397ca-47ac-46ea-a04d-7268f7c0ffd8/",
     "match_notes": "Aggressively-priced Reserve AWD in Red Carpet Metallic + Panoramic Vista Roof + blacked-out Jet Package, $48,104 (~$8.7k off MSRP $56,835). Interior is Ebony (backup) and it's a 3,677-mi demo. St. Louis area. (Also listed via the Dave Sinclair St. Peters store.)",
-    "available": true
+    "available": true,
+    "msrp": 56835
   },
   {
     "vin": "5LMCJ2DA9TUL04264",
@@ -714,7 +735,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/0454c5e0-f8a0-44c4-95a2-6d86c089b1de/",
     "match_notes": "Red Carpet Metallic Premiere AWD + Panoramic Vista Roof, price-verified $47,970 (MSRP $53,470). Ebony interior (backup).",
-    "available": true
+    "available": true,
+    "msrp": 53470
   },
   {
     "vin": "5LMCJ1DA5TUL02599",
@@ -748,7 +770,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/8d8701fa-03f8-4448-9b66-a3cdd4aaf3f7/",
     "match_notes": "A second Red Carpet Metallic car at Wickstrom (~17 mi), Premiere AWD + Panoramic Vista Roof, $51,142. Interior is Ebony (backup) and it's a 3,772-mi demo.",
-    "available": true
+    "available": true,
+    "msrp": 52880
   },
   {
     "vin": "5LMCJ2DA9TUL07424",
@@ -756,15 +779,25 @@
     "year": 2026,
     "condition": "new",
     "mileage": null,
-    "exterior_color": "Unconfirmed — confirm with dealer",
-    "interior_color": "Unconfirmed — confirm with dealer",
-    "interior_material": null,
+    "exterior_color": "Pristine White Metallic Tri-Coat",
+    "interior_color": "Light Smoked Truffle",
+    "interior_material": "Premium Leather-Trimmed",
     "drivetrain": "AWD",
     "panoramic_roof": true,
     "price": null,
-    "packages": [],
+    "packages": [
+      "Equipment Group 201A Reserve II"
+    ],
     "options": [
-      "Panoramic Vista Roof with Power Shade"
+      "Panoramic Vista Roof w/ Power Shade ($1,700)",
+      "20\" Bright Machined Aluminum Wheels ($1,250)",
+      "Heated/Ventilated front seats",
+      "Heated steering wheel",
+      "Wireless charging pad",
+      "360-degree camera",
+      "Front parking sensors",
+      "Reverse Brake Assist",
+      "All-weather floor liners"
     ],
     "dealer_name": "Wickstrom Lincoln",
     "dealer_city": "Barrington",
@@ -772,8 +805,9 @@
     "dealer_phone": "(847) 381-8850",
     "dealer_email": null,
     "listing_url": "https://www.wickstromlincoln.net/new/Lincoln/2026-Lincoln-Corsair-31bfc6d3ac1842fd6ff0b800ec7ec96d.htm",
-    "match_notes": "A NEW Reserve AWD with the Panoramic Vista Roof at the local Wickstrom Lincoln store (~17 mi) — exterior/interior colors weren't exposed on the page. Worth a call: if it's Red Carpet + a light interior, it would be the ideal local car.",
-    "available": true
+    "match_notes": "WINDOW-STICKER CONFIRMED: the mystery local Reserve is Pristine White Metallic with LIGHT SMOKED TRUFFLE Premium Leather + Panoramic Vista Roof (Reserve II 201A, MSRP $55,545). Not Red Carpet — but the best local Reserve-leather-with-light-seats car, ~17 mi at Wickstrom Lincoln. See the attached window sticker.",
+    "available": true,
+    "msrp": 55545
   },
   {
     "vin": "5LMCJ1DA9TUL05425",
@@ -852,7 +886,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/ed83bf9c-6ce5-4feb-a2e5-2439e675794a/",
     "match_notes": "Red Carpet Metallic Premiere + Panoramic Vista Roof, price-verified $52,068 — but FWD and Ebony interior. Florida.",
-    "available": true
+    "available": true,
+    "msrp": 51070
   },
   {
     "vin": "5LMCJ1CA2TUL02285",
@@ -884,7 +919,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/c4fa6cc5-1a4a-43a3-aaff-5f584ecc6bda/",
     "match_notes": "Red Carpet Metallic exterior at a low price-verified $38,387 — but FWD, Ebony interior, base equipment. Florida. Included for completeness / color reference.",
-    "available": true
+    "available": true,
+    "msrp": 42230
   },
   {
     "vin": "5LMCJ1CAXTUL00476",
@@ -916,7 +952,8 @@
     "dealer_email": null,
     "listing_url": "https://www.bozardlincoln.net/new-St+Augustine-2026-Lincoln-Corsair-Premiere-5LMCJ1CAXTUL00476",
     "match_notes": "Lowest price in the whole search ($34,330, price-verified) and a light Smoked Truffle interior — but FWD, no panoramic roof, base trim. The listing says only 'Truffle' (Light vs Medium unconfirmed). Florida. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 42805
   },
   {
     "vin": "5LMCJ1CA9TUL04390",
@@ -975,7 +1012,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/636687a7-f18a-478a-ba1a-3b08ddf013e6/",
     "match_notes": "Top-spec Reserve III (Revel, BlueCruise) AWD + Panoramic Vista Roof with the Medium Smoked Truffle backup interior, ~65 mi (south suburbs). Pristine White (not Red Carpet). $56,272, 1,647 demo miles.",
-    "available": true
+    "available": true,
+    "msrp": 60345
   },
   {
     "vin": "5LMCJ2DA0TUL00605",
@@ -1006,7 +1044,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/4a57928e-7139-4744-99f3-e8963b90db7a/",
     "match_notes": "Reserve AWD + Panoramic Vista Roof, Medium Smoked Truffle backup interior. Black (not Red Carpet). Minneapolis area. $53,760, 1,298 demo miles.",
-    "available": true
+    "available": true,
+    "msrp": 55635
   },
   {
     "vin": "5LMCJ2DA7TUL10399",
@@ -1031,7 +1070,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/1d8cad7b-c669-4a07-b0b3-72b3d17000b4/",
     "match_notes": "Reserve AWD, Medium Smoked Truffle backup interior, $53,237. Infinite Black (not Red Carpet). Milwaukee area, ~1.5 hr.",
-    "available": true
+    "available": true,
+    "msrp": 55635
   },
   {
     "vin": "5LMCJ2CA1TUL01408",
@@ -1093,7 +1133,8 @@
     "dealer_email": null,
     "listing_url": "https://www.biondilincoln.net/used-Monroeville-2026-Lincoln-Corsair-Reserve-5LMCJ2DA6TUL00074",
     "match_notes": "Fully-verified Reserve II AWD + Panoramic Vista Roof, Medium Smoked Truffle backup interior, $49,997. Pittsburgh area. Note the higher mileage — 10,636 mi, beyond the 'essentially new' range. Included as a full-spec reference.",
-    "available": true
+    "available": true,
+    "msrp": 63645
   },
   {
     "vin": "5LMCJ2DA2TUL05532",
@@ -1127,7 +1168,8 @@
     "dealer_email": null,
     "listing_url": "https://www.cars.com/vehicledetail/4d56376b-388c-4574-9ce3-61fcb411db55/",
     "match_notes": "Loaded Reserve AWD + Panoramic Vista Roof (Revel, HUD, BlueCruise) with the Eternal Red backup interior, price-verified $51,328. Crystal White (not Red Carpet). St. Louis area.",
-    "available": true
+    "available": true,
+    "msrp": 61635
   },
   {
     "vin": "5LMCJ2CA8TUL05858",
@@ -1200,6 +1242,103 @@
     "dealer_email": null,
     "listing_url": "https://www.diffeelincoln.com/viewdetails/new/5lmcj1ca9tul09864/2026-lincoln-corsair-sport-utility",
     "match_notes": "Red Carpet Metallic Premiere, FWD, Ebony/Medium Smoked Truffle interior. Oklahoma City area. Dealer page renders the car (note: its photo shows a grey stock image, but the spec sheet says Red Carpet Metallic — confirm by phone). Price not listed. HUMAN-VERIFIED live on the dealer site (Jul 19).",
-    "available": true
+    "available": true,
+    "msrp": 42680
+  },
+  {
+    "vin": "5LMCJ2DAXTUL03334",
+    "trim": "Reserve",
+    "year": 2026,
+    "condition": "new",
+    "mileage": null,
+    "exterior_color": "Harbor Gray Metallic Clearcoat",
+    "interior_color": "Ebony",
+    "interior_material": "Premium Leather-Trimmed w/ micro-perforated inserts",
+    "drivetrain": "AWD",
+    "panoramic_roof": true,
+    "price": 54936,
+    "packages": [
+      "Jet Appearance Package ($2,500)"
+    ],
+    "options": [
+      "Panoramic Vista Roof ($1,700)",
+      "SiriusXM 360L",
+      "All-weather floor liners"
+    ],
+    "dealer_name": "Wickstrom Lincoln",
+    "dealer_city": "Barrington",
+    "dealer_state": "IL",
+    "dealer_phone": "(847) 382-5600",
+    "dealer_email": null,
+    "listing_url": "https://www.wickstromford.com/new/Lincoln/2026-Lincoln-Corsair-7e9dcc14ac180dbb335475c0b01a1047.htm",
+    "match_notes": "Closest NEW Reserve with real Premium Leather (~14 mi, same dealer group as Pat's top pick) — but Harbor Gray with Ebony, not the target colors. $54,936 (MSRP $56,795). Dealer site blocks automated checks — confirm by phone.",
+    "available": true,
+    "msrp": 56795
+  },
+  {
+    "vin": "5LMCJ1DAXTUL07250",
+    "trim": "Premiere",
+    "year": 2026,
+    "condition": "used",
+    "mileage": 4209,
+    "exterior_color": "White Metallic",
+    "interior_color": "Ebony",
+    "interior_material": "Lincoln Soft Touch",
+    "drivetrain": "AWD",
+    "panoramic_roof": true,
+    "price": 44900,
+    "packages": [
+      "Equipment Group 101A Premiere II",
+      "Jet Appearance Package"
+    ],
+    "options": [],
+    "dealer_name": "Wickstrom Chrysler Jeep Dodge Ram",
+    "dealer_city": "Barrington",
+    "dealer_state": "IL",
+    "dealer_phone": "(847) 787-7029",
+    "dealer_email": null,
+    "listing_url": "https://www.wickstromchryslerjeepdodgeram.com/used/Lincoln/2026-Lincoln-Corsair-for-sale-barrington-illinois-8cb4075eac183919421268d7f0af8102.htm",
+    "match_notes": "Local lightly-used Premiere AWD with pano at $44,900 (~14 mi) — White with Ebony, not the target colors. 4,209 mi. Confirm by phone.",
+    "available": true,
+    "msrp": 53280
+  },
+  {
+    "vin": "5LMCJ2DA1TUL07532",
+    "trim": "Reserve",
+    "year": 2026,
+    "condition": "new",
+    "mileage": null,
+    "exterior_color": "Red Carpet Metallic Tinted Clearcoat",
+    "interior_color": "Light Smoked Truffle",
+    "interior_material": "Premium Leather-Trimmed",
+    "drivetrain": "AWD",
+    "panoramic_roof": false,
+    "price": null,
+    "packages": [
+      "Equipment Group 202A Reserve III ($6,500)"
+    ],
+    "options": [
+      "Revel Audio (14 speakers)",
+      "Head-Up Display",
+      "Lincoln BlueCruise (4 yr)",
+      "Heated & ventilated front seats",
+      "Heated rear seats",
+      "Heated steering wheel",
+      "Wireless charging pad",
+      "Front parking sensors",
+      "24-way Perfect Position seats w/ Active Motion ($1,285)",
+      "Rear removable package tray",
+      "All-weather floor liners",
+      "Cargo area protector"
+    ],
+    "dealer_name": "Crest Lincoln of Sterling Heights",
+    "dealer_city": "Sterling Heights",
+    "dealer_state": "MI",
+    "dealer_phone": "(866) 353-2270",
+    "dealer_email": null,
+    "listing_url": "https://www.crestlincoln.com/new/Lincoln/2026-Lincoln-Corsair-602ad41eac182f0fabb6333cd4da9f0f.htm",
+    "match_notes": "WINDOW-STICKER CONFIRMED — THE best match of the whole search: Red Carpet Metallic + Light Smoked Truffle Premium Leather + Reserve III + AWD, loaded (Revel, HUD, BlueCruise, 24-way seats). MSRP $60,720; no panoramic roof per sticker. Crest Lincoln, Sterling Heights MI (~340 mi). See the attached window sticker.",
+    "available": true,
+    "msrp": 60720
   }
 ]
