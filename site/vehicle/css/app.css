@@ -61,7 +61,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--carpet-2); outl
 /* nav */
 .nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 12px 22px; background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; letter-spacing: -.3px; text-decoration: none; }
-.brand-mark { font-size: 20px; }
+.glyph { width: 20px; height: 20px; vertical-align: -4px; }
+.brand-glyph { width: 24px; height: 24px; color: var(--carpet); }
+.search-seg button .glyph { margin-right: 4px; }
 .brand .star { color: var(--carpet); }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 .nav-actions a { font-size: 13px; color: var(--text-2); text-decoration: none; }
@@ -112,10 +114,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--carpet-2); outl
 .gone-ribbon { position: absolute; top: 14px; right: -34px; z-index: 3; transform: rotate(45deg);
   background: var(--bad); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .5px;
   padding: 4px 40px; box-shadow: 0 3px 10px rgba(0,0,0,.3); }
-.card-photo { position: relative; height: 172px; display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(180deg, #c9dced 0%, #dfe7ee 55%, #cdd3d8 100%); border-bottom: 1px solid var(--border); overflow: hidden; }
-:root[data-theme="dark"] .card-photo { background: linear-gradient(180deg, #223140 0%, #2a2a33 60%, #1d1c22 100%); }
-.card-photo svg { width: 84%; max-width: 340px; height: auto; filter: drop-shadow(0 8px 14px rgba(0,0,0,.28)); }
+.card-photo { position: relative; height: 148px; display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); border-bottom: 1px solid var(--border); overflow: hidden; }
+.card-photo .car-icon { width: 190px; height: auto; filter: drop-shadow(0 6px 14px color-mix(in srgb, currentColor 30%, transparent)); }
+.color-tbd { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: 700; color: var(--text-2); background: var(--surface); border: 1px solid var(--border-2); border-radius: 100px; padding: 3px 12px; }
 .photo-thumb { position: absolute; right: 12px; bottom: 10px; display: flex; flex-direction: column; align-items: center; gap: 2px;
   border: none; background: none; cursor: zoom-in; padding: 0; }
 .photo-thumb img { width: 74px; height: 50px; object-fit: cover; border-radius: 8px;

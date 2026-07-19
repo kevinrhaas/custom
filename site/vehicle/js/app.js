@@ -111,42 +111,15 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
 const isGone = v => v.available === false;
 
-/* hex helpers for painting the illustration */
-function hexToRgb(h) { const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h || ''); return m ? [1, 2, 3].map(i => parseInt(m[i], 16)) : [154, 146, 132]; }
-function rgbToHex(r) { return '#' + r.map(x => Math.max(0, Math.min(255, Math.round(x))).toString(16).padStart(2, '0')).join(''); }
-function shade(hex, amt) { const [r, g, b] = hexToRgb(hex); const f = amt < 0 ? 0 : 255, t = Math.abs(amt); return rgbToHex([r + (f - r) * t, g + (f - g) * t, b + (f - b) * t]); }
-
-/* A clean side-profile crossover painted in the car's real exterior colour,
-   with the interior colour showing through the glass. Self-contained SVG. */
-let _svgId = 0;
+/* Clean line-art SUV glyph (from the AutoSelector icon family), tinted in the
+   car's exterior paint colour — single-colour currentColor icon, fleet style. */
 function carSVG(v) {
-  const ext = swatch(v.exterior_color), intc = swatch(v.interior_color);
-  const light = shade(ext, 0.28), dark = shade(ext, -0.34), rim = shade(ext, -0.5);
-  const id = 'g' + (_svgId++);
   const unknown = /not published|unconfirmed/i.test(v.exterior_color || '');
-  return `<svg viewBox="0 0 320 150" role="img" aria-label="${esc(v.exterior_color)}">
-    <defs>
-      <linearGradient id="body${id}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="${light}"/><stop offset="0.5" stop-color="${ext}"/><stop offset="1" stop-color="${dark}"/>
-      </linearGradient>
-      <linearGradient id="glass${id}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#cfe4f2" stop-opacity="0.95"/><stop offset="1" stop-color="#5b7488" stop-opacity="0.95"/>
-      </linearGradient>
-    </defs>
-    <ellipse cx="160" cy="130" rx="118" ry="9" fill="rgba(0,0,0,0.16)"/>
-    <path d="M26,112 L28,96 Q30,86 42,83 L70,80 Q92,58 120,54 L206,52 Q236,54 256,78 L286,86 Q294,90 294,102 L294,112 Q294,116 288,116 L32,116 Q26,116 26,112 Z" fill="url(#body${id})" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M78,80 Q96,60 121,57 L162,56 L162,80 Z" fill="${intc}"/>
-    <path d="M170,56 L204,57 Q230,59 246,79 L170,80 Z" fill="${intc}"/>
-    <path d="M78,80 Q96,60 121,57 L162,56 L162,80 Z" fill="url(#glass${id})" opacity="0.72"/>
-    <path d="M170,56 L204,57 Q230,59 246,79 L170,80 Z" fill="url(#glass${id})" opacity="0.72"/>
-    <rect x="163" y="56" width="5" height="24" fill="${dark}"/>
-    <path d="M42,83 L256,78" fill="none" stroke="${light}" stroke-width="1.4" opacity="0.7"/>
-    <rect x="34" y="108" width="256" height="5" rx="2" fill="${rim}" opacity="0.7"/>
-    <rect x="286" y="88" width="7" height="9" rx="2" fill="#c9433f"/>
-    <path d="M27,95 L37,93 L37,99 L28,100 Z" fill="#f3f0e2"/>
-    ${[92, 232].map(cx => `<g><circle cx="${cx}" cy="112" r="20" fill="#15161a"/><circle cx="${cx}" cy="112" r="19" fill="none" stroke="#0a0a0c" stroke-width="2"/><circle cx="${cx}" cy="112" r="10" fill="#c9ccd1"/><circle cx="${cx}" cy="112" r="9" fill="none" stroke="#8a8f96" stroke-width="1"/><circle cx="${cx}" cy="112" r="3" fill="#6b7078"/></g>`).join('')}
-    ${unknown ? '<text x="160" y="40" text-anchor="middle" font-size="13" font-family="system-ui" fill="#fff" opacity="0.9">color TBD — call dealer</text>' : ''}
-  </svg>`;
+  const c = unknown ? 'var(--text-3)' : swatch(v.exterior_color);
+  return `<svg class="car-icon" viewBox="1 4 22 15" style="color:${c}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${esc(v.exterior_color)}">
+    <path d="M3 15v-4l1.5-3.5A1.6 1.6 0 0 1 6 6.5h8l4 4.5h3V15" fill="currentColor" fill-opacity="0.16"/>
+    <circle cx="7.5" cy="16" r="1.8"/><circle cx="17" cy="16" r="1.8"/><path d="M9.3 16h5.9"/>
+  </svg>${unknown ? '<div class="color-tbd">color TBD — call dealer</div>' : ''}`;
 }
 
 /* Value rating + fair-price estimate.
