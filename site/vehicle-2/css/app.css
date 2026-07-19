@@ -104,6 +104,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--carpet-2); outl
 .card[data-tier="exact"] { border-left-color: var(--exact); }
 .card[data-tier="strong"] { border-left-color: var(--strong); }
 .card[data-tier="backup"] { border-left-color: var(--backup); }
+.card-photo { position: relative; height: 172px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, #c9dced 0%, #dfe7ee 55%, #cdd3d8 100%); border-bottom: 1px solid var(--border); overflow: hidden; }
+:root[data-theme="dark"] .card-photo { background: linear-gradient(180deg, #223140 0%, #2a2a33 60%, #1d1c22 100%); }
+.card-photo svg { width: 84%; max-width: 340px; height: auto; filter: drop-shadow(0 8px 14px rgba(0,0,0,.28)); }
+.photo-badges { position: absolute; left: 12px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.photo-badges .pb { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700;
+  padding: 4px 9px; border-radius: 100px; background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text); border: 1px solid var(--border-2); backdrop-filter: blur(4px); }
+.photo-badges .swatch { width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(0,0,0,.25); }
 .card-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; justify-content: space-between; padding: 18px 20px 12px; }
 .card-title h3 { font-size: 18px; font-weight: 800; letter-spacing: -.3px; }
 .card-title .sub { font-size: 13px; color: var(--text-2); margin-top: 3px; }
