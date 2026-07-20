@@ -1729,9 +1729,9 @@ window.FINDER_DATA = {
           "dealer_phone": "407-674-1902",
           "dealer_email": null,
           "listing_url": "https://www.centralfloridalincoln.com/new/Lincoln/2026-Lincoln-Corsair-22c7741cac1819229d5476fa53d98733.htm",
-          "match_notes": "EXACT color+interior match found in the nationwide dealer sweep. Robot-found in the nationwide dealer sweep. Central Florida Lincoln, Orlando FL.",
+          "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Central Florida Lincoln, Orlando FL.",
           "available": true,
-          "human_verified": false,
+          "human_verified": true,
           "distance_mi": 1208
         },
         {
@@ -2066,9 +2066,9 @@ window.FINDER_DATA = {
           "dealer_phone": "302-324-4400",
           "dealer_email": null,
           "listing_url": "https://www.carmanlincoln.com/new-New+Castle-2026-Lincoln-Corsair-Premiere-5LMCJ1DA8TUL00622",
-          "match_notes": "EXACT color+interior match found in the nationwide dealer sweep. Robot-found in the nationwide dealer sweep. Carman Lincoln, New Castle DE. Price not published — call to confirm.",
+          "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Carman Lincoln, New Castle DE. Price not published — call to confirm.",
           "available": true,
-          "human_verified": false,
+          "human_verified": true,
           "distance_mi": 811
         },
         {
@@ -2102,9 +2102,9 @@ window.FINDER_DATA = {
           "dealer_phone": "605-291-8317",
           "dealer_email": null,
           "listing_url": "https://www.siouxfallslincoln.com/certified/Lincoln/2026-Lincoln-Corsair-1cf4599aac182d12aed28c66870ae304.htm",
-          "match_notes": "EXACT color+interior match found in the nationwide dealer sweep. Robot-found in the nationwide dealer sweep. Sioux Falls Lincoln, Sioux Falls SD.",
+          "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Sioux Falls Lincoln, Sioux Falls SD.",
           "available": true,
-          "human_verified": false,
+          "human_verified": true,
           "distance_mi": 514
         }
       ]
