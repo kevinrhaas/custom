@@ -1732,7 +1732,9 @@ window.FINDER_DATA = {
           "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Central Florida Lincoln, Orlando FL.",
           "available": true,
           "human_verified": true,
-          "distance_mi": 1208
+          "msrp": 42980,
+          "distance_mi": 1208,
+          "sticker": "stickers/5LMCJ1CA3TUL10606.pdf"
         },
         {
           "vin": "5LMCJ1CA9TUL10416",
@@ -2069,7 +2071,9 @@ window.FINDER_DATA = {
           "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Carman Lincoln, New Castle DE. Price not published — call to confirm.",
           "available": true,
           "human_verified": true,
-          "distance_mi": 811
+          "msrp": 50700,
+          "distance_mi": 811,
+          "sticker": "stickers/5LMCJ1DA8TUL00622.pdf"
         },
         {
           "vin": "5LMCJ2DA2TUL07524",
@@ -2105,7 +2109,9 @@ window.FINDER_DATA = {
           "match_notes": "HUMAN-VERIFIED live on the dealer site. Exact Red Carpet + Light Smoked Truffle match. Robot-found in the nationwide dealer sweep. Sioux Falls Lincoln, Sioux Falls SD.",
           "available": true,
           "human_verified": true,
-          "distance_mi": 514
+          "msrp": 54295,
+          "distance_mi": 514,
+          "sticker": "stickers/5LMCJ2DA2TUL07524.pdf"
         }
       ]
     },
