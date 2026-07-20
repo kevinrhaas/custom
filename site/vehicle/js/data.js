@@ -141,7 +141,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Leather-Trimmed Micro-Perf",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": null,
           "packages": [],
           "options": [
@@ -330,7 +330,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Lincoln Soft Touch",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": null,
           "packages": [
             "Equipment Group 101A Premiere II"
@@ -453,7 +453,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Lincoln Soft Touch",
           "drivetrain": "FWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": 42657,
           "packages": [],
           "options": [
@@ -532,7 +532,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": 49797,
           "packages": [
             "Equipment Group 201A"
@@ -558,7 +558,8 @@ window.FINDER_DATA = {
           "match_notes": "The strongest LOCAL Reserve: AWD + Light Smoked Truffle Premium Leather, essentially new (5 mi), ~50 mi away in Chicago, price-verified $49,797 (MSRP $52,185). Only miss is the exterior — Asher Gray, not Red Carpet. If Pat wants the real Reserve leather AND is open on color, this is the one to see. Confirm panoramic roof.",
           "available": true,
           "msrp": 52185,
-          "distance_mi": 51
+          "distance_mi": 51,
+          "sticker": "stickers/5LMCJ2DA0TUL04217.pdf"
         },
         {
           "vin": "5LMCJ2CA0TUL04283",
@@ -570,7 +571,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "FWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 54172,
           "packages": [
             "Equipment Group 202A",
@@ -593,6 +594,7 @@ window.FINDER_DATA = {
           "match_notes": "Local, loaded Reserve (202A: BlueCruise + Revel) with Light Smoked Truffle Premium Leather + Panoramic Vista Roof, $54,172. Downsides: FWD and Pristine White (not Red Carpet).",
           "available": true,
           "distance_mi": 51,
+          "sticker": "stickers/5LMCJ2CA0TUL04283.pdf",
           "photo": "photos/5LMCJ2CA0TUL04283.jpg"
         },
         {
@@ -605,7 +607,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Leather-Trimmed",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 50350,
           "packages": [],
           "options": [],
@@ -631,7 +633,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "FWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 49446,
           "packages": [],
           "options": [],
@@ -657,7 +659,7 @@ window.FINDER_DATA = {
           "interior_color": "Medium Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 61113,
           "packages": [
             "Equipment Group 202A Reserve III ($6,500)",
@@ -993,7 +995,7 @@ window.FINDER_DATA = {
           "interior_color": "Ebony",
           "interior_material": "Leather-Trimmed",
           "drivetrain": "FWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": 38387,
           "packages": [],
           "options": [
@@ -1091,7 +1093,7 @@ window.FINDER_DATA = {
           "interior_color": "Medium Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 56272,
           "packages": [
             "Equipment Group 202A Reserve III"
@@ -1161,7 +1163,7 @@ window.FINDER_DATA = {
           "interior_color": "Medium Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 53237,
           "packages": [],
           "options": [
@@ -1255,7 +1257,7 @@ window.FINDER_DATA = {
           "interior_color": "Eternal Red",
           "interior_material": "Premium Leather-Trimmed (Ebony/Eternal Red)",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 51328,
           "packages": [
             "Jet Package"
@@ -1340,7 +1342,7 @@ window.FINDER_DATA = {
           "interior_color": "Ebony/Medium Smoked Truffle",
           "interior_material": "ActiveX/Lincoln Soft Touch",
           "drivetrain": "FWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": null,
           "packages": [],
           "options": [
@@ -1506,7 +1508,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Highland Park Ford Lincoln (Lincoln of Highland Park), Highland Park IL.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 32
+          "msrp": 50470,
+          "distance_mi": 32,
+          "sticker": "stickers/5LMCJ1DA9TUL06493.pdf"
         },
         {
           "vin": "5LMCJ1DA6TUL04572",
@@ -1518,7 +1522,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": null,
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": null,
           "packages": [],
           "options": [
@@ -1537,7 +1541,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Lincoln of Bloomington, Bloomington MN. Price not published — call to confirm.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 363
+          "msrp": 51370,
+          "distance_mi": 363,
+          "sticker": "stickers/5LMCJ1DA6TUL04572.pdf"
         },
         {
           "vin": "5LMCJ1DA0TUL10514",
@@ -1549,7 +1555,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": null,
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": null,
           "packages": [],
           "options": [
@@ -1569,7 +1575,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Lincoln of Bloomington, Bloomington MN. Price not published — call to confirm.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 363
+          "msrp": 50370,
+          "distance_mi": 363,
+          "sticker": "stickers/5LMCJ1DA0TUL10514.pdf"
         },
         {
           "vin": "5LMCJ1DA4TUL00598",
@@ -1581,7 +1589,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Leatherette (Lincoln Soft Touch)",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": null,
           "packages": [],
           "options": [
@@ -1600,7 +1608,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Lincoln of Bloomington, Bloomington MN. Price not published — call to confirm.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 363
+          "msrp": 51420,
+          "distance_mi": 363,
+          "sticker": "stickers/5LMCJ1DA4TUL00598.pdf"
         },
         {
           "vin": "5LMCJ1DA2TUL07856",
@@ -1632,7 +1642,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Bob Thomas Dealerships (Bob Thomas Ford Lincoln Indianapolis), Indianapolis IN.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 241
+          "msrp": 51595,
+          "distance_mi": 241,
+          "sticker": "stickers/5LMCJ1DA2TUL07856.pdf"
         },
         {
           "vin": "5LMCJ2DA4TUL09825",
@@ -1644,7 +1656,7 @@ window.FINDER_DATA = {
           "interior_color": "Lt Smoked Truffle",
           "interior_material": "Premium Leather",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 53995,
           "packages": [
             "Equipment Group 202A",
@@ -1668,7 +1680,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. LaFontaine Lincoln Grand Rapids, Grand Rapids MI.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 169
+          "msrp": 62920,
+          "distance_mi": 169,
+          "sticker": "stickers/5LMCJ2DA4TUL09825.pdf"
         },
         {
           "vin": "5LMCJ1DA3TUL00740",
@@ -1700,7 +1714,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Lincoln of Memphis, Memphis TN.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 589
+          "msrp": 49880,
+          "distance_mi": 589,
+          "sticker": "stickers/5LMCJ1DA3TUL00740.pdf"
         },
         {
           "vin": "5LMCJ1CA3TUL10606",
@@ -1712,7 +1728,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Lincoln Soft Touch Seats",
           "drivetrain": "FWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": 42359,
           "packages": [
             "Equipment Group 100A Premiere I"
@@ -1770,7 +1786,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Allan Vigil Lincoln, Morrow GA.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 751
+          "msrp": 47920,
+          "distance_mi": 751,
+          "sticker": "stickers/5LMCJ1CA9TUL10416.pdf"
         },
         {
           "vin": "5LMCJ2DA3TUL06060",
@@ -1782,7 +1800,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather-Trimmed Seats with Micro-Perforated Inserts",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 61333,
           "packages": [
             "Jet Appearance Package"
@@ -1802,7 +1820,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Leith Lincoln, Raleigh NC.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 807
+          "msrp": 61635,
+          "distance_mi": 807,
+          "sticker": "stickers/5LMCJ2DA3TUL06060.pdf"
         },
         {
           "vin": "5LMCJ2DA1TUL08065",
@@ -1839,7 +1859,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Fairway Lincoln, Greenville SC.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 710
+          "msrp": 54135,
+          "distance_mi": 710,
+          "sticker": "stickers/5LMCJ2DA1TUL08065.pdf"
         },
         {
           "vin": "5LMCJ2DAXTUL05746",
@@ -1851,7 +1873,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium leather-trimmed seats",
           "drivetrain": "AWD",
-          "panoramic_roof": true,
+          "panoramic_roof": false,
           "price": 58374,
           "packages": [
             "Equipment Group 202A Reserve III",
@@ -1875,7 +1897,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Camelback Lincoln, Phoenix AZ.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 1682
+          "msrp": 60685,
+          "distance_mi": 1682,
+          "sticker": "stickers/5LMCJ2DAXTUL05746.pdf"
         },
         {
           "vin": "5LMCJ2DA3TUL01392",
@@ -1887,7 +1911,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "premium leather",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 53138,
           "packages": [],
           "options": [],
@@ -1900,7 +1924,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Findlay Lincoln of Henderson, Henderson NV.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 1752
+          "msrp": 55885,
+          "distance_mi": 1752,
+          "sticker": "stickers/5LMCJ2DA3TUL01392.pdf"
         },
         {
           "vin": "5LMCJ1DA1TUL06889",
@@ -1912,7 +1938,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": null,
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": false,
           "price": 46379,
           "packages": [],
           "options": [
@@ -1933,7 +1959,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Lincoln of Wayne, Wayne NJ.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 862
+          "msrp": 45480,
+          "distance_mi": 862,
+          "sticker": "stickers/5LMCJ1DA1TUL06889.pdf"
         },
         {
           "vin": "5LMCJ1DA0TUL09072",
@@ -1945,7 +1973,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "leatherette",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 52009,
           "packages": [
             "Premiere II"
@@ -1966,7 +1994,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Irwin Lincoln, Freehold NJ.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 875
+          "msrp": 51380,
+          "distance_mi": 875,
+          "sticker": "stickers/5LMCJ1DA0TUL09072.pdf"
         },
         {
           "vin": "5LMCJ2DA6TUL06313",
@@ -1978,7 +2008,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 57424,
           "packages": [
             "Reserve II Equipment Group",
@@ -2004,7 +2034,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Irwin Lincoln, Freehold NJ.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 875
+          "msrp": 56795,
+          "distance_mi": 875,
+          "sticker": "stickers/5LMCJ2DA6TUL06313.pdf"
         },
         {
           "vin": "5LMCJ2DA6TUL01967",
@@ -2016,7 +2048,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": "Premium Leather",
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": 57599,
           "packages": [
             "Reserve II",
@@ -2042,7 +2074,9 @@ window.FINDER_DATA = {
           "match_notes": "Robot-found in the nationwide dealer sweep. Irwin Lincoln, Freehold NJ.",
           "available": true,
           "human_verified": false,
-          "distance_mi": 875
+          "msrp": 56970,
+          "distance_mi": 875,
+          "sticker": "stickers/5LMCJ2DA6TUL01967.pdf"
         },
         {
           "vin": "5LMCJ1DA8TUL00622",
@@ -2054,7 +2088,7 @@ window.FINDER_DATA = {
           "interior_color": "Light Smoked Truffle",
           "interior_material": null,
           "drivetrain": "AWD",
-          "panoramic_roof": null,
+          "panoramic_roof": true,
           "price": null,
           "packages": [],
           "options": [
