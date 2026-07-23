@@ -26,7 +26,9 @@ function b64ToBytes(b64) {
   for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
   return out;
 }
-function normalizePass(p) { return (p || '').trim().toLowerCase(); }
+/* Forgiving normalization: case, spaces, hyphens, smart punctuation and any
+   other separators are ignored — only letters and digits count. */
+function normalizePass(p) { return (p || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
 
 async function decryptPayload(pass) {
   var P = window.COMPASS_PAYLOAD;

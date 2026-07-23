@@ -13,7 +13,8 @@ if (!plainPath || !passcodeRaw) {
   console.error('Usage: node tools/encrypt.mjs <plaintext.json> <passcode>');
   process.exit(1);
 }
-const passcode = passcodeRaw.trim().toLowerCase();
+// Mirror js/app.js normalizePass: only letters and digits count.
+const passcode = passcodeRaw.toLowerCase().replace(/[^a-z0-9]/g, '');
 const data = readFileSync(plainPath, 'utf8');
 JSON.parse(data); // validate before encrypting
 
