@@ -183,6 +183,15 @@ def _svg(w, h, inner):
     return (f'<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" '
             f'style="width:100%;height:auto;display:block">{inner}</svg>')
 
+def existing_renders(cands):
+    """cands: [(label, filename)] -> [{label,img}] for files present in assets/renders/final/.
+    Lets the chosen options show a labeled toggle over whatever GPT renders are on disk."""
+    out = []
+    for label, fn in cands:
+        if os.path.exists(f'../site/hosta/assets/renders/final/{fn}'):
+            out.append({'label': label, 'img': f'assets/renders/final/{fn}'})
+    return out
+
 def staggered_bed(pocket_mice=0):
     """Top-down of the main bed: two large hostas in a STAGGERED drift (no runway),
     optional mouse-ears only in the front pockets."""
@@ -348,9 +357,10 @@ FINAL = {
                "options: leave it clean and let the big hostas knit in, or tuck a few mouse-ears into "
                "the front pockets for a finished edge the first couple years.",
       'options': [
-        { 'key': 'clean', 'label': 'Clean (recommended)',
+        { 'key': 'clean', 'label': 'Clean (recommended)', 'chosen': True,
           'note': 'Just the two large hostas, staggered. They close in and cover soil in 2–3 seasons.',
           'schematic': staggered_bed(0), 'plants': _bed_clean_pl, 'cost': _bed_clean_cost,
+          'renders': existing_renders([('Freshly planted', 'bed-fresh.jpg'), ('Grown in', 'bed-mature.jpg')]),
           'sample': 'assets/plates/design1.jpg', 'prompt': P_BED_CLEAN },
         { 'key': 'pocket', 'label': 'Pocket accents',
           'note': 'A handful of Blue Mouse Ears only in the front pockets the staggering creates.',
@@ -379,9 +389,10 @@ FINAL = {
                "to trample — no one goes there). Two screen options to compare — generate both and see "
                "which you like. The old climbing hydrangea is dropped (too big / too much upkeep).",
       'options': [
-        { 'key': 'screen', 'label': 'Vase hosta + Goatsbeard',
+        { 'key': 'screen', 'label': 'Vase hosta + Goatsbeard', 'chosen': True,
           'note': 'Krossa Regal vase hostas plus a clumping Goatsbeard for real fence-blocking height (4–5 ft). Both clump; neither runs.',
           'schematic': fence_svg('screen', 'mondo'), 'plants': _fence_screen_pl, 'cost': _fence_screen_cost,
+          'renders': existing_renders([('Dwarf mondo', 'fence-mondo.jpg'), ('Blue mouse-ears', 'fence-mouseears.jpg')]),
           'sample': 'assets/plates/design6.jpg', 'prompt': P_FENCE_SCREEN },
         { 'key': 'vase', 'label': 'Vase hosta only',
           'note': 'Just Krossa Regal — fully on-theme and clumping, ~3 ft, softens rather than hides the fence.',

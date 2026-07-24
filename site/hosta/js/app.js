@@ -106,7 +106,7 @@ function renderFinal(){
     html += `<section class="fp-zone"><h2>${escapeHtml(z.name)}</h2><p class="view-lede">${escapeHtml(z.intro)}</p>`;
     if(z.options){
       html += `<div class="dd-tabs">${z.options.map((o,i)=>
-        `<button class="dd-tab${i===0?' on':''}" data-zopt="${zi}:${i}">${escapeHtml(o.label)}</button>`).join('')}</div>
+        `<button class="dd-tab${i===0?' on':''}${o.chosen?' fp-chosen':''}" data-zopt="${zi}:${i}">${o.chosen?'★ ':''}${escapeHtml(o.label)}${o.chosen?' · chosen':''}</button>`).join('')}</div>
         <div class="fp-opt" id="fpopt-${zi}"></div>`;
     }
     if(z.steps){
@@ -140,23 +140,42 @@ function paintOpt(zi, i){
       <td class="r">×${p.qty}</td><td class="r">${cost}</td></tr>`;
   }).join('');
   const topLabel = FINAL.zones[zi].id === 'bed' ? 'Top-down — staggered drift' : 'Top-down — fence corner';
+  const rends = o.renders || [];
+  let renderBlock = '';
+  if(rends.length){
+    const toggle = rends.length > 1
+      ? `<div class="fp-rtoggle">${rends.map((r, ri)=>`<button class="fp-rbtn${ri===0?' on':''}" type="button" data-r="${ri}">${escapeHtml(r.label)}</button>`).join('')}</div>`
+      : `<div class="fp-rcap">${escapeHtml(rends[0].label)}</div>`;
+    renderBlock = `<div class="dd-h">Final render — how it looks</div>${toggle}
+      <img class="fp-renderimg" id="fprender-${zi}" src="${rends[0].img}" alt="final render — ${escapeHtml(rends[0].label)}" loading="lazy">`;
+  }
+  // the GPT prompt / reference: front-and-centre when there's no render yet, tucked into a
+  // collapsible once a render exists.
+  const gen = `<div class="fp-render">
+      <img class="fp-sample" src="${o.sample}" alt="style reference" loading="lazy">
+      <p class="fp-hint">Attach this plate as the style/site reference, paste the prompt, generate — then send it back.</p>
+      <button class="chip fp-copy" type="button">⧉ Copy render prompt</button>
+      <pre class="fp-prompt">${escapeHtml(o.prompt)}</pre>
+    </div>`;
+  const genPanel = rends.length
+    ? `<details class="fp-gen"><summary>Regenerate / prompt &amp; reference</summary>${gen}</details>`
+    : `<div class="dd-h">Generate the image in GPT</div>${gen}`;
   host.innerHTML = `
     <div class="dd-changes">${escapeHtml(o.note)}</div>
+    ${renderBlock}
     <div class="dd-h">${topLabel}</div>
     <div class="guide"><div class="g-svg">${o.schematic}</div></div>
     <div class="fp-cols">
       <div><div class="dd-h">Plant list</div>
         <table class="ltbl fp-plants"><tbody>${rows}</tbody>
         <tfoot><tr><td></td><td><b>Hostas subtotal</b></td><td></td><td class="r"><b>$${o.cost.toFixed(2)}</b></td></tr></tfoot></table></div>
-      <div><div class="dd-h">Generate the image in GPT</div>
-        <div class="fp-render">
-          <img class="fp-sample" src="${o.sample}" alt="style reference" loading="lazy">
-          <p class="fp-hint">Attach this plate as the style/site reference, paste the prompt below, generate — then send it back and I'll drop it in here.</p>
-          <button class="chip fp-copy" type="button">⧉ Copy render prompt</button>
-        </div>
-        <pre class="fp-prompt">${escapeHtml(o.prompt)}</pre>
-      </div>
+      <div>${genPanel}</div>
     </div>`;
+  host.querySelectorAll('.fp-rbtn').forEach(b=> b.onclick=()=>{
+    const ri = +b.dataset.r; const img = host.querySelector('#fprender-'+zi);
+    img.src = rends[ri].img; img.alt = 'final render — ' + rends[ri].label;
+    host.querySelectorAll('.fp-rbtn').forEach(x=>x.classList.toggle('on', x===b));
+  });
   host.querySelector('.fp-copy').onclick = (e)=>{
     const btn = e.currentTarget;
     navigator.clipboard?.writeText(o.prompt).then(()=>{ btn.textContent='Copied ✓'; setTimeout(()=>btn.textContent='⧉ Copy render prompt', 1500); });
