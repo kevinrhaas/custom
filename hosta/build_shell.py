@@ -174,6 +174,229 @@ for i, g in enumerate(GARDENS, start=1):
 # lurvey embed
 lurvey = open("_lurvey_embed.json", encoding="utf-8").read()
 
+# ================================================================== FINAL PLAN (Plan #1, staggered)
+FC = {  # final-plan swatch colors
+  'adg':('#3d6fb5','#2a4d7e'), 'fr':('#63b394','#457d67'), 'mouse':('#b06a8f','#7b4a64'),
+  'vase':('#7a5aa8','#553e75'), 'goat':('#cdd68c','#8a9a4e'), 'mondo':('#2f6b41','#1e3d26'),
+}
+def _svg(w, h, inner):
+    return (f'<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" '
+            f'style="width:100%;height:auto;display:block">{inner}</svg>')
+
+def staggered_bed(pocket_mice=0):
+    """Top-down of the main bed: two large hostas in a STAGGERED drift (no runway),
+    optional mouse-ears only in the front pockets."""
+    W, H = 1140, 236; x0, x1 = 40, 1100; usable = x1 - x0
+    seq = []; a, b = 14, 13; i = 0
+    while a > 0 or b > 0:
+        if i % 2 == 0 and a > 0: seq.append('adg'); a -= 1
+        elif b > 0: seq.append('fr'); b -= 1
+        elif a > 0: seq.append('adg'); a -= 1
+        i += 1
+    N = len(seq); step = usable / (N + 1)
+    P = [f'<rect width="{W}" height="{H}" fill="#f3efe4"/>',
+         f'<rect x="{x0-10}" y="40" width="{usable+20}" height="168" rx="12" fill="#efe7d3" stroke="#d9cdb0"/>',
+         f'<text x="{x0}" y="28" font-size="11" font-weight="700" fill="#8a6510" font-family="sans-serif">STREET END · a little sun</text>',
+         f'<text x="{x1}" y="28" font-size="11" font-weight="700" fill="#3c4f57" text-anchor="end" font-family="sans-serif">THE SLOT · deep shade →</text>',
+         f'<text x="{x0}" y="230" font-size="10" fill="#8a7d63" font-family="sans-serif">walk edge (front)</text>']
+    front_y, back_y = 168, 96; pockets = []
+    for idx, typ in enumerate(seq):
+        cx = x0 + step * (idx + 1)
+        setback = ((idx % 2) ^ ((idx // 3) % 2))   # irregular zigzag → natural drift
+        cy = (back_y if setback else front_y) + (5 if (idx // 2) % 2 else -5)
+        col = FC['adg'] if typ == 'adg' else FC['fr']
+        P.append(f'<circle cx="{cx:.0f}" cy="{cy}" r="17" fill="{col[0]}" fill-opacity=".92" stroke="{col[1]}" stroke-width="1.3"/>')
+        if setback: pockets.append(cx)
+    if pocket_mice and pockets:
+        gap = max(1, len(pockets) // pocket_mice); placed = 0
+        for k in range(0, len(pockets), gap):
+            if placed >= pocket_mice: break
+            P.append(f'<circle cx="{pockets[k]:.0f}" cy="198" r="6.5" fill="{FC["mouse"][0]}" stroke="{FC["mouse"][1]}" stroke-width="1"/>')
+            placed += 1
+    return _svg(W, H, ''.join(P))
+
+def fence_svg(option, groundcover='mondo'):
+    """Top-down of the fence corner: clumping vase hosta(s) (+ optional Goatsbeard
+    screen) at the fence, low trampleable groundcover under the meter box."""
+    W, H = 1140, 300
+    P = [f'<rect width="{W}" height="{H}" fill="#f3efe4"/>',
+         f'<rect x="0" y="0" width="{W}" height="44" fill="#c9a48c" opacity=".5"/>',
+         f'<text x="16" y="29" font-size="12" font-weight="700" fill="#8a5a3a" font-family="sans-serif">BRICK WALL (house)</text>',
+         f'<rect x="120" y="26" width="60" height="30" rx="4" fill="#b98b52" stroke="#7a5a2f" stroke-width="2"/>',
+         f'<text x="150" y="74" font-size="10.5" fill="#6b4a2a" text-anchor="middle" font-family="sans-serif">meter box — keep access</text>',
+         f'<line x1="{W-42}" y1="56" x2="{W-42}" y2="{H-24}" stroke="#9aa0a6" stroke-width="6" stroke-dasharray="5 4"/>',
+         f'<text x="{W-54}" y="{H-9}" font-size="11" font-weight="700" fill="#6b7076" text-anchor="end" font-family="sans-serif">CHAIN-LINK FENCE (neighbor)</text>']
+    if option == 'screen':
+        for gy in (108, 178, 248):
+            P.append(f'<ellipse cx="{W-96}" cy="{gy}" rx="48" ry="30" fill="{FC["goat"][0]}" stroke="{FC["goat"][1]}" stroke-width="1.5"/>')
+        P.append(f'<text x="{W-96}" y="66" font-size="10.5" fill="#5f6a30" text-anchor="middle" font-family="sans-serif">Goatsbeard screen · 4–5 ft</text>')
+    vx = (W - 210) if option == 'screen' else (W - 130)
+    vys = (128, 220) if option == 'screen' else (120, 186, 252)
+    for vy in vys:
+        P.append(f'<circle cx="{vx}" cy="{vy}" r="30" fill="{FC["vase"][0]}" fill-opacity=".9" stroke="{FC["vase"][1]}" stroke-width="1.5"/>')
+    P.append(f'<text x="{vx}" y="{H-16}" font-size="10.5" fill="#4c3a6a" text-anchor="middle" font-family="sans-serif">Krossa Regal · vase hosta (clumping)</text>')
+    gcol = FC['mondo'] if groundcover == 'mondo' else FC['mouse']
+    glabel = 'dwarf mondo — low, steppable' if groundcover == 'mondo' else 'blue mouse-ears — low, steppable'
+    for k in range(10):
+        P.append(f'<circle cx="{92 + k*24}" cy="118" r="7" fill="{gcol[0]}" stroke="{gcol[1]}" stroke-width="1"/>')
+    P.append(f'<text x="{92 + 10*24 + 12}" y="122" font-size="10.5" fill="#3a5a44" font-family="sans-serif">{glabel}</text>')
+    return _svg(W, H, ''.join(P))
+
+def final_overview_svg():
+    """The whole 95-ft run as three labeled zones: staggered bed → gravel pad → fence corner."""
+    W, H = 1140, 210; x0, x1 = 30, 1110; usable = x1 - x0
+    bedX = x0 + usable * 0.70; padX = x0 + usable * 0.84
+    P = [f'<rect width="{W}" height="{H}" fill="#f3efe4"/>',
+         f'<rect x="{x0}" y="46" width="{bedX-x0}" height="132" rx="10" fill="#efe7d3" stroke="#d9cdb0"/>',
+         f'<rect x="{bedX}" y="46" width="{padX-bedX}" height="132" fill="#dfd7c6" stroke="#c7bda4"/>',
+         f'<rect x="{padX}" y="46" width="{x1-padX}" height="132" rx="10" fill="#e7e0cf" stroke="#cdbfa0"/>',
+         f'<text x="{(x0+bedX)/2:.0f}" y="34" font-size="11" font-weight="700" fill="#3c4f57" text-anchor="middle" font-family="sans-serif">ZONE 1 · STAGGERED BED</text>',
+         f'<text x="{(bedX+padX)/2:.0f}" y="34" font-size="10.5" font-weight="700" fill="#8a6b3a" text-anchor="middle" font-family="sans-serif">ZONE 2 · GRAVEL PAD</text>',
+         f'<text x="{(padX+x1)/2:.0f}" y="34" font-size="10.5" font-weight="700" fill="#4c3a6a" text-anchor="middle" font-family="sans-serif">ZONE 3 · FENCE</text>',
+         f'<text x="{x1}" y="200" font-size="10" fill="#8a7d63" text-anchor="end" font-family="sans-serif">95 ft · street → yard</text>']
+    # zone 1: staggered dots
+    n = 20; step = (bedX - x0 - 20) / n
+    for k in range(n):
+        cx = x0 + 16 + step * k; setback = ((k % 2) ^ ((k // 3) % 2))
+        cy = (96 if setback else 150) + (4 if (k // 2) % 2 else -4)
+        col = FC['adg'] if k % 2 == 0 else FC['fr']
+        P.append(f'<circle cx="{cx:.0f}" cy="{cy}" r="12" fill="{col[0]}" fill-opacity=".9" stroke="{col[1]}" stroke-width="1"/>')
+    # zone 2: gravel stipple + label
+    for gx in range(int(bedX) + 14, int(padX) - 6, 16):
+        for gy in range(64, 168, 18):
+            P.append(f'<circle cx="{gx + (8 if (gy//18)%2 else 0)}" cy="{gy}" r="2.4" fill="#a99b7d"/>')
+    P.append(f'<text x="{(bedX+padX)/2:.0f}" y="196" font-size="9.5" fill="#8a6b3a" text-anchor="middle" font-family="sans-serif">packed gravel · 6–7 ft</text>')
+    # zone 3: vase hosta + screen markers
+    fx = (padX + x1) / 2
+    for vy in (150, 108):
+        P.append(f'<circle cx="{fx-16:.0f}" cy="{vy}" r="15" fill="{FC["vase"][0]}" fill-opacity=".9" stroke="{FC["vase"][1]}" stroke-width="1"/>')
+    for gy in (150, 108):
+        P.append(f'<ellipse cx="{fx+20:.0f}" cy="{gy}" rx="18" ry="12" fill="{FC["goat"][0]}" stroke="{FC["goat"][1]}" stroke-width="1"/>')
+    P.append(f'<line x1="{x1-6}" y1="52" x2="{x1-6}" y2="172" stroke="#9aa0a6" stroke-width="4" stroke-dasharray="4 3"/>')
+    return _svg(W, H, ''.join(P))
+
+def plant_rows(items):
+    """items: [(cat_or_None, name, qty, each, tag)] -> list of dicts + total cost."""
+    out = []; cost = 0.0
+    for cat, name, qty, each, tag in items:
+        sw = FC.get(cat) if isinstance(cat, str) else (CAT.get(cat) if cat else None)
+        line = qty * each if each else 0
+        cost += line
+        out.append({'name': name, 'qty': qty, 'each': each, 'line': round(line, 2),
+                    'sw': list(sw) if sw else None, 'tag': tag})
+    return out, round(cost, 2)
+
+# ---- per-option GPT render prompts (user pastes into GPT; attach design1.jpg as style ref) ----
+_SITE = ("Photorealistic documentary photo of a narrow Chicago 'gangway' garden — the ~10-ft "
+  "corridor between two 22-ft red-brick bungalow walls, deep even shade, soft overcast light. "
+  "Camera at standing eye height looking down the length so the 3-ft-deep planting bed along ONE "
+  "wall recedes to a vanishing point. Dark hardwood mulch clearly visible between plants. Freshly "
+  "planted, nursery-size (1-gal) hostas spaced at mature spread and NOT yet touching — each a "
+  "distinct clump with a ring of mulch around it, breathing room, NOT a solid hedge. No people, "
+  "no text, true-to-life proportions. Attach the reference image for site + style.")
+P_BED_CLEAN = (_SITE + "\n\nPLANTING: Two hostas only, in a STAGGERED DRIFT (this is the key) — "
+  "alternate blue Abiqua Drinking Gourd and green-with-white-margin Francee, and offset each clump "
+  "forward or back about a foot so the front edge is scalloped and NO straight 'runway' line forms. "
+  "About 14 blue + 13 white down the run. NO small edging hostas at all — just the two large types "
+  "with dark mulch between them.")
+P_BED_POCKET = (P_BED_CLEAN + " THEN tuck a FEW small blue mouse-ear hostas (about 8 total) ONLY into "
+  "the front pockets where a clump sits back from the walk — a light accent, never a continuous ribbon.")
+P_FENCE_SCREEN = (_SITE.replace('so the 3-ft-deep planting bed along ONE wall recedes to a vanishing point. ',
+  'toward the shaded back corner where the gangway meets a chain-link fence and a wall-mounted rusty '
+  'electrical meter box. ') + "\n\nPLANTING: A clumping, non-spreading screen at the fence — 2 upright "
+  "blue-grey vase hostas (Krossa Regal) plus 2 tall creamy Goatsbeard (Aruncus) plumes about 4–5 ft "
+  "to soften and partly block the fence. Everything stays in tidy clumps; nothing creeps through the "
+  "fence to the neighbor. Under the meter box, a low carpet of dwarf mondo grass that can be stepped on.")
+P_FENCE_VASE = (_SITE.replace('so the 3-ft-deep planting bed along ONE wall recedes to a vanishing point. ',
+  'toward the shaded back corner where the gangway meets a chain-link fence and a wall-mounted rusty '
+  'electrical meter box. ') + "\n\nPLANTING: 3 upright blue-grey vase hostas (Krossa Regal) in one tidy, "
+  "non-spreading clump at the fence corner, softening the fence. Under the meter box, a low steppable "
+  "carpet of dwarf mondo grass (or tiny blue mouse-ear hostas) for easy access. Keep it simple and open.")
+
+_bed_clean_pl, _bed_clean_cost = plant_rows([
+    (4, 'Abiqua Drinking Gourd', 14, 9.99, 'blue anchor'),
+    (6, 'Francee', 13, 11.99, 'white margin')])
+_bed_pocket_pl, _bed_pocket_cost = plant_rows([
+    (4, 'Abiqua Drinking Gourd', 14, 9.99, 'blue anchor'),
+    (6, 'Francee', 13, 11.99, 'white margin'),
+    (13, 'Blue Mouse Ears', 8, 8.99, 'front pockets only')])
+_fence_screen_pl, _fence_screen_cost = plant_rows([
+    (3, 'Krossa Regal', 2, 14.99, 'vase hosta · clumping'),
+    ('goat', 'Goatsbeard (Aruncus)', 2, 0, 'companion — source separately'),
+    ('mondo', 'Dwarf mondo grass', 12, 0, 'companion — low, steppable')])
+_fence_vase_pl, _fence_vase_cost = plant_rows([
+    (3, 'Krossa Regal', 3, 14.99, 'vase hosta · clumping'),
+    ('mondo', 'Dwarf mondo grass', 12, 0, 'companion — low, steppable')])
+
+FINAL = {
+  'hero': {
+    'kicker': 'FINAL PLAN · Plan #1 refined',
+    'title': 'Blue & White Gangway — the final',
+    'blurb': "We're building Plan #1: blue Abiqua Drinking Gourd and white-margined Francee, now "
+             "arranged in a staggered drift instead of a straight row. Three zones — the main bed, "
+             "the firewood gravel pad, and the fence corner. Each zone below carries a top-down plan, "
+             "a plant list, and a copy-paste GPT prompt so you can generate the photoreal image.",
+    'facts': [['82 ft', 'main bed'], ['staggered', 'no runway'], ['6–7 ft', 'gravel pad'],
+              ['3 zones', 'to build']],
+    'overview': final_overview_svg(),
+  },
+  'zones': [
+    { 'id': 'bed', 'name': 'Zone 1 — the main bed (staggered blue & white)',
+      'intro': "A single straight row down a 3-ft bed reads as a runway and the clumps merge into a "
+               "hedge. Staggering the centers (alternating blue and white, each nudged forward or back "
+               "~1 ft) breaks that sightline into a natural drift and scallops the front edge. Two "
+               "options: leave it clean and let the big hostas knit in, or tuck a few mouse-ears into "
+               "the front pockets for a finished edge the first couple years.",
+      'options': [
+        { 'key': 'clean', 'label': 'Clean (recommended)',
+          'note': 'Just the two large hostas, staggered. They close in and cover soil in 2–3 seasons.',
+          'schematic': staggered_bed(0), 'plants': _bed_clean_pl, 'cost': _bed_clean_cost,
+          'sample': 'assets/plates/design1.jpg', 'prompt': P_BED_CLEAN },
+        { 'key': 'pocket', 'label': 'Pocket accents',
+          'note': 'A handful of Blue Mouse Ears only in the front pockets the staggering creates.',
+          'schematic': staggered_bed(8), 'plants': _bed_pocket_pl, 'cost': _bed_pocket_cost,
+          'sample': 'assets/plates/design1.jpg', 'prompt': P_BED_POCKET },
+      ]},
+    { 'id': 'pad', 'name': 'Zone 2 — the firewood pad (clean the gravel, don\'t pave)',
+      'intro': "No pavers. Reuse the ~1 in of existing gravel as a base and clean it up, then top and "
+               "compact it into a firm 6–7 ft pad. Gravel lives ONLY here.",
+      'schematic': None,
+      'steps': [
+        ['Clear & weed', 'Pull the volunteer weeds by the root (the sumac/elm seedlings especially). Rake sticks and leaves out.'],
+        ['Rake the stone off the soil', 'The gravel looks dirty because of the fines — silt + decomposed leaf litter packed between the stones, not the stone itself.'],
+        ['Screen it', 'Shovel the gravel onto a ½-in hardware-cloth screen over a wheelbarrow. The dirt/fines drop through; clean stone stays on top.'],
+        ['Hose-rinse', 'Rinse the screened stone in the screen to wash off the last mud. Now it looks new — reuse it as the sub-layer.'],
+        ['Top with new crushed stone', 'Add 2–3 in of ANGULAR crushed stone (CA-6 / crushed limestone road base). Angular locks and compacts; pea gravel rolls and won\'t pack.'],
+        ['Level, wet & tamp', 'Rake level, wet it, and tamp in lifts (hand tamper or a rented plate compactor). Slope it slightly away from the foundation.'],
+        ['Edge it', 'Contain the pad with a line of the existing bricks (or steel edging) so the stone doesn\'t migrate into the bed.'],
+      ],
+      'note': "Honest note: ~1 in of reused gravel alone is too thin to stay firm and level under a "
+              "loaded grill/woodpile — it pumps dirt up and goes uneven. The clean + top + compact "
+              "gives you a pad that stays nice." },
+    { 'id': 'fence', 'name': 'Zone 3 — the fence corner (screen + box access)',
+      'intro': "By the meter box: something tall at the fence to soften it, but CLUMPING so it never "
+               "spreads into the neighbor's side; and a low, steppable groundcover under the box (fine "
+               "to trample — no one goes there). Two screen options to compare — generate both and see "
+               "which you like. The old climbing hydrangea is dropped (too big / too much upkeep).",
+      'options': [
+        { 'key': 'screen', 'label': 'Vase hosta + Goatsbeard',
+          'note': 'Krossa Regal vase hostas plus a clumping Goatsbeard for real fence-blocking height (4–5 ft). Both clump; neither runs.',
+          'schematic': fence_svg('screen', 'mondo'), 'plants': _fence_screen_pl, 'cost': _fence_screen_cost,
+          'sample': 'assets/plates/design6.jpg', 'prompt': P_FENCE_SCREEN },
+        { 'key': 'vase', 'label': 'Vase hosta only',
+          'note': 'Just Krossa Regal — fully on-theme and clumping, ~3 ft, softens rather than hides the fence.',
+          'schematic': fence_svg('vase', 'mondo'), 'plants': _fence_vase_pl, 'cost': _fence_vase_cost,
+          'sample': 'assets/plates/design6.jpg', 'prompt': P_FENCE_VASE },
+      ],
+      'groundcover': {
+        'intro': 'Low, trampleable layer under the meter box (pick one):',
+        'choices': [
+          ['Dwarf mondo grass', 'Evergreen, 2–4 in, clumping, shade-tolerant, takes light foot traffic. Companion — source separately.'],
+          ['Blue Mouse Ears', 'Tiny hostas that shrug off the occasional step; already in the plant list ($8.99 each).'],
+        ]}},
+  ],
+}
+
 # ------------------------------------------------------------------ view sections
 def guide(inner): return f'<div class="guide">{inner}</div>'
 
@@ -202,15 +425,15 @@ views['finder'] = (
   '<span class="fcount" id="cnt"></span></div>'
   '<div id="pillMount"></div>'
   '<div id="finderResults"></div><div id="nores" class="nores" hidden>No matches.</div>')
-views['overview'] = ''  # built in app.js
+views['final'] = ''  # built in app.js from finalData
 views['site'] = guide(FR['site']) + guide(FR['corner'])
 views['build'] = guide(FR['works'])
 views['reference'] = guide('<h2 style="margin-bottom:14px">Colour key — the thirteen categories</h2>'+FR['key']) + guide(FR['refhead']+FR['refblock'])
 views['renderkit'] = guide(FR['renderkit'])
 
 SECTION_HTML = ''.join(
-    f'<section data-view="{k}"{" hidden" if k!="overview" else ""}>{v}</section>'
-    for k, v in [('overview',views['overview']),('designs',views['designs']),('finder',views['finder']),
+    f'<section data-view="{k}"{" hidden" if k!="final" else ""}>{v}</section>'
+    for k, v in [('final',views['final']),('designs',views['designs']),('finder',views['finder']),
                  ('site',views['site']),('build',views['build']),('reference',views['reference']),
                  ('renderkit',views['renderkit'])])
 
@@ -239,6 +462,7 @@ html = f'''<!doctype html>
 <div id="views" hidden>{SECTION_HTML}</div>
 <script type="application/json" id="lurveyData">{lurvey}</script>
 <script type="application/json" id="designsData">{json.dumps(designs, ensure_ascii=False)}</script>
+<script type="application/json" id="finalData">{json.dumps(FINAL, ensure_ascii=False)}</script>
 <script type="module" src="js/app.js"></script>
 </body>
 </html>'''
