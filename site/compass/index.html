@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" data-palette="ink" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compass — private research</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="A private research console.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="vendor/polecat-shell/tokens.css">
+<link rel="stylesheet" href="vendor/polecat-shell/shell.css">
+<link rel="stylesheet" href="css/app.css">
+<script>
+/* Pre-paint: stamp palette+mode from storage; migrate the legacy bare
+   'dark'/'light' values (pre-shell builds) to the shell's 'palette:mode'. */
+try{
+  var t = localStorage.getItem('compass.theme') || 'ink:dark';
+  if (t.indexOf(':') === -1) { t = 'ink:' + t; localStorage.setItem('compass.theme', t); }
+  var parts = t.split(':');
+  document.documentElement.setAttribute('data-palette', parts[0] || 'ink');
+  document.documentElement.setAttribute('data-theme', parts[1] || 'dark');
+}catch(e){}
+</script>
+</head>
+<body>
+<div class="aurora" id="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+<!-- ---------- GATE (removed on unlock; the shell frame boots in its place) ---------- -->
+<section class="gate" id="gate">
+  <div class="gate-card" id="gateCard">
+    <div class="glyph-big">🧭</div>
+    <h1>Private research console</h1>
+    <p>This page is encrypted. Enter the passcode to unlock its contents in your browser — nothing is stored or sent anywhere.</p>
+    <form class="gate-form" id="gateForm" autocomplete="off">
+      <input type="password" id="passInput" placeholder="Passcode" aria-label="Passcode" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false">
+      <button type="submit" id="unlockBtn">Unlock</button>
+    </form>
+    <div class="gate-err" id="gateErr">That passcode didn't work — try again.</div>
+    <p class="gate-note">Contents are AES-encrypted at rest; decryption happens locally on this device.</p>
+  </div>
+</section>
+
+<script src="js/payload.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

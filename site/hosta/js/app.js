@@ -7,6 +7,7 @@ import { el, escapeHtml } from '../vendor/polecat-shell/ui.js';
 import { filterPills, multiselectDropdown } from '../vendor/polecat-shell/views.js';
 
 const DESIGNS = JSON.parse(document.getElementById('designsData').textContent);
+const FINAL = JSON.parse(document.getElementById('finalData').textContent);
 const CATNAME = {1:'Giant Blue',2:'Giant/Large Gold',3:'Upright / Vase',4:'Large Blue Mound',
   5:'Large Green / Fragrant',6:'Green + White Margin',7:'Gold/Yellow Margin',8:'Gold-Centered Two-Tone',
   9:'Medium Blue Mound',10:'Frosted / Misted',11:'Small Gold Accent',12:'Small Green Edger',13:'Miniature / Mouse-Ear'};
@@ -15,17 +16,17 @@ const CAT = {1:['#1f3a6e','#15284d'],2:['#c8961c','#8c6913'],3:['#7a5aa8','#553e
   9:['#74a8de','#51759b'],10:['#94a9cf','#677690'],11:['#e0bf2f','#9c8520'],12:['#4f9a56','#376b3c'],13:['#b06a8f','#7b4a64']};
 
 const SECTIONS = [
-  { group:'Guide' },
-  { key:'overview',  label:'Overview',      icon:'home' },
-  { key:'designs',   label:'Designs',       icon:'grid' },
-  { key:'finder',    label:'Plant finder',  icon:'search' },
-  { group:'Reference' },
+  { group:'The plan' },
+  { key:'final',     label:'Final plan',    icon:'star' },
   { key:'site',      label:'Site & soil',   icon:'layers' },
   { key:'build',     label:'Build & budget',icon:'compass' },
+  { key:'finder',    label:'Plant finder',  icon:'search' },
+  { group:'Explore' },
+  { key:'designs',   label:'Explorations',  icon:'grid' },
   { key:'reference', label:'Plant library', icon:'book' },
   { key:'renderkit', label:'Render kit',    icon:'wand' },
 ];
-const TITLE = { overview:'The Gangway Hosta Garden', designs:'Designs', finder:'Plant finder',
+const TITLE = { final:'Final plan — Blue & White Gangway', designs:'Explorations', finder:'Plant finder',
   site:'Site & soil', build:'Build & budget', reference:'Plant library', renderkit:'Render kit' };
 const KEYS = SECTIONS.filter(s=>s.key).map(s=>s.key);
 
@@ -33,11 +34,11 @@ configureTheme({ storageKey:'hosta.theme', defaultTheme:'garden:dark',
   palettes:[{ key:'garden', label:'Garden', hint:'Shade-garden greens, light & dark' }] });
 applyTheme();
 
-let shell, main, titleEl, themeBtn, current='overview';
+let shell, main, titleEl, themeBtn, current='final';
 const isLight = ()=>document.documentElement.getAttribute('data-theme')==='light';
 
 function boot(){
-  titleEl = el('h1',{ text:TITLE.overview, style:'font-size:16px;font-weight:700;margin:0' });
+  titleEl = el('h1',{ text:TITLE.final, style:'font-size:16px;font-weight:700;margin:0' });
   themeBtn = el('button',{ class:'btn icon ghost', title:'Toggle light / dark', 'aria-label':'Toggle theme',
     html:icon(isLight()?'moon':'sun'), onclick:()=>{ toggleMode(); themeBtn.innerHTML=icon(isLight()?'moon':'sun'); } });
   const home = el('a',{ class:'btn sm ghost', href:'../', title:'Custom home', html:`${icon('external',15)} <span class="hide-sm">Custom</span>` });
@@ -61,23 +62,24 @@ function boot(){
   });
   views.remove();
 
-  renderOverview();
+  renderFinal();
   routeFromHash();
   window.addEventListener('hashchange', routeFromHash);
 }
 
 function routeFromHash(){
   const [k, sub] = location.hash.replace(/^#\/?/,'').split('/');
-  go(KEYS.includes(k) ? k : 'overview', sub, true);
+  go(KEYS.includes(k) ? k : 'final', sub, true);
 }
 function go(key, sub, fromHash){
-  if(!KEYS.includes(key)) key='overview';
+  if(!KEYS.includes(key)) key='final';
   current = key;
   main.querySelectorAll('section[data-view]').forEach(s=> s.hidden = s.dataset.view !== key);
   titleEl.textContent = TITLE[key];
   shell.setActive(key);
   const hash = sub ? `${key}/${sub}` : key;
   if(!fromHash) location.hash = hash;
+  if(key==='final') renderFinal();
   if(key==='designs') renderDesigns(sub);
   if(key==='finder') renderFinder();
   if(key==='renderkit') wireRenderKit();
@@ -85,32 +87,99 @@ function go(key, sub, fromHash){
   if(window.matchMedia('(max-width:860px)').matches) shell.setOpen(false);
 }
 
-// ---------------------------------------------------------------- overview
-function renderOverview(){
-  const sec = main.querySelector('[data-view="overview"] .view-inner');
-  const cards = [
-    ['designs','grid','The designs','6 plans + variations, side by side'],
-    ['finder','search','Plant finder','Search all 74 varieties, tile or list'],
-    ['site','layers','Site & soil','Light zones, the soil fix, slugs'],
-    ['build','compass','Build & budget','Order of work, timing, the money'],
-    ['reference','book','Plant library','Every variety, with substitutions'],
-    ['renderkit','wand','Render kit','The GPT prompt for accurate images'],
-  ].map(([k,ic,t,s])=>`<button class="ov-card" data-goto="${k}"><span class="ic">${icon(ic,22)}</span><b>${t}</b><span>${s}</span></button>`).join('');
-  sec.innerHTML = `
+// ---------------------------------------------------------------- final plan
+function renderFinal(){
+  const sec = main.querySelector('[data-view="final"] .view-inner');
+  if(sec.dataset.done) return;
+  sec.dataset.done = '1';
+  const h = FINAL.hero;
+  let html = `
     <div class="ov-hero">
-      <p class="eyebrow">Portage Park · Chicago bungalow · USDA 6a</p>
-      <h1>The Gangway Hosta Garden</h1>
-      <p>Six designed plans — plus two finalization variations for each of the three core picks —
-      for ninety-five feet of deep shade between two brick bungalows. Photoreal renders, measured
-      plans, real Lurvey prices, and the whole build from soil to slugs.</p>
-      <div class="ov-facts">
-        <div><b>95 ft</b>total run</div><div><b>3 ft</b>wide bed</div>
-        <div><b>6 + 6</b>plans &amp; variations</div><div><b>74</b>varieties costed</div>
-        <div><b>$500–732</b>in plants</div>
-      </div>
+      <p class="eyebrow">${escapeHtml(h.kicker)}</p>
+      <h1>${escapeHtml(h.title)}</h1>
+      <p>${escapeHtml(h.blurb)}</p>
+      <div class="ov-facts">${h.facts.map(f=>`<div><b>${escapeHtml(f[0])}</b>${escapeHtml(f[1])}</div>`).join('')}</div>
     </div>
-    <div class="ov-cards">${cards}</div>`;
-  sec.querySelectorAll('[data-goto]').forEach(b=> b.onclick=()=>go(b.dataset.goto));
+    <div class="dd-h">The three zones, street → yard</div>
+    <div class="guide fp-ov"><div class="g-svg">${h.overview}</div></div>`;
+  FINAL.zones.forEach((z, zi)=>{
+    html += `<section class="fp-zone"><h2>${escapeHtml(z.name)}</h2><p class="view-lede">${escapeHtml(z.intro)}</p>`;
+    if(z.options){
+      html += `<div class="dd-tabs">${z.options.map((o,i)=>
+        `<button class="dd-tab${i===0?' on':''}${o.chosen?' fp-chosen':''}" data-zopt="${zi}:${i}">${o.chosen?'★ ':''}${escapeHtml(o.label)}${o.chosen?' · chosen':''}</button>`).join('')}</div>
+        <div class="fp-opt" id="fpopt-${zi}"></div>`;
+    }
+    if(z.steps){
+      html += `<ol class="fp-steps">${z.steps.map(s=>
+        `<li><b>${escapeHtml(s[0])}</b><span>${escapeHtml(s[1])}</span></li>`).join('')}</ol>`;
+      if(z.note) html += `<div class="dd-changes">${escapeHtml(z.note)}</div>`;
+    }
+    if(z.groundcover){
+      html += `<div class="dd-h">${escapeHtml(z.groundcover.intro)}</div>
+        <div class="fp-gc">${z.groundcover.choices.map(c=>
+          `<div class="fp-gc-card"><b>${escapeHtml(c[0])}</b><span>${escapeHtml(c[1])}</span></div>`).join('')}</div>`;
+    }
+    html += `</section>`;
+  });
+  sec.innerHTML = html;
+  FINAL.zones.forEach((z, zi)=>{ if(z.options) paintOpt(zi, 0); });
+  sec.querySelectorAll('[data-zopt]').forEach(b=> b.onclick=()=>{
+    const [zi, i] = b.dataset.zopt.split(':').map(Number);
+    b.parentElement.querySelectorAll('.dd-tab').forEach(x=>x.classList.toggle('on', x===b));
+    paintOpt(zi, i);
+  });
+}
+function paintOpt(zi, i){
+  const o = FINAL.zones[zi].options[i];
+  const host = main.querySelector('#fpopt-'+zi);
+  const rows = o.plants.map(p=>{
+    const sw = p.sw ? p.sw : ['#cdd68c','#8a9a4e'];
+    const cost = p.each ? `$${p.each.toFixed(2)} ea · $${p.line.toFixed(2)}` : '<span class="fp-comp">companion</span>';
+    return `<tr><td><span class="sw" style="background:${sw[0]};border-color:${sw[1]}"></span></td>
+      <td class="lnm">${escapeHtml(p.name)}${p.tag?` <span class="fp-tag">${escapeHtml(p.tag)}</span>`:''}</td>
+      <td class="r">×${p.qty}</td><td class="r">${cost}</td></tr>`;
+  }).join('');
+  const topLabel = FINAL.zones[zi].id === 'bed' ? 'Top-down — staggered drift' : 'Top-down — fence corner';
+  const rends = o.renders || [];
+  let renderBlock = '';
+  if(rends.length){
+    const toggle = rends.length > 1
+      ? `<div class="fp-rtoggle">${rends.map((r, ri)=>`<button class="fp-rbtn${ri===0?' on':''}" type="button" data-r="${ri}">${escapeHtml(r.label)}</button>`).join('')}</div>`
+      : `<div class="fp-rcap">${escapeHtml(rends[0].label)}</div>`;
+    renderBlock = `<div class="dd-h">Final render — how it looks</div>${toggle}
+      <img class="fp-renderimg" id="fprender-${zi}" src="${rends[0].img}" alt="final render — ${escapeHtml(rends[0].label)}" loading="lazy">`;
+  }
+  // the GPT prompt / reference: front-and-centre when there's no render yet, tucked into a
+  // collapsible once a render exists.
+  const gen = `<div class="fp-render">
+      <img class="fp-sample" src="${o.sample}" alt="style reference" loading="lazy">
+      <p class="fp-hint">Attach this plate as the style/site reference, paste the prompt, generate — then send it back.</p>
+      <button class="chip fp-copy" type="button">⧉ Copy render prompt</button>
+      <pre class="fp-prompt">${escapeHtml(o.prompt)}</pre>
+    </div>`;
+  const genPanel = rends.length
+    ? `<details class="fp-gen"><summary>Regenerate / prompt &amp; reference</summary>${gen}</details>`
+    : `<div class="dd-h">Generate the image in GPT</div>${gen}`;
+  host.innerHTML = `
+    <div class="dd-changes">${escapeHtml(o.note)}</div>
+    ${renderBlock}
+    <div class="dd-h">${topLabel}</div>
+    <div class="guide"><div class="g-svg">${o.schematic}</div></div>
+    <div class="fp-cols">
+      <div><div class="dd-h">Plant list</div>
+        <table class="ltbl fp-plants"><tbody>${rows}</tbody>
+        <tfoot><tr><td></td><td><b>Hostas subtotal</b></td><td></td><td class="r"><b>$${o.cost.toFixed(2)}</b></td></tr></tfoot></table></div>
+      <div>${genPanel}</div>
+    </div>`;
+  host.querySelectorAll('.fp-rbtn').forEach(b=> b.onclick=()=>{
+    const ri = +b.dataset.r; const img = host.querySelector('#fprender-'+zi);
+    img.src = rends[ri].img; img.alt = 'final render — ' + rends[ri].label;
+    host.querySelectorAll('.fp-rbtn').forEach(x=>x.classList.toggle('on', x===b));
+  });
+  host.querySelector('.fp-copy').onclick = (e)=>{
+    const btn = e.currentTarget;
+    navigator.clipboard?.writeText(o.prompt).then(()=>{ btn.textContent='Copied ✓'; setTimeout(()=>btn.textContent='⧉ Copy render prompt', 1500); });
+  };
 }
 
 // ---------------------------------------------------------------- designs

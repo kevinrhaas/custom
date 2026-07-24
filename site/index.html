@@ -23,9 +23,8 @@
   <div class="nav-links">
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
-    <a href="vehicle-2/">Corsair Finder</a>
+    <a href="vehicle/">Vehicle Finder</a>
     <a href="#about">About</a>
-    <a class="btn btn-ghost" href="https://github.com/kevinrhaas/custom" rel="noopener">GitHub ↗</a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
   </div>
 </nav>
@@ -59,7 +58,7 @@
       <div class="feat-body">
         <div class="app-top">
           <span class="app-glyph">🌿</span>
-          <div><div class="app-name">Hosta Gangway Guide</div><div class="app-sub">interactive planting guide · GitHub Pages</div></div>
+          <div><div class="app-name">Hosta Gangway Guide</div><div class="app-sub">interactive planting guide</div></div>
         </div>
         <p class="app-tagline">Photoreal renders, measured top-down plans, a searchable 74-variety
         plant finder, soil &amp; slug strategy, a full build sequence and budget — and a render kit
@@ -101,7 +100,7 @@
       of the app fleet.</p>
     </div>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://github.com/kevinrhaas/custom" rel="noopener">See the source on GitHub ↗</a>
+      <a class="btn btn-primary" href="#projects">Browse the projects</a>
       <a class="btn btn-ghost" href="hosta/">Open the Hosta Guide</a>
     </div>
   </section>
@@ -112,7 +111,7 @@
   <div class="foot-links">
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
-    <a href="https://github.com/kevinrhaas/custom" rel="noopener">GitHub</a>
+    <a href="vehicle/">Vehicle Finder</a>
   </div>
   <div class="foot-meta">© 2026 · a workshop of made things · shared in the open</div>
 </footer>
@@ -137,7 +136,6 @@
 
 // ---- projects grid (source-linked cards) ----
 (function () {
-  var REPO = 'https://github.com/kevinrhaas/custom/tree/main/';
   var projects = [
     { dir: 'bamboo-vase', name: 'Bamboo Vase', glyph: '🎍', c: 'var(--leaf-2)', tag: 'Parametric "Wave Ring" fluted vase for lucky bamboo — six variants + centering collar, pure-Python STL generator.' },
     { dir: 'chicago-star', name: 'Chicago Star', glyph: '⭐', c: 'var(--sky)', tag: 'Chicago-flag six-pointed star coasters and mesh art pieces, modeled in Blender.' },
@@ -154,19 +152,19 @@
     { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
   ];
   var grid = document.getElementById('projectsGrid');
-  var corsairCard = '<a class="app-card reveal" href="vehicle-2/" style="--c:#b62236">' +
+  var vehicleCard = '<a class="app-card reveal" href="vehicle/" style="--c:#b62236">' +
     '<div class="app-top"><span class="app-glyph">🚗</span>' +
-    '<div><div class="app-name">Corsair Finder</div><div class="app-sub">vehicle-2 · nationwide car search</div></div></div>' +
-    '<p class="app-tagline">A ranked, nationwide shortlist of 2026 Lincoln Corsairs matching a specific wishlist — ' +
-    'Red Carpet Metallic + light Smoked Truffle seats, Reserve/Premiere, AWD — with every option, price, VIN, ' +
-    'dealer, distance to Crystal Lake, and contact.</p>' +
+    '<div><div class="app-name">Vehicle Finder</div><div class="app-sub">vehicle · nationwide car searches</div></div></div>' +
+    '<p class="app-tagline">Ranked nationwide car searches centered on Crystal Lake — Pat\'s 2026 Lincoln Corsair ' +
+    '(Red Carpet Metallic + light Smoked Truffle) and a 2026 Subaru Forester Touring Hybrid in Crimson Red Pearl — ' +
+    'with photos, window stickers, prices, value ratings, VINs, dealers, and contacts.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live · open the app ↗</div></a>';
-  grid.innerHTML = corsairCard + projects.map(function (p) {
-    return '<a class="app-card reveal" href="' + REPO + p.dir + '" rel="noopener" style="--c:' + p.c + '">' +
+  grid.innerHTML = vehicleCard + projects.map(function (p) {
+    return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
       '<p class="app-tagline">' + p.tag + '</p>' +
-      '<div class="app-status"><span class="app-dot src"></span>Source on GitHub ↗</div></a>';
+      '<div class="app-status"><span class="app-dot src"></span>3D-printable model</div></div>';
   }).join('');
 })();
 
