@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-palette="ink" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,24 +7,25 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="description" content="A private research console.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="vendor/polecat-shell/tokens.css">
+<link rel="stylesheet" href="vendor/polecat-shell/shell.css">
 <link rel="stylesheet" href="css/app.css">
-<script>try{var m=localStorage.getItem('compass.theme');if(m)document.documentElement.setAttribute('data-theme',m);}catch(e){}</script>
+<script>
+/* Pre-paint: stamp palette+mode from storage; migrate the legacy bare
+   'dark'/'light' values (pre-shell builds) to the shell's 'palette:mode'. */
+try{
+  var t = localStorage.getItem('compass.theme') || 'ink:dark';
+  if (t.indexOf(':') === -1) { t = 'ink:' + t; localStorage.setItem('compass.theme', t); }
+  var parts = t.split(':');
+  document.documentElement.setAttribute('data-palette', parts[0] || 'ink');
+  document.documentElement.setAttribute('data-theme', parts[1] || 'dark');
+}catch(e){}
+</script>
 </head>
 <body>
-<div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="aurora" id="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
-<nav class="nav">
-  <a class="brand" href="./">
-    <svg class="brand-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13.4 13.4 8.5 15.5l2.1-4.9z"/></svg>
-    <span>Com<span class="accent">pass</span></span>
-  </a>
-  <div class="nav-actions">
-    <button class="lock-btn" id="lockBtn" type="button" aria-label="Lock" title="Lock" hidden>🔒</button>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
-  </div>
-</nav>
-
-<!-- ---------- GATE ---------- -->
+<!-- ---------- GATE (removed on unlock; the shell frame boots in its place) ---------- -->
 <section class="gate" id="gate">
   <div class="gate-card" id="gateCard">
     <div class="glyph-big">🧭</div>
@@ -39,71 +40,7 @@
   </div>
 </section>
 
-<!-- ---------- APP ---------- -->
-<div id="app">
-  <header class="hero">
-    <div class="kicker" id="heroKicker">Opportunity research</div>
-    <h1 id="heroTitle">Where to point <span class="grad">what you know.</span></h1>
-    <p class="sub" id="heroSub"></p>
-    <p class="gen" id="genNote"></p>
-  </header>
-
-  <main class="wrap">
-    <div class="stats" id="stats"></div>
-
-    <div class="legend" id="legend">
-      <b>How to read the ratings</b> — each opportunity is scored 1–5 on:
-      <div class="dims">
-        <span><b>Mission</b> · giving back, teaching, moving people &amp; society forward</span>
-        <span><b>Fit</b> · match to your skills, seniority, and realistic hiring odds</span>
-        <span><b>Comp</b> · money value as listed (volunteer = 1 by definition)</span>
-        <span><b>Flex</b> · location + schedule vs. your Loop / North / NW + ≤2–3 days rule</span>
-        <span><b>Overall</b> · the headline number, weighted toward mission per your brief</span>
-      </div>
-    </div>
-
-    <div class="controls" id="controlsCat"></div>
-    <div class="controls" id="controlsRow2">
-      <input type="search" id="q" placeholder="Search org, title, keywords…" aria-label="Search">
-      <button class="fav-toggle" id="favToggle" type="button" aria-pressed="false">☆ Favorites</button>
-      <span class="sort-label">Sort</span>
-      <select id="sortSel" aria-label="Sort by">
-        <option value="overall">Overall (best first)</option>
-        <option value="mission">Mission</option>
-        <option value="fit">Fit</option>
-        <option value="comp">Comp</option>
-        <option value="flex">Flexibility</option>
-        <option value="org">Organization A–Z</option>
-      </select>
-      <button class="sync-btn" id="syncBtn" type="button">Sync<span class="sync-dot" id="syncDot"></span></button>
-    </div>
-
-    <div class="sync-panel" id="syncPanel" hidden>
-      <div class="sync-status" id="syncStatus"></div>
-      <div class="sync-row">
-        <input type="password" id="sbKey" autocomplete="off" placeholder="Supabase anon / publishable key — paste once">
-        <button id="sbSave" type="button">Connect</button>
-        <button id="sbForget" type="button" class="ghost">Disconnect</button>
-      </div>
-      <div class="sync-note">Favorites always work on this device. Connecting syncs them across your devices
-      through your own Supabase project (<span id="sbUrlLabel"></span>). The key is stored only in this
-      browser — find it in Supabase → Project Settings → API keys.</div>
-      <div class="sync-sql" id="syncSql" hidden>
-        <div class="sync-note"><b>One-time setup:</b> the favorites table doesn't exist yet. Paste this into
-        Supabase → SQL Editor → Run, then hit Connect again:</div>
-        <pre id="sqlText"></pre>
-        <button id="sqlCopy" type="button" class="ghost">Copy SQL</button>
-      </div>
-    </div>
-
-    <div class="count-note" id="countNote"></div>
-    <div class="list" id="list"></div>
-  </main>
-
-  <footer>Private research · encrypted at rest · verified links as of the date above.</footer>
-</div>
-
 <script src="js/payload.js"></script>
-<script src="js/app.js"></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
