@@ -65,6 +65,7 @@
     <div class="controls" id="controlsCat"></div>
     <div class="controls" id="controlsRow2">
       <input type="search" id="q" placeholder="Search org, title, keywords…" aria-label="Search">
+      <button class="fav-toggle" id="favToggle" type="button" aria-pressed="false">☆ Favorites</button>
       <span class="sort-label">Sort</span>
       <select id="sortSel" aria-label="Sort by">
         <option value="overall">Overall (best first)</option>
@@ -74,6 +75,25 @@
         <option value="flex">Flexibility</option>
         <option value="org">Organization A–Z</option>
       </select>
+      <button class="sync-btn" id="syncBtn" type="button">Sync<span class="sync-dot" id="syncDot"></span></button>
+    </div>
+
+    <div class="sync-panel" id="syncPanel" hidden>
+      <div class="sync-status" id="syncStatus"></div>
+      <div class="sync-row">
+        <input type="password" id="sbKey" autocomplete="off" placeholder="Supabase anon / publishable key — paste once">
+        <button id="sbSave" type="button">Connect</button>
+        <button id="sbForget" type="button" class="ghost">Disconnect</button>
+      </div>
+      <div class="sync-note">Favorites always work on this device. Connecting syncs them across your devices
+      through your own Supabase project (<span id="sbUrlLabel"></span>). The key is stored only in this
+      browser — find it in Supabase → Project Settings → API keys.</div>
+      <div class="sync-sql" id="syncSql" hidden>
+        <div class="sync-note"><b>One-time setup:</b> the favorites table doesn't exist yet. Paste this into
+        Supabase → SQL Editor → Run, then hit Connect again:</div>
+        <pre id="sqlText"></pre>
+        <button id="sqlCopy" type="button" class="ghost">Copy SQL</button>
+      </div>
     </div>
 
     <div class="count-note" id="countNote"></div>

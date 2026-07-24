@@ -86,8 +86,110 @@ var DATA = null;
   });
 })();
 
+/* ---------- favorites (local-first, Supabase-synced when connected) ---------- */
+var FAVS = new Set();
+try { FAVS = new Set(JSON.parse(localStorage.getItem('compass.favs.v1') || '[]')); } catch (e) {}
+function saveFavs() {
+  try { localStorage.setItem('compass.favs.v1', JSON.stringify(Array.from(FAVS))); } catch (e) {}
+}
+
+var SB_SQL = [
+  'CREATE TABLE IF NOT EXISTS "compass_favorites" (',
+  '  item_url   TEXT PRIMARY KEY,',
+  '  starred_at TIMESTAMPTZ NOT NULL DEFAULT now()',
+  ');',
+  'GRANT SELECT, INSERT, UPDATE, DELETE ON "compass_favorites" TO anon, authenticated, service_role;',
+  'ALTER TABLE "compass_favorites" ENABLE ROW LEVEL SECURITY;',
+  'DROP POLICY IF EXISTS compass_anon_all ON "compass_favorites";',
+  'CREATE POLICY compass_anon_all ON "compass_favorites" FOR ALL TO anon, authenticated USING (true) WITH CHECK (true);',
+  "NOTIFY pgrst, 'reload schema';"
+].join('\n');
+
+function sbCfg() {
+  var cfg = (DATA && DATA.supabase) || {};
+  var localKey = '';
+  try { localKey = localStorage.getItem('compass.sb.key') || ''; } catch (e) {}
+  return {
+    url: (cfg.url || '').replace(/\/+$/, ''),
+    table: cfg.table || 'compass_favorites',
+    key: localKey || cfg.anonKey || ''
+  };
+}
+function sbHeaders(key, extra) {
+  var h = { apikey: key, Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' };
+  for (var k in extra) h[k] = extra[k];
+  return h;
+}
+function setSync(state2, msg) {
+  var dot = document.getElementById('syncDot');
+  dot.className = 'sync-dot ' + state2;
+  document.getElementById('syncStatus').textContent = msg;
+  document.getElementById('syncSql').hidden = state2 !== 'warn';
+}
+async function sbPull(cfg) {
+  var res = await fetch(cfg.url + '/rest/v1/' + cfg.table + '?select=item_url', { headers: sbHeaders(cfg.key) });
+  if (res.status === 404 || res.status === 400) return { missing: true };
+  if (res.status === 401 || res.status === 403) throw new Error('Supabase rejected the key (401/403)');
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  var rows = await res.json();
+  return { urls: rows.map(function (r) { return r.item_url; }) };
+}
+function sbUpsert(cfg, url) {
+  return fetch(cfg.url + '/rest/v1/' + cfg.table, {
+    method: 'POST',
+    headers: sbHeaders(cfg.key, { Prefer: 'resolution=merge-duplicates,return=minimal' }),
+    body: JSON.stringify([{ item_url: url }])
+  }).then(function (r) { if (!r.ok) throw new Error('upsert HTTP ' + r.status); });
+}
+function sbDelete(cfg, url) {
+  return fetch(cfg.url + '/rest/v1/' + cfg.table + '?item_url=eq.' + encodeURIComponent(url), {
+    method: 'DELETE', headers: sbHeaders(cfg.key)
+  }).then(function (r) { if (!r.ok) throw new Error('delete HTTP ' + r.status); });
+}
+var sbConnected = false;
+async function initSync() {
+  var cfg = sbCfg();
+  sbConnected = false;
+  if (!cfg.url) { setSync('off', 'Sync is not configured in this build.'); return; }
+  if (!cfg.key) {
+    setSync('off', 'Not connected — favorites live on this device only. Paste your Supabase key below to sync across devices.');
+    return;
+  }
+  setSync('off', 'Connecting…');
+  try {
+    var pulled = await sbPull(cfg);
+    if (pulled.missing) {
+      document.getElementById('sqlText').textContent = SB_SQL;
+      setSync('warn', 'Connected, but the favorites table does not exist yet — one-time setup below.');
+      return;
+    }
+    var remote = new Set(pulled.urls);
+    var toPush = Array.from(FAVS).filter(function (u) { return !remote.has(u); });
+    for (var i = 0; i < toPush.length; i++) await sbUpsert(cfg, toPush[i]);
+    remote.forEach(function (u) { FAVS.add(u); });
+    saveFavs();
+    sbConnected = true;
+    setSync('ok', 'Synced — ' + FAVS.size + ' favorite' + (FAVS.size === 1 ? '' : 's') + ' shared across your devices.');
+    render();
+  } catch (e) {
+    setSync('err', 'Sync error: ' + e.message + ' Favorites still work on this device.');
+  }
+}
+function toggleFav(url) {
+  var starred = !FAVS.has(url);
+  if (starred) FAVS.add(url); else FAVS.delete(url);
+  saveFavs();
+  render();
+  if (sbConnected) {
+    var cfg = sbCfg();
+    (starred ? sbUpsert(cfg, url) : sbDelete(cfg, url)).catch(function (e) {
+      setSync('err', 'Sync error: ' + e.message + ' Favorites still work on this device.');
+    });
+  }
+}
+
 /* ---------- app ---------- */
-var state = { cat: 'All', type: 'All', mode: 'All', q: '', sort: 'overall' };
+var state = { cat: 'All', type: 'All', mode: 'All', q: '', sort: 'overall', favOnly: false };
 var CATS = ['Higher Ed', 'Workforce & Nonprofit', 'Youth & Teens', 'Mission & EdTech', 'Corporate Tech'];
 var TYPES = [
   { key: 'All', label: 'All types', match: function () { return true; } },
@@ -121,7 +223,43 @@ function openApp() {
 
   buildStats();
   buildControls();
+  buildSyncUi();
   render();
+  initSync();
+}
+
+function buildSyncUi() {
+  var cfg = sbCfg();
+  document.getElementById('sbUrlLabel').textContent = cfg.url || 'no project configured';
+  document.getElementById('syncBtn').addEventListener('click', function () {
+    var p = document.getElementById('syncPanel');
+    p.hidden = !p.hidden;
+  });
+  document.getElementById('sbSave').addEventListener('click', function () {
+    var v = document.getElementById('sbKey').value.trim();
+    if (v) { try { localStorage.setItem('compass.sb.key', v); } catch (e) {} }
+    initSync();
+  });
+  document.getElementById('sbForget').addEventListener('click', function () {
+    try { localStorage.removeItem('compass.sb.key'); } catch (e) {}
+    document.getElementById('sbKey').value = '';
+    sbConnected = false;
+    initSync();
+  });
+  document.getElementById('sqlCopy').addEventListener('click', function () {
+    try { navigator.clipboard.writeText(SB_SQL); } catch (e) {}
+  });
+  document.getElementById('favToggle').addEventListener('click', function () {
+    state.favOnly = !state.favOnly;
+    this.classList.toggle('on', state.favOnly);
+    this.setAttribute('aria-pressed', String(state.favOnly));
+    this.textContent = (state.favOnly ? '★' : '☆') + ' Favorites';
+    render();
+  });
+  document.getElementById('list').addEventListener('click', function (ev) {
+    var b = ev.target.closest('.fav-btn');
+    if (b) { ev.preventDefault(); toggleFav(b.getAttribute('data-fav')); }
+  });
 }
 
 function buildStats() {
@@ -199,6 +337,7 @@ function typeMatcher(key) {
 function filtered() {
   var tm = typeMatcher(state.type);
   return DATA.items.filter(function (it) {
+    if (state.favOnly && !FAVS.has(it.url)) return false;
     if (state.cat !== 'All' && it.category !== state.cat) return false;
     if (!tm(it.type)) return false;
     if (state.mode !== 'All' && it.workMode !== state.mode) return false;
@@ -246,10 +385,14 @@ function modeBadge(it) {
 function card(it) {
   var r = it.ratings;
   var h = '<article class="card" data-cat="' + esc(it.category) + '">';
+  var faved = FAVS.has(it.url);
   h += '<div class="card-top"><div>';
   h += '<div class="card-org">' + esc(it.org) + '</div>';
   h += '<div class="card-title"><a href="' + esc(it.url) + '" target="_blank" rel="noopener noreferrer">' + esc(it.title) + '</a></div>';
-  h += '</div><div class="overall-chip"><span class="num">' + r.overall.toFixed(1) + '</span><span class="lbl">Overall</span></div></div>';
+  h += '</div><div class="card-side">';
+  h += '<button class="fav-btn' + (faved ? ' on' : '') + '" data-fav="' + esc(it.url) + '" type="button" aria-pressed="' + faved + '" title="' + (faved ? 'Remove favorite' : 'Add favorite') + '">★</button>';
+  h += '<div class="overall-chip"><span class="num">' + r.overall.toFixed(1) + '</span><span class="lbl">Overall</span></div>';
+  h += '</div></div>';
 
   h += '<div class="badges">';
   h += '<span class="badge"><span class="dot" style="background:' + (CAT_COLORS[it.category] || 'var(--border-2)') + '"></span>' + esc(it.category) + '</span>';
@@ -286,7 +429,7 @@ function card(it) {
 function render() {
   var items = sorted(filtered());
   document.getElementById('countNote').textContent =
-    items.length + ' of ' + DATA.items.length + ' opportunities shown';
+    items.length + ' of ' + DATA.items.length + ' opportunities shown · ' + FAVS.size + ' ★';
   var host = document.getElementById('list');
   host.innerHTML = items.length
     ? items.map(card).join('')
