@@ -176,6 +176,26 @@ anchor.
 ### Ground is a displaced plane, not terrain
 Fine for this scene's flat asphalt apron. Will not hold up at the quarry cut.
 
+### Cellblocks a4 (inside a cell) is the worst frame in the project
+
+Not "clean rather than decayed" — that description was too kind. The capture
+shows cold blue-white subway tile, a blown-out white box for the combination
+toilet/sink, and a bare plank for the steel desk. It bears almost no
+relationship to the reference photograph it was built from, which shows a cream
+topcoat delaminating in hard-edged islands to mustard yellow, then pale
+blue-grey, then sage, over warm grey block.
+
+Three separate causes, and only the first was diagnosed before shipping:
+1. `paint.cell`'s strata barely surface at cell scale — the flake field's
+   feature size is tuned for a 3 m wall, not a 2 m one.
+2. The wall is reading as *tile*, not painted block. Wrong material or wrong
+   density; the joint grid is far too regular and too fine.
+3. The fixtures are untextured white primitives blowing out under the headlamp
+   at 1 m, which is exactly the near-field range the calibration put in band.
+
+**Cost:** ~half a day. It is one anchor, but it is the anchor that shows the
+single most distinctive thing in the whole reference set.
+
 ## Scenes not yet built
 
 **1.2 Siphon · 2.1 Powerhouse · 2.2 Armory Spiral · 3.1 Cellblocks ·
