@@ -114,6 +114,8 @@ export class TouchControls {
             `<button type="button" class="tbtn" data-touch-action="${b.action}" data-key="${b.key}">${b.label}</button>`,
         ).join('')}
       </div>
+      <button type="button" class="tbtn tbtn-pause" data-touch-action="pause"
+              data-key="pause" aria-label="Pause and settings">❚❚</button>
       <p class="touch-hint" id="touch-hint">Left half moves · right half looks · push the stick to run</p>
     `;
     document.body.appendChild(root);
@@ -121,9 +123,9 @@ export class TouchControls {
     this.root = root;
     this.stick = root.querySelector('#touch-stick') as HTMLElement;
     this.knob = root.querySelector('#touch-knob') as HTMLElement;
-    for (const b of BUTTONS) {
+    for (const b of [...BUTTONS, { action: 'pause' as Action, label: 'Pause', key: 'pause' }]) {
       const el = root.querySelector(`[data-key="${b.key}"]`) as HTMLElement;
-      this.buttonEls.set(b.key, el);
+      if (el) this.buttonEls.set(b.key, el);
     }
 
     // pointerdown on the layer; move/up on the window so a finger that slides

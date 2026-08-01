@@ -161,3 +161,22 @@
   .tbtn,
   .touch-hint { transition: none; }
 }
+
+
+/* Pause — top-right, away from the thumb clusters so it cannot be hit by
+   accident mid-traverse. Escape-only left pause (and therefore settings,
+   sensitivity and every accessibility option) completely unreachable on a
+   phone, which is an accessibility failure, not a missing nicety. */
+.tbtn-pause {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 0.6rem);
+  right: calc(env(safe-area-inset-right, 0px) + 0.7rem);
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 46px;
+  padding: 0;
+}

@@ -10,6 +10,7 @@ import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
+import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
 import {
   mountHud,
   setLoadProgress,
@@ -167,12 +168,23 @@ async function boot(): Promise<void> {
   touchControls?.setVisible(true);
 
   let paused = false;
+  const setPaused = (on: boolean): void => {
+    paused = on;
+    if (on) {
+      input.releaseLock();
+      showPause();
+    } else {
+      hidePause();
+    }
+  };
+  mountPauseMenu(() => setPaused(false));
+
   renderer.start((dt) => {
     input.update();
-    if (input.pressed('pause')) {
-      paused = !paused;
-      if (paused) input.releaseLock();
-    }
+    // Pause used to silently freeze the frame with no overlay and no way back
+    // to any setting — every accessibility option in Settings.ts was reachable
+    // only by hand-editing localStorage.
+    if (input.pressed('pause')) setPaused(!paused);
     if (paused) return;
     if (input.pressed('flashlight')) player.toggleHeadlamp();
     player.update(dt);
