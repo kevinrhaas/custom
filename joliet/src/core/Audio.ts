@@ -213,7 +213,7 @@ export class AudioEngine {
     const jitter = (v: number, amt: number): number => v * (1 + (Math.random() * 2 - 1) * amt);
 
     const out = ctx.createGain();
-    out.gain.value = p.gain * intensity * 0.42;
+    out.gain.value = p.gain * intensity * 0.85;
     out.connect(this.sfxBus);
 
     // --- impact ---
@@ -310,15 +310,15 @@ export class AudioEngine {
             // literally hiss — the low-passed layers need to sit much lower and
             // the high-passed air layer is the worst offender by far, because
             // that IS the sound of tape hiss. Cut hard and darkened.
-            { cutoff: 190, type: 'lowpass', gain: 0.045, lfo: 0.07 }, // wind
-            { cutoff: 90, type: 'lowpass', gain: 0.035, lfo: 0.03 }, // distant city
+            { cutoff: 220, type: 'lowpass', gain: 0.13, lfo: 0.07 }, // wind
+            { cutoff: 110, type: 'lowpass', gain: 0.11, lfo: 0.03 }, // distant city
           ]
         : kind === 'chamber'
           ? [
-              { cutoff: 150, type: 'lowpass', gain: 0.022, lfo: 0.02 }, // near-silence
+              { cutoff: 170, type: 'lowpass', gain: 0.07, lfo: 0.02 }, // near-silence
             ]
           : [
-              { cutoff: 300, type: 'lowpass', gain: 0.04, lfo: 0.05 },
+              { cutoff: 340, type: 'lowpass', gain: 0.12, lfo: 0.05 },
             ];
 
     for (const layer of layers) {

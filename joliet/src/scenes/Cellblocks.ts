@@ -1416,12 +1416,12 @@ export class Cellblocks extends GameScene {
       // never a gap between the two even if their edges do not quite meet.
       invisible(
         `cbLandBridge${s.from}`,
-        WELL_X + 0.5,
+        WELL_X + 0.34,
         s.from * TIER_H + TIER_H - 0.13,
         lz0 + 0.7,
-        1.2,
+        0.7,
         0.22,
-        1.8,
+        1.6,
       );
     }
 
@@ -1459,12 +1459,12 @@ export class Cellblocks extends GameScene {
       );
       invisible(
         `cbFootBridge${s.from}`,
-        WELL_X + 0.5,
+        WELL_X + 0.34,
         s.from * TIER_H - 0.13,
         s.z - 0.9,
-        1.2,
+        0.7,
         0.22,
-        2.2,
+        2.0,
       );
     }
 
