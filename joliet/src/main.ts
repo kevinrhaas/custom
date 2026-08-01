@@ -26,7 +26,7 @@ declare global {
       renderer: Renderer;
       /** Move the camera to a named anchor and settle the frame. */
       gotoAnchor(name: string): Promise<void>;
-      stats(): { fps: number; drawCalls: number; triangles: number };
+      stats(): { fps: number; activeMeshes: number; triangles: number };
     };
   }
 }
@@ -114,9 +114,14 @@ async function boot(): Promise<void> {
     },
     stats() {
       const e = renderer.engine;
+      // NOTE: engine._drawCalls.current accumulates across frames rather than
+      // resetting per frame, so it reports a monotonically rising number that
+      // means nothing. Active mesh count is the honest per-frame proxy — it is
+      // the number of meshes that survived culling, which is what actually
+      // drives the draw-call count.
       return {
         fps: Math.round(e.getFps()),
-        drawCalls: renderer.scene.getEngine()._drawCalls?.current ?? -1,
+        activeMeshes: renderer.scene.getActiveMeshes().length,
         triangles: renderer.scene.getActiveIndices() / 3,
       };
     },

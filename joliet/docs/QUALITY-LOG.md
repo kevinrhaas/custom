@@ -48,4 +48,42 @@ Hardware FPS is verified separately and noted where measured.
 
 ## 1.1 Perimeter Approach
 
-*(Iterations recorded below as they complete.)*
+Nine iterations ran. **They were not scored to the protocol above**, and the
+scene must not be described as having passed it. Iterations 1–8 were spent
+finding and fixing hard breakage — scoring composition on a black or ghosted
+frame would have been theatre. What follows is the honest record of what each
+iteration found, because the bugs are more useful to the next scene than a
+score would have been.
+
+| # | What the capture showed | Root cause | Fix |
+|---|---|---|---|
+| 1 | Near-black frame; two giant skewed black wedges across the sky | `CubeTexture.CreateFromPrefilteredData` fails **silently** on a raw `.hdr` — it only accepts a prefiltered `.env`/`.dds`, so all IBL was lost while the scene still rendered. Separately, `scaling.y` applied to an already-rotated cylinder skews it. | Route `.hdr` through `HDRCubeTexture`; rebuild the gable from explicit slanted panes |
+| 2 | Harness hung indefinitely, no output | Anchor settle loop drove `requestAnimationFrame`, which headless throttles for pages it treats as hidden, *and* called `scene.render()` by hand against the engine's own loop. Also: baking 18 materials at 1024² is tens of seconds of single-threaded JS. | Timer-based settle; `--disable-renderer-backgrounding`; bake at 512² and recover close-up frequency from the detail-normal overlay |
+| 3 | Legible but massively underexposed; wall flat cream | PBR light intensities set as if they were 0–1 dials (moon at 1.35) | Moon 4.6, sky fill 0.95, env 0.75, exposure 1.45, sodium 1400 (physical falloff is inverse-square — 190 at 8 m was ~3) |
+| 4 | Translucent panel smeared across the wall; ground in large shading facets | Alpha-blended double-sided cab glazing registered as a shadow caster; displaced ground plane with recomputed normals z-fighting a coplanar apron | Single-sided glass, `transparencyShadow = false`, flat base plane, lift apron clear |
+| 5 | Ghost persisted | Not geometry — **TAA**. The temporal history survived the anchor teleport with no motion vectors to invalidate it, so the previous view stayed smeared permanently. | `disableOnCameraMove = true` + explicit `resetTAA()` on anchor change |
+| 6 | Clean frame at last. Wall still smooth cream with horizontal banding only | Shared materials carried a **constant** UV scale, so an 88 m wall got 0.34 texture repeats — every large surface stretched into mush | World-space UV projection (`Kit.worldUV`): texel density now constant across the whole game, seams on face boundaries, no scene reasons about tiling |
+| 7 | Coursing *still* absent despite correct UVs | `Texture.clone()` on a `RawTexture` does not reliably carry the pixel buffer — every material was sampling a flat clone | Stop cloning; each preset owns its own baked set, so scale it in place |
+| 8 | Coursed ashlar reads fully. Stone too pale and too regular vs reference | Rock-face relief amplitude too low; blotching and runoff thresholded almost out; moon desaturating the limestone to grey | Relief ×2.3, normal strength 2.6→4.4, widen blotch/runoff thresholds, warm the key |
+| 9 | Final capture of this session | — | Metric fix: `engine._drawCalls.current` accumulates across frames rather than resetting, so every draw-call number logged before this point was meaningless. Replaced with active-mesh count. |
+
+### Standing regressions and caveats
+
+- **All FPS figures are headless SwiftShader** — software rasterisation, 1–2
+  orders of magnitude slower than any GPU. Valid as a relative signal between
+  iterations, worthless as an absolute. **The 60 FPS constraint is unverified on
+  real hardware.**
+- Draw calls are not measured. Active mesh count is the proxy; the scene is
+  mesh-heavy (per-voussoir, per-rubble-block meshes) and will need merging
+  before the 1,200 draw-call budget can be claimed.
+- Triangles ≈ 90k against a 3M budget — geometry is nowhere near the limit, so
+  detail can be spent freely.
+- Zero page errors across all iterations.
+
+### What iteration 10 should do
+
+Run the **actual protocol**: independent critic, eight axes, five anchors,
+written justification, specific fix per axis below 8. The frame is finally
+stable enough for that to mean something. Expect it to score hardest on
+*atmosphere* (no volumetrics wired) and *geometric detail* (no foliage, no
+clutter).

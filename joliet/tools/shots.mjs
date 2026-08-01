@@ -119,7 +119,7 @@ if (sceneFilter && manifest.id !== sceneFilter) {
       return {
         fpsMedian: fps[Math.floor(fps.length / 2)],
         fpsMin: fps[0],
-        drawCalls: samples.at(-1).drawCalls,
+        activeMeshes: samples.at(-1).activeMeshes,
         triangles: Math.round(samples.at(-1).triangles),
       };
     });
@@ -129,7 +129,7 @@ if (sceneFilter && manifest.id !== sceneFilter) {
     report.anchors.push({ name: a.name, note: a.note ?? '', ...stats });
     console.log(
       `  ✓ ${a.name.padEnd(18)} ${String(stats.fpsMedian).padStart(4)} fps · ` +
-        `${String(stats.drawCalls).padStart(5)} draws · ` +
+        `${String(stats.activeMeshes).padStart(5)} meshes · ` +
         `${String(stats.triangles).padStart(8)} tris`,
     );
   }
