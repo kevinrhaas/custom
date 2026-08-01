@@ -8,20 +8,22 @@ An honest per-area assessment. Written to be acted on, not to flatter.
 
 ## TL;DR
 
-**What exists:** a complete, working engine core and one scene — the Perimeter
-Approach — built end to end at intended final quality, plus a full research
-dossier, a frozen material library, and a working screenshot/performance
-harness. It builds, it runs with zero page errors, and you can walk around it.
+**What exists:** a working engine core, a synthesised audio engine, and **two
+scenes** — 1.1 Perimeter Approach and 3.1b The Void — plus a cited research
+dossier, a frozen material library, and a screenshot/performance harness. It
+builds, it runs with zero page errors, and you can walk around both.
 Frame rate on real hardware is **unmeasured** — see the bottom of this file.
 
-**What does not exist:** the other eight scenes, audio of any kind, the
-interaction and save systems, and the role abilities. The game is a **look-dev
-vertical slice**, not a 30–45 minute experience.
+**What does not exist:** the other seven scenes, any transition between the two
+that do exist, and the interaction, save and role-ability systems. The game is a
+**look-dev vertical slice**, not a 30–45 minute experience.
 
 **If you play it right now** you get an atmospheric night approach to a
-historically-accurate Old Joliet perimeter wall that you can walk, crouch,
-sprint and lean around, with three modelled entry routes you cannot yet use.
-That is roughly 2 minutes of content.
+historically-accurate Old Joliet perimeter wall (`?scene=perimeter`, the
+default) and, separately, the sealed sub-level with its carved names
+(`?scene=void`). Each is a couple of minutes. There is no way to walk from one
+to the other — the scenes are reachable only by URL, because no transition
+system exists.
 
 ---
 
@@ -34,11 +36,13 @@ That is roughly 2 minutes of content.
 | Character controller | Done. Walk/sprint/crouch/crawl, step-up assist, distance-driven footstep cadence, speed-scaled figure-eight head-bob, lean, stamina, headlamp with generated cookie and brownout. Feels good. | 8/10 |
 | Material library | Done and frozen. 18 named presets, fully procedural, calibrated to reference photography. | 7/10 |
 | Architectural kit | Done for exteriors: coursed wall with corbel course, tapered towers with corbelled collars and octagonal glazed cabs, segmental-arched barred windows, catenary barbed wire. No interior kit yet. | 7/10 |
-| Scene 1.1 Perimeter | Built end to end. Composition, lighting split, masonry and silhouette all read. **The drainage-trench entry is visibly broken** — the ground plane has no hole cut in it, so the trench walls float on an unbroken floor. Missing foliage; entries are geometry without interaction. | 6/10 |
+| Scene 1.1 Perimeter | Built end to end. Composition, lighting split, masonry and silhouette all read; the trench is now a genuine aperture in the ground with coping stones. `a5-trench` is still a weak frame — the geometry is right, it just has no light in it. Missing foliage; entries are geometry without interaction. | 6.5/10 |
+| Scene 3.1b The Void | **Built, and it works.** ~1,750 individually-placed stones batched to one mesh per material; 64 carved inscriptions across six hands on a generated height field. SAM'L O'KEEFE, No 738, 1862, tally counts and LET ME UP legible in one frame. 11 meshes, ~104k tris. Limestone reads faintly "quilted"; the headlamp still blows the near field. | 7/10 |
 | Screenshot harness | Working. 5 fixed anchors, 1080p, per-anchor FPS / active meshes / triangles, page-error capture. | 8/10 |
 | Critic loop | **Ran, but not to its own protocol.** See below. | 4/10 |
-| Scenes 1.2 – 4.2 | **Not started.** | 0/10 |
-| Audio | **Not started.** Nothing. | 0/10 |
+| Scenes 1.2, 2.1, 2.2, 3.1, 3.2, 4.1, 4.2 | **Not started.** | 0/10 |
+| Scene transitions | **Not started.** The two built scenes are reachable only by `?scene=` URL. | 0/10 |
+| Audio | **Built, never heard.** Synthesised footsteps with per-surface profiles, generated convolution reverb per space, ambience bed, lamp hum, radio degradation. The harness is silent and headless, so the whole system is verified by typecheck alone and needs a real mixing pass. | 5/10 |
 | Interaction / save / journal | **Not started.** | 0/10 |
 | Role abilities | **Not started.** Designed in `DESIGN.md`, no code. | 0/10 |
 | Docs | Done: research, design, art bible, liberties, quality log, backlog, assets. | 8/10 |
@@ -111,22 +115,25 @@ model is sound in an empty building.
 1. **Audio.** Footsteps by surface, ambience, wind, the radio comms bed. Biggest
    single quality gain available.
 2. **One clean scored critic pass** on 1.1 to the documented protocol.
-3. **Cut the trench out of the ground plane** — it is the worst frame in the
-   game and the fix (tiled ground with the corridor omitted) is what the Siphon
-   needs anyway.
-4. **Foliage and clutter** in 1.1 — thin-instanced weeds, saplings, debris. The
+3. **Calibrate the headlamp against a test chart** at 1 / 2 / 4 / 8 m. It is
+   currently reasoned, not measured, and it is what stands between The Void and
+   its own purpose.
+4. **Mix the audio** — an hour with headphones. None of it has been heard.
+5. **Foliage and clutter** in 1.1 — thin-instanced weeds, saplings, debris. The
    most obvious remaining difference from the reference photographs.
-5. **Interaction + save system**, then wire 1.1's three entries.
-6. **Scene 3.1b The Void** next, not 1.2. It is the emotional centre and the
-   scene the quality loop should protect first; building it early means the rest
-   of the game is built toward something that already exists.
+6. **Interaction + save system**, then wire 1.1's three entries and a real
+   transition between the two scenes.
 
 ## Verified / not verified
 
 - ✅ Builds clean; typechecks clean; zero page errors in the harness.
 - ✅ Runs and is walkable.
 - ✅ Textures, geometry and lighting confirmed by capture at five fixed anchors.
-- ❌ **Anchor `a5-trench` is a broken frame** — see QUALITY-BACKLOG. Known, logged, not fixed.
+- ⚠️ **`a5-trench` is a weak frame** — geometry fixed (real aperture), lighting not.
+- ⚠️ **The audio has never been heard.** Typecheck-verified only.
+- ⚠️ **The harness's anchor mode returns early from `Player.update`**, so every
+  capture in this project runs a code path the player never takes. This is the
+  most important caveat on the whole verification story.
 - ❌ **60 FPS on real hardware is unverified.** All performance figures come
   from headless SwiftShader software rasterisation — valid as a relative
   regression signal between iterations, worthless as an absolute target.

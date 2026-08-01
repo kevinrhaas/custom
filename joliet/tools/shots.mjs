@@ -11,7 +11,7 @@
  * Usage:
  *   node tools/shots.mjs                 # next iteration number, all anchors
  *   node tools/shots.mjs --iter 3        # force an iteration number
- *   node tools/shots.mjs --scene 1.1-perimeter
+ *   node tools/shots.mjs --scene void       # registry key, not scene id
  *   node tools/shots.mjs --quality ultra
  */
 
@@ -33,7 +33,8 @@ const flag = (n, d = null) => {
 };
 
 const quality = flag('quality', 'high');
-const sceneFilter = flag('scene', null);
+// Which scene to boot, via the registry in main.ts (?scene=<key>).
+const sceneKey = flag('scene', 'perimeter');
 
 async function nextIteration(sceneId) {
   const dir = path.join(OUT_ROOT, sceneId);
@@ -81,8 +82,9 @@ page.on('console', (m) => {
   if (m.type() === 'error') pageErrors.push(`console: ${m.text()}`);
 });
 
-console.log(`→ loading ${base}/?quality=${quality}&webgl`);
-await page.goto(`${base}/?quality=${quality}&webgl`, { waitUntil: 'load', timeout: 120000 });
+const url = `${base}/?quality=${quality}&scene=${sceneKey}&webgl`;
+console.log(`→ loading ${url}`);
+await page.goto(url, { waitUntil: 'load', timeout: 120000 });
 
 // Wait for the game to announce itself.
 await page.waitForFunction(() => window.__joliet?.ready === true, null, { timeout: 180000 });
@@ -93,9 +95,7 @@ const manifest = await page.evaluate(() => ({
   anchors: window.__joliet.scene.manifest.anchors,
 }));
 
-if (sceneFilter && manifest.id !== sceneFilter) {
-  console.log(`scene ${manifest.id} does not match --scene ${sceneFilter}; nothing to do`);
-} else {
+{
   const iter = flag('iter') ? Number(flag('iter')) : await nextIteration(manifest.id);
   const outDir = path.join(OUT_ROOT, manifest.id, `iter-${String(iter).padStart(2, '0')}`);
   await mkdir(outDir, { recursive: true });

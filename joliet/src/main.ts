@@ -7,6 +7,7 @@ import { input } from './core/Input';
 import { settings } from './core/Settings';
 import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
+import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
 import { mountHud, setLoadProgress, hideLoader, showLoader } from './ui/Hud';
 
@@ -16,6 +17,41 @@ import { mountHud, setLoadProgress, hideLoader, showLoader } from './ui/Hud';
  * Kept deliberately small: create the renderer, bake materials, build a scene,
  * spawn the player, run. Anything that grows here belongs in a system module.
  */
+
+/**
+ * The scene registry.
+ *
+ * There is no transition system yet — no doors between scenes, no run state,
+ * no save. Until there is, `?scene=<id>` is how the built scenes are reachable
+ * at all, and it is what the shot harness and the landing page's deep links
+ * use. Adding a scene here is the whole integration step.
+ */
+const SCENES: Record<
+  string,
+  {
+    title: string;
+    ambience: 'exterior' | 'corridor' | 'cellblock' | 'tunnel' | 'chamber';
+    loadingLine: string;
+    make: (
+      s: import('@babylonjs/core/scene').Scene,
+      r: Renderer,
+      m: MaterialLibrary,
+    ) => GameScene;
+  }
+> = {
+  perimeter: {
+    title: 'Perimeter Approach',
+    ambience: 'exterior',
+    loadingLine: 'Raising the wall',
+    make: (s, r, m) => new PerimeterApproach(s, r, m),
+  },
+  void: {
+    title: 'The Void',
+    ambience: 'chamber',
+    loadingLine: 'Opening the floor',
+    make: (s, r, m) => new TheVoid(s, r, m),
+  },
+};
 
 declare global {
   interface Window {
@@ -48,8 +84,11 @@ async function boot(): Promise<void> {
     setLoadProgress(0.05 + (done / total) * 0.6, 'Weathering surfaces');
   });
 
-  setLoadProgress(0.7, 'Raising the wall');
-  const scene = new PerimeterApproach(renderer.scene, renderer, mats);
+  const requested = new URLSearchParams(location.search).get('scene') ?? 'perimeter';
+  const entry = SCENES[requested] ?? SCENES.perimeter;
+
+  setLoadProgress(0.7, entry.loadingLine);
+  const scene = entry.make(renderer.scene, renderer, mats);
   await scene.build();
 
   setLoadProgress(0.9, 'Loading the sky');
@@ -73,7 +112,10 @@ async function boot(): Promise<void> {
     if (!input.locked) input.requestLock();
     // Browsers refuse to start an AudioContext without a gesture, so the
     // first click both locks the pointer and wakes the audio engine.
-    void audio.start().then(() => audio.startAmbience('exterior'));
+    void audio.start().then(() => {
+      audio.setSpace(entry.ambience);
+      audio.startAmbience(entry.ambience);
+    });
   });
 
   // Sound is the whole tension model in a game with no enemies — wire it to
