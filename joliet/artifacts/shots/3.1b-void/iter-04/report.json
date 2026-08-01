@@ -1,0 +1,48 @@
+{
+  "scene": "3.1b-void",
+  "iteration": 4,
+  "quality": "high",
+  "anchors": [
+    {
+      "name": "a1-descent",
+      "note": "The establishing frame, looking back at the way in. Tests the shaft as the only \"up\", the rubble spill, and whether the hand-cut vault reads under a single cold source plus headlamp.",
+      "fpsMedian": 12,
+      "fpsMin": 12,
+      "activeMeshes": 11,
+      "triangles": 101734
+    },
+    {
+      "name": "a2-shaft",
+      "note": "Up into the break-in from beside the spill. Tests the broken floor slab, snapped joists, rim stones and the lit dust — the one moment the room admits there is a building above it.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 11,
+      "triangles": 101734
+    },
+    {
+      "name": "a3-names",
+      "note": "THE scene. Square on, 1.2 m off the east wall — close enough to read, far enough that the headlamp does not blow the stone out. Tests inscription legibility, the carve normal, and block-face relief. If the names cannot be read here, nothing else matters.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 11,
+      "triangles": 101734
+    },
+    {
+      "name": "a4-niche",
+      "note": "A punishment niche at 1.1 m: iron staple, tally marks, low arched head. Tests the niche head geometry and that the recess reads as a place a person was put, not a decorative alcove.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 11,
+      "triangles": 101602
+    },
+    {
+      "name": "a5-seal",
+      "note": "The brick seal at the far end over standing water. Tests brick-vs-limestone material contrast, the water clear coat, and the payload: someone did this deliberately.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 11,
+      "triangles": 101602
+    }
+  ],
+  "pageErrors": []
+}

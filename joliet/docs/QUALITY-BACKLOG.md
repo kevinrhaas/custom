@@ -7,45 +7,38 @@ Each item: what's wrong, what it would cost, and how much it matters.
 
 ---
 
-## OPEN P0 — the headlamp does not light the scene
+## RESOLVED — the headlamp works; its falloff was miscalibrated
 
-**The player's primary light source produces no visible illumination.** Four
-iterations (11-14) went at this and it is still not fixed. Every interior scene
-in this game depends on it, so nothing else in the backlog matters more.
+The P0 logged here ("the headlamp illuminates nothing") was **wrong about the
+symptom**. Building The Void proved the light renders fine: in an interior with
+no practical lights of its own, it lit the room — and blew a white hole in the
+middle of every frame.
 
-What has been ruled out, each verified by capture:
+What was actually true:
 
-- **Not the light-count cap.** `PBRMaterial.maxSimultaneousLights` defaults to 4
-  and the scene has 5 lights; it now takes the budget from the quality tier.
-  Real bug, genuinely fixed, did not fix this.
-- **Not the intensity units.** `FALLOFF_PHYSICAL` is inverse-square, so 42 was
-  delivering ~1.7 at five metres against a moon key of 4.6. Raised to 900. Real
-  bug, genuinely fixed, did not fix this.
-- **Not frozen-material shader staleness.** Materials are baked and frozen
-  during the loading screen, *before* the player and its headlamp exist, and a
-  frozen material never recompiles against a new light list. `rebindLights()`
-  now unfreezes, marks `Material.LightDirtyFlag` and refreezes after spawn.
-  Real bug, genuinely fixed, did not fix this.
+- Three real bugs were found and fixed on the way (a 4-light material cap, an
+  intensity set as if inverse-square falloff were a 0-1 dial, and materials
+  frozen before the player existed so their shaders never saw the new light).
+  All three were genuine. None was the reported symptom.
+- The symptom in scene 1.1 was **an unlit corner plus a dominant moon key**, not
+  a broken light. The trench simply has nothing lighting it, which is
+  thematically correct and photographically unhelpful.
+- Then intensity 900 **overcorrected**, which is what The Void's captures show.
 
-Remaining candidates, in the order worth trying:
+The real problem is the shape of the curve, not the value. Inverse-square from
+an emitter at the eye means a wall at 2.5 m and a wall at 8 m differ by 10x, so
+no single intensity lights both. Current fix: move the emitter **1.2 m behind
+the head** (3.7 m vs 9.2 m — a 6x ratio) and drop intensity 900 → 240.
 
-1. **Parenting.** The `SpotLight` is parented to the camera and its `direction`
-   is interpreted in parent space. In anchor mode the camera is moved to the
-   anchor while the root also moves — the light may be inheriting a transform
-   that leaves it aimed somewhere unintended. Test by unparenting and driving
-   `position`/`direction` from the camera's world matrix each frame.
-2. **The projection texture (cookie).** It is generated to a data URL and
-   assigned in a `try`. If it loads with `CLAMP_ADDRESSMODE` and the light's UV
-   projection is degenerate, the cookie can multiply the whole cone to zero.
-   Test by clearing `projectionTexture` entirely.
-3. **Anchor mode masking it.** `Player.update()` returns early when anchored, so
-   the *capture* path may not represent play. **This bug may not exist during
-   actual play at all** — it has only ever been observed through the shot
-   harness. Verify by hand in a browser before assuming it is real.
+**Still not calibrated.** This is reasoned, not measured. It needs a proper pass
+against a test chart at 1 / 2 / 4 / 8 m, and a near-field clamp would be better
+than the pull-back trick. Until then, treat headlamp exposure in any new
+interior as unverified.
 
-Point 3 is the one to check first, and it is a caution about the whole harness:
-the anchor path bypasses `Player.update`, so anything that path depends on is
-untested by every capture in this project.
+**The wider lesson, worth more than the bug:** the shot harness's anchor mode
+returns early from `Player.update`, so every capture in this project runs a code
+path the player never takes. It took building a second scene to notice, because
+1.1 is an exterior where the moon hides the difference.
 
 ## Renderer / core
 

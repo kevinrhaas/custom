@@ -6,7 +6,7 @@ import { Player } from './core/Player';
 import { input } from './core/Input';
 import { settings } from './core/Settings';
 import { audio } from './core/Audio';
-import { TheVoid } from './scenes/TheVoid';
+import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { GameScene } from './scenes/SceneBase';
 import { mountHud, setLoadProgress, hideLoader, showLoader } from './ui/Hud';
 
@@ -49,7 +49,7 @@ async function boot(): Promise<void> {
   });
 
   setLoadProgress(0.7, 'Raising the wall');
-  const scene = new TheVoid(renderer.scene, renderer, mats);
+  const scene = new PerimeterApproach(renderer.scene, renderer, mats);
   await scene.build();
 
   setLoadProgress(0.9, 'Loading the sky');
