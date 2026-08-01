@@ -8,6 +8,7 @@ import { Vector3, Matrix } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { PBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
+import { FresnelParameters } from '@babylonjs/core/Materials/fresnelParameters';
 import { SpotLight } from '@babylonjs/core/Lights/spotLight';
 import { PointLight } from '@babylonjs/core/Lights/pointLight';
 import { ParticleSystem } from '@babylonjs/core/Particles/particleSystem';
@@ -19,7 +20,6 @@ import type { Scene } from '@babylonjs/core/scene';
 import '@babylonjs/core/Particles/particleSystemComponent';
 
 import { GameScene, type SceneManifest } from './SceneBase';
-import { worldUV } from '../core/Kit';
 import { C, srgb } from '../core/Palette';
 import { fbm, heightToNormal, clamp01 } from '../core/Noise';
 import { profile } from '../core/Settings';
@@ -95,6 +95,10 @@ const NICHE_HALF_Z = 0.48;
 const NICHE_H = 1.34;
 const NICHE_DEPTH = 0.85;
 
+/** The ventilator flue near the seal — the one warm thing in the room. */
+const VENT_Z = 19.3;
+const VENT_Y = 1.42;
+
 /* -------------------------------------------------------------------------- */
 
 export class TheVoid extends GameScene {
@@ -111,34 +115,41 @@ export class TheVoid extends GameScene {
       },
       {
         name: 'a2-shaft',
-        position: [0.5, 1.3, 4.7],
-        rotation: [Math.PI, -0.72],
-        note: 'Straight up into the break-in. Tests the broken floor slab, snapped joists, rim stones and the lit dust — the one moment the room admits there is a building above it.',
+        position: [-0.35, 1.24, 5.3],
+        rotation: [Math.PI - 0.34, -0.58],
+        note: 'Up into the break-in from beside the spill. Tests the broken floor slab, snapped joists, rim stones and the lit dust — the one moment the room admits there is a building above it.',
       },
       {
         name: 'a3-names',
-        position: [1.1, 1.24, 10.6],
-        rotation: [Math.PI / 2, 0.06],
-        note: 'THE scene. Reading distance (0.9 m) on the east wall under headlamp. Tests inscription legibility, the carve normal, and block-face relief. If the names cannot be read here, nothing else matters.',
+        position: [-0.55, 1.34, 10.5],
+        rotation: [Math.PI / 2, 0.03],
+        note: 'THE scene. Square on the east wall from 2.55 m — the far side of the chamber, because the headlamp is an inverse-square 900 and anything inside ~2 m clips to white. Tests inscription legibility, the carve normal and block-face relief. If the names cannot be read here, nothing else matters.',
       },
       {
         name: 'a4-niche',
-        position: [0.62, 1.0, 8.9],
-        rotation: [Math.PI / 2, 0.12],
-        note: 'The mouth of a punishment niche: iron staple, tally marks, low arched head. Tests tight-space headlamp falloff and that the niche reads as a place a person was put.',
+        position: [0.35, 1.08, 8.8],
+        rotation: [Math.PI / 2 - 0.03, 0.08],
+        note: 'A punishment niche at 1.6 m: iron staple, tally marks, segmental head, 0.85 m deep. Tests the arch geometry and that the recess reads as a place a person was put, not a decorative alcove.',
       },
       {
         name: 'a5-seal',
-        position: [0.05, 1.5, 17.2],
-        rotation: [0, 0.04],
-        note: 'The brick seal at the far end over standing water. Tests brick-vs-limestone material contrast, the water clear coat, and the payload: someone did this deliberately.',
+        position: [0.05, 1.5, 18.6],
+        rotation: [0, 0.03],
+        note: 'The brick seal at the far end over standing water, with the sodium bleed from the ventilator flue on the right. Tests brick-vs-limestone contrast, the water clear coat, the warm/cool split at depth, and the payload: someone did this deliberately.',
       },
     ],
   };
 
   private shaft!: SpotLight;
   private bleed?: PointLight;
+  private above?: PointLight;
   private dust?: ParticleSystem;
+  private beam?: Mesh;
+  private beamOrigin = Vector3.Zero();
+  private beamDir = Vector3.Up();
+  private beamLen = 0;
+  private beamR0 = 0;
+  private beamR1 = 0;
   private t = 0;
 
   /** Wall faces the inscription pass is allowed to carve into. */
@@ -150,6 +161,11 @@ export class TheVoid extends GameScene {
     const rng = mulberry(18580412); // Boyington's office, allegedly
 
     // ---- Materials -------------------------------------------------------
+    // This chamber is below grade and has been shut since 1910, so the
+    // *dominant* stone is `limestone.wet` — darker, cooler, heavily soiled —
+    // and `limestone.wall` is reserved for stone that has been broken open
+    // recently: the rubble spill, the rim of the break-in, the near collapse.
+    // That split is the room's only hue gradient and it points at the way out.
     const stone = this.mats.get('limestone.wall');
     const wet = this.mats.get('limestone.wet');
     const slab = this.mats.get('concrete.slab');
@@ -157,22 +173,14 @@ export class TheVoid extends GameScene {
     const steel = this.mats.get('steel.catwalk');
     const timber = this.mats.get('timber.rotten');
 
-    // Five lights can be in play here (moon, sky bounce, the shaft, the vent
-    // bleed, and the headlamp). PBRMaterial defaults to four, and because the
-    // player's headlamp is created *after* the scene it is the one that gets
-    // dropped — in a headlamp scene. Raise the ceiling on everything used here.
-    for (const id of [
-      'limestone.wall',
-      'limestone.wet',
-      'concrete.slab',
-      'water.standing',
-      'steel.catwalk',
-      'timber.rotten',
-    ] as const) {
-      this.mats.mutate(id, (m) => {
-        m.maxSimultaneousLights = 6;
-      });
-    }
+    // Seven lights can be in play here — moon, sky bounce, the shaft, the
+    // bounce inside the sub-floor void, the vent bleed, and the player's
+    // headlamp. `MaterialLibrary` now takes `maxSimultaneousLights` from the
+    // quality tier and `main.ts` calls `rebindLights()` after the player
+    // spawns, so library materials are covered; the scene-authored materials
+    // below have to set it themselves. On the `low` tier the cap is four and
+    // one of the minor lights will silently drop — acceptable, and not
+    // something a scene may fix without touching core.
 
     // The seal is the one thing in the room that is not limestone, and that
     // difference is the point — so it gets a scene-specific material rather
@@ -195,24 +203,41 @@ export class TheVoid extends GameScene {
     this.buildFloor(ctx, wet, slab, water, rng);
     this.buildSideWalls(dry, damp, rng);
     this.buildNiches(damp, steelBatch, rng);
-    this.buildVault(dry, rng);
+    this.buildVault(dry, damp, rng);
     this.buildOuterMass(dry);
     this.buildBreakIn(dry, rubbleBatch, slabBatch, timberBatch, steelBatch, rng);
     this.buildSeal(dry, brickBatch, rng);
+    this.buildNearCollapse(rubbleBatch, rng);
     this.buildCollapse(rubbleBatch, timberBatch, rng);
     this.buildVent(dry, steelBatch);
 
-    dry.finish(ctx, this.scene, 'voidStone', stone, { collide: false, cast: true });
-    damp.finish(ctx, this.scene, 'voidStoneWet', wet, { collide: false, cast: true });
+    // Texel density is a real decision here, not a knob. The library's
+    // limestone bakes seven courses into a tile; at the global 1-tile-per-3-m
+    // density the *texture's* coursing lands at 0.43 m and competes with the
+    // real coursing of the real blocks, and at 1.2 m per tile it drops to
+    // 0.17 m and the whole chamber reads as a Victorian brick sewer. 2 m per
+    // tile puts the texture's courses at 0.29 m — the same family as the
+    // geometry — so it reads as more joints rather than as a second wall.
+    dry.finish(ctx, this.scene, 'voidStone', stone, {
+      collide: false,
+      cast: true,
+      uvDensity: 0.45,
+    });
+    damp.finish(ctx, this.scene, 'voidStoneWet', wet, {
+      collide: false,
+      cast: true,
+      uvDensity: 0.45,
+    });
     brickBatch.finish(ctx, this.scene, 'voidSeal', brick, {
       collide: false,
       cast: true,
-      uvDensity: 1.1,
+      uvDensity: 0.8,
     });
     rubbleBatch.finish(ctx, this.scene, 'voidRubble', stone, {
       collide: true,
       cast: true,
       surface: 'stone',
+      uvDensity: 0.45,
     });
     slabBatch.finish(ctx, this.scene, 'voidSlab', slab, { collide: false, cast: true });
     steelBatch.finish(ctx, this.scene, 'voidSteel', steel, {
@@ -258,7 +283,7 @@ export class TheVoid extends GameScene {
     );
     upper.position.set(0, -0.3, (Z_STEP - 1.2) / 2);
     upper.material = wet;
-    ctx.register(upper, { collide: true, cast: false, surface: 'stone' });
+    ctx.register(upper, { collide: true, cast: false, surface: 'stone', uvDensity: 0.3 });
 
     // Lower floor: the far end has settled (or was always cut deeper), and it
     // holds water.
@@ -269,16 +294,16 @@ export class TheVoid extends GameScene {
     );
     lower.position.set(0, FLOOR_LOW - 0.3, (Z_STEP + Z_END + 2.2) / 2 - 0.1);
     lower.material = wet;
-    ctx.register(lower, { collide: true, cast: false, surface: 'water' });
+    ctx.register(lower, { collide: true, cast: false, surface: 'water', uvDensity: 0.3 });
 
     // Standing water. Alpha-blended, never a shadow caster, never pickable —
     // the same rules 1.1's trench water follows.
     const pool = MeshBuilder.CreateGround(
       'voidWater',
-      { width: HALF_W * 2 - 0.04, height: Z_END - Z_STEP + 1.4, subdivisions: 14 },
+      { width: HALF_W * 2 - 0.04, height: Z_END - Z_STEP - 0.4, subdivisions: 14 },
       this.scene,
     );
-    pool.position.set(0, WATER_Y, (Z_STEP + Z_END) / 2 + 0.3);
+    pool.position.set(0, WATER_Y, (Z_STEP + Z_END) / 2 + 0.7);
     pool.material = water;
     pool.isPickable = false;
     pool.receiveShadows = false;
@@ -305,7 +330,7 @@ export class TheVoid extends GameScene {
     silt.finish(ctx, this.scene, 'voidSilt', slab, {
       collide: false,
       cast: false,
-      uvDensity: 0.5,
+      uvDensity: 0.45,
     });
   }
 
@@ -322,41 +347,59 @@ export class TheVoid extends GameScene {
    */
   private buildSideWalls(dry: GeoBatch, damp: GeoBatch, rng: () => number): void {
     for (const side of [-1, 1] as const) {
-      let y = 0;
-      let course = 0;
+      // Blocks are cut slightly OVER their cell and butt into their
+      // neighbours rather than leaving a modelled joint gap. A gap would be a
+      // hole straight through the wall — which is what the first pass did, and
+      // it turned every joint into a black slot and the wall into a stack of
+      // crates. All the joint reading comes from the face jitter instead:
+      // every stone stands up to 5 cm proud of its neighbour, which is what a
+      // raking headlamp actually catches on in a hand-dressed wall.
+      let y = -0.12;
       while (y < SPRING - 0.02) {
-        const h = Math.min(0.32 + rng() * 0.17, SPRING - y);
+        const h = Math.min(0.23 + rng() * 0.2, SPRING - y);
         // Every course starts at a different offset, so the vertical joints
         // never line up into a grid.
-        let z = -0.6 + rng() * 0.55;
-        while (z < Z_END + 0.6) {
-          const len = 0.42 + rng() * 0.52;
+        let z = -0.9 + rng() * 0.6;
+        while (z < Z_END + 0.9) {
+          const len = 0.32 + rng() * 0.54;
           const zc = z + len / 2;
           const centreY = y + h / 2;
 
-          if (!this.inNicheOpening(side, zc, len, centreY, h)) {
-            // Rising damp: the bottom two courses and everything past the step
-            // are saturated.
-            const soaked = y < 0.62 || zc > Z_STEP - 1.2;
+          const inVent =
+            side === 1 &&
+            Math.abs(zc - VENT_Z) < 0.42 + len / 2 &&
+            Math.abs(centreY - VENT_Y) < 0.26 + h / 2;
+
+          if (!inVent && !this.inNicheOpening(side, zc, len, centreY, h)) {
+            // Rising damp — except this whole chamber is below the water
+            // table, so only the freshly-broken stone at the entrance is dry.
+            const soaked = zc > 5.2 || y < 0.5;
             const batch = soaked ? damp : dry;
-            const proud = -0.008 + rng() * 0.032;
-            const depth = 0.38 + rng() * 0.1;
+            const proud = rng() * rng() * 0.1;
+            const depth = 0.46 + rng() * 0.13;
             const faceX = side * (HALF_W - proud);
             batch.box(
               faceX + side * (depth / 2),
               centreY,
               zc,
               depth,
-              h * 0.985,
-              len * 0.985,
-              (rng() - 0.5) * 0.012,
-              (rng() - 0.5) * 0.012,
-              (rng() - 0.5) * 0.01,
+              h * 1.06,
+              len * 1.04,
+              (rng() - 0.5) * 0.03,
+              (rng() - 0.5) * 0.028,
+              (rng() - 0.5) * 0.022,
             );
 
-            // Big enough, dry enough and at a height a man could reach while
-            // sitting or standing: a candidate for carving.
-            if (h > 0.33 && len > 0.5 && centreY > 0.42 && centreY < 1.62) {
+            // Big enough and at a height a man could reach sitting or
+            // standing: a candidate for carving. Carvings cluster — men
+            // wrote where other men had already written, and beside the
+            // niches, and not much anywhere else.
+            if (h > 0.28 && len > 0.44 && centreY > 0.4 && centreY < 1.66) {
+              let weight = 0.55;
+              if (zc > 8.4 && zc < 13.8) weight = 2.1; // the reading wall
+              for (const n of NICHES) {
+                if (Math.abs(zc - n.z) < 1.7) weight = Math.max(weight, 1.5);
+              }
               this.faces.push({
                 x: faceX,
                 y: centreY,
@@ -365,30 +408,65 @@ export class TheVoid extends GameScene {
                 nz: 0,
                 w: len,
                 h,
-                weight: 1,
+                weight,
+                // The east wall between z 9.6 and 11.6 is the anchor frame for
+                // the whole scene. It is not left to a dice roll.
+                forced: side === 1 && zc > 9.5 && zc < 11.8,
               });
             }
           }
-          z += len + 0.012;
+          z += len;
         }
-        y += h + 0.012;
-        course++;
+        y += h;
       }
     }
 
-    // End wall behind the player (the chamber continues into rubble that way,
-    // so it is a collapsed face rather than a built one).
-    for (let i = 0; i < 40; i++) {
-      dry.box(
-        -2.1 + rng() * 4.2,
-        0.1 + rng() * 3.2,
-        -0.9 + rng() * 0.8,
-        0.5 + rng() * 0.4,
-        0.3 + rng() * 0.3,
-        0.4 + rng() * 0.4,
-        (rng() - 0.5) * 0.5,
+    // A solid liner immediately behind the ashlar, so a joint that does open
+    // up shows recessed stone rather than a view into empty space.
+    for (const side of [-1, 1] as const) {
+      const blocked: [number, number][] = NICHES.filter((n) => n.side === side).map((n) => [
+        n.z - NICHE_HALF_Z - 0.3,
+        n.z + NICHE_HALF_Z + 0.3,
+      ]);
+      if (side === 1) blocked.push([VENT_Z - 0.75, VENT_Z + 0.75]);
+      blocked.sort((a, b) => a[0] - b[0]);
+
+      let z = -1.2;
+      for (const [z0, z1] of [...blocked, [Z_END + 1.2, Z_END + 1.2] as [number, number]]) {
+        if (z0 - z > 0.05) {
+          damp.box(side * (HALF_W + 0.7), 0.9, (z + z0) / 2, 0.44, 2.4, z0 - z);
+        }
+        z = Math.max(z, z1);
+      }
+    }
+
+  }
+
+  /**
+   * The near end: the chamber continues that way and the roof came down on it
+   * long before anybody found the place.
+   *
+   * Built as a talus — a wedge of stone tipping down and out into the room —
+   * rather than blocks scattered through a bounding box. The first pass did
+   * the latter and produced masonry hanging in mid-air, which is invisible in
+   * the source and the first thing the eye finds in the capture.
+   */
+  private buildNearCollapse(rubble: GeoBatch, rng: () => number): void {
+    for (let i = 0; i < 64; i++) {
+      const t = rng() * rng(); // packed against the face, thinning outward
+      const z = -0.75 + t * 2.6;
+      const ceiling = 3.25 * (1 - t) + 0.2;
+      const s = 0.24 + rng() * 0.42;
+      rubble.box(
+        (rng() - 0.5) * 3.6,
+        s * 0.3 + rng() * ceiling,
+        z,
+        s * (0.8 + rng() * 0.8),
+        s * (0.5 + rng() * 0.6),
+        s * (0.8 + rng() * 0.8),
+        (rng() - 0.5) * 1.0,
         rng() * Math.PI,
-        (rng() - 0.5) * 0.5,
+        (rng() - 0.5) * 1.0,
       );
     }
   }
@@ -423,24 +501,24 @@ export class TheVoid extends GameScene {
       // Back wall, in courses, so the inscriptions inside sit on real stones.
       let y = 0;
       while (y < NICHE_H - 0.1) {
-        const h = Math.min(0.26 + rng() * 0.14, NICHE_H - 0.1 - y);
+        const h = Math.min(0.3 + rng() * 0.16, NICHE_H - 0.1 - y);
         let z = n.z - NICHE_HALF_Z;
         while (z < n.z + NICHE_HALF_Z - 0.02) {
-          const len = Math.min(0.3 + rng() * 0.3, n.z + NICHE_HALF_Z - z);
-          const proud = rng() * 0.026;
+          const len = Math.min(0.42 + rng() * 0.3, n.z + NICHE_HALF_Z - z);
+          const proud = rng() * rng() * 0.04;
           const faceX = backX - s * proud;
           damp.box(
-            faceX + s * 0.2,
+            faceX + s * 0.24,
             y + h / 2,
             z + len / 2,
-            0.4,
-            h * 0.98,
-            len * 0.98,
-            (rng() - 0.5) * 0.01,
+            0.5,
+            h * 1.06,
+            len * 1.05,
+            (rng() - 0.5) * 0.024,
             0,
-            (rng() - 0.5) * 0.01,
+            (rng() - 0.5) * 0.02,
           );
-          if (h > 0.24 && len > 0.34 && y > 0.16) {
+          if (h > 0.26 && len > 0.36 && y > 0.1) {
             this.faces.push({
               x: faceX,
               y: y + h / 2,
@@ -449,50 +527,103 @@ export class TheVoid extends GameScene {
               nz: 0,
               w: len,
               h,
-              // Men were left in here. This is where the carving would happen.
+              // Men were left in here with nothing else to do.
               weight: 4,
+              forced: true,
             });
           }
-          z += len + 0.01;
+          z += len;
         }
-        y += h + 0.01;
+        y += h;
       }
 
       // Jambs.
       for (const dz of [-1, 1]) {
-        let jy = 0;
+        let jy = -0.1;
         while (jy < NICHE_H - 0.06) {
-          const h = 0.28 + rng() * 0.12;
+          const h = 0.28 + rng() * 0.14;
           damp.box(
             s * (HALF_W + NICHE_DEPTH / 2),
             jy + h / 2,
-            n.z + dz * (NICHE_HALF_Z + 0.12),
-            NICHE_DEPTH,
-            Math.min(h, NICHE_H - 0.06 - jy) * 0.98,
-            0.24,
+            n.z + dz * (NICHE_HALF_Z + 0.14),
+            NICHE_DEPTH + 0.06,
+            Math.min(h, NICHE_H - 0.06 - jy) * 1.05,
+            0.28,
+            0,
+            0,
+            (rng() - 0.5) * 0.02,
+          );
+          jy += h;
+        }
+      }
+
+      // Segmental head. Seven voussoirs on a real arc struck from a centre
+      // below the springing — the first pass rotated them about the wrong sign
+      // and blew the head apart into a starburst, and the second struck it on
+      // too tight a radius so the haunch stones speared out through the wall
+      // face as fins. Both are invisible in the source and unmissable in the
+      // capture. A 0.22 m rise over a 0.96 m span puts the springing angle at
+      // 49°, which is a segmental arch and stays inside the reveal.
+      const headRise = 0.22;
+      const headSpring = NICHE_H - headRise;
+      const R = (NICHE_HALF_Z * NICHE_HALF_Z) / (2 * headRise) + headRise / 2;
+      const cy = headSpring + headRise - R;
+      const span = Math.asin(Math.min(0.99, NICHE_HALF_Z / R));
+      const nV = 7;
+      const vW = ((2 * span * R) / nV) * 1.2;
+      for (let i = 0; i < nV; i++) {
+        const a = ((i + 0.5) / nV - 0.5) * 2 * span;
+        const zc = n.z + Math.sin(a) * (R + 0.14);
+        damp.box(
+          s * (HALF_W + NICHE_DEPTH / 2 + 0.03),
+          cy + Math.cos(a) * (R + 0.14),
+          zc,
+          NICHE_DEPTH - 0.02,
+          0.27,
+          vW,
+          a,
+          0,
+          0,
+        );
+        // Backing over each voussoir, stepped to the curve. Without it the
+        // square outer corners of the ring stand proud in the gap the wall
+        // generator leaves above the head, and read as a row of dark fangs —
+        // the sort of thing that looks like intent in the source and like a
+        // bug in the frame.
+        const top = cy + Math.cos(a) * (R + 0.28);
+        if (top < 1.86) {
+          damp.box(
+            s * (HALF_W + NICHE_DEPTH / 2 + 0.03),
+            (top + 1.86) / 2 - 0.02,
+            zc,
+            NICHE_DEPTH - 0.02,
+            1.86 - top + 0.06,
+            vW * 1.02,
             0,
             0,
             0,
           );
-          jy += h + 0.01;
         }
       }
 
-      // Segmental head — five voussoirs on a shallow arc, springing at 1.06.
-      const headSpring = 1.06;
-      const headRise = NICHE_H - headSpring;
-      for (let i = 0; i < 5; i++) {
-        const a = ((i + 0.5) / 5 - 0.5) * Math.PI;
-        const zc = n.z + Math.sin(a) * NICHE_HALF_Z * 1.02;
-        const yc = headSpring + Math.cos(a) * headRise;
+      // Relieving course and spandrels over the head.
+      //
+      // The wall generator removes a rectangle for the opening, but the arch
+      // ring stands ~0.27 m above the intrados, so its extrados corners were
+      // left projecting into the gap above as a row of dark spikes. This
+      // closes the gap the way a mason would: a course carried across the
+      // head, and a stone in each spandrel.
+      const headTop = cy + R + 0.28;
+      damp.box(s * (HALF_W + 0.3), headTop + 0.2, n.z, 0.6, 0.42, 1.95, 0, 0, 0);
+      for (const dz of [-1, 1]) {
         damp.box(
-          s * (HALF_W + NICHE_DEPTH / 2),
-          yc + 0.09,
-          zc,
-          NICHE_DEPTH + 0.02,
-          0.19,
-          (NICHE_HALF_Z * 2.3) / 5,
-          -a,
+          s * (HALF_W + 0.3),
+          headSpring + 0.24,
+          n.z + dz * 0.76,
+          0.6,
+          0.56,
+          0.55,
+          0,
           0,
           0,
         );
@@ -501,11 +632,11 @@ export class TheVoid extends GameScene {
       // Sill / floor of the niche, worn hollow.
       damp.box(
         s * (HALF_W + NICHE_DEPTH / 2),
-        0.055,
+        -0.02,
         n.z,
-        NICHE_DEPTH,
-        0.11,
-        NICHE_HALF_Z * 2,
+        NICHE_DEPTH + 0.06,
+        0.16,
+        NICHE_HALF_Z * 2 + 0.28,
         0,
         0,
         0,
@@ -525,7 +656,7 @@ export class TheVoid extends GameScene {
    * important number in the room. You feel the ceiling. The crown is only
    * 3.1 m and the haunches come down to meet you if you walk near a wall.
    */
-  private buildVault(dry: GeoBatch, rng: () => number): void {
+  private buildVault(dry: GeoBatch, damp: GeoBatch, rng: () => number): void {
     const ringDepth = 0.6;
     const rings = Math.ceil((Z_END + 1.4) / ringDepth);
     const perRing = 13;
@@ -559,22 +690,31 @@ export class TheVoid extends GameScene {
         ny /= nl;
 
         const thick = 0.3 + rng() * 0.09;
-        const proud = rng() * 0.026; // some stones hang below their neighbours
-        const seg = (Math.PI / perRing) * ((HALF_W + RISE) / 2) * 1.1;
+        // Some stones hang below their neighbours. This, and nothing else, is
+        // what makes a barrel vault read as cut by hand.
+        const proud = rng() * rng() * 0.06;
+        // Voussoirs are cut over-length and butt into each other; a modelled
+        // joint gap would be a hole through the vault.
+        const seg = (Math.PI / perRing) * ((HALF_W + RISE) / 2) * 1.22;
 
         // Rotate so the block's local +Y is the outward normal.
         const psi = Math.atan2(-nx, ny);
 
-        dry.box(
+        // Only the stone within reach of the break-in has been dried out by a
+        // century of the draught coming down it. The rest is saturated, which
+        // is both true of a chamber below the water table and the reason the
+        // room has a hue gradient at all.
+        const batch = zc < 5.0 ? dry : damp;
+        batch.box(
           px + nx * (thick / 2 - proud),
           py + ny * (thick / 2 - proud),
           zc,
           seg,
           thick,
-          ringDepth * 0.97,
-          (rng() - 0.5) * 0.02,
-          (rng() - 0.5) * 0.016,
-          psi + (rng() - 0.5) * 0.026,
+          ringDepth * 1.07,
+          (rng() - 0.5) * 0.03,
+          (rng() - 0.5) * 0.024,
+          psi + (rng() - 0.5) * 0.04,
         );
       }
     }
@@ -586,9 +726,13 @@ export class TheVoid extends GameScene {
    * of eight hundred separate stones.
    */
   private buildOuterMass(dry: GeoBatch): void {
+    // Everything here is held clear of any visible surface. Interpenetrating a
+    // hidden box with a visible one produces near-coplanar faces, which
+    // z-fight, which the temporal filter then smears into arcs across the
+    // whole frame — the streaking that ruined the first pass at every anchor.
     for (const side of [-1, 1] as const) {
       dry.box(
-        side * (HALF_W + NICHE_DEPTH + 0.75),
+        side * (HALF_W + NICHE_DEPTH + 0.95),
         1.9,
         (Z_END + 0.4) / 2,
         1.5,
@@ -596,21 +740,25 @@ export class TheVoid extends GameScene {
         Z_END + 2.6,
       );
     }
-    // Cap over the vault, in four pieces around the break-in.
-    const capY = SPRING + RISE + 0.55;
+    // Cap over the vault, in four pieces that clear the sub-floor shaft.
+    const capY = SPRING + RISE + 1.05;
     const capH = 1.0;
-    dry.box(0, capY, HOLE_Z - HOLE_HALF_Z - 1.5, 8, capH, 3.0);
-    dry.box(0, capY, (HOLE_Z + HOLE_HALF_Z + Z_END + 1) / 2, 8, capH, Z_END + 1 - HOLE_Z - HOLE_HALF_Z);
+    const clearX = HOLE_HALF_X + 0.8;
+    const clearZ = HOLE_HALF_Z + 0.8;
+    const z0 = HOLE_Z - clearZ;
+    const z1 = HOLE_Z + clearZ;
+    dry.box(0, capY, (-1.6 + z0) / 2, 9, capH, z0 + 1.6);
+    dry.box(0, capY, (z1 + Z_END + 1.6) / 2, 9, capH, Z_END + 1.6 - z1);
     for (const side of [-1, 1] as const) {
-      dry.box(
-        side * (HOLE_X + side * (HOLE_HALF_X + 1.6)),
-        capY,
-        HOLE_Z,
-        3.2,
-        capH,
-        HOLE_HALF_Z * 2,
-      );
+      const inner = HOLE_X + side * clearX;
+      const outer = side * 4.5;
+      dry.box((inner + outer) / 2, capY, HOLE_Z, Math.abs(outer - inner), capH, clearZ * 2);
     }
+    // Solid ends. These exist purely so the moon — which is still a
+    // full-strength directional out there somewhere — cannot find its way in
+    // past either end of a chamber whose walls are eight hundred loose stones.
+    dry.box(0, 2.1, -1.25, 9, 4.6, 0.9);
+    dry.box(0, 2.1, Z_END + 1.0, 9, 4.6, 0.9);
   }
 
   /* -------------------------------------------------------------- break-in -- */
@@ -628,36 +776,44 @@ export class TheVoid extends GameScene {
     steel: GeoBatch,
     rng: () => number,
   ): void {
-    // Jagged rim stones around the opening — broken, not cut.
-    for (let i = 0; i < 26; i++) {
-      const a = (i / 26) * Math.PI * 2;
-      const rx = HOLE_HALF_X * (0.92 + rng() * 0.3);
-      const rz = HOLE_HALF_Z * (0.92 + rng() * 0.3);
-      const x = HOLE_X + Math.cos(a) * rx;
-      const z = HOLE_Z + Math.sin(a) * rz;
-      const y = SPRING + RISE * Math.cos(Math.asin(clamp01(Math.abs(x) / HALF_W)));
-      dry.box(
-        x,
-        y + 0.1 + rng() * 0.16,
-        z,
-        0.2 + rng() * 0.26,
-        0.22 + rng() * 0.28,
-        0.2 + rng() * 0.26,
-        (rng() - 0.5) * 0.9,
-        rng() * Math.PI,
-        (rng() - 0.5) * 0.9,
-      );
+    // Jagged rim stones: two rings that climb from the vault surface up to the
+    // underside of the floor above, so the opening reads as a hole torn
+    // through a thick structure rather than a rectangle cut in a shell.
+    const shaftTop = 5.9;
+    const shaftBase = SPRING + RISE + 0.52;
+    for (let ring = 0; ring < 2; ring++) {
+      const count = ring === 0 ? 28 : 22;
+      for (let i = 0; i < count; i++) {
+        const a = (i / count) * Math.PI * 2 + ring * 0.4;
+        const rx = HOLE_HALF_X * (0.9 + rng() * 0.34 + ring * 0.1);
+        const rz = HOLE_HALF_Z * (0.9 + rng() * 0.34 + ring * 0.1);
+        const x = HOLE_X + Math.cos(a) * rx;
+        const z = HOLE_Z + Math.sin(a) * rz;
+        const surf = SPRING + RISE * Math.cos(Math.asin(clamp01(Math.abs(x) / HALF_W)));
+        const y = ring === 0 ? surf + 0.06 + rng() * 0.3 : shaftBase - 0.3 + rng() * 0.34;
+        const s = 0.24 + rng() * 0.26;
+        dry.box(
+          x,
+          y,
+          z,
+          s * (0.8 + rng() * 0.7),
+          s * (0.8 + rng() * 0.7),
+          s * (0.8 + rng() * 0.7),
+          (rng() - 0.5) * 0.7,
+          rng() * Math.PI,
+          (rng() - 0.5) * 0.7,
+        );
+      }
     }
 
-    // The shaft up: four walls of the sub-floor void above, open at the top so
-    // the light source has somewhere to be.
-    const shaftTop = 5.7;
-    const shaftBase = SPRING + RISE + 0.1;
+    // The sub-floor void above: four walls and a lid. The lid matters — with
+    // the shaft open the player looked straight up at the night sky and stars,
+    // which is a lie. There is a cell house on top of this.
     for (const [dx, dz, w, d] of [
-      [HOLE_HALF_X + 0.3, 0, 0.6, HOLE_HALF_Z * 2 + 1.2],
-      [-(HOLE_HALF_X + 0.3), 0, 0.6, HOLE_HALF_Z * 2 + 1.2],
-      [0, HOLE_HALF_Z + 0.3, HOLE_HALF_X * 2 + 1.2, 0.6],
-      [0, -(HOLE_HALF_Z + 0.3), HOLE_HALF_X * 2 + 1.2, 0.6],
+      [HOLE_HALF_X + 0.45, 0, 0.7, HOLE_HALF_Z * 2 + 1.7],
+      [-(HOLE_HALF_X + 0.45), 0, 0.7, HOLE_HALF_Z * 2 + 1.7],
+      [0, HOLE_HALF_Z + 0.45, HOLE_HALF_X * 2 + 1.7, 0.7],
+      [0, -(HOLE_HALF_Z + 0.45), HOLE_HALF_X * 2 + 1.7, 0.7],
     ] as const) {
       dry.box(
         HOLE_X + dx,
@@ -668,6 +824,7 @@ export class TheVoid extends GameScene {
         d,
       );
     }
+    dry.box(HOLE_X, shaftTop + 0.3, HOLE_Z, 4.4, 0.6, 4.4);
 
     // The broken floor slab itself, hanging over the void. Concrete, later
     // than the vault by fifty years, and the reason the hole has a straight
@@ -701,10 +858,10 @@ export class TheVoid extends GameScene {
       );
     }
 
-    // Two snapped joists across the opening. One still spans it; one has come
-    // down and is lying in the rubble.
-    timber.box(HOLE_X - 0.15, shaftBase + 0.42, HOLE_Z - 0.5, 2.5, 0.18, 0.11, 0, 0, 0.03);
-    timber.box(HOLE_X + 0.9, 0.72, HOLE_Z + 1.3, 2.2, 0.16, 0.1, 0.18, 0.5, 0.46);
+    // Two snapped joists. One still spans the opening; one came down with the
+    // slab and is lying in the spill.
+    timber.box(HOLE_X - 0.15, shaftBase + 0.34, HOLE_Z - 0.5, 2.4, 0.15, 0.09, 0, 0, 0.03);
+    timber.box(HOLE_X + 1.0, 0.5, HOLE_Z + 1.7, 1.5, 0.12, 0.08, 0.12, 0.6, 0.3);
 
     // The spill. A cone of vault stone and slab fragments on the floor — and
     // the only way down, so it has to be climbable.
@@ -712,17 +869,17 @@ export class TheVoid extends GameScene {
       const rr = rng();
       const a = rng() * Math.PI * 2;
       const rad = rr * 2.6;
-      const s = 0.22 + rng() * 0.44;
+      const s = 0.2 + rng() * 0.42;
       rubble.box(
         HOLE_X - 0.3 + Math.cos(a) * rad,
         0.06 + (1 - rr) * 1.05 + rng() * 0.16,
         HOLE_Z + 0.7 + Math.sin(a) * rad * 1.15,
-        s * 1.45,
-        s * 0.66,
-        s * 1.15,
-        (rng() - 0.5) * 0.7,
+        s * (0.75 + rng() * 0.75),
+        s * (0.5 + rng() * 0.6),
+        s * (0.75 + rng() * 0.75),
+        (rng() - 0.5) * 1.1,
         rng() * Math.PI,
-        (rng() - 0.5) * 0.7,
+        (rng() - 0.5) * 1.1,
       );
     }
   }
@@ -742,23 +899,44 @@ export class TheVoid extends GameScene {
     const openHalf = 1.25;
     const openTop = 2.35;
 
-    // End wall around the opening.
-    for (let i = 0; i < 46; i++) {
-      const x = -3.2 + rng() * 6.4;
-      const y = rng() * 3.4;
-      if (Math.abs(x) < openHalf + 0.28 && y < openTop + 0.34) continue;
-      dry.box(
-        x,
-        y,
-        zFace + 0.28,
-        0.44 + rng() * 0.4,
-        0.32 + rng() * 0.18,
-        0.55,
-        0,
-        (rng() - 0.5) * 0.012,
-        (rng() - 0.5) * 0.01,
-      );
+    // End wall around the opening — coursed, like the rest of the chamber.
+    // The first pass scattered these at random heights inside a bounding box,
+    // which put loose stones hanging in the air above the vault crown.
+    let wy = -0.2;
+    while (wy < SPRING + RISE + 0.2) {
+      const h = 0.26 + rng() * 0.18;
+      let wx = -3.4 + rng() * 0.5;
+      while (wx < 3.4) {
+        const len = 0.4 + rng() * 0.42;
+        const cx = wx + len / 2;
+        const cyy = wy + h / 2;
+        // Only where the chamber's section actually exists, and not across
+        // the opening.
+        const ceiling =
+          Math.abs(cx) < HALF_W
+            ? SPRING + RISE * Math.cos(Math.asin(Math.abs(cx) / HALF_W))
+            : 0;
+        const inSection = Math.abs(cx) < HALF_W + 0.5 && cyy - h / 2 < ceiling + 0.25;
+        const inOpening = Math.abs(cx) < openHalf + 0.24 && cyy - h / 2 < openTop + 0.3;
+        if (inSection && !inOpening) {
+          dry.box(
+            cx,
+            cyy,
+            zFace + 0.3,
+            len * 1.04,
+            h * 1.06,
+            0.6,
+            0,
+            (rng() - 0.5) * 0.02,
+            (rng() - 0.5) * 0.018,
+          );
+        }
+        wx += len;
+      }
+      wy += h;
     }
+    // Solid backing so the coursed face never shows daylight between stones.
+    dry.box(0, 1.7, zFace + 0.75, 9, 5.2, 0.5);
     // Segmental arch over the opening.
     const rise = 0.55;
     const R = (openHalf * openHalf) / rise + rise;
@@ -778,6 +956,10 @@ export class TheVoid extends GameScene {
       );
     }
 
+    // Threshold under the opening — the brick was laid off a stone sill, and
+    // without it the water at this end would run straight under the seal.
+    dry.box(0, -0.28, zFace + 0.2, openHalf * 2 + 0.7, 0.62, 0.7);
+
     // The infill. Common brick, 230 × 110 × 70, laid stretcher bond by
     // somebody who was not a bricklayer.
     const bh = 0.075;
@@ -785,7 +967,10 @@ export class TheVoid extends GameScene {
     let y = 0;
     let row = 0;
     while (y < openTop + 0.05) {
-      const stagger = row % 2 === 0 ? 0 : bl / 2;
+      // The bond wanders. Whoever laid this was not a bricklayer and the
+      // courses do not run true, which is most of what makes the seal read as
+      // something done to the room rather than part of it.
+      const stagger = (row % 2 === 0 ? 0 : bl / 2) + (rng() - 0.5) * 0.05;
       let x = -openHalf - bl + stagger;
       while (x < openHalf) {
         const yTop = y + bh;
@@ -797,8 +982,8 @@ export class TheVoid extends GameScene {
             x + bl / 2,
             y + bh / 2,
             zFace + 0.06 + (rng() - 0.5) * 0.02,
-            bl * 0.955,
-            bh * 0.9,
+            bl * (0.93 + rng() * 0.05),
+            bh * (0.86 + rng() * 0.06),
             0.11,
             (rng() - 0.5) * 0.02,
             (rng() - 0.5) * 0.03,
@@ -835,17 +1020,17 @@ export class TheVoid extends GameScene {
     for (let i = 0; i < 30; i++) {
       const z = 6 + rng() * (Z_END - 7.5);
       const y = z > Z_STEP ? FLOOR_LOW : 0;
-      const s = 0.24 + rng() * 0.4;
+      const s = 0.2 + rng() * 0.36;
       rubble.box(
         (rng() - 0.5) * 3.3,
         y + s * 0.32,
         z,
-        s * 1.5,
-        s * 0.62,
-        s * 1.1,
-        (rng() - 0.5) * 0.4,
+        s * (0.8 + rng() * 0.8),
+        s * (0.45 + rng() * 0.5),
+        s * (0.8 + rng() * 0.8),
+        (rng() - 0.5) * 0.7,
         rng() * Math.PI,
-        (rng() - 0.5) * 0.4,
+        (rng() - 0.5) * 0.7,
       );
     }
     // A larger partial fall at the haunch around z = 11, with the stone still
@@ -874,27 +1059,38 @@ export class TheVoid extends GameScene {
    * warm thing in the room.
    */
   private buildVent(dry: GeoBatch, steel: GeoBatch): void {
-    const z = 19.3;
-    const y = 1.48;
-    // Reveal: a dark recessed box, so the opening has depth rather than being
-    // a lit rectangle painted on the stone.
-    const dark = MeshBuilder.CreateBox('ventReveal', { width: 0.7, height: 0.42, depth: 0.34 }, this.scene);
-    dark.position.set(HALF_W + 0.2, y, z);
+    const z = VENT_Z;
+    const y = VENT_Y;
+    // Reveal: a dark recessed box behind the wall plane, so the opening has
+    // depth rather than being a lit rectangle painted on the stone.
+    const dark = MeshBuilder.CreateBox(
+      'ventReveal',
+      { width: 0.62, height: 0.38, depth: 0.72 },
+      this.scene,
+    );
+    dark.position.set(HALF_W + 0.31, y, z);
     const dm = new StandardMaterial('ventDark', this.scene);
     dm.diffuseColor = new Color3(0.02, 0.02, 0.022);
     dm.specularColor = Color3.Black();
-    dm.emissiveColor = srgb('#3a2408').scale(0.5);
+    // The far end of the flue, ninety metres from the nearest working lamp.
+    dm.emissiveColor = srgb('#4a2c08');
     dm.disableLighting = true;
     dark.material = dm;
     dark.isPickable = false;
+    dark.receiveShadows = false;
+    dark.freezeWorldMatrix();
     this.meshes.push(dark);
 
-    // Head and sill of the opening.
-    dry.box(HALF_W + 0.22, y + 0.28, z, 0.5, 0.16, 0.86);
-    dry.box(HALF_W + 0.22, y - 0.28, z, 0.5, 0.16, 0.86);
-    for (let i = 0; i < 4; i++) {
-      steel.box(HALF_W + 0.03, y, z - 0.24 + i * 0.16, 0.03, 0.4, 0.03);
+    // Head and sill of the opening, and the jambs.
+    dry.box(HALF_W + 0.24, y + 0.28, z, 0.52, 0.2, 1.0);
+    dry.box(HALF_W + 0.24, y - 0.28, z, 0.52, 0.2, 1.0);
+    for (const dz of [-1, 1]) {
+      dry.box(HALF_W + 0.24, y, z + dz * 0.46, 0.52, 0.4, 0.24);
     }
+    for (let i = 0; i < 4; i++) {
+      steel.box(HALF_W + 0.05, y, z - 0.21 + i * 0.14, 0.055, 0.36, 0.05);
+    }
+    steel.box(HALF_W + 0.05, y, z, 0.05, 0.05, 0.62);
   }
 
   private buildStaples(ctx: ReturnType<GameScene['kit']>, steel: PBRMaterial): void {
@@ -961,42 +1157,99 @@ export class TheVoid extends GameScene {
    * thing that says there is a building overhead.
    */
   private buildShaft(p: ReturnType<typeof profile>): void {
-    const origin = new Vector3(HOLE_X + 0.45, 5.4, HOLE_Z - 0.6);
-    const dir = new Vector3(-0.22, -1, 0.3).normalize();
+    const origin = new Vector3(HOLE_X + 0.42, 5.55, HOLE_Z - 0.55);
+    const dir = new Vector3(-0.2, -1, 0.28).normalize();
 
-    this.shaft = new SpotLight('voidShaft', origin, dir, 0.62, 2.2, this.scene);
+    this.shaft = new SpotLight('voidShaft', origin, dir, 0.66, 1.5, this.scene);
     this.shaft.diffuse = C.moonlight;
     this.shaft.specular = C.moonlight.scale(0.7);
-    this.shaft.intensity = 620;
-    this.shaft.range = 16;
-    this.shaft.innerAngle = 0.22;
+    // The headlamp is 42 at a metre; this has to travel five before it reaches
+    // anything, so it needs an order more to hold its half of the frame.
+    this.shaft.intensity = 820;
+    this.shaft.range = 18;
+    this.shaft.innerAngle = 0.2;
     this.shaft.falloffType = SpotLight.FALLOFF_PHYSICAL;
     this.shaft.shadowEnabled = false;
+
+    // The visible column. Additive, fresnel-softened at the silhouette so it
+    // has no cylinder edge, and faded out at the bottom by a gradient — a
+    // hard-edged cone is worse than no cone at all.
+    // Built as a tube along an explicit path rather than a rotated cylinder:
+    // orienting a primitive by Euler angles is exactly the class of mistake
+    // that does not show up until the capture comes back pointing at the
+    // ceiling, and a path has no orientation to get wrong.
+    const SEGS = 10;
+    const LEN = 6.4;
+    const R0 = 0.3;
+    const R1 = 1.15;
+    const path: Vector3[] = [];
+    for (let i = 0; i <= SEGS; i++) path.push(origin.add(dir.scale((i / SEGS) * LEN)));
+    const cone = MeshBuilder.CreateTube(
+      'voidShaftCone',
+      {
+        path,
+        radiusFunction: (i: number) => R0 + (i / SEGS) * (R1 - R0),
+        tessellation: 20,
+        cap: Mesh.NO_CAP,
+        sideOrientation: Mesh.DOUBLESIDE,
+      },
+      this.scene,
+    );
+    this.beamOrigin = origin;
+    this.beamDir = dir;
+    this.beamLen = LEN;
+    this.beamR0 = R0;
+    this.beamR1 = R1;
+    this.beam = cone;
+    const cm = new StandardMaterial('shaftBeam', this.scene);
+    cm.emissiveColor = C.moonlight.scale(0.5);
+    cm.diffuseColor = Color3.Black();
+    cm.specularColor = Color3.Black();
+    cm.disableLighting = true;
+    cm.backFaceCulling = false;
+    cm.alpha = 0.1;
+    cm.alphaMode = Constants.ALPHA_ADD;
+    cm.opacityTexture = makeBeamGradient(this.scene);
+    cm.opacityFresnelParameters = beamFresnel();
+    cone.material = cm;
+    cone.isPickable = false;
+    cone.receiveShadows = false;
+    cone.freezeWorldMatrix();
+    this.meshes.push(cone);
+
+    // A little bounce inside the sub-floor void so there is visibly a room up
+    // there rather than a lamp in a box.
+    const above = new PointLight('voidAbove', new Vector3(HOLE_X, 5.0, HOLE_Z), this.scene);
+    above.diffuse = C.moonlight;
+    above.specular = Color3.Black();
+    above.intensity = 34;
+    above.range = 4.2;
+    this.above = above;
 
     // The sodium bleed through the ventilator, ninety metres and one wall away
     // from the nearest working lamp. Deliberately almost nothing.
     this.bleed = new PointLight('voidBleed', new Vector3(HALF_W + 0.5, 1.48, 19.3), this.scene);
     this.bleed.diffuse = C.sodiumVapour;
     this.bleed.specular = C.sodiumVapour.scale(0.4);
-    this.bleed.intensity = 26;
+    this.bleed.intensity = 18;
     this.bleed.range = 8;
 
     // Dust in the shaft. In a sealed chamber this is the only thing that
     // moves, and it moves because a draught moves it — nothing else.
     if (p.particleBudget > 200) {
-      const ps = new ParticleSystem('voidDust', Math.min(p.particleBudget, 1200), this.scene);
+      const ps = new ParticleSystem('voidDust', Math.min(p.particleBudget, 900), this.scene);
       ps.particleTexture = makeDotTexture(this.scene);
-      ps.emitter = new Vector3(HOLE_X, 3.0, HOLE_Z + 0.3);
-      ps.minEmitBox = new Vector3(-0.95, -2.9, -1.1);
-      ps.maxEmitBox = new Vector3(0.95, 2.5, 1.1);
-      ps.color1 = new Color4(0.72, 0.8, 0.95, 0.34);
-      ps.color2 = new Color4(0.86, 0.9, 1.0, 0.16);
-      ps.colorDead = new Color4(0.7, 0.78, 0.95, 0);
-      ps.minSize = 0.008;
-      ps.maxSize = 0.03;
+      ps.emitter = new Vector3(HOLE_X - 0.1, 2.6, HOLE_Z + 0.5);
+      ps.minEmitBox = new Vector3(-0.85, -2.5, -1.0);
+      ps.maxEmitBox = new Vector3(0.85, 2.9, 1.0);
+      ps.color1 = new Color4(0.72, 0.8, 0.96, 0.4);
+      ps.color2 = new Color4(0.58, 0.68, 0.9, 0.18);
+      ps.colorDead = new Color4(0.58, 0.68, 0.9, 0);
+      ps.minSize = 0.006;
+      ps.maxSize = 0.022;
       ps.minLifeTime = 8;
       ps.maxLifeTime = 18;
-      ps.emitRate = 70;
+      ps.emitRate = 150;
       ps.blendMode = ParticleSystem.BLENDMODE_ADD;
       ps.gravity = new Vector3(0, -0.02, 0);
       ps.direction1 = new Vector3(-0.03, -0.05, -0.03);
@@ -1042,7 +1295,7 @@ export class TheVoid extends GameScene {
     mat.ambientColor = new Color3(1, 1, 1);
     mat.environmentIntensity = 0.5;
     mat.enableSpecularAntiAliasing = true;
-    mat.maxSimultaneousLights = 6;
+    mat.maxSimultaneousLights = 8;
     mat.backFaceCulling = true;
     // Nudge toward the camera so the 6 mm physical offset never z-fights the
     // block face it is carved into.
@@ -1059,19 +1312,20 @@ export class TheVoid extends GameScene {
       [order[i], order[j]] = [order[j], order[i]];
     }
 
-    // Weighted selection: the niches get carved far more heavily than the open
-    // wall, because that is where a man had nothing else to do.
-    const pool = this.faces.filter((f) => rng() < 0.055 * f.weight);
+    // Weighted selection.
+    const pool = this.faces.filter((f) => f.forced || rng() < Math.min(0.85, 0.26 * f.weight));
     const batch = new GeoBatch();
     let placed = 0;
 
     for (const f of pool) {
-      if (placed >= 96) break;
+      if (placed >= 140) break;
       const cell = order[placed % CELLS];
-      const maxW = Math.min(f.w * 0.86, 0.5);
-      const maxH = Math.min(f.h * 0.8, 0.5);
-      const size = Math.min(maxW, maxH);
-      if (size < 0.16) continue;
+      const maxW = Math.min(f.w * 0.86, 0.44);
+      const maxH = Math.min(f.h * 0.82, 0.44);
+      // Not every hand had the same reach or the same nerve — a few are
+      // deliberately small enough that you have to lean in.
+      const size = Math.min(maxW, maxH) * (0.66 + rng() * 0.34);
+      if (size < 0.14) continue;
 
       // Plane's own front normal is -Z; rotate it onto the wall normal.
       const yaw = f.nx < 0 ? Math.PI / 2 : f.nx > 0 ? -Math.PI / 2 : f.nz < 0 ? 0 : Math.PI;
@@ -1116,16 +1370,22 @@ export class TheVoid extends GameScene {
     });
   }
 
-  /** Common brick for the seal — the one non-limestone surface in the room. */
+  /**
+   * Common brick for the seal — the one non-limestone surface in the room.
+   *
+   * Kept dark and desaturated on purpose: a bright orange brick reads as a
+   * modern machine product and undercuts the whole point of the object, which
+   * is that somebody closed this in a hurry with whatever was to hand.
+   */
   private buildBrickMaterial(): PBRMaterial {
     const m = new PBRMaterial('sealBrick', this.scene);
-    m.albedoColor = srgb('#6a4436');
+    m.albedoColor = srgb('#65483c');
     m.metallic = 0;
     m.roughness = 0.93;
     m.ambientColor = new Color3(1, 1, 1);
     m.environmentIntensity = 0.4;
     m.enableSpecularAntiAliasing = true;
-    m.maxSimultaneousLights = 6;
+    m.maxSimultaneousLights = 8;
     m.freeze();
     return m;
   }
@@ -1135,7 +1395,25 @@ export class TheVoid extends GameScene {
     // The shaft breathes very slightly — cloud passing a window four floors
     // up, nothing more. If it reads as an effect it is too strong.
     if (this.shaft) {
-      this.shaft.intensity = 620 * (1 + Math.sin(this.t * 0.21) * 0.045);
+      this.shaft.intensity = 820 * (1 + Math.sin(this.t * 0.21) * 0.045);
+    }
+
+    // Hide the light column whenever the camera is inside it. The player walks
+    // through this beam to reach the rest of the chamber, and a double-sided
+    // additive tube seen from within becomes a set of enormous translucent
+    // facets smeared across the whole frame — which is precisely what one
+    // capture came back showing.
+    const cam = this.scene.activeCamera;
+    if (this.beam && cam) {
+      const rel = cam.globalPosition.subtract(this.beamOrigin);
+      const along = Vector3.Dot(rel, this.beamDir);
+      let inside = false;
+      if (along > -0.6 && along < this.beamLen + 0.6) {
+        const t = Math.max(0, Math.min(1, along / this.beamLen));
+        const radial = rel.subtract(this.beamDir.scale(along)).length();
+        inside = radial < (this.beamR0 + t * (this.beamR1 - this.beamR0)) * 1.5;
+      }
+      if (this.beam.isEnabled() === inside) this.beam.setEnabled(!inside);
     }
   }
 
@@ -1143,6 +1421,7 @@ export class TheVoid extends GameScene {
     this.dust?.dispose();
     this.shaft?.dispose();
     this.bleed?.dispose();
+    this.above?.dispose();
     super.dispose();
   }
 }
@@ -1161,6 +1440,8 @@ interface CarveFace {
   w: number;
   h: number;
   weight: number;
+  /** Always carved, regardless of the dice — used to protect anchor frames. */
+  forced?: boolean;
 }
 
 /** Shared unit-box template. Built once, transformed thousands of times. */
@@ -1689,6 +1970,49 @@ function mulberry(seed: number): () => number {
   };
 }
 
+/**
+ * Vertical fade for the light column: strongest just under the opening, gone
+ * before it reaches the floor. Real shafts are only visible where there is
+ * enough dust in them, and they never end in a hard disc.
+ */
+function makeBeamGradient(scene: Scene): Texture {
+  const w = 8;
+  const h = 128;
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const c = canvas.getContext('2d')!;
+  // Deliberately near-symmetric: which end of the tube v = 0 lands on depends
+  // on the texture's Y convention, and a beam that is soft at both ends reads
+  // correctly either way.
+  // Greyscale, fully opaque, because `getAlphaFromRGB` reads the *luminance*
+  // — a gradient painted in the alpha channel comes back as a flat white
+  // opacity map and the beam gets a hard end.
+  const g = c.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0.0, '#000');
+  g.addColorStop(0.22, '#fff');
+  g.addColorStop(0.62, '#b4b4b4');
+  g.addColorStop(1.0, '#000');
+  c.fillStyle = g;
+  c.fillRect(0, 0, w, h);
+  const t = new Texture(canvas.toDataURL('image/png'), scene, true, false);
+  t.wrapU = Texture.CLAMP_ADDRESSMODE;
+  t.wrapV = Texture.CLAMP_ADDRESSMODE;
+  t.getAlphaFromRGB = true;
+  return t;
+}
+
+/** Kill the beam's alpha at its silhouette so the cylinder has no edge. */
+function beamFresnel(): FresnelParameters {
+  const f = new FresnelParameters();
+  f.isEnabled = true;
+  f.bias = 0.12;
+  f.power = 2.2;
+  f.leftColor = Color3.Black(); // grazing → invisible
+  f.rightColor = Color3.White(); // head-on → full
+  return f;
+}
+
 /** A soft round dot for the dust. Generated, not shipped. */
 function makeDotTexture(scene: Scene): Texture {
   const size = 32;
@@ -1705,5 +2029,3 @@ function makeDotTexture(scene: Scene): Texture {
   t.hasAlpha = true;
   return t;
 }
-
-export { worldUV };

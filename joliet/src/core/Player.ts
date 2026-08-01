@@ -151,14 +151,22 @@ export class Player {
     // Sit it slightly below and left of the eye so the beam and the view are
     // not perfectly coincident — coincident light kills all shadow cueing and
     // makes every surface read flat.
-    l.position = new Vector3(-0.11, -0.09, 0.06);
+    // Pulled well BACK from the eye, not just offset from it. Inverse-square
+    // falloff is brutal at close range: with the emitter at the eye, a wall at
+    // 2.5 m and a wall at 8 m differ by 10x, so any intensity that lights the
+    // far wall blows the near one to pure white. Moving the emitter 1.2 m
+    // behind the head makes those same two walls 3.7 m and 9.2 m from the
+    // source — a 6x ratio instead of 10x — which is the difference between a
+    // readable room and a white hole. It costs nothing and the cone origin is
+    // never visible.
+    l.position = new Vector3(-0.11, -0.09, -1.2);
     l.diffuse = C.headlamp;
     l.specular = C.headlamp;
     // FALLOFF_PHYSICAL is inverse-square, so this is not a 0-1 dial: at 42 the
     // beam delivered ~1.7 at five metres and was invisible against a moon key
     // of 4.6. A bright LED headlamp at arm's length needs three orders more.
-    l.intensity = 900;
-    l.range = 26;
+    l.intensity = 240;
+    l.range = 30;
     l.innerAngle = 0.42;
     l.falloffType = SpotLight.FALLOFF_PHYSICAL;
     l.shadowEnabled = true;
@@ -504,7 +512,7 @@ export class Player {
     // player in the dark is exactly the kind of instant-fail this game avoids.
     const brown = this.battery < 0.2 ? 0.45 + this.battery * 2.75 : 1;
     const flicker = this.battery < 0.12 ? 0.88 + Math.random() * 0.12 : 1;
-    this.headlamp.intensity = 900 * brown * flicker;
+    this.headlamp.intensity = 240 * brown * flicker;
   }
 
   dispose(): void {
