@@ -103,7 +103,10 @@
   height: 64px;
   border-radius: 50%;
   border: 1px solid #c9ad7459;
-  background: #0a0b0c8c;
+  /* Deliberately NOT backdrop-filter: blurring the live WebGL canvas behind
+     four buttons makes the compositor re-read the canvas every frame, which
+     is exactly the cost this whole tier is trying to avoid. Flat alpha. */
+  background: #0a0b0cbf;
   color: #e8e2d4cc;
   font: 600 10px/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   letter-spacing: 0.14em;
@@ -111,7 +114,6 @@
   pointer-events: auto;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(2px);
   transition: background 0.1s ease, transform 0.1s ease;
 }
 .tbtn.on {

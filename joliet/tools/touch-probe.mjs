@@ -225,11 +225,18 @@ const state = () =>
   // Both runs start from the spawn with full stamina and a clear approach, so
   // this measures the response curve rather than whichever wall the earlier
   // tests parked the player against.
+  // setAnchor + releaseAnchor is the only public way to put the yaw back; the
+  // earlier look tests left the player facing somewhere arbitrary. Note the
+  // clone(): Babylon's Vector3.copyFrom reads private _x/_y/_z, so a plain
+  // {x,y,z} literal would silently produce NaN.
   const reset = () =>
     page.evaluate(() => {
       const p = window.__joliet.player;
       const s = window.__joliet.scene.manifest.spawn;
-      p.position.set(s.position[0], s.position[1], s.position[2]);
+      const v = p.position.clone();
+      v.set(s.position[0], s.position[1], s.position[2]);
+      p.setAnchor(v, s.yaw, 0);
+      p.releaseAnchor();
       p.velocity.setAll(0);
       p.stamina = 1;
     });
@@ -242,14 +249,12 @@ const state = () =>
     const t0 = await state();
     await page.waitForTimeout(1000);
     const t1 = await state();
+    const sprintClass = await page.evaluate(() =>
+      document.querySelector('.touch-stick').classList.contains('sprint'),
+    );
     await touch('touchEnd', []);
     await page.waitForTimeout(120);
-    return {
-      speed: Math.hypot(t1.pos.x - t0.pos.x, t1.pos.z - t0.pos.z),
-      sprintClass: await page.evaluate(() =>
-        document.querySelector('.touch-stick').classList.contains('sprint'),
-      ),
-    };
+    return { speed: Math.hypot(t1.pos.x - t0.pos.x, t1.pos.z - t0.pos.z), sprintClass };
   };
 
   // 48/58 = 0.83 of the radius: hard over, but under the sprint threshold.
@@ -260,10 +265,15 @@ const state = () =>
     !walk.sprintClass && run.sprintClass,
     `83% deflection sprinting=${walk.sprintClass}, 100%=${run.sprintClass}`,
   );
+  // Ratio, not absolute m/s: this harness is SwiftShader, frames run well over
+  // the renderer's 0.1 s dt clamp, so sim time advances at roughly half
+  // wall-clock and every absolute speed here reads low by that factor. The
+  // walk:sprint relationship is unaffected — 1.9 m/s × 0.63 (83% deflection
+  // through the squared curve) vs 4.4 m/s is a ~3.7× step in theory.
   check(
     'pushing past the rim actually runs',
-    run.speed > walk.speed * 1.6 && run.speed > 2.5,
-    `walk ${walk.speed.toFixed(2)} m/s → sprint ${run.speed.toFixed(2)} m/s`,
+    Number.isFinite(walk.speed) && Number.isFinite(run.speed) && run.speed > walk.speed * 2,
+    `${walk.speed.toFixed(2)} → ${run.speed.toFixed(2)} m/s wall-clock (${(run.speed / walk.speed).toFixed(1)}×; absolutes read ~half under the dt clamp)`,
   );
 }
 
@@ -290,7 +300,18 @@ const state = () =>
   check('crouch button toggles stance', stance === 'crouch', `stance=${stance}`);
 }
 
-await page.waitForTimeout(600);
+// Back to the spawn with the headlamp on, so the capture shows the controls
+// over a real frame of the game rather than a wall the tests parked against.
+await page.evaluate(() => {
+  const p = window.__joliet.player;
+  const s = window.__joliet.scene.manifest.spawn;
+  const v = p.position.clone();
+  v.set(s.position[0], s.position[1], s.position[2]);
+  p.setAnchor(v, s.yaw, 0);
+  p.releaseAnchor();
+  if (!p.headlamp.isEnabled()) p.toggleHeadlamp();
+});
+await page.waitForTimeout(1200);
 await page.screenshot({ path: path.join(SHOTS, 'touch-390x844.png') });
 
 // Idle shot with a finger down, so the stick is visible in the capture.

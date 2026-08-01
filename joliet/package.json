@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "shots": "node tools/shots.mjs",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "stage": "npm run build && node tools/stage.mjs",
+    "probe": "node tools/probe-build.mjs",
+    "calibrate": "node tools/light-calibrate.mjs"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
