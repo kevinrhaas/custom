@@ -2,7 +2,7 @@
 
 An honest per-area assessment. Written to be acted on, not to flatter.
 
-**Last updated:** 2026-08-01
+**Last updated:** 2026-08-01 (revised)
 
 ---
 
@@ -14,7 +14,7 @@ dossier, a frozen material library, and a screenshot/performance harness. It
 builds, it runs with zero page errors, and you can walk around both.
 Frame rate on real hardware is **unmeasured** — see the bottom of this file.
 
-**What does not exist:** the other seven scenes, any transition between the two
+**What does not exist:** the other seven scenes, any transition between the ones
 that do exist, and the interaction, save and role-ability systems. The game is a
 **look-dev vertical slice**, not a 30–45 minute experience.
 
@@ -46,7 +46,9 @@ system exists.
 | Interaction / save / journal | **Not started.** | 0/10 |
 | Role abilities | **Not started.** Designed in `DESIGN.md`, no code. | 0/10 |
 | Docs | Done: research, design, art bible, liberties, quality log, backlog, assets. | 8/10 |
-| Accessibility | Settings and plumbing done (subtitles, reduced-motion, remapping, adjustable bob/blur/grain). Untested with any real content. | 5/10 |
+| Accessibility | **Was scored 5/10 for three days and was really 0/10.** The settings store was complete from the first commit and *nothing could reach it* — every option needed a hand-edited localStorage entry, and pause silently froze the frame with no overlay. There is now a real pause menu (native controls, 44px targets, keyboard reachable, stacked under 560px). Still untested with a screen reader and with no real dialogue to caption. | 6/10 |
+| Touch / mobile | Twin-stick layer: floating move stick, drag-to-look, sprint as a stick gesture, safe-area thumb cluster, multi-touch by pointerId. Boots and plays. **Nobody has held it** — every tuning constant is a reasoned guess, and nothing iOS-specific is verified. | 5/10 |
+| Pause / settings UI | Built. Camera, comfort, accessibility, assist, graphics, audio. | 7/10 |
 
 ## The critic loop — what actually happened
 

@@ -369,7 +369,10 @@ export class Renderer {
       env.name = 'env';
       env.gammaSpace = false;
       this.scene.environmentTexture = env;
-      this.scene.environmentIntensity = intensity;
+      // Honour a trim the scene set during build() — this runs afterwards and
+      // would otherwise silently overwrite it.
+      this.scene.environmentIntensity =
+        this.pendingEnvTrim !== null ? intensity * this.pendingEnvTrim : intensity;
 
       await new Promise<void>((resolve) => {
         if (env.isReady()) return resolve();
@@ -397,12 +400,71 @@ export class Renderer {
    * camera move — teleport, anchor change, scene load.
    */
   resetTAA(): void {
-    if (!this.taa) return;
-    // Re-assigning samples re-initialises the accumulation history.
+    if (!this.taa || !this.camera) return;
+    // Re-assigning `samples` does NOT clear the accumulation buffer — that was
+    // the assumption behind the first fix and it was wrong, which is why
+    // ghosting kept reappearing at `high` in every scene built since. The only
+    // reliable reset is to tear the pipeline down and build a new one.
     const n = this.taa.samples;
-    this.taa.samples = 1;
-    this.taa.samples = n;
+    const f = this.taa.factor;
+    try {
+      this.taa.dispose();
+    } catch {
+      /* already gone */
+    }
+    this.taa = undefined;
+    try {
+      const taa = new TAARenderingPipeline('taa', this.scene, [this.camera]);
+      taa.samples = n;
+      taa.factor = f;
+      taa.disableOnCameraMove = true;
+      this.taa = taa;
+    } catch {
+      // If it will not rebuild, running without TAA is far better than running
+      // with a permanently smeared frame.
+      this.pipeline.fxaaEnabled = true;
+    }
   }
+
+  /**
+   * Capture mode: suppress every temporal effect.
+   *
+   * The shot harness teleports the camera between anchors. Camera-based motion
+   * blur derives velocity from the previous view matrix, so a teleport reads as
+   * an enormous move and smears the frame radially. Rebuilding the post-process
+   * makes it *worse* — a fresh one has no previous matrix at all, so its first
+   * frames are pure garbage velocity.
+   *
+   * There is nothing to fix in the effect: during real play the camera moves
+   * continuously and the blur is correct. It simply must not run while
+   * capturing stills. Scenes and gameplay never call this.
+   */
+  setCaptureMode(on: boolean): void {
+    if (this.motionBlur) this.motionBlur.motionStrength = on ? 0 : 0.55 * settings.get().motionBlur;
+  }
+
+  /**
+   * Per-scene lighting trim.
+   *
+   * The rig is calibrated for exteriors against limestone. Interiors with pale
+   * institutional albedo (cream block is ~2.5x limestone) flood: the hemispheric
+   * fill plus IBL alone leave a corridor fully readable with the headlamp off,
+   * which is the opposite of the intent. Scenes had no lever for this short of
+   * editing core or fighting `loadEnvironment`, which runs after `build()`.
+   *
+   * Call from a scene's `build()`. Values are multipliers on the defaults.
+   */
+  setLightingTrim(o: { fill?: number; environment?: number; fog?: number } = {}): void {
+    if (o.fill !== undefined) this.sky.intensity = 0.95 * o.fill;
+    if (o.environment !== undefined) {
+      this.scene.environmentIntensity = 0.75 * o.environment;
+      this.pendingEnvTrim = o.environment;
+    }
+    if (o.fog !== undefined) this.scene.fogDensity = 0.0125 * o.fog;
+  }
+
+  /** Remembered so `loadEnvironment` cannot stomp a scene's trim. */
+  private pendingEnvTrim: number | null = null;
 
   start(onFrame?: (dtSeconds: number) => void): void {
     this.engine.runRenderLoop(() => {

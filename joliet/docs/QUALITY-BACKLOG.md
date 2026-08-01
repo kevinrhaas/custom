@@ -7,6 +7,23 @@ Each item: what's wrong, what it would cost, and how much it matters.
 
 ---
 
+## Accessibility had no interface — a lesson, not just a bug
+
+`Settings.ts` shipped a complete accessibility store in the first commit and
+**nothing could reach any of it** for the whole build. Options were changeable
+only by hand-editing localStorage; pause froze the frame with no overlay.
+
+STATUS.md scored this 5/10 the entire time, on the grounds that the plumbing
+existed. That score is why it survived: a partial credit made it look handled.
+Shipping accessibility options with no UI is worse than shipping none, because
+it reads as done to everyone including the person who wrote it.
+
+**Fixed** — `src/ui/PauseMenu.ts`, plus a pause button on the touch layer.
+
+**Still open:** no screen-reader pass, no remapping UI (the `Input.rebind` API
+exists and has no interface either — the same failure, one layer down), and no
+real dialogue yet to test subtitles against.
+
 ## Mobile — boots and plays; feel unverified
 
 **Was:** a fatal `createMultipleRenderTarget is not a function` on iOS Chrome,

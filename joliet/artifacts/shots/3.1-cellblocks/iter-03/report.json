@@ -1,0 +1,48 @@
+{
+  "scene": "3.1-cellblocks",
+  "iteration": 3,
+  "quality": "medium",
+  "anchors": [
+    {
+      "name": "a1-down-the-hall",
+      "note": "THE frame, and the one the scene exists for. Ground floor, mid-corridor, straight down 58 m of gallery: four tiers of railing and grating converging on the vanishing point, moonlight bars from the window bays raking left-to-right across foot-polished concrete and up the cell fronts, the first stair flight as a dark foreground silhouette in the light well. If the perspective and that long floor specular do not carry this frame, nothing else in the scene matters.",
+      "fpsMedian": 35,
+      "fpsMin": 35,
+      "activeMeshes": 64,
+      "triangles": 249912
+    },
+    {
+      "name": "a2-tier-three",
+      "note": "Standing on the third tier looking down the run. Tests the steel bar grating underfoot (alpha-tested open grid, tagged surface:grating), the cantilever brackets and the railing line receding, the cell-front rhythm at eye level, and the delaminating paint hanging from the fourth-tier soffit overhead.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 63,
+      "triangles": 249840
+    },
+    {
+      "name": "a3-cell-fronts",
+      "note": "Oblique on the ground-floor cell fronts from 1.6 m. Tests steel.cellFront — oxide-brown enamel over heavy orange rust bloom — the bar spacing and horizontal ties, the stencilled white cell numbers on the header band, and the lever/rack gang mechanism running the length of the run at hand height with a dog on every door.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 53,
+      "triangles": 233133
+    },
+    {
+      "name": "a4-open-cell",
+      "note": "Inside an open cell, looking at the back wall from just inside the door. Tests the paint stratigraphy (cream over mustard over blue-grey over sage over bare block), the stainless combination toilet/sink unit and the small steel wall desk and stool secured to the floor, at the 1–2 m range the headlamp is calibrated for.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 53,
+      "triangles": 233133
+    },
+    {
+      "name": "a5-top-tier",
+      "note": "Fourth tier, looking down the run and slightly up into the ceiling. Tests the catastrophic ceiling paint delamination — sheets curling down off the slab and littering the grating below — the exposed transverse beams and the dead recessed amber light boxes, and the heads of the upper window bays with the moon behind them.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 63,
+      "triangles": 249840
+    }
+  ],
+  "pageErrors": []
+}
