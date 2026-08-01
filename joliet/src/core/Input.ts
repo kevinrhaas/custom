@@ -47,7 +47,7 @@ const DEFAULT_BINDINGS: Record<Action, Binding> = {
   flashlight: { keys: ['KeyF'], pad: 3 },
   scan: { keys: ['KeyQ'], pad: 4 },
   ability: { keys: ['KeyR'], pad: 5 },
-  journal: { keys: ['Tab'], pad: 8 },
+  journal: { keys: ['KeyJ'], pad: 8 },
   help: { keys: ['KeyH'], pad: 6 },
   leanLeft: { keys: ['KeyQ'] },
   leanRight: { keys: ['KeyE'] },

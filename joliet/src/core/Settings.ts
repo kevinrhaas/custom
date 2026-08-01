@@ -46,6 +46,10 @@ export interface Settings {
   moveSpeedScale: number;
   /** Keep the control reminder on screen. */
   showControlsHelp: boolean;
+  /** Keep the current objective on screen. */
+  showObjective: boolean;
+  /** Offer a hint after the player has been stuck this long. 0 = never. */
+  hintsEnabled: boolean;
 
   // Assist
   /** Surfaces a contextual hint after N seconds of no progress. */
@@ -84,6 +88,8 @@ export const DEFAULTS: Settings = {
 
   moveSpeedScale: 1.25,
   showControlsHelp: true,
+  showObjective: true,
+  hintsEnabled: true,
   hintDelaySeconds: 90,
   traversalAssist: true,
 };

@@ -49,11 +49,12 @@ export const SCENE_CHOICES: SceneChoice[] = [
     key: 'void',
     title: 'The Void',
     chapter: 'Act III · 03:55',
-    objective: 'Read the walls.',
+    objective: 'Read the names cut into the walls.',
     blurb:
       'Beneath the east block, behind a wall somebody bricked up and then removed from ' +
       'the record. Hand-cut stone, quarried by the men who were kept above it. ' +
-      'There is nothing down here that will hurt you either. Take your time.',
+      'Nothing down here will hurt you. Read the carvings — that is the whole of ' +
+      'it, and there is no exit yet: Esc takes you back to the menu.',
   },
 ];
 

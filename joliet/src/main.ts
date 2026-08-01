@@ -15,6 +15,8 @@ import { GameScene } from './scenes/SceneBase';
 import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
 import { mountTitleScreen, showObjective } from './ui/TitleScreen';
 import { mountControlsHelp, toggleControlsHelp } from './ui/ControlsHelp';
+import { mountObjective, toggleObjective } from './ui/Objective';
+import { mountHints, updateHints } from './ui/Hints';
 import {
   mountHud,
   subtitle,
@@ -200,6 +202,8 @@ async function boot(): Promise<void> {
   await renderer.scene.whenReadyAsync();
   hideLoader();
   mountControlsHelp();
+  mountObjective(requested);
+  mountHints(requested);
   showObjective(requested);
   touchControls?.setVisible(true);
 
@@ -224,8 +228,10 @@ async function boot(): Promise<void> {
     if (paused) return;
     if (input.pressed('flashlight')) player.toggleHeadlamp();
     if (input.pressed('help')) toggleControlsHelp();
+    if (input.pressed('journal')) toggleObjective();
     player.update(dt);
     scene.update(dt, player);
+    updateHints(dt, player);
   });
 
   window.__joliet = {
