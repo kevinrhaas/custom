@@ -81,8 +81,11 @@ export class PerimeterApproach extends GameScene {
   private static readonly TRENCH_APERTURE = {
     minX: 12.15,
     maxX: 14.85,
-    minZ: -8.5,
-    maxZ: 8.5,
+    // The trench floor spans z -8..8. The aperture must NOT exceed it, or the
+    // overhang is an open hole into nothing — which is exactly what a player
+    // fell through.
+    minZ: -7.6,
+    maxZ: 7.6,
   };
 
   async build(): Promise<void> {

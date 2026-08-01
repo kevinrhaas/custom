@@ -126,7 +126,7 @@ function desktopControlsHtml(): string {
   const rows: [string, string][] = [
     ['W A S D', 'Move'],
     ['Mouse', 'Look'],
-    ['Shift', 'Sprint'],
+    ['Shift', 'Run'],
     ['C', 'Crouch'],
     ['Z', 'Crawl'],
     ['Space', 'Climb / vault'],
@@ -138,7 +138,11 @@ function desktopControlsHtml(): string {
     <ul class="ctrl-list">
       ${rows.map(([k, v]) => `<li><kbd>${k}</kbd><span>${v}</span></li>`).join('')}
     </ul>
-    <p class="ctrl-hint">Click the screen once to capture the mouse. <kbd>Esc</kbd> releases it.</p>`;
+    <p class="ctrl-hint">
+      Click the screen once to capture the mouse; <kbd>Esc</kbd> releases it.
+      These stay in the corner while you play — <kbd>H</kbd> hides them.
+      Movement speed is adjustable in <kbd>Esc</kbd> → Pause.
+    </p>`;
 }
 
 function touchControlsHtml(): string {

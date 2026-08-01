@@ -27,6 +27,7 @@ export type Action =
   | 'scan'
   | 'ability'
   | 'journal'
+  | 'help'
   | 'leanLeft'
   | 'leanRight'
   | 'pause';
@@ -47,6 +48,7 @@ const DEFAULT_BINDINGS: Record<Action, Binding> = {
   scan: { keys: ['KeyQ'], pad: 4 },
   ability: { keys: ['KeyR'], pad: 5 },
   journal: { keys: ['Tab'], pad: 8 },
+  help: { keys: ['KeyH'], pad: 6 },
   leanLeft: { keys: ['KeyQ'] },
   leanRight: { keys: ['KeyE'] },
   pause: { keys: ['Escape'], pad: 9 },

@@ -14,8 +14,10 @@ import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
 import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
 import { mountTitleScreen, showObjective } from './ui/TitleScreen';
+import { mountControlsHelp, toggleControlsHelp } from './ui/ControlsHelp';
 import {
   mountHud,
+  subtitle,
   setLoadProgress,
   hideLoader,
   showLoader,
@@ -189,10 +191,15 @@ async function boot(): Promise<void> {
   // the controller's existing hooks rather than polling.
   player.setFootstepHandler((surface, intensity) => audio.footstep(surface, intensity));
   player.setLandHandler((intensity) => audio.land(intensity, player.currentSurface));
+  player.setRecoverHandler(() => {
+    subtitle('', 'You slipped. Put back on solid ground.');
+    audio.land(0.6, 'gravel');
+  });
 
   setLoadProgress(1, 'Ready');
   await renderer.scene.whenReadyAsync();
   hideLoader();
+  mountControlsHelp();
   showObjective(requested);
   touchControls?.setVisible(true);
 
@@ -216,6 +223,7 @@ async function boot(): Promise<void> {
     if (input.pressed('pause')) setPaused(!paused);
     if (paused) return;
     if (input.pressed('flashlight')) player.toggleHeadlamp();
+    if (input.pressed('help')) toggleControlsHelp();
     player.update(dt);
     scene.update(dt, player);
   });

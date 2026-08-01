@@ -421,3 +421,26 @@ html, body {
 .obj-chapter { font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--dim); }
 .obj-title { font-size:1.3rem; font-weight:640; letter-spacing:.04em; }
 .obj-line { font-size:.92rem; color:var(--sodium); }
+
+/* -------------------------------------------------------- controls help -- */
+/* Bottom-left, quiet, always there. The moment you need the controls is three
+   minutes into a dark corridor, not on the title screen. */
+.ctrlhelp {
+  position: absolute;
+  left: calc(env(safe-area-inset-left, 0px) + 1rem);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+  opacity: .62;
+  transition: opacity .25s ease;
+}
+.ctrlhelp.off { display: none; }
+.ctrlhelp:hover { opacity: 1; }
+.ctrlhelp ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .22rem; }
+.ctrlhelp li { display: flex; align-items: center; gap: .55rem; font-size: .76rem; color: #d3ccbe; }
+.ctrlhelp kbd {
+  flex: 0 0 auto; min-width: 4.2em; padding: .1em .4em; text-align: center;
+  background: #0b0d10c4; border: 1px solid #ffffff26; border-radius: 3px;
+  font: 600 .68rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--paper);
+}
+.ctrlhelp span { text-shadow: 0 1px 3px #000; }
+:root[data-contrast="high"] .ctrlhelp { opacity: 1; }
+:root[data-contrast="high"] .ctrlhelp kbd { background: #000; border-color: #fff; }

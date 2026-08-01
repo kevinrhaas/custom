@@ -1,0 +1,64 @@
+{
+  "scene": "2.1-powerhouse",
+  "iteration": 3,
+  "quality": "high",
+  "anchors": [
+    {
+      "name": "a1-boiler-hall",
+      "note": "THE frame, unpowered. From just inside the east entrance, straight west down 11 m of operating floor at three riveted boiler fronts on their brick settings, the grating catwalk crossing at 3.9 m, the steam header and the roof trusses above it, and moonlight through a torn bay of corrugated roof landing on the middle boiler. Tests the warm/cool split (sodium at the door behind, moon from the roof), the corridor perspective, and whether iron-and-brick reads at all with the headlamp as the only near source.",
+      "fpsMedian": 37,
+      "fpsMin": 37,
+      "activeMeshes": 40,
+      "triangles": 228868
+    },
+    {
+      "name": "a2-boiler-front",
+      "note": "Oblique on the middle boiler front from 3.8 m, pitched up to take in the crown. Iteration 1 stood this at 2.2 m and the two furnace doors filled the frame as blown-out discs with no setting, no arch and no valve in shot — near-field blow-out is a known uncalibrated hazard (QUALITY-BACKLOG \"the headlamp works; its falloff was miscalibrated\") and the answer is to stand further back. Tests the cast-iron front plate over the riveted shell head, the furnace and ash doors, the water gauge glass and try-cocks, the segmental brick arch of the setting, and the main stop valve with its spoked handwheel and stencilled numeral.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 40,
+      "triangles": 228868
+    },
+    {
+      "name": "a3-conduits",
+      "note": "THE PUZZLE, in one frame. Both conduit mouths in the blind south wall from 3 m, with the 1901 cast plate over the west duct and the later stencilled No. 1 over the east one. Tests sign legibility at reading distance, the cut-and-capped trays inside the west duct against the continuous run inside the east, the rebuilt machine-made brick around the west mouth against original 1893 brick, and the blind brick face 3.3 m into the duct that says the loud label is wrong.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 37,
+      "triangles": 228776
+    },
+    {
+      "name": "a4-switchboard",
+      "note": "The relay board, unpowered. Four slate panels on a raised base against the east wall from 2.8 m: knife switches on their marble mounts, rheostat handwheels, dead ammeter and voltmeter faces, the open bus-bar cage overhead and the conduit drops into the floor. The second half of the puzzle and the thing the valves feed.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 23,
+      "triangles": 215364
+    },
+    {
+      "name": "a7-dead-end",
+      "note": "Inside the WEST duct — the one the 1901 plate calls No. 1 — crouched, 2.4 m short of where it stops. This is the payoff of the misread and it has to survive being looked at: the cable trays cut back and capped with the conductors sheared and hanging, the tray brackets stopping dead, and a blind face of machine-made rebuild brick across the whole section with fallen rubble against it. Lit by headlamp only, at the range that is calibrated for.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 19,
+      "triangles": 211664
+    },
+    {
+      "name": "a5-hall-lit",
+      "note": "The reward, and deliberately the same pose as a1 so the two are a direct A/B. Powered: the festoon strings across all four truss bays are alight at HEX.incandescent, the boilers go to silhouette, the catwalk grating reads from underneath, and the switchboard pilots are on. If this frame is not obviously the same room with the power on, the reward has not landed.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 40,
+      "triangles": 228868
+    },
+    {
+      "name": "a6-catwalk-lit",
+      "note": "Powered, from the catwalk deck looking north-west along the run at the three stop valves — the objects the puzzle asks you to sequence, and the reason the catwalk exists. Tests the grating underfoot (alpha-tested, surface:grating), the boiler crowns and steam domes, the branch pipes rising into the header, the riveted trusses overhead, and the festoon strands seen from inside their own light rather than under it.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 40,
+      "triangles": 228868
+    }
+  ],
+  "pageErrors": []
+}
