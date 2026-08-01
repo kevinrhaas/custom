@@ -8,6 +8,7 @@ import { TouchControls, isTouchDevice } from './core/TouchControls';
 import { settings } from './core/Settings';
 import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
+import { Cellblocks } from './scenes/Cellblocks';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
 import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
@@ -52,6 +53,12 @@ const SCENES: Record<
     ambience: 'exterior',
     loadingLine: 'Raising the wall',
     make: (s, r, m) => new PerimeterApproach(s, r, m),
+  },
+  cellblocks: {
+    title: 'The Cellblocks',
+    ambience: 'cellblock',
+    loadingLine: 'Racking the doors',
+    make: (s, r, m) => new Cellblocks(s, r, m),
   },
   void: {
     title: 'The Void',
@@ -211,6 +218,9 @@ async function boot(): Promise<void> {
       // A teleport is a discontinuity the temporal filter cannot resolve on
       // its own; without this reset the previous anchor stays smeared across
       // the whole frame.
+      // Suppress temporal effects for the duration of the capture: a teleport
+      // is a discontinuity neither TAA nor motion blur can resolve.
+      renderer.setCaptureMode(true);
       renderer.resetTAA();
       // Let TAA converge and the shadow cascades settle before the capture.
       // Deliberately NOT driven by requestAnimationFrame: headless browsers
