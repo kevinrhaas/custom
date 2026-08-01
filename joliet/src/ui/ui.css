@@ -444,3 +444,10 @@ html, body {
 .ctrlhelp span { text-shadow: 0 1px 3px #000; }
 :root[data-contrast="high"] .ctrlhelp { opacity: 1; }
 :root[data-contrast="high"] .ctrlhelp kbd { background: #000; border-color: #fff; }
+
+/* Capture mode: the shot harness must photograph the world, not the HUD. */
+#ui[data-capture] .ctrlhelp,
+#ui[data-capture] .reticle,
+#ui[data-capture] .objective,
+#ui[data-capture] .subtitles,
+#ui[data-capture] .prompt { display: none !important; }

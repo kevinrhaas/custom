@@ -1916,7 +1916,7 @@ export class Powerhouse extends GameScene {
       // ran straight down the face of the 1901 plate and cut its top line in
       // half, which for the one piece of text the whole puzzle turns on is not
       // a detail. It goes to the side of the head instead.
-      B.steel.box(dx + 0.95, 1.9, Z_S + 0.14, 0.09, 1.6, 0.09);
+      B.steel.box(dx - 0.95, 1.9, Z_S + 0.14, 0.09, 1.6, 0.09);
     }
   }
 
@@ -1970,7 +1970,7 @@ export class Powerhouse extends GameScene {
           const lx = x0 + span * f;
           const ly = yAt(f);
           B.steel.cylY(lx, ly - 0.07, sz, 0.05, 0.11);
-          B.filament.sphere(lx, ly - 0.19, sz, 0.115);
+          B.filament.sphere(lx, ly - 0.17, sz, 0.075);
           B.filament.cylY(lx, ly - 0.12, sz, 0.045, 0.05);
         }
         // Tie-off at the truss.
@@ -2900,25 +2900,31 @@ function makeBrickMaps(
         albedo[idx] = mortar[0] * g * (1 - soot);
         albedo[idx + 1] = mortar[1] * g * (1 - soot);
         albedo[idx + 2] = mortar[2] * g * (1 - soot);
-        height[y * S + x] = late ? 0.72 : 0.4;
+        height[y * S + x] = late ? 0.8 : 0.4;
       } else {
         const b = cols3[(row * (cols + 1) + col) % nBricks];
         albedo[idx] = b[0] * grain * (1 - soot);
         albedo[idx + 1] = b[1] * grain * (1 - soot * 1.08);
         albedo[idx + 2] = b[2] * grain * (1 - soot * 1.12);
         // Arris rounding at the brick edges — a hand-made brick is not a slab.
+        // RELIEF is what made the rebuild brick read as glazed tile, not
+        // colour — three rounds of darkening the albedo changed nothing,
+        // because a deep bevel around every unit with a bright face inside it
+        // IS a tile. A machine-made brick in a flush cement joint is nearly a
+        // flat wall; a hand-made brick in a raked lime joint is not. So the
+        // arris rounding only applies to the 1893 stock, and `late` gets a
+        // shallow, almost planar step.
         const eu = Math.min(inColX - joint, cw - joint - inColX) / 6;
         const ev = Math.min(inRowY - joint, rh - joint - inRowY) / 5;
         const edge = Math.min(1, Math.max(0, Math.min(eu, ev)));
-        height[y * S + x] =
-          depth[(row * (cols + 1) + col) % nBricks] * (late ? 1 : 0.9 + edge * 0.1) * edge +
-          0.5 * (1 - edge);
+        const d = depth[(row * (cols + 1) + col) % nBricks];
+        height[y * S + x] = late ? 0.86 + edge * 0.06 : d * (0.9 + edge * 0.1) * edge + 0.5 * (1 - edge);
       }
       albedo[idx + 3] = 255;
     }
   }
 
-  const normal = heightToNormal(height, S, late ? 5 : 9);
+  const normal = heightToNormal(height, S, late ? 3 : 9);
 
   return {
     albedo: rawTex(scene, albedo, S, `${name}Albedo`, true),

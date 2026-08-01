@@ -921,11 +921,25 @@ export class Cellblocks extends GameScene {
       }
 
       // Fallen paint on the grating — a carpet of it, per the survey photo.
+      //
+      // Placed on the CELL-FRONT half of the walkway only, and never within a
+      // stair opening. Scattering across the full deck width and length put
+      // flakes over the open light well and over the stair voids, where they
+      // hung in mid-air with nothing under them — reported from play as "paper
+      // floating in the air standing still". Debris has to be placed on the
+      // surface it fell onto, not in the volume above it.
       for (let k = 0; k < 90; k++) {
+        const fz = 0.6 + rng() * (L - 1.2);
+        const overStairVoid = STAIRS.some((st) => {
+          const runLen = STAIR_TREADS * STAIR_GOING;
+          return fz > st.z - 1.8 && fz < st.z + runLen + 2.2;
+        });
+        if (overStairVoid) continue;
         B.flakes.box(
-          WELL_X + 0.12 + rng() * (Math.abs(CURB_X - WELL_X) - 0.24),
+          // Inner half of the walkway, hard against the cell fronts.
+          CURB_X - 0.1 - rng() * (Math.abs(CURB_X - WELL_X) * 0.45),
           y + 0.012,
-          0.6 + rng() * (L - 1.2),
+          fz,
           0.05 + rng() * 0.16,
           0.006,
           0.05 + rng() * 0.16,
@@ -1011,6 +1025,12 @@ export class Cellblocks extends GameScene {
       const landX = (WALL_X + WELL_X) / 2 - 0.01;
       B.grate.box(landX, yBase + TIER_H - 0.03, lz0 + 0.7, landW, 0.06, 1.4);
       B.catwalk.box(landX, yBase + TIER_H - 0.16, lz0 + 0.7, landW, 0.2, 0.12);
+      // Foot landing: the deck you step onto to reach this flight. Drawn as
+      // grating to match, and it is what makes the route legible — a flight
+      // whose base floats in an open well reads as "stairs that go nowhere".
+      B.grate.box(landX, yBase - 0.03, s.z - 0.9, landW, 0.06, 2.2);
+      B.catwalk.box(landX, yBase - 0.16, s.z - 0.9, landW, 0.2, 0.12);
+
       // Landing guard on the far side.
       B.catwalk.box(WELL_X + 0.04, yBase + TIER_H + 0.55, lz0 + 1.36, 0.05, 1.1, 0.05);
       for (const ry of [1.08, 0.56]) {
@@ -1369,6 +1389,91 @@ export class Cellblocks extends GameScene {
       ramp.material = null;
       ctx.register(ramp, { collide: true, cast: false, surface: 'grating' });
     }
+
+    // Landings. These were DRAWN but never given a collider, so climbing a
+    // flight put you on a ramp that simply ended: you stepped off the top into
+    // the open light well and fell. Reported from play as "stairs that don't
+    // connect", which is exactly what it was.
+    //
+    // The collider spans the full well width and laps a little past the landing
+    // both ways, so the join from ramp to landing to deck is continuous with no
+    // lip for the step-up probe to catch on.
+    for (const s of STAIRS) {
+      const runLen = STAIR_TREADS * STAIR_GOING;
+      const lz0 = s.z + runLen;
+      const landW = Math.abs(WALL_X - WELL_X);
+      const landX = (WALL_X + WELL_X) / 2;
+      invisible(
+        `cbLanding${s.from}`,
+        landX,
+        s.from * TIER_H + TIER_H - 0.13,
+        lz0 + 0.7,
+        landW,
+        0.22,
+        1.8,
+      );
+      // And a short bridge from the landing onto the tier walkway, so there is
+      // never a gap between the two even if their edges do not quite meet.
+      invisible(
+        `cbLandBridge${s.from}`,
+        WELL_X + 0.5,
+        s.from * TIER_H + TIER_H - 0.13,
+        lz0 + 0.7,
+        1.2,
+        0.22,
+        1.8,
+      );
+    }
+
+    // Cell floors. The floors were DRAWN in the batch but the collision pass
+    // never gave the open cells a floor collider, so walking through a cell
+    // door dropped you straight out of the world. Reported from play twice.
+    for (const i of OPEN_CELLS) {
+      const zc = CELL_Z0 + (i + 0.5) * CELL_PITCH;
+      invisible(
+        `cbCellFloor${i}`,
+        0.3 + CELL_DEPTH / 2,
+        0.02,
+        zc,
+        CELL_DEPTH + 0.4,
+        0.3,
+        CELL_PITCH,
+      );
+    }
+
+    // Bottom landings. Each flight had a landing at its TOP but nothing at its
+    // base, so walking off the tier walkway toward the next flight stepped
+    // straight into the open light well. Verified by tools/traverse-probe.mjs:
+    // flight 1 climbed, flight 2 dropped the player 3.2 m.
+    for (const s of STAIRS) {
+      const landW = Math.abs(WALL_X - WELL_X);
+      const landX = (WALL_X + WELL_X) / 2;
+      invisible(
+        `cbFootLanding${s.from}`,
+        landX,
+        s.from * TIER_H - 0.13,
+        s.z - 0.9,
+        landW,
+        0.22,
+        2.2,
+      );
+      invisible(
+        `cbFootBridge${s.from}`,
+        WELL_X + 0.5,
+        s.from * TIER_H - 0.13,
+        s.z - 0.9,
+        1.2,
+        0.22,
+        2.2,
+      );
+    }
+
+    // A single safety floor spanning the whole footprint, 0.5 m below grade.
+    // Two separate holes have now dropped players out of this scene, both in
+    // geometry that photographed correctly. Rather than keep finding them one
+    // report at a time, nothing in the building sits below this plane, so it
+    // catches every gap that exists and every gap not yet found.
+    invisible('cbSafetyFloor', 0.3, -0.55, L / 2, 26, 0.6, L + 6);
 
     // Ceiling, so nothing can be climbed out through the roof.
     invisible('cbCeilCol', (WALL_X + 0.3) / 2, CEIL_Y + 0.4, L / 2, 5, 0.5, L + 2);
