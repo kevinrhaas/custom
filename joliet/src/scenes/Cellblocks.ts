@@ -150,6 +150,29 @@ const STAIRS: { from: number; z: number }[] = [
   { from: 2, z: 43.6 },
 ];
 const STAIR_W = 1.12;
+
+/**
+ * Where a tier's railing must open, in z.
+ *
+ * TWO openings per tier: where a flight ARRIVES on it, and where the next
+ * flight DEPARTS from it. Only the arrival was modelled, so a player who
+ * climbed to a tier met an unbroken railing between them and the stairs
+ * onward.
+ *
+ * Shared by the visible railing and the collision railing deliberately — they
+ * each had their own copy, they drifted, and a barrier you can see through but
+ * not walk through is the worst version of this bug.
+ */
+function stairGaps(tier: number): [number, number][] {
+  const run = STAIR_TREADS * STAIR_GOING;
+  const arrive = STAIRS.filter((s) => s.from + 1 === tier).map(
+    (s) => [s.z + run - 0.3, s.z + run + 1.7] as [number, number],
+  );
+  const depart = STAIRS.filter((s) => s.from === tier).map(
+    (s) => [s.z - 2.1, s.z + 0.4] as [number, number],
+  );
+  return [...arrive, ...depart].sort((a, b) => a[0] - b[0]);
+}
 const STAIR_TREADS = 14;
 const STAIR_GOING = 0.27;
 
@@ -896,9 +919,13 @@ export class Cellblocks extends GameScene {
       // The railing. Posts, top rail, mid rail, toe plate — and gaps where a
       // stair lands, because a railing across a stair head is a level-design
       // tell of the first order.
-      const gaps = STAIRS.filter((s) => s.from + 1 === t).map(
-        (s) => [s.z + STAIR_TREADS * STAIR_GOING - 0.3, s.z + STAIR_TREADS * STAIR_GOING + 1.7] as [number, number],
-      );
+      // Two openings per tier, not one. The ARRIVAL gap where a flight lands
+      // on this tier, and the DEPARTURE gap where the next flight leaves it —
+      // the second was missing, so a player who climbed to a tier found an
+      // unbroken railing between them and the stairs onward. Reported as
+      // "I see a railing here but no way to get to the landing", which is
+      // exactly what it was.
+      const gaps = stairGaps(t);
       const inGap = (z: number): boolean => gaps.some(([a, b]) => z > a && z < b);
 
       const postPitch = 1.6;
@@ -1357,13 +1384,12 @@ export class Cellblocks extends GameScene {
     // Gallery railings.
     for (let t = 1; t < TIERS; t++) {
       const y = t * TIER_H;
-      const gaps = STAIRS.filter((s) => s.from + 1 === t).map(
-        (s) =>
-          [
-            s.z + STAIR_TREADS * STAIR_GOING - 0.3,
-            s.z + STAIR_TREADS * STAIR_GOING + 1.7,
-          ] as [number, number],
-      );
+      // MUST match the visual railing's openings exactly. The collision pass
+      // kept its own copy of this and only knew about arrival gaps, so even
+      // once the visible railing opened at a departure the invisible barrier
+      // was still there — the worst kind of bug, because the way through looks
+      // open and simply is not.
+      const gaps = stairGaps(t);
       const bounds = [0.2, ...gaps.flat(), L - 0.2].sort((a, b) => a - b);
       for (let s = 0; s < bounds.length - 1; s += 2) {
         const z0 = bounds[s];
