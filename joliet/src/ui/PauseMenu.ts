@@ -37,6 +37,8 @@ const ROWS: Row[] = [
     hint: 'Scales walking, crouching and running together.',
   },
   { kind: 'toggle', key: 'showControlsHelp', label: 'Show controls on screen', hint: 'Or press H.' },
+  { kind: 'toggle', key: 'showObjective', label: 'Show objective on screen', hint: 'Or press J.' },
+  { kind: 'toggle', key: 'hintsEnabled', label: 'Offer hints when stuck', hint: 'After the delay set under Assist.' },
 
   { kind: 'heading', label: 'Comfort' },
   {
@@ -144,7 +146,10 @@ export function mountPauseMenu(resume: () => void): void {
     <div class="pause-panel">
       <header class="pause-head">
         <h2>Paused</h2>
-        <button type="button" class="pause-resume" id="pause-resume">Resume</button>
+        <div class="pause-actions">
+          <button type="button" class="pause-menu-btn" id="pause-menu">Back to menu</button>
+          <button type="button" class="pause-resume" id="pause-resume">Resume</button>
+        </div>
       </header>
       <div class="pause-body">${ROWS.map(renderRow).join('')}</div>
       <footer class="pause-foot">
@@ -155,6 +160,12 @@ export function mountPauseMenu(resume: () => void): void {
   ui.appendChild(root);
 
   root.querySelector('#pause-resume')?.addEventListener('click', () => onResume?.());
+  // There was no way out of a scene at all — you picked a location and that was
+  // where you lived. A full reload is the honest implementation until there is
+  // a scene-teardown path; it is fast because everything is generated.
+  root.querySelector('#pause-menu')?.addEventListener('click', () => {
+    location.href = location.pathname;
+  });
   root.querySelector('#pause-reset')?.addEventListener('click', () => {
     settings.reset();
     syncInputs();

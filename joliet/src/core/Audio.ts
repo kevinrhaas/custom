@@ -62,14 +62,14 @@ interface SurfaceProfile {
  * the upper tier galleries are steel bar grating, which rings instead.
  */
 const SURFACES: Record<Surface, SurfaceProfile> = {
-  concrete: { body: 420, q: 1.1, decay: 0.16, scuff: 0.35, gain: 1.0, thump: 0.55 },
-  stone: { body: 520, q: 1.4, decay: 0.13, scuff: 0.3, gain: 0.95, thump: 0.4 },
-  gravel: { body: 1900, q: 0.6, decay: 0.22, scuff: 1.0, gain: 0.85, thump: 0.12 },
-  asphalt: { body: 340, q: 0.9, decay: 0.12, scuff: 0.5, gain: 0.8, thump: 0.35 },
+  concrete: { body: 240, q: 0.7, decay: 0.2, scuff: 0.22, gain: 1.0, thump: 1.0 },
+  stone: { body: 300, q: 0.9, decay: 0.16, scuff: 0.2, gain: 0.95, thump: 0.85 },
+  gravel: { body: 900, q: 0.5, decay: 0.24, scuff: 0.7, gain: 0.85, thump: 0.4 },
+  asphalt: { body: 210, q: 0.7, decay: 0.15, scuff: 0.3, gain: 0.85, thump: 0.8 },
   grass: { body: 260, q: 0.5, decay: 0.1, scuff: 0.7, gain: 0.45, thump: 0.15 },
   water: { body: 900, q: 0.7, decay: 0.42, scuff: 0.9, gain: 1.1, thump: 0.2 },
-  metal: { body: 1450, q: 5.5, decay: 0.4, scuff: 0.4, gain: 0.9, thump: 0.25 },
-  grating: { body: 1150, q: 8.0, decay: 0.62, scuff: 0.45, gain: 1.0, thump: 0.3 },
+  metal: { body: 900, q: 3.5, decay: 0.36, scuff: 0.28, gain: 0.9, thump: 0.55 },
+  grating: { body: 760, q: 4.5, decay: 0.55, scuff: 0.3, gain: 1.0, thump: 0.6 },
   wood: { body: 300, q: 2.4, decay: 0.2, scuff: 0.4, gain: 0.8, thump: 0.45 },
 };
 
@@ -115,7 +115,20 @@ export class AudioEngine {
 
     const ctx = this.ctx;
     this.master = ctx.createGain();
-    this.master.connect(ctx.destination);
+    // Reported as "very tinny". Everything here is synthesised from noise and
+    // band-passes, which without a shelf on the end of the chain is all upper
+    // midrange and no body. This tames the top and the per-surface profiles
+    // below carry far more low end than they did.
+    const tame = ctx.createBiquadFilter();
+    tame.type = 'lowshelf';
+    tame.frequency.value = 260;
+    tame.gain.value = 5;
+    const deHarsh = ctx.createBiquadFilter();
+    deHarsh.type = 'peaking';
+    deHarsh.frequency.value = 3200;
+    deHarsh.Q.value = 1.1;
+    deHarsh.gain.value = -6;
+    this.master.connect(tame).connect(deHarsh).connect(ctx.destination);
 
     this.sfxBus = ctx.createGain();
     this.ambienceBus = ctx.createGain();
@@ -221,14 +234,14 @@ export class AudioEngine {
     if (p.thump > 0.05) {
       const osc = ctx.createOscillator();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(jitter(78, 0.15), t);
-      osc.frequency.exponentialRampToValueAtTime(jitter(42, 0.15), t + 0.09);
+      osc.frequency.setValueAtTime(jitter(58, 0.15), t);
+      osc.frequency.exponentialRampToValueAtTime(jitter(30, 0.15), t + 0.14);
       const g = ctx.createGain();
-      g.gain.setValueAtTime(p.thump * 0.5 * intensity, t);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+      g.gain.setValueAtTime(p.thump * 0.85 * intensity, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
       osc.connect(g).connect(out);
       osc.start(t);
-      osc.stop(t + 0.16);
+      osc.stop(t + 0.25);
     }
 
     // --- scuff ---
@@ -237,11 +250,11 @@ export class AudioEngine {
       scuff.buffer = this.noiseBurst(0.09);
       const hp = ctx.createBiquadFilter();
       hp.type = 'highpass';
-      hp.frequency.value = jitter(2600, 0.2);
+      hp.frequency.value = jitter(1500, 0.2);
       const g = ctx.createGain();
       const delay = Math.random() * 0.02;
       g.gain.setValueAtTime(0, t + delay);
-      g.gain.linearRampToValueAtTime(p.scuff * 0.24 * intensity, t + delay + 0.012);
+      g.gain.linearRampToValueAtTime(p.scuff * 0.13 * intensity, t + delay + 0.012);
       g.gain.exponentialRampToValueAtTime(0.0001, t + delay + 0.085);
       scuff.connect(hp).connect(g).connect(out);
       scuff.start(t + delay);

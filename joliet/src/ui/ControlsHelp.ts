@@ -21,6 +21,7 @@ const DESKTOP: [string, string][] = [
   ['Space', 'Climb'],
   ['F', 'Headlamp'],
   ['E', 'Interact'],
+  ['J', 'Hide objective'],
   ['H', 'Hide this'],
   ['Esc', 'Pause'],
 ];
