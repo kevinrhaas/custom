@@ -293,7 +293,7 @@ export function bakeFlakingPaint(scene: Scene, opts: FlakingPaintOptions = {}): 
       const stagger = bj % 2 === 0 ? 0 : 0.5;
       const sx = (u * blocksX + stagger) % 1;
       const sy = by % 1;
-      const jointW = 0.045;
+      const jointW = 0.028; // narrower — 0.045 read as tile grout, not a mortar bed
       const jointMask =
         1 -
         Math.min(
@@ -363,7 +363,7 @@ export function bakeFlakingPaint(scene: Scene, opts: FlakingPaintOptions = {}): 
       const grimeMask = smoothstep(0.5, 0.82, grime) * 0.34 + smoothstep(0.75, 1, v) * 0.3;
       rgb = mixRgb(rgb, [72, 66, 58], grimeMask * 0.6);
       // Joints hold dirt.
-      rgb = mixRgb(rgb, [88, 82, 74], jointMask * 0.45);
+      rgb = mixRgb(rgb, [88, 82, 74], jointMask * 0.24);
 
       height[y * SIZE + x] = h;
 

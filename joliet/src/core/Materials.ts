@@ -232,10 +232,19 @@ const PRESETS: Record<MaterialId, PresetSpec> = {
    * bare block.
    */
   'paint.cell': {
-    scale: 1.6, // CMU courses want ~1.9 m per tile
+    // One tile per 3 m. At 1.6 the 12 baked courses landed at ~18 cm on a 2.2 m
+    // cell wall — subway-tile proportions, which is exactly what the capture
+    // showed. Real CMU is 40x20 cm and wants far fewer, larger courses.
+    scale: 1,
     build: (s) =>
       bakeFlakingPaint(s, {
-        decay: 0.62,
+        // 0.62 pushed the ladder far enough that the cold blue-grey stratum
+        // won most of the wall. The reference is a CREAM wall with hard-edged
+        // islands of mustard showing through, and blue-grey only in the worst
+        // patches — the topcoat should still be the dominant colour.
+        decay: 0.38,
+        blocksX: 4,
+        blocksY: 7, // ~31 cm courses over a 2.2 m wall — CMU, not tile
         topcoat: HEX.paintTopCream,
         strata: [HEX.paintMustard, HEX.paintBlueGrey, HEX.paintSage],
       }),

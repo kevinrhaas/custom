@@ -293,17 +293,19 @@ export class AudioEngine {
     const layers: { cutoff: number; type: BiquadFilterType; gain: number; lfo: number }[] =
       kind === 'exterior'
         ? [
-            { cutoff: 340, type: 'lowpass', gain: 0.16, lfo: 0.07 }, // wind
-            { cutoff: 120, type: 'lowpass', gain: 0.1, lfo: 0.03 }, // distant city
-            { cutoff: 5200, type: 'highpass', gain: 0.012, lfo: 0.11 }, // air hiss
+            // Reported as "a hissing screen". Broadband noise at these gains is
+            // literally hiss — the low-passed layers need to sit much lower and
+            // the high-passed air layer is the worst offender by far, because
+            // that IS the sound of tape hiss. Cut hard and darkened.
+            { cutoff: 190, type: 'lowpass', gain: 0.045, lfo: 0.07 }, // wind
+            { cutoff: 90, type: 'lowpass', gain: 0.035, lfo: 0.03 }, // distant city
           ]
         : kind === 'chamber'
           ? [
-              { cutoff: 180, type: 'lowpass', gain: 0.07, lfo: 0.02 }, // near-silence
+              { cutoff: 150, type: 'lowpass', gain: 0.022, lfo: 0.02 }, // near-silence
             ]
           : [
-              { cutoff: 420, type: 'lowpass', gain: 0.12, lfo: 0.05 },
-              { cutoff: 2400, type: 'highpass', gain: 0.02, lfo: 0.09 },
+              { cutoff: 300, type: 'lowpass', gain: 0.04, lfo: 0.05 },
             ];
 
     for (const layer of layers) {
