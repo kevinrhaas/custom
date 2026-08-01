@@ -9,9 +9,11 @@ import { settings } from './core/Settings';
 import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { Cellblocks } from './scenes/Cellblocks';
+import { Powerhouse } from './scenes/Powerhouse';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
 import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
+import { mountTitleScreen, showObjective } from './ui/TitleScreen';
 import {
   mountHud,
   setLoadProgress,
@@ -54,6 +56,12 @@ const SCENES: Record<
     loadingLine: 'Raising the wall',
     make: (s, r, m) => new PerimeterApproach(s, r, m),
   },
+  powerhouse: {
+    title: 'The Powerhouse',
+    ambience: 'corridor',
+    loadingLine: 'Banking the fires',
+    make: (s, r, m) => new Powerhouse(s, r, m),
+  },
   cellblocks: {
     title: 'The Cellblocks',
     ambience: 'cellblock',
@@ -85,11 +93,25 @@ declare global {
   }
 }
 
+/** Show the title screen and resolve with the chosen scene key. */
+function chooseScene(): Promise<string> {
+  return new Promise((resolve) => {
+    mountTitleScreen((key) => resolve(key));
+  });
+}
+
 async function boot(): Promise<void> {
   const canvas = document.getElementById('stage') as HTMLCanvasElement;
   if (!canvas) throw new Error('#stage canvas missing');
 
   mountHud();
+
+  // `?scene=` still deep-links straight in (the harness relies on it, and so do
+  // the landing page links). Everyone else gets a title screen first — the
+  // first person to play this could not tell where to start, because there was
+  // nothing on screen telling them.
+  const deepLink = new URLSearchParams(location.search).get('scene');
+  const requested = deepLink ?? (await chooseScene());
 
   // The only remaining hard bail: no WebGL2 and no WebGPU means there is
   // nothing to render into. Touch is no longer a bail — see TouchControls.
@@ -120,7 +142,6 @@ async function boot(): Promise<void> {
     setLoadProgress(0.05 + (done / total) * 0.6, 'Weathering surfaces');
   });
 
-  const requested = new URLSearchParams(location.search).get('scene') ?? 'perimeter';
   const entry = SCENES[requested] ?? SCENES.perimeter;
 
   setLoadProgress(0.7, entry.loadingLine);
@@ -172,6 +193,7 @@ async function boot(): Promise<void> {
   setLoadProgress(1, 'Ready');
   await renderer.scene.whenReadyAsync();
   hideLoader();
+  showObjective(requested);
   touchControls?.setVisible(true);
 
   let paused = false;
