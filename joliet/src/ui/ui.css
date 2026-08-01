@@ -1,0 +1,235 @@
+/* Joliet: Midnight Infiltration — shell UI.
+   Type is a plain system stack: this is a diegetic, documentary-toned game and
+   a decorative face would fight it. */
+
+:root {
+  --stone: #c9ad74;
+  --ink: #0a0b0c;
+  --paper: #e8e2d4;
+  --dim: #8b857a;
+  --sodium: #ffb765;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: var(--paper);
+  font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  touch-action: none;
+}
+
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ---------------------------------------------------------------- loader -- */
+
+.loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 50% 40%, #14161a 0%, #07080a 55%, #030405 100%);
+  transition: opacity .65s ease;
+  pointer-events: auto;
+}
+.loader.gone { opacity: 0; pointer-events: none; }
+
+.loader-inner { text-align: center; max-width: 34rem; padding: 2rem; }
+
+/* Four bars and a lintel — a cell front, not a logo. */
+.mark {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  height: 46px;
+  margin-bottom: 1.4rem;
+  position: relative;
+}
+.mark::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 6px;
+  background: var(--stone);
+  opacity: .85;
+}
+.mark span {
+  width: 5px;
+  height: 46px;
+  background: var(--stone);
+  opacity: .5;
+  animation: flicker 3.4s infinite ease-in-out;
+}
+.mark span:nth-child(2) { animation-delay: .35s; }
+.mark span:nth-child(3) { animation-delay: .7s; }
+.mark span:nth-child(4) { animation-delay: 1.05s; }
+
+@keyframes flicker {
+  0%, 100% { opacity: .34; }
+  48% { opacity: .34; }
+  52% { opacity: .82; }
+  56% { opacity: .4; }
+  60% { opacity: .78; }
+}
+
+.loader h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.loader .sub {
+  margin: .3rem 0 2rem;
+  color: var(--dim);
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  font-size: .72rem;
+}
+
+.bar {
+  height: 2px;
+  background: #23242899;
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6b5a3c, var(--stone));
+  transition: width .4s ease;
+}
+.loader .status {
+  margin: .9rem 0 0;
+  font-size: .74rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark span { animation: none; opacity: .6; }
+}
+
+/* ------------------------------------------------------------- subtitles -- */
+
+.subtitles {
+  position: absolute;
+  left: 50%;
+  bottom: 8.5%;
+  transform: translateX(-50%);
+  max-width: min(62ch, 78vw);
+  text-align: center;
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+.subtitles.on { opacity: 1; }
+.subtitles p {
+  margin: 0;
+  padding: .5rem .9rem;
+  background: #05060899;
+  backdrop-filter: blur(3px);
+  border-radius: 3px;
+  font-size: calc(1rem * var(--subtitle-scale, 1));
+  text-shadow: 0 1px 3px #000;
+}
+.subtitles b {
+  color: var(--sodium);
+  font-weight: 600;
+  margin-right: .45em;
+}
+
+/* ---------------------------------------------------------------- prompt -- */
+
+.prompt {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  transform: translateX(-50%);
+  font-size: .88rem;
+  letter-spacing: .06em;
+  padding: .35rem .7rem;
+  background: #04050799;
+  border: 1px solid #ffffff1f;
+  border-radius: 3px;
+}
+.prompt kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 .35em;
+  margin-right: .5em;
+  border: 1px solid #ffffff3d;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+}
+:root[data-contrast="high"] .prompt {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+
+/* --------------------------------------------------------------- reticle -- */
+
+.reticle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: #ffffff2e;
+  box-shadow: 0 0 0 1px #0000004d;
+}
+
+/* ----------------------------------------------------------------- fatal -- */
+
+.fatal {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: #07080a;
+  pointer-events: auto;
+}
+.fatal h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 .6rem; }
+.fatal p { color: var(--dim); margin: .3rem 0; }
+.fatal .hint { font-size: .85rem; }
+
+.noscript {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: var(--paper);
+  background: #07080a;
+}

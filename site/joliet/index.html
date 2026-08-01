@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joliet: Midnight Infiltration</title>
+<meta name="description" content="A first-person urban-exploration game through the Old Joliet Prison — Boyington & Wheelock's 1858 limestone castle, in its present decayed condition. No combat. Runs in the browser.">
+<meta property="og:title" content="Joliet: Midnight Infiltration">
+<meta property="og:description" content="A first-person urban-exploration game through the Old Joliet Prison. No weapons, no enemies — just the building, the dark, and what is under the east block.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0c0d'/%3E%3Cg fill='%23c9ad74'%3E%3Crect x='6' y='8' width='3' height='18'/%3E%3Crect x='12' y='8' width='3' height='18'/%3E%3Crect x='18' y='8' width='3' height='18'/%3E%3Crect x='24' y='8' width='3' height='18'/%3E%3Crect x='5' y='6' width='23' height='3'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+/* Joliet landing — limestone, sodium, and a lot of dark.
+   Palette is lifted from the game's own src/core/Palette.ts. */
+:root{
+  --stone:#c9ad74; --stone-pale:#d6be8c; --stone-cool:#b7b2a0;
+  --weathered:#6e6a5e; --soot:#26241f;
+  --sodium:#ffb765; --moon:#8fa6c4; --rust:#8a5a32;
+  --ink:#08090a; --ink-2:#101215; --ink-3:#171a1e;
+  --paper:#e8e2d4; --dim:#948d80;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--ink);color:var(--paper);
+  font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--stone);text-decoration:none}
+a:hover{color:var(--stone-pale)}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(1rem,4vw,2rem)}
+
+/* ---- procedural limestone backdrop ---- */
+.backdrop{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(120% 80% at 50% -10%, #1b1f26 0%, #0c0e11 45%, #06070880 100%);}
+.backdrop::after{
+  content:"";position:absolute;inset:0;opacity:.05;
+  background-image:repeating-linear-gradient(0deg,transparent 0 38px,#c9ad74 38px 39px),
+    repeating-linear-gradient(90deg,transparent 0 92px,#c9ad74 92px 93px);
+  mask-image:radial-gradient(100% 60% at 50% 20%,#000 0%,transparent 75%);
+}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:.75rem clamp(1rem,4vw,2rem);backdrop-filter:blur(10px);
+  background:#08090ac9;border-bottom:1px solid #ffffff12}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:650;letter-spacing:.14em;
+  text-transform:uppercase;font-size:.82rem;color:var(--paper)}
+.bars{display:flex;gap:2.5px;align-items:flex-end;height:17px;position:relative;padding-top:3px}
+.bars i{width:2.5px;height:14px;background:var(--stone);display:block;opacity:.75}
+.bars::before{content:"";position:absolute;top:0;left:-1px;right:-1px;height:3px;background:var(--stone)}
+.nav-links{display:flex;gap:1.4rem;align-items:center;font-size:.85rem}
+.nav-links a{color:var(--dim)}
+.nav-links a:hover{color:var(--paper)}
+@media(max-width:640px){.nav-links a:not(.btn){display:none}}
+
+/* ---- hero ---- */
+.hero{position:relative;padding:clamp(3.5rem,11vw,7.5rem) 0 clamp(2.5rem,7vw,4.5rem);text-align:center}
+.kicker{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);margin-bottom:1.4rem}
+.hero h1{margin:0;font-size:clamp(2.6rem,9vw,5.4rem);line-height:.98;font-weight:680;letter-spacing:-.02em}
+.hero h1 .lit{
+  background:linear-gradient(180deg,var(--stone-pale),var(--stone) 55%,var(--rust));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{max-width:60ch;margin:1.6rem auto 0;color:#cdc6b8;font-size:clamp(1rem,2.2vw,1.16rem)}
+.cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.5rem;border-radius:3px;
+  font-weight:600;font-size:.94rem;letter-spacing:.02em;border:1px solid transparent;
+  transition:transform .16s ease,background .16s ease,border-color .16s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(180deg,#d8bc82,#b8975c);color:#15120c;
+  box-shadow:0 8px 30px -12px #c9ad7480}
+.btn-primary:hover{color:#15120c;background:linear-gradient(180deg,#e4c98f,#c4a366)}
+.btn-ghost{border-color:#ffffff26;color:var(--paper)}
+.btn-ghost:hover{border-color:var(--stone);color:var(--stone-pale)}
+.hero-note{margin-top:1.5rem;font-size:.8rem;color:var(--dim)}
+
+/* ---- warm/cool split band ---- */
+.split{height:1px;background:linear-gradient(90deg,transparent,var(--moon) 25%,var(--sodium) 75%,transparent);
+  opacity:.4;margin:0 auto;max-width:var(--wrap)}
+
+/* ---- sections ---- */
+section{padding:clamp(3rem,8vw,5.5rem) 0}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 .6rem;font-weight:660;letter-spacing:-.01em}
+.lead{color:#c0b9ab;max-width:62ch}
+.grid{display:grid;gap:1rem;margin-top:2.4rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:linear-gradient(180deg,#14171bcc,#0d0f12cc);border:1px solid #ffffff14;
+  border-radius:5px;padding:1.5rem;transition:border-color .2s ease,transform .2s ease}
+.card:hover{border-color:#c9ad7440;transform:translateY(-2px)}
+.card h3{margin:.2rem 0 .5rem;font-size:1.06rem;font-weight:640}
+.card p{margin:0;color:var(--dim);font-size:.92rem}
+.card .num{font-size:.68rem;letter-spacing:.24em;color:var(--stone);text-transform:uppercase}
+
+/* ---- roles ---- */
+.role{border-left:2px solid var(--rust);padding-left:1.1rem}
+.role h3{margin:0 0 .15rem;font-size:1.02rem}
+.role .who{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sodium);margin-bottom:.5rem}
+.role p{color:var(--dim);font-size:.9rem;margin:0 0 .5rem}
+.role .mech{font-size:.85rem;color:#b9b2a4}
+.role .mech b{color:var(--stone);font-weight:600}
+
+/* ---- controls ---- */
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.55rem;margin-top:1.8rem}
+.key{display:flex;align-items:center;gap:.65rem;font-size:.88rem;color:#c3bcae}
+kbd{display:inline-block;min-width:2.1em;padding:.2em .45em;text-align:center;
+  background:#1c1f24;border:1px solid #ffffff20;border-bottom-width:2px;border-radius:3px;
+  font:600 .78rem/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--paper)}
+
+/* ---- truth panel ---- */
+.truth{background:#0e1013;border:1px solid #ffffff14;border-left:3px solid var(--sodium);
+  border-radius:4px;padding:1.6rem}
+.truth h3{margin:0 0 .7rem;font-size:1.02rem;color:var(--sodium)}
+.truth p{margin:0 0 .7rem;color:#bdb6a8;font-size:.93rem}
+.truth p:last-child{margin-bottom:0}
+
+/* ---- footer ---- */
+footer{border-top:1px solid #ffffff12;padding:2.5rem 0 3.5rem;color:var(--dim);font-size:.85rem}
+footer a{color:var(--stone-cool)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:1.6rem;justify-content:space-between;align-items:flex-start}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="./">
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    Joliet
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#crew">The crew</a>
+    <a href="#history">History</a>
+    <a href="#controls">Controls</a>
+    <a class="btn btn-primary" href="app/">Play →</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="kicker">Old Joliet Prison · 1125 Collins Street · Opened 1858</div>
+  <h1>Midnight<br><span class="lit">Infiltration</span></h1>
+  <p class="hero-sub">
+    A first-person urban-exploration game through Boyington &amp; Wheelock's limestone
+    castle, rendered in its present decayed condition. No weapons. No enemies.
+    Just the building, the dark, and the question of what is sealed under the
+    east cell house.
+  </p>
+  <div class="cta">
+    <a class="btn btn-primary btn-lg" href="app/">Enter the site</a>
+    <a class="btn btn-ghost btn-lg" href="#about">What is this?</a>
+  </div>
+  <p class="hero-note">Runs in the browser. Needs WebGL2 · keyboard &amp; mouse or gamepad · headphones recommended.</p>
+</header>
+
+<div class="split"></div>
+
+<main>
+<section id="about" class="wrap">
+  <h2>Not a shooter</h2>
+  <p class="lead">
+    This is a traversal and observation game. You walk, crouch, crawl, climb and
+    lean through a real building at night with a headlamp and a finite battery.
+    Tension comes from darkness, sound, structural instability and light
+    management — never from anything that shoots back.
+  </p>
+
+  <div class="grid g3">
+    <div class="card">
+      <div class="num">01</div>
+      <h3>No instant-fail</h3>
+      <p>A missed step costs stamina and makes noise. It does not kill you. Detection warns twice and resets locally — never from scratch. Checkpoints land every 60–90 seconds.</p>
+    </div>
+    <div class="card">
+      <div class="num">02</div>
+      <h3>Earn the lights</h3>
+      <p>Sequence the boiler valves and relay board in the powerhouse and lights come on across the whole map — permanently changing every later scene.</p>
+    </div>
+    <div class="card">
+      <div class="num">03</div>
+      <h3>Read the walls</h3>
+      <p>Around 25 collectible documents, photographs and audio logs. Each one is tied to a cited fact about the real site.</p>
+    </div>
+  </div>
+</section>
+
+<section id="crew" class="wrap">
+  <h2>Four people, one radio</h2>
+  <p class="lead">
+    You play one of them. The other three are live on comms for the entire run —
+    arguing, remembering, and losing signal as you go deeper. The role you pick
+    is a <em>perspective</em>, not a separate campaign: same building, different
+    way of seeing it.
+  </p>
+
+  <div class="grid g2">
+    <div class="card role">
+      <div class="who">The Director</div>
+      <h3>Greg</h3>
+      <p>Wants the void confirmed and documented so the history can't be sanitised again. Treats the building as an artifact and the people in it as footnotes.</p>
+      <div class="mech"><b>Architectural Insight</b> — overlays period blueprints on the live world, ghosting weak points, sealed openings, and original versus later construction.</div>
+    </div>
+    <div class="card role">
+      <div class="who">The Veteran Guard</div>
+      <h3>Mike</h3>
+      <p>Worked the wall from 1994 to 2002. Wants to walk out having proven to himself the place is just a building now. He already suspects what's down there.</p>
+      <div class="mech"><b>Institutional Knowledge</b> — bypasses mechanical locks, calls patrol geometry from memory, and talks the crew down when the stress climbs.</div>
+    </div>
+    <div class="card role">
+      <div class="who">The Documentarian</div>
+      <h3>Jsn</h3>
+      <p>Wants the shot nobody else has. Frames risk as content; the camera is how he avoids feeling anything.</p>
+      <div class="mech"><b>Tech &amp; Optics</b> — thermal and low-light modes, a spatial scan that finds cavities behind masonry, and a battery economy that forces a choice between seeing and recording.</div>
+    </div>
+    <div class="card role">
+      <div class="who">The First-Timer</div>
+      <h3>Lonnie</h3>
+      <p>Wants to not be the reason something goes wrong. Defers to whoever sounds most certain. He's the only one who reacts to it as a place where people suffered.</p>
+      <div class="mech"><b>Adrenaline</b> — stamina recovers faster under stress, and improvised solutions surface to him that the others walk straight past.</div>
+    </div>
+  </div>
+</section>
+
+<section id="history" class="wrap">
+  <h2>The building is the point</h2>
+  <p class="lead">
+    Every wall, tower and corridor is modelled from research and site photography
+    of the real Old Joliet Prison — the Gothic Revival limestone castle at 1125
+    Collins Street, opened 1858, closed 2002, now a museum. Rusticated
+    quarry-faced stone, corbelled cap courses, octagonal glazed tower cabs on
+    tapered shafts, and the specific way institutional paint delaminates: cream
+    over mustard over blue-grey over bare block.
+  </p>
+
+  <div class="grid g2" style="margin-top:2rem">
+    <div class="truth">
+      <h3>It is not Stateville</h3>
+      <p>
+        Stateville is the nearby prison with the round panopticon "roundhouse".
+        Joliet has no such building and never did. Conflating the two is the most
+        common error made about this site, and the game refuses to make it.
+      </p>
+    </div>
+    <div class="truth">
+      <h3>What's true, and what isn't</h3>
+      <p>
+        The prison was built with convict labour from limestone the inmates
+        quarried on site. The men held there cut the stone that held them. That
+        is documented, and it is why the story exists.
+      </p>
+      <p>
+        The sealed sub-level the game builds toward is <strong>fiction</strong>.
+        The game says so, on screen, at the end — and every other liberty is
+        listed in the repository's <code>HISTORICAL-LIBERTIES.md</code>.
+      </p>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:2rem">
+    The scenario is fictional and presented as sanctioned after-hours access.
+    The real site is an operating museum that runs public tours — that is the
+    legitimate way in, and the end cards point you at it.
+  </p>
+</section>
+
+<section id="controls" class="wrap">
+  <h2>Controls</h2>
+  <p class="lead">Keyboard and mouse, or gamepad. Everything is remappable, and every audio cue has a visual channel.</p>
+  <div class="keys">
+    <div class="key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move</div>
+    <div class="key"><kbd>Shift</kbd> Sprint</div>
+    <div class="key"><kbd>C</kbd> Crouch</div>
+    <div class="key"><kbd>Z</kbd> Crawl</div>
+    <div class="key"><kbd>Space</kbd> Climb / vault</div>
+    <div class="key"><kbd>E</kbd> Interact</div>
+    <div class="key"><kbd>F</kbd> Headlamp</div>
+    <div class="key"><kbd>Q</kbd> Role ability</div>
+    <div class="key"><kbd>Tab</kbd> Journal</div>
+    <div class="key"><kbd>Esc</kbd> Pause &amp; settings</div>
+  </div>
+  <p class="hero-note" style="text-align:left;margin-top:1.6rem">
+    Head-bob, motion blur, film grain and vignette are all independently
+    adjustable to zero. <code>prefers-reduced-motion</code> is respected on first
+    run. Subtitles are on by default, with speaker names.
+  </p>
+</section>
+</main>
+
+<footer class="wrap">
+  <div class="foot-grid">
+    <div>
+      <p style="margin:0 0 .4rem"><strong style="color:var(--paper)">Joliet: Midnight Infiltration</strong></p>
+      <p style="margin:0">A fictional story set in a real, protected historic place.<br>
+      Built with Babylon.js. All textures generated procedurally; third-party assets are CC0 and logged.</p>
+    </div>
+    <div>
+      <p style="margin:0 0 .4rem"><strong style="color:var(--paper)">The real site</strong></p>
+      <p style="margin:0">Old Joliet Prison is open for public tours.<br>
+      Please visit it properly rather than at midnight.</p>
+    </div>
+    <div>
+      <p style="margin:0 0 .4rem"><strong style="color:var(--paper)">Source</strong></p>
+      <p style="margin:0"><a href="https://github.com/kevinrhaas/custom/tree/main/joliet">github.com/kevinrhaas/custom</a><br>
+      <a href="../">← back to Custom</a></p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

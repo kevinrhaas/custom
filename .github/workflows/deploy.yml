@@ -30,13 +30,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Sanity-check inline JS parses
+      - name: Sanity-check JS parses
         run: |
           set -e
-          # No .js modules to check today; guard against accidental additions.
+          # `node --check` parses a bare .js as CommonJS, so any ES module
+          # (top-level import/export) fails spuriously. Parse each file as a
+          # module instead — the Joliet game bundle under site/joliet/app/ is
+          # ESM, and its Babylon chunk is several MB, so this also keeps the
+          # check off stdin size limits by pointing at the file directly.
+          fail=0
           for f in $(git ls-files 'site/**/*.js'); do
-            node --check "$f" || { echo "SYNTAX FAIL: $f"; exit 1; }
+            if ! node --input-type=module --check < "$f" >/dev/null 2>&1; then
+              # Fall back to script parsing for genuine classic scripts.
+              if ! node --check "$f" >/dev/null 2>&1; then
+                echo "SYNTAX FAIL: $f"; fail=1
+              fi
+            fi
           done
+          [ "$fail" -eq 0 ] || exit 1
           echo "JS OK"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
