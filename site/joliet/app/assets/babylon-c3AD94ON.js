@@ -18575,4 +18575,4 @@ var rSq: f32=theta.x*theta.x+theta.y*theta.y;var rvector: vec2f=theta*(uniforms.
 #define CUSTOM_FRAGMENT_DEFINITIONS
 @fragment
 fn main(input: FragmentInputs)->FragmentOutputs {var tc: vec2f=HmdWarp(input.vUV);if (tc.x <0.0 || tc.x>1.0 || tc.y<0.0 || tc.y>1.0) {fragmentOutputs.color=vec4f(0.0,0.0,0.0,0.0);}
-else{fragmentOutputs.color=textureSample(textureSampler,textureSamplerSampler,tc);}}`;z.ShadersStoreWGSL[J0]||(z.ShadersStoreWGSL[J0]=Y0);var X0={name:J0,shader:Y0};export{N as A,yc as C,Dn as D,nr as E,P as O,bu as S,tr as T,Dg as _,GS as a,$m as b,Sy as c,X_ as d,A_ as f,Xg as g,g_ as h,UE as i,M as k,kv as l,S_ as m,$E as n,Ox as o,D_ as p,WE as r,Ky as s,QD as t,rv as u,Kh as v,rs as w,X as x,oh as y};
+else{fragmentOutputs.color=textureSample(textureSampler,textureSamplerSampler,tc);}}`;z.ShadersStoreWGSL[J0]||(z.ShadersStoreWGSL[J0]=Y0);var X0={name:J0,shader:Y0};export{M as A,bu as C,nr as D,tr as E,Dn as O,X as S,rs as T,Dg as _,GS as a,$m as b,Sy as c,X_ as d,A_ as f,Xg as g,g_ as h,UE as i,N as j,P as k,kv as l,S_ as m,$E as n,Ox as o,D_ as p,WE as r,Ky as s,QD as t,rv as u,Kh as v,yc as w,zp as x,oh as y};

@@ -7,6 +7,46 @@ Each item: what's wrong, what it would cost, and how much it matters.
 
 ---
 
+## OPEN P0 — the headlamp does not light the scene
+
+**The player's primary light source produces no visible illumination.** Four
+iterations (11-14) went at this and it is still not fixed. Every interior scene
+in this game depends on it, so nothing else in the backlog matters more.
+
+What has been ruled out, each verified by capture:
+
+- **Not the light-count cap.** `PBRMaterial.maxSimultaneousLights` defaults to 4
+  and the scene has 5 lights; it now takes the budget from the quality tier.
+  Real bug, genuinely fixed, did not fix this.
+- **Not the intensity units.** `FALLOFF_PHYSICAL` is inverse-square, so 42 was
+  delivering ~1.7 at five metres against a moon key of 4.6. Raised to 900. Real
+  bug, genuinely fixed, did not fix this.
+- **Not frozen-material shader staleness.** Materials are baked and frozen
+  during the loading screen, *before* the player and its headlamp exist, and a
+  frozen material never recompiles against a new light list. `rebindLights()`
+  now unfreezes, marks `Material.LightDirtyFlag` and refreezes after spawn.
+  Real bug, genuinely fixed, did not fix this.
+
+Remaining candidates, in the order worth trying:
+
+1. **Parenting.** The `SpotLight` is parented to the camera and its `direction`
+   is interpreted in parent space. In anchor mode the camera is moved to the
+   anchor while the root also moves — the light may be inheriting a transform
+   that leaves it aimed somewhere unintended. Test by unparenting and driving
+   `position`/`direction` from the camera's world matrix each frame.
+2. **The projection texture (cookie).** It is generated to a data URL and
+   assigned in a `try`. If it loads with `CLAMP_ADDRESSMODE` and the light's UV
+   projection is degenerate, the cookie can multiply the whole cone to zero.
+   Test by clearing `projectionTexture` entirely.
+3. **Anchor mode masking it.** `Player.update()` returns early when anchored, so
+   the *capture* path may not represent play. **This bug may not exist during
+   actual play at all** — it has only ever been observed through the shot
+   harness. Verify by hand in a browser before assuming it is real.
+
+Point 3 is the one to check first, and it is a caution about the whole harness:
+the anchor path bypasses `Player.update`, so anything that path depends on is
+untested by every capture in this project.
+
 ## Renderer / core
 
 ### Volumetric light shafts are declared but not implemented
@@ -41,13 +81,17 @@ persistence. The design calls for checkpoints every 60–90 s.
 **Cost:** ~a day.
 **Impact:** high for a shippable game; zero for the look-dev slice.
 
-### Audio is entirely absent
-No footstep system, no ambience, no radio comms, no mix bus. `Player` exposes
-`setFootstepHandler`/`setLandHandler` and nothing subscribes.
-**Cost:** several days including CC0 sourcing.
-**Impact:** very high. In a game whose whole tension model is *sound* in an
-empty building, silence is the single biggest thing missing. This is the top of
-the list.
+### ~~Audio is entirely absent~~ — BUILT (unverified by ear)
+`src/core/Audio.ts` now provides synthesised footsteps with per-surface
+profiles, a breathing ambience bed, generated convolution reverb per space,
+lamp hum, and radio comms with depth-based degradation, all wired to the
+controller's existing hooks.
+
+**Caveat: none of it has been heard.** The shot harness is silent and headless,
+so the entire audio system is verified only by typecheck. Levels, filter
+frequencies and the reverb impulses are authored by reasoning, not by ear, and
+should be expected to need a real mixing pass.
+**Cost:** an hour with headphones.
 
 ## Scene 1.1 — Perimeter Approach
 
@@ -57,16 +101,15 @@ and traversable, but none of them is wired to an interaction, a lockpick
 minigame, Mike's Institutional Knowledge check, or a transition into 1.2.
 **Cost:** ~a day once an interaction system exists.
 
-### The drainage trench is broken — the ground has no hole in it
-**This is a visible defect, not a rough edge.** The trench is excavated to
-y = −2.6 but the base ground is a single solid plane at y = 0 with no aperture,
-so the trench reads as two stone walls floating on an unbroken floor and the
-water surface is buried. Anchor `a5-trench` shows it plainly.
-**Cost:** ~half a day. The ground needs to be built as a CSG subtraction or,
-better, authored as a set of tiles with the trench corridor simply omitted —
-which is the approach the Siphon needs anyway.
-**Impact:** high. It is one of the scene's three entry routes and currently the
-worst frame in the game.
+### ~~The drainage trench has no hole in the ground~~ — FIXED
+`buildGround` now takes aperture rectangles and drops any triangle whose
+centroid falls inside one, cutting a real hole; coping stones along both lips
+hide the ragged edge where the cut lands on triangle boundaries. The trench is
+genuine geometry now.
+
+**But `a5-trench` is still a poor frame** — it is dark, because the trench has
+no light in it and the headlamp that should light it does not work (see the P0
+above). The geometry is right and the lighting is not.
 
 ### No foliage
 The reference photography is full of it — weeds through the asphalt cracks,

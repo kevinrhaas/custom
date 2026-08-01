@@ -116,7 +116,51 @@ place?**
 - Fog is depth cueing, not weather. Exponential-squared at 0.0125, tinted to the
   sky, so distance reads without the scene going milky.
 
-## 7. Budget
+## 7. Sound
+
+In a game with no enemies, **sound is the entire tension model.** An empty
+building at night is frightening because of what you can hear and cannot place.
+
+Everything is **synthesised at runtime** (`src/core/Audio.ts`), not streamed.
+Three reasons, and the first is the important one:
+
+1. **No repetition artefact.** A footstep sample played four thousand times is
+   the loudest tell in any first-person game. Every step here is generated
+   fresh — new noise seed, jittered resonance, jittered scuff — so it never
+   machine-guns.
+2. **Surfaces are parametric.** A scene tags a mesh `surface: 'grating'` and the
+   sound follows. No asset authoring per surface.
+3. **Zero bytes**, so the whole download budget stays with the geometry.
+
+### Footstep layers
+
+Every step is three layers: a band-passed noise **impact** (the heel), a low
+sine **thump** (the structure responding under the foot), and a high-passed
+**scuff** (the sole sliding). Surface profiles are calibrated by ear against the
+reference locations — corridor concrete is polished over a void so it has real
+low end and a tail; upper-tier galleries are **steel bar grating**, which rings
+rather than thumps, and that difference is a navigation cue in 3.1.
+
+### Reverb by space
+
+A generated impulse response per space, swapped on scene load:
+
+| Space | Character |
+|---|---|
+| `exterior` | Real slapback off a 10 m limestone wall, little tail |
+| `corridor` | Medium, bright |
+| `cellblock` | **Long and bright** — five tiers of hard parallel surfaces. This is the famous sound of the building and 3.1 is built around it. |
+| `tunnel` | Medium, dark |
+| `chamber` | **Short and dead.** The Void's silence is the point; a big reverb there would wreck the scene. |
+
+### Radio
+
+`clarity` runs 1 (line of sight) to 0 (deep under stone). Below **0.35** the
+voice starts dropping and static rises. This is a **diegetic signal that you are
+going too far** — a mechanic, not a filter. Never gate information the player
+needs on a line they cannot hear; the subtitle always carries it.
+
+## 8. Budget
 
 | | |
 |---|---|
