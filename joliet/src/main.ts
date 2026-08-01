@@ -5,6 +5,7 @@ import { MaterialLibrary } from './core/Materials';
 import { Player } from './core/Player';
 import { input } from './core/Input';
 import { settings } from './core/Settings';
+import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { GameScene } from './scenes/SceneBase';
 import { mountHud, setLoadProgress, hideLoader, showLoader } from './ui/Hud';
@@ -66,7 +67,15 @@ async function boot(): Promise<void> {
   input.attach(canvas);
   canvas.addEventListener('click', () => {
     if (!input.locked) input.requestLock();
+    // Browsers refuse to start an AudioContext without a gesture, so the
+    // first click both locks the pointer and wakes the audio engine.
+    void audio.start().then(() => audio.startAmbience('exterior'));
   });
+
+  // Sound is the whole tension model in a game with no enemies — wire it to
+  // the controller's existing hooks rather than polling.
+  player.setFootstepHandler((surface, intensity) => audio.footstep(surface, intensity));
+  player.setLandHandler((intensity) => audio.land(intensity, player.currentSurface));
 
   setLoadProgress(1, 'Ready');
   await renderer.scene.whenReadyAsync();

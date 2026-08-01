@@ -534,12 +534,40 @@ export function buildBarredWindow(
  * billiard table, plus a subdivision count tuned so the shadow cascades have
  * something to land on.
  */
+/** An axis-aligned rectangle in XZ that the ground must NOT cover. */
+export interface GroundAperture {
+  minX: number;
+  maxX: number;
+  minZ: number;
+  maxZ: number;
+}
+
 export function buildGround(
   ctx: KitContext,
   material: PBRMaterial,
-  o: { size?: number; subdivisions?: number; amplitude?: number; surface?: string } = {},
+  o: {
+    size?: number;
+    subdivisions?: number;
+    amplitude?: number;
+    surface?: string;
+    /**
+     * Rectangles to omit — trenches, shafts, stair wells. Any ground quad whose
+     * centre falls inside one of these is dropped, leaving a real hole.
+     *
+     * Without this a trench excavated below the plane reads as a pair of walls
+     * standing on an unbroken floor, because the floor is still there. That was
+     * the single worst frame in scene 1.1.
+     */
+    apertures?: GroundAperture[];
+  } = {},
 ): Mesh {
-  const { size = 160, subdivisions = 96, amplitude = 0.12, surface = 'gravel' } = o;
+  const {
+    size = 160,
+    subdivisions = 96,
+    amplitude = 0.12,
+    surface = 'gravel',
+    apertures = [],
+  } = o;
   const g = MeshBuilder.CreateGround(
     'ground',
     { width: size, height: size, subdivisions, updatable: true },
@@ -561,9 +589,44 @@ export function buildGround(
     );
     g.updateVerticesData('normal', g.getVerticesData('normal')!);
   }
+  if (apertures.length) cutApertures(g, apertures);
+
   g.material = material;
   ctx.register(g, { collide: true, cast: false, surface });
   return g;
+}
+
+/**
+ * Drop every triangle whose centroid falls inside an aperture rectangle.
+ *
+ * Works on the index buffer rather than the vertices, so the mesh keeps its
+ * UVs and normals and the hole edge lands on existing triangle boundaries.
+ * The subdivision count therefore sets how cleanly the hole cuts — a trench
+ * wants the ground subdivided fine enough that the aperture edge is close to
+ * the intended line.
+ */
+function cutApertures(mesh: Mesh, apertures: GroundAperture[]): void {
+  const positions = mesh.getVerticesData('position');
+  const indices = mesh.getIndices();
+  if (!positions || !indices) return;
+
+  const kept: number[] = [];
+  for (let t = 0; t < indices.length; t += 3) {
+    let cx = 0;
+    let cz = 0;
+    for (let k = 0; k < 3; k++) {
+      cx += positions[indices[t + k] * 3];
+      cz += positions[indices[t + k] * 3 + 2];
+    }
+    cx /= 3;
+    cz /= 3;
+
+    const inside = apertures.some(
+      (a) => cx >= a.minX && cx <= a.maxX && cz >= a.minZ && cz <= a.maxZ,
+    );
+    if (!inside) kept.push(indices[t], indices[t + 1], indices[t + 2]);
+  }
+  mesh.setIndices(kept);
 }
 
 export { Vector4 };

@@ -66,8 +66,8 @@ export class PerimeterApproach extends GameScene {
       },
       {
         name: 'a5-trench',
-        position: [12.5, 1.2, -4.5],
-        rotation: [2.6, 0.34],
+        position: [13.5, 1.55, -12.5],
+        rotation: [0.02, 0.42],
         note: 'The drainage trench entry. Wet stone, standing water, foliage intrusion.',
       },
     ],
@@ -77,9 +77,18 @@ export class PerimeterApproach extends GameScene {
   private flicker = 0;
   private motes?: ParticleSystem;
 
+  /** The trench mouth. Every ground surface omits this rectangle. */
+  private static readonly TRENCH_APERTURE = {
+    minX: 12.15,
+    maxX: 14.85,
+    minZ: -8.5,
+    maxZ: 8.5,
+  };
+
   async build(): Promise<void> {
     const ctx = this.kit();
     const p = profile();
+    const aperture = [PerimeterApproach.TRENCH_APERTURE];
 
     // ---- Materials -------------------------------------------------------
     const stone = this.mats.get('limestone.wall');
@@ -110,27 +119,37 @@ export class PerimeterApproach extends GameScene {
 
     // ---- Ground ----------------------------------------------------------
     // Asphalt apron in front of the wall; gravel/dirt beyond the kerb.
+    // Subdivided finely enough that the trench aperture cuts on a boundary
+    // close to the intended line — the coping stones cover the remainder.
     const apron = MeshBuilder.CreateGround(
       'apron',
-      { width: 90, height: 46, subdivisions: 48 },
+      { width: 90, height: 46, subdivisions: 120 },
       this.scene,
     );
     apron.position.set(0, 0.06, -22);
     apron.material = asphalt;
+    cutGroundAperture(apron, aperture, new Vector3(0, 0.06, -22));
     ctx.register(apron, { collide: true, cast: false, surface: 'asphalt' });
 
     // A single flat base plane well below the apron. The earlier displaced
     // version produced large shading facets and z-fought the apron across the
     // whole frame; the site is a flat asphalt yard and does not need terrain.
-    buildGround(ctx, slab, { size: 190, subdivisions: 8, amplitude: 0, surface: 'gravel' });
+    buildGround(ctx, slab, {
+      size: 190,
+      subdivisions: 128,
+      amplitude: 0,
+      surface: 'gravel',
+      apertures: aperture,
+    });
 
     // Mown lawn strip between the apron and the wall — the site is maintained.
     const lawn = MeshBuilder.CreateGround(
       'lawn',
-      { width: 90, height: 6.5, subdivisions: 24 },
+      { width: 90, height: 6.5, subdivisions: 90 },
       this.scene,
     );
     lawn.position.set(0, 0.05, 2.4);
+    cutGroundAperture(lawn, aperture, new Vector3(0, 0.05, 2.4));
     const lawnMat = new PBRMaterial('lawn', this.scene);
     lawnMat.albedoColor = C.lawnGreen;
     lawnMat.metallic = 0;
@@ -304,6 +323,20 @@ export class PerimeterApproach extends GameScene {
     arch.position.set(x, -1.2, 6);
     arch.material = wetStone;
     ctx.register(arch, { collide: false, cast: true });
+
+    // Coping stones along both lips. They read as the real kerb of a drainage
+    // cut AND they hide the ragged edge where the ground aperture had to cut
+    // on triangle boundaries.
+    for (const side of [-1, 1]) {
+      const coping = MeshBuilder.CreateBox(
+        'trenchCoping',
+        { width: 0.85, height: 0.26, depth: 17.4 },
+        this.scene,
+      );
+      coping.position.set(x + side * 1.92, 0.02, 0);
+      coping.material = wetStone;
+      ctx.register(coping, { collide: true, cast: true, surface: 'stone' });
+    }
   }
 
   /** The quarry-cut breach: collapsed masonry making a climbable ramp. */
@@ -485,6 +518,39 @@ export class PerimeterApproach extends GameScene {
     this.motes?.dispose();
     super.dispose();
   }
+}
+
+/**
+ * Cut an aperture out of a ground mesh built directly (rather than via
+ * `buildGround`, which takes apertures itself). `origin` is the mesh's world
+ * position, because the aperture is specified in world space and the vertex
+ * data is local.
+ */
+function cutGroundAperture(
+  mesh: import('@babylonjs/core/Meshes/mesh').Mesh,
+  apertures: { minX: number; maxX: number; minZ: number; maxZ: number }[],
+  origin: Vector3,
+): void {
+  const positions = mesh.getVerticesData('position');
+  const indices = mesh.getIndices();
+  if (!positions || !indices) return;
+
+  const kept: number[] = [];
+  for (let t = 0; t < indices.length; t += 3) {
+    let cx = 0;
+    let cz = 0;
+    for (let k = 0; k < 3; k++) {
+      cx += positions[indices[t + k] * 3];
+      cz += positions[indices[t + k] * 3 + 2];
+    }
+    cx = cx / 3 + origin.x;
+    cz = cz / 3 + origin.z;
+    const inside = apertures.some(
+      (a) => cx >= a.minX && cx <= a.maxX && cz >= a.minZ && cz <= a.maxZ,
+    );
+    if (!inside) kept.push(indices[t], indices[t + 1], indices[t + 2]);
+  }
+  mesh.setIndices(kept);
 }
 
 /** Small deterministic PRNG so rubble placement is stable across iterations. */
