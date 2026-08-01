@@ -108,6 +108,16 @@ const ROWS: Row[] = [
   { kind: 'heading', label: 'Graphics' },
   {
     kind: 'select',
+    key: 'renderer',
+    label: 'Graphics backend',
+    options: [
+      ['webgl2', 'WebGL2 (verified)'],
+      ['webgpu', 'WebGPU (experimental)'],
+    ],
+    hint: 'Takes effect on reload. WebGPU is untested — if it renders black, switch back.',
+  },
+  {
+    kind: 'select',
     key: 'quality',
     label: 'Quality',
     options: [
@@ -154,7 +164,7 @@ export function mountPauseMenu(resume: () => void): void {
       <div class="pause-body">${ROWS.map(renderRow).join('')}</div>
       <footer class="pause-foot">
         <button type="button" class="pause-reset" id="pause-reset">Reset to defaults</button>
-        <span class="pause-note">Settings save automatically.</span>
+        <span class="pause-note" id="pause-diag">Settings save automatically.</span>
       </footer>
     </div>`;
   ui.appendChild(root);
@@ -247,8 +257,16 @@ function applyDocumentFlags(): void {
   de.style.setProperty('--subtitle-scale', String(s.subtitleSize));
 }
 
+/** Set by main so the panel can report which backend actually loaded. */
+let diagnostic = '';
+export function setRendererDiagnostic(text: string): void {
+  diagnostic = text;
+}
+
 export function showPause(): void {
   root?.removeAttribute('hidden');
+  const d = document.getElementById('pause-diag');
+  if (d && diagnostic) d.textContent = diagnostic;
   syncInputs();
   (root?.querySelector('#pause-resume') as HTMLElement | null)?.focus();
 }

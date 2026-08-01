@@ -12,7 +12,7 @@ import { Cellblocks } from './scenes/Cellblocks';
 import { Powerhouse } from './scenes/Powerhouse';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
-import { mountPauseMenu, showPause, hidePause } from './ui/PauseMenu';
+import { mountPauseMenu, showPause, hidePause, setRendererDiagnostic } from './ui/PauseMenu';
 import { mountTitleScreen, showObjective } from './ui/TitleScreen';
 import { mountControlsHelp, toggleControlsHelp } from './ui/ControlsHelp';
 import { mountObjective, toggleObjective } from './ui/Objective';
@@ -218,6 +218,11 @@ async function boot(): Promise<void> {
     }
   };
   mountPauseMenu(() => setPaused(false));
+  // Report the backend that actually loaded, and why, so a silent fallback can
+  // never hide again.
+  setRendererDiagnostic(
+    `Renderer: ${renderer.rendererName}. ${renderer.rendererNote}`.trim(),
+  );
 
   renderer.start((dt) => {
     input.update();

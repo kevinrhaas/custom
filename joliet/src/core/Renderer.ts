@@ -29,6 +29,23 @@ import '@babylonjs/core/Engines/Extensions/engine.rawTexture';
 import '@babylonjs/core/Engines/Extensions/engine.dynamicTexture';
 import '@babylonjs/core/Engines/Extensions/engine.cubeTexture';
 
+// WebGPU has its OWN parallel set of engine extensions, and importing the
+// WebGL ones does nothing for it. This is the most likely cause of the black
+// screen reported on Chrome/macOS: the engine was created successfully, then
+// every path that needed `createMultipleRenderTarget`, `createRenderTarget`
+// or the raw-texture helpers found them missing on the WebGPU engine and the
+// frame came out empty. Same class of bug as the iOS crash, one engine along.
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.multiRender';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.renderTarget';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.renderTargetTexture';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.renderTargetCube';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.rawTexture';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.dynamicTexture';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.cubeTexture';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.readTexture';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.query';
+import '@babylonjs/core/Engines/WebGPU/Extensions/engine.alpha';
+
 import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 import '@babylonjs/core/Rendering/geometryBufferRendererSceneComponent';
 import '@babylonjs/core/Rendering/prePassRendererSceneComponent';
@@ -74,6 +91,11 @@ export class Renderer {
   private camera: Camera | null = null;
   private unsubSettings: (() => void) | null = null;
   private disposed = false;
+
+  /** Which backend actually got created — surfaced in the pause menu. */
+  rendererName = 'unknown';
+  /** Why WebGPU was not used, when it was asked for and did not happen. */
+  rendererNote = '';
 
   constructor(private opts: RendererOptions) {
     this.canvas = opts.canvas;
@@ -129,11 +151,17 @@ export class Renderer {
    * is what ships. Re-enable WebGPU only after a capture pass runs on it.
    */
   private async createEngine(): Promise<AbstractEngine> {
-    const wantGPU =
-      !this.opts.forceWebGL &&
-      typeof navigator !== 'undefined' &&
-      'gpu' in navigator &&
-      new URLSearchParams(location.search).has('webgpu');
+    const pref = settings.get().renderer;
+    const q = new URLSearchParams(location.search);
+    const forced = q.has('webgpu') ? 'webgpu' : q.has('webgl') ? 'webgl2' : null;
+    const choice = forced ?? pref;
+    const hasGPU = typeof navigator !== 'undefined' && 'gpu' in navigator;
+
+    if (!hasGPU && choice === 'webgpu') {
+      this.rendererNote = 'WebGPU requested but this browser does not expose navigator.gpu.';
+    }
+
+    const wantGPU = !this.opts.forceWebGL && hasGPU && choice === 'webgpu';
 
     if (wantGPU) {
       try {
@@ -143,13 +171,19 @@ export class Renderer {
           adaptToDeviceRatio: true,
         });
         await e.initAsync();
+        this.rendererName = 'WebGPU';
         return e;
-      } catch {
+      } catch (err) {
         // Fall through to WebGL2 — never leave the player with a black page
-        // because a WebGPU adapter misbehaved.
+        // because a WebGPU adapter misbehaved. Keep the reason: a silent
+        // fallback is exactly how the last renderer bug hid for days.
+        this.rendererNote = `WebGPU failed: ${String(
+          err instanceof Error ? err.message : err,
+        ).slice(0, 200)}`;
       }
     }
 
+    this.rendererName = 'WebGL2';
     return new Engine(this.canvas, true, {
       preserveDrawingBuffer: true, // the shot harness reads back the canvas
       stencil: true,

@@ -15,6 +15,9 @@ export interface Settings {
   fov: number; // vertical degrees, 60 – 100
   gamepadDeadzone: number;
 
+  /** Graphics backend. WebGL2 is the verified default; WebGPU is opt-in. */
+  renderer: 'webgl2' | 'webgpu';
+
   // Visual quality
   quality: QualityTier;
   resolutionScale: number; // 0.5 – 1.0, applied on top of the tier
@@ -64,6 +67,7 @@ export const DEFAULTS: Settings = {
   fov: 78,
   gamepadDeadzone: 0.18,
 
+  renderer: 'webgl2',
   quality: 'high',
   resolutionScale: 1,
   motionBlur: 0.35,
