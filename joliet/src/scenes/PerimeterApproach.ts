@@ -66,9 +66,9 @@ export class PerimeterApproach extends GameScene {
       },
       {
         name: 'a5-trench',
-        position: [13.5, 1.55, -12.5],
-        rotation: [0.02, 0.42],
-        note: 'The drainage trench entry. Wet stone, standing water, foliage intrusion.',
+        position: [18.2, 2.55, -17.5],
+        rotation: [-0.28, 0.46],
+        note: 'The drainage trench entry, read from the approach: a genuine cut in the ground running under the wall. Tests the ground aperture, coping stones, wet stone and standing water.',
       },
     ],
   };

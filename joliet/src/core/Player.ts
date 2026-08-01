@@ -154,7 +154,10 @@ export class Player {
     l.position = new Vector3(-0.11, -0.09, 0.06);
     l.diffuse = C.headlamp;
     l.specular = C.headlamp;
-    l.intensity = 42;
+    // FALLOFF_PHYSICAL is inverse-square, so this is not a 0-1 dial: at 42 the
+    // beam delivered ~1.7 at five metres and was invisible against a moon key
+    // of 4.6. A bright LED headlamp at arm's length needs three orders more.
+    l.intensity = 900;
     l.range = 26;
     l.innerAngle = 0.42;
     l.falloffType = SpotLight.FALLOFF_PHYSICAL;
@@ -501,7 +504,7 @@ export class Player {
     // player in the dark is exactly the kind of instant-fail this game avoids.
     const brown = this.battery < 0.2 ? 0.45 + this.battery * 2.75 : 1;
     const flicker = this.battery < 0.12 ? 0.88 + Math.random() * 0.12 : 1;
-    this.headlamp.intensity = 42 * brown * flicker;
+    this.headlamp.intensity = 900 * brown * flicker;
   }
 
   dispose(): void {

@@ -80,7 +80,22 @@ score would have been.
   detail can be spent freely.
 - Zero page errors across all iterations.
 
-### What iteration 10 should do
+### Iterations 10–13 — the trench, and two lighting bugs
+
+| # | Found | Fix |
+|---|---|---|
+| 10 | Ground aperture works — the trench is a genuine hole now, not walls standing on an unbroken floor. But `a5` is unreadable: too low, too close, almost entirely dark. | `buildGround` takes aperture rectangles and drops triangles whose centroid falls inside; coping stones hide the cut edge |
+| 11 | Reframed `a5` to look at the trench from the approach. **Still black.** No headlamp cone anywhere, in any anchor, ever. | — |
+| 12 | `PBRMaterial.maxSimultaneousLights` defaults to **4**. The scene has moon + sky + two sodium lamps + headlamp = 5, so the headlamp — *the player's primary light source in every interior scene in the game* — was being silently dropped by every material. | Take the light budget from the quality tier |
+| 13 | Still dark, so the light cap was not the only cause: the headlamp uses `FALLOFF_PHYSICAL`, which is inverse-square, and was set to intensity 42. That delivers ~1.7 at five metres against a moon key of 4.6 — present, but invisible. Exactly the same units error already fixed on the sodium lamp in iteration 3. | Intensity 42 → 900 |
+
+**The lesson worth carrying:** every light in this project that uses physical
+falloff has been set at least an order of magnitude too low on first authoring,
+because the number *looks* like a 0–1 dial and is not. Check any new light
+against the sodium lamp (1400) and the headlamp (900), not against the moon
+(4.6, directional, no falloff).
+
+### What the next iteration should do
 
 Run the **actual protocol**: independent critic, eight axes, five anchors,
 written justification, specific fix per axis below 8. The frame is finally

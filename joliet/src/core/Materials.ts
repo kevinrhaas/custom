@@ -1,10 +1,12 @@
 import { Scene } from '@babylonjs/core/scene';
 import { PBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
+import { Material } from '@babylonjs/core/Materials/material';
 import { Texture } from '@babylonjs/core/Materials/Textures/texture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Vector2 } from '@babylonjs/core/Maths/math.vector';
 
 import { C, HEX } from './Palette';
+import { profile } from './Settings';
 import {
   bakeLimestone,
   bakeFlakingPaint,
@@ -114,6 +116,13 @@ export class MaterialLibrary {
     m.ambientColor = new Color3(1, 1, 1);
     m.environmentIntensity = 0.55;
 
+    // PBRMaterial defaults to FOUR simultaneous lights and silently drops the
+    // rest. Scene 1.1 alone has moon + sky + two sodium lamps + the player's
+    // headlamp — so the headlamp, which is the primary light source in every
+    // interior scene in the game, was never rendering at all. Take the budget
+    // from the quality tier.
+    m.maxSimultaneousLights = profile().maxLights;
+
     // Specular anti-aliasing: without this the barbed wire, the bars and the
     // corbel edges shimmer badly at 1080p, which is the loudest "this is a
     // browser game" tell there is.
@@ -124,6 +133,24 @@ export class MaterialLibrary {
     m.freeze(); // none of these change at runtime
     this.cache.set(key, m);
     return m;
+  }
+
+  /**
+   * Force every material to recompile against the scene's *current* light list.
+   *
+   * Materials are baked and frozen during the loading screen, before the player
+   * (and therefore the headlamp) exists. A frozen material never recompiles, so
+   * it keeps the shader it built against the lights present at freeze time —
+   * which meant the headlamp, added afterwards, was permanently invisible on
+   * every surface in the game. Call this whenever a light is added or removed.
+   */
+  rebindLights(): void {
+    for (const m of this.cache.values()) {
+      m.unfreeze();
+      m.maxSimultaneousLights = profile().maxLights;
+      m.markAsDirty(Material.LightDirtyFlag);
+      m.freeze();
+    }
   }
 
   /** Unfreeze, mutate, refreeze — for the powerhouse lighting change. */

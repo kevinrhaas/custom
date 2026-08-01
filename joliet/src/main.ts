@@ -63,6 +63,10 @@ async function boot(): Promise<void> {
     spawn.yaw,
   );
   renderer.attachCamera(player.camera);
+  // The material library was baked and frozen during the loading screen, before
+  // the player's headlamp existed. Frozen materials never recompile, so without
+  // this the headlamp lights nothing at all.
+  mats.rebindLights();
 
   input.attach(canvas);
   canvas.addEventListener('click', () => {

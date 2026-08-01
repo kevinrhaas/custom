@@ -1,0 +1,48 @@
+{
+  "scene": "1.1-perimeter",
+  "iteration": 13,
+  "quality": "high",
+  "anchors": [
+    {
+      "name": "a1-arrival",
+      "note": "The establishing frame. Wall foreshortened, tower left of centre, sodium pool right.",
+      "fpsMedian": 7,
+      "fpsMin": 7,
+      "activeMeshes": 169,
+      "triangles": 161744
+    },
+    {
+      "name": "a2-wall-raking",
+      "note": "Moon rakes the rustication. Tests the limestone normal + per-block colour variance.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 169,
+      "triangles": 161744
+    },
+    {
+      "name": "a3-tower-up",
+      "note": "Looking up the tower shaft to the corbel collar and glazed cab. Silhouette test.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 144,
+      "triangles": 160956
+    },
+    {
+      "name": "a4-sodium-pool",
+      "note": "Warm/cool split. Tests bloom restraint, tone mapping and asphalt roughness.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 134,
+      "triangles": 161304
+    },
+    {
+      "name": "a5-trench",
+      "note": "The drainage trench entry, read from the approach: a genuine cut in the ground running under the wall. Tests the ground aperture, coping stones, wet stone and standing water.",
+      "fpsMedian": 0,
+      "fpsMin": 0,
+      "activeMeshes": 166,
+      "triangles": 161708
+    }
+  ],
+  "pageErrors": []
+}
