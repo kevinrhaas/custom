@@ -11,8 +11,8 @@ An honest per-area assessment. Written to be acted on, not to flatter.
 **What exists:** a complete, working engine core and one scene — the Perimeter
 Approach — built end to end at intended final quality, plus a full research
 dossier, a frozen material library, and a working screenshot/performance
-harness. It builds, it runs at 60 FPS on real hardware targets, and you can walk
-around it.
+harness. It builds, it runs with zero page errors, and you can walk around it.
+Frame rate on real hardware is **unmeasured** — see the bottom of this file.
 
 **What does not exist:** the other eight scenes, audio of any kind, the
 interaction and save systems, and the role abilities. The game is a **look-dev
@@ -35,7 +35,7 @@ That is roughly 2 minutes of content.
 | Material library | Done and frozen. 18 named presets, fully procedural, calibrated to reference photography. | 7/10 |
 | Architectural kit | Done for exteriors: coursed wall with corbel course, tapered towers with corbelled collars and octagonal glazed cabs, segmental-arched barred windows, catenary barbed wire. No interior kit yet. | 7/10 |
 | Scene 1.1 Perimeter | Built end to end. Composition, lighting split, masonry and silhouette all read. **The drainage-trench entry is visibly broken** — the ground plane has no hole cut in it, so the trench walls float on an unbroken floor. Missing foliage; entries are geometry without interaction. | 6/10 |
-| Screenshot harness | Working. 5 fixed anchors, 1080p, per-anchor FPS/draw-calls/triangles, page-error capture. | 8/10 |
+| Screenshot harness | Working. 5 fixed anchors, 1080p, per-anchor FPS / active meshes / triangles, page-error capture. | 8/10 |
 | Critic loop | **Ran, but not to its own protocol.** See below. | 4/10 |
 | Scenes 1.2 – 4.2 | **Not started.** | 0/10 |
 | Audio | **Not started.** Nothing. | 0/10 |
@@ -49,9 +49,10 @@ That is roughly 2 minutes of content.
 The protocol in `QUALITY-LOG.md` calls for an independent agent scoring five
 anchors on eight axes, passing at mean ≥8.0, capped at four iterations.
 
-**That is not what ran.** Four iterations happened, but they were driven by
+**That is not what ran.** Nine iterations happened, but they were driven by
 direct inspection of the captures against reference photography, fixing hard
-breakage rather than scoring composition:
+breakage rather than scoring composition. The full log with root causes is in
+`QUALITY-LOG.md`; the headlines were:
 
 1. **Iteration 1** — near-black frame, giant skewed black wedges across the sky.
    Root causes: `CubeTexture.CreateFromPrefilteredData` fails *silently* on a
@@ -64,10 +65,18 @@ breakage rather than scoring composition:
 3. **Iteration 3** — legible at last, but massively underexposed: PBR light
    intensities were set as if they were 0–1 dials. Also revealed the real
    material bug.
-4. **Iteration 4** — the material bug: shared materials carried a *constant* UV
-   scale, so an 88 m wall got 0.34 texture repeats and every large surface was
-   stretched into flat mush. Fixed with world-space UV projection so texel
-   density is constant across the whole game.
+4. **Iterations 4–5** — a translucent panel smeared across the whole wall. Not
+   geometry: TAA temporal history survived the anchor teleport with no motion
+   vectors to invalidate it.
+5. **Iterations 6–7** — the material bug, in two layers. Shared materials
+   carried a *constant* UV scale, so an 88 m wall got 0.34 texture repeats and
+   every large surface stretched into mush; and once that was fixed with
+   world-space UV projection, `Texture.clone()` on a `RawTexture` turned out not
+   to carry its pixel buffer, so every material was sampling a flat clone.
+6. **Iterations 8–9** — look tuning (rock-face relief depth, blotching, runoff,
+   warming the key) and a metric fix: the draw-call counter had been
+   accumulating across frames, so every draw-call figure logged before then was
+   a running total and meaningless.
 
 Scoring composition on a black frame would have been theatre. But the
 consequence is real: **scene 1.1 has not been through the formal 8-axis critique
