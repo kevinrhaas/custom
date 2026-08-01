@@ -37,6 +37,14 @@ const ROUTES = {
     // bottom riser and walk straight up.
     { name: 'stair flight 1 (tier 0 → 1)', from: [-3.26, 0.4, 11.4], yaw: 0, hold: 10, expectRise: 2.4 },
     { name: 'stair flight 2 (tier 1 → 2)', from: [-3.26, 3.05, 27.2], yaw: 0, hold: 10, expectRise: 2.4 },
+    // The join the player actually failed at: standing on tier 1 having
+    // arrived, walk along the deck toward the next flight. If the railing has
+    // no departure gap this ends against an invisible wall.
+    // WELL_X is -2.05 and the walkway runs from there TOWARD the cells, so
+    // x must be greater than -2.05. The first version of this leg started at
+    // -2.6, i.e. in mid-air inside the light well, and dutifully reported a
+    // 3 m fall that was entirely the probe's own fault.
+    { name: 'tier 1 deck to flight 2', from: [-1.5, 3.0, 18.5], yaw: 0, hold: 11, expectRise: -0.5 },
   ],
   perimeter: [
     { name: 'approach to the wall', from: [0, 0.5, -30], yaw: 0, hold: 10, expectRise: -0.6 },
