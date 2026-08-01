@@ -1,0 +1,23 @@
+import { chromium } from 'playwright';
+import { createServer } from 'node:http';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+const ROOT='/home/user/custom/site/joliet/app';
+const T={'.html':'text/html','.js':'text/javascript','.css':'text/css','.hdr':'application/octet-stream'};
+const srv=createServer(async(q,r)=>{let p=decodeURIComponent(q.url.split('?')[0]);if(p==='/')p='/index.html';
+try{const b=await readFile(path.join(ROOT,p));r.writeHead(200,{'content-type':T[path.extname(p)]??'application/octet-stream'});r.end(b);}catch{r.writeHead(404);r.end();}});
+await new Promise(r=>srv.listen(5399,r));
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+const pg=await b.newPage({viewport:{width:1280,height:900}});
+const errs=[];pg.on('pageerror',e=>errs.push(String(e).slice(0,140)));
+await pg.goto('http://localhost:5399/',{waitUntil:'load',timeout:60000});
+await pg.waitForSelector('#title .scene-card',{timeout:30000});
+const n=await pg.$$eval('.scene-card',els=>els.length);
+const h1=await pg.$eval('#title h1',e=>e.textContent);
+console.log(`title: h1="${h1}" cards=${n} errors=${errs.length}`);
+await pg.screenshot({path:'/home/user/custom/joliet/artifacts/title.png'});
+// click the first card and confirm it starts loading
+await pg.click('.scene-card[data-scene="perimeter"]');
+await pg.waitForFunction(()=>!document.getElementById('loader')?.hasAttribute('hidden'),null,{timeout:15000});
+console.log('start click -> loader visible: OK');
+await b.close();srv.close();

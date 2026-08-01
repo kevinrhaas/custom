@@ -60,7 +60,57 @@ SINCE MAY`,hand:`scratch`},{text:`GOD SEES`,hand:`scratch`},{text:`LET ME UP`,ha
              min="${e.min}" max="${e.max}" step="${e.step}" value="${String(t[e.key])}">
       <output data-out="${String(e.key)}">${Nn(t[e.key])}</output>
     </span>
-  </label>`}function Nn(e){return typeof e==`number`?Number.isInteger(e)?String(e):e.toFixed(2):String(e)}function Pn(){if(!$)return;let e=j.get();for(let t of $.querySelectorAll(`[data-key]`)){let n=e[t.dataset.key];t instanceof HTMLInputElement&&t.type===`checkbox`?t.checked=!!n:t.value=String(n)}for(let t of $.querySelectorAll(`[data-out]`))t.textContent=Nn(e[t.dataset.out])}function Fn(){let e=j.get(),t=document.documentElement;t.dataset.contrast=e.highContrastPrompts?`high`:`normal`,t.dataset.colorblind=e.colorblind,t.style.setProperty(`--subtitle-scale`,String(e.subtitleSize))}function In(){$?.removeAttribute(`hidden`),Pn(),($?.querySelector(`#pause-resume`))?.focus()}function Ln(){$?.setAttribute(`hidden`,``)}var Rn=null,zn=null,Bn=null,Vn=null;function Hn(){Rn=document.getElementById(`ui`),Rn&&(Rn.innerHTML=`
+  </label>`}function Nn(e){return typeof e==`number`?Number.isInteger(e)?String(e):e.toFixed(2):String(e)}function Pn(){if(!$)return;let e=j.get();for(let t of $.querySelectorAll(`[data-key]`)){let n=e[t.dataset.key];t instanceof HTMLInputElement&&t.type===`checkbox`?t.checked=!!n:t.value=String(n)}for(let t of $.querySelectorAll(`[data-out]`))t.textContent=Nn(e[t.dataset.out])}function Fn(){let e=j.get(),t=document.documentElement;t.dataset.contrast=e.highContrastPrompts?`high`:`normal`,t.dataset.colorblind=e.colorblind,t.style.setProperty(`--subtitle-scale`,String(e.subtitleSize))}function In(){$?.removeAttribute(`hidden`),Pn(),($?.querySelector(`#pause-resume`))?.focus()}function Ln(){$?.setAttribute(`hidden`,``)}var Rn=[{key:`perimeter`,title:`Perimeter Approach`,chapter:`Act I · 00:14`,objective:`Find a way inside.`,blurb:`Collins Street, past midnight. Ten metres of limestone between you and the yard, and three ways through it: a drainage trench, a breach at the old quarry cut, and a maintenance gate. Start here — nothing in this scene can hurt you.`},{key:`cellblocks`,title:`The Cellblocks`,chapter:`Act III · 02:40`,objective:`Cross the gallery. Listen to the building.`,blurb:`The East cell house. Four tiers, four hundred cells, and steel grating underfoot that carries every step the length of the hall. The showpiece — and the place where the drawings and the scan stop agreeing with each other.`},{key:`void`,title:`The Void`,chapter:`Act III · 03:55`,objective:`Read the walls.`,blurb:`Beneath the east block, behind a wall somebody bricked up and then removed from the record. Hand-cut stone, quarried by the men who were kept above it. There is nothing down here that will hurt you either. Take your time.`}],zn=null,Bn=null;function Vn(e){Bn=e;let t=document.getElementById(`ui`);if(!t)return;let n=Xe();zn=document.createElement(`div`),zn.id=`title`,zn.className=`title`,zn.innerHTML=`
+    <div class="title-inner">
+      <header class="title-head">
+        <div class="title-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <h1>Joliet</h1>
+        <p class="title-sub">Midnight Infiltration</p>
+        <p class="title-tag">
+          Old Joliet Prison, 1125 Collins Street. Closed 2002.<br>
+          There are no weapons in this game and nothing is chasing you.
+        </p>
+      </header>
+
+      <section class="title-scenes" aria-label="Choose a location">
+        <h2 class="title-h2">Choose a location</h2>
+        <div class="title-grid">
+          ${Rn.map((e,t)=>`
+            <button type="button" class="scene-card" data-scene="${e.key}" ${t===0?`autofocus`:``}>
+              <span class="scene-chapter">${e.chapter}</span>
+              <span class="scene-title">${e.title}</span>
+              <span class="scene-objective">${e.objective}</span>
+              <span class="scene-blurb">${e.blurb}</span>
+              <span class="scene-go">Enter →</span>
+            </button>`).join(``)}
+        </div>
+        <p class="title-note">
+          The three locations are not yet connected — there is no walk between them.
+          Pick one and it loads on its own.
+        </p>
+      </section>
+
+      <section class="title-controls" aria-label="Controls">
+        <h2 class="title-h2">Controls</h2>
+        ${n?Un():Hn()}
+      </section>
+
+      <footer class="title-foot">
+        <p>A fictional story set in a real, protected historic place.
+        The prison is a museum and runs public tours — that is the way in.</p>
+      </footer>
+    </div>`,t.appendChild(zn);for(let e of zn.querySelectorAll(`[data-scene]`))e.addEventListener(`click`,()=>{let t=e.dataset.scene;Wn(),Bn?.(t)})}function Hn(){return`
+    <ul class="ctrl-list">
+      ${[[`W A S D`,`Move`],[`Mouse`,`Look`],[`Shift`,`Sprint`],[`C`,`Crouch`],[`Z`,`Crawl`],[`Space`,`Climb / vault`],[`F`,`Headlamp on / off`],[`E`,`Interact`],[`Esc`,`Pause & settings`]].map(([e,t])=>`<li><kbd>${e}</kbd><span>${t}</span></li>`).join(``)}
+    </ul>
+    <p class="ctrl-hint">Click the screen once to capture the mouse. <kbd>Esc</kbd> releases it.</p>`}function Un(){return`
+    <ul class="ctrl-list">
+      ${[[`Left half`,`Drag to move`],[`Right half`,`Drag to look`],[`Push the stick`,`Run`],[`Lamp`,`Headlamp on / off`],[`Crouch`,`Crouch`],[`Climb`,`Climb / vault`],[`❚❚ top right`,`Pause & settings`]].map(([e,t])=>`<li><kbd>${e}</kbd><span>${t}</span></li>`).join(``)}
+    </ul>
+    <p class="ctrl-hint">Turn your sound on — this game is mostly listening.</p>`}function Wn(){zn?.classList.add(`gone`),setTimeout(()=>zn?.setAttribute(`hidden`,``),420)}function Gn(e){let t=Rn.find(t=>t.key===e);if(!t)return;let n=document.getElementById(`ui`);if(!n)return;let r=document.createElement(`div`);r.className=`objective`,r.innerHTML=`
+    <span class="obj-chapter">${t.chapter}</span>
+    <span class="obj-title">${t.title}</span>
+    <span class="obj-line">${t.objective}</span>`,n.appendChild(r),requestAnimationFrame(()=>r.classList.add(`on`)),setTimeout(()=>r.classList.remove(`on`),7e3),setTimeout(()=>r.remove(),8200)}var Kn=null,qn=null,Jn=null,Yn=null;function Xn(){Kn=document.getElementById(`ui`),Kn&&(Kn.innerHTML=`
     <div id="loader" class="loader" role="status" aria-live="polite">
       <div class="loader-inner">
         <div class="mark" aria-hidden="true">
@@ -75,10 +125,10 @@ SINCE MAY`,hand:`scratch`},{text:`GOD SEES`,hand:`scratch`},{text:`LET ME UP`,ha
     <div id="subtitles" class="subtitles" aria-live="polite"></div>
     <div id="prompt" class="prompt" hidden></div>
     <div id="reticle" class="reticle" hidden></div>
-  `,zn=document.getElementById(`loader`),Bn=document.getElementById(`loadbar`),Vn=document.getElementById(`loadlabel`))}function Un(e,t){Bn&&(Bn.style.width=`${Math.round(Math.max(0,Math.min(1,e))*100)}%`),t&&Vn&&(Vn.textContent=t)}function Wn(e){zn?.removeAttribute(`hidden`),zn?.classList.remove(`gone`),e&&Vn&&(Vn.textContent=e)}function Gn(){zn?.classList.add(`gone`),document.getElementById(`reticle`)?.removeAttribute(`hidden`),setTimeout(()=>zn?.setAttribute(`hidden`,``),700)}function Kn(e=`This browser cannot render it.`,t=`Joliet needs WebGL2 (or WebGPU). Your browser reports neither, which is usually an old version, a disabled setting, or hardware acceleration turned off.`){let n=document.getElementById(`ui`);if(!n)return;let r=document.createElement(`div`);r.className=`fatal`,r.innerHTML=`
-    <h1>${qn(e)}</h1>
-    <p>${qn(t)}</p>
+  `,qn=document.getElementById(`loader`),Jn=document.getElementById(`loadbar`),Yn=document.getElementById(`loadlabel`))}function Zn(e,t){Jn&&(Jn.style.width=`${Math.round(Math.max(0,Math.min(1,e))*100)}%`),t&&Yn&&(Yn.textContent=t)}function Qn(e){qn?.removeAttribute(`hidden`),qn?.classList.remove(`gone`),e&&Yn&&(Yn.textContent=e)}function $n(){qn?.classList.add(`gone`),document.getElementById(`reticle`)?.removeAttribute(`hidden`),setTimeout(()=>qn?.setAttribute(`hidden`,``),700)}function er(e=`This browser cannot render it.`,t=`Joliet needs WebGL2 (or WebGPU). Your browser reports neither, which is usually an old version, a disabled setting, or hardware acceleration turned off.`){let n=document.getElementById(`ui`);if(!n)return;let r=document.createElement(`div`);r.className=`fatal`,r.innerHTML=`
+    <h1>${tr(e)}</h1>
+    <p>${tr(t)}</p>
     <p class="hint">Try a current Chrome, Edge, Firefox or Safari 17+.</p>
-    <p class="hint" style="margin-top:1.2rem"><a href="../" style="color:#c9ad74">← back to the site</a></p>`,n.appendChild(r)}function qn(e){return e.replace(/[&<>"']/g,e=>({"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`,"'":`&#39;`})[e]??e)}var Jn={perimeter:{title:`Perimeter Approach`,ambience:`exterior`,loadingLine:`Raising the wall`,make:(e,t,n)=>new dt(e,t,n)},cellblocks:{title:`The Cellblocks`,ambience:`cellblock`,loadingLine:`Racking the doors`,make:(e,t,n)=>new zt(e,t,n)},void:{title:`The Void`,ambience:`chamber`,loadingLine:`Opening the floor`,make:(e,t,n)=>new dn(e,t,n)}};async function Yn(){let e=document.getElementById(`stage`);if(!e)throw Error(`#stage canvas missing`);if(Hn(),!Zn()){Kn();return}let t=Xe();t&&!new URLSearchParams(location.search).has(`quality`)&&j.patch({quality:`low`,resolutionScale:.75}),Wn(`Waking the building`);let n=new fe({canvas:e,forceWebGL:Xn(`webgl`)});await n.init(),Un(.05,`Mixing paint`);let r=new Te(n.scene);await r.prewarm((e,t)=>{Un(.05+e/t*.6,`Weathering surfaces`)});let i=Jn[new URLSearchParams(location.search).get(`scene`)??`perimeter`]??Jn.perimeter;Un(.7,i.loadingLine);let a=i.make(n.scene,n,r);await a.build(),Un(.9,`Loading the sky`),await n.loadEnvironment(`assets/env/night-moonlit-golf_1k.hdr`,.75);let o=a.manifest.spawn,s=new We(n.scene,n,new A(...o.position),o.yaw);n.attachCamera(s.camera),r.rebindLights(),U.attach(e);let c=()=>{tt.start().then(()=>{tt.setSpace(i.ambience),tt.startAmbience(i.ambience)})},l=t?new Ze({onFirstGesture:c}):null;l?.mount(),e.addEventListener(`click`,()=>{U.locked||U.requestLock(),c()}),s.setFootstepHandler((e,t)=>tt.footstep(e,t)),s.setLandHandler(e=>tt.land(e,s.currentSurface)),Un(1,`Ready`),await n.scene.whenReadyAsync(),Gn(),l?.setVisible(!0);let u=!1,d=e=>{u=e,e?(U.releaseLock(),In()):Ln()};jn(()=>d(!1)),n.start(e=>{U.update(),U.pressed(`pause`)&&d(!u),!u&&(U.pressed(`flashlight`)&&s.toggleHeadlamp(),s.update(e),a.update(e,s))}),window.__joliet={ready:!0,scene:a,player:s,renderer:n,touch:l,async gotoAnchor(e){let t=a.manifest.anchors.find(t=>t.name===e);if(!t)throw Error(`No anchor "${e}" in ${a.manifest.id}`);s.setAnchor(new A(...t.position),t.rotation[0],t.rotation[1],t.fov),n.setCaptureMode(!0),n.resetTAA(),await new Promise(e=>setTimeout(e,1500))},stats(){let e=n.engine;return{fps:Math.round(e.getFps()),activeMeshes:n.scene.getActiveMeshes().length,triangles:n.scene.getActiveIndices()/3}}}}function Xn(e){return new URLSearchParams(location.search).has(e)}function Zn(){if(typeof navigator<`u`&&`gpu`in navigator)return!0;try{let e=document.createElement(`canvas`).getContext(`webgl2`);return e?(e.getExtension(`WEBGL_lose_context`)?.loseContext(),!0):!1}catch{return!1}}var Qn=new URLSearchParams(location.search).get(`quality`);(Qn===`low`||Qn===`medium`||Qn===`high`||Qn===`ultra`)&&j.set(`quality`,Qn),Yn().catch(e=>{console.error(e);let t=document.getElementById(`ui`);t&&(t.innerHTML=`<div class="fatal"><h1>The lights did not come on.</h1>
+    <p class="hint" style="margin-top:1.2rem"><a href="../" style="color:#c9ad74">← back to the site</a></p>`,n.appendChild(r)}function tr(e){return e.replace(/[&<>"']/g,e=>({"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`,"'":`&#39;`})[e]??e)}var nr={perimeter:{title:`Perimeter Approach`,ambience:`exterior`,loadingLine:`Raising the wall`,make:(e,t,n)=>new dt(e,t,n)},cellblocks:{title:`The Cellblocks`,ambience:`cellblock`,loadingLine:`Racking the doors`,make:(e,t,n)=>new zt(e,t,n)},void:{title:`The Void`,ambience:`chamber`,loadingLine:`Opening the floor`,make:(e,t,n)=>new dn(e,t,n)}};function rr(){return new Promise(e=>{Vn(t=>e(t))})}async function ir(){let e=document.getElementById(`stage`);if(!e)throw Error(`#stage canvas missing`);Xn();let t=new URLSearchParams(location.search).get(`scene`)??await rr();if(!or()){er();return}let n=Xe();n&&!new URLSearchParams(location.search).has(`quality`)&&j.patch({quality:`low`,resolutionScale:.75}),Qn(`Waking the building`);let r=new fe({canvas:e,forceWebGL:ar(`webgl`)});await r.init(),Zn(.05,`Mixing paint`);let i=new Te(r.scene);await i.prewarm((e,t)=>{Zn(.05+e/t*.6,`Weathering surfaces`)});let a=nr[t]??nr.perimeter;Zn(.7,a.loadingLine);let o=a.make(r.scene,r,i);await o.build(),Zn(.9,`Loading the sky`),await r.loadEnvironment(`assets/env/night-moonlit-golf_1k.hdr`,.75);let s=o.manifest.spawn,c=new We(r.scene,r,new A(...s.position),s.yaw);r.attachCamera(c.camera),i.rebindLights(),U.attach(e);let l=()=>{tt.start().then(()=>{tt.setSpace(a.ambience),tt.startAmbience(a.ambience)})},u=n?new Ze({onFirstGesture:l}):null;u?.mount(),e.addEventListener(`click`,()=>{U.locked||U.requestLock(),l()}),c.setFootstepHandler((e,t)=>tt.footstep(e,t)),c.setLandHandler(e=>tt.land(e,c.currentSurface)),Zn(1,`Ready`),await r.scene.whenReadyAsync(),$n(),Gn(t),u?.setVisible(!0);let d=!1,f=e=>{d=e,e?(U.releaseLock(),In()):Ln()};jn(()=>f(!1)),r.start(e=>{U.update(),U.pressed(`pause`)&&f(!d),!d&&(U.pressed(`flashlight`)&&c.toggleHeadlamp(),c.update(e),o.update(e,c))}),window.__joliet={ready:!0,scene:o,player:c,renderer:r,touch:u,async gotoAnchor(e){let t=o.manifest.anchors.find(t=>t.name===e);if(!t)throw Error(`No anchor "${e}" in ${o.manifest.id}`);c.setAnchor(new A(...t.position),t.rotation[0],t.rotation[1],t.fov),r.setCaptureMode(!0),r.resetTAA(),await new Promise(e=>setTimeout(e,1500))},stats(){let e=r.engine;return{fps:Math.round(e.getFps()),activeMeshes:r.scene.getActiveMeshes().length,triangles:r.scene.getActiveIndices()/3}}}}function ar(e){return new URLSearchParams(location.search).has(e)}function or(){if(typeof navigator<`u`&&`gpu`in navigator)return!0;try{let e=document.createElement(`canvas`).getContext(`webgl2`);return e?(e.getExtension(`WEBGL_lose_context`)?.loseContext(),!0):!1}catch{return!1}}var sr=new URLSearchParams(location.search).get(`quality`);(sr===`low`||sr===`medium`||sr===`high`||sr===`ultra`)&&j.set(`quality`,sr),ir().catch(e=>{console.error(e);let t=document.getElementById(`ui`);t&&(t.innerHTML=`<div class="fatal"><h1>The lights did not come on.</h1>
       <p>${String(e instanceof Error?e.message:e)}</p>
       <p class="hint">This build needs WebGL2. Try a current Chrome, Edge, Firefox or Safari 17+.</p></div>`)});

@@ -361,3 +361,63 @@ html, body {
   .pause-row { flex-direction: column; align-items: stretch; gap: .4rem; }
   .pause-slider input[type="range"] { width: 100%; }
 }
+
+/* ---------------------------------------------------------- title screen -- */
+
+.title {
+  position: absolute; inset: 0; overflow-y: auto; pointer-events: auto;
+  background: radial-gradient(130% 90% at 50% 0%, #16191f 0%, #0a0c0f 45%, #050607 100%);
+  transition: opacity .4s ease; z-index: 45;
+}
+.title.gone { opacity: 0; pointer-events: none; }
+.title[hidden] { display: none; }
+.title-inner { max-width: 62rem; margin: 0 auto; padding: clamp(2rem,6vw,4rem) clamp(1rem,4vw,2rem) 3rem; }
+.title-head { text-align: center; margin-bottom: clamp(2rem,6vw,3.5rem); }
+.title-mark { display: flex; justify-content: center; gap: 7px; height: 40px; margin-bottom: 1.2rem; position: relative; }
+.title-mark::before { content:""; position:absolute; left:50%; top:0; transform:translateX(-50%); width:78px; height:5px; background:var(--stone); opacity:.85; }
+.title-mark span { width: 5px; height: 40px; background: var(--stone); opacity: .45; }
+.title h1 { margin:0; font-size:clamp(2.4rem,8vw,4rem); font-weight:650; letter-spacing:.2em; text-transform:uppercase; }
+.title-sub { margin:.25rem 0 1.4rem; color:var(--dim); letter-spacing:.32em; text-transform:uppercase; font-size:.72rem; }
+.title-tag { margin:0; color:#b6afa1; font-size:.92rem; line-height:1.7; }
+.title-h2 { font-size:.68rem; letter-spacing:.26em; text-transform:uppercase; color:var(--stone); font-weight:600; margin:0 0 1rem; }
+.title-grid { display:grid; gap:.9rem; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); }
+.scene-card {
+  display:flex; flex-direction:column; gap:.4rem; text-align:left;
+  padding:1.2rem; min-height:44px; cursor:pointer;
+  background:linear-gradient(180deg,#14171bcc,#0d0f12cc);
+  border:1px solid #ffffff16; border-radius:5px; color:var(--paper); font:inherit;
+  transition:border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.scene-card:hover, .scene-card:focus-visible {
+  border-color:#c9ad7466; transform:translateY(-2px); outline:none;
+  background:linear-gradient(180deg,#191d22cc,#101317cc);
+}
+.scene-chapter { font-size:.64rem; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
+.scene-title { font-size:1.15rem; font-weight:640; }
+.scene-objective { font-size:.84rem; color:var(--sodium); }
+.scene-blurb { font-size:.86rem; color:var(--dim); line-height:1.6; margin-top:.3rem; }
+.scene-go { margin-top:.6rem; font-size:.82rem; font-weight:620; color:var(--stone); }
+.title-note { margin:1rem 0 0; font-size:.8rem; color:var(--dim); }
+.title-controls { margin-top:clamp(2rem,5vw,3rem); }
+.ctrl-list { list-style:none; margin:0; padding:0; display:grid; gap:.5rem 1.4rem; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); }
+.ctrl-list li { display:flex; align-items:center; gap:.7rem; font-size:.88rem; color:#c3bcae; }
+.ctrl-list kbd {
+  flex:0 0 auto; min-width:4.6em; padding:.22em .5em; text-align:center;
+  background:#1c1f24; border:1px solid #ffffff22; border-bottom-width:2px; border-radius:3px;
+  font:600 .74rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--paper);
+}
+.ctrl-hint { margin:1rem 0 0; font-size:.82rem; color:var(--dim); }
+.ctrl-hint kbd { padding:.1em .4em; background:#1c1f24; border:1px solid #ffffff22; border-radius:3px; font:600 .74rem/1.4 ui-monospace,monospace; }
+.title-foot { margin-top:clamp(2rem,5vw,3rem); padding-top:1.4rem; border-top:1px solid #ffffff12; }
+.title-foot p { margin:0; font-size:.8rem; color:var(--dim); line-height:1.7; }
+
+/* --------------------------------------------------------- objective card -- */
+.objective {
+  position:absolute; left:50%; top:12%; transform:translate(-50%,-8px);
+  display:flex; flex-direction:column; gap:.18rem; text-align:center;
+  opacity:0; transition:opacity .5s ease, transform .5s ease; text-shadow:0 2px 8px #000;
+}
+.objective.on { opacity:1; transform:translate(-50%,0); }
+.obj-chapter { font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--dim); }
+.obj-title { font-size:1.3rem; font-weight:640; letter-spacing:.04em; }
+.obj-line { font-size:.92rem; color:var(--sodium); }
