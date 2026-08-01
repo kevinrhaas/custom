@@ -7,6 +7,37 @@ Each item: what's wrong, what it would cost, and how much it matters.
 
 ---
 
+## Mobile — does not run, now says so
+
+**Reported from iOS Chrome:** `this._getEngine().createMultipleRenderTarget is
+not a function`, fatal at boot.
+
+**Root cause:** Babylon engine extensions are *side-effect imports* that graft
+methods onto the engine prototype, and tree-shaking removes anything not
+explicitly imported. `createMultipleRenderTarget` was never imported, so it did
+not exist at runtime. Desktop Chrome happened to pull it in transitively via
+another module; WebKit's code path did not. **Fixed** — the extension imports
+are now explicit, plus a capability gate that disables SSAO / TAA / motion blur
+rather than letting a missing feature blank the page.
+
+**But mobile still cannot play the game**, for a reason no bug fix addresses:
+there are **no touch controls**, and iOS has no Pointer Lock API, so look
+control has no input at all. The build now detects touch-only devices
+(`pointer: coarse` and no `hover`) and shows an honest notice instead of a
+black screen. `?force` bypasses it for testing.
+
+**To actually support mobile** (~1-2 days, and worth doing):
+- Twin-stick touch layer: left half drag to move, right half drag to look,
+  with a tappable crouch / interact / headlamp cluster.
+- Force the `low` quality tier and a hardware scaling level around 1.5-2.0 —
+  a 512² bake per material and cascaded shadows will not hold 30 FPS on a
+  phone at native resolution.
+- Re-tune the headlamp separately; a small screen at arm's length wants a
+  different exposure than a monitor.
+- Test on a real device. The harness cannot simulate this.
+
+Until then the honest position is: **desktop only**, and the page says so.
+
 ## RESOLVED — the headlamp works; its falloff was miscalibrated
 
 The P0 logged here ("the headlamp illuminates nothing") was **wrong about the

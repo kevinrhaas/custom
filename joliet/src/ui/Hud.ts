@@ -54,6 +54,28 @@ export function hideLoader(): void {
   setTimeout(() => loader?.setAttribute('hidden', ''), 700);
 }
 
+/**
+ * Touch-only devices get an honest notice instead of a black screen.
+ *
+ * There are no touch controls and iOS has no Pointer Lock API, so the game is
+ * genuinely unplayable on a phone right now. Saying so is better than letting
+ * someone download 5 MB and then stare at an unresponsive canvas.
+ */
+export function showTouchNotice(): void {
+  const ui = document.getElementById('ui');
+  if (!ui) return;
+  const el = document.createElement('div');
+  el.className = 'fatal';
+  el.innerHTML = `
+    <h1>Not playable on touch yet.</h1>
+    <p>This build needs a keyboard and mouse, or a gamepad. It uses pointer
+    lock for look control, which iOS does not support, and it has no on-screen
+    controls yet.</p>
+    <p class="hint">Everything else works — try it on a desktop browser.</p>
+    <p class="hint" style="margin-top:1.2rem"><a href="../" style="color:#c9ad74">← back to the site</a></p>`;
+  ui.appendChild(el);
+}
+
 /** Speaker-attributed subtitle line. Cleared after `ms`. */
 export function subtitle(speaker: string, line: string, ms = 3800): void {
   const el = document.getElementById('subtitles');
