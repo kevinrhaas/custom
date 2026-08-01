@@ -27,6 +27,17 @@ const ROWS: Row[] = [
   { kind: 'slider', key: 'fov', label: 'Field of view', min: 60, max: 100, step: 1 },
   { kind: 'toggle', key: 'invertY', label: 'Invert vertical look' },
 
+  {
+    kind: 'slider',
+    key: 'moveSpeedScale',
+    label: 'Movement speed',
+    min: 0.75,
+    max: 2,
+    step: 0.05,
+    hint: 'Scales walking, crouching and running together.',
+  },
+  { kind: 'toggle', key: 'showControlsHelp', label: 'Show controls on screen', hint: 'Or press H.' },
+
   { kind: 'heading', label: 'Comfort' },
   {
     kind: 'toggle',

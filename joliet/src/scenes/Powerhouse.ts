@@ -163,8 +163,11 @@ const CAT_Z0 = -7.0;
 const CAT_Z1 = 7.0;
 
 /** Main steam header, north–south above the catwalk. */
-const HDR_X = -8.3;
-const HDR_Y = 5.25;
+// Deliberately NOT over the catwalk. At x = CAT_X, y = 5.25 the header ran
+// through the head of anyone standing on the deck — iteration 2's a6 is a
+// close-up of the inside of a pipe, because the camera was 9 cm under it.
+const HDR_X = -7.25;
+const HDR_Y = 5.95;
 
 /** Roof truss stations. Five, so four festoon bays. */
 const TRUSS_X = [-16.2, -11.6, -7.0, -2.4, 2.2];
@@ -172,13 +175,32 @@ const TRUSS_X = [-16.2, -11.6, -7.0, -2.4, 2.2];
 const TRUSS_Y = 6.35;
 
 /** The two conduit mouths in the blind south wall. */
-const DUCT_A_X = -5.6; // the one carrying the 1901 plate. Dead.
-const DUCT_B_X = -1.6; // unlabelled but for a later stencil. Live.
-const DUCT_W = 1.15;
-const DUCT_H = 1.45;
+// 2.6 m apart, not 4.0. At 4 m the only way to get both mouths in one frame
+// was to stand far enough back that each was a small dark patch near the edge
+// with a blank two-metre pier between them (iter-02, iter-03 a3). The puzzle
+// has to be one glance.
+const DUCT_A_X = -4.9; // the one carrying the 1901 plate. Dead.
+const DUCT_B_X = -2.3; // unlabelled but for a later stencil. Live.
+const DUCT_W = 1.3;
+const DUCT_H = 1.7;
 const DUCT_LEN = 4.6;
 /** Where the rebuild's blind brick closes duct A off. */
 const DUCT_A_BLIND = 3.3;
+
+/**
+ * Festoon lamp intensity when the power is on.
+ *
+ * Physical falloff, so the number has to be reasoned from the geometry: the
+ * lamps hang at 5.3 m and the floor is what has to read, which is 28 m² of
+ * inverse-square away. Cellblocks' doorway bleed is 150 at ~2 m — about 37 at
+ * the surface it lights — so matching that under a 5.3 m lamp needs roughly
+ * 37 x 28 ~ 1000. Iteration 2 used 240 and contributed about eight units to the
+ * floor: invisible, which is why the reward frame looked like the unpowered one
+ * even once the state flip was fixed. Iteration 3 used the full 1050 and washed
+ * the hall to an even warm mid — the lights came on, but so did every shadow.
+ * 620 lights the floor and leaves the corners to the lamps' own falloff.
+ */
+const STRING_I = 620;
 
 /** Slate switchboard, standing off the east wall and facing the hall. */
 const SB_X = 3.35;
@@ -187,20 +209,18 @@ const SB_Z1 = -2.2;
 const SB_H = 2.45;
 
 /** Torn bays in the south roof slope. [col, row] into the panel grid. */
-const ROOF_COLS = 16;
-const ROOF_ROWS = 5;
+const ROOF_COLS = 12;
+const ROOF_ROWS = 4;
 const ROOF_X0 = X_W - 0.8;
 const ROOF_CW = (X_E + 0.8 - ROOF_X0) / ROOF_COLS;
 const ROOF_RD = (Z_N + 0.8) / ROOF_ROWS;
 const BREACH: [number, number][] = [
   [1, 2],
-  [2, 2],
   [1, 3],
+  [2, 2],
   [2, 3],
-  [8, 3],
-  [9, 3],
-  [8, 4],
-  [9, 4],
+  [6, 2],
+  [6, 3],
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -213,23 +233,23 @@ export class Powerhouse extends GameScene {
     anchors: [
       {
         name: 'a1-boiler-hall',
-        position: [2.0, 1.68, 0.7],
-        rotation: [-Math.PI / 2 + 0.05, -0.03],
-        fov: 66,
+        position: [1.2, 1.74, 1.3],
+        rotation: [-Math.PI / 2 + 0.04, -0.075],
+        fov: 64,
         note: 'THE frame, unpowered. From just inside the east entrance, straight west down 11 m of operating floor at three riveted boiler fronts on their brick settings, the grating catwalk crossing at 3.9 m, the steam header and the roof trusses above it, and moonlight through a torn bay of corrugated roof landing on the middle boiler. Tests the warm/cool split (sodium at the door behind, moon from the roof), the corridor perspective, and whether iron-and-brick reads at all with the headlamp as the only near source.',
       },
       {
         name: 'a2-boiler-front',
-        position: [-7.2, 1.6, 0.15],
-        rotation: [-Math.PI / 2, 0.04],
-        fov: 62,
-        note: 'Square on the middle boiler front from 2.2 m — the range the headlamp is calibrated for. Tests the cast-iron front plate over the riveted shell head, the two furnace doors and the ash doors under them, the water gauge glass and try-cocks, the main stop valve with its spoked handwheel on the crown, the stencilled valve numeral, and the brick setting with its arch.',
+        position: [-5.6, 1.62, 1.9],
+        rotation: [-2.09, -0.13],
+        fov: 64,
+        note: 'Oblique on the middle boiler front from 3.8 m, pitched up to take in the crown. Iteration 1 stood this at 2.2 m and the two furnace doors filled the frame as blown-out discs with no setting, no arch and no valve in shot — near-field blow-out is a known uncalibrated hazard (QUALITY-BACKLOG "the headlamp works; its falloff was miscalibrated") and the answer is to stand further back. Tests the cast-iron front plate over the riveted shell head, the furnace and ash doors, the water gauge glass and try-cocks, the segmental brick arch of the setting, and the main stop valve with its spoked handwheel and stencilled numeral.',
       },
       {
         name: 'a3-conduits',
-        position: [-3.6, 1.55, -5.0],
-        rotation: [Math.PI, 0.13],
-        fov: 70,
+        position: [-3.6, 1.3, -5.6],
+        rotation: [Math.PI, 0.03],
+        fov: 66,
         note: 'THE PUZZLE, in one frame. Both conduit mouths in the blind south wall from 3 m, with the 1901 cast plate over the west duct and the later stencilled No. 1 over the east one. Tests sign legibility at reading distance, the cut-and-capped trays inside the west duct against the continuous run inside the east, the rebuilt machine-made brick around the west mouth against original 1893 brick, and the blind brick face 3.3 m into the duct that says the loud label is wrong.',
       },
       {
@@ -240,18 +260,25 @@ export class Powerhouse extends GameScene {
         note: 'The relay board, unpowered. Four slate panels on a raised base against the east wall from 2.8 m: knife switches on their marble mounts, rheostat handwheels, dead ammeter and voltmeter faces, the open bus-bar cage overhead and the conduit drops into the floor. The second half of the puzzle and the thing the valves feed.',
       },
       {
+        name: 'a7-dead-end',
+        position: [DUCT_A_X, 1.05, Z_S - 0.9],
+        rotation: [Math.PI, 0.03],
+        fov: 72,
+        note: 'Inside the WEST duct — the one the 1901 plate calls No. 1 — crouched, 2.4 m short of where it stops. This is the payoff of the misread and it has to survive being looked at: the cable trays cut back and capped with the conductors sheared and hanging, the tray brackets stopping dead, and a blind face of machine-made rebuild brick across the whole section with fallen rubble against it. Lit by headlamp only, at the range that is calibrated for.',
+      },
+      {
         name: 'a5-hall-lit',
-        position: [2.0, 1.68, 0.7],
-        rotation: [-Math.PI / 2 + 0.05, -0.03],
-        fov: 66,
-        note: 'The reward, and deliberately the same pose as a1 so the two are a direct A/B. Powered: the festoon strings across all four truss bays are alight at HEX.incandescent, the boilers go to silhouette, the catwalk grating reads from underneath, and the switchboard pilots are on. If this frame is not obviously the same room with the power on, the reward has not landed.',
+        position: [1.55, 1.74, 1.3],
+        rotation: [-Math.PI / 2 + 0.04, -0.075],
+        fov: 64,
+        note: 'The reward: a1 with the power on. Powered — the festoon strings across all four truss bays are alight at HEX.incandescent, the boilers go to silhouette, the catwalk grating reads from underneath, and the switchboard pilots are up. Stood 35 cm back along the view axis rather than exactly on a1, because the anchor that carries the powered state is identified BY its position (see update()) and two anchors at the same coordinates are the same anchor: iteration 3 gave them identical poses and a1 came back powered too. The framing difference is a few percent of field; the state difference is the whole point.',
       },
       {
         name: 'a6-catwalk-lit',
-        position: [-8.3, 5.56, -6.2],
-        rotation: [0, 0.1],
+        position: [-8.3, 5.56, 6.4],
+        rotation: [-2.897, 0.174],
         fov: 66,
-        note: 'Powered, from the catwalk deck looking north along the run. Tests the grating underfoot (alpha-tested, surface:grating), the boiler crowns and their branch pipes into the steam header at head height, the riveted trusses and the torn roof bay overhead, and the festoon strands seen from inside their own light rather than under it.',
+        note: 'Powered, from the catwalk deck looking north-west along the run at the three stop valves — the objects the puzzle asks you to sequence, and the reason the catwalk exists. Tests the grating underfoot (alpha-tested, surface:grating), the boiler crowns and steam domes, the branch pipes rising into the header, the riveted trusses overhead, and the festoon strands seen from inside their own light rather than under it.',
       },
     ],
   };
@@ -261,6 +288,7 @@ export class Powerhouse extends GameScene {
 
   private stringLights: PointLight[] = [];
   private sodium?: PointLight;
+  private coalLamp?: PointLight;
   private filamentMat!: PBRMaterial;
   private gaugeMat!: PBRMaterial;
   private dust?: ParticleSystem;
@@ -269,15 +297,35 @@ export class Powerhouse extends GameScene {
   private poweredAt: Vector3[] = [];
 
   async build(): Promise<void> {
-    // Interior trim. The rig is calibrated for exteriors on limestone, so an
-    // interior needs it pulled down — but this room is brick, cast iron and
-    // coal soot, which is roughly a third of cream institutional block's
-    // albedo, so it wants a MUCH softer trim than Cellblocks' 0.68. At that
-    // value the first pass was a black rectangle with three headlamp-lit
-    // patches in it and no readable architecture at all. Fog goes up because
-    // twenty years of a leaking roof over a coal hall is genuinely dusty and
-    // because it is the only depth cue in a room with no bright far end.
-    this.renderer.setLightingTrim({ fill: 0.92, environment: 0.8, fog: 1.5 });
+    // Interior trim.
+    //
+    // The reasoning that produced iteration 1's value was wrong and the capture
+    // says so plainly. "Brick and iron are darker than cream block, so give it
+    // MORE fill than Cellblocks' 0.68" ignores that fill is a multiplier on a
+    // hemispheric light, not an exposure target: a low-albedo room under a
+    // stronger fill does not become a dark room that reads, it becomes a fully
+    // lit room made of dark materials — which is exactly what iter-01 is. Every
+    // surface in that frame is legible with no headlamp contribution at all and
+    // the whole thing reads as a warm daytime interior.
+    //
+    // 0.5 was still nearly twice too much, which only became obvious by putting
+    // iteration 2's wide shot next to `artifacts/shots/3.1-cellblocks/iter-10/
+    // a1-down-the-hall.png` — the reference interior in this project. That frame
+    // has near-black floor, near-black corners, and all its brightness in two
+    // places: glowing glazing and a distant warm doorway. Iteration 2 had no
+    // black in it anywhere and no bright source either; every one of its 22 m
+    // read at the same warm mid-value, which is a lit room, not a dark one.
+    //
+    // 0.26 fill / 0.30 environment puts the ambient below the headlamp from
+    // about a metre out and lets the moon through the roof breaches and the
+    // glow of the gable oculi carry the frame, which is what they are for.
+    // 0.34/0.34 and not 0.26/0.30 — iteration 4 finally read as night and then
+    // read as UNDER-EXPOSED: the bottom third of the wide frame went to flat
+    // black with nothing in it, which is the other failure the art bible names
+    // ("the shadow side is never pure black; pure black reads as unfinished").
+    // A third of a stop back puts detail in the floor without putting the far
+    // wall back on the ambient.
+    this.renderer.setLightingTrim({ fill: 0.34, environment: 0.34, fog: 1.5 });
 
     for (const a of this.manifest.anchors) {
       if (a.name.endsWith('-lit')) this.poweredAt.push(new Vector3(...a.position));
@@ -333,7 +381,7 @@ export class Powerhouse extends GameScene {
       gauge: new GeoBatch(),
     };
 
-    this.buildFloor(ctx, floorMat, slab);
+    this.buildFloor(ctx, floorMat, slab, this.mats.get('water.standing'));
     this.buildWalls(B, rng);
     this.buildRoof(B, rng);
     this.buildChimney(B);
@@ -369,8 +417,21 @@ export class Powerhouse extends GameScene {
     });
     B.slab.finish(ctx, this.scene, 'phSlab', slab, { collide: false, cast: true }, CH);
     B.wet.finish(ctx, this.scene, 'phWet', wet, { collide: false, cast: true });
-    B.steel.finish(ctx, this.scene, 'phSteel', catwalkSteel, { collide: false, cast: true }, CH);
-    B.front.finish(ctx, this.scene, 'phFronts', frontSteel, { collide: false, cast: true }, CH);
+    // Density on both steels is a correction from iteration 2. At the global
+    // default a boiler front carried `steel.cellFront`'s bloom at roughly one
+    // blotch per metre, so a 2.7 m cast-iron plate read as pink camouflage, and
+    // `steel.catwalk` on 200 mm pipework read as pale planking. Pushing both up
+    // turns the same maps into rust grain at the size rust actually is.
+    B.steel.finish(ctx, this.scene, 'phSteel', catwalkSteel, {
+      collide: false,
+      cast: true,
+      uvDensity: 0.95,
+    }, CH);
+    B.front.finish(ctx, this.scene, 'phFronts', frontSteel, {
+      collide: false,
+      cast: true,
+      uvDensity: 1.15,
+    }, CH);
     B.door.finish(ctx, this.scene, 'phDoors', doorSteel, { collide: false, cast: true }, CH);
     // The decks are real collision AND the surface tag the footstep engine
     // reads — a grating gallery rings where the floor thumps, and that
@@ -427,6 +488,7 @@ export class Powerhouse extends GameScene {
     ctx: ReturnType<GameScene['kit']>,
     floorMat: PBRMaterial,
     slabMat: PBRMaterial,
+    water: PBRMaterial,
   ): void {
     const f = MeshBuilder.CreateBox(
       'phFloor',
@@ -449,6 +511,36 @@ export class Powerhouse extends GameScene {
     plat.position.set(SET_X1 + 0.95, 0.06, 0);
     plat.material = slabMat;
     ctx.register(plat, { collide: true, cast: false, surface: 'metal' });
+
+    // Standing water under the two torn roof bays — where else would it be.
+    // The operating floor is 22 m of unbroken slab and in iteration 2 it was
+    // the largest and emptiest thing in every wide frame; a puddle under the
+    // hole is both what the building would actually have and the only specular
+    // the floor gets.
+    // Small and several, not three big rectangles. Iteration 3 put a 3.8 x 2.6
+    // slab of water directly under the wide anchor and it read as exactly what
+    // it is — a hard-edged plane laid on the floor with a highlight on it.
+    const pools: [number, number, number, number][] = [
+      [-12.4, -3.2, 2.4, 1.7],
+      [-10.9, -1.6, 1.6, 1.2],
+      [-6.2, -5.6, 2.1, 1.5],
+      [-2.6, 5.4, 1.9, 1.4],
+      [1.4, 6.6, 1.5, 1.1],
+    ];
+    for (let i = 0; i < pools.length; i++) {
+      const [px, pz, pw, pd] = pools[i];
+      const pool = MeshBuilder.CreateGround(
+        `phPool${i}`,
+        { width: pw, height: pd, subdivisions: 4 },
+        this.scene,
+      );
+      pool.position.set(px, 0.014, pz);
+      pool.material = water;
+      pool.isPickable = false;
+      pool.receiveShadows = false;
+      pool.freezeWorldMatrix();
+      this.meshes.push(pool);
+    }
   }
 
   /* ----------------------------------------------------------------- walls -- */
@@ -523,22 +615,30 @@ export class Powerhouse extends GameScene {
     {
       const sOuter = Z_S - WT;
       const sZ = mid(Z_S, sOuter);
-      // Limestone plinth: the original 1893 footing survived the fire.
-      B.stone.box(mid(X_W - WT, X_E + WT), 0.5, sZ, X_E - X_W + WT * 2, 1.0, WT + 0.08);
+      // Limestone plinth: the original 1893 footing survived the fire. It is
+      // `limestone.wet` and only 0.55 high — at 1.0 in `limestone.wall` it was
+      // a metre of cream ashlar right under the headlamp and it was the
+      // brightest thing in the whole conduit frame, which is the wrong place
+      // for the eye to go by some distance. It also has to be CUT for the
+      // ducts: iteration 2 ran it unbroken across both mouths and sealed the
+      // bottom two-thirds of each opening, leaving a letterbox slot where a
+      // doorway should have been.
+      const PLINTH = 0.55;
       const cuts: [number, number][] = [
-        [DUCT_A_X - DUCT_W / 2 - 0.2, DUCT_A_X + DUCT_W / 2 + 0.2],
-        [DUCT_B_X - DUCT_W / 2 - 0.2, DUCT_B_X + DUCT_W / 2 + 0.2],
+        [DUCT_A_X - DUCT_W / 2 - 0.22, DUCT_A_X + DUCT_W / 2 + 0.22],
+        [DUCT_B_X - DUCT_W / 2 - 0.22, DUCT_B_X + DUCT_W / 2 + 0.22],
       ];
       let x = X_W - WT;
       for (const [c0, c1] of [...cuts, [X_E + WT, X_E + WT] as [number, number]]) {
         if (c0 - x > 0.05) {
-          B.brick.box(mid(x, c0), mid(1.0, EAVE), sZ, c0 - x, EAVE - 1.0, WT);
+          B.wet.box(mid(x, c0), PLINTH / 2, sZ, c0 - x, PLINTH, WT + 0.08);
+          B.brick.box(mid(x, c0), mid(PLINTH, EAVE), sZ, c0 - x, EAVE - PLINTH, WT);
         }
         x = Math.max(x, c1);
       }
-      // Over the two ducts.
+      // Over the two ducts, from the head of the arch up.
       for (const dx of [DUCT_A_X, DUCT_B_X]) {
-        B.brick.box(dx, mid(DUCT_H + 0.34, EAVE), sZ, DUCT_W + 0.4, EAVE - DUCT_H - 0.34, WT);
+        B.brick.box(dx, mid(DUCT_H + 0.4, EAVE), sZ, DUCT_W + 0.44, EAVE - DUCT_H - 0.4, WT);
       }
       // Blind brick pilasters — the rebuild braced the new end wall.
       for (const px of [-13.0, -8.6, 1.2]) {
@@ -638,58 +738,75 @@ export class Powerhouse extends GameScene {
       B.stone.box(xMid, EAVE / 2, (Z_S - WT + Z_N + WT) / 2, WT, EAVE, zSpan);
     }
 
-    // The gable triangle above the eaves, as stepped courses. Stepping it means
-    // the raking edge is real geometry rather than a hard box corner poking
-    // through the roof plane.
+    // The gable triangle above the eaves, as stepped courses, **with the oculi
+    // cut out of it band by band.**
+    //
+    // Iteration 1 drew the surrounds and the grills on top of an unbroken wall.
+    // The openings looked right in the capture and passed exactly zero photons,
+    // which is the same class of mistake as the moon that could not enter
+    // through its own window reveal: the frame shows a window, the light
+    // transport shows a wall. Each 0.32 m band now subtracts the chord of any
+    // oculus it crosses, so the hole is genuinely a hole.
     const steps = 10;
     for (let i = 0; i < steps; i++) {
       const y0 = EAVE + ((RIDGE - EAVE) * i) / steps;
       const y1 = EAVE + ((RIDGE - EAVE) * (i + 1)) / steps;
+      const yc = (y0 + y1) / 2;
       const half = (Z_N + 0.9) * (1 - i / steps);
-      B.stone.box(xMid, (y0 + y1) / 2, 0, WT, y1 - y0 + 0.02, half * 2);
+
+      const cuts: [number, number][] = [];
+      for (const o of oculi) {
+        const r = o.d / 2;
+        const dy = Math.abs(yc - o.y);
+        if (dy < r) {
+          const hw = Math.sqrt(r * r - dy * dy);
+          cuts.push([o.z - hw, o.z + hw]);
+        }
+      }
+      cuts.sort((a, b) => a[0] - b[0]);
+
+      let z = -half;
+      for (const [c0, c1] of [...cuts, [half, half] as [number, number]]) {
+        if (c0 - z > 0.02) {
+          B.stone.box(xMid, yc, (z + c0) / 2, WT, y1 - y0 + 0.02, c0 - z);
+        }
+        z = Math.max(z, c1);
+      }
     }
 
     for (const o of oculi) {
       const r = o.d / 2;
-      // Circular metal grill: a hub, four rings' worth of radial bars and two
-      // concentric rings. Documented as "circular metal grills".
-      const N = 20;
+      // Rock-faced limestone surround: a ring of blocks around the opening.
+      // The ring lies in the YZ plane, so it rotates about **X** — rotating
+      // about Z (the first pass) swung every block out of the plane of the wall
+      // and left them sticking through the elevation.
+      const N = 18;
       for (let i = 0; i < N; i++) {
         const a = (i / N) * Math.PI * 2;
-        // Voussoir-ish rock-faced surround block.
         B.stone.box(
           xMid,
-          o.y + Math.sin(a) * (r + 0.19),
-          o.z + Math.cos(a) * (r + 0.19),
+          o.y + Math.cos(a) * (r + 0.2),
+          o.z + Math.sin(a) * (r + 0.2),
           WT + 0.1,
-          0.34,
-          0.34,
-          0,
-          0,
+          0.36,
+          0.36,
           a,
+          0,
+          0,
         );
       }
-      // Glazing disc behind the grill so the opening glows rather than reading
-      // as a black hole in a dark wall.
-      B.glaze.cylX(xFace + dir * (WT - 0.1), o.y, o.z, o.d - 0.06, 0.05);
-      for (let i = 0; i < 8; i++) {
-        const a = (i / 8) * Math.PI;
-        B.steel.box(
-          xFace + dir * 0.09,
-          o.y,
-          o.z,
-          0.05,
-          o.d - 0.04,
-          0.05,
-          0,
-          0,
-          a,
-        );
+      // Glazing disc set deep in the reveal so the opening glows softly rather
+      // than reading as a black hole punched in a dark gable.
+      B.glaze.cylX(xFace + dir * (WT - 0.12), o.y, o.z, o.d - 0.04, 0.05);
+      // The circular metal grill: radial bars plus two concentric rings.
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI;
+        B.steel.box(xFace + dir * 0.09, o.y, o.z, 0.05, o.d - 0.04, 0.05, a, 0, 0);
       }
-      B.steel.torusX(xFace + dir * 0.09, o.y, o.z, o.d * 0.62, 0.05);
-      B.steel.torusX(xFace + dir * 0.09, o.y, o.z, o.d * 0.98, 0.06);
-      // A pane or two gone, which is why there is guano on the sill below.
-      if (rng() < 0.7) B.slab.box(xFace + dir * 0.3, o.y - r - 0.24, o.z, 0.5, 0.1, o.d);
+      B.steel.torusX(xFace + dir * 0.09, o.y, o.z, o.d * 0.6, 0.05);
+      B.steel.torusX(xFace + dir * 0.09, o.y, o.z, o.d * 0.97, 0.06);
+      // Guano on the sill below, because a pane or two has been gone for years.
+      if (rng() < 0.7) B.slab.box(xFace + dir * 0.3, o.y - r - 0.26, o.z, 0.5, 0.1, o.d);
     }
   }
 
@@ -735,14 +852,21 @@ export class Powerhouse extends GameScene {
             }
             continue;
           }
+          // `side * SLOPE_A`, and the sign is not a matter of taste. A box
+          // rotated about X by θ sends its local +Z to (0, −sinθ, cosθ), so a
+          // slope of dy/dz = −0.4 on the north side needs θ = +atan(0.4). The
+          // first pass used the negation of that, tilted all 160 panels against
+          // their own roof plane, and left the hall open to the sky — visible
+          // in artifacts/shots/2.1-powerhouse/iter-01 as trusses silhouetted
+          // against clearColor, and completely invisible in the source.
           B.steel.box(
             x,
             y,
             z,
             ROOF_CW + 0.02,
-            0.07,
-            ROOF_RD / Math.cos(SLOPE_A) + 0.02,
-            -side * SLOPE_A,
+            0.08,
+            ROOF_RD / Math.cos(SLOPE_A) + 0.05,
+            side * SLOPE_A,
             0,
             0,
           );
@@ -899,24 +1023,31 @@ export class Powerhouse extends GameScene {
       // Back wall of the setting, pierced for the breeching.
       B.brick.box(SET_X0 - 0.2, SET_H / 2, bz, 0.4, SET_H, SET_W);
       // Front face of the setting with a segmental arch over the mouths.
-      const archY = 2.55;
+      const archY = 2.95;
       for (const s of [-1, 1] as const) {
         B.brick.box(SET_X1 + 0.22, archY / 2, bz + s * (half - 0.34), 0.44, archY, 0.68);
       }
       B.brick.box(SET_X1 + 0.22, (archY + SET_H) / 2, bz, 0.44, SET_H - archY, SET_W);
-      // Voussoirs.
-      for (let v = 0; v < 9; v++) {
-        const a = Math.PI * (0.08 + (v / 8) * 0.84);
+      // Voussoirs. This arch spans in Z and rises in Y, so it turns about the
+      // **X** axis — the first pass rotated it about Z and swung every voussoir
+      // out through the face of the setting.
+      //
+      // Backed by a solid brick spandrel: nine blocks around an ellipse left
+      // wedge-shaped gaps between them at the shallow ends, and daylight
+      // through an arch is not a detail anyone will forgive.
+      B.brick.box(SET_X1 + 0.06, archY + 0.24, bz, 0.34, 0.9, SET_W - 0.6);
+      for (let v = 0; v < 15; v++) {
+        const a = Math.PI * (0.06 + (v / 14) * 0.88);
         B.brick.box(
-          SET_X1 + 0.22,
-          archY - 0.2 + Math.sin(a) * 0.62,
-          bz + Math.cos(a) * 1.44,
-          0.5,
+          SET_X1 + 0.24,
+          archY - 0.24 + Math.sin(a) * 0.66,
+          bz + Math.cos(a) * 1.46,
+          0.46,
+          0.44,
           0.34,
-          0.3,
+          Math.PI / 2 - a,
           0,
           0,
-          a - Math.PI / 2,
         );
       }
       // Ash pit below the mouths, and the ash channel in front.
@@ -931,21 +1062,25 @@ export class Powerhouse extends GameScene {
       // Butt straps at the ring seams, with a full circle of rivets on each.
       for (const sx of [SHELL_X0 + 1.5, SHELL_X0 + 3.1, SHELL_X0 + 4.7]) {
         B.steel.cylX(sx, SHELL_Y, bz, SHELL_D + 0.05, 0.24);
-        for (let k = 0; k < 26; k++) {
-          const a = (k / 26) * Math.PI * 2;
-          B.steel.sphere(
+        // Only the upper half of each ring: the setting's brick cheeks bury the
+        // lower half and nothing below the springing is ever visible.
+        for (let k = 0; k < 11; k++) {
+          const a = Math.PI * (0.06 + (k / 10) * 0.88);
+          B.steel.rivet(
             sx,
-            SHELL_Y + Math.sin(a) * (SHELL_D / 2 + 0.035),
-            bz + Math.cos(a) * (SHELL_D / 2 + 0.035),
-            0.058,
+            SHELL_Y + Math.sin(a) * (SHELL_D / 2 + 0.03),
+            bz + Math.cos(a) * (SHELL_D / 2 + 0.03),
+            0.062,
+            Math.PI / 2 - a,
+            0,
           );
         }
       }
       // Longitudinal seam along the crown, double-riveted.
-      for (let k = 0; k < 26; k++) {
-        const sx = SHELL_X0 + 0.3 + (k / 25) * (len - 0.6);
+      for (let k = 0; k < 16; k++) {
+        const sx = SHELL_X0 + 0.3 + (k / 15) * (len - 0.6);
         for (const off of [-0.09, 0.09]) {
-          B.steel.sphere(sx, SHELL_Y + SHELL_D / 2 + 0.028, bz + off, 0.055);
+          B.steel.rivet(sx, SHELL_Y + SHELL_D / 2 + 0.025, bz + off, 0.058, 0, 0);
         }
       }
       // Steam dome on the crown, and the safety valve on top of it.
@@ -956,43 +1091,72 @@ export class Powerhouse extends GameScene {
       B.steel.box(domeX, SET_H + 0.92, bz, 0.16, 0.5, 0.16, 0, 0, 0.35);
 
       // ---- Cast-iron front plate ---------------------------------------
-      const fx = SET_X1 + 0.46;
-      B.front.box(fx, SHELL_Y, bz, 0.1, 2.72, 2.72);
-      // Rim rivets on the front plate.
-      for (let k = 0; k < 30; k++) {
-        const a = (k / 30) * Math.PI * 2;
-        B.front.sphere(
-          fx + 0.06,
-          SHELL_Y + Math.sin(a) * 1.28,
-          bz + Math.cos(a) * 1.28,
-          0.05,
-        );
+      // Set BACK behind the face of the setting, inside the arched opening.
+      // Iteration 2 stood it 24 cm proud of the brickwork, so the plate hid the
+      // segmental arch, the skewbacks and the cheeks entirely and every boiler
+      // read as a flat panel stuck on a wall.
+      // The plate carries `steel.catwalk`, not `steel.cellFront`. cellFront's
+      // rust bloom has a feature size around a metre — right for a cell door,
+      // and on a 2.6 m plate it came back as pink camouflage that read as
+      // painted stone (iter-02 and iter-03 a2). The enamel preset moves to the
+      // furnace doors, where one blotch covers one door and reads as enamel.
+      const fx = SET_X1 - 0.02;
+      B.steel.box(fx, 1.72, bz, 0.1, 2.36, 2.62);
+      // Raised rim and a mid rib, so 2.4 m² of plate is not one flat face.
+      for (const s of [-1, 1] as const) {
+        B.steel.box(fx + 0.05, 1.72, bz + s * 1.26, 0.06, 2.36, 0.14);
+        B.steel.box(fx + 0.05, 1.72 + s * 1.12, bz, 0.06, 0.14, 2.62);
+      }
+      B.steel.box(fx + 0.05, 1.18, bz, 0.05, 0.11, 2.5);
+      // Rim rivets around the plate.
+      for (let k = 0; k < 9; k++) {
+        for (const sy of [-1, 1] as const) {
+          B.steel.rivet(fx + 0.09, 1.72 + sy * 1.12, bz - 1.16 + (k / 8) * 2.32, 0.055, 0, 0);
+        }
+      }
+      for (let k = 0; k < 8; k++) {
+        for (const sz of [-1, 1] as const) {
+          B.steel.rivet(fx + 0.09, 0.72 + (k / 7) * 2.0, bz + sz * 1.26, 0.055, 0, 0);
+        }
       }
       // Two furnace doors and two ash doors under them.
+      //
+      // `steel.catwalk`, NOT `steel.door`. The red-oxide preset is the
+      // institutional door enamel — on a cast-iron furnace door it came back as
+      // six saturated pink discs that owned the whole frame (iter-01 a2), which
+      // is both wrong for the object and wrong for the picture. A furnace door
+      // that has been cold for a century is bare corroded iron.
       for (const s of [-1, 1] as const) {
-        const dz = bz + s * 0.62;
-        B.door.cylX(fx + 0.09, 1.62, dz, 0.8, 0.09);
-        B.door.cylX(fx + 0.14, 1.62, dz, 0.3, 0.06);
+        const dz = bz + s * 0.66;
+        // A furnace door is a heavy hinged casting in a raised frame, not a
+        // disc laid on a plate: frame ring, door, boss, and the hardware.
+        B.steel.cylX(fx + 0.07, 1.72, dz, 1.0, 0.06);
+        B.front.cylX(fx + 0.13, 1.72, dz, 0.86, 0.1);
+        B.front.cylX(fx + 0.2, 1.72, dz, 0.3, 0.07);
+        B.steel.cylX(fx + 0.25, 1.72, dz, 0.11, 0.12);
         // Dog latch and hinge.
-        B.steel.box(fx + 0.16, 1.62, dz + 0.44, 0.06, 0.3, 0.1, 0, 0, 0.6);
-        B.steel.box(fx + 0.14, 1.62, dz - 0.42, 0.08, 0.22, 0.09);
-        // Ash door.
-        B.door.box(fx + 0.08, 0.78, dz, 0.08, 0.5, 0.58);
-        B.steel.box(fx + 0.14, 0.78, dz + 0.3, 0.06, 0.16, 0.09);
+        B.steel.box(fx + 0.21, 1.72, dz + 0.48, 0.07, 0.32, 0.11, 0, 0, 0.6);
+        B.steel.box(fx + 0.19, 1.72, dz - 0.46, 0.09, 0.24, 0.1);
+        // Ash door under it, behind its own frame.
+        B.steel.box(fx + 0.06, 0.72, dz, 0.05, 0.62, 0.7);
+        B.front.box(fx + 0.12, 0.72, dz, 0.08, 0.5, 0.58);
+        B.steel.box(fx + 0.18, 0.72, dz + 0.22, 0.07, 0.16, 0.1);
       }
       // Water gauge glass and three try-cocks, on the plate's north side.
-      const gx = fx + 0.12;
-      const gz = bz + 1.05;
-      B.steel.cylY(gx, 2.62, gz, 0.11, 0.62);
-      B.gauge.cylY(gx + 0.03, 2.62, gz, 0.055, 0.5);
-      for (const ty of [2.36, 2.6, 2.84]) {
+      const gx = fx + 0.14;
+      const gz = bz + 1.12;
+      B.steel.cylY(gx, 2.5, gz, 0.11, 0.62);
+      B.gauge.cylY(gx + 0.03, 2.5, gz, 0.055, 0.5);
+      for (const ty of [2.26, 2.5, 2.74]) {
         B.steel.cylX(gx + 0.1, ty, gz, 0.05, 0.16);
         B.steel.box(gx + 0.2, ty, gz, 0.03, 0.14, 0.03);
       }
-      // Pressure gauge on its siphon.
-      B.steel.cylY(gx, 3.05, bz - 1.0, 0.05, 0.5);
-      B.steel.cylX(gx + 0.06, 3.28, bz - 1.0, 0.34, 0.08);
-      B.gauge.cylX(gx + 0.11, 3.28, bz - 1.0, 0.3, 0.02);
+      // Pressure gauge on its siphon, on the opposite side of the plate to the
+      // water column. Dropped from 3.28 when the setting arch was raised — at
+      // that height it was inside the brick over the opening.
+      B.steel.cylY(gx, 2.2, bz - 1.12, 0.05, 0.6);
+      B.steel.cylX(gx + 0.06, 2.56, bz - 1.12, 0.36, 0.09);
+      B.gauge.cylX(gx + 0.11, 2.56, bz - 1.12, 0.32, 0.02);
 
       // ---- The stop valve: the thing the puzzle is about ----------------
       const vx = SET_X1 - 0.5;
@@ -1050,7 +1214,7 @@ export class Powerhouse extends GameScene {
       }
 
       // Coal spilled at the mouth of every setting, and a shovel or a rake.
-      for (let k = 0; k < 26; k++) {
+      for (let k = 0; k < 16; k++) {
         const s = 0.05 + rng() * 0.11;
         B.wet.box(
           SET_X1 + 0.7 + rng() * 1.5,
@@ -1175,7 +1339,7 @@ export class Powerhouse extends GameScene {
     }
 
     // Fallen scale and paint on the deck — twenty years of a leaking roof.
-    for (let k = 0; k < 60; k++) {
+    for (let k = 0; k < 34; k++) {
       B.steel.box(
         CAT_X + (rng() - 0.5) * (CAT_W - 0.3),
         CAT_Y + 0.015,
@@ -1215,8 +1379,10 @@ export class Powerhouse extends GameScene {
       B.steel.cylX((vx + HDR_X) / 2, HDR_Y, bz, 0.24, HDR_X - vx);
       B.steel.cylX(vx + 0.1, HDR_Y, bz, 0.36, 0.06);
       B.steel.cylX(HDR_X - 0.32, HDR_Y, bz, 0.36, 0.06);
-      // Elbow.
-      B.steel.sphere(vx, HDR_Y, bz, 0.3);
+      // Elbow, as a stub pair rather than a sphere — a 0.3 m ball hanging at
+      // 6 m over the boilers read as exactly that (iter-03 a6).
+      B.steel.cylY(vx, HDR_Y - 0.14, bz, 0.26, 0.3);
+      B.steel.cylX(vx + 0.15, HDR_Y, bz, 0.26, 0.32);
     }
     // Hangers up to the trusses.
     for (const tx of TRUSS_X) {
@@ -1228,24 +1394,27 @@ export class Powerhouse extends GameScene {
     }
     // The take-off east to the engine bed, dropping and running low.
     B.steel.cylX((HDR_X + 0.5) / 2 + 0.5, HDR_Y, -1.4, 0.34, Math.abs(HDR_X) + 1.0);
-    B.steel.sphere(HDR_X, HDR_Y, -1.4, 0.4);
+    B.steel.cylX(HDR_X + 0.2, HDR_Y, -1.4, 0.42, 0.24);
     B.steel.cylY(0.9, (HDR_Y + 1.7) / 2, -1.4, 0.34, HDR_Y - 1.7);
-    B.steel.sphere(0.9, HDR_Y, -1.4, 0.38);
+    B.steel.cylY(0.9, HDR_Y - 0.2, -1.4, 0.42, 0.24);
     B.steel.cylZ(0.9, 1.7, -1.4, 0.34, 1.2);
 
     // Condensate and feed lines at low level along the boiler fronts, with a
     // pair of globe valves. Dark furniture: without it the base of the setting
     // is a blank 22 m of brick.
+    // Kept LOW and tight against the settings. At 1.35 m and 1.75 m out they
+    // ran straight across the eye line of every frame that looked at a boiler
+    // front, and iteration 1's close anchor is mostly two blown-out pipes.
     for (const [py, pd] of [
-      [1.35, 0.16],
-      [1.05, 0.13],
+      [0.86, 0.15],
+      [0.6, 0.12],
     ] as [number, number][]) {
-      B.steel.cylZ(SET_X1 + 1.75, py, 0, pd, 15.0);
+      B.steel.cylZ(SET_X1 + 1.5, py, 0, pd, 15.0);
       for (const bz of BOILER_Z) {
-        B.steel.cylZ(SET_X1 + 1.75, py, bz, pd + 0.09, 0.16);
-        B.steel.cylX(SET_X1 + 1.2, py, bz + 0.5, pd, 1.1);
-        B.steel.cylY(SET_X1 + 1.75, py + 0.22, bz - 0.9, 0.12, 0.28);
-        B.steel.torusY(SET_X1 + 1.75, py + 0.38, bz - 0.9, 0.3, 0.04);
+        B.steel.cylZ(SET_X1 + 1.5, py, bz, pd + 0.09, 0.16);
+        B.steel.cylX(SET_X1 + 1.05, py, bz + 0.5, pd, 0.9);
+        B.steel.cylY(SET_X1 + 1.5, py + 0.2, bz - 0.9, 0.11, 0.26);
+        B.steel.torusY(SET_X1 + 1.5, py + 0.34, bz - 0.9, 0.28, 0.04);
       }
     }
     // Conduit drops down the piers of the north wall — dark vertical furniture.
@@ -1292,7 +1461,7 @@ export class Powerhouse extends GameScene {
       );
     }
     // Coal still in it.
-    for (let k = 0; k < 90; k++) {
+    for (let k = 0; k < 52; k++) {
       const s = 0.08 + rng() * 0.16;
       B.wet.box(
         bx0 + 0.5 + rng() * (bx1 - bx0 - 1.0),
@@ -1421,8 +1590,8 @@ export class Powerhouse extends GameScene {
    * symmetrical.
    */
   private buildGenerator(B: Batches): void {
-    const gx = -3.4;
-    const gz = 4.0;
+    const gx = -4.6;
+    const gz = 4.7;
 
     B.slab.box(gx, 0.28, gz, 5.2, 0.56, 3.0);
     B.slab.box(gx, 0.06, gz, 5.8, 0.12, 3.6);
@@ -1439,16 +1608,16 @@ export class Powerhouse extends GameScene {
     B.steel.box(gx - 0.1, 1.15, gz - 0.6, 1.3, 0.5, 0.62);
     B.steel.cylX(gx + 0.4, 1.15, gz - 0.6, 0.16, 0.8);
     // Flywheel, standing in the XY plane.
-    B.steel.torusX(gx + 1.1, 1.15, gz - 0.6, 2.1, 0.22);
+    B.steel.torusX(gx + 1.1, 1.15, gz - 0.6, 1.7, 0.22);
     B.steel.cylX(gx + 1.1, 1.15, gz - 0.6, 0.44, 0.34);
     for (let k = 0; k < 6; k++) {
       const a = (k / 6) * Math.PI * 2;
       B.steel.box(
         gx + 1.1,
-        1.15 + Math.sin(a) * 0.5,
-        gz - 0.6 + Math.cos(a) * 0.5,
+        1.15 + Math.cos(a) * 0.42,
+        gz - 0.6 + Math.sin(a) * 0.42,
         0.12,
-        1.05,
+        0.88,
         0.09,
         a,
         0,
@@ -1564,10 +1733,13 @@ export class Powerhouse extends GameScene {
       B.steel.torusX(SB_X - 0.13, 0.78, pz - 0.14, 0.4, 0.035);
       for (let k = 0; k < 4; k++) {
         const a = (k / 4) * Math.PI * 2;
+        // Offset and orientation must use the same axis convention: rotating a
+        // +Y box about X by `a` points it at (0, cos a, sin a), so that is
+        // where it has to sit too.
         B.steel.box(
           SB_X - 0.13,
-          0.78 + Math.sin(a) * 0.1,
-          pz - 0.14 + Math.cos(a) * 0.1,
+          0.78 + Math.cos(a) * 0.1,
+          pz - 0.14 + Math.sin(a) * 0.1,
           0.03,
           0.22,
           0.03,
@@ -1597,9 +1769,11 @@ export class Powerhouse extends GameScene {
     // The guard rail in front of it, which is all that stood between a man and
     // several hundred volts.
     for (const s of [-1, 1] as const) {
-      B.steel.box(SB_X - 1.05, 0.55, zc + s * (len / 2), 0.06, 1.1, 0.06);
+      B.steel.box(SB_X - 1.45, 0.47, zc + s * (len / 2), 0.06, 0.94, 0.06);
     }
-    B.steel.box(SB_X - 1.05, 1.08, zc, 0.055, 0.055, len);
+    // Dropped to 0.92 and pushed further out: at 1.08 m and 1.05 m off the face
+    // it ran dead across the instruments in every frame of the board.
+    B.steel.box(SB_X - 1.45, 0.92, zc, 0.055, 0.055, len);
   }
 
   /* -------------------------------------------------------------- conduits -- */
@@ -1673,15 +1847,17 @@ export class Powerhouse extends GameScene {
         if (late) {
           // Cut and capped. The sheared conductors hang out of the cap.
           B.steel.box(tx, 0.9, trayEnd - 0.03, 0.16, 0.2, 0.06);
-          for (let k = 0; k < 4; k++) {
+          for (let k = 0; k < 5; k++) {
+            const cy = 0.9 - k * 0.015;
+            B.steel.cylZ(tx + (k - 2) * 0.02, cy, trayEnd - 0.1, 0.022, 0.2);
             B.steel.box(
-              tx,
-              0.86 - k * 0.02,
-              trayEnd - 0.16 - k * 0.05,
-              0.03,
-              0.03,
-              0.24,
-              -0.5 - rng() * 0.5,
+              tx + (k - 2) * 0.02,
+              cy - 0.09,
+              trayEnd - 0.22,
+              0.02,
+              0.2,
+              0.02,
+              0.5 + rng() * 0.6,
               0,
               0,
             );
@@ -1723,18 +1899,24 @@ export class Powerhouse extends GameScene {
 
     // A junction box and a run of conduit on the wall between the two mouths —
     // the thing that makes both ducts look like live infrastructure.
-    B.steel.box((DUCT_A_X + DUCT_B_X) / 2, 2.05, Z_S + 0.14, 0.44, 0.6, 0.24);
-    B.steel.box((DUCT_A_X + DUCT_B_X) / 2, 3.0, Z_S + 0.1, 0.09, 1.3, 0.09);
+    // Kept ABOVE the arch heads. At 1.85 m it ran dead across the top of both
+    // mouths like a lintel and visually capped the openings shut.
+    B.steel.box((DUCT_A_X + DUCT_B_X) / 2, 2.95, Z_S + 0.14, 0.44, 0.6, 0.24);
+    B.steel.box((DUCT_A_X + DUCT_B_X) / 2, 3.9, Z_S + 0.1, 0.09, 1.3, 0.09);
     for (const dx of [DUCT_A_X, DUCT_B_X]) {
       B.steel.box(
         (dx + (DUCT_A_X + DUCT_B_X) / 2) / 2,
-        1.85,
+        2.7,
         Z_S + 0.14,
         Math.abs(dx - (DUCT_A_X + DUCT_B_X) / 2),
         0.09,
         0.09,
       );
-      B.steel.box(dx, 1.4, Z_S + 0.14, 0.09, 0.9, 0.09);
+      // Nothing vertical directly over a mouth: the drop that used to sit here
+      // ran straight down the face of the 1901 plate and cut its top line in
+      // half, which for the one piece of text the whole puzzle turns on is not
+      // a detail. It goes to the side of the head instead.
+      B.steel.box(dx + 0.95, 1.9, Z_S + 0.14, 0.09, 1.6, 0.09);
     }
   }
 
@@ -1761,7 +1943,7 @@ export class Powerhouse extends GameScene {
         const sag = 0.85;
         const yAt = (f: number): number => TRUSS_Y - 0.2 - sag * 4 * f * (1 - f);
 
-        const SEG = 8;
+        const SEG = 5;
         for (let s = 0; s < SEG; s++) {
           const f0 = s / SEG;
           const f1 = (s + 1) / SEG;
@@ -1806,7 +1988,7 @@ export class Powerhouse extends GameScene {
       [-15.8, -5.0],
       [-5.4, -6.4],
     ] as [number, number][]) {
-      for (let k = 0; k < 22; k++) {
+      for (let k = 0; k < 14; k++) {
         const s = 0.1 + rng() * 0.24;
         B.brick.box(
           bx + (rng() - 0.5) * 4.5,
@@ -1836,9 +2018,9 @@ export class Powerhouse extends GameScene {
     }
 
     // Scale and rust flake off the boilers, along the firing floor.
-    for (let k = 0; k < 200; k++) {
+    for (let k = 0; k < 170; k++) {
       B.steel.box(
-        SET_X1 + 0.4 + rng() * 2.6,
+        SET_X1 + 0.4 + rng() * (k < 110 ? 2.6 : 11.0),
         0.15,
         (rng() - 0.5) * 15.5,
         0.04 + rng() * 0.14,
@@ -1929,7 +2111,7 @@ export class Powerhouse extends GameScene {
     // 1901 cast plate over the WEST duct, bolted to original 1893 brick.
     place(0, DUCT_A_X, 2.32, Z_S + 0.11, 1.3, 0.5, Math.PI);
     // The later stencil beside it, half scrubbed: this duct is No. 2 now.
-    place(1, DUCT_A_X + 1.15, 2.0, Z_S + 0.1, 0.42, 0.5, Math.PI);
+    place(1, DUCT_A_X + 0.95, 2.02, Z_S + 0.1, 0.4, 0.48, Math.PI);
     // The later stencil on the EAST duct's head: No. 1. Nothing else labels it.
     place(2, DUCT_B_X, 2.06, Z_S + 0.1, 0.9, 0.42, Math.PI);
 
@@ -1948,6 +2130,21 @@ export class Powerhouse extends GameScene {
     place(9, SET_X1 + 0.52, 1.02, BOILER_Z[1] + 1.35, 0.44, 0.3, -Math.PI / 2);
     // Coal-door notice.
     place(10, -8.2, 2.4, Z_N - 0.23, 0.6, 0.3, 0);
+
+    // --- Instrument dials --------------------------------------------------
+    // Switchboard meters, facing the hall.
+    {
+      const len = SB_Z1 - SB_Z0;
+      for (let q = 0; q < 4; q++) {
+        const pz = SB_Z0 + (len * (q + 0.5)) / 4;
+        place(11, SB_X - 0.135, 2.18, pz, 0.3, 0.3, Math.PI / 2);
+        place(11, SB_X - 0.125, 1.72, pz - 0.14, 0.17, 0.17, Math.PI / 2);
+      }
+    }
+    // Boiler pressure gauges, facing the firing floor.
+    for (const bz of BOILER_Z) {
+      place(11, SET_X1 + 0.155, 2.56, bz - 1.12, 0.3, 0.3, -Math.PI / 2);
+    }
 
     batch.finish(ctx, this.scene, 'phSigns', mat, {
       collide: false,
@@ -2019,7 +2216,7 @@ export class Powerhouse extends GameScene {
     }
     solid('phColChim', CHIM_X, CHIM_TOP / 2, 0, CHIM_HW * 2 + 0.4, CHIM_TOP, CHIM_HW * 2 + 0.4);
     solid('phColBunker', -13.0, 1.6, Z_N - 1.8, 7.2, 3.2, 3.6);
-    solid('phColGen', -3.4, 1.4, 4.0, 5.8, 2.8, 3.6);
+    solid('phColGen', -4.6, 1.4, 4.7, 5.8, 2.8, 3.6);
     solid('phColBoard', SB_X + 0.1, 1.6, (SB_Z0 + SB_Z1) / 2, 1.2, 3.2, SB_Z1 - SB_Z0 + 0.5);
     solid('phColPump', X_W - WT - 1.5, 0.9, 6.1, 1.4, 1.8, 1.2);
 
@@ -2073,18 +2270,36 @@ export class Powerhouse extends GameScene {
     this.sodium.specular = C.sodiumVapour.scale(0.35);
     // Physical falloff — this is not a 0-1 dial. Checked against Cellblocks'
     // doorway bleed at 150 and TheVoid's vent bleed at 18.
-    this.sodium.intensity = 190;
-    this.sodium.range = 17;
+    // Range 9, not 17. At 17 this single lamp reached every wall in the
+    // building and iteration 1 came back a uniform warm sepia with no warm/cool
+    // split left to speak of — the "practical" had become the key light. A
+    // sodium lamp outside a door is a POOL at the door.
+    this.sodium.intensity = 62;
+    this.sodium.range = 9;
     this.sodium.shadowEnabled = false;
 
-    const budget = Math.max(0, Math.min(3, p.maxLights - 4));
+    // The yard lamp out on the coal road, north. The east-door sodium is behind
+    // the camera in the scene's main frame and therefore does nothing for it;
+    // this one spills through the half-open coal door and is the warm half of
+    // the warm/cool split from anywhere on the operating floor.
+    this.coalLamp = new PointLight('phCoalLamp', new Vector3(-7.4, 2.3, Z_N + 1.6), this.scene);
+    this.coalLamp.diffuse = C.sodiumVapour;
+    this.coalLamp.specular = C.sodiumVapour.scale(0.3);
+    this.coalLamp.intensity = 120;
+    this.coalLamp.range = 13;
+    this.coalLamp.shadowEnabled = false;
+
+    // Two fixed practicals now, so the strings get one slot less. A PBR
+    // material silently drops every light past its cap and the headlamp is the
+    // one that must never be dropped.
+    const budget = Math.max(0, Math.min(3, p.maxLights - 5));
     const xs = [-13.4, -5.6, 1.4];
     for (let i = 0; i < budget; i++) {
       const l = new PointLight(`phString${i}`, new Vector3(xs[i], 5.35, 0.4), this.scene);
       l.diffuse = C.incandescent;
       l.specular = C.incandescent.scale(0.5);
       l.intensity = 0;
-      l.range = 20;
+      l.range = 22;
       l.shadowEnabled = false;
       this.stringLights.push(l);
     }
@@ -2116,7 +2331,7 @@ export class Powerhouse extends GameScene {
     this.gaugeMat.emissiveColor = on ? srgb('#4a4232') : new Color3(0.01, 0.01, 0.012);
     this.gaugeMat.freeze();
 
-    for (const l of this.stringLights) l.intensity = on ? 240 : 0;
+    for (const l of this.stringLights) l.intensity = on ? STRING_I : 0;
   }
 
   /**
@@ -2193,9 +2408,9 @@ export class Powerhouse extends GameScene {
     const m = new PBRMaterial('phSlate', this.scene);
     m.albedoColor = srgb('#22242a');
     m.metallic = 0.1;
-    // Semi-gloss on purpose. Enamelled slate is the only sheen on that wall and
-    // it is what makes the board read as an instrument rather than a cupboard.
-    m.roughness = 0.34;
+    // Semi-gloss, but not mirror. 0.34 gave the headlamp a specular lobe tight
+    // enough to burn a white hole through the middle two panels at 2.8 m.
+    m.roughness = 0.52;
     m.ambientColor = new Color3(1, 1, 1);
     m.environmentIntensity = 0.6;
     m.enableSpecularAntiAliasing = true;
@@ -2241,7 +2456,10 @@ export class Powerhouse extends GameScene {
     m.metallic = 0;
     m.roughness = 0.45;
     // Below the bloom threshold. If this blooms, it is wrong.
-    m.emissiveColor = C.moonlight.scale(0.72);
+    // 1.25. These are the only genuinely bright things in the dark state and
+    // the frame needs somewhere for the eye to go; still well under the 0.86
+    // bloom threshold in every channel, because stone must never glow.
+    m.emissiveColor = C.moonlight.scale(1.25);
     m.ambientColor = new Color3(1, 1, 1);
     m.environmentIntensity = 0.4;
     m.enableSpecularAntiAliasing = true;
@@ -2255,7 +2473,8 @@ export class Powerhouse extends GameScene {
     const m = new PBRMaterial('phFilament', this.scene);
     m.albedoColor = srgb('#3b3833');
     m.metallic = 0;
-    m.roughness = 0.24;
+    // 0.24 gave the dead bulbs a specular tight enough to read as lit.
+    m.roughness = 0.5;
     m.emissiveColor = new Color3(0.014, 0.012, 0.009);
     m.ambientColor = new Color3(1, 1, 1);
     m.environmentIntensity = 0.5;
@@ -2265,10 +2484,17 @@ export class Powerhouse extends GameScene {
     return m;
   }
 
-  /** Gauge and instrument faces: enamel dials, dead until the board is live. */
+  /**
+   * Gauge and instrument faces: enamel dials, dead until the board is live.
+   *
+   * Dropped from `#b8b2a2` after iteration 1, where six pressure-gauge faces
+   * across the boiler fronts clipped to white discs at 10 m and read as
+   * lamps — the same near-field blow-out the backlog records for Cellblocks'
+   * stainless fixtures. A dirty enamel dial in an unlit room is a mid grey.
+   */
   private buildGaugeMaterial(): PBRMaterial {
     const m = new PBRMaterial('phGauge', this.scene);
-    m.albedoColor = srgb('#b8b2a2');
+    m.albedoColor = srgb('#6b675d');
     m.metallic = 0;
     m.roughness = 0.5;
     m.emissiveColor = new Color3(0.01, 0.01, 0.012);
@@ -2293,10 +2519,16 @@ export class Powerhouse extends GameScene {
     // on. During real play nothing ever lands on those coordinates to within a
     // centimetre, and `setPowered` remains the real entry point.
     if (player) {
-      const eye = player.eyePosition;
+      // `player.position` — the controller root — and NOT `eyePosition`, which
+      // routes through `root.getWorldMatrix()`. Iteration 2 captured a5 and a6
+      // in the unpowered state: the anchor never matched and the reward frames
+      // came back pixel-identical to a1. A direct reference to the vector
+      // `setAnchor` writes cannot go stale, and a 20 cm tolerance cannot lose
+      // to a rounding difference either.
+      const at = player.position;
       let lit = false;
       for (const a of this.poweredAt) {
-        if (Vector3.DistanceSquared(eye, a) < 1e-4) {
+        if (Vector3.DistanceSquared(at, a) < 0.04) {
           lit = true;
           break;
         }
@@ -2309,20 +2541,21 @@ export class Powerhouse extends GameScene {
     if (this.sodium) {
       const slow = Math.sin(this.t * 0.47) * 0.5 + Math.sin(this.t * 1.31) * 0.22;
       const dropout = Math.sin(this.t * 0.09) > 0.988 ? 0.35 : 1;
-      this.sodium.intensity = (190 + slow * 20) * dropout;
+      this.sodium.intensity = (62 + slow * 7) * dropout;
     }
 
     // A hundred and thirty year old plant on a hundred year old wiring: the
     // strings breathe slightly rather than sitting on a flat DC value.
     if (this.powered) {
       const f = 1 + Math.sin(this.t * 0.83) * 0.03 + Math.sin(this.t * 2.17) * 0.015;
-      for (const l of this.stringLights) l.intensity = 240 * f;
+      for (const l of this.stringLights) l.intensity = STRING_I * f;
     }
   }
 
   override dispose(): void {
     this.dust?.dispose();
     this.sodium?.dispose();
+    this.coalLamp?.dispose();
     for (const l of this.stringLights) l.dispose();
     this.stringLights = [];
     super.dispose();
@@ -2353,9 +2586,16 @@ interface Batches {
 /* Shared templates. Built once, transformed thousands of times. */
 const BOX = CreateBoxVertexData({ size: 1 });
 /** Unit cylinder: height 1, diameter 1, so scale is (d, len, d). */
-const CYL = CreateCylinderVertexData({ height: 1, diameter: 1, tessellation: 18 });
-/** Low-poly sphere for rivets and lamp glass — 18 tris a piece. */
-const SPH = CreateSphereVertexData({ diameter: 1, segments: 4 });
+const CYL = CreateCylinderVertexData({ height: 1, diameter: 1, tessellation: 14 });
+/**
+ * Low-poly sphere for lamp glass and pipe elbows.
+ *
+ * `segments: 3` and not more. Babylon builds `2 + segments` rings by `2 * that`
+ * columns, so segments 4 is 144 triangles, not the ~30 the name suggests — and
+ * iteration 1 spent a large part of a 594k triangle frame on five hundred
+ * spheres nobody could resolve. Rivets do not use this at all; see `rivet()`.
+ */
+const SPH = CreateSphereVertexData({ diameter: 1, segments: 3 });
 /** Unit torus: outside diameter 1, so scale is (d, d, d). */
 const TORUS = CreateTorusVertexData({ diameter: 1, thickness: 0.14, tessellation: 14 });
 
@@ -2415,6 +2655,16 @@ class GeoBatch {
 
   sphere(x: number, y: number, z: number, d: number): void {
     this.append(SPH, d, d, d, null, x, y, z);
+  }
+
+  /**
+   * A rivet head — a 45-degree-turned box, twelve triangles.
+   *
+   * At 55 mm on a boiler shell a sphere and a turned cube are the same handful
+   * of pixels, and there are five hundred of them.
+   */
+  rivet(x: number, y: number, z: number, d: number, rx: number, ry: number): void {
+    this.append(BOX, d, d * 0.6, d, Matrix.RotationYawPitchRoll(ry, rx, 0.6), x, y, z);
   }
 
   template(vd: VertexData, scale: Vector3, rot: Matrix | null, pos: Vector3): void {
@@ -2592,7 +2842,7 @@ function makeBrickMaps(
   const S = BRICK_S;
   const rows = 16;
   const cols = 6;
-  const joint = late ? 3 : 5; // px
+  const joint = late ? 4 : 5; // px
   const rh = S / rows;
   const cw = S / cols;
 
@@ -2604,8 +2854,15 @@ function makeBrickMaps(
   const nBricks = rows * (cols + 1);
   const cols3: [number, number, number][] = [];
   const depth: number[] = [];
-  const base: [number, number, number] = late ? [150, 116, 100] : [140, 84, 62];
-  const spread = late ? 16 : 44;
+  // `late` is a machine-made 1910s brick, not a bathroom tile. At [150,116,100]
+  // with a 3 px pale joint and no soot it came back as glazed white subway tile
+  // in the dead-end frame — the exact failure `QUALITY-BACKLOG.md` records for
+  // Cellblocks' cell interior. It still has to read clearly APART from the 1893
+  // stock, because telling them apart is the puzzle, so the separation moves
+  // from value to hue and regularity: cooler, greyer, far more uniform, but no
+  // brighter than the wall it patches.
+  const base: [number, number, number] = late ? [92, 78, 72] : [140, 84, 62];
+  const spread = late ? 22 : 44;
   for (let i = 0; i < nBricks; i++) {
     const j = (rng() - 0.5) * 2;
     const burnt = !late && rng() < 0.13;
@@ -2618,7 +2875,7 @@ function makeBrickMaps(
     depth.push(late ? 0.9 + rng() * 0.1 : 0.78 + rng() * 0.22);
   }
 
-  const mortar: [number, number, number] = late ? [138, 136, 130] : [146, 138, 120];
+  const mortar: [number, number, number] = late ? [74, 72, 69] : [146, 138, 120];
 
   for (let y = 0; y < S; y++) {
     const row = Math.floor(y / rh);
@@ -2636,7 +2893,7 @@ function makeBrickMaps(
       // Fine grain, and a soot gradient that is strongest low in the tile —
       // wear follows geometry, never uniformly.
       const grain = 0.86 + rng() * 0.28;
-      const soot = late ? 0.03 : 0.34 * (1 - y / S) ** 1.6 + 0.06;
+      const soot = late ? 0.1 + 0.08 * (1 - y / S) : 0.34 * (1 - y / S) ** 1.6 + 0.06;
 
       if (isJoint) {
         const g = grain * 0.96;
@@ -2893,6 +3150,65 @@ function buildSignAtlas(scene: Scene): Texture {
     },
     // 10 — the coal-door notice.
     { aspect: 0.6 / 0.3, draw: (ctx, w, h) => stencil(ctx, 'COAL', w, h, '#d4cebc', 0.55) },
+    // 11 — an instrument dial. Every gauge on the boilers and every meter on
+    // the board gets this. Without it a period switchboard is four black
+    // rectangles with pale discs on them and nothing says "instrument".
+    {
+      aspect: 1,
+      draw: (ctx, w, h, r) => {
+        const cx = w / 2;
+        const cy = h / 2;
+        const R = w * 0.46;
+        ctx.beginPath();
+        ctx.arc(cx, cy, R, 0, Math.PI * 2);
+        ctx.fillStyle = '#c8c2b0';
+        ctx.fill();
+        ctx.strokeStyle = '#2c2924';
+        ctx.lineWidth = w * 0.035;
+        ctx.stroke();
+        // Graduations over a 270-degree sweep, long every fifth.
+        for (let i = 0; i <= 40; i++) {
+          const a = Math.PI * 0.75 + (i / 40) * Math.PI * 1.5;
+          const long = i % 5 === 0;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(a) * R * 0.84, cy + Math.sin(a) * R * 0.84);
+          ctx.lineTo(
+            cx + Math.cos(a) * R * (long ? 0.64 : 0.74),
+            cy + Math.sin(a) * R * (long ? 0.64 : 0.74),
+          );
+          ctx.strokeStyle = '#33302a';
+          ctx.lineWidth = long ? w * 0.018 : w * 0.008;
+          ctx.stroke();
+        }
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#33302a';
+        ctx.font = `${Math.round(h * 0.09)}px Georgia, serif`;
+        for (let i = 0; i <= 8; i++) {
+          const a = Math.PI * 0.75 + (i / 8) * Math.PI * 1.5;
+          ctx.fillText(String(i * 20), cx + Math.cos(a) * R * 0.5, cy + Math.sin(a) * R * 0.5);
+        }
+        // The needle, resting hard against the bottom stop. Nothing has had
+        // pressure or current behind it since 2002.
+        const na = Math.PI * 0.75 + 0.02 + r() * 0.03;
+        ctx.beginPath();
+        ctx.moveTo(cx - Math.cos(na) * R * 0.12, cy - Math.sin(na) * R * 0.12);
+        ctx.lineTo(cx + Math.cos(na) * R * 0.78, cy + Math.sin(na) * R * 0.78);
+        ctx.strokeStyle = '#1b1916';
+        ctx.lineWidth = w * 0.022;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(cx, cy, R * 0.08, 0, Math.PI * 2);
+        ctx.fillStyle = '#1b1916';
+        ctx.fill();
+        // Dirt film — nobody has wiped this in twenty years.
+        ctx.globalAlpha = 0.28;
+        ctx.fillStyle = '#4a4238';
+        ctx.beginPath();
+        ctx.arc(cx, cy + R * 0.2, R * 0.85, 0, Math.PI * 2);
+        ctx.fill();
+      },
+    },
   ];
 
   for (let i = 0; i < specs.length; i++) {

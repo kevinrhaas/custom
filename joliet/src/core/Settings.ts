@@ -41,6 +41,12 @@ export interface Settings {
   sfxVolume: number;
   voiceVolume: number;
 
+  /** Multiplies every movement speed. Lets a player who finds the default
+   *  pace too slow (or too fast) tune it without a patch. */
+  moveSpeedScale: number;
+  /** Keep the control reminder on screen. */
+  showControlsHelp: boolean;
+
   // Assist
   /** Surfaces a contextual hint after N seconds of no progress. */
   hintDelaySeconds: number;
@@ -76,6 +82,8 @@ export const DEFAULTS: Settings = {
   sfxVolume: 1,
   voiceVolume: 1,
 
+  moveSpeedScale: 1.25,
+  showControlsHelp: true,
   hintDelaySeconds: 90,
   traversalAssist: true,
 };

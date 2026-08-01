@@ -48,8 +48,11 @@ const HEIGHT_STAND = 1.8;
 const HEIGHT_CROUCH = 1.15;
 const HEIGHT_PRONE = 0.55;
 
-const SPEED: Record<Stance, number> = { stand: 1.9, crouch: 1.15, prone: 0.62 };
-const SPRINT_SPEED = 4.4;
+const SPEED: Record<Stance, number> = { stand: 2.3, crouch: 1.35, prone: 0.72 };
+// 4.4 m/s is roughly a real jog and it felt sluggish to actually play — these
+// rooms are 20-60 m long and you spend most of your time in transit. 6.6 reads
+// as "moving with purpose" without turning a careful game into a racer.
+const SPRINT_SPEED = 6.6;
 
 const GRAVITY = -18.5;
 const JUMP_VELOCITY = 5.1;
@@ -79,6 +82,23 @@ export class Player {
 
   /** Set by scenes to tag the ground the player is standing on. */
   currentSurface = 'concrete';
+
+  /**
+   * Out-of-world recovery.
+   *
+   * A player fell through the trench aperture in 1.1 and kept falling into
+   * black with no way back. Any hole in any scene — a cut aperture, a gap
+   * between two floor pieces, a mis-set collider — becomes an unrecoverable
+   * softlock without this, and "don't make holes" is not a strategy.
+   *
+   * The last position where the player was genuinely standing is remembered;
+   * falling past the floor puts them back on it.
+   */
+  private lastSafe: Vector3;
+  private safeTimer = 0;
+  /** Below this Y the player is considered to have left the world. */
+  private static readonly VOID_Y = -40;
+  private onRecover: (() => void) | null = null;
 
   /**
    * Anchor mode. The shot harness pins the camera to a fixed pose and freezes
@@ -115,6 +135,7 @@ export class Player {
     // The body must not collide with itself or block its own ground probe.
     this.root.checkCollisions = false;
     this.root.position.copyFrom(spawn);
+    this.lastSafe = spawn.clone();
     this.yaw = spawnYaw;
 
     this.camera = new UniversalCamera('playerCam', new Vector3(0, EYE_STAND, 0), scene);
@@ -190,6 +211,11 @@ export class Player {
     this.onLand = fn;
   }
 
+  /** Called when the player is rescued from outside the world. */
+  setRecoverHandler(fn: () => void): void {
+    this.onRecover = fn;
+  }
+
   get position(): Vector3 {
     return this.root.position;
   }
@@ -258,6 +284,7 @@ export class Player {
     const speed = this.updateMovement(dt);
     this.updateHead(dt, speed, s.headBob, s.cameraLean);
     this.updateBattery(dt);
+    this.updateSafety(dt);
   }
 
   // ---------------------------------------------------------------- look ---
@@ -331,8 +358,9 @@ export class Player {
     const wantsSprint =
       input.held('sprint') && this.stance === 'stand' && iz > 0.3 && this.stamina > 0.02;
 
-    let target = SPEED[this.stance];
-    if (wantsSprint) target = SPRINT_SPEED;
+    const paceScale = settings.get().moveSpeedScale;
+    let target = SPEED[this.stance] * paceScale;
+    if (wantsSprint) target = SPRINT_SPEED * paceScale;
     // Strafing and backpedalling are slower; it stops the strafe-run gait that
     // makes first-person movement feel weightless.
     if (iz < 0) target *= 0.72;
@@ -340,7 +368,7 @@ export class Player {
 
     // Stamina economy. Lonnie's Adrenaline modifier hooks in via staminaRegen.
     if (wantsSprint) {
-      this.stamina = Math.max(0, this.stamina - dt * 0.19);
+      this.stamina = Math.max(0, this.stamina - dt * 0.11);
     } else {
       const regen = this.stance === 'stand' && mag < 0.1 ? 0.34 : 0.17;
       this.stamina = Math.min(1, this.stamina + dt * regen);
@@ -503,6 +531,32 @@ export class Player {
       this.camera.rotationQuaternion = Quaternion.Identity();
     }
     Quaternion.RotationYawPitchRollToRef(0, this.pitch, this.headTilt, this.camera.rotationQuaternion);
+  }
+
+  /**
+   * Remember solid ground, and rescue the player if they leave the world.
+   *
+   * Ground is only banked after a moment of standing still-ish on it, so a
+   * position mid-fall or half-inside geometry never becomes the checkpoint.
+   */
+  private updateSafety(dt: number): void {
+    if (this.grounded && Math.abs(this.velocity.y) < 0.5) {
+      this.safeTimer += dt;
+      if (this.safeTimer > 0.35) {
+        this.lastSafe.copyFrom(this.root.position);
+        this.safeTimer = 0;
+      }
+    } else {
+      this.safeTimer = 0;
+    }
+
+    if (this.root.position.y < Player.VOID_Y) {
+      this.root.position.copyFrom(this.lastSafe);
+      this.root.position.y += 0.4;
+      this.velocity.setAll(0);
+      this.landImpulse = 0.5;
+      this.onRecover?.();
+    }
   }
 
   private updateBattery(dt: number): void {
