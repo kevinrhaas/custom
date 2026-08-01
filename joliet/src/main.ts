@@ -251,6 +251,10 @@ async function boot(): Promise<void> {
       // Suppress temporal effects for the duration of the capture: a teleport
       // is a discontinuity neither TAA nor motion blur can resolve.
       renderer.setCaptureMode(true);
+      // Hide the HUD. The controls overlay was rendering into every capture
+      // and contaminating the shot evidence for every scene — a scene agent
+      // found it in its own frames before I did.
+      document.getElementById('ui')?.setAttribute('data-capture', '1');
       renderer.resetTAA();
       // Let TAA converge and the shadow cascades settle before the capture.
       // Deliberately NOT driven by requestAnimationFrame: headless browsers

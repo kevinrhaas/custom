@@ -93,11 +93,16 @@ export class Player {
    *
    * The last position where the player was genuinely standing is remembered;
    * falling past the floor puts them back on it.
+   *
+   * The threshold is deliberately shallow (-12 m, not -40). No floor in this
+   * game is more than a few metres below another, so anything past 12 m down is
+   * a hole, and a player who falls 40 m in the dark before being rescued has
+   * already had a bad time. Catch it early.
    */
   private lastSafe: Vector3;
   private safeTimer = 0;
   /** Below this Y the player is considered to have left the world. */
-  private static readonly VOID_Y = -40;
+  private static readonly VOID_Y = -12;
   private onRecover: (() => void) | null = null;
 
   /**
