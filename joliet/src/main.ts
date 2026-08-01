@@ -4,12 +4,19 @@ import { Renderer } from './core/Renderer';
 import { MaterialLibrary } from './core/Materials';
 import { Player } from './core/Player';
 import { input } from './core/Input';
+import { TouchControls, isTouchDevice } from './core/TouchControls';
 import { settings } from './core/Settings';
 import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
-import { mountHud, setLoadProgress, hideLoader, showLoader, showTouchNotice } from './ui/Hud';
+import {
+  mountHud,
+  setLoadProgress,
+  hideLoader,
+  showLoader,
+  showUnsupportedNotice,
+} from './ui/Hud';
 
 /**
  * Boot.
@@ -61,6 +68,8 @@ declare global {
       scene: GameScene;
       player: Player;
       renderer: Renderer;
+      /** The on-screen touch layer, or null on pointer devices. */
+      touch: TouchControls | null;
       /** Move the camera to a named anchor and settle the frame. */
       gotoAnchor(name: string): Promise<void>;
       stats(): { fps: number; activeMeshes: number; triangles: number };
@@ -74,16 +83,22 @@ async function boot(): Promise<void> {
 
   mountHud();
 
-  // Bail before downloading and baking anything on a device that cannot play
-  // it. `pointer: coarse` with no `hover` is the reliable touch-only signal;
-  // a laptop with a touchscreen still reports fine pointer + hover.
-  const touchOnly =
-    typeof matchMedia === 'function' &&
-    matchMedia('(pointer: coarse)').matches &&
-    !matchMedia('(hover: hover)').matches;
-  if (touchOnly && !new URLSearchParams(location.search).has('force')) {
-    showTouchNotice();
+  // The only remaining hard bail: no WebGL2 and no WebGPU means there is
+  // nothing to render into. Touch is no longer a bail — see TouchControls.
+  if (!canRender()) {
+    showUnsupportedNotice();
     return;
+  }
+
+  // A phone will not hold 30 FPS at native resolution with four shadow
+  // cascades and the full post chain, so touch devices get the low tier and
+  // render at roughly half resolution. `hardwareScale` is divided by
+  // `resolutionScale` in Renderer.applyProfile, so low's 1.35 / 0.75 = 1.8x —
+  // the middle of the 1.6–2.0 target. An explicit ?quality= still wins,
+  // because that is how the perf harness asks for a specific tier.
+  const touch = isTouchDevice();
+  if (touch && !new URLSearchParams(location.search).has('quality')) {
+    settings.patch({ quality: 'low', resolutionScale: 0.75 });
   }
 
   showLoader('Waking the building');
@@ -121,14 +136,24 @@ async function boot(): Promise<void> {
   mats.rebindLights();
 
   input.attach(canvas);
-  canvas.addEventListener('click', () => {
-    if (!input.locked) input.requestLock();
-    // Browsers refuse to start an AudioContext without a gesture, so the
-    // first click both locks the pointer and wakes the audio engine.
+
+  // Browsers refuse to start an AudioContext without a gesture, so the first
+  // click — or the first touch on the control layer — wakes the audio engine.
+  const wakeAudio = (): void => {
     void audio.start().then(() => {
       audio.setSpace(entry.ambience);
       audio.startAmbience(entry.ambience);
     });
+  };
+
+  // The touch layer sits on top of the canvas and swallows its clicks, so it
+  // owns the first-gesture handoff on phones.
+  const touchControls = touch ? new TouchControls({ onFirstGesture: wakeAudio }) : null;
+  touchControls?.mount();
+
+  canvas.addEventListener('click', () => {
+    if (!input.locked) input.requestLock();
+    wakeAudio();
   });
 
   // Sound is the whole tension model in a game with no enemies — wire it to
@@ -139,6 +164,7 @@ async function boot(): Promise<void> {
   setLoadProgress(1, 'Ready');
   await renderer.scene.whenReadyAsync();
   hideLoader();
+  touchControls?.setVisible(true);
 
   let paused = false;
   renderer.start((dt) => {
@@ -158,6 +184,7 @@ async function boot(): Promise<void> {
     scene,
     player,
     renderer,
+    touch: touchControls,
     async gotoAnchor(name: string) {
       const a = scene.manifest.anchors.find((x) => x.name === name);
       if (!a) throw new Error(`No anchor "${name}" in ${scene.manifest.id}`);
@@ -198,6 +225,24 @@ async function boot(): Promise<void> {
 
 function hasFlag(name: string): boolean {
   return new URLSearchParams(location.search).has(name);
+}
+
+/**
+ * Can this browser render at all? WebGPU counts; otherwise probe for a real
+ * WebGL2 context and immediately give it back — a browser is allowed only a
+ * handful of live contexts and the engine wants one of them.
+ */
+function canRender(): boolean {
+  if (typeof navigator !== 'undefined' && 'gpu' in navigator) return true;
+  try {
+    const probe = document.createElement('canvas');
+    const gl = probe.getContext('webgl2');
+    if (!gl) return false;
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /** Apply a quality override from the URL, used by the perf harness. */

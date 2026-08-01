@@ -47,6 +47,16 @@ so the built bundle is committed to `site/joliet/app/`; source lives here in
 
 Gamepad is supported throughout. Every binding is remappable.
 
+**Touch.** Phones and tablets get an on-screen layer instead (`src/core/TouchControls.ts`):
+the left half is a *floating* move stick that appears wherever the thumb lands,
+the right half is drag-to-look, and there is a bottom-right cluster of Lamp /
+Climb / Crouch / Use buttons. Sprint is a stick gesture — push past ~85% of the
+stick's radius — rather than a button you have to hold while steering. Move,
+look and a button all work at once. Touch devices are forced to the `low`
+quality tier at ~1.8× hardware scaling; a phone will not hold 30 FPS at native
+resolution with four shadow cascades. `?touch=1` forces the layer on for
+testing on a desktop, `?touch=0` forces it off.
+
 Accessibility is a ship requirement: subtitles on by default with speaker names,
 head-bob / motion-blur / grain / vignette independently adjustable to zero,
 `prefers-reduced-motion` honoured on first run, high-contrast prompts, and no
