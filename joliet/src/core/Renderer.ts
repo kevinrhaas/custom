@@ -86,7 +86,13 @@ export class Renderer {
     // Midnight overcast. Not black — an overcast city sky bounces a lot of
     // light, and pure black reads as "unfinished" rather than "dark".
     this.scene.clearColor = new Color4(0.021, 0.028, 0.042, 1);
-    this.scene.ambientColor = new Color3(0.05, 0.06, 0.085);
+    // Ambient floor. Deliberately small: measurement (tools/light-calibrate.mjs)
+    // showed the old 0.05/0.06/0.085 was adding a *distance-independent* term
+    // large enough to flatten the whole falloff curve — the headlamp measured
+    // only 1.8x brighter at 1 m than at 12 m, where inverse-square predicts
+    // ~36x. That floor is why night scenes read flat and why the headlamp
+    // seemed to contribute nothing: everything was already lit.
+    this.scene.ambientColor = new Color3(0.014, 0.017, 0.026);
 
     // Exponential height fog: the site sits in a river valley and holds mist.
     this.scene.fogMode = Scene.FOGMODE_EXP2;
@@ -96,7 +102,7 @@ export class Renderer {
     this.scene.imageProcessingConfiguration.toneMappingEnabled = true;
     this.scene.imageProcessingConfiguration.toneMappingType =
       ImageProcessingConfiguration.TONEMAPPING_ACES;
-    this.scene.imageProcessingConfiguration.exposure = 1.45;
+    this.scene.imageProcessingConfiguration.exposure = 1.25;
     this.scene.imageProcessingConfiguration.contrast = 1.12;
 
     this.setupLights();
@@ -274,7 +280,7 @@ export class Renderer {
     const ip = pipe.imageProcessing;
     ip.toneMappingEnabled = true;
     ip.toneMappingType = ImageProcessingConfiguration.TONEMAPPING_ACES;
-    ip.exposure = 1.45;
+    ip.exposure = 1.25;
     ip.contrast = 1.12;
 
     ip.vignetteEnabled = s.vignette > 0;

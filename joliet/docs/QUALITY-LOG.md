@@ -46,6 +46,44 @@ Hardware FPS is verified separately and noted where measured.
 
 ---
 
+## Headlamp calibration — measured, not reasoned
+
+`tools/light-calibrate.mjs` builds a bare scene (one flat lambertian surface,
+the headlamp, every other light and the environment disabled), steps the camera
+to 1 / 2 / 4 / 8 / 12 m and samples the centre pixel. Three runs:
+
+| intensity | 1 m | 2 m | 4 m | 8 m | 12 m |
+|---|---|---|---|---|---|
+| 240, ambient 0.05 | 170 | 165 | 151 | 118 | 95 |
+| **620, ambient 0.014** | **192** | **184** | 160 | 132 | 120 |
+| 150, ambient 0.014 | 147 | 150 | 120 | — | — |
+
+**Finding 1 — an ambient floor was flattening everything.** At the original
+`scene.ambientColor` of 0.05/0.06/0.085, the lamp measured only 1.8x brighter at
+1 m than at 12 m where inverse-square predicts ~36x. A distance-independent term
+that large sits under every surface in the game: it is why night scenes read
+flat, and it is a large part of why the headlamp appeared to "do nothing" — the
+geometry was already lit before it arrived. Lowered to 0.014/0.017/0.026.
+
+**Finding 2 — my target table was wrong, not the light.** The far-field bands
+(5-25 at 12 m) assumed a roughly gamma response. With ACES and its strong
+highlight shoulder, a 36:1 *linear* ratio compresses to under 2:1 on screen.
+Scaling intensity by 4x (620 → 150) moved the 1 m reading only 192 → 147, which
+is the shoulder dominating, not the falloff.
+
+**Settled at intensity 620, emitter 1.2 m behind the eye, ambient floor
+0.014.** That puts 1 m and 2 m in band and un-clipped, which is what The Void
+needs — carved stone read at arm's length. The far field remains brighter than
+intended.
+
+**Open, honestly:** the residual flatness past 4 m is only *partly* explained by
+the tone curve. Something is still contributing a near-constant term and I did
+not isolate it before stopping. Candidates not yet ruled out: the per-material
+`ambientColor = white` multiplier in `Materials.ts`, the spot's `range`
+interacting with `FALLOFF_PHYSICAL`, or the exposure sitting the whole scene too
+far up the shoulder. The rig now exists, so the next person can bisect this in
+minutes rather than guessing — which was the point of building it.
+
 ## 1.1 Perimeter Approach
 
 Nine iterations ran. **They were not scored to the protocol above**, and the
