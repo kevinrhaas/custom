@@ -55,23 +55,27 @@ export function hideLoader(): void {
 }
 
 /**
- * Touch-only devices get an honest notice instead of a black screen.
+ * An honest notice instead of a black screen, for the cases that really are
+ * unplayable.
  *
- * There are no touch controls and iOS has no Pointer Lock API, so the game is
- * genuinely unplayable on a phone right now. Saying so is better than letting
- * someone download 5 MB and then stare at an unresponsive canvas.
+ * This used to be the touch bail-out; touch is handled now (see
+ * `core/TouchControls.ts`). What is left is genuine incapability — a browser
+ * with no WebGL2 and no WebGPU has nothing to render into, and telling
+ * someone that is better than letting them download 5 MB and stare at an
+ * unresponsive canvas.
  */
-export function showTouchNotice(): void {
+export function showUnsupportedNotice(
+  heading = 'This browser cannot render it.',
+  body = 'Joliet needs WebGL2 (or WebGPU). Your browser reports neither, which is usually an old version, a disabled setting, or hardware acceleration turned off.',
+): void {
   const ui = document.getElementById('ui');
   if (!ui) return;
   const el = document.createElement('div');
   el.className = 'fatal';
   el.innerHTML = `
-    <h1>Not playable on touch yet.</h1>
-    <p>This build needs a keyboard and mouse, or a gamepad. It uses pointer
-    lock for look control, which iOS does not support, and it has no on-screen
-    controls yet.</p>
-    <p class="hint">Everything else works — try it on a desktop browser.</p>
+    <h1>${escapeHtml(heading)}</h1>
+    <p>${escapeHtml(body)}</p>
+    <p class="hint">Try a current Chrome, Edge, Firefox or Safari 17+.</p>
     <p class="hint" style="margin-top:1.2rem"><a href="../" style="color:#c9ad74">← back to the site</a></p>`;
   ui.appendChild(el);
 }

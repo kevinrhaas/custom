@@ -7,36 +7,41 @@ Each item: what's wrong, what it would cost, and how much it matters.
 
 ---
 
-## Mobile — does not run, now says so
+## Mobile — boots and plays; feel unverified
 
-**Reported from iOS Chrome:** `this._getEngine().createMultipleRenderTarget is
-not a function`, fatal at boot.
+**Was:** a fatal `createMultipleRenderTarget is not a function` on iOS Chrome,
+then a "desktop only" notice.
 
-**Root cause:** Babylon engine extensions are *side-effect imports* that graft
-methods onto the engine prototype, and tree-shaking removes anything not
-explicitly imported. `createMultipleRenderTarget` was never imported, so it did
-not exist at runtime. Desktop Chrome happened to pull it in transitively via
-another module; WebKit's code path did not. **Fixed** — the extension imports
-are now explicit, plus a capability gate that disables SSAO / TAA / motion blur
-rather than letting a missing feature blank the page.
+**Now:** both fixed. The crash was a missing side-effect import (Babylon engine
+extensions graft methods onto the prototype and tree-shaking removed one that
+desktop Chrome happened to pull in transitively). And `src/core/TouchControls.ts`
+adds a real touch layer: a floating left-half move stick that materialises under
+the thumb and re-centres at the rim, right-half drag-to-look with a conserving
+low-pass smoother, sprint as a stick gesture past 85% deflection rather than a
+button, and a 2×2 thumb cluster inside the safe-area insets. Multi-touch is
+tracked by `pointerId` with listeners on `window`, so a finger that slides out of
+its zone keeps working. Touch devices get the `low` tier at 1.8× hardware
+scaling. `Player.ts` needed no changes — everything routes through `Input`'s
+existing named-action surface, which was the test of whether the integration was
+right.
 
-**But mobile still cannot play the game**, for a reason no bug fix addresses:
-there are **no touch controls**, and iOS has no Pointer Lock API, so look
-control has no input at all. The build now detects touch-only devices
-(`pointer: coarse` and no `hover`) and shows an honest notice instead of a
-black screen. `?force` bypasses it for testing.
+Verified by `tools/touch-probe.mjs` at 390×844 with real multi-touch via CDP:
+17/17 including simultaneous move + look + a third finger on a button, sprint
+engaging only past the rim, and zero page errors.
 
-**To actually support mobile** (~1-2 days, and worth doing):
-- Twin-stick touch layer: left half drag to move, right half drag to look,
-  with a tappable crouch / interact / headlamp cluster.
-- Force the `low` quality tier and a hardware scaling level around 1.5-2.0 —
-  a 512² bake per material and cascaded shadows will not hold 30 FPS on a
-  phone at native resolution.
-- Re-tune the headlamp separately; a small screen at arm's length wants a
-  different exposure than a monitor.
-- Test on a real device. The harness cannot simulate this.
+**What is still unverified, and it is the part that matters:**
+- **Nobody has held it.** Radius, deadzone, sprint threshold, look gain and
+  smoothing are reasoned constants. ~75° per 300 px swipe may be wrong for a
+  game about slow looking.
+- **Nothing iOS-specific is tested**: safe-area insets on a real notch, whether
+  `pointerdown` satisfies WebKit's user-activation rule for the AudioContext,
+  the left-edge back-swipe stealing a stick touch near the bezel, and actual
+  frame rate at 1.8× scaling on a phone.
+- **Pause is unreachable on touch** — still `Escape`-only. That is a real gap.
+- **Use does nothing**, because no interaction system exists yet.
 
-Until then the honest position is: **desktop only**, and the page says so.
+A device test would answer all of the above in ten minutes and no amount of
+headless work will.
 
 ## RESOLVED — the headlamp works; its falloff was miscalibrated
 

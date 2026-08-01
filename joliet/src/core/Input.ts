@@ -1,11 +1,16 @@
 import { settings } from './Settings';
 
 /**
- * Unified keyboard + mouse + gamepad input.
+ * Unified keyboard + mouse + gamepad + touch input.
  *
  * Everything downstream reads *actions*, never raw keys, so remapping is a
  * data change. Pointer lock is the mouse-look gate; the game never reads mouse
  * deltas while unlocked.
+ *
+ * Touch (see TouchControls.ts) feeds this same surface and nothing else:
+ * on-screen buttons go through `setTouchAction`, the move stick through
+ * `touchMoveX/Y`, and drag-to-look through `touchDX/Y`. `Player` therefore
+ * never learns that touch exists.
  */
 
 export type Action =
@@ -49,12 +54,33 @@ const DEFAULT_BINDINGS: Record<Action, Binding> = {
 
 const BINDINGS_KEY = 'joliet.bindings.v1';
 
+/**
+ * Fraction of the pending touch-look delta released per frame. The remainder
+ * carries over, so total travel is conserved — this smooths the jitter out of
+ * a finger without changing the effective sensitivity.
+ */
+const TOUCH_LOOK_SMOOTHING = 0.5;
+/**
+ * Radians per pixel, relative to the mouse. A finger has a few hundred pixels
+ * of travel where a mouse has thousands of counts, so touch needs more turn
+ * per pixel to reach a full look-around in one comfortable swipe. The player's
+ * sensitivity setting still scales it.
+ */
+const TOUCH_LOOK_GAIN = 9;
+
 class InputManager {
   private down = new Set<string>();
   private pressedThisFrame = new Set<Action>();
   private heldActions = new Set<Action>();
   private prevHeld = new Set<Action>();
   private bindings: Record<Action, Binding> = structuredClone(DEFAULT_BINDINGS);
+  /** Actions currently held by an on-screen button or stick gesture. */
+  private touchHeld = new Set<Action>();
+  /**
+   * Actions touched down since the last update(). A tap that goes down and up
+   * inside one frame would otherwise never be seen by pressed().
+   */
+  private touchLatched = new Set<Action>();
 
   /** Accumulated mouse delta since last consume(), in raw pixels. */
   mouseDX = 0;
@@ -65,6 +91,15 @@ class InputManager {
   /** Left-stick move, normalised -1..1, already deadzoned. */
   padMoveX = 0;
   padMoveY = 0;
+
+  /** Virtual-stick move, normalised -1..1, shaped by TouchControls. */
+  touchMoveX = 0;
+  touchMoveY = 0;
+  /** Accumulated touch-look delta in raw pixels; low-passed on consume. */
+  touchDX = 0;
+  touchDY = 0;
+  /** True while the on-screen touch layer is mounted. */
+  touchActive = false;
 
   locked = false;
   private canvas: HTMLCanvasElement | null = null;
@@ -91,6 +126,10 @@ class InputManager {
   }
 
   requestLock(): void {
+    // Pointer lock and touch controls are mutually exclusive: iOS has no
+    // pointer lock at all, and on Android grabbing it would swallow the
+    // pointer events the on-screen sticks depend on.
+    if (this.touchActive) return;
     this.canvas?.requestPointerLock?.();
   }
 
@@ -108,13 +147,44 @@ class InputManager {
     return this.pressedThisFrame.has(a);
   }
 
-  /** Returns the mouse delta and zeroes the accumulator. */
+  /** Set or clear an action held by the on-screen touch layer. */
+  setTouchAction(a: Action, on: boolean): void {
+    if (on) {
+      this.touchHeld.add(a);
+      this.touchLatched.add(a);
+    } else {
+      this.touchHeld.delete(a);
+    }
+  }
+
+  /** Returns the accumulated look delta and zeroes what it consumed. */
   consumeLook(): { x: number; y: number } {
     const sens = settings.get().sensitivity;
     const inv = settings.get().invertY ? -1 : 1;
-    // Mouse is raw pixels; pad is per-second so it gets scaled by the caller.
-    const x = this.mouseDX * sens * 0.0022 + this.padLookX * sens * 0.05;
-    const y = (this.mouseDY * sens * 0.0022 + this.padLookY * sens * 0.05) * inv;
+
+    // Touch: release a fraction of the pending delta and carry the rest.
+    let tx = this.touchDX * TOUCH_LOOK_SMOOTHING;
+    let ty = this.touchDY * TOUCH_LOOK_SMOOTHING;
+    this.touchDX -= tx;
+    this.touchDY -= ty;
+    // The residual is geometric, so snap the tail to zero rather than drifting
+    // the view forever after the finger lifts.
+    if (Math.abs(this.touchDX) < 0.05) {
+      tx += this.touchDX;
+      this.touchDX = 0;
+    }
+    if (Math.abs(this.touchDY) < 0.05) {
+      ty += this.touchDY;
+      this.touchDY = 0;
+    }
+
+    // Mouse and touch are raw pixels; pad is per-second so it gets scaled by
+    // the caller. Touch shares the mouse's sensitivity setting, with a fixed
+    // gain on top for the shorter travel a thumb has.
+    const touchX = tx * sens * 0.0022 * TOUCH_LOOK_GAIN;
+    const touchY = ty * sens * 0.0022 * TOUCH_LOOK_GAIN;
+    const x = this.mouseDX * sens * 0.0022 + touchX + this.padLookX * sens * 0.05;
+    const y = (this.mouseDY * sens * 0.0022 + touchY + this.padLookY * sens * 0.05) * inv;
     this.mouseDX = 0;
     this.mouseDY = 0;
     return { x, y };
@@ -123,6 +193,13 @@ class InputManager {
   /** Call once per frame, before any held()/pressed() reads. */
   update(): void {
     this.pollGamepad();
+    // Fold the virtual stick in AFTER the pad poll, which zeroes the pad axes
+    // when no gamepad is connected. Additive so a pad and a phone stick could
+    // in principle both contribute; Player renormalises anything over 1.
+    if (this.touchMoveX !== 0 || this.touchMoveY !== 0) {
+      this.padMoveX += this.touchMoveX;
+      this.padMoveY += this.touchMoveY;
+    }
 
     this.prevHeld = new Set(this.heldActions);
     this.heldActions.clear();
@@ -140,6 +217,12 @@ class InputManager {
         }
       }
     }
+
+    // On-screen buttons and stick gestures fold in the same way. The latch set
+    // guarantees a tap survives at least one frame.
+    for (const a of this.touchHeld) this.heldActions.add(a);
+    for (const a of this.touchLatched) this.heldActions.add(a);
+    this.touchLatched.clear();
 
     this.pressedThisFrame.clear();
     for (const a of this.heldActions) {
@@ -217,9 +300,14 @@ class InputManager {
   };
 
   private onBlur = (): void => {
-    // Losing focus mid-sprint must not leave the key stuck down.
+    // Losing focus mid-sprint must not leave the key — or the thumb — stuck
+    // down. A backgrounded phone never delivers the pointerup.
     this.down.clear();
     this.heldActions.clear();
+    this.touchHeld.clear();
+    this.touchLatched.clear();
+    this.touchMoveX = this.touchMoveY = 0;
+    this.touchDX = this.touchDY = 0;
   };
 
   private onLockChange = (): void => {
