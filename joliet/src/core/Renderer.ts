@@ -114,12 +114,26 @@ export class Renderer {
     return;
   }
 
-  /** WebGPU where available, WebGL2 everywhere else. */
+  /**
+   * WebGL2 by default. WebGPU is opt-in via `?webgpu`.
+   *
+   * This used to prefer WebGPU wherever the browser advertised it, and that
+   * shipped a black screen to every Chrome user on macOS. The reason it was
+   * never caught is worth writing down: **every capture in this project passes
+   * `?webgl`**, and the headless probe has no WebGPU adapter, so it always fell
+   * back. The WebGPU path had therefore never been executed even once, on any
+   * machine, at any point in the build — while being the path most real users
+   * would take.
+   *
+   * WebGL2 is what the whole renderer has actually been verified against, so it
+   * is what ships. Re-enable WebGPU only after a capture pass runs on it.
+   */
   private async createEngine(): Promise<AbstractEngine> {
     const wantGPU =
       !this.opts.forceWebGL &&
       typeof navigator !== 'undefined' &&
-      'gpu' in navigator;
+      'gpu' in navigator &&
+      new URLSearchParams(location.search).has('webgpu');
 
     if (wantGPU) {
       try {
