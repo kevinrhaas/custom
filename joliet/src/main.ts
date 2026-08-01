@@ -9,7 +9,7 @@ import { audio } from './core/Audio';
 import { PerimeterApproach } from './scenes/PerimeterApproach';
 import { TheVoid } from './scenes/TheVoid';
 import { GameScene } from './scenes/SceneBase';
-import { mountHud, setLoadProgress, hideLoader, showLoader } from './ui/Hud';
+import { mountHud, setLoadProgress, hideLoader, showLoader, showTouchNotice } from './ui/Hud';
 
 /**
  * Boot.
@@ -73,6 +73,19 @@ async function boot(): Promise<void> {
   if (!canvas) throw new Error('#stage canvas missing');
 
   mountHud();
+
+  // Bail before downloading and baking anything on a device that cannot play
+  // it. `pointer: coarse` with no `hover` is the reliable touch-only signal;
+  // a laptop with a touchscreen still reports fine pointer + hover.
+  const touchOnly =
+    typeof matchMedia === 'function' &&
+    matchMedia('(pointer: coarse)').matches &&
+    !matchMedia('(hover: hover)').matches;
+  if (touchOnly && !new URLSearchParams(location.search).has('force')) {
+    showTouchNotice();
+    return;
+  }
+
   showLoader('Waking the building');
 
   const renderer = new Renderer({ canvas, forceWebGL: hasFlag('webgl') });

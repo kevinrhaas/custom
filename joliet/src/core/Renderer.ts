@@ -16,6 +16,19 @@ import { CubeTexture } from '@babylonjs/core/Materials/Textures/cubeTexture';
 import { HDRCubeTexture } from '@babylonjs/core/Materials/Textures/hdrCubeTexture';
 import type { Camera } from '@babylonjs/core/Cameras/camera';
 
+// Engine extensions are SIDE-EFFECT imports that graft methods onto the engine
+// prototype. Tree-shaking drops anything not explicitly imported, so without
+// these the method simply does not exist at runtime — which is how iOS Chrome
+// (WebKit) died on `createMultipleRenderTarget is not a function` while desktop
+// Chrome happened to pull it in transitively. Every post-process that needs a
+// G-buffer or a prepass depends on multiRender.
+import '@babylonjs/core/Engines/Extensions/engine.multiRender';
+import '@babylonjs/core/Engines/Extensions/engine.renderTarget';
+import '@babylonjs/core/Engines/Extensions/engine.renderTargetTexture';
+import '@babylonjs/core/Engines/Extensions/engine.rawTexture';
+import '@babylonjs/core/Engines/Extensions/engine.dynamicTexture';
+import '@babylonjs/core/Engines/Extensions/engine.cubeTexture';
+
 import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 import '@babylonjs/core/Rendering/geometryBufferRendererSceneComponent';
 import '@babylonjs/core/Rendering/prePassRendererSceneComponent';
@@ -211,10 +224,23 @@ export class Renderer {
     const pipe = new DefaultRenderingPipeline('joliet', true, this.scene, [camera]);
     this.pipeline = pipe;
 
+    // Capability gate. Even with the extensions imported, a device can lack the
+    // WebGL2 features these need. A missing effect must degrade the picture,
+    // never blank the page.
+    const engineAny = this.engine as unknown as {
+      createMultipleRenderTarget?: unknown;
+      getCaps(): { drawBuffersExtension?: boolean; textureFloatRender?: boolean };
+    };
+    const caps = this.engine.getCaps();
+    const canMRT =
+      typeof engineAny.createMultipleRenderTarget === 'function' &&
+      caps.drawBuffersExtension !== false;
+
+
     // --- Anti-aliasing -----------------------------------------------------
     // TAA above medium, FXAA below. TAA is what makes the barbed wire and the
     // cell bars stop crawling, and those are in almost every frame.
-    if (p.shadowMapSize >= 2048) {
+    if (p.shadowMapSize >= 2048 && canMRT) {
       pipe.fxaaEnabled = false;
       try {
         this.taa = new TAARenderingPipeline('taa', this.scene, [camera]);
@@ -279,7 +305,7 @@ export class Renderer {
     // --- SSAO --------------------------------------------------------------
     // The decayed interiors are almost all soft indirect light; without AO the
     // corners go flat and everything reads as cardboard.
-    if (p.ssao) {
+    if (p.ssao && canMRT) {
       try {
         this.ssao = new SSAO2RenderingPipeline('ssao', this.scene, {
           ssaoRatio: p.ssaoRatio,
@@ -303,7 +329,7 @@ export class Renderer {
     // --- Motion blur -------------------------------------------------------
     // Per-object velocity blur gives movement weight. Off entirely under
     // reduced-motion; that is an accessibility requirement, not a preference.
-    if (s.motionBlur > 0 && !s.reducedMotion) {
+    if (s.motionBlur > 0 && !s.reducedMotion && canMRT) {
       try {
         this.motionBlur = new MotionBlurPostProcess(
           'motionBlur',
