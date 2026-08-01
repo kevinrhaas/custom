@@ -57,6 +57,17 @@ and traversable, but none of them is wired to an interaction, a lockpick
 minigame, Mike's Institutional Knowledge check, or a transition into 1.2.
 **Cost:** ~a day once an interaction system exists.
 
+### The drainage trench is broken — the ground has no hole in it
+**This is a visible defect, not a rough edge.** The trench is excavated to
+y = −2.6 but the base ground is a single solid plane at y = 0 with no aperture,
+so the trench reads as two stone walls floating on an unbroken floor and the
+water surface is buried. Anchor `a5-trench` shows it plainly.
+**Cost:** ~half a day. The ground needs to be built as a CSG subtraction or,
+better, authored as a set of tiles with the trench corridor simply omitted —
+which is the approach the Siphon needs anyway.
+**Impact:** high. It is one of the scene's three entry routes and currently the
+worst frame in the game.
+
 ### No foliage
 The reference photography is full of it — weeds through the asphalt cracks,
 saplings against the wall base, the cottonwoods growing through the shop floors.

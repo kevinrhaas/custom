@@ -34,7 +34,7 @@ That is roughly 2 minutes of content.
 | Character controller | Done. Walk/sprint/crouch/crawl, step-up assist, distance-driven footstep cadence, speed-scaled figure-eight head-bob, lean, stamina, headlamp with generated cookie and brownout. Feels good. | 8/10 |
 | Material library | Done and frozen. 18 named presets, fully procedural, calibrated to reference photography. | 7/10 |
 | Architectural kit | Done for exteriors: coursed wall with corbel course, tapered towers with corbelled collars and octagonal glazed cabs, segmental-arched barred windows, catenary barbed wire. No interior kit yet. | 7/10 |
-| Scene 1.1 Perimeter | Built end to end. Composition, lighting split and silhouette all read. Missing foliage; entries are geometry without interaction. | 6.5/10 |
+| Scene 1.1 Perimeter | Built end to end. Composition, lighting split, masonry and silhouette all read. **The drainage-trench entry is visibly broken** — the ground plane has no hole cut in it, so the trench walls float on an unbroken floor. Missing foliage; entries are geometry without interaction. | 6/10 |
 | Screenshot harness | Working. 5 fixed anchors, 1080p, per-anchor FPS/draw-calls/triangles, page-error capture. | 8/10 |
 | Critic loop | **Ran, but not to its own protocol.** See below. | 4/10 |
 | Scenes 1.2 – 4.2 | **Not started.** | 0/10 |
@@ -97,15 +97,18 @@ sheer number of authored props per square metre — plus audio, which is entirel
 absent and which matters more here than in most games because the whole tension
 model is sound in an empty building.
 
-## Next five things, in order
+## Next things, in order
 
 1. **Audio.** Footsteps by surface, ambience, wind, the radio comms bed. Biggest
    single quality gain available.
 2. **One clean scored critic pass** on 1.1 to the documented protocol.
-3. **Foliage and clutter** in 1.1 — thin-instanced weeds, saplings, debris. The
+3. **Cut the trench out of the ground plane** — it is the worst frame in the
+   game and the fix (tiled ground with the corridor omitted) is what the Siphon
+   needs anyway.
+4. **Foliage and clutter** in 1.1 — thin-instanced weeds, saplings, debris. The
    most obvious remaining difference from the reference photographs.
-4. **Interaction + save system**, then wire 1.1's three entries.
-5. **Scene 3.1b The Void** next, not 1.2. It is the emotional centre and the
+5. **Interaction + save system**, then wire 1.1's three entries.
+6. **Scene 3.1b The Void** next, not 1.2. It is the emotional centre and the
    scene the quality loop should protect first; building it early means the rest
    of the game is built toward something that already exists.
 
@@ -114,6 +117,7 @@ model is sound in an empty building.
 - ✅ Builds clean; typechecks clean; zero page errors in the harness.
 - ✅ Runs and is walkable.
 - ✅ Textures, geometry and lighting confirmed by capture at five fixed anchors.
+- ❌ **Anchor `a5-trench` is a broken frame** — see QUALITY-BACKLOG. Known, logged, not fixed.
 - ❌ **60 FPS on real hardware is unverified.** All performance figures come
   from headless SwiftShader software rasterisation — valid as a relative
   regression signal between iterations, worthless as an absolute target.
