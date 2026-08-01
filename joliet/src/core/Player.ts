@@ -57,7 +57,7 @@ const SPRINT_SPEED = 6.6;
 const GRAVITY = -18.5;
 const JUMP_VELOCITY = 5.1;
 /** Steps up to this height are climbed without a jump. */
-const STEP_HEIGHT = 0.42;
+const STEP_HEIGHT = 0.55;
 
 export class Player {
   camera: UniversalCamera;
@@ -290,6 +290,7 @@ export class Player {
     this.updateHead(dt, speed, s.headBob, s.cameraLean);
     this.updateBattery(dt);
     this.updateSafety(dt);
+    this.updateStuck(dt, this.wantedMove, speed);
   }
 
   // ---------------------------------------------------------------- look ---
@@ -354,6 +355,7 @@ export class Player {
     ix += input.padMoveX;
     iz -= input.padMoveY;
 
+    this.wantedMove = Math.abs(ix) > 0.01 || Math.abs(iz) > 0.01;
     const mag = Math.hypot(ix, iz);
     if (mag > 1) {
       ix /= mag;
@@ -544,6 +546,36 @@ export class Player {
    * Ground is only banked after a moment of standing still-ish on it, so a
    * position mid-fall or half-inside geometry never becomes the checkpoint.
    */
+  private stuckTimer = 0;
+  private wantedMove = false;
+
+  /**
+   * Anti-wedge.
+   *
+   * Collide-and-slide can trap an ellipsoid in the seam between two colliders
+   * that overlap slightly — which is exactly what happens where a landing meets
+   * a railing. A player who is holding a direction, is on the ground, and is
+   * not moving is stuck, and no amount of wiggling the stick will free them.
+   * Lift them slightly and push toward the last known-good position.
+   */
+  private updateStuck(dt: number, wantsToMove: boolean, speed: number): void {
+    if (!wantsToMove || !this.grounded || speed > 0.25) {
+      this.stuckTimer = 0;
+      return;
+    }
+    this.stuckTimer += dt;
+    if (this.stuckTimer > 1.1) {
+      this.stuckTimer = 0;
+      // A small hop plus a shove toward safety clears every seam we have seen.
+      const away = this.lastSafe.subtract(this.root.position);
+      away.y = 0;
+      if (away.lengthSquared() > 0.04) away.normalize().scaleInPlace(0.45);
+      this.root.position.y += 0.35;
+      this.root.moveWithCollisions(away);
+      this.velocity.y = 1.2;
+    }
+  }
+
   private updateSafety(dt: number): void {
     if (this.grounded && Math.abs(this.velocity.y) < 0.5) {
       this.safeTimer += dt;

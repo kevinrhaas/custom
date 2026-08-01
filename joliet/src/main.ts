@@ -184,6 +184,20 @@ async function boot(): Promise<void> {
   const touchControls = touch ? new TouchControls({ onFirstGesture: wakeAudio }) : null;
   touchControls?.mount();
 
+  // Wake audio on the FIRST user gesture anywhere, not just a canvas click.
+  // The title screen now swallows that first click, so audio never started —
+  // reported as "there was no sound".
+  const wake = (): void => {
+    void audio.start().then(() => {
+      audio.setSpace(entry.ambience);
+      audio.startAmbience(entry.ambience);
+    });
+    removeEventListener('pointerdown', wake);
+    removeEventListener('keydown', wake);
+  };
+  addEventListener('pointerdown', wake);
+  addEventListener('keydown', wake);
+
   canvas.addEventListener('click', () => {
     if (!input.locked) input.requestLock();
     wakeAudio();
