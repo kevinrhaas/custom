@@ -19,7 +19,6 @@ import type { Scene } from '@babylonjs/core/scene';
 import '@babylonjs/core/Particles/particleSystemComponent';
 
 import { GameScene, type SceneManifest } from './SceneBase';
-import { worldUV } from '../core/Kit';
 import { C, srgb } from '../core/Palette';
 import { fbm, heightToNormal, clamp01 } from '../core/Noise';
 import { profile } from '../core/Settings';
@@ -94,6 +93,10 @@ const NICHES: Niche[] = [
 const NICHE_HALF_Z = 0.48;
 const NICHE_H = 1.34;
 const NICHE_DEPTH = 0.85;
+
+/** The ventilator flue near the seal — the one warm thing in the room. */
+const VENT_Z = 19.3;
+const VENT_Y = 1.42;
 
 /* -------------------------------------------------------------------------- */
 
@@ -275,10 +278,10 @@ export class TheVoid extends GameScene {
     // the same rules 1.1's trench water follows.
     const pool = MeshBuilder.CreateGround(
       'voidWater',
-      { width: HALF_W * 2 - 0.04, height: Z_END - Z_STEP + 1.4, subdivisions: 14 },
+      { width: HALF_W * 2 - 0.04, height: Z_END - Z_STEP - 0.4, subdivisions: 14 },
       this.scene,
     );
-    pool.position.set(0, WATER_Y, (Z_STEP + Z_END) / 2 + 0.3);
+    pool.position.set(0, WATER_Y, (Z_STEP + Z_END) / 2 + 0.7);
     pool.material = water;
     pool.isPickable = false;
     pool.receiveShadows = false;
@@ -334,7 +337,12 @@ export class TheVoid extends GameScene {
           const zc = z + len / 2;
           const centreY = y + h / 2;
 
-          if (!this.inNicheOpening(side, zc, len, centreY, h)) {
+          const inVent =
+            side === 1 &&
+            Math.abs(zc - VENT_Z) < 0.42 + len / 2 &&
+            Math.abs(centreY - VENT_Y) < 0.24 + h / 2;
+
+          if (!inVent && !this.inNicheOpening(side, zc, len, centreY, h)) {
             // Rising damp: the bottom two courses and everything past the step
             // are saturated.
             const soaked = y < 0.62 || zc > Z_STEP - 1.2;
@@ -354,9 +362,16 @@ export class TheVoid extends GameScene {
               (rng() - 0.5) * 0.01,
             );
 
-            // Big enough, dry enough and at a height a man could reach while
-            // sitting or standing: a candidate for carving.
-            if (h > 0.33 && len > 0.5 && centreY > 0.42 && centreY < 1.62) {
+            // Big enough and at a height a man could reach sitting or
+            // standing: a candidate for carving. Carvings cluster — men
+            // wrote where other men had already written, and beside the
+            // niches, and not much anywhere else.
+            if (h > 0.31 && len > 0.46 && centreY > 0.4 && centreY < 1.66) {
+              let weight = 0.55;
+              if (zc > 8.4 && zc < 13.8) weight = 2.1; // the reading wall
+              for (const n of NICHES) {
+                if (Math.abs(zc - n.z) < 1.7) weight = Math.max(weight, 1.5);
+              }
               this.faces.push({
                 x: faceX,
                 y: centreY,
@@ -365,7 +380,10 @@ export class TheVoid extends GameScene {
                 nz: 0,
                 w: len,
                 h,
-                weight: 1,
+                weight,
+                // The east wall between z 9.6 and 11.6 is the anchor frame for
+                // the whole scene. It is not left to a dice roll.
+                forced: side === 1 && zc > 9.5 && zc < 11.8,
               });
             }
           }
@@ -440,7 +458,7 @@ export class TheVoid extends GameScene {
             0,
             (rng() - 0.5) * 0.01,
           );
-          if (h > 0.24 && len > 0.34 && y > 0.16) {
+          if (h > 0.22 && len > 0.3 && y > 0.12) {
             this.faces.push({
               x: faceX,
               y: y + h / 2,
@@ -449,8 +467,9 @@ export class TheVoid extends GameScene {
               nz: 0,
               w: len,
               h,
-              // Men were left in here. This is where the carving would happen.
+              // Men were left in here with nothing else to do.
               weight: 4,
+              forced: true,
             });
           }
           z += len + 0.01;
@@ -603,7 +622,7 @@ export class TheVoid extends GameScene {
     dry.box(0, capY, (HOLE_Z + HOLE_HALF_Z + Z_END + 1) / 2, 8, capH, Z_END + 1 - HOLE_Z - HOLE_HALF_Z);
     for (const side of [-1, 1] as const) {
       dry.box(
-        side * (HOLE_X + side * (HOLE_HALF_X + 1.6)),
+        HOLE_X + side * (HOLE_HALF_X + 1.6),
         capY,
         HOLE_Z,
         3.2,
@@ -611,6 +630,11 @@ export class TheVoid extends GameScene {
         HOLE_HALF_Z * 2,
       );
     }
+    // Solid ends. These exist purely so the moon — which is still a
+    // full-strength directional out there somewhere — cannot find its way in
+    // past either end of a chamber whose walls are eight hundred loose stones.
+    dry.box(0, 2.1, -1.25, 9, 4.6, 0.9);
+    dry.box(0, 2.1, Z_END + 1.0, 9, 4.6, 0.9);
   }
 
   /* -------------------------------------------------------------- break-in -- */
@@ -778,6 +802,10 @@ export class TheVoid extends GameScene {
       );
     }
 
+    // Threshold under the opening — the brick was laid off a stone sill, and
+    // without it the water at this end would run straight under the seal.
+    dry.box(0, -0.28, zFace + 0.2, openHalf * 2 + 0.7, 0.62, 0.7);
+
     // The infill. Common brick, 230 × 110 × 70, laid stretcher bond by
     // somebody who was not a bricklayer.
     const bh = 0.075;
@@ -874,26 +902,36 @@ export class TheVoid extends GameScene {
    * warm thing in the room.
    */
   private buildVent(dry: GeoBatch, steel: GeoBatch): void {
-    const z = 19.3;
-    const y = 1.48;
-    // Reveal: a dark recessed box, so the opening has depth rather than being
-    // a lit rectangle painted on the stone.
-    const dark = MeshBuilder.CreateBox('ventReveal', { width: 0.7, height: 0.42, depth: 0.34 }, this.scene);
-    dark.position.set(HALF_W + 0.2, y, z);
+    const z = VENT_Z;
+    const y = VENT_Y;
+    // Reveal: a dark recessed box behind the wall plane, so the opening has
+    // depth rather than being a lit rectangle painted on the stone.
+    const dark = MeshBuilder.CreateBox(
+      'ventReveal',
+      { width: 0.62, height: 0.38, depth: 0.72 },
+      this.scene,
+    );
+    dark.position.set(HALF_W + 0.31, y, z);
     const dm = new StandardMaterial('ventDark', this.scene);
     dm.diffuseColor = new Color3(0.02, 0.02, 0.022);
     dm.specularColor = Color3.Black();
-    dm.emissiveColor = srgb('#3a2408').scale(0.5);
+    // The far end of the flue, ninety metres from the nearest working lamp.
+    dm.emissiveColor = srgb('#2e1c05');
     dm.disableLighting = true;
     dark.material = dm;
     dark.isPickable = false;
+    dark.receiveShadows = false;
+    dark.freezeWorldMatrix();
     this.meshes.push(dark);
 
-    // Head and sill of the opening.
-    dry.box(HALF_W + 0.22, y + 0.28, z, 0.5, 0.16, 0.86);
-    dry.box(HALF_W + 0.22, y - 0.28, z, 0.5, 0.16, 0.86);
+    // Head and sill of the opening, and the jambs.
+    dry.box(HALF_W + 0.24, y + 0.28, z, 0.52, 0.2, 1.0);
+    dry.box(HALF_W + 0.24, y - 0.28, z, 0.52, 0.2, 1.0);
+    for (const dz of [-1, 1]) {
+      dry.box(HALF_W + 0.24, y, z + dz * 0.46, 0.52, 0.4, 0.24);
+    }
     for (let i = 0; i < 4; i++) {
-      steel.box(HALF_W + 0.03, y, z - 0.24 + i * 0.16, 0.03, 0.4, 0.03);
+      steel.box(HALF_W + 0.04, y, z - 0.21 + i * 0.14, 0.035, 0.36, 0.035);
     }
   }
 
@@ -1059,19 +1097,20 @@ export class TheVoid extends GameScene {
       [order[i], order[j]] = [order[j], order[i]];
     }
 
-    // Weighted selection: the niches get carved far more heavily than the open
-    // wall, because that is where a man had nothing else to do.
-    const pool = this.faces.filter((f) => rng() < 0.055 * f.weight);
+    // Weighted selection.
+    const pool = this.faces.filter((f) => f.forced || rng() < Math.min(0.85, 0.26 * f.weight));
     const batch = new GeoBatch();
     let placed = 0;
 
     for (const f of pool) {
-      if (placed >= 96) break;
+      if (placed >= 140) break;
       const cell = order[placed % CELLS];
-      const maxW = Math.min(f.w * 0.86, 0.5);
-      const maxH = Math.min(f.h * 0.8, 0.5);
-      const size = Math.min(maxW, maxH);
-      if (size < 0.16) continue;
+      const maxW = Math.min(f.w * 0.86, 0.44);
+      const maxH = Math.min(f.h * 0.82, 0.44);
+      // Not every hand had the same reach or the same nerve — a few are
+      // deliberately small enough that you have to lean in.
+      const size = Math.min(maxW, maxH) * (0.66 + rng() * 0.34);
+      if (size < 0.14) continue;
 
       // Plane's own front normal is -Z; rotate it onto the wall normal.
       const yaw = f.nx < 0 ? Math.PI / 2 : f.nx > 0 ? -Math.PI / 2 : f.nz < 0 ? 0 : Math.PI;
@@ -1161,6 +1200,8 @@ interface CarveFace {
   w: number;
   h: number;
   weight: number;
+  /** Always carved, regardless of the dice — used to protect anchor frames. */
+  forced?: boolean;
 }
 
 /** Shared unit-box template. Built once, transformed thousands of times. */
@@ -1705,5 +1746,3 @@ function makeDotTexture(scene: Scene): Texture {
   t.hasAlpha = true;
   return t;
 }
-
-export { worldUV };
