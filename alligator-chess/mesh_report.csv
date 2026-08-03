@@ -1,7 +1,7 @@
 piece,triangles,closed_solids,nonmanifold_or_boundary_edges,degenerate_triangles,size_x_mm,size_y_mm,size_z_mm,z_min_mm
-alligator_pawn,2040,11,0,0,26.0,26.0,35.7,0.0
-alligator_rook,2136,17,0,0,30.0,30.0,50.0,0.0
-alligator_knight,2572,15,0,0,30.0,30.0,57.57,0.0
-alligator_bishop,2512,15,0,0,29.0,29.0,69.47,0.0
-alligator_queen,2656,19,0,0,32.0,32.0,77.0,0.0
-alligator_king,2388,17,0,0,33.0,33.0,78.5,0.0
+alligator_pawn,764,28,0,0,26.08,26.08,43.0,0.0
+alligator_rook,856,33,0,0,29.75,29.75,58.2,0.0
+alligator_knight,780,30,0,0,29.94,30.01,60.19,0.0
+alligator_bishop,796,31,0,0,29.36,29.36,70.95,0.0
+alligator_queen,880,36,0,0,31.3,31.3,74.5,0.0
+alligator_king,808,32,0,0,32.46,32.46,76.0,0.0

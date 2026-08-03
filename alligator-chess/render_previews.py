@@ -31,7 +31,7 @@ def font(size: int, bold: bool = False, scaled: bool = True) -> ImageFont.FreeTy
     return ImageFont.load_default()
 
 
-def projected(v: tuple[float, float, float], yaw: float = -24.0) -> tuple[float, float, float]:
+def projected(v: tuple[float, float, float], yaw: float = -58.0) -> tuple[float, float, float]:
     """Orthographic three-quarter view, looking toward the alligator's face (-Y)."""
     x, y, z = v
     a = math.radians(yaw)
@@ -41,7 +41,7 @@ def projected(v: tuple[float, float, float], yaw: float = -24.0) -> tuple[float,
 
 
 def render_piece(model: Mesh, width: int, height: int, title: str, subtitle: str,
-                 background: tuple[int, int, int] = (239, 232, 210)) -> Image.Image:
+                 background: tuple[int, int, int] = (232, 230, 225)) -> Image.Image:
     canvas = Image.new("RGB", (width * SCALE, height * SCALE), background)
     draw = ImageDraw.Draw(canvas)
     pverts = [projected(v) for v in model.vertices]
@@ -59,10 +59,10 @@ def render_piece(model: Mesh, width: int, height: int, title: str, subtitle: str
 
     footprint = (max_x - min_x) * factor
     draw.ellipse((cx - footprint * 0.53, floor_y - 4 * SCALE,
-                  cx + footprint * 0.53, floor_y + 5 * SCALE), fill=(203, 190, 164))
+                  cx + footprint * 0.53, floor_y + 5 * SCALE), fill=(198, 197, 190))
     light = normalize((-0.8, -1.0, 1.5))
     faces: list[tuple[float, tuple[tuple[float, float], ...], tuple[int, int, int]]] = []
-    base = (28, 104, 95)
+    base = (111, 122, 101)
     for ia, ib, ic in model.faces:
         a, b, c = model.vertices[ia], model.vertices[ib], model.vertices[ic]
         n = normalize(cross(sub(b, a), sub(c, a)))
@@ -78,20 +78,20 @@ def render_piece(model: Mesh, width: int, height: int, title: str, subtitle: str
         draw.polygon(polygon, fill=color)
 
     draw.text((width * SCALE / 2, 10 * SCALE), title.upper(), font=font(15, True),
-              fill=(26, 58, 57), anchor="ma")
+              fill=(54, 62, 52), anchor="ma")
     draw.text((width * SCALE / 2, (height - 27) * SCALE), subtitle, font=font(8),
-              fill=(97, 82, 64), anchor="ma")
+              fill=(88, 86, 79), anchor="ma")
     return canvas.resize((width, height), Image.Resampling.LANCZOS)
 
 
 def main() -> None:
     models = [
-        (pawn(), "Pawn", "Hatchling"),
-        (rook(), "Rook", "Crenellated back"),
-        (knight(), "Knight", "Rearing S-neck"),
-        (bishop(), "Bishop", "Split mitre crest"),
-        (queen(), "Queen", "Five-scute crown"),
-        (king(), "King", "Cross crest"),
+        (pawn(), "Pawn", "Compact hatchling bust"),
+        (rook(), "Rook", "Cranial battlements"),
+        (knight(), "Knight", "Core alligator form"),
+        (bishop(), "Bishop", "Split mitre planes"),
+        (queen(), "Queen", "Five-plate crown"),
+        (king(), "King", "Diamond cross crest"),
     ]
     cards: list[Image.Image] = []
     for model, name, subtitle in models:
@@ -99,16 +99,16 @@ def main() -> None:
         cards.append(card)
         card.save(PREVIEW / f"{model.name}.png", optimize=True)
 
-    sheet = Image.new("RGB", (900, 860), (225, 218, 197))
+    sheet = Image.new("RGB", (900, 860), (221, 220, 215))
     for i, card in enumerate(cards):
         x = (i % 3) * 300
         y = (i // 3) * 390 + 58
         sheet.paste(card, (x, y))
     d = ImageDraw.Draw(sheet)
     d.text((450, 18), "TOMORROWLAND ALLIGATORS", font=font(20, True, scaled=False),
-           fill=(26, 58, 57), anchor="ma")
-    d.text((450, 825), "Six support-free, mid-century modern chess forms · dimensions in millimetres",
-           font=font(9, scaled=False), fill=(97, 82, 64), anchor="ma")
+           fill=(54, 62, 52), anchor="ma")
+    d.text((450, 825), "Six support-free, reference-driven low-poly alligator busts · dimensions in millimetres",
+           font=font(9, scaled=False), fill=(88, 86, 79), anchor="ma")
     sheet.save(PREVIEW / "alligator_chess_family.png", optimize=True)
     print(PREVIEW / "alligator_chess_family.png")
 

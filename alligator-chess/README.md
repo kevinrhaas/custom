@@ -1,9 +1,10 @@
 # Tomorrowland Alligators Chess Set
 
-A six-piece chess family built around streamlined alligator forms and 1960s
-mid-century Tomorrowland styling. The set is deliberately graphic rather than
-anatomical: broad orbital brows and tapered muzzles make every piece read as an
-alligator, while the upper silhouette preserves its chess identity.
+A six-piece chess family built around one complete faceted alligator-bust
+archetype: upright torso, long wedge muzzle, heavy angular brow, separate jaw
+line, planar chest, sculpted forelimbs, and a row of dorsal plates. The low-poly
+geometry follows a retrofuturistic 1960s Tomorrowland design language while the
+cranial and back silhouettes preserve each piece's chess identity.
 
 ![The complete alligator chess family](preview/alligator_chess_family.png)
 
@@ -11,12 +12,12 @@ alligator, while the upper silhouette preserves its chess identity.
 
 | Piece | STL | Size (X × Y × Z) | Design cue |
 | --- | --- | --- | --- |
-| Pawn | `stl/alligator_pawn.stl` | 26 × 26 × 35.7 mm | Simple hatchling with a single dorsal scute |
-| Rook | `stl/alligator_rook.stl` | 30 × 30 × 50 mm | Four blocky back scutes form a crenellated tower |
-| Knight | `stl/alligator_knight.stl` | 30 × 30 × 57.6 mm | Rearing S-neck and swept-back mane scutes |
-| Bishop | `stl/alligator_bishop.stl` | 29 × 29 × 69.5 mm | Split leaning crest reads as an open mitre |
-| Queen | `stl/alligator_queen.stl` | 32 × 32 × 77 mm | Five flowing crown scutes |
-| King | `stl/alligator_king.stl` | 33 × 33 × 78.5 mm | Tall supported cross crest |
+| Pawn | `stl/alligator_pawn.stl` | 26.1 × 26.1 × 43 mm | Compact hatchling bust and low dorsal crown |
+| Rook | `stl/alligator_rook.stl` | 29.8 × 29.8 × 58.2 mm | Squared back plates and four cranial battlements |
+| Knight | `stl/alligator_knight.stl` | 29.9 × 30 × 60.2 mm | Pure rearing alligator silhouette closest to the core concept |
+| Bishop | `stl/alligator_bishop.stl` | 29.4 × 29.4 × 71 mm | Twin tapered planes form an open mitre |
+| Queen | `stl/alligator_queen.stl` | 31.3 × 31.3 × 74.5 mm | Five rising crown plates integrated behind the brow |
+| King | `stl/alligator_king.stl` | 32.5 × 32.5 × 76 mm | Tall dorsal post and diamond-section crossbar |
 
 All dimensions are millimetres. Each STL contains one piece, upright on the
 build plate at Z=0.
@@ -35,9 +36,11 @@ tuned FDM printer.
 - Scale: 100%; all bases are sized for a conventional tournament-scale board
 - Material: PLA recommended; PETG also works with adequate cooling
 
-The snouts have short projections and faceted lower keels. Crown elements are
-tapered, the king's crossbar has a self-supporting diamond section, and every
-base has a broad flat underside.
+The long snouts use narrow lower keels instead of broad horizontal undersides.
+Forelimbs descend toward the torso, dorsal elements are vertical or tapered,
+the king's crossbar has a self-supporting diamond section, and every base has a
+broad flat underside. The geometry is intentionally coarse and planar so the
+faceting survives ordinary FDM layer heights.
 
 The source generator represents each design as overlapping closed solids. PrusaSlicer,
 OrcaSlicer, Bambu Studio, Cura, and other current slicers merge these volumes at
