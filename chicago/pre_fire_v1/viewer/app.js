@@ -34,12 +34,27 @@ function searchableText(row) {
   return [
     row.canonical_name,
     ...alternateNames(row),
+    ...mediaForBuilding(row).flatMap(media => [media.title, media.creator, media.repository]),
     row.address_historical,
     row.building_type,
     row.year_started,
     row.year_completed,
     row.year_demolished,
   ].join(' ').toLowerCase();
+}
+
+function mediaForBuilding(row) {
+  return model.mediaByBuilding[row.building_id] || [];
+}
+
+function mediaMarkup(row) {
+  const media = mediaForBuilding(row);
+  if (!media.length) return '<span class="no-media">—</span>';
+  return `<div class="building-media-gallery">${media.map(item => {
+    const representation = (item.representation_type || 'historical image').replaceAll('_',' ');
+    const caution = item.accuracy_note ? `<span class="image-caution">${escapeHtml(item.accuracy_note)}</span>` : '';
+    return `<figure class="building-media"><a href="${escapeHtml(item.source_url)}" target="_blank" rel="noreferrer"><img src="../${escapeHtml(item.local_path)}" alt="${escapeHtml(item.title)}" loading="lazy"></a><figcaption><a href="${escapeHtml(item.source_url)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><span>${escapeHtml(item.depicted_year || 'date unknown')} · ${escapeHtml(representation)}</span>${caution}</figcaption></figure>`;
+  }).join('')}</div>`;
 }
 
 function knownSpan(row) {
@@ -88,13 +103,14 @@ function render() {
     $('recordsStatus').textContent = `${rows.length.toLocaleString()} records are active in ${year}. Search covers the complete 1674–1871 index, not only this year.`;
   }
   rows.sort((a,b) => a.canonical_name.localeCompare(b.canonical_name));
+  $('imageCount').textContent = new Set(rows.flatMap(row => mediaForBuilding(row).map(media => media.media_id))).size.toLocaleString();
   $('buildingRows').innerHTML = rows.length ? rows.map(r => {
     const aliases = alternateNames(r);
     const jumpYear = knownStart(r);
     const aliasMarkup = aliases.length ? `<span class="aliases">Also known as ${escapeHtml(aliases.join(' · '))}</span>` : '';
     const jumpMarkup = jumpYear === null ? '—' : `<button class="jump-year" data-jump-year="${jumpYear}">View ${jumpYear}</button>`;
-    return `<tr><td><strong>${escapeHtml(r.canonical_name)}</strong>${r.needs_review==='true'?' <small>⚑ review</small>':''}${aliasMarkup}</td><td>${escapeHtml(knownSpan(r))}</td><td>${escapeHtml((r.building_type||'—').replaceAll('_',' '))}</td><td>${escapeHtml(r.address_historical||'—')}</td><td>${escapeHtml(r.fire_fate_1871||'—')}</td><td>${escapeHtml(r.confidence)}</td><td>${jumpMarkup}</td></tr>`;
-  }).join('') : '<tr><td colspan="7" class="empty-state">No matching records. Try another name, alias, address, type, or year.</td></tr>';
+    return `<tr><td><strong>${escapeHtml(r.canonical_name)}</strong>${r.needs_review==='true'?' <small>⚑ review</small>':''}${aliasMarkup}</td><td>${mediaMarkup(r)}</td><td>${escapeHtml(knownSpan(r))}</td><td>${escapeHtml((r.building_type||'—').replaceAll('_',' '))}</td><td>${escapeHtml(r.address_historical||'—')}</td><td>${escapeHtml(r.fire_fate_1871||'—')}</td><td>${escapeHtml(r.confidence)}</td><td>${jumpMarkup}</td></tr>`;
+  }).join('') : '<tr><td colspan="8" class="empty-state">No matching records. Try another name, alias, address, type, or year.</td></tr>';
 }
 
 function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
@@ -103,6 +119,12 @@ fetch('data.json').then(r => r.json()).then(data => {
   model = data;
   model.namesByBuilding = (model.names || []).reduce((index, name) => {
     (index[name.building_id] ||= []).push(name);
+    return index;
+  }, {});
+  const mediaById = Object.fromEntries((model.media || []).map(media => [media.media_id,media]));
+  model.mediaByBuilding = (model.mediaBuildings || []).reduce((index, link) => {
+    const media = mediaById[link.media_id];
+    if (media) (index[link.building_id] ||= []).push({...media,subject_relationship:link.relationship,subject_confidence:link.confidence});
     return index;
   }, {});
   $('year').addEventListener('input',render);

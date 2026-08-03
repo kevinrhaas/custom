@@ -12,6 +12,8 @@ Generated from 6 independently researched period tranches.
 - Records with probable (not proven) 1871 fire loss: **10**
 - Records with explicitly unresolved 1871 fate: **95**
 - Dated map references and local images: **14** / **14**
+- Building-image assets / subject links: **6** / **9**
+- Buildings with sourced images: **5** of **324** (**1.5%**)
 
 ## Records by period
 
