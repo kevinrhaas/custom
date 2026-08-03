@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Custom — a workshop of made things</title>
-<meta name="description" content="A workshop of original, custom-designed projects — 3D-printable models, parametric generators, and the occasional deeply-researched garden plan. Made with care, shared in the open.">
+<meta name="description" content="A workshop of original, custom-designed projects — interactive research tools, 3D-printable models, parametric generators, and deeply-researched plans. Made with care, shared in the open.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%B4%3C/text%3E%3C/svg%3E">
 <meta property="og:title" content="Custom — a workshop of made things">
-<meta property="og:description" content="Original 3D-printable models, parametric generators, and a deeply-researched shade-garden plan. Made with care, shared in the open.">
+<meta property="og:description" content="Interactive research tools, original 3D-printable models, parametric generators, and deeply-researched plans. Made with care, shared in the open.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="css/site.css">
 </head>
@@ -23,6 +23,7 @@
   <div class="nav-links">
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
+    <a href="chicago/">Chicago Atlas</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="#about">About</a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
@@ -79,9 +80,8 @@
       <div class="section-head center">
         <div class="kicker">The workshop</div>
         <h2>Projects</h2>
-        <p class="lead narrow" style="margin-inline:auto">Mostly FDM-printable models — designed in
-        Blender, OpenSCAD, or generated with Python. Source files live in the repo; click through
-        to any project folder.</p>
+        <p class="lead narrow" style="margin-inline:auto">Interactive research tools and
+        FDM-printable models — designed carefully and backed by open source files in the repo.</p>
       </div>
       <div class="apps-grid" id="projectsGrid"></div>
     </div>
@@ -111,6 +111,7 @@
   <div class="foot-links">
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
+    <a href="chicago/">Chicago Atlas</a>
     <a href="vehicle/">Vehicle Finder</a>
   </div>
   <div class="foot-meta">© 2026 · a workshop of made things · shared in the open</div>
@@ -152,6 +153,11 @@
     { dir: 'ac-support', name: 'AC Support', glyph: '❄️', c: 'var(--sky)', tag: 'A support bracket for a window AC unit.' }
   ];
   var grid = document.getElementById('projectsGrid');
+  var chicagoCard = '<a class="app-card reveal" href="chicago/" style="--c:#aa3c27">' +
+    '<div class="app-top"><span class="app-glyph">🏙️</span>' +
+    '<div><div class="app-name">Chicago Building Atlas</div><div class="app-sub">1674–1879 · maps + buildings</div></div></div>' +
+    '<p class="app-tagline">Browse source-identifiable buildings through Chicago\'s early growth, the 1871 fire, and the rebuilding decade. Explore dated maps, city-change events, addresses, architects, construction phases, and confidence notes.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live · open the atlas ↗</div></a>';
   var vehicleCard = '<a class="app-card reveal" href="vehicle/" style="--c:#b62236">' +
     '<div class="app-top"><span class="app-glyph">🚗</span>' +
     '<div><div class="app-name">Vehicle Finder</div><div class="app-sub">vehicle · nationwide car searches</div></div></div>' +
@@ -159,7 +165,7 @@
     '(Red Carpet Metallic + light Smoked Truffle) and a 2026 Subaru Forester Touring Hybrid in Crimson Red Pearl — ' +
     'with photos, window stickers, prices, value ratings, VINs, dealers, and contacts.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live · open the app ↗</div></a>';
-  grid.innerHTML = vehicleCard + projects.map(function (p) {
+  grid.innerHTML = chicagoCard + vehicleCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
