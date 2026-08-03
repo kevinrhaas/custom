@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "errors": [],
+  "counts": {
+    "buildings": 324,
+    "sources": 91,
+    "building_sources": 381,
+    "names": 596,
+    "events": 758,
+    "assertions": 1563,
+    "maps": 14,
+    "map_images": 14
+  }
+}
