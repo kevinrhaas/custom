@@ -15,6 +15,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 
 | Project | Description |
 |---------|-------------|
+| [alligator-chess](alligator-chess/) | “Tomorrowland Alligators” — six support-free, mid-century modern alligator chess pieces with pure-Python STL source |
 | [bamboo-vase](bamboo-vase/) | Parametric "Wave Ring" fluted vase for lucky bamboo — six variants + centering collar, pure-Python STL generator |
 | [chicago-star](chicago-star/) | Chicago flag six-pointed star coasters and mesh art pieces, modeled in Blender |
 | [garage](garage/) | Custom garage door header trim pieces, modeled in Blender |
