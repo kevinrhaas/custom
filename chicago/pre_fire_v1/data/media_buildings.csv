@@ -1,0 +1,10 @@
+media_building_id,media_id,building_id,relationship,confidence,notes
+MB-WOLF-NYPL-WOLFTAVERN,MEDIA-BLDG-WOLFPOINT-NYPL-1867,CHI-PRE1830-033,depicts,high,Wolf Tavern is explicitly identified as the building at left in the source caption.
+MB-WOLF-NYPL-MILLER,MEDIA-BLDG-WOLFPOINT-NYPL-1867,CHI-PRE1830-032,depicts,high,Miller House is explicitly identified as the building at right in the source caption.
+MB-WOLF-ANDREAS-WOLFTAVERN,MEDIA-BLDG-WOLFPOINT-ANDREAS-1884,CHI-PRE1830-033,depicts_contextually,medium,Later imagined reconstruction of the two Wolf Point tavern structures.
+MB-WOLF-ANDREAS-MILLER,MEDIA-BLDG-WOLFPOINT-ANDREAS-1884,CHI-PRE1830-032,depicts_contextually,medium,Later imagined reconstruction of the two Wolf Point tavern structures.
+MB-WOLF-POSTCARD-WOLFTAVERN,MEDIA-BLDG-WOLFPOINT-NEWBERRY-POSTCARD,CHI-PRE1830-033,depicts_contextually,low,Retrospective scene associated with Wolf Point; exact building detail is not independently established.
+MB-WOLF-POSTCARD-MILLER,MEDIA-BLDG-WOLFPOINT-NEWBERRY-POSTCARD,CHI-PRE1830-032,depicts_contextually,low,Retrospective scene associated with Wolf Point; exact building detail is not independently established.
+MB-SAUGANASH-ANDREAS,MEDIA-BLDG-SAUGANASH-ANDREAS-1884,CHI-B1830-005,depicts,high,Repository metadata identifies the Sauganash Hotel and the adjoining drugstore structure.
+MB-GREEN-TREE-1859,MEDIA-BLDG-GREEN-TREE-1859,CHI-B1830-012,depicts,high,Repository metadata identifies the Green Tree Tavern under its later West Lake Street House name.
+MB-KINZIE-HOUSE-1857,MEDIA-BLDG-KINZIE-HOUSE-1857,CHI-PRE1830-002,depicts,medium,Published caption identifies the Point du Sable house during Kinzie family occupancy.

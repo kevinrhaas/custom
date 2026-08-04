@@ -8,9 +8,9 @@
 - valid building and source foreign keys;
 - at least one source link and exactly one canonical name per building;
 - controlled confidence and review values;
-- existence and SHA-256 hashing of every local map image.
+- existence and SHA-256 hashing of every local map and building image.
 
-Final validated row counts are 324 building/structure records, 91 sources, 381 building-source links, 596 names, 758 lifecycle/fire events, 1,563 field-level assertions, 20 aggregate estimates, and 14 dated map references with 14 local images.
+Final validated row counts are 324 building/structure records, 92 sources, 385 building-source links, 596 names, 758 lifecycle/fire events, 1,563 field-level assertions, 20 aggregate estimates, 14 dated map references with 14 local map images, 6 building-image assets, and 9 building-media subject links covering 5 buildings.
 
 ## Independent period work
 
@@ -28,7 +28,7 @@ An additional independent audit reviewed every pre-1830 row. Its corrections wer
 
 ## Viewer test
 
-The static viewer was tested through a local HTTP server in a browser. The 1830, 1853, and 1871 states loaded; the year control changed active-record totals; text filtering returned matching structures; all tested images loaded; the 1871 selector exposed four distinct map/view variants, including the burnt-district reference; and no console warnings or errors were present.
+The static viewer was tested through a local HTTP server in a browser. The 1830, 1853, and 1871 states loaded; the year control changed active-record totals; all-year text and alias filtering returned matching structures; the Sauganash, Wolf Tavern, Miller House, Green Tree Tavern, and Kinzie/du Sable image galleries resolved from local assets with source links and accuracy labels; the 1871 selector exposed four distinct map/view variants, including the burnt-district reference; and no console warnings or errors were present.
 
 ## Interpretation risks retained by design
 

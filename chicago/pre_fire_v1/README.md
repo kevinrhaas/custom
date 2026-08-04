@@ -8,6 +8,7 @@ This package is a sourced, importable foundation for modeling Chicago's built en
 - `data/sources.csv` and `data/building_sources.csv` — source registry and many-to-many provenance links.
 - `data/assertions.csv` — key field claims with confidence and review state.
 - `data/stock_estimates.csv` — counts whose individual building identities do not survive.
+- `data/media.csv`, `data/media_buildings.csv`, and `data/media_checksums.csv` — sourced visual assets, many-to-many building subjects, rights/provenance, and local-file integrity.
 - `maps/map_references.csv` — depicted year, actual creation date, map type, rights, local derivative, and spatial readiness.
 - `viewer/index.html` — static year slider that pairs the closest map reference with active records and city/landform events.
 - `docs/statistics.md` — generated totals and coverage indicators.
@@ -28,7 +29,7 @@ Serve this folder over HTTP, then open `/viewer/`:
 python3 -m http.server 8765
 ```
 
-The viewer is intentionally static and dependency-free so it can be placed on GitHub Pages later. It currently uses dated raster references, not a finished geospatial overlay. Map rows marked `needs_georeferencing` or `reference_map_only` must be digitized before spatial inference.
+The viewer is intentionally static and dependency-free so it can be placed on GitHub Pages later. It uses dated raster references and sourced building-image galleries, not a finished geospatial overlay. Map rows marked `needs_georeferencing` or `reference_map_only` must be digitized before spatial inference. Retrospective building illustrations are labeled and must not be mistaken for contemporary photographs or measured elevations.
 
 ## Versioning and extension
 

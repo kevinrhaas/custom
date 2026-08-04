@@ -14,3 +14,9 @@ Local images are practical-size derivatives for the viewer. `maps/map_references
 Library of Congress Geography and Map Division items are credited as requested by the catalog and were downloaded from records that state digitized collection content is free to use and reuse absent a contrary rights advisory. Wikimedia Commons items are limited to files marked public domain on their item pages.
 
 For archival or georeferencing work, retrieve the highest-resolution master from the recorded source URL instead of upscaling the included derivative.
+
+## Building images
+
+Building images are stored in `media/images/buildings/` and indexed by `data/media.csv`. Creation date and depicted date are separate, and `representation_type` distinguishes photographs from retrospective lithographs, illustrations, postcards, and imagined reconstructions. `data/media_buildings.csv` is the subject join; its confidence belongs to the claimed building-image relationship rather than to the underlying building record.
+
+The first building-image pass traced a Wolf Point blog article back to New York Public Library, Newberry/CARLI, *Chicago Magazine*, Andreas, Illinois Digital Archives, and Wikimedia Commons records. No Blogger-hosted file was copied. The modern George Yelich Wolf Point painting and Google Maps relocation graphic were excluded because no suitable reuse license was established.
