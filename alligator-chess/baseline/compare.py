@@ -82,6 +82,7 @@ def measure(mesh, out_png: Path | None = None, size: int = 1232) -> dict:
         "aspect": box[2] / box[3],
         "reference_aspect": reference.ASPECT,
         "absolute": absolute_scale(mesh),
+        "landmarks": landmark_report(mask, box),
     }
 
 
@@ -108,6 +109,52 @@ def absolute_scale(mesh) -> dict:
         "reference_reach_in_plinth_radii": reference.REACH_IN_PLINTH_RADII,
         "reference_height_mm": reference.HEIGHT_MM,
     }
+
+
+def mane_landmarks(mask: np.ndarray, box) -> list[float]:
+    """The v of each mane tooth tip, found as local maxima of the right edge.
+
+    `reference.LANDMARKS` was dead code: nothing read it, so the mane could
+    drift out of pitch while all twenty outline rows still passed — the rows
+    are sampled at fixed heights and simply miss where the tips land.
+    """
+    x0, y0, w, h = box
+    edge = []
+    for row in range(y0, y0 + h + 1):
+        xs = np.where(mask[row])[0]
+        edge.append((xs.max() - x0) / w if len(xs) else -1.0)
+    edge = np.array(edge)
+
+    peaks = []
+    span = max(3, h // 60)
+    for i in range(span, len(edge) - span):
+        if edge[i] <= 0:
+            continue
+        if edge[i] >= edge[i - span:i + span + 1].max() and edge[i] > 0.85:
+            peaks.append(i)
+    # collapse runs of adjacent rows into one tip each
+    tips, run = [], [peaks[0]] if peaks else []
+    for i in peaks[1:]:
+        if i - run[-1] <= span:
+            run.append(i)
+        else:
+            tips.append(sum(run) / len(run))
+            run = [i]
+    if run:
+        tips.append(sum(run) / len(run))
+    return [t / h for t in tips if 0.03 < t / h < 0.62]
+
+
+def landmark_report(mask: np.ndarray, box) -> list[tuple]:
+    got = mane_landmarks(mask, box)
+    want = [(k, v) for k, (u, v) in sorted(reference.LANDMARKS.items(),
+                                           key=lambda kv: kv[1][1])
+            if k.startswith("mane_tooth")]
+    rows = []
+    for (name, v_ref), v_got in zip(want, got + [None] * len(want)):
+        rows.append((name, v_ref, v_got,
+                     None if v_got is None else v_got - v_ref))
+    return rows
 
 
 def _overlay(img: np.ndarray, box, path: Path) -> None:
@@ -148,6 +195,15 @@ def main() -> None:
     print(f"  height          {a['height_mm']:6.2f}  vs reference {a['reference_height_mm']:.2f}")
     print(f"  muzzle reach    {a['reach_in_plinth_radii']:6.3f}  vs reference "
           f"{a['reference_reach_in_plinth_radii']:.3f}  plinth-radii")
+    print("\nmane tooth tips (v of each tip, from reference.LANDMARKS):")
+    bad = 0
+    for name, v_ref, v_got, err in result["landmarks"]:
+        if v_got is None:
+            print(f"  {name:14s}  {v_ref:.3f}  NOT FOUND"); bad += 1; continue
+        flag = "  <-- " if abs(err) > reference.TOLERANCE else ""
+        bad += abs(err) > reference.TOLERANCE
+        print(f"  {name:14s}  want {v_ref:.3f}  got {v_got:.3f}  {err:+.3f}{flag}")
+    print(f"  {len(result['landmarks']) - bad}/{len(result['landmarks'])} within tolerance")
     return 0 if result["within_tolerance"] == result["checked"] else 1
 
 

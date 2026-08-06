@@ -57,7 +57,8 @@ Proportions, as fractions of the total height:
 ## The mane
 
 **Five teeth** falling down the back from just behind the ear to the shoulder,
-evenly pitched (about one tooth every 6.5% of the height). Each tooth is a
+evenly pitched — one tooth every 10.7% of the height, which is the pitch the
+`mane_tooth_*` landmarks in `reference.py` encode and `compare.py` checks. Each tooth is a
 wedge: a broad top face sloping up and back to a point, then a shorter
 underside dropping forward into the notch below it. The notches are crisp Vs,
 about 1.5–2 mm deep on the real object — pronounced enough to catch light and
