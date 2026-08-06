@@ -136,19 +136,63 @@ def chamfered_extrude(sil: Silhouette) -> trimesh.Trimesh:
             faces.append((a, b, d))
             faces.append((a, d, c))
 
-    # Side caps, fanned from the ring centroid so a non-planar cap still closes.
+    # Side caps. Ear-clipped, NOT fanned from the centroid: the core ring goes
+    # concave wherever the outline has a notch (a mane, a crenellation, a
+    # crown), and a centroid fan hands CSG a self-intersecting solid there.
+    cap = ear_clip([core[i] for i in range(n)])
     for r, flip in ((0, True), (3, False)):
-        pts = np.array([verts[ring_idx(r, i)] for i in range(n)])
-        centre = tuple(pts.mean(axis=0))
-        ci = len(verts)
-        verts.append(centre)
-        for i in range(n):
-            a, b = ring_idx(r, i), ring_idx(r, i + 1)
-            faces.append((ci, b, a) if flip else (ci, a, b))
+        for a, b, c in cap:
+            tri = (ring_idx(r, a), ring_idx(r, b), ring_idx(r, c))
+            faces.append(tri[::-1] if flip else tri)
 
     mesh = trimesh.Trimesh(vertices=np.array(verts), faces=np.array(faces), process=True)
     mesh.fix_normals()
     return mesh
+
+
+def ear_clip(poly: Sequence[Vec2]) -> list[tuple[int, int, int]]:
+    """Triangulate a simple polygon by ear clipping. Handles concave outlines."""
+    pts = [np.array(p, float) for p in poly]
+    n = len(pts)
+    idx = list(range(n))
+    area = sum(pts[i][0] * pts[(i + 1) % n][1] - pts[(i + 1) % n][0] * pts[i][1]
+               for i in range(n))
+    if area < 0:
+        idx.reverse()
+
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    out: list[tuple[int, int, int]] = []
+    guard = 0
+    while len(idx) > 3 and guard < 4 * n * n:
+        guard += 1
+        clipped = False
+        for k in range(len(idx)):
+            i0, i1, i2 = idx[k - 1], idx[k], idx[(k + 1) % len(idx)]
+            a, b, c = pts[i0], pts[i1], pts[i2]
+            if cross(a, b, c) <= 1e-12:
+                continue                       # reflex or degenerate
+            if any(_in_triangle(pts[j], a, b, c)
+                   for j in idx if j not in (i0, i1, i2)):
+                continue                       # another vertex inside the ear
+            out.append((i0, i1, i2))
+            idx.pop(k)
+            clipped = True
+            break
+        if not clipped:                        # numerically stuck: fan the rest
+            break
+    for k in range(1, len(idx) - 1):
+        out.append((idx[0], idx[k], idx[k + 1]))
+    return out
+
+
+def _in_triangle(p, a, b, c) -> bool:
+    def side(o, u, v):
+        return (u[0] - o[0]) * (v[1] - o[1]) - (u[1] - o[1]) * (v[0] - o[0])
+    d1, d2, d3 = side(a, b, p), side(b, c, p), side(c, a, p)
+    return not ((d1 < -1e-12 or d2 < -1e-12 or d3 < -1e-12)
+                and (d1 > 1e-12 or d2 > 1e-12 or d3 > 1e-12))
 
 
 # --------------------------------------------------------------------------
@@ -427,6 +471,181 @@ def printability(mesh: trimesh.Trimesh, limit_deg: float = 45.0) -> dict:
         "worst_overhang_deg": float(overhang_deg[~on_plate].max()) if (~on_plate).any() else 0.0,
         "unsupported_faces": int(bad.sum()),
     }
+
+
+# --------------------------------------------------------------------------
+# The fleet plinth — every piece in the set stands on this one
+# --------------------------------------------------------------------------
+
+PLINTH_R = 17.45        # circumradius; 17.11 across the flats of the 16-gon
+PLINTH_TOP_R = 15.9
+PLINTH_TOP_Z = 15.6
+PLINTH_SIDES = 16
+
+# Four bands, read off the reference: a tall vertical flange at the bottom,
+# then three drums each stepping in at a hard shoulder, then the collar the
+# figure springs from. Every step faces UP, so the plinth has zero overhang.
+PLINTH_TIERS = [
+    (PLINTH_R - 0.75, 0.0),   # lifted, so the first layer cannot flare out
+    (PLINTH_R, 0.8),
+    (PLINTH_R, 4.2),          # bottom flange, vertical band, the widest point
+    (17.05, 4.2),             # hard step
+    (16.95, 8.4),
+    (16.55, 8.4),             # hard step
+    (16.45, 12.6),
+    (16.00, 12.6),            # hard step
+    (PLINTH_TOP_R, 15.0),     # collar
+    (15.20, PLINTH_TOP_Z),    # top chamfer into the figure
+]
+
+
+def fleet_plinth() -> trimesh.Trimesh:
+    return polygon_base(PLINTH_TIERS, sides=PLINTH_SIDES)
+
+
+# --------------------------------------------------------------------------
+# Measuring the solid
+# --------------------------------------------------------------------------
+
+
+def flank_at(mesh: trimesh.Trimesh, x: float, z: float) -> float:
+    """Half-width of the solid at (x, z) — the real one, not a prediction.
+
+    Detail cuts have to be placed relative to the surface they land on, and
+    after a stack of booleans that surface is not something a formula can
+    predict; predicting it is how a pocket ends up punching through a
+    silhouette. So ask the solid: slice it at height z and interpolate the
+    outline where it crosses x.
+
+    Sampling vertices instead does NOT work — the middle of a large flat facet
+    has no vertices in it, so a vertex query there returns nothing and a cut
+    placed on the answer saws the piece in half.
+    """
+    section = mesh.section(plane_origin=[0.0, 0.0, z], plane_normal=[0.0, 0.0, 1.0])
+    if section is None:
+        return 0.0
+    best = 0.0
+    for path in section.discrete:
+        pts = np.asarray(path, float)
+        for a, b in zip(pts[:-1], pts[1:]):
+            if (a[0] - x) * (b[0] - x) > 0:
+                continue                       # segment does not span x
+            span = b[0] - a[0]
+            t = 0.5 if abs(span) < 1e-9 else (x - a[0]) / span
+            best = max(best, abs(a[1] + t * (b[1] - a[1])))
+    return float(best)
+
+
+# The thinnest triangle allowed to ship. Chained CSG leaves needles where two
+# cutting planes graze; below this width they are unrepresentable in a float32
+# STL and are nothing but noise for a slicer.
+NEEDLE_LIMIT = 0.005
+
+
+def triangle_altitude(mesh: trimesh.Trimesh) -> np.ndarray:
+    """Shortest height of each triangle, in mm — how THIN the needle is.
+
+    Aspect ratio is the wrong test for a low-poly solid: a long flat facet
+    split into two triangles is legitimately elongated and perfectly fine. What
+    is not fine is a triangle a few microns thick, which is what chained
+    booleans leave behind where two cutting planes graze at near-zero
+    incidence. Altitude measures exactly that, in units a printer understands.
+    """
+    tri = mesh.triangles
+    longest = np.max(np.stack([
+        np.linalg.norm(tri[:, 1] - tri[:, 0], axis=1),
+        np.linalg.norm(tri[:, 2] - tri[:, 1], axis=1),
+        np.linalg.norm(tri[:, 0] - tri[:, 2], axis=1)], axis=1), axis=1)
+    return np.where(longest > 0, 2 * mesh.area_faces / longest, 0.0)
+
+
+def cull_slivers(mesh: trimesh.Trimesh, min_altitude: float = NEEDLE_LIMIT) -> trimesh.Trimesh:
+    """Weld sub-resolution vertices and drop needles, then re-close the shell.
+
+    The bar is NEEDLE_LIMIT: forty times coarser than float32 can represent at
+    these coordinates (so the triangle survives the STL round-trip meaningfully)
+    and four hundred times finer than the finest resin layer (so nothing that
+    was ever going to be manufactured is touched).
+
+    Needles are COLLAPSED, not deleted. Welding the two near-coincident
+    vertices makes the needle degenerate and turns its two neighbours into a
+    shared edge, so dropping it afterwards leaves the shell closed — whereas
+    deleting the face outright punches a hole that no hole-filler reliably
+    closes on a faceted solid.
+    """
+    out = mesh.copy()
+    # Escalate the collapse tolerance: a groove that fades out on a surface
+    # leaves a triangle whose SHORT edge is just above any fixed threshold
+    # while the triangle itself is still a needle. The ceiling stays low enough
+    # that no real feature can be collapsed.
+    tol = min_altitude
+    for _ in range(6):
+        out = _collapse_short_edges(out, tol, sliver_limit=min_altitude)
+        out.update_faces(out.nondegenerate_faces())
+        out.update_faces(out.unique_faces())
+        out.remove_unreferenced_vertices()
+        if (triangle_altitude(out) >= min_altitude).all():
+            break
+        tol = min(tol * 2.0, 0.04)
+    out.fix_normals()
+    return out
+
+
+def _collapse_short_edges(mesh: trimesh.Trimesh, tol: float,
+                          sliver_limit: float = 0.0,
+                          max_move: float = 0.5) -> trimesh.Trimesh:
+    """Union-find edge collapse for every edge shorter than ``tol``.
+
+    Deliberately not trimesh's hash-based ``merge_vertices``: that rounds
+    coordinates into buckets, so two vertices 4 microns apart that happen to
+    straddle a bucket boundary are never merged — which is exactly the case
+    that produces these needles in the first place.
+
+    Chained booleans also leave a second kind of sliver: a triangle whose three
+    vertices are near-collinear, so it has no short edge at all and no length
+    threshold can find it. Those are caught by ``sliver_limit`` — collapse the
+    shortest edge of any triangle thinner than that, provided doing so moves a
+    vertex less than ``max_move``.
+    """
+    v = np.asarray(mesh.vertices, float)
+    edges = mesh.edges_unique
+    lengths = np.linalg.norm(v[edges[:, 0]] - v[edges[:, 1]], axis=1)
+    doomed = list(edges[lengths < tol])
+
+    if sliver_limit > 0:
+        thin = np.where(triangle_altitude(mesh) < sliver_limit)[0]
+        for f in thin:
+            tri = mesh.faces[f]
+            pairs = [(tri[0], tri[1]), (tri[1], tri[2]), (tri[2], tri[0])]
+            a, b = min(pairs, key=lambda e: np.linalg.norm(v[e[0]] - v[e[1]]))
+            if np.linalg.norm(v[a] - v[b]) < max_move * 2:
+                doomed.append((a, b))
+
+    parent = np.arange(len(v))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for a, b in doomed:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[max(ra, rb)] = min(ra, rb)
+
+    roots = np.array([find(i) for i in range(len(v))])
+    if (roots == np.arange(len(v))).all():
+        return mesh
+
+    # Each cluster collapses to its centroid.
+    order, inverse = np.unique(roots, return_inverse=True)
+    merged = np.zeros((len(order), 3))
+    np.add.at(merged, inverse, v)
+    counts = np.bincount(inverse, minlength=len(order))[:, None]
+    out = trimesh.Trimesh(vertices=merged / counts,
+                          faces=inverse[mesh.faces], process=False)
+    return out
 
 
 def layer_report(mesh: trimesh.Trimesh, step: float = 0.4) -> dict:

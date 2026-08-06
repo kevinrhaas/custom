@@ -28,8 +28,10 @@ Proportions, as fractions of the total height:
 - neck: the middle ~46%
 - head: the top ~28%
 - widest point: the plinth, 0.57 × the height across
-- the muzzle tip reaches about 1.12 plinth-radii from the axis — it overhangs
-  the plinth on the left by a small but visible margin
+- the muzzle tip reaches about 1.12 plinth-radii from the axis **as projected
+  at the camera above** — it overhangs the plinth on the left by a small but
+  visible margin. This is an image measurement, not an object one: at 45 deg of
+  yaw the muzzle is foreshortened, so the reach in object space is larger.
 
 ## The head
 
@@ -93,4 +95,5 @@ printed layer cannot flare.
 - a plinth that is a plain cylinder or cone rather than stepped bands
 - the mouth as an open slot
 - a mushroom-shaped head wider at the crown than at the jaw
-- proportions outside 2.5% of the height on the outline table in `reference.py`
+- proportions outside 2.5% of the height on the outline table in
+  `reference.py`, or outside the absolute scale figures alongside it

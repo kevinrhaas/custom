@@ -97,12 +97,14 @@ def render(mesh, path, size=1232, yaw=38.0, elev=9.0, dist=260.0, fov=22.0,
     key = _unit([0.12, 0.52, 0.86])     # high key, just off the camera axis
     fill = _unit([0.86, -0.34, 0.24])   # low fill from the muzzle side
     rim = _unit([-0.72, 0.36, 0.22])    # behind the mane, lifts the crest
+    bounce = _unit([0.10, -0.25, -0.96])  # off the backdrop, lifts undersides
     view = _unit(centre - eye)
 
     lam = (0.92 * np.clip(n @ key, 0, 1)
            + 0.30 * np.clip(n @ fill, 0, 1)
            + 0.26 * np.clip(n @ rim, 0, 1)
-           + 0.42)
+           + 0.22 * np.clip(n @ bounce, 0, 1)
+           + 0.38)
     half = _unit(key - view)
     spec = 0.07 * np.clip(n @ half, 0, 1) ** 14
     shade = albedo[None, :] * lam[:, None] + spec[:, None]
@@ -201,7 +203,13 @@ def _box_blur(a, r, passes=1):
     return a
 
 
-def contact_sheet(mesh, path, size=420, views=((38, 9), (90, 9), (0, 9), (38, 55))):
+def contact_sheet(mesh, path, size=420,
+                  views=((90, 5), (135, 5), (180, 5), (270, 5), (45, 60))):
+    """Side, rear three-quarter, back, far side, top-down.
+
+    The rear views are not optional: the mane crest lives back there and the
+    reference photograph cannot show it.
+    """
     import tempfile
     import os
 

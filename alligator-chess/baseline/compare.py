@@ -10,6 +10,7 @@ where it drifts.
 
 from __future__ import annotations
 
+import math
 import sys
 from pathlib import Path
 
@@ -80,6 +81,32 @@ def measure(mesh, out_png: Path | None = None, size: int = 1232) -> dict:
         "tolerance": reference.TOLERANCE,
         "aspect": box[2] / box[3],
         "reference_aspect": reference.ASPECT,
+        "absolute": absolute_scale(mesh),
+    }
+
+
+def absolute_scale(mesh) -> dict:
+    """Reach and span in millimetres — what the normalised table cannot see.
+
+    ``profile`` normalises u against the render's own bounding box, so a muzzle
+    that is uniformly too long simply rescales the u axis and every error
+    cancels. That blind spot has to be closed separately: measure the projected
+    silhouette in real units and compare it against the reference's own.
+    """
+    yaw = math.radians(reference.CAMERA["yaw"])
+    v = np.asarray(mesh.vertices, float)
+    image_x = -v[:, 0] * math.sin(yaw) + v[:, 1] * math.cos(yaw)
+    left, right = float(image_x.min()), float(image_x.max())
+    height = float(mesh.bounds[1][2] - mesh.bounds[0][2])
+    return {
+        "muzzle_reach_mm": round(-left, 2),
+        "plinth_reach_mm": round(right, 2),
+        "span_mm": round(right - left, 2),
+        "reach_in_plinth_radii": round(-left / right, 3),
+        "height_mm": round(height, 2),
+        "reference_span_mm": reference.SPAN_MM,
+        "reference_reach_in_plinth_radii": reference.REACH_IN_PLINTH_RADII,
+        "reference_height_mm": reference.HEIGHT_MM,
     }
 
 
@@ -115,6 +142,12 @@ def main() -> None:
           f"  (tol {result['tolerance']})")
     print(f"worst error: {result['worst_abs_error']:.3f}")
     print(f"aspect {result['aspect']:.4f} vs reference {result['reference_aspect']:.4f}")
+    print("\nabsolute scale (mm, projected at the reference camera):")
+    a = result["absolute"]
+    print(f"  span            {a['span_mm']:6.2f}  vs reference {a['reference_span_mm']:.2f}")
+    print(f"  height          {a['height_mm']:6.2f}  vs reference {a['reference_height_mm']:.2f}")
+    print(f"  muzzle reach    {a['reach_in_plinth_radii']:6.3f}  vs reference "
+          f"{a['reference_reach_in_plinth_radii']:.3f}  plinth-radii")
     return 0 if result["within_tolerance"] == result["checked"] else 1
 
 

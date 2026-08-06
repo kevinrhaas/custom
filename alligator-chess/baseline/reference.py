@@ -2,7 +2,7 @@
 """The reference photograph, reduced to numbers.
 
 The target is a product shot of a faceted olive knight, 1232x1232, lit from
-above, shown at roughly 38 deg of yaw and 9 deg of elevation. Everything below
+above, shown at the yaw and elevation solved into CAMERA below. Everything below
 was read off that image and normalised against the piece's own bounding box,
 so it can be compared against a render at any size:
 
@@ -20,6 +20,14 @@ so it can be compared against a render at any size:
 # squash of the plinth ellipse pins the elevation.
 CAMERA = {"yaw": 45.0, "elev": 5.0, "dist": 420.0, "fov": 13.5}
 ASPECT = 628 / 1038          # bounding box width / height
+
+# Absolute scale. The normalised outline table above cannot see a uniform error
+# — a muzzle that is too long just rescales u and every row still agrees — so
+# these are checked separately, in millimetres, PROJECTED at CAMERA (not in
+# object space: at 45 deg of yaw the muzzle is foreshortened by cos 45).
+HEIGHT_MM = 60.0                            # the piece, crown to plinth
+SPAN_MM = 34.2 * 628 / 592                  # 36.30: outline width at that height
+REACH_IN_PLINTH_RADII = 1.12                # muzzle tip / plinth radius, projected
 
 # v, u_left, u_right — read band by band off the photograph
 SILHOUETTE = [
