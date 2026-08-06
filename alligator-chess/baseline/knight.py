@@ -66,6 +66,13 @@ BEVEL_RATIO = 0.80
 # terminate at or below this height or the jowl step disappears.
 JOWL_Z = 47.6
 
+# The head must be meaningfully narrower than the neck, not merely narrower.
+# Expressed as a fraction of the neck so it scales with the piece: an absolute
+# 0.8 mm floor let a head at 95% of neck width pass, which trips REFERENCE.md's
+# "the head as wide as the neck" by eye while clearing the gate.
+JOWL_STEP_FRACTION = 0.15
+JOWL_STEP_MIN = 1.29   # 0.15 * BODY_W
+
 
 def K(x: float, z: float, c: float = 1.6, b: float | None = None) -> Knot:
     """A silhouette knot. Width is set per-slab, so it is not a knot property."""
@@ -126,11 +133,11 @@ MANE = [
     K(-12.9, 47.1, 1.1),              # tooth 2
     K(-11.1, 43.7, 0.9),
     K(-13.6, 40.4, 1.1),              # tooth 3
-    K(-12.4, 37.0, 0.9),
+    K(-12.1, 37.0, 0.9),
     K(-14.7, 33.6, 1.2),              # tooth 4
-    K(-13.5, 30.2, 1.0),
+    K(-13.2, 30.2, 1.0),
     K(-15.8, 26.9, 1.2),              # tooth 5
-    K(-14.6, 23.5, 1.1),
+    K(-14.3, 23.5, 1.1),
 ]
 
 SHOULDER_BACK = [
@@ -202,7 +209,7 @@ def jaw_draft() -> list[trimesh.Trimesh]:
     """
     cut = plane_block(
         through=JAW_PLANE,
-        x_range=(9.5, 27.0),
+        x_range=(2.0, 27.0),
         z_range=(41.0, 52.5),
     )
     return [cut, mirror_y(cut)]
@@ -225,8 +232,8 @@ def mane_taper() -> list[trimesh.Trimesh]:
     """Taper the crest so each tooth reads as a wedge, not a paddle."""
     cut = plane_block(
         through=[(-6.0, 7.7, 20.0), (-17.5, 6.4, 20.0), (-6.0, 7.0, 56.0)],
-        x_range=(-18.5, -5.0),
-        z_range=(17.0, 58.5),
+        x_range=(-18.5, 2.0),
+        z_range=(12.0, 58.5),
     )
     return [cut, mirror_y(cut)]
 
@@ -363,7 +370,7 @@ CEILING_DEG = 60.0
 
 JAW_NOTCH_X = 4.8        # where the jaw is thrown forward of the throat
 JAW_UNDERSIDE_Z = 44.6   # the lowest point of that underside
-LIP_Z = 48.4             # the lip line at the throat end
+LIP_Z = JAW_PLANE[0][2]  # the lip line at the throat end (47.1)
 
 JAW_BAND = {
     "z": (JAW_UNDERSIDE_Z - 1.5, LIP_Z + 0.5),
@@ -385,6 +392,24 @@ def stray_overhangs(mesh: trimesh.Trimesh, limit_deg: float = CEILING_DEG):
               & (centre[:, 0] > JAW_BAND["x_min"]))
     stray = unsupported & ~in_jaw
     return float(areas[stray].sum()), float(overhang[stray].max()) if stray.any() else 0.0
+
+
+def cutter_ledges(mesh: trimesh.Trimesh):
+    """Dead-level upward faces above the plinth — the signature of a cutter cap.
+
+    Every horizontal face in this design belongs to the plinth: four annular
+    step shelves, and nothing else. A dead-level face anywhere above the plinth
+    means a cutting block's bounding box stopped inside the solid instead of in
+    open air, and left its end cap behind as a ledge. Three of those shipped in
+    an earlier revision — 52 mm2 of shelf and wall that existed for no reason
+    but a badly chosen bound.
+    """
+    import numpy as np
+
+    normals, areas, tris = mesh.face_normals, mesh.area_faces, mesh.triangles
+    level = normals[:, 2] > 0.999
+    above = tris[:, :, 2].min(axis=1) > PLINTH_TOP_Z + 0.1
+    return float(areas[level & above].sum()), int((level & above).sum())
 
 
 def jaw_ceilings(mesh: trimesh.Trimesh):
@@ -414,6 +439,7 @@ def assert_invariants(mesh: trimesh.Trimesh) -> dict:
     stray_area, stray_worst = stray_overhangs(mesh)
     jaw_area, jaw_worst = jaw_ceilings(mesh)
     jaw_angle = jaw_draft_angle()
+    ledge_area, ledge_faces = cutter_ledges(mesh)
 
     failures = []
     if not report["watertight"]:
@@ -428,11 +454,16 @@ def assert_invariants(mesh: trimesh.Trimesh) -> dict:
         failures.append(f"layer islands at {layers['layers_with_islands'][:5]}")
     if slivers:
         failures.append(f"{slivers} needle triangles thinner than {NEEDLE_LIMIT} mm")
-    if step < 0.8:
-        failures.append(f"jowl step {step:.2f} mm < 0.8 — the head is as wide "
-                        "as the neck, so a draft is running past JOWL_Z")
+    if step < JOWL_STEP_MIN:
+        failures.append(f"jowl step {step:.2f} mm < {JOWL_STEP_MIN:.2f} — the "
+                        "head is nearly as wide as the neck, so a draft is "
+                        "running past the jowl and clipping both slabs")
     if reach > 25.5:
         failures.append(f"muzzle reaches {reach:.2f} mm, over the 25.5 limit")
+    if ledge_area > 0.5:
+        failures.append(f"{ledge_area:.1f} mm2 of dead-level shelf above the "
+                        f"plinth ({ledge_faces} faces) — a cutter bound is "
+                        "terminating inside the solid")
     if jaw_angle > 45.0:
         failures.append(f"jaw draft facet is {jaw_angle:.1f} deg from vertical, "
                         "over the 45 deg support-free limit")
@@ -455,7 +486,7 @@ def assert_invariants(mesh: trimesh.Trimesh) -> dict:
             "layer_islands": len(layers["layers_with_islands"]),
             "needle_triangles": slivers,
             "thinnest_triangle_mm": round(float(altitude.min()), 4),
-            "jowl_step_mm (want >= 0.8)": round(step, 2),
+            f"jowl_step_mm (want >= {JOWL_STEP_MIN:.2f})": round(step, 2),
             "muzzle_reach_mm (want <= 25.5)": round(reach, 2),
             "unsupported_fraction (want <= 3%)":
                 f"{report['overhang_fraction']:.2%}",
@@ -463,6 +494,7 @@ def assert_invariants(mesh: trimesh.Trimesh) -> dict:
             "jaw_ceiling_mm2 (exempt, measured)": round(jaw_area, 1),
             "jaw_ceiling_worst_deg (exempt)": round(jaw_worst, 1),
             "jaw_draft_deg (want <= 45)": round(jaw_angle, 1),
+            "cutter_ledges_mm2 (want 0)": round(ledge_area, 2),
             "height_mm": round(float(mesh.bounds[1][2]), 2),
         },
         "printability": report,

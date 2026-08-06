@@ -70,7 +70,14 @@ LANDMARKS = {
     "plinth_step": (0.500, 0.895),       # the flange step near the bottom
 }
 
+# Tolerance, in u units — i.e. as a fraction of the outline's WIDTH, because
+# that is what `compare.py` normalises against. The prose above states 2.5% of
+# the piece's HEIGHT, and the two are not the same: at this aspect (0.59) a
+# 0.025 u band is 1.5% of height, so applying it in u is about 1.7x STRICTER
+# than the prose asks. That is deliberate — err tight — but it is written down
+# here so nobody later "fixes" a piece that was never out of spec.
 TOLERANCE = 0.025
+TOLERANCE_AS_HEIGHT_FRACTION = 0.025 * ASPECT   # 0.0151
 
 # Qualities the outline numbers cannot capture, checked by eye against the
 # photograph. Kept here so the critic and the generator argue about one list.

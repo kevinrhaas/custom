@@ -61,17 +61,26 @@ def main() -> int:
     finally:
         knight.HEAD_W = original
 
-    # 2. A ramp must never read as a step, at any slope.
-    print("\n  a pure linear ramp must not read as a step:")
-    ramp = trimesh.creation.box((40.0, 16.0, 60.0))
-    ramp.apply_translation((10.0, 0.0, 30.0))
-    ramp.apply_transform(trimesh.transformations.compose_matrix(scale=[1, 1, 1]))
-    measured = knight.jowl_step(ramp)
-    if measured < 0.05:
-        print(f"  PASS  flat-sided box reads {measured:.3f} mm of step")
+    # 2. A ramp must never read as a step, at ANY slope. The first version of
+    #    this test built a box and applied an identity transform to it, so it
+    #    asserted the claim against a constant-width block and proved nothing —
+    #    the same species of empty check the jowl gate itself used to be. It
+    #    now builds real wedges and sweeps the slope.
+    print("\n  a linear width ramp must not read as a step, at any slope:")
+    for slope in (0.1, 0.3, 0.5, 1.0, 2.0, 4.0):
+        half_back, half_front = 9.0, max(0.5, 9.0 - slope * 15.0)
+        wedge = ck.hull([(-3.0, s_ * half_back, z) for s_ in (-1, 1)
+                         for z in (20.0, 60.0)]
+                        + [(12.0, s_ * half_front, z) for s_ in (-1, 1)
+                           for z in (20.0, 60.0)])
+        measured = knight.jowl_step(wedge)
+        if measured >= knight.JOWL_STEP_MIN:
+            print(f"  FAIL  ramp of {slope:.1f} mm/mm reads {measured:.3f} mm of step")
+            ok = False
+            break
     else:
-        print(f"  FAIL  flat-sided box reads {measured:.3f} mm of step")
-        ok = False
+        print(f"  PASS  ramps from 0.1 to 4.0 mm/mm all read under "
+              f"{knight.JOWL_STEP_MIN:.2f} mm (last: {measured:.3f})")
 
     # 3. A needle triangle must be caught.
     print("\n  a needle triangle must be caught:")

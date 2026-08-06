@@ -186,8 +186,11 @@ def main() -> None:
         flag = "  <-- " if max(abs(el), abs(er)) > reference.TOLERANCE else ""
         print(f"{v:7.3f} {ul:8.3f} {ur:8.3f} {el:+8.3f} {er:+8.3f}{flag}")
     print(f"\nwithin tolerance: {result['within_tolerance']}/{result['checked']}"
-          f"  (tol {result['tolerance']})")
-    print(f"worst error: {result['worst_abs_error']:.3f}")
+          f"  (tol {result['tolerance']} of width = "
+          f"{reference.TOLERANCE_AS_HEIGHT_FRACTION:.3f} of height)")
+    print(f"worst error: {result['worst_abs_error']:.3f} of width"
+          f" = {result['worst_abs_error'] * result['aspect']:.3f} of height"
+          f"  (the prose allows 0.025 of height)")
     print(f"aspect {result['aspect']:.4f} vs reference {result['reference_aspect']:.4f}")
     print("\nabsolute scale (mm, projected at the reference camera):")
     a = result["absolute"]

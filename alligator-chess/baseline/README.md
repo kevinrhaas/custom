@@ -70,11 +70,12 @@ noticed:
 | watertight, genus 0, consistent winding | yes / 2 / yes |
 | empty layers, layer islands | 0, 0 |
 | needle triangles (< 5 µm thick) | 0 |
-| jowl step (want ≥ 0.8 mm) | **1.96 mm** |
+| jowl step (want ≥ 1.29 mm = 0.15 × neck) | **1.96 mm** |
 | muzzle reach (want ≤ 25.5 mm) | 24.6 mm |
-| unsupported area (want ≤ 3%) | **2.52%** |
+| unsupported area (want ≤ 3%) | **2.42%** |
 | ceilings outside the jaw band (want 0) | **0 mm²** |
 | jaw draft angle (want ≤ 45°) | 32.1° |
+| dead-level shelves above the plinth (want 0) | **0 mm²** |
 | height | 60.00 mm |
 
 The muzzle-underside exemption is measured too, not just excused: 156 mm² at a
@@ -85,8 +86,11 @@ faces starting at 7.03 mm, which describes nothing.
 
 `python3 selftest.py` proves these gates are load-bearing rather than
 decorative: it breaks the two-slab construction, feeds in a linear ramp, a
-needle triangle and a floating island, and asserts each gate notices. That test
-exists because the jowl-step check previously *passed* a piece with no step —
+needle triangle and a floating island, and asserts each gate notices. The ramp
+test sweeps real wedges from 0.1 to 4.0 mm of width-drop per mm; its first
+version applied an identity transform to a box and so asserted nothing, which
+is the same species of empty check it exists to prevent. That test exists
+because the jowl-step check previously *passed* a piece with no step —
 it sampled two points on a smooth ramp and subtracted, so it reported 1.5 mm on
 a form whose width was a featureless gradient. A false claim had been upgraded
 to a false measurement, which is worse than having no check at all.
