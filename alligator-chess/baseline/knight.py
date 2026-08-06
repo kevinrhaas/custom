@@ -91,23 +91,20 @@ CHEST = [
     K(12.6, 21.0, 2.1),               # chest at its most forward
     K(11.0, 30.0, 2.1),               # three big facets down the chest, not
     K(7.6, 39.5, 1.9),                # five — the reference is not ribbed
-    K(5.6, 43.0, 1.5),                # throat, a straight run
-    K(4.8, 44.6, 1.2),                # jaw notch (concave, deep)
+    K(4.8, 44.6, 1.2),                # throat to jaw notch, one straight run
 ]
 
 MUZZLE_AND_SKULL = [
-    K(12.2, 45.2, 1.5),               # jaw underside
-    K(18.8, 45.6, 1.5),
+    K(12.2, 45.2, 1.5),               # jaw underside, one straight run
     K(25.2, 46.0, 1.3),               # chin: the lower lip leads the nose
     K(22.4, 50.2, 1.0),               # nose front, strongly raked back
-    # The top plane: one long run at 19-22 deg with a single break at the
-    # nostril, a third of the way back. Curvature must not reverse along here
-    # or the "one long straight plane" of the reference becomes a lumpy dome.
-    K(18.0, 52.4, 1.2),
-    K(14.4, 53.6, 1.4),               # nostril break
-    K(8.0, 56.0, 2.0),
-    K(2.0, 58.4, 2.2),
-    K(-2.0, 60.0, 2.0),               # crown
+    # The top of the head is ONE long plane from the nostril to the crown, as
+    # the reference has it. Intermediate knots along a near-straight run turn
+    # by a degree or two, which is neither a flat plane nor a hard crease — it
+    # is a shading seam, and it is what made the skull read as a lumpy dome.
+    K(18.6, 52.6, 1.1),
+    K(16.4, 53.0, 1.3),               # the nostril facet: the one break
+    K(-2.0, 60.0, 2.2),               # crown
     K(-3.2, 58.7, 1.5),               # ear, thrown back
     K(-7.4, 56.2, 1.3),               # notch behind the ear (concave)
 ]
@@ -138,8 +135,7 @@ MANE = [
 
 SHOULDER_BACK = [
     K(-16.8, 19.6, 1.6),              # shoulder swells back out
-    K(-14.2, PLINTH_TOP_Z, 1.5),
-    K(-11.0, 10.5, 1.2),
+    K(-11.0, 10.5, 1.2),              # into the plinth
 ]
 
 # The body slab closes under the skull along the jowl line and then follows the
