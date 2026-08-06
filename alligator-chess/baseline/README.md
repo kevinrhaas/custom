@@ -60,25 +60,33 @@ Printed upright on the plinth, no raft needed.
   ceiling — `jaw_draft` narrows the jaw to a 2.8 mm keel, which is also what
   gives the muzzle its triangular horse section rather than a flat bill.
 
-**The one honest caveat**: the knight's muzzle projects ~16 mm forward of the
-throat. That projection grows faster than 45° per layer, so *some* of its
-underside is unsupported no matter how the section is drafted — this is
-inherent to the shape of a knight, not a modelling shortcut. It measures
-**114 mm², 1.7% of the piece's surface**, all of it in the band z = 43–50 mm
-and all of it hidden under the jaw. Everything else in the piece is
-support-free.
+**No layer contains an island.** This is the number that actually decides
+whether a print succeeds, and it is checked rather than assumed: `layer_report`
+slices the piece at 0.4 mm and walks all 150 layers. Every one is a single
+closed loop — the nozzle never starts extruding into air, and the piece grows
+continuously from the plate to the crown. Thinnest section 0.69 mm, and that is
+the 0.2 mm sliver at the very tip of the crown.
 
-Recommended: print upright with supports enabled but restricted (`support on
-build plate only` will NOT catch it — use `everywhere` with a 50° threshold).
-The contact patch is small and lands on a face nobody looks at. Alternatively
-tilt the model 20° nose-up, which brings the whole underside inside 45° at the
-cost of a supported plinth rim.
+**The one honest caveat**: the knight's muzzle projects ~15 mm forward of the
+throat, and that projection grows faster than 45° per layer, so part of its
+underside is a steep overhang no matter how the section is drafted. This is
+inherent to the shape of a knight, not a modelling shortcut. It measures
+**155 mm², 2.3% of the surface**, all of it in the band z = 43–50 mm, all of it
+tucked under the jaw where nobody looks. Because it is an overhang on connected
+material and not an island, it prints — the surface will show some droop on an
+unsupported FDM run.
+
+Recommended: print upright with supports enabled at a 50° threshold and
+`everywhere`, not `on build plate only` — the latter will not catch it. The
+contact patch is a few mm². On resin, print upright and let the slicer support
+the jaw. Alternatively tilt the model 20° nose-up, which brings the whole
+underside inside 45° at the cost of supporting the plinth rim.
 
 Run the numbers yourself:
 
 ```
 python3 -c "import knight, chesskit; m = knight.build(); \
-    print(chesskit.printability(m))"
+    print(chesskit.printability(m)); print(chesskit.layer_report(m))"
 ```
 
 ## Fidelity to the reference

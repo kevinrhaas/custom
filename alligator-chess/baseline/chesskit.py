@@ -429,6 +429,45 @@ def printability(mesh: trimesh.Trimesh, limit_deg: float = 45.0) -> dict:
     }
 
 
+def layer_report(mesh: trimesh.Trimesh, step: float = 0.4) -> dict:
+    """Slice the piece and look for what actually kills a print.
+
+    Overhang angle is the number everyone quotes, but the failure that
+    genuinely ruins a piece is an ISLAND: a layer containing a loop that has
+    nothing under it, so the nozzle starts extruding into air. A steep overhang
+    on a region that is still connected to the layer below droops; an island
+    falls off. This walks every layer and reports both, plus the thinnest
+    section (area/perimeter), which flags anything too fine to print.
+    """
+    lo, hi = mesh.bounds[0][2], mesh.bounds[1][2]
+    heights = np.arange(lo + step / 2, hi, step)
+    empty, islands = [], []
+    thinnest = (float("inf"), None)
+    for z in heights:
+        section = mesh.section(plane_origin=[0, 0, z], plane_normal=[0, 0, 1])
+        if section is None:
+            empty.append(round(float(z), 2))
+            continue
+        flat, _ = section.to_2D()
+        loops = len(flat.discrete)
+        if loops > 1:
+            islands.append((round(float(z), 2), loops))
+        perimeter = sum(np.linalg.norm(np.diff(d, axis=0), axis=1).sum()
+                        for d in flat.discrete)
+        if perimeter:
+            t = 2 * flat.area / perimeter
+            if t < thinnest[0]:
+                thinnest = (float(t), round(float(z), 2))
+    return {
+        "layers": int(len(heights)),
+        "layer_height_mm": step,
+        "empty_layers": empty,
+        "layers_with_islands": islands,
+        "thinnest_section_mm": round(thinnest[0], 2),
+        "thinnest_at_z": thinnest[1],
+    }
+
+
 def write_stl(mesh: trimesh.Trimesh, path, name: str = "chess_piece") -> None:
     """Binary STL, written by hand so the header carries the piece name."""
     import struct

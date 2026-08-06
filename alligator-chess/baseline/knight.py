@@ -37,6 +37,7 @@ from chesskit import (
     chamfered_extrude,
     groove_along,
     hull,
+    layer_report,
     plane_block,
     mirror_y,
     pocket,
@@ -153,7 +154,7 @@ MANE = [
 ]
 
 SHOULDER_BACK = [
-    K(-17.2, 19.6, 1.6),              # shoulder swells back out
+    K(-16.8, 19.6, 1.6),              # shoulder swells back out
     K(-14.2, BASE_TOP_Z, 1.5),
     K(-10.6, 10.5, 1.2),
 ]
@@ -305,6 +306,9 @@ def main() -> None:
 
     print(f"wrote {out}")
     for key, value in printability(piece).items():
+        print(f"  {key}: {value}")
+    print("  --- slicing ---")
+    for key, value in layer_report(piece).items():
         print(f"  {key}: {value}")
 
 
