@@ -37,6 +37,7 @@ from chesskit import (
     chamfered_extrude,
     groove_along,
     hull,
+    plane_block,
     mirror_y,
     pocket,
     polygon_base,
@@ -122,11 +123,11 @@ CHEST = [
 ]
 
 MUZZLE_AND_SKULL = [
-    K(11.6, 45.2, 1.5),               # jaw underside
-    K(17.8, 45.6, 1.5),
-    K(23.2, 46.0, 1.3),               # chin: the lower lip leads the nose
-    K(21.4, 50.2, 1.0),               # nose front, strongly raked back
-    K(18.6, 52.4, 1.2),
+    K(12.2, 45.2, 1.5),               # jaw underside
+    K(18.8, 45.6, 1.5),
+    K(24.6, 46.0, 1.3),               # chin: the lower lip leads the nose
+    K(22.4, 50.2, 1.0),               # nose front, strongly raked back
+    K(19.6, 52.4, 1.2),
     K(13.4, 53.8, 1.6),               # nostril break
     K(9.8, 55.6, 1.9),
     K(5.0, 57.3, 2.2),                # brow
@@ -143,16 +144,16 @@ MANE = [
     K(-9.0, 51.2, 0.9),
     K(-12.9, 48.4, 1.1),              # tooth 2
     K(-11.1, 45.0, 0.9),
-    K(-14.2, 42.0, 1.1),              # tooth 3
-    K(-12.8, 38.6, 0.9),
-    K(-15.3, 35.6, 1.2),              # tooth 4
-    K(-13.9, 32.2, 1.0),
-    K(-16.3, 29.2, 1.2),              # tooth 5
+    K(-13.6, 42.0, 1.1),              # tooth 3
+    K(-12.4, 38.6, 0.9),
+    K(-14.7, 35.6, 1.2),              # tooth 4
+    K(-13.5, 32.2, 1.0),
+    K(-15.8, 29.2, 1.2),              # tooth 5
     K(-14.6, 25.8, 1.1),
 ]
 
 SHOULDER_BACK = [
-    K(-16.9, 20.0, 1.6),              # shoulder swells back out
+    K(-17.2, 19.6, 1.6),              # shoulder swells back out
     K(-14.2, BASE_TOP_Z, 1.5),
     K(-10.6, 10.5, 1.2),
 ]
@@ -179,7 +180,7 @@ def muzzle_taper() -> list[trimesh.Trimesh]:
     """Draw the muzzle sides in toward the nose — two flat facets a side."""
     cuts = [
         # Upper muzzle: head width at the brow drawing in to 2.9 at the nose.
-        slice_block((2.0, HEAD_W), (23.4, 3.3), 43.0, 62.0),
+        slice_block((2.0, HEAD_W), (24.8, 3.3), 43.0, 62.0),
         # A second, softer break so the muzzle reads as a wedge, not a knife.
         slice_block((-4.0, HEAD_W + 1.4), (13.0, 5.3), 50.5, 62.0),
     ]
@@ -188,20 +189,31 @@ def muzzle_taper() -> list[trimesh.Trimesh]:
 
 def skull_draft() -> list[trimesh.Trimesh]:
     """Bring the back of the skull in behind the ear, matching the reference."""
-    cut = slice_block((-6.0, HEAD_W - 1.1), (2.0, HEAD_W + 1.2), 52.0, 62.0)
+    cut = slice_block((-7.0, HEAD_W - 0.9), (3.0, HEAD_W + 1.4), 52.0, 62.0)
     return [cut, mirror_y(cut)]
 
 
 def jaw_draft() -> list[trimesh.Trimesh]:
-    """Narrow the muzzle toward its underside so the jaw is a wedge, not a bill.
+    """The lip line and the jaw taper, cut as ONE sloped plane.
 
-    This is the single most valuable cut in the piece. It gives the muzzle its
-    horse-like triangular section, it puts the lip line where the reference has
-    it, and it tents the one downward-facing surface in the design: the drafted
-    flank sits 32 deg from vertical, so what would otherwise be a flat ceiling
-    under the jaw is self-supporting.
+    The most valuable cut in the piece, and it does three jobs at once:
+
+      * its upper edge is the lip line — a single straight crease running the
+        length of the muzzle, sloping down toward the throat exactly as the
+        reference does, instead of a groove fighting a separate taper;
+      * below that edge the jaw narrows to a keel, which gives the muzzle its
+        triangular horse section rather than a flat bill;
+      * the facet itself sits 41 deg from vertical, so the muzzle underside is
+        drafted rather than left as a flat ceiling.
+
+    The plane runs through: the lip line at the throat end, the lip line at the
+    nose, and the keel under the throat end.
     """
-    cut = slice_block_z((44.5, 1.4), (50.5, 6.4), 10.0, 26.0)
+    cut = plane_block(
+        through=[(9.5, 5.35, 47.3), (24.0, 3.40, 48.8), (24.0, 2.40, 46.0)],
+        x_range=(9.5, 27.0),
+        z_range=(41.0, 52.5),
+    )
     return [cut, mirror_y(cut)]
 
 
@@ -239,18 +251,17 @@ def flank_y(x: float) -> float:
     return HEAD_W - max(0.0, x - 2.0) * (HEAD_W - 3.4) / 23.0
 
 
-def mouth_groove() -> list[trimesh.Trimesh]:
-    """The lip line: a shallow V splitting upper muzzle from lower jaw."""
-    path = [(22.8, 49.2), (18.6, 48.7), (14.2, 48.0), (11.0, 47.2)]
-    apex = [flank_y(x) - 0.55 for x, _ in path]
-    cut = groove_along(path, apex_y=apex, reach=6.0, half_angle=26.0)
+def nostril() -> list[trimesh.Trimesh]:
+    """A small slot high on the muzzle, where the top plane breaks."""
+    section = [(21.4, 52.0), (18.4, 52.6), (19.8, 51.4)]
+    cut = pocket(section, surface_y=3.7, depth=0.8, reach=4.0)
     return [cut, mirror_y(cut)]
 
 
 def eye_socket() -> list[trimesh.Trimesh]:
     """Triangular recess under a hard brow, one each side."""
-    section = [(10.4, 56.0), (5.0, 54.9), (9.4, 53.2)]
-    cut = pocket(section, surface_y=5.7, depth=1.15, reach=5.0)
+    section = [(10.6, 56.1), (4.6, 54.9), (9.6, 52.9)]
+    cut = pocket(section, surface_y=5.35, depth=1.5, reach=5.0)
     return [cut, mirror_y(cut)]
 
 
@@ -274,7 +285,7 @@ def build() -> trimesh.Trimesh:
 
     for cut in (muzzle_taper() + skull_draft() + jaw_draft() + head_draft()
                 + neck_draft() + mane_taper()
-                + mouth_groove() + eye_socket() + shoulder_crease()):
+                + nostril() + eye_socket() + shoulder_crease()):
         piece = piece.difference(cut)
 
     piece.merge_vertices()

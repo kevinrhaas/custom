@@ -363,6 +363,31 @@ def slice_block_z(anchor_a: Vec2, anchor_b: Vec2, x_lo: float, x_hi: float,
     return hull(pts)
 
 
+def plane_block(through: Sequence[Sequence[float]], x_range: Vec2, z_range: Vec2,
+                y_far: float = 45.0) -> trimesh.Trimesh:
+    """Block on the +Y side of the plane through three (x, y, z) points.
+
+    The general case of ``slice_block`` / ``slice_block_z``: a cutting plane
+    that tilts in x AND z at once. Used where one flat facet has to do two
+    jobs — the knight's lip line is also the break where the jaw narrows, and
+    a plane that slopes both ways gives a single crease doing both.
+
+    Put ``z_range`` where the plane has already left the solid, or its end caps
+    become flat ceilings.
+    """
+    (p, q, r) = (np.asarray(t, float) for t in through)
+    # Solve y = a + b*x + c*z through the three points.
+    m = np.array([[1.0, p[0], p[2]], [1.0, q[0], q[2]], [1.0, r[0], r[2]]])
+    a, b, c = np.linalg.solve(m, np.array([p[1], q[1], r[1]]))
+
+    pts = []
+    for x in x_range:
+        for z in z_range:
+            pts.append((x, a + b * x + c * z, z))
+            pts.append((x, y_far, z))
+    return hull(pts)
+
+
 def mirror_y(mesh: trimesh.Trimesh) -> trimesh.Trimesh:
     out = mesh.copy()
     out.apply_scale((1.0, -1.0, 1.0))
