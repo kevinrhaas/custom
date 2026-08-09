@@ -1,0 +1,1386 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Porchfest Planner — Uptown Porchfest 2026</title>
+<meta name="description" content="Plan a walking route through Uptown Porchfest 2026. Filter 91 bands across 10 taste dimensions, get an optimised schedule and map, share it as a link.">
+<meta name="theme-color" content="#12121c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8E%B8%3C/text%3E%3C/svg%3E">
+<style>
+/* ===================================================================
+   Porchfest Planner — polecat shell tokens (tokens.css vocabulary),
+   with a summer-porch brand. Self-contained: no CDN, no tiles, no fonts.
+   =================================================================== */
+:root{
+  --bg:#0a0a0f; --bg-2:#12121c;
+  --surface:#111118; --surface-2:#18181f; --surface-3:#222230;
+  --border:#2a2a3c; --line:color-mix(in srgb, var(--border) 55%, transparent);
+  --text:#e8e8f2; --text-2:#8888aa; --text-3:#4a4a6a;
+  --brand:#ff6b4a; --brand-2:#ffa14a; --accent:#35c98f; --accent-2:#f4a6a6;
+  --success:#34d399; --danger:#f87171; --warning:#fbbf24; --info:#60a5fa;
+  --shadow:0 24px 64px rgba(0,0,0,.5); --shadow-sm:0 6px 20px rgba(0,0,0,.35);
+  --radius:14px; --radius-sm:9px; --radius-lg:20px;
+  --ring:0 0 0 3px color-mix(in srgb, var(--brand) 40%, transparent);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --mono:'SF Mono','Fira Code',ui-monospace,'JetBrains Mono',monospace;
+  --map-ground:#0e0e16; --map-major:#33334a; --map-mid:#2c2c40; --map-minor:#232333;
+  --map-label:#5c5c7c;
+}
+[data-theme="light"]{
+  --bg:#faf6f2; --bg-2:#f2ece5;
+  --surface:#ffffff; --surface-2:#f5efe8; --surface-3:#eae2d9;
+  --border:#e0d5c8; --text:#1d1710; --text-2:#6b5d4f; --text-3:#a8998a;
+  --brand:#e04f2a; --brand-2:#f08a2c; --accent:#159c69;
+  --shadow:0 24px 64px rgba(80,50,30,.16); --shadow-sm:0 6px 20px rgba(80,50,30,.10);
+  --map-ground:#f5efe6; --map-major:#ded0bd; --map-mid:#e4d8c8; --map-minor:#ebe1d4;
+  --map-label:#a8998a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  overscroll-behavior-y:none;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:var(--brand-2)}
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--radius-sm)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- chrome ---- */
+.top{
+  display:flex;align-items:center;gap:12px;padding:10px 16px;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:40;padding-top:max(10px,env(safe-area-inset-top));
+}
+.tile{
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;
+}
+.tile svg{width:19px;height:19px}
+.brand{font-weight:700;letter-spacing:-.02em;font-size:15px;white-space:nowrap}
+.brand small{display:block;font-weight:500;font-size:11px;color:var(--text-2);letter-spacing:0}
+.spacer{flex:1}
+.tabs{display:flex;gap:2px;background:var(--surface-2);padding:3px;border-radius:11px}
+.tabs button{
+  padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-2);
+}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)}
+.iconbtn{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  color:var(--text-2);border:1px solid var(--border);background:var(--surface-2);
+}
+.iconbtn:hover{color:var(--text);border-color:var(--brand)}
+.iconbtn svg{width:17px;height:17px}
+
+/* ---- layout ---- */
+.wrap{display:grid;grid-template-columns:344px 400px 1fr;height:calc(100dvh - 55px)}
+.pane{overflow-y:auto;overscroll-behavior:contain}
+#tune{border-right:1px solid var(--border);background:var(--surface)}
+#route{border-right:1px solid var(--border);background:var(--bg-2)}
+#mapPane{position:relative;background:var(--map-ground);overflow:hidden}
+#bands{display:none;height:calc(100dvh - 55px);overflow-y:auto}
+body[data-view="bands"] .wrap{display:none}
+body[data-view="bands"] #bands{display:block}
+.mobtabs{display:none}
+
+@media (max-width:1080px){
+  .wrap{grid-template-columns:320px 1fr}
+  #route{border-right:0}
+  #mapPane{grid-column:1/-1;height:52vh;border-top:1px solid var(--border)}
+  .wrap{grid-template-rows:1fr auto;height:calc(100dvh - 55px)}
+}
+@media (max-width:760px){
+  /* the tab bar is fixed over the page, so everything that reaches the bottom
+     edge — scroll panes and the sticky CTA — has to clear it */
+  :root{--mobtab:54px; --mobtab-safe:calc(54px + env(safe-area-inset-bottom))}
+  .wrap{display:block;height:auto}
+  /* the body becomes the scroller on phones — leaving overflow:auto here would
+     make each pane its own (non-scrolling) scrollport and break position:sticky */
+  .pane{overflow:visible}
+  .pane,#mapPane{height:auto}
+  #tune,#route,#mapPane{display:none;border:0}
+  body[data-view="tune"] #tune,
+  body[data-view="route"] #route{
+    display:block;min-height:calc(100dvh - 55px - var(--mobtab-safe));
+    padding-bottom:var(--mobtab-safe);
+  }
+  body[data-view="map"] #mapPane{display:block;height:calc(100dvh - 55px - var(--mobtab-safe))}
+  body[data-view="bands"] #bands{height:auto;padding-bottom:var(--mobtab-safe)}
+  .mobtabs{
+    display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:50;
+    background:var(--surface);border-top:1px solid var(--border);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .mobtabs button{padding:9px 0 8px;display:grid;justify-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--text-2)}
+  .mobtabs button svg{width:19px;height:19px}
+  .mobtabs button[aria-selected="true"]{color:var(--brand)}
+  .top .tabs{display:none}
+}
+
+/* ---- controls ---- */
+.sec{border-bottom:1px solid var(--line);padding:14px 16px}
+.sec h2{
+  margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);display:flex;align-items:center;gap:7px;
+}
+.sec h2 svg{width:13px;height:13px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:9px}
+label.f{display:block;font-size:11px;font-weight:600;color:var(--text-2);margin-bottom:4px}
+select,input[type=text],input[type=search]{
+  width:100%;padding:7px 9px;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:var(--radius-sm);font-size:13px;
+}
+select:hover,input:hover{border-color:var(--text-3)}
+
+.sl{margin-bottom:11px}
+.sl .lab{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:3px}
+.sl .lab b{font-weight:600}
+.sl .lab span{font-size:11px;color:var(--text-2);font-variant-numeric:tabular-nums}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;margin:0;display:block;
+}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--surface-3)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--surface-3)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;margin-top:-6px;
+  background:var(--brand);border:2px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;border-radius:50%;background:var(--brand);
+  border:2px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.taste .lab b{font-size:12px}
+.taste .poles{display:flex;justify-content:space-between;font-size:10px;color:var(--text-3);margin-top:-3px}
+.taste.off .lab b{color:var(--text-2)}
+.taste.off input[type=range]::-webkit-slider-thumb{background:var(--text-3)}
+.taste.off input[type=range]::-moz-range-thumb{background:var(--text-3)}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{
+  padding:4px 9px;border-radius:99px;font-size:11.5px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);
+}
+.chip[data-s="1"]{background:color-mix(in srgb,var(--accent) 20%,transparent);border-color:var(--accent);color:var(--accent)}
+.chip[data-s="-1"]{background:color-mix(in srgb,var(--danger) 15%,transparent);border-color:var(--danger);color:var(--danger);text-decoration:line-through}
+.presets{display:flex;flex-wrap:wrap;gap:5px}
+.presets button{
+  padding:5px 10px;border-radius:99px;font-size:11.5px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);
+}
+.presets button:hover{border-color:var(--brand);color:var(--brand)}
+
+.btn{
+  width:100%;padding:11px;border-radius:var(--radius);font-weight:700;font-size:14px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;
+  box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.5;cursor:default;filter:none}
+.btn svg{width:16px;height:16px}
+.btn.ghost{
+  background:var(--surface-2);color:var(--text);border:1px solid var(--border);box-shadow:none;
+  font-size:12.5px;padding:8px;font-weight:600;
+}
+.btn.ghost:hover{border-color:var(--brand);filter:none}
+.stick{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 16px;z-index:5}
+
+.pins{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.pin{
+  display:flex;align-items:center;gap:7px;padding:6px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;
+}
+.pin b{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pin small{color:var(--text-2);font-variant-numeric:tabular-nums}
+.pin button{color:var(--text-3);display:grid;place-items:center}
+.pin button:hover{color:var(--danger)}
+.pin svg{width:13px;height:13px}
+
+/* ---- schedule ---- */
+.sum{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
+.sumgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.sumgrid div{background:var(--surface-2);border-radius:var(--radius-sm);padding:7px 3px}
+.sumgrid b{display:block;font-size:17px;font-weight:700;letter-spacing:-.02em;line-height:1.2;transition:opacity .12s}
+/* recomputing after a dial moved — dim the figures rather than blanking them */
+#route.busy .sumgrid b{opacity:.3}
+.sumgrid small{font-size:9.5px;color:var(--text-2);text-transform:uppercase;letter-spacing:.05em}
+.acts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:9px}
+
+.stops{padding:10px 12px 24px}
+.stop{
+  display:grid;grid-template-columns:52px 1fr;gap:9px;padding:9px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);margin-bottom:2px;cursor:pointer;
+  transition:border-color .12s,transform .12s;
+}
+.stop:hover{border-color:var(--brand)}
+.stop.on{border-color:var(--brand);box-shadow:var(--ring)}
+.stop .when{text-align:right;font-variant-numeric:tabular-nums}
+.stop .when b{display:block;font-size:13px;font-weight:700;letter-spacing:-.02em}
+.stop .when small{font-size:10px;color:var(--text-2)}
+.stop .num{
+  display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  background:var(--brand);color:#fff;font-size:10.5px;font-weight:700;margin-top:3px;
+}
+.stop h3{margin:0;font-size:14px;font-weight:700;letter-spacing:-.01em}
+.stop .meta{font-size:11.5px;color:var(--text-2);margin-top:1px}
+.stop .one{font-size:11.5px;color:var(--text-2);margin-top:3px;font-style:italic}
+.stop .tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.tg{font-size:9.5px;font-weight:700;padding:1.5px 6px;border-radius:99px;background:var(--surface-3);color:var(--text-2);text-transform:uppercase;letter-spacing:.04em}
+.tg.hit{background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent)}
+.walk{
+  display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-3);
+  padding:3px 0 3px 62px;font-weight:600;
+}
+.walk svg{width:12px;height:12px}
+.empty{padding:40px 24px;text-align:center;color:var(--text-2)}
+.empty svg{width:34px;height:34px;color:var(--text-3);margin-bottom:10px}
+.note{
+  margin:8px 12px;padding:8px 10px;border-radius:var(--radius-sm);font-size:11.5px;
+  background:color-mix(in srgb,var(--warning) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--warning) 35%,transparent);color:var(--warning);
+}
+
+/* ---- map ---- */
+#map{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#map:active{cursor:grabbing}
+.mapctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:5px;z-index:10}
+.mapctl button{
+  width:31px;height:31px;border-radius:9px;background:var(--surface);border:1px solid var(--border);
+  color:var(--text-2);display:grid;place-items:center;box-shadow:var(--shadow-sm);font-size:15px;font-weight:700;
+}
+.mapctl button:hover{color:var(--brand);border-color:var(--brand)}
+.mapctl button svg{width:15px;height:15px}
+.legend{
+  position:absolute;left:10px;bottom:10px;z-index:10;background:color-mix(in srgb,var(--surface) 88%,transparent);
+  border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 9px;font-size:10.5px;
+  color:var(--text-2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);max-width:220px;
+}
+.legend div{display:flex;align-items:center;gap:6px;margin:2px 0}
+.legend i{width:9px;height:9px;border-radius:50%;display:block;flex:none}
+.attrib{
+  position:absolute;right:8px;bottom:6px;z-index:10;font-size:9.5px;color:var(--text-3);
+  background:color-mix(in srgb,var(--surface) 70%,transparent);padding:2px 6px;border-radius:6px;
+}
+.attrib a{color:inherit}
+
+/* ---- bands browser ---- */
+.bandbar{
+  display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);
+  background:var(--surface);position:sticky;top:0;z-index:10;flex-wrap:wrap;align-items:center;
+}
+.bandbar input{max-width:280px}
+.bandbar .n{font-size:12px;color:var(--text-2);font-weight:600}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;padding:14px 16px 40px;
+}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.card .ph{
+  height:132px;background:var(--surface-3);position:relative;overflow:hidden;flex:none;
+  display:grid;place-items:center;
+}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card .ph .ini{font-size:30px;font-weight:800;color:var(--text-3);letter-spacing:-.03em}
+.card .ph .slot{
+  position:absolute;left:8px;bottom:8px;background:color-mix(in srgb,#000 62%,transparent);
+  color:#fff;font-size:10.5px;font-weight:700;padding:2.5px 7px;border-radius:99px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+}
+.card .bd{padding:11px 12px 12px;flex:1;display:flex;flex-direction:column;gap:5px}
+.card h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.015em}
+.card .gen{font-size:11px;color:var(--brand-2);font-weight:600}
+.card .one{font-size:12px;color:var(--text-2);font-style:italic}
+.card p{margin:0;font-size:12px;color:var(--text-2);line-height:1.45}
+.card .foot{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:7px;flex-wrap:wrap}
+.card .foot a{color:var(--text-3);display:grid;place-items:center}
+.card .foot a:hover{color:var(--brand)}
+.card .foot svg{width:14px;height:14px}
+.card .addbtn{margin-left:auto;font-size:11px;font-weight:700;color:var(--brand);padding:3px 8px;border:1px solid var(--border);border-radius:99px}
+.card .addbtn:hover{border-color:var(--brand)}
+.card .addbtn.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.dimbars{display:grid;gap:2px;margin-top:4px}
+.dimbar{display:grid;grid-template-columns:66px 1fr;gap:6px;align-items:center;font-size:9.5px;color:var(--text-3)}
+.dimbar .t{height:4px;border-radius:2px;background:var(--surface-3);overflow:hidden}
+.dimbar .t i{display:block;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+
+/* ---- toast / modal ---- */
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:100;
+  background:var(--surface);border:1px solid var(--brand);border-radius:99px;
+  padding:9px 18px;font-size:13px;font-weight:600;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
+dialog{
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  border-radius:var(--radius-lg);padding:0;max-width:min(560px,92vw);box-shadow:var(--shadow);
+}
+dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.dlg{padding:18px 20px 20px}
+.dlg h3{margin:0 0 4px;font-size:18px;letter-spacing:-.02em}
+.dlg p{margin:0 0 12px;font-size:13px;color:var(--text-2)}
+.dlg .close{position:absolute;right:12px;top:12px;color:var(--text-3)}
+.linkbox{
+  display:flex;gap:6px;margin-bottom:10px;
+}
+.linkbox input{font-family:var(--mono);font-size:11px}
+/* ---- mobile overrides ----------------------------------------------------
+   These have to live at the end: they target base rules (.stick, .toast) that
+   are declared *after* the layout media query above, so an earlier block of
+   the same specificity would silently lose the cascade. */
+@media (max-width:760px){
+  /* lift the primary action clear of the fixed tab bar */
+  .stick{bottom:var(--mobtab-safe)}
+  /* toast drops from the top on phones — the bottom belongs to the tab bar
+     and the map legend */
+  .toast{top:64px;bottom:auto;max-width:calc(100vw - 32px);text-align:center}
+  .toast.show{transform:translateX(-50%) translateY(6px)}
+}
+@media print{
+  .top,#tune,#mapPane,.mobtabs,.acts,.stick{display:none!important}
+  .wrap{display:block;height:auto}
+  #route{border:0;background:#fff;color:#000}
+  body{background:#fff}
+}
+</style>
+</head>
+<body data-view="tune">
+
+<header class="top">
+  <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg></span>
+  <div class="brand">Porchfest Planner<small id="festline">Uptown Porchfest · Sat Aug 15, 2026</small></div>
+  <div class="spacer"></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-go="tune" aria-selected="true">Plan</button>
+    <button role="tab" data-go="route" aria-selected="false">Schedule</button>
+    <button role="tab" data-go="map" aria-selected="false">Map</button>
+    <button role="tab" data-go="bands" aria-selected="false">Bands</button>
+  </div>
+  <button class="iconbtn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+</header>
+
+<div class="wrap">
+  <!-- ---------------- tune ---------------- -->
+  <aside class="pane" id="tune">
+    <div class="sec">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Your afternoon</h2>
+      <div class="row">
+        <div><label class="f" for="t0">Start</label><select id="t0"></select></div>
+        <div><label class="f" for="t1">Home by</label><select id="t1"></select></div>
+      </div>
+      <div><label class="f" for="from">Start from</label><select id="from"></select></div>
+      <div style="margin-top:9px"><label class="f" for="to">End at</label><select id="to"></select></div>
+      <div class="row" style="margin-top:9px">
+        <div><label class="f" for="minB">At least</label><select id="minB"></select></div>
+        <div><label class="f" for="maxB">At most</label><select id="maxB"></select></div>
+      </div>
+      <div id="countHint" style="font-size:11px;color:var(--text-3);margin:-4px 0 4px"></div>
+      <div class="sl" style="margin-top:12px">
+        <div class="lab"><b>Time per band</b><span id="dwellV">25 min</span></div>
+        <input type="range" id="dwell" min="10" max="60" step="5" value="25">
+      </div>
+      <div class="sl">
+        <div class="lab"><b>Minimum worth stopping for</b><span id="minV">15 min</span></div>
+        <input type="range" id="minStay" min="5" max="40" step="5" value="15">
+      </div>
+      <div class="sl" style="margin-bottom:0">
+        <div class="lab"><b>Walking pace</b><span id="paceV">4.5 km/h</span></div>
+        <input type="range" id="pace" min="2.5" max="6.5" step="0.25" value="4.5">
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20v-4"/></svg>Taste</h2>
+      <div class="presets" id="presets"></div>
+      <div style="margin-top:12px" id="taste"></div>
+    </div>
+
+    <div class="sec">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 8.4l-8.9-5.1a2 2 0 00-2 0L2.7 8.4"/><path d="M3 9v10h18V9"/></svg>Genres <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--text-3)">— tap once to seek, twice to avoid</span></h2>
+      <div class="chips" id="genres"></div>
+    </div>
+
+    <div class="sec">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8z"/></svg>Must-see</h2>
+      <input type="search" id="pinSearch" placeholder="Search 91 bands…" list="bandlist" autocomplete="off">
+      <datalist id="bandlist"></datalist>
+      <div class="pins" id="pins"></div>
+    </div>
+
+    <div class="stick">
+      <button class="btn" id="go">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0115.5-6.2M21 12a9 9 0 01-15.5 6.2"/><path d="M18 3v5h-5M6 21v-5h5"/></svg>
+        Shuffle the route
+      </button>
+    </div>
+  </aside>
+
+  <!-- ---------------- schedule ---------------- -->
+  <section class="pane" id="route">
+    <div class="sum">
+      <div class="sumgrid">
+        <div><b id="sBands">—</b><small>bands</small></div>
+        <div><b id="sMusic">—</b><small>music</small></div>
+        <div><b id="sWalk">—</b><small>walking</small></div>
+        <div><b id="sFit">—</b><small>match</small></div>
+      </div>
+      <div class="acts">
+        <button class="btn ghost" id="shareBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M12 15V3M8 7l4-4 4 4"/></svg>Share</button>
+        <button class="btn ghost" id="icsBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</button>
+      </div>
+    </div>
+    <div id="notes"></div>
+    <div class="stops" id="stops"></div>
+  </section>
+
+  <!-- ---------------- map ---------------- -->
+  <section id="mapPane">
+    <svg id="map" role="img" aria-label="Route map"></svg>
+    <div class="mapctl">
+      <button id="zIn" title="Zoom in" aria-label="Zoom in">+</button>
+      <button id="zOut" title="Zoom out" aria-label="Zoom out">−</button>
+      <button id="zFit" title="Fit route" aria-label="Fit route"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V5a1 1 0 011-1h4M20 9V5a1 1 0 00-1-1h-4M4 15v4a1 1 0 001 1h4M20 15v4a1 1 0 01-1 1h-4"/></svg></button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="attrib">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</div>
+  </section>
+</div>
+
+<!-- ---------------- bands ---------------- -->
+<section id="bands">
+  <div class="bandbar">
+    <input type="search" id="bq" placeholder="Search bands, genres, sounds-like…">
+    <select id="bsort" style="width:auto">
+      <option value="time">Sort: set time</option>
+      <option value="name">Sort: name</option>
+      <option value="fit">Sort: match to my taste</option>
+    </select>
+    <span class="n" id="bcount"></span>
+  </div>
+  <div class="grid" id="bgrid"></div>
+</section>
+
+<nav class="mobtabs" role="tablist" aria-label="Views">
+  <button role="tab" data-go="tune" aria-selected="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20v-6M4 10V4M12 20v-9M12 7V4M20 20v-4M20 12V4"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="9" r="2"/><circle cx="20" cy="14" r="2"/></svg>Plan</button>
+  <button role="tab" data-go="route" aria-selected="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1.5"/><circle cx="3.5" cy="12" r="1.5"/><circle cx="3.5" cy="18" r="1.5"/></svg>Schedule</button>
+  <button role="tab" data-go="map" aria-selected="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.4 1.8L5.4 3.2 9 2l6 3 5.4-1.8L18.6 20.8 15 22z"/><path d="M9 2v18M15 5v17"/></svg>Map</button>
+  <button role="tab" data-go="bands" aria-selected="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="17" r="3"/><circle cx="18" cy="15" r="2.5"/><path d="M11 17V5l9-2v12" stroke-linecap="round"/></svg>Bands</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<dialog id="shareDlg"><div class="dlg">
+  <button class="close iconbtn" style="border:0;background:none" data-close aria-label="Close">✕</button>
+  <h3>Share this plan</h3>
+  <p>Everything — your filters and the exact schedule — is packed into the link. Whoever opens it sees the same route and map, with nothing to install.</p>
+  <div class="linkbox"><input type="text" id="shareUrl" readonly><button class="btn ghost" id="copyBtn" style="width:auto;padding:8px 14px">Copy</button></div>
+  <div class="acts">
+    <button class="btn ghost" id="gmapBtn">Open walking directions</button>
+    <button class="btn ghost" id="printBtn">Print / PDF</button>
+  </div>
+</div></dialog>
+
+<script id="payload" type="application/json">/*__DATA__*/</script>
+<script>
+"use strict";
+/* =====================================================================
+   Porchfest Planner
+   Data baked at build time (see build/): lineup scraped from
+   uptownporchfest.com, band profiles researched and rated across ten
+   dimensions, porches geocoded via Nominatim, street network from
+   OpenStreetMap. Routing, optimisation and map rendering are all local —
+   the page makes no network requests at all.
+   ===================================================================== */
+const D = JSON.parse(document.getElementById('payload').textContent);
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+
+/* ---------- geometry / projection ---------- */
+const M_LAT = 111320, M_LON = 78700;            // metres per degree at ~45°N
+const mx = (lon) => lon * M_LON, my = (lat) => lat * M_LAT;
+
+/* ---------- street graph + pedestrian routing ---------- */
+function buildGraph(s){
+  const {pts, ways} = s;
+  const adj = pts.map(() => []);
+  const edges = [];
+  for(const w of ways){
+    for(let i=1;i<w.n.length;i++){
+      const a=w.n[i-1], b=w.n[i];
+      if(a===b) continue;
+      const d=Math.hypot(mx(pts[a][1])-mx(pts[b][1]), my(pts[a][0])-my(pts[b][0]));
+      adj[a].push({to:b,w:d}); adj[b].push({to:a,w:d}); edges.push([a,b]);
+    }
+  }
+  return {pts, adj, edges};
+}
+// Nearest point on the nearest street segment — puts a porch on the road
+// out front instead of yanking it to the nearest corner.
+function snap(g, lat, lon){
+  const px=mx(lon), py=my(lat);
+  let best={d2:Infinity};
+  for(const [a,b] of g.edges){
+    const ax=mx(g.pts[a][1]), ay=my(g.pts[a][0]);
+    const bx=mx(g.pts[b][1]), by=my(g.pts[b][0]);
+    const dx=bx-ax, dy=by-ay, l2=dx*dx+dy*dy;
+    const t = l2===0 ? 0 : Math.max(0, Math.min(1, ((px-ax)*dx+(py-ay)*dy)/l2));
+    const qx=ax+t*dx, qy=ay+t*dy, d2=(px-qx)**2+(py-qy)**2;
+    if(d2<best.d2){
+      const len=Math.sqrt(l2);
+      best={d2,a,b,offset:Math.sqrt(d2),da:t*len,db:(1-t)*len,
+            lat:qy/M_LAT, lon:qx/M_LON};
+    }
+  }
+  return best;
+}
+function dijkstra(g, sources){
+  const n=g.pts.length;
+  const dist=new Float64Array(n).fill(Infinity), prev=new Int32Array(n).fill(-1);
+  const h=[];
+  const push=(d,v)=>{h.push([d,v]);let i=h.length-1;
+    while(i>0){const p=(i-1)>>1; if(h[p][0]<=h[i][0])break; [h[p],h[i]]=[h[i],h[p]]; i=p;}};
+  const pop=()=>{const top=h[0], last=h.pop();
+    if(h.length){h[0]=last;let i=0;for(;;){const l=2*i+1,r=l+1;let s=i;
+      if(l<h.length&&h[l][0]<h[s][0])s=l; if(r<h.length&&h[r][0]<h[s][0])s=r;
+      if(s===i)break; [h[s],h[i]]=[h[i],h[s]]; i=s;}}
+    return top;};
+  for(const [v,d] of sources) if(d<dist[v]){dist[v]=d;push(d,v);}
+  while(h.length){
+    const [d,v]=pop();
+    if(d>dist[v]) continue;
+    for(const e of g.adj[v]){
+      const nd=d+e.w;
+      if(nd<dist[e.to]){dist[e.to]=nd;prev[e.to]=v;push(nd,e.to);}
+    }
+  }
+  return {dist,prev};
+}
+function routeBetween(g,s,t){
+  if((s.a===t.a&&s.b===t.b)||(s.a===t.b&&s.b===t.a)){
+    const tp = s.a===t.a ? t.da : t.db;
+    return {dist:s.offset+Math.abs(s.da-tp)+t.offset, path:[[s.lat,s.lon],[t.lat,t.lon]]};
+  }
+  const {dist,prev}=dijkstra(g,[[s.a,s.da],[s.b,s.db]]);
+  let best=null;
+  for(const [v,tail] of [[t.a,t.da],[t.b,t.db]]){
+    const tot=dist[v]+tail;
+    if(Number.isFinite(tot)&&(!best||tot<best.tot)) best={tot,v};
+  }
+  if(!best) return {dist:Infinity,path:[[s.lat,s.lon],[t.lat,t.lon]]};
+  const chain=[];
+  for(let v=best.v;v!==-1;v=prev[v]) chain.push(v);
+  chain.reverse();
+  return {dist:s.offset+best.tot+t.offset,
+          path:[[s.lat,s.lon],...chain.map(v=>g.pts[v]),[t.lat,t.lon]]};
+}
+
+const G = buildGraph(D.streets);
+// Every place you can stand: 33 porches then 48 street corners.
+const PLACES = [
+  ...D.porches.map((p,i)=>({kind:'porch', i, label:p.a, lat:p.lat, lon:p.lon})),
+  ...D.corners.map((c,i)=>({kind:'corner', i, label:c.a, lat:c.lat, lon:c.lon})),
+];
+PLACES.forEach(p => p.snap = snap(G, p.lat, p.lon));
+const porchPlace = (pi) => PLACES[pi];
+
+// Porch-to-porch walking distances, computed once from the graph.
+const NP = D.porches.length;
+const WD = [];
+{
+  for(let i=0;i<NP;i++) WD.push(new Float64Array(PLACES.length));
+  for(let i=0;i<NP;i++){
+    const s = PLACES[i].snap;
+    const {dist} = dijkstra(G, [[s.a,s.da],[s.b,s.db]]);
+    for(let j=0;j<PLACES.length;j++){
+      const t = PLACES[j].snap;
+      WD[i][j] = i===j ? 0 : s.offset + Math.min(dist[t.a]+t.da, dist[t.b]+t.db) + t.offset;
+    }
+  }
+}
+// distance (m) between any two PLACES indices, using the precomputed rows
+function placeDist(a,b){
+  if(a===b) return 0;
+  if(a<NP) return WD[a][b];
+  if(b<NP) return WD[b][a];
+  return routeBetween(G, PLACES[a].snap, PLACES[b].snap).dist;  // corner→corner (rare)
+}
+
+/* ---------- dimensions ---------- */
+const DIMLABEL = [
+  ['Energy','chill','frenetic'], ['Loudness','quiet','loud'], ['Tempo','slow','fast'],
+  ['Electronic','acoustic','synthetic'], ['Vocals','instrumental','lyric-driven'],
+  ['Danceable','listen','dance'], ['Experimental','familiar','out there'],
+  ['Brightness','dark','sunny'], ['Grit','polished','raw'], ['Kid-friendly','adults','all ages'],
+];
+const PRESETS = {
+  'Loud & fast':      {energy:2, loudness:2, tempo:2, grit:1, kid_friendly:0},
+  'Family stroll':    {kid_friendly:2, loudness:-2, brightness:1, energy:-1},
+  'Jazz & porch beer':{energy:-1, experimental:1, danceability:0, loudness:-1, electronic:-1},
+  'Dance party':      {danceability:2, energy:1, electronic:1, brightness:1},
+  'Songwriters':      {vocal_forward:2, loudness:-1, electronic:-2, energy:-1},
+  'Weird stuff':      {experimental:2, grit:1},
+};
+
+/* ---------- state ---------- */
+const S = {
+  t0: 13*60, t1: 18*60, from: NP + idxCorner('Lyndale Ave S & W 26th Street'),
+  to: -1,                       // -1 = same as start
+  dwell: 25, minStay: 15, pace: 4.5,
+  minBands: 0, maxBands: 0,          // 0 = no limit
+  pref: Object.fromEntries(D.dims.map(d=>[d,0])),
+  tags: {}, pins: [], plan: null, sel: -1, err: '',
+};
+function idxCorner(label){
+  const i = D.corners.findIndex(c=>c.a===label);
+  return i >= 0 ? i : 0;
+}
+
+/* ---------- scoring ---------- */
+function matchScore(b){
+  let s=0, w=0;
+  D.dims.forEach((d,i)=>{
+    const p=S.pref[d]; if(!p) return;
+    w += Math.abs(p);
+    s += p * ((b.d[i]-3)/2);
+  });
+  let base = w ? (s/w) : 0;                     // -1..1
+  for(const t of b.tg){
+    const st=S.tags[t]; if(st===1) base += .45; else if(st===-1) base -= 1.6;
+  }
+  return base;
+}
+const fitPct = (b)=> Math.round(Math.max(0,Math.min(1,(matchScore(b)+1)/2))*100);
+function excluded(b){ return b.tg.some(t=>S.tags[t]===-1); }
+
+/* ---------- the planner ----------
+   Orienteering with time windows: choose a subset of sets and an order that
+   maximises taste-match, subject to walking times, set windows and your
+   finish time. Randomised greedy insertion + local search, best of N runs. */
+function simulate(seq, cfg){
+  let t=cfg.t0, at=cfg.from, walk=0, wait=0;
+  const stops=[];
+  for(const b of seq){
+    const place=b.p;
+    const d=placeDist(at, place);
+    const travel=d/cfg.mpm;
+    const arrive=t+travel;
+    const begin=Math.max(arrive, b.t[0]);
+    const leave=Math.min(begin+cfg.dwell, b.t[1]);
+    const stay=leave-begin;
+    if(stay < cfg.minStay - 1e-9) return null;
+    if(begin > b.t[1]) return null;
+    stops.push({b,arrive,begin,leave,stay,walkM:d,walkMin:travel});
+    wait += Math.max(0, b.t[0]-arrive);
+    walk += d; t=leave; at=place;
+  }
+  const dEnd=placeDist(at, cfg.to);
+  const finish=t+dEnd/cfg.mpm;
+  if(finish>cfg.t1+1e-9) return null;
+  return {stops, walk:walk+dEnd, endWalk:dEnd, finish, wait};
+}
+function scoreOf(sim, cfg){
+  if(!sim) return -Infinity;
+  let s=0;
+  for(const st of sim.stops){
+    const credit=Math.min(1, st.stay/cfg.dwell);
+    s += (cfg.ms.get(st.b.id) + 1.15) * credit;        // +1.15 so any set beats none
+    if(cfg.pin.has(st.b.id)) s += 6;
+  }
+  s -= sim.walk*0.0016 + sim.wait*0.012;
+  // "at least N" is a goal, not a filter: a route that falls short is still
+  // returned — with a warning — but ranks far below any route that makes it.
+  if(cfg.minB && sim.stops.length < cfg.minB) s -= 400*(cfg.minB - sim.stops.length);
+  return s;
+}
+function plan(runs){
+  const cfg={
+    t0:S.t0, t1:S.t1, from:S.from, to:S.to<0?S.from:S.to,
+    dwell:S.dwell, minStay:Math.min(S.minStay,S.dwell), mpm:S.pace*1000/60,
+    ms:new Map(), pin:new Set(S.pins),
+    minB:S.minBands||0, maxB:S.maxBands||Infinity,
+  };
+  const pool=D.bands.filter(b=>!excluded(b)||cfg.pin.has(b.id));
+  pool.forEach(b=>cfg.ms.set(b.id, matchScore(b)));
+
+  const byStart=(a,b)=>a.t[0]-b.t[0] || a.n.localeCompare(b.n);
+  const pinned=D.bands.filter(b=>cfg.pin.has(b.id)).sort(byStart);
+
+  // Pinned sets are non-negotiable; if they can't all fit, drop the ones that break it.
+  let seed=[], dropped=[];
+  for(const b of pinned){
+    if(seed.length>=cfg.maxB){ dropped.push(b.n); continue; }   // "at most N" wins
+    const cand=[...seed,b].sort(byStart);
+    if(simulate(cand,cfg)) seed=cand; else dropped.push(b.n);
+  }
+  if(!simulate(seed,cfg)) { seed=[]; dropped=pinned.map(b=>b.n); }
+
+  let best=null, bestScore=-Infinity;
+  const RUNS=runs||48;
+  for(let run=0; run<RUNS; run++){
+    let seq=seed.slice();
+    let cur=simulate(seq,cfg);
+    // greedy randomised insertion
+    for(;;){
+      if(seq.length>=cfg.maxB) break;
+      const cands=[];
+      for(const b of pool){
+        if(seq.some(x=>x.id===b.id)) continue;
+        const trial=[...seq,b].sort(byStart);
+        const sim=simulate(trial,cfg);
+        if(!sim) continue;
+        cands.push({b, trial, sim, gain:scoreOf(sim,cfg)-scoreOf(cur,cfg)});
+      }
+      if(!cands.length) break;
+      cands.sort((x,y)=>y.gain-x.gain);
+      if(cands[0].gain<=0) break;
+      const k=run===0 ? 0 : Math.floor(Math.random()*Math.min(3,cands.length));
+      seq=cands[k].trial; cur=cands[k].sim;
+    }
+    // local search: swap a chosen set for a better unchosen one
+    let improved=true, guard=0;
+    while(improved && guard++<60){
+      improved=false;
+      for(let i=0;i<seq.length;i++){
+        if(cfg.pin.has(seq[i].id)) continue;
+        for(const b of pool){
+          if(seq.some(x=>x.id===b.id)) continue;
+          const trial=[...seq.slice(0,i),...seq.slice(i+1),b].sort(byStart);
+          const sim=simulate(trial,cfg);
+          if(sim && scoreOf(sim,cfg)>scoreOf(cur,cfg)+1e-9){
+            seq=trial; cur=sim; improved=true; break;
+          }
+        }
+        if(improved) break;
+      }
+    }
+    const sc=scoreOf(cur,cfg);
+    if(cur && sc>bestScore){ bestScore=sc; best=cur; }
+  }
+  if(best){ best.dropped=dropped; best.score=bestScore; best.short=cfg.minB && best.stops.length<cfg.minB ? cfg.minB : 0; }
+  return best;
+}
+
+/* ---------- formatting ---------- */
+const hhmm=(m)=>{
+  const h=Math.floor(m/60), mm=Math.round(m%60);
+  const ap=h>=12?'PM':'AM', hh=((h+11)%12)+1;
+  return `${hh}:${String(mm).padStart(2,'0')} ${ap}`;
+};
+const mins=(m)=>{
+  m=Math.round(m);
+  return m>=60 ? `${Math.floor(m/60)}h ${m%60?m%60+'m':''}`.trim() : `${m}m`;
+};
+const km=(m)=> m>=1000 ? (m/1000).toFixed(1)+' km' : Math.round(m)+' m';
+
+/* ================= rendering ================= */
+function renderControls(){
+  const opts=[];
+  for(let m=12*60;m<=18*60;m+=15) opts.push(`<option value="${m}">${hhmm(m)}</option>`);
+  $('#t0').innerHTML=opts.join(''); $('#t1').innerHTML=opts.join('');
+  $('#t0').value=S.t0; $('#t1').value=S.t1;
+
+  const places=[
+    '<optgroup label="Street corners">',
+    ...D.corners.map((c,i)=>`<option value="${NP+i}">${c.a}</option>`),
+    '</optgroup><optgroup label="Porches">',
+    ...D.porches.map((p,i)=>`<option value="${i}">${p.a}</option>`),
+    '</optgroup>',
+  ].join('');
+  $('#from').innerHTML=places;
+  $('#to').innerHTML='<option value="-1">Same as start</option>'+places;
+  $('#from').value=S.from; $('#to').value=S.to;
+
+  $('#taste').innerHTML=D.dims.map((d,i)=>{
+    const [name,lo,hi]=DIMLABEL[i];
+    return `<div class="sl taste ${S.pref[d]?'':'off'}" data-dim="${d}">
+      <div class="lab"><b>${name}</b><span>${prefWord(S.pref[d])}</span></div>
+      <input type="range" min="-2" max="2" step="1" value="${S.pref[d]}" aria-label="${name}">
+      <div class="poles"><span>${lo}</span><span>${hi}</span></div>
+    </div>`;
+  }).join('');
+
+  $('#presets').innerHTML=Object.keys(PRESETS)
+    .map(p=>`<button data-preset="${p}">${p}</button>`).join('')
+    + '<button data-preset="__clear">Reset</button>';
+
+  const tags=[...new Set(D.bands.flatMap(b=>b.tg))]
+    .map(t=>[t, D.bands.filter(b=>b.tg.includes(t)).length])
+    .sort((a,b)=>b[1]-a[1]);
+  $('#genres').innerHTML=tags.map(([t,n])=>
+    `<button class="chip" data-tag="${t}" data-s="${S.tags[t]||0}">${t} <span style="opacity:.55">${n}</span></button>`).join('');
+
+  const counts=['<option value="0">Any</option>']
+    .concat(Array.from({length:14},(_,i)=>`<option value="${i+1}">${i+1}</option>`)).join('');
+  $('#minB').innerHTML=counts; $('#maxB').innerHTML=counts;
+  $('#minB').value=S.minBands; $('#maxB').value=S.maxBands;
+  renderCountHint();
+
+  $('#bandlist').innerHTML=D.bands.map(b=>`<option value="${esc(b.n)}">`).join('');
+  renderPins();
+}
+function renderCountHint(){
+  const lo=S.minBands, hi=S.maxBands;
+  const t = !lo && !hi ? 'As many as fit in the window.'
+    : lo && hi && lo===hi ? `Exactly ${lo} band${lo>1?'s':''}.`
+    : lo && hi ? `Between ${lo} and ${hi} bands.`
+    : lo ? `At least ${lo}, then as many as fit.`
+    : `No more than ${hi}.`;
+  $('#countHint').textContent=t;
+}
+const prefWord=(v)=>['strongly low','lower','—','higher','strongly high'][v+2];
+function renderPins(){
+  $('#pins').innerHTML = S.pins.length ? S.pins.map(id=>{
+    const b=D.bands.find(x=>x.id===id);
+    return `<div class="pin"><b>${esc(b.n)}</b><small>${hhmm(b.t[0])}</small>
+      <button data-unpin="${id}" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`;
+  }).join('') : `<div style="font-size:11.5px;color:var(--text-3)">Nothing pinned — the planner is free to choose.</div>`;
+}
+const esc=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function renderPlan(){
+  const p=S.plan;
+  if(!p){
+    $('#stops').innerHTML=`<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      <div><b>Nothing fits yet</b></div>
+      <div style="font-size:12px;margin-top:4px">Widen the time window, or ease off the genres you're avoiding.</div></div>`;
+    ['sBands','sMusic','sWalk','sFit'].forEach(id=>$('#'+id).textContent='—');
+    $('#notes').innerHTML=S.err?`<div class="note">${S.err}</div>`:''; drawMap(); return;
+  }
+  const music=p.stops.reduce((a,s)=>a+s.stay,0);
+  const fit=p.stops.length ? Math.round(p.stops.reduce((a,s)=>a+fitPct(s.b),0)/p.stops.length) : 0;
+  $('#sBands').textContent=p.stops.length;
+  $('#sMusic').textContent=mins(music);
+  $('#sWalk').textContent=km(p.walk);
+  $('#sFit').textContent=fit+'%';
+
+  const notes=[];
+  if(S.err) notes.push(S.err);
+  if(p.dropped?.length) notes.push(`Couldn't fit must-see: <b>${p.dropped.map(esc).join(', ')}</b> — try a longer window, less time per band, or a higher "at most".`);
+  if(p.short) notes.push(`Only <b>${p.stops.length}</b> band${p.stops.length===1?'':'s'} fit, not the ${p.short} you asked for — widen the time window, cut the time per band, or un-avoid some genres.`);
+  if(!p.stops.length) notes.push('Nothing fits those constraints. Loosen the time window, shorten the minimum stay, or un-avoid some genres.');
+  $('#notes').innerHTML=notes.map(n=>`<div class="note">${n}</div>`).join('');
+
+  $('#stops').innerHTML=p.stops.map((s,i)=>{
+    const b=s.b, porch=D.porches[b.p];
+    const walkRow = i===0
+      ? legRow(s.walkM, s.walkMin, 'from '+placeName(S.from))
+      : legRow(s.walkM, s.walkMin, '');
+    return walkRow + `<div class="stop${S.sel===i?' on':''}" data-stop="${i}">
+      <div class="when"><b>${hhmm(s.begin)}</b><small>${mins(s.stay)}</small>
+        <div style="margin-top:4px"><span class="num">${i+1}</span></div></div>
+      <div>
+        <h3>${esc(b.n)}</h3>
+        <div class="meta">${esc(porch.a)} · set ${hhmm(b.t[0])}–${hhmm(b.t[1])} · ${fitPct(b)}% match</div>
+        <div class="one">${esc(b.one)}</div>
+        <div class="tags">${b.tg.map(t=>`<span class="tg${S.tags[t]===1?' hit':''}">${t}</span>`).join('')}</div>
+      </div></div>`;
+  }).join('') + legRow(p.endWalk, p.endWalk/(S.pace*1000/60), 'to '+placeName(S.to<0?S.from:S.to))
+    + `<div style="text-align:center;font-size:12px;color:var(--text-2);padding:8px">Home by <b>${hhmm(p.finish)}</b></div>`;
+  drawMap();
+}
+function legRow(m,mn,label){
+  if(m<5) return '';
+  return `<div class="walk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 4a1.5 1.5 0 100-.01"/><path d="M11 21l1.5-6-2.5-2 1-5 3 3 3 1"/><path d="M8 21l2-5"/></svg>
+    walk ${km(m)} · ${mins(mn)} ${label?'· '+esc(label):''}</div>`;
+}
+const placeName=(i)=> PLACES[i] ? PLACES[i].label : '—';
+
+/* ---------- map ---------- */
+const MAP={k:1, tx:0, ty:0, fitted:null};
+function mapBounds(){
+  const xs=[], ys=[];
+  for(const p of D.streets.pts){ xs.push(mx(p[1])); ys.push(-my(p[0])); }
+  return {x0:Math.min(...xs), x1:Math.max(...xs), y0:Math.min(...ys), y1:Math.max(...ys)};
+}
+const BOUNDS=mapBounds();
+function drawMap(){
+  const svg=$('#map');
+  const r=svg.getBoundingClientRect();
+  const W=Math.max(200,r.width), H=Math.max(200,r.height);
+  const p=S.plan;
+
+  // fit: to the route when there is one, else the whole neighbourhood
+  let b;
+  if(p&&p.stops.length){
+    const xs=[], ys=[];
+    const add=(lat,lon)=>{xs.push(mx(lon));ys.push(-my(lat));};
+    add(PLACES[S.from].lat, PLACES[S.from].lon);
+    add(PLACES[S.to<0?S.from:S.to].lat, PLACES[S.to<0?S.from:S.to].lon);
+    p.stops.forEach(s=>add(D.porches[s.b.p].lat, D.porches[s.b.p].lon));
+    // Padding proportional to the route: a fixed margin swamps a compact
+    // route and pushes the whole thing down to an unreadable zoom on a phone.
+    const x0=Math.min(...xs), x1=Math.max(...xs), y0=Math.min(...ys), y1=Math.max(...ys);
+    const pad=Math.max(45, 0.08*Math.max(x1-x0, y1-y0));
+    b={x0:x0-pad, x1:x1+pad, y0:y0-pad, y1:y1+pad};
+  } else b={...BOUNDS};
+
+  const bw=b.x1-b.x0, bh=b.y1-b.y0;
+  // Cap the initial fit: a compact route shouldn't blow the grid up to the
+  // point where three blocks fill the screen. Users can still zoom in.
+  const scale=Math.min(W/bw, H/bh, 1.25);
+  if(!MAP.fitted || MAP.fitted!==JSON.stringify(b)){ MAP.k=1; MAP.tx=0; MAP.ty=0; MAP.fitted=JSON.stringify(b); }
+  const k=scale*MAP.k;
+  const cx=(b.x0+b.x1)/2, cy=(b.y0+b.y1)/2;
+  const X=(x)=> (x-cx)*k + W/2 + MAP.tx;
+  const Y=(y)=> (y-cy)*k + H/2 + MAP.ty;
+  const PX=(lat,lon)=>[X(mx(lon)), Y(-my(lat))];
+
+  const out=[];
+  out.push(`<rect width="${W}" height="${H}" fill="var(--map-ground)"/>`);
+  // streets, thin to thick — widths are carriageway metres, clamped so the
+  // grid stays legible at both ends of the zoom range
+  const widths={minor:['var(--map-minor)',7], mid:['var(--map-mid)',10], major:['var(--map-major)',13]};
+  for(const cls of ['minor','mid','major']){
+    const [col,wid]=widths[cls];
+    const d=[];
+    for(const w of D.streets.ways){
+      if(w.c!==cls) continue;
+      const pts=w.n.map(i=>{const q=D.streets.pts[i];return `${X(mx(q[1])).toFixed(1)},${Y(-my(q[0])).toFixed(1)}`;});
+      d.push('M'+pts.join('L'));
+    }
+    out.push(`<path d="${d.join('')}" stroke="${col}" stroke-width="${Math.min(10,Math.max(.8,wid*k)).toFixed(2)}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`);
+  }
+  // street labels (only when zoomed enough to read, and clear of the edges)
+  if(k>0.055){
+    for(const l of D.streets.labels){
+      const q=D.streets.pts[l.p];
+      const [x,y]=[X(mx(q[1])), Y(-my(q[0]))];
+      if(x<30||x>W-30||y<22||y>H-22) continue;
+      out.push(`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" fill="var(--map-label)" font-size="9.5" font-weight="600"
+        text-anchor="middle" dominant-baseline="middle" transform="rotate(${l.v?-90:0} ${x.toFixed(1)} ${y.toFixed(1)})"
+        style="paint-order:stroke;stroke:var(--map-ground);stroke-width:3px">${esc(l.s)}</text>`);
+    }
+  }
+  // every porch, dimmed
+  for(const pr of D.porches){
+    const [x,y]=PX(pr.lat,pr.lon);
+    out.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="var(--text-3)" opacity=".55"/>`);
+  }
+  // the route
+  if(p&&p.stops.length){
+    const endPlace=PLACES[S.to<0?S.from:S.to];
+    // Each leg is drawn door → street → … → street → door, so the line meets
+    // the pins instead of running past them down the centre of the road.
+    const hops=[
+      {lat:PLACES[S.from].lat, lon:PLACES[S.from].lon, snap:PLACES[S.from].snap},
+      ...p.stops.map(s=>{const pr=D.porches[s.b.p];
+        return {lat:pr.lat, lon:pr.lon, snap:porchPlace(s.b.p).snap};}),
+      {lat:endPlace.lat, lon:endPlace.lon, snap:endPlace.snap},
+    ];
+    const dd=[];
+    for(let i=1;i<hops.length;i++){
+      const leg=routeBetween(G, hops[i-1].snap, hops[i].snap);
+      const q=[[hops[i-1].lat,hops[i-1].lon], ...leg.path, [hops[i].lat,hops[i].lon]];
+      dd.push('M'+q.map(c=>`${X(mx(c[1])).toFixed(1)},${Y(-my(c[0])).toFixed(1)}`).join('L'));
+    }
+    const path=dd.join('');
+    out.push(`<path d="${path}" stroke="var(--brand)" stroke-width="${Math.min(7,Math.max(2.5,4*k)).toFixed(2)}" fill="none"
+      stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>`);
+    out.push(`<path d="${path}" stroke="var(--brand-2)" stroke-width="${Math.min(2,Math.max(1,1.2*k)).toFixed(2)}" fill="none"
+      stroke-linecap="round" stroke-dasharray="1 7" stroke-linejoin="round" opacity=".9"/>`);
+
+    // --- pins ------------------------------------------------------------
+    // Two ways pins collide: the route returns to the same porch later in the
+    // day, or two different porches land within a pin's width of each other at
+    // this zoom. Both are merged into one pin listing every stop it covers, so
+    // nothing is ever hidden underneath something else. Zoom in and they split
+    // back apart, because clustering is recomputed in screen space each draw.
+    const label=(nums)=>{
+      const n=[...new Set(nums)].sort((a,b)=>a-b).map(i=>i+1);
+      // Cap the width, otherwise a fat pin overlaps more neighbours and the
+      // merging cascades.
+      return n.length<=4 ? n.join('·') : `${n[0]}·+${n.length-1}`;
+    };
+    const widthOf=(text)=>Math.max(18, 9+7.2*text.length);
+    const pin=(x,y,text,fill,ring,stops)=>{
+      const w=widthOf(text);
+      if(ring) out.push(`<rect x="${(x-w/2-5).toFixed(1)}" y="${(y-14).toFixed(1)}" width="${(w+10).toFixed(1)}" height="28" rx="14"
+        fill="none" stroke="var(--brand)" stroke-width="2" opacity=".85"/>`);
+      out.push(`<rect x="${(x-w/2).toFixed(1)}" y="${(y-9).toFixed(1)}" width="${w.toFixed(1)}" height="18" rx="9"
+        fill="${fill}" stroke="var(--map-ground)" stroke-width="2.5"${stops?` data-stops="${stops}"`:''}/>
+        <text x="${x.toFixed(1)}" y="${(y+0.5).toFixed(1)}" font-size="10.5" font-weight="800" fill="#fff"
+        text-anchor="middle" dominant-baseline="middle">${text}</text>`);
+    };
+
+    const byPorch=new Map();
+    p.stops.forEach((s,i)=>{
+      if(!byPorch.has(s.b.p)) byPorch.set(s.b.p, []);
+      byPorch.get(s.b.p).push(i);
+    });
+    let pins=[...byPorch].map(([pi,idxs])=>{
+      const pr=D.porches[pi];
+      const [x,y]=PX(pr.lat,pr.lon);
+      return {x, y, nums:[...idxs], ring:idxs.includes(S.sel), k:1};
+    });
+    // Merge on actual rectangle overlap rather than a fixed radius, so the
+    // test holds for wide multi-stop labels as well as single digits.
+    const GAP=3;
+    for(let guard=0; guard<60; guard++){
+      let hit=false;
+      for(let i=0;i<pins.length && !hit;i++){
+        for(let j=i+1;j<pins.length;j++){
+          const a=pins[i], b2=pins[j];
+          const wa=widthOf(label(a.nums)), wb=widthOf(label(b2.nums));
+          if(Math.abs(a.x-b2.x) < (wa+wb)/2+GAP && Math.abs(a.y-b2.y) < 18+GAP){
+            a.x=(a.x*a.k+b2.x*b2.k)/(a.k+b2.k); a.y=(a.y*a.k+b2.y*b2.k)/(a.k+b2.k);
+            a.nums.push(...b2.nums); a.ring=a.ring||b2.ring; a.k+=b2.k;
+            pins.splice(j,1); hit=true; break;
+          }
+        }
+      }
+      if(!hit) break;
+    }
+    for(const c of pins)
+      pin(c.x, c.y, label(c.nums), 'var(--brand)', c.ring,
+          [...new Set(c.nums)].sort((a,b2)=>a-b2).map(i=>i+1).join(','));
+    // start/finish ride on top, nudged clear of any stop pin they'd cover
+    const ab=(place,text)=>{
+      let [x,y]=PX(place.lat,place.lon);
+      const w=widthOf(text);
+      for(let t=0;t<8;t++){
+        const clash=pins.find(c=>Math.abs(c.x-x)<(w+widthOf(label(c.nums)))/2+GAP && Math.abs(c.y-y)<18+GAP);
+        if(!clash) break;
+        y = clash.y - 21 - t;
+      }
+      pin(x,y,text,'var(--accent)',false,null);
+    };
+    ab(PLACES[S.from],'A');
+    if(S.to>=0 && S.to!==S.from) ab(endPlace,'B');
+  }
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=out.join('');
+
+  $('#legend').innerHTML = p&&p.stops.length
+    ? `<div><i style="background:var(--brand)"></i>your route · ${km(p.walk)} walking</div>
+       <div><i style="background:var(--accent)"></i>start / finish</div>
+       <div><i style="background:var(--text-3)"></i>all ${D.porches.length} porches</div>`
+    : `<div><i style="background:var(--text-3)"></i>${D.porches.length} porches · ${D.bands.length} sets</div>
+       <div style="color:var(--text-3)">Build a schedule to draw a route.</div>`;
+}
+
+/* ---------- bands browser ---------- */
+function renderBands(){
+  const q=$('#bq').value.trim().toLowerCase();
+  const sort=$('#bsort').value;
+  let list=D.bands.filter(b=>!q ||
+    (b.n+' '+b.g+' '+b.tg.join(' ')+' '+b.sl.join(' ')+' '+b.one).toLowerCase().includes(q));
+  if(sort==='name') list=[...list].sort((a,b)=>a.n.localeCompare(b.n));
+  else if(sort==='fit') list=[...list].sort((a,b)=>matchScore(b)-matchScore(a));
+  $('#bcount').textContent=`${list.length} of ${D.bands.length}`;
+  $('#bgrid').innerHTML=list.map(b=>{
+    const pr=D.porches[b.p];
+    const ini=b.n.split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+    const links=Object.entries(b.l).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener" title="${k}">${LINKICON[k]||LINKICON.web}</a>`).join('');
+    return `<article class="card">
+      <div class="ph">
+        <span class="ini">${esc(ini)}</span>
+        ${b.img?`<img loading="lazy" src="${esc(b.img)}" alt="" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;position:absolute;inset:0" onerror="this.remove()">`:''}
+        <span class="slot">${hhmm(b.t[0])}–${hhmm(b.t[1])}</span>
+      </div>
+      <div class="bd">
+        <h3>${esc(b.n)}</h3>
+        <div class="gen">${esc(b.g)} · ${fitPct(b)}% match</div>
+        <div class="one">${esc(b.one)}</div>
+        <p>${esc(b.pr)}</p>
+        <div style="font-size:11px;color:var(--text-3)">${esc(pr.a)}${b.sl.length?' · sounds like '+esc(b.sl.join(', ')):''}</div>
+        <div class="dimbars">${b.d.map((v,i)=>`<div class="dimbar"><span>${DIMLABEL[i][0]}</span><span class="t"><i style="width:${(v-1)/4*100}%"></i></span></div>`).join('')}</div>
+        <div class="foot">${links}
+          <button class="addbtn${S.pins.includes(b.id)?' on':''}" data-pin="${b.id}">${S.pins.includes(b.id)?'★ must-see':'☆ must-see'}</button>
+        </div>
+      </div></article>`;
+  }).join('');
+}
+const LINKICON={
+  web:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18"/></svg>',
+  bc:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17h13L21 7H8z"/></svg>',
+  sp:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity=".25"/><path d="M7 9.5c3.5-1 7.5-.6 10 1M7.5 13c3-.8 6-.4 8 .8M8 16c2.3-.6 4.6-.3 6 .6" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>',
+  sc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 16v-4M7 17V9M10 17V7M13 17V9M16 17h3a2.5 2.5 0 000-5 4 4 0 00-6-3"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9.5c0-.3.2-.5.5-.5z"/></svg>',
+};
+
+/* ---------- share links ---------- */
+const b64u={
+  enc:(s)=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''),
+  dec:(s)=>decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))),
+};
+function encodeState(){
+  const o={v:1, a:S.t0, b:S.t1, f:S.from, e:S.to, d:S.dwell, m:S.minStay, p:S.pace,
+    mb:S.minBands, xb:S.maxBands,
+    r:D.dims.map(d=>S.pref[d]+2).join(''), g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
+    s:S.plan?S.plan.stops.map(x=>x.b.id):null};
+  return b64u.enc(JSON.stringify(o));
+}
+function decodeState(str){
+  try{
+    const o=JSON.parse(b64u.dec(str));
+    if(o.v!==1) return false;
+    S.t0=o.a; S.t1=o.b; S.from=o.f; S.to=o.e; S.dwell=o.d; S.minStay=o.m; S.pace=o.p;
+    S.minBands=o.mb||0; S.maxBands=o.xb||0;
+    String(o.r||'').split('').forEach((c,i)=>{
+      if(D.dims[i] && /\d/.test(c)) S.pref[D.dims[i]]=Math.max(-2,Math.min(2,(+c)-2));
+    });
+    S.tags=o.g||{}; S.pins=o.n||[];
+    if(o.s){
+      const seq=o.s.map(id=>D.bands.find(b=>b.id===id)).filter(Boolean);
+      const cfg={t0:S.t0,t1:S.t1,from:S.from,to:S.to<0?S.from:S.to,dwell:S.dwell,
+        minStay:Math.min(S.minStay,S.dwell),mpm:S.pace*1000/60};
+      S.plan=simulate(seq,cfg) || null;
+      if(S.plan) S.plan.dropped=[];
+    }
+    return true;
+  }catch(e){ return false; }
+}
+function shareUrl(){ return location.origin+location.pathname+'#s='+encodeState(); }
+
+function makeICS(){
+  const p=S.plan; if(!p) return '';
+  const [Y,M,Dd]=D.fest.date.split('-').map(Number);
+  // America/Chicago in mid-August is UTC-5
+  const stamp=(m)=>{
+    const t=new Date(Date.UTC(Y,M-1,Dd,0,0,0)+ (m+300)*60000);
+    return t.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  };
+  const esc2=(s)=>String(s).replace(/([,;\\])/g,'\\$1').replace(/\n/g,'\\n');
+  const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//polecat//porchfest planner//EN','CALSCALE:GREGORIAN'];
+  p.stops.forEach((s,i)=>{
+    const b=s.b, porch=D.porches[b.p];
+    L.push('BEGIN:VEVENT',
+      `UID:porchfest-${b.id}-${i}@polecat.live`,
+      `DTSTAMP:${stamp(0)}`,
+      `DTSTART:${stamp(s.begin)}`,
+      `DTEND:${stamp(s.leave)}`,
+      `SUMMARY:${esc2((i+1)+'. '+b.n)}`,
+      `LOCATION:${esc2(porch.a+', Minneapolis, MN')}`,
+      `DESCRIPTION:${esc2(b.one+'\n\n'+b.pr+'\n\nSet: '+hhmm(b.t[0])+'–'+hhmm(b.t[1])+'\n'+(b.l.bc||b.l.sp||b.l.web||''))}`,
+      `GEO:${porch.lat};${porch.lon}`,
+      'END:VEVENT');
+  });
+  L.push('END:VCALENDAR');
+  return L.join('\r\n');
+}
+
+/* ---------- wiring ---------- */
+function setView(v){
+  document.body.dataset.view=v;
+  $$('[data-go]').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.go===v)));
+  if(v==='bands') renderBands();
+  if(v==='map'||v==='route'||v==='tune') requestAnimationFrame(drawMap);
+}
+$$('[data-go]').forEach(b=>b.onclick=()=>setView(b.dataset.go));
+
+/* ---- live re-planning -------------------------------------------------
+   Every control re-plans; nothing waits on a button. Turning a dial fires a
+   burst of input events, so the work is debounced to the moment you pause.
+   Then two passes: a fast one for immediate feedback, and a thorough one a
+   beat later that only replaces the route if it genuinely scored better —
+   so the map doesn't churn under you for no reason. */
+let planTimer=null, refineTimer=null;
+function setBusy(on){ $('#route').classList.toggle('busy', !!on); }
+function applyPlan(runs, onlyIfBetter){
+  const p=plan(runs);
+  if(onlyIfBetter && S.plan && p && !(p.score > S.plan.score + 1e-9)) return;
+  S.plan=p; S.sel=-1;
+  renderPlan();
+  history.replaceState(null,'','#s='+encodeState());
+}
+function replan(immediate){
+  clearTimeout(planTimer); clearTimeout(refineTimer);
+  S.err = S.t1<=S.t0 ? 'Your finish time is at or before your start time.' : '';
+  setBusy(true);
+  planTimer=setTimeout(()=>{
+    applyPlan(14, false);
+    refineTimer=setTimeout(()=>{ applyPlan(56, true); setBusy(false); }, 380);
+  }, immediate?0:170);
+}
+// One entry point for "a control moved": re-plan, and keep the browser in step.
+function changed(){
+  replan();
+  if(document.body.dataset.view==='bands') renderBands();
+}
+
+$('#t0').onchange=e=>{S.t0=+e.target.value; changed();};
+$('#t1').onchange=e=>{S.t1=+e.target.value; changed();};
+$('#from').onchange=e=>{S.from=+e.target.value; drawMap(); changed();};
+$('#to').onchange=e=>{S.to=+e.target.value; drawMap(); changed();};
+$('#minB').onchange=e=>{
+  S.minBands=+e.target.value;
+  if(S.maxBands && S.minBands>S.maxBands){ S.maxBands=S.minBands; $('#maxB').value=S.maxBands; }
+  renderCountHint(); changed();
+};
+$('#maxB').onchange=e=>{
+  S.maxBands=+e.target.value;
+  if(S.maxBands && S.minBands>S.maxBands){ S.minBands=S.maxBands; $('#minB').value=S.minBands; }
+  renderCountHint(); changed();
+};
+const bindRange=(id,key,fmt,el)=>{
+  $('#'+id).oninput=e=>{ S[key]=+e.target.value; $('#'+el).textContent=fmt(S[key]); changed(); };
+};
+bindRange('dwell','dwell',v=>v+' min','dwellV');
+bindRange('minStay','minStay',v=>v+' min','minV');
+bindRange('pace','pace',v=>v+' km/h','paceV');
+
+$('#taste').addEventListener('input',e=>{
+  const box=e.target.closest('.taste'); if(!box) return;
+  S.pref[box.dataset.dim]=+e.target.value;
+  box.classList.toggle('off', !S.pref[box.dataset.dim]);
+  $('.lab span',box).textContent=prefWord(S.pref[box.dataset.dim]);
+  changed();
+});
+$('#presets').addEventListener('click',e=>{
+  const b=e.target.closest('[data-preset]'); if(!b) return;
+  D.dims.forEach(d=>S.pref[d]=0);
+  if(b.dataset.preset!=='__clear'){
+    const p=PRESETS[b.dataset.preset]||{};
+    for(const [k,v] of Object.entries(p)) S.pref[k]=v;
+  } else S.tags={};
+  renderControls(); changed();
+});
+$('#genres').addEventListener('click',e=>{
+  const c=e.target.closest('[data-tag]'); if(!c) return;
+  const t=c.dataset.tag;
+  S.tags[t] = S.tags[t]===1 ? -1 : S.tags[t]===-1 ? 0 : 1;
+  if(!S.tags[t]) delete S.tags[t];
+  c.dataset.s=S.tags[t]||0;
+  changed();
+});
+$('#pinSearch').addEventListener('change',e=>{
+  const b=D.bands.find(x=>x.n.toLowerCase()===e.target.value.trim().toLowerCase());
+  if(b && !S.pins.includes(b.id)){ S.pins.push(b.id); renderPins(); changed(); }
+  e.target.value='';
+});
+$('#pins').addEventListener('click',e=>{
+  const b=e.target.closest('[data-unpin]'); if(!b) return;
+  S.pins=S.pins.filter(x=>x!==b.dataset.unpin); renderPins(); changed();
+});
+$('#bgrid').addEventListener('click',e=>{
+  const b=e.target.closest('[data-pin]'); if(!b) return;
+  const id=b.dataset.pin;
+  S.pins = S.pins.includes(id) ? S.pins.filter(x=>x!==id) : [...S.pins,id];
+  renderPins(); renderBands(); replan();
+  toast(S.pins.includes(id)?'Pinned as must-see':'Unpinned');
+});
+$('#bq').oninput=renderBands; $('#bsort').onchange=renderBands;
+
+$('#stops').addEventListener('click',e=>{
+  const s=e.target.closest('[data-stop]'); if(!s) return;
+  S.sel = S.sel===+s.dataset.stop ? -1 : +s.dataset.stop;
+  renderPlan();
+  if(window.matchMedia('(max-width:760px)').matches) setView('map');
+});
+
+// The search is randomised, so there is usually more than one good afternoon.
+// This asks for a different one at full effort rather than re-deriving the
+// same answer.
+$('#go').onclick=()=>{
+  const btn=$('#go'); btn.disabled=true; btn.textContent='Shuffling…';
+  clearTimeout(planTimer); clearTimeout(refineTimer);
+  setTimeout(()=>{
+    applyPlan(64, false);
+    btn.disabled=false; renderGoBtn(); setBusy(false);
+    if(window.matchMedia('(max-width:760px)').matches) setView('route');
+    toast(S.plan&&S.plan.stops.length ? `${S.plan.stops.length} bands, ${km(S.plan.walk)} of walking` : 'Nothing fits — try loosening things');
+  },30);
+};
+function renderGoBtn(){
+  $('#go').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0115.5-6.2M21 12a9 9 0 01-15.5 6.2"/><path d="M18 3v5h-5M6 21v-5h5"/></svg>Shuffle the route`;
+}
+
+$('#shareBtn').onclick=()=>{
+  if(!S.plan){ toast('Build a schedule first'); return; }
+  $('#shareUrl').value=shareUrl();
+  $('#shareDlg').showModal();
+};
+$('#shareDlg').addEventListener('click',e=>{ if(e.target.hasAttribute('data-close')) $('#shareDlg').close(); });
+$('#copyBtn').onclick=async()=>{
+  const u=$('#shareUrl');
+  try{ await navigator.clipboard.writeText(u.value); }catch(e){ u.select(); document.execCommand('copy'); }
+  toast('Link copied');
+};
+$('#printBtn').onclick=()=>{ $('#shareDlg').close(); setTimeout(()=>window.print(),120); };
+$('#gmapBtn').onclick=()=>{
+  if(!S.plan) return;
+  const pts=[PLACES[S.from], ...S.plan.stops.map(s=>porchPlace(s.b.p)), PLACES[S.to<0?S.from:S.to]]
+    .map(p=>`${p.lat},${p.lon}`);
+  window.open(`https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${pts[0]}&destination=${pts[pts.length-1]}&waypoints=${pts.slice(1,-1).join('|')}`,'_blank','noopener');
+};
+$('#icsBtn').onclick=()=>{
+  if(!S.plan||!S.plan.stops.length){ toast('Build a schedule first'); return; }
+  const blob=new Blob([makeICS()],{type:'text/calendar'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='porchfest-2026.ics'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast('Calendar file downloaded');
+};
+
+/* map interaction */
+(function(){
+  const svg=$('#map');
+  let drag=null;
+  const zoom=(f)=>{ MAP.k=Math.max(.4,Math.min(14,MAP.k*f)); drawMap(); };
+  $('#zIn').onclick=()=>zoom(1.35); $('#zOut').onclick=()=>zoom(1/1.35);
+  $('#zFit').onclick=()=>{ MAP.k=1; MAP.tx=0; MAP.ty=0; drawMap(); };
+  svg.addEventListener('wheel',e=>{ e.preventDefault(); zoom(e.deltaY<0?1.12:1/1.12); },{passive:false});
+  const down=(x,y)=>drag={x,y,tx:MAP.tx,ty:MAP.ty};
+  const move=(x,y)=>{ if(!drag) return; MAP.tx=drag.tx+(x-drag.x); MAP.ty=drag.ty+(y-drag.y); drawMap(); };
+  svg.addEventListener('pointerdown',e=>{ svg.setPointerCapture(e.pointerId); down(e.clientX,e.clientY); });
+  svg.addEventListener('pointermove',e=>move(e.clientX,e.clientY));
+  svg.addEventListener('pointerup',()=>drag=null);
+  svg.addEventListener('pointercancel',()=>drag=null);
+  let pinch=null;
+  svg.addEventListener('touchstart',e=>{ if(e.touches.length===2){
+    pinch=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY); drag=null; }},{passive:true});
+  svg.addEventListener('touchmove',e=>{ if(e.touches.length===2&&pinch){
+    const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+    MAP.k=Math.max(.4,Math.min(14,MAP.k*(d/pinch))); pinch=d; drawMap(); e.preventDefault(); }},{passive:false});
+  svg.addEventListener('touchend',()=>pinch=null);
+  new ResizeObserver(()=>drawMap()).observe($('#mapPane'));
+})();
+
+/* theme */
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" stroke-linecap="round"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg>';
+function applyTheme(t){
+  document.documentElement.dataset.theme=t;
+  $('#themeBtn').innerHTML = t==='dark'?SUN:MOON;
+  try{ localStorage.setItem('pf.theme',t); }catch(e){}
+  drawMap();
+}
+$('#themeBtn').onclick=()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* boot */
+(function(){
+  let theme='dark';
+  try{ theme=localStorage.getItem('pf.theme')||'dark'; }catch(e){}
+  $('#festline').textContent=`${D.fest.name} · Sat Aug 15, ${D.fest.year} · ${D.bands.length} bands`;
+  const hash=location.hash.match(/^#s=(.+)$/);
+  const restored = hash ? decodeState(hash[1]) : false;
+  renderControls();
+  applyTheme(theme);
+  renderPlan();
+  if(restored){
+    setView(S.plan?'route':'tune');
+    toast(S.plan?'Shared plan loaded':'Shared settings loaded');
+    if(!S.plan) replan(true);
+  } else {
+    // Land on a real route rather than an empty state — there's always an
+    // answer to "what should I do this afternoon", even before you tune it.
+    replan(true);
+  }
+})();
+</script>
+</body>
+</html>

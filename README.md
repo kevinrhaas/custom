@@ -8,6 +8,7 @@ A garden-themed landing page and the interactive **Hosta Gangway Guide** are pub
 
 - **Landing:** `https://kevinrhaas.github.io/custom/`
 - **Hosta guide:** `https://kevinrhaas.github.io/custom/hosta/`
+- **Porchfest Planner:** `https://kevinrhaas.github.io/custom/porchfest/`
 
 The published site is only the `site/` folder (curated web content) — the CAD source in the project folders stays in the repo but out of the deploy. See [`site/`](site/) and `.github/workflows/deploy.yml`. Not part of the Polecat app fleet, but it follows the platform's static-first / aurora-backdrop / light-dark conventions. The Hosta app is generated from `hosta/hosta_gangway_guide_v3.html` by `hosta/build_app.py`.
 
@@ -22,6 +23,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [gridfinity-rationell](gridfinity-rationell/) | Gridfinity adapter for IKEA Rationell drawer organizers |
 | [ordovician-sandstone](ordovician-sandstone/) | Parametric sandstone strata lamp shade generator — organic geology-inspired cylindrical forms with a Python/OpenSCAD pipeline |
 | [peachtree-city-bowl](peachtree-city-bowl/) | Parametric wavy-rim decorative bowl designed in OpenSCAD |
+| [porchfest](porchfest/) | Uptown Porchfest 2026 walking-route planner — 91 bands rated across ten dimensions, an orienteering solver over the real street grid, self-contained map, and shareable plans. Builds `site/porchfest/app/` |
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
 
 ## File Formats

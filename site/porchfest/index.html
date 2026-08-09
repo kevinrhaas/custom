@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Porchfest Planner — plan your Uptown Porchfest walk</title>
+<meta name="description" content="91 bands, 33 porches, one afternoon. Tell it what you like across ten dimensions and it builds you an optimised walking route with a schedule, a map, and a link you can share.">
+<meta name="theme-color" content="#12121c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8E%B8%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Porchfest Planner">
+<meta property="og:description" content="91 bands, 33 porches, one afternoon. Get an optimised walking route for Uptown Porchfest 2026.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#0a0a0f; --bg-2:#12121c;
+  --surface:#111118; --surface-2:#18181f; --surface-3:#222230;
+  --border:#2a2a3c; --text:#e8e8f2; --text-2:#8888aa; --text-3:#4a4a6a;
+  --brand:#ff6b4a; --brand-2:#ffa14a; --accent:#35c98f;
+  --shadow:0 24px 64px rgba(0,0,0,.5); --shadow-sm:0 6px 20px rgba(0,0,0,.35);
+  --radius:14px; --radius-lg:22px;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+}
+[data-theme="light"]{
+  --bg:#faf6f2; --bg-2:#f2ece5; --surface:#ffffff; --surface-2:#f5efe8; --surface-3:#eae2d9;
+  --border:#e0d5c8; --text:#1d1710; --text-2:#6b5d4f; --text-3:#a8998a;
+  --brand:#e04f2a; --brand-2:#f08a2c; --accent:#159c69;
+  --shadow:0 24px 64px rgba(80,50,30,.16); --shadow-sm:0 6px 20px rgba(80,50,30,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--brand-2);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+header{
+  display:flex;align-items:center;gap:12px;padding:16px 0;
+  border-bottom:1px solid var(--border);margin-bottom:0;
+}
+.tile{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;
+}
+.tile svg{width:20px;height:20px}
+.brandname{font-weight:700;letter-spacing:-.02em}
+.spacer{flex:1}
+.iconbtn{
+  width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+  color:var(--text-2);border:1px solid var(--border);background:var(--surface-2);
+}
+.iconbtn:hover{color:var(--text);border-color:var(--brand)}
+.iconbtn svg{width:18px;height:18px}
+.backlink{font-size:13px;color:var(--text-2);font-weight:600}
+
+.hero{padding:74px 0 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;inset:-40% 20% auto;height:420px;pointer-events:none;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--brand) 26%,transparent),transparent);
+  filter:blur(30px);
+}
+.hero>*{position:relative}
+.kicker{
+  display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--brand-2);
+  background:color-mix(in srgb,var(--brand) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--brand) 32%,transparent);
+  padding:5px 13px;border-radius:99px;margin-bottom:20px;
+}
+h1{
+  margin:0 0 16px;font-size:clamp(38px,6.6vw,66px);line-height:1.03;
+  letter-spacing:-.038em;font-weight:800;
+}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{font-size:clamp(16px,2.1vw,19px);color:var(--text-2);max-width:620px;margin:0 auto 30px}
+.cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:var(--radius);
+  font-weight:700;font-size:15.5px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#fff;box-shadow:var(--shadow-sm);text-decoration:none;
+}
+.btn:hover{filter:brightness(1.08);text-decoration:none}
+.btn svg{width:18px;height:18px}
+.btn.ghost{background:var(--surface-2);color:var(--text);border:1px solid var(--border);box-shadow:none}
+.btn.ghost:hover{border-color:var(--brand);filter:none}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:52px 0 0;
+}
+.stats div{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 12px;text-align:center;
+}
+.stats b{
+  display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.1;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stats small{font-size:11.5px;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+section{padding:64px 0}
+h2{font-size:clamp(25px,3.4vw,34px);letter-spacing:-.028em;margin:0 0 12px;font-weight:800}
+.lede{color:var(--text-2);max-width:640px;margin:0 0 34px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;
+}
+.card .ic{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin-bottom:13px;
+  background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand-2);
+}
+.card .ic svg{width:20px;height:20px}
+.card h3{margin:0 0 6px;font-size:17px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--text-2);font-size:14.5px}
+
+.dimwrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px 26px}
+.dim{display:grid;grid-template-columns:1fr auto;gap:4px;align-items:baseline;
+  padding-bottom:9px;border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+.dim b{font-size:14px;font-weight:700}
+.dim span{font-size:11.5px;color:var(--text-3)}
+.dim .bar{grid-column:1/-1;height:5px;border-radius:3px;background:var(--surface-3);overflow:hidden}
+.dim .bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+
+.steps{counter-reset:s;display:grid;gap:14px;max-width:720px}
+.step{display:grid;grid-template-columns:38px 1fr;gap:15px;align-items:start}
+.step::before{
+  counter-increment:s;content:counter(s);
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:800;font-size:14px;
+}
+.step h3{margin:4px 0 3px;font-size:16px;letter-spacing:-.015em}
+.step p{margin:0;color:var(--text-2);font-size:14.5px}
+
+.band{
+  margin-top:46px;background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface));
+  border:1px solid color-mix(in srgb,var(--brand) 30%,transparent);
+  border-radius:var(--radius-lg);padding:36px;text-align:center;
+}
+.band h2{margin-bottom:8px}
+.band p{color:var(--text-2);max-width:520px;margin:0 auto 22px}
+
+footer{
+  border-top:1px solid var(--border);padding:30px 0 46px;color:var(--text-3);font-size:13px;
+}
+footer .fl{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--text-2)}
+.note{font-size:12.5px;color:var(--text-3);margin-top:14px;line-height:1.6}
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:48px 0 40px}
+  section{padding:46px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg></span>
+  <span class="brandname">Porchfest Planner</span>
+  <span class="spacer"></span>
+  <a class="backlink" href="../">🪴 Custom</a>
+  <button class="iconbtn" id="themeBtn" aria-label="Toggle theme"></button>
+</header>
+
+<div class="hero">
+  <span class="kicker">Uptown Porchfest · Sat Aug 15, 2026</span>
+  <h1>91 bands. 33 porches.<br><em>One good afternoon.</em></h1>
+  <p class="sub">
+    Porchfest is gloriously chaotic: dozens of sets, all overlapping, spread across
+    the Wedge. This works out where you should actually stand, and when.
+  </p>
+  <div class="cta">
+    <a class="btn" href="app/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Plan my afternoon
+    </a>
+    <a class="btn ghost" href="https://uptownporchfest.com" target="_blank" rel="noopener">The festival →</a>
+  </div>
+
+  <div class="stats">
+    <div><b>91</b><small>bands</small></div>
+    <div><b>33</b><small>porches</small></div>
+    <div><b>10</b><small>taste dials</small></div>
+    <div><b>0</b><small>network calls</small></div>
+  </div>
+</div>
+
+<section>
+  <h2>Pick a vibe, not a spreadsheet</h2>
+  <p class="lede">
+    Every band was researched and rated on ten dimensions, so you can ask for
+    something specific — "loud, fast and raw" or "quiet enough for a stroller" —
+    instead of reading 91 bios.
+  </p>
+  <div class="dimwrap">
+    <div class="dims">
+      <div class="dim"><b>Energy</b><span>chill → frenetic</span><span class="bar"><i style="width:78%"></i></span></div>
+      <div class="dim"><b>Loudness</b><span>quiet → loud</span><span class="bar"><i style="width:62%"></i></span></div>
+      <div class="dim"><b>Tempo</b><span>slow → fast</span><span class="bar"><i style="width:55%"></i></span></div>
+      <div class="dim"><b>Electronic</b><span>acoustic → synthetic</span><span class="bar"><i style="width:34%"></i></span></div>
+      <div class="dim"><b>Vocals</b><span>instrumental → lyric-driven</span><span class="bar"><i style="width:80%"></i></span></div>
+      <div class="dim"><b>Danceable</b><span>listen → dance</span><span class="bar"><i style="width:58%"></i></span></div>
+      <div class="dim"><b>Experimental</b><span>familiar → out there</span><span class="bar"><i style="width:37%"></i></span></div>
+      <div class="dim"><b>Brightness</b><span>dark → sunny</span><span class="bar"><i style="width:60%"></i></span></div>
+      <div class="dim"><b>Grit</b><span>polished → raw</span><span class="bar"><i style="width:52%"></i></span></div>
+      <div class="dim"><b>Kid-friendly</b><span>adults → all ages</span><span class="bar"><i style="width:70%"></i></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>What it actually does</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 20l-5.4 1.8L5.4 3.2 9 2l6 3 5.4-1.8L18.6 20.8 15 22z"/><path d="M9 2v18M15 4v18"/></svg></div>
+      <h3>Real walking routes</h3>
+      <p>The street grid is baked in, so distances follow actual pavement — not straight lines through people's back gardens.</p>
+    </div>
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+      <h3>Set times respected</h3>
+      <p>It solves for what you can physically reach: every stop fits inside that band's window with time to walk there — and hits your band count if the clock allows.</p>
+    </div>
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l2.9 6.3 6.8.8-5 4.7 1.3 6.8L12 17.3 6 20.6l1.3-6.8-5-4.7 6.8-.8z"/></svg></div>
+      <h3>Pin your must-sees</h3>
+      <p>Star the friend's band you're obliged to watch and the route is built around it, filling the gaps with things you'll like.</p>
+    </div>
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M12 15V3M8 7l4-4 4 4"/></svg></div>
+      <h3>Share as a link</h3>
+      <p>The whole plan packs into the URL. Send it and your friends open the same route and map — no app, no account.</p>
+    </div>
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+      <h3>Straight to your calendar</h3>
+      <p>Export the schedule as <code>.ics</code> and every stop lands in your phone with the address and a one-line description.</p>
+    </div>
+    <div class="card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12h4l3 8 6-16 3 8h4"/></svg></div>
+      <h3>Works with no signal</h3>
+      <p>Map, data and routing are all in the page. Once it loads it needs nothing — handy in a crowd on a saturated cell tower.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><div><h3>Set your afternoon</h3><p>When you're free, where you're starting and finishing, how long you like to linger at a porch, and how fast you walk.</p></div></div>
+    <div class="step"><div><h3>Turn the dials</h3><p>Ten sliders, each centred on "don't care". Nudge one and the route redraws as you go — turn <em>country</em> down and those sets fall out of the schedule and off the map immediately. Seek or avoid whole genres, and star any must-sees.</p></div></div>
+    <div class="step"><div><h3>Say how many bands</h3><p>Ask for exactly six, or between three and five, or just "as many as fit". It searches thousands of possible afternoons and keeps the best one that obeys you — an ordered schedule, walking legs between stops, and a drawn map.</p></div></div>
+    <div class="step"><div><h3>Take it with you</h3><p>Share the link, export the calendar, or open the whole thing as walking directions.</p></div></div>
+  </div>
+</section>
+
+<div class="band">
+  <h2>Doors are on the porch</h2>
+  <p>Free, no sign-in, nothing stored anywhere but your own browser.</p>
+  <a class="btn" href="app/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    Plan my afternoon
+  </a>
+</div>
+
+<footer>
+  <div class="fl">
+    <span class="tile" style="width:26px;height:26px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span>
+    <span>Porchfest Planner</span>
+    <span class="spacer"></span>
+    <a href="app/">Open the app</a>
+    <a href="https://uptownporchfest.com" target="_blank" rel="noopener">Uptown Porchfest</a>
+    <a href="../">Custom</a>
+    <a href="https://polecat.live">polecat.live</a>
+  </div>
+  <p class="note">
+    Lineup, set times and porch addresses from <a href="https://uptownporchfest.com/bands" target="_blank" rel="noopener">uptownporchfest.com</a>.
+    Addresses geocoded with <a href="https://nominatim.openstreetmap.org" target="_blank" rel="noopener">Nominatim</a>;
+    street network and walking distances from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors (ODbL).
+    Band descriptions and the ten-dimension ratings are generated summaries — treat them as a
+    starting point, not gospel, and go see for yourself. An unofficial fan project, not affiliated with the festival.
+  </p>
+</footer>
+</div>
+
+<script>
+const b=document.getElementById('themeBtn');
+const SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" stroke-linecap="round"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.5A8.5 8.5 0 019.5 4 8.5 8.5 0 1020 14.5z"/></svg>';
+function apply(t){
+  document.documentElement.dataset.theme=t;
+  b.innerHTML=t==='dark'?SUN:MOON;
+  try{localStorage.setItem('pf.theme',t);}catch(e){}
+}
+let t='dark'; try{t=localStorage.getItem('pf.theme')||'dark';}catch(e){}
+apply(t);
+b.onclick=()=>apply(document.documentElement.dataset.theme==='dark'?'light':'dark');
+</script>
+</body>
+</html>
