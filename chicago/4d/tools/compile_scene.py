@@ -116,7 +116,12 @@ def compile_scene(scene_id: str, sources: dict) -> int:
                 "uncertainty_m": 20,
                 "placement_provisional": provisional,
             },
-            "footprint": phase.get("footprint", {}).get("polygon", []),
+            # Carry the footprint's own confidence, not just its geometry — a bare
+            # polygon loses precisely the thing the confidence view exists to show.
+            "footprint": {
+                "polygon": phase.get("footprint", {}).get("polygon", []),
+                "confidence": phase.get("footprint", {}).get("confidence", "conjectural"),
+            },
             "attributes": attributes,
             "citations": [
                 {

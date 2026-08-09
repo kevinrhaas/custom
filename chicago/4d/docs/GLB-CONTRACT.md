@@ -18,6 +18,17 @@ The rule from `AGENTS.md`: renderers consume glTF + JSON sidecars. They never re
 | placement | the renderer positions the node from the **sidecar**, not from a baked-in world transform |
 | winding / normals | counter-clockwise, outward |
 
+**Pinned conventions** (all previously ambiguous; a renderer and a generator picked
+differently and placed the same building 6 m apart before these were written down):
+
+| thing | convention |
+|---|---|
+| mesh local origin, in plan | the **footprint polygon's own coordinate origin** — the point the record's `position` refers to, i.e. polygon coordinate `(0, 0)`. NOT the centroid and NOT the bbox corner (they coincide only by accident). |
+| mesh local origin, vertically | `y = 0` at the base of the walls |
+| footprint axes → 3D | polygon `u` → **+X**, polygon `v` → **−Z** (so +v is north, matching ENU) |
+| `rotation_deg` | facade bearing, **degrees clockwise from grid north**, 0 = facing north. In three.js: `rotation.y = -deg * PI/180`. |
+| ENU → three.js | `local_e` → **+X**, `local_n` → **−Z**, up → **+Y** |
+
 Authoring in metres about a local origin is what lets a structure be re-placed when its position
 firms up — which will happen, because most positions currently carry `symbolic_location` and
 ±20 m of georeferencing uncertainty.
@@ -28,7 +39,7 @@ One node per structure **phase**:
 
 ```
 node.name    = "<structure_id>__<phase_id>"     e.g. "sauganash_hotel__frame_1831"
-node.extras  = { "structure_id": "...", "phase_id": "...", "scene_ids": ["1835"] }
+node.extras  = { "structure_id": "...", "phase_id": "..." }
 ```
 
 `extras` survives round-trips through Blender, glTF-Transform, Godot and glTFast, and is
@@ -46,6 +57,12 @@ primitives cannot span materials, so this is unavoidable. Consequences:
   ≤50–80 budget assumes the buildings get merged into a `BatchedMesh` before that matters.
 - `_CONFIDENCE` is present on **every** child, verified in three.js as
   `geometry.attributes._confidence` (float, lowercased by GLTFLoader as expected).
+
+**`BatchedMesh` gotcha, found by the renderer track.** `BatchedMesh` snapshots its
+attribute set from the **first** geometry added, and only validates that later geometries
+*have* the batch's attributes — never the reverse. If the first geometry into a batch lacks
+`_CONFIDENCE`, every later geometry's is **silently dropped** and the whole batch renders as
+documented. Normalise every geometry to the same attribute set before adding.
 
 ## The confidence channel — `_CONFIDENCE`
 
@@ -96,8 +113,11 @@ whose height is a guess is a guessed wall, even if we know it was white.
 
 ## Materials
 
-- One shared material per batch where possible — the buildings render as a single
-  `BatchedMesh`, so per-building materials defeat the draw-call budget.
+- One shared material per batch. A building with five materials is **five batches**, not one —
+  glTF primitives cannot span materials, so "all buildings in a single `BatchedMesh`" is not
+  achievable while material sets differ. Draw calls stay flat as buildings are added only if
+  they **share** material sets, which is what the `gltf-transform palette` step is for. That
+  step has not run yet, so the current count is per-material.
 - Run `gltf-transform palette` so flat per-building colours become a shared atlas.
 - **Bake ambient occlusion into the texture**, not into vertex colours.
 - No emissive, no transparency in the base asset. The confidence view's translucency is a
@@ -151,6 +171,17 @@ buildings normally but the confidence view treats position as conjectural.
 
 `uncertainty_m` carries the georeferencing reality forward: nothing traced from the 1834 sheets
 is better than about ±20 m.
+
+`footprint` is `{ "polygon": [[u,v],…], "confidence": "…" }` — the polygon alone would lose the
+footprint's confidence, which is exactly what the confidence view exists to show.
+
+**Discovery.** A static host cannot be globbed, so each scene publishes
+`sidecars/<scene>/index.json` listing `{id, name, sidecar, asset}` plus `excluded_by_date`.
+The renderer reads the index, never a directory listing.
+
+**Paths.** `asset` and `sidecar` are relative to the published `data/` root
+(`site/chicago/4d/data/`). In the source tree the same files sit at `assets/web/` and
+`data/sidecars/`, so a dev server needs a base override — the renderer accepts `?assets=`.
 
 ## What the renderer must implement
 

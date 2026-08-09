@@ -75,12 +75,8 @@ def inputs_hash(structure: dict, phase: dict, archetype: str) -> str:
     return h.hexdigest()
 
 
-def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
-    """Smart-UV unwrap and bake ambient occlusion to an image texture.
-
-    AO is the largest visible quality gain available on plain frame buildings and
-    it is the reason this pipeline uses Blender at all.
-    """
+def unwrap(ob) -> None:
+    """Smart-UV unwrap. Always run — textures need UVs even when AO does not."""
     bpy.context.view_layer.objects.active = ob
     ob.select_set(True)
     bpy.ops.object.mode_set(mode="EDIT")
@@ -88,12 +84,32 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
     bpy.ops.uv.smart_project(angle_limit=1.15, island_margin=0.02)
     bpy.ops.object.mode_set(mode="OBJECT")
 
+
+def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
+    """Bake ambient occlusion and wire it in as the glTF occlusion texture.
+
+    OFF BY DEFAULT, and that is a considered choice rather than an oversight.
+    AO is the largest visible quality gain available on plain frame buildings,
+    which is why this pipeline uses Blender at all — but it only works on
+    geometry built for it. These archetypes model clapboard courses, window
+    reveals and shutters as thin surfaces sitting a centimetre off the wall, and
+    every one of them occludes its neighbours: a measured bake comes out at mean
+    0.265 with 69% of texels below half, and the Sauganash renders brown when its
+    white paint is DOCUMENTED. Shortening the AO distance to 0.25 m only reaches
+    0.38. That is not a tuning problem, it is a geometry problem.
+
+    The fix, when someone picks this up, is a low-poly AO cage — bake the massing
+    only, and let the decorative surfaces inherit it — not a stronger denoiser.
+    Until then `--ao` exists so the path stays exercised, and the manifest records
+    honestly whether any given asset actually carries AO.
+    """
     img = bpy.data.images.new(f"{ob.name}_ao", size, size)
     for mat in ob.data.materials:
         nt = mat.node_tree
         tex = nt.nodes.new("ShaderNodeTexImage")
         tex.image = img
-        nt.nodes.active = tex
+        tex.name = "ao_tex"
+        nt.nodes.active = tex          # bake target
 
     sc = bpy.context.scene
     sc.render.engine = "CYCLES"
@@ -102,6 +118,30 @@ def bake_ao(ob, size: int = 512, samples: int = 48) -> None:
     sc.render.bake.use_selected_to_active = False
     sc.render.bake.margin = 4
     bpy.ops.object.bake(type="AO")
+
+    # Wire the baked image in as the glTF OCCLUSION texture. Without this the
+    # exporter drops it and the GLB carries no AO at all — the bake silently
+    # produces nothing, which is exactly what happened before this was added.
+    # The exporter recognises a node group literally named "glTF Material Output"
+    # with an "Occlusion" input; that is the only supported path.
+    for mat in ob.data.materials:
+        nt = mat.node_tree
+        tex = next((n for n in nt.nodes if n.name == "ao_tex"), None)
+        if tex is None:
+            continue
+        tex.image.colorspace_settings.name = "Non-Color"
+        grp = bpy.data.node_groups.get("glTF Material Output")
+        if grp is None:
+            grp = bpy.data.node_groups.new("glTF Material Output", "ShaderNodeTree")
+            grp.interface.new_socket("Occlusion", in_out="INPUT",
+                                     socket_type="NodeSocketFloat")
+            grp.nodes.new("NodeGroupInput")
+        node = nt.nodes.new("ShaderNodeGroup")
+        node.node_tree = grp
+        node.name = "glTF Material Output"
+        sep = nt.nodes.new("ShaderNodeSeparateColor")
+        nt.links.new(tex.outputs["Color"], sep.inputs["Color"])
+        nt.links.new(sep.outputs["Red"], node.inputs["Occlusion"])
 
 
 def export_glb(ob, structure_id: str, phase_id: str, out: Path) -> Path:
@@ -133,7 +173,10 @@ def main() -> int:
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--only")
     ap.add_argument("--scene", default="1835")
-    ap.add_argument("--no-bake", action="store_true")
+    ap.add_argument("--no-bake", action="store_true",
+                    help="skip UV unwrap as well as AO")
+    ap.add_argument("--ao", action="store_true",
+                    help="bake ambient occlusion. OFF by default: see bake_ao().")
     ap.add_argument("--out", default=str(ROOT / "assets" / "gltf"))
     args = ap.parse_args(argv_after_ddash())
 
@@ -174,7 +217,9 @@ def main() -> int:
         reset_scene()
         ob = build_fn(params, name)
         if not args.no_bake:
-            bake_ao(ob)
+            unwrap(ob)
+            if args.ao:
+                bake_ao(ob)
         out = export_glb(ob, st["id"], phase["id"], outdir / f"{name}.glb")
 
         manifest["assets"][out.name] = {
@@ -184,7 +229,7 @@ def main() -> int:
             "archetype": arch,
             "inputs_sha256": inputs_hash(st, phase, arch),
             "bytes": out.stat().st_size,
-            "baked_ao": not args.no_bake,
+            "baked_ao": bool(args.ao and not args.no_bake),
         }
         tris = sum(len(p.vertices) - 2 for p in ob.data.polygons)
         print(f"built {out.name}  {out.stat().st_size:,} bytes  ~{tris} tris")

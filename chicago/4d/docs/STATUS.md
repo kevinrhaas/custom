@@ -3,7 +3,7 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-09 · **Phase:** S0 scaffold + **S1 datum verification COMPLETE**; next S2 (terrain) and R1 (renderer shell), which may run in parallel
+**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 is walkable and published.** Next: S2 terrain, then more archetypes and structures.
 
 ---
 
@@ -21,19 +21,21 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 | Structure records | **1** (Sauganash, two phases) |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
+| **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
+| **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
+| **Smoke** | 49 checks green at 390×780 and 1280×800, zero page errors |
+| **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
 ## What does not exist yet
 
-Everything downstream of the datum, by design:
-
-- **No geometry of any kind.** No generators, no archetypes, no bake, no GLBs.
-- **No renderer.** `renderers/web/` is an empty directory.
-- **No terrain layers.** The 30-zone heightfield spec exists in the research dossier but has not
-  been turned into data.
+- **One building.** Ten archetypes and ~45 researched structures are still unbuilt.
+- **No terrain.** The scene stands on a flat plane; the 30-zone heightfield spec exists in the
+  research dossier but has not been turned into data. This is the next stage.
 - **No flora or fauna records.** The palettes and the placement table exist in the dossiers only.
-- **No smoke test**, because there is nothing yet to smoke.
-- **No published site tree.** Nothing under `site/chicago/4d/`.
+- **No real placement.** The Sauganash sits at the datum origin with
+  `placement_provisional: true` — its footprint has not been traced from Hathaway yet, so the
+  building is at the forks rather than at Lake and Market.
 
 ## The datum is verified
 
@@ -73,8 +75,28 @@ uncertainty of the 1834 sheets in its note.
    derived from it until a Stanford Copyright Renewal Database check is recorded.
 7. **The 1835 lake stage is a guess.** 580 ± 1.5 ft ASL, tagged conjectural, and the entire
    vertical datum hangs off it.
+8. **The white paint does not read as white in the renderer.** The GLB carries the correct
+   `baseColorFactor` (0.90, 0.89, 0.85) and the record documents the paint, but the wall renders
+   tan. At 42°N in July the sun is high, so a vertical wall takes light at a grazing angle —
+   physically right — but the sky/IBL contribution is evidently too weak to lift it. A lighting
+   balance pass is owed. It matters more than it looks: the documented attribute is the one the
+   viewer cannot currently see.
+9. **AO is baked but switched off, deliberately.** The bake path works end to end and is wired
+   as a real glTF occlusion texture, but the archetype's clapboard courses and window reveals
+   sit a centimetre off the wall and occlude each other: a measured bake comes out at mean 0.265
+   with 69% of texels below half, and the building renders brown. Shortening the AO distance
+   only reaches 0.38. It needs a low-poly AO cage, not a tuning tweak. `--ao` keeps the path
+   exercised and `assets/manifest.json` records honestly that the shipped asset has none.
+10. **`gltf-transform` did not run**, so `assets/web/` currently holds copies of the
+    uncompressed masters rather than meshopt/KTX2 derivatives. Harmless at 44 KB; it must work
+    before the town scales.
+11. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+    rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
 ## Next
+
+**Trace the Sauganash footprint from Hathaway** so the building stands at Lake and Market
+instead of at the origin — the first real use of the georeference, and small.
 
 **S2 — terrain epoch `e1834_harbor_cut`** (shoreline/river vectors traced through the fitted
 transforms; the 30-zone heightfield; the slough and ponds; `terrain_gen.py`) and **R1 — the

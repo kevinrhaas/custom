@@ -514,10 +514,18 @@ def run_site_check(rep: Report) -> None:
         rep.error("site", f"published tree is {mb:.1f} MB, over the {SITE_BUDGET_MB} MB budget — "
                           f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean")
     rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget")
+    # Only page directories need an index.html; asset and data directories are
+    # fetched by explicit path and are never a bare URL a visitor lands on.
+    def is_page_dir(d: Path) -> bool:
+        rel = d.relative_to(site).as_posix()
+        if rel.startswith(("data", "walk/vendor", "walk/js", "walk/css")):
+            return False
+        return any(p.suffix == ".html" for p in d.iterdir() if p.is_file()) or d == site
+
     for d in [site] + [p for p in site.rglob("*") if p.is_dir()]:
-        if not (d / "index.html").exists() and any(p.is_file() for p in d.iterdir()):
-            rep.warn("site", f"{d.relative_to(site.parent.parent)} has files but no index.html — "
-                             f"the bare URL will 404 on Pages")
+        if is_page_dir(d) and not (d / "index.html").exists():
+            rep.warn("site", f"{d.relative_to(site.parent.parent)} is a page directory with "
+                             f"no index.html — the bare URL will 404 on Pages")
 
 
 if __name__ == "__main__":

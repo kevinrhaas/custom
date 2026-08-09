@@ -40,6 +40,10 @@ Held out of the published tree entirely, by the user's instruction:
 and the Blender version that produced them. Do not hand-edit them; a stale committed
 GLB is a check failure.
 
+| path | origin | license | notes |
+|---|---|---|---|
+| `gltf/sauganash_hotel__frame_1831.glb` | `tools/bake.sh` (this repo, Blender 4.5.3) from `data/structures/sauganash_hotel.json` | project license | The Milestone 0 bake. Generated output; its provenance is the provenance of the record it was generated from, tracked in `assets/manifest.json`. |
+
 `authored/` holds hero assets that cannot come from a structure record (Fort Dearborn
 detailing, signboards). They are exempt from regeneration but **not** from provenance:
 each needs a row here and a source record explaining what the form is based on.

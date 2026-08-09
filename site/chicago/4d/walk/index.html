@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>4D Chicago — walk 1835</title>
+<meta name="description" content="A walkable reconstruction of downtown Chicago in the summer of 1835, rendered from a research dataset with per-attribute source provenance.">
+<meta name="color-scheme" content="dark light">
+<link rel="stylesheet" href="./css/walk.css">
+
+<!--
+  No build step, no CDN. three is vendored under vendor/three-<version>/ and
+  pinned by sha256 in vendor/MANIFEST. Bump both together or not at all.
+-->
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three-0.185.1/three.module.js",
+    "three/addons/": "./vendor/three-0.185.1/addons/"
+  }
+}
+</script>
+</head>
+<body>
+
+<canvas id="view" aria-label="Chicago, summer 1835"></canvas>
+
+<!-- Tap to start. Gates pointer lock and the audio context, never the render:
+     the town is already drawn behind this panel. -->
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <p class="gate-eyebrow">4D Chicago</p>
+    <h1 id="gate-title">Chicago, summer 1835</h1>
+    <p class="gate-sub" id="gate-sub">Loading the scene…</p>
+    <button id="gate-btn" class="gate-btn" disabled>Tap to walk</button>
+    <p class="gate-keys">
+      <span class="k">W A S D</span> walk · <span class="k">Shift</span> run ·
+      <span class="k">mouse</span> look · <span class="k">E</span> inspect ·
+      <span class="k">Esc</span> release
+    </p>
+    <p class="gate-keys gate-touch">
+      Left thumb to walk · drag the right side to look · tap a building to inspect
+    </p>
+    <p class="gate-fine">
+      An empty, accurate town. This reconstruction contains no human figures —
+      see <code>AGENTS.md</code>.
+    </p>
+  </div>
+</div>
+
+<div id="hud" class="hud" hidden>
+  <div class="hud-top">
+    <div class="badge" id="year-badge"><span class="badge-year">1835</span><span class="badge-sub">1 July</span></div>
+    <div class="hud-actions">
+      <button id="btn-confidence" class="chip" aria-pressed="false" title="Recolour the scene by evidence quality">
+        <span class="dot dot-conf"></span> Confidence
+      </button>
+      <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
+      <button id="btn-help" class="chip icon" title="Controls and legend">?</button>
+    </div>
+  </div>
+
+  <div class="hud-legend" id="legend" hidden>
+    <p class="legend-title">Evidence quality</p>
+    <ul>
+      <li><i class="sw sw-doc"></i> documented — a source attests this at the scene date</li>
+      <li><i class="sw sw-inf"></i> inferred — derived from typology or adjacent evidence</li>
+      <li><i class="sw sw-con"></i> conjectural — no evidence; drawn as dithered massing</li>
+    </ul>
+    <p class="legend-note">Every building is clickable. The tint and the citation come from the
+      same record, so they cannot drift apart.</p>
+  </div>
+
+  <div class="crosshair" id="crosshair" aria-hidden="true"></div>
+
+  <div class="hud-bottom">
+    <p class="hint" id="hint"></p>
+  </div>
+
+  <div id="touch-layer" class="touch-layer" hidden aria-hidden="true">
+    <div class="stick" id="stick"><div class="stick-knob" id="stick-knob"></div></div>
+  </div>
+</div>
+
+<aside id="popup" class="popup" hidden aria-live="polite"></aside>
+
+<noscript><p class="noscript">This walkthrough needs JavaScript and WebGL 2.</p></noscript>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

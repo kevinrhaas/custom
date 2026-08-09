@@ -20,8 +20,12 @@ if compgen -G "assets/web/*.glb" > /dev/null; then
   cp -f assets/web/*.glb "$SITE/data/gltf/"
 fi
 
-# scenes, sidecars, datum (the renderer needs the origin for sun position)
-cp -f data/scenes/*.json "$SITE/data/" 2>/dev/null || true
+# scenes, sidecars, datum (the renderer needs the origin for sun position).
+# Keep the scenes/ subdirectory — the renderer fetches data/scenes/<year>.json,
+# and flattening it here 404s the published build while the source tree works.
+mkdir -p "$SITE/data/scenes"
+cp -f data/scenes/*.json "$SITE/data/scenes/" 2>/dev/null || true
+rm -f "$SITE"/data/[0-9]*.json
 cp -f data/datum.json "$SITE/data/"
 if [ -d data/sidecars ]; then
   rm -rf "$SITE/data/sidecars"
