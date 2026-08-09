@@ -130,10 +130,13 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
         bays = 5
         for i in range(bays):
             cx = w * (i + 0.5) / bays
-            # ground-floor centre bay is the entrance instead of a window
+            # Ground-floor centre bay is the entrance instead of a window. The
+            # entrance is on the FACADE, which is the +y face in Blender and
+            # therefore faces north once exported — bearing 0 per the contract.
             if story == 0 and i == bays // 2:
-                b.add_poly([(cx - 0.6, -depth, 0), (cx + 0.6, -depth, 0),
-                            (cx + 0.6, -depth, 2.1), (cx - 0.6, -depth, 2.1)],
+                yy = d + depth
+                b.add_poly([(cx + 0.6, yy, 0), (cx - 0.6, yy, 0),
+                            (cx - 0.6, yy, 2.1), (cx + 0.6, yy, 2.1)],
                            conf, M_GLASS)
                 continue
             for y, sgn in ((0.0, -1.0), (d, 1.0)):
@@ -163,31 +166,32 @@ def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
     c = params.conf("log_wing", "inferred")
     ww, wd, wh = params.log_wing_width_m, params.log_wing_depth_m, params.log_wing_height_m
 
-    # projects forward (-y) from the main block's front elevation
-    y1, y0 = 0.0, -wd
-    b.add_box(0, y0, 0, ww, y1, wh, c, M_LOG, skip=("bottom", "back"))
+    # Projects forward from the facade, which is +y in Blender (north once
+    # exported). y1 is the wall it abuts, y0 the far face.
+    y1, y0 = main_d, main_d + wd
+    b.add_box(0, y1, 0, ww, y0, wh, c, M_LOG, skip=("bottom", "front"))
 
     # individual log courses, so it reads as log and not as a stained box
     course = 0.30
     n = int(wh / course)
     for i in range(1, n):
         z = i * course
-        b.add_poly([(0, y0, z), (ww, y0, z), (ww, y0 - 0.015, z - 0.015),
-                    (0, y0 - 0.015, z - 0.015)], c, M_LOG)
+        b.add_poly([(ww, y0, z), (0, y0, z), (0, y0 + 0.015, z - 0.015),
+                    (ww, y0 + 0.015, z - 0.015)], c, M_LOG)
         for x in (0.0, ww):
             sgn = -1 if x == 0.0 else 1
-            b.add_poly([(x, y0, z), (x, y1, z), (x + sgn * 0.015, y1, z - 0.015),
-                        (x + sgn * 0.015, y0, z - 0.015)], c, M_LOG)
+            b.add_poly([(x, y1, z), (x, y0, z), (x + sgn * 0.015, y0, z - 0.015),
+                        (x + sgn * 0.015, y1, z - 0.015)], c, M_LOG)
         # protruding notched log ends at the corners
         for x in (0.0, ww):
             sgn = -1 if x == 0.0 else 1
-            b.add_box(min(x, x + sgn * CORNER_LOG_D), y0 - CORNER_LOG_D, z - course * 0.5,
-                      max(x, x + sgn * CORNER_LOG_D), y0, z - course * 0.5 + 0.16,
-                      c, M_LOG)
+            b.add_box(min(x, x + sgn * CORNER_LOG_D), y0, z - course * 0.5,
+                      max(x, x + sgn * CORNER_LOG_D), y0 + CORNER_LOG_D,
+                      z - course * 0.5 + 0.16, c, M_LOG)
 
     # lean-to roof, tight to the wing and sloping up to meet the frame block
     oh, rise, thk = 0.12, 0.5, 0.09
-    yf, yb = y0 - oh, y1
+    yf, yb = y0 + oh, y1
     for dz in (0.0, -thk):                      # upper and lower faces
         b.add_poly([(-oh, yf, wh + dz), (ww + oh, yf, wh + dz),
                     (ww + oh, yb, wh + rise + dz), (-oh, yb, wh + rise + dz)], c, M_ROOF)

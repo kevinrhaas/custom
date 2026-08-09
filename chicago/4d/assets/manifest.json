@@ -3,8 +3,8 @@
     "sauganash_hotel__frame_1831.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
-      "bytes": 44348,
-      "inputs_sha256": "1fad284a95fba57e27aff55cfe85fb6d849088fc76b1dbdaba9c11bcae91e7b4",
+      "bytes": 44352,
+      "inputs_sha256": "094c79471030602532563072a6fe28d6c49046b471f6c580f8fccab532163c62",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"

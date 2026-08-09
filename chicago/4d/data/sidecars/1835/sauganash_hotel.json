@@ -12,13 +12,13 @@
   "scene": "1835",
   "target_date": "1835-07-01",
   "placement": {
-    "local_e": 0.0,
-    "local_n": 0.0,
-    "rotation_deg": 0,
-    "position_confidence": "documented",
+    "local_e": 101.4,
+    "local_n": -130.6,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
     "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
     "uncertainty_m": 20,
-    "placement_provisional": true
+    "placement_provisional": false
   },
   "footprint": {
     "polygon": [
@@ -183,6 +183,13 @@
       "url": "https://www.loc.gov/pictures/item/2003656685/",
       "archived_url": "",
       "tier": 5
+    },
+    {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1
     }
   ],
   "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",

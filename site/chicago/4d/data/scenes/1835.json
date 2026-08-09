@@ -8,45 +8,52 @@
     "note": "Early afternoon, 1 July 1835. Sun azimuth and elevation are computed from this time and the datum lat/lon and drive both sky and the single directional light. Chosen so the south elevation is genuinely lit — at this latitude in July the sun is high, so vertical surfaces take light at a grazing angle and a mid-morning sun leaves a south wall too dark to read its documented white paint."
   },
   "spawn": {
-    "local_e": 6.0,
-    "local_n": -20.0,
-    "yaw_deg": 0.0
+    "local_e": 107.0,
+    "local_n": -103.0,
+    "yaw_deg": 180.0
   },
   "anchors": [
     {
       "id": "sauganash",
-      "label": "The Sauganash Hotel, Lake and Market",
-      "local_e": 6.0,
-      "local_n": -20.0,
-      "yaw_deg": 0.0
+      "label": "The Sauganash, from Lake Street",
+      "local_e": 107.0,
+      "local_n": -103.0,
+      "yaw_deg": 180.0
     },
     {
       "id": "sauganash_wing",
-      "label": "The log wing, from the south-west",
-      "local_e": -12.0,
-      "local_n": -16.0,
-      "yaw_deg": 40.0
+      "label": "The log wing, from the north-west",
+      "local_e": 88.0,
+      "local_n": -110.0,
+      "yaw_deg": 150.0
+    },
+    {
+      "id": "lake_market",
+      "label": "Lake and Market, the corner itself",
+      "local_e": 89.2,
+      "local_n": -110.4,
+      "yaw_deg": 135.0
     },
     {
       "id": "forks",
       "label": "The forks at Wolf Point",
-      "local_e": -30.0,
-      "local_n": -10.0,
-      "yaw_deg": 75.0
+      "local_e": -20.0,
+      "local_n": -30.0,
+      "yaw_deg": 20.0
+    },
+    {
+      "id": "green_tree",
+      "label": "Green Tree Tavern, Lake and Canal",
+      "local_e": -159.7,
+      "local_n": -108.4,
+      "yaw_deg": 90.0
     },
     {
       "id": "south_water",
       "label": "South Water Street, looking east",
-      "local_e": 420.0,
-      "local_n": -180.0,
+      "local_e": 260.0,
+      "local_n": -95.0,
       "yaw_deg": 90.0
-    },
-    {
-      "id": "fort",
-      "label": "Fort Dearborn and the river mouth",
-      "local_e": 1150.0,
-      "local_n": -420.0,
-      "yaw_deg": 45.0
     }
   ],
   "layers": [
@@ -57,5 +64,5 @@
     "fauna"
   ],
   "released": false,
-  "note": "The first scene. Population roughly 3,265 in the late-1835 count; the town is twenty months old and has grown roughly tenfold in two years. Wabansia and Kinzie's Addition are platted (the Wooley correction was approved 17 June 1835, two weeks before this date) but almost entirely unbuilt. Anchor coordinates are provisional until the datum is verified — they are placeholders in the same local frame, not survey positions. Spawn and the near anchors stand south of the Sauganash looking north at its front elevation; they were previously at the origin, which is inside the building. Distant anchors remain provisional until those structures are placed."
+  "note": "The first scene. Population roughly 3,265 in the late-1835 count; the town is twenty months old and has grown roughly tenfold in two years. Wabansia and Kinzie's Addition are platted (the Wooley correction was approved 17 June 1835, two weeks before this date) but almost entirely unbuilt. Anchor coordinates are provisional until the datum is verified — they are placeholders in the same local frame, not survey positions. Spawn and the near anchors are now derived from the Sauganash's real placement at Lake and Market — about 100 m east and 130 m south of the forks confluence — rather than from the datum origin, which is in the middle of the river. Anchors for structures not yet placed (Green Tree, South Water) point at their surveyed corners and will resolve as those records land."
 }
