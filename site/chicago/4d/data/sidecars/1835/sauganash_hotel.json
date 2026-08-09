@@ -1,0 +1,173 @@
+{
+  "id": "sauganash_hotel",
+  "phase": "frame_1831",
+  "name": "Sauganash Hotel",
+  "aka": [
+    "Eagle Exchange Tavern",
+    "Beaubien's tavern",
+    "Chicago Hotel"
+  ],
+  "archetype": "frame_tavern",
+  "asset": "gltf/sauganash_hotel__frame_1831.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 0.0,
+    "local_n": 0.0,
+    "rotation_deg": 0,
+    "position_confidence": "documented",
+    "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
+    "uncertainty_m": 20,
+    "placement_provisional": true
+  },
+  "footprint": [
+    [
+      0,
+      0
+    ],
+    [
+      12,
+      0
+    ],
+    [
+      12,
+      8
+    ],
+    [
+      0,
+      8
+    ]
+  ],
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "Wau-Bun: 'a pretentious white two-story building.'"
+    },
+    "paint": {
+      "value": "white",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "Wau-Bun: 'a pretentious white two-story building, with bright-blue wooden shutters.' Painted white siding was itself remarkable at Wolf Point in 1831 — the description exists because the building stood out."
+    },
+    "shutters": {
+      "value": "bright_blue",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "Wau-Bun, same sentence. The single most distinctive documented visual feature of the building."
+    },
+    "construction": {
+      "value": "balloon_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Balloon framing was developed in Chicago in 1832-33 and became the dominant local method. This building predates that by a year, so balloon framing is the LESS likely reading: a braced frame built onto a log core is more probable for 1831. Flagged for correction — the value is retained only until the framing question is researched, and it should probably become braced_frame. Do not treat this as settled."
+    },
+    "cladding": {
+      "value": "clapboard",
+      "confidence": "inferred",
+      "note": "Implied by 'white' painted finish on a frame building; clapboard is the standard cladding for the type and period. Not directly attested."
+    },
+    "wall_height_m": {
+      "value": 5.5,
+      "confidence": "conjectural",
+      "note": "PLACEHOLDER. No figure attested. Two full stories at typical period floor heights would fall near this; record the original in feet if a source is found."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "conjectural",
+      "note": "PLACEHOLDER. Unattested; gable is the near-universal form for the type and period."
+    },
+    "gallery": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "kurz_allison_1893"
+      ],
+      "note": "REVISED 2026-08-09 after examining the images directly. No period source attests a gallery or porch either way, but the two surviving retrospective depictions both show the building WITHOUT one: the F. Braunhold engraving in Andreas (1884) and panel 14 of the Kurz and Allison sheet (1893) each show a plain two-story clapboard block with a modest entrance and no veranda. Caveat on independence — the Kurz and Allison panel closely follows the Andreas composition and is probably derived from it, so these are not two witnesses so much as one witness and a copy. 'No gallery' is therefore better attested than 'gallery' without being documented. See docs/RESEARCH/sauganash_hotel.md."
+    },
+    "log_wing": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "kurz_allison_1893"
+      ],
+      "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied."
+    },
+    "function": {
+      "value": "tavern_inn",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856",
+        "chicagology_prefire273",
+        "drloih_hotels"
+      ],
+      "note": "A tavern from 1829 and a hotel from 1831; the social centre of the settlement in the target window. Chicago's first billiard table in a public house stood here."
+    },
+    "occupants": {
+      "value": "a Mr. Davis, proprietor",
+      "confidence": "inferred",
+      "sources": [
+        "drloih_hotels"
+      ],
+      "note": "The Beaubiens owned it until 1834; the hotel chronology gives 'Davis (1835)' as operator, possibly the John Davis running the Steamboat Hotel on North Water Street. Mark Beaubien himself had moved on by the scene date — he built the Exchange Coffee House at Lake and Wells in 1834. The 1835 proprietor is a lead, not a settled fact."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicago_landmark_sauganash",
+      "citation": "City of Chicago, Commission on Chicago Landmarks. \"Site of the Sauganash Hotel/Wigwam.\" Designated 6 November 2002. lanId 1417.",
+      "url": "https://webapps1.chicago.gov/landmarksweb/web/landmarkdetails.htm?lanId=1417",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_hotels",
+      "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    },
+    {
+      "source_id": "kurz_allison_1893",
+      "citation": "Kurz & Allison. Chicago In Early Days, 1779-1857. Chicago: Kurz & Allison, 76 & 78 Wabash Avenue, 1893. Chromolithograph, fifteen numbered vignettes with printed key.",
+      "url": "https://www.loc.gov/pictures/item/2003656685/",
+      "archived_url": "",
+      "tier": 5
+    }
+  ],
+  "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",
+  "research_doc": "docs/RESEARCH/sauganash_hotel.md",
+  "review_required": false
+}
