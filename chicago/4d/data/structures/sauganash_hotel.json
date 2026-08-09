@@ -1,9 +1,12 @@
 {
   "id": "sauganash_hotel",
   "name": "Sauganash Hotel",
-  "aka": ["Eagle Exchange Tavern", "Beaubien's tavern", "Chicago Hotel"],
+  "aka": [
+    "Eagle Exchange Tavern",
+    "Beaubien's tavern",
+    "Chicago Hotel"
+  ],
   "archetype": "frame_tavern",
-
   "phases": [
     {
       "id": "log_1829",
@@ -11,7 +14,10 @@
         "from": "1829-01-01",
         "to": "1831-12-31",
         "confidence": "inferred",
-        "sources": ["drloih_hotels", "kinzie_waubun_1856"],
+        "sources": [
+          "drloih_hotels",
+          "kinzie_waubun_1856"
+        ],
         "note": "Mark Beaubien bought a small log cabin near the forks from James Kinzie in 1826-27 and opened it as a tavern in 1829; a Peoria County tavern licence was issued 9 June 1830. The end of the phase is set at the completion of the frame block, which Wau-Bun describes as 'just completed' in 1831. Neither boundary is fixed to a month."
       },
       "position": {
@@ -19,11 +25,31 @@
         "utm_n": null,
         "symbolic_location": "Second site: south-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr), east bank of the south branch, facing the forks to the north-west.",
         "confidence": "inferred",
-        "sources": ["drloih_hotels", "chicago_landmark_sauganash"],
+        "sources": [
+          "drloih_hotels",
+          "chicago_landmark_sauganash"
+        ],
         "note": "THE BUILDING MOVED. The original cabin stood nearer the forks on the south bank; after the 1830 Thompson plat it was found to sit in the middle of a platted street and Beaubien relocated it to the Lake and Market corner, where the frame block was later built onto it. So this phase spans two positions and the one recorded here is the post-move site. The pre-move position is not attested precisely enough to place. Coordinates null until the datum is verified."
       },
       "footprint": {
-        "polygon": [[0, 0], [7, 0], [7, 6], [0, 6]],
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            0,
+            6
+          ]
+        ],
         "confidence": "conjectural",
         "note": "PLACEHOLDER. No dimensions for the log cabin are attested in any source reached; it is described only as 'small' and single-story. This rectangle is a typical single-pen log tavern footprint and carries no evidence. Replace if a figure surfaces in Andreas p. 106 ('Eagle Exchange') or from the Hathaway 1834 building rectangle."
       },
@@ -31,13 +57,17 @@
         "stories": {
           "value": 1,
           "confidence": "documented",
-          "sources": ["drloih_hotels"],
+          "sources": [
+            "drloih_hotels"
+          ],
           "note": "Described as a small single-story log cabin before the 1831 frame addition."
         },
         "construction": {
           "value": "log",
           "confidence": "documented",
-          "sources": ["drloih_hotels"]
+          "sources": [
+            "drloih_hotels"
+          ]
         },
         "wall_height_m": {
           "value": 2.4,
@@ -52,14 +82,16 @@
       },
       "change_note": "Opened as the Eagle Exchange Tavern in 1829 in a log cabin bought from James Kinzie; moved off a platted street after the 1830 plat."
     },
-
     {
       "id": "frame_1831",
       "documented_range": {
         "from": "1831-01-01",
         "to": "1851-03-04",
         "confidence": "documented",
-        "sources": ["kinzie_waubun_1856", "drloih_hotels"],
+        "sources": [
+          "kinzie_waubun_1856",
+          "drloih_hotels"
+        ],
         "note": "Wau-Bun, describing 1831: 'a house just completed by Mark Beaubien.' Destroyed by fire 4 March 1851. The 1838 rename to Chicago Hotel and the 1837 arrival of the Chicago Theatre Company in the dining room are changes of use, not of form, so they do not open a new phase."
       },
       "position": {
@@ -68,37 +100,65 @@
         "rotation_deg": 0,
         "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
         "confidence": "documented",
-        "sources": ["chicagology_prefire273", "chicago_landmark_sauganash"],
+        "sources": [
+          "chicagology_prefire273",
+          "chicago_landmark_sauganash"
+        ],
         "note": "Corner attested by chicagology ('near what is now the south-east corner of Lake and Market streets') and independently by the City of Chicago landmark designation for the site. Coordinates null and rotation provisional until the datum is verified and the Hathaway building rectangle is traced."
       },
       "footprint": {
-        "polygon": [[0, 0], [12, 0], [12, 8], [0, 8]],
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
         "confidence": "conjectural",
-        "note": "PLACEHOLDER — the central unresolved question of this record. NO DIMENSIONS FOR THE SAUGANASH ARE ATTESTED in any source reached. This 12 x 8 m rectangle is a plausible two-story frame tavern footprint and nothing more. Two leads remain: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834, which requires the datum work first. Until then this renders as conjectural massing."
+        "note": "PLACEHOLDER — the central unresolved question of this record. NO DIMENSIONS FOR THE SAUGANASH ARE ATTESTED in any source reached. This 12 x 8 m rectangle is a plausible two-story frame tavern footprint and nothing more. Two leads remain: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834, which requires the datum work first. Until then this renders as conjectural massing. NOTE ON WHAT THIS TAG MEANS: conjectural here is about SIZE, not about existence or character. That the building was a two-storey white frame block is documented (Wau-Bun); how big it was is unknown. The renderer therefore does NOT dither the massing on account of this tag — see generators/archetypes/frame_tavern.py — and the dimensional uncertainty is carried in the sidecar instead."
       },
       "form": {
         "stories": {
           "value": 2,
           "confidence": "documented",
-          "sources": ["kinzie_waubun_1856"],
+          "sources": [
+            "kinzie_waubun_1856"
+          ],
           "note": "Wau-Bun: 'a pretentious white two-story building.'"
         },
         "paint": {
           "value": "white",
           "confidence": "documented",
-          "sources": ["kinzie_waubun_1856"],
+          "sources": [
+            "kinzie_waubun_1856"
+          ],
           "note": "Wau-Bun: 'a pretentious white two-story building, with bright-blue wooden shutters.' Painted white siding was itself remarkable at Wolf Point in 1831 — the description exists because the building stood out."
         },
         "shutters": {
           "value": "bright_blue",
           "confidence": "documented",
-          "sources": ["kinzie_waubun_1856"],
+          "sources": [
+            "kinzie_waubun_1856"
+          ],
           "note": "Wau-Bun, same sentence. The single most distinctive documented visual feature of the building."
         },
         "construction": {
           "value": "balloon_frame",
           "confidence": "inferred",
-          "sources": ["andreas_1884_v1"],
+          "sources": [
+            "andreas_1884_v1"
+          ],
           "note": "Balloon framing was developed in Chicago in 1832-33 and became the dominant local method. This building predates that by a year, so balloon framing is the LESS likely reading: a braced frame built onto a log core is more probable for 1831. Flagged for correction — the value is retained only until the framing question is researched, and it should probably become braced_frame. Do not treat this as settled."
         },
         "cladding": {
@@ -108,50 +168,72 @@
         },
         "wall_height_m": {
           "value": 5.5,
-          "confidence": "conjectural",
-          "note": "PLACEHOLDER. No figure attested. Two full stories at typical period floor heights would fall near this; record the original in feet if a source is found."
+          "confidence": "inferred",
+          "note": "RETAGGED 2026-08-09 from conjectural to inferred. No figure is attested for this building, but two full storeys at typical period floor heights is derivation from typology and construction practice, which is what 'inferred' means — the previous tag said 'no evidence' while this very note gave the reasoning. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course. The DIMENSION remains uncertain; what is inferred is that it falls in this range, not that it is exactly 5.5 m."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "conjectural",
-          "note": "PLACEHOLDER. Unattested; gable is the near-universal form for the type and period."
+          "confidence": "inferred",
+          "note": "RETAGGED 2026-08-09 from conjectural to inferred, for the same reason as wall_height_m: gable is the near-universal roof form for frame buildings of this type, period and region, and both retrospective depictions show one. Typological derivation is 'inferred'. Not separately attested for this building by any period source."
         },
         "gallery": {
           "value": false,
           "confidence": "inferred",
-          "sources": ["andreas_1884_v1", "kurz_allison_1893"],
+          "sources": [
+            "andreas_1884_v1",
+            "kurz_allison_1893"
+          ],
           "note": "REVISED 2026-08-09 after examining the images directly. No period source attests a gallery or porch either way, but the two surviving retrospective depictions both show the building WITHOUT one: the F. Braunhold engraving in Andreas (1884) and panel 14 of the Kurz and Allison sheet (1893) each show a plain two-story clapboard block with a modest entrance and no veranda. Caveat on independence — the Kurz and Allison panel closely follows the Andreas composition and is probably derived from it, so these are not two witnesses so much as one witness and a copy. 'No gallery' is therefore better attested than 'gallery' without being documented. See docs/RESEARCH/sauganash_hotel.md."
         },
         "log_wing": {
           "value": true,
           "confidence": "inferred",
-          "sources": ["andreas_1884_v1", "kurz_allison_1893"],
+          "sources": [
+            "andreas_1884_v1",
+            "kurz_allison_1893"
+          ],
           "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied."
+        },
+        "roof_pitch_deg": {
+          "value": 38.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested. 38 degrees is mid-range for period gable framing — steep enough to shed snow, shallow enough for the timber spans available. Inferred from construction practice, not measured."
+        },
+        "fenestration": {
+          "value": "five_bay_regular",
+          "confidence": "inferred",
+          "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe."
+        },
+        "chimneys": {
+          "value": 2,
+          "confidence": "inferred",
+          "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference."
         }
       },
       "change_note": "Two-story frame block built onto the log core at the Lake and Market corner, 1831; the whole then known as the Sauganash Hotel, Chicago's first hotel."
     }
   ],
-
   "function": {
     "value": "tavern_inn",
     "confidence": "documented",
-    "sources": ["kinzie_waubun_1856", "chicagology_prefire273", "drloih_hotels"],
+    "sources": [
+      "kinzie_waubun_1856",
+      "chicagology_prefire273",
+      "drloih_hotels"
+    ],
     "note": "A tavern from 1829 and a hotel from 1831; the social centre of the settlement in the target window. Chicago's first billiard table in a public house stood here."
   },
-
   "occupants": {
     "value": "a Mr. Davis, proprietor",
     "confidence": "inferred",
-    "sources": ["drloih_hotels"],
+    "sources": [
+      "drloih_hotels"
+    ],
     "note": "The Beaubiens owned it until 1834; the hotel chronology gives 'Davis (1835)' as operator, possibly the John Davis running the Steamboat Hotel on North Water Street. Mark Beaubien himself had moved on by the scene date — he built the Exchange Coffee House at Lake and Wells in 1834. The 1835 proprietor is a lead, not a settled fact."
   },
-
   "xref": {
     "chicago_landmark_id": "1417"
   },
-
   "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",
-
   "review_required": false
 }

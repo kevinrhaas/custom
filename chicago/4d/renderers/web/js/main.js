@@ -109,8 +109,31 @@ async function boot() {
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
+    isTouch: prefersTouch(),
     onConfidence: (on) => confidence.set(on),
+    onGoTo: (id) => api.goTo?.(id),
+    onSetting: (key, value) => {
+      if (key === 'speed') {
+        // Keep the run multiplier the walker was tuned with rather than pinning
+        // a fixed run speed, so the two stay in proportion at any setting.
+        WALK.speed = value;
+        WALK.sprintSpeed = value * 2.28;
+      } else if (key === 'fov') {
+        camera.fov = value;
+        camera.updateProjectionMatrix();
+      } else if (key === 'quality') {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
+      }
+    },
   });
+
+  // Apply the visitor's stored settings before the first frame, so nothing
+  // visibly snaps a moment after load.
+  WALK.speed = hud.settings.speed;
+  WALK.sprintSpeed = hud.settings.speed * 2.28;
+  camera.fov = hud.settings.fov;
+  camera.updateProjectionMatrix();
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
 
   // ---- input ------------------------------------------------------------ //
 

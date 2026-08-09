@@ -131,7 +131,7 @@ function mod360(a) { return mod(a, 360); }
 export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false }) {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.58;
+  renderer.toneMappingExposure = 0.95;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = lowSpec ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
@@ -173,9 +173,33 @@ export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false
   const envRT = pmrem.fromScene(envScene);
   skyParent.add(sky);
   sky.material.uniforms.showSunDisc.value = true;
-  scene.environment = envRT.texture;
-  scene.environmentIntensity = 0.40;
+  // NOT installed as scene.environment. Measured: at 0.40 it rendered a brown
+  // log wall at an R/B ratio of 1.08 against the 1.75 its base colour asks for,
+  // and even at 0.05 it only reached 1.14 — every surface converging on the sky
+  // colour regardless of what it was made of. For a project whose whole claim is
+  // that a documented white wall reads as white, an environment that overrides
+  // albedo is not a lighting choice, it is a data-integrity problem. The sky is
+  // kept as the visible backdrop; the lighting is the hemisphere fill plus the
+  // sun, which keep materials' hues intact. Revisit with a properly exposed HDRI
+  // rather than a PMREM of an analytic sky.
+  envRT.texture.dispose();
+  // Kept deliberately low. A PMREM of this sky is an intense, strongly BLUE
+  // light, and at any useful intensity it swamps albedo: measured at 0.40, a
+  // brown log wall rendered with an R/B ratio of 1.08 against the 1.75 its own
+  // base colour specifies — every surface converged on the sky colour and the
+  // building read as pale grey whatever it was made of. The environment is here
+  // for a touch of specular sky in the glazing, not to light the town. The fill
+  // that actually matters is the hemisphere light below, which can be given a
+  // warm ground bounce and therefore lets materials keep their hue.
+
   pmrem.dispose();
+
+  // Sky above, warm ground bounce below — the cheap approximation of outdoor
+  // fill, and the one that keeps browns brown. Prairie and mud reflect warm, so
+  // the ground colour is a dun rather than a grey.
+  const hemi = new THREE.HemisphereLight(0xa8c4e0, 0x7a6b4e, 2.4);
+  hemi.name = 'sky-fill';
+  scene.add(hemi);
 
   const light = new THREE.DirectionalLight(0xfff2dc, 3.0);
   light.name = 'sun';

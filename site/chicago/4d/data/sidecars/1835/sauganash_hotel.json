@@ -81,13 +81,13 @@
     },
     "wall_height_m": {
       "value": 5.5,
-      "confidence": "conjectural",
-      "note": "PLACEHOLDER. No figure attested. Two full stories at typical period floor heights would fall near this; record the original in feet if a source is found."
+      "confidence": "inferred",
+      "note": "RETAGGED 2026-08-09 from conjectural to inferred. No figure is attested for this building, but two full storeys at typical period floor heights is derivation from typology and construction practice, which is what 'inferred' means — the previous tag said 'no evidence' while this very note gave the reasoning. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course. The DIMENSION remains uncertain; what is inferred is that it falls in this range, not that it is exactly 5.5 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "conjectural",
-      "note": "PLACEHOLDER. Unattested; gable is the near-universal form for the type and period."
+      "confidence": "inferred",
+      "note": "RETAGGED 2026-08-09 from conjectural to inferred, for the same reason as wall_height_m: gable is the near-universal roof form for frame buildings of this type, period and region, and both retrospective depictions show one. Typological derivation is 'inferred'. Not separately attested for this building by any period source."
     },
     "gallery": {
       "value": false,
@@ -106,6 +106,21 @@
         "kurz_allison_1893"
       ],
       "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 38 degrees is mid-range for period gable framing — steep enough to shed snow, shallow enough for the timber spans available. Inferred from construction practice, not measured."
+    },
+    "fenestration": {
+      "value": "five_bay_regular",
+      "confidence": "inferred",
+      "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe."
+    },
+    "chimneys": {
+      "value": 2,
+      "confidence": "inferred",
+      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference."
     },
     "function": {
       "value": "tavern_inn",

@@ -47,7 +47,20 @@ varying float vConfidence;
 `;
 
 const VERTEX_ASSIGN = /* glsl */`
-  vConfidence = _confidence;
+  // Sanitise the channel at its source.
+  //
+  // A geometry that reaches a batch without _CONFIDENCE leaves this attribute
+  // unbound, and an unbound attribute is NOT reliably zero on real hardware — it
+  // can arrive as NaN. That matters far more than it sounds, because NaN * 0.0
+  // is still NaN, so even the switched-OFF path would poison diffuseColor
+  // through the mix() below and render the building pure black while the sky
+  // and ground looked perfect. Software rasterisers hand back a tidy zero and
+  // hide it, so this only shows up on a real GPU.
+  //
+  // (c == c) is false only for NaN — the portable test, since isnan() is
+  // unreliable across drivers.
+  float chicagoC = _confidence;
+  vConfidence = (chicagoC == chicagoC) ? clamp(chicagoC, 0.0, 1.0) : 0.0;
 `;
 
 const FRAGMENT_DECL = /* glsl */`
@@ -81,7 +94,9 @@ float chicago_wConjectural(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); 
 `;
 
 const FRAGMENT_DISCARD = /* glsl */`
-  {
+  // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
+  // bad value cannot reach the arithmetic at all when the view is switched off.
+  if (uConfMode > 0.0) {
     float conj = chicago_wConjectural(vConfidence) * uConfMode;
     if (conj > 0.0) {
       float alpha = mix(1.0, uConjecturalAlpha, conj);
@@ -91,7 +106,9 @@ const FRAGMENT_DISCARD = /* glsl */`
 `;
 
 const FRAGMENT_TINT = /* glsl */`
-  {
+  // Same guard as the discard: when the view is off, diffuseColor is not touched
+  // by a single instruction. See VERTEX_ASSIGN for why that is load-bearing.
+  if (uConfMode > 0.0) {
     float wInf = chicago_wInferred(vConfidence) * uConfMode;
     float wCon = chicago_wConjectural(vConfidence) * uConfMode;
     diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wInf * 0.72);

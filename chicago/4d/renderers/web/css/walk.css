@@ -392,3 +392,102 @@ ol.cites a { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ---- controls / settings panel ---------------------------------------- */
+/* Replaces the old bare legend. Run already existed on Shift and nobody could
+   discover it; a walkthrough that does not say how to walk is not finished. */
+
+.hud-panel {
+  pointer-events: auto;
+  align-self: flex-end;
+  width: min(360px, calc(100% - 4px));
+  margin-top: 8px;
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  font-size: 12.5px;
+}
+.hud-panel[hidden] { display: none; }
+
+.panel-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 8px 0;
+  border-bottom: 1px solid var(--edge);
+}
+
+.panel-tab {
+  flex: 0 1 auto;
+  padding: 7px 11px;
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  background: transparent;
+  color: var(--ink-dim);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.panel-tab:hover { color: var(--ink); }
+.panel-tab.is-on { color: var(--ink); background: rgb(255 255 255 / 7%); }
+
+.panel-close {
+  margin-left: auto;
+  width: 26px; height: 26px;
+  border: 0; border-radius: 8px;
+  background: transparent; color: var(--ink-dim);
+  font-size: 17px; line-height: 1; cursor: pointer;
+}
+.panel-close:hover { color: var(--ink); background: rgb(255 255 255 / 8%); }
+
+.panel-body { padding: 13px 15px 15px; }
+
+.keys { display: grid; grid-template-columns: auto 1fr; gap: 7px 13px; margin: 0; }
+/* [hidden] is display:none at UA-stylesheet strength; any display rule on the
+   element itself beats it. Both control lists rendered at once without this. */
+.keys[hidden], .panel-body[hidden] { display: none; }
+.keys dt { color: var(--ink-dim); font-size: 12px; white-space: nowrap; }
+.keys dd { margin: 0; font-size: 12.5px; color: var(--ink); }
+
+kbd {
+  display: inline-block;
+  min-width: 19px;
+  padding: 1px 5px;
+  margin-right: 2px;
+  border: 1px solid var(--edge);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: rgb(255 255 255 / 7%);
+  font: inherit; font-size: 11px; text-align: center;
+}
+
+.field { display: block; margin-bottom: 14px; font-size: 12.5px; color: var(--ink); }
+.field > span { display: block; margin-bottom: 6px; color: var(--ink-dim); }
+.field > span b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.field.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.field.row > span { margin: 0; }
+.field input[type="range"] { width: 100%; accent-color: var(--accent); }
+.field select {
+  padding: 5px 8px; border-radius: 8px;
+  border: 1px solid var(--edge);
+  background: rgb(255 255 255 / 7%); color: var(--ink); font: inherit; font-size: 12px;
+}
+
+.anchors { display: flex; flex-wrap: wrap; gap: 6px; }
+.anchor-btn {
+  padding: 5px 9px;
+  border: 1px solid var(--edge); border-radius: 999px;
+  background: rgb(255 255 255 / 6%); color: var(--ink);
+  font: inherit; font-size: 11.5px; cursor: pointer;
+}
+.anchor-btn:hover { background: rgb(255 255 255 / 12%); border-color: var(--accent); }
+
+.legend-list { margin: 0 0 10px; padding: 0; list-style: none; display: grid; gap: 8px; }
+.legend-list li { font-size: 12.5px; color: var(--ink); line-height: 1.45; }
+
+@media (max-width: 560px) {
+  .hud-panel { width: 100%; max-height: 58vh; }
+}

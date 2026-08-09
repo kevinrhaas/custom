@@ -39,10 +39,27 @@ def build(params: FrameTavernParams, name: str):
     b = MeshBuilder(name)
 
     w, d = params.width_m, params.depth_m
-    # Massing confidence: the least confident of the attributes that produce it.
-    # Footprint and wall height together define the box, so both count.
-    c_mass = params.worst_conf("footprint", "wall_height_m", "stories")
-    c_roof = params.worst_conf("roof_type", "roof_pitch_deg", "footprint")
+
+    # Massing confidence describes the building's CHARACTER, not the precision of
+    # its dimensions. Those are two different kinds of not-knowing, and folding
+    # them together misrepresents the evidence.
+    #
+    # The Sauganash forced the distinction. Wau-Bun documents "a pretentious
+    # white two-story building, with bright-blue wooden shutters" — we know what
+    # this building WAS. What no source gives is a dimension. The first version
+    # of this rule drove the massing off the footprint, so a conjectural size
+    # dithered the entire building into ghost massing, which told a viewer we
+    # knew nothing about a comparatively well-attested structure. That is a
+    # misrepresentation in the direction of false modesty, and it is just as
+    # wrong as overclaiming.
+    #
+    # So: the massing takes the confidence of the attributes that say what the
+    # building was — its storey count, how it was built, what it was clad in.
+    # Dimensional uncertainty is real and is carried honestly elsewhere: the
+    # footprint keeps its own confidence in the sidecar, and the placement
+    # carries uncertainty_m. Both surface in the popup.
+    c_mass = params.worst_conf("stories", "construction", "cladding")
+    c_roof = params.worst_conf("roof_type", "roof_pitch_deg")
     c_clad = params.worst_conf("cladding", "paint")
 
     wall_z = params.wall_height_m
@@ -62,7 +79,7 @@ def build(params: FrameTavernParams, name: str):
     # windows: five bays upper, four plus a centred door below — the arrangement
     # both surviving depictions show. Fenestration is not separately attested, so
     # it inherits the massing's confidence at best.
-    c_fen = params.worst_conf("fenestration", "footprint")
+    c_fen = params.conf("fenestration", "inferred")
     _fenestration(b, params, w, d, wall_z, c_fen)
 
     if params.log_wing:

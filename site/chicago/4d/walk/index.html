@@ -56,19 +56,60 @@
         <span class="dot dot-conf"></span> Confidence
       </button>
       <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
-      <button id="btn-help" class="chip icon" title="Controls and legend">?</button>
+      <button id="btn-help" class="chip icon" title="Controls and settings (H)">?</button>
     </div>
   </div>
 
-  <div class="hud-legend" id="legend" hidden>
-    <p class="legend-title">Evidence quality</p>
-    <ul>
-      <li><i class="sw sw-doc"></i> documented — a source attests this at the scene date</li>
-      <li><i class="sw sw-inf"></i> inferred — derived from typology or adjacent evidence</li>
-      <li><i class="sw sw-con"></i> conjectural — no evidence; drawn as dithered massing</li>
-    </ul>
-    <p class="legend-note">Every building is clickable. The tint and the citation come from the
-      same record, so they cannot drift apart.</p>
+  <div class="hud-panel" id="panel" hidden>
+    <div class="panel-tabs" role="tablist">
+      <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
+      <button class="panel-tab" data-tab="settings" role="tab">Settings</button>
+      <button class="panel-tab" data-tab="evidence" role="tab">Evidence</button>
+      <button class="panel-close" id="panel-close" title="Close (Esc)">&times;</button>
+    </div>
+
+    <section class="panel-body" data-panel="controls">
+      <dl class="keys" id="keys-desktop">
+        <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>walk</dd>
+        <dt><kbd>Shift</kbd></dt><dd>run</dd>
+        <dt>mouse</dt><dd>look around</dd>
+        <dt>click</dt><dd>inspect a building — its attributes and citations</dd>
+        <dt><kbd>C</kbd></dt><dd>confidence view</dd>
+        <dt><kbd>H</kbd></dt><dd>this panel</dd>
+        <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
+      </dl>
+      <dl class="keys" id="keys-touch" hidden>
+        <dt>left stick</dt><dd>walk</dd>
+        <dt>push it fully</dt><dd>run</dd>
+        <dt>drag right</dt><dd>look around</dd>
+        <dt>tap</dt><dd>inspect a building</dd>
+      </dl>
+    </section>
+
+    <section class="panel-body" data-panel="settings" hidden>
+      <label class="field"><span>Walking speed <b id="v-speed"></b></span>
+        <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
+      <label class="field"><span>Field of view <b id="v-fov"></b></span>
+        <input type="range" id="s-fov" min="55" max="100" step="1"></label>
+      <label class="field row"><span>Render quality</span>
+        <select id="s-quality">
+          <option value="1">Low — smoother</option>
+          <option value="1.5">Medium</option>
+          <option value="2">High — sharper</option>
+        </select></label>
+      <div class="field"><span>Go to</span><div class="anchors" id="anchors"></div></div>
+    </section>
+
+    <section class="panel-body" data-panel="evidence" hidden>
+      <ul class="legend-list">
+        <li><i class="sw sw-doc"></i> <b>documented</b> — a source attests this at the scene date</li>
+        <li><i class="sw sw-inf"></i> <b>inferred</b> — derived from typology, period practice or adjacent evidence</li>
+        <li><i class="sw sw-con"></i> <b>conjectural</b> — no evidence; drawn as dithered massing</li>
+      </ul>
+      <p class="legend-note">Every building is clickable. The tint and the citation come from the
+        same record, so they cannot drift apart. Dimensional uncertainty is separate: a building
+        can be well documented in character and still have a guessed size, and the popup says so.</p>
+    </section>
   </div>
 
   <div class="crosshair" id="crosshair" aria-hidden="true"></div>

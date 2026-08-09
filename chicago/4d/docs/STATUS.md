@@ -27,6 +27,28 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 | **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
+## Corrections made after the first live look
+
+Kevin opened the deployed build on real hardware and found two things headless testing had
+missed. Both are fixed; both are the kind of thing only a real viewer catches.
+
+- **The building rendered pure black on a real GPU.** The confidence shader computed
+  `weight = f(vConfidence) * uConfMode` even when the view was switched OFF — and `NaN * 0.0`
+  is still `NaN`, which poisoned `diffuseColor` through the mix. A geometry reaching a batch
+  without `_CONFIDENCE` leaves the attribute unbound, and an unbound attribute is not reliably
+  zero on real hardware the way it is under a software rasteriser. The channel is now
+  sanitised at the vertex stage and the off path is guarded before it reads anything.
+- **A well-documented building was rendered as near-total guesswork.** `wall_height_m` and
+  `roof_type` were tagged `conjectural` while their own notes gave typological reasoning —
+  "two full stories at typical period floor height", "gable is the near-universal form for the
+  type and period". That is the brief's definition of `inferred`, not of `conjectural`. Worse,
+  the massing rule took the worst confidence across the footprint too, so an unknown SIZE
+  dithered the entire building into ghost massing. Size and character are different kinds of
+  not-knowing: Wau-Bun documents a two-storey white frame building with bright-blue shutters,
+  and no source gives a dimension. The massing now follows the attributes that say what the
+  building was; dimensional uncertainty is carried in the sidecar, where the popup shows it.
+  Understating what we know is as much a misrepresentation as overstating it.
+
 ## What does not exist yet
 
 - **One building.** Ten archetypes and ~45 researched structures are still unbuilt.
@@ -75,12 +97,19 @@ uncertainty of the 1834 sheets in its note.
    derived from it until a Stanford Copyright Renewal Database check is recorded.
 7. **The 1835 lake stage is a guess.** 580 ± 1.5 ft ASL, tagged conjectural, and the entire
    vertical datum hangs off it.
-8. **The white paint does not read as white in the renderer.** The GLB carries the correct
-   `baseColorFactor` (0.90, 0.89, 0.85) and the record documents the paint, but the wall renders
-   tan. At 42°N in July the sun is high, so a vertical wall takes light at a grazing angle —
-   physically right — but the sky/IBL contribution is evidently too weak to lift it. A lighting
-   balance pass is owed. It matters more than it looks: the documented attribute is the one the
-   viewer cannot currently see.
+8. **FIXED — the white paint now reads as white.** The earlier diagnosis in this file (a weak
+   sky contribution at a grazing sun angle) was wrong, and wrong in a way worth recording: the
+   tan wall was a STALE PUBLISHED ASSET, an older bake that still carried the over-dark AO
+   texture. Two separate causes then turned up behind it. `publish.sh` shipped from
+   `assets/web/`, which only `bake.sh` refreshes, so running the generator directly republished
+   the previous mesh silently — now guarded, and it says so when it copies a master through.
+   And the sky-derived PMREM environment was overriding albedo outright: measured, a brown log
+   wall rendered at an R/B ratio of 1.08 against the 1.75 its own base colour specifies, with
+   every surface converging on the sky colour whatever it was made of. For a project whose
+   claim is that a documented white wall reads as white, that is a data-integrity bug wearing
+   an aesthetics costume. The environment is gone; a hemisphere fill with a warm ground bounce
+   plus the sun now carry the lighting, and hue is preserved (log R/B 1.30). Revisit with a
+   properly exposed HDRI rather than a PMREM of an analytic sky.
 9. **AO is baked but switched off, deliberately.** The bake path works end to end and is wired
    as a real glTF occlusion texture, but the archetype's clapboard courses and window reveals
    sit a centimetre off the wall and occlude each other: a measured bake comes out at mean 0.265

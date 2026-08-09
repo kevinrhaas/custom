@@ -15,7 +15,22 @@ if [ -d renderers/web ]; then
   cp -a renderers/web "$SITE/walk"
 fi
 
-# web-derivative assets only — never the masters
+# Web-derivative assets only — never the masters.
+#
+# assets/web/ is produced by the gltf-transform step in bake.sh. Running
+# generators/build.py directly refreshes assets/gltf/ but NOT assets/web/, and
+# publishing then silently ships the previous mesh — which cost a debugging
+# round when a rebuilt building kept rendering with its old confidence values.
+# So: any master newer than its derivative is copied through here, and says so.
+mkdir -p assets/web
+for m in assets/gltf/*.glb; do
+  [ -e "$m" ] || continue
+  w="assets/web/$(basename "$m")"
+  if [ ! -e "$w" ] || [ "$m" -nt "$w" ]; then
+    echo "   derivative stale, copying master through: $(basename "$m")"
+    cp -f "$m" "$w"
+  fi
+done
 if compgen -G "assets/web/*.glb" > /dev/null; then
   cp -f assets/web/*.glb "$SITE/data/gltf/"
 fi
