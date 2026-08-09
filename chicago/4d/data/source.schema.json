@@ -4,24 +4,56 @@
   "title": "4D Chicago Source",
   "description": "One bibliographic source, one file. The filename stem is the source_id.",
   "type": "object",
-  "required": ["id", "type", "citation", "tier", "rights_status", "verified"],
+  "required": [
+    "id",
+    "type",
+    "citation",
+    "tier",
+    "rights_status",
+    "verified"
+  ],
   "additionalProperties": false,
-
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
     "type": {
       "type": "string",
-      "enum": ["map", "book", "newspaper", "manuscript", "illustration", "photograph", "website", "dataset", "article", "legal"]
+      "enum": [
+        "map",
+        "book",
+        "newspaper",
+        "manuscript",
+        "illustration",
+        "photograph",
+        "website",
+        "dataset",
+        "article",
+        "legal"
+      ]
     },
-    "citation": { "type": "string", "minLength": 10 },
-    "author": { "type": "string" },
-    "date": { "type": "string", "description": "Publication or creation date as written on the source." },
+    "citation": {
+      "type": "string",
+      "minLength": 10
+    },
+    "author": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "description": "Publication or creation date as written on the source."
+    },
     "describes_date": {
       "type": "string",
       "description": "The date the source DESCRIBES, when different from when it was made. Wau-Bun was published 1856 and describes 1831; that gap is the whole reason this field exists."
     },
-    "repository": { "type": "string" },
-    "url": { "type": "string" },
+    "repository": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
     "archived_url": {
       "type": "string",
       "description": "Required for type=website and for any online-only source. A citation that cannot be re-read is not a citation."
@@ -30,38 +62,55 @@
       "type": "string",
       "description": "Page, plate, scan page, or IIIF region. Cite the specific place, not the whole volume."
     },
-
     "tier": {
       "type": "integer",
       "minimum": 1,
       "maximum": 6,
       "description": "1 period/eyewitness · 2 near-primary recollection · 3 compiled secondary (Andreas) · 4 later scholarship · 5 modern retrospective illustration/reconstruction · 6 decorative/popular cartography. Tiers 5-6 inform inventory and cross-checks only; never sole evidence for documented, never traced for geometry."
     },
-
     "rights_status": {
       "type": "string",
-      "enum": ["public_domain", "no_known_restrictions", "check_required", "cleared", "restricted"],
+      "enum": [
+        "public_domain",
+        "no_known_restrictions",
+        "check_required",
+        "cleared",
+        "restricted"
+      ],
       "description": "check_required and restricted block asset derivation; textual citation stays allowed."
     },
-    "rights_note": { "type": "string" },
+    "rights_note": {
+      "type": "string"
+    },
     "rights_checked": {
       "type": "object",
       "additionalProperties": false,
       "description": "Fill when moving check_required to cleared or restricted.",
       "properties": {
-        "date": { "type": "string", "format": "date" },
-        "method": { "type": "string" },
-        "outcome": { "type": "string" }
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "method": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        }
       }
     },
-
     "asset_use": {
       "type": "string",
-      "enum": ["geometry", "inventory", "cross_check", "orientation", "text_only"],
+      "enum": [
+        "geometry",
+        "inventory",
+        "cross_check",
+        "orientation",
+        "text_only"
+      ],
       "default": "cross_check",
       "description": "How far this source may be used. 'geometry' permits tracing; 'orientation' permits toponyms and rough placement only."
     },
-
     "verified": {
       "type": "boolean",
       "description": "True only when a human or agent has actually retrieved and read this source at its locator."
@@ -70,6 +119,22 @@
       "type": "string",
       "description": "Fetch problems worth recording, e.g. hosts that return 503/403 to automated retrieval."
     },
-    "note": { "type": "string" }
+    "note": {
+      "type": "string"
+    },
+    "what_it_supplies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "What this source can legitimately be used FOR. Fill it in when a source is commonly misused, so an agent reaching for it sees the limit before the citation."
+    },
+    "what_it_does_not_supply": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "What this source is often assumed to give but does NOT. Hathaway 1834 is the motivating case: it is widely described as showing individual buildings and it does not, a claim that reached this project's own brief before anyone opened the scan at full resolution."
+    }
   }
 }

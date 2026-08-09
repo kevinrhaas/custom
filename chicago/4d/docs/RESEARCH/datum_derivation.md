@@ -61,6 +61,26 @@ the committed traces, and `tools/check.sh` fails if it ever stops matching.
   "80"-ft streets, lot depths) — valuable for S2 street-geometry generation independent of any
   raster warp.
 
+## Neither 1834 map shows buildings — verified 2026-08-09
+
+Checked at native LOC resolution over the forks and the built-up South Water blocks 17-21:
+**Hathaway 1834 is a pure cadastral lot plat** — block outlines, lots numbered 1-8, street
+names, survey bearings, nothing else. Wright 1834 is the same. The widely repeated claim that
+Hathaway's "small rectangles denote individual buildings", which reached this project's own
+brief, is **false**.
+
+Consequences, and they are not all bad:
+
+- **No period map this project holds gives a building footprint for 1835 Chicago.** Footprints
+  come from *textual* dimensions where they are attested — the Green Tree's 12 × 12 ft rooms,
+  St Mary's 25 × 35 ft, First Presbyterian's 40 × 25 ft, the Western Hotel's 40 × 60 ft L — and
+  are conjectural otherwise. That is a research task, not a tracing task.
+- **Placement gets better, not worse.** The plats give exact street and lot geometry, so a
+  building documented at a named corner can be put on that corner precisely. The residual error
+  is the georeference's ±20 m, not an additional guess about where the corner was.
+- The only sources that draw buildings at all are the 1933 Conley/Stelzer reconstruction
+  (rights-flagged, pictorial) and the 1940 Nelson map (tier 6). Neither may drive geometry.
+
 ## Decisions
 
 1. **Wright is the master; Hathaway is the check** — per the brief, and because Wright carries
