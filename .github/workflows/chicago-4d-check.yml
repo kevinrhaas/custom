@@ -1,0 +1,35 @@
+name: Chicago 4D — gate
+
+# The fast half of the two-speed build: schema, provenance, date gates,
+# referential integrity, licences, staleness, datum re-derivation, JS parse.
+# Seconds, and no Blender — the content build lives in chicago-4d-bake.yml.
+on:
+  push:
+    paths:
+      - 'chicago/4d/**'
+      - '.github/workflows/chicago-4d-check.yml'
+  pull_request:
+    paths:
+      - 'chicago/4d/**'
+  workflow_dispatch:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install validator dependencies
+        run: pip install --quiet jsonschema pyproj
+
+      - name: Run the gate
+        working-directory: chicago/4d
+        run: ./tools/check.sh

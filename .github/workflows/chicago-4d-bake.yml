@@ -1,0 +1,88 @@
+name: Chicago 4D — content build
+
+# The slow half: pinned Blender generates and bakes geometry. Minutes, so it runs
+# on demand, nightly, and on changes to the data or the generators — never on
+# every commit. Agents that touch only research, docs or renderer code never wait
+# on Blender.
+#
+# Output goes to a branch and a PR, never straight to main: bakes are large binary
+# diffs and deserve the same review as anything else.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Build a single structure id (blank = all)'
+        required: false
+  schedule:
+    - cron: '17 6 * * *'
+  push:
+    paths:
+      - 'chicago/4d/data/**'
+      - 'chicago/4d/generators/**'
+      - 'chicago/4d/tools/bake.sh'
+      - '.github/workflows/chicago-4d-bake.yml'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: pip install --quiet jsonschema pyproj
+
+      - name: Read the Blender pin
+        id: pin
+        run: |
+          # shellcheck disable=SC1091
+          source chicago/4d/generators/blender.pin
+          echo "version=$BLENDER_VERSION" >> "$GITHUB_OUTPUT"
+          echo "dir=$BLENDER_DIR" >> "$GITHUB_OUTPUT"
+
+      # ~380 MB tarball; caching it keeps the nightly cheap. The cache key carries
+      # the pinned version, so bumping the pin naturally misses and re-fetches.
+      - name: Cache Blender
+        uses: actions/cache@v4
+        with:
+          path: /opt/blender-dl
+          key: blender-${{ steps.pin.outputs.version }}
+
+      - name: Bake
+        working-directory: chicago/4d
+        run: |
+          if [ -n "${{ inputs.only }}" ]; then
+            ./tools/bake.sh --only "${{ inputs.only }}"
+          else
+            ./tools/bake.sh
+          fi
+
+      - name: Open a PR if anything changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "bake produced no changes — nothing to do"
+            exit 0
+          fi
+          BRANCH="steward/bake-${GITHUB_RUN_ID}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -A chicago/4d site/chicago/4d
+          git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
+          git push -u origin "$BRANCH"
+          gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
+            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake." \
+            --head "$BRANCH"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

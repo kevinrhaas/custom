@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chicago4d/schemas/structure.schema.json",
+  "title": "4D Chicago Structure",
+  "description": "One structure record, one file. A structure is an identity that persists across time; its physical form over time is carried by phases. Semantic rules (confidence requires sources/notes, scene date coverage, phase overlap) are enforced by tools/validate.py.",
+  "type": "object",
+  "required": ["id", "name", "archetype", "phases"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Stable slug. Never reused, never renamed. Matches the filename and the glTF node prefix."
+    },
+    "name": { "type": "string" },
+    "aka": { "type": "array", "items": { "type": "string" } },
+
+    "archetype": {
+      "type": "string",
+      "enum": [
+        "frame_tavern",
+        "frame_storefront",
+        "frame_dwelling",
+        "log_dwelling",
+        "institutional",
+        "fort_structure",
+        "outbuilding",
+        "plank_walk",
+        "bridge_timber",
+        "pier_crib",
+        "palisade",
+        "authored"
+      ],
+      "description": "Generator module that builds this structure. 'authored' means a hand-built hero asset, exempt from regeneration but not from provenance."
+    },
+
+    "phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/phase" },
+      "description": "Dated states of this structure. For a scene date, exactly one phase must cover it."
+    },
+
+    "function": { "$ref": "#/$defs/attested" },
+    "occupants": { "$ref": "#/$defs/attested" },
+
+    "xref": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Links to sibling datasets so records can be reconciled later without renaming ids.",
+      "properties": {
+        "pre_fire_v1_building_id": { "type": "string" },
+        "conley_key_no": { "type": "integer" },
+        "chicago_landmark_id": { "type": "string" }
+      }
+    },
+
+    "research_note": {
+      "type": "string",
+      "description": "Free text. Source conflicts go here and in docs/RESEARCH/<id>.md."
+    },
+
+    "review_required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Blocks release of any scene including this record. Set for anything touching Indigenous history or human depiction pending external review."
+    }
+  },
+
+  "$defs": {
+    "confidence": {
+      "type": "string",
+      "enum": ["documented", "inferred", "conjectural"]
+    },
+
+    "attested": {
+      "type": "object",
+      "description": "A single attribute carrying its own evidence. documented requires sources; inferred requires note.",
+      "required": ["value", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {},
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "source_id values that must resolve in data/sources/"
+        },
+        "note": {
+          "type": "string",
+          "description": "Required for inferred. State the reasoning, and record original historical units here."
+        }
+      }
+    },
+
+    "date_range": {
+      "type": "object",
+      "required": ["from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "from": { "type": "string", "format": "date" },
+        "to": { "type": "string", "format": "date" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "note": { "type": "string" }
+      }
+    },
+
+    "phase": {
+      "type": "object",
+      "required": ["id", "documented_range", "position", "footprint", "form"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Slug unique within the structure, e.g. log_1829, frame_1831."
+        },
+        "documented_range": { "$ref": "#/$defs/date_range" },
+
+        "position": {
+          "type": "object",
+          "required": ["confidence"],
+          "additionalProperties": false,
+          "description": "Phases carry their own position, so relocated buildings are native to the model. utm_e/utm_n stay null until the datum is verified; symbolic_location carries the human description meanwhile.",
+          "properties": {
+            "utm_e": { "type": ["number", "null"] },
+            "utm_n": { "type": ["number", "null"] },
+            "rotation_deg": {
+              "type": "number",
+              "description": "Facade bearing, degrees clockwise from grid north."
+            },
+            "symbolic_location": {
+              "type": "string",
+              "description": "e.g. 'SE corner Lake St and Market St'. Required while coordinates are null."
+            },
+            "confidence": { "$ref": "#/$defs/confidence" },
+            "sources": { "type": "array", "items": { "type": "string" } },
+            "note": { "type": "string" }
+          }
+        },
+
+        "footprint": {
+          "type": "object",
+          "required": ["polygon", "confidence"],
+          "additionalProperties": false,
+          "properties": {
+            "polygon": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "number" }
+              },
+              "description": "Local ENU metres relative to the phase position. Counter-clockwise."
+            },
+            "confidence": { "$ref": "#/$defs/confidence" },
+            "sources": { "type": "array", "items": { "type": "string" } },
+            "note": { "type": "string" }
+          }
+        },
+
+        "form": {
+          "type": "object",
+          "description": "Generator parameters. Every entry is an attested value.",
+          "additionalProperties": { "$ref": "#/$defs/attested" },
+          "properties": {
+            "stories": { "$ref": "#/$defs/attested" },
+            "wall_height_m": { "$ref": "#/$defs/attested" },
+            "roof_type": { "$ref": "#/$defs/attested" },
+            "roof_pitch_deg": { "$ref": "#/$defs/attested" },
+            "gable_orientation": { "$ref": "#/$defs/attested" },
+            "construction": { "$ref": "#/$defs/attested" },
+            "cladding": { "$ref": "#/$defs/attested" },
+            "paint": { "$ref": "#/$defs/attested" },
+            "gallery": { "$ref": "#/$defs/attested" },
+            "chimneys": { "$ref": "#/$defs/attested" },
+            "fenestration": { "$ref": "#/$defs/attested" },
+            "shutters": { "$ref": "#/$defs/attested" },
+            "signage": { "$ref": "#/$defs/attested" }
+          }
+        },
+
+        "change_note": {
+          "type": "string",
+          "description": "What changed at the start of this phase, and on what evidence."
+        }
+      }
+    }
+  }
+}
