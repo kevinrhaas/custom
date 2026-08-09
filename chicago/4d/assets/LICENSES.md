@@ -24,7 +24,7 @@ Held out of the published tree entirely, by the user's instruction:
 
 | item | disposition |
 |---|---|
-| `chicago/reference/photos/old-chicago-complete-map.png` (Nelson & Winters, *Old Chicago*, © 1940) | **Reference and research only — never published.** Public domain only if the 1968 renewal lapsed, which has not been checked. Usable in-repo as an orientation and toponym aid; tier 6, so no geometry is derived from it in any case. |
+| `chicago/reference/photos/old-chicago-complete-map.png` (Nelson & Winters, *Old Chicago*, © 1940) | **Reference and research only — never published**, per Kevin's instruction. Now formally citable as `nelson_winters_1940` in `data/sources/` (tier 6, `asset_use: orientation`): toponym and trail-network cross-checks only, no geometry, never sole evidence. Public domain only if the 1968 renewal lapsed — unchecked. |
 
 ## Third-party assets
 
