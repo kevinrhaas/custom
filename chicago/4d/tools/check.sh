@@ -31,6 +31,11 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# The datum must remain the output of its committed ground control, never a
+# hand-edited number. Skips (exit 0) when pyproj is not installed.
+step "datum re-derivation" \
+  python3 tools/rederive_datum.py
+
 # Renderer JS must at least parse. The repo's deploy workflow does the same thing
 # for site/, and a syntax error there is a blank page for everyone.
 check_js() {

@@ -5,7 +5,8 @@ operational view — what to pick up next, and what it depends on.
 
 ```
 S0 scaffold ─┬─► S1 georeference + datum ──► S2 terrain e1834 ──► S3 M0 Sauganash walkable
-   [DONE]     ├─► R1 renderer shell (synthetic geometry) ────────┘
+   [DONE]     │        [DONE]
+              ├─► R1 renderer shell (synthetic geometry) ────────┘
               ├─► P1 research dossiers (read-only) ──► S5 structure records ──► S8 M1
               └─► S4 archetype generators (golden params) ──────► S5 bakes
 S2 ──► S6 flora + fauna ──► S7 polish, audio, perf ──► release sweep
@@ -16,17 +17,16 @@ not need coordinates is deliberately structured to proceed in parallel.
 
 ---
 
-## S1 — Georeference and verify the datum · **NEXT, blocking, do serially**
+## S1 — Georeference and verify the datum · **DONE 2026-08-09**
 
-The single most consequential task in the project. Everything regenerates if the origin moves.
-
-| | |
-|---|---|
-| **Inputs** | BPL Wright 1834 GeoTIFF (open rights, already georeferenced) · LOC Hathaway 1834 JP2 (6536×9318) · Thompson 1830 plat dimensions (80-ft streets, 18-ft alleys) |
-| **Method** | Warp against surviving PLSS section-line geometry legible in the modern street grid. **Do not warp against buildings** — the buildings are what we are trying to locate. |
-| **Outputs** | `data/traces/allmaps/*.json` (W3C georeference annotations) · `data/traces/gcp/` · `datum.json` with `origin_utm_e/n`, `verified: true`, method, residuals, who and when |
-| **Gate** | `tools/check.sh` green + a written derivation memo a reader can check |
-| **Watch** | The LOC catalogs Hathaway as "[1820?]" — a cataloging error. Record the discrepancy; do not silently correct it. |
+Origin: E 447072.7, N 4637395.8 (EPSG:26916) = 41.886721, -87.637951 — the Wright-drawn forks,
+eight-GCP fit RMS 17.5 m, cross-checked against an independent Hathaway georeference (57.9 m)
+and the modern OSM junction (39.4 m). The published Allmaps 3-point transform was measured
+(RMS 25.9 m against independent control) and superseded; no annotation existed for the LOC
+Hathaway, so that georeference is new work. Memo: `docs/RESEARCH/datum_derivation.md`;
+enforcement: `tools/rederive_datum.py` in `check.sh`. Carry-forward: ±20 m working uncertainty
+for anything traced from the 1834 sheets; generate street geometry analytically from plat
+dimensions (Hathaway annotates them) and snap to control rather than tracing pixels.
 
 ## S2 — Terrain, epoch `e1834_harbor_cut`
 

@@ -3,7 +3,7 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-09 · **Phase:** S0 scaffold complete, S1 (datum) not started
+**Last updated:** 2026-08-09 · **Phase:** S0 scaffold + **S1 datum verification COMPLETE**; next S2 (terrain) and R1 (renderer shell), which may run in parallel
 
 ---
 
@@ -20,6 +20,7 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 | Source records | 13 seeded, of which 4 carry real Wayback snapshots |
 | Structure records | **1** (Sauganash, two phases) |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
+| **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
 ## What does not exist yet
@@ -34,18 +35,18 @@ Everything downstream of the datum, by design:
 - **No smoke test**, because there is nothing yet to smoke.
 - **No published site tree.** Nothing under `site/chicago/4d/`.
 
-## Blocking: the datum is unverified
+## The datum is verified
 
-`data/datum.json` carries `verified: false`, and the validator says so on every run. This is
-deliberate and it is the project's critical path:
+`data/datum.json` now carries `verified: true`: **E 447072.7, N 4637395.8 (EPSG:26916) =
+41.886721, -87.637951** — the forks junction as drawn on Wright 1834, fitted against eight
+modern control points (RMS 17.5 m), cross-checked against an independently georeferenced
+Hathaway (57.9 m agreement) and the modern OSM river junction (39.4 m). The brief's placeholder
+was **203 m off**. Full memo: `docs/RESEARCH/datum_derivation.md`; the derivation re-runs from
+committed traces via `tools/rederive_datum.py`, which `check.sh` enforces.
 
-> The scene origin at the Wolf Point forks must be derived from the georeferenced Wright 1834
-> and Hathaway 1834 rasters before any geometry is generated. Fixing the origin after geometry
-> exists means regenerating everything.
-
-Structure positions therefore carry `symbolic_location` ("south-east corner of Lake and Market")
-with null coordinates. That is not a placeholder to be filled in casually — it is the honest
-state until the georeferencing is done and its residuals recorded.
+Structure positions still carry `symbolic_location` with null coordinates — they get filled as
+footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
+uncertainty of the 1834 sheets in its note.
 
 ## Known weaknesses, stated plainly
 
@@ -75,10 +76,12 @@ state until the georeferencing is done and its residuals recorded.
 
 ## Next
 
-**S1 — verify the datum.** Pull the BPL Wright 1834 GeoTIFF and the LOC Hathaway JP2, warp
-against surviving PLSS section-line geometry (not against buildings), store the Allmaps
-annotations in `data/traces/`, derive the origin, record the residuals, and flip
-`verified: true`. Everything else is waiting on it.
+**S2 — terrain epoch `e1834_harbor_cut`** (shoreline/river vectors traced through the fitted
+transforms; the 30-zone heightfield; the slough and ponds; `terrain_gen.py`) and **R1 — the
+renderer shell** (input-intent walker, confidence shader, smoke harness) — independent tracks
+that can run in parallel now that the spatial frame exists.
 
-Parallel work that does **not** need the datum: the renderer shell on synthetic geometry,
-archetype generators against golden parameters, and further research dossiers.
+New findings for S2 from the datum work: Hathaway carries survey bearings and lot dimensions
+("N.51°E." along the main stem, 80-ft streets annotated); both 1834 sheets are anisotropically
+stretched (3.7% / 4.5%), so street geometry should be generated analytically from the plat
+dimensions and snapped to the fitted control, never traced raw from pixels.
