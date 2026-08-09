@@ -1,0 +1,30 @@
+{
+  "id": "1835",
+  "title": "Chicago, summer 1835",
+  "target_date": "1835-07-01",
+  "terrain_epoch": "e1834_harbor_cut",
+
+  "lighting": {
+    "local_time": "10:00",
+    "note": "Mid-morning, 1 July 1835. Sun azimuth and elevation are computed from this time and the datum lat/lon, and drive both the sky and the single directional light. Raise turbidity for prairie haze and woodsmoke."
+  },
+
+  "spawn": {
+    "local_e": 0,
+    "local_n": -25,
+    "yaw_deg": 340
+  },
+
+  "anchors": [
+    { "id": "forks", "label": "The forks at Wolf Point", "local_e": 0, "local_n": -25, "yaw_deg": 340 },
+    { "id": "sauganash", "label": "The Sauganash Hotel, Lake and Market", "local_e": 0, "local_n": 0, "yaw_deg": 315 },
+    { "id": "south_water", "label": "South Water Street, looking east", "local_e": 420, "local_n": -180, "yaw_deg": 90 },
+    { "id": "fort", "label": "Fort Dearborn and the river mouth", "local_e": 1150, "local_n": -420, "yaw_deg": 45 }
+  ],
+
+  "layers": ["terrain", "water", "structures", "flora", "fauna"],
+
+  "released": false,
+
+  "note": "The first scene. Population roughly 3,265 in the late-1835 count; the town is twenty months old and has grown roughly tenfold in two years. Wabansia and Kinzie's Addition are platted (the Wooley correction was approved 17 June 1835, two weeks before this date) but almost entirely unbuilt. Anchor coordinates are provisional until the datum is verified — they are placeholders in the same local frame, not survey positions."
+}

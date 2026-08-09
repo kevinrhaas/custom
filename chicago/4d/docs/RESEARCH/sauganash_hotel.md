@@ -1,0 +1,153 @@
+# Sauganash Hotel — research dossier
+
+**Record:** `data/structures/sauganash_hotel.json` · **Scene status:** standing and operating
+on 1835-07-01 · **Milestone 0 subject**
+
+The Sauganash was chosen as the first record on purpose. Two of its attributes are vividly
+documented and two are unknowable from present evidence, which is exactly the situation the
+per-attribute confidence model exists to handle. If the model can carry this building honestly,
+it can carry the other hundred and fifty.
+
+---
+
+## 1. Identity and sequence
+
+| period | name | note |
+|---|---|---|
+| 1829–1831 | **Eagle Exchange Tavern** | log cabin; Peoria County tavern licence 9 June 1830 |
+| 1831–1838 | **Sauganash Hotel** | two-story frame block added; "Chicago's first hotel" |
+| 1838– | Chicago Hotel | rename only; from Nov 1837 the dining room housed the Chicago Theatre Company |
+| 4 Mar 1851 | — | **destroyed by fire** |
+| 1860 | — | the Wigwam was built on the site for the Republican National Convention |
+
+Named for Billy Caldwell, *Sauganash*, the Potawatomi–British interpreter and leader.
+
+## 2. Location — and the move
+
+**South-east corner of Lake Street and Market Street** (today Lake St and N Wacker Dr), on the
+south side of the main stem near the forks, facing the confluence to the north-west.
+
+Attested twice independently: chicagology's compilation ("near what is now the south-east
+corner of Lake and Market streets") and the City of Chicago landmark designation for the site
+(*Site of the Sauganash Hotel/Wigwam*, lanId 1417, now 191 N Wacker).
+
+**The building moved, and this matters for the data model.** Mark Beaubien bought a small log
+cabin near the forks from James Kinzie around 1826–27 and opened it as a tavern in 1829. After
+the 1830 Thompson plat was laid out, the cabin was found to stand *in the middle of a platted
+street*, and Beaubien relocated it to the Lake and Market corner. The 1831 frame block was then
+built onto the relocated log core.
+
+So the `log_1829` phase spans two positions. The record carries the post-move site, because the
+pre-move position is not attested precisely enough to place — that limitation is stated in the
+phase's position note rather than papered over with a guess.
+
+This is also why `phases[]` carry their own `position`: early Chicago moved buildings routinely
+(the Methodist meeting house was floated across the river and rolled on logs to Washington &
+Clark in 1838), and a data model that treats position as a property of the building rather than
+of the building-at-a-time cannot represent that.
+
+## 3. What is documented
+
+One near-contemporary description does nearly all the work. Juliette Kinzie, *Wau-Bun* (1856),
+describing 1831:
+
+> "At the Point, on the south side, stood a house just completed by Mark Beaubien. It was a
+> pretentious white two-story building, with bright-blue wooden shutters, the admiration of all
+> the little circle at Wolf Point. Here a canoe ferry was kept to transport people across the
+> south branch of the river."
+
+From this, three attributes are `documented`: **two stories**, **white paint**, **bright-blue
+shutters**. "Just completed" independently corroborates the 1831 date.
+
+Worth noticing *why* the description exists: a painted white frame building was remarkable at
+Wolf Point in 1831, among log taverns. The building's visual signature is the thing that made
+someone write it down.
+
+**Caveat on the source's tier.** *Wau-Bun* was published in 1856 and describes 1831 — recollection
+at twenty-five years' distance, hence tier 2 rather than tier 1, and hence the `describes_date`
+field in the source record. It is the best evidence available and it is not an eyewitness note
+made on the spot.
+
+## 4. What is disputed — the gallery
+
+**No period source attests a gallery, porch, or veranda.**
+
+Later illustrations commonly show a full-width front porch or a two-tier gallery. Every one of
+them is a retrospective made thirty to seventy years after the fact:
+
+- the 1867 Blanchard & Shober chromolithograph *"Wolf's Point in 1833"*
+- various Chicago History Museum drawings
+- a 1902 image captioned *"Mark Beaubien's Tavern. The Sauganash, in 1835"*
+
+**They disagree with each other**, none has a documented eyewitness basis, and no scholarly
+adjudication of the conflict was located.
+
+**Decision:** model the gallery, tag it `conjectural`, and state the dispute in the attribute
+note. Rationale: omitting it would be just as much an unevidenced choice as including it, but
+omission hides the uncertainty while inclusion-plus-tagging shows it. In the confidence view the
+gallery renders as dithered translucent massing against the documented white two-story block —
+the viewer sees precisely which part of the building we are guessing about.
+
+If the porch question is ever settled, this is a one-line change to a confidence value.
+
+## 5. What is unknown — the dimensions
+
+**No dimensions for either the log cabin or the frame block are attested in any source reached.**
+The cabin is described only as "small". The frame block is not measured anywhere.
+
+The footprints in the record are placeholders and are tagged `conjectural` accordingly. Two
+leads remain open:
+
+1. **Andreas vol. 1, p. 106** — the index entry "Eagle Exchange (tavern)". Not yet read at
+   page-image level. The archive.org OCR search index for this scan is demonstrably lossy, so
+   the absence of a hit is not evidence of absence; this needs the page image.
+2. **The Hathaway 1834 building rectangle.** Hathaway drew individual structures as small
+   rectangles. Once the datum is verified and the raster warped, the Sauganash's rectangle
+   gives a measured footprint — at map precision, but measured. This is blocked on the datum
+   work and is the single strongest reason the datum is the project's critical path.
+
+Until one of those lands, the building renders as conjectural massing at a plausible two-story
+tavern size, and says so.
+
+## 6. Construction — a flagged inference
+
+The record currently carries `construction: balloon_frame`, `inferred` — **and the note flags it
+as probably wrong.**
+
+Balloon framing was developed in Chicago in 1832–33 and rapidly became the dominant local
+method. The Sauganash frame block predates that by a year. A braced frame built onto a log core
+is the more likely reading for 1831, and the value should probably become `braced_frame` once
+someone researches the framing question properly.
+
+It is left in place, visibly flagged, rather than silently corrected, because changing it
+without evidence would just substitute one guess for another. This is recorded here so the next
+agent picks it up as a research task rather than a typo.
+
+## 7. Immediate surroundings (for the Milestone 1 cluster)
+
+- **Philo Carpenter's drug store** — Chicago's first, in a log building on Lake Street
+  *immediately adjacent to the Sauganash's public bar*. Carpenter arrived 18 July 1832.
+- Chicago's **first billiard table** in a public house stood in the Sauganash.
+- **Beaubien's canoe ferry** across the south branch, worked by rope, ran from the Point. By
+  July 1835 it was probably superseded by the log raft bridge near Lake Street — an inference,
+  not an attestation.
+
+## 8. Occupancy at the scene date
+
+The Beaubiens owned it until 1834. The hotel chronology gives "Davis (1835)" as operator,
+possibly the John Davis who ran the Steamboat Hotel on North Water Street — a lead, not a
+settled fact, and tagged `inferred`.
+
+Mark Beaubien himself had moved on before the scene date: he built the **Exchange Coffee House**
+at Lake and Wells in 1834. The Sauganash in July 1835 is a well-known house under new management,
+in an old part of town that is quietly losing its primacy to the Lake Street axis to the east.
+
+## 9. Open questions
+
+| question | where to look |
+|---|---|
+| Dimensions of the frame block | Andreas vol. 1 p. 106, page image; then the Hathaway rectangle after datum verification |
+| Gallery: real or illustrator's invention? | Any pre-1860 depiction, or a description in the Fergus Historical Series / pioneer reminiscences at the Newberry |
+| Braced frame vs balloon frame | Period building practice at Wolf Point 1831; Andreas on early construction |
+| Whether the log core survived visibly into the 1831 building | Unattested; currently modelled as absorbed |
+| The 1835 proprietor "Mr. Davis" | Chicago Democrat advertisements, 1835 |

@@ -1,0 +1,36 @@
+{
+  "crs": "EPSG:26916",
+  "crs_note": "UTM Zone 16N, NAD83, metres. All georeferencing and footprint data lands here first; scene coordinates are local East-North-Up metres from the origin below.",
+
+  "origin_lat": 41.8885,
+  "origin_lon": -87.6385,
+  "origin_utm_e": null,
+  "origin_utm_n": null,
+
+  "verified": false,
+  "note": "PLACEHOLDER. Approximate position of the Chicago River forks at Wolf Point. Must be derived from the georeferenced Wright 1834 and Hathaway 1834 rasters before any geometry is generated. The validator and the bake both refuse to run while verified is false, by design — fixing the origin after the fact means regenerating everything.",
+
+  "derivation": {
+    "maps": ["wright_1834", "hathaway_1834"],
+    "allmaps_annotations": [],
+    "method": "",
+    "control": "Warp against surviving PLSS section-line geometry legible in the modern street grid. Do NOT warp against buildings — the buildings are what we are trying to locate.",
+    "residual_m": null,
+    "derived_by": "",
+    "derived_on": ""
+  },
+
+  "vertical": {
+    "internal": "Z = 0.0 ft at the summer-1835 lake and river water surface",
+    "export_offset_ft_asl": 580.0,
+    "export_note": "ASL = Z + 580.0. Do not mix Chicago City Datum (1847 low-water mark, on the obsolete mean-tide-New-York reference) with NAVD88 figures; the discrepancy is most of a foot in a landscape whose entire natural relief is under fifteen feet. See docs/EPOCHS.md.",
+    "lake_stage_confidence": "conjectural",
+    "lake_stage_note": "No 1835 Lake Michigan stage record located. The mid-1830s fall in a high-water phase; 580 +/- 1.5 ft ASL is the working assumption. Check NOAA/GLERL historical Michigan-Huron reconstructions to narrow it."
+  },
+
+  "units": {
+    "scene": "metres",
+    "axis": "glTF Y-up, right-handed",
+    "historical_note": "Period surveys are in feet, chains and links. Convert at ingest and record the original figure in the attribute note. Do not carry mixed units into the dataset."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "conley_stelzer_1933",
+  "type": "map",
+  "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+  "author": "Walter H. Conley and O. E. Stelzer",
+  "date": "1933",
+  "describes_date": "1833",
+  "repository": "Norman B. Leventhal Map & Education Center, Boston Public Library",
+  "locator": "identifier 06_01_014768; 44 x 64 cm, scale approx. 1:5,450, oriented north to the right",
+  "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+  "tier": 5,
+  "rights_status": "check_required",
+  "asset_use": "cross_check",
+  "verified": false,
+  "note": "A 1933 RECONSTRUCTION, not a period document — pictorial elevations of individual 1833 structures with modern street names. The single richest building-level inventory available, and useless as primary evidence. Conley spent about two years in libraries and archives; McIlvaine had thirty years earlier collected data directly from the last surviving pioneers. It nevertheless contradicts textual sources (its 'Old Kinzie Mansion, built 1832' conflicts with every documentary account). Never sole evidence; no geometry traced from it.",
+  "rights_note": "BPL asserts 'no known copyright restrictions', but a dealer reports the Library of Congress copy stamped (c) CIF 5380, Mar-7 1933. A 1933 US publication is public domain only if the 1961 renewal lapsed. Run a Stanford Copyright Renewal Database check and record the outcome here before deriving any asset."
+}

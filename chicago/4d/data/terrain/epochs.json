@@ -1,0 +1,54 @@
+{
+  "_doc": "Terrain epochs are states of the ground, not years. Intervals must not overlap. A scene's target_date must fall inside its epoch's interval. Anything that changes on a human project schedule (piers, bridges, wharves) is a STRUCTURE with phases, not an epoch — see docs/EPOCHS.md.",
+
+  "epochs": [
+    {
+      "id": "e1830_natural",
+      "from": "1780-01-01",
+      "to": "1833-06-30",
+      "title": "Natural mouth, before the cut",
+      "note": "The baymouth bar deflects the river south, parallel to the shore, for nearly half a mile before it loses itself in the lake; the natural outlet lies near present Madison Street. Lake vessels anchor half a mile offshore and lighter their cargo.",
+      "status": "planned",
+      "sources": ["chicagology_prefire274", "wikipedia_chicago_river"]
+    },
+    {
+      "id": "e1834_harbor_cut",
+      "from": "1833-07-01",
+      "to": "1848-12-31",
+      "title": "The harbor cut and the decaying old channel",
+      "note": "The 200-ft cut through the bar is open and working, scoured by the February 1834 storm; the piers are growing into the lake; the old southward channel behind the sand tongue is silting into a backwater; fresh sand is beginning to accrete north of the north pier. Shoaling is chronic. This is the ground state for the 1835 scene.",
+      "status": "active",
+      "layers": {
+        "shoreline": "e1834_harbor_cut/shoreline.geojson",
+        "river": "e1834_harbor_cut/river.geojson",
+        "hydrology": "e1834_harbor_cut/hydrology.geojson",
+        "heightfield": "e1834_harbor_cut/heightfield.json"
+      },
+      "sources": ["chicagology_prefire274", "andreas_1884_v1", "wikipedia_chicago_river"]
+    },
+    {
+      "id": "e1849_canal_era",
+      "from": "1849-01-01",
+      "to": "1855-12-31",
+      "title": "Canal era wharfing and early fills",
+      "note": "Placeholder. The Illinois and Michigan Canal opens 1848; wharfing and early filling begin to regularize the banks.",
+      "status": "planned"
+    },
+    {
+      "id": "e1856_grade_raise",
+      "from": "1856-01-01",
+      "to": "1871-10-07",
+      "title": "The city raises itself out of the mud",
+      "note": "Placeholder. Chesbrough's sewerage plan sets the South Division crown at 14 ft above datum; sewers are laid above the old ground and buried under new fill; buildings are jacked 4 to 14 ft. The original 1835 ground surface disappears under the city.",
+      "status": "planned"
+    },
+    {
+      "id": "e1871_postfire",
+      "from": "1871-10-10",
+      "to": "1900-12-31",
+      "title": "The burnt district and the fills that followed",
+      "note": "Placeholder. Debris fill along the lakefront; the Illinois Central trestle line already fixed the shore in 1852.",
+      "status": "planned"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "thompson_plat_1830",
+  "type": "map",
+  "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+  "author": "James Thompson",
+  "date": "1830",
+  "describes_date": "1830",
+  "repository": "Chicago History Museum (working copy, ICHi-34284); the original burned in the 1871 fire",
+  "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+  "tier": 1,
+  "rights_status": "public_domain",
+  "asset_use": "inventory",
+  "verified": false,
+  "note": "PARAMETER SOURCE, not a warping raster — no open high-resolution archival scan located, and the surviving artifact is a Canal Commissioners' working copy dated to at least 1836. Its value is the hard dimensional module: the original Town of Chicago at roughly 0.375 sq mi, 80-ft streets, 18-ft alleys. Generate street and alley geometry analytically from those figures rather than tracing pixels."
+}
