@@ -35,6 +35,18 @@ node.extras  = { "structure_id": "...", "phase_id": "...", "scene_ids": ["1835"]
 diffable in git. The renderer resolves picks through `extras.structure_id`, never by parsing the
 name.
 
+**Multi-material split — verified 2026-08-09, matters for picking.** A structure with several
+materials exports as ONE node with several child meshes (`…__frame_1831_1`, `…_2`, …). glTF
+primitives cannot span materials, so this is unavoidable. Consequences:
+
+- `extras` lands on the **parent node** (three.js: `object.userData`). The child meshes carry
+  **empty** `userData`. A raycast hits a *child*, so **the renderer must walk up the ancestors
+  to find `structure_id`** — reading it off the hit object returns nothing.
+- Each child is its own draw call until batched. A four-material building is four calls; the
+  ≤50–80 budget assumes the buildings get merged into a `BatchedMesh` before that matters.
+- `_CONFIDENCE` is present on **every** child, verified in three.js as
+  `geometry.attributes._confidence` (float, lowercased by GLTFLoader as expected).
+
 ## The confidence channel — `_CONFIDENCE`
 
 **The single most important part of this contract.** The generator knows which geometry derives
