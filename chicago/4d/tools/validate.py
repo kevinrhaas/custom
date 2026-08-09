@@ -372,7 +372,7 @@ def main() -> int:
 
     # optional passes
     if args.params:
-        rep.note("--params: no archetype modules present yet; nothing to resolve")
+        run_param_check(structures, scenes, rep)
     if args.licenses:
         run_license_check(sources, rep)
     if args.stale:
@@ -394,21 +394,86 @@ def main() -> int:
     return 0 if rep.ok(args.strict) else 1
 
 
+def run_param_check(structures: dict, scenes: dict, rep: Report) -> None:
+    """Resolve every scene-included phase into archetype parameters.
+
+    Imports only the pure-Python `*_params.py` halves — no bpy, so this runs in
+    any agent sandbox in milliseconds. It catches the failure mode where a record
+    is schema-valid but produces a building 400 metres tall, long before anyone
+    spends minutes on a bake.
+    """
+    sys.path.insert(0, str(ROOT / "generators"))
+    resolvers = {}
+    arch_dir = ROOT / "generators" / "archetypes"
+    if not arch_dir.exists():
+        rep.note("--params: no archetype modules yet")
+        return
+    for mod_path in sorted(arch_dir.glob("*_params.py")):
+        name = mod_path.stem.removesuffix("_params")
+        try:
+            mod = __import__(f"archetypes.{mod_path.stem}", fromlist=["from_phase"])
+            resolvers[name] = mod.from_phase
+        except Exception as e:  # noqa: BLE001 — a broken generator must fail the gate
+            rep.error("params", f"cannot import {mod_path.name}: {e}")
+
+    checked, no_gen = 0, set()
+    for sc in scenes.values():
+        target = parse_date(sc.get("target_date", ""))
+        if target is None:
+            continue
+        for st in structures.values():
+            arch = st.get("archetype")
+            for ph in st.get("phases", []):
+                r = ph.get("documented_range", {})
+                frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
+                if not (frm and to and frm <= target <= to):
+                    continue
+                if arch not in resolvers:
+                    no_gen.add(arch)
+                    continue
+                try:
+                    resolvers[arch](ph)
+                    checked += 1
+                except Exception as e:  # noqa: BLE001
+                    rep.error(f"structure {st.get('id')}/{ph.get('id')}",
+                              f"does not resolve into {arch} parameters: {e}")
+    rep.note(f"param check: {checked} phase(s) resolved"
+             + (f"; no generator yet for {sorted(no_gen)}" if no_gen else ""))
+
+
 def run_license_check(sources: dict, rep: Report) -> None:
     licenses = ROOT / "assets" / "LICENSES.md"
     if not licenses.exists():
         rep.error("licenses", "assets/LICENSES.md is missing")
         return
     text = licenses.read_text()
-    tracked = 0
+    manifest_path = ROOT / "assets" / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()).get("assets", {}) \
+        if manifest_path.exists() else {}
+
+    generated, third_party = 0, 0
     for p in sorted((ROOT / "assets").rglob("*")):
         if p.is_dir() or p.name in ("LICENSES.md", "manifest.json") or p.name.startswith("."):
             continue
         rel = p.relative_to(ROOT / "assets").as_posix()
+
+        # Build output under gltf/ and web/ is provenance-tracked by the manifest
+        # (which records its input hash and the Blender that made it), not by a
+        # hand-written licence row. Untracked build output IS an error — it means
+        # a file appeared that no recorded bake produced.
+        if rel.startswith(("gltf/", "web/")):
+            if p.name in manifest:
+                generated += 1
+            else:
+                rep.error("licenses", f"assets/{rel} is not in assets/manifest.json — "
+                                      f"no recorded bake produced it")
+            continue
+
         if rel not in text:
             rep.error("licenses", f"assets/{rel} has no entry in assets/LICENSES.md")
-        tracked += 1
-    rep.note(f"license check: {tracked} asset file(s) under assets/")
+        third_party += 1
+    rep.note(f"license check: {generated} generated (manifest-tracked), "
+             f"{third_party} authored/third-party asset(s)")
 
     # rights gating: nothing may be derived from a source still awaiting a check
     for name, s in sources.items():
