@@ -17,7 +17,7 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 | `tools/test_validate.py` | **done** — 15 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | 12 seeded, of which 4 carry real Wayback snapshots |
+| Source records | 13 seeded, of which 4 carry real Wayback snapshots |
 | Structure records | **1** (Sauganash, two phases) |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
@@ -55,17 +55,22 @@ state until the georeferencing is done and its residuals recorded.
 2. **`construction: balloon_frame` on the Sauganash is probably wrong** and is flagged as such
    in the record. Balloon framing postdates the 1831 building by a year. Left visible rather
    than silently swapped, because substituting one guess for another is not a fix.
-3. **Two sources have no web archive.** `drloih_hotels` has no Wayback snapshot and the
+3. **The Sauganash gallery reading was revised on day one**, from "gallery, conjectural" to
+   "no gallery, inferred", after opening the two retrospective images the repo already held.
+   Both show no veranda and both show the 1829 log cabin surviving as an attached wing. The
+   images are not independent of each other, so this is inference, not documentation — and the
+   `frame_tavern` archetype now has to support an attached log wing.
+4. **Two sources have no web archive.** `drloih_hotels` has no Wayback snapshot and the
    validator warns about it on every run; the warning is correct and stands until someone
    archives the page. Wau-Bun's archived_url points at a scanned edition of the book rather
    than the transcription actually read during research — noted in the source record.
-4. **Several research claims are snippet-derived.** `encyclopedia.chicagohistory.org` returned
+5. **Several research claims are snippet-derived.** `encyclopedia.chicagohistory.org` returned
    503 throughout the research session, and a few citations in the dossiers rest on search-index
    snippets rather than retrieved pages. They must be re-fetched before any of them is promoted
    to `documented`.
-5. **The Conley/Stelzer rights question is open.** Marked `check_required`; no asset may be
+6. **The Conley/Stelzer rights question is open.** Marked `check_required`; no asset may be
    derived from it until a Stanford Copyright Renewal Database check is recorded.
-6. **The 1835 lake stage is a guess.** 580 ± 1.5 ft ASL, tagged conjectural, and the entire
+7. **The 1835 lake stage is a guess.** 580 ± 1.5 ft ASL, tagged conjectural, and the entire
    vertical datum hangs off it.
 
 ## Next

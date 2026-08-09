@@ -117,9 +117,16 @@
           "note": "PLACEHOLDER. Unattested; gable is the near-universal form for the type and period."
         },
         "gallery": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": ["andreas_1884_v1", "kurz_allison_1893"],
+          "note": "REVISED 2026-08-09 after examining the images directly. No period source attests a gallery or porch either way, but the two surviving retrospective depictions both show the building WITHOUT one: the F. Braunhold engraving in Andreas (1884) and panel 14 of the Kurz and Allison sheet (1893) each show a plain two-story clapboard block with a modest entrance and no veranda. Caveat on independence — the Kurz and Allison panel closely follows the Andreas composition and is probably derived from it, so these are not two witnesses so much as one witness and a copy. 'No gallery' is therefore better attested than 'gallery' without being documented. See docs/RESEARCH/sauganash_hotel.md."
+        },
+        "log_wing": {
           "value": true,
-          "confidence": "conjectural",
-          "note": "DISPUTED AND UNRESOLVED — see docs/RESEARCH/sauganash_hotel.md. No period source attests a gallery or porch. Later illustrations commonly show a full-width front porch, but every surviving image is a retrospective made 30 to 70 years after the fact (the 1867 Blanchard and Shober chromolithograph 'Wolf's Point in 1833', various Chicago History Museum drawings, a 1902 image captioned 'Mark Beaubien's Tavern. The Sauganash, in 1835'), and they disagree with each other. None has a documented eyewitness basis and no scholarly adjudication was located. The gallery is modelled so the disagreement is visible in the confidence view rather than hidden by omission."
+          "confidence": "inferred",
+          "sources": ["andreas_1884_v1", "kurz_allison_1893"],
+          "note": "Both retrospective depictions show a single-story LOG wing attached to the frame block at its left front, with visible log courses and corner notching under a separate shallow-pitched roof. That is almost certainly the 1829 Eagle Exchange cabin surviving as an attached wing rather than being absorbed into the frame structure — which is what the documentary sequence describes (the frame block was 'built onto' the log cabin). Same derivation caveat as the gallery: one composition, copied."
         }
       },
       "change_note": "Two-story frame block built onto the log core at the Lake and Market corner, 1831; the whole then known as the Sauganash Hotel, Chicago's first hotel."

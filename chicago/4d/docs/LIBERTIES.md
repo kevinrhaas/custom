@@ -48,13 +48,28 @@ and clearly labeled.
 
 ## Per-subject liberties
 
-### L4 — Sauganash Hotel: the gallery is modelled without evidence
-**Decision:** a gallery/porch is included, tagged `conjectural`.
-**Why:** no period source attests one; the later illustrations that show one are retrospectives
-made 30–70 years afterward and disagree with each other. Omitting it and including it are both
-unevidenced choices, but omission hides the uncertainty while tagged inclusion shows it — in the
-confidence view the gallery renders as dithered massing against the documented block.
-**How to resolve:** any pre-1860 depiction or description. See `docs/RESEARCH/sauganash_hotel.md`.
+### L4 — Sauganash Hotel: the gallery question, and how it was decided
+**Decision (revised same day):** **no** gallery, tagged `inferred`.
+**Why:** no period source attests one either way. The first reading followed the secondary
+literature, which describes the surviving retrospective images as disagreeing, and modelled a
+gallery as `conjectural`. Examining the two images the project actually holds — the Braunhold
+engraving in Andreas (1884) and Kurz & Allison panel 14 (1893) — showed both depicting the
+building with **no** veranda. Since the Kurz & Allison composition is probably copied from
+Andreas, that is one witness and a copy rather than two, so the finding is `inferred`, not
+`documented`.
+**Worth noting as a process point:** the correction came from looking at the pictures instead of
+reading about the pictures. Both are in the repo and both were a minute's work to open.
+**How to resolve further:** any pre-1860 depiction or a written description.
+**Recorded:** 2026-08-09. **Revised:** 2026-08-09.
+
+### L4a — Sauganash Hotel: the log wing is inferred from two derivative images
+**Decision:** the 1829 log cabin is modelled as an attached single-story wing on the 1831
+building, tagged `inferred`.
+**Why:** both retrospective depictions draw it plainly, with log courses and corner notching,
+and it matches the documentary account that the frame block was "built onto" the cabin. But the
+two images are not independent, and neither is a period record.
+**Consequence:** the `frame_tavern` archetype has to support an attached log wing — a Milestone 0
+geometry requirement that came out of the evidence rather than the plan.
 **Recorded:** 2026-08-09.
 
 ### L5 — Sauganash Hotel: both footprints are invented

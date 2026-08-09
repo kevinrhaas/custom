@@ -115,7 +115,7 @@ function render() {
 
 function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
 
-fetch('data.json').then(r => r.json()).then(data => {
+fetch('data.json?v=5').then(r => r.json()).then(data => {
   model = data;
   model.namesByBuilding = (model.names || []).reduce((index, name) => {
     (index[name.building_id] ||= []).push(name);

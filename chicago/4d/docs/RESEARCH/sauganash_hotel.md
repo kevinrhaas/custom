@@ -68,27 +68,44 @@ at twenty-five years' distance, hence tier 2 rather than tier 1, and hence the `
 field in the source record. It is the best evidence available and it is not an eyewitness note
 made on the spot.
 
-## 4. What is disputed — the gallery
+## 4. The gallery — revised 2026-08-09 after looking at the pictures
 
-**No period source attests a gallery, porch, or veranda.**
+**No period source attests a gallery, porch, or veranda either way.** The secondary literature
+describes the surviving images as disagreeing about one, so the record initially modelled a
+gallery as `conjectural`.
 
-Later illustrations commonly show a full-width front porch or a two-tier gallery. Every one of
-them is a retrospective made thirty to seventy years after the fact:
+**Then we examined the two images the project actually holds, and they agree — there is no
+gallery.**
 
-- the 1867 Blanchard & Shober chromolithograph *"Wolf's Point in 1833"*
-- various Chicago History Museum drawings
-- a 1902 image captioned *"Mark Beaubien's Tavern. The Sauganash, in 1835"*
+| image | shows |
+|---|---|
+| F. Braunhold engraving, *The Sauganash Hotel*, in Andreas (1884) | two-story clapboard block, gabled roof, two chimneys, multi-pane sash, a modest entrance with no veranda — **and a single-story log wing attached at the left front**, log courses and corner notching plainly drawn |
+| Kurz & Allison, *Chicago In Early Days*, panel 14 (1893) | the same composition: two-story frame block, attached single-story log wing, red roof, no full-width porch |
 
-**They disagree with each other**, none has a documented eyewitness basis, and no scholarly
-adjudication of the conflict was located.
+**Caveat, and it matters:** the Kurz & Allison panel follows the Andreas composition closely
+enough that it is almost certainly derived from it. These are not two independent witnesses;
+they are one witness and a copy. Both are also retrospectives made fifty to sixty years after
+the building went up.
 
-**Decision:** model the gallery, tag it `conjectural`, and state the dispute in the attribute
-note. Rationale: omitting it would be just as much an unevidenced choice as including it, but
-omission hides the uncertainty while inclusion-plus-tagging shows it. In the confidence view the
-gallery renders as dithered translucent massing against the documented white two-story block —
-the viewer sees precisely which part of the building we are guessing about.
+**Decision:** `gallery: false`, confidence `inferred`, with the reasoning and the derivation
+caveat recorded in the attribute note. "No gallery" is better attested than "gallery" without
+being documented — which is exactly what `inferred` means.
 
-If the porch question is ever settled, this is a one-line change to a confidence value.
+This replaces the earlier reading. It is recorded as a revision rather than an edit because the
+first reading came from the literature's characterization of the images and the second came from
+the images themselves, and that distinction is worth keeping visible.
+
+## 4a. The log wing — a second finding from the same images
+
+Both depictions show the **1829 log cabin surviving as an attached single-story wing** rather
+than being absorbed into or replaced by the frame block. That fits the documentary sequence
+exactly: the frame block was "built onto" the log cabin after the cabin was moved to the Lake
+and Market corner.
+
+The record now carries `log_wing: true` (`inferred`, same sources, same derivation caveat), and
+the `frame_tavern` archetype needs to support an attached log wing to build this structure
+correctly. That is a real change to the Milestone 0 geometry requirement, discovered by looking
+at the evidence rather than by reading about it.
 
 ## 5. What is unknown — the dimensions
 
