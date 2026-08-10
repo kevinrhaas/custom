@@ -1,8 +1,9 @@
 # The platted street module, and the control every placement stands on
 
 **Record:** none — this is a memo about a *method*, not about a building ·
-**Data:** `data/traces/street_control.json` · **Gate:** `check_position_derivations`
-in `tools/validate.py`
+**Data:** `data/traces/street_control.json`, `data/traces/vectors/street_corridors_1834.json` ·
+**Gates:** `check_position_derivations` and `check_street_module` in `tools/validate.py` ·
+**Tools:** `tools/refetch_control.py`, `tools/measure_street_widths.py`
 
 ---
 
@@ -45,7 +46,8 @@ sheet this dataset already trusts for block and lot subdivision — it is what m
 documented at a named corner placeable *on* that corner — so adopting a different street width
 from a different source would leave the geometry and the module reading two sheets.
 
-**Why it is `inferred` and not `documented`.** The annotation has not been read street by street.
+**Why it is `inferred` and not `documented`** — as of 2026-08-09, superseded by § 8. The
+annotation has not been read street by street.
 This dataset applies one town-wide figure to Lake, Market, Canal, Randolph and Kinzie, and a
 town-wide figure taken from an annotation is a reading rather than a measurement of each of those
 five streets. That is exactly the shape `inferred` is for, and the note in
@@ -53,8 +55,13 @@ five streets. That is exactly the shape `inferred` is for, and the note in
 
 **The reconciliation worth testing**, carried forward from `hogan_store.md` § 5: the two figures
 may not be about the same streets — 66 ft general, with the riverfront and market streets platted
-wider. Reading the widths off Hathaway 1834 at Lake, South Water and Market specifically settles
-it. That is a slice of research, and it is now a slice with a single edit at the end of it.
+wider. Reading the widths off Hathaway 1834 at named streets settles it. That is a slice of
+research, and it is now a slice with a single edit at the end of it.
+
+**Both were settled on 2026-08-10 — see § 8, which is the measurement.** The corridors were read
+off both 1834 sheets, 66 ft is excluded, the reconciliation dies with it, and the single edit
+turned out not to be needed. What § 8 changes here is the *reason* the grade is `inferred`, not
+the figure. And § 9 is what the same traverse found about the control point it started from.
 
 **What being wrong would cost**, stated because it is computable rather than arguable: every
 offset drops from 12.192 m to 10.058 m and five buildings move 2.13 m — an order of magnitude
@@ -210,3 +217,119 @@ the right nodes, which is the fault that actually occurred. So a control point t
 must also record the two modern street names in `osm_ways` — enough to re-derive the *set* — and
 its lat/lon. Two new self-tests hold the rule, and the discriminating one is the second: a control point
 whose ids re-fetch perfectly and whose set nobody can check is now an error.
+
+## 8. The corridors are measured, and the 66 ft reading is out
+
+§ 2 ended by naming the slice that would settle the width — *reading the widths off Hathaway
+1834 at named streets* — and called it "a slice of research, and it is now a slice with a
+single edit at the end of it." This is that slice. It ran on **both** 1834 sheets, and it
+needed no edit at the end: the module stands at 80 ft.
+
+**What was measured, and what it is a measurement of.** Not the annotation again. The
+*drawn corridor* — the space between the two block boundary lines that face each other
+across a street, taken centre of line to centre of line, because the platted boundary is
+the line the draughtsman drew and a centroid does not care how heavily he inked it. One
+traverse per sheet, starting at that sheet's own *Canal St & Lake St* control pixel and
+running east–west along the block row south of Lake Street, reporting every boundary line
+it crossed. `tools/measure_street_widths.py`; readings in
+`data/traces/vectors/street_corridors_1834.json`.
+
+| corridor, west to east | Hathaway 1834 | Wright 1834 |
+|---|---|---|
+| Desplaines | 26.49 m = **86.9 ft** | 25.83 m = **84.7 ft** |
+| Jefferson | 25.50 m = **83.7 ft** | 26.34 m = **86.4 ft** |
+| Clinton | 24.14 m = **79.2 ft** | 24.44 m = **80.2 ft** |
+| Canal | 23.06 m = **75.7 ft** | 28.28 m = **92.8 ft** |
+| centre-to-centre pitch | 116.6, 117.4, 118.8 m | 117.6, 120.5, 123.2 m |
+
+**66 ft is excluded, and by the streets it would have had to be about.** Eight corridors,
+none within 9 ft of 66, on two independently drawn sheets. And the reconciliation § 2 asked
+to test — that 66 ft is the general width with the riverfront and market streets platted
+wider — dies on the same reading: these four *are* the general streets of the west
+division, which is precisely where a 66 ft general width would have to appear. It does not.
+The dissent stays in `street_control.json` with its status changed from *worth testing* to
+*excluded*, because a source is not deleted for turning out to be wrong.
+
+**The pitch is the check that the tool is reading the map and not itself.** A street belongs
+to a grid: 300 ft blocks plus one street width is 380 ft, or 116 m. Seven consecutive
+spacings came out between 116.6 and 123.2 m without anything asking them to, and that is
+what licenses reading the eight gaps between them as streets. It is also the only
+classifier here with any force — see the limits below.
+
+**What it does NOT settle, stated because the number is uncomfortable.** The median of the
+eight is **84.8 ft**, about 5 ft *wider* than the figure this project adopts. That is not
+rounded away and it is not a reason to move the module: what has been measured is the
+corridor two draughtsmen drew on warped paper in 1834, and what `platted_street` claims is
+what Thompson platted in 1830. The sheets' own anisotropic stretch is 3.7-4.5%, which is
+3.0-3.6 ft of it; a pen line placed on the outside rather than the middle of a boundary
+accounts for more. So the reading decides *which candidate* and leaves the platted figure to
+the foot alone, and the grade stays `inferred` — for a different reason than before, which
+the note in `street_control.json` now states.
+
+**Alleys: consistent with 18 ft, and not settled.** Three alley gaps came out 5.21, 5.31 and
+5.70 m — 17.1, 17.4 and 18.7 ft. The dissent's 16 ft is 4.88 m. The nearest reading is 0.33 m
+above it, and this method's error is larger than that, so the alley figure is *not* decided
+here. Nothing in the dataset uses it.
+
+**What this cannot do, and the half of the reading that was thrown away.** A second traverse
+ran north–south along Canal to measure the E-W streets, and it is not committed. On the
+Wright sheet it reads **lot lines**, and every test that separates a lot line from a street
+on the Hathaway sheet fails there: Wright's lot depths are 20-26 m, which is a platted
+street's width; a lot line runs as far as a block face does, because the line at the same
+depth continues in the column across the alley; and two of its spacings land inside the
+module band by arithmetic coincidence. Rather than tune a filter until the answer looked
+right, that traverse was dropped and the module rests on the N-S streets. So this file still
+has no measurement of Lake, Randolph, South Water or Market — which is also what S9 wants
+next, and it will need a method that identifies a corridor by something other than its
+width.
+
+Two smaller things worth carrying, both of which cost a run of the tool to learn: a traverse
+may not run down the street it is measuring (block faces stop at the kerb, so a pass along a
+corridor crosses nothing but the street's own name), and it may not run down the mid-block
+alley either (an alley is a blank corridor whose crossing lot lines stop at its kerbs and
+whose mouths break the faces at both ends — a traverse in one reads two hundred metres of
+paper and no streets). The tool offsets a quarter of the measured block pitch for that
+reason, and the reason is in its docstring so the next reader does not rediscover it.
+
+## 9. And the control point it was standing on is inside a block
+
+The traverse starts at the sheet's own *Canal St & Lake St* ground-control pixel, and the
+first thing it printed is that this pixel is not on Canal Street.
+
+| sheet | GCP | recorded pixel | on the Canal centreline | apart |
+|---|---|---|---|---|
+| Hathaway 1834 | HA | 1122, 2218 (working) | 1204, 2219 | **52.4 m** |
+| Wright 1834 | G5 | 1197, 1955 (resource) | 1226, 1956 | **20.2 m** |
+
+**Both sit inside block 28**, west of the corridor, and the sheets say so themselves: the
+block number *28* is printed straddling each of them, and a block number is never printed in
+a street. The corridor 52 m east of HA is the one Hathaway letters `Canal.`; the one 20 m
+east of G5 is the gap between blocks 28 and 29, with `West` — West Water Street — a further
+block beyond it. Both readings appear to have taken **block 28's mid-block alley** for the
+street: the alley pair on the Hathaway traverse measures 5.2 m and sits 6 m from HA.
+
+**What this is not.** It is not a claim that Canal and Lake is somewhere else. The modern
+junction is a well-recorded coordinate with its node ids committed (§ 7). It is a claim about
+where that junction was *pointed at* on two 1834 sheets, which is a different kind of
+mistake and the kind a georeference is made of.
+
+**What it costs, computed rather than argued.** Wright's G5 is one of the eight points
+`data/datum.json` is fitted from. Refitting the Wright control with G5 moved onto the
+corridor centreline — and nothing else changed — moves the datum origin **15.0 m** (dE −15.0,
+dN +0.2) and leaves the fit RMS at 17.5 m. That is the whole exposure, and it is inside the
+±20 m the project already declares as its working uncertainty.
+
+**It is queued and not adopted, deliberately.** Moving the origin re-derives every coordinate
+in the dataset and stales every committed mesh, which is a Blender bake and a whole-dataset
+review, not a slice. `datum_exposure` in the corridor file carries the figure with
+`status: "queued, not adopted"`, and `check_street_module` pins both the offset and the
+exposure to the GCP pixels they were computed from — so the day either correction is adopted
+the gate fails until the sheets are read again. A finding whose inputs have moved is not a
+finding.
+
+**Two limits on the finding itself.** The correction measured is *across* Canal Street only:
+whether HA and G5 sit at the right northing — whether the row they are in is Lake Street — is
+a separate reading and is untouched here. And three of the five Hathaway points and seven of
+the eight Wright points have not been checked this way at all. HC (State & Madison) was
+looked at by eye and appears to be in its corridor; the rest are unexamined, and the same
+method would examine them.

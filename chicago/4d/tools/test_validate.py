@@ -1944,6 +1944,104 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
           any("explains it nowhere" in e for e in run(bridge(1100.0, var=1.5, note=""))))
 
 
+def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
+    """The module is one number five buildings stand on, and it is measured now.
+
+    `check_position_derivations` recomputes every placement FROM the module and would
+    pass a dataset stepping half of any figure at all. The corridors read off both 1834
+    sheets are what the figure now answers to, and the discriminating case is the last
+    one here: a perfectly well-formed file whose adopted width is the candidate its own
+    readings exclude. A gate that only re-derived the arithmetic would pass it.
+    """
+    import json as _json
+    import tempfile
+    tmp = Path(tempfile.mkdtemp())
+    (tmp / "traces" / "vectors").mkdir(parents=True)
+    (tmp / "traces" / "gcp").mkdir(parents=True)
+
+    # One metre per pixel, axis aligned, so the arithmetic is readable by eye.
+    AFF = {"a": 1.0, "b": 0.0, "c": 0.0, "d": 0.0, "e": -1.0, "f": 0.0}
+
+    def corridor(x1: float, x2: float) -> dict:
+        w = abs(x2 - x1)
+        return {"px": [[x1, 100.0], [x2, 100.0]], "width_m": round(w, 2),
+                "width_ft": round(w / 0.3048, 1)}
+
+    def sheet(widths=(24.4, 24.6, 25.0, 24.2)) -> dict:
+        xs, out = 0.0, []
+        for w in widths:
+            out.append(corridor(xs, xs + w))
+            xs += 117.0
+        return {"raster": {"gcp_px_to_native": 1.0},
+                "affine": {"source": "data/traces/gcp/s1_gcps.json", "coefficients": AFF},
+                "traverses": [{"id": "t", "corridors": out}],
+                "control_point_check": {"gcp": "A", "recorded_px": [10, 20]}}
+
+    def doc(width_ft=80, **over) -> dict:
+        sh = sheet()
+        ft = sorted(c["width_ft"] for c in sh["traverses"][0]["corridors"])
+        d = {
+            "sources": ["s1"],
+            "sheets": {"s1": sh},
+            "candidates": {"adopted": {"width_ft": width_ft}, "dissent": {"width_ft": 66},
+                           "tolerance_ft": 4.0,
+                           "nearest_ft": min((width_ft, 66),
+                                             key=lambda f: abs(ft[len(ft) // 2] - f)),
+                           "excluded_ft": [f for f in (width_ft, 66)
+                                           if all(abs(r - f) > 4.0 for r in ft)]},
+            "summary": {"n_corridors": len(ft), "median_ft": ft[len(ft) // 2],
+                        "min_ft": ft[0], "max_ft": ft[-1]},
+            "datum_exposure": {"gcp": "G5", "recorded_px": [1197, 1955],
+                               "status": "queued, not adopted"},
+        }
+        for k, v in over.items():
+            d[k] = v
+        return d
+
+    def run(d: dict, module_ft=80, gcp_px=(10, 20), g5_px=(1197, 1955)) -> list:
+        (tmp / "traces" / "vectors" / "street_corridors_1834.json").write_text(
+            _json.dumps(d), encoding="utf-8")
+        (tmp / "traces" / "street_control.json").write_text(_json.dumps(
+            {"platted_street": {"width_ft": module_ft}}), encoding="utf-8")
+        (tmp / "traces" / "gcp" / "s1_gcps.json").write_text(_json.dumps(
+            {"gcps": [{"id": "A", "pixel": list(gcp_px)}]}), encoding="utf-8")
+        (tmp / "traces" / "gcp" / "wright_1834_gcps.json").write_text(_json.dumps(
+            {"gcps": [{"id": "G5", "pixel": list(g5_px)}]}), encoding="utf-8")
+        rep = V.Report()
+        V.check_street_module({"s1"}, rep, data_root=tmp)
+        return rep.errors
+
+    check("a measurement whose metres come out of its pixels passes", not run(doc()), run(doc()))
+
+    bad = doc()
+    bad["sheets"]["s1"]["traverses"][0]["corridors"][0]["width_m"] = 20.1
+    check("a width edited away from its own pixels is an error",
+          any("re-derive" in e for e in run(bad)), run(bad))
+
+    stale = doc()
+    stale["summary"]["median_ft"] = 66.0
+    check("a summary that no longer matches its readings is an error",
+          any("median_ft" in e for e in run(stale)))
+
+    check("a source the measurement cites and the repository does not have is an error",
+          any("does not resolve" in e for e in run(doc(), module_ft=80)
+              ) is False and any("does not resolve" in e
+                                 for e in run({**doc(), "sources": ["nope"]})))
+
+    # The finding cannot outlive its inputs, in either direction.
+    check("a control point moved since it was measured is an error",
+          any("taken against" in e for e in run(doc(), gcp_px=(11, 20))))
+    check("a datum exposure priced against a pixel that has moved is an error",
+          any("stale" in e for e in run(doc(), g5_px=(1226, 1956))))
+
+    # THE DISCRIMINATING CASE: nothing in this file is malformed. Every metre comes
+    # out of its pixels, the summary matches, the readings are coherent — and the
+    # figure five buildings are placed from is the one those readings rule out.
+    check("a module the sheets exclude is an error even when the file is otherwise clean",
+          any("comes within" in e for e in run(doc(width_ft=66), module_ft=66)),
+          run(doc(width_ft=66), module_ft=66))
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

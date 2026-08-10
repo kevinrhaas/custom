@@ -3,8 +3,9 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the one building in this scene whose date is a live argument says so
-on its own card, and the panel's promise about that card is a check now, § 41) ·
+**Last updated:** 2026-08-10 (the platted street width is measured off both 1834 sheets rather
+than read off one annotation, 66 ft is excluded, and the control point the traverse started from
+turned out to be inside a block — 15.0 m of datum exposure, priced and queued, § 42) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1300,6 +1301,63 @@ uncertainty of the 1834 sheets in its note.
     by any of this. Whether the question is the right question about the town. And the map from a
     record's claim to a card section is authored: the check proves the card reads the path, not that
     the section a visitor sees is the one the entry meant.
+
+42. **The number five buildings are placed from was an annotation nobody had checked, and
+    checking it found the control point standing in the middle of a block.** Every platted
+    placement here steps half a street from a surviving modern junction, and that half-street is
+    one figure: 12.192 m, half of 80 ft. § 34 made it one figure in one file so it could be
+    argued with, and then recorded the argument and left it: 80 ft is annotated on Hathaway 1834,
+    Currey says the 1830 plat used 66, and the memo's own § 2 said settling it meant reading the
+    widths off the sheet street by street. Nobody had.
+    **It is read now, and 66 is out.** `tools/measure_street_widths.py` runs one traverse per
+    1834 sheet along the block row south of Lake Street and measures every corridor it crosses,
+    block boundary line centre to block boundary line centre: eight corridors — Desplaines,
+    Jefferson, Clinton, Canal on each sheet — between **75.7 and 92.8 ft**, none within 9 ft of
+    66. The reconciliation § 2 wanted tested dies on the same reading: those four ARE the general
+    streets of the west division, which is exactly where a 66 ft general width would have to
+    show. The check that this is reading the map rather than its own thresholds is the pitch:
+    seven consecutive corridor spacings between 116.6 and 123.2 m, which is the 300 ft block plus
+    one street the plat describes, and nothing asked them to be.
+    **What it does not settle is in the file too.** The median is **84.8 ft**, five feet wide of
+    the figure the dataset uses, and that is recorded rather than rounded away: what was measured
+    is the corridor two draughtsmen drew on paper that has stretched 3.7-4.5%, and what
+    `platted_street` claims is what Thompson platted in 1830. So the grade stays `inferred` for a
+    NEW reason, stated in the file, and nothing in the dataset moves. The alleys read 17.1-18.7
+    ft, consistent with 18 and not conclusive against 16 — two feet is inside this method's
+    error, and a reading that cannot separate two figures does not get to pick one.
+    **The traverse starts at a control pixel, and that is where the real finding came from.**
+    Hathaway's HA and Wright's G5 both claim to be *Canal St & Lake St*. HA sits **52.4 m** west
+    of the Canal corridor centreline and G5 **20.2 m** west, both inside block 28 — and the
+    sheets say so themselves, because the block number *28* is printed straddling each recorded
+    pixel and a block number is never printed in a street. Both appear to have taken block 28's
+    mid-block alley for the street. **G5 is one of the eight points the datum is fitted from**:
+    refitting with it on the centreline moves the origin **15.0 m** and leaves the RMS at 17.5 m.
+    That is 40% of the ±20 m this project declares, and it is a candidate account of a good part
+    of the 57.9 m cross-map disagreement the datum memo has carried as its honest ceiling with no
+    explanation.
+    **Queued, not adopted, and pinned so it cannot rot.** Moving the origin re-derives every
+    coordinate and stales every mesh — a bake and a whole-dataset review, not a slice. So the
+    figure is committed with `status: "queued, not adopted"`, and `check_street_module` holds both
+    the offset and the exposure to the GCP pixels they were computed from: the day either
+    correction is adopted, the gate fails until the sheets are read again. A finding whose inputs
+    have moved is not a finding.
+    **The gate is the offline half of the measurement.** The tool needs the network, and a commit
+    gate that needs the network fails for reasons that have nothing to do with the commit. So
+    `check_street_module` re-derives every committed metre from its committed pixels through the
+    sheet's own affine, re-derives the summary from the readings, and requires the adopted module
+    to be the candidate those readings support — the discriminating self-test is a file in which
+    nothing is malformed, every metre checks out, and the figure five buildings stand on is the
+    one its own readings exclude.
+    **What it cannot do, and the half of the reading thrown away.** A second traverse, N-S along
+    Canal, would have measured Lake and Randolph. It is not committed: on the Wright sheet it
+    reads lot lines, and every test that separates a lot line from a street on Hathaway fails
+    there — Wright's lot depths are 20-26 m, which is a platted street's width; a lot line runs as
+    far as a block face does, because the line at the same depth continues across the alley; and
+    two of its spacings land inside the module band by coincidence. Rather than tune a filter
+    until the answer looked right, that half was dropped and said so. So the E-W streets are still
+    unmeasured, which is also what S9 needs, and it needs a method that identifies a corridor by
+    something other than its width. Ten of the thirteen control points on the two sheets have not
+    been checked against their corridors either.
 
 ## Next
 
