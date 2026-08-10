@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 9, title: 'A proper way to say where you start and end', kind: 'feature',
+    ts: '2026-08-10T13:12:18.852Z', date: 'Aug 10, 2026, 8:12 AM CT',
+    items: [
+      'Where you start and where you finish are now one card that draws the trip, instead of two dropdowns holding eighty-one addresses each. A round trip says so rather than repeating your own address back at you, and there is a button to reverse the two.',
+      'Picking a spot opens a proper finder. Type a street or a house number and it finds it. Street corners and porches are two clear tabs rather than headings buried in a list. And a small map shows you where the place actually is, because forty-eight corner names tell you nothing about which side of the park you would be standing on.',
+      'You can set one spot as your home. Every option then shows how far it is to walk from there, nearest first, and you can start from it in one tap. Porches also show how many bands are playing there.',
+      'There is a use-my-location button that finds the nearest spot to you. Your home is remembered between visits.',
+    ] },
   { v: 8, title: 'Miles, and a swap button on every band', kind: 'feature',
     ts: '2026-08-10T05:05:30.690Z', date: 'Aug 10, 2026, 12:05 AM CT',
     items: [

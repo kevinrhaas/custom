@@ -526,6 +526,137 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else ok(`longest star toast fits (${worst.h.toFixed(0)}px)`);
     await setPop(0);
 
+    // ---- the start / end picker ----
+    // The two endpoints used to be a single dropdown of 81 addresses. This
+    // checks the replacement actually navigates: search across both kinds,
+    // the two kinds are separately reachable, and a pick re-plans.
+    if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
+    await page.waitForTimeout(250);
+    const startLabel = () => page.textContent('#fromLabel');
+    const startWas = await startLabel();
+    if (!startWas || startWas === '—') fail(`${tag} — start endpoint has no label`);
+    else ok(`start endpoint reads as a place (${startWas.slice(0, 30)})`);
+    if ((await page.textContent('#toLabel')) !== 'Back where you started')
+      fail(`${tag} — a round trip should say so, got "${await page.textContent('#toLabel')}"`);
+    else ok('a round trip says so rather than repeating the address');
+
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(450);
+    if (await page.locator('#pick').getAttribute('hidden') !== null)
+      fail(`${tag} — picker did not open`);
+    const corners = await page.locator('.pickrow').count();
+    if (corners !== 48) fail(`${tag} — corners tab showed ${corners}, expected 48`);
+    else ok(`picker opens on street corners (${corners})`);
+
+    // The visual: streets have to actually render, not silently fall back to
+    // black-on-black the way an undefined colour token did.
+    const mapPath = await page.evaluate(() => {
+      const p = document.querySelector('#pickMap path');
+      if (!p) return { len: 0, stroke: '' };
+      return { len: (p.getAttribute('d') || '').length, stroke: getComputedStyle(p).stroke };
+    });
+    if (mapPath.len < 500) fail(`${tag} — picker map drew no streets (d length ${mapPath.len})`);
+    else if (/rgb\(0,\s*0,\s*0\)/.test(mapPath.stroke))
+      fail(`${tag} — picker map streets are black, the colour token is undefined`);
+    else ok(`picker map draws the streets (${mapPath.stroke})`);
+    if (!(await page.textContent('#pickMapLab'))) fail(`${tag} — picker map has no label`);
+    else ok('picker map names the highlighted place');
+
+    // Search is the answer to the daunting list, and spans both kinds.
+    await page.fill('#pickQ', '2441');
+    await page.waitForTimeout(350);
+    const hit = await page.locator('.pickrow').count();
+    const hitTxt = hit ? await page.locator('.pickrow .tx b').first().textContent() : '';
+    if (!hit || !hitTxt.includes('2441'))
+      fail(`${tag} — searching a house number found ${hit} rows (${hitTxt})`);
+    else ok(`address search works across kinds (2441 -> ${hitTxt})`);
+    await page.fill('#pickQ', 'zznope');
+    await page.waitForTimeout(300);
+    if (!(await page.locator('.pickempty').count())) fail(`${tag} — no empty state in the picker`);
+    else ok('picker explains an empty result');
+    await page.fill('#pickQ', '');
+    await page.waitForTimeout(300);
+
+    await page.locator('[data-seg="porch"]').click();
+    await page.waitForTimeout(350);
+    const porches = await page.locator('.pickrow').count();
+    if (porches !== 33) fail(`${tag} — porches tab showed ${porches}, expected 33`);
+    else ok(`both kinds are reachable as tabs (${porches} porches)`);
+
+    // Home drives the distances shown against every option.
+    await page.locator('.pickrow').nth(2).locator('[data-home]').click();
+    await page.waitForTimeout(450);
+    const withHome = await page.locator('.pickrow .tx small').allTextContents();
+    const fromHome = withHome.filter(t => /from home|your home/.test(t)).length;
+    if (fromHome < porches - 1)
+      fail(`${tag} — only ${fromHome} of ${porches} rows show a distance from home`);
+    else ok(`home sets distances on the list (${fromHome} rows)`);
+    const firstRow = await page.locator('.pickrow .tx small').first().textContent();
+    if (!/your home/.test(firstRow))
+      fail(`${tag} — list not sorted by distance from home, first row is "${firstRow}"`);
+    else ok('list sorts nearest-to-home first');
+
+    const picked = await page.locator('.pickrow .tx b').nth(1).textContent();
+    await page.locator('.pickrow').nth(1).click();
+    await page.waitForTimeout(1200);
+    if ((await startLabel()) !== picked)
+      fail(`${tag} — picked "${picked}" but the card says "${await startLabel()}"`);
+    else ok(`picking sets the endpoint (${picked})`);
+    if (!(await page.locator('#stops .stop').count()))
+      fail(`${tag} — the route emptied after choosing a start`);
+    else ok('choosing a start re-plans');
+
+    // A round trip has nothing to swap, so the control must say so rather
+    // than claiming success and changing nothing.
+    if (!(await page.locator('#endSwap').isDisabled()))
+      fail(`${tag} — swap is offered on a round trip, where it cannot do anything`);
+    else ok('swap is disabled on a round trip');
+
+    // Give it a real second endpoint, then swapping must actually reverse them.
+    await page.locator('#toBtn').click();
+    await page.waitForTimeout(450);
+    await page.locator('[data-seg="corner"]').click();
+    await page.waitForTimeout(350);
+    await page.locator('.pickrow').nth(4).click();
+    await page.waitForTimeout(1200);
+    const endWas = await page.textContent('#toLabel');
+    const startWas2 = await startLabel();
+    if (endWas === 'Back where you started')
+      fail(`${tag} — choosing a distinct end still reads as a round trip`);
+    else ok(`end can be set independently (${endWas.slice(0, 28)})`);
+    await page.locator('#endSwap').click();
+    await page.waitForTimeout(1200);
+    if ((await startLabel()) !== endWas || (await page.textContent('#toLabel')) !== startWas2)
+      fail(`${tag} — swap did not reverse the ends (${await startLabel()} / ${await page.textContent('#toLabel')})`);
+    else ok('swapping start and end reverses them');
+    await page.locator('#endSwap').click();
+    await page.waitForTimeout(1200);
+
+    // Home outlives the session — it is a property of you, not of this plan.
+    const homeIdx = await page.evaluate(() => S.home);
+    if (homeIdx === null) fail(`${tag} — home was not retained`);
+    else {
+      const hp = await ctx.newPage();
+      const doneHp = watch(hp, `${tag}/home`);
+      await hp.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
+      await hp.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
+        null, { timeout: 25000 }).catch(() => {});
+      const kept = await hp.evaluate(() => S.home);
+      if (kept !== homeIdx) fail(`${tag} — home did not persist: ${homeIdx} -> ${kept}`);
+      else ok(`home persists into a new session (${kept})`);
+      doneHp();
+      await hp.close();
+    }
+
+    // Escape has to close it — it is a modal over the whole app.
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(400);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(350);
+    if (await page.locator('#pick').getAttribute('hidden') === null)
+      fail(`${tag} — Escape did not close the picker`);
+    else ok('Escape closes the picker');
+
     // ---- distances in miles ----
     const units = await page.evaluate(() => ({
       walk: document.getElementById('sWalk').textContent,

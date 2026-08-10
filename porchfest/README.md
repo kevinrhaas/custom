@@ -203,6 +203,41 @@ which are ID selectors — the mobile override that returns the panes to
 scrollport and the sticky CTA silently breaks. That is a real regression the
 suite caught; the comment is in the CSS.
 
+## Where you start and end
+
+The two endpoints were one `<select>` of 81 addresses each — 33 porches and 48
+corners buried in optgroups. They are now an A→B card that draws the trip it
+describes, backed by one picker overlay (`pickOpen(slot)`, `PICK.slot` says
+which endpoint it is writing to).
+
+The picker answers the daunting-list problem three ways: **search** matches the
+labels, which already ARE addresses — porches are house numbers, corners are
+cross streets, so "2441" or "26th" finds the place; **two tabs** make the two
+kinds of standing-place explicit instead of hiding them in optgroups; and a
+**mini-map** shows where the highlighted place actually is, because a list of
+48 corner names tells you nothing about which side of the park you'd be on.
+
+That map fits the full **east–west** extent and crops vertically around the
+highlighted place. Fitting the whole neighbourhood renders an unreadable blob —
+the festival is tall and narrow and the strip is wide and short. The avenues
+run north-south, so seeing the full width is the context that means something.
+
+Two traps, both of which bit during the build. The sheet is a flex column, so
+everything that is not the list needs `flex:none` or the map gets crushed to
+nothing. And there is no `--map-road` token — an undefined colour makes SVG
+`stroke` fall back to black, which is invisible on the map ground; the real
+tokens are `--map-major` / `--map-mid` / `--map-minor`.
+
+**Home** is a PLACES index at `pf.home`, not a typed address. There is no
+geocoder and there should not be one — a network round trip is exactly what
+this app is built to survive without. Set it from the picker, and every option
+lists its walking distance from there with the list sorted nearest-first.
+"Use my location" snaps the browser's coordinates to the nearest place, since
+the planner runs on the street graph and cannot start from an arbitrary point.
+
+Swap is **disabled on a round trip** — A→A reversed is still A→A, and claiming
+"swapped" while changing nothing is worse than not offering it.
+
 ## Units
 
 Distances read in **miles and feet**, pace in **mph** — this is a street
