@@ -262,9 +262,46 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     if (String(stops) !== sBands) fail(`${tag} — summary says ${sBands} bands, list shows ${stops}`);
     else ok(`summary agrees (${sBands} bands, ${await page.textContent('#sWalk')} walking)`);
 
+    // ---- times must be real clock times ----
+    // Arrival times are fractional (distance / pace). Rounding the minutes
+    // apart from the hour let them carry to 60 without the hour following, so
+    // the app printed "2:60 PM". It hit ~0.8% of times, which is exactly rare
+    // enough for a single sampled plan to miss — so sweep the formatter
+    // directly rather than trusting whatever the current route happens to be.
+    const clockSweep = await page.evaluate(() => {
+      const bad = [];
+      for (let m = 0; m < 1440; m += 0.05) {
+        const s = hhmm(m);
+        const mt = s.match(/^(\d{1,2}):(\d{2}) (AM|PM)$/);
+        if (!mt) { if (bad.length < 5) bad.push(`${m.toFixed(2)} -> "${s}" (unparsable)`); continue; }
+        const hh = +mt[1], mm = +mt[2];
+        if (hh < 1 || hh > 12 || mm > 59) if (bad.length < 5) bad.push(`${m.toFixed(2)} -> "${s}"`);
+      }
+      return bad;
+    });
+    if (clockSweep.length) fail(`${tag} — impossible times from hhmm: ${clockSweep.join(', ')}`);
+    else ok('every minute of the day formats as a real clock time');
+
+    // And nothing rendered on screen may be an impossible time either.
+    const badRendered = await page.evaluate(() => {
+      const out = [];
+      for (const m of document.body.innerText.matchAll(/\b(\d{1,2}):(\d{2})\s*(AM|PM)\b/g)) {
+        if (+m[1] < 1 || +m[1] > 12 || +m[2] > 59) out.push(m[0]);
+      }
+      return [...new Set(out)];
+    });
+    if (badRendered.length) fail(`${tag} — impossible time on screen: ${badRendered.join(', ')}`);
+    else ok('no impossible time rendered');
+
     // every stop must sit inside that band's advertised set window
     const outside = await page.evaluate(() => {
-      const to24 = (s) => { const m = s.match(/(\d+):(\d+)\s*(AM|PM)/); return ((+m[1] % 12) + (m[3] === 'PM' ? 12 : 0)) * 60 + +m[2]; };
+      // Rejects an impossible minute rather than quietly accepting it — this
+      // parser tolerating "2:60" is why the window check never caught it.
+      const to24 = (s) => {
+        const m = s.match(/(\d+):(\d+)\s*(AM|PM)/);
+        if (!m || +m[2] > 59 || +m[1] < 1 || +m[1] > 12) throw new Error(`bad time "${s}"`);
+        return ((+m[1] % 12) + (m[3] === 'PM' ? 12 : 0)) * 60 + +m[2];
+      };
       const bad = [];
       for (const row of document.querySelectorAll('#stops .stop')) {
         const begin = to24(row.querySelector('.when b').textContent);
@@ -280,7 +317,11 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
 
     const chrono = await page.evaluate(() => {
       const rows = [...document.querySelectorAll('#stops .stop .when b')].map(e => e.textContent);
-      const to24 = (s) => { const m = s.match(/(\d+):(\d+) (AM|PM)/); return ((+m[1] % 12) + (m[3] === 'PM' ? 12 : 0)) * 60 + +m[2]; };
+      const to24 = (s) => {
+        const m = s.match(/(\d+):(\d+) (AM|PM)/);
+        if (!m || +m[2] > 59 || +m[1] < 1 || +m[1] > 12) throw new Error(`bad time "${s}"`);
+        return ((+m[1] % 12) + (m[3] === 'PM' ? 12 : 0)) * 60 + +m[2];
+      };
       const t = rows.map(to24);
       return t.every((v, i) => i === 0 || v >= t[i - 1]);
     });

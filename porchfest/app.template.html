@@ -890,8 +890,13 @@ function plan(runs){
 
 /* ---------- formatting ---------- */
 const hhmm=(m)=>{
-  const h=Math.floor(m/60), mm=Math.round(m%60);
-  const ap=h>=12?'PM':'AM', hh=((h+11)%12)+1;
+  // Round to the minute ONCE and then split. Flooring the hour from the raw
+  // value while rounding the minutes separately lets the minutes carry to 60
+  // without the hour following, which printed times like "2:60 PM" — arrival
+  // times are fractional (distance / pace), so ~0.8% of them hit it.
+  const t=Math.round(m);
+  const h=Math.floor(t/60), mm=t%60;
+  const ap=h%24>=12?'PM':'AM', hh=((h+11)%12)+1;
   return `${hh}:${String(mm).padStart(2,'0')} ${ap}`;
 };
 const mins=(m)=>{

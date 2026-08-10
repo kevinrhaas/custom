@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 6, title: 'No more 2:60 PM', kind: 'fix',
+    ts: '2026-08-10T03:00:41.045Z', date: 'Aug 9, 2026, 10:00 PM CT',
+    items: [
+      'The schedule could print an impossible time like 2:60 PM. Arrival times are fractional, because they come out of a distance divided by a walking pace, and the clock was rounding the minutes separately from the hour. When the minutes rounded up to sixty the hour did not carry, so three in the afternoon rendered as two sixty.',
+      'It now rounds to the minute once and then splits, so the carry happens where it should. About one time in a hundred and twenty was affected, which is why it took a while to show up.',
+      'The suite now sweeps every minute of the day through the clock rather than checking whichever route it happened to build, and the parsers it uses to read times back off the screen reject an impossible minute instead of quietly accepting one.',
+    ] },
   { v: 5, title: 'The stars say what they mean', kind: 'fix',
     ts: '2026-08-10T02:41:30.705Z', date: 'Aug 9, 2026, 9:41 PM CT',
     items: [
