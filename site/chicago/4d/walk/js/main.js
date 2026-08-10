@@ -24,6 +24,7 @@ import { createTouchBackend, prefersTouch } from './controls/touch.js';
 import { createWalker, footprintsFrom, WALK } from './walker.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
+import { mountExclusions } from './exclusions.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
@@ -153,6 +154,15 @@ async function boot() {
   // the card says what THIS building made up, and neither can drift from the
   // markdown they are both quoting.
   popup.setLiberties(api.liberties.liberties);
+
+  // And what was researched and left out, which no building can carry because
+  // the buildings that would carry it are the ones not standing here.
+  api.exclusions = await mountExclusions({
+    mount: document.getElementById('exclusions'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.

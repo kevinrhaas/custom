@@ -43,6 +43,12 @@ step "datum re-derivation" \
 step "liberties derived from docs/LIBERTIES.md" \
   python3 tools/compile_liberties.py --check
 
+# The renderer reads the sidecars and never the dataset, which only keeps the
+# walkthrough and the archive together if a record edited without a recompile is
+# a failure here rather than a discovery on the deployed site.
+step "sidecars derived from data/" \
+  python3 tools/compile_scene.py --all --check
+
 # Renderer JS must at least parse. The repo's deploy workflow does the same thing
 # for site/, and a syntax error there is a blank page for everyone.
 check_js() {

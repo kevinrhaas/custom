@@ -310,6 +310,12 @@ body.is-touch .gate-touch { display: block; }
 .lib-covers em { font-style: normal; color: var(--ink-dim); }
 .lib-date { color: var(--ink-dim); font-size: 10px; font-variant-numeric: tabular-nums; }
 
+/* An excluded structure reuses the liberty entry's box wholesale: it is the same
+   kind of disclosure, and a visitor should not have to learn a second interface
+   to read a second confession. Only the citation list is new — the entry ends in
+   the evidence, because "we left this out" is a claim like any other here. */
+.excl-cites { padding: 2px 10px 10px 28px; font-size: 11.5px; gap: 7px; }
+
 .crosshair {
   position: absolute;
   left: 50%; top: 50%;
