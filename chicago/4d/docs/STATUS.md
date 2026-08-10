@@ -24,7 +24,11 @@ been asking the sidecar whether the shape in front of you is a placeholder massi
 the compiler has never answered and, reading only `data/`, cannot. **And the gate's other
 direction — what is compiled and never read — is now empty of unshipped claims** (§ 30): every
 record's `research_note`, written for a reader and displayed nowhere for the life of the project,
-is on the card verbatim.
+is on the card verbatim. **And the next building's blocking question is answered without a single
+vertex being moved** (§ 31): on 1 July 1835 Fort Dearborn was an occupied Army post under a named
+commander, which is a different scene from the empty stockade the popular accounts imply — while
+its footprint stays honestly unsourced, with the search narrowed from "find a plan" to one named
+1839 plat.
 
 ---
 
@@ -38,7 +42,7 @@ is on the card verbatim.
 | `tools/test_validate.py` | **done** — 121 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
+| Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
 | Structure records | **8** — six buildings at the forks, the North Branch bridge, and Hogan's store on Lake Street |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
@@ -720,6 +724,50 @@ uncertainty of the 1834 sheets in its note.
     four; `archetype`, `scene` and `target_date` are machinery the card has no reason to show, so
     that list is finally empty of unshipped claims.
 
+31. **The next building's two blocking questions, one answered and one narrowed — and no geometry
+    in this slice, deliberately.** ROADMAP § S5a has said since the coastline gate cleared that
+    Fort Dearborn could not be drawn until two things were settled: what the fort actually *was* on
+    1835-07-01, and where an outline could come from. This slice is the research half and it lands
+    nothing a visitor can see, which is the honest shape for it — the fort site is at local E +1152
+    and the modelled ground stops at E +320, so there is no terrain to stand it on, and a record
+    without its bake is a 404 the smoke correctly fails on.
+    **What it was: an occupied Army post under Major John Greene.** Greene took command on
+    18 December 1833 and held it until 16 September 1835. Three separately written accounts have the
+    fort garrisoned through 1835 — Andreas' officer roll, Wentworth's fuller one, and an 1857
+    magazine account written while the buildings were being pulled down — and the post surgeon's
+    prescription book carries an entry for a named sergeant dated 15 March 1835, which is a piece of
+    paper rather than a recollection. The assumption worth naming as dead: this is not a ruin, not a
+    caretaker's compound, and not the "abandoned by 1836" of the encyclopaedia entries.
+    **Andreas contradicts himself three ways about the end and the contradiction dissolves.** p. 84
+    prints the order withdrawing the troops on 29 December 1836; p. 162 says "in 1836"; the military
+    chapter says "final evacuation, May 10, 1837" and flattens the 1831-32 gap its own p. 84 states
+    in detail. Wentworth p. 35 reconciles them: the *soldiers* went on 29 December 1836 and the
+    *post* was held by Brevet-Major Plympton until June or July 1837. A writer describing a garrison
+    and a writer describing a post give different dates for the same event, honestly.
+    **The footprint is still unsourced and that is stated rather than filled.** No dimension of the
+    1816 stockade survives in anything read. What changed is that the search stopped being "look for
+    a plan somewhere": the War Department's agent, reporting in 1840, names the platted lots of the
+    Fort-Dearborn Addition withheld from sale because they covered "the fortress of Fort Dearborn
+    *within the pickets*" — a surveyed envelope, three years after the troops left, on a plat whose
+    streets survive in the modern grid. Two weaker candidates and four ruled-out ones are in the
+    memo, so the next agent does not re-run them.
+    **Three enclosures get confused in this literature and only one is the fort.** The 1816 stockade;
+    the post-army compound of 1850, whose "say 400 feet" is quoted in the same sentence as "the
+    pickets having been removed at an earlier date"; and the 53¼-acre reservation, which is what
+    Wright labels. Anyone reaching for the 400 ft as a palisade length would have been wrong by a
+    whole category, and it is the most citable number in the literature.
+    **The best single document is a complaint about a picture.** Gurdon S. Hubbard, writing to
+    Wentworth in 1881 to say that *Wau-Bun*'s cut of the fort is wrong, gives in passing what no
+    view gives: the enclosure ran "nearly north and south, east and west"; the north picket line
+    stood nowhere more than 80 ft from the water and 50-60 ft opposite the north gate; the north and
+    south gates were on one sight line; and **the ground at the fort was "not over eight feet above
+    the River at its lowest stage"**. That last one is a finding about the terrain, not the fort:
+    the total land relief across the whole modelled box is 4.30 ft, so an 8 ft platform is taller
+    than anything currently in the ground, and it belongs to S2e parcel (b). `kinzie_waubun_1856` is
+    a source of this project and its fort illustration is now known to be wrong in four particulars.
+    What this does not do is give a single coordinate, a single dimension, or a single record. It
+    gives the next slice a source list instead of a search.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -752,7 +800,7 @@ against the six that stand.
 
 **S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
 
-**S5a — Fort Dearborn**, the next building. Its position is settled (E +1152, N +221, cross-checked to 35 m) and the coastline gate Kevin named is cleared, but the FOOTPRINT has no source yet: Wright labels the reservation and draws no plan. Also unsettled, and needed before it is drawn: what the fort actually was on 1835-07-01.
+**S5a — Fort Dearborn**, the next building. Its position is settled (E +1152, N +221, cross-checked to 35 m) and the coastline gate Kevin named is cleared. **What the fort was on 1835-07-01 is settled too, 2026-08-10** — an occupied Army post under Major John Greene (§ 31, `docs/RESEARCH/fort_dearborn.md`). **The FOOTPRINT still has no source**: neither 1834 sheet draws a plan, and no dimension of the 1816 stockade survives in anything read. The next move on this parcel is not modelling and not more reading around it — it is one document, the **Fort-Dearborn Addition plat of 1839**, whose withheld lots are the surveyed envelope of the ground "within the pickets". Behind that, the ground itself: the fort site is 800 m beyond the modelled terrain box, so S2e comes first either way.
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled

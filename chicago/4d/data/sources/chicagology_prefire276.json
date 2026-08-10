@@ -1,0 +1,24 @@
+{
+  "id": "chicagology_prefire276",
+  "type": "website",
+  "citation": "\"Fort Dearborn II.\" Chicagology. Transcribing Chicago Magazine, 15 May 1857 and May 1857, and the Chicago Tribune of 27 March 1856, with a woodcut after Alexander Hesler's 1855 photograph and a lettered key.",
+  "date": "accessed 2026-08-10",
+  "describes_date": "1816-1857",
+  "url": "https://chicagology.com/prefire/prefire276/",
+  "archived_url": "https://web.archive.org/web/20260410095255/https://chicagology.com/prefire/prefire276/",
+  "tier": 4,
+  "rights_status": "check_required",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "Worth having for the 1857 magazine text, which was written while the fort was being pulled down and by people who had watched it stand: the second fort was raised on the site of the first by Capt. Hezekiah Bradley in 1816; the troops left in May 1831 for Green Bay; it was re-occupied on the outbreak of the Black Hawk war in 1832 'and its occupancy continued till the removal of the Indians in 1836'; the officers' quarters and soldiers' barracks came down in the summer of 1856 and the block-house a few weeks after. THE THREE DIMENSIONS ON THIS PAGE ARE NOT USABLE AS EVIDENCE YET and the reason is the page's own silence: they are in the caption to a woodcut ('the parade-ground, 80x200 ft.', the commandant's quarters 'brick, about 25x50 ft.', the officers' quarters 'wood, about 30x60 ft.'), and chicagology does not say where the caption comes from. Its original has not been found. Andreas vol. 1 does not carry it. Until it is traced, nothing here may promote a dimension above conjectural, and the figure disagrees with Wentworth's parade anyway — 80 ft wide in both, 200 ft long here against 'say 400 feet' there, describing a compound twenty years apart.",
+  "what_it_supplies": [
+    "an 1857 statement, independent of Andreas and of Wentworth, that the fort was occupied from 1832 until 1836",
+    "the demolition sequence: the principal buildings in summer 1856, the block-house weeks later",
+    "the existence and titling of Henry Hart's 1853 survey, 'Fort Dearborn, City of Chicago, Surveyed and Published by Henry Hart, Civil Engineer and Architect, New York'"
+  ],
+  "what_it_does_not_supply": [
+    "any attribution for the dimensioned woodcut caption, which is the only place a fort measurement appears on the page",
+    "any dimension of the stockade itself",
+    "the fort as it stood in 1835 — every view it reproduces is 1850 or later"
+  ]
+}
