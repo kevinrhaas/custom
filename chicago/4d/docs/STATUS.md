@@ -28,7 +28,7 @@ walkthrough rather than only in the repository.
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 81 checks green at 390×780 and 1280×800, zero page errors |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate now checks the document *for gaps*, refusing any conjectural footprint or position that no liberty admits to |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 20, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps*, refusing any conjectural value — footprint, position, or a stated form attribute — that no liberty admits to |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
@@ -157,11 +157,19 @@ uncertainty of the 1834 sheets in its note.
     The claims are checked the other way too — a token naming no such structure, no such phase,
     or an attribute that is not conjectural fails the gate, so an over-claim is as loud as a gap.
     Entries under **Resolved** are exempt from that last rule, which is what lets an append-only
-    document survive its own data being corrected. **What is still unenforced is everything
-    else**: omissions, simplifications, and conjectural *form* attributes carry no such
-    requirement, and no mechanism can catch a liberty taken that nobody noticed taking. Six of
-    six structures carry at least one liberty, so the popup's empty state remains unexercised by
-    real data.
+    document survive its own data being corrected. **The rule now covers stated form as well as
+    drawn geometry** (2026-08-10): the aspect vocabulary is every attested value in a record —
+    `footprint`, `position`, `documented_range`, the structure-level `function`/`occupants`, and
+    `form.<attr>` enumerated from the data rather than from a list, so a new archetype attribute
+    is inside the rule the day it appears. Widening it found four inventions with no admission —
+    the Sauganash 1829 cabin's wall height and roof type, both PLACEHOLDER in their own notes,
+    and `gallery: false` on the Green Tree and the Western, where false is the archetype's
+    default rather than a finding. Ten conjectural values, ten declarations. **What is still
+    unenforced is omissions and simplifications**, and that is the hard half: an invention has a
+    record to point at and an omission does not, so the Western's unmodelled stable yard (L10)
+    and the Green Tree's side additions (L9) are covered by prose alone. No mechanism can catch a
+    liberty taken that nobody noticed taking. Six of six structures carry at least one liberty,
+    so the popup's empty state remains unexercised by real data.
 12. **The document and the data had drifted, and writing the claim down found it.** L12 still
     read "position tagged `inferred`" for the Walker meeting house; the record was downgraded to
     `conjectural` on 2026-08-09 and nothing carried the change back. The keyword rule was

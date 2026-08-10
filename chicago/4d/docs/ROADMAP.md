@@ -190,11 +190,25 @@ as `inferred` months after the record was downgraded to `conjectural`. The chips
 Evidence panel and on the provenance card, because a guarantee enforced only in the repository
 is the filed confession this whole line of work exists to stop being.
 
-Remaining in this line of work: the check covers **drawn geometry only**. Omissions,
-simplifications and conjectural *form* attributes carry no equivalent requirement — extending
-the vocabulary beyond `footprint`/`position` is the obvious next step, and the harder half is
-that "this was omitted" has no record to point at, so it needs a different kind of claim.
-Note the standing limit: nothing can catch a liberty taken that nobody noticed taking.
+**Done 2026-08-10 — the rule now covers what a building *is*, not only where it stands.** The
+`Covers:` vocabulary was `footprint`/`position`; it is now every attested value in a record —
+those two, `documented_range`, the structure-level `function` and `occupants`, and `form.<attr>`
+for anything under a phase's form, enumerated from the data rather than from a list so a new
+archetype attribute is inside the rule the day it appears. The argument is that a conjectural
+`roof_type` is not an absence in the model: a gable gets built and the visitor sees a gable, and
+a conjectural `gallery: false` is the same claim in the negative — a plain front rendered because
+nobody found evidence either way, which reads as the finding. Four inventions were owed an
+admission and had none: the Sauganash's 1829 cabin height and roof (L18) and the Green Tree's and
+the Western's galleries (L19). Ten conjectural values, ten declarations. The chips read as
+attributes — "Sauganash Hotel roof type" — while the token the gate matches keeps its `form.`
+prefix.
+
+Remaining in this line of work: **omissions and simplifications**, which are the hard half and
+were always going to be. A footprint drawn from nothing has a record to point at; the stable and
+wagon yard the Western is missing (L10) and the Green Tree's side additions (L9) have none, so
+holding those to a mechanical rule needs a different kind of claim — something the *record*
+declares as not-modelled, rather than something the document declares as invented. Note the
+standing limit either way: nothing can catch a liberty taken that nobody noticed taking.
 
 ## S8 — Milestone 1
 
