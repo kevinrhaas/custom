@@ -58,16 +58,35 @@
         "chicagology_prefire273",
         "drloih_wolf_point"
       ],
-      "note": "chicagology, on Wentworth's tavern: 'This building was partly log and partly frame, and was situated on the ground north of Lake Street Bridge.' The value records the log core, which is the primary construction; the frame part is carried separately as frame_extension so the mixed fabric is not flattened away."
+      "note": "chicagology, on Wentworth's tavern: 'This building was partly log and partly frame, and was situated on the ground north of Lake Street Bridge.' The value records the log core, which is the primary construction; the frame part is carried separately as frame_addition so the mixed fabric is not flattened away."
     },
-    "frame_extension": {
+    "frame_addition": {
       "value": true,
       "confidence": "documented",
       "sources": [
         "chicagology_prefire273"
       ],
-      "note": "'partly log and partly frame' — the tavern had grown a frame element by the early 1830s. Its SIZE, POSITION on the building and DATE are all unattested, so the footprint above does not distinguish it and the log_dwelling archetype will need a parameter for it. Recorded as a requirement discovered from the evidence, in the same way the Sauganash's attached log wing was.",
-      "geometry": "absent"
+      "note": "'partly log and partly frame' — the tavern had grown a frame element by the early 1830s. Its SIZE, POSITION on the building and DATE are all unattested, which is why the four attributes below state the invented ones explicitly instead of leaving them to the archetype's defaults. SPELLING, 2026-08-10: this attribute was recorded on 2026-08-09 as `frame_extension`, which is not the name the log_dwelling archetype reads, so the frame half of a 'partly log and partly frame' house was silently dropped for a day and the record showed a `documented` chip over something the model did not contain. Found by the omission gate, admitted in docs/LIBERTIES.md L20 and fixed here. The spelling is now the archetype's, and the attribute is built."
+    },
+    "frame_addition_side": {
+      "value": "end",
+      "confidence": "conjectural",
+      "note": "NOT ATTESTED. No source says where on the building the frame part stood, so 'end' — a frame bay extending the building sideways from a gable, rather than a block across its river front — is a choice, not a finding. What can be said for it is weak and typological: a log pen is enlarged most easily along its ridge, since the log walls are not cut and the roof simply runs on, and Wau-Bun's 1831 sequence describes the tavern facing down the river without mentioning a frame front, where Miller's house across the water is specifically described as having its frame range 'fronting the river'. That is an argument from the absence of a phrase in one retrospective account, which is not evidence. Recorded conjectural and admitted in docs/LIBERTIES.md L24."
+    },
+    "frame_addition_stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "No source gives the frame part a height. One storey is inferred by the same argument as the storey count above: the sources that do describe height at Wolf Point single out the Sauganash's two storeys and Miller's two-storey frame addition as remarkable, which they would not be if the Wolf Point tavern's frame piece had also stood two storeys. Inference, not attestation."
+    },
+    "frame_addition_width_m": {
+      "value": 4.0,
+      "confidence": "conjectural",
+      "note": "NO DIMENSION IS ATTESTED, and this one is invented outright. 4 m of the footprint's 12 m frontage leaves an 8 m log core, which keeps 'partly log and partly frame' reading as a log building with a frame piece rather than the reverse — the distinction that decides which archetype the record belongs to at all. The footprint it is carved out of is itself a placeholder, so this number inherits that and adds to it. Admitted in docs/LIBERTIES.md L24."
+    },
+    "frame_addition_depth_m": {
+      "value": 7.0,
+      "confidence": "conjectural",
+      "note": "NOT ATTESTED. Set to the full 7 m depth of the footprint so the frame bay fills the end of the building; anything less would leave a notch at the back corner that no source describes and that would read as a modelled fact about the plan. The value is a consequence of the massing rule, not a finding. Admitted in docs/LIBERTIES.md L24."
     },
     "wall_height_m": {
       "value": 2.6,
@@ -90,14 +109,13 @@
       "note": "No source describes a finish. Unpainted weathered log is the default reading, and it is positively supported by the contrast Wau-Bun draws: a painted white building at Wolf Point in 1831 was 'the admiration of all the little circle' precisely because the buildings around it were not painted. This tavern was one of those buildings.",
       "geometry": "simplified"
     },
-    "signage": {
+    "sign": {
       "value": "painted_wolf_sign",
       "confidence": "documented",
       "sources": [
         "drloih_wolf_point"
       ],
-      "note": "'A painted sign of a wolf was hung outside the tavern by approximately 1833.' THE SINGLE MOST DISTINCTIVE DOCUMENTED VISUAL FEATURE OF THIS BUILDING and the thing that gave the point its name in popular usage — hung well before the scene date, so it belongs in the 1835 model. What the sign LOOKED LIKE — its size, its board shape, how it was hung, how the wolf was drawn — is entirely unattested, so the archetype should carry the sign as a distinct, separately-confidenced element rather than folding it into the massing. Wau-Bun separately derives the Wolf Point name from an Indian resident called Moa-way, 'the Wolf', which is a competing etymology, not a competing fact about the sign.",
-      "geometry": "absent"
+      "note": "'A painted sign of a wolf was hung outside the tavern by approximately 1833.' THE SINGLE MOST DISTINCTIVE DOCUMENTED VISUAL FEATURE OF THIS BUILDING and the thing that gave the point its name in popular usage — hung well before the scene date, so it belongs in the 1835 model. What the sign LOOKED LIKE — its size, its board shape, how it was hung, how the wolf was drawn — is entirely unattested, so the archetype carries the sign as a distinct, separately-confidenced element rather than folding it into the massing, and the value names the SUBJECT of the board while the mesh says only that a board hung there. The wolf itself is deliberately not drawn (docs/LIBERTIES.md L25). Wau-Bun separately derives the Wolf Point name from an Indian resident called Moa-way, 'the Wolf', which is a competing etymology, not a competing fact about the sign. SPELLING, 2026-08-10: recorded on 2026-08-09 as `signage`, which the archetype does not read, so nothing hung outside the tavern until this slice — see L20."
     },
     "chimneys": {
       "value": 1,

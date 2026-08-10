@@ -74,8 +74,8 @@
     "wolf_point_tavern__log_frame_1828.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
-      "bytes": 31336,
-      "inputs_sha256": "999f2bce191f4c404656ab4c9ec76e7267eeb2f1f22eb6fd6cc4b55f02179aaf",
+      "bytes": 43640,
+      "inputs_sha256": "5589cc8d8bdebba908554266b9ae9ec6be2b3117b28b2d903a496fdbcd4139a0",
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"
