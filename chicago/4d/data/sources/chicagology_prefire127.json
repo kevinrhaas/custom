@@ -1,0 +1,27 @@
+{
+  "id": "chicagology_prefire127",
+  "type": "website",
+  "citation": "\"Green Tree Tavern.\" Chicagology. Compiling first-hand recollections by John Gray (landlord 1838-41), Edwin O. Gale and F. H. Taylor, with an editor's commentary.",
+  "date": "accessed 2026-08-09",
+  "describes_date": "1833-1902",
+  "url": "https://chicagology.com/prefire/prefire127/",
+  "tier": 4,
+  "rights_status": "check_required",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "THE BEST-DOCUMENTED BUILDING INTERIOR IN THIS DATASET, and the reason is that the Green Tree survived long enough to be remembered in print by people who had slept in it. Named witnesses, not anonymous compilation: F. H. Taylor on the plan — 'The fornt was on Canal street and this side was on Lake' (sic, the page's own typo); John Gray on the circulation — 'A hall divided the house and a stairway in this hall led to the second floor', the entrance 'on the Lake street front about the middle of the long side', the bar-room occupying a whole end, 'a small attic window in the gable end, for we used the attic, too', and 'a low one-story addition to the right, the same as on the left'; Edwin O. Gale on a guest chamber 'about 12x12, with two windows 6x8' whose 'walls, ceilings, and board partitions had evidently received a coat of whitewash when the house was built'; and an editor's note that 'Seven and one-half feet is rather low for a hotel ceiling'. Also: built 1833 by James Kinzie, carpenter named here as Philo Cobb (DRLOIH says Silas B. Cobb, who is the historically real person); landlord Chester Ingersoll 1834-37; moved 1880 from Lake and Canal to 35 and 37 Milwaukee Avenue for the Jones & Laughlin works; collapsed and demolished August 1902. TWO LIMITS WORTH STATING. The whitewash is INTERIOR — walls, ceilings and partitions — and says nothing about the exterior finish, a distinction that has been lost in at least one secondary summary of this page. And the witnesses are recalling the building from the late 1830s and 1840s, a few years after the 1835 scene date; Gale's 'when the house was built' is what ties the fabric he describes back to 1833.",
+  "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
+  "what_it_supplies": [
+    "interior room module and ceiling height",
+    "plan and circulation",
+    "which street the front faced",
+    "roof form (gable end with attic window)",
+    "landlord chronology",
+    "the 1880 move and 1902 demolition"
+  ],
+  "what_it_does_not_supply": [
+    "overall building dimensions in feet",
+    "exterior finish or colour",
+    "the date the one-story side additions were built"
+  ]
+}

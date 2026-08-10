@@ -1,0 +1,14 @@
+{
+  "id": "chicago_temple_history",
+  "type": "website",
+  "citation": "First United Methodist Church at the Chicago Temple. \"History.\" Congregational history page.",
+  "date": "accessed 2026-08-09",
+  "describes_date": "1831-1924",
+  "url": "https://chicagotemple.org/about/history/",
+  "tier": 4,
+  "rights_status": "check_required",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "The successor congregation's own account of its first building, and the ONLY source reached that puts the meeting house on the north bank in its own words: 'in 1834 the growing congregation built a log cabin north of the Chicago River', and 'Four years later, Chicago's first Methodists floated the cabin across the river and rolled it on logs to its present site at the corner of Washington and Clark Streets.' Cited in this dataset for the competing reading of walker_meeting_house's location, which is NOT the reading adopted — see docs/RESEARCH/walker_meeting_house.md. Its weight is real but limited: an institution's own modern, unfootnoted history, giving a division-level location ('north of the Chicago River') rather than a position, and dating the building to 1834 where the two near-primary witnesses describe a west-bank building already standing in 1831.",
+  "access_notes": "No Wayback snapshot exists as of 2026-08-09 and a Save Page Now request did not produce one; archived_url is deliberately absent rather than fabricated. The page is a live CMS page and may be revised without notice, so the quotations above are recorded here verbatim so the claim survives the page changing."
+}
