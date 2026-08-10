@@ -465,6 +465,31 @@ level — the same unopened source that would settle the footprint this inherits
 `miller_house.log_frame_1827.form.frame_addition_depth_m`.
 **Recorded:** 2026-08-10.
 
+### L29 — The North Branch bridge stands on fifteen piers nobody recorded
+**Decision:** the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts
+**fifteen log cribs standing in the river** between the two abutments. The spacing is tagged
+`conjectural` on the record.
+**Why:** what survives about this bridge is its width, its material and its ends. Cleaver:
+"The abutments were built of heavy logs in the shallow water near the banks. These bridges were
+ten feet wide." Andreas: "formed of stringers." Nothing anybody wrote describes the middle of it.
+Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention
+— their number, their spacing and their form are. 4.5 m is the archetype's own default, kept
+deliberately rather than replaced with a fresh guess, because a new number would look like a
+finding and would not be one.
+**Consequence:** this is the most conspicuous invention in the structure and it is invisible in
+the confidence view, because the tint on the piers grades what a crib IS rather than how many of
+them there were. A visitor walking the bank sees a regular colonnade marching across the water
+and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is
+itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that
+line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown
+margin.
+**How to resolve:** a period depiction or a survey of the crossing. Two are worth trying: the
+1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of
+the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here
+sits.
+**Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved

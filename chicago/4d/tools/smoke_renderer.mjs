@@ -14,6 +14,8 @@
  *   confidence toggle ........... the deliverable measurably changes the render
  *   pick -> citation ............ the visual claim and the citable claim connect
  *   pick -> liberties ........... and what we made up about THAT building
+ *   the bridge floats ........... a water-anchored structure is placed on the
+ *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
  *   draw calls under budget ..... the batch strategy is doing its job
@@ -158,6 +160,56 @@ for (const [label, viewport, touch] of [
 
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
+
+    // --- water anchoring (docs/GLB-CONTRACT.md) ---------------------------
+    // A bridge's local y = 0 is the design water surface, not the ground, so
+    // the renderer must NOT sample the heightfield for it. Mid-channel the
+    // ground surface is the river BED, so a regression here sinks the bridge
+    // out of sight and reads as a missing asset. The assertion is written as
+    // the DIFFERENCE between the two anchors rather than "y === 0", because
+    // over dry land the two agree and a test that passed there would prove
+    // nothing.
+    //
+    // The bed is sampled at the deck's MIDPOINT, not at the placement origin.
+    // That origin is the polygon's (0, 0) — for this bridge the west end, which
+    // by construction sits exactly on the traced waterline where the ground
+    // surface crosses zero. Sampling there compares zero against zero and the
+    // check passes whatever the renderer does. Found by this assertion failing
+    // on its first run, which is the argument for writing it as a difference.
+    const anchored = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const rec = api.registry.get('north_branch_bridge');
+      const p = rec?.sidecar?.placement;
+      const poly = rec?.sidecar?.footprint?.polygon;
+      if (!p || !poly?.length) return { missing: true };
+      const world = api.buildings.positionOf('north_branch_bridge');
+      // Footprint bbox centre, rotated by the facade bearing exactly as
+      // walker.js's footprintsFrom does, then offset to world ENU.
+      const us = poly.map(([u]) => u);
+      const vs = poly.map(([, v]) => v);
+      const u = (Math.min(...us) + Math.max(...us)) / 2;
+      const v = (Math.min(...vs) + Math.max(...vs)) / 2;
+      const th = (p.rotation_deg ?? 0) * Math.PI / 180;
+      const midE = (p.local_e ?? 0) + u * Math.cos(th) + v * Math.sin(th);
+      const midN = (p.local_n ?? 0) - u * Math.sin(th) + v * Math.cos(th);
+      return {
+        anchor: p.vertical_anchor,
+        y: world ? world.y : null,
+        // The real channel bed, and what the terrain anchor would have
+        // returned here — which is NOT the bed: height() reports a wading
+        // barrier over water, so the regression this catches lifts the bridge
+        // metres into the air rather than sinking it.
+        bed: api.terrain.groundHeight(midE, midN),
+        terrainAnchor: api.terrain.height(midE, midN),
+      };
+    });
+    check(`${label}: the bridge declares a water anchor`,
+      anchored.anchor === 'water', `${anchored.anchor ?? 'record missing'}`);
+    check(`${label}: the bridge sits on the water plane, not on the terrain`,
+      anchored.y !== null && Math.abs(anchored.y) < 0.01
+      && anchored.bed < -0.5 && Math.abs(anchored.terrainAnchor - anchored.y) > 1,
+      `placed y ${anchored.y?.toFixed(2)}, bed ${anchored.bed?.toFixed(2)} m, `
+      + `terrain anchor would give ${anchored.terrainAnchor?.toFixed(2)} m`);
 
     // --- the scene actually draws ----------------------------------------
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));

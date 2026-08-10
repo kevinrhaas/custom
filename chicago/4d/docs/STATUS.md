@@ -7,7 +7,10 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
 georeference, real ground, a traced river, and the liberties now readable inside the
-walkthrough rather than only in the repository.
+walkthrough rather than only in the repository. **Seven structures now, and the seventh is
+not a building**: the North Branch bridge is the first record built on the `bridge_timber`
+archetype and the first in this dataset whose dimensions come from evidence rather than from
+a placeholder.
 
 ---
 
@@ -21,8 +24,8 @@ walkthrough rather than only in the repository.
 | `tools/test_validate.py` | **done** — 77 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | 13 seeded, of which 4 carry real Wayback snapshots |
-| Structure records | **1** (Sauganash, two phases) |
+| Source records | **24**, of which **13** carry a Wayback snapshot — the three added with the bridge all do |
+| Structure records | **7** — six buildings at the forks and the North Branch bridge |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
@@ -331,10 +334,65 @@ uncertainty of the 1834 sheets in its note.
     visible — the defaults produced an inverted-T matching neither the polygon nor the sources —
     and L27 records it. And the whole repair still rests on a placeholder: 9 × 6 of an invented
     9 × 11.
+
+21. **The first bridge, and the first record whose size is not a placeholder.** The North Branch
+    crossing at Kinzie Street — Chicago's first bridge, built 1832, replaced 1839 — is now a
+    record, a bake and a published mesh, on the `bridge_timber` archetype that had been written
+    and never used. Two of its numbers are evidence rather than invention, which is new here:
+    **ten feet wide** is Charles Cleaver's, recalled in the *Chicago Tribune* of 29 Oct 1893 by a
+    man who had driven a team across it, and the **71.83 m span** is measured between the two
+    traced 1834 waterlines along the Kinzie alignment rather than chosen — it agrees with the
+    reach's drafted mean width to about a metre, which is the check that it reads the map at this
+    station instead of averaging it. Three source records were added, all three with Wayback
+    snapshots.
+    **What is invented is the middle of the bridge, and it is the most conspicuous thing in it.**
+    Cleaver describes the ends — "the abutments were built of heavy logs in the shallow water near
+    the banks" — and nobody describes what stood between them. Something had to carry 71.83 m of
+    log stringer, so the archetype's default 4.5 m spacing puts **fifteen cribs in the river**, a
+    regular colonnade a visitor will read as a fact about the bridge. It is a fact about the
+    archetype. L29 admits it, and the confidence tint cannot: the tint grades what a crib *is*,
+    not how many there were. The span it divides is itself the drawn waterline-to-waterline
+    distance, and the abutments stood inside that line by an unrecorded amount.
+    **Two sources contradict each other about the thing and both are kept.** Andreas has it
+    "formed of stringers and only fitted for foot passengers" and "useless for teams" as late as
+    the summer of 1833; Cleaver remembered driving across it, and on 18 Aug 1835 a procession of
+    hundreds crossed it. It was rebuilt or widened in between and nothing reached says when or
+    how. The record takes the 1835 reading — four stringers, a full-width deck — and says on its
+    own face that an 1833 scene would want the other one.
+    **A correction to this project's own dossier came out of writing it.**
+    `docs/research/03-structures-north.md` §5 tags both "about 10 ft wide" and "clearing the water
+    by about 6 ft" as documented. Only the width survives: the pages carrying the width, the
+    abutments, the stringers, the 1832 date and the 1839 replacement say nothing about a height
+    above the water, and a direct search of the same host for the phrasing returns nothing. The
+    figure is kept, `clearance_m` is tagged `inferred`, and `bridge_timber_params.py`'s docstring
+    is corrected so the constant's name stops asserting what it cannot show.
+    **The contract's water-anchor rule is wired rather than written.** `docs/GLB-CONTRACT.md` has
+    said since the archetype was drafted that a structure over water anchors `y = 0` at the design
+    water surface and that the renderer must place it against the water plane; nothing implemented
+    it, and nothing needed to until there was a bridge. The archetype declares `VERTICAL_ANCHOR`,
+    `compile_scene.py` copies it to `placement.vertical_anchor`, and the renderer places `water`
+    at a literal zero — that plane is zero by the definition of the vertical datum. The smoke
+    asserts the **difference** between the two anchors, not `y === 0`: over dry land they agree,
+    so a test that passed there would prove nothing.
+    **Writing that assertion found two things the code was right about and the description was
+    not.** First, sampling at the record's placement origin proves nothing either: that origin is
+    the polygon's (0, 0), for this bridge the west end, which sits exactly on the traced waterline
+    where the ground crosses zero — zero against zero, and the check passes whatever the renderer
+    does. It samples the deck's midpoint now. Second, the failure mode is the opposite of the
+    obvious one. `terrain.height()` does not report the channel bed over water; it reports a
+    **wading barrier at +4 m**, put there to stop the walker strolling into the river. A bridge
+    left on the terrain anchor therefore does not sink out of sight — it hangs four metres above
+    the water, which is the harder failure to read, and it is what the smoke now pins.
+    **You cannot walk across it, and that is stated rather than faked.** The walker follows the
+    terrain, so the deck is scenery you pass under rather than a route; its footprint is excluded
+    from the collision polygons, because treating a deck as a wall would put an invisible barrier
+    across the river with nothing visible at head height to explain it. A walkable deck needs the
+    walker to learn about surfaces above the ground, which is its own unit of work.
+
 ## Next
 
-**S5 — more structure records**, which is now the binding constraint: six buildings stand where
-the sources describe roughly forty. Note the coupling discovered on 2026-08-10, because it sets
+**S5 — more structure records**, which is now the binding constraint: seven structures stand
+where the sources describe roughly forty, and one of the seven is a bridge. Note the coupling discovered on 2026-08-10, because it sets
 the shape of the work: `tools/compile_scene.py` writes an `asset` path for every structure that
 resolves into the scene, so a record committed without its GLB makes the renderer fetch a file
 that is not there — a 404 the smoke correctly fails on. **A structure record and its bake are one

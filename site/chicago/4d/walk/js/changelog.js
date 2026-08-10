@@ -1,4 +1,14 @@
 export const CHANGELOG = [ // newest first
+  { v: 18, title: 'The first bridge in Chicago', kind: 'feature',
+    ts: '2026-08-10T09:06:54.649Z', date: 'Aug 10, 2026, 4:06 AM CT',
+    items: [
+      'Until today everything standing in this town was a building. There is now a bridge: the log crossing over the North Branch on the line of Kinzie Street, built in 1832 and the first bridge of any kind in Chicago. It replaced the ferry that had run across the same water between Miller\'s house and the Wolf Point Tavern, and it is what the west bank and the north bank were joined by on the day this scene is set.',
+      'It is also the first thing here whose size is not a guess. Every building at the forks stands on an outline somebody had to invent, because no source gives one. This bridge has two real numbers: ten feet wide, remembered by a Chicagoan who had driven a team across it, and a length of 71.8 metres measured across the river as the 1834 survey drew it, at the street the sources name. The width is recorded as documented, which almost nothing in this project is.',
+      'What we made up is the middle of it. Nobody wrote down anything about what held the deck up between the two ends — only that the ends themselves were heavy logs standing in shallow water near the banks. Something had to carry seventy metres of timber, so the model puts a row of log cribs across the river at regular spacing, and that row is an invention: fifteen supports nobody recorded. The liberties list says so, because the colour that marks uncertainty grades what a crib was, not how many there were.',
+      'Two accounts of this bridge flatly disagree and both are kept. One says it was fit only for people on foot and useless for teams as late as 1833; the other remembers driving over it, and six weeks after this scene\'s date hundreds of people crossed it at once. Something was rebuilt in between and nothing records what. The model shows the later, sturdier reading, and the bridge\'s card tells you that is a choice.',
+      'One correction to our own research came out of writing it up. The project\'s notes list two measurements for these bridges as documented — ten feet wide and six feet above the water. Only the width could be traced to a source. The height above water is now marked as reasoning rather than record until the page behind it turns up.',
+      'You cannot walk across it yet: the visitor still follows the ground, so the bridge is something you look at and pass under rather than a route. That is the next piece of work on it, and it is written down as missing rather than faked with a ramp.',
+    ] },
   { v: 17, title: 'Miller\'s house had its two storeys on the wrong half', kind: 'fix',
     ts: '2026-08-10T08:15:16.354Z', date: 'Aug 10, 2026, 3:15 AM CT',
     items: [

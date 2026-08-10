@@ -91,6 +91,13 @@ export function footprintsFrom(registry) {
     if (!Array.isArray(poly) || poly.length < 3) continue;
 
     const p = record.sidecar.placement ?? {};
+    // A water-anchored structure's footprint is a DECK, not a wall, so it is not
+    // an obstruction: treating a bridge as one would put an invisible barrier
+    // across the river with nothing visible at head height to explain it. What
+    // this does NOT yet do is let you walk the deck — the walker still follows
+    // the terrain, so the bridge is scenery you pass under rather than a route.
+    // Recorded as a limit in docs/STATUS.md rather than faked with a ramp.
+    if (p.vertical_anchor === 'water') continue;
     const th = (p.rotation_deg ?? 0) * DEG;
     const cos = Math.cos(th);
     const sin = Math.sin(th);

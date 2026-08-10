@@ -22,7 +22,8 @@
     "position_confidence": "inferred",
     "symbolic_location": "West bank of the river at the forks, north of the Lake Street crossing; north of James Kinzie's residence and south of the Methodist log meeting house.",
     "uncertainty_m": 20,
-    "placement_provisional": false
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
   },
   "footprint": {
     "polygon": [
