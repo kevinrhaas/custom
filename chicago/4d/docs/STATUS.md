@@ -28,7 +28,9 @@ is on the card verbatim. **And the next building's blocking question is answered
 vertex being moved** (§ 31): on 1 July 1835 Fort Dearborn was an occupied Army post under a named
 commander, which is a different scene from the empty stockade the popular accounts imply — while
 its footprint stays honestly unsourced, with the search narrowed from "find a plan" to one named
-1839 plat.
+1839 plat. **And the surface every one of those buildings stands on can finally answer the same
+questions they can** (§ 32): the terrain graded itself as carefully as any record, dithered under
+the confidence view like any building, and had never once told a visitor what it was grading.
 
 ---
 
@@ -48,7 +50,8 @@ its footprint stays honestly unsourced, with the search narrowed from "find a pl
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 151 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 165 checks green at 390×780 and 1280×800, zero page errors |
+| **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -767,6 +770,50 @@ uncertainty of the 1834 sheets in its note.
     a source of this project and its fort illustration is now known to be wrong in four particulars.
     What this does not do is give a single coordinate, a single dimension, or a single record. It
     gives the next slice a source list instead of a search.
+
+32. **The ground makes claims too, and it had never made one to a visitor.** Every gate and every
+    panel above is about a building. `terrain_spec.json` grades itself as carefully as any
+    structure record — a `documented` water plane, three `inferred` division levels argued out of
+    period narrative feet, a `conjectural` 6 m bank face, a channel cross-section whose own note
+    says it carries no evidence at all — and none of it reached a surface a visitor could read.
+    The terrain even DITHERS under the confidence view, because the ground mesh carries the same
+    `_CONFIDENCE` channel a building does. So the walkthrough has been showing that a grade exists
+    while saying nothing about what was graded, which is the least useful half of the claim.
+    The Evidence panel now carries **The ground you are standing on**: twenty claims, each with
+    the spec's own figures under the spec's own key names, its reasoning verbatim, and its
+    citations joined — derived by `compile_scene.py` into `sidecars/<scene>/terrain.json` and
+    re-derived by `check.sh` like every other sidecar.
+    **This is not the failure class of § 28 and § 29 and not the one of § 30 either.** Nothing
+    asked for a field nobody wrote, and the field did not merely lack a surface: the whole
+    DOCUMENT lacked one. `terrain_spec.json` was read by the generator and by nobody else, which
+    is also why nothing checked it.
+    **Switching that on found the second file where rule one was never enforced**, exactly as
+    § 26 found the first. Every `source_id` in this project must resolve in `data/sources/`;
+    `check_terrain_claims` now holds the ground to that, and to the two other rules a record
+    answers to — a `documented` claim owes a resolving source, and no land elevation may be
+    `documented` at all, which is the spec's own caveat enforced rather than merely written. The
+    claims are enumerated by the same function that puts them on the panel, so the checked set
+    cannot stop being the displayed set. The committed spec passes; the value is that the next
+    zone cannot skip it.
+    **One rule is a warning rather than an error, and the reason is a defect one level down.**
+    `inferred` owes stated reasoning — an error on a record — and three surface-material claims
+    (the north and west divisions' soils, and the channel's) have none. The fix is a sentence in
+    `terrain_spec.json`, and that file's BYTES are the terrain's staleness hash, so writing a note
+    that cannot move a vertex re-stales the ground and needs a Blender bake. That is precisely the
+    false positive § 15 rewrote the BUILDING hash to end, still standing on the terrain side:
+    `terrain_inputs_sha` hashes whole files. So the warning stands the way the un-archived-source
+    warnings do, and the walkthrough says *no reasoning is recorded for this claim* where a
+    reviewer would say the same thing — the gap reaches a visitor rather than waiting for the
+    repair.
+    **Two liberties were owed and had never been written.** The 6 m bank face (L32) and the
+    underwater channel profile (L33) are `conjectural` in the data and were admitted nowhere: the
+    coverage gate reads `data/structures/` and cannot see the terrain spec, so nothing demanded
+    them. That limit is the honest headline of this slice — the ground's inventions are inside the
+    *panel* now and still outside the *gate*.
+    **What it still cannot say.** The claims are block-level, so a grade covers a whole zone: the
+    north-side slough is `conjectural` as a block while its existence and course are Wright's and
+    only its depth is invented, and its note is the only thing that says so. And a claim can be
+    perfectly graded, perfectly cited and wrong about the town.
 
 ## Next
 

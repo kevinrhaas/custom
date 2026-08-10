@@ -323,6 +323,97 @@ def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
                 rep.error(where, f"source '{s}' does not resolve in data/sources/")
 
 
+# Land vertices. The terrain spec's own caveat says no land elevation in it is
+# better than `inferred` and that the generator refuses to emit `documented` for
+# any land vertex — a statement that was true because whoever wrote the spec kept
+# it true, and nothing was checking. These are the blocks that set the height of
+# ground a visitor walks on; the reaches and the channel are under water.
+LAND_ELEVATION_GROUPS = ("bank", "divisions", "marsh_strips", "swales", "micro_relief")
+
+
+def check_terrain_claims(source_ids: set, rep: Report,
+                         specs: dict[str, dict] | None = None) -> None:
+    """The ground is held to the rules a structure record is held to.
+
+    `terrain_spec.json` is as fully graded as any record — a documented water
+    plane, three inferred division levels argued from period narrative feet, a
+    conjectural bank face — and until the ground claims reached the Evidence
+    panel it was read only by the generator, so none of it was ever checked.
+    Both halves of that mattered: rule one of AGENTS.md is that every
+    `source_id` resolves in `data/sources/`, and this was the second file after
+    `exclusions.json` where nothing enforced it. A citation here could have named
+    a source that never existed, and now a visitor reads these ids joined to
+    their citations.
+
+    The claims are enumerated by the same function that puts them on the panel
+    (`compile_scene.ground_claims`), so the checked set and the displayed set are
+    one set. A gate walking its own copy would agree with the panel until a zone
+    was added to the spec.
+
+    Three rules are enforced, all of them the record's rules:
+      * every cited `source_id` resolves;
+      * a `documented` claim owes at least one resolving source;
+      * no land elevation may be `documented` — the spec says so itself, in the
+        caveat the walkthrough now quotes to visitors.
+
+    The fourth — `inferred` owes stated reasoning, which `check_attested` makes an
+    error on a record — is a WARNING here, and the reason is worth stating rather
+    than hiding in a severity constant. Three surface-material claims carry no
+    note, so the rule is right and the data is short; but the only place to write
+    those notes is `terrain_spec.json`, whose BYTES are hashed into the terrain's
+    staleness, so adding a sentence of reasoning re-stales the ground and cannot
+    land without a Blender bake. A warning that is correct and stands until
+    someone fixes the data is this project's existing shape for that (the
+    un-archived sources have carried one for weeks). The rule becomes an error in
+    the slice that writes the notes and lands the bake with them.
+    """
+    sys.path.insert(0, str(ROOT / "tools"))
+    try:
+        import compile_scene as ground  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        rep.error("terrain", f"cannot import the ground compiler, so the claims the "
+                             f"Evidence panel shows cannot be checked: {e}")
+        return
+
+    if specs is None:
+        specs = {}
+        for spec_path in sorted((DATA / "terrain" / "epochs").glob("*/terrain_spec.json")):
+            specs[spec_path.parent.name] = load_json(spec_path, rep) or {}
+
+    total = unreasoned = 0
+    for epoch, spec in sorted(specs.items()):
+        for claim in ground.ground_claims(spec, {}):
+            total += 1
+            where = f"terrain {epoch}/{claim['id']}"
+            conf = claim["confidence"]
+            if conf not in CONFIDENCE:
+                rep.error(where, f"confidence '{conf}' is not one of {sorted(CONFIDENCE)}")
+            srcs = claim["sources"]
+            for s in srcs:
+                if s not in source_ids:
+                    rep.error(where, f"source '{s}' does not resolve in data/sources/ — "
+                                     f"the ground quotes these ids to a visitor")
+            if conf == "documented" and not srcs:
+                rep.error(where, "documented with no source — the ground is held to the "
+                                 "same rule as a structure record, and the strongest "
+                                 "grade this project has is the one that needs evidence")
+            if conf == "inferred" and not any(n.strip() for n in claim["notes"]):
+                unreasoned += 1
+                rep.warn(where, "inferred with no reasoning recorded — a record would "
+                                "fail for this. The note has to go in terrain_spec.json, "
+                                "whose bytes are the terrain's staleness hash, so writing "
+                                "it re-stales the ground and lands with a bake; the "
+                                "walkthrough says 'no reasoning is recorded' meanwhile")
+            if conf == "documented" and claim["id"].split(".")[0] in LAND_ELEVATION_GROUPS:
+                rep.error(where, "a land elevation marked documented — the spec's own "
+                                 "caveat says no land elevation in it is better than "
+                                 "inferred, and that sentence is now shown to visitors")
+
+    rep.note(f"ground claims: {total} graded statement(s) in the terrain specs, held to "
+             f"the citation rule and shown in the Evidence panel; {unreasoned} inferred "
+             f"without recorded reasoning")
+
+
 # --------------------------------------------------------------------------
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
@@ -890,9 +981,12 @@ def sidecar_shape() -> dict:
 
     A union rather than one file because a field is part of the interface even
     when only one structure carries it — `aka` is empty on most records and the
-    card still reads it. `index.json` and `exclusions.json` are different derived
-    documents with their own readers and are deliberately out: this gate covers
-    the record the popup, the walker and the placement code all read.
+    card still reads it. The set is taken from each scene's `index.json` rather
+    than from every file in the directory, because the other derived documents —
+    `exclusions.json`, `terrain.json` — have their own readers and their own
+    shapes, and a name-exclusion list stops being right the moment somebody
+    compiles a third one. This gate covers the record the popup, the walker and
+    the placement code all read.
 
     Dict values recurse; anything else becomes a leaf. Resolution stops at a
     leaf, which is what keeps `aka.length` and `polygon.map` from being read as
@@ -908,12 +1002,15 @@ def sidecar_shape() -> dict:
         return shape
 
     shape: dict = {}
-    for p in sorted((DATA / "sidecars").glob("*/*.json")):
-        if p.stem in ("index", "exclusions"):
-            continue
-        doc = json.loads(p.read_text())
-        if isinstance(doc, dict):
-            merge(shape, doc)
+    for index in sorted((DATA / "sidecars").glob("*/index.json")):
+        listed = json.loads(index.read_text()).get("structures", [])
+        for entry in listed:
+            p = DATA / entry.get("sidecar", "")
+            if not p.is_file():
+                continue
+            doc = json.loads(p.read_text())
+            if isinstance(doc, dict):
+                merge(shape, doc)
     return shape
 
 
@@ -1160,6 +1257,10 @@ def main() -> int:
     # what was researched and left out — a record with the same citation rule as
     # anything else here, and now one the walkthrough quotes to a visitor
     check_exclusions(exclusions, source_ids, rep)
+
+    # and the ground itself, which makes graded claims like everything else here
+    # and was checked by nothing until it started making them to a visitor
+    check_terrain_claims(source_ids, rep)
 
     # scenes
     for name, sc in scenes.items():

@@ -25,6 +25,7 @@ import { createWalker, footprintsFrom, WALK } from './walker.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
 import { mountExclusions } from './exclusions.js';
+import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
@@ -154,6 +155,16 @@ async function boot() {
   // the card says what THIS building made up, and neither can drift from the
   // markdown they are both quoting.
   popup.setLiberties(api.liberties.liberties);
+
+  // And what the GROUND claims, which no building can carry either: the surface
+  // every one of them stands on is graded as carefully as they are, and said so
+  // nowhere a visitor could read it.
+  api.ground = await mountGround({
+    mount: document.getElementById('ground'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
 
   // And what was researched and left out, which no building can carry because
   // the buildings that would carry it are the ones not standing here.

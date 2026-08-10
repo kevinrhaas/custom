@@ -868,6 +868,77 @@ for (const [label, viewport, touch] of [
       && /not a list of everything missing/i.test(excl.heading),
       excl.heading.slice(-200));
     check(`${label}: the Evidence panel still does not overflow`, excl.overflow);
+
+    // --- what the ground claims, in the same panel ---------------------------
+    // Every building can say what it asserts and how sure of it we are. The
+    // surface all of them stand on is graded just as carefully in
+    // `terrain_spec.json` and said none of it to a visitor — while dithering
+    // under the confidence view, which shows that a grade exists and nothing
+    // about what was graded.
+    const ground = await page.evaluate(() => {
+      const mount = document.getElementById('ground');
+      const entries = [...mount.querySelectorAll('details.ground')];
+      const read = (d) => ({
+        label: d.querySelector('.lib-title')?.textContent.trim() ?? '',
+        group: d.querySelector('.lib-scope')?.textContent.trim() ?? '',
+        conf: d.querySelector('summary .conf')?.textContent.trim() ?? '',
+        body: d.querySelector('.lib-body')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        cites: [...d.querySelectorAll('.cites li')].map((li) => li.textContent.trim()),
+      });
+      const all = entries.map(read);
+      const find = (labelRe, groupRe) => all.find(
+        (e) => labelRe.test(e.label) && (!groupRe || groupRe.test(e.group))) ?? null;
+      return {
+        counted: window.__chicago4d.ground?.count ?? 0,
+        error: window.__chicago4d.ground?.error ?? 'no ground on the handle',
+        rendered: entries.length,
+        busy: mount.hasAttribute('aria-busy'),
+        water: find(/^water$/, /water surface/),
+        bank: find(/^bank$/, /the bank/),
+        south: find(/South Division/, /divisions/),
+        material: find(/^north division$/, /made of/),
+        // Land vertices: the divisions, the bank, the marsh, the swales and the
+        // micro-relief. Their grades are what the caveat is about.
+        landGrades: all.filter((e) => /divisions|the bank|marshy|swales|texture/.test(e.group))
+          .map((e) => e.conf),
+        text: mount.textContent.replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the ground's claims load`,
+      ground.counted >= 19 && !ground.busy && ground.rendered === ground.counted,
+      `${ground.rendered} rendered of ${ground.counted} (${ground.error})`);
+    // THE discriminating pair, and the reason this section is worth having: the
+    // water plane is documented and the bank face — the largest unsourced
+    // assumption in the build — is conjectural. A section that stamped one grade
+    // on the whole terrain would pass any check for "there is a chip".
+    check(`${label}: the ground is graded per claim, not stamped`,
+      ground.water?.conf === 'documented' && ground.bank?.conf === 'conjectural',
+      `water "${ground.water?.conf}" · bank "${ground.bank?.conf}"`);
+    // The spec's own caveat, asserted where a visitor reads it rather than in the
+    // file: no land elevation in this scene is better than inferred.
+    check(`${label}: no land elevation claims to be documented`,
+      ground.landGrades.length >= 6 && !ground.landGrades.includes('documented'),
+      `${ground.landGrades.length} land claim(s): ${[...new Set(ground.landGrades)].join(', ')}`);
+    check(`${label}: the panel quotes the spec's caveat that no survey exists`,
+      /No contour survey of the 1835 town site exists/.test(ground.text)
+      && /no land elevation in this spec is better than/i.test(ground.text),
+      ground.text.slice(0, 120));
+    // A claim carries the spec's own figures and the source it rests on.
+    check(`${label}: a land claim shows its figures and its citation`,
+      /near \(ft\)/.test(ground.south?.body ?? '') && /2\.4/.test(ground.south?.body ?? '')
+      && (ground.south?.cites ?? []).some((c) => /chicagoarchitecturehistory|architecture/i.test(c)),
+      `${(ground.south?.body ?? '').slice(0, 80)} | ${(ground.south?.cites ?? [])[0] ?? 'no cite'}`);
+    // The empty state is the finding, not decoration: three surface materials are
+    // graded `inferred` with no reasoning at all, which would fail on a record.
+    // The discriminating half matters as much — a claim that HAS reasoning must
+    // not carry the disclaimer, or it says nothing.
+    check(`${label}: a claim with no recorded reasoning says so, one with reasoning does not`,
+      /No reasoning is recorded/.test(ground.material?.body ?? '')
+      && !/No reasoning is recorded/.test(ground.south?.body ?? ''),
+      `material "${(ground.material?.body ?? '').slice(0, 60)}"`);
+    check(`${label}: the Evidence panel still does not overflow with the ground on it`,
+      ground.overflow);
     await page.click('#panel-close');
 
     // --- free-fly -----------------------------------------------------------

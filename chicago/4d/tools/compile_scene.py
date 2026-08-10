@@ -153,6 +153,209 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
     return len(entries)
 
 
+# Keys that are the claim's machinery rather than part of what it states: the
+# grade itself, the evidence behind it, the reasoning, and the names already
+# shown in the heading. Everything else in a block is a figure the spec authored
+# and a visitor is entitled to read.
+GROUND_META_KEYS = {"confidence", "bed_confidence", "sources", "note", "label", "id"}
+
+# The blocks of `terrain_spec.json`, in the order a visitor should meet them:
+# what the water is, what it does under the surface, how the land leaves it, what
+# each division stands at, and what was laid on top. Order is authored because
+# reading order is a piece of writing; membership is not — anything inside these
+# blocks that grades itself is surfaced, so a zone added to the spec appears here
+# the day it is added.
+GROUND_GROUPS = [
+    ("water", "the water surface"),
+    ("reaches", "the channel beds"),
+    ("channel_profile", "the channel cross-section"),
+    ("bank", "the bank"),
+    ("divisions", "the three divisions"),
+    ("marsh_strips", "the marshy shore"),
+    ("swales", "the prairie swales"),
+    ("watercourses", "the watercourses"),
+    ("micro_relief", "the surface texture"),
+    ("surface_materials", "what the ground is made of"),
+]
+
+
+def ground_fields(block: dict) -> list[dict]:
+    """The figures a spec block states, as the block states them.
+
+    No prose is composed here. A division says `near_ft: 2.4` and the card says
+    `near_ft 2.4`, because the moment this function starts writing "rising gently
+    from the bank" it is making a claim the record does not.
+
+    Nested structure is skipped rather than flattened: a swale's `line` is a
+    polyline of eleven numbers that tells a reader nothing, and the alignment it
+    describes is exactly the thing that entry admits is invented.
+    """
+    out = []
+    for key, value in block.items():
+        if key in GROUND_META_KEYS or key.endswith("_note"):
+            continue
+        if isinstance(value, (dict, type(None))):
+            continue
+        if isinstance(value, list):
+            if len(value) > 4 or any(isinstance(v, (list, dict)) for v in value):
+                continue
+        out.append({"key": key, "value": value})
+    return out
+
+
+def ground_claim(group: str, path: str, block: dict, sources: dict) -> dict | None:
+    """One graded statement the ground makes about itself, joined to its evidence.
+
+    A block earns a card by carrying a confidence, which is the same rule the
+    provenance popup applies to a building's attributes: a value with a grade on
+    it is a claim, and a claim a visitor cannot read is one this project has not
+    really made. `channel_profile` grades itself under `bed_confidence`, so the
+    key travels with the claim rather than being normalised away — the spec is a
+    generator input whose bytes are hashed into the terrain's staleness, and
+    tidying its vocabulary would re-stale the ground for a rename.
+    """
+    key = "confidence" if "confidence" in block else (
+        "bed_confidence" if "bed_confidence" in block else None)
+    if key is None:
+        return None
+    notes = [str(block[k]) for k in block if k == "note" or k.endswith("_note")]
+    return {
+        "id": path,
+        "group": group,
+        "label": (block.get("label") or block.get("id") or block.get("zone")
+                  or path.split(".")[-1]),
+        "confidence": block[key],
+        "confidence_key": key,
+        "fields": ground_fields(block),
+        "sources": block.get("sources", []) or [],
+        "citations": cite(block.get("sources", []) or [], sources),
+        "notes": notes,
+    }
+
+
+def ground_claims(spec: dict, sources: dict) -> list[dict]:
+    """Every graded statement in one epoch's terrain spec, in reading order.
+
+    One enumeration, two callers — this compiler, which puts the claims on the
+    Evidence panel, and `tools/validate.py`, which holds them to the citation
+    rule. A gate walking its own copy of the spec would check a set of claims
+    that could quietly stop being the set a visitor reads, which is the drift
+    this project keeps closing in other places.
+    """
+    claims = []
+    for group, group_label in GROUND_GROUPS:
+        block = spec.get(group)
+        if isinstance(block, dict):
+            claim = ground_claim(group_label, group, block, sources)
+            if claim:
+                claims.append(claim)
+        elif isinstance(block, list):
+            for i, item in enumerate(block):
+                if not isinstance(item, dict):
+                    continue
+                key = item.get("id") or item.get("zone") or i
+                claim = ground_claim(group_label, f"{group}.{key}", item, sources)
+                if claim:
+                    claims.append(claim)
+    return claims
+
+
+def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> int:
+    """What the ground claims, for the visitor standing on it.
+
+    Every building in this scene can tell you what it asserts, how sure of it we
+    are, which sources say so and where the record is weakest. The surface all of
+    them stand on could tell you none of that. `terrain_spec.json` is as fully
+    graded as any structure record — a documented water plane, three inferred
+    division levels arguing from period narrative feet, a conjectural bank face
+    and a channel cross-section that says on its own face that it carries no
+    evidence at all — and none of it reached any surface a visitor could read.
+    The ground even dithers under the confidence view, which shows that a grade
+    exists while saying nothing about what it grades.
+
+    Derived, never authored: the spec is a generator input, hashed into the
+    terrain's staleness, and this compiler only ever reads it. The measured
+    figures come off `heightfield.json`, which the generator wrote — so the
+    relief a visitor is told about is the relief the mesh actually has, not a
+    number copied into prose and left to rot.
+    """
+    epoch = scene.get("terrain_epoch", "")
+    ep_dir = DATA / "terrain" / "epochs" / epoch
+    spec_path = ep_dir / "terrain_spec.json"
+    if not spec_path.exists():
+        emit(outdir / "terrain.json", {
+            "scene": scene_id, "epoch": epoch, "claims": [], "not_modelled": [],
+            "standard": f"No terrain spec is committed for epoch '{epoch}', so the "
+                        f"ground in this scene makes no recorded claims.",
+        })
+        return 0
+
+    spec = load(spec_path)
+    datum = load(DATA / "datum.json")
+    hf = load(ep_dir / "heightfield.json") if (ep_dir / "heightfield.json").exists() else {}
+
+    claims = ground_claims(spec, sources)
+
+    vert = datum.get("vertical", {})
+    # The one claim the ground makes that is not in its own spec. Z = 0 is the
+    # 1835 water surface by definition, and what that surface stood at above the
+    # sea is a working assumption the whole vertical datum hangs off — recorded
+    # in datum.json, graded conjectural there, and read by nobody.
+    if vert.get("lake_stage_confidence"):
+        claims.append({
+            "id": "datum.lake_stage",
+            "group": "the vertical datum",
+            "label": "How high the 1835 water surface stood",
+            "confidence": vert["lake_stage_confidence"],
+            "confidence_key": "lake_stage_confidence",
+            "fields": [{"key": "export_offset_ft_asl", "value": vert.get("export_offset_ft_asl")}],
+            "sources": [],
+            "citations": [],
+            "notes": [t for t in (vert.get("lake_stage_note"), vert.get("internal")) if t],
+        })
+
+    relief = (hf.get("relief_ft") or {})
+    grid = spec.get("grid", {})
+    context = [
+        {"label": "Zero", "text": spec.get("vertical", {}).get("datum", "")},
+        {"label": "Vertical exaggeration",
+         "text": spec.get("vertical", {}).get("exaggeration_note", "")},
+        {"label": "The modelled box", "text": grid.get("note", "")},
+    ]
+    if relief:
+        # Measured off the committed heightfield rather than asserted: the whole
+        # argument for refusing the dossier's 4-8x exaggeration is that the site
+        # really is this flat, and a visitor should get that figure from the mesh
+        # they are standing on.
+        context.append({
+            "label": "Measured relief",
+            "text": f"Land in the modelled box runs {relief.get('land_min')} to "
+                    f"{relief.get('land_max')} ft above the water surface, and the "
+                    f"channel floor reaches {relief.get('channel_min')} ft below it. "
+                    f"Measured from the committed heightfield, not asserted.",
+        })
+
+    emit(outdir / "terrain.json", {
+        "scene": scene_id,
+        "target_date": scene["target_date"],
+        "epoch": epoch,
+        "scope": spec.get("scope", ""),
+        # The spec's own caveat, verbatim, for the same reason the exclusions list
+        # quotes its own standard: the section's honesty claim belongs to the
+        # dataset, not to whichever renderer happens to be displaying it.
+        "standard": spec.get("critical_caveat", ""),
+        "context": [c for c in context if c["text"]],
+        "claims": claims,
+        # Researched, sited, and outside this box — the terrain's own version of
+        # "what is not here", which the same spec has recorded since it was written.
+        "not_modelled": [
+            {"dossier_zone": z.get("dossier_zone"), "why": z.get("why", "")}
+            for z in spec.get("not_modelled_in_this_box", [])
+        ],
+    })
+    return len(claims)
+
+
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     scene = load(DATA / "scenes" / f"{scene_id}.json")
     target = dt.date.fromisoformat(scene["target_date"])
@@ -290,8 +493,10 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     })
 
     left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir)
+    ground = compile_ground(scene_id, scene, sources, outdir)
 
-    print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s)"
+    print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
+          f"{ground} ground claim(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 
