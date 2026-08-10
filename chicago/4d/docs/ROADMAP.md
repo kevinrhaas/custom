@@ -125,21 +125,29 @@ unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L2
 
 | record | attribute | what the archetype reads | effect |
 |---|---|---|---|
-| `wolf_point_tavern` | `frame_extension` (documented) | `frame_addition` | the frame half of a "partly log and partly frame" house is missing |
-| `wolf_point_tavern` | `signage` (documented) | `sign` | the painted wolf the tavern was known by is missing |
+| ~~`wolf_point_tavern`~~ | ~~`frame_extension`~~ | `frame_addition` | **DONE 2026-08-10** — renamed, dimensioned and re-baked in one slice |
+| ~~`wolf_point_tavern`~~ | ~~`signage`~~ | `sign` | **DONE 2026-08-10** — the board hangs on the river front; the wolf is not drawn (L25) |
 | `miller_house` | `chimneys: 2` (inferred) | `chimney` (a boolean) | one stack built where the record claims two |
 
 Each is a small data edit plus a re-bake, so **record and geometry land in one slice** — the
-same coupling the note below describes. Do the two Wolf Point renames together; they are the same
-building and the same bake. The chimney count needs a parameter in both archetypes first, so it
-is the larger of the two and can follow.
+same coupling the note below describes. The chimney count needs a parameter in both archetypes
+first, so it is the larger of the three and is what remains.
+
+**The Wolf Point pair landed together, which is the shape** (2026-08-10). Both renames, the four
+attributes the frame bay needed, the re-bake, the publish and the liberties moved in one PR. Two
+things are worth carrying forward. First, a rename is never only a rename: `frame_addition: true`
+alone would have let the archetype choose the bay's side, width, depth and storey count from its
+defaults, so a documented feature would have arrived at an invented size with nothing admitting
+it — the record now states all four and L24 admits the three that are conjectural. Second, the
+staleness gate did exactly what it was written for: the record edit turned the tavern's GLB STALE
+on the spot and the commit could not go green until the bake landed with it.
 
 **You cannot land half of one any more** (2026-08-10). `check.sh` recomputes each committed GLB's
-inputs and fails when the record and the mesh disagree, so the moment `signage` becomes `sign`
-the tavern's asset reads STALE and the gate stops the commit until the re-bake arrives with it.
-Which is the correct shape for the work: prepare the record on a branch, run the bake workflow
-against that branch, and merge one PR carrying both. See `generators/mesh_inputs.py` for what
-counts as an input and what deliberately does not.
+inputs and fails when the record and the mesh disagree. The working shape: prepare the record on
+a branch, let the bake workflow run against that branch (it triggers on any push under
+`chicago/4d/data/**` or `generators/**`), take its baked assets onto the same branch, and merge
+one PR carrying both. See `generators/mesh_inputs.py` for what counts as an input and what
+deliberately does not.
 
 Per-cluster parcels, each one file per structure so parallel agents never collide:
 
@@ -239,9 +247,19 @@ Switching it on found a real defect, which is the argument for the rule in one l
 Point Tavern's frame extension and its painted wolf sign are both `documented` and neither is
 modelled.** The record spells them `frame_extension` and `signage`; `log_dwelling` reads
 `frame_addition` and `sign`; the absent attributes resolved to defaults and nothing complained.
-See S5 below for the fix, which is a rename plus a re-bake. The standing limit is unchanged and
-worth repeating: nothing can catch a liberty taken that nobody noticed taking — but an attribute
-recorded and never built is no longer in that category.
+Both were fixed the same day, in one slice with the re-bake — see S5. The standing limit is
+unchanged and worth repeating: nothing can catch a liberty taken that nobody noticed taking — but
+an attribute recorded and never built is no longer in that category.
+
+**Done 2026-08-10 — and the defect it found is repaired: the wolf sign hangs.** The rule's whole
+argument was one building, so here is that building finished. The record's `frame_extension` and
+`signage` are now `frame_addition` and `sign`, the names `log_dwelling` reads; the frame bay and
+the signboard are baked, published and visible; and the popup's `documented` chips over both now
+describe something a visitor can walk up to. The rename alone would have been the smaller half of
+the fix. A frame addition with no dimensions recorded takes the archetype's defaults — a two-storey
+block across the river front, on a tavern the sources describe as low — so the record states the
+bay's side, width, depth and storey count, and L24 admits the three of those that are invented.
+The board is deliberately blank: the sign is documented and the painting on it is not (L25).
 
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the

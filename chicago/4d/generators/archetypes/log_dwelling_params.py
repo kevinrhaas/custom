@@ -56,11 +56,13 @@ ADDITION_SIDES = ("front", "end")
 # outside it cannot move a vertex, so the record states something the mesh does
 # not contain and `tools/validate.py` makes the record say which.
 #
-# Note the two spellings this set makes visible rather than tolerant. The Wolf
-# Point record writes `frame_extension` and `signage`; the parameters are
+# Note the two spellings this set made visible rather than tolerant. The Wolf
+# Point record wrote `frame_extension` and `signage`; the parameters are
 # `frame_addition` and `sign`. Neither name is wrong on its own and neither
 # resolver ever complained, which is exactly why a documented frame half and a
-# documented painted sign went unbuilt without anything saying so.
+# documented painted sign went unbuilt without anything saying so. The record was
+# renamed to this vocabulary on 2026-08-10 and re-baked in the same slice; the set
+# is what found it, and it is what will find the next one.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
     "loft", "chimney", "sign", "frame_paint",

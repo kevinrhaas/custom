@@ -184,7 +184,8 @@
             "chimneys": { "$ref": "#/$defs/attested" },
             "fenestration": { "$ref": "#/$defs/attested" },
             "shutters": { "$ref": "#/$defs/attested" },
-            "signage": { "$ref": "#/$defs/attested" }
+            "sign": { "$ref": "#/$defs/attested" },
+            "frame_addition": { "$ref": "#/$defs/attested" }
           }
         },
 

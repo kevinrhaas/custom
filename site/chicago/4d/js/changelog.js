@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 15, title: 'The wolf is back on Wolf Point', kind: 'fix',
+    ts: '2026-08-10T07:01:28.833Z', date: 'Aug 10, 2026, 2:01 AM CT',
+    items: [
+      'Yesterday\'s build found that the Wolf Point Tavern was missing the two things its own record calls documented: the frame half of a house the sources describe as "partly log and partly frame", and the painted sign of a wolf that hung outside it by about 1833 — the thing that gave the point its name. Both are built now. A frame bay stands at the end of the log house, and a board hangs from a bracket on the river front.',
+      'The board is blank, and that is deliberate. What survives is that a sign hung there, not what was on it: no description gives its size, its shape, or how the wolf was drawn. A wolf painted from imagination would be the most conspicuous invention in the town, on the one object every visitor walks up to. So the board is weathered wood, and the building\'s card tells you what it showed.',
+      'Renaming the two features was the easy half. "Partly frame" says nothing about how big the frame part was, where on the house it stood, or how tall — and left alone, the model-builder would have filled that in from its own defaults: a two-storey block across the river front of a tavern the sources describe as low. So the size and the side are now written into the record as the guesses they are, and the liberties list names each one.',
+      'The correction and the rebuilt building shipped together, which is exactly what the new freshness check was for. The moment the record changed, the model standing in the scene was flagged as no longer describing it, and nothing could ship until the two matched again.',
+    ] },
   { v: 14, title: 'Checking that the town you see is the town on file', kind: 'fix',
     ts: '2026-08-10T06:30:08.481Z', date: 'Aug 10, 2026, 1:30 AM CT',
     items: [
