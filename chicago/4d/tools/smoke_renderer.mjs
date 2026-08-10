@@ -1038,6 +1038,75 @@ for (const [label, viewport, touch] of [
       open.heading.slice(-240));
     check(`${label}: the Evidence panel still does not overflow with it`, open.overflow);
 
+    // …and the same entry on the building it is about. The section above tells a
+    // visitor that "the provenance card shows it", and until now the card showed
+    // the CLAIM — a dated span with an `inferred` chip — and never that the claim
+    // is a tracked open question with a live dispute behind it. The doubt reached
+    // whoever opened a panel about the scene, not whoever walked up to the house.
+    //
+    // Asserted against the rendered card, per building, on the discriminating
+    // pair — as everywhere else on this card, and for the reason `documented_range`
+    // taught: reading the derived list would prove only that the list is fine.
+    const openCard = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = document.querySelector('#popup .pop-question');
+        const entry = sec?.querySelector('details.uncertain');
+        const body = entry?.querySelector('.lib-body');
+        const presence = [...document.querySelectorAll('#popup .pop-sec')]
+          .find((s) => /Was it here/i.test(s.querySelector('h3')?.textContent ?? ''));
+        return {
+          present: !!sec,
+          chip: entry?.querySelector('.lib-scope')?.textContent.trim() ?? '',
+          text: (sec?.textContent ?? '').replace(/\s+/g, ' ').trim(),
+          collapsed: body ? body.checkVisibility() === false : null,
+          presenceChip: presence?.querySelector('.conf')?.textContent.trim() ?? '',
+        };
+      };
+      const western = read('western_hotel');
+      // Every other building in the scene, because "no section" is the rule and
+      // not a property of whichever second building this pair happens to name.
+      const others = [...window.__chicago4d.registry.keys()]
+        .filter((id) => id !== 'western_hotel')
+        .filter((id) => read(id).present);
+      return { western, others };
+    });
+    check(`${label}: the open question reaches the building it is about`,
+      openCard.western.present
+      && /W\. H\. Stow/.test(openCard.western.text)
+      && /hotel chronology/i.test(openCard.western.text)
+      && /frame_1834\.documented_range/.test(openCard.western.text),
+      openCard.western.text.slice(0, 220));
+    // What no chip can say: what settling it would change. The grade tells a
+    // visitor we are unsure; only this says the dispute is between the builder's
+    // own statement and a chronology, and that the answer decides whether the
+    // house was new or still going up on the day they are standing in.
+    check(`${label}: it says what settling it would change`,
+      /What it would change/i.test(openCard.western.text)
+      && /STANDING in the scene/i.test(openCard.western.text),
+      openCard.western.text.slice(-260));
+    // One uncertainty, two surfaces, one grade. The card's own presence chip and
+    // the open question's chip are read from the same record field, so a card that
+    // qualified the two differently is exactly the drift the shared renderer and
+    // the `carried_by` gate exist to stop.
+    check(`${label}: the card grades the doubt the same way the claim above it is graded`,
+      openCard.western.chip === 'inferred'
+      && openCard.western.presenceChip === 'inferred',
+      `question "${openCard.western.chip}" · presence "${openCard.western.presenceChip}"`);
+    check(`${label}: it starts collapsed like every other disclosure on the card`,
+      openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
+    // The discriminating case, and it is a deliberate silence rather than a missing
+    // empty state. Seven of the eight buildings have nothing on the list, and a
+    // card saying "no open questions are recorded" would read as "this building is
+    // settled" — which four entries against forty researched structures cannot
+    // support. A card dumping the whole list would pass every assertion above.
+    check(`${label}: no other building carries it, and none claims to be settled`,
+      openCard.others.length === 0,
+      openCard.others.length ? `also on ${openCard.others.join(', ')}` : 'western hotel only');
+    // Reading every card leaves one open over the panel, which the panel's own
+    // close button then cannot be clicked through.
+    await page.evaluate(() => window.__chicago4d.popup.close());
+
     // --- what the ground claims, in the same panel ---------------------------
     // Every building can say what it asserts and how sure of it we are. The
     // surface all of them stand on is graded just as carefully in

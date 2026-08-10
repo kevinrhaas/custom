@@ -323,6 +323,32 @@ def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
                 rep.error(where, f"source '{s}' does not resolve in data/sources/")
 
 
+# The claims the provenance card renders, as a RECORD names them mapped to the
+# sidecar field the card reads. Two of the three words are the same on both sides;
+# the position's is not, because `compile_scene.py` flattens the phase's position
+# block into `placement.*`. The map is authored — a phase field and a card section
+# are two documents and something has to say which pairs with which — but the
+# CHECK is not: each path has to be one `renderers/web/js/popup.js` actually
+# reads, scanned by the same machinery that found `asset_is_placeholder` never
+# rendering. So deleting a section from the card fails here rather than leaving
+# the Evidence panel promising a card that shows nothing.
+CARD_CLAIM_PATHS = {
+    "documented_range": "documented_range",
+    "footprint": "footprint",
+    "position": "placement.position_confidence",
+}
+
+PROVENANCE_CARD = Path("renderers") / "web" / "js" / "popup.js"
+
+
+def card_claim_reads() -> set[str]:
+    """The sidecar paths the provenance card reads, off the card itself."""
+    path = ROOT / PROVENANCE_CARD
+    if not path.is_file():
+        return set()
+    return {dotted for _, dotted in sidecar_field_reads(path.read_text(encoding="utf-8"))}
+
+
 def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
                      rep: Report, root: Path | None = None) -> None:
     """The third category — researched, and neither built nor ruled out.
@@ -343,6 +369,16 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
     the drift L12 was caught by — a document and its data disagreeing because
     nobody carried a change back.
 
+    The named claim must also be one the provenance card RENDERS, which is the
+    other half of the same promise. The Evidence panel's entry for the standing
+    structure ends by telling a visitor that "the provenance card shows it" — a
+    sentence about a surface this file could not see, which is exactly the shape
+    of the two faults that cost this project a `documented_range` and an
+    `asset_is_placeholder` that never rendered on any building. `carried_by` could
+    have named a graded block the card has no section for, and the panel would
+    have gone on promising it. The claim is now held to `CARD_CLAIM_PATHS`, and
+    each of those paths is held to being one the card really reads.
+
     A question is required for the reason a reason is required on an exclusion:
     an id and a shrug is not a finding. `sources` are held to rule one like
     every other citation in this project, and an entry with none must SAY it has
@@ -353,6 +389,10 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
     """
     root = root or ROOT
     excluded_ids = {ex.get("id") for ex in exclusions.get("excluded", [])}
+    # Read once, and off the real card rather than off `root`: a temp fixture
+    # carries a dataset, never a renderer, and the card being checked is the one
+    # that ships.
+    card_reads = card_claim_reads()
     seen: set[str] = set()
     uncited: list[str] = []
     for item in exclusions.get("watch_list", []):
@@ -431,11 +471,28 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
                 rep.error(where, f"carried_by names '{field}' on phase '{pid}', which is "
                                  f"not a graded claim on the record")
                 continue
+            if not claim.get("confidence"):
+                rep.error(where, f"carried_by names '{field}' on phase '{pid}', which "
+                                 f"carries no confidence — an uncertainty has to sit on a "
+                                 f"claim that is graded, or there is nothing to hold down")
+                continue
             if claim.get("confidence") == "documented":
                 rep.error(where, f"{ref} is `documented` while this entry says its 1835 "
                                  f"status is open — the watch list exists to stop exactly "
                                  f"that promotion, so either the evidence arrived and the "
                                  f"entry retires, or the grade is wrong")
+
+            # and the promise the panel makes about the other surface
+            wanted = CARD_CLAIM_PATHS.get(field)
+            if wanted is None:
+                rep.error(where, f"carried_by names '{field}', and the provenance card "
+                                 f"renders no claim for it — the Evidence panel tells a "
+                                 f"visitor the card shows this doubt, so it has to be one "
+                                 f"of {sorted(CARD_CLAIM_PATHS)}")
+            elif wanted not in card_reads:
+                rep.error(where, f"carried_by names '{field}' and {PROVENANCE_CARD} no "
+                                 f"longer reads `{wanted}` — the panel would keep promising "
+                                 f"a card that shows this claim while the card shows nothing")
     if uncited:
         rep.note(f"watch list: {len(uncited)} entry(ies) rest on no source record "
                  f"[{', '.join(uncited)}] — each says why")

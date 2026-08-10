@@ -8,10 +8,18 @@
  *
  * The card shows, in order: what it is, where it stands and how sure we are of
  * that, whether it was here at all on the day you are standing in, whether it
- * was this shape, every attribute with its own confidence chip and reasoning,
- * the liberties taken with THIS building, the citations with links to both the
- * source and its archived copy, and a link out to the full research dossier
- * where the disagreements are argued.
+ * was this shape, whether any of that is a tracked open question, every attribute
+ * with its own confidence chip and reasoning, the liberties taken with THIS
+ * building, the citations with links to both the source and its archived copy,
+ * and a link out to the full research dossier where the disagreements are argued.
+ *
+ * The open question is the newest section and it qualifies the two claims above
+ * it rather than adding a third. A chip says how sure we are; it cannot say that
+ * the uncertainty is a live dispute between two sources, that the grade is being
+ * held down deliberately until evidence arrives, and what would change if it did.
+ * That was readable in the Evidence panel — whose entry for the standing one says
+ * in as many words that "the provenance card shows it" — and not on the building
+ * the panel is talking about. Same gap the liberties had, closed the same way.
  *
  * The shape is the newest of those and was the largest silence. The footprint is
  * the biggest single claim a visitor stands in front of, six of the eight in
@@ -66,6 +74,11 @@
 
 import { citationItems } from './citations.js';
 import { libertiesFor, libertyEntryHtml } from './liberties.js';
+// The Evidence panel's own open-question entry, rendered here for the building
+// being inspected. Shared for the liberties' reason: the panel's entry for the
+// Western Hotel says in as many words that "the provenance card shows it", and
+// two renderers would let the two surfaces describe one uncertainty differently.
+import { openQuestionsFor, uncertaintyEntryHtml } from './exclusions.js';
 // What the mesh does with a value its archetype never reads — `not built`, `not
 // modelled from this`. Shared with the Evidence panel's ground section, which
 // says the same thing about the terrain: one wording in one module, for the
@@ -223,6 +236,42 @@ function shapeSection(s) {
 }
 
 /**
+ * Is what this card just told you actually settled?
+ *
+ * `data/exclusions.json`'s watch list is the third category — researched, and
+ * neither built nor ruled out — and one of its four entries is STANDING in the
+ * scene. The Evidence panel has carried all four since they became data, and its
+ * entry for the standing one ends by saying that the doubt sits on the record's
+ * own dated claim "and the provenance card shows it". The card showed the claim.
+ * It never showed that the claim is a tracked open question, so a visitor reading
+ * `1834-01-01 → 1840-12-31` with an `inferred` chip over it could learn that we
+ * are not certain, and could not learn that the uncertainty is a live dispute
+ * between two sources, what settling it would change, or that this project is
+ * holding the grade down on purpose until evidence arrives. The doubt reached
+ * whoever opened a panel about the whole scene, not whoever walked up to the
+ * building it is about — which is the gap the liberties had before they were
+ * attached to their buildings.
+ *
+ * A building with nothing open renders NOTHING here, and that is the honest
+ * shape rather than a missing empty state. "No open questions are recorded about
+ * this building" would read as *this building is settled*, and the list cannot
+ * support that: four entries against roughly forty researched structures, and an
+ * open question nobody has noticed is exactly as invisible as a liberty nobody
+ * noticed taking. Silence claims nothing; a reassurance would claim a lot.
+ */
+function openQuestionSection(questions, structureId) {
+  if (!Array.isArray(questions)) return '';   // not loaded: claim nothing
+  const mine = openQuestionsFor(questions, structureId);
+  if (!mine.length) return '';                // nothing open: say nothing
+  return `<section class="pop-sec pop-question">
+    <h3>Is this settled?</h3>
+    <p class="pop-question-lead">No — what this card tells you about this building is
+      on the project's list of open questions.</p>
+    <div class="liberties">${mine.map((u) => uncertaintyEntryHtml(u, { onCard: true })).join('')}</div>
+  </section>`;
+}
+
+/**
  * The liberties taken with this building, or an honest note that none are
  * recorded. Rendered with the Evidence panel's own entry renderer so the two
  * views cannot describe the same liberty differently.
@@ -291,6 +340,9 @@ export function createPopup(root, { docBase = '../../' } = {}) {
   let currentId = null;
   /** Null until the derived list loads; never faked to an empty list. */
   let liberties = null;
+  /** Same rule for the scene's open questions: null means "not loaded", which is
+   *  not the same claim as "nothing is open about this building". */
+  let openQuestions = null;
   let currentRecord = null;
 
   function close() {
@@ -326,6 +378,18 @@ export function createPopup(root, { docBase = '../../' } = {}) {
      */
     setLiberties(list) {
       liberties = Array.isArray(list) ? list : null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
+    /**
+     * Hand the popup the scene's open questions, for the same reason and with the
+     * same redraw: the failure that matters is a card quietly showing fewer
+     * caveats than the dataset holds.
+     *
+     * @param {object[]|null} list  the compiled `uncertain` list for this scene
+     */
+    setOpenQuestions(list) {
+      openQuestions = Array.isArray(list) ? list : null;
       if (currentRecord) this.show(currentRecord);
     },
 
@@ -390,6 +454,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         ${presenceSection(s)}
 
         ${shapeSection(s)}
+
+        ${openQuestionSection(openQuestions, record.id)}
 
         <section class="pop-sec">
           <h3>Attributes and evidence</h3>

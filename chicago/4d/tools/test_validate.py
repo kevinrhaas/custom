@@ -219,6 +219,41 @@ def test_the_watch_list_stops_a_promotion_it_only_used_to_ask_for() -> None:
           any("either ruled out" in e
               for e in run(entry(), excluded=[{"id": "western_hotel"}])))
 
+    # The panel tells a visitor that the provenance card shows this doubt. That
+    # was a sentence about the other half of an interface — the shape of both
+    # faults this project found in its own card — so the discriminating case is
+    # not a malformed entry but a well-formed, GRADED claim the card has no
+    # section for. A record that grew a new phase-level claim would produce
+    # exactly `demolition` here, and the panel would go on promising a card that
+    # renders nothing for it.
+    formed = {"w.json": {"id": "western_hotel", "phases": [
+        {"id": "frame_1834",
+         "documented_range": {"from": "1834-01-01", "to": "1840-12-31",
+                              "confidence": "inferred", "sources": ["s1"]},
+         "footprint": {"polygon": [], "confidence": "inferred", "note": "an L"},
+         "demolition": {"value": "1840s", "confidence": "conjectural", "note": "no source"},
+         "form": {"stories": {"value": 2, "confidence": "inferred", "note": "why"}}}]}}
+    check("carried_by naming a claim the provenance card renders no section for is an error",
+          any("renders no claim" in e
+              for e in run(entry(carried_by="frame_1834.demolition"), formed)),
+          run(entry(carried_by="frame_1834.demolition"), formed))
+    # And a block that is not itself graded is not a claim to hold down: `form` is
+    # a dict of graded attributes, and the card grades each of them on its own row.
+    check("carried_by naming a block that carries no confidence of its own is an error",
+          any("carries no confidence" in e
+              for e in run(entry(carried_by="frame_1834.form"), formed)),
+          run(entry(carried_by="frame_1834.form"), formed))
+    check("carried_by naming the footprint, which the card does render, passes",
+          not run(entry(carried_by="frame_1834.footprint"), formed),
+          run(entry(carried_by="frame_1834.footprint"), formed))
+    # And the card is asked rather than trusted: every path the map offers has to
+    # be one popup.js really reads, which is what makes the panel's promise a
+    # check instead of a second sentence.
+    reads = V.card_claim_reads()
+    check("every claim the map pairs with a card section is one the card reads",
+          bool(reads) and all(p in reads for p in V.CARD_CLAIM_PATHS.values()),
+          f"card reads {sorted(reads)}")
+
 
 def test_confidence_contract() -> None:
     ids = {"s1"}
