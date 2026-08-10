@@ -173,7 +173,14 @@ export function createBuildings({ registry, confidence, terrain }) {
     const p = record.sidecar?.placement ?? {};
     const e = p.local_e ?? 0;
     const n = p.local_n ?? 0;
-    const y = terrain ? terrain.height(e, n) : 0;
+    // docs/GLB-CONTRACT.md: a structure sits at the base of its walls on the
+    // ground, EXCEPT one declared `water`, whose local y = 0 is the design water
+    // surface — that plane is z = 0 by the definition of the vertical datum, so
+    // the anchor is a literal zero and not a lookup. Sampling the heightfield for
+    // a bridge would place it on the river BED, which is what the ground surface
+    // is mid-channel; it would sink out of sight and look like a missing asset.
+    const onWater = p.vertical_anchor === 'water';
+    const y = onWater ? 0 : (terrain ? terrain.height(e, n) : 0);
     placements.set(record.id, new THREE.Matrix4().compose(
       enuToWorld(e, n, y),
       new THREE.Quaternion().setFromEuler(

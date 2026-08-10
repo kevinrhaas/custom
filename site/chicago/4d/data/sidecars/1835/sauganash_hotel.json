@@ -18,7 +18,8 @@
     "position_confidence": "inferred",
     "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
     "uncertainty_m": 20,
-    "placement_provisional": false
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
   },
   "footprint": {
     "polygon": [

@@ -15,6 +15,12 @@
       "asset": "gltf/miller_house__log_frame_1827.glb"
     },
     {
+      "id": "north_branch_bridge",
+      "name": "North Branch Bridge",
+      "sidecar": "sidecars/1835/north_branch_bridge.json",
+      "asset": "gltf/north_branch_bridge__log_1832.glb"
+    },
+    {
       "id": "sauganash_hotel",
       "name": "Sauganash Hotel",
       "sidecar": "sidecars/1835/sauganash_hotel.json",

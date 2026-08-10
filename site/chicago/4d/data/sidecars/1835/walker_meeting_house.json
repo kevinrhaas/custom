@@ -18,7 +18,8 @@
     "position_confidence": "conjectural",
     "symbolic_location": "West bank at the forks, north of the Wolf Point Tavern and a little apart from the river-front row of cabins; alternatively, on the north bank — see the note, the bank is disputed.",
     "uncertainty_m": 20,
-    "placement_provisional": false
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
   },
   "footprint": {
     "polygon": [
