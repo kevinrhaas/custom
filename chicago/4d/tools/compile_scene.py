@@ -200,6 +200,20 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 attributes[key] = {k: v for k, v in st[key].items() if k in
                                    ("value", "confidence", "sources", "note", "geometry")}
 
+        # THE PHASE'S CLAIM ABOUT ITSELF. Every `form` attribute has carried its
+        # note to the card since the card was written; the two phase-level blocks
+        # a visitor is most likely to ask about — was it here, and how do you know
+        # where — carried only a confidence chip, and `documented_range` did not
+        # reach the sidecar at all. The popup has read `documented_range` since it
+        # was written and this compiler never wrote it, so the line has never once
+        # rendered: the question the whole scene rests on was answered nowhere in
+        # the walkthrough while being argued at length in the record.
+        #
+        # Note the shape is the SAME as an attribute's — value/confidence/sources/
+        # note — because the card renders these rows with the attribute renderer.
+        # Two renderers describing the same kind of claim differently is the drift
+        # this project keeps closing.
+        rng = phase.get("documented_range", {})
         pos = phase.get("position", {})
         provisional = pos.get("utm_e") is None
         datum = load(DATA / "datum.json")
@@ -218,11 +232,30 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "asset": f"gltf/{st['id']}__{phase['id']}.glb",
             "scene": scene_id,
             "target_date": scene["target_date"],
+            # Was it here at all? The scene date falls inside this span by
+            # construction — resolve_phase would not have returned the phase
+            # otherwise — so what the card has to show is not the fact but the
+            # STRENGTH of it, and the reasoning behind the end of the range, which
+            # for a building nobody followed past 1834 is the weakest claim on it.
+            "documented_range": {
+                "from": rng.get("from", ""),
+                "to": rng.get("to", ""),
+                "confidence": rng.get("confidence", "conjectural"),
+                "sources": rng.get("sources", []),
+                "note": rng.get("note", ""),
+            },
+            # What this phase IS, in the record's own words. Written for a reader
+            # and read by nobody: it is where a record says that a building holding
+            # the post office for three years is not the post office on the scene
+            # date, which no chip can express.
+            "change_note": phase.get("change_note", ""),
             "placement": {
                 "local_e": local_e,
                 "local_n": local_n,
                 "rotation_deg": pos.get("rotation_deg", 0.0),
                 "position_confidence": pos.get("confidence", "conjectural"),
+                "position_sources": pos.get("sources", []),
+                "position_note": pos.get("note", ""),
                 "symbolic_location": pos.get("symbolic_location", ""),
                 "uncertainty_m": 20,
                 "placement_provisional": provisional,

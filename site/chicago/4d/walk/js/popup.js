@@ -7,10 +7,22 @@
  * table says `inferred`, and the note underneath says why.
  *
  * The card shows, in order: what it is, where it stands and how sure we are of
- * that, every attribute with its own confidence chip and reasoning, the
- * liberties taken with THIS building, the citations with links to both the
- * source and its archived copy, and a link out to the full research dossier
- * where the disagreements are argued.
+ * that, whether it was here at all on the day you are standing in, every
+ * attribute with its own confidence chip and reasoning, the liberties taken with
+ * THIS building, the citations with links to both the source and its archived
+ * copy, and a link out to the full research dossier where the disagreements are
+ * argued.
+ *
+ * "Whether it was here at all" is the newest of those and was the oldest gap.
+ * This file has read `documented_range` since it was written and the sidecar
+ * compiler never wrote the field, so the line never rendered once: the claim the
+ * entire scene rests on — that this building stood in Chicago on 1 July 1835 —
+ * was the one claim on the card with no chip, no source and no reasoning, while
+ * a roof pitch had all three. The same was half-true of the position, whose
+ * argument is often the longest thing in the record and reached the card as a
+ * bare chip. Both now render through the attribute table's own row renderer,
+ * because a card that qualified its load-bearing claims differently from its
+ * details is how the two drift.
  *
  * The liberties section is the answer to a gap this card had until now. An
  * attribute chip tells a visitor how sure we are of a value we recorded; it
@@ -94,22 +106,75 @@ function sourceList(sources) {
   return `<span class="attr-note">sources: ${sources.map(escapeHtml).join(', ')}</span>`;
 }
 
+/**
+ * The reasoning, folded away behind `why`.
+ *
+ * Split out of the attribute row because the phase-level claims need exactly the
+ * same affordance and a second implementation of it would drift — the same
+ * argument that put the Evidence panel and this card on one liberty renderer.
+ * An empty note renders nothing at all: a `why` button that opens on silence
+ * teaches a visitor that the reasoning is missing everywhere.
+ */
+function noteToggle(note) {
+  if (!note) return '';
+  return `<span class="attr-note" data-note hidden>${escapeHtml(note)}</span>
+    <button class="attr-toggle" type="button" data-toggle-note>why</button>`;
+}
+
+/** Chip, sources and reasoning — everything that qualifies a value. */
+function evidence(claim) {
+  return `${chip(claim.confidence)}${geometryMark(claim.geometry)}
+    ${sourceList(claim.sources)}${noteToggle(claim.note)}`;
+}
+
 function attributeRows(attributes) {
   const entries = Object.entries(attributes || {});
   entries.sort((a, b) => (CONF_ORDER[a[1].confidence] ?? 3) - (CONF_ORDER[b[1].confidence] ?? 3)
     || a[0].localeCompare(b[0]));
 
-  return entries.map(([key, attr]) => {
-    const note = attr.note
-      ? `<span class="attr-note" data-note hidden>${escapeHtml(attr.note)}</span>
-         <button class="attr-toggle" type="button" data-toggle-note>why</button>`
-      : '';
-    return `<tr>
-      <th scope="row">${escapeHtml(prettyName(key))}</th>
-      <td><span class="val">${escapeHtml(prettyValue(attr.value))}</span>${chip(attr.confidence)}
-        ${geometryMark(attr.geometry)}${sourceList(attr.sources)}${note}</td>
-    </tr>`;
-  }).join('');
+  return entries.map(([key, attr]) => claimRow(prettyName(key), prettyValue(attr.value), attr))
+    .join('');
+}
+
+/** One row of the evidence table. Used by the attribute table and by the
+ *  phase-level claims above it, so the two cannot be styled or qualified
+ *  differently for reasons nobody chose. */
+function claimRow(label, value, claim) {
+  return `<tr>
+    <th scope="row">${escapeHtml(label)}</th>
+    <td><span class="val">${escapeHtml(value)}</span>${evidence(claim)}</td>
+  </tr>`;
+}
+
+/**
+ * Was this building here on the day you are standing in, and how do we know
+ * where it stood?
+ *
+ * These two are the load-bearing claims of the whole scene and the card carried
+ * neither of their arguments. The date span never rendered at all — the markup
+ * read `documented_range` and the compiler never wrote it — so a visitor could
+ * read why a roof pitch was 35 degrees and not why the building was in the town.
+ *
+ * The dates are printed as recorded rather than prettified. `1835-12-31` is
+ * frequently the end of a continuity argument rather than an event, and turning
+ * it into "December 1835" would dress a bound up as a date somebody wrote down;
+ * the note beside it is where that is explained, in the record's own words.
+ */
+function presenceSection(s) {
+  const range = s.documented_range;
+  if (!range || !(range.from || range.to)) return '';
+
+  const span = `${range.from || '?'} → ${range.to || '?'}`;
+  const account = s.change_note
+    ? `<p class="pop-account">${escapeHtml(s.change_note)}</p>` : '';
+
+  return `<section class="pop-sec">
+    <h3>Was it here?</h3>
+    ${account}
+    <table class="attrs"><tbody>
+      ${claimRow('recorded standing', span, range)}
+    </tbody></table>
+  </section>`;
 }
 
 /**
@@ -202,10 +267,15 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         ? '<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>'
         : '';
 
-      const range = s.documented_range
-        ? `<div>Standing <strong>${escapeHtml(s.documented_range.from ?? '?')}</strong>
-             to <strong>${escapeHtml(s.documented_range.to ?? '?')}</strong> ${chip(s.documented_range.confidence)}</div>`
-        : '';
+      // The position's own reasoning, on the line that shows the position. Every
+      // placement here is an argument — three of the eight are derived from bank
+      // geometry because no corner survives — and the card showed the conclusion
+      // with a chip over it and no way to read the argument.
+      const place = {
+        confidence: p.position_confidence,
+        sources: p.position_sources,
+        note: p.position_note,
+      };
 
       const aka = Array.isArray(s.aka) && s.aka.length
         ? `<p class="pop-aka">also ${s.aka.map(escapeHtml).join(' · ')}</p>` : '';
@@ -226,11 +296,12 @@ export function createPopup(root, { docBase = '../../' } = {}) {
 
         <div class="pop-meta">
           <div><strong>${escapeHtml(p.symbolic_location ?? 'Location not recorded')}</strong>
-            ${chip(p.position_confidence)}</div>
-          ${range}
+            ${evidence(place)}</div>
           ${provisional}
           ${placeholderAsset}
         </div>
+
+        ${presenceSection(s)}
 
         <section class="pop-sec">
           <h3>Attributes and evidence</h3>

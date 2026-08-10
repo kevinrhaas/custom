@@ -11,11 +11,30 @@
   "asset": "gltf/north_branch_bridge__log_1832.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1832-06-01",
+    "to": "1839-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_kinzie_bridge",
+      "chicagology_prefire252",
+      "chicagology_lastwardance"
+    ],
+    "note": "THE BUILD DATE IS DISPUTED BY A YEAR AND THE DISPUTE DOES NOT REACH THE SCENE. Andreas: 'In the summer of 1832 Samuel Miller ... built the first bridge over the North Branch.' Charles Cleaver, recalled in 1893, gives the winter of 1831-32. Summer 1832 is adopted, on the ground that Cleaver did not reach Chicago until October 1833 — so his date is hearsay reported sixty years later, while Andreas's is a compiler's date from the 1880s working over the town's own records. Either way the bridge stood well before 1835-07-01 and this record models one phase. THE END OF THE RANGE IS THE ONLY ONE THIS PROJECT HAS THAT IS ACTUALLY ATTESTED: the Kinzie Street chronology closes bridge #1 in 1839, superseded by a pontoon swing. That is a table's summary rather than Andreas's prose, so the range carries the same inferred tag as its opening. What the range does NOT claim is that the structure was unchanged across it — see the form notes: a bridge described as useless for teams in 1833 carried a large procession in August 1835, and nothing reached records what happened in between."
+  },
+  "change_note": "The single phase this structure has: a log stringer bridge on cribbed abutments, carrying the Kinzie Street line across the North Branch. The 1832 walkway and whatever it became by 1835 are modelled as one phase because no source dates the change; the form attributes take the 1835 reading and say so.",
   "placement": {
     "local_e": -117.5,
     "local_n": 260.5,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_kinzie_bridge",
+      "chicagology_lastwardance",
+      "wright_1834",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-10, AND THE CORNER IS DOCUMENTED WHERE THE COORDINATE IS DERIVED, so the tag follows the weaker half — the same rule the Green Tree's placement uses. Andreas locates the bridge 'near the southeast corner of Kinzie and Canal streets, in the vicinity of the present bridge of the Chicago & Northwestern Railroad Company'; the war-dance account of 18 August 1835 corroborates the line by having a procession cross the North Branch bridge and then turn south along West Water Street in front of the Green Tree and Wolf Point taverns. Method: the modern Kinzie and Canal intersection centre was read from OpenStreetMap (three shared nodes, mean 41.889068 N, -87.640156 W = EPSG:26916 E 446891.7, N 4637657.8, local N +262.0), and Kinzie Street is one of the streets that survives on its 1835 alignment. The DECK CENTRELINE is set on that northing and its ends are set where the traced 1834 waterline crosses it — not where the modern banks are, because the modern channel is a dredged and walled successor and using it would put the abutments on nineteenth-century engineering. The value recorded here is the footprint polygon's own origin, which is the deck's south-west corner (west end, upstream side), per docs/GLB-CONTRACT.md. Facade bearing 0: this archetype's convention is that a deck at rotation 0 runs east-west with its upstream side north, and the Kinzie alignment runs east-west. WHAT THE CORNER DOES NOT SAY: modern Canal Street at this northing lies 63 m WEST of the traced 1834 west bank, so 'the south-east corner of Kinzie and Canal' is where the approach began and not where the bridge did. That gap is a fact about the two streets, not an error bar. Working uncertainty about 20 m from the georeference, plus the trace's own; along the street the position is better constrained than across it, because the crossing has to meet both banks.",
     "symbolic_location": "Across the North Branch on the Kinzie Street alignment, its west landing near the south-east corner of Kinzie and Canal Streets.",
     "uncertainty_m": 20,
     "placement_provisional": false,

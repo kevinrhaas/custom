@@ -188,6 +188,75 @@ def test_wide_range_rule_targets_guesses_not_facts() -> None:
           any("precedes" in e for e in rep.errors), rep.errors)
 
 
+def test_presence_is_held_to_the_confidence_contract() -> None:
+    """The claim that decides whether a building is in the town at all.
+
+    Every other `documented` value owes a resolving source. The date span was
+    outside that rule until it started reaching the provenance card, which is
+    exactly when an unsourced "documented" becomes a claim a visitor reads.
+    """
+    rep = V.Report()
+    V.check_range("w", {"from": "1833-01-01", "to": "1880-12-31",
+                        "confidence": "documented"}, {"s1"}, rep)
+    check("a documented span with no source is an error",
+          any("requires at least one source_id" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_range("w", {"from": "1833-01-01", "to": "1880-12-31",
+                        "confidence": "documented", "sources": ["s1"]}, {"s1"}, rep)
+    check("a documented span citing a resolving source passes", not rep.errors, rep.errors)
+
+    # The discriminating case: the rule is about `documented`, not about every
+    # range. An inferred span states its reasoning instead, and demanding a source
+    # of it would push records towards citing something decorative.
+    rep = V.Report()
+    V.check_range("w", {"from": "1833-01-01", "to": "1836-12-31",
+                        "confidence": "inferred", "note": "because"}, {"s1"}, rep)
+    check("an inferred span with reasoning and no source passes", not rep.errors, rep.errors)
+
+
+def test_the_card_is_fed_the_claims_it_renders() -> None:
+    """A field the renderer reads and the compiler never writes renders nothing.
+
+    This is not hypothetical: `popup.js` has read `documented_range` since the card
+    was written and `compile_scene.py` did not emit it, so the one claim the whole
+    scene rests on displayed as an empty string on every building for the life of
+    the project, silently, with every gate green. Nothing could have caught it —
+    the compiler was consistent with itself and `--check` only proves that. So the
+    contract is asserted here instead: what the card reads off a sidecar has to be
+    in the sidecar.
+    """
+    import json
+    root = Path(__file__).resolve().parent.parent
+    card = (root / "renderers/web/js/popup.js").read_text()
+    sidecars = sorted((root / "data/sidecars/1835").glob("*.json"))
+    records = [json.loads(p.read_text()) for p in sidecars
+               if p.name not in ("index.json", "exclusions.json")]
+    check("the 1835 scene has sidecars to check", bool(records), "no sidecars found")
+
+    for field in ("documented_range", "change_note"):
+        check(f"the card reads {field}", f"s.{field}" in card, "not read by popup.js")
+        missing = [r["id"] for r in records if field not in r]
+        check(f"every 1835 sidecar carries {field}", not missing,
+              f"absent on: {', '.join(missing)}")
+
+    for field in ("position_note", "position_sources", "position_confidence"):
+        check(f"the card reads placement.{field}", f"p.{field}" in card,
+              "not read by popup.js")
+        missing = [r["id"] for r in records if field not in r.get("placement", {})]
+        check(f"every 1835 sidecar carries placement.{field}", not missing,
+              f"absent on: {', '.join(missing)}")
+
+    # The key can be present and say nothing, which renders the same as absent.
+    # Asserted only where the value is structural rather than authored: the phase
+    # resolution proves a span exists, while a note is a record's to write or not.
+    blank = [r["id"] for r in records
+             if not all((r.get("documented_range") or {}).get(k)
+                        for k in ("from", "to", "confidence"))]
+    check("every 1835 sidecar states a dated span and how sure it is",
+          not blank, f"incomplete on: {', '.join(blank)}")
+
+
 def liberty(lid: str, title: str, subjects: list, text: str = "",
             covers: list | None = None, section: str = "per_subject") -> dict:
     return {"id": lid, "title": title, "section": section, "subjects": subjects,

@@ -367,6 +367,73 @@ for (const [label, viewport, touch] of [
       popLibOpen.before === false && popLibOpen.after === true,
       `${popLibOpen.before} -> ${popLibOpen.after}`);
 
+    // --- was it here at all? ----------------------------------------------
+    // The claim the whole scene rests on, and the last one to reach the card.
+    // `popup.js` read `documented_range` from the moment it was written and
+    // `compile_scene.py` never emitted it, so the line rendered as nothing on
+    // every building, silently, with every gate green — which is why the
+    // assertion is written against the RENDERED card rather than the sidecar.
+    //
+    // Asserted per building and on the discriminating pair, because a card that
+    // stamped one confidence on every presence claim would pass a check for
+    // "there is a chip". The Sauganash's frame phase is `documented` — Wau-Bun
+    // watched it go up and it burned on a recorded date in 1851. Hogan's store is
+    // `inferred` and is the weakest presence claim in the dataset: attested to
+    // about July 1834 and placed in a scene eleven months later on a continuity
+    // argument. Those two must not read the same.
+    const presence = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = [...document.querySelectorAll('#popup .pop-sec')]
+          .find((s) => /Was it here/i.test(s.querySelector('h3')?.textContent ?? ''));
+        if (!sec) return null;
+        const row = sec.querySelector('table.attrs tr');
+        const note = row?.querySelector('[data-note]');
+        return {
+          span: row?.querySelector('.val')?.textContent.trim() ?? '',
+          conf: row?.querySelector('.conf')?.textContent.trim() ?? '',
+          account: sec.querySelector('.pop-account')?.textContent.trim() ?? '',
+          noteText: note?.textContent.trim() ?? '',
+          noteHidden: note ? note.hasAttribute('hidden') : null,
+        };
+      };
+      return { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
+    });
+    check(`${label}: the card says whether the building was here on the scene date`,
+      presence.hogan?.span === '1831-03-31 → 1835-12-31',
+      `span "${presence.hogan?.span}"`);
+    check(`${label}: the presence claim is graded per building, not stamped`,
+      presence.hogan?.conf === 'inferred' && presence.saug?.conf === 'documented',
+      `hogan ${presence.hogan?.conf}, sauganash ${presence.saug?.conf}`);
+    // The reasoning is the point: a span with a chip and no argument is what the
+    // card already had everywhere else. Hogan's is the one that matters — the end
+    // of that range is a continuity argument, not a source.
+    check(`${label}: the presence claim carries its reasoning, folded away`,
+      presence.hogan?.noteHidden === true
+      && /NO SOURCE REACHED FOLLOWS THE BUILDING PAST IT/.test(presence.hogan?.noteText ?? ''),
+      `hidden ${presence.hogan?.noteHidden}, note "${(presence.hogan?.noteText ?? '').slice(0, 120)}"`);
+    // What no chip can express: this building held the post office for three
+    // years and is not the post office on the day you are standing in.
+    check(`${label}: the phase's own account of itself reaches the card`,
+      /post office/i.test(presence.hogan?.account ?? '')
+      && presence.saug?.account !== presence.hogan?.account,
+      `account "${(presence.hogan?.account ?? '').slice(0, 120)}"`);
+
+    // The position's argument, on the line that shows the position. Three of the
+    // eight placements are derived from bank geometry because no corner survives;
+    // the card showed the conclusion and hid the reasoning behind nothing.
+    const posWhy = await page.evaluate(() => {
+      window.__chicago4d.pick('walker_meeting_house');
+      const meta = document.querySelector('#popup .pop-meta [data-note]');
+      const btn = document.querySelector('#popup .pop-meta [data-toggle-note]');
+      const before = meta?.hasAttribute('hidden');
+      btn?.click();
+      return { before, after: meta?.hasAttribute('hidden'), text: meta?.textContent ?? '' };
+    });
+    check(`${label}: the position's reasoning opens on demand`,
+      posWhy.before === true && posWhy.after === false && posWhy.text.length > 200,
+      `${posWhy.before} -> ${posWhy.after}, ${posWhy.text.length} chars`);
+
     await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
 
     // --- a raycast pick down the crosshair, not just by id ----------------
