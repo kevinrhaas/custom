@@ -922,6 +922,91 @@ def test_ground_contact_owes_the_liberties_document_an_entry() -> None:
           any("standing off the ground" in e for e in rep.errors), rep.errors)
 
 
+SIDECAR_SHAPE = {
+    "name": None,
+    "aka": None,                       # a list — a leaf, as far as the scan goes
+    "documented_range": {"from": None, "to": None, "confidence": None},
+    "placement": {"local_e": None, "rotation_deg": None},
+    "attributes": {"wall_height_m": {"value": None}},
+}
+
+
+def test_the_renderer_cannot_read_a_sidecar_field_the_compiler_never_writes() -> None:
+    """The § 28 failure class, mechanised.
+
+    `popup.js` read `documented_range` for the life of the project and
+    `compile_scene.py` never wrote it, so the card's load-bearing claim rendered
+    as an empty string and every gate stayed green: each half was consistent with
+    itself. This is the check that compares the two halves.
+    """
+    def reads(js):
+        return [p for _, p in V.sidecar_field_reads(js, SIDECAR_SHAPE)]
+
+    def missing(js):
+        return [p for p in reads(js) if not _resolves(p)]
+
+    def _resolves(path):
+        node = SIDECAR_SHAPE
+        for seg in path.split("."):
+            if not isinstance(node, dict):
+                return True
+            if seg not in node:
+                return False
+            node = node[seg]
+        return True
+
+    check("a field the compiler writes is read without complaint",
+          not missing("const s = record.sidecar;\nreturn s.name;"),
+          missing("const s = record.sidecar;\nreturn s.name;"))
+
+    js = "const s = record.sidecar;\nif (s.asset_is_placeholder) flag();"
+    check("a field no sidecar carries is caught", missing(js) == ["asset_is_placeholder"],
+          missing(js))
+
+    # The bug this class produces is always one level in from where you look: the
+    # popup binds `placement` and then reads six fields off the binding.
+    js = "const s = record.sidecar;\nconst p = s.placement ?? {};\nreturn p.rotation_deg + p.tilt;"
+    check("a name bound to a sidecar block is followed into its fields",
+          missing(js) == ["placement.tilt"], missing(js))
+
+    # A list or a string is not a namespace. `aka.length` is a read of `aka`, and
+    # a scan that called `length` a missing field would cry wolf on every array.
+    js = "const s = record.sidecar;\nreturn s.aka.length && s.aka.map(String).join();"
+    check("resolution stops at a value rather than reading into it", not missing(js),
+          missing(js))
+
+    # A name bound to a value binds nothing further: `e` here is a number, and
+    # the `e` of a catch block two lines later is a different variable entirely.
+    # A scan that followed it would report `e.message` against the sidecar.
+    js = ("const s = record.sidecar;\nconst e = s.placement.local_e;\n"
+          "try { g(e); } catch (e) { log(e.message); }")
+    check("reusing a name bound to a value cannot invent a missing field",
+          not missing(js), missing(js))
+
+    js = "if (record.sidecar?.placement?.local_e) place();"
+    check("a chain read straight off record.sidecar needs no binding",
+          reads(js) == ["placement.local_e"], reads(js))
+
+    js = "// this line used to read s.asset_is_placeholder\nconst s = record.sidecar;"
+    check("a field named in a comment is not a read of it", not missing(js), missing(js))
+
+    # A scanner that quietly stopped matching would pass every renderer ever
+    # written, which is the failure mode a green gate cannot show you.
+    real = sorted(p for p in (Path(__file__).resolve().parent.parent / "renderers").rglob("*.js")
+                  if "vendor" not in p.parts)
+    found = {f.name: V.sidecar_field_reads(f.read_text()) for f in real}
+    live = {k: v for k, v in found.items() if v}
+    check("the scan still finds the renderer's real reads",
+          len(live) >= 4 and sum(len(v) for v in live.values()) >= 20,
+          f"{len(live)} module(s), {sum(len(v) for v in live.values())} read(s)")
+    check("the popup asks the sidecar whether the building was here",
+          any(p == "documented_range" for _, p in found.get("popup.js", [])),
+          found.get("popup.js"))
+    check("and no longer asks it whether the mesh is a placeholder",
+          not any("placeholder" in p for _, p in found.get("popup.js", [])),
+          found.get("popup.js"))
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

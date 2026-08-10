@@ -509,6 +509,25 @@ One gate came with it: a `documented` date span now owes a resolving source, lik
 `documented` value. Still not on the card: the footprint's reasoning, because the footprint has
 no display value that is not itself a derivation — see STATUS § 28.
 
+**Done 2026-08-10 — the sidecar interface is stated, and stating it found the second field
+falling through it.** The entry above ends with a sentence where a mechanism belongs — *any
+other sidecar field the renderer reads is in the same category* — and one of them was already
+broken. The provenance card asks the sidecar `asset_is_placeholder`, a field `compile_scene.py`
+has never written and, compiling from `data/` alone, cannot: so the note telling a visitor *this
+shape is a stand-in, not a bake from the record* has never rendered on any building.
+
+`check_sidecar_contract` derives the interface from both halves rather than asking either to
+declare it — what is emitted comes off the committed sidecars, which `--check` already proves
+are what the dataset compiles to, and what is read is scanned out of the renderer's own modules.
+27 reads across six modules; one resolved to nothing. The fix moves the fact instead of inventing
+a field: a placeholder is something the GLB says about itself, `scene-loader` has read it at load
+time all along, and it now reaches the card on the registry entry. The scan sees a read that
+names a field while the sidecar is in hand and not one made through a function parameter — which
+is the direction both faults came from, since that is where the field name is chosen. The
+reverse direction is a note, not an error, and it has one finding in it: `research_note` is
+compiled into every sidecar and shown nowhere. That is an unshipped claim rather than dead
+weight, and it belongs to whoever next works on the card.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

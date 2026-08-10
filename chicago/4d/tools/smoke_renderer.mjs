@@ -434,7 +434,30 @@ for (const [label, viewport, touch] of [
       posWhy.before === true && posWhy.after === false && posWhy.text.length > 200,
       `${posWhy.before} -> ${posWhy.after}, ${posWhy.text.length} chars`);
 
-    await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
+    // Is the shape a bake from the record, or a stand-in? The card asked the
+    // SIDECAR that until 2026-08-10 — a field `compile_scene.py` has never
+    // written and, compiling from data/ alone, cannot — so the flag never once
+    // rendered. The fact belongs to the mesh (`asset.extras.placeholder`), the
+    // loader reads it, and it now reaches the card on the registry entry.
+    // What this can assert is the wiring, and it says so: every committed asset
+    // is a real bake, so `false` is the only value in the dataset. `false` and
+    // `undefined` render identically and mean completely different things —
+    // "we checked, it is a bake" against "nobody ever answered" — so the check
+    // is for the value and not for its truthiness, which is exactly the
+    // distinction the old field failed silently.
+    const placeholder = await page.evaluate(() => {
+      window.__chicago4d.pick('sauganash_hotel');
+      const flags = [...document.querySelectorAll('#popup .pop-flag')]
+        .map((f) => f.textContent);
+      return {
+        onRecord: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
+        shown: flags.some((t) => /placeholder massing/i.test(t)),
+      };
+    });
+    check(`${label}: the card is told whether the mesh is a bake or a stand-in`,
+      placeholder.onRecord === false, `assetIsPlaceholder is ${placeholder.onRecord}`);
+    check(`${label}: and says nothing of the kind over a real bake`,
+      placeholder.shown === false, `flag shown: ${placeholder.shown}`);
 
     // --- a raycast pick down the crosshair, not just by id ----------------
     const rayPick = await page.evaluate(() => {

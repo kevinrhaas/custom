@@ -18,7 +18,10 @@ Andreas as twenty by forty-five feet (§ 25). It is also the first record here w
 conjectural in it, and the correction that came with it moved the post office's departure from
 this building by twenty months. **And the card now answers the question the whole scene rests
 on** — *was this building here on 1 July 1835* — which it never had, because the renderer read a
-sidecar field the compiler had never written (§ 28).
+sidecar field the compiler had never written (§ 28). **That fault has a gate now rather than a
+discoverer, and switching it on found the second one the same day** (§ 29): the card had also
+been asking the sidecar whether the shape in front of you is a placeholder massing — a question
+the compiler has never answered and, reading only `data/`, cannot.
 
 ---
 
@@ -29,7 +32,7 @@ sidecar field the compiler had never written (§ 28).
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 112 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar |
+| `tools/test_validate.py` | **done** — 121 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
@@ -38,7 +41,7 @@ sidecar field the compiler had never written (§ 28).
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 139 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 143 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -640,6 +643,53 @@ uncertainty of the 1834 sheets in its note.
     tint and its note stays in the record, because the footprint has no display value that is
     not itself a derivation — a bounding box over Miller's L-plan would be a new invention on
     the panel that exists to admit them. It is a gap, and it is stated rather than filled.
+
+29. **The interface neither half stated, and the second field that fell through it.** § 28 ends
+    with a sentence rather than a mechanism — *any other sidecar field the renderer reads is in
+    the same category* — and one of them was already broken while that sentence was being
+    written. `popup.js` asks the sidecar `asset_is_placeholder`; `compile_scene.py` has never
+    written it and **could not**, because it compiles from `data/` and never opens a mesh. So the
+    flag that tells a visitor *this shape is a stand-in, not a bake from the record* has never
+    once rendered, on any building, for the life of the project. Second instance of § 28's
+    failure class, found the same day, by a check rather than by somebody reading the file.
+    **The gate derives the interface from both halves instead of asking either to declare it.**
+    What the compiler writes is read off the committed sidecars — `compile_scene.py --check`
+    already proves those are exactly what the dataset compiles to, so the artifact the renderer
+    actually fetches is the definition of what is emitted, and no second list can drift from it.
+    What the renderer reads is scanned out of the renderer: `check_sidecar_contract` follows
+    `record.sidecar` and the names bound to it (`const s = record.sidecar`, `const p =
+    s.placement ?? {}`) and resolves each dotted path against the sidecar shape. 27 reads across
+    six modules; one of them resolved to nothing.
+    **The fix moves the fact rather than inventing a field.** Whether a mesh is a placeholder is
+    a statement the GLB makes about itself, in `asset.extras.placeholder` — which `scene-loader`
+    has read at load time all along, to raise it as a problem. It now also puts it on the
+    registry entry, and the card reads `record.assetIsPlaceholder`. Making the compiler emit it
+    would have meant teaching a pure-data compiler to open binaries so that a record could
+    restate something the mesh already says.
+    **The flag is wired and still unexercised, which is stated rather than glossed.** All ten
+    committed assets are real bakes, so `false` is the only value this dataset produces and no
+    visitor will see the banner until a placeholder ships. The smoke therefore asserts the
+    distinction the old field could not make — the value is `false` and not `undefined`, "we
+    checked, it is a bake" rather than "nobody answered" — and that a real bake shows no banner.
+    A test for truthiness would have passed against the broken field all along.
+    **Where the scan stops is worth stating, because it is most of the interface.** It sees a
+    read that names a field *while the sidecar is in hand*. A value passed to a function is read
+    through that function's parameter, so `claimRow(label, span, range)` puts `range.confidence`
+    out of reach — the fields under `documented_range` are checked as a block and not one by one.
+    That is the direction the fault came from twice, though: the field name is chosen where the
+    sidecar is in hand. It also errs loudly rather than quietly — reuse a bound name for an
+    unrelated object and it will report that object's fields as missing — which is the right way
+    round for a gate whose whole purpose is to end a silence.
+    **The first thing it reported was a false positive, and the false positive was itself.** The
+    comment written to explain why the card no longer reads `asset_is_placeholder` names the
+    field, and a regex does not know prose from code. Comments are stripped now, block comments
+    collapsing to their own newlines so a reported line number still points at the right line.
+    **The reverse direction is reported and not enforced**, because the same interprocedural
+    limit would make it lie: four top-level fields are compiled and never read — `archetype`,
+    `scene`, `target_date`, and **`research_note`**. The last one is a finding rather than dead
+    weight. Every record carries a research note written for a reader, it is compiled into every
+    sidecar, and no surface in the walkthrough shows it. That is an unshipped claim, it is not
+    fixed here, and it is not queued: it belongs to whoever next works on the card.
 
 ## Next
 

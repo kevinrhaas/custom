@@ -263,7 +263,14 @@ export function createPopup(root, { docBase = '../../' } = {}) {
              not a survey. Georeferencing from the 1834 sheets is not better than about
              ±${escapeHtml(p.uncertainty_m ?? 20)} m even once traced.</span>`
         : '';
-      const placeholderAsset = s.asset_is_placeholder
+      // Whether the shape is a stand-in is a fact about the MESH, not about the
+      // record, so it arrives on the registry entry from the loader that opened
+      // the file. This line read `s.asset_is_placeholder` off the sidecar until
+      // 2026-08-10 — a field the compiler has never written and, reading only
+      // `data/`, could not write — so the flag never once rendered. Same failure
+      // as the presence line before it (STATUS § 28), and the sidecar-contract
+      // gate is what found the second one.
+      const placeholderAsset = record.assetIsPlaceholder
         ? '<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>'
         : '';
 
