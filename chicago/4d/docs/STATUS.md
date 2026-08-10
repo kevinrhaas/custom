@@ -29,7 +29,8 @@ walkthrough rather than only in the repository.
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 81 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate now checks the document *for gaps*, refusing any conjectural footprint or position that no liberty admits to |
-| **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
+| **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
+| **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
 ## Corrections made after the first live look
@@ -188,6 +189,20 @@ about a kilometre further still. Fort Dearborn and the harbour works cannot be p
 the ground under them exists. The shoreline itself is a provenance problem before it is a
 modelling one — everything east of roughly Michigan Avenue is later landfill, so the edge
 must come off Wright 1834, not off a modern coast. See ROADMAP § S2e.
+
+**Parcel (a) is done and parcel (b) is the next slice.** The shore is now traced
+(`tools/trace_shoreline.py` → `shoreline.geojson`, memo
+`docs/RESEARCH/shoreline_harbor_1834.md`) and it moved two numbers off estimate and onto
+measurement: the mainland shore reaches local **E +1257** and the sand bar's east edge
+**E +1497**, so the roadmap's proposed +1500 box would have clipped the bar by 3 m and the
+box should be **+1560**. Two independent segmentations of the same sheet, in different windows
+with different background statistics, agree in their 80 m overlap to **0.1–5.7 m** on the south
+bank and **0.5–1.3 m** on the north — worth stating because it is evidence that the trace reads
+the draughtsman's line and not its own thresholds. What is still absent: **no elevation exists
+anywhere east of E +320**, the bar included. A bar is a surface a couple of feet of lake stage
+moves and no source gives its height, so the number will have to be argued in the terrain spec
+rather than picked. Until the heightfield and its bake land together, nothing east of the
+current box renders and the aerial view's edge is unchanged.
 
 **S2 remainder** — Frog Pond, the Wells Street marsh, and the rest of the hydrology beyond
 the single traced slough centreline.
