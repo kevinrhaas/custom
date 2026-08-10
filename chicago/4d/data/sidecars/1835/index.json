@@ -3,10 +3,40 @@
   "target_date": "1835-07-01",
   "structures": [
     {
+      "id": "green_tree_tavern",
+      "name": "Green Tree Tavern",
+      "sidecar": "sidecars/1835/green_tree_tavern.json",
+      "asset": "gltf/green_tree_tavern__frame_1833.glb"
+    },
+    {
+      "id": "miller_house",
+      "name": "Miller House",
+      "sidecar": "sidecars/1835/miller_house.json",
+      "asset": "gltf/miller_house__log_frame_1827.glb"
+    },
+    {
       "id": "sauganash_hotel",
       "name": "Sauganash Hotel",
       "sidecar": "sidecars/1835/sauganash_hotel.json",
       "asset": "gltf/sauganash_hotel__frame_1831.glb"
+    },
+    {
+      "id": "walker_meeting_house",
+      "name": "Walker Meeting House",
+      "sidecar": "sidecars/1835/walker_meeting_house.json",
+      "asset": "gltf/walker_meeting_house__log_1831.glb"
+    },
+    {
+      "id": "western_hotel",
+      "name": "Western Hotel",
+      "sidecar": "sidecars/1835/western_hotel.json",
+      "asset": "gltf/western_hotel__frame_1834.glb"
+    },
+    {
+      "id": "wolf_point_tavern",
+      "name": "Wolf Point Tavern",
+      "sidecar": "sidecars/1835/wolf_point_tavern.json",
+      "asset": "gltf/wolf_point_tavern__log_frame_1828.glb"
     }
   ],
   "excluded_by_date": []

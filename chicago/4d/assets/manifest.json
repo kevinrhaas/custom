@@ -1,13 +1,58 @@
 {
   "assets": {
+    "green_tree_tavern__frame_1833.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 19928,
+      "inputs_sha256": "54c4281eb47d9960e0e415f0e87652bbf6706fe11bb92fa818a307c31e093868",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "green_tree_tavern"
+    },
+    "miller_house__log_frame_1827.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 70116,
+      "inputs_sha256": "f65011d1454c1ba1615a639aa4109da7a02c08afe07796c4a47da0829c733120",
+      "kind": "generated",
+      "phase_id": "log_frame_1827",
+      "structure_id": "miller_house"
+    },
     "sauganash_hotel__frame_1831.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 44352,
-      "inputs_sha256": "094c79471030602532563072a6fe28d6c49046b471f6c580f8fccab532163c62",
+      "inputs_sha256": "925df620cdc8304b6911c2d4a6fbe881b3e56a88a95d9e5279c46168bc764a06",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
+    },
+    "walker_meeting_house__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31308,
+      "inputs_sha256": "f2c63746c80abfb04707a6db36efede1cd2d0e97ea19a434f6941f870ba3b3be",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "walker_meeting_house"
+    },
+    "western_hotel__frame_1834.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 21184,
+      "inputs_sha256": "7cf32719a11c5bc08136ff2b7cfe57451108ade9b8e2e9af1f9a39fd4369a8a7",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "western_hotel"
+    },
+    "wolf_point_tavern__log_frame_1828.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31336,
+      "inputs_sha256": "1c1064e34e431e68d9d9d85ed65c6eb9d01ab81609e6ed69508b562c23759dbb",
+      "kind": "generated",
+      "phase_id": "log_frame_1828",
+      "structure_id": "wolf_point_tavern"
     }
   },
   "blender": "4.5.3"

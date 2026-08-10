@@ -1,0 +1,159 @@
+{
+  "id": "western_hotel",
+  "phase": "frame_1834",
+  "name": "Western Hotel",
+  "aka": [
+    "Stow's hotel"
+  ],
+  "archetype": "frame_tavern",
+  "asset": "gltf/western_hotel__frame_1834.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -140.9,
+    "local_n": -277.8,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South-east corner of Randolph Street and Canal Street, west side, one block south of the Green Tree; a 40 ft front with a 60 ft wing in an L, stables and a wagon yard behind, with entrances to the yard from both streets.",
+    "uncertainty_m": 20,
+    "placement_provisional": false
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7.0,
+        0
+      ],
+      [
+        7.0,
+        11.29
+      ],
+      [
+        12.19,
+        11.29
+      ],
+      [
+        12.19,
+        18.29
+      ],
+      [
+        0,
+        18.29
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire278"
+      ],
+      "note": "Described as a two-storey frame hotel."
+    },
+    "construction": {
+      "value": "balloon_frame",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire278"
+      ],
+      "note": "Frame is attested; the framing METHOD is not. Balloon framing was developed in Chicago in 1832-33 and had become the dominant local method by the time this building went up, which makes it the better reading for 1834 — the opposite conclusion from the Sauganash of 1831, where the same reasoning argues for a braced frame. The distinction changes stud rhythm behind the sheathing and is not visible at this level of detail; it is recorded so the dataset's two frame taverns do not silently carry the same value for different reasons."
+    },
+    "cladding": {
+      "value": "clapboard",
+      "confidence": "inferred",
+      "note": "Not directly attested. Clapboard is the standard cladding for a frame building of this type and period."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "note": "No source describes a finish. Unpainted weathered clapboard is the default for a working teamsters' house on the west side; by 1834-35 painted siding was becoming less remarkable in Chicago than it had been in 1831, so this is a weaker inference here than for the Wolf Point log buildings. Not attested either way."
+    },
+    "wall_height_m": {
+      "value": 5.5,
+      "confidence": "inferred",
+      "note": "No figure is attested for this building. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course. What is inferred is that the wall height falls in this range, not that it is exactly 5.5 m. Compare the Green Tree, where an attested 7 1/2 ft ceiling gives a firmer 5.0 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested for this building. Gable is the near-universal roof form for frame buildings of this type, period and region. An L in plan implies two intersecting gables, which the archetype does not yet build."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 38 degrees is mid-range for period gable framing. Inferred from construction practice, not measured."
+    },
+    "fenestration": {
+      "value": "regular_bays",
+      "confidence": "inferred",
+      "note": "No source describes the elevation. A regularly fenestrated front is the standard disposition for a two-storey hotel of this size, and that it was regularly fenestrated is safe; the bay COUNT and SPACING are inference."
+    },
+    "gallery": {
+      "value": false,
+      "confidence": "conjectural",
+      "note": "No evidence either way, and no depiction of this building is held by the project. False is the default, not a finding. Worth flagging as genuinely open: a wagon house with entrances to the yard from both streets is exactly the building type that often carried a porch over the front door, and nothing here rules one out."
+    },
+    "stables": {
+      "value": true,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire278"
+      ],
+      "note": "'the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.' THE STABLE AND THE ENCLOSED WAGON YARD ARE THE POINT OF THIS BUILDING — it is the west-side teamsters' house and the yard is most of what a visitor would have seen from Randolph. Neither is dimensioned and neither is modelled by the frame_tavern archetype, so the yard, the stable range and the two gateways are an attested absence in the geometry. Recorded in docs/LIBERTIES.md."
+    },
+    "chimneys": {
+      "value": 2,
+      "confidence": "inferred",
+      "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference."
+    },
+    "function": {
+      "value": "tavern_inn",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire278"
+      ],
+      "note": "'the stopping place for all the farmers town from the west', accommodating 'farmers and teamsters, who constituted the traveling public' — the west-side wagon-trade house, distinct in clientele from the Green Tree a block north and from the Sauganash across the river. chicagology also calls it one of the best hotels in the town."
+    },
+    "occupants": {
+      "value": "W. H. Stow, builder and proprietor",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire278",
+        "drloih_hotels"
+      ],
+      "note": "Both sources have Stow building and operating the house; the hotel chronology says outright that it was 'built and operated by W.H. Stow'. He came to Chicago about 1833, so he is present at the scene date on either build date."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicagology_prefire278",
+      "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+      "url": "https://chicagology.com/prefire/prefire278/",
+      "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_hotels",
+      "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "The teamsters' house on the west side, and the one record in this parcel where a disputed date could have changed what stands in the scene. chicagology dates it 1834 on W. H. Stow's own word and gives the description everything else here rests on — a 40 ft front and a 60 ft wing in an L, a large stable, a yard the wagon trains drove into with entrances from both streets, and a clientele of farmers and teamsters coming in from the west. The hotel chronology dates it 1835 and calls it 'a small structure', contradicting the size as well as the date. BOTH DISPUTES ARE DECIDED THE SAME WAY AND FOR THE SAME REASON: the builder's own account, with corroborating detail, beats an undated line in a chronology that is unfootnoted and demonstrably inconsistent elsewhere. THE PHASE MECHANISM WAS CONSIDERED FOR THE 1835 READING AND REJECTED — modelling a construction site would require inventing a start month, a build duration and a degree of completeness, which is more invention than the honest alternative of one completed phase with the dispute written down. The largest unmodelled thing about this building is not its date but its yard: the stable and the enclosed wagon court are attested, are most of the site, and are not built by the frame_tavern archetype. See docs/RESEARCH/western_hotel.md and docs/LIBERTIES.md.",
+  "research_doc": "docs/RESEARCH/western_hotel.md",
+  "review_required": false
+}

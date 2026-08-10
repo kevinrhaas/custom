@@ -1,0 +1,162 @@
+{
+  "id": "wolf_point_tavern",
+  "phase": "log_frame_1828",
+  "name": "Wolf Point Tavern",
+  "aka": [
+    "Wolf Tavern",
+    "Wentworth's tavern",
+    "Old Geese's tavern",
+    "Rat Castle",
+    "Taylor's tavern",
+    "Travelers' Home",
+    "Western Stage House"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/wolf_point_tavern__log_frame_1828.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -77.3,
+    "local_n": -45.1,
+    "rotation_deg": 90.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "West bank of the river at the forks, north of the Lake Street crossing; north of James Kinzie's residence and south of the Methodist log meeting house.",
+    "uncertainty_m": 20,
+    "placement_provisional": false
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        12,
+        7
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "No source gives a storey count. One storey with a loft under the roof is the standard form for a log tavern of this date and region, and it is the conservative reading: the sources that do describe height at Wolf Point single out the Sauganash's two storeys and Miller's two-storey frame addition as remarkable, which they would not be if the Wolf Point Tavern had also been two storeys. Not attested either way. The Braunhold-style retrospective view 'Wolf Point from the south as it might have appeared in 1830' reproduced in Andreas shows this building and Miller's together and is the obvious next check — it has not been examined for this record, and it is a tier-5 retrospective in any case."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire273",
+        "drloih_wolf_point"
+      ],
+      "note": "chicagology, on Wentworth's tavern: 'This building was partly log and partly frame, and was situated on the ground north of Lake Street Bridge.' The value records the log core, which is the primary construction; the frame part is carried separately as frame_extension so the mixed fabric is not flattened away."
+    },
+    "frame_extension": {
+      "value": true,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "note": "'partly log and partly frame' — the tavern had grown a frame element by the early 1830s. Its SIZE, POSITION on the building and DATE are all unattested, so the footprint above does not distinguish it and the log_dwelling archetype will need a parameter for it. Recorded as a requirement discovered from the evidence, in the same way the Sauganash's attached log wing was."
+    },
+    "wall_height_m": {
+      "value": 2.6,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.6 m is about 8 1/2 ft: a single storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.6 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested for this building. Gable is the near-universal roof form for log construction of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 40.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 40 degrees is mid-range for a log building roofed in riven shakes or clapboards — steep enough to shed snow, shallow enough for the short rafters a log pen allows. Inferred from construction practice, not measured."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "note": "No source describes a finish. Unpainted weathered log is the default reading, and it is positively supported by the contrast Wau-Bun draws: a painted white building at Wolf Point in 1831 was 'the admiration of all the little circle' precisely because the buildings around it were not painted. This tavern was one of those buildings."
+    },
+    "signage": {
+      "value": "painted_wolf_sign",
+      "confidence": "documented",
+      "sources": [
+        "drloih_wolf_point"
+      ],
+      "note": "'A painted sign of a wolf was hung outside the tavern by approximately 1833.' THE SINGLE MOST DISTINCTIVE DOCUMENTED VISUAL FEATURE OF THIS BUILDING and the thing that gave the point its name in popular usage — hung well before the scene date, so it belongs in the 1835 model. What the sign LOOKED LIKE — its size, its board shape, how it was hung, how the wolf was drawn — is entirely unattested, so the archetype should carry the sign as a distinct, separately-confidenced element rather than folding it into the massing. Wau-Bun separately derives the Wolf Point name from an Indian resident called Moa-way, 'the Wolf', which is a competing etymology, not a competing fact about the sign."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference."
+    },
+    "function": {
+      "value": "tavern_inn",
+      "confidence": "inferred",
+      "sources": [
+        "drloih_wolf_point",
+        "drloih_hotels"
+      ],
+      "note": "DISPUTED FOR THE SCENE DATE. Three readings: William Walters was landlord 1833-1836, which puts the house in ordinary innkeeping in July 1835 (drloih_wolf_point); the hotel chronology says it 'ceased operations as a public house in 1834' (drloih_hotels); and a third account has the name changing successively to the Travelers' Home and the Western Stage House after 1834, which is a change of sign rather than of trade. Innkeeping is adopted because two of the three readings are compatible with it and because a stage house is still a public house, but the tag is inferred, not documented. Rates while it was a public house: 12 1/2 cents a night, 13 cents to stable a horse. In 1832 it served as Gen. Winfield Scott's headquarters during the Black Hawk War."
+    },
+    "occupants": {
+      "value": "William Walters, landlord",
+      "confidence": "inferred",
+      "sources": [
+        "drloih_wolf_point"
+      ],
+      "note": "The operator succession runs Archibald Caldwell for James Kinzie by 1829 (liquor licence 8 December 1829), Elijah 'Old Geese' Wentworth from early 1830, Charles and Mary Taylor 1831-1833, William Walters 1833-1836. Walters therefore covers 1835-07-01. Inferred rather than documented because the same body of sources also says the house stopped operating as a public house in 1834, and a landlord of a closed house is a contradiction someone needs to resolve."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_hotels",
+      "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_wolf_point",
+      "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "The building that named Wolf Point, and the least precisely placeable structure in this parcel. Its identity is vivid and its geometry is unknown: the painted wolf sign, the landlord succession, the 12 1/2-cent rate and the Black Hawk War headquarters are all attested, while not one source measures the building, counts its storeys or fixes it to an intersection. TWO DISPUTES ARE RECORDED RATHER THAN RESOLVED: the build date, 1823 versus 1828, where the same publication contradicts itself and 1828 is adopted for the reasons in the phase's date note; and whether it was still in innkeeping in July 1835, where the balance favours yes under a changed name. Neither dispute changes the scene — the building stood, on the west bank, north of the Lake Street crossing, with a wolf on a board outside it. What would change the record is a measured description in Andreas pp. 626-631, or the Braunhold retrospective view of Wolf Point examined at plate level for storey count and massing. See docs/RESEARCH/wolf_point_tavern.md.",
+  "research_doc": "docs/RESEARCH/wolf_point_tavern.md",
+  "review_required": false
+}

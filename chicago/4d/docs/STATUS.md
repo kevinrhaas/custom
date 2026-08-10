@@ -3,7 +3,7 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 is walkable and published.** Next: S2 terrain, then more archetypes and structures.
+**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 shipped; Milestone 1 (the forks) is most of the way in** — five more structures placed from the georeference, log_dwelling and bridge_timber archetypes, the fleet changelog contract. Terrain and the river are the outstanding piece.
 
 ---
 
@@ -51,13 +51,21 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
 
 ## What does not exist yet
 
-- **One building.** Ten archetypes and ~45 researched structures are still unbuilt.
+- **Six buildings** at the forks. Eight archetypes and ~40 researched structures are still unbuilt.
 - **No terrain.** The scene stands on a flat plane; the 30-zone heightfield spec exists in the
   research dossier but has not been turned into data. This is the next stage.
 - **No flora or fauna records.** The palettes and the placement table exist in the dossiers only.
-- **No real placement.** The Sauganash sits at the datum origin with
-  `placement_provisional: true` — its footprint has not been traced from Hathaway yet, so the
-  building is at the forks rather than at Lake and Market.
+- **No terrain and no river** — at a river confluence. This is the next piece and it is in
+  progress. Everything currently stands on a flat green plane.
+- **Placement is real but coarse.** All six structures now carry surveyed coordinates rather
+  than nulls, at about ±20 m — the georeference's error, not an additional guess. Three of them
+  (Wolf Point Tavern, Miller House, Walker's meeting house) have no surviving intersection and
+  are derived from the confluence and the modern bank, with a larger and differently shaped
+  uncertainty stated on each.
+- **Walker's meeting house may be the wrong building.** The west-bank testimony describes 1831
+  and the north-bank claim is dated 1834, which is what you would see if the sources describe
+  two different buildings about 150 m apart across a river. Position is tagged `conjectural`
+  and the record says so in the first line.
 
 ## The datum is verified
 

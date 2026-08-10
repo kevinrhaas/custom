@@ -1,0 +1,120 @@
+{
+  "id": "walker_meeting_house",
+  "phase": "log_1831",
+  "name": "Walker Meeting House",
+  "aka": [
+    "Rev. Jesse Walker's log cabin",
+    "the first Methodist meeting house",
+    "the Wolf Point school-house"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/walker_meeting_house__log_1831.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -105.0,
+    "local_n": -3.0,
+    "rotation_deg": 90.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "West bank at the forks, north of the Wolf Point Tavern and a little apart from the river-front row of cabins; alternatively, on the north bank — see the note, the bank is disputed.",
+    "uncertainty_m": 20,
+    "placement_provisional": false
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not stated by either source. A single-pen log meeting house and school of this date is single-storey by type; neither witness mentions a stair, a loft or an upper room, and Wau-Bun's 'small square log building' does not admit a second storey."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856",
+        "chicagology_prefire273"
+      ],
+      "note": "Both sources call it a log building, and the congregation's own account of the 1838 move — floating the cabin across the river and rolling it on logs — only makes sense for a log structure light and rigid enough to move whole."
+    },
+    "wall_height_m": {
+      "value": 2.5,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.5 m is about 8 ft: a single storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.5 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 40.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 40 degrees is mid-range for a log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "note": "No source describes a finish. Unpainted weathered log is the default for the type, and a mission meeting house that doubled as a school is the last building at Wolf Point that would have carried paint when the taverns did not."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence."
+    },
+    "function": {
+      "value": "meeting_house_school",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire273",
+        "kinzie_waubun_1856"
+      ],
+      "note": "Both witnesses give it the same double use and disagree only on which came first: chicagology says Walker erected it 'for a place of worship, and for a school house'; Wau-Bun says it was 'originally designed for a school-house, but occasionally used as a place of worship whenever any itinerant minister presented himself'. Either way, on 1835-07-01 it is the settlement's only building put up for worship or teaching. Jesse Walker himself died in 1835."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicago_temple_history",
+      "citation": "First United Methodist Church at the Chicago Temple. \"History.\" Congregational history page.",
+      "url": "https://chicagotemple.org/about/history/",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    }
+  ],
+  "research_note": "WHAT THIS RECORD ACTUALLY ASSERTS: that a log Methodist meeting house stood at the forks in July 1835. That much is well supported. WHICH BANK it stood on is unresolved, and the possibility that the sources describe two separate buildings is live and unaddressed by any source that could settle it. Treat the position as a placeholder for a real building whose location is open, not as a located building. THE LEAST SETTLED RECORD IN THIS PARCEL, AND THE ONLY ONE WHERE THE UNRESOLVED QUESTION IS WHICH SIDE OF A RIVER A BUILDING STOOD ON. Two near-primary witnesses put a log worship-and-school building on the WEST bank at Wolf Point, north of the Wolf Point Tavern: Wau-Bun in 1831 and chicagology's transcribed recollection, which names Father Walker as its builder. The successor congregation's own history puts the cabin it built in 1834 NORTH of the Chicago River. West is adopted for placement because it rests on the earlier, nearer-primary evidence and because it is the only reading that supplies a position rather than a division. THE LIKELIEST RECONCILIATION IS THAT BOTH ARE RIGHT ABOUT DIFFERENT BUILDINGS — an 1831 school-house on the west bank and a purpose-built 1834 cabin on the north bank — in which case the building standing on 1835-07-01 could be either or both, and this record models the wrong one. That possibility is not resolvable from the sources reached and is left open rather than papered over. TWO THINGS TO FLAG FOR WHOEVER OWNS THE SHARED FILES. First, data/exclusions.json's methodist_meeting_house_south entry states in passing that the 1835 meeting house is on the north bank; that statement and this record disagree, and neither has been edited to match the other. Second, Jesse Walker's Chicago mission was a mission to the Potawatomi, so interpretive text about this building sits close to the project's standing constraint on Indigenous history even though the structure itself is a settler building; review_required is set false, consistent with sauganash_hotel, but the call is worth a second opinion. To resolve the bank: Andreas vol. 1 on the early Methodist society; the First Methodist congregation's own archives; or any pre-1838 depiction of the forks that shows the building's side of the water. See docs/RESEARCH/walker_meeting_house.md.",
+  "research_doc": "docs/RESEARCH/walker_meeting_house.md",
+  "review_required": false
+}

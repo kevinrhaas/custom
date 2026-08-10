@@ -1,0 +1,162 @@
+{
+  "id": "miller_house",
+  "phase": "log_frame_1827",
+  "name": "Miller House",
+  "aka": [
+    "Samuel Miller's house",
+    "Miller's Tavern",
+    "Fork Tavern"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/miller_house__log_frame_1827.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 14.0,
+    "local_n": 61.0,
+    "rotation_deg": 180.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "North bank at the forks, on the point of land between the North Branch and the main stem, directly opposite Wolf Point.",
+    "uncertainty_m": 20,
+    "placement_provisional": false
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        9,
+        11
+      ],
+      [
+        0,
+        11
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "documented",
+      "sources": [
+        "drloih_hotels"
+      ],
+      "note": "'added a two-story house to the cabin, fronting the river'. THE BUILDING IS NOT UNIFORMLY TWO STOREYS — this value describes the river-fronting range, with the older log cabin standing one storey behind it, which is what the 1833 view of 'a two-story building and adjoining log cabin' shows. The log_dwelling archetype therefore needs to build a mixed-height mass rather than extruding the whole footprint to one wall height; recorded as a geometry requirement discovered from the evidence, the same way the Sauganash's attached log wing was."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire273",
+        "drloih_hotels"
+      ],
+      "note": "chicagology: 'It was a log structure partly sided, and was erected by Mr. Samuel Miller.' The value records the log core; the frame range in front is carried separately as frame_addition. 'Partly sided' and 'a two-story house added to the cabin' are the same building described from two angles and are not in conflict."
+    },
+    "frame_addition": {
+      "value": true,
+      "confidence": "documented",
+      "sources": [
+        "drloih_hotels",
+        "chicagology_prefire273"
+      ],
+      "note": "A two-storey house added to the log cabin, fronting the river. This is the element that faced the settlement across the water and the one a viewer standing at Wolf Point would have seen. Its DIMENSIONS are unattested."
+    },
+    "wall_height_m": {
+      "value": 5.2,
+      "confidence": "inferred",
+      "note": "No figure is attested. 5.2 m is about 17 ft: two storeys at typical period floor heights plus structure and a sill, for the frame range. The log cabin behind it should stand at roughly 2.6 m — half this — which the archetype cannot yet express, so the single value here overstates the log part. Flagged rather than averaged, because averaging would produce a building that matches neither description."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested for this building. Gable is the near-universal roof form for both elements of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 38 degrees is mid-range for period framing. Inferred from construction practice, not measured."
+    },
+    "cladding": {
+      "value": "clapboard",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "note": "'a log structure partly sided' — siding is attested on part of the building, and clapboard is the standard board siding for the type and period. Which part was sided, and whether the frame range was clad differently from the cabin, is not stated."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "note": "No source describes a finish. Unpainted is the default reading and is positively supported by Wau-Bun's account of the Sauganash's white paint being the admiration of the little circle at Wolf Point in 1831 — the Miller house was directly across the water from it and is not singled out that way."
+    },
+    "chimneys": {
+      "value": 2,
+      "confidence": "inferred",
+      "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference."
+    },
+    "function": {
+      "value": "store_residence",
+      "confidence": "inferred",
+      "sources": [
+        "kinzie_waubun_1856",
+        "drloih_hotels"
+      ],
+      "note": "NOT AN INN AT THE SCENE DATE, and that is the most important fact this record carries. Miller's tavern competed with the Wolf Point Tavern from 1830, but Wau-Bun, describing 1831, already calls the Miller house 'at this time vacant', Miller having removed to the place that was becoming Michigan City; DRLOIH has the business converted to a store run by P. F. W. Peck after 1832; and a third account has Miller retiring from the field in 1834. The three disagree in their chronology and agree in their direction. Modelled as present and in secondary store or residential use, not innkeeping. The specific claim that Peck was running it does not survive to the scene date either — this project's own exclusions record places Peck in 1835 at his two-storey frame store at South Water and LaSalle."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_hotels",
+      "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "drloih_wolf_point",
+      "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
+      "archived_url": "",
+      "tier": 4
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "The north-bank half of the pair that made the forks a settlement: Miller's house faced the Wolf Point Tavern across the water, the two were joined by the Miller-Clybourn ferry licensed in 1829, and the first Peoria County tavern licence in the settlement went to Clybourn and Miller jointly. By July 1835 it is the quieter of the two — standing, in store or residential use, past its innkeeping days for at least three years. ITS OCCUPANCY AT THE SCENE DATE IS UNATTESTED and the record deliberately carries no occupants block rather than guessing: the named candidates all belong to earlier years, and this project's own date guards put P. F. W. Peck somewhere else in 1835. THE BANK IS RECORDED AS DISPUTED AND RESOLVED: four independent sources put the house on the north bank on the point between the North Branch and the main stem, one — the hotel chronology — puts it on the south branch, and the licensed ferry route across the North Branch between this house and the Wolf Point Tavern settles it against the outlier. The date of the two-storey addition is disputed, 1827 against 1830, and does not affect the scene. John Miller's separate log house of 1831, used as a tannery and called Chicago's first recorded factory, stood nearby in the same cluster and is not modelled by this record. See docs/RESEARCH/miller_house.md.",
+  "research_doc": "docs/RESEARCH/miller_house.md",
+  "review_required": false
+}

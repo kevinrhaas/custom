@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 4, title: 'Five more buildings at the forks', kind: 'feature',
+    ts: '2026-08-10T00:28:38.608Z', date: 'Aug 9, 2026, 7:28 PM CT',
+    items: [
+      'The Wolf Point Tavern, the Green Tree, Miller House, the Western Hotel and Walker\'s log meeting house, each placed from the 1834 survey rather than guessed at.',
+      'Two new archetypes: hewn-log construction with corner notching and frame additions, and the timber log bridges over the branches.',
+      'Source conflicts are recorded rather than resolved away — the Wolf Point Tavern\'s disputed build date, the Green Tree\'s possible log core, and Walker\'s meeting house, where the evidence may describe two different buildings on opposite banks.',
+    ] },
   { v: 3, title: 'The Sauganash stands at Lake and Market', kind: 'feature',
     ts: '2026-08-09T23:26:56.854Z', date: 'Aug 9, 2026, 6:26 PM CT',
     items: [
