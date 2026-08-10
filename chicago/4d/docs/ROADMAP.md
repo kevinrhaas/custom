@@ -138,11 +138,26 @@ same kind:
 
 | record | attribute | what the archetype does | effect |
 |---|---|---|---|
-| `miller_house` | `frame_addition` (documented, undimensioned) | picks side, width, depth and storey count from its defaults | a documented two-storey range fronting the river, built at an invented size with nothing admitting it |
+| ~~`miller_house`~~ | ~~`frame_addition` (documented, undimensioned)~~ | picks side, width, depth and storey count from its defaults | **DONE 2026-08-10** — the record states all five, the two invented ones are L27, re-baked in the slice |
 
-That is L24's defect one building over — the Wolf Point repair had to state all four numbers on
-the record for exactly this reason. It is a record edit that moves vertices, so: state the four,
-admit the invented ones in `docs/LIBERTIES.md`, re-bake, one slice.
+That was L24's defect one building over, and it came with a second one underneath it that was
+not on any list. **`stories: 2, documented` was the frame range's and `log_dwelling` reads it as
+the log core's**, so the documented claim was spent on the cabin, the range took a 4.7 m default,
+and the model stood a two-storey log cabin behind a shorter frame block — the composition
+inverted. The record now separates them: `frame_addition_stories: 2` documented, `stories: 1`
+inferred for the cabin, `frame_addition_height_m: 5.2` and `wall_height_m: 2.6`. Two of the four
+queued attributes turned out to be attested rather than invented — the side, because the source
+says *fronting the river*, and the storey count — and only the width and depth are guesses, taken
+off the record's own footprint limb (9 × 6 m) rather than picked afresh. L13 moves to Resolved,
+L27 is new. **The repair queue is empty and nothing refilled it: S5 is additions again.**
+
+The lesson worth carrying past this table: the omission gate found three misspellings and the
+fourth fault was not one. `stories` was a name the archetype *found* and read as being about the
+other half of a two-part building — which is invisible to a spelling check and to
+`test_consumed_attributes_actually_reach_the_parameters`, since the value does move geometry,
+just the wrong geometry. Any archetype attribute that means different things to different
+elements of a composite building is the same trap; `wall_height_m` was the second one in this
+record.
 
 **The Wolf Point pair landed together, which is the shape** (2026-08-10). Both renames, the four
 attributes the frame bay needed, the re-bake, the publish and the liberties moved in one PR. Two

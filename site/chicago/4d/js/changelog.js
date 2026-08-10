@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 17, title: 'Miller\'s house had its two storeys on the wrong half', kind: 'fix',
+    ts: '2026-08-10T08:15:16.354Z', date: 'Aug 10, 2026, 3:15 AM CT',
+    items: [
+      'Samuel Miller\'s house on the north bank is two buildings in one: a log cabin, and a two-storey house added in front of it facing the river. That is the one thing every account of it agrees on. The model had the two storeys on the cabin and left the house in front standing shorter — the composition inside out, seen from the very spot across the water where the 1833 description of it was written.',
+      'The cause is worth saying plainly, because it is the same shape of fault as the missing wolf sign earlier this week. The record wrote "two storeys" and meant the range in front; the model read the same words as the height of the log cabin. Both were being honest and they were talking about different halves of the house. So the record now says which half: two storeys for the range, one for the cabin, and a separate height for each.',
+      'Everything about the range except its size is documented — that it existed, that it faced the river, that it stood two storeys. Its width and depth are not, and rather than let the model fall back to its own defaults, they are now taken from the outline the record already draws for this building: the full nine metres of the river frontage, six metres deep, with the cabin in the five metres behind. That outline is itself invented, so the two numbers are marked as guesses and the liberties list has a new entry naming them.',
+      'That empties the repair list the "what does the model not build?" check opened — three faults it found directly, and this fourth one, which only came to light while fixing the third. The list has refilled itself once already, which is the point of having it.',
+    ] },
   { v: 16, title: 'Miller\'s house gets its second chimney', kind: 'fix',
     ts: '2026-08-10T07:34:46.858Z', date: 'Aug 10, 2026, 2:34 AM CT',
     items: [

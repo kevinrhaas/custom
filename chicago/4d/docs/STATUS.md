@@ -297,15 +297,40 @@ uncertainty of the 1834 sheets in its note.
     the archetype's, so the confidence chip a visitor reads on that row grades only *how many*.
     L26 is new and is the only place that distinction is legible.
 
-20. **Miller's frame range is dimensioned by default, which is L24's defect one building over.**
-    Found while placing his second stack, and deliberately NOT fixed here: it is a record edit
-    that moves vertices, so it is its own slice with its own bake. `frame_addition` is
-    `documented` on `miller_house` — "a two-story house added to the cabin, fronting the river" —
-    and the record states no side, no width, no depth and no storey count for it, so
-    `log_dwelling` supplies all four from its defaults: front, half the footprint's width, half
-    its depth, two storeys. That is precisely what the Wolf Point repair exists to stop — a
-    documented feature arriving at an invented size with nothing admitting it. Queued in
-    ROADMAP § S5. The new stack inherits it, standing against a bay whose width is a default.
+20. **FIXED — Miller's frame range is dimensioned by the record, and fixing it found the storeys
+    on the wrong half of the house.** The queued defect was L24's one building over:
+    `frame_addition` is `documented` on `miller_house` — "a two-story house added to the cabin,
+    fronting the river" — and the record stated no side, no width, no depth and no storey count,
+    so `log_dwelling` supplied all four from its defaults. Repaired 2026-08-10, record and mesh in
+    one commit. Two of the four turn out to be **attested**, which is the difference between this
+    building and the Wolf Point bay: the side is `front` because the source says *fronting the
+    river*, and the range is two storeys because the source says *a two-story house*. Only the
+    width and depth are invented, and they are read off this record's own footprint polygon — the
+    river-fronting limb is 9 × 6 m — rather than picked afresh, so the mesh agrees with the plan
+    the record already draws. L27 admits them; they inherit the polygon's invention, which is
+    total.
+    **The storey count was the real defect and it was not on the queue.** `stories` was `2,
+    documented`, with its own note saying in as many words that the two storeys described the
+    river-fronting range and not the whole building — but `log_dwelling` reads `stories` as the
+    LOG CORE's count. So the documented claim was spent on the cabin, the range fell back to a
+    4.7 m default, and the model stood a two-storey log cabin **behind a shorter frame block**:
+    the composition inverted, seen from the exact spot across the water where the 1833 description
+    of it was written. That is the `frame_extension`/`signage`/`chimney` failure in its subtler
+    form — not a name the archetype could not find, but a name it found and read as being about a
+    different half of the building. No spelling check catches that, and neither does
+    `test_consumed_attributes_actually_reach_the_parameters`, which proves only that a value moves
+    *something*. The two-storey claim now sits on `frame_addition_stories`, the cabin's `stories`
+    is 1 `inferred` (no source gives the log part a height; the 1833 view's "a two-story building
+    and adjoining log cabin" only reads as a contrast if the cabin was lower), the 5.2 m moves to
+    `frame_addition_height_m`, and `wall_height_m` becomes the cabin's 2.6 m — the number this
+    record has named for it since it was written, sitting in a note rather than in a field.
+    L13 moves to Resolved: neither composite building is a single extrusion any more.
+    **What did not get better.** The archetype masses the footprint's bounding box, so the log
+    core comes out the full 9 m wide rather than the polygon's 6 m and the 3 × 5 m re-entrant
+    corner behind the range is filled in. Stating the range's own numbers is what makes that
+    visible — the defaults produced an inverted-T matching neither the polygon nor the sources —
+    and L27 records it. And the whole repair still rests on a placeholder: 9 × 6 of an invented
+    9 × 11.
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: six buildings stand where
@@ -319,11 +344,15 @@ to land together, so the bake workflow's PR is part of the same slice rather tha
 generator reads makes the committed GLB stale and `check.sh` fails until the re-bake lands with
 it. It was then exercised for real by the Wolf Point repair the same day — the rename turned the
 tavern's asset stale on the spot and the branch could not go green until the bake landed on it,
-which is the whole point of writing the check, and again the same day by Miller's second chimney.
-**That list is now empty.** What replaced it is one repair of the same kind, found while making
-the chimney count real: `miller_house` records a `documented` frame range and gives it no side,
-width, depth or storey count, so `log_dwelling` chooses all four — the L24 defect one building
-over. Record edit plus bake, one slice.
+which is the whole point of writing the check, and again the same day by Miller's second chimney,
+and a third time by his frame range.
+**The repair list is empty and this time nothing refilled it.** The last entry —
+`miller_house` recording a `documented` frame range with no side, width, depth or storey count —
+landed 2026-08-10 with its bake (§ 20), and it was the fourth and last of the faults the omission
+gate opened. Three of the four were spelling; the fourth was a name read as being about the wrong
+half of a two-part building, which no spelling check would have caught. Nothing new is queued
+behind it, so **S5 is additions again**: eight archetypes and about forty researched structures
+against the six that stand.
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled
