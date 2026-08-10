@@ -54,7 +54,7 @@
         }
       ],
       "notes": [
-        "The water surface is the plane Z = 0 by the definition of this project's vertical datum, and terrain_gen.py emits it at a literal zero rather than reading this figure. So the mesh says exactly what this value says and does not say it BECAUSE of this value: change the 0.0 here and nothing moves. It is recorded because the datum has to be stated somewhere a reader meets it.",
+        "The water surface is the plane Z = 0 by the definition of this project's vertical datum, and terrain_gen.py emits it at a literal zero rather than reading this figure. So the mesh says exactly what this value says and does not say it BECAUSE of this value: change the 0.0 here and nothing moves. It is recorded because the datum has to be stated somewhere a reader meets it. The agreement is checked rather than trusted: terrain_inputs.RESTATES holds this figure against water_surface_m in the heightfield the bake wrote, converted from feet, so editing it fails the gate instead of quietly telling a visitor the river stands somewhere the ground does not.",
         "Flat. Pre-reversal flow was sluggish and outward into the lake with a near-zero surface gradient, so the water surface is effectively at lake level throughout the downtown reach; the river gradient is treated as zero."
       ]
     },
@@ -182,7 +182,7 @@
       "citations": [],
       "notes": [
         "The e-folding distance is the river's. A watercourse may override it: the north-side slough is 7 m wide, and a 9 m e-fold would make a 1 ft channel 4 in deep and invisible.",
-        "The formula is written out here for a reader and implemented in terrain_gen.py, which does not read the string. The mesh does what this line says; nothing holds the two together, so a change to the code would leave this sentence describing a cross-section the ground no longer has.",
+        "The formula is written out here for a reader and implemented in terrain_gen.py, which does not read the string. The mesh does what this line says, and what holds the two together is one step weaker than a comparison: prose cannot be compared to Python, so terrain_inputs.RESTATES names the generator's own line and the gate requires it to still be there, exactly once, with comments stripped. A reformat fails it, which is the right way round — the sentence and the line are meant to move together.",
         "The cross-section shape is a smooth approach to the reach bed and carries no evidence at all — no cross-section of the Chicago River at the forks exists for any date before dredging. It is under water and invisible; it is here so that the surface reaches Z=0 exactly at the traced bank line and so a boat draught question has an answer. Marked conjectural in the confidence channel."
       ]
     },
@@ -212,7 +212,7 @@
       "citations": [],
       "notes": [
         "Horizontal distance over which the ground rises from the waterline to the local near-river level. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise; no source gives a bank profile at the forks. The resulting crest sits at each division's near_ft below, which is what implements dossier zone 13 (+2 to +4 ft at the forks).",
-        "As with the channel section: the ease-out is implemented in terrain_gen.py rather than read from this string, so the two agree by the hand that wrote them and by nothing else. face_m is the figure that shapes the bank."
+        "As with the channel section: the ease-out is implemented in terrain_gen.py rather than read from this string, and the ramp line it describes is named in terrain_inputs.RESTATES and required to still be in the generator. face_m is the figure that shapes the bank, and it is read."
       ]
     },
     {
@@ -254,7 +254,7 @@
         {
           "key": "bank_crest_ft",
           "value": 2.4,
-          "mesh": "record_only"
+          "mesh": "restated_in_code"
         },
         {
           "key": "bank_crest_dossier_zone",
@@ -276,7 +276,7 @@
       ],
       "notes": [
         "The plain west of State Street 'sloped down to the river in a level plain elevated only two to three feet above the river'. State Street is roughly 840 m east of the origin, so the whole South Division inside this box is that plain. The rise from 2.4 ft at the bank to 2.9 ft at 300 m inland is 0.15 ft of fall across a 300 ft chord — inside the dossier's flatness rule of 0.5 ft per 300-ft block. Marked inferred, not documented: the source is a secondary synthesis that gives no citation for the figure and no survey underlies it.",
-        "range_ft is the dossier's stated span and near_ft/far_ft are the figures picked out of it, which are what the generator reads. bank_crest_ft restates the crest that the bank ramp arrives at from near_ft; the two carry the same number and nothing checks that they still will."
+        "range_ft is the dossier's stated span and near_ft/far_ft are the figures picked out of it, which are what the generator reads. bank_crest_ft restates the crest the bank ramp arrives at: the ramp multiplies the division level and reaches 1.0 at the top of the face, so the crest IS near_ft. The two carried the same number by hand and this note used to say that nothing checked they still would. Something does now — the figure is declared restated_in_code and terrain_inputs.RESTATES names near_ft as the half it has to match."
       ]
     },
     {
@@ -318,7 +318,7 @@
         {
           "key": "bank_crest_ft",
           "value": 3.6,
-          "mesh": "record_only"
+          "mesh": "restated_in_code"
         },
         {
           "key": "bank_crest_dossier_zone",
@@ -340,7 +340,7 @@
       ],
       "notes": [
         "Zone 19 gives the North Division +4 to +7 ft, rising toward the lake; zone 13 gives the bank crest at the forks +2 to +4 ft and says the ground rises slightly on the timbered north side. Reconciled as a 3.6 ft bank crest rising to 4.6 ft at 300 m inland — 0.31 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The North Side is documented as carrying a thrifty heavy growth of timber, which is consistent with better-drained sandy ground.",
-        "As south_division: the span is the dossier's, the two picked figures are the build instruction, and the crest restates near_ft."
+        "As south_division: the span is the dossier's, the two picked figures are the build instruction, and the crest restates near_ft — which is now a declaration the gate holds the pair to rather than a sentence."
       ]
     },
     {
@@ -382,7 +382,7 @@
         {
           "key": "bank_crest_ft",
           "value": 3.2,
-          "mesh": "record_only"
+          "mesh": "restated_in_code"
         },
         {
           "key": "bank_crest_dossier_zone",
@@ -582,7 +582,7 @@
       "sources": [],
       "citations": [],
       "notes": [
-        "Where the noise applies is decided in terrain_gen.py — it multiplies the bank ramp, which is zero at the waterline — and this line describes that rather than driving it.",
+        "Where the noise applies is decided in terrain_gen.py — it multiplies the bank ramp, which is zero at the waterline — and this line describes that rather than driving it. terrain_inputs.RESTATES names the assembly line that does it, so moving the noise outside the ramp fails the gate rather than leaving this sentence describing ground the model no longer has.",
         "Two octaves of value noise at +/- 0.10 ft (30 mm) — below the 0.25 ft the dossier asks the heightmap to be quantised at, and far below the resolution of any statement in the record. It exists so that a surface the sources describe as dead flat still reads as ground rather than as a rendering error, and so that walking gives motion parallax. It is a texture, not a claim. Set amplitude_ft to 0 for a perfectly flat plain."
       ]
     },

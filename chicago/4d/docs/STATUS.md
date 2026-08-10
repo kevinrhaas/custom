@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the ground has to say what it does not build, and the first thing
-it admitted is what the surface is made of, § 35) ·
+**Last updated:** 2026-08-10 (the one declaration that was a promise rather than an absence is
+now a check, § 36) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -45,6 +45,11 @@ written, and an unreasoned ground claim stops the commit exactly as it does on a
 now, which it never was** (§ 35): five surface materials, two of them `documented`, describe a
 soil no surface in this model is made of, and the panel showed them under the project's
 strongest chip with nothing saying so.
+**And the one declaration in that vocabulary that promises an agreement rather than admitting an
+absence is a check now instead of a sentence** (§ 36): four figures said *the mesh contains
+exactly this and does not read it from here*, three more restated a build instruction while
+declaring a state that asks nothing, and the only thing holding any pair together was the hand
+that wrote them.
 
 ---
 
@@ -55,7 +60,7 @@ strongest chip with nothing saying so.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 168 checks, all green, including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
+| `tools/test_validate.py` | **done** — 191 checks, all green (the count was recorded as 168 for several slices and is re-counted here), including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes, and that a ground figure declaring the mesh agrees with it is held to the half it restates — the heightfield the bake wrote, the build instruction it duplicates, or the generator line it describes — with a phrase that exists only inside a comment satisfying nothing |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
@@ -64,12 +69,12 @@ strongest chip with nothing saying so.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 173 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 177 checks green at 390×780 and 1280×800, zero page errors (recorded as 173 for several slices; re-counted 2026-08-10) |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
-| **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35) |
+| **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35). **The fourth state is checked as well as declared since § 36**: `terrain_inputs.RESTATES` names the half each restatement agrees with — the heightfield the bake wrote, another figure in the block, or a named line of the generator — and 7 figures are held to it |
 | Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
 
 ## Corrections made after the first live look
@@ -986,6 +991,57 @@ uncertainty of the 1834 sheets in its note.
     ENTIRELY is caught only if it grades itself, since an ungraded block makes no claim and
     reaches no panel. And `restated_in_code` is the one state that asserts an agreement nothing
     enforces, which is a smaller version of the fault this whole family of checks exists to end.
+
+36. **The declaration that was a promise, and the three figures that were making it under a state
+    that asks nothing.** § 35 ends by naming its own residual in one sentence: *`restated_in_code`
+    is the one state that asserts an agreement nothing enforces, which is a smaller version of the
+    fault this whole family of checks exists to end.* The other three `mesh:` states say the ground
+    does NOT contain a figure, and a reader who doubts one of them can go and look at the ground.
+    This one says the opposite — the mesh contains exactly what this figure says and gets it from
+    somewhere else — which is a claim about two documents at once, and neither of them knew about
+    the other.
+    **`terrain_inputs.RESTATES` names the second half, and the gate compares them.** Three kinds,
+    in descending order of what the check buys, and saying so is part of the declaration rather
+    than a caveat to be inferred. An **artifact** claim is held against the heightfield the bake
+    wrote: `water.surface_ft` is 0.0 ft and `heightfield.json` records `water_surface_m` 0.0, so
+    editing the spec's zero now fails instead of telling a visitor the river stands somewhere the
+    ground does not — the strong one, because the thing being agreed with is the ground and not a
+    description of it. A **figure** claim is held against the build instruction it restates. A
+    **code** claim is prose describing an algorithm, which cannot be compared to Python at all, so
+    it is held only to the presence of the generator line it names.
+    **The three that were hiding were declared `record_only`, and that was the finding.** Each
+    division's `bank_crest_ft` restates the crest the bank ramp arrives at, which is `near_ft` —
+    the ramp multiplies the division level and reaches 1.0 at the top of the face. Every one of
+    the three `mesh_note`s said so, and the south division's said, in as many words, *the two carry
+    the same number and nothing checks that they still will*. `record_only` means a figure that was
+    never a build instruction and owes nothing; a value that restates a build instruction is not
+    that, and the wrong state is what kept the sentence a sentence. They are `restated_in_code` now
+    and the gate holds each crest to its level. **All seven agree today**, which is the honest
+    result: this check found a misdeclaration rather than a wrong number, and its value is that the
+    next edit to `near_ft` cannot leave the panel showing the old crest.
+    **The comment trap is pinned, because this project has walked into it before.**
+    `check_sidecar_contract` reported ITSELF on its first run — the comment written to explain why
+    a field is no longer read names that field, and a regex does not know prose from code. So the
+    generator scan strips comments with `tokenize` rather than a regex (a `#` inside a string
+    literal is not a comment), and the test proves the stripping by requiring a phrase that exists
+    in `terrain_gen.py` only inside the comment arguing for the ease-out to satisfy nothing.
+    **Where the map lives is § 15's lesson for the fourth time.** It is in
+    `generators/terrain_inputs.py` beside `CONSUMED` and the denylist, not in `terrain_spec.json`:
+    a `restates:` key in the spec outside the stripped `mesh` block would be a mesh input, and
+    writing down a declaration that cannot move a vertex would have cost a Blender bake. Nothing
+    was re-baked in this slice and nothing needed to be — the terrain hash strips `mesh` and
+    `*_note`, so re-declaring three figures and rewriting five notes left the ground fresh.
+    **What it still cannot see, and the weak kind is the whole of it.** A `code` claim proves that
+    a line is present, not that the line does what the sentence says: rewrite the ease-out into a
+    smoothstep under the same expression and the gate is content. Its realistic failure mode is a
+    false positive on a reformat, which is the right way round — the sentence in the spec and the
+    line in the code are supposed to move together, and a gate that fires when only one of them
+    does is the warning § 35 says this state owes to whoever edits the generator. The strong kind
+    is available wherever the restated figure is a NUMBER; the three prose ones are prose because
+    an algorithm has no number to compare. And `bank_crest_dossier_zone` is deliberately left
+    `record_only` even though it duplicates `bank.dossier_zone`: a pointer into a research table
+    restates a document, not a mesh, and widening the state to cover that would make it mean two
+    things.
 
 ## Next
 

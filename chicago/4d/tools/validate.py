@@ -579,6 +579,170 @@ def check_ground_geometry(index: dict[str, dict[str, dict]],
              f"docs/LIBERTIES.md an admission")
 
 
+def terrain_restates(rep: Report | None = None) -> dict[str, dict]:
+    """spec block -> field key -> where the other half of the restatement lives.
+
+    Declared as `RESTATES` in `generators/terrain_inputs.py`, beside `CONSUMED`
+    and for the same reason: it is a statement about the generator, and a new key
+    in `terrain_spec.json` outside the stripped `mesh` block would be a mesh input
+    and would cost a Blender bake to write down.
+    """
+    sys.path.insert(0, str(ROOT / "generators"))
+    try:
+        import terrain_inputs  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        if rep:
+            rep.error("ground-restated", f"cannot import generators/terrain_inputs.py, so "
+                                         f"nothing can tell what the ground's restatements "
+                                         f"are supposed to agree with: {e}")
+        return {}
+    return dict(getattr(terrain_inputs, "RESTATES", {}) or {})
+
+
+def strip_py_comments(text: str) -> str:
+    """The same source with comment tokens blanked and line numbers preserved.
+
+    A scan for an expression in the generator must not be satisfied by a comment
+    quoting that expression — which is not hypothetical: `check_sidecar_contract`
+    reported itself on its first run, because the comment explaining why a field
+    is no longer read names the field. `tokenize` rather than a regex, because a
+    `#` inside a string literal is not a comment and this file is not the place
+    to rediscover that.
+    """
+    try:
+        import io  # noqa: PLC0415
+        import tokenize  # noqa: PLC0415
+        out = list(text)
+        for tok in tokenize.generate_tokens(io.StringIO(text).readline):
+            if tok.type != tokenize.COMMENT:
+                continue
+            (r1, c1), (r2, c2) = tok.start, tok.end
+            if r1 != r2:  # a comment token is always one line
+                continue
+            starts = [0]
+            for line in text.splitlines(keepends=True):
+                starts.append(starts[-1] + len(line))
+            for i in range(starts[r1 - 1] + c1, min(starts[r1 - 1] + c2, len(out))):
+                out[i] = " "
+        return "".join(out)
+    except Exception:  # noqa: BLE001 — a generator that will not tokenize is its own error
+        return text
+
+
+def check_restated_agreement(index: dict[str, dict[str, dict]],
+                             restates: dict[str, dict], rep: Report) -> None:
+    """`restated_in_code` promises an agreement, so something has to check it.
+
+    The other three `mesh:` states say the ground does NOT contain a figure, and a
+    reader who doubts one can go and look. This one says the opposite — the mesh
+    contains exactly what the figure says and does not read it from here — which
+    is a claim about two documents at once, and the pair was held together by the
+    hand that wrote them and by nothing else. `docs/STATUS.md` § 35 filed that as
+    the residual: *the one state that asserts an agreement nothing enforces, which
+    is a smaller version of the fault this whole family of checks exists to end.*
+
+    Both directions, as everywhere else in this family. A figure declaring the
+    state with no entry in `terrain_inputs.RESTATES` is back to asserting an
+    agreement with nothing named on the other side of it, and an entry naming a
+    figure that no longer declares the state is a check quietly guarding nothing.
+
+    What each kind buys is `RESTATES`' own subject and is written there. The short
+    version: an `artifact` claim is held against the heightfield the bake wrote, a
+    `figure` claim against the build instruction it restates, and a `code` claim —
+    prose describing an algorithm — only against the presence of the expression it
+    names. The third is the weak one and is labelled as such rather than left to
+    look like the other two.
+    """
+    if not restates:
+        rep.note("restated-in-code check: no RESTATES map to compare against")
+        return
+
+    gen_src = strip_py_comments((ROOT / "generators" / "terrain_gen.py").read_text())
+    gen_flat = " ".join(gen_src.split())
+    checked = weak = 0
+
+    for epoch, claims in sorted(index.items()):
+        ep_dir = DATA / "terrain" / "epochs" / epoch
+        for cid, claim in claims.items():
+            block = cid.split(".")[0]
+            declared = restates.get(block) or {}
+            fields = {f["key"]: f for f in (claim.get("fields") or [])}
+            where = f"terrain {epoch}/{cid}"
+
+            for key, f in fields.items():
+                if f.get("mesh") == "restated_in_code" and key not in declared:
+                    rep.error(where, f"'{key}' declares mesh: 'restated_in_code' — the mesh "
+                                     f"agrees with this figure and does not read it — and "
+                                     f"nothing says WHAT it agrees with. That is the state "
+                                     f"asserting an agreement with an unnamed second half, "
+                                     f"which is the arrangement it was written to end. Name "
+                                     f"the other half in terrain_inputs.RESTATES")
+
+            for key, claim_of in declared.items():
+                f = fields.get(key)
+                if f is None:
+                    continue  # a block may not state every figure the map knows about
+                if f.get("mesh") != "restated_in_code":
+                    rep.error(where, f"terrain_inputs.RESTATES says '{key}' restates "
+                                     f"{claim_of[1]}, and the figure declares mesh: "
+                                     f"'{f.get('mesh') or 'nothing'}'. A restatement that is "
+                                     f"not declared one is a check guarding a promise nobody "
+                                     f"made")
+                    continue
+                kind = claim_of[0]
+                checked += 1
+
+                if kind == "artifact":
+                    ref, scale = claim_of[1], float(claim_of[2])
+                    fname, _, akey = ref.partition(":")
+                    doc = load_json(ep_dir / fname, rep, required=False) or {}
+                    if akey not in doc:
+                        rep.error(where, f"'{key}' restates {ref} and that artifact has no "
+                                         f"'{akey}' — the figure it agrees with is gone")
+                        continue
+                    want, got = float(f["value"]) * scale, float(doc[akey])
+                    if abs(want - got) > 1e-9:
+                        rep.error(where, f"'{key}' is {f['value']} and declares that the mesh "
+                                         f"agrees with it, but {fname} records {akey} = {got}, "
+                                         f"which is {want} short of it. One of the two is "
+                                         f"describing a ground that does not exist, and the "
+                                         f"panel is showing the spec's number to a visitor")
+                elif kind == "figure":
+                    other = claim_of[1]
+                    if other not in fields:
+                        rep.error(where, f"'{key}' restates '{other}' and this block does not "
+                                         f"state '{other}'")
+                        continue
+                    a, b = f["value"], fields[other]["value"]
+                    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+                        same = abs(float(a) - float(b)) <= 1e-9
+                    else:
+                        same = a == b
+                    if not same:
+                        rep.error(where, f"'{key}' is {a} and restates '{other}', which is {b}. "
+                                         f"'{other}' is what the generator reads, so the ground "
+                                         f"is built to {b} and the Evidence panel is telling a "
+                                         f"visitor {a}")
+                elif kind == "code":
+                    expr = " ".join(claim_of[1].split())
+                    n = gen_flat.count(expr)
+                    if n != 1:
+                        rep.error(where, f"'{key}' describes, for a reader, what terrain_gen.py "
+                                         f"does — and the line it names, `{claim_of[1]}`, "
+                                         f"appears {n} times in that generator with comments "
+                                         f"stripped. Either the code moved and this figure now "
+                                         f"describes a ground the model no longer has, or the "
+                                         f"expression was reformatted and the declaration in "
+                                         f"terrain_inputs.RESTATES needs to follow it")
+                    weak += 1
+                else:
+                    rep.error(where, f"'{key}' declares an unknown restatement kind '{kind}'")
+
+    rep.note(f"restated-in-code check: {checked} figure(s) the ground agrees with and does not "
+             f"read, each held against the half it restates; {weak} of them are prose about an "
+             f"algorithm and are checked only for the presence of the line they describe")
+
+
 # --------------------------------------------------------------------------
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
@@ -1534,6 +1698,11 @@ def main() -> int:
     # of them can see a claim with no vertex behind it at all.
     ground_consumed = terrain_consumed(rep)
     check_ground_geometry(ground_index, ground_consumed, rep)
+    # and the one declaration that is a promise rather than an absence: the mesh
+    # agrees with this figure and does not read it. Three states say a thing is
+    # not built and can be checked by looking at the ground; this one says two
+    # documents say the same thing, and nothing was holding them together.
+    check_restated_agreement(ground_index, terrain_restates(rep), rep)
 
     # scenes
     for name, sc in scenes.items():

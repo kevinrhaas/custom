@@ -32,7 +32,8 @@ a gate that stops notes being written.
    `restated_in_code` — so by its own definition it cannot move a vertex, and
    hashing it would make writing an admission cost a bake for exactly the reason
    writing a note used to. `tools/validate.py` checks it against this generator's
-   `CONSUMED` sets.
+   `CONSUMED` sets, and its one state that asserts an agreement rather than an
+   absence — `restated_in_code` — against the `RESTATES` map below.
 
    **It is called `mesh` and not `geometry`, which is what the structure records
    call it, because `geometry` is already taken and the test caught it on the
@@ -131,6 +132,80 @@ CONSUMED = {
     "watercourses": frozenset({"bed_ft", "e_fold_m"}),
     "micro_relief": frozenset({"amplitude_ft", "wavelengths_m", "seed"}),
     "surface_materials": frozenset(),
+}
+
+
+# Per graded block, the figures declared `restated_in_code` and WHERE the other
+# half of each restatement lives.
+#
+# `restated_in_code` is the one `mesh:` state that asserts an AGREEMENT rather
+# than an absence. `absent`, `simplified` and `record_only` all say the mesh does
+# not contain a thing, and a reader who doubts one can go and look at the ground.
+# This one says the mesh contains exactly what the figure says and gets it from
+# somewhere else — so it is a claim about two documents at once, and until this
+# map existed nothing held the pair together. `docs/STATUS.md` § 35 wrote it down
+# as "the one state that asserts an agreement nothing enforces, which is a
+# smaller version of the fault this whole family of checks exists to end".
+#
+# Three kinds, in descending order of how much the check buys, because saying so
+# is cheaper than letting the next reader assume the strongest one:
+#
+#   ("artifact", "<file>:<key>", scale)
+#       The figure restates a value in a committed GENERATED artifact — the
+#       heightfield meta the bake wrote. Compared numerically after `scale`, so a
+#       spec figure in feet is held against a mesh figure in metres. This is the
+#       strongest of the three: the thing being agreed with is the ground itself,
+#       not a description of it.
+#   ("figure", "<sibling key>")
+#       The figure restates another figure in the same block, one the generator
+#       DOES read. Compared numerically. Also exact, and the drift it catches is
+#       the ordinary one — somebody edits the build instruction and leaves the
+#       restatement behind.
+#   ("code", "<expression>")
+#       The figure is prose describing an expression in `terrain_gen.py`. Prose
+#       cannot be compared to Python, so the check is that the named expression
+#       is still in the generator, exactly once, with comments stripped (a regex
+#       that matches its own explanatory comment proves nothing — see
+#       `check_sidecar_contract`, which reported itself on its first run). That
+#       is one step weaker than the two above and is the same strength as
+#       `test_declared_terrain_reads_are_real_reads`. Its failure mode is a false
+#       positive on a reformat, which is the right way round: the sentence in the
+#       spec and the line in the code are supposed to be edited together, and a
+#       gate that fires when only one of them moves is the warning § 35 says this
+#       state owes to whoever edits the generator.
+#
+# It lives here rather than in `terrain_spec.json` for the reason CONSUMED does
+# not live in `terrain_gen.py`: it is a statement ABOUT the generator, and a new
+# key in the spec outside the `mesh` block would be a mesh input and would cost a
+# Blender bake to write down. `mesh` itself is stripped (see PROSE_KEYS), which is
+# why re-declaring a figure `restated_in_code` is free and adding a `restates:`
+# beside it would not have been.
+RESTATES = {
+    "water": {
+        # Z = 0 is the definition of this project's vertical datum. The generator
+        # writes the water plane at a literal zero and `heightfield.json` records
+        # it, so editing this figure moves nothing and would leave the panel
+        # telling a visitor the river stands somewhere the ground says it does not.
+        "surface_ft": ("artifact", "heightfield.json:water_surface_m", 0.3048),
+    },
+    "channel_profile": {
+        "shape": ("code", "depth_ft = bed_ft * (1.0 - np.exp(-d_in / efold))"),
+    },
+    "bank": {
+        "profile": ("code", "ramp = 1.0 - (1.0 - t_bank) ** 2"),
+    },
+    "divisions": {
+        # The crest the bank ramp arrives at IS `near_ft` — the ramp multiplies
+        # the division level and reaches 1.0 at the top of the face. The two have
+        # carried the same number by hand since the terrain landed, which the
+        # block's own `mesh_note` said in as many words while declaring the figure
+        # `record_only`, a state that owes nothing and asks nothing.
+        "bank_crest_ft": ("figure", "near_ft"),
+    },
+    "micro_relief": {
+        "applies_to": ("code",
+                       "h_ft = np.where(water, depth_ft, (level_ft + micro) * ramp)"),
+    },
 }
 
 
