@@ -200,6 +200,46 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     if (clearedPop !== 0) fail(`${tag} — Reset left the draw slider at ${clearedPop}`);
     else ok('Reset clears the draw preference');
 
+    // ---- who's walking (the crew presets) ----
+    const crewNames = await page.evaluate(() =>
+      [...document.querySelectorAll('#crew [data-preset]')].map(b => b.dataset.preset));
+    if (crewNames.length !== 4) fail(`${tag} — expected 4 crew presets, found ${crewNames.length}`);
+    else ok(`crew presets: ${crewNames.join(', ')}`);
+
+    const clickPreset = async (name) => {
+      await page.evaluate((n) => [...document.querySelectorAll('[data-preset]')]
+        .find(b => b.dataset.preset === n).click(), name);
+      await page.waitForTimeout(1800);
+    };
+    // Pat's is the one that also eases the walking, so it is the one worth
+    // asserting: a preset that only moved taste would quietly under-serve her.
+    await clickPreset('Pat');
+    const pat = await page.evaluate(() => ({
+      pace: +document.querySelector('#pace').value,
+      max: +document.querySelector('#maxB').value,
+      tags: [...document.querySelectorAll('#genres .chip[data-s="1"]')].map(c => c.dataset.tag),
+      stops: document.querySelectorAll('#stops .stop').length,
+      on: !!document.querySelector('#crew button.on'),
+    }));
+    if (pat.pace !== 3) fail(`${tag} — Pat's preset left pace at ${pat.pace}, expected 3`);
+    else ok(`Pat eases the pace (${pat.pace} km/h)`);
+    if (pat.max !== 4 || pat.stops > 4) fail(`${tag} — Pat's preset gave ${pat.stops} stops (cap ${pat.max})`);
+    else ok(`Pat caps the walk (${pat.stops} stops)`);
+    if (!pat.tags.length) fail(`${tag} — Pat's preset set no genres`);
+    else ok(`Pat seeks genres (${pat.tags.join(', ')})`);
+    if (!pat.on) fail(`${tag} — no crew preset shows as selected`); else ok('selected crew preset is marked');
+
+    // Reset has to undo the logistics too, or Pat's slow pace outlives her preset.
+    await clickPreset('__clear');
+    const afterReset = await page.evaluate(() => ({
+      pace: +document.querySelector('#pace').value,
+      max: +document.querySelector('#maxB').value,
+      tags: document.querySelectorAll('#genres .chip[data-s="1"]').length,
+    }));
+    if (afterReset.pace !== 4.5 || afterReset.max !== 0 || afterReset.tags !== 0)
+      fail(`${tag} — Reset left pace ${afterReset.pace}, cap ${afterReset.max}, ${afterReset.tags} genres`);
+    else ok('Reset restores pace, band cap and genres');
+
     const stops = await page.locator('#stops .stop').count();
     if (stops > 0) ok(`planned ${stops} stops in ${ms} ms`);
     if (ms > 8000) fail(`${tag} — planner took ${ms} ms (>8s)`);
@@ -312,6 +352,25 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       await p4.close();
       await setPop(0);
     }
+
+    // A stop must be able to open that band's full card, or the schedule is a
+    // dead end when you want to know who you're about to go and see.
+    // On mobile the schedule lives behind its own tab, so get there first.
+    if (vp === 'mobile') await page.locator('[data-go="route"]:visible').first().click();
+    await page.waitForTimeout(250);
+    const firstStopBand = await page.textContent('#stops .stop h3');
+    await page.locator('#stops .stop .morebtn').first().click();
+    await page.waitForTimeout(600);
+    const jumped = await page.evaluate(() => {
+      const f = document.querySelector('#bgrid .card.focus');
+      return { view: document.body.dataset.view, name: f ? f.querySelector('h3').textContent.trim() : null,
+               full: f ? !!f.querySelector('p') : false };
+    });
+    const wantName = (firstStopBand || '').replace(/★$/, '').trim();
+    if (jumped.view !== 'bands') fail(`${tag} — "Full profile" left the view on ${jumped.view}`);
+    else if (jumped.name !== wantName) fail(`${tag} — jumped to "${jumped.name}", expected "${wantName}"`);
+    else if (!jumped.full) fail(`${tag} — focused card has no full profile text`);
+    else ok(`"Full profile" opens the band card (${jumped.name})`);
 
     // bands browser
     await page.locator('[data-go="bands"]:visible').first().click();

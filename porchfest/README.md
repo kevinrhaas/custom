@@ -128,6 +128,23 @@ If you re-run the research, re-run this too: it reads `profiles.merged.json`.
 `node build-draw.mjs --report` prints the full ranking with the evidence per
 act, which is the fastest way to sanity-check a change to the patterns.
 
+## Who's walking (the crew presets)
+
+`CREW` in `app.template.html` holds one preset per person in the group this was
+built for, plus one for all of them together. A preset sets taste dimensions by
+name and may add `__tags` (genres to seek, replacing the current chips),
+`__pop` (draw), `__pace` and `__max` (band cap).
+
+The last two matter: for an eighty-something the walk is as much of a
+constraint as the music, so Pat's preset drops the pace to 3 km/h and caps the
+route at four stops — which lands at roughly 1.4 km for the afternoon. Reset
+restores pace and cap along with everything else, otherwise a slow pace
+silently outlives the preset that set it.
+
+The names are real people and this is a public page. Swapping them for generic
+labels ("Grown-ups", "Twenties", "Gentle pace", "Everyone") is a one-line
+change to `CREW` and `CREWNOTE` if that is ever wanted.
+
 ## Smoke before ship
 
 `node smoke-test.mjs` — Chromium **and** WebKit, 390×780 and desktop, zero
@@ -144,6 +161,10 @@ randomised: asking for big names must *raise* the mean draw of the routed acts
 and hidden gems must *lower* it, the preset must drive the slider, Reset must
 clear it, the browser sort must be descending, every badge must carry its
 evidence, and a share link cut before the slider existed must still open.
+
+For the crew presets it asserts the one that does the most work: Pat's must
+ease the pace *and* the band cap and seek her genres, Reset must put all three
+back, and "Full profile" on a scheduled stop must land on that band's card.
 
 If an engine is missing locally the suite says so loudly and keeps going; under
 `CI=1` a missing engine fails the run.
