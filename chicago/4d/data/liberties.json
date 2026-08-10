@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 28,
+  "count": 29,
   "liberties": [
     {
       "id": "L1",
@@ -965,6 +965,49 @@
         {
           "label": "Covers",
           "text": "`miller_house.log_frame_1827.form.frame_addition_width_m`, `miller_house.log_frame_1827.form.frame_addition_depth_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L29",
+      "title": "The North Branch bridge stands on fifteen piers nobody recorded",
+      "section": "per_subject",
+      "subjects": [
+        "north_branch_bridge"
+      ],
+      "covers": [
+        {
+          "structure": "north_branch_bridge",
+          "phase": "log_1832",
+          "aspect": "form.pier_spacing_m"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts **fifteen log cribs standing in the river** between the two abutments. The spacing is tagged `conjectural` on the record."
+        },
+        {
+          "label": "Why",
+          "text": "what survives about this bridge is its width, its material and its ends. Cleaver: \"The abutments were built of heavy logs in the shallow water near the banks. These bridges were ten feet wide.\" Andreas: \"formed of stringers.\" Nothing anybody wrote describes the middle of it. Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention — their number, their spacing and their form are. 4.5 m is the archetype's own default, kept deliberately rather than replaced with a fresh guess, because a new number would look like a finding and would not be one."
+        },
+        {
+          "label": "Consequence",
+          "text": "this is the most conspicuous invention in the structure and it is invisible in the confidence view, because the tint on the piers grades what a crib IS rather than how many of them there were. A visitor walking the bank sees a regular colonnade marching across the water and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown margin."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a period depiction or a survey of the crossing. Two are worth trying: the 1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here sits."
+        },
+        {
+          "label": "Covers",
+          "text": "`north_branch_bridge.log_1832.form.pier_spacing_m`."
         },
         {
           "label": "Recorded",

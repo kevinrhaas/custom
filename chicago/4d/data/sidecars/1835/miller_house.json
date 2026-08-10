@@ -18,7 +18,8 @@
     "position_confidence": "inferred",
     "symbolic_location": "North bank at the forks, on the point of land between the North Branch and the main stem, directly opposite Wolf Point.",
     "uncertainty_m": 20,
-    "placement_provisional": false
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
   },
   "footprint": {
     "polygon": [

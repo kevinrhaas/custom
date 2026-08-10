@@ -1,0 +1,150 @@
+{
+  "id": "north_branch_bridge",
+  "phase": "log_1832",
+  "name": "North Branch Bridge",
+  "aka": [
+    "the first bridge over the North Branch",
+    "Kinzie Street bridge #1",
+    "Miller's bridge"
+  ],
+  "archetype": "bridge_timber",
+  "asset": "gltf/north_branch_bridge__log_1832.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -117.5,
+    "local_n": 260.5,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Across the North Branch on the Kinzie Street alignment, its west landing near the south-east corner of Kinzie and Canal Streets.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "water"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        71.83,
+        0.0
+      ],
+      [
+        71.83,
+        3.048
+      ],
+      [
+        0.0,
+        3.048
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_kinzie_bridge",
+        "chicagology_prefire252"
+      ],
+      "note": "Andreas: 'It was formed of stringers.' Cleaver: 'The abutments were built of heavy logs.' Two independent accounts, both describing round or hewn timber rather than framed carpentry, which is what this archetype's 'log' value means."
+    },
+    "width_m": {
+      "value": 3.048,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire252"
+      ],
+      "note": "TEN FEET, from Charles Cleaver, of both branch bridges. This is the only dimension of any structure in this dataset that a source actually states, and it is worth saying why it is trusted at tier 2: Cleaver was recalling a bridge he had used and had driven a team across, and a width is the kind of number a user of a narrow bridge remembers. Recorded as 3.048 m exactly, being the conversion and not a rounding."
+    },
+    "clearance_m": {
+      "value": 1.83,
+      "confidence": "inferred",
+      "note": "SIX FEET ABOVE THE WATER — AND THIS RECORD DOWNGRADES THE FIGURE, which is the correction it carries. The project's crossings dossier, docs/research/03-structures-north.md section 5, gives both branch bridges as 'about 10 ft wide, clearing the water by about 6 ft' and tags the pair as documented. The width is documented and now has its source; the clearance does not. Searching the transcriptions that carry the rest of this bridge's evidence returns the width, the log abutments, the stringers and the 1832 date, and nothing anywhere about a height above the water. The number is kept because it is the dossier's and because it is plausible for a stringer bridge crossing shallow water with cribbed abutments, but it is recorded as INFERRED until the page behind it is found. See docs/RESEARCH/north_branch_bridge.md. The archetype's DOC_CLEARANCE_M constant carried the same overstatement and its docstring is corrected in the same slice."
+    },
+    "abutments": {
+      "value": true,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire252"
+      ],
+      "note": "'The abutments were built of heavy logs in the shallow water near the banks.' The one structural statement anybody made about these bridges, and it is specific: the ends were carried on log cribs standing OUT IN THE WATER rather than on dry-land bearings."
+    },
+    "pier_kind": {
+      "value": "crib",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire252",
+        "chicagology_kinzie_bridge"
+      ],
+      "note": "A DISAGREEMENT PICKED WITH REASONING RATHER THAN SILENTLY. Cleaver describes heavy logs standing in shallow water, which is a crib — a log box, sunk and filled. The Kinzie Street page's chronology table instead types the bridge 'Wood, Fixed, Bent', and a bent is framed and usually pile-borne. Crib is adopted because Cleaver is an eyewitness describing what he saw and the table is a modern editorial classification applied uniformly down a column covering six bridges and a century. THE INFERENCE IS THE STEP FROM ABUTMENTS TO PIERS, not the choice between the two words: Cleaver describes the ends, nobody describes the middle, and this record assumes the intermediate supports were built the way the ends were."
+    },
+    "pier_spacing_m": {
+      "value": 4.5,
+      "confidence": "conjectural",
+      "note": "NOT ATTESTED IN ANY FORM. Nothing reached says how many supports this bridge had, how far apart they stood, or whether it had any at all between its abutments. It must have had some — 71.83 m is far beyond any log stringer — but the number is the archetype's default, retained deliberately rather than replaced by a fresh guess, and it sets the bay count at 16 and therefore puts 15 cribs in the river. That is the most conspicuous invention in this structure: a visitor sees a row of supports marching across the water and nothing in the record says there was a row. Stated on the record instead of left to default silently, which is the lesson docs/LIBERTIES.md L24 was written for, and admitted in L29."
+    },
+    "stringer_count": {
+      "value": 4,
+      "confidence": "inferred",
+      "note": "THE 1835 READING OF A BRIDGE THAT CHANGED. Andreas describes the 1832 structure as 'formed of stringers and only fitted for foot passengers' and 'useless for teams' even in the summer of 1833; six and a half weeks after this scene's date a procession of hundreds crossed it, and Cleaver remembered driving over it. Something was rebuilt or widened between 1833 and 1835 and no source reached says what. Four stringers under a full-width deck is the later, load-carrying reading, chosen because the scene date is 1835-07-01 and the evidence for 1835 is a crowd on the deck. The alternative — the 1832 walkway, two stringers and a plank — is a defensible model of a different year and would be the right value in an 1833 scene."
+    },
+    "railing": {
+      "value": false,
+      "confidence": "inferred",
+      "note": "NO RAILING, AND THE ABSENCE IS A CLAIM, so it is stated rather than defaulted. No source reached mentions a railing on either branch bridge; the descriptions that exist run the other way, toward a causeway of logs rather than a piece of engineering. A railed deck reads to a visitor as considered infrastructure and an unrailed one reads as a plank over water, so adding one to look finished would change what the scene says about how developed the town was. The counter-argument is on the record in generators/archetypes/bridge_timber.py: a procession of hundreds crossing an unrailed deck nearly two metres above water is an alarming picture, and that is an argument about the 1835 rebuild rather than evidence about a railing."
+    },
+    "function": {
+      "value": "river_crossing",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_kinzie_bridge",
+        "chicagology_lastwardance"
+      ],
+      "note": "A public crossing, and the town's first bridge of any kind — it replaced the Miller-Clybourn ferry that had run across the same water between Miller's house and the Wolf Point Tavern since 1829. By the scene date it is the link between the West Division's Canal Street frontage and the north bank."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicagology_kinzie_bridge",
+      "citation": "\"Kinzie Street Bridges.\" Chicagology. Transcribing A. T. Andreas, History of Chicago, Volume I (1886), and carrying a tabulated chronology of the six Kinzie Street bridges.",
+      "url": "https://chicagology.com/harbor/riverbridges/kinziestreetbridge/",
+      "archived_url": "https://web.archive.org/web/20260308041238/https://chicagology.com/harbor/riverbridges/kinziestreetbridge/",
+      "tier": 3
+    },
+    {
+      "source_id": "chicagology_lastwardance",
+      "citation": "\"The Last War Dance.\" Chicagology, transcribing later published recollections of 18 August 1835 in Chicago.",
+      "url": "https://chicagology.com/fortdearborn/lastwardance/",
+      "archived_url": "https://web.archive.org/web/20260517215531/https://chicagology.com/fortdearborn/lastwardance/",
+      "tier": 4
+    },
+    {
+      "source_id": "chicagology_prefire252",
+      "citation": "\"Chicago Ale & Malt Company.\" Chicagology, transcribing the Chicago Tribune, 29 October 1893 — a retrospective of Charles Cleaver (1814-1893), who reached Chicago 23 October 1833.",
+      "url": "https://chicagology.com/prefire/prefire252/",
+      "archived_url": "https://web.archive.org/web/20260511030941/https://chicagology.com/prefire/prefire252/",
+      "tier": 2
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    },
+    {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "THE FIRST BRIDGE IN CHICAGO, and the first structure in this dataset that is not a building. It is also the first record here whose dimensions come from evidence rather than from a placeholder: ten feet wide is Charles Cleaver's, and the 71.83 m span is measured off the traced 1834 waterline at the Kinzie Street alignment rather than guessed. THREE DISAGREEMENTS ARE RECORDED RATHER THAN RESOLVED AWAY. The build date: Andreas says summer 1832 and Cleaver says winter 1831-32, and Cleaver was not in Chicago until October 1833, so Andreas is adopted. The capacity: Andreas has it 'only fitted for foot passengers' and 'useless for teams' as late as the summer of 1833, while Cleaver 'remembered driving across the first bridge over the North Branch' and a procession of hundreds crossed it on 18 August 1835 — so it was rebuilt or widened in between and nothing says when or how; the form attributes take the 1835 reading. The pier type: an eyewitness describing heavy logs in shallow water against a modern table's type-word 'Bent'. WHAT THIS RECORD CORRECTS IN THE PROJECT'S OWN RESEARCH: the crossings dossier tags both the width and the six-foot clearance as documented, and only the width could be traced to a source. The clearance is recorded as inferred here and the archetype's docstring is corrected to match. See docs/RESEARCH/north_branch_bridge.md.",
+  "research_doc": "docs/RESEARCH/north_branch_bridge.md",
+  "review_required": false
+}

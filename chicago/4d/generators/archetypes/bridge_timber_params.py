@@ -16,6 +16,17 @@ Two of the three 1835 crossings were log structures of the same crude specificat
   procession — some 800 people — "crossed the North Branch bridge", so by then it was
   more than a footway. A rebuild or widening between 1833 and 1835 is likely and
   **unattested**; the dossier lists it as an open gap.
+
+  **Correction, 2026-08-10, made while writing the first record against this module.**
+  Of those two numbers only the WIDTH survives the check. Ten feet is Charles Cleaver's,
+  recalled in the *Chicago Tribune* of 29 Oct 1893 — "The abutments were built of heavy
+  logs in the shallow water near the banks. These bridges were ten feet wide" — and it
+  has a source record now (`chicagology_prefire252`). The six-foot clearance has none:
+  the dossier tags it `[DOC]` and nothing reached states it. `DOC_CLEARANCE_M` below
+  keeps the figure, because it is plausible and it is the dossier's, but the constant's
+  name overstates it and `data/structures/north_branch_bridge.json` records the value as
+  `inferred`. Cleaver's sentence also earns the abutments their own `documented` tag,
+  which is more than the dossier's summary carried.
 - **South Branch raft bridge**, winter 1832-33, near Lake Street: a floating log raft,
   same ~10 ft / ~6 ft figures. Floating is a genuinely different structure, and this
   archetype does NOT model it — a raft has no piers and no clearance in the sense used
@@ -47,8 +58,17 @@ CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
 PIER_KINDS = ("crib", "pile")
 
 # The documented specification, in metres, for both log bridges at the forks.
-DOC_WIDTH_M = 3.05        # "about 10 ft wide"
-DOC_CLEARANCE_M = 1.83    # "clearing the water by about 6 ft"
+DOC_WIDTH_M = 3.05        # "These bridges were ten feet wide" — Cleaver, documented
+DOC_CLEARANCE_M = 1.83    # "clearing the water by about 6 ft" — dossier only, INFERRED
+
+# Where a structure of this archetype is anchored vertically, read by
+# tools/compile_scene.py and written into the sidecar for the renderer.
+# docs/GLB-CONTRACT.md pins the rule: a building sits at the base of its walls on the
+# terrain, and a structure over water sits on the design water surface, because a
+# bridge's one measured dimension is a clearance above the water and its piers run to a
+# bed this project does not model. `bridge_timber` is the first archetype to declare it;
+# anything that does not declare one is placed against the terrain as before.
+VERTICAL_ANCHOR = "water"
 
 # The form attributes whose VALUE this archetype reads. See frame_tavern_params
 # for the argument. No bridge record is committed yet, so this set is a promise

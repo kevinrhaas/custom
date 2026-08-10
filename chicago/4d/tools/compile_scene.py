@@ -28,6 +28,29 @@ def load(p: Path):
     return json.loads(p.read_text())
 
 
+def vertical_anchor(archetype: str) -> str:
+    """What this archetype's `y = 0` sits on — `terrain` or `water`.
+
+    docs/GLB-CONTRACT.md pins the convention and says it is "declared per archetype";
+    this reads that declaration off the parameter module rather than keeping a second
+    list here, for the same reason `terrain_inputs_sha` has one definition: two copies
+    agree until the day one of them matters. An archetype that declares nothing is
+    placed against the terrain, which is what every building wants.
+
+    Import failures are deliberately NOT fatal. A missing parameter module is already
+    an error the staleness gate raises with a better message, and a sidecar compile is
+    not the place to discover it.
+    """
+    gen = str(ROOT / "generators")
+    if gen not in sys.path:
+        sys.path.insert(0, gen)
+    try:
+        mod = __import__(f"archetypes.{archetype}_params", fromlist=["VERTICAL_ANCHOR"])
+    except Exception:  # noqa: BLE001
+        return "terrain"
+    return getattr(mod, "VERTICAL_ANCHOR", "terrain")
+
+
 def resolve_phase(structure: dict, target: dt.date):
     """Exactly one phase must cover the date — the same rule the validator and
     the generator apply. Duplicated deliberately in three places is worse than
@@ -119,6 +142,10 @@ def compile_scene(scene_id: str, sources: dict) -> int:
                 "symbolic_location": pos.get("symbolic_location", ""),
                 "uncertainty_m": 20,
                 "placement_provisional": provisional,
+                # `terrain` for a building, `water` for a bridge. The renderer must
+                # not sample the heightfield for the second kind: mid-channel the
+                # ground surface is the river bed, and a bridge placed on it sinks.
+                "vertical_anchor": vertical_anchor(st["archetype"]),
             },
             # Carry the footprint's own confidence, not just its geometry — a bare
             # polygon loses precisely the thing the confidence view exists to show.

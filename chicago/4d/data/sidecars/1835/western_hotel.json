@@ -16,7 +16,8 @@
     "position_confidence": "inferred",
     "symbolic_location": "South-east corner of Randolph Street and Canal Street, west side, one block south of the Green Tree; a 40 ft front with a 60 ft wing in an L, stables and a wagon yard behind, with entrances to the yard from both streets.",
     "uncertainty_m": 20,
-    "placement_provisional": false
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
   },
   "footprint": {
     "polygon": [
