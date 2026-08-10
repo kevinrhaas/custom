@@ -212,8 +212,9 @@ for (const [label, viewport, touch] of [
 
     // --- what the chip cannot say: whether you are looking at it -----------
     // A confidence chip grades the evidence. It says nothing about whether the
-    // value reached the mesh, and the two come apart in the worst direction: the
-    // Wolf Point sign is `documented` on a building that has no sign. Asserted
+    // value reached the mesh, and the two come apart in the worst direction — the
+    // Wolf Point sign was `documented` on a building that had no sign until the
+    // rename and re-bake of 2026-08-10 (LIBERTIES L20). Asserted
     // per-attribute rather than by presence, because a card that marked every row
     // — or the wrong rows — would pass a count.
     const geom = await page.evaluate(() => {
@@ -231,8 +232,16 @@ for (const [label, viewport, touch] of [
                greenTree: read('green_tree_tavern') };
     });
     check(`${label}: an attested feature the model omits says so on its row`,
-      geom.western.stables === 'not built' && geom.wolf.signage === 'not built',
-      `stables ${geom.western.stables}, signage ${geom.wolf.signage}`);
+      geom.western.stables === 'not built',
+      `stables ${geom.western.stables}`);
+    // The case this whole marker exists for, now from the other side. The Wolf
+    // Point sign was `documented` on a building with no sign for a day, because
+    // the record spelled it `signage` and the archetype reads `sign`. It is built
+    // now, so its row must carry NO marker — an assertion that fails both if the
+    // rename is reverted and if the marker is ever applied to a built attribute.
+    check(`${label}: the documented wolf sign is built and its row is unmarked`,
+      geom.wolf.sign === null && geom.wolf['frame addition'] === null,
+      `sign ${geom.wolf.sign}, frame addition ${geom.wolf['frame addition']}`);
     check(`${label}: a value a fixed default stands in for is marked differently`,
       geom.western.chimneys === 'not modelled from this',
       `chimneys ${geom.western.chimneys}`);

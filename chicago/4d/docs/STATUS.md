@@ -28,7 +28,7 @@ walkthrough rather than only in the repository.
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 109 checks green at 390×780 and 1280×800, zero page errors |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 24, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
@@ -189,10 +189,9 @@ uncertainty of the 1834 sheets in its note.
     the two best-attested features of the house were dropped in silence and the popup showed the
     project's strongest confidence chip over both. That is the confidence model working as
     designed and still misleading, which makes it the sharpest argument for this rule that the
-    project has produced. The fix is a rename plus a re-bake — record and geometry in one slice
-    — and it is queued in ROADMAP § S5, not half-done here. L20 admits to it meanwhile.
+    project has produced. **Repaired 2026-08-10, in one slice with its bake** (see 17 below).
     Miller's house is the same shape in miniature: its record says two chimneys and
-    `log_dwelling` builds one. What is still unenforced is what no record mentions at all —
+    `log_dwelling` builds one, and that one is still open. What is still unenforced is what no record mentions at all —
     the Western's unmodelled stable yard is now claimed, but a liberty nobody noticed taking
     remains uncatchable by any mechanism.
 13. **The document and the data had drifted, and writing the claim down found it.** L12 still
@@ -237,6 +236,28 @@ uncertainty of the 1834 sheets in its note.
 16. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
+17. **FIXED — the Wolf Point Tavern has its frame half and its wolf sign.** The defect the
+    omission gate found on 2026-08-10 is repaired the same day, record and mesh in one commit:
+    `frame_extension` → `frame_addition`, `signage` → `sign`, the two names `log_dwelling`
+    actually reads. The building that named Wolf Point now has a board hanging outside it.
+    **The rename was the smaller half.** `frame_addition: true` and nothing else would have let
+    the archetype pick the bay's side, width, depth and storey count from its defaults — a
+    two-storey frame block across the river front of a tavern the sources describe as low — so a
+    documented feature would have arrived at an invented size with nothing admitting it, which is
+    the same failure this repair exists to end, one level down. The record therefore states all
+    four: side `end` and width 4 m of the 12 m frontage and depth 7 m all **conjectural**, storey
+    count 1 **inferred** by the same argument the storey count above it uses. L24 admits the three
+    conjectural ones; L20 moves to Resolved carrying both spellings that no longer resolve,
+    because a silently corrected admission is not one.
+    **What the sign is: a blank board.** The bracket, the arm, the board and its proportions are
+    the archetype's invention, and the painted wolf is not drawn — no description of it survives,
+    and a wolf painted from imagination would be the most conspicuous invention in the scene on
+    the one object every visitor will walk up to. L25 says so.
+    **Two limits worth stating.** The confidence tint on the bay follows what the bay IS
+    (documented that it existed, inferred that it was low), not its unknown size — the rule set
+    for the Sauganash, which means the tint alone will not tell a visitor the width is a guess and
+    only the popup's liberty chip will. And the whole repair rests on a footprint that is itself a
+    placeholder: 4 m of an invented 12 m is a fraction of a guess.
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: six buildings stand where
@@ -248,8 +269,10 @@ unit.** An agent without Blender can prepare the record and the research memo, b
 to land together, so the bake workflow's PR is part of the same slice rather than a follow-up.
 **That coupling is now enforced rather than remembered** (2026-08-10): editing a value a
 generator reads makes the committed GLB stale and `check.sh` fails until the re-bake lands with
-it. Verified against the queued Wolf Point rename — renaming `signage` to `sign` fails the gate
-on the spot, which is the whole point of writing the check.
+it. It was then exercised for real by the Wolf Point repair the same day — the rename turned the
+tavern's asset stale on the spot and the branch could not go green until the bake landed on it,
+which is the whole point of writing the check. What remains queued from that list is Miller's
+house's second chimney, and that one needs a parameter in two archetypes before it needs a bake.
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled

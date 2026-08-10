@@ -248,6 +248,13 @@ element's height and flag the overstatement rather than hiding it.
 same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
 taller than they were.
 **Recorded:** 2026-08-09.
+**Revised:** 2026-08-10 — half of this is no longer true. The archetype does build a mixed-height
+mass: a frame addition carries its own storey count and its own height, and the Wolf Point Tavern
+now stands as a 2.6 m log core with a 2.55 m frame bay rather than one extrusion. Miller's house
+is unchanged and still the case this entry describes — its record carries the taller element's
+5.2 m and its log cabin is rendered two storeys high — because setting its frame range's height
+without also settling how much of the footprint the range takes would swap one overstatement for
+a different one. The entry stays here rather than moving to Resolved for exactly that reason.
 
 ### L14 — Terrain: a conjectural micro-relief under every claim
 **Decision:** the land surface carries ±0.10 ft (30 mm) of two-octave value noise everywhere,
@@ -342,29 +349,6 @@ anyone opens it. For the Western, any depiction at all — the project holds non
 **Covers:** `green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`.
 **Recorded:** 2026-08-10.
 
-### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
-**Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
-`documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin
-with no frame piece and no sign.
-**Why:** not a judgement — an accident, and it is recorded as one rather than dressed up. The
-`log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two
-things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever
-complained, because `from_phase` fills an absent attribute with a default: no frame addition, no
-sign. The building was baked from those defaults and nothing anywhere said the two best-attested
-features of the house had been dropped.
-**Consequence:** this is the worst case the confidence model has, because the model is working
-exactly as designed and still misleads. `documented` is the strongest claim the project makes.
-A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building
-with no sign on it, and *construction · partly log and partly frame* on a building that is
-entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the
-painted wolf hung outside it. The chips were true about the evidence and false about the view.
-**How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
-That is a data change plus geometry, and the two have to land in one slice, so it is queued in
-`docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
-**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`,
-`wolf_point_tavern.log_frame_1828.form.signage`.
-**Recorded:** 2026-08-10.
-
 ### L21 — Chimneys are counted in the records and fixed in the archetypes
 **Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
 builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
@@ -419,8 +403,84 @@ rather than a glazing type. Both, then a re-bake.
 `western_hotel.form.fenestration`.
 **Recorded:** 2026-08-10.
 
+### L24 — Wolf Point Tavern: the frame bay's side, width and depth are invented
+**Decision:** the frame half of the "partly log and partly frame" tavern is built as a
+one-storey bay 4 m wide and the full 7 m depth of the footprint, at the north end of the log
+core. Its side, its width and its depth are tagged `conjectural`; that it existed at all is
+`documented` and its single storey is `inferred`.
+**Why:** the evidence is one clause — "This building was partly log and partly frame" — and it
+gives no dimension, no position on the building and no date. Something had to be built or the
+documented half of the fabric stays invisible, which is the failure L20 records. So the numbers
+are chosen and declared rather than defaulted: 4 m of a 12 m frontage keeps the building reading
+as a log house with a frame piece rather than the reverse, which is the distinction that decides
+which archetype the record belongs to at all; the full depth avoids a notch at the back corner
+that would read as a modelled fact about the plan; and `end` is the cheapest way to enlarge a log
+pen, since the ridge simply runs on and no log wall is cut.
+**Consequence:** a visitor sees one specific frame bay in one specific place. The confidence view
+dithers it by what it IS — documented that it existed, inferred that it was low — and not by its
+unknown size, following the rule set for the Sauganash: dimensional uncertainty belongs in the
+sidecar, where the popup shows it, rather than ghosting a building whose character is attested.
+So the tint alone will not tell a visitor that the width is a guess. This entry does.
+**How to resolve:** Andreas vol. 1 pp. 626-631 at page-image level, or the Braunhold retrospective
+view of Wolf Point at plate level — the same two unopened sources that would settle the footprint.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_addition_side`,
+`wolf_point_tavern.log_frame_1828.form.frame_addition_width_m`,
+`wolf_point_tavern.log_frame_1828.form.frame_addition_depth_m`.
+**Recorded:** 2026-08-10.
+
+### L25 — Wolf Point Tavern: the wolf on the sign is not drawn
+**Decision:** the tavern's sign is modelled as a plain weathered board hanging from a bracket.
+The painted wolf that gave the point its name is not depicted, and the board carries no image at
+all. The record's `sign` value names the subject — `painted_wolf_sign` — so the popup can say
+what hung there while the mesh says only that something hung there.
+**Why:** the sign is documented and the image is not. No description of the painting survives —
+not its size, not the board's shape, not how the wolf was drawn, not whether it was a whole
+animal or a head — and a wolf painted from imagination would be the most conspicuous invention in
+the scene, on the one object every visitor will walk up to. The bracket, the arm length and the
+board's proportions are invented too; they are archetype geometry rather than record values, in
+the same way L22 covers wall surfaces.
+**Consequence:** the most famous object at Wolf Point is present and blank. That is the honest
+reading — a board hung there, and we do not know what was on it — but it is a deliberate absence
+a visitor might otherwise take for an unfinished model.
+**How to resolve:** any period description or depiction of the board. None is held.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved
 
-*(none yet — entries move here with the evidence that settled them, and stay in place above)*
+Entries here were true when they were written and are kept verbatim, with a **Resolved:**
+line saying what settled them. The gate exempts this section from the check that a claimed
+value is still an invention, which is what lets an append-only document survive its own data
+being corrected.
+
+### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
+**Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
+`documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin
+with no frame piece and no sign.
+**Why:** not a judgement — an accident, and it is recorded as one rather than dressed up. The
+`log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two
+things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever
+complained, because `from_phase` fills an absent attribute with a default: no frame addition, no
+sign. The building was baked from those defaults and nothing anywhere said the two best-attested
+features of the house had been dropped.
+**Consequence:** this is the worst case the confidence model has, because the model is working
+exactly as designed and still misleads. `documented` is the strongest claim the project makes.
+A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building
+with no sign on it, and *construction · partly log and partly frame* on a building that is
+entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the
+painted wolf hung outside it. The chips were true about the evidence and false about the view.
+**How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
+That is a data change plus geometry, and the two have to land in one slice, so it is queued in
+`docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`,
+`wolf_point_tavern.log_frame_1828.form.signage`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-10 — the two attributes are spelled `frame_addition` and `sign`, the
+names the archetype reads, and the tavern was re-baked in the same slice: a frame bay stands
+at the north end of the log core and a board hangs from a bracket on the river front. The
+record now carries the frame part's side, width, depth and storey count explicitly rather
+than inheriting the archetype's defaults, and every invented one of those is admitted in
+L24; what the board shows is admitted in L25. This entry stays exactly as written, including
+the two spellings that no longer resolve, because a silently corrected admission is not one.
+

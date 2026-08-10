@@ -53,11 +53,19 @@ Not really a conflict, but a description that flattening would lose. chicagology
 > "This building was partly log and partly frame, and was situated on the ground north of Lake
 > Street Bridge."
 
-The record carries `construction: log` (documented) plus a separate `frame_extension: true`
+The record carries `construction: log` (documented) plus a separate `frame_addition: true`
 (documented) so the mixed fabric survives into the data. **The frame element's size, position on
-the building and date are all unattested**, so the footprint does not distinguish it and the
-`log_dwelling` archetype will need a parameter for it — a geometry requirement discovered from
-the evidence, in the same way the Sauganash's attached log wing was.
+the building and date are all unattested** — a geometry requirement discovered from the evidence,
+in the same way the Sauganash's attached log wing was.
+
+*Updated 2026-08-10.* The attribute was written here and in the record as `frame_extension`,
+which is not the name the `log_dwelling` archetype reads, so the documented frame half reached no
+vertex and nothing said so; the same happened to the sign, recorded as `signage` against the
+archetype's `sign`. Both are renamed and built as of 2026-08-10 — see `docs/LIBERTIES.md` L20 for
+the account and L24 for the invented dimensions the build required. The frame bay is 4 m of the
+12 m frontage, one storey, at the north end; those three numbers are conjectural and the record
+says so on each. What would settle them is what would settle the footprint: Andreas vol. 1
+pp. 626-631 at page-image level, or the Braunhold retrospective view at plate level.
 
 ## 4. Conflict: was it still an inn in July 1835?
 
