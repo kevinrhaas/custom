@@ -1,0 +1,26 @@
+{
+  "id": "wikipedia_chicago_river",
+  "type": "website",
+  "citation": "\"Chicago River.\" Wikipedia. Quoting Lt. James Strode Swearingen's 1803 description of the river at Fort Dearborn and the 1833-37 harbour works.",
+  "date": "accessed 2026-08-09",
+  "describes_date": "1803-1900",
+  "url": "https://en.wikipedia.org/wiki/Chicago_River",
+  "archived_url": "https://web.archive.org/web/20260101000000*/https://en.wikipedia.org/wiki/Chicago_River",
+  "tier": 4,
+  "rights_status": "no_known_restrictions",
+  "asset_use": "cross_check",
+  "verified": false,
+  "note": "A finding aid, not evidence. What matters here is the figure it carries from Swearingen 1803: the river at Fort Dearborn about 30 yards (90 ft) wide and upwards of 18 ft deep, with banks 8 ft high on the south side and 6 ft on the north. Also: the pre-reversal flow was sluggish and outward into the lake with a near-zero surface gradient, which is what licenses a flat water surface at the datum through the whole downtown reach. Both figures are measured at the FORT, roughly 1.2 miles downstream of the forks — do not carry them to the forks without saying so. Chase Swearingen to a primary printing before promoting anything derived from it to documented.",
+  "access_notes": "Encyclopedia-of-Chicago cross-references in the same dossier could not be retrieved: encyclopedia.chicagohistory.org returned HTTP 503 throughout the research session.",
+  "what_it_supplies": [
+    "channel width and depth at Fort Dearborn in 1803",
+    "bank heights at Fort Dearborn in 1803",
+    "direction and sluggishness of pre-reversal flow",
+    "the 1833-1837 harbour works chronology"
+  ],
+  "what_it_does_not_supply": [
+    "channel width or depth at the forks",
+    "bank heights at the forks",
+    "any 1835 measurement"
+  ]
+}

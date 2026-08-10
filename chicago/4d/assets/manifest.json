@@ -8,6 +8,32 @@
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
+    },
+    "terrain__e1834_harbor_cut.glb": {
+      "baked_ao": false,
+      "bytes": 890696,
+      "generator": "generators/terrain_gen.py",
+      "inputs_sha256": "98b49fc5696c25c33bbbdfe67137ae141867c5086e9e4858812d1916e941fde5",
+      "kind": "generated",
+      "layer": "ground",
+      "mesh_vs_heightfield": {
+        "max_m": 0.0178,
+        "misses": 0,
+        "rms_m": 0.00334,
+        "samples": 7396
+      },
+      "terrain_epoch": "e1834_harbor_cut",
+      "triangles": 44347
+    },
+    "water__e1834_harbor_cut.glb": {
+      "baked_ao": false,
+      "bytes": 1352,
+      "generator": "generators/terrain_gen.py",
+      "inputs_sha256": "98b49fc5696c25c33bbbdfe67137ae141867c5086e9e4858812d1916e941fde5",
+      "kind": "generated",
+      "layer": "water",
+      "terrain_epoch": "e1834_harbor_cut",
+      "triangles": 2
     }
   },
   "blender": "4.5.3"

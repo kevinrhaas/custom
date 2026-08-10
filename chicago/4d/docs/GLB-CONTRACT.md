@@ -46,6 +46,25 @@ node.extras  = { "structure_id": "...", "phase_id": "..." }
 diffable in git. The renderer resolves picks through `extras.structure_id`, never by parsing the
 name.
 
+**Terrain layers are not structures** (added 2026-08-10 by the terrain parcel; additive, nothing
+above changes). Terrain has no `structure_id` and no phases — it belongs to a *terrain epoch* —
+so it uses a parallel naming rule, one node per layer per epoch:
+
+```
+node.name    = "<layer>__<epoch_id>"            e.g. "terrain__e1834_harbor_cut"
+node.extras  = { "terrain_epoch": "...", "layer": "ground" | "water" }
+```
+
+One GLB per layer, one material per GLB, `_CONFIDENCE` per vertex exactly as above. The renderer
+finds them through the epoch's `heightfield.json`, which carries a `glb` block of paths relative
+to the asset base — terrain is not in the sidecar index, because the sidecar index is keyed by
+`structure_id` and terrain has none.
+
+The **ground mesh and `heightfield.bin` are generated from the same grid**, so the surface a
+visitor sees and the surface the walker stands on are the same surface. That is a property worth
+protecting rather than assuming: `generators/terrain_gen.py` ray-casts the decimated mesh
+against the field after decimation and refuses to export if they drift past 30 mm.
+
 **Multi-material split — verified 2026-08-09, matters for picking.** A structure with several
 materials exports as ONE node with several child meshes (`…__frame_1831_1`, `…_2`, …). glTF
 primitives cannot span materials, so this is unavoidable. Consequences:
