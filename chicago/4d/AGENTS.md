@@ -89,9 +89,11 @@ is the authority and this section is the local restatement.
 - **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
   `site/chicago/4d/` is a generated mirror and the repo's `deploy.yml` only fires on
   `site/**`, so skipping it ships nothing while looking merged.
-- **Changelog**: prepend one entry to `site/chicago/4d/js/changelog.js` with `ts: ''`, then
+- **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with `ts: ''`, then
   `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`. Nothing stamps
-  after merge, and Manager plus the polecat.live launcher parse that file live.
+  after merge. It is authored inside the app because the What's-new tab imports it;
+  `publish.sh` mirrors it to `site/chicago/4d/js/changelog.js`, which is the URL Manager
+  and the polecat.live launcher parse live and must not move.
 - **No Blender on the improve runner, and do not install one.** Geometry comes from the
   nightly `chicago-4d-bake.yml`, which opens its own PR. A unit that needs new geometry
   ships the data/archetype half and says so.
