@@ -528,6 +528,25 @@ reverse direction is a note, not an error, and it has one finding in it: `resear
 compiled into every sidecar and shown nowhere. That is an unshipped claim rather than dead
 weight, and it belongs to whoever next works on the card.
 
+**Done 2026-08-10 — and that claim is shipped: the record's own account is on the card.** The
+last entry ends by handing `research_note` to whoever next worked here, and this is that slice.
+It is a different fault from the two above it and the difference is the point: nothing was
+broken. The card asked for nothing it was not given, the compiler wrote what it should, every
+gate was right — **the field simply had no surface**, which is how a claim goes unshipped when
+there is no fault for a check to find. Every structure record carries one, written for a reader:
+what it actually asserts, which sources disagree, which was believed and why, and where the
+record is weakest.
+
+Shown **verbatim**, and the smoke pins that with an exact string comparison against the sidecar
+rather than a substring match — a note whose subject is the limit of the evidence is the last
+text on this card that a program should trim or summarise, and a first sentence with an ellipsis
+would pass any looser check. The discriminating case is asserted as everywhere else on this
+card: a second building gets its own account, so one fixed block of prose fails. Collapsed by
+default for the liberties' reason — several hundred words open would push the citations off a
+62vh panel on a phone. The unread-field note is down to `archetype`, `scene` and `target_date`,
+which are machinery a visitor has no reason to see, so the list is empty of unshipped claims.
+Untested and stated: the empty state, since all eight records carry a note.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

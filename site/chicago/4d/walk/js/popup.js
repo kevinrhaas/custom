@@ -41,6 +41,15 @@
  * `documented` chip over an unbuilt feature is true about the evidence and false
  * about the view, and the view is what a visitor is standing in.
  *
+ * The record's own account is the newest section and the last of the compiled
+ * fields that reached no visitor. Every structure record carries a
+ * `research_note` written for a reader — what it actually asserts, which sources
+ * disagree, what was decided and why, where the record is weakest — and it was
+ * compiled into every sidecar and shown nowhere. That is not the same fault as
+ * the two before it: nothing was broken, the field simply had no surface. It is
+ * shown verbatim, because a note about how far the evidence goes is the last
+ * thing on this card that should be summarised by a program.
+ *
  * Nothing here invents a display value. An attribute with no note shows no note.
  * A citation with no archived copy says so, because the archived copy is part of
  * whether a claim can be re-read at all. And a building with no recorded
@@ -204,6 +213,40 @@ function libertySection(liberties, structureId) {
 }
 
 /**
+ * What the record says about itself, in the record's own words.
+ *
+ * `research_note` is on every structure record and in every compiled sidecar,
+ * and until now no surface in the walkthrough showed it — the sidecar-contract
+ * gate reported it as compiled-and-never-read on 2026-08-10 and called it an
+ * unshipped claim rather than dead weight. It is the paragraph that says which
+ * of two sources was believed and why, that this building held the post office
+ * and is not the post office on the day you are standing in, that the likeliest
+ * reconciliation of the evidence is that this record models the wrong building.
+ * None of that is expressible as a value with a chip over it, which is why it
+ * was written as prose and why it belongs here rather than in a table.
+ *
+ * Verbatim, and folded away. Verbatim because a note whose subject is the limit
+ * of the evidence is the last text on this card that should be trimmed,
+ * re-punctuated or summarised — the record's emphasis is the author's, including
+ * the shouted phrases, and a renderer that tidied it would be editing a source.
+ * Folded because these run to several hundred words and an open one would push
+ * the citations off the card on a phone, where the panel is 62vh.
+ *
+ * @param {object} s  the sidecar
+ */
+function researchSection(s) {
+  const note = s.research_note;
+  if (!note) return '';        // no note: no section, and no sentence about why
+  return `<section class="pop-sec pop-research">
+    <h3>The record's own account</h3>
+    <details class="research">
+      <summary>in the record's own words</summary>
+      <p class="research-body">${escapeHtml(note)}</p>
+    </details>
+  </section>`;
+}
+
+/**
  * @param {HTMLElement} root  the <aside> to render into
  * @param {object} opts
  * @param {string} opts.docBase  where docs/ lives relative to the page
@@ -316,6 +359,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         </section>
 
         ${libertySection(liberties, record.id)}
+
+        ${researchSection(s)}
 
         <section class="pop-sec">
           <h3>Citations</h3>
