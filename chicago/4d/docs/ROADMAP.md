@@ -229,13 +229,36 @@ Three things worth carrying into the rest of S5:
   needs no renderer work. **What is still missing is walking on it**: the walker follows the
   terrain, so the deck is scenery. That is its own unit and it is recorded in STATUS, not faked.
 
+**The first building whose footprint is evidence landed 2026-08-10**, and it is an ADDITION
+rather than a repair — the first since the queue emptied. `hogan_store`, the log store at the
+west end of the Lake Street block where the United States opened a post office at Chicago on
+31 March 1831, carries a `documented` footprint: Andreas states its size twice, twenty by
+forty-five feet, both times as an aside about how little room the town's mail needed. Three
+things worth carrying into the rest of S5:
+
+- **A building can be measured after all, when the source is describing something else.** The
+  bridge's numbers came from a witness describing the bridge. This one's came from a writer
+  making a point about the *post office's* cramped quarters. Dimensions in this literature hide
+  inside arguments about something other than the building, so search the prose around an
+  institution rather than the entry for a structure.
+- **Reading a page corrected the dossier's chronology by twenty months.** `docs/research/`
+  § 4 dated the post office's move to Franklin and South Water from the day Hogan became
+  postmaster (2 Nov 1832); Andreas says twice it moved about July 1834. The dossier's summary
+  tables are finding aids, and a table row is not the page. See `docs/RESEARCH/hogan_store.md`
+  § 3.
+- **The first record with nothing conjectural in it.** Its gaps are gaps in the sources'
+  precision rather than filled holes, so it needs no liberty — which finally exercises the
+  provenance popup's empty "What we made up here" state that STATUS § 11 recorded as unexercised
+  by real data. Its weak point is instead its **survival**: attested to about July 1834 and
+  placed in a scene eleven months later on a continuity argument, stated as such on the record.
+
 Per-cluster parcels, each one file per structure so parallel agents never collide:
 
 | parcel | contents |
 |---|---|
 | Wolf Point west bank | Wolf Tavern (painted wolf sign), Green Tree, Western Hotel, James Kinzie house, R. A. Kinzie store |
 | North bank | Miller House, Miller tannery, Cobweb Castle, Walker's meeting house, Steamboat Hotel, Lake House (under construction) |
-| South Water blocks A–G | the block-by-block sketch in `docs/research/04-structures-south.md` is the work order |
+| South Water blocks A–G | the block-by-block sketch in `docs/research/04-structures-south.md` is the work order. ~~Hogan's store / the first post office, Lake at South Water~~ **DONE 2026-08-10**. Next on this block: Philo Carpenter's log drug store, "immediately adjacent to the Sauganash's public bar", which has no dimensions at all; and the **Franklin Street post office**, the building actually holding the mail on the scene date, of which nothing but a street junction is attested — see `docs/RESEARCH/hogan_store.md` § 4 before building it |
 | Lake Street | Tremont House I, Mansion House, Exchange Coffee House, St. Mary's, First Presbyterian, Thomas Church store |
 | Civic square | estray pen, log jail, courthouse (under construction, month unfixed) |
 | Fort Dearborn | palisade, blockhouse, bastion, magazine, quarters, barracks, sutler, hospital, parade, gardens |
