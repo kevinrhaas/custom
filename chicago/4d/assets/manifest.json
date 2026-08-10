@@ -4,7 +4,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19928,
-      "inputs_sha256": "56249eb9bce17766ecd9f70fd9f85531037c62b32321a62bf4b3256d52a1be5d",
+      "inputs_sha256": "6acbebb8f694e6de1b58678c356b817e03c4f4026c5da93ce3cfe46faec0242b",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
@@ -13,7 +13,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 70116,
-      "inputs_sha256": "670af849d6de4dee51185c9976ab77c7c9b8d39bc8b0771b5ad9d5c5719304ba",
+      "inputs_sha256": "339b21939f7839336916bd1ca0cad907d366561291eda7b254d4d76e3ea32ce7",
       "kind": "generated",
       "phase_id": "log_frame_1827",
       "structure_id": "miller_house"
@@ -22,7 +22,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 44352,
-      "inputs_sha256": "9cc29c63dcfc98f2b921cd0739b37d931646f3dc06d157ba61ae9c20d2db989b",
+      "inputs_sha256": "33a0330d47e9692bc44f917203485571c3ddfbbd4fb647859607600e6a784e7c",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
@@ -31,7 +31,7 @@
       "baked_ao": false,
       "bytes": 890696,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "98b49fc5696c25c33bbbdfe67137ae141867c5086e9e4858812d1916e941fde5",
+      "inputs_sha256": "151c51db4d4c6e7d02858ac66d2370e4e517f26419baaad8d13dd719b110de92",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
@@ -47,7 +47,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31308,
-      "inputs_sha256": "fad4b2631ab4296e0f508f11edf522036585da233449eda2f2d07d7478d8454c",
+      "inputs_sha256": "96805cb9da5d3a155e49e07dd171e8c8f641d92140f6ec86a9608c5aad9e3b56",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "walker_meeting_house"
@@ -56,7 +56,7 @@
       "baked_ao": false,
       "bytes": 1352,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "98b49fc5696c25c33bbbdfe67137ae141867c5086e9e4858812d1916e941fde5",
+      "inputs_sha256": "151c51db4d4c6e7d02858ac66d2370e4e517f26419baaad8d13dd719b110de92",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
@@ -66,7 +66,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 21184,
-      "inputs_sha256": "7b9fe043d79d681bc999ca83cbca91e3124e19ec5dd054fa528de257d8479635",
+      "inputs_sha256": "ada1178d53c048d5c2c17624f48d0497f7d24e2c5c3224f0edd7a251b01a12f3",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "western_hotel"
@@ -75,11 +75,12 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31336,
-      "inputs_sha256": "9fa45d863a7e2970086ad596289f445c7a7f918188c0e6c147f4991af5876014",
+      "inputs_sha256": "999f2bce191f4c404656ab4c9ec76e7267eeb2f1f22eb6fd6cc4b55f02179aaf",
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"
     }
   },
-  "blender": "4.5.3"
+  "blender": "4.5.3",
+  "inputs_scheme": "resolved-params-v2"
 }

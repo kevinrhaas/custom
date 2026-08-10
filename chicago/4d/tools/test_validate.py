@@ -494,6 +494,83 @@ def test_covers_field_parses_to_claims() -> None:
           any("claims nothing" in p for p in problems), problems)
 
 
+def test_mesh_input_hash_tracks_geometry_not_prose() -> None:
+    """The staleness gate is only worth having if "stale" means "different building".
+
+    A hash that fires on a rewritten note teaches the reader to ignore it, and an
+    ignored gate is how a documented frame extension went unbuilt for a week. So
+    the discriminating cases are asserted in both directions: prose moves nothing,
+    and everything the builder can see moves the hash.
+    """
+    import copy  # noqa: PLC0415
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "generators"))
+    import mesh_inputs as M  # noqa: PLC0415
+
+    st = {"id": "t", "archetype": "log_dwelling"}
+    base = {
+        "id": "p",
+        "footprint": {"polygon": [[0, 0], [10, 0], [10, 6], [0, 6]],
+                      "confidence": "conjectural"},
+        "form": {
+            "stories": {"value": 1, "confidence": "inferred", "note": "a note"},
+            "construction": {"value": "log", "confidence": "documented"},
+            "wall_height_m": {"value": 2.6, "confidence": "inferred"},
+            "sign": {"value": "painted_wolf_sign", "confidence": "documented"},
+        },
+    }
+    sha = M.structure_inputs_sha(st, base)
+
+    def altered(fn) -> str:
+        ph = copy.deepcopy(base)
+        fn(ph)
+        return M.structure_inputs_sha(st, ph)
+
+    # --- things that cannot move a vertex ---
+    check("rewriting a note does not make a mesh stale",
+          altered(lambda p: p["form"]["stories"].update(note="rewritten at length")) == sha)
+    check("a geometry declaration does not make a mesh stale",
+          altered(lambda p: p["form"]["sign"].update(geometry="absent")) == sha)
+    check("adding a source citation does not make a mesh stale",
+          altered(lambda p: p["form"]["construction"].update(sources=["s1", "s2"])) == sha)
+    check("the phase's own prose does not make a mesh stale",
+          altered(lambda p: p.update(change_note="what changed and why")) == sha)
+
+    # --- things that do ---
+    check("a value the archetype reads makes the mesh stale",
+          altered(lambda p: p["form"]["wall_height_m"].update(value=3.1)) != sha)
+    check("a confidence change makes the mesh stale, because it is shaded into "
+          "the geometry", altered(lambda p: p["form"]["stories"]
+                                  .update(confidence="conjectural")) != sha)
+    check("a redrawn footprint makes the mesh stale",
+          altered(lambda p: p["footprint"].update(
+              polygon=[[0, 0], [12, 0], [12, 7], [0, 7]])) != sha)
+
+    # The Wolf Point case, which is what the whole rule was written for: the
+    # record spells the sign `signage`, the archetype reads `sign`, so the
+    # rename that fixes it is a different building and has to be re-baked.
+    check("renaming an attribute to the name the archetype reads is a rebuild",
+          altered(lambda p: p["form"].__setitem__(
+              "signage", p["form"].pop("sign"))) != sha)
+
+    # A default that changes silently is the same failure wearing a different hat.
+    check("the derived properties are inside the hash",
+          "addition_height_m" in M.structure_inputs_doc(st, base)["params"]["derived"])
+
+
+def test_manifest_declares_the_scheme_the_generators_compute() -> None:
+    """A re-stamp that forgets the scheme field would disable the gate quietly."""
+    import json  # noqa: PLC0415
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "generators"))
+    import mesh_inputs as M  # noqa: PLC0415
+
+    manifest = json.loads((V.ROOT / "assets" / "manifest.json").read_text())
+    check("the committed manifest was stamped under the current scheme",
+          manifest.get("inputs_scheme") == M.SCHEME,
+          f"{manifest.get('inputs_scheme')!r} vs {M.SCHEME!r}")
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

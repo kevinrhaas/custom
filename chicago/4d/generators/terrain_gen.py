@@ -390,6 +390,26 @@ def inputs_hash(paths) -> str:
     return h.hexdigest()
 
 
+def terrain_inputs_sha(ep_dir: Path) -> str:
+    """Everything that determines this epoch's ground and water meshes.
+
+    One definition, called both by the bake that writes `inputs_sha256` into
+    `assets/manifest.json` and by `tools/validate.py`, which recomputes it to
+    decide whether the committed GLB still matches its inputs. Two copies of this
+    list would agree until the day one of them mattered.
+
+    `shoreline.geojson` is deliberately absent: it is traced evidence that
+    `build_field` does not yet read, so including it would report the ground as
+    stale for a file that cannot change it. It joins the list the moment the
+    heightfield consumes it (ROADMAP § S2e parcel b).
+
+    Nothing here imports bpy — the meshing does, this does not.
+    """
+    return inputs_hash([ep_dir / "terrain_spec.json", ep_dir / "river.geojson",
+                        ep_dir / "hydrology.geojson", ROOT / "data" / "datum.json",
+                        Path(__file__)])
+
+
 # ---------------------------------------------------------------------------
 # meshing (bpy)
 # ---------------------------------------------------------------------------
@@ -605,9 +625,7 @@ def main() -> int:
                      "that earn relief, hold local gradients under 0.5 ft per 300 ft")
     meta["gradient_audit"] = audit
 
-    sha = inputs_hash([ep_dir / "terrain_spec.json", ep_dir / "river.geojson",
-                       ep_dir / "hydrology.geojson", ROOT / "data" / "datum.json",
-                       Path(__file__)])
+    sha = terrain_inputs_sha(ep_dir)
     doc = write_heightfield(ep_dir, h_m, meta, spec, sha)
 
     print(f"grid {doc['cols']}x{doc['rows']} @ {doc['cell_m']} m  "
@@ -641,6 +659,12 @@ def main() -> int:
     manifest = load(manifest_path) if manifest_path.exists() else {}
     manifest.setdefault("assets", {})
     manifest["blender"] = bpy.app.version_string.split()[0]
+    # Terrain and structures share one manifest and therefore one declaration of
+    # what its hashes mean; see generators/mesh_inputs.py.
+    sys.path.insert(0, str(ROOT / "generators"))
+    from mesh_inputs import SCHEME  # noqa: PLC0415
+
+    manifest["inputs_scheme"] = SCHEME
     for b in built:
         p: Path = b["path"]
         manifest["assets"][p.name] = {
