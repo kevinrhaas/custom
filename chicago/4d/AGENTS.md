@@ -89,7 +89,9 @@ is the authority and this section is the local restatement.
 - **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
   `site/chicago/4d/` is a generated mirror and the repo's `deploy.yml` only fires on
   `site/**`, so skipping it ships nothing while looking merged.
-- **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with `ts: ''`, then
+- **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with `ts: '', date: ''` —
+  both keys, because the stamper fills the empty `ts` but only *regenerates* a `date` that is
+  already there, so an entry authored without one fails the contract check — then
   `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`. Nothing stamps
   after merge. It is authored inside the app because the What's-new tab imports it;
   `publish.sh` mirrors it to `site/chicago/4d/js/changelog.js`, which is the URL Manager

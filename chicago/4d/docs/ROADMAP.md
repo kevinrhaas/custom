@@ -98,10 +98,20 @@ completeness pass, mobile release gate.
 **Done 2026-08-10 — the liberties are in the walkthrough.** `docs/LIBERTIES.md` stays the
 append-only source of truth; `tools/compile_liberties.py` derives `data/liberties.json`,
 `check.sh` re-derives it and fails on drift, and the Evidence panel lists all eighteen with
-their reasoning. Remaining in this line of work: the popup does not yet show the liberties that
-constrain the building being inspected, though `subjects` is already in the derived data
-(STATUS weakness 11); and a completeness pass — the panel reports what was *recorded*, which is
-not the same claim as everything taken having been written down.
+their reasoning.
+
+**Done 2026-08-10 — and attached to their buildings.** The provenance popup reads `subjects`
+and shows the liberties taken with the building being inspected, under "What we made up here",
+between the attribute table and the citations. Panel and card share one entry renderer
+(`libertyEntryHtml`) so they cannot drift; the smoke asserts per-building filtering rather than
+a count, which is the assertion a popup dumping all eighteen would still have passed.
+
+Remaining in this line of work: **the completeness pass**. Both views report the liberties that
+were *recorded*, which is not the claim that everything taken was written down — the standard in
+`AGENTS.md` is that a visitor can tell you which parts we made up, and nothing yet audits the
+built scene against the document. A start would be the inverse check: every structure whose
+footprint or position is `conjectural` should have a liberty naming it, and `check.sh` can
+enforce that mechanically.
 
 ## S8 — Milestone 1
 

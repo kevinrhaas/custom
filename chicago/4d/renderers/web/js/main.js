@@ -146,6 +146,11 @@ async function boot() {
     registry: loaded.registry,
     problems,
   });
+  // The same list, filtered to the building being inspected, in the provenance
+  // popup. One fetch feeds both views: the panel says what the scene made up,
+  // the card says what THIS building made up, and neither can drift from the
+  // markdown they are both quoting.
+  popup.setLiberties(api.liberties.liberties);
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.

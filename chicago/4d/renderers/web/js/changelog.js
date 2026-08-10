@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 7, title: 'What we made up about the building you are looking at', kind: 'feature',
+    ts: '2026-08-10T02:41:16.630Z', date: 'Aug 9, 2026, 9:41 PM CT',
+    items: [
+      'Inspect a building and the card now lists the liberties taken with that building — the Green Tree\'s footprint reasoned out of a single room and its side additions left off, three Wolf Point buildings placed from the shape of the bank because no surviving corner fixes them.',
+      'Until now those admissions sat in the Evidence panel as one list of eighteen covering the whole scene, so the visitor most likely to want them — someone standing in front of the building and asking — was the one who had to go looking.',
+      'Both views render from the same derived record, which the commit gate re-derives from the append-only liberties document. A building with nothing recorded says so plainly, rather than implying nothing was invented.',
+    ] },
   { v: 6, title: 'What we made up, in the walkthrough', kind: 'feature',
     ts: '2026-08-10T02:03:59.472Z', date: 'Aug 9, 2026, 9:03 PM CT',
     items: [
