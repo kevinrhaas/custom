@@ -154,10 +154,15 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
 
 
 # Keys that are the claim's machinery rather than part of what it states: the
-# grade itself, the evidence behind it, the reasoning, and the names already
-# shown in the heading. Everything else in a block is a figure the spec authored
-# and a visitor is entitled to read.
-GROUND_META_KEYS = {"confidence", "bed_confidence", "sources", "note", "label", "id"}
+# grade itself, the evidence behind it, the reasoning, the names already shown in
+# the heading, and the `mesh` map, which is a statement ABOUT the figures
+# rather than one of them (it is attached to the rows below instead). Everything
+# else in a block is a figure the spec authored and a visitor is entitled to read.
+#
+# `zone` is in the heading exactly as `id` and `label` are — a surface-material
+# block is titled by it — so it is machinery here for the same reason.
+GROUND_META_KEYS = {"confidence", "bed_confidence", "sources", "note", "label",
+                    "id", "zone", "mesh"}
 
 # The blocks of `terrain_spec.json`, in the order a visitor should meet them:
 # what the water is, what it does under the surface, how the land leaves it, what
@@ -189,7 +194,15 @@ def ground_fields(block: dict) -> list[dict]:
     Nested structure is skipped rather than flattened: a swale's `line` is a
     polyline of eleven numbers that tells a reader nothing, and the alignment it
     describes is exactly the thing that entry admits is invented.
+
+    A field the terrain generator does not read carries its `mesh:` declaration
+    here, on the row, for the reason the provenance card puts the
+    same mark beside a building's attribute: a figure a visitor is shown with a
+    confidence chip over it, and no vertex behind it, reads as something they are
+    looking at. The declaration is authored on the block, in a map keyed by field
+    name, and travels to the row so the panel cannot show one without the other.
     """
+    declared = block.get("mesh") or {}
     out = []
     for key, value in block.items():
         if key in GROUND_META_KEYS or key.endswith("_note"):
@@ -199,7 +212,10 @@ def ground_fields(block: dict) -> list[dict]:
         if isinstance(value, list):
             if len(value) > 4 or any(isinstance(v, (list, dict)) for v in value):
                 continue
-        out.append({"key": key, "value": value})
+        field = {"key": key, "value": value}
+        if isinstance(declared, dict) and declared.get(key):
+            field["mesh"] = declared[key]
+        out.append(field)
     return out
 
 

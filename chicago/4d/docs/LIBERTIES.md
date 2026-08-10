@@ -621,6 +621,37 @@ as fordable or not.
 **Covers:** `terrain.e1834_harbor_cut.watercourses.north_side_slough`.
 **Recorded:** 2026-08-10.
 
+### L35 — Terrain: the ground says what it is made of and nothing is made of it
+**Decision:** the spec grades five surface materials — black loam over quicksand over blue clay
+on the South, North and West Divisions, peat muck with sedge, reeds and rushes on the marsh
+strip, Cahokia Alluvium silt in the channel — and **no surface in the model is made of any of
+them**. The ground mesh carries one earth colour from one edge of the box to the other.
+**Why:** the material entries are the dossier's zone-by-zone surface table, kept in the spec
+because they are what a terrain claim *is*, and `terrain_gen.py` builds elevation and nothing
+else. Colouring or texturing ground by zone is the flora-and-surface parcel (ROADMAP § S6), and
+doing it badly — inventing a palette for a soil nobody photographed — would be a larger invention
+than leaving it out.
+**Consequence:** this is the sharpest case in the dataset of a confidence chip answering the
+wrong question. Two of the five are `documented`, the strongest grade this project awards, and a
+visitor reading *black loam over quicksand over blue clay · documented* on the Evidence panel is
+being told how sure we are of a fact about the site, not what the surface under their feet is
+made of — which is nothing in particular. The rows are marked *not modelled from this* as of
+2026-08-10, which is the only thing that separates the two readings on the panel.
+**Why it is recorded now:** it was demanded rather than noticed. The ground's omissions were
+outside every gate until `check_ground_geometry` compared what the Evidence panel shows against
+`terrain_inputs.CONSUMED`; the channel entry's own note had said "nothing in the renderer is
+coloured from it" since it was written, and the other four said nothing at all. One sentence in
+one note is exactly the arrangement this family of checks exists to replace.
+**How to resolve:** S6 — a per-zone surface treatment driven by these entries, with the palette
+argued from the sources rather than picked. The declaration comes off each block the day the
+generator reads the value, and this entry moves to Resolved.
+**Covers:** `terrain.e1834_harbor_cut.surface_materials.south_division`,
+`terrain.e1834_harbor_cut.surface_materials.north_division`,
+`terrain.e1834_harbor_cut.surface_materials.west_division`,
+`terrain.e1834_harbor_cut.surface_materials.south_division_marsh`,
+`terrain.e1834_harbor_cut.surface_materials.channel`.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved

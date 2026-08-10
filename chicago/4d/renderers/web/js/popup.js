@@ -59,6 +59,12 @@
 
 import { citationItems } from './citations.js';
 import { libertiesFor, libertyEntryHtml } from './liberties.js';
+// What the mesh does with a value its archetype never reads — `not built`, `not
+// modelled from this`. Shared with the Evidence panel's ground section, which
+// says the same thing about the terrain: one wording in one module, for the
+// reason the liberties have one entry renderer. The argument for the mark, and
+// for the two states that deliberately get none, is in that file.
+import { geometryMark } from './geometry.js';
 
 const CONF_ORDER = { documented: 0, inferred: 1, conjectural: 2 };
 
@@ -82,32 +88,6 @@ function prettyValue(v) {
 function chip(confidence) {
   const c = confidence || 'conjectural';
   return `<span class="conf conf-${escapeHtml(c)}">${escapeHtml(c)}</span>`;
-}
-
-/**
- * What the mesh does with a value its archetype never reads.
- *
- * A confidence chip answers how sure we are of a value. It cannot answer whether
- * you are looking at it — and the two come apart in the worst possible direction:
- * the Wolf Point Tavern's painted wolf sign is `documented`, the strongest claim
- * this project makes, on a building with no sign on it. So an attribute the
- * generator does not read says so beside its chip, in the visitor's words rather
- * than the schema's.
- *
- * `record_only` gets no marker on purpose. A rejected reading carried in the
- * record is not a thing missing from the view, and marking it would tell a
- * visitor to go looking for something that was never there.
- */
-const GEOMETRY_LABEL = {
-  absent: ['not built', 'Attested, and nothing of it is in the model.'],
-  simplified: ['not modelled from this', 'Something stands in its place, but this value does not drive it.'],
-};
-
-function geometryMark(state) {
-  const mark = GEOMETRY_LABEL[state];
-  if (!mark) return '';
-  return `<span class="geom geom-${escapeHtml(state)}" title="${escapeHtml(mark[1])}"
-    >${escapeHtml(mark[0])}</span>`;
 }
 
 function sourceList(sources) {

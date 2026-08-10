@@ -25,6 +25,24 @@ a gate that stops notes being written.
    the day it appears. An allowlist of keys the generator reads today would
    silently stop asking about the newest one, which is the failure this family
    of checks exists to prevent.
+
+   `mesh` joins them (scheme `resolved-spec-v2`), and it is the one member of the
+   set that is not prose. A `mesh:` declaration states what the ground does with a
+   figure the generator does NOT read — `absent`, `simplified`, `record_only`,
+   `restated_in_code` — so by its own definition it cannot move a vertex, and
+   hashing it would make writing an admission cost a bake for exactly the reason
+   writing a note used to. `tools/validate.py` checks it against this generator's
+   `CONSUMED` sets.
+
+   **It is called `mesh` and not `geometry`, which is what the structure records
+   call it, because `geometry` is already taken and the test caught it on the
+   first run.** In a GeoJSON, `geometry` is the feature's coordinates: stripping
+   that key would have taken every traced bank line, river ring and slough
+   centreline out of the ground's hash — a bank could have been redrawn and the
+   committed mesh would still have read fresh. That is the precise opposite of
+   what this file is for, and it is the same trap `name` is kept for (a CRS is
+   named too). `test_terrain_prose_is_not_read_by_the_generator` is what refused
+   it, by scanning the generator for reads of every stripped key.
 2. **The bytes of the code that turns the spec into vertices** —
    `terrain_gen.py`, `generators/common/`, and the pinned Blender.
 
@@ -61,12 +79,59 @@ ROOT = Path(__file__).resolve().parent.parent
 # terrain entries were stamped under, so a definition change is a visible, dated
 # event and the gate refuses a manifest it cannot compute rather than comparing
 # two hashes that mean different things.
-SCHEME = "resolved-spec-v1"
+SCHEME = "resolved-spec-v2"
 
-# Keys whose values are written for a reader. Nothing under `generators/` reads
-# any of them — `test_terrain_prose_is_not_read_by_the_generator` holds that open.
+# Keys whose values are written for a reader, plus the one that is written for a
+# reader AND a gate: `mesh` declares what the ground does with a figure this
+# generator does not read, which cannot be an input to the mesh without being a
+# contradiction. (`mesh`, not `geometry`: see the docstring — in a GeoJSON that
+# word is the coordinates, and stripping it would gut the hash.) Nothing under
+# `generators/` reads any of them —
+# `test_terrain_prose_is_not_read_by_the_generator` holds that open.
 PROSE_KEYS = frozenset({"note", "_doc", "label", "scope", "critical_caveat",
-                        "why", "sources"})
+                        "why", "sources", "mesh"})
+
+
+# Per graded block of `terrain_spec.json`, the field keys whose VALUE reaches a
+# vertex in `terrain_gen.build_field`. The structure side of this rule is each
+# archetype's `CONSUMED` (generators/archetypes/*_params.py) and the argument is
+# identical: the confidence model grades how sure we are of a value and says
+# nothing about whether the thing was built, so a claim a visitor reads with a
+# chip over it may be a claim the mesh does not contain. `tools/validate.py`
+# holds every stated figure outside these sets to a `mesh:` declaration on its
+# block.
+#
+# WHY IT IS HERE AND NOT BESIDE THE CODE THAT DOES THE READING, which is where an
+# archetype keeps its own: `terrain_gen.py` goes into the ground's hash whole, so
+# writing this map into it would have re-staled the terrain and demanded a
+# Blender bake for a constant that cannot move a vertex — the exact fault this
+# module was written to end, arriving one more time from one more direction. The
+# building side does not have the problem because a params module's bytes are
+# already out of the hash. This file's bytes are out for the same reason (it
+# computes the hash), and "what determines the ground" is its subject.
+#
+# What co-location bought is bought instead by a check:
+# `test_declared_terrain_reads_are_real_reads` scans `terrain_gen.py` for a
+# subscript or `.get()` of every key named here, so a declaration that stops
+# being true fails rather than quietly excusing an omission.
+#
+# Keys that are the claim's machinery rather than a figure — `id`, `zone`,
+# `label`, `confidence`, `sources`, notes — never reach the gate: they are
+# stripped by `compile_scene.ground_fields`, the same enumeration the Evidence
+# panel renders from. The gate therefore asks about exactly what a visitor is
+# shown, and nothing else.
+CONSUMED = {
+    "water": frozenset(),
+    "reaches": frozenset({"anchor_e", "anchor_n", "bed_ft"}),
+    "channel_profile": frozenset({"e_fold_m"}),
+    "bank": frozenset({"face_m"}),
+    "divisions": frozenset({"bank_run", "near_ft", "far_ft", "far_m"}),
+    "marsh_strips": frozenset({"applies_to", "width_m", "blend_m", "level_ft"}),
+    "swales": frozenset({"line", "half_width_m", "depth_ft"}),
+    "watercourses": frozenset({"bed_ft", "e_fold_m"}),
+    "micro_relief": frozenset({"amplitude_ft", "wavelengths_m", "seed"}),
+    "surface_materials": frozenset(),
+}
 
 
 class TerrainInputsError(ValueError):
