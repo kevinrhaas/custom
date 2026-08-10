@@ -60,19 +60,82 @@ export function exclusionEntryHtml(ex) {
 }
 
 /**
+ * One open question, collapsed like an exclusion and a liberty, because it is the
+ * same kind of disclosure with a different answer at the end.
+ *
+ * The chip is derived from the scene, not from the entry: whether a structure
+ * resolves into 1 July 1835 is a fact about the dataset and the date, and the
+ * compiler answers it. That is what keeps this section from being false about the
+ * one building on it a visitor can walk up to — the Western Hotel is HERE, and its
+ * doubt is about the date on its own card rather than about whether to build it.
+ */
+export function uncertaintyEntryHtml(u) {
+  const chip = u.standing
+    ? `<span class="lib-scope">standing here — ${escapeHtml(u.carried_confidence || 'graded')}</span>`
+    : '<span class="lib-scope">not built</span>';
+
+  const consequence = u.consequence
+    ? `<dt>What it would change</dt><dd>${escapeHtml(u.consequence)}</dd>`
+    : '';
+
+  // For a structure that IS in the scene, name the claim on its record that
+  // carries the doubt, so this section and the provenance card cannot describe
+  // the same uncertainty differently.
+  const carried = u.standing && u.carried_by
+    ? `<dt>Where it is carried</dt><dd>This building is in the scene; the doubt sits on its
+       <code>${escapeHtml(u.carried_by)}</code>, graded
+       <b>${escapeHtml(u.carried_confidence || '')}</b>, and the provenance card shows it.</dd>`
+    : '';
+
+  // An entry with no source record says so rather than showing an empty list of
+  // citations, which would read as an oversight instead of the finding it is.
+  const cites = u.no_source_record
+    ? `<dl class="lib-body"><dt>No source record</dt>
+       <dd>${escapeHtml(u.no_source_record)}</dd></dl>`
+    : `<ol class="cites excl-cites">${citationItems(u.citations, {
+        empty: 'No citation recorded for this question.',
+      })}</ol>`;
+
+  const dossier = u.dossier && u.dossier.file
+    ? `<p class="legend-note">Research: <code>${escapeHtml(u.dossier.file)}</code>
+       § ${escapeHtml(u.dossier.anchor || '')}</p>`
+    : '';
+
+  return `<details class="lib excl uncertain">
+    <summary>
+      <span class="lib-title">${escapeHtml(u.name || u.id)}</span>
+      ${chip}
+    </summary>
+    <dl class="lib-body">
+      <dt>What is open</dt><dd>${escapeHtml(u.question || '')}</dd>
+      ${consequence}
+      ${carried}
+    </dl>
+    ${cites}
+    ${dossier}
+  </details>`;
+}
+
+/**
  * Fetch the scene's derived exclusions and render them into `mount`.
  *
  * Failure degrades the section and records a problem on the shared list, the same
  * way the liberties do — a missing file says so rather than rendering an empty
  * list, because an empty "what is not here" reads as "nothing was left out".
  *
+ * The open questions ride the same fetch and the same derived file, because they
+ * are the same document's other half: what was researched and ruled out, and what
+ * was researched and could not be. One request, two mounts.
+ *
  * @param {object} o
  * @param {HTMLElement|null} o.mount
+ * @param {HTMLElement|null} [o.uncertainMount] where the open questions render
  * @param {URL} o.dataBase        where data/ lives
  * @param {string} o.sceneId      the scene whose sidecars to read
  * @param {string[]} [o.problems] the shared collector
  */
-export async function mountExclusions({ mount, dataBase, sceneId, problems = [] }) {
+export async function mountExclusions({ mount, uncertainMount = null, dataBase, sceneId,
+                                        problems = [] }) {
   let doc = null;
   try {
     const url = new URL(`sidecars/${sceneId}/exclusions.json`, dataBase);
@@ -81,12 +144,14 @@ export async function mountExclusions({ mount, dataBase, sceneId, problems = [] 
     doc = await res.json();
   } catch (err) {
     problems.push(`exclusions: ${err.message} — the "what is not here" list is not shown`);
-    if (mount) {
-      mount.innerHTML = '<p class="legend-note">The list of researched exclusions could not '
+    for (const el of [mount, uncertainMount]) {
+      if (!el) continue;
+      el.innerHTML = '<p class="legend-note">The list of researched exclusions could not '
         + 'be loaded. It is committed at <code>data/exclusions.json</code>.</p>';
-      mount.removeAttribute('aria-busy');
+      el.removeAttribute('aria-busy');
     }
-    return { count: 0, excluded: [], error: String(err.message || err) };
+    return { count: 0, excluded: [], uncertainCount: 0, uncertain: [],
+             error: String(err.message || err) };
   }
 
   const excluded = Array.isArray(doc.excluded) ? doc.excluded : [];
@@ -95,5 +160,21 @@ export async function mountExclusions({ mount, dataBase, sceneId, problems = [] 
       || '<p class="legend-note">No researched exclusions recorded for this scene.</p>';
     mount.removeAttribute('aria-busy');
   }
-  return { count: excluded.length, excluded, standard: doc.standard, error: null };
+
+  const uncertain = Array.isArray(doc.uncertain) ? doc.uncertain : [];
+  if (uncertainMount) {
+    uncertainMount.innerHTML = uncertain.map(uncertaintyEntryHtml).join('')
+      || '<p class="legend-note">No open questions recorded for this scene.</p>';
+    uncertainMount.removeAttribute('aria-busy');
+  }
+
+  return {
+    count: excluded.length,
+    excluded,
+    standard: doc.standard,
+    uncertainCount: uncertain.length,
+    uncertain,
+    uncertainStandard: doc.uncertain_standard,
+    error: null,
+  };
 }

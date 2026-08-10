@@ -255,5 +255,93 @@
         }
       ]
     }
+  ],
+  "uncertain_standard": "Structures whose status on this date is genuinely OPEN — neither built with confidence nor ruled out. They are the third category, and one of them is standing in front of you.",
+  "uncertain": [
+    {
+      "id": "cook_county_courthouse",
+      "name": "First Cook County court-house",
+      "question": "Was it standing on 1 July 1835? The year is attested and no source reached fixes a month, so on the scene date it may be unbuilt, under construction, or just finished.",
+      "consequence": "Three different buildings on the public square, one of which is an empty lot. It cannot be placed until the month is fixed or a construction phase is argued from something better than a guess at a start date — and the well-known Doric-portico description is the 1837 building, not this one.",
+      "standing": false,
+      "no_source_record": "",
+      "dossier": {
+        "file": "docs/research/04-structures-south.md",
+        "anchor": "First Cook County court-house"
+      },
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "cobweb_castle",
+      "name": "The Indian Agency House (\"Cobweb Castle\")",
+      "question": "What became of it? Standing and in civilian occupation by 1833 under Col. R. J. Hamilton, and no source reached gives its fate after that.",
+      "consequence": "Wau-Bun describes the building itself in detail — hewed and squared logs, a centre, two wings and two rear tails — so this is a structure that could be modelled well and dated badly. Its survival to the scene date is the whole of the uncertainty.",
+      "standing": false,
+      "no_source_record": "",
+      "dossier": {
+        "file": "docs/research/03-structures-north.md",
+        "anchor": "The Indian Agency House"
+      },
+      "citations": [
+        {
+          "source_id": "kinzie_waubun_1856",
+          "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+          "url": "https://www.authorama.com/wau-bun-19.html",
+          "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "billy_caldwell_house",
+      "name": "Billy Caldwell's house at State and Chicago Avenue",
+      "question": "Did it exist, and if it did, what state was it in? The 1828 government-built frame house is reported unverified even as a story, and its condition and occupancy in July 1835 are unattested.",
+      "consequence": "The one entry on this list whose uncertainty is about existence rather than survival. It also sits inside the standing constraint on 1835 and Indigenous history in AGENTS.md: Caldwell led his people west in the removal of August 1835, weeks after the scene date, and nothing about that is to be improvised here.",
+      "standing": false,
+      "no_source_record": "The dossier says at least one source notes the story is unverified and does not say which, so there is no page to cite and no source record to point at. Recording that as an uncited entry is the honest reading; naming a source here would be inventing one to satisfy a field.",
+      "dossier": {
+        "file": "docs/research/03-structures-north.md",
+        "anchor": "Billy Caldwell (Sauganash) — residence(s)"
+      },
+      "citations": []
+    },
+    {
+      "id": "western_hotel",
+      "name": "Western Hotel",
+      "question": "Built 1834 by W. H. Stow per chicagology, 1835 per the hotel chronology. If the later date is right the house is brand new or still going up on the scene date.",
+      "consequence": "This is the one entry on the list that is STANDING in the scene, so the uncertainty is not about whether to build it but about what a visitor is being told. It reaches the card through the phase's own dated claim, which is `inferred` and argues the dispute out in its note.",
+      "standing": true,
+      "no_source_record": "",
+      "dossier": {
+        "file": "docs/RESEARCH/western_hotel.md",
+        "anchor": "Conflict: built 1834 or 1835?"
+      },
+      "citations": [
+        {
+          "source_id": "chicagology_prefire278",
+          "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+          "url": "https://chicagology.com/prefire/prefire278/",
+          "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
+          "tier": 4
+        },
+        {
+          "source_id": "drloih_hotels",
+          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+          "archived_url": "",
+          "tier": 4
+        }
+      ],
+      "carried_by": "frame_1834.documented_range",
+      "carried_confidence": "inferred"
+    }
   ]
 }

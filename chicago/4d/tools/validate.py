@@ -323,6 +323,124 @@ def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
                 rep.error(where, f"source '{s}' does not resolve in data/sources/")
 
 
+def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
+                     rep: Report, root: Path | None = None) -> None:
+    """The third category — researched, and neither built nor ruled out.
+
+    `excluded` is a settled finding and a record is a settled decision. Between
+    them sits the watch list: four structures whose 1835 status is genuinely
+    open. It has been four free-text sentences since the scaffold, read by
+    nobody but an agent, and its own stated purpose — "listed here so nobody
+    promotes them to documented without new evidence" — was a sentence with
+    nothing behind it. One of the four IS in the dataset, so that sentence is
+    checkable, and this checks it: an entry naming a committed record must say
+    which of the record's claims carries the uncertainty, and that claim may not
+    be `documented`. The day the evidence arrives, the promotion fails here and
+    the entry has to be argued off this list rather than quietly outgrown.
+
+    The other direction is the cheaper half and worth as much: an entry naming a
+    structure that has since been built, still declaring itself unbuilt, would be
+    the drift L12 was caught by — a document and its data disagreeing because
+    nobody carried a change back.
+
+    A question is required for the reason a reason is required on an exclusion:
+    an id and a shrug is not a finding. `sources` are held to rule one like
+    every other citation in this project, and an entry with none must SAY it has
+    none and why — the escape hatch is a sentence a reader can weigh, not an
+    empty array. The dossier pointer is checked to resolve to a committed file
+    and to a line in it, because a pointer into research nobody can find is the
+    same failure one level up.
+    """
+    root = root or ROOT
+    excluded_ids = {ex.get("id") for ex in exclusions.get("excluded", [])}
+    seen: set[str] = set()
+    uncited: list[str] = []
+    for item in exclusions.get("watch_list", []):
+        wid = item.get("id") or "?"
+        where = f"watch list {wid}"
+        if not SLUG.match(wid):
+            rep.error(where, f"id '{wid}' is not a lowercase slug")
+        if wid in seen:
+            rep.error(where, "duplicate id in the watch list")
+        seen.add(wid)
+        if wid in excluded_ids:
+            rep.error(where, "is also in `excluded` — a structure is either ruled out or "
+                             "an open question, and saying both says neither")
+        if not (item.get("name") or "").strip():
+            rep.error(where, "no name — the list is read by people, not only by ids")
+        if not (item.get("question") or "").strip():
+            rep.error(where, "no question — an entry here states what is UNCERTAIN; an id "
+                             "with no question is a hunch with a filename")
+
+        # rule one, and the sentence that stands in for a citation when there is
+        # honestly none to give
+        srcs = item.get("sources") or []
+        for s in srcs:
+            if s not in source_ids:
+                rep.error(where, f"source '{s}' does not resolve in data/sources/")
+        if not srcs:
+            uncited.append(wid)
+            if not (item.get("no_source_record") or "").strip():
+                rep.error(where, "no sources and no `no_source_record` — an open question "
+                                 "with nothing behind it has to say so in words, because "
+                                 "an empty array reads as an oversight")
+
+        # the dossier pointer resolves to a file and to a line in it
+        dossier = item.get("dossier") or {}
+        dfile, anchor = dossier.get("file"), dossier.get("anchor")
+        if not dfile or not anchor:
+            rep.error(where, "no dossier pointer — an open question comes from somewhere, "
+                             "and `file` + `anchor` is where the next agent starts")
+        else:
+            path = root / dfile
+            if not path.is_file():
+                rep.error(where, f"dossier '{dfile}' is not a committed file")
+            elif anchor not in path.read_text(encoding="utf-8"):
+                rep.error(where, f"dossier '{dfile}' does not contain the anchor "
+                                 f"'{anchor}' — a pointer nobody can follow is not one")
+
+        # both directions against the dataset
+        record = next((st for st in structures.values() if st.get("id") == wid), None)
+        declared = bool(item.get("in_dataset"))
+        if record is None and declared:
+            rep.error(where, "declares in_dataset but no record of that id exists in "
+                             "data/structures/")
+        if record is not None and not declared:
+            rep.error(where, "a record of that id IS committed and the entry still says it "
+                             "is not in the dataset — the document and the data disagree")
+        if record is None and (item.get("carried_by") or "").strip():
+            rep.error(where, "carries `carried_by` with no record to carry it")
+        if record is not None and declared:
+            ref = (item.get("carried_by") or "").strip()
+            if not ref:
+                rep.error(where, "in the dataset and does not say which claim carries the "
+                                 "uncertainty — the point of this list is that the claim "
+                                 "stays honest, so it has to be named")
+                continue
+            if ref.count(".") != 1:
+                rep.error(where, f"carried_by '{ref}' is not '<phase_id>.<field>'")
+                continue
+            pid, field = ref.split(".")
+            phase = next((p for p in record.get("phases", []) if p.get("id") == pid), None)
+            if phase is None:
+                rep.error(where, f"carried_by names phase '{pid}', which the record does "
+                                 f"not have")
+                continue
+            claim = phase.get(field)
+            if not isinstance(claim, dict):
+                rep.error(where, f"carried_by names '{field}' on phase '{pid}', which is "
+                                 f"not a graded claim on the record")
+                continue
+            if claim.get("confidence") == "documented":
+                rep.error(where, f"{ref} is `documented` while this entry says its 1835 "
+                                 f"status is open — the watch list exists to stop exactly "
+                                 f"that promotion, so either the evidence arrived and the "
+                                 f"entry retires, or the grade is wrong")
+    if uncited:
+        rep.note(f"watch list: {len(uncited)} entry(ies) rest on no source record "
+                 f"[{', '.join(uncited)}] — each says why")
+
+
 # Land vertices. The terrain spec's own caveat says no land elevation in it is
 # better than `inferred` and that the generator refuses to emit `documented` for
 # any land vertex — a statement that was true because whoever wrote the spec kept
@@ -1686,6 +1804,11 @@ def main() -> int:
     # what was researched and left out — a record with the same citation rule as
     # anything else here, and now one the walkthrough quotes to a visitor
     check_exclusions(exclusions, source_ids, rep)
+
+    # and the third category, which is neither: researched, standing in neither
+    # the dataset nor the exclusions, and open. Its own promise — that nothing
+    # here gets promoted to documented without new evidence — is a check now.
+    check_watch_list(exclusions, structures, source_ids, rep)
 
     # and the ground itself, which makes graded claims like everything else here
     # and was checked by nothing until it started making them to a visitor. One

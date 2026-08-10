@@ -882,7 +882,7 @@ for (const [label, viewport, touch] of [
     // building the visitor can walk up to must not appear on it. A section that
     // dumped the whole dataset would still have passed every check above.
     check(`${label}: a building standing in the scene is not on the not-here list`,
-      !/Sauganash|Green Tree|Wolf Point Tavern/.test(excl.text),
+      !/Sauganash|Green Tree|Wolf Point Tavern|Western Hotel/.test(excl.text),
       excl.text.slice(0, 160));
     // …and it says so itself. A list of fourteen absences with no such sentence
     // reads as "this is what is missing", which would be the largest false claim
@@ -892,6 +892,65 @@ for (const [label, viewport, touch] of [
       && /not a list of everything missing/i.test(excl.heading),
       excl.heading.slice(-200));
     check(`${label}: the Evidence panel still does not overflow`, excl.overflow);
+
+    // --- and the third category: researched, and still open -----------------
+    // The exclusions answer "what did you find and leave out". They cannot hold
+    // a structure whose 1835 status nobody could settle — and one of those four
+    // is STANDING in the scene, so putting it on the not-here list would make
+    // that list false. It gets its own section and its own chip.
+    const open = await page.evaluate(() => {
+      const mount = document.getElementById('uncertain');
+      const entries = [...mount.querySelectorAll('details.uncertain')];
+      const byName = (re) => entries.find((d) => re.test(d.querySelector('.lib-title')?.textContent ?? ''));
+      const read = (d) => ({
+        chip: d?.querySelector('.lib-scope')?.textContent.trim() ?? '',
+        body: d?.querySelector('.lib-body')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        text: d?.textContent.replace(/\s+/g, ' ') ?? '',
+        cites: [...(d?.querySelectorAll('.cites .cite-text') ?? [])].map((c) => c.textContent.trim()),
+      });
+      return {
+        counted: window.__chicago4d.exclusions?.uncertainCount ?? 0,
+        rendered: entries.length,
+        busy: mount.hasAttribute('aria-busy'),
+        western: read(byName(/Western Hotel/)),
+        court: read(byName(/court-house/)),
+        caldwell: read(byName(/Caldwell/)),
+        heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
+          .replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the open questions load`,
+      open.counted === 4 && !open.busy && open.rendered === open.counted,
+      `${open.rendered} rendered of ${open.counted}`);
+    // The discriminating pair, and it is the whole argument for the section: one
+    // of these four is a building the visitor can walk up to and three are empty
+    // ground. A section that stamped one chip on all four would have passed any
+    // check for "there is a chip" — and would be lying about the Western Hotel.
+    check(`${label}: the standing one says it is standing and the unbuilt ones do not`,
+      /standing here/.test(open.western.chip) && /inferred/.test(open.western.chip)
+      && open.court.chip === 'not built' && open.caldwell.chip === 'not built',
+      `western "${open.western.chip}" · court "${open.court.chip}"`);
+    // …and the doubt is not restated here in this section's own words. It names
+    // the claim on the record that carries it, which is the same claim the
+    // provenance card shows, so the two cannot drift.
+    check(`${label}: the standing one names the claim on its record that carries the doubt`,
+      /frame_1834\.documented_range/.test(open.western.text)
+      && /provenance card/i.test(open.western.body),
+      open.western.body.slice(0, 200));
+    // An entry resting on no source record says so in a sentence. An empty list
+    // of citations would read as an oversight rather than the finding it is —
+    // the dossier does not say which source calls the story unverified, and
+    // naming one here would be inventing it.
+    check(`${label}: an uncited open question says why it is uncited`,
+      /No source record/i.test(open.caldwell.text)
+      && open.caldwell.cites.length === 0 && open.court.cites.length > 0,
+      `caldwell ${open.caldwell.cites.length} cite(s) · court ${open.court.cites.length}`);
+    check(`${label}: the panel says what the third category is`,
+      /still an open question/i.test(open.heading)
+      && /standing in front of you/i.test(open.heading),
+      open.heading.slice(-240));
+    check(`${label}: the Evidence panel still does not overflow with it`, open.overflow);
 
     // --- what the ground claims, in the same panel ---------------------------
     // Every building can say what it asserts and how sure of it we are. The

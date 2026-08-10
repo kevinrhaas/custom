@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the one declaration that was a promise rather than an absence is
-now a check, § 36) ·
+**Last updated:** 2026-08-10 (the third category — researched and still open — reaches a visitor,
+and its own promise is a check, § 37) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -50,6 +50,11 @@ absence is a check now instead of a sentence** (§ 36): four figures said *the m
 exactly this and does not read it from here*, three more restated a build instruction while
 declaring a state that asks nothing, and the only thing holding any pair together was the hand
 that wrote them.
+**And the category between a building and an exclusion — researched, and still open — is data
+now rather than four sentences, with its own promise enforced and its own section in the
+walkthrough** (§ 37): the watch list said it existed so that nobody would promote these to
+`documented` without new evidence, one of the four is a committed record, and nothing had ever
+checked that sentence.
 
 ---
 
@@ -60,7 +65,7 @@ that wrote them.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 191 checks, all green (the count was recorded as 168 for several slices and is re-counted here), including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes, and that a ground figure declaring the mesh agrees with it is held to the half it restates — the heightfield the bake wrote, the build instruction it duplicates, or the generator line it describes — with a phrase that exists only inside a comment satisfying nothing |
+| `tools/test_validate.py` | **done** — 205 checks, all green, including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes, and that a ground figure declaring the mesh agrees with it is held to the half it restates — the heightfield the bake wrote, the build instruction it duplicates, or the generator line it describes — with a phrase that exists only inside a comment satisfying nothing, and that a watch-list entry naming a committed record fails the moment that record's claim is promoted to `documented` |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
@@ -69,13 +74,14 @@ that wrote them.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 177 checks green at 390×780 and 1280×800, zero page errors (recorded as 173 for several slices; re-counted 2026-08-10) |
+| **Smoke** | 189 checks green at 390×780 and 1280×800, zero page errors |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35). **The fourth state is checked as well as declared since § 36**: `terrain_inputs.RESTATES` names the half each restatement agrees with — the heightfield the bake wrote, another figure in the block, or a named line of the generator — and 7 figures are held to it |
-| Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
+| Exclusions | 14 date-guarded structures — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
+| Watch list | **4 open questions**, structured data since 2026-08-10 (§ 37) — the category between a building and an exclusion. Each carries what is open, what settling it would change, a dossier pointer that has to resolve, and either citations that resolve or a sentence saying why there are none. `check_watch_list` enforces the file's own promise: the one entry that IS a committed record names the claim carrying the doubt, and that claim may not be `documented`. In the walkthrough under "What is still an open question", with the standing one chipped as standing |
 
 ## Corrections made after the first live look
 
@@ -1042,6 +1048,60 @@ uncertainty of the 1834 sheets in its note.
     `record_only` even though it duplicates `bank.dossier_zone`: a pointer into a research table
     restates a document, not a mesh, and widening the state to cover that would make it mean two
     things.
+
+37. **The category between a building and an exclusion, and the promise it had been making to
+    nobody.** § 26 gave a visitor the difference between three statements an empty lot cannot
+    make — nobody researched this, the evidence dates it later, it had already come down — and
+    said in its own last paragraph that a fourth was deliberately left out: the **watch list**,
+    four structures whose 1835 status is genuinely open rather than settled. It has been four
+    free-text sentences in `data/exclusions.json` since the scaffold, read by agents only, and
+    it opens by stating its own purpose: these are listed *"so nobody promotes them to
+    documented without new evidence"*. **One of the four is a committed record**, so that
+    sentence was checkable from the day the record landed, and nothing checked it. A promise
+    with no mechanism is this project's own recurring fault, and this is its plainest instance:
+    the file that exists to stop a promotion could not have noticed one.
+    **It is data now, and `check_watch_list` holds it to the record's rules.** Each entry
+    carries what is open, what settling it would change, a dossier pointer that must resolve to
+    a committed file AND to a line inside it, and either citations that resolve in
+    `data/sources/` or a sentence saying why there are none. The dataset half runs in both
+    directions: an entry naming a committed record must say which claim carries the doubt
+    (`carried_by`), that claim must exist on the named phase, and it **may not be
+    `documented`** — the day the evidence arrives, the gate fails and the entry has to be argued
+    off the list rather than quietly outgrown. The reverse is the L12 drift (§ 13) with a check
+    in front of it: an entry still calling a structure unbuilt after its record lands fails too.
+    **What it did not find is worth stating as plainly as a find would be.** No entry was wrong.
+    The committed four pass unchanged apart from being restructured, and the value here is the
+    next entry rather than a repair — which makes this the second check in this family (with
+    § 27) to switch on with nothing behind it. The one thing writing it did surface is a
+    drift-shaped near miss: `western_hotel`'s line still reads as though the 1834-against-1835
+    question were open on the record, and the record settled it on 2026-08-09, adopting the
+    builder's own statement and deliberately declining the phase mechanism. The entry stays —
+    the range is `inferred` and stopping its promotion is the list's whole job — and a
+    **Revised** line says so, because the original line is kept verbatim in `original` and a
+    silently corrected note is not one.
+    **And the third category reaches a visitor**, under *What is still an open question*,
+    derived per scene by `compile_scene.py` beside the exclusions and re-derived by `check.sh`.
+    § 26 refused to put these under "What is not here" and was right: **one of the four is
+    standing in front of you**. The chip is derived from the scene rather than read off the
+    entry — whether a structure resolves into 1 July 1835 is a fact about the dataset and the
+    date — so the Western Hotel reads *standing here — inferred* while the courthouse, the
+    Agency house and Caldwell's house read *not built*, and the smoke asserts that pair rather
+    than the presence of a chip, since a section stamping one label on all four would have
+    passed any looser check and would have been lying about the one building a visitor can walk
+    up to. The standing entry does not restate its doubt in this section's words: it names
+    `frame_1834.documented_range`, the same claim the provenance card renders, so the two
+    surfaces cannot describe one uncertainty differently.
+    **The uncited entry is the one worth reading.** Billy Caldwell's house at State and Chicago
+    Avenue rests on a dossier line saying at least one source calls the story unverified — and
+    not saying which. There is no page to cite, so the entry carries no citation and a sentence
+    explaining that, and the panel prints the sentence where the citations would go. An empty
+    list would have read as an oversight; naming a source to fill the field would have been
+    rule one broken to satisfy a gate. It also sits inside AGENTS.md's standing constraint on
+    1835 and Indigenous history, which the entry says on its own face.
+    **What it still cannot see.** Whether the list is COMPLETE — an open question nobody
+    noticed is exactly as invisible here as a liberty nobody noticed taking, and this list has
+    four entries against roughly forty researched structures. And an entry can be well-formed,
+    correctly cited, honestly graded, and asking the wrong question about the town.
 
 ## Next
 

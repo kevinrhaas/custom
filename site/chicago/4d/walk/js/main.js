@@ -168,8 +168,12 @@ async function boot() {
 
   // And what was researched and left out, which no building can carry because
   // the buildings that would carry it are the ones not standing here.
+  // …and the third category, which neither of those can hold: researched, and
+  // still open. One of the four is standing in the scene, so it cannot go on the
+  // not-here list without that list becoming false.
   api.exclusions = await mountExclusions({
     mount: document.getElementById('exclusions'),
+    uncertainMount: document.getElementById('uncertain'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,

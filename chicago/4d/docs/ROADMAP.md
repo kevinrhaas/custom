@@ -515,6 +515,21 @@ And the sidecars are re-derived on every commit (`compile_scene.py --all --check
 walkthrough and the archive together if a record edited without a recompile is a gate failure
 rather than a discovery on the deployed site. All eight were byte-identical on the first run.
 
+**Done 2026-08-10 — the third category, and the promise inside it.** The entry above ends by
+saying the watch list is deliberately not shown and that its uncertainty belongs on the records
+and in the popup. That was right about the one of the four that is STANDING and wrong about the
+three that are not: an empty lot cannot say *researched, and still open* any more than it could
+say *researched and ruled out*. The four are structured data now — what is open, what settling it
+would change, a dossier pointer that must resolve to a committed file and to a line inside it,
+and citations that resolve or a sentence saying why there are none — and they render under **What
+is still an open question**, with the standing one chipped *standing here* rather than listed
+among absences. `check_watch_list` enforces the file's own sentence, which had never been
+enforced: an entry naming a committed record must name the claim carrying the doubt, and that
+claim may not be `documented`, so the day the evidence arrives the gate fails instead of the list
+quietly going out of date. Nothing in the committed four was wrong — the value is the next entry
+— and the near miss it did surface is `western_hotel`, whose line still read as though its
+build-date question were open a day after the record settled it. See STATUS § 37.
+
 **Done 2026-08-10 — the card answers "was it here?", which it never had.** Every gate and every
 panel above asks how sure we are of something we built. None of them was asking the question a
 visitor asks first, and the card could not answer it: `popup.js` has read
