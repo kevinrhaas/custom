@@ -24,9 +24,14 @@
  *
  * Nothing here composes a display value. A claim's figures are the spec's own
  * numbers under the spec's own key names; its reasoning is the spec's note,
- * verbatim; and a claim with no reasoning recorded says exactly that, because
- * three of them have none and a section that quietly rendered a blank would be
- * hiding the one thing this panel exists to show.
+ * verbatim; and a claim with no reasoning recorded says exactly that, because a
+ * section that quietly rendered a blank would be hiding the one thing this panel
+ * exists to show. Three INFERRED claims had none when this was written and none
+ * do since 2026-08-10, so the case that matters — a claim that owes an argument
+ * and gives none — is no longer in the data and the smoke exercises it directly
+ * rather than letting a disclaimer rot unseen. Two documented soil claims still
+ * show it, and that is the right reading: they cite evidence and were never
+ * asked for an argument.
  */
 
 import { citationItems, escapeHtml } from './citations.js';
@@ -69,10 +74,10 @@ export function groundClaimHtml(claim) {
     <dt>${escapeHtml(fieldName(f.key))}</dt>
     <dd>${escapeHtml(fieldValue(f.value))}</dd>`).join('');
 
-  // An `inferred` value with no stated reasoning would be an error on a
-  // structure record. Three surface materials in the committed spec carry none,
-  // so the empty state is not decoration — it is the finding, and the visitor
-  // gets it at the same moment a reviewer would.
+  // An `inferred` value with no stated reasoning is an error on a structure
+  // record and, since 2026-08-10, on a ground claim too — so the empty state is
+  // now a guard rather than a finding: a spec that slipped past the gate says so
+  // to a visitor at the same moment a reviewer would see it.
   const notes = (claim.notes || []).filter((n) => String(n).trim());
   const reasoning = notes.length
     ? notes.map((n) => `<dd class="ground-note">${escapeHtml(n)}</dd>`).join('')

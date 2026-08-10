@@ -43,7 +43,6 @@ generators/build.py does.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import math
 import sys
@@ -383,31 +382,22 @@ def write_heightfield(out_dir: Path, h_m, meta, spec, inputs_sha: str):
     return doc
 
 
-def inputs_hash(paths) -> str:
-    h = hashlib.sha256()
-    for p in paths:
-        h.update(Path(p).read_bytes())
-    return h.hexdigest()
-
-
 def terrain_inputs_sha(ep_dir: Path) -> str:
     """Everything that determines this epoch's ground and water meshes.
 
-    One definition, called both by the bake that writes `inputs_sha256` into
-    `assets/manifest.json` and by `tools/validate.py`, which recomputes it to
-    decide whether the committed GLB still matches its inputs. Two copies of this
-    list would agree until the day one of them mattered.
+    The recipe moved to `generators/terrain_inputs.py` on 2026-08-10 and the name
+    stays here because the bake and the gate both call it. What it used to be was
+    the concatenated BYTES of the spec, the two vector files, the datum and this
+    module — so rewriting a note in `terrain_spec.json` reported the ground as
+    stale, which is why three inferred ground claims went without their reasoning
+    for as long as they did. The prose is stripped now; that file's docstring is
+    the argument.
 
-    `shoreline.geojson` is deliberately absent: it is traced evidence that
-    `build_field` does not yet read, so including it would report the ground as
-    stale for a file that cannot change it. It joins the list the moment the
-    heightfield consumes it (ROADMAP § S2e parcel b).
-
-    Nothing here imports bpy — the meshing does, this does not.
+    Nothing on this path imports bpy — the meshing does, this does not.
     """
-    return inputs_hash([ep_dir / "terrain_spec.json", ep_dir / "river.geojson",
-                        ep_dir / "hydrology.geojson", ROOT / "data" / "datum.json",
-                        Path(__file__)])
+    import terrain_inputs  # noqa: PLC0415 — flat import, generators/ is on sys.path
+
+    return terrain_inputs.terrain_inputs_sha(ep_dir)
 
 
 # ---------------------------------------------------------------------------
@@ -659,12 +649,16 @@ def main() -> int:
     manifest = load(manifest_path) if manifest_path.exists() else {}
     manifest.setdefault("assets", {})
     manifest["blender"] = bpy.app.version_string.split()[0]
-    # Terrain and structures share one manifest and therefore one declaration of
-    # what its hashes mean; see generators/mesh_inputs.py.
+    # Terrain and structures share one manifest and each half declares what ITS
+    # hashes mean — `inputs_scheme` is build.py's, `terrain_inputs_scheme` is
+    # this one's. They were one key until 2026-08-10, when the ground's recipe
+    # was redefined and the buildings' was not: a single number would have
+    # re-stamped every building to describe a change on the other side of the
+    # manifest. See generators/terrain_inputs.py and generators/mesh_inputs.py.
     sys.path.insert(0, str(ROOT / "generators"))
-    from mesh_inputs import SCHEME  # noqa: PLC0415
+    from terrain_inputs import SCHEME  # noqa: PLC0415
 
-    manifest["inputs_scheme"] = SCHEME
+    manifest["terrain_inputs_scheme"] = SCHEME
     for b in built:
         p: Path = b["path"]
         manifest["assets"][p.name] = {

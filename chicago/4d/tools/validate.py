@@ -395,22 +395,22 @@ def check_terrain_claims(source_ids: set, rep: Report,
     one set. A gate walking its own copy would agree with the panel until a zone
     was added to the spec.
 
-    Three rules are enforced, all of them the record's rules:
+    Four rules are enforced, all of them the record's rules:
       * every cited `source_id` resolves;
       * a `documented` claim owes at least one resolving source;
+      * an `inferred` claim owes stated reasoning;
       * no land elevation may be `documented` — the spec says so itself, in the
         caveat the walkthrough now quotes to visitors.
 
-    The fourth — `inferred` owes stated reasoning, which `check_attested` makes an
-    error on a record — is a WARNING here, and the reason is worth stating rather
-    than hiding in a severity constant. Three surface-material claims carry no
-    note, so the rule is right and the data is short; but the only place to write
-    those notes is `terrain_spec.json`, whose BYTES are hashed into the terrain's
-    staleness, so adding a sentence of reasoning re-stales the ground and cannot
-    land without a Blender bake. A warning that is correct and stands until
-    someone fixes the data is this project's existing shape for that (the
-    un-archived sources have carried one for weeks). The rule becomes an error in
-    the slice that writes the notes and lands the bake with them.
+    The third of those was a WARNING until 2026-08-10, and what it was waiting for
+    is worth recording because it was not the data. Three surface-material claims
+    carried no note; the only place to write one is `terrain_spec.json`, and that
+    file's BYTES were the terrain's staleness hash, so a sentence of reasoning
+    reported the ground as stale and could not land without a Blender bake. The
+    rule was right, the data was short, and the gate one level down was charging a
+    bake for prose. `generators/terrain_inputs.py` strips prose from the hash, the
+    three notes are written, and the rule is an error here exactly as
+    `check_attested` makes it one on a record.
     """
     if index is None:
         index = terrain_claim_index(specs if specs is not None else load_terrain_specs(rep), rep)
@@ -434,19 +434,19 @@ def check_terrain_claims(source_ids: set, rep: Report,
                                  "grade this project has is the one that needs evidence")
             if conf == "inferred" and not any(n.strip() for n in claim["notes"]):
                 unreasoned += 1
-                rep.warn(where, "inferred with no reasoning recorded — a record would "
-                                "fail for this. The note has to go in terrain_spec.json, "
-                                "whose bytes are the terrain's staleness hash, so writing "
-                                "it re-stales the ground and lands with a bake; the "
-                                "walkthrough says 'no reasoning is recorded' meanwhile")
+                rep.error(where, "inferred with no reasoning recorded — that is what "
+                                 "separates an inference from a guess, and the ground is "
+                                 "held to it exactly as a structure record is. Write the "
+                                 "reasoning in terrain_spec.json; prose there is stripped "
+                                 "from the terrain's staleness hash, so it costs no bake")
             if conf == "documented" and claim["id"].split(".")[0] in LAND_ELEVATION_GROUPS:
                 rep.error(where, "a land elevation marked documented — the spec's own "
                                  "caveat says no land elevation in it is better than "
                                  "inferred, and that sentence is now shown to visitors")
 
     rep.note(f"ground claims: {total} graded statement(s) in the terrain specs, held to "
-             f"the citation rule and shown in the Evidence panel; {unreasoned} inferred "
-             f"without recorded reasoning")
+             f"the citation and reasoning rules and shown in the Evidence panel; "
+             f"{unreasoned} inferred without recorded reasoning")
 
 
 # --------------------------------------------------------------------------
@@ -1535,8 +1535,12 @@ def run_stale_check(structures: dict, rep: Report) -> None:
     rendering the old one, green.
 
     The recipe lives with the generators — `generators/mesh_inputs.py` for
-    structures, `terrain_gen.terrain_inputs_sha` for the ground — so the bake that
+    structures, `generators/terrain_inputs.py` for the ground — so the bake that
     writes the hash and the gate that checks it cannot drift apart.
+
+    The two halves carry their own schemes, and the manifest records both, because
+    they were redefined on different days for the same reason and a single version
+    number would have made the second redefinition look like the first.
     """
     manifest_path = ROOT / "assets" / "manifest.json"
     gltf_dir = ROOT / "assets" / "gltf"
@@ -1559,18 +1563,23 @@ def run_stale_check(structures: dict, rep: Report) -> None:
     try:
         import mesh_inputs  # noqa: PLC0415
         import terrain_gen  # noqa: PLC0415
+        import terrain_inputs  # noqa: PLC0415
     except Exception as e:  # noqa: BLE001
         rep.error("stale", f"cannot import the generators' input-hash recipe, so no committed "
                            f"asset can be checked against its inputs: {e}")
         return
 
+    schemes = {"inputs_scheme": (manifest.get("inputs_scheme"), mesh_inputs.SCHEME),
+               "terrain_inputs_scheme": (manifest.get("terrain_inputs_scheme"),
+                                         terrain_inputs.SCHEME)}
+    for key, (recorded_scheme, computed) in schemes.items():
+        if recorded_scheme != computed:
+            rep.error("stale", f"manifest {key} is {recorded_scheme!r} but the generators compute "
+                               f"{computed!r} — the two sides are hashing different things, so "
+                               f"every comparison below would be meaningless. Re-stamp the "
+                               f"manifest (and say in the commit why the definition changed)")
+            return
     scheme = manifest.get("inputs_scheme")
-    if scheme != mesh_inputs.SCHEME:
-        rep.error("stale", f"manifest inputs_scheme is {scheme!r} but the generators compute "
-                           f"{mesh_inputs.SCHEME!r} — the two sides are hashing different things, "
-                           f"so every comparison below would be meaningless. Re-stamp the manifest "
-                           f"(and say in the commit why the definition changed)")
-        return
 
     by_id = {st.get("id"): st for st in structures.values() if isinstance(st, dict)}
     fresh, stale, unchecked = 0, 0, 0
@@ -1623,7 +1632,8 @@ def run_stale_check(structures: dict, rep: Report) -> None:
 
     rep.note(f"stale check: {fresh} asset(s) match their inputs, {stale} stale"
              + (f", {unchecked} not input-tracked" if unchecked else "")
-             + f"; scheme {scheme}, manifest blender {manifest.get('blender', '?')}")
+             + f"; schemes {scheme} / {manifest.get('terrain_inputs_scheme')}, "
+             + f"manifest blender {manifest.get('blender', '?')}")
 
 
 def run_site_check(rep: Report) -> None:

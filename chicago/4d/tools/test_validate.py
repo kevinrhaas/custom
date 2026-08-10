@@ -1246,14 +1246,19 @@ def test_the_ground_is_held_to_the_rules_a_record_answers_to() -> None:
     check("a land elevation claiming to be documented is an error",
           any("land elevation marked documented" in e for e in run(land)[0]), run(land)[0])
 
-    # Inferred-with-no-reasoning is the rule the committed data fails, so it is a
-    # warning that stands until the notes are written — writing them edits the
-    # spec, which re-stales the ground and lands with a bake.
+    # Inferred-with-no-reasoning was a warning until 2026-08-10, and what held it
+    # there was the staleness hash rather than the data: the only place to write a
+    # ground claim's reasoning is terrain_spec.json, and that file's bytes were
+    # hashed into the terrain's freshness, so a sentence of prose cost a Blender
+    # bake. The hash strips prose now (generators/terrain_inputs.py), so the rule
+    # is an error here exactly as it is on a structure record.
     thin = {"surface_materials": [{"zone": "north_division", "material": "loam",
                                    "confidence": "inferred"}]}
     errs, warns = run(thin)
-    check("inferred with no reasoning warns rather than blocking the commit",
-          not errs and any("no reasoning recorded" in w for w in warns), f"{errs} / {warns}")
+    check("inferred with no reasoning is an error, as it is on a record",
+          any("no reasoning recorded" in e for e in errs), f"{errs} / {warns}")
+    reasoned = {"surface_materials": [{**thin["surface_materials"][0], "note": "why"}]}
+    check("inferred with reasoning passes", not run(reasoned)[0], run(reasoned)[0])
 
     # The gate walks the same enumeration the panel does, so a zone added to the
     # spec is inside the rule the day it appears — the alternative is a checked
@@ -1288,7 +1293,8 @@ def test_the_panel_shows_what_the_spec_grades() -> None:
           f"{by_id['water']['confidence']} / {by_id['bank']['confidence']}")
     # `channel_profile` grades itself under `bed_confidence`. A claim that names
     # its grade differently is exactly the one an enumeration drops silently, and
-    # the spec cannot be tidied: its bytes are the terrain's staleness hash.
+    # renaming the key would still re-stale the ground: prose is out of the
+    # terrain hash since 2026-08-10, a key that is not prose is not.
     check("a block that grades itself under another key is not dropped",
           by_id["channel_profile"]["confidence_key"] == "bed_confidence",
           str(by_id.get("channel_profile")))
@@ -1305,6 +1311,135 @@ def test_the_panel_shows_what_the_spec_grades() -> None:
     check("and the relief a visitor is told about is measured, not asserted",
           any("Measured from the committed heightfield" in c["text"]
               for c in doc["context"]), str(doc["context"])[:200])
+
+
+def _terrain_inputs():
+    root = Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(root / "generators"))
+    import terrain_inputs as T  # noqa: PLC0415
+    return T, root / "data/terrain/epochs/e1834_harbor_cut"
+
+
+def test_writing_a_ground_claims_reasoning_costs_no_bake() -> None:
+    """Prose in the terrain spec is not a mesh input, and it used to be one.
+
+    The ground's staleness hash was the concatenated BYTES of the spec, the two
+    traced vector files, the datum and `terrain_gen.py`. So a sentence of
+    reasoning written into the only file a ground claim's reasoning can go in
+    reported the committed terrain as stale, and the reasoning rule had to stand
+    as a warning because the fix could not land without Blender. That is
+    `mesh_inputs`' "a hash that cries stale over a rewritten note gets
+    disbelieved", still standing on the terrain side.
+
+    The two directions are asserted together on purpose: a hash that ignores
+    prose and a hash that ignores everything are the same hash until something
+    numeric moves.
+    """
+    import copy  # noqa: PLC0415
+    import json  # noqa: PLC0415
+    import shutil  # noqa: PLC0415
+    import tempfile  # noqa: PLC0415
+
+    T, ep = _terrain_inputs()
+    doc = T.terrain_inputs_doc(ep)
+    base = T.terrain_inputs_sha(ep)
+
+    def prose_keys(node) -> list:
+        if isinstance(node, dict):
+            return [k for k in node if T.is_prose(k)] + \
+                   [k for v in node.values() for k in prose_keys(v)]
+        if isinstance(node, list):
+            return [k for v in node for k in prose_keys(v)]
+        return []
+
+    committed = json.loads((ep / "terrain_spec.json").read_text())
+    check("the committed spec really does carry prose (else this proves nothing)",
+          bool(prose_keys(committed)), "no prose keys in terrain_spec.json")
+    check("and none of it survives into the input document",
+          not prose_keys(doc), str(prose_keys(doc)))
+
+    with tempfile.TemporaryDirectory() as td:
+        tmp = Path(td) / ep.name
+        shutil.copytree(ep, tmp)
+        check("the copy hashes the same as the epoch it was copied from",
+              T.terrain_inputs_sha(tmp) == base)
+
+        spec = json.loads((tmp / "terrain_spec.json").read_text())
+        rewritten = copy.deepcopy(spec)
+
+        def rewrite(node) -> None:
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    if T.is_prose(k):
+                        node[k] = "REWRITTEN"
+                    else:
+                        rewrite(v)
+            elif isinstance(node, list):
+                for v in node:
+                    rewrite(v)
+
+        rewrite(rewritten)
+        check("rewriting every note, caveat and citation in the spec changes it",
+              rewritten != spec, "the rewrite was a no-op")
+        (tmp / "terrain_spec.json").write_text(json.dumps(rewritten, indent=1))
+        check("...and the ground does not go stale for it",
+              T.terrain_inputs_sha(tmp) == base, T.terrain_inputs_sha(tmp))
+
+        # The same rule reaches the traced vectors, which carry a note per feature.
+        river = json.loads((tmp / "river.geojson").read_text())
+        rewrite(river)
+        (tmp / "river.geojson").write_text(json.dumps(river, indent=1))
+        check("nor for a note rewritten on a traced bank line",
+              T.terrain_inputs_sha(tmp) == base, T.terrain_inputs_sha(tmp))
+
+        # ...and the direction that matters more: a number the generator reads.
+        moved = json.loads((tmp / "terrain_spec.json").read_text())
+        moved["bank"]["face_m"] = float(moved["bank"]["face_m"]) + 1.0
+        (tmp / "terrain_spec.json").write_text(json.dumps(moved, indent=1))
+        check("moving the bank face by a metre DOES stale the ground",
+              T.terrain_inputs_sha(tmp) != base)
+
+        # A zone added to the spec is an input the day it appears — the denylist
+        # is what makes that true, and an allowlist of today's keys would not.
+        grown = json.loads((tmp / "terrain_spec.json").read_text())
+        grown["swales"].append({"id": "invented_swale", "line": [[0, 0], [1, 1]],
+                                "half_width_m": 5.0, "depth_ft": 0.5,
+                                "confidence": "conjectural"})
+        (tmp / "terrain_spec.json").write_text(json.dumps(grown, indent=1))
+        check("and a zone nobody had heard of is a mesh input the day it is added",
+              T.terrain_inputs_sha(tmp) != base)
+
+
+def test_terrain_prose_is_not_read_by_the_generator() -> None:
+    """The denylist is a claim about the generator, so it is checked against it.
+
+    Stripping a key from the hash asserts that no code turning the spec into
+    vertices reads it. That is true today by inspection, and inspection is what
+    this family of checks exists to replace — so the assertion is made against
+    the source: no module under `generators/` may subscript or `.get()` a key the
+    hash throws away. It stays a text scan for the same reason
+    `check_sidecar_contract` is one: it errs loudly rather than quietly.
+    """
+    root = Path(__file__).resolve().parent.parent
+    T, _ = _terrain_inputs()
+    import re  # noqa: PLC0415
+
+    mods = [root / "generators/terrain_gen.py"] + sorted((root / "generators/common").glob("*.py"))
+    keys = sorted(T.PROSE_KEYS) + ["e_fold_note"]
+    offenders = []
+    for m in mods:
+        src = m.read_text()
+        for k in keys:
+            # a READ — `d["note"]` or `d.get("note")`. Writing `"_doc": "..."` into
+            # the generator's own output is not a read and must not be flagged.
+            if re.search(rf"""\[\s*['"]{re.escape(k)}['"]\s*\]""", src) or \
+               re.search(rf"""\.get\(\s*['"]{re.escape(k)}['"]""", src):
+                offenders.append(f"{m.name} reads {k!r}")
+    check("no generator reads a key the terrain hash strips", not offenders, str(offenders))
+    check("the scan can see a read at all (it is a regex, so prove it fires)",
+          bool(re.search(r"""\[\s*['"]grid['"]\s*\]""",
+                         (root / "generators/terrain_gen.py").read_text())),
+          "the generator stopped reading spec['grid'], so this scan proves nothing")
 
 
 def test_real_dataset_passes() -> None:
