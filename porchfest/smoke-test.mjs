@@ -526,6 +526,75 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else ok(`longest star toast fits (${worst.h.toFixed(0)}px)`);
     await setPop(0);
 
+    // ---- distances in miles ----
+    const units = await page.evaluate(() => ({
+      walk: document.getElementById('sWalk').textContent,
+      pace: document.getElementById('paceV').textContent,
+      legs: [...document.querySelectorAll('#stops .walk')].map(e => e.textContent.trim()).slice(0, 4),
+    }));
+    if (!/\d(\.\d)?\s*(mi|ft)\b/.test(units.walk))
+      fail(`${tag} — total walking reads "${units.walk}", expected miles or feet`);
+    else ok(`walking total in imperial (${units.walk})`);
+    if (!/mph/.test(units.pace)) fail(`${tag} — pace reads "${units.pace}", expected mph`);
+    else ok(`pace in mph (${units.pace})`);
+    // Only the DISTANCE token — a leg reads "walk 0.2 mi · 4m", and that "4m"
+    // is four minutes, which a naive metric check flags as four metres.
+    const legDist = units.legs
+      .map(l => (l.match(/walk\s+([^·]+)/) || [, ''])[1].trim())
+      .filter(Boolean);
+    const metric = legDist.filter(d => !/(mi|ft)$/.test(d));
+    if (metric.length) fail(`${tag} — metric leftovers in the legs: ${metric.join(' / ')}`);
+    else ok(`walking legs are imperial too (${legDist.slice(0, 3).join(', ')})`);
+
+    // ---- swap a band ----
+    // Swapping the third stop must replace THAT band and leave the rest of the
+    // afternoon alone — a swap that reshuffles everything is a re-plan, not a swap.
+    if (vp === 'mobile') await page.locator('[data-go="route"]:visible').first().click();
+    await page.waitForTimeout(250);
+    const stopNames = () => page.evaluate(() =>
+      [...document.querySelectorAll('#stops .stop h3')].map(h => h.childNodes[0].textContent.trim()));
+    const beforeSwap = await stopNames();
+    if (beforeSwap.length < 4) fail(`${tag} — only ${beforeSwap.length} stops, too few to test a swap`);
+    else {
+      const victim = beforeSwap[2];
+      await page.locator('#stops .stop').nth(2).locator('[data-swap]').click();
+      await page.waitForTimeout(1100);
+      const afterSwap = await stopNames();
+      if (afterSwap.includes(victim)) fail(`${tag} — swapped "${victim}" but it is still in the route`);
+      else ok(`swap removes the band (${victim})`);
+      const kept = afterSwap.filter(n => beforeSwap.includes(n)).length;
+      if (kept < beforeSwap.length - 2)
+        fail(`${tag} — swap disturbed the schedule: kept only ${kept} of ${beforeSwap.length - 1} others`);
+      else ok(`swap leaves the rest alone (kept ${kept})`);
+
+      // A swapped band must not creep back when the route is re-solved.
+      // The button lives in the plan pane, which is a separate tab on mobile.
+      if (vp === 'mobile') {
+        await page.locator('[data-go="tune"]:visible').first().click();
+        await page.waitForTimeout(250);
+      }
+      await page.locator('#go').click();
+      await page.waitForTimeout(1600);
+      if (vp === 'mobile') {
+        await page.locator('[data-go="route"]:visible').first().click();
+        await page.waitForTimeout(250);
+      }
+      if ((await stopNames()).includes(victim))
+        fail(`${tag} — "${victim}" came back after a shuffle despite being swapped away`);
+      else ok('a swapped band stays out through a re-plan');
+
+      // And there has to be a visible way back.
+      const backBtn = await page.locator('#unswap').count();
+      if (!backBtn) fail(`${tag} — no way to undo a swap`);
+      else {
+        await page.locator('#unswap').click();
+        await page.waitForTimeout(1400);
+        const rejectedLeft = await page.evaluate(() => S.rejected.length);
+        if (rejectedLeft) fail(`${tag} — undo left ${rejectedLeft} band(s) swapped out`);
+        else ok('swaps can be undone');
+      }
+    }
+
     // ---- shuffle ----
     // It has to produce a DIFFERENT afternoon. The search is randomised but
     // the objective is not, so restarts all converge on one optimum — the

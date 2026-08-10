@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 8, title: 'Miles, and a swap button on every band', kind: 'feature',
+    ts: '2026-08-10T05:05:30.690Z', date: 'Aug 10, 2026, 12:05 AM CT',
+    items: [
+      'Distances are in miles and feet now, and walking pace in miles per hour. Short hops between porches read as feet, anything longer as miles.',
+      'Every stop has a Swap button. It drops that band and fills the slot with another one, holding the rest of your afternoon in place — swapping the three oclock act does not rearrange the other nine. It tells you what came in.',
+      'A band you swap away stays out, so it will not reappear the next time the route is worked out. The schedule shows how many you have dropped with a link to bring them back, and if nothing else fits the slot the swap is undone rather than leaving you a band short.',
+      'Swapping something you had marked must-see also unmarks it, since you have changed your mind about it. Shared plans carry your swaps.',
+    ] },
   { v: 7, title: 'Panels you can resize, a shuffle that shuffles, and 304 MB less to download', kind: 'feature',
     ts: '2026-08-10T04:41:06.887Z', date: 'Aug 9, 2026, 11:41 PM CT',
     items: [

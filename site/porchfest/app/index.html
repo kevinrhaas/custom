@@ -311,6 +311,14 @@ input[type=range]::-moz-range-thumb{
 }
 .stop .morebtn:hover{border-color:var(--brand);color:var(--brand)}
 .stop .morebtn svg{width:12px;height:12px}
+.stop .stopacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.stop .stopacts .morebtn{margin-top:0}
+.stop .morebtn[data-swap] svg{width:13px;height:13px}
+/* The way back from a swap, inside the notes strip. */
+.linkbtn{
+  background:none;border:0;padding:0;font:inherit;font-weight:700;
+  color:var(--brand);text-decoration:underline;cursor:pointer;
+}
 /* The notable-act marker. Two stars for a big draw, one for a known name:
    the tiers must differ by SHAPE, not only hue — both hues are orange, which
    at this size is a coin-flip for anyone and no distinction at all with
@@ -534,7 +542,7 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
         <input type="range" id="minStay" min="5" max="40" step="5" value="15">
       </div>
       <div class="sl" style="margin-bottom:0">
-        <div class="lab"><b>Walking pace</b><span id="paceV">4.5 km/h</span></div>
+        <div class="lab"><b>Walking pace</b><span id="paceV">2.8 mph</span></div>
         <input type="range" id="pace" min="2.5" max="6.5" step="0.25" value="4.5">
       </div>
     </div>
@@ -862,6 +870,7 @@ const S = {
   crew: '',                          // which of the four presets is showing
   recent: [],                        // recent routes, so Shuffle doesn't cycle
   bfilter: [],                       // genre filters for the band browser only
+  rejected: [],                      // bands swapped away, out until brought back
 };
 function idxCorner(label){
   const i = D.corners.findIndex(c=>c.a===label);
@@ -931,11 +940,15 @@ function scoreOf(sim, cfg){
   if(cfg.minB && sim.stops.length < cfg.minB) s -= 400*(cfg.minB - sim.stops.length);
   return s;
 }
-function plan(runs, avoid, avoidW){
+function plan(runs, opts){
+  const {avoid, avoidW, hold} = opts || {};
   const cfg={
     t0:S.t0, t1:S.t1, from:S.from, to:S.to<0?S.from:S.to,
     dwell:S.dwell, minStay:Math.min(S.minStay,S.dwell), mpm:S.pace*1000/60,
-    ms:new Map(), pin:new Set(S.pins),
+    ms:new Map(),
+    // `hold` keeps the rest of the schedule in place while one slot is
+    // refilled — a swap should change the band you tapped, not the afternoon.
+    pin:new Set([...S.pins, ...(hold||[])]),
     minB:S.minBands||0, maxB:S.maxBands||Infinity,
     // Shuffle only: bands already in the route cost a little, so the search
     // looks for a DIFFERENT good afternoon instead of re-deriving the same
@@ -943,7 +956,8 @@ function plan(runs, avoid, avoidW){
     // button appears to do nothing.
     avoid:avoid||null, avoidW:avoidW||0,
   };
-  const pool=D.bands.filter(b=>!excluded(b)||cfg.pin.has(b.id));
+  // Swapped-away bands are out of the running until you bring them back.
+  const pool=D.bands.filter(b=>!S.rejected.includes(b.id) && (!excluded(b)||cfg.pin.has(b.id)));
   pool.forEach(b=>cfg.ms.set(b.id, matchScore(b)));
 
   const byStart=(a,b)=>a.t[0]-b.t[0] || a.n.localeCompare(b.n);
@@ -1011,6 +1025,33 @@ function plan(runs, avoid, avoidW){
   return best;
 }
 
+/* Swap one band out and refill its slot, leaving the rest of the afternoon
+   alone. The other stops are held in place for the re-solve, so tapping Swap
+   on the 3pm act does not quietly rearrange the other nine. */
+function swapBand(id){
+  const cur = S.plan ? S.plan.stops.map(s=>s.b.id) : [];
+  if(!cur.includes(id)) return null;
+  const band = D.bands.find(b=>b.id===id);
+  S.rejected = [...new Set([...S.rejected, id])];
+  // Swapping something you pinned means you changed your mind about it.
+  S.pins = S.pins.filter(x=>x!==id);
+  const hold = cur.filter(x=>x!==id);
+  const p = plan(64, {hold});
+  if(!p){
+    // Nothing else fits that slot — undo rather than leave you worse off.
+    S.rejected = S.rejected.filter(x=>x!==id);
+    return {ok:false, was:band};
+  }
+  const now = p.stops.map(s=>s.b.id);
+  const added = now.filter(x=>!cur.includes(x));
+  return {ok:true, p, was:band, got:added.map(x=>D.bands.find(b=>b.id===x)).filter(Boolean)};
+}
+function unswapAll(){
+  const n=S.rejected.length;
+  S.rejected=[];
+  return n;
+}
+
 /* Ask for a different good afternoon, not the same one again. Escalates the
    repeat penalty until the route actually changes, so a near-tie doesn't come
    back identical — and gives up honestly when the constraints admit only one
@@ -1031,7 +1072,7 @@ function shuffledPlan(){
 
   let last=null;
   for(const w of [0.3, 0.75, 1.6, 3.2]){
-    const p=plan(64, avoid, w);
+    const p=plan(64, {avoid, avoidW:w});
     if(!p) break;
     last=p;
     const changed=p.stops.filter(s=>!prev.has(s.b.id)).length;
@@ -1058,7 +1099,16 @@ const mins=(m)=>{
   m=Math.round(m);
   return m>=60 ? `${Math.floor(m/60)}h ${m%60?m%60+'m':''}`.trim() : `${m}m`;
 };
-const km=(m)=> m>=1000 ? (m/1000).toFixed(1)+' km' : Math.round(m)+' m';
+/* Distances read in miles and feet — this is a street festival in Minneapolis
+   and the people walking it think in blocks and miles, not metres. Everything
+   underneath stays metric: the street graph, the pace and the share payload
+   are all in metres and km/h, so old links keep working and only the display
+   converts. Under a tenth of a mile reads better as feet. */
+const M_PER_MI = 1609.344;
+const km=(m)=> m >= M_PER_MI/10
+  ? (m/M_PER_MI).toFixed(1)+' mi'
+  : Math.round(m*3.28084/10)*10+' ft';
+const mph=(kmh)=> (kmh/1.609344).toFixed(1)+' mph';
 
 /* ================= rendering ================= */
 function renderControls(){
@@ -1113,7 +1163,7 @@ function renderControls(){
   $('#minB').innerHTML=counts; $('#maxB').innerHTML=counts;
   $('#minB').value=S.minBands; $('#maxB').value=S.maxBands;
   // Presets can move the pace, so the slider has to be re-synced, not just drawn once.
-  $('#pace').value=S.pace; $('#paceV').textContent=S.pace+' km/h';
+  $('#pace').value=S.pace; $('#paceV').textContent=mph(S.pace);
   $('#dwell').value=S.dwell; $('#dwellV').textContent=S.dwell+' min';
   $('#minStay').value=S.minStay; $('#minV').textContent=S.minStay+' min';
   renderCountHint();
@@ -1160,6 +1210,11 @@ function renderPlan(){
 
   const notes=[];
   if(S.err) notes.push(S.err);
+  // Swapped bands are out of the pool, so there has to be a visible way back —
+  // otherwise a few taps quietly shrink the lineup with no explanation.
+  if(S.rejected.length) notes.push(
+    `${S.rejected.length} band${S.rejected.length===1?'':'s'} swapped out. ` +
+    `<button class="linkbtn" id="unswap">Bring ${S.rejected.length===1?'it':'them'} back</button>`);
   if(p.dropped?.length) notes.push(`Couldn't fit must-see: <b>${p.dropped.map(esc).join(', ')}</b> — try a longer window, less time per band, or a higher "at most".`);
   if(p.short) notes.push(`Only <b>${p.stops.length}</b> band${p.stops.length===1?'':'s'} fit, not the ${p.short} you asked for — widen the time window, cut the time per band, or un-avoid some genres.`);
   if(!p.stops.length) notes.push(`Nothing fits those constraints. Loosen the time window, lower "don't stop for less than", or un-avoid some genres.`);
@@ -1178,8 +1233,12 @@ function renderPlan(){
         <div class="meta">${esc(porch.a)} · set ${hhmm(b.t[0])}–${hhmm(b.t[1])} · ${fitPct(b)}% match</div>
         <div class="one">${esc(b.one)}</div>
         <div class="tags">${b.tg.map(t=>`<span class="tg${S.tags[t]===1?' hit':''}">${t}</span>`).join('')}</div>
-        <button class="morebtn" data-band="${b.id}">Full profile
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="stopacts">
+          <button class="morebtn" data-band="${b.id}">Full profile
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+          <button class="morebtn" data-swap="${b.id}" title="Swap this band for a different one">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l4 4-4 4"/><path d="M20 7H8a4 4 0 00-4 4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h12a4 4 0 004-4"/></svg>Swap</button>
+        </div>
       </div></div>`;
   }).join('') + legRow(p.endWalk, p.endWalk/(S.pace*1000/60), 'to '+placeName(S.to<0?S.from:S.to))
     + `<div style="text-align:center;font-size:12px;color:var(--text-2);padding:8px">Home by <b>${hhmm(p.finish)}</b></div>`;
@@ -1440,7 +1499,7 @@ const b64u={
 function encodeState(){
   const o={v:1, a:S.t0, b:S.t1, f:S.from, e:S.to, d:S.dwell, m:S.minStay, p:S.pace,
     mb:S.minBands, xb:S.maxBands,
-    r:D.dims.map(d=>S.pref[d]+2).join(''), pw:S.pop+2, cw:S.crew, g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
+    r:D.dims.map(d=>S.pref[d]+2).join(''), pw:S.pop+2, cw:S.crew, g:S.tags, n:S.pins, rj:S.rejected,   // +2 keeps each pref a single digit
     s:S.plan?S.plan.stops.map(x=>x.b.id):null};
   return b64u.enc(JSON.stringify(o));
 }
@@ -1459,6 +1518,8 @@ function decodeState(str){
     // Which group chip shows as picked. UI-only, but it has to ride along or
     // Back leaves a chip highlighted that no longer matches the dials.
     S.crew = CREW[o.cw] ? o.cw : '';
+    // Swapped-away bands ride along so a shared plan re-plans the same way.
+    S.rejected = Array.isArray(o.rj) ? o.rj.filter(id=>D.bands.some(b=>b.id===id)) : [];
     S.tags=o.g||{}; S.pins=o.n||[];
     if(o.s){
       const seq=o.s.map(id=>D.bands.find(b=>b.id===id)).filter(Boolean);
@@ -1603,7 +1664,7 @@ const bindRange=(id,key,fmt,el)=>{
 };
 bindRange('dwell','dwell',v=>v+' min','dwellV');
 bindRange('minStay','minStay',v=>v+' min','minV');
-bindRange('pace','pace',v=>v+' km/h','paceV');
+bindRange('pace','pace',mph,'paceV');
 
 $('#draw').addEventListener('input',e=>{
   if(e.target.id!=='popR') return;
@@ -1682,6 +1743,12 @@ $('#bgenres').addEventListener('click',e=>{
 });
 $('#bfClear').addEventListener('click',()=>{ S.bfilter=[]; renderBands(); });
 
+$('#notes').addEventListener('click',e=>{
+  if(e.target.id!=='unswap') return;
+  const n=unswapAll();
+  replan(true);
+  toast(`${n} band${n===1?'':'s'} back in the running`);
+});
 $('#stops').addEventListener('click',e=>{
   // The star explains itself on tap. It has to be tested before the row,
   // which would otherwise swallow it into selecting the stop.
@@ -1690,6 +1757,18 @@ $('#stops').addEventListener('click',e=>{
     e.stopPropagation();
     const b=D.bands.find(x=>x.id===star.dataset.tier);
     if(b) toast(explainTier(b));
+    return;
+  }
+  const sw=e.target.closest('[data-swap]');
+  if(sw){
+    e.stopPropagation();
+    const r=swapBand(sw.dataset.swap);
+    if(!r) return;
+    if(!r.ok){ toast(`Nothing else fits that slot — keeping ${r.was.n}`); return; }
+    S.plan=r.p; S.sel=-1; renderPlan(); renderPins();
+    if(!navLock) history.replaceState({v:document.body.dataset.view},'',stateUrl());
+    toast(r.got.length ? `${r.was.n} → ${r.got.map(b=>b.n).join(', ')}`
+                       : `Dropped ${r.was.n} — nothing else fitted that slot`);
     return;
   }
   // "Full profile" wins over selecting the stop, so the row stays clickable

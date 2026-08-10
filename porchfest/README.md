@@ -203,6 +203,37 @@ which are ID selectors — the mobile override that returns the panes to
 scrollport and the sticky CTA silently breaks. That is a real regression the
 suite caught; the comment is in the CSS.
 
+## Units
+
+Distances read in **miles and feet**, pace in **mph** — this is a street
+festival in Minneapolis and the people walking it think in blocks and miles.
+Everything underneath stays metric: the street graph is in metres, `S.pace` is
+still km/h, and the share payload is unchanged, so links cut before the switch
+still decode correctly. Only `km()` and `mph()` convert, at the display layer.
+Under a tenth of a mile shows as feet.
+
+If you ever add a metric toggle, change those two functions and nothing else.
+
+## Swap
+
+Each stop has a Swap button. It drops that band and refills the slot, holding
+the rest of the schedule in place — `plan(64, {hold})` pins the other stops for
+the re-solve, so swapping the 3pm act does not quietly rearrange the other
+nine. Swapping something you had pinned as a must-see also unpins it, since you
+have changed your mind about it.
+
+Swapped bands go into `S.rejected` and leave the pool, so they do not creep
+back on the next re-plan — which is the whole point, but it means there has to
+be a visible way back. The schedule shows "N bands swapped out — bring them
+back" whenever the list is non-empty. Don't remove that: without it a few taps
+silently shrink the lineup with no explanation.
+
+If nothing else fits the freed slot, the swap is **undone** rather than leaving
+you a band short, and it says so.
+
+`S.rejected` rides in the share payload as `rj`, so a shared plan re-plans the
+same way rather than pulling back a band the sender had deliberately dropped.
+
 ## Shuffle
 
 Shuffle has to produce a *different* good afternoon, not the same one again.
