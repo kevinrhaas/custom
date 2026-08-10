@@ -607,9 +607,21 @@
           "value": 19
         }
       ],
-      "sources": [],
-      "citations": [],
-      "notes": []
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4
+        }
+      ],
+      "notes": [
+        "The profile itself — about a foot of black loam over three to four feet of saturated fine sand over eight to twelve feet of impervious blue clay — is stated for the BUSINESS DISTRICT, which is the South Division plain south of the main stem. Carrying it across the river is the dossier's own grouping of zones 8, 9, 18 and 19 under one entry (docs/research/01-terrain-hydrology.md, surface-material table), not a second observation, so this is inferred where the south_division entry is documented. Against it: the same dossier describes the North Division (zone 19) as timbered, better-drained sandy ground, which is not what the loam-over-quicksand-over-clay section describes. Nothing reached measures a section here."
+      ]
     },
     {
       "id": "surface_materials.west_division",
@@ -631,9 +643,21 @@
           "value": 18
         }
       ],
-      "sources": [],
-      "citations": [],
-      "notes": []
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4
+        }
+      ],
+      "notes": [
+        "Inferred by the same extension as the north_division entry: the profile is stated for the business district and the dossier's surface-material table groups zones 8, 9, 18 and 19 under it. Two things weaken it here and are recorded rather than resolved. The dossier's own stratigraphic list maps the wet prairie west of the South Branch to the Equality Formation (lacustrine silt and clay), which is a different surface unit from the loam-over-sand-over-clay section; and the West Division is the one zone in this box whose ground is described as wet prairie carrying slough swales rather than as town ground. The grouping is followed because it is the statement that assigns zones, and the disagreement inside one report is the reason this is not documented."
+      ]
     },
     {
       "id": "surface_materials.south_division_marsh",
@@ -691,7 +715,9 @@
       ],
       "sources": [],
       "citations": [],
-      "notes": []
+      "notes": [
+        "Nobody in this project has seen this bed and no source record here describes it. The Cahokia Alluvium is the unit modern geological mapping puts along the river margins of this region, and the dossier assigns it to the channel zones (20-21 and the abandoned southward channel) on that basis, tagging the assignment inferred itself (docs/research/01-terrain-hydrology.md, surface-material table; the mapping it rests on is a modern geology reference and is not among data/sources/). It is a formation name carried onto this reach by regional mapping, not an observation of the Chicago River bed in 1835 — which is why it is inferred and not documented, and why nothing in the renderer is coloured from it."
+      ]
     },
     {
       "id": "datum.lake_stage",

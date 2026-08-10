@@ -925,6 +925,9 @@ for (const [label, viewport, touch] of [
         // micro-relief. Their grades are what the caveat is about.
         landGrades: all.filter((e) => /divisions|the bank|marshy|swales|texture/.test(e.group))
           .map((e) => e.conf),
+        inferredWithoutReason: all.filter(
+          (e) => e.conf === 'inferred' && /No reasoning is recorded/.test(e.body))
+          .map((e) => `${e.group}/${e.label}`),
         text: mount.textContent.replace(/\s+/g, ' '),
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
@@ -953,14 +956,40 @@ for (const [label, viewport, touch] of [
       /near \(ft\)/.test(ground.south?.body ?? '') && /2\.4/.test(ground.south?.body ?? '')
       && (ground.south?.cites ?? []).some((c) => /chicagoarchitecturehistory|architecture/i.test(c)),
       `${(ground.south?.body ?? '').slice(0, 80)} | ${(ground.south?.cites ?? [])[0] ?? 'no cite'}`);
-    // The empty state is the finding, not decoration: three surface materials are
-    // graded `inferred` with no reasoning at all, which would fail on a record.
-    // The discriminating half matters as much — a claim that HAS reasoning must
-    // not carry the disclaimer, or it says nothing.
-    check(`${label}: a claim with no recorded reasoning says so, one with reasoning does not`,
-      /No reasoning is recorded/.test(ground.material?.body ?? '')
-      && !/No reasoning is recorded/.test(ground.south?.body ?? ''),
-      `material "${(ground.material?.body ?? '').slice(0, 60)}"`);
+    // Until 2026-08-10 this asserted the opposite: three surface materials were
+    // graded `inferred` with no reasoning at all, and the panel said so because
+    // the empty state was the finding. The three notes are written now — what
+    // held them back was the staleness hash, not the research — so what is worth
+    // pinning is the gate's rule (`check_terrain_claims`) asserted where a
+    // visitor reads it: nothing that calls itself an INFERENCE may show the
+    // disclaimer. Scoped to inferred on purpose. Two documented soil claims carry
+    // a citation and no note, which is not a gap — a documented claim owes
+    // evidence, not an argument — and an assertion over the whole panel would
+    // have made those two look like one.
+    check(`${label}: every claim that calls itself an inference records its reasoning`,
+      !ground.inferredWithoutReason.length
+      && /business district/i.test(ground.material?.body ?? ''),
+      `${ground.inferredWithoutReason.join(', ') || 'none'} | material `
+      + `"${(ground.material?.body ?? '').slice(0, 80)}"`);
+    // The empty state stays: it is a guard now rather than a finding, and the
+    // committed data no longer exercises the half that matters — a claim that
+    // OWES a reason and gives none. That is exercised directly: the renderer must
+    // still say so for a claim with no reasoning, and must not say it for one that
+    // has some — the discriminating pair, one level down from the panel.
+    const emptyState = await page.evaluate(async () => {
+      const { groundClaimHtml } = await import('/renderers/web/js/ground.js');
+      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'inferred',
+        fields: [], sources: [], citations: [], notes: [] };
+      return {
+        without: groundClaimHtml(claim),
+        with: groundClaimHtml({ ...claim, notes: ['because the sources say so'] }),
+      };
+    });
+    check(`${label}: a claim with no reasoning would still say so`,
+      /No reasoning is recorded/.test(emptyState.without)
+      && !/No reasoning is recorded/.test(emptyState.with)
+      && /because the sources say so/.test(emptyState.with),
+      emptyState.without.slice(0, 120));
     check(`${label}: the Evidence panel still does not overflow with the ground on it`,
       ground.overflow);
     await page.click('#panel-close');

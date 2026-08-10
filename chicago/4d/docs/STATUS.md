@@ -3,7 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the ground answers to the liberties coverage gate, § 33) ·
+**Last updated:** 2026-08-10 (the ground's staleness hash stops charging a bake for prose, and
+the three claims that were owed reasoning get it, § 34) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -35,6 +36,11 @@ the confidence view like any building, and had never once told a visitor what it
 **And what the ground makes up is demanded by a check now rather than owed to somebody's
 attention** (§ 33): the liberties coverage gate reads the terrain spec, and the first thing it
 found was an invented depth on a watercourse no entry in the document had ever mentioned.
+**And the last rule the ground could not be held to is enforced, because the thing holding it
+back was a gate and not the research** (§ 34): writing a sentence of reasoning into the terrain
+spec used to re-stale the ground and demand a Blender bake, so three claims said *no reasoning
+is recorded* on the panel for a fortnight; the hash strips prose now, the three notes are
+written, and an unreasoned ground claim stops the commit exactly as it does on a building.
 
 ---
 
@@ -45,7 +51,7 @@ found was an invented depth on a watercourse no entry in the document had ever m
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 157 checks, all green, including a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
+| `tools/test_validate.py` | **done** — 168 checks, all green, including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
@@ -54,8 +60,8 @@ found was an invented depth on a watercourse no entry in the document had ever m
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 165 checks green at 390×780 and 1280×800, zero page errors |
-| **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) |
+| **Smoke** | 173 checks green at 390×780 and 1280×800, zero page errors |
+| **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -808,7 +814,8 @@ uncertainty of the 1834 sheets in its note.
     `terrain_inputs_sha` hashes whole files. So the warning stands the way the un-archived-source
     warnings do, and the walkthrough says *no reasoning is recorded for this claim* where a
     reviewer would say the same thing — the gap reaches a visitor rather than waiting for the
-    repair.
+    repair. **Closed by § 34**, which paid the defect one level down instead of paying the bake:
+    the terrain hash strips prose now, the three notes are written, and the rule is an error.
     **Two liberties were owed and had never been written.** The 6 m bank face (L32) and the
     underwater channel profile (L33) are `conjectural` in the data and were admitted nowhere: the
     coverage gate reads `data/structures/` and cannot see the terrain spec, so nothing demanded
@@ -855,6 +862,66 @@ uncertainty of the 1834 sheets in its note.
     a whole while only its depth is invented, so L34 admits more than the data does and the note
     is the only place the distinction is legible. And a ground claim can be perfectly graded,
     perfectly cited, perfectly admitted to, and wrong about the town.
+
+34. **The gate that was charging a bake for a sentence, and the three claims that had been
+    waiting on it.** § 32 ended with a rule it could not enforce: an `inferred` ground claim
+    owes stated reasoning, three surface-material claims had none, and the check had to warn
+    rather than fail — not because the research was missing but because the only place to write
+    the reasoning is `terrain_spec.json`, whose BYTES were the terrain's staleness hash. A
+    sentence that cannot move a vertex re-staled the ground and demanded a Blender bake this
+    runner does not have. So the finding reached a visitor as *no reasoning is recorded for this
+    claim* and stayed there.
+    **The repair is § 15's, arriving on the ground.** `mesh_inputs.py` was written because a hash
+    over "the files that were involved" cried stale over rewritten prose, and "a disbelieved gate
+    is worse than none" is its own sentence. The terrain was still on exactly that hash.
+    `generators/terrain_inputs.py` hashes a *document* instead: the spec, the two traced vector
+    files and the datum with their prose removed, plus the bytes of the code that turns a spec
+    into vertices. The stripped set — `note`, `*_note`, `_doc`, `label`, `scope`,
+    `critical_caveat`, `why`, `sources` — is a DENYLIST, so a zone, a reach or a watercourse
+    added to the spec tomorrow is a mesh input the day it appears; an allowlist of the keys the
+    generator reads today would quietly stop asking about the newest one, which is the failure
+    this family of checks exists to prevent. `name` is deliberately kept: in a GeoJSON it also
+    names the CRS, and dropping `crs.properties.name` would take the coordinate reference system
+    out of the hash to save a feature title.
+    **The denylist is a claim about the generator, so it is checked against the generator.**
+    `test_terrain_prose_is_not_read_by_the_generator` scans `terrain_gen.py` and `common/` for a
+    subscript or a `.get()` of any stripped key — and asserts that the scan can see a real read
+    at all, because a regex that matches nothing passes every test ever written against it.
+    **The eight-word version of the other test**: rewrite every note, caveat and citation in the
+    spec and in a traced bank line — the hash does not move; move the bank face by a metre, or
+    append a swale, and it does.
+    **The re-stamp, and the proof, because a re-stamp is a claim.** Under the new recipe the
+    ground's input document at the last bake and at this commit differ in exactly one entry:
+    the bytes of `terrain_gen.py`, whose only change in this slice is deleting the old
+    `inputs_hash` and delegating. Checked by diffing the two documents in a worktree of the
+    previous commit, not by inspection. No mesh was regenerated and none needed to be.
+    `assets/manifest.json` now carries `terrain_inputs_scheme` beside `inputs_scheme`: the two
+    halves were redefined on different days for the same reason, and one number would have made
+    the second redefinition look like the first — or worse, re-stamped every building to describe
+    a change on the other side of the manifest.
+    **What the three notes say, and none of it flatters the dataset.** The north and west
+    divisions' soil profile is `chicago_architecture_history_115`'s measurement *of the business
+    district*; the dossier's surface-material table groups zones 8, 9, 18 and 19 under it, and
+    carrying it across the river is that grouping rather than a second observation — with the
+    same report describing the North Division as timbered, better-drained sandy ground and the
+    West Division as wet prairie, neither of which is quite what the profile it lends them
+    describes. The channel's `cahokia_alluvium_silt` is worse: nobody here has seen the bed, no
+    source record in this project describes it, and the name is what modern geological mapping
+    puts along this region's rivers generally — a formation carried onto this reach, not an
+    observation of it. All three are on the panel, next to the claim.
+    **What it costs, and a correction the smoke made to this entry while it was being written.**
+    The first version of the assertion said *no claim on the panel shows the disclaimer* and
+    failed on the committed data: two surface-material claims are `documented`, cite a source and
+    carry no note, so they show it too. That is the right reading rather than a gap — a
+    documented claim owes evidence, not an argument — and the assertion is scoped to `inferred`,
+    where the obligation is. The case that matters is therefore no longer in the data, which is
+    exactly how a disclaimer rots, so the smoke exercises `groundClaimHtml` directly on a claim
+    with no notes and on one with them and keeps the discriminating pair.
+    **The residual is the one the buildings have.** `terrain_gen.py` is hashed whole, so a
+    docstring edit in the generator still re-stales the ground — identical to `build.py` on the
+    structure side, one file rather than the file every ground claim has to be written in, and
+    written down in `terrain_inputs.py` rather than left to be rediscovered. And, as ever, this
+    compares inputs and not output: a hand-edited GLB behind an untouched spec passes.
 
 ## Next
 
