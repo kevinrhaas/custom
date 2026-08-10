@@ -261,7 +261,16 @@ routing out to a junction and back, and home-to-itself is pinned to zero
 ### The one network call
 
 `geocodeHome()` hits Nominatim, the OpenStreetMap geocoder the map data is
-already credited to. It fires ONLY from an explicit tap on "Set as home",
+already credited to. It sends a **cleaned** query via `geocodeQuery()`:
+Nominatim returns *nothing at all* for an address carrying a unit number —
+"2911 James Ave S, Apt 404 Minneapolis MN 55408" finds nothing while the same
+address without the Apt resolves fine — so the unit and the ZIP are stripped
+and a city is appended only when absent.
+
+That one shipped broken and the suite passed, because the mock returned success
+for any query. The mock now mimics the real service and returns nothing for a
+query carrying a unit or a ZIP, so sending raw text again fails the run. **A
+stub that always succeeds tests nothing.** It fires ONLY from an explicit tap on "Set as home",
 exactly once, and the answer is stored as coordinates so it never runs again.
 The zero-network guarantee is about working out your afternoon on a dead tower,
 and it survives a one-off setup step you opt into — planning still never

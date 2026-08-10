@@ -85,8 +85,13 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     let geoCalls = 0;
     await ctx.route(/nominatim\.openstreetmap\.org/, r => {
       geoCalls++;
+      // Behave like the real service, which returns NOTHING for a query
+      // carrying a unit number or a ZIP. A mock that accepts anything hid a
+      // live failure on exactly the address that prompted this feature.
+      const q = decodeURIComponent(new URL(r.request().url()).searchParams.get('q') || '');
+      const dirty = /\b(apt|apartment|unit|ste|suite|#)\b/i.test(q) || /\b\d{5}\b/.test(q);
       r.fulfill({ status: 200, contentType: 'application/json',
-        body: JSON.stringify([{ lat: '44.9490277', lon: '-93.3031901' }]) });
+        body: JSON.stringify(dirty ? [] : [{ lat: '44.9490277', lon: '-93.3031901' }]) });
     });
     const page = await ctx.newPage();
     const tag = `${name}/${vp}`;

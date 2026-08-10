@@ -1345,12 +1345,23 @@ function pickCandidates(){
 /* The one network call in the app, and only from an explicit tap. Nominatim
    is the OpenStreetMap geocoder — the same project the map data is credited
    to. The answer is stored as coordinates, so this never runs again. */
+function geocodeQuery(s){
+  let t=s.replace(/\b(apt|apartment|unit|ste|suite|#)\s*[\w-]+/ig,' ')
+         .replace(/\b\d{5}(-\d{4})?\b/g,' ')
+         .replace(/\s*,\s*,/g,',').replace(/\s+/g,' ')
+         .replace(/\s*,\s*$/,'').trim();
+  if(!/minneapolis|\bmn\b/i.test(t)) t+=', Minneapolis, MN';
+  return t;
+}
 async function geocodeHome(text){
   const q=text.trim();
   if(!q) return null;
-  // Bias to the city the festival is in; a bare "James Ave S" is otherwise
-  // ambiguous across the country.
-  const full=/minneapolis|,\s*mn\b/i.test(q) ? q : q+', Minneapolis, MN';
+  // Send a CLEANED address. Nominatim returns nothing at all for a query
+  // carrying a unit number — "2911 James Ave S, Apt 404 Minneapolis MN 55408"
+  // finds nothing while the same address without the Apt resolves fine. The
+  // ZIP goes too; it adds nothing and can conflict. City is appended only when
+  // absent, since a bare "James Ave S" is ambiguous across the country.
+  const full=geocodeQuery(q);
   const url='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q='+encodeURIComponent(full);
   const res=await fetch(url,{headers:{'Accept':'application/json'}});
   if(!res.ok) throw new Error('geocoder said '+res.status);
