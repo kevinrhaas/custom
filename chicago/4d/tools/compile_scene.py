@@ -30,6 +30,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+sys.path.insert(0, str(ROOT / "tools"))
+from tiers import tier_ladder, tier_label  # noqa: E402
+
 
 CHECK = False
 DRIFT: list[str] = []
@@ -96,7 +99,17 @@ def resolve_phase(structure: dict, target: dt.date):
 
 def cite(source_ids, sources: dict) -> list[dict]:
     """Join source ids to the citation the visitor reads. One shape, one place:
-    the popup and the exclusions list quote the same record the same way."""
+    the popup and the exclusions list quote the same record the same way.
+
+    `tier_label` travels with the number because the number on its own says
+    nothing. The card has printed "tier 4" since it was written, next to a
+    citation, at a visitor who has no table to look it up in — and the whole
+    argument of this panel is that a person can judge the evidence for
+    themselves. The words come out of `data/source.schema.json` through
+    `tools/tiers.py`, the same ladder `check_evidence_ladder` enforces, so the
+    rung a value is held to and the rung a visitor is shown cannot come apart.
+    """
+    ladder = tier_ladder()
     return [
         {
             "source_id": s,
@@ -104,6 +117,7 @@ def cite(source_ids, sources: dict) -> list[dict]:
             "url": sources[s].get("url", ""),
             "archived_url": sources[s].get("archived_url", ""),
             "tier": sources[s].get("tier"),
+            "tier_label": tier_label(sources[s].get("tier"), ladder),
         }
         for s in sorted(source_ids) if s in sources
     ]

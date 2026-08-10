@@ -44,6 +44,43 @@ Tier 5 and 6 sources may inform *inventory* (what existed, roughly where) and *c
 They must never be the sole evidence for a `documented` attribute, and no geometry is traced
 from them.
 
+### The ladder is enforced, and the enforced copy is the schema (2026-08-10)
+
+Until now this table was prose. The word `tier` did not appear in `tools/validate.py`: every
+other rung of the confidence model had a gate — `documented` owes a resolving source,
+`inferred` owes stated reasoning, an invention owes an admission in `docs/LIBERTIES.md` —
+while the question all of those assume an answer to, *how good is the source*, was checked by
+nobody. `check_evidence_ladder` is that check, and `tools/tiers.py` reads the ladder out of
+`data/source.schema.json`'s own `tier` description so that the rung a value is held to and the
+rung a visitor is shown on the provenance card are one list. **The table above is the
+reasoning; the schema is the copy the gate reads.** A rung spelled out in one and not the
+other is a hard failure rather than a silent gap.
+
+Two sentences in this document state the tier-5 rule and they are not the same rule — the
+table says such a source may not be the *sole* evidence, and the revision below says it "never
+reaches it, alone or in company". The table's reading is the one enforced, because the
+revision exists precisely to stop over-caution making the dataset less accurate: refusing a
+`documented` value that *cites* a retrospective alongside a period survey would punish
+corroboration. A value carried by Wright 1834 and cross-checked against Conley/Stelzer is
+better evidenced than the same value with the map struck out, not worse.
+
+What is enforced, exactly:
+
+| rule | state |
+|---|---|
+| a `documented` value needs at least one source at tier 4 or better | error |
+| a `footprint` graded better than `conjectural` may not cite tier 5-6 | error |
+| a source at tier 5-6 may not declare `asset_use: geometry` | error |
+| a `documented` value with no source at tier 3 or better | **warning, counted** |
+
+The last one is a warning on purpose and 21 committed values are in it. `documented` "still
+requires a period source", and the ladder puts first-hand and testimony-derived evidence at
+tiers 1-3; a value resting on nothing but later synthesis is either over-graded or its source
+is under-tiered, and which of those it is can only be settled by reading the page. A page
+transcribing an 1833 newspaper is tier 2 whatever site hosts it, and this dataset already
+grades one chicagology page that way. Regrading a confidence is also a mesh input, so the
+decision arrives with a bake attached. Priced and queued in `docs/STATUS.md` § 43.
+
 ### They may, however, carry a position to `inferred` (revised 2026-08-10)
 
 The first reading of the rule above was too strict, and the strictness made the dataset

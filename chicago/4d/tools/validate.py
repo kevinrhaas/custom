@@ -28,6 +28,8 @@ import sys
 from pathlib import Path
 
 from heightfield import Heightfield
+from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
+                   TRACEABLE_MAX_TIER, tier_ladder)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -922,18 +924,24 @@ def check_restated_agreement(index: dict[str, dict[str, dict]],
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
 
-def conjectural_values(structures: dict) -> list[tuple]:
-    """Every value a structure record states without evidence.
+def graded_values(structures: dict) -> list[tuple]:
+    """Every value a structure record puts a confidence on, with the block itself.
 
-    Returns `(structure_id, phase_id|None, aspect, where)`, with `aspect` in the
-    same vocabulary a `Covers:` token is written in — `footprint`, `position`,
-    `documented_range`, the structure-level `function` and `occupants`, and
-    `form.<attribute>` for anything under a phase's form, however deeply nested.
+    Returns `(structure_id, phase_id|None, aspect, where, block)`, with `aspect`
+    in the same vocabulary a `Covers:` token is written in — `footprint`,
+    `position`, `documented_range`, the structure-level `function` and
+    `occupants`, and `form.<attribute>` for anything under a phase's form,
+    however deeply nested.
 
     The form half is enumerated from the data rather than from a list, because
     the archetypes keep adding attributes and a hard-coded vocabulary would
-    quietly stop asking about the newest ones — which is the exact failure this
-    check exists to prevent, one level up.
+    quietly stop asking about the newest ones — which is the exact failure the
+    checks built on this enumeration exist to prevent, one level up.
+
+    One enumeration, several questions: `conjectural_values` asks which of these
+    were invented, and `check_evidence_ladder` asks what each one rests on. Two
+    walks over the same record is how two gates start disagreeing about what a
+    record contains.
     """
     found: list[tuple] = []
 
@@ -941,8 +949,7 @@ def conjectural_values(structures: dict) -> list[tuple]:
         if not isinstance(node, dict):
             return
         if "confidence" in node and "value" in node:
-            if node.get("confidence") == "conjectural":
-                found.append((sid, pid, path, where))
+            found.append((sid, pid, path, where, node))
             return
         for k, v in node.items():
             walk_form(v, sid, pid, where, f"{path}.{k}")
@@ -951,17 +958,135 @@ def conjectural_values(structures: dict) -> list[tuple]:
         sid = st.get("id", name)
         for aspect in STRUCTURE_ASPECTS:
             block = st.get(aspect)
-            if isinstance(block, dict) and block.get("confidence") == "conjectural":
-                found.append((sid, None, aspect, f"structure {sid}"))
+            if isinstance(block, dict) and "confidence" in block:
+                found.append((sid, None, aspect, f"structure {sid}", block))
         for ph in st.get("phases", []):
             pid = ph.get("id", "?")
             where = f"structure {sid}/{pid}"
             for aspect in PHASE_ASPECTS:
                 block = ph.get(aspect)
-                if isinstance(block, dict) and block.get("confidence") == "conjectural":
-                    found.append((sid, pid, aspect, where))
+                if isinstance(block, dict) and "confidence" in block:
+                    found.append((sid, pid, aspect, where, block))
             walk_form(ph.get("form") or {}, sid, pid, where, "form")
     return found
+
+
+def conjectural_values(structures: dict) -> list[tuple]:
+    """Every value a structure record states without evidence.
+
+    `(structure_id, phase_id|None, aspect, where)` — the `graded_values`
+    enumeration filtered to the inventions.
+    """
+    return [(sid, pid, aspect, where)
+            for sid, pid, aspect, where, block in graded_values(structures)
+            if block.get("confidence") == "conjectural"]
+
+
+def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
+                          ground_index: dict | None = None) -> None:
+    """What a claim rests on, held to the ladder the schema defines.
+
+    `docs/PROVENANCE.md` § Evidence tiers ranks the evidence and attaches two
+    rules to the ranking:
+
+      * tiers 5-6 "must never be the sole evidence for a `documented` attribute";
+      * "no geometry is traced from them" — an outline "comes from tier-1 sheets
+        or stays conjectural".
+
+    Both were written in the prose AND in `data/source.schema.json`, and until
+    now neither was enforced anywhere: the word `tier` did not occur in this
+    file. Every other rung of the confidence model has had a gate for weeks —
+    `documented` owes a resolving source, `inferred` owes stated reasoning, an
+    invention owes an admission — while the question those gates all assume an
+    answer to, *how good is the source*, was checked by nobody.
+
+    Two readings of the tier-5 rule appear in `docs/PROVENANCE.md` and they are
+    not the same rule. The table says such a source may not be the SOLE evidence;
+    the 2026-08-10 revision says a tier-5 map "never reaches it, alone or in
+    company". The table's reading is the one enforced here, with reasons: the
+    revision exists precisely to stop over-caution making the dataset less
+    accurate, and forbidding a documented value from CITING a retrospective would
+    punish corroboration — the opposite of what it was written for. A value
+    carried by a period survey and cross-checked against a 1933 pictorial map is
+    better evidenced than the same value with the map struck out.
+
+    The third rule here is a warning, not an error, and it is the one with
+    findings in it today. `documented` "still requires a period source"; the
+    ladder puts first-hand and testimony-derived evidence at tiers 1-3 and later
+    scholarly synthesis at 4. Values resting on nothing but tier 4 are counted
+    and named rather than failed, because the fix is research and not a rename:
+    either those values are over-graded or those sources are under-tiered — a
+    page transcribing a period newspaper is tier 2 whatever the site hosting it
+    is, and this dataset already grades one chicagology page that way. Regrading
+    a confidence is also a mesh input, so the decision arrives with a bake
+    attached. Priced and queued in `docs/STATUS.md` § 43.
+    """
+    ladder = tier_ladder()
+    tiers = {sid: s.get("tier") for sid, s in
+             ((s.get("id"), s) for s in sources.values() if isinstance(s, dict))
+             if sid}
+
+    def rungs(block: dict) -> list[int]:
+        return [tiers[s] for s in (block.get("sources") or [])
+                if isinstance(tiers.get(s), int)]
+
+    def named(t: int) -> str:
+        return f"tier {t} ({ladder.get(t, '?')})"
+
+    # a source may not declare a use its rung does not support
+    for name, s in sorted(sources.items()):
+        if not isinstance(s, dict):
+            continue
+        t = s.get("tier")
+        if isinstance(t, int) and t > TRACEABLE_MAX_TIER and s.get("asset_use") == "geometry":
+            rep.error(f"source {name}",
+                      f"asset_use is 'geometry' at {named(t)} — no geometry is traced from a "
+                      f"retrospective reconstruction; it tells you a thing was here, not its "
+                      f"outline (docs/PROVENANCE.md § Evidence tiers)")
+
+    claims: list[tuple[str, str, dict]] = [
+        (where, aspect, block) for _sid, _pid, aspect, where, block in graded_values(structures)
+    ]
+    for epoch, blocks in sorted((ground_index or {}).items()):
+        for cid, claim in sorted(blocks.items()):
+            claims.append((f"ground {epoch}", cid, claim))
+
+    thin: list[str] = []
+    for where, aspect, block in claims:
+        conf = block.get("confidence")
+        got = rungs(block)
+        if conf == "documented" and got:
+            if min(got) > SOLE_EVIDENCE_MAX_TIER:
+                rep.error(where, f"{aspect}: documented on {named(min(got))} alone — tiers "
+                                 f"{SOLE_EVIDENCE_MAX_TIER + 1} and up inform inventory and "
+                                 f"cross-checks and may never be the sole evidence for a "
+                                 f"documented value")
+            elif min(got) > TESTIMONY_MAX_TIER:
+                thin.append(f"{where} {aspect}")
+        # an outline is the one thing a pictorial source cannot give you
+        if aspect == "footprint" and conf in ("documented", "inferred") and got:
+            off = sorted({t for t in got if t > TRACEABLE_MAX_TIER})
+            if off:
+                rep.error(where, f"footprint: graded {conf} while citing "
+                                 f"{', '.join(named(t) for t in off)} — an outline comes from a "
+                                 f"period sheet or stays conjectural; a retrospective gives you "
+                                 f"that a thing was here, not its plan")
+
+    if thin:
+        rep.warn("evidence ladder",
+                 f"{len(thin)} documented value(s) rest on no source at tier "
+                 f"{TESTIMONY_MAX_TIER} or better — later scholarship only, with no period "
+                 f"document, eyewitness recollection or compilation from testimony behind them: "
+                 f"{', '.join(sorted(thin)[:4])}"
+                 + (f" and {len(thin) - 4} more" if len(thin) > 4 else "")
+                 + ". Either the values are over-graded or the sources are under-tiered; both "
+                   "are research, and regrading a confidence stales a mesh. See "
+                   "docs/STATUS.md § 43")
+
+    rep.note(f"evidence ladder: {len(claims)} graded claim(s) held to the {len(ladder)}-rung "
+             f"ladder in data/source.schema.json — tiers "
+             f"{SOLE_EVIDENCE_MAX_TIER + 1}+ never sole evidence for documented, never an "
+             f"outline; {len(thin)} documented on later scholarship alone")
 
 
 def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
@@ -2297,6 +2422,12 @@ def main() -> int:
     # not built and can be checked by looking at the ground; this one says two
     # documents say the same thing, and nothing was holding them together.
     check_restated_agreement(ground_index, terrain_restates(rep), rep)
+
+    # and what every one of those grades rests on. The confidence model ranks the
+    # evidence in `data/source.schema.json` and in `docs/PROVENANCE.md`, and until
+    # now the ranking was enforced nowhere — a `documented` value owed a source
+    # that resolved and nothing asked what kind of source it was.
+    check_evidence_ladder(structures, sources, rep, ground_index)
 
     # scenes
     for name, sc in scenes.items():

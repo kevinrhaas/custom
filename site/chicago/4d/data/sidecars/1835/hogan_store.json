@@ -113,21 +113,24 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicagology_first_post_office",
       "citation": "\"Chicago's First Post Office.\" Chicagology, transcribing J. Seymour Currey, \"U. S. Government and Post Office Buildings,\" Fort Dearborn Magazine, December 1922.",
       "url": "https://chicagology.com/chicagopostoffice/firstpostoffice/",
       "archived_url": "https://web.archive.org/web/20260517202635/https://chicagology.com/chicagopostoffice/firstpostoffice/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE BUILDING WHERE CHICAGO'S MAIL BEGAN, and the first record in this dataset whose footprint is evidence rather than a placeholder: Andreas states its size twice, twenty by forty-five feet, as an aside about how little room the town's post office needed. Everything else about it is thin — no build date, no orientation, no description beyond 'small' and 'log', and no source follows it past 1834. TWO CORRECTIONS TO THIS PROJECT'S OWN DOSSIER CAME OUT OF WRITING IT, both in docs/research/03-structures-north.md § 4, and both because a page was opened that the dossier's table had only summarised. First, the dossier dates the move to the Franklin and South Water office from 2 November 1832, the day Hogan succeeded Bailey as postmaster; Andreas says twice that the office was still at Lake and South Water through 1833 and moved 'about July' 1834, so the 1832 date is the postmaster's, not the building's. Second, the dossier's own source for the 1832 date, the Currey page, is where that conflation comes from — it makes the appointment and the move one sentence — and it also gives the corner as 'south west', which Andreas never does. WHAT THIS MEANS FOR THE SCENE: on 1835-07-01 the post office is a DIFFERENT, UNMODELLED building near Franklin and South Water, about 100 m east of this one, and nothing reached describes its construction, its size or its side of either street. It is a candidate for a later slice and it would be almost entirely invention today; that is stated in docs/RESEARCH/hogan_store.md § 4 rather than being built. THE WEAK POINT OF THIS RECORD IS ITS SURVIVAL, not its geometry: it is attested standing to about July 1834 and placed in a scene set eleven months later on a continuity argument, which is set out in full on documented_range. See docs/RESEARCH/hogan_store.md.",
