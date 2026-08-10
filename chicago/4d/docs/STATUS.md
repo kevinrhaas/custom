@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the sum five buildings stand on is data with a check on it, and
-writing it down found two coordinates for one junction, § 38) ·
+**Last updated:** 2026-08-10 (the control five buildings stand on is re-fetchable from the source
+it cites now, and re-fetching it moved one of them 4.44 m, § 39) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1148,9 +1148,58 @@ uncertainty of the 1834 sheets in its note.
     recorded, against `osm_streets_2026.json`'s own promise that they always are. The file
     declares both gaps and the gate requires the declaration, but the coordinates cannot be
     re-fetched from them. An attempt to re-fetch during this slice failed (Overpass 504 and empty
-    name queries), so the gap is recorded, not closed, and it is the first thing owed here. Every
+    name queries), so the gap is recorded, not closed, and it is the first thing owed here.
+    **CLOSED the same day — § 39, and closing it moved a building.** Every
     coordinate also still carries the georeference's ±20 m, which no amount of internal
     consistency touches. See `docs/RESEARCH/street_module_1830.md`.
+
+39. **The first thing owed was paid, and it moved a building.** § 38 ended by saying that two of
+    the four control points could not be re-fetched from the source they cite, that an attempt had
+    failed on Overpass, and that closing it was the first thing owed here. It is closed. The
+    OpenStreetMap API answers where Overpass would not, and it answers two different questions,
+    both of which were needed: `/map?bbox=` re-derives *which nodes a junction is*, and
+    `/nodes.json` re-fetches *where those nodes are now*. `tools/refetch_control.py` does both. It
+    is not in `tools/check.sh` and will not be — a commit gate that needs the network fails
+    offline for reasons that have nothing to do with the commit.
+    **Closing it required writing down a rule nobody had written down**, and that turned out to be
+    the whole finding. A junction is the nodes shared by the two named **surface roadways**,
+    averaged. What was never stated is what does not count: a way still under construction, a
+    differently-named street stacked underneath — Market Street's modern successor is three
+    streets here, Upper Wacker over Lower Wacker over a service drive — and **bikeways and
+    footways**, which are mapped a few metres off the roadway they follow.
+    **One junction reproduced, one did not.** Lake × Market comes back as two nodes 17.68 m apart,
+    Lake Street crossing both carriageways of Wacker's bend, and their midpoint is the committed
+    coordinate to 0.04 m: the 2026-08-09 reading is confirmed, and the Sauganash and Hogan's store
+    do not move. Randolph × Canal is a single crossing node, and it is **4.44 m** from the
+    committed coordinate. **The Western Hotel moved 2.14 m west and 3.89 m south.**
+    **What the old number was made of is inferred, and the inference is not a coincidence.** The
+    committed value is reproduced, to 0.04 m, by averaging the roadway crossing together with the
+    three crossings the Canal Street and Randolph Street *bikeways* make. Four other four-node
+    subsets nearby also average to within 0.12 m — arithmetic coincidences are cheap when enough
+    nodes are in reach — so what lifts this one above them is stated rather than assumed: it is the
+    only semantically coherent set, **the identical inclusion is visible in `kinzie_canal`**, and a
+    name query written as a substring match ('Canal Street' matching 'Canal Street Bikeway')
+    produces exactly this at both junctions and nothing extra at the other two, where no bikeway is
+    mapped. One habit, two wrong coordinates, invisible because the ids were never written down.
+    **It also settled § 38's other open question, the one that had no method behind it.** The two
+    coordinates for Kinzie × Canal were described as two subsets of one crossing chosen by two
+    pieces of work, neither recording a choice. They are not equivalent readings: two of the five
+    committed nodes are Kinzie Street **Bikeway** × Canal, and the other three average to the
+    bridge's 2026-08-10 reading to a centimetre. One applied the rule; one did not. The five-node
+    mean is kept anyway and the correction stays queued with its cost written down — it is
+    georeferencing GCP HB, so re-deriving it re-runs the Hathaway cross-check, and it is the
+    bridge's control, so moving it re-derives the span from the traced banks and asks for a bake.
+    **The gate now asks for the names, not only the ids.** Ids are re-fetchability: they say where
+    those nodes are today, and they say nothing about whether they are the right nodes, which is
+    the fault that actually occurred. A control point recording ids must now also record the two
+    modern street names that make the junction and its lat/lon. Two new self-tests hold it, and the
+    discriminating one is a control point whose ids re-fetch perfectly and whose *set* nobody can
+    check.
+    **What it still cannot claim.** That the control is right. This compares the dataset to a 2026
+    street map; the ±20 m the georeference carries onto the 1834 sheets is untouched by any of it,
+    and the correction here is an order of magnitude inside that. Two of the four control points
+    are still single-node crossings, where "the mean" has nothing to average and the junction
+    centre is wherever one mapper put one node.
 
 ## Next
 
