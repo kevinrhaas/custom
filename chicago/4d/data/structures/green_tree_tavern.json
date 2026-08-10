@@ -26,6 +26,25 @@
         "rotation_deg": 270.0,
         "symbolic_location": "North-east corner of Lake Street and Canal Street (historically Lake and West Water), one block west of the river on the west bank; front on Canal, long side on Lake.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "platted_corner",
+          "control": "lake_canal",
+          "constraints": [
+            {
+              "face": "west",
+              "street": "canal",
+              "kerb": "east",
+              "offset_m": 0
+            },
+            {
+              "face": "south",
+              "street": "lake",
+              "kerb": "north",
+              "offset_m": 0
+            }
+          ],
+          "note": "A north-east corner lot, stated as geometry rather than as a sum: the building's west face stands on Canal Street's east frontage and its south face on Lake Street's north frontage, each half a platted street from the modern intersection centre. The note above argues the corner from the sources; this says where the corner is, and tools/validate.py rebuilds the coordinate from it."
+        },
         "sources": [
           "chicagology_prefire127",
           "drloih_hotels",

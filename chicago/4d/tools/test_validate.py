@@ -1784,6 +1784,118 @@ def test_a_prose_restatement_is_pinned_to_the_line_it_describes() -> None:
           out.count("\n") == src.count("\n"), repr(out))
 
 
+def test_a_placement_is_recomputed_from_its_control() -> None:
+    """The claim is "the west face stands on the Canal frontage", not "E = 446937.4".
+
+    So the discriminating case is a ROTATION. Five placements in this dataset are
+    corner lots offset half a platted street from a modern intersection, and the
+    coordinate they record is the footprint polygon's own origin — which, once a
+    facade bearing turns the building, is not the corner the claim is about. A
+    check that compared the recorded coordinate against the kerb would pass a
+    building standing in the right place, pass a building rotated out of its lot,
+    and have no opinion about which it was looking at. Both cases are asserted
+    below, on one building, with only `rotation_deg` and the origin differing.
+    """
+    import json as _json
+    import tempfile
+    tmp = Path(tempfile.mkdtemp())
+    (tmp / "traces").mkdir(parents=True)
+    (tmp / "terrain" / "epochs" / "e1").mkdir(parents=True)
+
+    def control(**over) -> dict:
+        doc = {
+            "platted_street": {"width_ft": 66, "half_width_m": 10.0,
+                               "confidence": "inferred", "note": "a stated reading",
+                               "sources": ["s1"]},
+            "streets": {"a": {"name": "A St", "axis": "ns"},
+                        "b": {"name": "B St", "axis": "ew"}},
+            "control": {"a_b": {"streets": ["a", "b"], "utm_e": 1000.0, "utm_n": 2000.0,
+                                "osm_node_ids": [1]}},
+        }
+        doc.update(over)
+        return doc
+
+    # a channel running north-south between E 1100 and E 1200, at every northing
+    (tmp / "terrain" / "epochs" / "e1" / "river.geojson").write_text(_json.dumps({
+        "type": "FeatureCollection", "features": [{
+            "type": "Feature", "properties": {}, "geometry": {"type": "Polygon", "coordinates": [
+                [[1100, 0], [1200, 0], [1200, 9999], [1100, 9999], [1100, 0]]]}}]}),
+        encoding="utf-8")
+
+    def rec(pos: dict, poly=None) -> dict:
+        base = {"utm_e": 1010.0, "utm_n": 2010.0, "confidence": "inferred"}
+        base.update(pos)
+        return {"t.json": {"id": "t", "phases": [{
+            "id": "p",
+            "position": base,
+            "footprint": {"polygon": poly or [[0, 0], [5, 0], [5, 4], [0, 4]],
+                          "confidence": "inferred"}}]}}
+
+    CORNER = {"method": "platted_corner", "control": "a_b", "constraints": [
+        {"face": "west", "street": "a", "kerb": "east"},
+        {"face": "south", "street": "b", "kerb": "north"}]}
+
+    def run(structures: dict, doc: dict | None = None) -> list:
+        (tmp / "traces" / "street_control.json").write_text(
+            _json.dumps(doc if doc is not None else control()), encoding="utf-8")
+        rep = V.Report()
+        V.check_position_derivations(structures, {"s1"}, rep, data_root=tmp)
+        return rep.errors
+
+    ok = rec({"derivation": CORNER})
+    check("a corner lot standing on both frontages passes", not run(ok), run(ok))
+    off = rec({"utm_e": 1013.0, "derivation": CORNER})
+    check("the same building 3 m off its frontage is an error",
+          any("west face" in e for e in run(off)), run(off))
+
+    # the discriminating pair: the same claim, the same lot, the building turned
+    turned = rec({"utm_e": 1014.0, "rotation_deg": 270.0, "derivation": CORNER})
+    check("a building rotated onto its lot passes", not run(turned), run(turned))
+    unturned = rec({"rotation_deg": 270.0, "derivation": CORNER})
+    check("the unrotated origin at the same coordinate is an error",
+          any("west face" in e for e in run(unturned)), run(unturned))
+
+    # both directions
+    check("coordinates with no derivation at all is an error",
+          any("no `position.derivation`" in e for e in run(rec({}))))
+    check("not_derivable without a reason is an error",
+          any("undeclared" in e for e in run(rec({"derivation": {"method": "not_derivable"}}))))
+    check("not_derivable WITH a reason passes",
+          not run(rec({"derivation": {"method": "not_derivable", "reason": "no street here"}})))
+    check("a control that does not resolve is an error",
+          any("does not resolve" in e for e in
+              run(rec({"derivation": dict(CORNER, control="nope")}))))
+    check("a kerb on the wrong axis of its street is an error",
+          any("no north kerb" in e for e in run(rec({"derivation": dict(
+              CORNER, constraints=[{"face": "west", "street": "a", "kerb": "north"}])}))))
+
+    # the control file's own rules
+    nodeless = control(control={"a_b": {"streets": ["a", "b"], "utm_e": 1000.0,
+                                        "utm_n": 2000.0}})
+    check("control with no node ids and no stated gap is an error",
+          any("cannot be re-fetched" in e for e in run(ok, nodeless)), run(ok, nodeless))
+    check("the same control saying so passes",
+          not run(ok, control(control={"a_b": {"streets": ["a", "b"], "utm_e": 1000.0,
+                                               "utm_n": 2000.0, "gap": "ids not recorded"}})))
+
+    # a crossing is derived from the traced bank instead, and the ends have to meet it
+    def bridge(e0: float, var: float = 0.0, note: str = "why") -> dict:
+        return rec({"utm_e": e0, "utm_n": 2000.0, "derivation": {
+            "method": "traced_waterline", "control": "a_b",
+            "centreline": {"axis": "n", "control_variance_m": var},
+            "ends": {"epoch": "e1", "faces": ["west", "east"]},
+            "note": note}},
+            poly=[[0, 0], [100, 0], [100, 3], [0, 3]])
+    check("a deck landing on both traced banks passes", not run(bridge(1100.0, var=1.5)),
+          run(bridge(1100.0, var=1.5)))
+    check("a deck a metre short of the bank is an error",
+          any("meets no traced" in e for e in run(bridge(1102.0, var=1.5))))
+    check("a variance from control that is not the declared one is an error",
+          any("declares" in e for e in run(bridge(1100.0, var=0.0))))
+    check("a declared variance with nothing explaining it is an error",
+          any("explains it nowhere" in e for e in run(bridge(1100.0, var=1.5, note=""))))
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

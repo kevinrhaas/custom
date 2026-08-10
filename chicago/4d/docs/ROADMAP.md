@@ -161,6 +161,12 @@ blue shutters solid, the invented footprint and the disputed gallery dithered.
 Asked for as "streets, roads, paths in accurate surface and elevations". Both halves of
 that have a specific answer here, and the second one is a trap.
 
+**Half of that sentence is committed data as of 2026-08-10.** `data/traces/street_control.json`
+holds the module (80 ft streets, `inferred`, with the 66 ft dissent recorded beside it) and the
+control table this project actually snaps to, each street carrying its axis and its modern
+equivalent. What is still missing for this parcel is the plat's **block dimensions and extent** —
+that file holds only what the existing placements used. See `docs/RESEARCH/street_module_1830.md`.
+
 **Geometry comes from the Thompson module, generated, not traced.** The 1830 plat gives
 80-ft streets and 18-ft alleys over the original 0.375 sq mi; Wright 1834 shows the same
 grid extended, and both sheets carry ±20 m of georeferencing slop that tracing would bake
@@ -718,6 +724,31 @@ Three things worth carrying, all of them about where a declaration may live:
   `bank_crest_ft` restates `near_ft` and was declared `record_only`, which owes nothing and asks
   nothing. All seven agree today; the value is that the next edit to a division level cannot leave
   the panel showing the old crest.
+
+**Done 2026-08-10 — the sum under five buildings is data now, and it was five paragraphs.** Every
+gate above asks whether a claim is honest; this one asks whether the arithmetic beneath a
+coordinate was ever redone. Five placements are the same construction — a modern intersection
+centre off OpenStreetMap, half an 80 ft platted street to the kerb, a named face on it — written
+out once per record, with the number 12.2 appearing in five paragraphs and no file.
+`data/traces/street_control.json` holds the module and the control once;
+`check_position_derivations` rebuilds every placement from them and holds the rest to a
+declaration; and the sums were all correct, which is the least interesting part.
+
+Three things worth carrying:
+
+- **Ask the placed shape, not the coordinate.** A record's position is the footprint polygon's own
+  origin, so a facade bearing turns it off the corner the claim is about — the Green Tree's
+  easting sits 24.4 m from its intersection where the claim says 12.2. A check comparing
+  coordinates to kerbs passes a correctly placed building and a rotated-out-of-its-lot building
+  with equal confidence, so the self-test's discriminating case is one building appearing twice.
+- **A disagreement you cannot act on gets recorded and left.** The 80 ft / 66 ft street width
+  (`docs/RESEARCH/hogan_store.md` § 5) sat because settling it meant five hand-redone sums. It is
+  now one edit and a printed list of which buildings moved, 2.13 m each.
+- **Writing the control down found two coordinates for one junction** — Canal and Kinzie, averaged
+  over five OSM nodes for the georeference and three for the bridge, 3.8 m apart. The bridge is
+  not moved: its span is the distance between the traced banks along its centreline, that distance
+  is a mesh parameter, and re-deriving it asks for a bake. The variance is declared and checked
+  instead. See `docs/RESEARCH/street_module_1830.md`.
 
 ## S8 — Milestone 1
 

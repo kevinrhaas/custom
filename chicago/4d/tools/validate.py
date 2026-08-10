@@ -1273,6 +1273,242 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
              f"{declared} declaring it")
 
 
+# How close a recomputed placement has to land. The corner tolerance is a
+# rounding allowance and nothing else: coordinates are committed to 0.1 m and
+# polygons to the millimetre, so the eight corner constraints in the dataset
+# reproduce to 0.02 m. The waterline tolerance is larger for a stated reason —
+# a traced bank is a polyline, and where it crosses a given northing depends on
+# which vertex pair you sample, so agreement to the centimetre would be luck
+# rather than correctness.
+PLACEMENT_TOL_M = 0.05
+WATERLINE_TOL_M = 0.5
+
+
+def world_footprint(phase: dict) -> list[tuple[float, float]]:
+    """The footprint polygon where it actually stands, in EPSG:26916 metres.
+
+    `rotation_deg` is a facade bearing, degrees CLOCKWISE from grid north, and
+    the polygon is local ENU about the position — so a building at bearing 270
+    has its recorded coordinate at what reads on paper as its south-east corner.
+    Every constraint below is asked of the placed shape rather than of the
+    coordinate, because "the west face stands on the Canal frontage" is a claim
+    about the building and stays true when the building is rotated.
+    """
+    pos = phase.get("position") or {}
+    poly = (phase.get("footprint") or {}).get("polygon") or []
+    if pos.get("utm_e") is None or pos.get("utm_n") is None or len(poly) < 3:
+        return []
+    b = math.radians(float(pos.get("rotation_deg") or 0.0))
+    cos, sin = math.cos(b), math.sin(b)
+    e0, n0 = float(pos["utm_e"]), float(pos["utm_n"])
+    return [(e0 + x * cos + y * sin, n0 - x * sin + y * cos) for x, y in poly]
+
+
+def face_of(pts: list[tuple[float, float]], face: str) -> float:
+    es = [p[0] for p in pts]
+    ns = [p[1] for p in pts]
+    return {"west": min(es), "east": max(es), "south": min(ns), "north": max(ns)}[face]
+
+
+def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
+                        where: str) -> list[float]:
+    """Eastings where the traced water boundary crosses a northing."""
+    doc = load_json(epoch_dir / "river.geojson", rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error(where, f"no traced river at {epoch_dir.name} to meet")
+        return []
+    out: list[float] = []
+    for ft in doc.get("features", []):
+        geom = ft.get("geometry") or {}
+        if geom.get("type") != "Polygon":
+            continue
+        for ring in geom.get("coordinates", []):
+            for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+                if y1 != y2 and (y1 - northing) * (y2 - northing) <= 0:
+                    out.append(x1 + (northing - y1) / (y2 - y1) * (x2 - x1))
+    return out
+
+
+def check_position_derivations(structures: dict, source_ids: set, rep: Report,
+                               data_root: Path | None = None) -> None:
+    """Every placement says how it was arrived at, and the checkable ones are recomputed.
+
+    Five of the nine placements in this dataset are the same construction: read
+    a modern intersection centre off OpenStreetMap, step half a platted street
+    to the kerb, and stand a named face on it. That construction was written out
+    in prose once per building — the same sentence, the same 12.2 m, five sums
+    done by hand — and nothing recomputed any of it. Two consequences, and the
+    second is the reason this exists rather than the first:
+
+    - A transcription slip in any of those sums is invisible. The numbers happen
+      to be right; nothing was making them right.
+    - **The module could not be changed.** `data/traces/street_control.json`
+      records a live disagreement about the platted street width (80 ft
+      annotated on Hathaway 1834, against Currey's 66 ft) whose consequence is
+      2.13 m on every offset. Settling it against five paragraphs means five
+      hand-redone sums and a reviewer with a calculator; settling it against one
+      figure and this check means editing one number and reading which buildings
+      moved.
+
+    The rule runs in both directions, which is what stops the file going quietly
+    out of date: a phase with coordinates and no `derivation` is an error, and a
+    derivation naming control, a street, a kerb or an epoch that does not
+    resolve is an error too. A placement no line in the dataset can check
+    declares `not_derivable` and owes a reason — three of the nine do, and their
+    reasons are the honest ones: no surviving street here, a position stacked on
+    another inferred position, an interpolation plus a free 40 m.
+    """
+    base = data_root or DATA
+    doc = load_json(base / "traces" / "street_control.json", rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error("street control", "data/traces/street_control.json is missing or unreadable — "
+                                    "the placements cannot be recomputed without it")
+        return
+
+    module = doc.get("platted_street") or {}
+    half = module.get("half_width_m")
+    if not isinstance(half, (int, float)) or half <= 0:
+        rep.error("street control", "platted_street.half_width_m is missing or not a length")
+        return
+    if module.get("confidence") not in CONFIDENCE:
+        rep.error("street control", "the platted street width carries no confidence, and every "
+                                    "figure this dataset stands on is graded")
+    if module.get("confidence") != "documented" and not (module.get("note") or "").strip():
+        rep.error("street control", "the street width is not documented and states no reasoning")
+    for key, node in (("platted_street", module), ("platted_street.dissent", module.get("dissent") or {})):
+        for s in node.get("sources") or []:
+            if s not in source_ids:
+                rep.error("street control", f"{key} cites '{s}', which does not resolve in data/sources/")
+
+    streets = doc.get("streets") or {}
+    for sid, st in streets.items():
+        if st.get("axis") not in ("ew", "ns"):
+            rep.error("street control", f"street '{sid}' has no axis; a kerb cannot be found "
+                                        f"without knowing which way the street runs")
+
+    control = doc.get("control") or {}
+    for cid, c in control.items():
+        for sid in c.get("streets") or []:
+            if sid not in streets:
+                rep.error("street control", f"control '{cid}' names street '{sid}', which is not "
+                                            f"in the streets table")
+        if c.get("utm_e") is None or c.get("utm_n") is None:
+            rep.error("street control", f"control '{cid}' has no coordinate")
+        if not c.get("osm_node_ids") and not (c.get("gap") or "").strip():
+            rep.error("street control", f"control '{cid}' records no OpenStreetMap node ids and "
+                                        f"no `gap` saying so — data/sources/osm_streets_2026.json "
+                                        f"promises the ids are recorded, and a control point that "
+                                        f"cannot be re-fetched has to say it cannot")
+
+    checked = declared = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for ph in st.get("phases", []):
+            pos = ph.get("position") or {}
+            where = f"structure {sid}/{ph.get('id', '?')}"
+            der = pos.get("derivation")
+            if pos.get("utm_e") is None:
+                if der:
+                    rep.error(where, "declares a derivation and has no coordinates to derive")
+                continue
+            if not der:
+                rep.error(where, "has coordinates and no `position.derivation` — how a placement "
+                                 "was arrived at is part of the claim, and a placement that "
+                                 "nothing can recompute has to say so rather than say nothing")
+                continue
+            declared += 1
+            method = der.get("method")
+
+            if method == "not_derivable":
+                if not (der.get("reason") or "").strip():
+                    rep.error(where, "not_derivable without a reason — that is an undeclared "
+                                     "placement with a label on it")
+                for k in ("control", "constraints", "centreline", "ends"):
+                    if der.get(k):
+                        rep.error(where, f"not_derivable but carries `{k}`")
+                continue
+
+            cid = der.get("control")
+            c = control.get(cid or "")
+            if not c:
+                rep.error(where, f"control '{cid}' does not resolve in "
+                                 f"data/traces/street_control.json")
+                continue
+            pts = world_footprint(ph)
+            if not pts:
+                rep.error(where, "has coordinates but no footprint polygon to stand on a frontage")
+                continue
+
+            if method == "platted_corner":
+                cons = der.get("constraints") or []
+                if not cons:
+                    rep.error(where, "platted_corner with no constraints")
+                for con in cons:
+                    street = streets.get(con.get("street") or "")
+                    if not street:
+                        rep.error(where, f"names street '{con.get('street')}', not in the "
+                                         f"streets table")
+                        continue
+                    if con.get("street") not in (c.get("streets") or []):
+                        rep.error(where, f"stands on '{con.get('street')}' but its control "
+                                         f"'{cid}' is not on that street")
+                        continue
+                    kerb, axis = con.get("kerb"), street["axis"]
+                    if (axis == "ns") != (kerb in ("east", "west")):
+                        rep.error(where, f"a {axis} street has no {kerb} kerb")
+                        continue
+                    outward = 1.0 if kerb in ("east", "north") else -1.0
+                    centre = c["utm_e"] if axis == "ns" else c["utm_n"]
+                    want = centre + outward * (half + float(con.get("offset_m") or 0.0))
+                    got = face_of(pts, con["face"])
+                    if abs(got - want) > PLACEMENT_TOL_M:
+                        rep.error(where, f"the {con['face']} face stands at {got:.2f} and the "
+                                         f"{kerb} frontage of {con['street']} is at {want:.2f} "
+                                         f"({got - want:+.2f} m)")
+                    else:
+                        checked += 1
+
+            elif method == "traced_waterline":
+                cl = der.get("centreline") or {}
+                ends = der.get("ends") or {}
+                axis = cl.get("axis")
+                if axis in ("e", "n"):
+                    lo = face_of(pts, "west" if axis == "e" else "south")
+                    hi = face_of(pts, "east" if axis == "e" else "north")
+                    mid = (lo + hi) / 2.0
+                    centre = c["utm_e"] if axis == "e" else c["utm_n"]
+                    var = float(cl.get("control_variance_m") or 0.0)
+                    if var and not (der.get("note") or "").strip():
+                        rep.error(where, "declares a variance from its control and explains it "
+                                         "nowhere — a stated offset with no reason is the thing "
+                                         "this check exists to stop being written")
+                    if abs(abs(centre - mid) - abs(var)) > PLACEMENT_TOL_M:
+                        rep.error(where, f"sits {centre - mid:+.2f} m from control '{cid}' on the "
+                                         f"{axis} axis and declares {var:+.2f}")
+                    else:
+                        checked += 1
+                epoch_dir = base / "terrain" / "epochs" / (ends.get("epoch") or "")
+                if not epoch_dir.is_dir():
+                    rep.error(where, f"ends on epoch '{ends.get('epoch')}', which is not committed")
+                    continue
+                mid_n = (face_of(pts, "south") + face_of(pts, "north")) / 2.0
+                xs = waterline_crossings(epoch_dir, mid_n, rep, where)
+                for f in ends.get("faces") or []:
+                    got = face_of(pts, f)
+                    near = min((abs(got - x) for x in xs), default=None)
+                    if near is None or near > WATERLINE_TOL_M:
+                        rep.error(where, f"its {f} end stands at {got:.2f} and meets no traced "
+                                         f"{ends.get('epoch')} waterline there"
+                                         + (f" (nearest {near:.2f} m)" if near is not None else ""))
+                    else:
+                        checked += 1
+            else:
+                rep.error(where, f"unknown derivation method '{method}'")
+
+    rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
+             f"from data/traces/street_control.json")
+
+
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                              consumed: dict[str, frozenset] | None = None,
                              unlanded: list[tuple] | None = None,
@@ -1863,6 +2099,11 @@ def main() -> int:
 
     check_liberties_coverage(structures, liberties, rep, consumed, unlanded, ground_index,
                              ground_consumed)
+
+    # and how each of those positions was arrived at, which every record stated
+    # in prose and nothing recomputed. The corners come back out of the control
+    # and the platted module; the crossing comes back out of the traced bank.
+    check_position_derivations(structures, source_ids, rep)
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)

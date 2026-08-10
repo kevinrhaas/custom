@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the third category — researched and still open — reaches a visitor,
-and its own promise is a check, § 37) ·
+**Last updated:** 2026-08-10 (the sum five buildings stand on is data with a check on it, and
+writing it down found two coordinates for one junction, § 38) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1102,6 +1102,55 @@ uncertainty of the 1834 sheets in its note.
     noticed is exactly as invisible here as a liberty nobody noticed taking, and this list has
     four entries against roughly forty researched structures. And an entry can be well-formed,
     correctly cited, honestly graded, and asking the wrong question about the town.
+
+38. **The sum five buildings stand on was done by hand, five times, and written in prose.**
+    Every gate in §§ 26-37 asks whether a claim is honest. This one asks something duller and
+    more load-bearing: whether the arithmetic under a coordinate was ever redone. Five of the
+    eight placed structures are the same construction — read a modern intersection centre off
+    OpenStreetMap, step **half an 80 ft platted street** to the kerb, stand a named face on it —
+    and that construction lived as a sentence repeated once per record. The number 12.2 appeared
+    in five paragraphs and in no file.
+    **The sums are all correct**, which is the least interesting thing here: the eight
+    constraints now recomputed reproduce to within 0.02 m, the rounding. Nothing was *making*
+    them correct, and the next placement was going to be done the same way.
+    **What the prose actually cost is that the module could not be changed.** `hogan_store.md`
+    § 5 records a live disagreement — 80 ft annotated on Hathaway 1834 against Currey's 66 ft —
+    and ends by saying nothing moves on account of it. That was true and it was also the only
+    available answer, because settling it meant editing five paragraphs and redoing five sums by
+    hand. `data/traces/street_control.json` now holds the module once, graded `inferred` with its
+    reasoning and its dissent recorded beside it, and `check_position_derivations` rebuilds every
+    placement from it. The disagreement is now one edit and a list of which buildings moved:
+    2.13 m each, five of them.
+    **The check is asked of the placed shape, not of the coordinate**, and that is the whole
+    design. A record's coordinate is the footprint polygon's own origin, so at a facade bearing
+    of 270 it is not the corner the claim is about — the Green Tree's recorded easting sits
+    24.4 m from the intersection where the claim says 12.2. Comparing coordinates to kerbs would
+    have passed a building standing correctly and passed one rotated out of its lot with equal
+    confidence. The self-test's discriminating case is therefore one building appearing twice,
+    with only the rotation and the origin differing.
+    **Writing the control down found the thing prose was hiding: two coordinates for one
+    junction.** Canal and Kinzie was averaged over five shared OSM nodes on 2026-08-09 for the
+    georeference and over three on 2026-08-10 for the North Branch bridge, giving points 3.8 m
+    apart. Not a disagreement about where the junction is — two subsets of one crossing, chosen
+    by two pieces of work, neither recording that a choice was being made. **The bridge is not
+    moved**, deliberately: its span is the distance between the traced 1834 banks along its
+    centreline, that distance is a mesh parameter, and re-deriving it stales the committed GLB
+    and asks for a Blender bake. So the record declares the 2.93 m variance and the gate checks
+    that the declared number is the real one. An undeclared 2.93 m stays invisible; a declared
+    one is a queued correction with its cost written down.
+    **Three of the nine placements are declared unrecomputable, with reasons**, because the
+    alternative is a check that certifies guesses: no surviving street here (Miller House), a
+    position stacked on another inferred position (Walker's meeting house), an interpolation plus
+    a free 40 m north of a crossing (Wolf Point Tavern).
+    **What it does not claim, stated exactly.** It verifies the dataset against **its own stated
+    control**, not against OpenStreetMap. Two of the four control points — Lake × Market and
+    Randolph × Canal — were read for placements in 2026-08-09 and their node ids were never
+    recorded, against `osm_streets_2026.json`'s own promise that they always are. The file
+    declares both gaps and the gate requires the declaration, but the coordinates cannot be
+    re-fetched from them. An attempt to re-fetch during this slice failed (Overpass 504 and empty
+    name queries), so the gap is recorded, not closed, and it is the first thing owed here. Every
+    coordinate also still carries the georeference's ±20 m, which no amount of internal
+    consistency touches. See `docs/RESEARCH/street_module_1830.md`.
 
 ## Next
 

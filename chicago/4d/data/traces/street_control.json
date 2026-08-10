@@ -1,0 +1,94 @@
+{
+  "_doc": "The modern street control every platted placement in this dataset is offset from, and the platted street module those offsets use. Until 2026-08-10 both lived only in the prose of each record's position note, restated once per building: 'the modern intersection centre was read from OpenStreetMap (E …, N …) and the footprint offset 12.2 m, half an 80 ft platted street'. Five records said it, nothing checked it, and changing the module would have meant editing five paragraphs and re-doing five sums by hand. The figures here are the ones those placements actually used; tools/validate.py recomputes each placement from them (check_position_derivations) and the records declare which control they stand on.",
+
+  "platted_street": {
+    "id": "thompson_module_1830",
+    "width_ft": 80,
+    "width_m": 24.384,
+    "half_width_m": 12.192,
+    "confidence": "inferred",
+    "sources": ["hathaway_1834", "thompson_plat_1830"],
+    "note": "80 ft is the street width annotated on Hathaway 1834 and read off the sheet during the datum work; this project has applied it town-wide to Lake, Market, Canal, Randolph and Kinzie. It is INFERRED rather than documented because a second source gives a different town-wide number and the sheet has not been read street by street: half an 80 ft street is a reading of an annotation, not a measurement of each of these five streets. Alleys are 18 ft on the same reading (16 ft on the dissenting one) and no placement here uses them.",
+    "dissent": {
+      "width_ft": 66,
+      "alley_ft": 16,
+      "sources": ["chicagology_first_post_office"],
+      "note": "Currey states Thompson's 1830 plat laid the town out with 'straight streets uniformly 66 feet wide (the length of a surveyor's chain) with alleys 16 feet wide'. NOT ADOPTED, and not averaged: an annotation on a cadastral survey sheet outweighs a narrative sentence about the town as a whole. The reconciliation worth testing is that the two figures are not about the same streets — 66 ft general, the riverfront and market streets platted wider — which is settled by reading widths off Hathaway 1834 at Lake, South Water and Market specifically. See docs/RESEARCH/hogan_store.md § 5. WHAT IT WOULD COST TO BE WRONG, stated because it is now computable rather than arguable: every offset drops from 12.192 m to 10.058 m, moving five buildings 2.13 m — an order of magnitude inside the georeference's own ±20 m, and one edit to this file rather than five."
+    }
+  },
+
+  "streets": {
+    "lake": {
+      "name": "Lake Street",
+      "axis": "ew",
+      "modern": "W Lake Street, unchanged alignment",
+      "note": "Platted in the original town and surviving on its line, which is what makes it usable as control."
+    },
+    "canal": {
+      "name": "Canal Street",
+      "axis": "ns",
+      "modern": "N/S Canal Street, unchanged alignment",
+      "note": "West of the South Branch. NOT West Water Street, which ran along the west bank one block east — a confusion recorded on green_tree_tavern's position."
+    },
+    "market": {
+      "name": "Market Street",
+      "axis": "ns",
+      "modern": "N Wacker Drive",
+      "note": "The equivalence is stated by this project's research dossiers and independently corroborated by the georeference, since the 1834 plats warp onto the modern centrelines at 17.5 m RMS."
+    },
+    "randolph": {
+      "name": "Randolph Street",
+      "axis": "ew",
+      "modern": "W Randolph Street, unchanged alignment"
+    },
+    "kinzie": {
+      "name": "Kinzie Street",
+      "axis": "ew",
+      "modern": "W Kinzie Street, unchanged alignment",
+      "note": "North of the main stem, in Kinzie's Addition rather than the original town; one of the streets that survives on its 1835 alignment, which is why the North Branch bridge's deck sits on it."
+    }
+  },
+
+  "control": {
+    "lake_canal": {
+      "streets": ["lake", "canal"],
+      "utm_e": 446913.03,
+      "utm_n": 4637287.42,
+      "lat": 41.8857338,
+      "lon": -87.6398656,
+      "osm_node_ids": [258020603],
+      "derived_from": "data/traces/gcp/wright_1834_gcps.json G5 = data/traces/gcp/hathaway_1834_gcps.json HA",
+      "note": "The only control point used for a placement that is also a georeferencing GCP, so its node id is recorded and its coordinate is re-fetchable."
+    },
+    "lake_market": {
+      "streets": ["lake", "market"],
+      "utm_e": 447161.9,
+      "utm_n": 4637285.4,
+      "lat": null,
+      "lon": null,
+      "osm_node_ids": null,
+      "derived_from": "read from OpenStreetMap 2026-08-09 for the Sauganash placement; re-used 2026-08-10 for Hogan's store",
+      "gap": "NODE IDS WERE NOT RECORDED. data/sources/osm_streets_2026.json promises that 'node ids are recorded per control point so every coordinate is re-fetchable', and that promise was kept for the georeferencing GCPs and not for the two control points read later for placements. The coordinate here is the one those placements were actually built from, to 0.1 m, so the derivation check verifies the dataset against its own stated control; what it cannot do is re-derive that control from OpenStreetMap. Owed: re-fetch this junction, record the node ids, and reconcile any difference as a dated correction rather than a silent edit."
+    },
+    "randolph_canal": {
+      "streets": ["randolph", "canal"],
+      "utm_e": 446919.6,
+      "utm_n": 4637148.5,
+      "lat": null,
+      "lon": null,
+      "osm_node_ids": null,
+      "derived_from": "read from OpenStreetMap 2026-08-09 for the Western Hotel placement",
+      "gap": "Node ids were not recorded — see lake_market."
+    },
+    "kinzie_canal": {
+      "streets": ["kinzie", "canal"],
+      "utm_e": 446889.29,
+      "utm_n": 4637660.73,
+      "lat": 41.8890943,
+      "lon": -87.6401853,
+      "osm_node_ids": [10942616788, 10942616789, 11851144361, 11851144367, 11851144368],
+      "derived_from": "data/traces/gcp/hathaway_1834_gcps.json HB",
+      "note": "TWO COORDINATES FOR ONE JUNCTION EXIST IN THIS DATASET AND THIS IS THE OLDER AND BETTER-RECORDED ONE. The georeference took the mean of the five shared nodes above on 2026-08-09. The North Branch bridge's placement note describes reading the same junction on 2026-08-10 from 'three shared nodes', giving 41.889068 N, -87.640156 W = E 446891.7, N 4637657.8 — 3.8 m away, and its deck centreline stands on that second reading. Which subset of a five-node crossing you average is a choice nobody recorded making, and averaging a different subset of the same crossing is not a disagreement about where Kinzie and Canal is. The bridge declares the variance rather than absorbing it (data/structures/north_branch_bridge.json), because its span is a mesh parameter derived from where the deck meets the traced 1834 banks: moving the deck 2.9 m north re-derives the span and re-bakes the bridge, which is a slice with a Blender in it and not a bookkeeping edit. See docs/RESEARCH/street_module_1830.md § 3."
+    }
+  }
+}
