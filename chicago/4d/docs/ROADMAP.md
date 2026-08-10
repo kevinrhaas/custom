@@ -186,6 +186,25 @@ a branch, let the bake workflow run against that branch (it triggers on any push
 one PR carrying both. See `generators/mesh_inputs.py` for what counts as an input and what
 deliberately does not.
 
+**The first bridge landed 2026-08-10, and it is the first record whose size is evidence.** The
+North Branch crossing at Kinzie Street — Chicago's first bridge, 1832-1839 — is a record, a bake
+and a published mesh on the `bridge_timber` archetype, which had been written and never used.
+Three things worth carrying into the rest of S5:
+
+- **A crossing can be measured where a building cannot.** Its 71.83 m span is the distance
+  between the two traced 1834 waterlines along the Kinzie alignment, read off `river.geojson`,
+  and its 3.048 m width is Cleaver's "ten feet wide" — so the footprint is derived rather than a
+  placeholder. Anything that meets the traced water (the piers, the wharves, the raft bridge) can
+  be dimensioned the same way. Anything that does not still gets a placeholder.
+- **The invention moved from the outline to the interior.** A building's placeholder is its
+  footprint; this bridge's is the fifteen cribs the archetype puts under a span nobody described
+  the middle of (L29). Same class of fault, different place to look for it.
+- **The contract's water anchor is implemented now** — `VERTICAL_ANCHOR` on the archetype,
+  `placement.vertical_anchor` in the sidecar, a literal `y = 0` in the renderer, and a smoke
+  assertion written as the difference between the two anchors. The next structure over water
+  needs no renderer work. **What is still missing is walking on it**: the walker follows the
+  terrain, so the deck is scenery. That is its own unit and it is recorded in STATUS, not faked.
+
 Per-cluster parcels, each one file per structure so parallel agents never collide:
 
 | parcel | contents |
@@ -197,6 +216,7 @@ Per-cluster parcels, each one file per structure so parallel agents never collid
 | Civic square | estray pen, log jail, courthouse (under construction, month unfixed) |
 | Fort Dearborn | palisade, blockhouse, bastion, magazine, quarters, barracks, sutler, hospital, parade, gardens |
 | Harbor works | north pier, south pier, the cut, the lighthouse, wharves |
+| Crossings | ~~North Branch bridge~~ **DONE 2026-08-10** · South Branch raft bridge (floating — needs its own archetype, see `bridge_timber_params`) · Dearborn Street drawbridge (200 ft with a 60-ft draw, a different animal and outside the current terrain box) |
 
 ## S6 — Flora and fauna
 
