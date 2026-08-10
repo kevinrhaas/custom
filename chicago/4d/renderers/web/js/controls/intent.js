@@ -13,10 +13,18 @@
  *
  *   forward    -1 back .. +1 ahead        (analogue: a thumbstick gives 0.4)
  *   strafe     -1 left .. +1 right
+ *   rise       -1 down .. +1 up           (free-fly only; ignored on foot)
  *   yawDelta   radians to turn this frame, + is left (counter-clockwise)
  *   pitchDelta radians to look up this frame, + is up
  *   sprint     boolean
+ *   flying     boolean — the mode, not a keypress
  *   interact   edge-triggered; consume it with `takeInteract()`
+ *
+ * `flying` sits here rather than in the walker or the HUD for the same reason
+ * everything else does: two backends and the HUD all need to agree on it, and
+ * the moment it has two homes they will disagree. It also changes what a key
+ * MEANS — Space inspects on foot and ascends in the air — so the backend that
+ * reads the key has to be able to see the mode.
  *
  * `interactPoint` rides along with `interact`: a crosshair inspection has no
  * point (null) and a tap has the one you tapped, in normalised device coords.
@@ -28,14 +36,19 @@ export function createIntent() {
   const intent = {
     forward: 0,
     strafe: 0,
+    rise: 0,
     yawDelta: 0,
     pitchDelta: 0,
     sprint: false,
+    flying: false,
     interact: false,
     interactPoint: null,
 
     /** Movement written this frame, for the HUD and the smoke harness. */
-    get moving() { return Math.abs(this.forward) > 0.001 || Math.abs(this.strafe) > 0.001; },
+    get moving() {
+      return Math.abs(this.forward) > 0.001 || Math.abs(this.strafe) > 0.001
+        || Math.abs(this.rise) > 0.001;
+    },
 
     /**
      * Read-and-clear, so one tap is one interaction.
@@ -58,6 +71,7 @@ export function createIntent() {
     clear() {
       this.forward = 0;
       this.strafe = 0;
+      this.rise = 0;
       this.sprint = false;
       this.interact = false;
       this.interactPoint = null;

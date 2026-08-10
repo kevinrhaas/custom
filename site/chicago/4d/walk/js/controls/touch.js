@@ -25,7 +25,7 @@ const TAP_MS = 260;                // hold shorter than this...
 const TAP_SLOP = 12;               // ...and moved less than this = a tap
 
 export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) {
-  const { layer, stick, knob } = ui;
+  const { layer, stick, knob, risePad, riseUp, riseDown } = ui;
 
   /** pointerId -> { role, startX, startY, x, y, t0, moved } */
   const active = new Map();
@@ -65,6 +65,47 @@ export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) 
   function hideStick() {
     stick?.classList.remove('on');
     if (knob) knob.style.transform = 'translate(0px, 0px)';
+  }
+
+  /**
+   * The rise pad. Its own pointer handlers, NOT the canvas ones: the buttons
+   * sit over the right half, which is the look region, so a thumb held on one
+   * would otherwise also be dragging the view. `stopPropagation` plus their own
+   * capture keeps the two apart.
+   *
+   * `pointercancel` matters as much as `pointerup` here — the browser steals a
+   * pointer on scroll-gesture arbitration, and a stolen pointerup is how you get
+   * a visitor ascending forever with nothing held.
+   */
+  function bindRise(btn, value) {
+    if (!btn) return;
+    const stop = () => {
+      if (intent.rise === value) intent.rise = 0;
+      btn.classList.remove('on');
+    };
+    btn.addEventListener('pointerdown', (e) => {
+      if (!enabled) return;
+      intent.rise = value;
+      btn.classList.add('on');
+      try { btn.setPointerCapture?.(e.pointerId); } catch { /* not capturable */ }
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    for (const type of ['pointerup', 'pointercancel', 'pointerleave']) {
+      btn.addEventListener(type, (e) => { stop(); e.stopPropagation(); });
+    }
+  }
+  bindRise(riseUp, 1);
+  bindRise(riseDown, -1);
+
+  /** Show the vertical controls only when they do something. */
+  function syncRisePad() {
+    risePad?.toggleAttribute('hidden', !(enabled && intent.flying));
+    if (!intent.flying) {
+      intent.rise = 0;
+      riseUp?.classList.remove('on');
+      riseDown?.classList.remove('on');
+    }
   }
 
   function onPointerDown(e) {
@@ -183,6 +224,7 @@ export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) 
       window.visualViewport?.addEventListener('resize', reportViewport);
       window.visualViewport?.addEventListener('scroll', reportViewport);
       reportViewport();
+      syncRisePad();
     },
 
     disable() {
@@ -191,6 +233,8 @@ export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) 
       active.clear();
       moveId = lookId = null;
       hideStick();
+      intent.rise = 0;
+      syncRisePad();
       layer?.setAttribute('hidden', '');
       document.body.classList.remove('is-touch');
       domElement.removeEventListener('pointerdown', onPointerDown);
@@ -201,8 +245,12 @@ export function createTouchBackend({ intent, domElement, ui = {}, onViewport }) 
       window.visualViewport?.removeEventListener('scroll', reportViewport);
     },
 
-    /** Nothing to poll — this backend is event-driven and writes intent live. */
-    update() {},
+    /**
+     * Event-driven for movement, but the rise pad's VISIBILITY tracks a mode
+     * that can change from anywhere (the HUD chip, the F key, an anchor jump),
+     * so its one poll per frame is cheaper than an event bus for one boolean.
+     */
+    update() { syncRisePad(); },
 
     dispose() { this.disable(); },
   };

@@ -28,6 +28,26 @@ export const WALK = {
   groundSmoothing: 14,  // 1/s — how fast the eye settles to a new ground height
 };
 
+/**
+ * Free-fly. A separate object because these numbers are NOT the walk numbers
+ * scaled up — flying answers a different question ("what is the shape of this
+ * place") and wants different behaviour.
+ */
+export const FLY = {
+  speed: 14,            // m/s — crossing a 640 m scene should take ~45 s, not 7 min
+  sprintSpeed: 46,
+  riseSpeed: 11,        // m/s vertical, independent of look direction
+  minClearance: 1.2,    // m above the terrain; you may skim, not tunnel
+  maxAltitude: 900,     // m above the datum water surface
+  /**
+   * Horizontal speed multiplies with height. At 300 m up, ground features
+   * subtend so little angle that 14 m/s reads as not moving at all — the
+   * classic flight-sim problem where altitude makes the world feel frozen.
+   * Capped so it stays controllable near the top.
+   */
+  altitudeGain: (y) => Math.min(6, 1 + Math.max(0, y) / 90),
+};
+
 /** Point-in-polygon, ray casting. `pts` is [[e, n], ...]. */
 function inside(e, n, pts) {
   let hit = false;
@@ -104,6 +124,10 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
     speed: 0,
     /** Set when the last move was blocked by the step-up rule. */
     blocked: false,
+    /** Free-fly mode. The walker owns the transition; the intent owns the wish. */
+    flying: false,
+    /** Metres above local ground, 0 on foot. What the HUD reports. */
+    altitude: 0,
   };
   state.groundY = terrain.height(state.e, state.n);
   state.eyeY = state.groundY + WALK.eyeHeight;
@@ -157,12 +181,37 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
     get enu() { return { e: state.e, n: state.n, y: state.eyeY }; },
     get bearingDeg() { return yawToBearing(state.yaw); },
 
-    teleport({ local_e = state.e, local_n = state.n, yaw_deg = null } = {}) {
+    /**
+     * Put the visitor somewhere. `altitude_m` makes it an AERIAL arrival: the
+     * mode flips to free-fly and the eye goes to that height, because an
+     * overhead viewpoint you are dropped into on foot is just a viewpoint of
+     * some grass.
+     */
+    teleport({ local_e = state.e, local_n = state.n, yaw_deg = null,
+               altitude_m = null, pitch_deg = null } = {}) {
       state.e = local_e;
       state.n = local_n;
       if (yaw_deg !== null) state.yaw = bearingToYaw(yaw_deg);
+      if (pitch_deg !== null) {
+        state.pitch = Math.max(-WALK.pitchLimit,
+          Math.min(WALK.pitchLimit, pitch_deg * DEG));
+      } else if (altitude_m === null) {
+        // Arriving on foot levels the view. Without this you keep whatever
+        // angle you had, so stepping off an aerial viewpoint down to a street
+        // corner lands you staring at the cobbles — and, less visibly, aims
+        // every crosshair inspection at the ground instead of the building.
+        state.pitch = 0;
+      }
       state.groundY = terrain.height(state.e, state.n);
-      state.eyeY = state.groundY + WALK.eyeHeight;
+      if (altitude_m !== null) {
+        this.setFlying(true);
+        state.eyeY = state.groundY + Math.max(FLY.minClearance, altitude_m);
+        state.altitude = state.eyeY - state.groundY;
+      } else {
+        this.setFlying(false);
+        state.eyeY = state.groundY + WALK.eyeHeight;
+        state.altitude = 0;
+      }
       this.apply();
     },
 
@@ -185,6 +234,81 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       this.apply();
     },
 
+    /**
+     * Enter or leave free-fly.
+     *
+     * Leaving SNAPS to the ground, which was not the first instinct. Letting
+     * the walk path's existing ground-smoothing fly the eye down looked elegant
+     * and is wrong at altitude: that term is exponential with a 14/s constant,
+     * so it covers 87% of the drop in the first second — from 175 m that is a
+     * 150 m/s plummet, and the remaining 13% then crawls for several seconds.
+     * Both halves are bad. A rate-limited descent instead is a seven-second
+     * cutscene nobody asked for. Snapping is honest and instant: you were
+     * above this spot, now you are standing on it.
+     */
+    setFlying(on) {
+      const next = !!on;
+      if (next === state.flying) return next;
+      state.flying = next;
+      state.blocked = false;
+      if (!next) {
+        // Landing inside a building is possible — nothing pushed you out while
+        // you were in the air — so clear the footprints before settling.
+        const clear = pushOut(state.e, state.n);
+        state.e = clear.e;
+        state.n = clear.n;
+        state.groundY = terrain.height(state.e, state.n);
+        state.eyeY = state.groundY + WALK.eyeHeight;
+        state.altitude = 0;
+        this.apply();
+      }
+      return state.flying;
+    },
+
+    /**
+     * Free movement. Deliberately does NOT call tryStep or pushOut: the
+     * step-up rule and the footprint capsule are the two things that make
+     * walking honest, and they are exactly what you are asking to leave.
+     * Terrain is still a floor — you may skim the prairie, not tunnel it.
+     */
+    updateFly(dt, intent) {
+      let f = intent.forward;
+      let s = intent.strafe;
+      const mag = Math.hypot(f, s);
+      if (mag > 1) { f /= mag; s /= mag; }
+
+      state.groundY = terrain.height(state.e, state.n);
+      const gain = FLY.altitudeGain(state.eyeY - state.groundY);
+      const base = intent.sprint ? FLY.sprintSpeed : FLY.speed;
+      const speed = base * gain;
+
+      // Forward follows the LOOK direction, pitch included — the whole point is
+      // to nose up and rise away from the town, or dive back into it. Strafe
+      // stays level, so sliding sideways for a better angle does not drift you
+      // up or down without asking.
+      const cosP = Math.cos(state.pitch);
+      const sinY = Math.sin(state.yaw);
+      const cosY = Math.cos(state.yaw);
+      const fx = -sinY * cosP, fz = -cosY * cosP, fy = Math.sin(state.pitch);
+      const rx = cosY, rz = -sinY;
+
+      const dx = (fx * f + rx * s) * speed * dt;
+      const dz = (fz * f + rz * s) * speed * dt;
+      const dy = fy * f * speed * dt + intent.rise * FLY.riseSpeed * gain * dt;
+
+      state.e += dx;
+      state.n += -dz;                      // world -z is north
+      state.eyeY += dy;
+
+      const floor = terrain.height(state.e, state.n) + FLY.minClearance;
+      state.eyeY = Math.max(floor, Math.min(FLY.maxAltitude, state.eyeY));
+      state.groundY = terrain.height(state.e, state.n);
+      state.altitude = state.eyeY - state.groundY;
+      state.speed = Math.hypot(dx, dz, dy) / Math.max(dt, 1e-6);
+
+      this.apply();
+    },
+
     /** Write the camera. The ONLY place the camera transform is authored. */
     apply() {
       enuToWorld(state.e, state.n, state.eyeY, world);
@@ -202,6 +326,9 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       state.pitch = Math.max(-WALK.pitchLimit,
         Math.min(WALK.pitchLimit, state.pitch + intent.pitchDelta));
       intent.clearLook();
+
+      if (intent.flying !== state.flying) this.setFlying(intent.flying);
+      if (state.flying) { this.updateFly(dt, intent); return; }
 
       let f = intent.forward;
       let s = intent.strafe;
@@ -240,6 +367,11 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       const targetEye = state.groundY + WALK.eyeHeight;
       const k = 1 - Math.exp(-WALK.groundSmoothing * dt);
       state.eyeY += (targetEye - state.eyeY) * k;
+      // Snap the last centimetre. The exponential never quite arrives, and a
+      // descent from 300 m would otherwise leave a visible fraction of a metre
+      // of drift for several seconds after it looks finished.
+      if (Math.abs(targetEye - state.eyeY) < 0.01) state.eyeY = targetEye;
+      state.altitude = state.eyeY - state.groundY - WALK.eyeHeight;
 
       this.apply();
     },

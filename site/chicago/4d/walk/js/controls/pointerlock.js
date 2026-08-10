@@ -44,6 +44,12 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
   function onKeyDown(e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { held.add('sprint'); return; }
+    // Vertical, free-fly only. Space is overloaded — it inspects on foot and
+    // ascends in the air — which is why the backend has to see intent.flying.
+    // The alternative was a third key nobody would find; ascend-on-Space is
+    // what every flycam in existence does, and inspect has E either way.
+    if (e.code === 'Space' && intent.flying) { held.add('up'); e.preventDefault(); return; }
+    if (e.code === 'KeyQ') { held.add('down'); e.preventDefault(); return; }
     if (e.code === 'KeyE' || e.code === 'Space') {
       // Space also inspects: on a trackpad, E and a click are the same reach.
       // No point: a keyboard inspection is always down the crosshair.
@@ -59,6 +65,11 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
 
   function onKeyUp(e) {
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { held.delete('sprint'); return; }
+    // Released unconditionally, NOT behind `intent.flying`: leaving fly mode
+    // with Space down would otherwise strand 'up' in the held set and the
+    // visitor would rise forever with nothing pressed.
+    if (e.code === 'Space') { held.delete('up'); return; }
+    if (e.code === 'KeyQ') { held.delete('down'); return; }
     const dir = KEYS[e.code];
     if (dir) held.delete(dir);
   }
@@ -109,6 +120,7 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
       if (!enabled) return;
       intent.forward = (held.has('ahead') ? 1 : 0) - (held.has('back') ? 1 : 0);
       intent.strafe = (held.has('right') ? 1 : 0) - (held.has('left') ? 1 : 0);
+      intent.rise = (held.has('up') ? 1 : 0) - (held.has('down') ? 1 : 0);
       intent.sprint = held.has('sprint');
 
       euler.setFromQuaternion(rig.quaternion, 'YXZ');

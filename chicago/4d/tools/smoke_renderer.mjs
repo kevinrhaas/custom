@@ -511,6 +511,76 @@ for (const [label, viewport, touch] of [
       + `list ${opened.before.list.toFixed(0)} -> ${opened.after.list.toFixed(0)} px`);
     await page.click('#panel-close');
 
+    // --- free-fly -----------------------------------------------------------
+    // Three properties worth pinning, all of which would rot silently:
+    // the aerial anchor arrives IN the air, the terrain is still a floor, and
+    // landing puts you back on the ground rather than stranding the eye.
+    const aerial = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      a.goTo('from_above');
+      await new Promise((r) => setTimeout(r, 400));
+      return { alt: a.player.altitude, flying: a.player.flying, pitch: a.player.pitchDeg };
+    });
+    check(`${label}: the aerial anchor arrives in the air, looking down`,
+      aerial.flying === true && aerial.alt > 100 && aerial.pitch < -10,
+      `flying ${aerial.flying}, ${aerial.alt?.toFixed(0)} m up, pitch ${aerial.pitch?.toFixed(0)}`);
+
+    const aboveShot = await page.evaluate(() => window.__chicago4d.capture());
+    check(`${label}: the view from above renders`,
+      aboveShot.mean > 12 && aboveShot.litFraction > 0.5,
+      `mean luminance ${aboveShot.mean?.toFixed(1)}`);
+
+    // Terrain is a floor even in free-fly. Driven by pushing the eye under the
+    // ground and stepping once, NOT by flying into it: tick() uses wall-clock
+    // dt and this suite runs at a couple of frames a second under SwiftShader,
+    // so a "hold forward and dive" test would cover four metres and prove
+    // nothing. One frame against a violated invariant is the honest form.
+    const floored = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      a.walker.teleport({ local_e: 60, local_n: -200, yaw_deg: 0, altitude_m: 40, pitch_deg: -80 });
+      a.walker.state.eyeY -= 200;             // straight through the world
+      a.step();
+      return { alt: a.player.altitude, flying: a.player.flying };
+    });
+    check(`${label}: free-fly cannot sink through the terrain`,
+      floored.flying === true && floored.alt > 0.5 && floored.alt < 4,
+      `${floored.alt?.toFixed(2)} m above ground`);
+
+    // Landing snaps, so one frame settles it — see walker.setFlying() for why
+    // the smoothed descent was rejected.
+    const landed = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      a.goTo('from_above');
+      a.setFly(false);
+      a.step();
+      return { alt: a.player.altitude, flying: a.player.flying, y: a.player.y };
+    });
+    check(`${label}: leaving free-fly puts the visitor back on the ground`,
+      landed.flying === false && Math.abs(landed.alt) < 0.2,
+      `flying ${landed.flying}, ${landed.alt?.toFixed(2)} m off the ground`);
+
+    // Space is mode-scoped: it ascends in the air and inspects on foot. If that
+    // ever leaks, walking visitors levitate every time they try to inspect.
+    await page.evaluate(() => {
+      window.__chicago4d.goTo('sauganash');
+      // Aim at the building, the same way the pick test does — Space inspects
+      // down the crosshair, so a test that has not aimed is testing the prairie.
+      window.__chicago4d.frame('sauganash_hotel', 26);
+    });
+    await page.evaluate(() => window.__chicago4d.popup.close());
+    await page.keyboard.press('Space');
+    await page.waitForTimeout(250);
+    const spaceOnFoot = await page.evaluate(() => ({
+      alt: window.__chicago4d.player.altitude,
+      flying: window.__chicago4d.player.flying,
+      inspected: !document.getElementById('popup').hasAttribute('hidden'),
+    }));
+    check(`${label}: Space inspects on foot instead of lifting off`,
+      spaceOnFoot.flying === false && Math.abs(spaceOnFoot.alt) < 0.2 && spaceOnFoot.inspected,
+      `flying ${spaceOnFoot.flying}, ${spaceOnFoot.alt?.toFixed(2)} m up, inspected ${spaceOnFoot.inspected}`);
+    await page.evaluate(() => window.__chicago4d.popup.close());
+    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
+
     if (KEEP) {
       await page.screenshot({ path: path.join(KEEP, `walk-${viewport.width}x${viewport.height}.png`) });
     }

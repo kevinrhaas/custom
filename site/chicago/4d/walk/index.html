@@ -50,10 +50,14 @@
 
 <div id="hud" class="hud" hidden>
   <div class="hud-top">
-    <div class="badge" id="year-badge"><span class="badge-year">1835</span><span class="badge-sub">1 July</span></div>
+    <div class="badge" id="year-badge"><span class="badge-year">1835</span><span class="badge-sub">1 July</span><span
+      class="badge-alt" id="badge-alt" hidden></span></div>
     <div class="hud-actions">
       <button id="btn-confidence" class="chip" aria-pressed="false" title="Recolour the scene by evidence quality">
-        <span class="dot dot-conf"></span> Confidence
+        <span class="dot dot-conf"></span> <span class="chip-label">Confidence</span>
+      </button>
+      <button id="btn-fly" class="chip" aria-pressed="false" title="Free-fly — rise above the town (F)">
+        <span class="fly-glyph" aria-hidden="true">▲</span> <span class="chip-label" id="fly-label">Fly</span>
       </button>
       <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
       <button id="btn-help" class="chip icon" title="Controls, settings and what's new (H)">?<span
@@ -78,6 +82,8 @@
         <dt>mouse</dt><dd>look around</dd>
         <dt>click</dt><dd>inspect a building — its attributes and citations</dd>
         <dt><kbd>C</kbd></dt><dd>confidence view</dd>
+        <dt><kbd>F</kbd></dt><dd>free-fly — rise above the town</dd>
+        <dt><kbd>Space</kbd> <kbd>Q</kbd></dt><dd>up / down <em>(while flying)</em></dd>
         <dt><kbd>N</kbd></dt><dd>what's new</dd>
         <dt><kbd>H</kbd></dt><dd>this panel</dd>
         <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
@@ -87,6 +93,7 @@
         <dt>push it fully</dt><dd>run</dd>
         <dt>drag right</dt><dd>look around</dd>
         <dt>tap</dt><dd>inspect a building</dd>
+        <dt>Fly</dt><dd>rise above the town — ▲ ▼ appear bottom-right</dd>
       </dl>
     </section>
 
@@ -139,6 +146,10 @@
 
   <div id="touch-layer" class="touch-layer" hidden aria-hidden="true">
     <div class="stick" id="stick"><div class="stick-knob" id="stick-knob"></div></div>
+    <div class="rise-pad" id="rise-pad" hidden>
+      <button class="rise-btn" id="rise-up" aria-label="Rise">▲</button>
+      <button class="rise-btn" id="rise-down" aria-label="Descend">▼</button>
+    </div>
   </div>
 </div>
 

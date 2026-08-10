@@ -31,11 +31,14 @@ function store(key, value) {
   try { window.localStorage.setItem(key, value); } catch { /* private mode */ }
 }
 
-export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo, isTouch }) {
+export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting, onGoTo, isTouch }) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
   const badgeSub = root.querySelector('.badge-sub');
+  const badgeAlt = $('badge-alt');
   const btnConf = $('btn-confidence');
+  const btnFly = $('btn-fly');
+  const flyLabel = $('fly-label');
   const btnTheme = $('btn-theme');
   const btnHelp = $('btn-help');
   const panel = $('panel');
@@ -74,6 +77,41 @@ export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo
   }
 
   btnConf?.addEventListener('click', () => setConfidence(!confidenceOn));
+
+  // ---- free-fly -----------------------------------------------------------
+
+  let flying = false;
+  function setFly(on, { announce = true } = {}) {
+    flying = !!on;
+    btnFly?.setAttribute('aria-pressed', String(flying));
+    if (flyLabel) flyLabel.textContent = flying ? 'Walk' : 'Fly';
+    if (btnFly) {
+      btnFly.title = flying ? 'Back to walking (F)' : 'Free-fly — rise above the town (F)';
+    }
+    if (!flying) { badgeAlt?.setAttribute('hidden', ''); badgeAlt?.parentElement?.classList.remove('has-alt'); }
+    onFly?.(flying);
+    if (announce) {
+      say(flying
+        // Said on entry because it is the honest frame for the view they are
+        // about to get: from above, the edge of what has been built is visible,
+        // and the ground beyond it is a skirt rather than a claim.
+        ? (isTouch ? 'Flying — ▲ ▼ to rise and descend. The modelled town ends where the detail does.'
+          : 'Flying — Space and Q to rise and descend. The modelled town ends where the detail does.')
+        : 'Back on foot');
+    }
+    return flying;
+  }
+
+  btnFly?.addEventListener('click', () => setFly(!flying));
+
+  /** Altitude readout, driven from the frame loop. Metres above local ground. */
+  function setAltitude(m) {
+    if (!badgeAlt) return;
+    const show = flying && m > 1;
+    badgeAlt.toggleAttribute('hidden', !show);
+    badgeAlt.parentElement?.classList.toggle('has-alt', show);
+    if (show) badgeAlt.textContent = `${Math.round(m)} m up`;
+  }
 
   btnTheme?.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -194,6 +232,7 @@ export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo
     if (k === 'h' || k === '?') { e.preventDefault(); setPanel(!panelOpen()); }
     else if (k === 'c') { e.preventDefault(); setConfidence(!confidenceOn); }
     else if (k === 'n') { e.preventDefault(); setPanel(true); selectTab('whatsnew'); }
+    else if (k === 'f') { e.preventDefault(); setFly(!flying); }
     else if (e.key === 'Escape' && panelOpen()) setPanel(false);
   });
 
@@ -203,6 +242,9 @@ export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo
     setPanel,
     get confidenceOn() { return confidenceOn; },
     setConfidence,
+    get flying() { return flying; },
+    setFly,
+    setAltitude,
     /** Restore the visitor's last choice without narrating it back at them. */
     restore() {
       if (readStored(CONF_KEY, '0') === '1') setConfidence(true, { announce: false });

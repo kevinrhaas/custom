@@ -52,7 +52,8 @@ const api = {
   scene: null,
   datum: null,
   registry: new Map(),
-  player: { e: 0, n: 0, y: 0, bearingDeg: 0, pitchDeg: 0, speed: 0, moving: false },
+  player: { e: 0, n: 0, y: 0, bearingDeg: 0, pitchDeg: 0, speed: 0, moving: false,
+            altitude: 0, flying: false },
   problems,
   budget: BUDGET,
 };
@@ -120,6 +121,7 @@ async function boot() {
     scene: loaded.scene,
     isTouch: prefersTouch(),
     onConfidence: (on) => confidence.set(on),
+    onFly: (on) => { intent.flying = !!on; },
     onGoTo: (id) => api.goTo?.(id),
     onSetting: (key, value) => {
       if (key === 'speed') {
@@ -181,6 +183,9 @@ async function boot() {
       layer: document.getElementById('touch-layer'),
       stick: document.getElementById('stick'),
       knob: document.getElementById('stick-knob'),
+      risePad: document.getElementById('rise-pad'),
+      riseUp: document.getElementById('rise-up'),
+      riseDown: document.getElementById('rise-down'),
     },
     onViewport: () => resize(),
   });
@@ -335,6 +340,9 @@ async function boot() {
     api.player.pitchDeg = st.pitch * 180 / Math.PI;
     api.player.speed = st.speed;
     api.player.moving = st.speed > 0.001;
+    api.player.altitude = st.altitude;
+    api.player.flying = st.flying;
+    hud.setAltitude(st.altitude);
 
     // Wall-clock, not the clamped dt: a clamped dt reports a healthy 20 fps on
     // a machine that is actually drawing three frames a second.
@@ -354,12 +362,27 @@ async function boot() {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
     backends,
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
+    setFly(on) { return hud.setFly(!!on, { announce: false }); },
+    get flying() { return walker.state.flying; },
+    get altitude() { return walker.state.altitude; },
     pick,
     frame,
     goTo(anchorId) {
       const a = anchorFor(loaded.scene, anchorId);
       if (!a) return false;
-      walker.teleport({ local_e: a.local_e, local_n: a.local_n, yaw_deg: a.yaw_deg });
+      // Set the MODE through the HUD, not on the walker: intent.flying is the
+      // one master, and a walker flipped directly would be reverted on the very
+      // next frame when update() reconciled it against an intent still reading
+      // false. The HUD's setter is what writes the intent.
+      const aerial = typeof a.altitude_m === 'number';
+      hud.setFly(aerial, { announce: false });
+      walker.teleport({
+        local_e: a.local_e,
+        local_n: a.local_n,
+        yaw_deg: a.yaw_deg,
+        altitude_m: aerial ? a.altitude_m : null,
+        pitch_deg: typeof a.pitch_deg === 'number' ? a.pitch_deg : null,
+      });
       return true;
     },
     stats() {

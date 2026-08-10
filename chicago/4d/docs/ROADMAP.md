@@ -95,6 +95,21 @@ into the data as `absent` entries with citations, so nobody re-adds them later.
 Performance against the budgets, licensed ambience audio, provenance-popup UX, `LIBERTIES.md`
 completeness pass, mobile release gate.
 
+**Done 2026-08-10 — free-fly, and the town seen whole.** `F` (or the ▲ chip) lifts the visitor
+off the prairie; `Space`/`Q` and a touch pad rise and descend; the `from_above` anchor arrives
+already in the air. Forward follows the look direction and strafe stays level; horizontal speed
+scales with altitude, capped, because at 300 m a walking pace reads as not moving. Terrain
+remains a floor — the step-up rule and the footprint capsule are deliberately *not* applied,
+since they are exactly what you asked to leave. Leaving free-fly snaps to the ground rather
+than descending: the walk path's ground-smoothing is exponential at 14/s, which from 175 m is a
+150 m/s plummet followed by a crawl.
+
+Worth knowing for whoever takes the next slice: **the aerial view is the most honest picture of
+how little is built.** Six structures across a 640 m box, and the edge of the modelled ground is
+visible from about 150 m up. That is L17 working as intended, not a bug to hide — but it makes
+S5 (more structures) the obvious next unit, and it argues for an eventual haze/extent treatment
+rather than a bigger skirt.
+
 **Done 2026-08-10 — the liberties are in the walkthrough.** `docs/LIBERTIES.md` stays the
 append-only source of truth; `tools/compile_liberties.py` derives `data/liberties.json`,
 `check.sh` re-derives it and fails on drift, and the Evidence panel lists all eighteen with

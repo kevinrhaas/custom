@@ -166,6 +166,20 @@ body.is-touch .gate-touch { display: block; }
 }
 .badge-year { font-size: 17px; font-weight: 640; letter-spacing: 0.01em; }
 .badge-sub { font-size: 11px; color: var(--ink-dim); }
+/* The altitude readout rides in the year badge. Without nowrap it wraps the
+   badge to three stacked lines at 390 px — "1835 / 1 July / 22 m up" — which
+   is how it first shipped to a screenshot. */
+.badge { flex-wrap: nowrap; white-space: nowrap; }
+.badge-alt {
+  padding-left: 9px;
+  margin-left: 2px;
+  border-left: 1px solid var(--edge);
+  font-size: 11px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.badge-alt[hidden] { display: none; }
+.fly-glyph { font-size: 10px; opacity: .85; }
 
 .hud-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 
@@ -341,6 +355,33 @@ body.is-touch .crosshair { display: none; }
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
+
+/* Rise / descend, free-fly only. Bottom RIGHT, above the look half: the left
+   thumb is already the stick, and the right thumb is the one that drags to
+   look — reaching down to a corner it can hit without crossing the screen. */
+.rise-pad {
+  position: absolute;
+  right: 14px;
+  bottom: calc(20px + var(--safe-b));
+  display: grid;
+  gap: 10px;
+  pointer-events: auto;
+}
+.rise-pad[hidden] { display: none; }
+.rise-btn {
+  width: 58px; height: 58px;        /* comfortably past the 44px touch minimum */
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(12, 12, 12, 0.42);
+  color: #fff;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.rise-btn.on { background: var(--accent); color: #17140c; }
 
 /* --------------------------------------------------------------- popup --- */
 
@@ -624,4 +665,14 @@ kbd {
 
 @media (max-width: 560px) {
   .hud-panel { width: 100%; max-height: 58vh; }
+  /* Chips go icon-only. Four labelled chips overflow 390 px by about forty
+     pixels and the help button drops to a second row, which reads as broken
+     rather than as a wrap. The tri-colour dot and the triangle carry the
+     meaning; both keep their title and aria-label, and the Evidence tab
+     explains the dot at length. */
+  .chip-label { display: none; }
+  #btn-fly, #btn-confidence { width: 38px; justify-content: center; padding: 8px; }
+  /* And when an altitude is showing, it says more than a date that never
+     changes — so the date yields rather than the badge growing. */
+  .badge.has-alt .badge-sub { display: none; }
 }

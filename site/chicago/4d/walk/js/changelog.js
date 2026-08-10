@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 9, title: 'Rise above the town', kind: 'feature',
+    ts: '2026-08-10T03:39:28.412Z', date: 'Aug 9, 2026, 10:39 PM CT',
+    items: [
+      'A free-fly mode: press F, or the ▲ button, and lift off the prairie to see the whole reconstruction from above — the forks, both branches of the river, and where each building sits along them.',
+      'Settings now offers "From above" as a place to go, which arrives already in the air rather than standing in a field.',
+      'On a phone, ▲ and ▼ appear at the bottom right while flying. Rise and descend follow where you are looking, and the ground is still solid — you can skim the prairie but not sink through it.',
+      'Seen from above, the modelled town visibly ends where the detail does. That edge is honest: what lies past it is a plain skirt of ground, not a claim about 1835.',
+    ] },
   { v: 8, title: 'The list of what we made up is now checked for gaps', kind: 'feature',
     ts: '2026-08-10T03:25:03.587Z', date: 'Aug 9, 2026, 10:25 PM CT',
     items: [
