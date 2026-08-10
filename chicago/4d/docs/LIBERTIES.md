@@ -465,44 +465,6 @@ level — the same unopened source that would settle the footprint this inherits
 `miller_house.log_frame_1827.form.frame_addition_depth_m`.
 **Recorded:** 2026-08-10.
 
-### L29 — The North Branch bridge stands on fifteen piers nobody recorded
-**Decision:** the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts
-**fifteen log cribs standing in the river** between the two abutments. The spacing is tagged
-`conjectural` on the record.
-**Why:** what survives about this bridge is its width, its material and its ends. Cleaver:
-"The abutments were built of heavy logs in the shallow water near the banks. These bridges were
-ten feet wide." Andreas: "formed of stringers." Nothing anybody wrote describes the middle of it.
-Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention
-— their number, their spacing and their form are. 4.5 m is the archetype's own default, kept
-deliberately rather than replaced with a fresh guess, because a new number would look like a
-finding and would not be one.
-**Consequence:** this is the most conspicuous invention in the structure and it is invisible in
-the confidence view, because the tint on the piers grades what a crib IS rather than how many of
-them there were. A visitor walking the bank sees a regular colonnade marching across the water
-and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is
-itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that
-line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown
-margin.
-**How to resolve:** a period depiction or a survey of the crossing. Two are worth trying: the
-1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of
-the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here
-sits.
-**Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
-**Recorded:** 2026-08-10.
-**Evidence since:** the sentence above — "nothing anybody wrote describes the middle of it" — is
-no longer true, and the entry stays here rather than moving to Resolved because the model still
-shows fifteen cribs. Somebody did write it down: at the foot of Andreas pp. 631-632 is a
-statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting
-of old settlers in the fall of 1883, saying that both branch bridges "were built on abutments and
-two 'bents'", each bent "of four heavy logs, resting on the bottom, in deeper water". **Two
-intermediate supports, not fifteen**, and bents rather than cribs. It was found by reading the
-printed pages either side of the passage this project already quoted, rather than by searching
-the index, which does not reach it. Until the record and its re-bake land together the river
-still carries a colonnade that the evidence does not, and this admission stands exactly as
-written. Source: `old_settlers_bridges_1883`; the finding is
-`docs/RESEARCH/north_branch_bridge.md` §6 and the work order is `docs/STATUS.md` §23.
-**Revised:** 2026-08-10.
-
 ### L30 — The bridge lands on nothing, and no approach is modelled
 **Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
 2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
@@ -540,6 +502,40 @@ the cheap way to shorten an approach nobody described. The same sentence calls t
 bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
 as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
 **Revised:** 2026-08-10.
+
+### L31 — The two bents are where a builder would put them, not where anybody saw them
+**Decision:** the North Branch bridge's two bents stand at the third points of its 71.83 m span,
+23.94 m and 47.89 m from the west landing, each built as four heavy logs under a cap log. The
+count and the form are `documented`; **the stations are the archetype's**, and so is everything
+about a bent except how many logs stood in it.
+**Why:** the 1883 old-settlers statement gives a count and a construction and no geometry —
+"built on abutments and two 'bents'", the abutments "in the shallow water near the banks" and
+the bents "resting on the bottom, in deeper water". That locates them by depth, which this
+project cannot use: no source gives the channel's bed profile at the crossing and the
+heightfield models nothing below the waterline, so "deeper water" cannot be turned into a
+station. Even thirds are therefore what a builder would do with three roughly equal stringer
+runs, and they are not a finding. The alternative — biasing the two toward the middle to match
+"in deeper water" against a guessed channel section — would invent a riverbed in order to place
+a pier, which is two inventions where this is one.
+**Consequence:** three things a visitor cannot read off the confidence view, and this entry is
+where they are legible. The chip on `pier_count` grades **how many**, and a visitor standing on
+the bank sees exactly where they are. The girth of the logs, the cap, and the fact that the four
+stand in a row across the deck rather than paired are the archetype's throughout. And the
+letter's most specific phrase — *resting on the bottom*, which is what distinguishes a bent from
+a driven pile bent — is invisible in the model, because nothing below half a metre under the
+waterline is built at all.
+**A fourth thing, and it is the honest cost of the repair.** Three spans instead of sixteen
+makes each stringer run 23.9 m, and nobody was moving a 23.9 m timber. The letter says stringers
+"stretched from the abutments to the bents, and between the bents" and never says they were
+single sticks; they were spliced somewhere and no source says where. The mesh shows one log per
+bay, so the splices are **omitted** rather than invented — the same choice L30 makes about the
+approach, one order of magnitude smaller.
+**How to resolve:** a survey, a section, or a repair account with dimensions. Andreas's main text
+records that a committee was appointed in December 1833 "to see that they were properly
+repaired" and that "in September the corporation paid $166.67 on account of repairing" — a
+voucher or a council minute behind that payment is the most likely thing to describe the
+structure member by member.
+**Recorded:** 2026-08-10.
 
 ---
 
@@ -636,3 +632,51 @@ discovery (`test_consumed_attributes_actually_reach_the_parameters`): an attribu
 declares it consumes has to change the resolved parameters when its value changes. What this
 entry admitted is discharged; what it did not admit — that a stack's position, size and material
 are invented on every building — is now stated on its own, in L26.
+
+### L29 — The North Branch bridge stands on fifteen piers nobody recorded
+**Decision:** the bridge is built with cribs every 4.5 m, which over its 71.83 m span puts
+**fifteen log cribs standing in the river** between the two abutments. The spacing is tagged
+`conjectural` on the record.
+**Why:** what survives about this bridge is its width, its material and its ends. Cleaver:
+"The abutments were built of heavy logs in the shallow water near the banks. These bridges were
+ten feet wide." Andreas: "formed of stringers." Nothing anybody wrote describes the middle of it.
+Something had to hold up 71.83 m of log stringer, so intermediate supports are not the invention
+— their number, their spacing and their form are. 4.5 m is the archetype's own default, kept
+deliberately rather than replaced with a fresh guess, because a new number would look like a
+finding and would not be one.
+**Consequence:** this is the most conspicuous invention in the structure and it is invisible in
+the confidence view, because the tint on the piers grades what a crib IS rather than how many of
+them there were. A visitor walking the bank sees a regular colonnade marching across the water
+and reads it as a fact about the bridge. It is a fact about the archetype. The span it divides is
+itself the drawn waterline-to-waterline distance, and Cleaver's abutments stood *inside* that
+line by an unrecorded amount, so the true bay count was smaller than fifteen by an unknown
+margin.
+**How to resolve:** a period depiction or a survey of the crossing. Two are worth trying: the
+1834/1835 Wabansia and Kinzie's Addition plat, which is contemporaneous to within two weeks of
+the scene date, and Andreas vol. 1 at page-image level, where the bridge prose transcribed here
+sits.
+**Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
+**Recorded:** 2026-08-10.
+**Evidence since:** the sentence above — "nothing anybody wrote describes the middle of it" — is
+no longer true, and the entry stays here rather than moving to Resolved because the model still
+shows fifteen cribs. Somebody did write it down: at the foot of Andreas pp. 631-632 is a
+statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting
+of old settlers in the fall of 1883, saying that both branch bridges "were built on abutments and
+two 'bents'", each bent "of four heavy logs, resting on the bottom, in deeper water". **Two
+intermediate supports, not fifteen**, and bents rather than cribs. It was found by reading the
+printed pages either side of the passage this project already quoted, rather than by searching
+the index, which does not reach it. Until the record and its re-bake land together the river
+still carries a colonnade that the evidence does not, and this admission stands exactly as
+written. Source: `old_settlers_bridges_1883`; the finding is
+`docs/RESEARCH/north_branch_bridge.md` §6 and the work order is `docs/STATUS.md` §23.
+**Revised:** 2026-08-10.
+**Resolved:** 2026-08-10 — the mesh shows two bents, so this entry moves here, and not before,
+which is what the Revised line above said it was waiting for. `pier_spacing_m` is gone from the
+record and from the archetype: `pier_count: 2, documented` replaces it, `pier_kind` is `bent`,
+and `bridge_timber` builds four heavy logs under a cap at each of them. The parameter changed
+rather than the number, because a spacing is a builder's convenience nobody would remember and a
+count is what a user of a bridge does. **What this entry admitted is discharged and what it did
+not is now L31**: the letter gives two bents and never says where along the span they stood, so
+the positions are still the archetype's, and the tint still cannot say so. The sentence in
+**Consequence** about the true bay count being "smaller than fifteen by an unknown margin" turned
+out to be true in the wrong direction and by a factor of five.

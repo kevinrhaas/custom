@@ -91,23 +91,27 @@ GOLDEN = {
                         "chimneys": INFERRED, "footprint": CONJ})),
     ]),
     "bridge_timber": (bridge_timber.build, [
-        # The North Branch bridge as it must have been by Aug 1835, when it carried
-        # the procession: the documented 10 ft width and 6 ft clearance, on cribs.
+        # The North Branch bridge as the men who used it described it: the documented
+        # 10 ft width and 6 ft clearance, on two bents of four heavy logs. Shortened
+        # to a preview span, so the count is scaled with it — two bents over 17 m is
+        # the same three-span composition the record builds over 71.83 m.
         ("north_branch_bridge", BridgeTimberParams(
-            span_m=17.0, width_m=3.05, clearance_m=1.83, pier_spacing_m=4.5,
-            pier_kind="crib",
+            span_m=17.0, width_m=3.05, clearance_m=1.83, pier_count=2,
+            pier_kind="bent",
             confidence={"construction": DOCUMENTED, "width_m": DOCUMENTED,
-                        "clearance_m": DOCUMENTED, "pier_kind": CONJ,
-                        "pier_spacing_m": CONJ, "abutments": CONJ,
-                        "footprint": CONJ})),
-        # The same crossing built on driven piles instead, so the two readings of
-        # "log construction" can be compared side by side.
+                        "clearance_m": DOCUMENTED, "pier_kind": DOCUMENTED,
+                        "pier_count": DOCUMENTED, "deck_kind": DOCUMENTED,
+                        "abutments": CONJ, "footprint": CONJ})),
+        # The same crossing built on driven piles instead, and on the archetype's
+        # fallback spacing rather than a count — the unattested case, kept so the
+        # two readings of "log construction" can be compared side by side and so the
+        # colonnade an undescribed bridge still gets stays visible in the previews.
         ("piles_variant", BridgeTimberParams(
-            span_m=13.0, width_m=3.05, clearance_m=1.83, pier_spacing_m=4.0,
+            span_m=13.0, width_m=3.05, clearance_m=1.83,
             pier_kind="pile",
             confidence={"construction": DOCUMENTED, "width_m": DOCUMENTED,
                         "clearance_m": DOCUMENTED, "pier_kind": CONJ,
-                        "pier_spacing_m": CONJ, "abutments": CONJ,
+                        "pier_count": CONJ, "abutments": CONJ,
                         "footprint": CONJ})),
     ]),
     # Not this parcel's archetype. Kept because the only way to check that a new
