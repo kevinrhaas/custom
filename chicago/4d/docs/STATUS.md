@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the control five buildings stand on is re-fetchable from the source
-it cites now, and re-fetching it moved one of them 4.44 m, § 39) ·
+**Last updated:** 2026-08-10 (the outline you are standing in front of says how much of itself is
+evidence, and a chip count now finds the next claim that goes silent, § 40) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -55,6 +55,12 @@ now rather than four sentences, with its own promise enforced and its own sectio
 walkthrough** (§ 37): the watch list said it existed so that nobody would promote these to
 `documented` without new evidence, one of the four is a committed record, and nothing had ever
 checked that sentence.
+**And the largest claim a visitor stands in front of — the outline of the building — says how much
+of itself is evidence** (§ 40): six of the eight footprints here open with the word PLACEHOLDER,
+the compiler carried their confidence and dropped their reasoning, and the tint had been narrowed
+to stop showing dimensional uncertainty on the stated understanding that the card would show it
+instead. It never did. Second claim found graded-and-silent by somebody reading a file, so it is a
+chip count now: run against the previous commit it reports all eight buildings one chip short.
 
 ---
 
@@ -74,7 +80,7 @@ checked that sentence.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 189 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 197 checks green at 390×780 and 1280×800, zero page errors |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
@@ -1200,6 +1206,50 @@ uncertainty of the 1834 sheets in its note.
     and the correction here is an order of magnitude inside that. Two of the four control points
     are still single-node crossings, where "the mean" has nothing to average and the junction
     centre is wherever one mapper put one node.
+
+40. **The largest claim a visitor stands in front of, and the card had no words for it — plus the
+    second time this exact silence has been found by somebody reading a file.** Every honesty
+    surface in §§ 26-39 grades something. None of them graded the **outline**: `compile_scene.py`
+    carried `footprint.confidence` into the sidecar and dropped `footprint.sources` and
+    `footprint.note` on the floor, so the biggest single claim in front of a visitor — the shape of
+    the building — reached the card with no chip, no source and no reasoning, while `roof_pitch_deg`
+    carried all three. **Six of the eight outlines open with the word PLACEHOLDER** and say in their
+    own first line that no dimension is attested in anything reached; two are the opposite (Hogan's
+    store's twenty by forty-five feet, twice in Andreas; the bridge's ten feet over a measured span)
+    and two are in between (the Green Tree reasoned out of a room module, the Western's L-envelope
+    attested with the limb assignment not). A visitor could read none of it.
+    **The gap has a history, and it is the sharpest part of this.** The massing rule once took the
+    worst confidence across the footprint, so an unknown SIZE dithered a well-documented building
+    into ghost massing — fixed after the first live look by narrowing the tint to the attributes that
+    say what a building WAS. That fix is recorded in this file, and it ends with the sentence
+    *dimensional uncertainty is carried in the sidecar, where the popup shows it*. The sidecar
+    carried it. **The popup was never given it.** So the one claim deliberately removed from the view
+    is the one that had no surface anywhere, and the compensating disclosure was a sentence in a
+    status file rather than a thing that was built.
+    **No dimension is printed, and that is the decision rather than the omission.** § 28 refused to
+    put the footprint on the card for exactly this reason — the only printable value is the polygon
+    and printing a polygon means reducing it, so a bounding box over Miller's L-plan would be a
+    measurement the record does not make, on the card that exists to admit inventions. What that
+    argument settles is the VALUE, not the claim: the shape is already in front of the visitor at
+    full size, and what was missing is how much of it is evidence. `claimRow` renders no value cell
+    at all for a `null` value — which is not `—`, and is the same rule as an attribute with no note
+    showing no note — and the smoke pins the absence across all eight buildings so a later slice
+    cannot fill it by accident.
+    **The mechanism, because this is the second instance and the first was found the same way.**
+    `documented_range` (§ 28) and the footprint were both graded in the record and silent on the
+    card, and both were found by a person reading a file. That is now countable: the smoke reads
+    every record's graded claims — the date span, the position, the footprint, every form attribute —
+    and requires the claim tables and the location line to carry exactly that many chips, for every
+    building. **Run against the previous commit it reports all eight buildings one chip short**,
+    which is the discriminating proof and was run rather than asserted.
+    **What it still cannot see** is a claim that reaches a chip and says the wrong thing, and a chip
+    count says nothing about whether the reasoning underneath it is any good. It also cannot see a
+    field the compiler never writes at all: `check_sidecar_contract`'s unread-field report is
+    top-level only, so `footprint.confidence` sat compiled-and-never-read for the life of the project
+    inside a key the renderer *does* read for collision. Widening that report to leaf paths was considered
+    and refused — the scan cannot follow a value into a function, so `documented_range.note` and
+    every field `evidence()` reads generically would come back as false findings, and a noisy gate
+    gets disbelieved, which § 15 already paid for once.
 
 ## Next
 

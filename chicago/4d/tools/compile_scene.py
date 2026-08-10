@@ -539,9 +539,24 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             },
             # Carry the footprint's own confidence, not just its geometry — a bare
             # polygon loses precisely the thing the confidence view exists to show.
+            #
+            # And carry its ARGUMENT, which this compiler dropped on the floor from
+            # the day it was written. The footprint note is the longest and most
+            # load-bearing uncertainty statement on most of these records — six of
+            # the eight say PLACEHOLDER in their first line — and it reached no
+            # visitor, while a roof pitch carried its chip, its sources and its
+            # reasoning. Worse, the tint stopped carrying it deliberately: when an
+            # unknown SIZE was found dithering whole buildings into ghost massing,
+            # the massing rule was narrowed to the attributes that say what a
+            # building WAS, on the stated understanding that dimensional
+            # uncertainty is carried in the sidecar "where the popup shows it".
+            # The sidecar carried it. The popup was never given it. Same shape as
+            # `documented_range` and `research_note` before it.
             "footprint": {
                 "polygon": phase.get("footprint", {}).get("polygon", []),
                 "confidence": phase.get("footprint", {}).get("confidence", "conjectural"),
+                "sources": phase.get("footprint", {}).get("sources", []),
+                "note": phase.get("footprint", {}).get("note", ""),
             },
             "attributes": attributes,
             "citations": cite(cited, sources),

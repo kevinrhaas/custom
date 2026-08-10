@@ -63,7 +63,9 @@
         7
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED FOR THIS BUILDING IN ANY SOURCE REACHED. No period map shows building footprints (see data/sources/hathaway_1834.json and wright_1834.json), and the textual sources describe the tavern's materials, its sign, its rates and its landlords without ever measuring it. This 12 x 7 m rectangle is a plausible envelope for a log-and-frame tavern that lodged travellers at 12 1/2 cents a night and briefly housed Gen. Winfield Scott's Black Hawk War headquarters, and it carries no evidence whatsoever. The 12 m runs north-south along the river frontage and the 7 m is the depth. Sources are deliberately omitted from this attribute because none supports it. To resolve: Andreas vol. 1, 'Wharfs, Piers and Early Hotels' pp. 626-631, at page-image level."
   },
   "attributes": {
     "stories": {

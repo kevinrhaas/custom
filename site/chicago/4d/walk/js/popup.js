@@ -7,11 +7,18 @@
  * table says `inferred`, and the note underneath says why.
  *
  * The card shows, in order: what it is, where it stands and how sure we are of
- * that, whether it was here at all on the day you are standing in, every
- * attribute with its own confidence chip and reasoning, the liberties taken with
- * THIS building, the citations with links to both the source and its archived
- * copy, and a link out to the full research dossier where the disagreements are
- * argued.
+ * that, whether it was here at all on the day you are standing in, whether it
+ * was this shape, every attribute with its own confidence chip and reasoning,
+ * the liberties taken with THIS building, the citations with links to both the
+ * source and its archived copy, and a link out to the full research dossier
+ * where the disagreements are argued.
+ *
+ * The shape is the newest of those and was the largest silence. The footprint is
+ * the biggest single claim a visitor stands in front of, six of the eight in
+ * this dataset are placeholders that say so in their first line, and the card
+ * showed no chip, no source and no reasoning for any of them — while the
+ * confidence tint had been narrowed to stop carrying dimensional uncertainty on
+ * the stated understanding that the card would carry it instead.
  *
  * "Whether it was here at all" is the newest of those and was the oldest gap.
  * This file has read `documented_range` since it was written and the sidecar
@@ -127,11 +134,18 @@ function attributeRows(attributes) {
 
 /** One row of the evidence table. Used by the attribute table and by the
  *  phase-level claims above it, so the two cannot be styled or qualified
- *  differently for reasons nobody chose. */
+ *  differently for reasons nobody chose.
+ *
+ *  A `null` value renders no value cell at all, which is not the same as `—`.
+ *  One claim here has no printable value and inventing one would be the exact
+ *  fault this card exists to report — see `shapeSection`. The rest of the row is
+ *  unchanged, because how sure we are and why is the whole of what a chip, a
+ *  source list and a `why` are for. */
 function claimRow(label, value, claim) {
+  const val = value === null ? '' : `<span class="val">${escapeHtml(value)}</span>`;
   return `<tr>
     <th scope="row">${escapeHtml(label)}</th>
-    <td><span class="val">${escapeHtml(value)}</span>${evidence(claim)}</td>
+    <td>${val}${evidence(claim)}</td>
   </tr>`;
 }
 
@@ -162,6 +176,48 @@ function presenceSection(s) {
     ${account}
     <table class="attrs"><tbody>
       ${claimRow('recorded standing', span, range)}
+    </tbody></table>
+  </section>`;
+}
+
+/**
+ * Is this the shape it was?
+ *
+ * The outline is the largest claim a visitor is standing in front of and the
+ * card said nothing about it whatever. Six of the eight footprints in this
+ * dataset open with the word PLACEHOLDER — no dimension of the Sauganash, the
+ * Wolf Point Tavern, Miller's house or Walker's meeting house is attested in
+ * anything read — and two are the opposite: Hogan's store is twenty by
+ * forty-five feet in Andreas, twice, and the North Branch bridge's deck is
+ * Cleaver's ten feet across a span measured between the traced 1834 banks. A
+ * visitor could read none of that. `compile_scene.py` carried the footprint's
+ * confidence and dropped its sources and its argument.
+ *
+ * That gap has a specific history, which is why it is worth a section rather
+ * than a line. The massing rule used to take the worst confidence across the
+ * footprint, so an unknown SIZE dithered a well-documented building into ghost
+ * massing; it was narrowed to the attributes that say what a building WAS, on
+ * the stated understanding that dimensional uncertainty would be carried in the
+ * sidecar where the popup shows it. The tint stopped saying it and nothing
+ * started. So the one claim deliberately taken out of the view is the one the
+ * card had no words for.
+ *
+ * NO DIMENSION IS PRINTED, and that is a decision rather than an omission. The
+ * only value available is the polygon, and the only way to print a polygon in a
+ * table is to reduce it — a bounding box over Miller's L-plan would be a new
+ * invention on the card that exists to admit them, and it would be the reader's
+ * impression of a measurement where the record has none. The shape itself is
+ * already in front of the visitor at full size. What the card owes is how much
+ * of it is evidence, and that is a chip, a source list and the record's own
+ * reasoning.
+ */
+function shapeSection(s) {
+  const fp = s.footprint;
+  if (!fp || !fp.confidence) return '';
+  return `<section class="pop-sec pop-shape">
+    <h3>Was it this shape?</h3>
+    <table class="attrs"><tbody>
+      ${claimRow('footprint', null, fp)}
     </tbody></table>
   </section>`;
 }
@@ -332,6 +388,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         </div>
 
         ${presenceSection(s)}
+
+        ${shapeSection(s)}
 
         <section class="pop-sec">
           <h3>Attributes and evidence</h3>

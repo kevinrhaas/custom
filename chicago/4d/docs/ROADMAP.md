@@ -599,6 +599,29 @@ default for the liberties' reason — several hundred words open would push the 
 which are machinery a visitor has no reason to see, so the list is empty of unshipped claims.
 Untested and stated: the empty state, since all eight records carry a note.
 
+**Done 2026-08-10 — the outline says how much of itself is evidence, and the silence is countable
+now.** The card graded a roof pitch and said nothing whatever about the largest claim a visitor is
+standing in front of: `compile_scene.py` carried `footprint.confidence` and dropped
+`footprint.sources` and `footprint.note`, so six placeholders that say PLACEHOLDER in their own
+first line reached nobody, and neither did the two footprints that are evidence. **Was it this
+shape?** is a section of its own, rendered by the same claim renderer as the presence line so the
+two cannot be qualified differently.
+
+The card prints **no dimension**, and STATUS § 28's argument for that is unchanged — the only
+printable value is the polygon, reducing it to a box is a measurement the record does not make, and
+the shape is already in front of the visitor at full size. `claimRow` renders no value cell for a
+`null` value and the smoke pins that across all eight buildings.
+
+Two things worth carrying. **The compensating disclosure was a sentence, not a build**: the massing
+rule was narrowed to stop dithering a documented building over an unknown SIZE, on the recorded
+understanding that the size would be carried on the card, and nothing carried it. **And this is the
+second graded-and-silent claim found by reading a file** (`documented_range` was the first), so it
+has a count rather than a third discoverer: the smoke matches each record's graded claims against
+the chips its card draws, for every building, and reports all eight one chip short when run against
+the previous commit. What it cannot see is a chip whose reasoning is wrong, and it cannot reach a
+field the compiler never writes — `check_sidecar_contract`'s unread report is top-level only, and
+widening it to leaves was refused because the scan cannot follow a value into a function.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

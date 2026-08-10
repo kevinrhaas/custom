@@ -63,7 +63,11 @@
         18.29
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire278"
+    ],
+    "note": "THE ENVELOPE IS ATTESTED AND THE PLAN IS NOT. Original units: 'The front was about forty feet and the wing sixty feet. It was in an L.' 40 ft = 12.19 m and 60 ft = 18.29 m, which is the polygon's bounding box exactly. What the source does not give is the arms' WIDTH, so the 7.0 m depth of the front range and of the wing is invented — chosen as about 23 ft, enough for a room and a passage, which is the shallowest width that makes an L rather than a solid block. Areas follow from that and are not attested: about 164 m2 on the ground, 1,770 sq ft. The word 'about' in 'about forty feet' is the source's own. DISPUTED: the hotel chronology calls the Western 'a small structure', which contradicts a 40 by 60 ft two-storey L outright. chicagology's figures are preferred because they come with the builder's account and with the yard and stable description; the chronology gives no dimensions at all, so 'small' is an impression, not a measurement. The stables and yard are attested and are NOT in this polygon."
   },
   "attributes": {
     "stories": {
