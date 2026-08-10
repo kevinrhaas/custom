@@ -7,10 +7,12 @@
 // then rewrites every `date:` to a Central Time alias derived from that entry's
 // `ts`, keeping the fleet-standard shape ({v, title, ts, date, items}).
 //
-// Run from CI right before the smoke test whenever js/changelog.js changed.
+// Run before merging whenever renderers/web/js/changelog.js changed. Nothing
+// stamps later in the pipeline — tools/publish.sh only copies the file to the
+// public URL the fleet parses, it never edits it.
 import { readFile, writeFile } from 'node:fs/promises';
 
-const FILE = new URL('../../../site/chicago/4d/js/changelog.js', import.meta.url);
+const FILE = new URL('../renderers/web/js/changelog.js', import.meta.url);
 const nowIso = new Date().toISOString();
 
 function ctAlias(iso){

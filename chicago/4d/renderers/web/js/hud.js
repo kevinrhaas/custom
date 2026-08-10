@@ -9,6 +9,8 @@
  * looking at, and it is styled as the primary one for that reason.
  */
 
+import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
+
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
 const SET_KEY = 'chicago4d.settings';
@@ -101,14 +103,46 @@ export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo
   btnHelp?.addEventListener('click', () => setPanel(!panelOpen()));
   $('panel-close')?.addEventListener('click', () => setPanel(false));
 
-  root.querySelectorAll('.panel-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const want = tab.dataset.tab;
-      root.querySelectorAll('.panel-tab').forEach((x) => x.classList.toggle('is-on', x === tab));
-      root.querySelectorAll('.panel-body').forEach((s) => {
-        s.toggleAttribute('hidden', s.dataset.panel !== want);
-      });
+  // ---- What's new ---------------------------------------------------------
+  //
+  // Painted once, lazily, the first time the tab is actually opened. The
+  // unseen marker clears on that same open — not on render — so the dot means
+  // "you have not looked at this", which is the only thing it could honestly
+  // mean if the panel paints the tab whether or not you visit it.
+
+  const whatsNewDot = $('whatsnew-dot');
+  const helpDot = $('help-dot');
+  let whatsNewPainted = false;
+
+  function paintUnseen() {
+    const n = unseenCount();
+    whatsNewDot?.toggleAttribute('hidden', n === 0);
+    helpDot?.toggleAttribute('hidden', n === 0);
+    if (n > 0) {
+      btnHelp?.setAttribute('title',
+        `Controls, settings and what's new — ${n} unread (H)`);
+    }
+  }
+  paintUnseen();
+
+  function openWhatsNew() {
+    if (!whatsNewPainted) { renderWhatsNew($('whatsnew')); whatsNewPainted = true; }
+    markSeen();
+    paintUnseen();
+  }
+
+  function selectTab(want) {
+    root.querySelectorAll('.panel-tab').forEach((x) => {
+      x.classList.toggle('is-on', x.dataset.tab === want);
     });
+    root.querySelectorAll('.panel-body').forEach((s) => {
+      s.toggleAttribute('hidden', s.dataset.panel !== want);
+    });
+    if (want === 'whatsnew') openWhatsNew();
+  }
+
+  root.querySelectorAll('.panel-tab').forEach((tab) => {
+    tab.addEventListener('click', () => selectTab(tab.dataset.tab));
   });
 
   // Show the control list that matches how this visitor is actually driving.
@@ -159,6 +193,7 @@ export function createHud({ root, scene, onConfidence, onHelp, onSetting, onGoTo
     const k = e.key.toLowerCase();
     if (k === 'h' || k === '?') { e.preventDefault(); setPanel(!panelOpen()); }
     else if (k === 'c') { e.preventDefault(); setConfidence(!confidenceOn); }
+    else if (k === 'n') { e.preventDefault(); setPanel(true); selectTab('whatsnew'); }
     else if (e.key === 'Escape' && panelOpen()) setPanel(false);
   });
 

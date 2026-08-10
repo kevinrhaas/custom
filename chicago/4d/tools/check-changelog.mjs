@@ -2,16 +2,21 @@
 /**
  * Verify the fleet changelog contract.
  *
- * `site/chicago/4d/js/changelog.js` is parsed live by Manager and by the
- * polecat.live launcher — NOT executed, but read with a bracket-aware walker
- * that converts the JS literal to JSON. That is why the format is strict and
- * why breaking it is a fleet problem rather than a local one: two documented
+ * The file is authored at `renderers/web/js/changelog.js` — inside the app,
+ * because the app displays it in its What's-new tab and a walkthrough cannot
+ * import from the publish mirror. `tools/publish.sh` copies it to
+ * `site/chicago/4d/js/changelog.js`, which is the URL Manager and the
+ * polecat.live launcher fetch.
+ *
+ * They do not EXECUTE it — they read it with a bracket-aware walker that
+ * converts the JS literal to JSON. That is why the format is strict and why
+ * breaking it is a fleet problem rather than a local one: two documented
  * corruptions in the fleet's history came from regexes running inside string
  * values. See polecat-platform docs/SHELL-API.md.
  */
 import { readFileSync } from 'node:fs';
 
-const FILE = new URL('../../../site/chicago/4d/js/changelog.js', import.meta.url);
+const FILE = new URL('../renderers/web/js/changelog.js', import.meta.url);
 const problems = [];
 
 const src = readFileSync(FILE, 'utf8');

@@ -56,7 +56,8 @@
         <span class="dot dot-conf"></span> Confidence
       </button>
       <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
-      <button id="btn-help" class="chip icon" title="Controls and settings (H)">?</button>
+      <button id="btn-help" class="chip icon" title="Controls, settings and what's new (H)">?<span
+        class="chip-dot" id="help-dot" hidden aria-hidden="true"></span></button>
     </div>
   </div>
 
@@ -65,6 +66,8 @@
       <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
       <button class="panel-tab" data-tab="settings" role="tab">Settings</button>
       <button class="panel-tab" data-tab="evidence" role="tab">Evidence</button>
+      <button class="panel-tab" data-tab="whatsnew" role="tab">What's new<span
+        class="tab-dot" id="whatsnew-dot" hidden aria-hidden="true"></span></button>
       <button class="panel-close" id="panel-close" title="Close (Esc)">&times;</button>
     </div>
 
@@ -75,6 +78,7 @@
         <dt>mouse</dt><dd>look around</dd>
         <dt>click</dt><dd>inspect a building — its attributes and citations</dd>
         <dt><kbd>C</kbd></dt><dd>confidence view</dd>
+        <dt><kbd>N</kbd></dt><dd>what's new</dd>
         <dt><kbd>H</kbd></dt><dd>this panel</dd>
         <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
       </dl>
@@ -109,6 +113,10 @@
       <p class="legend-note">Every building is clickable. The tint and the citation come from the
         same record, so they cannot drift apart. Dimensional uncertainty is separate: a building
         can be well documented in character and still have a guessed size, and the popup says so.</p>
+    </section>
+
+    <section class="panel-body" data-panel="whatsnew" hidden>
+      <div id="whatsnew"></div>
     </section>
   </div>
 

@@ -15,6 +15,15 @@ if [ -d renderers/web ]; then
   cp -a renderers/web "$SITE/walk"
 fi
 
+# The changelog is authored inside the app (the What's-new tab imports it, and
+# a page under walk/ cannot import from this publish mirror). Manager and the
+# polecat.live launcher fetch it from <site>/js/changelog.js, though, so mirror
+# it to that URL — it is a fleet-parsed contract path and must not move.
+if [ -f renderers/web/js/changelog.js ]; then
+  mkdir -p "$SITE/js"
+  cp -f renderers/web/js/changelog.js "$SITE/js/changelog.js"
+fi
+
 # Web-derivative assets only — never the masters.
 #
 # assets/web/ is produced by the gltf-transform step in bake.sh. Running

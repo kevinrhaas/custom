@@ -337,6 +337,70 @@ for (const [label, viewport, touch] of [
     check(`${label}: the HUD toggle drives the confidence view`, viaHud === true, `${viaHud}`);
     await page.click('#btn-confidence');
 
+    // --- what's new ---------------------------------------------------------
+    // The changelog is authored inside the app and mirrored out by publish.sh.
+    // That import is the part worth guarding: it resolves differently in the
+    // dev tree than in the published build if anyone reintroduces a fetch, and
+    // this is the assertion that would catch it before it 404s live.
+    await page.evaluate(() => window.localStorage.removeItem('chicago4d.whatsnew.seen'));
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
+    await page.click('#gate-btn');
+    await page.waitForTimeout(150);
+    await page.evaluate(() => document.exitPointerLock?.());
+
+    const unread = await page.evaluate(() => ({
+      chip: !document.getElementById('help-dot')?.hasAttribute('hidden'),
+      tab: !document.getElementById('whatsnew-dot')?.hasAttribute('hidden'),
+    }));
+    check(`${label}: a first-time visitor is told there are unread notes`,
+      unread.chip && unread.tab, `chip ${unread.chip}, tab ${unread.tab}`);
+
+    await page.click('#btn-help');
+    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await page.waitForTimeout(120);
+    const wn = await page.evaluate(() => {
+      const host = document.getElementById('whatsnew');
+      return {
+        entries: host.querySelectorAll('.wn-entry').length,
+        items: host.querySelectorAll('.wn-items li').length,
+        newest: host.querySelector('.wn-title')?.textContent || '',
+        dated: /CT$/.test(host.querySelector('.wn-meta')?.textContent || ''),
+        cleared: document.getElementById('help-dot')?.hasAttribute('hidden'),
+        seen: window.localStorage.getItem('chicago4d.whatsnew.seen'),
+      };
+    });
+    check(`${label}: the what's-new tab renders every release`,
+      wn.entries >= 5 && wn.items >= wn.entries,
+      `${wn.entries} entries, ${wn.items} items`);
+    check(`${label}: entries carry a title and a stamped date`,
+      wn.newest.length > 4 && wn.dated, `"${wn.newest}", dated ${wn.dated}`);
+    check(`${label}: opening the tab clears the unread marker`,
+      wn.cleared && Number(wn.seen) > 0, `cleared ${wn.cleared}, seen ${wn.seen}`);
+    check(`${label}: a first visit flags nothing (no "last time" to differ from)`,
+      await page.evaluate(() => document.querySelectorAll('#whatsnew .wn-entry.is-new').length) === 0);
+
+    // A RETURNING visitor is the case the marker exists for: pin `seen` one
+    // release back and exactly the newer entries should carry it.
+    await page.evaluate(() => window.localStorage.setItem('chicago4d.whatsnew.seen', '3'));
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 30000 });
+    await page.click('#gate-btn');
+    await page.waitForTimeout(150);
+    await page.evaluate(() => document.exitPointerLock?.());
+    await page.click('#btn-help');
+    await page.click('.panel-tab[data-tab="whatsnew"]');
+    await page.waitForTimeout(120);
+    const ret = await page.evaluate(() => ({
+      flagged: [...document.querySelectorAll('#whatsnew .wn-entry.is-new .wn-title')]
+        .map((n) => n.textContent),
+      total: document.querySelectorAll('#whatsnew .wn-entry').length,
+    }));
+    check(`${label}: a returning visitor sees only what shipped since last time`,
+      ret.flagged.length === ret.total - 3 && ret.flagged.length > 0,
+      `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
+    await page.click('#panel-close');
+
     if (KEEP) {
       await page.screenshot({ path: path.join(KEEP, `walk-${viewport.width}x${viewport.height}.png`) });
     }
