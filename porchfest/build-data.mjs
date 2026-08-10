@@ -7,6 +7,8 @@ const profs = JSON.parse(fs.readFileSync('profiles.merged.json', 'utf8'));
 const geo = JSON.parse(fs.readFileSync('geocode.json', 'utf8'));
 const corners = JSON.parse(fs.readFileSync('intersections.json', 'utf8'));
 const streets = JSON.parse(fs.readFileSync('streets.json', 'utf8'));
+// Draw scores are derived by build-draw.mjs from the profiles; run that first.
+const draw = fs.existsSync('draw.json') ? JSON.parse(fs.readFileSync('draw.json', 'utf8')) : {};
 
 const byName = new Map(profs.map(p => [p.band_name, p]));
 
@@ -47,6 +49,8 @@ for (const b of raw) {
     one: p.one_liner, pr: p.profile, sl: p.sounds_like || [], tg: p.genre_tags || [],
     d: DIMS.map(k => p.dims[k]), cf: { high: 2, medium: 1, low: 0 }[p.confidence] ?? 1,
     bio: b.bio || '', img: b.img_url || '', l: links,
+    // dw = draw 0-100 (evidence of footprint, see build-draw.mjs); wy = why.
+    dw: draw[b.band_name]?.d ?? 0, wy: draw[b.band_name]?.why ?? [],
   });
 }
 
@@ -60,6 +64,9 @@ console.log(`window: ${Math.min(...starts)}–${Math.max(...ends)} min ` +
 console.log(`sets per porch: min=${Math.min(...porches.map((_, i) => bands.filter(b => b.p === i).length))} ` +
   `max=${Math.max(...porches.map((_, i) => bands.filter(b => b.p === i).length))}`);
 console.log(`with photos: ${bands.filter(b => b.img).length}, with links: ${bands.filter(b => Object.keys(b.l).length).length}`);
+if (!Object.keys(draw).length) console.log('WARNING: no draw.json — run build-draw.mjs first');
+console.log(`draw: ${bands.filter(b => b.dw >= 60).length} big, ` +
+  `${bands.filter(b => b.dw >= 42 && b.dw < 60).length} known, ${bands.filter(b => !b.dw).length} unscored`);
 
 const data = {
   fest: { name: 'Uptown Porchfest', year: 2026, date: '2026-08-15',

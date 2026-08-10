@@ -80,9 +80,10 @@ node scrape.mjs         # 0. lineup from the festival bundle -> lineup.json
 node geocode.mjs        # 1. porch addresses -> lat/lon (Nominatim)
 node build-matrix.mjs   # 2. street corners (Overpass) + an OSRM foot matrix to validate against
 node build-streets.mjs  # 3. street network -> streets.json
-node build-data.mjs     # 4. merge lineup + profiles + geo -> data.json
-node build-app.mjs      # 5. inject data into the template -> ../site/porchfest/app/index.html
-node smoke-test.mjs     # 6. the ship gate
+node build-draw.mjs     # 4. profiles -> draw.json (how big a name each act is)
+node build-data.mjs     # 5. merge lineup + profiles + geo + draw -> data.json
+node build-app.mjs      # 6. inject data into the template -> ../site/porchfest/app/index.html
+node smoke-test.mjs     # 7. the ship gate
 ```
 
 Editing `app.template.html` only needs step 5.
@@ -95,6 +96,38 @@ Band profiles (`profiles.merged.json`) are the one step no script reproduces:
 they came from research agents following `SPEC.md`. Re-run that only when the
 lineup changes.
 
+## Draw — "how big a name is this act?"
+
+`build-draw.mjs` scores every band 0–100 for footprint and writes `draw.json`,
+which becomes each band's `dw`. There is no attendance or streaming data for a
+porchfest, so this is an **evidence score, not a measurement**: the rooms an act
+has played (First Avenue outranks a coffee shop), who they have opened for,
+releases, press and curation, and how much the researchers could actually
+verify. It is normalised against the strongest act in this lineup, so it reads
+as "relative to this festival" rather than as a false absolute.
+
+A naive keyword sweep gets this wrong in ways that misrepresent real musicians,
+so the scorer defends against its own failure modes and the smoke test holds it
+to them. Three guards, each earned from a real false positive:
+
+- **Negation.** "rather than a road-hardened *touring* act" is not a touring
+  credit. A negation cue in the run-up to a match voids it.
+- **Confidence gating.** A `low` confidence profile means the research found
+  nothing to verify the text against, so text-derived credit is scaled to 0.35.
+  Without this, "no footprint to verify — this profile rests on their own
+  *festival* bio" scored as a festival booking.
+- **Precise patterns.** "the *current* lineup" is not the radio station; "aimed
+  at the *headlines*" is not a headline slot; an act that *runs* the We Love
+  Fiesta label is not signed to one; "RADIO BABY" is an album title.
+
+Only the top two tiers are labelled in the UI (≥60 "Big draw", ≥42 "Known
+name") and each badge shows the evidence behind it. Nothing is labelled
+negatively — an act with no footprint simply gets no badge.
+
+If you re-run the research, re-run this too: it reads `profiles.merged.json`.
+`node build-draw.mjs --report` prints the full ranking with the evidence per
+act, which is the fastest way to sanity-check a change to the patterns.
+
 ## Smoke before ship
 
 `node smoke-test.mjs` — Chromium **and** WebKit, 390×780 and desktop, zero
@@ -105,6 +138,12 @@ route live, every stop sits inside its set window, the schedule is
 chronological, every stop is pinned on the map, **no two pins overlap**, share
 links round-trip, the toast doesn't stretch, and the primary action clears the
 mobile tab bar. Mobile is a release gate.
+
+For draw it checks behaviour rather than specific bands, since the planner is
+randomised: asking for big names must *raise* the mean draw of the routed acts
+and hidden gems must *lower* it, the preset must drive the slider, Reset must
+clear it, the browser sort must be descending, every badge must carry its
+evidence, and a share link cut before the slider existed must still open.
 
 If an engine is missing locally the suite says so loudly and keeps going; under
 `CI=1` a missing engine fails the run.

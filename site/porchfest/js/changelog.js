@@ -1,4 +1,14 @@
 export const CHANGELOG = [ // newest first
+  { v: 2, title: 'Route by the big names, or dig for hidden gems', kind: 'feature',
+    ts: '2026-08-10T00:42:09.856Z', date: 'Aug 9, 2026, 7:42 PM CT',
+    items: [
+      'A Big names dial sits above the ten taste dimensions. Slide it up and the route favours the acts with the biggest footprint; slide it down for hidden gems and spend the afternoon on bands nobody has heard yet. One-tap presets for both.',
+      'Every band now carries a draw score from zero to one hundred. There is no attendance or streaming data for a porchfest, so this is an evidence score rather than a measurement: rooms played, who they opened for, releases, press and how much the research could actually verify.',
+      'The sixteen most notable acts are badged in the band browser, each showing the evidence that earned it, and a new sort puts the biggest names first. Nothing is labelled negatively, because a band with no badge is very often the best set of the day.',
+      'Draw rides in as an eleventh axis on the same scale as taste, so asking for big names trades off against what you actually like rather than overriding it.',
+      'Scoring defends against the ways a keyword sweep misreads a bio. A negation cue voids a match, so rather than a road-hardened touring act is not a touring credit. Low-confidence profiles are discounted, so a profile that rests on its own festival bio cannot score as a festival booking. Patterns are narrow, so the current lineup is not the radio station.',
+      'Shared plans carry the new dial, and links shared before it existed still open exactly as they did.',
+    ] },
   { v: 1, title: 'Route your way through 91 bands', kind: 'feature',
     ts: '2026-08-09T23:47:11.704Z', date: 'Aug 9, 2026, 6:47 PM CT',
     items: [

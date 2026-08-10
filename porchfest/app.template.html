@@ -157,6 +157,14 @@ input[type=range]::-moz-range-thumb{
 .taste.off .lab b{color:var(--text-2)}
 .taste.off input[type=range]::-webkit-slider-thumb{background:var(--text-3)}
 .taste.off input[type=range]::-moz-range-thumb{background:var(--text-3)}
+/* The draw slider sits above the ten taste axes and is separated from them —
+   it asks about reputation, not sound. */
+.sl.draw{
+  padding:9px 10px 5px;margin-bottom:13px;border-radius:10px;
+  background:var(--surface-2);border:1px solid var(--border);
+}
+.sl.draw .lab b{color:var(--brand-2)}
+.sl.draw.off .lab b{color:var(--text-2)}
 
 .chips{display:flex;flex-wrap:wrap;gap:5px}
 .chip{
@@ -289,9 +297,18 @@ input[type=range]::-moz-range-thumb{
   position:absolute;left:8px;bottom:8px;background:color-mix(in srgb,#000 62%,transparent);
   color:#fff;font-size:10.5px;font-weight:700;padding:2.5px 7px;border-radius:99px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
 }
+.card .ph .drawbadge{
+  position:absolute;right:8px;top:8px;font-size:10px;font-weight:800;letter-spacing:.02em;
+  padding:2.5px 7px;border-radius:99px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  background:color-mix(in srgb,#000 62%,transparent);color:var(--brand-2);
+  border:1px solid color-mix(in srgb,var(--brand-2) 45%,transparent);
+}
+.card .ph .drawbadge.big{color:#fff;background:color-mix(in srgb,var(--brand) 82%,#000);border-color:var(--brand)}
 .card .bd{padding:11px 12px 12px;flex:1;display:flex;flex-direction:column;gap:5px}
 .card h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.015em}
 .card .gen{font-size:11px;color:var(--brand-2);font-weight:600}
+/* The evidence behind the badge, shown rather than asserted. */
+.card .why{font-size:10.5px;color:var(--text-3);font-weight:600;text-transform:lowercase}
 .card .one{font-size:12px;color:var(--text-2);font-style:italic}
 .card p{margin:0;font-size:12px;color:var(--text-2);line-height:1.45}
 .card .foot{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:7px;flex-wrap:wrap}
@@ -395,7 +412,8 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
     <div class="sec">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20v-4"/></svg>Taste</h2>
       <div class="presets" id="presets"></div>
-      <div style="margin-top:12px" id="taste"></div>
+      <div style="margin-top:12px" id="draw"></div>
+      <div id="taste"></div>
     </div>
 
     <div class="sec">
@@ -457,6 +475,7 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
       <option value="time">Sort: set time</option>
       <option value="name">Sort: name</option>
       <option value="fit">Sort: match to my taste</option>
+      <option value="draw">Sort: biggest names</option>
     </select>
     <span class="n" id="bcount"></span>
   </div>
@@ -619,14 +638,34 @@ const DIMLABEL = [
   ['Danceable','listen','dance'], ['Experimental','familiar','out there'],
   ['Brightness','dark','sunny'], ['Grit','polished','raw'], ['Kid-friendly','adults','all ages'],
 ];
+// A preset may also set the draw preference via the __pop key.
 const PRESETS = {
+  'Big names':        {__pop:2},
   'Loud & fast':      {energy:2, loudness:2, tempo:2, grit:1, kid_friendly:0},
   'Family stroll':    {kid_friendly:2, loudness:-2, brightness:1, energy:-1},
   'Jazz & porch beer':{energy:-1, experimental:1, danceability:0, loudness:-1, electronic:-1},
   'Dance party':      {danceability:2, energy:1, electronic:1, brightness:1},
   'Songwriters':      {vocal_forward:2, loudness:-1, electronic:-2, energy:-1},
   'Weird stuff':      {experimental:2, grit:1},
+  'Hidden gems':      {__pop:-2},
 };
+
+/* ---------- draw (how big a name an act is) ----------
+   b.dw is a 0-100 evidence score built by build-draw.mjs from rooms played,
+   who they opened for, releases and press — there is no attendance or
+   streaming data for a porchfest, so it is evidence, not a measurement.
+   The raw scores bunch up at the bottom (most acts are neighbours with a
+   guitar), so preference is applied against each act's PERCENTILE, which
+   spreads evenly and keeps the slider's feel linear. */
+const POP = (()=>{
+  const order=[...D.bands].sort((a,b)=>a.dw-b.dw);
+  const m=new Map();
+  order.forEach((b,i)=>m.set(b.id, order.length<2 ? 0 : (i/(order.length-1))*2-1));
+  return m;                                            // id -> -1..1
+})();
+const DRAW_BIG = 60, DRAW_KNOWN = 42;
+const drawTier = (b)=> b.dw>=DRAW_BIG ? 'big' : b.dw>=DRAW_KNOWN ? 'known' : '';
+const DRAWLABEL = {big:'Big draw', known:'Known name'};
 
 /* ---------- state ---------- */
 const S = {
@@ -635,6 +674,7 @@ const S = {
   dwell: 25, minStay: 15, pace: 4.5,
   minBands: 0, maxBands: 0,          // 0 = no limit
   pref: Object.fromEntries(D.dims.map(d=>[d,0])),
+  pop: 0,                            // -2 hidden gems … 0 don't care … +2 big names
   tags: {}, pins: [], plan: null, sel: -1, err: '',
 };
 function idxCorner(label){
@@ -650,6 +690,9 @@ function matchScore(b){
     w += Math.abs(p);
     s += p * ((b.d[i]-3)/2);
   });
+  // Draw rides in as an eleventh axis on the same -1..1 scale, so asking for
+  // big names trades off against taste rather than overriding it.
+  if(S.pop){ w += Math.abs(S.pop); s += S.pop * POP.get(b.id); }
   let base = w ? (s/w) : 0;                     // -1..1
   for(const t of b.tg){
     const st=S.tags[t]; if(st===1) base += .45; else if(st===-1) base -= 1.6;
@@ -797,6 +840,12 @@ function renderControls(){
   $('#to').innerHTML='<option value="-1">Same as start</option>'+places;
   $('#from').value=S.from; $('#to').value=S.to;
 
+  $('#draw').innerHTML=`<div class="sl taste draw ${S.pop?'':'off'}">
+      <div class="lab"><b>Big names</b><span>${popWord(S.pop)}</span></div>
+      <input type="range" id="popR" min="-2" max="2" step="1" value="${S.pop}" aria-label="Big names">
+      <div class="poles"><span>hidden gems</span><span>the big draws</span></div>
+    </div>`;
+
   $('#taste').innerHTML=D.dims.map((d,i)=>{
     const [name,lo,hi]=DIMLABEL[i];
     return `<div class="sl taste ${S.pref[d]?'':'off'}" data-dim="${d}">
@@ -835,6 +884,7 @@ function renderCountHint(){
   $('#countHint').textContent=t;
 }
 const prefWord=(v)=>['strongly low','lower','—','higher','strongly high'][v+2];
+const popWord=(v)=>['deep cuts only','lean unknown','—','lean big','big names only'][v+2];
 function renderPins(){
   $('#pins').innerHTML = S.pins.length ? S.pins.map(id=>{
     const b=D.bands.find(x=>x.id===id);
@@ -1074,20 +1124,24 @@ function renderBands(){
     (b.n+' '+b.g+' '+b.tg.join(' ')+' '+b.sl.join(' ')+' '+b.one).toLowerCase().includes(q));
   if(sort==='name') list=[...list].sort((a,b)=>a.n.localeCompare(b.n));
   else if(sort==='fit') list=[...list].sort((a,b)=>matchScore(b)-matchScore(a));
+  else if(sort==='draw') list=[...list].sort((a,b)=>b.dw-a.dw || a.n.localeCompare(b.n));
   $('#bcount').textContent=`${list.length} of ${D.bands.length}`;
   $('#bgrid').innerHTML=list.map(b=>{
     const pr=D.porches[b.p];
     const ini=b.n.split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
     const links=Object.entries(b.l).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener" title="${k}">${LINKICON[k]||LINKICON.web}</a>`).join('');
+    const tier=drawTier(b);
     return `<article class="card">
       <div class="ph">
         <span class="ini">${esc(ini)}</span>
         ${b.img?`<img loading="lazy" src="${esc(b.img)}" alt="" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;position:absolute;inset:0" onerror="this.remove()">`:''}
+        ${tier?`<span class="drawbadge ${tier}" title="${esc(b.wy.join(' · ')||'')}">★ ${DRAWLABEL[tier]}</span>`:''}
         <span class="slot">${hhmm(b.t[0])}–${hhmm(b.t[1])}</span>
       </div>
       <div class="bd">
         <h3>${esc(b.n)}</h3>
         <div class="gen">${esc(b.g)} · ${fitPct(b)}% match</div>
+        ${tier&&b.wy.length?`<div class="why">${esc(b.wy.join(' · '))}</div>`:''}
         <div class="one">${esc(b.one)}</div>
         <p>${esc(b.pr)}</p>
         <div style="font-size:11px;color:var(--text-3)">${esc(pr.a)}${b.sl.length?' · sounds like '+esc(b.sl.join(', ')):''}</div>
@@ -1115,7 +1169,7 @@ const b64u={
 function encodeState(){
   const o={v:1, a:S.t0, b:S.t1, f:S.from, e:S.to, d:S.dwell, m:S.minStay, p:S.pace,
     mb:S.minBands, xb:S.maxBands,
-    r:D.dims.map(d=>S.pref[d]+2).join(''), g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
+    r:D.dims.map(d=>S.pref[d]+2).join(''), pw:S.pop+2, g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
     s:S.plan?S.plan.stops.map(x=>x.b.id):null};
   return b64u.enc(JSON.stringify(o));
 }
@@ -1128,6 +1182,9 @@ function decodeState(str){
     String(o.r||'').split('').forEach((c,i)=>{
       if(D.dims[i] && /\d/.test(c)) S.pref[D.dims[i]]=Math.max(-2,Math.min(2,(+c)-2));
     });
+    // pw arrived with the draw slider; links shared before it simply have no
+    // draw preference, which is the old behaviour.
+    S.pop = /^[0-4]$/.test(String(o.pw)) ? (+o.pw)-2 : 0;
     S.tags=o.g||{}; S.pins=o.n||[];
     if(o.s){
       const seq=o.s.map(id=>D.bands.find(b=>b.id===id)).filter(Boolean);
@@ -1228,6 +1285,14 @@ bindRange('dwell','dwell',v=>v+' min','dwellV');
 bindRange('minStay','minStay',v=>v+' min','minV');
 bindRange('pace','pace',v=>v+' km/h','paceV');
 
+$('#draw').addEventListener('input',e=>{
+  if(e.target.id!=='popR') return;
+  S.pop=+e.target.value;
+  const box=e.target.closest('.taste');
+  box.classList.toggle('off', !S.pop);
+  $('.lab span',box).textContent=popWord(S.pop);
+  changed();
+});
 $('#taste').addEventListener('input',e=>{
   const box=e.target.closest('.taste'); if(!box) return;
   S.pref[box.dataset.dim]=+e.target.value;
@@ -1237,10 +1302,10 @@ $('#taste').addEventListener('input',e=>{
 });
 $('#presets').addEventListener('click',e=>{
   const b=e.target.closest('[data-preset]'); if(!b) return;
-  D.dims.forEach(d=>S.pref[d]=0);
+  D.dims.forEach(d=>S.pref[d]=0); S.pop=0;
   if(b.dataset.preset!=='__clear'){
     const p=PRESETS[b.dataset.preset]||{};
-    for(const [k,v] of Object.entries(p)) S.pref[k]=v;
+    for(const [k,v] of Object.entries(p)){ if(k==='__pop') S.pop=v; else S.pref[k]=v; }
   } else S.tags={};
   renderControls(); changed();
 });

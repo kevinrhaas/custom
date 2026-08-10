@@ -144,6 +144,62 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else ok(`avoiding a genre drops it live${hadCountry ? ' (was present when sought)' : ''}`);
     await page.evaluate(() => document.querySelector('[data-tag="country"]').click()); // -> neutral
     await page.waitForTimeout(1200);
+
+    // ---- draw ("big names") ----
+    // The slider must actually move the planner: asking for big names has to
+    // raise the mean draw of the routed acts, and asking for hidden gems has
+    // to lower it. Comparing means rather than asserting specific bands keeps
+    // this robust against the planner's randomised restarts.
+    const meanDraw = () => page.evaluate(() => {
+      const D = JSON.parse(document.getElementById('payload').textContent);
+      const by = new Map(D.bands.map(b => [b.n, b.dw]));
+      const names = [...document.querySelectorAll('#stops .stop h3')].map(h => h.textContent.trim());
+      const vals = names.map(n => by.get(n)).filter(v => typeof v === 'number');
+      return vals.length ? vals.reduce((a, c) => a + c, 0) / vals.length : null;
+    });
+    const setPop = async (v) => {
+      await page.evaluate((val) => {
+        const s = document.querySelector('#popR');
+        s.value = String(val); s.dispatchEvent(new Event('input', { bubbles: true }));
+      }, v);
+      await page.waitForTimeout(1600);
+    };
+    const hasDraw = await page.evaluate(() =>
+      JSON.parse(document.getElementById('payload').textContent).bands.every(b => typeof b.dw === 'number'));
+    if (!hasDraw) fail(`${tag} — payload bands are missing draw scores`); else ok('every band carries a draw score');
+    if (await page.locator('#popR').count() !== 1) fail(`${tag} — no draw slider`); else ok('draw slider present');
+
+    const drawNeutral = await meanDraw();
+    await setPop(2);
+    const drawBig = await meanDraw();
+    await setPop(-2);
+    const drawGems = await meanDraw();
+    await setPop(0);
+    if (drawBig === null || drawNeutral === null || drawGems === null) {
+      fail(`${tag} — draw slider emptied the route`);
+    } else {
+      if (drawBig <= drawNeutral)
+        fail(`${tag} — "big names" did not raise mean draw (${drawNeutral.toFixed(1)} -> ${drawBig.toFixed(1)})`);
+      else ok(`"big names" raises mean draw (${drawNeutral.toFixed(1)} -> ${drawBig.toFixed(1)})`);
+      if (drawGems >= drawNeutral)
+        fail(`${tag} — "hidden gems" did not lower mean draw (${drawNeutral.toFixed(1)} -> ${drawGems.toFixed(1)})`);
+      else ok(`"hidden gems" lowers mean draw (${drawNeutral.toFixed(1)} -> ${drawGems.toFixed(1)})`);
+    }
+
+    // The preset is the one-tap version of the same thing.
+    await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
+      .find(b => b.dataset.preset === 'Big names').click());
+    await page.waitForTimeout(1600);
+    const presetPop = await page.evaluate(() => +document.querySelector('#popR').value);
+    if (presetPop !== 2) fail(`${tag} — "Big names" preset left the slider at ${presetPop}`);
+    else ok('"Big names" preset drives the slider');
+    await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
+      .find(b => b.dataset.preset === '__clear').click());
+    await page.waitForTimeout(1600);
+    const clearedPop = await page.evaluate(() => +document.querySelector('#popR').value);
+    if (clearedPop !== 0) fail(`${tag} — Reset left the draw slider at ${clearedPop}`);
+    else ok('Reset clears the draw preference');
+
     const stops = await page.locator('#stops .stop').count();
     if (stops > 0) ok(`planned ${stops} stops in ${ms} ms`);
     if (ms > 8000) fail(`${tag} — planner took ${ms} ms (>8s)`);
@@ -219,6 +275,42 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       else ok(`share link round-trips (${stops2} stops)`);
       done2();
       await p2.close();
+
+      // A shared plan must carry the draw preference, and a link cut before
+      // the slider existed must still open (no draw preference, old behaviour).
+      await setPop(2);
+      const url2 = await page.evaluate(() => location.hash);
+      const p3 = await ctx.newPage();
+      const done3 = watch(p3, `${tag}/shared-draw`);
+      await p3.goto(at('/app/') + url2, { waitUntil: 'networkidle' });
+      await p3.waitForTimeout(500);
+      const pop3 = await p3.evaluate(() => +document.querySelector('#popR').value);
+      if (pop3 !== 2) fail(`${tag} — shared link lost the draw preference (got ${pop3})`);
+      else ok('share link round-trips the draw preference');
+      const legacy = await p3.evaluate(() => {
+        const o = JSON.parse(decodeURIComponent(escape(atob(
+          location.hash.slice(3).replace(/-/g, '+').replace(/_/g, '/')))));
+        delete o.pw;                                  // a link from before the slider
+        return btoa(unescape(encodeURIComponent(JSON.stringify(o))))
+          .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      });
+      done3();
+      await p3.close();
+
+      // Fresh page, not a hash swap — changing only the fragment does not
+      // reload the document, so the old state would survive and prove nothing.
+      const p4 = await ctx.newPage();
+      const done4 = watch(p4, `${tag}/shared-legacy`);
+      await p4.goto(at('/app/') + '#s=' + legacy, { waitUntil: 'networkidle' });
+      await p4.waitForTimeout(500);
+      const popLegacy = await p4.evaluate(() => +document.querySelector('#popR').value);
+      const legacyStops = await p4.locator('#stops .stop').count();
+      if (popLegacy !== 0 || legacyStops === 0)
+        fail(`${tag} — pre-draw share link broke (pop ${popLegacy}, ${legacyStops} stops)`);
+      else ok('pre-draw share links still open');
+      done4();
+      await p4.close();
+      await setPop(0);
     }
 
     // bands browser
@@ -230,6 +322,36 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     await page.waitForTimeout(200);
     const filtered = await page.locator('#bgrid .card').count();
     if (filtered === 0 || filtered >= 91) fail(`${tag} — genre search returned ${filtered}`); else ok(`search filters (jazz -> ${filtered})`);
+    await page.fill('#bq', '');
+    await page.waitForTimeout(200);
+
+    // Sorting by biggest names must actually order by draw, descending, and
+    // the badge must land on the acts that earned it — with its evidence.
+    await page.selectOption('#bsort', 'draw');
+    await page.waitForTimeout(250);
+    const sorted = await page.evaluate(() => {
+      const D = JSON.parse(document.getElementById('payload').textContent);
+      const by = new Map(D.bands.map(b => [b.n, b.dw]));
+      return [...document.querySelectorAll('#bgrid .card h3')].map(h => by.get(h.textContent.trim()));
+    });
+    const descending = sorted.every((v, i) => i === 0 || v <= sorted[i - 1]);
+    if (!descending) fail(`${tag} — "biggest names" sort is not descending by draw`);
+    else ok(`sorts by draw (top: ${sorted[0]}, bottom: ${sorted[sorted.length - 1]})`);
+
+    const badges = await page.evaluate(() => {
+      const D = JSON.parse(document.getElementById('payload').textContent);
+      const expect = D.bands.filter(b => b.dw >= 42).length;
+      const els = [...document.querySelectorAll('#bgrid .drawbadge')];
+      return { expect, got: els.length, titled: els.filter(e => (e.getAttribute('title') || '').trim()).length };
+    });
+    if (badges.got !== badges.expect)
+      fail(`${tag} — ${badges.got} draw badges rendered, expected ${badges.expect}`);
+    else ok(`${badges.got} bands badged as notable`);
+    if (badges.titled !== badges.got)
+      fail(`${tag} — ${badges.got - badges.titled} badge(s) claim notability with no evidence`);
+    else ok('every badge carries its evidence');
+    await page.selectOption('#bsort', 'time');
+    await page.waitForTimeout(200);
 
     // theme
     await page.click('#themeBtn');
