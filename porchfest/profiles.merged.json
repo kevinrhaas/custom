@@ -1,0 +1,3084 @@
+[
+  {
+    "band_name": "Aeris and the Piggies",
+    "one_liner": "Banjo, accordion, and story-first folk from a Minneapolis five-piece.",
+    "profile": "A Minneapolis folk group built around Aeris on vocals and guitar, with bandmates swapping between bass, percussion, banjo, accordion and electric guitar — the instrument list keeps growing. The sound is warm and acoustic with an experimental streak, and the songs are narrative-driven, so the words carry the set. They released the two-song \"Someone Loves You / Growing Up\" at the end of 2024 alongside the earlier \"Much Appreciated,\" and they turn up in The Current's gig listings and at free neighborhood park shows.",
+    "sounds_like": [
+      "Big Thief",
+      "The Decemberists",
+      "Waxahatchee"
+    ],
+    "genre_tags": [
+      "folk",
+      "indie",
+      "singer-songwriter",
+      "americana"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://aerisandthepiggies.bandcamp.com/",
+      "https://aerisandthepiggies.bandcamp.com/album/someone-loves-you-growing-up",
+      "https://www.thecurrent.org/events/20241118-the-gig-list-king-pari",
+      "https://www.instagram.com/aerisandthepiggies/"
+    ]
+  },
+  {
+    "band_name": "Angel Shot",
+    "one_liner": "Nu-core fury from Minneapolis: mathcore riffs, cybergrind noise, screams that scrape.",
+    "profile": "Angel Shot is a Minneapolis metalcore band whose EP \"god is not a safe space\" pulls hardcore, mathcore and cybergrind into something deliberately abrasive. Boolin Tunes scored it 8/10, calling it one of the most true-to-the-genre nu-core records out and comparing it to Darke Complex, Gift Giver and Yüth Forever — production that stays harsh on purpose rather than sanding anything down. The single \"Gate of Mercy\" (feat. mollyparton) and \"stray\" (feat. Soulkeeper) are the entry points. Live it is DIY and in-your-face, built for a pit rather than a picnic blanket.",
+    "sounds_like": [
+      "Knocked Loose",
+      "Gift Giver",
+      "Darke Complex"
+    ],
+    "genre_tags": [
+      "hardcore",
+      "metal",
+      "noise",
+      "experimental"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 4,
+      "brightness": 1,
+      "grit": 5,
+      "kid_friendly": 1
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://boolintunes.com/reviews/ep-review-angel-shot-god-is-not-a-safe-space/",
+      "https://www.youtube.com/watch?v=4QiVu9lzt2M",
+      "https://open.spotify.com/artist/1ODhDREFVy9ciajdlRJ1nG",
+      "https://linktr.ee/angelshot.us"
+    ]
+  },
+  {
+    "band_name": "Annie and the Bang Bang",
+    "one_liner": "Fleetwood Mac swagger with Nirvana teeth, fronted by a stage fight director.",
+    "profile": "Fronted by songwriter-guitarist Annie Enneking — also a working stage fight director — with John Riedlinger on guitar, Kare Tweiten on bass and Mike Kittel on drums. They genre-hop from dreamy folkpop to late-sixties rock to swampy blues, riff-heavy and lyrically cinematic, and the live show is the point: many of the players met doing theater and it shows. Deep catalog for a local band, from the self-titled debut through LOVELAND, WALKIE TALKIE, RADIO BABY and 2025's NIGHTMARES AND LULLABIES. Regulars at First Avenue's 7th St Entry, the Turf Club, Icehouse and the Hook and Ladder.",
+    "sounds_like": [
+      "Fleetwood Mac",
+      "Heart",
+      "Nirvana"
+    ],
+    "genre_tags": [
+      "rock",
+      "indie",
+      "alternative",
+      "blues"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://annieandthebangbang.bandcamp.com/",
+      "https://first-avenue.com/performer/annie-and-the-bang-bang/",
+      "https://www.annieandthebangbang.com/about",
+      "https://www.bandsintown.com/a/6666919-annie-and-the-bang-bang"
+    ]
+  },
+  {
+    "band_name": "Anxiety Society",
+    "one_liner": "Millennial Nine Inch Nails: dark, synth-driven industrial rock, loud and airtight.",
+    "profile": "Dense electro-rock from Minneapolis — Adam Szczepaniak, Jeremy Montoya, Matt Greeninger and Jonathan Kennedy, conceived in 2021 and launched properly in 2025. Four anthemic singles earned them the tags \"millennial Nine Inch Nails\" and \"an infectious dark-toned sound that could have been birthed from code of The Matrix\" (Andy Ellis, Northstar Original Revue), and their debut record \"Pull\" landed in December 2025. The pitch is loud and raw but musically tight, with hooks buried in the murk; despite the machine textures they insist the band is 100% human.",
+    "sounds_like": [
+      "Nine Inch Nails",
+      "Filter",
+      "Ministry"
+    ],
+    "genre_tags": [
+      "electronic",
+      "rock",
+      "alternative",
+      "noise"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 5,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 3,
+      "brightness": 1,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "high",
+    "sources": [
+      "https://anxietysociety.band/",
+      "https://www.anxietysociety.band/epk",
+      "https://music.apple.com/au/artist/anxiety-society/1790545239",
+      "https://www.facebook.com/anxietysocietymusic/"
+    ]
+  },
+  {
+    "band_name": "Arcola",
+    "one_liner": "Cosmic americana turning rollicking on Jon Peterson's third Arcola album.",
+    "profile": "Arcola is singer-songwriter Jon Peterson's long-running Minneapolis project, started in the mid-2000s and reshaped repeatedly over twenty years. Its self-described \"cosmic americana\" puts folk songwriting under textures borrowed from shoegaze, post-rock, ambient and noise rock — the self-titled debut arrived in 2013 on Posters on Walls Records, followed by \"Midday\" in 2020 after Peterson began writing with Adam Pearson in a basement. The third album is finished and the stated direction is away from indie-americana and toward louder rock and roll, so the Porchfest set may lean rowdier than the records.",
+    "sounds_like": [
+      "Wilco",
+      "The War on Drugs",
+      "Band of Horses"
+    ],
+    "genre_tags": [
+      "americana",
+      "indie",
+      "rock",
+      "folk",
+      "shoegaze"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://arcola.bandcamp.com/",
+      "https://arcola.bandcamp.com/album/arcola",
+      "https://open.spotify.com/artist/2865JQ35Yaei9VrxAfmM6t"
+    ]
+  },
+  {
+    "band_name": "Art Beagle's Backup Band",
+    "one_liner": "Jazz, funk and soul covers from a Minneapolis trio named for a guy in a chair.",
+    "profile": "A Minneapolis trio — Michael Burton on keys and lead vocals, Tamir Nolley on bass and sax, Yoji Sera on drums — backing a frontman who does not exist: Art Beagle sits in a chair, drinks beer and watches TV. The set is jazz standards plus R&B, soul and pop covers spanning the '50s through the '90s, mixed with originals by the members, and they'll happily detour into blues or a little butt rock. Burton is a Minneapolis singer, actor and multi-instrumentalist, and the group works weddings and corporate gigs, so the playing is tight and the repertoire flexible. An EP is in the works.",
+    "sounds_like": [
+      "Booker T. & the M.G.'s",
+      "Stevie Wonder",
+      "Steely Dan"
+    ],
+    "genre_tags": [
+      "jazz",
+      "funk",
+      "soul",
+      "rnb",
+      "cover-band"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "medium",
+    "sources": [
+      "http://artbeagle.band/",
+      "https://www.michaelburtonmusic.com/art-beagles-backup-band",
+      "https://www.gigheaven.com/members/jazzish.html",
+      "https://www.facebook.com/artbeagleband/"
+    ]
+  },
+  {
+    "band_name": "Astronomy Town",
+    "one_liner": "Jazz-gaze for a city that stays up: hypnotic, lounge-lit, stars always out.",
+    "profile": "A Twin Cities quartet — Cassandra Johnson on guitar, Joe Twohy on keys, Michael Mooridian on bass, Robb Lauer on drums — working a self-coined \"jazz-gaze\" seam between indie, jazz, lo-fi lounge and midwest emo. The debut EP \"Welcome to Astronomy Town\" leans on hypnotic rhythms and lush harmonies to sketch a nocturnal city, and Jazz88.FM picked it up for Hot New Local Singles, singling out \"Coffee & Guinness\" for the dreamlike interplay between the players. A second release, \"Lamps,\" followed. Mellow and atmospheric rather than loud — good for sitting on a curb with a drink.",
+    "sounds_like": [
+      "BADBADNOTGOOD",
+      "Khruangbin",
+      "American Football"
+    ],
+    "genre_tags": [
+      "jazz",
+      "indie",
+      "shoegaze",
+      "emo"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 3,
+      "vocal_forward": 2,
+      "danceability": 2,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.jazz88.fm/2024/08/07/hot-new-local-singles-astronomy-town/",
+      "https://astronomytown.bandcamp.com/",
+      "https://music.apple.com/us/artist/astronomy-town/1737308028",
+      "https://www.instagram.com/astronomytown/"
+    ]
+  },
+  {
+    "band_name": "Atomic Lights",
+    "one_liner": "High-speed Minneapolis punk since 2012. There's grit, there's grime. Stay loud.",
+    "profile": "A Minneapolis punk trio going since summer 2012 — Greg Hass, Andy Lee and Chris Watson — dealing in high-speed rock and roll with a taste for the noisier end of things. Their 2025 album \"Sure, Why Not?\" collects ten songs written across the better part of a decade, recorded at Treespeak Studios with Andy Mathison, and the band's own summary is \"There's grit! There's grime! It's a rocking good time!\" Song titles like \"Crying in the Break Room\" and \"Unsympathetic Nervous System\" give the tone: fast, wry, unglamorous. They file themselves under pop punk, skate punk and plain MPLS punk.",
+    "sounds_like": [
+      "Descendents",
+      "Dillinger Four",
+      "The Bouncing Souls"
+    ],
+    "genre_tags": [
+      "punk",
+      "rock",
+      "alternative",
+      "garage"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 5,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 5,
+      "kid_friendly": 2
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://atomiclights.bandcamp.com/album/sure-why-not",
+      "https://atomiclights.bandcamp.com/album/party-of-none",
+      "https://www.reverbnation.com/atomiclights",
+      "https://www.facebook.com/theatomiclights/"
+    ]
+  },
+  {
+    "band_name": "B n' the Spice Cabinet",
+    "one_liner": "Horn-stacked funk-pop with Bridget Cushman out front and dancing not optional.",
+    "profile": "A Minneapolis funk-pop band of college friends led by Milwaukee-native vocalist Bridget Cushman, built around a live horn section and tight, smooth vocal harmonies. They cite Stevie Wonder, Sara Bareilles, Olivia Dean, Lawrence and Snarky Puppy, and Apple Music files them under R&B/Soul. Releases include the 2023 \"Casual Living\" and \"Grey Skies / White Noise\" singles plus the live \"Greenway Groove Sessions\" tracks, and they gig steadily around the metro at Minnesota Music Cafe, the Amsterdam, Day Block Brewing and Utepils.",
+    "sounds_like": [
+      "Lawrence",
+      "Stevie Wonder",
+      "Sara Bareilles"
+    ],
+    "genre_tags": [
+      "funk",
+      "pop",
+      "soul",
+      "rnb",
+      "brass"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 3,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 5,
+      "experimental": 2,
+      "brightness": 5,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://linktr.ee/bspice",
+      "https://music.apple.com/us/artist/b-n-the-spice-cabinet/1671641119",
+      "https://www.dayblockbrewing.com/live-events/b-n-the-spice-cabinet-with-hunny-bear-and-emerson-island/"
+    ]
+  },
+  {
+    "band_name": "Baltic Avenue Neighborhood Watch",
+    "one_liner": "Broke-and-bitter melodic punk from Minneapolis: sad songs you shout along to.",
+    "profile": "Minneapolis punk trading in what the band calls \"demise punk\" — sad, but catchy. Their Bandcamp sums the whole project up in one line, \"Songs for people who can barely afford the rent,\" and collects releases including Have A Nice Weekend, Get Lost, Cursed and a pair of acoustic demos (Sleep For Dinner, A Lot Of Words). Expect fast, hooky, downcast guitar punk from a band that plays the Palmer's Bar end of the local scene.",
+    "sounds_like": [
+      "Jawbreaker",
+      "The Menzingers",
+      "Jeff Rosenstock"
+    ],
+    "genre_tags": [
+      "punk",
+      "rock",
+      "emo",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://balticavenueneighborhoodwatch.bandcamp.com/",
+      "https://balticavenueneighborhoodwatch.bandcamp.com/album/cursed",
+      "https://palmers-bar.com/calendar/2025/8/29/baltic-avenue-neighborhood-watch-and-friends"
+    ]
+  },
+  {
+    "band_name": "BirdLand",
+    "one_liner": "Keys-and-drums jazz fusion riding EDM grooves, with PLUR instead of a Spotify page.",
+    "profile": "A two-piece, deliberately offline project from Casey \"Bird\" Schultz and Robin Hatterschide who describe BirdLand as a community-based, anti-capitalist artistic venture rather than a band with fans. The sound is cross-genre instrumental fusion: jazz-schooled improvisation pushed through synths, keys and drums, with driving EDM grooves, rock defiance and funk underneath. They run on P.L.U.R. principles and refuse social media entirely, so there is essentially no online footprint to verify against — this profile rests on their own festival bio.",
+    "sounds_like": [
+      "Big Gigantic",
+      "Weather Report",
+      "GRiZ"
+    ],
+    "genre_tags": [
+      "jazz",
+      "electronic",
+      "funk",
+      "experimental",
+      "rock"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 5,
+      "vocal_forward": 1,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "low",
+    "sources": []
+  },
+  {
+    "band_name": "Bobby J's West Bank Social Club",
+    "one_liner": "Six-piece Palmer's Bar horn crew playing Armstrong, Dr. John and a little mambo.",
+    "profile": "A six-piece New Orleans-style bar band with a full horn front line, born out of Palmer's Bar on the Minneapolis West Bank and fronted by Bobby J Marks on vocals and trumpet. The book is vocals-driven dance music from a bygone era — Louis Armstrong, Nat King Cole and Dr. John numbers, instrumentals in the Sidney Bechet and Al Hirt vein, lounge ballads and a little mambo. They turn up regularly at Palmer's, Crooners, Hell's Kitchen and Animales BBQ, and have shared bills with Twin Cities institution Cornbread Harris.",
+    "sounds_like": [
+      "Louis Armstrong",
+      "Dr. John",
+      "Preservation Hall Jazz Band"
+    ],
+    "genre_tags": [
+      "jazz",
+      "brass",
+      "cover-band",
+      "latin"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 5,
+      "experimental": 1,
+      "brightness": 5,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://www.croonersmn.com/event/bobby-js-west-bank-social-club/",
+      "https://www.jazz88.fm/event/palm-club-presents-cornbread-harris-and-friends-with-bobby-js-west-bank-social-club/2026-11-05/",
+      "https://www.tcgateway.com/events/bobby-js-west-bank-social-club/"
+    ]
+  },
+  {
+    "band_name": "Carhearts",
+    "one_liner": "All-girl Minneapolis indie rock built for house-party floors and street corners.",
+    "profile": "An all-girl indie rock band out of Minneapolis that splits its time between busking around the Twin Cities and playing house parties and small rooms like the White Squirrel. They pitch themselves as raw energy plus intimate songwriting, naming The Backseat Lovers, Big Thief and Foo Fighters as touchstones — a mix that lands somewhere between hushed verses and loud, hooky guitar payoffs. Their footprint so far is mostly TikTok, Instagram and gig listings rather than releases or press.",
+    "sounds_like": [
+      "The Backseat Lovers",
+      "Big Thief",
+      "Foo Fighters"
+    ],
+    "genre_tags": [
+      "indie",
+      "rock",
+      "alternative",
+      "garage"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://whitesquirrelbar.com/event/carhearts/",
+      "https://www.instagram.com/carheartsband/"
+    ]
+  },
+  {
+    "band_name": "Carlisle Evans Peck",
+    "one_liner": "Queer glam-folk balladry: Bowie theatrics, harmonium hush, mortality on the mind.",
+    "profile": "A Minneapolis singer-songwriter, composer and multi-instrumentalist who calls their work \"theatrical, ethereal, immersive\" and positions themself as a modern bard — glam rock and cabaret drama grafted onto folk song and choral polyphony. Their 2025 album The Lines in My Hands is a spiral-structured song cycle about life, death and transience, written in early-pandemic lockdown and tagged on Bandcamp as fairy folk, glam folk, orchestral rock and indie-classical; the December 2025 release show at the Cedar Cultural Center ran the whole record with an eight-piece band. Live, expect voice out front over guitar, piano, harmonium and bandurria, with strings, sax and horns when the full ensemble is there, plus the theatrical staging they carried into the 2024 ritual cabaret Iconoclasm.",
+    "sounds_like": [
+      "Sufjan Stevens",
+      "Joanna Newsom",
+      "David Bowie"
+    ],
+    "genre_tags": [
+      "folk",
+      "singer-songwriter",
+      "rock",
+      "indie",
+      "classical"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://carlisleevanspeck.bandcamp.com/album/the-lines-in-my-hands",
+      "https://mostlyminnesota.com/2025/12/01/5-questions-with-carlisle-evans-peck-on-new-album-the-lines-in-my-hands-playing-dec-4-at-the-cedar-cultural-center/",
+      "https://www.thecedar.org/events/carlisle-evans-peck-with-mckain-lakey-and-proper-t",
+      "https://www.carlisleevanspeck.com/"
+    ]
+  },
+  {
+    "band_name": "Christmas on Neptune",
+    "one_liner": "Craigslist-born power trio, now with a frontman, playing all originals and no covers.",
+    "profile": "A Minneapolis originals-only rock band that started in March 2020 when guitarist/vocalist Chris Neptune answered drummer Don Hammer's Craigslist ad, and has since written and recorded around 30 songs. The reference points are unabashedly classic and hard rock — Hammer points to Rush's Neil Peart, Neptune came up through 1980s-90s Philadelphia and New Jersey garage bands. Longtime a power trio (including their 2025 Uptown Porchfest set), they have added a veteran lead singer for 2026, freeing Neptune to focus on guitar.",
+    "sounds_like": [
+      "Rush",
+      "Cheap Trick",
+      "Tom Petty"
+    ],
+    "genre_tags": [
+      "rock",
+      "alternative",
+      "garage"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://christmasonneptuneband.com/",
+      "https://soundcloud.com/christmasonneptuneband",
+      "https://www.instagram.com/christmasonneptuneband"
+    ]
+  },
+  {
+    "band_name": "Common Lady",
+    "one_liner": "Emma Deihl's twentysomething reckonings in jazz piano and soft-swelling folk-pop.",
+    "profile": "A Midwest group formed from friends-of-friends around singer-songwriter Emma Deihl, whose quiet acoustic sketches about change, heartbreak and celebration got fleshed out into something fuller. The debut EP Patchwork — produced by Sam Tudor, who also plays drums and violin, with Andrew Bien on jazz piano and Michael Vandervennet on bass — leans on Bien's luminous chords and Deihl's lyrical specificity, yielding tracks like \"Tightrope,\" \"Scarlet\" and \"Stick Shift.\" It is intimate, largely acoustic music: catchy but unhurried, closer to sit-and-listen than dance.",
+    "sounds_like": [
+      "Laufey",
+      "Faye Webster",
+      "Lizzy McAlpine"
+    ],
+    "genre_tags": [
+      "indie",
+      "folk",
+      "jazz",
+      "pop",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://open.spotify.com/artist/6nf4zwpZiHtOab7MUvNzq2",
+      "https://www.instagram.com/common.lady.music"
+    ]
+  },
+  {
+    "band_name": "Couch Potato Massacre",
+    "one_liner": "Ramonescore pop punk about Simpsons reruns, bad movies, and beating the boss level.",
+    "profile": "A Minneapolis pop-punk quartet going since 2015, built on two-minute buzzsaw songs whose lyrics are entirely about movies, TV and video games. Melodic Noise reviewed their album Culture Shock as \"RamonesCore\" and \"short, fast, clever, and addictively catchy,\" citing Groovie Ghoulies, Chixdiggit and the Copyrights alongside a Minneapolis punk ethos. Their Bandcamp catalog runs Booze and Delusions (2019), Culture Shock (2022), Died Of Dysentery (2024) and Dude. Sweet (2025). Live it's fast, loud and full of pop-culture singalongs.",
+    "sounds_like": [
+      "Ramones",
+      "The Copyrights",
+      "Groovie Ghoulies"
+    ],
+    "genre_tags": [
+      "punk",
+      "pop",
+      "rock"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 4,
+      "tempo": 5,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://couchpotatomassacre.bandcamp.com/album/booze-and-delusions",
+      "https://outloudrecords.bandcamp.com/album/culture-shock",
+      "https://melodicnoisemedia.com/reviews/couch-potato-massacre-culture-shock"
+    ]
+  },
+  {
+    "band_name": "Critterthing",
+    "one_liner": "Saint Paul four-piece welding jangly guitar pop to punk urgency and art-rock turns.",
+    "profile": "A Saint Paul band running since 2022: Claire Rogalsky on vocals and bass, Juno Lee on guitar, Grady Westling on drums and Ben Roberts on keys. Their self-released catalog is already deep for a young band, from the 2023 LP Go Slowly through the Stopping Power / Steal The Fang and Colors / Go To Sleep singles up to recent tracks like Pool Shark. Bandcamp files them under indie rock, art pop and art rock, and they describe themselves as jangle punk with \"a positive message coded in melodic sunspots\" — expect bright ringing guitars, a keyboard doing the coloring, and songs that stay short and forward-leaning.",
+    "sounds_like": [
+      "The Beths",
+      "Alvvays",
+      "Speedy Ortiz"
+    ],
+    "genre_tags": [
+      "indie",
+      "punk",
+      "alternative",
+      "pop"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://critterthing.bandcamp.com/",
+      "https://critterthing.bandcamp.com/album/go-slowly"
+    ]
+  },
+  {
+    "band_name": "Customers",
+    "one_liner": "'90s Vapor Records alt-rockers still swinging for big guitar choruses.",
+    "profile": "Ryan Sexton formed the band in Los Angeles in 1995 after a demo reached Elliot Roberts, who was launching Neil Young's Vapor Records; the resulting debut Green Bottle Thursday (Vapor, 1996) was cut at Jackson Browne's Groove Masters studio and is remembered as a melodic, guitar-laden record. Sexton moved the band home to Minneapolis around 2000, and the current lineup is Sexton with Terrance J. Fisher on lead guitar, Jon Sawyer on bass and Kirk Hall on drums. Their own history cites tours with Ben Folds Five and Iggy Pop, European festival dates and a Conan O'Brien appearance. The new EP Living Like Gods, tracked in 2024 and produced by Dan Murphy, is out 5/22/26 — big, hooky, unapologetically wide-screen guitar rock.",
+    "sounds_like": [
+      "Soul Asylum",
+      "Gin Blossoms",
+      "The Wallflowers"
+    ],
+    "genre_tags": [
+      "rock",
+      "alternative",
+      "indie",
+      "pop"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 1,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://thecustomersband.com/",
+      "https://first-avenue.com/performer/the-customers/",
+      "http://wilfullyobscure.blogspot.com/2011/05/customers-green-bottle-thursday-1996.html",
+      "https://www.makingascene.org/customers-band-are-making-a-scene/"
+    ]
+  },
+  {
+    "band_name": "DKTK",
+    "one_liner": "Guitar-and-drums couple who swap instruments album to album, playing for your inner child.",
+    "profile": "A two-piece Minnesota couples band whose name stands for \"don't kill your inner child.\" The gimmick is real and structural: on the first album Doug sings and plays guitar with Kyra on drums and backing vocals, and on the second, You Look Fine, they trade — Kyra takes guitar and lead vocals while Doug moves to the kit. The result is unfussy college rock and alternative in a stripped guitar-plus-drums format, warm rather than heavy, played around Twin Cities rooms like Day Block Brewing. Their footprint online is small; most of what's known comes from the band itself.",
+    "sounds_like": [
+      "The White Stripes",
+      "Mates of State",
+      "Superchunk"
+    ],
+    "genre_tags": [
+      "alternative",
+      "rock",
+      "indie"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/dontkillthekidsband/",
+      "https://open.spotify.com/album/22wn1tDBwVKxztjwOXtmk3",
+      "https://www.dayblockbrewing.com/live-events/milo336-free-music-dominick-fields-tommy-blossom-dont-kill-the-kids/"
+    ]
+  },
+  {
+    "band_name": "Damn Phibian",
+    "one_liner": "Krautrock motorik meets city-pop shimmer over a funk rhythm section.",
+    "profile": "A five-piece Minneapolis indie rock band that treats genre as a buffet — 70s Krautrock repetition, 80s Japanese city pop gloss and 90s Britpop hooks, all sitting on a funk foundation. Their own framing is \"groovy beats, textured guitars, and funky time signatures that'll get you dancing introspectively,\" and listings for their shows describe a gritty, groove-driven live set with punk attitude. They're regulars in the Twin Cities DIY circuit, turning up at Terminal Bar, Memory Lanes and Day Block Brewing. Expect long grooves, odd bar counts and guitars soaked in effects.",
+    "sounds_like": [
+      "Talking Heads",
+      "Can",
+      "Blur"
+    ],
+    "genre_tags": [
+      "indie",
+      "funk",
+      "rock",
+      "psychedelic"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://soundcloud.com/damn-phibian",
+      "https://www.exploreminnesota.com/event/heliocene-single-release-show-ray-gun-youth-damn-phibian/44687",
+      "https://www.dayblockbrewing.com/live-events/heliocene-single-release-show-ray-gun-youth-damn-phibian/",
+      "https://racketmn.com/indie-veterans-and-local-fests-in-your-complete-concert-calendar-july-7-13"
+    ]
+  },
+  {
+    "band_name": "Dive Bar Orchestra",
+    "one_liner": "Three-part harmonies and mellow cosmic-American songwriting, tailor-made for a lawn chair.",
+    "profile": "A Minneapolis group built around what they call the sweetest, closest harmonies they can muster — three-part vocals over original, unhurried country-rock songwriting in the Gram Parsons \"Cosmic American Music\" lineage. This is a listening set rather than a dance set: melodic, mellow, and easy to stand around with a drink in hand. They've played Uptown Porchfest before, appearing on the 2024 lineup. Their online footprint is minimal beyond a Facebook page and a Spotify artist profile.",
+    "sounds_like": [
+      "The Jayhawks",
+      "Gram Parsons",
+      "Crosby, Stills & Nash"
+    ],
+    "genre_tags": [
+      "americana",
+      "folk",
+      "country",
+      "rock"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.facebook.com/DiveBarOrchestra/",
+      "https://www.songkick.com/festivals/3576807-uptown-porchfest/id/42090018-uptown-porchfest-2024",
+      "https://open.spotify.com/artist/7L0DEVhpefFznuTNmLdgqF"
+    ]
+  },
+  {
+    "band_name": "Dread Spells",
+    "one_liner": "Wordless post-rock crescendos and math-rock knots, played against projected visuals.",
+    "profile": "A Minneapolis four-piece formed in 2024 that bills itself as an audio-visual collective: Jason Lynn Mitchell on bass, Christian Santos and Sami Sati on guitars, Patrick Smith on drums, with the music paired to projected visual media. It's fully instrumental — Bandcamp tags run post-rock, math rock, ambient, emo and soundtrack — so the set moves in dynamics rather than verses, from delay-soaked quiet passages to full-band swells. Their track \"What Wishing Can't Provide\" arrived in July 2025. Members also play in Vanishing Earth and Jupiter Johnson, and the three bands share bills around the Twin Cities.",
+    "sounds_like": [
+      "Explosions in the Sky",
+      "This Will Destroy You",
+      "American Football"
+    ],
+    "genre_tags": [
+      "rock",
+      "experimental",
+      "ambient",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 1,
+      "danceability": 2,
+      "experimental": 4,
+      "brightness": 2,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://dreadspells.bandcamp.com/",
+      "https://whitesquirrelbar.com/event/jupiter-johnson/",
+      "https://open.spotify.com/artist/11csmUl2Yj89iEBzSBS0uZ"
+    ]
+  },
+  {
+    "band_name": "Drift Pattern",
+    "one_liner": "Doom-weight riffs and post-punk chill, with hooks and plainspoken lyrics underneath.",
+    "profile": "A Minnesota band splitting the difference between post-punk and post-hardcore, with members arriving from doom metal, indie rock and singer-songwriter backgrounds. By their own description that mix yields heavy riffs, catchy melodies and honest lyrics — loud and dark-edged, but song-shaped rather than pummeling. Their public footprint is essentially just an Instagram account and a YouTube channel, with no press coverage or streaming releases findable, so this read leans almost entirely on their own description.",
+    "sounds_like": [
+      "Fugazi",
+      "Quicksand",
+      "Deftones"
+    ],
+    "genre_tags": [
+      "hardcore",
+      "punk",
+      "alternative",
+      "metal"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/drift.pattern/",
+      "https://www.youtube.com/@stevesisolak1357"
+    ]
+  },
+  {
+    "band_name": "Eldest Daughter",
+    "one_liner": "90s alt-rock grit, alt-pop polish, and Midwest folk bones from Monica Merila's crew",
+    "profile": "Minneapolis four-piece fronted by singer-songwriter Monica Merila, formed in 2023 with Austin Reid and rounded out by Sonja Leaf and Isaac Feia on rhythm. Their own framing is blunt — \"a band from Minneapolis that rocks\" — but the sound is more specific than that: Americana-leaning songwriting run through pop progressions and 90s alt-rock guitars, with poetic hooks up front. Debut EP Cactus Magnet arrived in January 2025, followed by a January White Squirrel Tuesday residency and a Big Turn Music Fest slot in Red Wing; the band says a second EP, The Year of the Swan, is on the way. Expect a warm, mid-tempo full-band set built around Merila's voice rather than volume.",
+    "sounds_like": [
+      "Liz Phair",
+      "Waxahatchee",
+      "Soccer Mommy"
+    ],
+    "genre_tags": [
+      "indie",
+      "rock",
+      "alternative",
+      "americana",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://eldestdaughter1.bandcamp.com/",
+      "https://bigturnmusicfest.com/artists/eldest-daughter/",
+      "https://mostlyminnesota.com/2024/11/03/mostly-mn-music-with-eldest-daughter-on-upcoming-ep-and-january-white-squirrel-tuesday-residency/",
+      "https://eldestdaughterband.com"
+    ]
+  },
+  {
+    "band_name": "Emily Boyajian",
+    "one_liner": "Classical art songs about transition, politics, and arguing with a sock puppet",
+    "profile": "Boyajian is a Twin Cities pianist and composer — and a trans woman — who writes contemporary classical music that, in her own description, ranges \"from completely tonal to very dissonant\" while staying deliberately accessible. Her catalog spans solo piano, piano-and-voice art songs, string and woodwind quartets, and orchestral and chamber scores; her best-known work is Transition, a song cycle about gender transition, impostor syndrome, discrimination, and finding community, premiered as a 2023 Cedar Commissions piece at the Cedar Cultural Center. She has also been programmed at the Source Song Festival, Film Score Fest, and the Minnesota Fringe Festival. Live this reads as a quiet, lyric-driven recital — emotionally heavy in places, then abruptly funny when she pivots to a song about Delta Airlines.",
+    "sounds_like": [
+      "Caroline Shaw",
+      "Nico Muhly",
+      "Missy Mazzoli"
+    ],
+    "genre_tags": [
+      "classical",
+      "singer-songwriter",
+      "experimental"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 1,
+      "vocal_forward": 4,
+      "danceability": 1,
+      "experimental": 3,
+      "brightness": 3,
+      "grit": 1,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://www.broadwayworld.com/minneapolis/article/Interview-Emily-Boyajian-of-THE-CEDAR-COMMISSIONS-NIGHT-ONE-at-The-Cedar-Cultural-Center-20230216",
+      "https://www.thecedar.org/listing-2/2021/12/27/the-cedar-commissions-night-one-carlisle-peck-nyttu-chongo-amp-maddie-thies-kze7y",
+      "https://www.womenspress.com/something-bigger-than-myself-emily-boyajian-talks-with-mikey-marget/",
+      "https://www.youtube.com/watch?v=8DeWyCRrTWM",
+      "https://soundcloud.com/emily-boyajian"
+    ]
+  },
+  {
+    "band_name": "FLOWTUS",
+    "one_liner": "Queer four-piece trading dreamy reverb for raw, sultry heartbreak rock",
+    "profile": "Revived in 2022, FLOWTUS is a queer Minneapolis quartet — Janani Logendran (lead vocals, guitar), Erin Horvath (lead guitar, vocals), Katya Haskina (bass, vocals), Kelsey Wefald (drums) — whose songs sit at the seam between dream pop haze and something rougher. Their Bandcamp self-tags tell the story: indie dream pop and surf rock next to post-grunge and plain rock. The three-song Flowtus Recordings — January 2023 (\"Something More,\" \"Miss Sugar,\" \"Safelight\") was tracked and mixed by the band at Essential Sessions in Arden Hills, and they're regulars on Twin Cities DIY bills like the White Squirrel. Live it's electric guitars and stacked vocal harmonies, melancholy in the lyrics and loud in the room.",
+    "sounds_like": [
+      "Wolf Alice",
+      "La Luz",
+      "Mazzy Star"
+    ],
+    "genre_tags": [
+      "indie",
+      "alternative",
+      "rock",
+      "shoegaze"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://flowtus.bandcamp.com/",
+      "https://flowtus.bandcamp.com/album/flowtus-recordings-january-2023",
+      "https://whitesquirrelbar.com/event/not-your-baby-w-flowtus-butter-boys/",
+      "https://www.instagram.com/flowtusband/"
+    ]
+  },
+  {
+    "band_name": "Fairborn Sinfonia",
+    "one_liner": "Living-room drone and lo-fi noise built from monotrons, field recordings, and furniture",
+    "profile": "A long-running experimental project named for a city in Ohio, started in California and now loosely based in Minneapolis, releasing since around 2010 under a rotating set of names via the pistachiograveyard Bandcamp. The album Fairborn Sinfonia Plays the Popular Classics is self-tagged experimental, ambient, drone, field recordings, improv, instrumental, lo-fi, and noise, and was \"recorded live in a studio apartment or a living room\" in Fairborn, Ohio and Minneapolis — track titles like \"Music for Harmonica, Banjo, and Organ\" and \"Real Korg Sounds\" give the flavor. Instrumentation is whatever's in the room: harmonica, banjo, tuba, a Korg monotron, and uncredited household objects, with globe-spanning field recordings layered in live. Everything is name-your-price, which has mostly meant free.",
+    "sounds_like": [
+      "Stars of the Lid",
+      "Grouper",
+      "Jandek"
+    ],
+    "genre_tags": [
+      "ambient",
+      "experimental",
+      "noise",
+      "electronic"
+    ],
+    "dims": {
+      "energy": 1,
+      "loudness": 2,
+      "tempo": 1,
+      "electronic": 4,
+      "vocal_forward": 1,
+      "danceability": 1,
+      "experimental": 5,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://pistachiograveyard.bandcamp.com/",
+      "https://pistachiograveyard.bandcamp.com/album/fairborn-sinfonia-plays-the-popular-classics"
+    ]
+  },
+  {
+    "band_name": "Fanaka Nation & The Wawa's",
+    "one_liner": "AfroTrap with Swahili hooks, 808s, and Prince-city funk, played by a live band",
+    "profile": "Fanaka Nation is an Elk River native of Kenyan and Laotian descent who calls his lane \"culture rap\" — mbira plinks, Swahili lyrics, and sampled East African classics welded to heavy 808s and synths that nod hard at the 1980s Minneapolis Sound. His father ran Kilimanjaro Records and promoted East African artists in Minnesota, and that record-crate upbringing is audible; his debut album Culture Rap 1: Afrotrap landed in 2021, and the single \"Blicky Love\" features local artist Bakarii. He's played First Avenue, opened for Soulja Boy, and co-founded and hosts MPLS Afrobeats, a recurring dance party at the Cedar Cultural Center. The Wawa's are the live machine behind the records — Robert Lehmann on keys, Derrick Holleman on electric guitar — which turns a beat-driven set into a full band throwing a block party.",
+    "sounds_like": [
+      "Burna Boy",
+      "MHD",
+      "Wizkid"
+    ],
+    "genre_tags": [
+      "hiphop",
+      "world",
+      "electronic",
+      "funk",
+      "pop"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 5,
+      "vocal_forward": 5,
+      "danceability": 5,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 2
+    },
+    "confidence": "high",
+    "sources": [
+      "https://sahanjournal.com/arts-culture/fanaka-nation-elk-river-native-east-african-meets-minneapolis-sound/",
+      "https://www.thecedar.org/events/abinnet-berhanus-ahndenet-and-fanaka-nation",
+      "https://www.thecedar.org/events/mpls-afrobeats-dance-party-ft-dynamq-the-sudanese-child-fanaka-nation",
+      "https://open.spotify.com/artist/30BwT2htXFoj3K7OirFKdN"
+    ]
+  },
+  {
+    "band_name": "Fever Field",
+    "one_liner": "Feel-good wall of pop-funk from five St. John's grads who make Uptown their home",
+    "profile": "Founded in November 2022 by vocalist Jack Cassidy and drummer Drew Lodermeier, both St. John's University alumni, Fever Field has grown into a five-piece with Jack Rogers on guitar, Grant Christianson on bass, and Alex Seefeldt on keys. They deal in indie rock and pop with a funk pocket — a \"feel-good wall of sound\" built on groove, big melodies, and Cassidy's smooth vocal, split between originals and reworked covers. The band is explicitly rooted in the Uptown scene and has worked its way up to rooms like the 7th St Entry, the Aster Cafe, and the Green Room. This is the set where the sidewalk crowd stays put and starts moving.",
+    "sounds_like": [
+      "Hippo Campus",
+      "Lake Street Dive",
+      "Vulfpeck"
+    ],
+    "genre_tags": [
+      "pop",
+      "rock",
+      "funk",
+      "indie"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 5,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://feverfield.org/about/",
+      "https://first-avenue.com/event/2026-07-fever-field/",
+      "https://astercafe.com/event/fever-field-15/",
+      "https://tickets.venuepilot.com/e/fever-field-w-noslo-waterline-2025-09-24-green-room-minneapolis-606a8b"
+    ]
+  },
+  {
+    "band_name": "Frankie Torres",
+    "one_liner": "Four-chair-turn belter bringing Heart-sized blues rock to a Minneapolis porch",
+    "profile": "Minnetonka-raised, Minneapolis-based singer-songwriter and multi-instrumentalist who has been performing since she was eight — nearly a decade in School of Rock's Eden Prairie program, six national tours, and stages including Red Rocks, Lollapalooza, and Taste of Minnesota. In 2024 she competed on season 26 of NBC's The Voice, where her take on Heart's \"Magic Man\" pulled a four-chair turn from Michael Bublé, Gwen Stefani, Reba McEntire, and Snoop Dogg. Classic rock and blues are the foundation; she also fronts the Twin Cities rock cover band Midnight Rambler. Live it's a high-energy, vocals-first set — the voice is the instrument everything else is arranged around.",
+    "sounds_like": [
+      "Grace Potter",
+      "Heart",
+      "Susan Tedeschi"
+    ],
+    "genre_tags": [
+      "rock",
+      "blues",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 5,
+      "danceability": 3,
+      "experimental": 1,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://first-avenue.com/performer/frankie-torres/",
+      "https://www.nbc.com/the-voice/credits/contestant/season-26/frankie-torres",
+      "https://www.minnetonkaschools.org/news-details/~board/feature-news-stories/post/alumni-spotlight-frankie-torres-18-shines-in-season-26-of-the-voice",
+      "https://voyageminnesota.com/interview/rising-stars-meet-frankie-torres-of-minnesota"
+    ]
+  },
+  {
+    "band_name": "Gill Weather (formerly Oceanographer)",
+    "one_liner": "Midwest-gothic dream folk: power lines, dead-end jobs, and 90s reverb",
+    "profile": "Led by songwriter Valentine Lowry-Ortega, Gill Weather (previously Oceanographer) is a Minneapolis five-piece — with Willow Waters on bass, Jackson Peters on lead guitar, Joe Kiser on drums, and Dean Sibinski — writing lush, dream-pop-tinted folk about small-town origins and queer love and loss. Their own Bandcamp tags run country folk, indie twang, and lo-fi folk, and the 2025 single \"Art A Whirl\" is a good entry point: acoustic-led, cinematic, confessional. They were a 2025 Loring Awards nominee for Best Upcoming Artist and received a 2026 Cedar Cultural Center Flagship Grant. Live, expect a hushed, storytelling-forward set that builds into full-band swells rather than anything loud.",
+    "sounds_like": [
+      "Waxahatchee",
+      "Big Thief",
+      "Mazzy Star"
+    ],
+    "genre_tags": [
+      "folk",
+      "indie",
+      "americana",
+      "country",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 3,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://gillweather.bandcamp.com/track/art-a-whirl",
+      "https://gillweather.band/",
+      "https://open.spotify.com/artist/1FEtkakX5E2LBB6sZBNe8A",
+      "https://www.instagram.com/gillweather/"
+    ]
+  },
+  {
+    "band_name": "HUNNY BEAR",
+    "one_liner": "Twin Cities jazz-funk quartet: sax-led grooves, funk standards, and city-pop cool.",
+    "profile": "A Minneapolis funk/fusion quartet fronted by Dan Anderson on saxophone and vocals, backed by guitar, bass and drums. Live sets mix funk standards, jazz-funk originals and reworked modern covers, leaning on groove and horn-led melody rather than long heady solos. They are regulars on the neighborhood circuit — 331 Club, The White Squirrel, Can Can Wonderland, Palmers — and have played Open Streets and the Music in the Parks series, which makes them a natural fit for a porch. Anderson has described the project as his most personal one, rooted in funk, city pop and jazz-funk.",
+    "sounds_like": [
+      "Vulfpeck",
+      "Snarky Puppy",
+      "Khruangbin"
+    ],
+    "genre_tags": [
+      "jazz",
+      "funk",
+      "soul",
+      "cover-band"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 2,
+      "danceability": 4,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://hunnybearjazz.wixsite.com/hunny-bear",
+      "https://canvasrebel.com/meet-dan-anderson/",
+      "https://www.cancanwonderland.com/events/hunny-bear-548f38ce",
+      "https://www.instagram.com/hunnybearjazz/"
+    ]
+  },
+  {
+    "band_name": "Homer's Donuts",
+    "one_liner": "Tween all-girl rock crew ripping Nirvana and Metric covers with joyful volume.",
+    "profile": "An all-girl tween and young-teen band from Minneapolis, formed through Twin Town Guitars' Bridge Powered Girl Band program. Their set is built from rock favorites — Metric, Nirvana and similar — played loud, fast and with obvious delight at being on stage. Their web footprint is essentially just gig listings; they turn up on Twin Town's Open Streets Lyndale lineup. Expect an unpolished, high-spirited garage-rock set rather than originals.",
+    "sounds_like": [
+      "Nirvana",
+      "Metric",
+      "The Runaways"
+    ],
+    "genre_tags": [
+      "rock",
+      "cover-band",
+      "alternative",
+      "garage"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.twintown.com/pages/open-streets-lyndale",
+      "https://www.twintown.com/pages/about"
+    ]
+  },
+  {
+    "band_name": "Honey Please",
+    "one_liner": "Slacker-tinged Minneapolis indie pop; self-titled LP in '24, EP due spring '26.",
+    "profile": "A four-piece Minneapolis indie pop rock band writing around singer-guitarist Sam Scheuneman, with Dawson Ludvigson on bass, Jack Nobel on lead guitar and Joe Kiser on drums. Their self-titled nine-track debut arrived October 25, 2024, and Bandcamp files it under indie pop rock and slacker rock — bright, loose, hook-forward songs with roomy guitar interplay. They play Twin Cities rooms like Bryant Lake Bowl and pitch their live show as one you move to; a follow-up EP is planned for spring 2026.",
+    "sounds_like": [
+      "Hippo Campus",
+      "Mac DeMarco",
+      "Peach Pit"
+    ],
+    "genre_tags": [
+      "indie",
+      "pop",
+      "rock",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://honeypleasempls.bandcamp.com/album/honey-please",
+      "https://sites.google.com/view/honeyplease/home",
+      "https://www.bryantlakebowl.com/theater/an-evening-with-honey-please-and-nice-and-blue"
+    ]
+  },
+  {
+    "band_name": "IdlFlo",
+    "one_liner": "'90s-alt wrecking crew: whisper-quiet to explosive, roaring riffs, no safety nets.",
+    "profile": "A Minneapolis four-piece founded in 2019 around songwriting brothers Derek and Lee Smith, trading in restless '90s-flavored alternative rock. The live pitch is dynamics: meaty clean-to-dirty guitar tones, thumping bass, big layered harmonies and hard swings from quiet to explosive, all played straight with no backing tracks. Their debut EP is A Sudden Burst of Sound. Melodic Noise Media wrote that their \"instrumentation sits nicely behind the lead vocals reminiscent of The Red Hot Chili Peppers.\"",
+    "sounds_like": [
+      "Red Hot Chili Peppers",
+      "Foo Fighters",
+      "Bush"
+    ],
+    "genre_tags": [
+      "alternative",
+      "rock",
+      "garage"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://idlflo.com/",
+      "https://www.facebook.com/IdlFlo/"
+    ]
+  },
+  {
+    "band_name": "Iodine",
+    "one_liner": "Grunge-and-math-rock upstarts: complex changes, big choruses, moshers welcome.",
+    "profile": "A Twin Cities four-piece active since early 2025, pulling grunge, pop, emo and prog-rock into harmonically busy songs that still land a hard-hitting chorus. They cite Hippo Campus for hooks, King Gizzard for technicality and improvisation, and American Football and Delta Sleep for the Midwest-emo/math-rock end — and say the set is meant to work equally for moshers, theory nerds and people just having a drink. They debuted with the grunge single Vice Grip/Washed Away, have since put out another single and a live album recorded at the Green Room, and play rooms like The White Squirrel.",
+    "sounds_like": [
+      "Hippo Campus",
+      "American Football",
+      "King Gizzard & the Lizard Wizard"
+    ],
+    "genre_tags": [
+      "emo",
+      "alternative",
+      "rock",
+      "indie"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://whitesquirrelbar.com/event/iodine-w-terravision-bright-young-things/",
+      "https://soundminnesota.com/event/iodine-w-terravision-bright-young-things/",
+      "https://linktr.ee/iodinebandmn"
+    ]
+  },
+  {
+    "band_name": "J-Mo On The Beat & The J-Lighters",
+    "one_liner": "Saint Paul's '50s rock'n'roll revivalist — Elvis swagger, Little Richard holler.",
+    "profile": "Jamie Passewe, born and raised in Saint Paul, fronts a '50s and early-'60s rock'n'roll act that folds rockabilly, blues and soul into contemporary indie-pop songwriting. He came to music through dancing, and it shows: the sets swing hard and are built to get people moving, mixing his own material with classics from Elvis Presley, Little Richard, Ritchie Valens and Cliff Richard. He is prolific on Bandcamp — releases include Mary (feat. The J-Lighters), Love Letters, Darlin' and Evening Whispers — and plays widely around the Twin Cities, from Caydence Records and Creators Cup to Can Can Wonderland, Day Block and KJ's Hideaway.",
+    "sounds_like": [
+      "Elvis Presley",
+      "Little Richard",
+      "Buddy Holly"
+    ],
+    "genre_tags": [
+      "rock",
+      "blues",
+      "soul",
+      "indie"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 4,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 5,
+      "experimental": 2,
+      "brightness": 5,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://j-moonthebeat.bandcamp.com/",
+      "https://www.gigsalad.com/j-mo_on_the_beat_and_the_j-lighters_st_paul",
+      "https://www.cancanwonderland.com/events/j-mo-on-the-beat-and-the-j-lighters",
+      "https://www.lostinthemanor.co.uk/blog/2023/8/5/interview-j-mo-on-the-beat-love-letters"
+    ]
+  },
+  {
+    "band_name": "Jay Boys Family Band",
+    "one_liner": "Minneapolis family band peddling toe-tappin' tunes you didn't know you love.",
+    "profile": "A Minneapolis outfit whose entire public pitch is a single line: \"playing the toe tappin' tunes you didn't know you love.\" Their Bandcamp carries a small handful of tracks including Chester and Falling away, and they turn up on neighborhood bills like a Local Music series night on Snelling Ave in Saint Paul. The web footprint is genuinely thin — no press, no genre tags, no lineup listed — so treat the sound as an inference from the name and self-description: warm, upbeat, acoustic-leaning porch music aimed at all ages. Ratings below are set from that framing rather than from a heard recording.",
+    "sounds_like": [
+      "Old Crow Medicine Show",
+      "The Lumineers"
+    ],
+    "genre_tags": [
+      "folk",
+      "americana"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 2,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 3,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 5
+    },
+    "confidence": "low",
+    "sources": [
+      "https://thejayboysfamilyband.bandcamp.com/",
+      "https://www.instagram.com/jayboysmpls/",
+      "https://www.eventeny.com/company/?c=352271"
+    ]
+  },
+  {
+    "band_name": "Jessica Forsythe Music",
+    "one_liner": "Ex-Warped Tour drummer, now two guitars and tight harmonies on the porch.",
+    "profile": "Jessica Forsythe spent roughly eight years behind the kit for Minneapolis punky girl-rock band Sick of Sarah, touring the U.S., Canada and the UK including Warped Tour and SXSW, and was profiled by Modern Drummer in 2016. After stepping away from music for several years she returned as a songwriter and guitarist. She now performs as a duo with acoustic musician Jon Stack, playing original indie/alternative material built on two-guitar arrangements and tight vocal harmonies — intimate and conversational rather than loud.",
+    "sounds_like": [
+      "Brandi Carlile",
+      "Indigo Girls"
+    ],
+    "genre_tags": [
+      "singer-songwriter",
+      "indie",
+      "folk",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 1,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.moderndrummer.com/2016/04/jessica-forsythe-sick-sarah-always-learning/",
+      "https://en.wikipedia.org/wiki/Sick_of_Sarah",
+      "https://soundcloud.com/jessicaforsythemusic",
+      "https://www.facebook.com/JessicaForsythemusic/"
+    ]
+  },
+  {
+    "band_name": "John Magnuson Trio+",
+    "one_liner": "Ex-Carpetbaggers songwriter with a crack band, twang-flecked and wryly rueful.",
+    "profile": "John Magnuson wrote and sang much of the material for the '90s Minneapolis alt-country outfit the Carpetbaggers, and his solo records pick up that thread. \"Barely Noticeable\" (2020) and \"Waiting For The Water To Recede\" (2024, produced by Rob Genadek) balance rock-steady melody with honky-tonk twang across songs like \"The Curb To Which I Have Been Kicked\" and \"The Blues I've Always Had\". Live, the trio+ is a veteran Twin Cities lineup — Paul McFarland (Run Westy Run), John Sandbo (Curtiss A and the Dark Click), JJ Benson, plus Jane Meyer on harmonies — playing mid-tempo folk-rock with room for a swampy turn.",
+    "sounds_like": [
+      "The Jayhawks",
+      "Wilco",
+      "Steve Earle"
+    ],
+    "genre_tags": [
+      "americana",
+      "rock",
+      "folk",
+      "country",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://johnmagnuson.bandcamp.com/album/waiting-for-the-water-to-recede",
+      "https://johnmagnuson.bandcamp.com/",
+      "https://www.johnmagnusonmusic.com/"
+    ]
+  },
+  {
+    "band_name": "KVNT",
+    "one_liner": "Industrial metal with ethereal vocals and a fem-punk snarl at the patriarchy.",
+    "profile": "KVNT (the K is a C, the V is a U) is a Minneapolis four-piece pairing ethereal vocals from Mariana against heavy, industrial-tinged metal from guitarist Brandon, bassist Mackenzie and drummer Cartier. Their stated mission is empowering the metal scene against the patriarchy, and the sound leans on the contrast between the airy top line and the machine-grind underneath. Their web footprint is thin — a SoundCloud page and an Instagram — so this profile leans on the band's own description rather than press or recordings.",
+    "sounds_like": [
+      "Chelsea Wolfe",
+      "Nine Inch Nails",
+      "Spiritbox"
+    ],
+    "genre_tags": [
+      "metal",
+      "punk",
+      "electronic",
+      "experimental"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 4,
+      "vocal_forward": 3,
+      "danceability": 2,
+      "experimental": 4,
+      "brightness": 1,
+      "grit": 5,
+      "kid_friendly": 1
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/kvntmsp/",
+      "https://soundcloud.com/kvntmsp"
+    ]
+  },
+  {
+    "band_name": "Kai Lok",
+    "one_liner": "Emotionally conscious Minneapolis rap — call-and-response hooks, no armor.",
+    "profile": "Kai Lok (\"kay-lock\") makes what he calls emotionally conscious hip hop: raps about depression, masculinity and self-acceptance delivered without a protective layer. Sets lean hard on audience participation — call-and-response songs, live lyric videos, energetic verses — and he's explicit about turning a stage into a space for connection rather than performance. His Bandcamp catalog runs through \"Carousel\" and \"Hello Envy\" (2025) into \"Voice Inside My Head\" and \"A Future Unfettered\" (2026), tagged hip-hop, rap, R&B and conscious rap.",
+    "sounds_like": [
+      "Atmosphere",
+      "Chance the Rapper",
+      "Dessa"
+    ],
+    "genre_tags": [
+      "hiphop",
+      "pop",
+      "rnb"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 4,
+      "vocal_forward": 5,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://itskailok.bandcamp.com/",
+      "https://www.instagram.com/itskailok/"
+    ]
+  },
+  {
+    "band_name": "King Sized Coffin",
+    "one_liner": "Doom folk sextet: banjo, bagpipes, theremin, songs from hilarious to terrifying.",
+    "profile": "King Sized Coffin is a Minneapolis six-piece self-filed under \"Doom Folk, Gothic Jazz, Spooky Core\" — dark, theatrical songs built from a junk-drawer orchestra of banjo, mandolin, harmonica, kazoo, washboard, upright bass, saxophone, trombone, bagpipes and theremin. The material swings from heartbreaking to genuinely funny within a set, and they point fans of Nick Cave, Gogol Bordello, Harley Poe and Tom Waits their way. Releases on Bandcamp include \"Keep Vigilant\", \"Basement Tapes\" and \"Coffins And Cold Brew\", and they carry a First Avenue performer page.",
+    "sounds_like": [
+      "Tom Waits",
+      "Gogol Bordello",
+      "Nick Cave"
+    ],
+    "genre_tags": [
+      "folk",
+      "jazz",
+      "experimental",
+      "americana"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 2,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://kingsizedcoffin.bandcamp.com/",
+      "https://first-avenue.com/performer/king-sized-coffin/",
+      "https://sites.google.com/view/kingsizedcoffin/home"
+    ]
+  },
+  {
+    "band_name": "Kvsket",
+    "one_liner": "Goth rock that swings from belt-sander heavy to seductively intimate mid-song.",
+    "profile": "Kvsket (pronounced \"casket\") is a Minneapolis quartet — Johnny on lead vocals, Roman on guitar, Mike on bass, Andy on drums, with three of them singing — billing itself simply as Minneapolis Goth Rock. Debut album \"Patiently Awaiting Your Arrival\" (February 2025) runs eleven mostly short songs through burly grooves, abrasive guitar, dark crooning and outright wailing, bouncing between heavy metal and punk rock. No Clean Singing premiered videos for \"Hot Grip\" and \"All This Talking\" in 2025 and described the record as both a muscle twitcher and a head-scrambler.",
+    "sounds_like": [
+      "Deftones",
+      "Turnstile",
+      "The Cure"
+    ],
+    "genre_tags": [
+      "metal",
+      "rock",
+      "punk",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 1,
+      "grit": 5,
+      "kid_friendly": 1
+    },
+    "confidence": "high",
+    "sources": [
+      "https://www.nocleansinging.com/2025/07/23/an-ncs-video-premiere-kvsket-all-this-talking/",
+      "https://www.nocleansinging.com/2025/05/30/an-ncs-video-premiere-kvsket-hot-grip/",
+      "https://kvsket.bandcamp.com/album/patiently-awaiting-your-arrival"
+    ]
+  },
+  {
+    "band_name": "Land",
+    "one_liner": "Dream folk duo: harmonium, oboe, close harmonies, ambient drift under the songs.",
+    "profile": "Land is the Minneapolis duo of David Carnes (guitar, bass, sounds, percussion, vocals) and Lisa Hirst Carnes (harmonium, oboe, piano, keys, vocals), making atmospheric, harmony-rich indie folk with ambient textures and quiet beats woven in. Their album \"Ava Van Horn\" (November 2022) collects twelve songs recorded with percussionist Richard Medek and engineered by Steve Kaul at Wild Sound; Bandcamp tags run folk, dreampop, folk-rock and \"living-room eclectic\". It is a sit-close-and-listen set rather than a loud one — the oboe and harmonium do as much work as the guitar.",
+    "sounds_like": [
+      "The Innocence Mission",
+      "Beach House",
+      "Iron & Wine"
+    ],
+    "genre_tags": [
+      "folk",
+      "indie",
+      "ambient",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://thebandland.bandcamp.com/album/ava-van-horn"
+    ]
+  },
+  {
+    "band_name": "Lemon",
+    "one_liner": "Basement-recorded solo indie soft rock chasing the melancholy in every melody.",
+    "profile": "Lemon is a one-person indie soft rock project, written and recorded at home in a basement and, by the artist's own account, made purely for the love of it. The stated aim is to pull in the melancholy — favorite songs with a bit of sadness in them — which points at quiet, downcast, hook-first bedroom pop rather than anything loud. There is essentially no press or streaming footprint beyond a SoundCloud page, so this read is based on the artist's own description.",
+    "sounds_like": [
+      "Alex G",
+      "Elliott Smith",
+      "Real Estate"
+    ],
+    "genre_tags": [
+      "indie",
+      "rock",
+      "singer-songwriter"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "low",
+    "sources": [
+      "https://soundcloud.com/thomas-schmidt-591580564"
+    ]
+  },
+  {
+    "band_name": "Lost Evidence",
+    "one_liner": "Crunchy riffs, punk singalongs and zero self-seriousness from a Minneapolis six-piece.",
+    "profile": "Lost Evidence has been grinding Minneapolis clubs since 2019, mixing hard rock grooves, punk hooks, grunge grit and the odd bluesy or melodic detour, with two backup singers filling out the harmonies. Their third album \"Exhibit A\" explores rebellion and loss and leads with the punk singalong \"Sore Loser\"; lead guitarist Mark McGinty describes it as a collaborative record where every song sounds different and the band leans into that. Live they trade on chaos and chemistry, with packed-club sets and support slots for national acts like Psychostick and Green Jelly.",
+    "sounds_like": [
+      "Foo Fighters",
+      "Alice in Chains",
+      "Queens of the Stone Age"
+    ],
+    "genre_tags": [
+      "rock",
+      "alternative",
+      "punk",
+      "metal"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "high",
+    "sources": [
+      "https://lostevidence.bandcamp.com/",
+      "https://www.n1m.com/lostevidence",
+      "https://www.reverbnation.com/lostevidence"
+    ]
+  },
+  {
+    "band_name": "Matty & The Subtle Validation",
+    "one_liner": "Northeast Minneapolis folk singer whose whole mission is telling you that you matter.",
+    "profile": "Matty spent a decade in the Chicago scene (with indie rockers Buckman Page and folk outfit Distant Brothers) before landing in northeast Minneapolis in 2021 and starting this project around the idea that everyone deserves to feel valued. Live it's warm, acoustic, story-first folk with the guitar in service of the lyric. Two acoustic demos went up on Bandcamp in 2024 — \"Validate to Motivate\" and \"The World Isn't Ending\" — with a full album, Imperfect Songs for an Imperfect World, listed for 2026. Bandcamp tags it folk, alt-folk and folk rock.",
+    "sounds_like": [
+      "John Prine",
+      "James Taylor",
+      "Brandi Carlile"
+    ],
+    "genre_tags": [
+      "folk",
+      "singer-songwriter",
+      "americana"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 1,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://mattycef.bandcamp.com/",
+      "https://www.indieonthemove.com/users/mattycef",
+      "https://linktr.ee/mattycef"
+    ]
+  },
+  {
+    "band_name": "Millennial Falcon",
+    "one_liner": "Five-piece alt-rock with nostalgic grit, soulful hooks, and unexpected covers.",
+    "profile": "A Twin Cities alt-rock quintet that mixes anthemic originals with reimagined covers, leaning on big choruses and a rough-edged, soulful vocal. Their self-titled debut EP arrived in August 2025. Note: they are unrelated to the Portland, Oregon band of the same name that dominates search results — this one has almost no press footprint beyond its own social channels, so this profile leans on the band's own description.",
+    "sounds_like": [
+      "Kings of Leon",
+      "Goo Goo Dolls"
+    ],
+    "genre_tags": [
+      "alternative",
+      "rock",
+      "cover-band"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "low",
+    "sources": [
+      "https://soundcloud.com/millennialfalconmn",
+      "https://www.instagram.com/millennialfalconmn/"
+    ]
+  },
+  {
+    "band_name": "Opossum and we love fiesta",
+    "one_liner": "Bass-heavy Latin house DJ set that turns the block into a Minneapolis-Mexico fiesta.",
+    "profile": "Javier Ramales is a Mexico-born, Minneapolis-based producer and DJ who runs the We Love Fiesta label and is part of Opossum Colectivo, a neighborhood collective that stages community-centered events around music, food and mutual aid. The We Love Fiesta catalog on Bandcamp is tagged electronic, Latin house, bass music and progressive house, and runs steadily from 2018 through 2026 with releases like \"Chinelo Dub,\" \"Miklo\" and \"Chinga la Migra.\" Expect a dance-floor set: cumbia and Latin American rhythms rebuilt over deep low end and four-on-the-floor.",
+    "sounds_like": [
+      "Bomba Estéreo",
+      "Nicola Cruz",
+      "Sotomayor"
+    ],
+    "genre_tags": [
+      "electronic",
+      "latin",
+      "world"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 5,
+      "vocal_forward": 2,
+      "danceability": 5,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://welovefiesta.bandcamp.com/",
+      "https://welovefiesta.bandcamp.com/track/baja-frequencia-feat-la-dame-blanche-el-palo-we-love-fiesta-",
+      "https://www.instagram.com/opossum_colectivo"
+    ]
+  },
+  {
+    "band_name": "POPSICLESTICK",
+    "one_liner": "Anoka garage punk from acoustic lifers gone loud, with jokes about margaritas.",
+    "profile": "Formed in Anoka, MN when acoustic performers Lisa Bisbee and The Old Thompson Orchestra teamed up with Lorenzo Orduno (All Four Inches, Blveprints) to make something considerably louder. The Spotify catalog is prolific and scrappy — Thin Ice, Hell on Earth and Empties in a Basement (all 2024), McManus (2025) and the EP The Heckening (2026) — with song titles like \"Smell of Anoka\" and \"$12,000 Margarita\" that telegraph the sense of humor. Very DIY numbers on streaming; this is a basement-show band, not a polished one.",
+    "sounds_like": [
+      "The Replacements",
+      "Dillinger Four"
+    ],
+    "genre_tags": [
+      "punk",
+      "garage",
+      "rock"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 5,
+      "kid_friendly": 1
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://open.spotify.com/artist/16RqgAm5DX0u8yvzGZHd1h",
+      "https://www.instagram.com/popsiclestick_mn"
+    ]
+  },
+  {
+    "band_name": "Painful Memories Party Supplies",
+    "one_liner": "A hushed duo covering old favorites and old not-favorites, named for a Simpsons gag.",
+    "profile": "A two-person covers project pairing Sara Liebl (of dream-pop duo a mess., and Mild Manner) with Ian Menchaca (Animal D), digging through \"old favorites and old not-favorites.\" Liebl's main outfit a mess. builds gentle, harmony-led songs over minimal piano, ukulele and light electronics — its 2020 EP Golden Age of Television is tagged dream pop, indie pop and ambient — which is a fair guide to the register here: voices out front, instrumentation sparse. The band name is lifted from a background gag storefront in The Simpsons. Very little exists online under the project name itself.",
+    "sounds_like": [
+      "Beach House",
+      "The Weepies"
+    ],
+    "genre_tags": [
+      "cover-band",
+      "indie",
+      "pop"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "low",
+    "sources": [
+      "https://a-mess.bandcamp.com/album/golden-age-of-televison",
+      "https://open.spotify.com/artist/0PN9WmS9o4Dcf4jCIJF3Td",
+      "https://soundcloud.com/animal-d"
+    ]
+  },
+  {
+    "band_name": "Pan-Handlers Steel Drum Band",
+    "one_liner": "Steel pan orchestra playing calypso, Prince, and Guns N' Roses on tuned oil drums.",
+    "profile": "A Minnesota community steel pan ensemble going since 2014, run as a program of the nonprofit arts organization Chops, Inc. (alongside its Tin Cups and Pan Outreach projects). The repertoire mixes traditional Caribbean pan tunes with pop and rock arrangements — The Beatles, Guns N' Roses, Prince — so there's a steady drip of \"wait, is that…?\" recognition. Bright, ringing, almost entirely instrumental, and about as stroller-friendly as a porch set gets.",
+    "sounds_like": [
+      "Harry Belafonte",
+      "Trinidad All Stars Steel Orchestra"
+    ],
+    "genre_tags": [
+      "world",
+      "cover-band",
+      "reggae"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 1,
+      "vocal_forward": 1,
+      "danceability": 4,
+      "experimental": 1,
+      "brightness": 5,
+      "grit": 1,
+      "kid_friendly": 5
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.pan-handlers.org/",
+      "https://www.facebook.com/panhandlersband/"
+    ]
+  },
+  {
+    "band_name": "Prairie Potluck Band",
+    "one_liner": "Six-piece acoustic potluck of bluegrass, gospel, and old-time country, heavy on harmony.",
+    "profile": "Six Twin Cities players — Mark Fisher (banjo, guitar), Ruth Lawrence (guitar), Suki Sun (fiddle), John Kraft (bass), Vicki Andersen (ukulele) and Paul Meehl (mandolin) — pooling decades of bluegrass, country, classical, Americana, gospel and folk, which is where the \"potluck\" name comes from. Stacked vocal harmony and picking are the draw, on a set that runs from traditional bluegrass to contemporary country plus Fisher's originals. They gig constantly around the metro at farmers markets, orchards, cideries, senior residences and Minnehaha Falls, with recordings including \"Long Gone,\" \"Poor Boy's Delight\" and \"Jump The Mississippi\" posted on their site.",
+    "sounds_like": [
+      "The Nitty Gritty Dirt Band",
+      "Alison Krauss & Union Station"
+    ],
+    "genre_tags": [
+      "bluegrass",
+      "americana",
+      "country",
+      "folk"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 2,
+      "tempo": 3,
+      "electronic": 1,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://prairiepotluckband.com",
+      "https://facebook.com/PrairiePotluck"
+    ]
+  },
+  {
+    "band_name": "Pretty Pretty Please",
+    "one_liner": "Hook-first Minneapolis indie rock with garage snarl and an alt-country twang.",
+    "profile": "A Minneapolis band writing short, hook-driven songs that sit between garage rock, indie and alt-country — attitude up front, melody right behind it. Their Bandcamp files them simply as Rock/Country/Indie and carries a steady run of self-released records including Until It Moves Me, Let It Out!, Heart N' Soul / Time Flies and Soda Pop/Tequila + Time Away, plus singles \"Window Pain\" and \"Wishin' You Were Brand New.\" Built for a dive bar or a porch with equal comfort.",
+    "sounds_like": [
+      "Courtney Barnett",
+      "Waxahatchee"
+    ],
+    "genre_tags": [
+      "indie",
+      "rock",
+      "garage",
+      "americana"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://prettyprettyplsss.bandcamp.com/",
+      "https://open.spotify.com/artist/6vMd6jTOFDtnL2ETJqqn9Z"
+    ]
+  },
+  {
+    "band_name": "Pyrmafrost",
+    "one_liner": "Galloping Iron Maiden riffs and sword-tower fantasy lyrics, Minneapolis-made.",
+    "profile": "Self-described \"loremetal\" from Minneapolis: twin-guitar gallops in the Iron Maiden tradition welded to thick grunge/alt-metal basslines, with lyrics about monsters, battles and towers full of swords. The Spotify profile they list carries a run of 2025 singles — \"Lightning Tower,\" \"Phalanx of Foemen\" and \"Miklagard\" — released under the name Frostbeard, a four-piece with stage names (Battleaxe B-Rad, Johnny Frosta, Zsterborn, Sorcerer Ian) who describe themselves as ruffians catapulting into the Twin Cities scene. Their online footprint is tiny and they play small local rooms; expect a fast, loud, gleefully theatrical porch set rather than a polished one.",
+    "sounds_like": [
+      "Iron Maiden",
+      "Gloryhammer",
+      "Alice in Chains"
+    ],
+    "genre_tags": [
+      "metal",
+      "rock",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://open.spotify.com/artist/3SKRCwrJfjZd4IMw1Y99It",
+      "https://www.instagram.com/pyrmafrost/"
+    ]
+  },
+  {
+    "band_name": "Secret Rivers",
+    "one_liner": "Guante's spoken word over live MPC beats: sci-fi, grief, and radical hope.",
+    "profile": "A Twin Cities duo pairing poet-emcee Kyle \"Guante\" Tran Myhre with producer SEE MORE PERSPECTIVE, who builds the whole set live on an MPC and a Loop Station 505. Their debut EP \"Spring Is Coming\" (March 6, 2026) is a benefit release about occupation and resistance in Minneapolis, layering sampled voices — Octavia Butler, Fred Hampton — under tracks like \"Worthy of the Stone\" and \"One Does Not Simply Walk Into Minnesota.\" Live it lands somewhere between a hip-hop set, an ambient soundscape and a poetry reading; they played the No Kings Twin Cities mainstage in 2026. Radio edits exist for a reason — the language is direct and the subject matter is heavy.",
+    "sounds_like": [
+      "Saul Williams",
+      "Sage Francis",
+      "Blue Scholars"
+    ],
+    "genre_tags": [
+      "hiphop",
+      "experimental",
+      "ambient",
+      "electronic"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 5,
+      "vocal_forward": 5,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://secretrivers.bandcamp.com/album/spring-is-coming",
+      "https://guante.info/secretrivers/",
+      "https://mostlyminnesota.com/2026/03/22/mostly-mn-music-with-secret-rivers-playing-no-kings-twin-cities-march-28/"
+    ]
+  },
+  {
+    "band_name": "Selvedge",
+    "one_liner": "Front-porch folk-rock with dive-bar grit: guitar, bass, voices, no filler.",
+    "profile": "A Minneapolis trio-shaped outfit — guitar, bass and voices — working the seam where folk, Americana, country and blues meet, born out of front-porch sessions and dive bar sets. Their site collects a studio track \"Work and Play,\" a live take of the same song from June 2025, a \"Body Count\" demo, and a batch of loose Analog Avalon Sessions mixes cut in mid-2025. Recent gigs are exactly the right scale for a porch: Analog Avalon and Indeed Brewing. Warm, melodic, unfussy — the kind of set that works with the windows down.",
+    "sounds_like": [
+      "The Jayhawks",
+      "Dawes",
+      "Old 97's"
+    ],
+    "genre_tags": [
+      "americana",
+      "folk",
+      "rock",
+      "country",
+      "blues"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://selvedge.band"
+    ]
+  },
+  {
+    "band_name": "Seraphim",
+    "one_liner": "All-teen St. Paul heavy alt-rock, loud and technical, barely a year old.",
+    "profile": "An all-teenage heavy alt-rock band out of St. Paul that formed in January 2026 and is still in its first year of gigging. Their pitch is musicianship over polish: hard-driving guitar and bass, busy drumming, and belted vocals delivered at volume. There is essentially no web footprint beyond a single Instagram account — no releases, press or setlists to verify — so ratings here are read off the band's own description of a young, loud, technically-minded rock band.",
+    "sounds_like": [
+      "Chevelle",
+      "Alter Bridge",
+      "Breaking Benjamin"
+    ],
+    "genre_tags": [
+      "rock",
+      "alternative",
+      "metal"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/seraphim_mn_band"
+    ]
+  },
+  {
+    "band_name": "Side.Door",
+    "one_liner": "Five-piece Twin Cities fusion: sax-led originals with jazz roots and pop hooks.",
+    "profile": "A Minneapolis fusion quintet built around a longtime trio — saxophonist Charlie Skaret, bassist Kai Knudson and guitarist Isaac Gelfman — that grew in 2024 to add drummer Jared Ammon and pianist John Kuntz. They play mostly original material, aiming for an upbeat, accessible take on contemporary jazz that borrows as freely from Bill Withers and pop songwriting as from Ellington-era standards. They gig steadily around the Twin Cities in small rooms (Urban Forage, Driftwood Char Bar, the White Squirrel, Amsterdam Bar and Hall, Aster Cafe). Almost entirely instrumental, and easy to stand in front of with a drink.",
+    "sounds_like": [
+      "Snarky Puppy",
+      "Herbie Hancock",
+      "Bill Withers"
+    ],
+    "genre_tags": [
+      "jazz",
+      "funk",
+      "pop"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 1,
+      "danceability": 3,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://soundcloud.com/side_door",
+      "https://www.instagram.com/side.door.band/"
+    ]
+  },
+  {
+    "band_name": "Simple Motions",
+    "one_liner": "Jangly, cinematic St. Cloud indie rock that sounds like a John Hughes movie.",
+    "profile": "A St. Cloud, Minnesota indie band writing melodic, jangly guitar-pop with a heavy streak of eighties nostalgia — songwriter Avdem's background as a filmmaker shows in how cinematic the songs are. They're prolific for a small act: a self-titled 2026 release plus singles including \"Driftin',\" \"Days Gone By,\" \"Dakota,\" \"Better Days\" and \"The Synth One.\" Sew:YKnot? called them a \"shimmery, creamy indie-psych-pop\" act when they opened for Smell My Pillow at the Hook & Ladder. Bright, hooky, and entirely porch-scale.",
+    "sounds_like": [
+      "Real Estate",
+      "The Smiths",
+      "Alvvays"
+    ],
+    "genre_tags": [
+      "indie",
+      "rock",
+      "pop",
+      "psychedelic"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://open.spotify.com/artist/77qy8XUL7dV5tKm3oBfPgO",
+      "https://www.sewyknot.com/twin-cities-july-events/"
+    ]
+  },
+  {
+    "band_name": "Slash Fire",
+    "one_liner": "Pop-punk hooks welded to stoner-metal riffs, fronted by a powerhouse voice.",
+    "profile": "A Minneapolis punk band formed in fall 2024 from Midwest and Pacific Northwest scene veterans, fronted by vocalist Tammy over a dual-guitar attack from Jeremy (ex-Well Adjusted, Audio Violence) and Eric (ex-Back Door Betty), with Matt on drums and bassist Mongo of local sludge outfits No Funeral and Carcinolith. The result swings between pop-punk melody, melodic-hardcore urgency and slower hard rock / stoner riffing, captured on a self-titled six-song EP. They've been playing the Twin Cities, Chicago and Iowa since forming. Their public footprint is minimal — the Spotify link they supplied is malformed and nothing indexable turned up — so this rests on the band's own description.",
+    "sounds_like": [
+      "The Distillers",
+      "L7",
+      "Paramore"
+    ],
+    "genre_tags": [
+      "punk",
+      "rock",
+      "hardcore",
+      "metal"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 5,
+      "kid_friendly": 1
+    },
+    "confidence": "low",
+    "sources": [
+      "https://nofuneralmpls.bandcamp.com/music"
+    ]
+  },
+  {
+    "band_name": "Solana & The Sunsets",
+    "one_liner": "Silky South Minneapolis R&B love songs, brought to life by a full live band.",
+    "profile": "Solana is a Latino American singer from South Minneapolis writing indie R&B — heartfelt love songs over smooth, melodic grooves — who takes the studio material out with a full band called The Sunsets. The catalog is real and growing: \"Overstep\" (2024), \"Crush, Crush\" and \"High\" (2025), \"Don't Stop Now\" (2026), with \"Love Me Right\" and \"Miles Away\" the most-streamed. Around the Twin Cities they've played Sota Sound Music Festival and the Day of the Dead Music Festival, and Solana has sung the national anthem at a Minnesota Lynx game. Live it's warm and groove-driven with the vocal out front.",
+    "sounds_like": [
+      "Omar Apollo",
+      "Daniel Caesar",
+      "Steve Lacy"
+    ],
+    "genre_tags": [
+      "rnb",
+      "soul",
+      "indie",
+      "pop"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 5,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://open.spotify.com/track/15T3hf5enn47aJipV2CsXp",
+      "https://youtube.com/@solana_music"
+    ]
+  },
+  {
+    "band_name": "Squinny",
+    "one_liner": "Minneapolis fuzz four-piece welding analog synths to Sabbath-sized riffs.",
+    "profile": "A Minneapolis psych-fuzz four-piece who pile analog synths on top of big fuzzed-out guitars and motoring bass-and-drums, aiming squarely at the overlap between dancing and head-banging. Their own framing is King Crimson by way of Black Sabbath, and the records back it up: prog-leaning structures delivered at glam-rock volume. Releases include Rascasse (2022), Pestilence (2023), the EP The Vacation (2024) and the single All My Life; they play First Avenue and the 7th St Entry orbit and have done a Radio K in-studio.",
+    "sounds_like": [
+      "Black Sabbath",
+      "T. Rex",
+      "King Crimson"
+    ],
+    "genre_tags": [
+      "psychedelic",
+      "rock",
+      "garage",
+      "experimental"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 4,
+      "vocal_forward": 3,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "high",
+    "sources": [
+      "https://first-avenue.com/performer/squinny/",
+      "https://squinnysquinnysquinny.bandcamp.com/album/the-vacation",
+      "https://radiok.org/in-studio/squinny"
+    ]
+  },
+  {
+    "band_name": "Stay at Home Astronaut",
+    "one_liner": "Three-piece midwest emo with math-rock elbows and pop-punk hooks.",
+    "profile": "A Minneapolis trio — Nick G. Chavez (guitar/vocals), Aaron K. Anderson (bass), John W. Schoenborn (drums) — who file their own music under everything from emo and pop punk to post-hardcore and \"yacht punk.\" Live it lands as catchy, wiry rock that keeps snapping into odd time signatures and prog detours without losing the hook. Their self-titled debut was recorded in July 2022 with Adam Tucker at Signature Tone and released that November; Different Waveforms followed in 2023, and they've played the 7th St Entry.",
+    "sounds_like": [
+      "American Football",
+      "Jeff Rosenstock",
+      "Tera Melos"
+    ],
+    "genre_tags": [
+      "emo",
+      "punk",
+      "rock",
+      "experimental"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://stayathomeastro.bandcamp.com/album/stay-at-home-astronaut-2",
+      "https://first-avenue.com/performer/stay-at-home-astronaut/"
+    ]
+  },
+  {
+    "band_name": "T Marie and Bayou Juju",
+    "one_liner": "Fiddle-and-accordion Louisiana dance music: Cajun, Creole, zydeco, swamp pop.",
+    "profile": "Led by fiddler and singer Marie-Isabelle \"T Marie\" Evangeline Pautz, this band plays South Louisiana roots music — Cajun, Creole, lala-zydeco, swamp pop, blues and New Orleans R&B — in both Louisiana French and English, mixed with originals. The lineup runs to fiddle, accordion, lap steel, guitar, banjo, washboard, bass and drums, and it is built for a dance floor: T Marie has called the crowd \"the most important musician on the bill.\" Records include Queen Like a Bee and Sometimes (2024), the latter cut live at French Quarter Festival and the Saturn Bar; they've toured the Northeast, Midwest, California, France and Spain.",
+    "sounds_like": [
+      "BeauSoleil",
+      "Buckwheat Zydeco",
+      "Lost Bayou Ramblers"
+    ],
+    "genre_tags": [
+      "americana",
+      "blues",
+      "world",
+      "folk"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 4,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 5,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://www.offbeat.com/news/t-marie-bayou-juju-capture-south-louisiana-spirit-on-new-album/",
+      "https://tmarieandbayoujuju.bandcamp.com/album/queen-like-a-bee",
+      "https://tmarieandbayoujuju.bandcamp.com/album/sometimes"
+    ]
+  },
+  {
+    "band_name": "TW and the Dustbowl Daisies",
+    "one_liner": "Homemade-instrument Twin Cities jug band built for campfire sing-alongs.",
+    "profile": "A Twin Cities jug band assembled from friends with 25 years of punk and metal bands behind them, who found each other through the Minneapolis Battle of the Jug Bands and have kept it going full-time for about four years. Expect washboard-and-jug string-band music played on partly homemade instruments, pitched at a crowd that sings along. Their web footprint is small — Instagram and Facebook plus jug-band-scene and local benefit listings — so this profile leans on their own description.",
+    "sounds_like": [
+      "Jim Kweskin Jug Band",
+      "Old Crow Medicine Show"
+    ],
+    "genre_tags": [
+      "folk",
+      "americana",
+      "bluegrass",
+      "blues"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 2,
+      "tempo": 3,
+      "electronic": 1,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 5,
+      "grit": 3,
+      "kid_friendly": 5
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/twandthedustbowldaisies",
+      "https://www.facebook.com/TheDustbowlDaisies",
+      "https://jugbandmpls.weebly.com/"
+    ]
+  },
+  {
+    "band_name": "Tarias and the Sound",
+    "one_liner": "Gen-Z fusion blues improvising with whoever's in the room that night.",
+    "profile": "The project of Minnesota's Anthony \"Tony\" Omodt-Lopez, who unpacks the stage name as The Answer Resides Inside All Sound and comes at the blues through roots in blues and musical theatre. Every show pulls a different rotating cast of Twin Cities players, so the set bends toward jazz, rock, R&B and funk depending on the night and the room. Releases include Open Your Eyes, Disillusioned, Skip Culture and Café Cantadas; he's played Palmer's, Amsterdam Bar and Hall and Day Block, and been featured on Ampers/PRX public radio.",
+    "sounds_like": [
+      "Gary Clark Jr.",
+      "Black Pumas",
+      "Leon Bridges"
+    ],
+    "genre_tags": [
+      "blues",
+      "soul",
+      "funk",
+      "jazz",
+      "jam"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://tariasandthesound.bandcamp.com/",
+      "https://first-avenue.com/performer/tarias-and-the-sound/",
+      "https://exchange.prx.org/pieces/471805-tarias-the-sound"
+    ]
+  },
+  {
+    "band_name": "Tarli and the Tribe",
+    "one_liner": "Liberian-American MC and crew stitching Afrobeat, R&B and future beats.",
+    "profile": "Tarli is a Liberian-American artist from Saint Paul whose name, from his mother's tribe, means \"successful journey\" — and whose music runs hip-hop storytelling through atmospheric alternative R&B, Afrobeat and bass-heavy electronic soul. The Tribe is the label and artist collective he leads, pulling in Wes., Graydon Francis, Stefan Wolf, IAMKAYE, MidiEvil and Diatonic, so a set moves between rappers, singers and producers rather than sitting in one lane. He's played SXSW, Stone Arch Bridge Festival and Jackson Indie Music Week and shared stages with Slug of Atmosphere, Mac Lethal and Libianca.",
+    "sounds_like": [
+      "Anderson .Paak",
+      "Burna Boy",
+      "Smino"
+    ],
+    "genre_tags": [
+      "hiphop",
+      "rnb",
+      "electronic",
+      "soul",
+      "world"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 5,
+      "vocal_forward": 5,
+      "danceability": 5,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://tarlimusic.com/abouttarli",
+      "https://voyageminnesota.com/interview/life-work-with-tarli-of-saint-paul/",
+      "https://tarli.bandcamp.com/"
+    ]
+  },
+  {
+    "band_name": "The Denim Boys",
+    "one_liner": "Beer-soaked party rock from the self-styled World's Most Successful Band.",
+    "profile": "A Minneapolis rock and roll band whose entire pitch is a good time, delivered with a straight face and a trademark symbol — they bill themselves as The World's Most Successful Band. The songs are short, loud and funny: the 2024 EP Responsibile Guys runs \"Tie One On,\" \"Rock & Roll Tattoo,\" \"We Will Kick Your Ass Too\" and \"Casino Rick\" in under eleven minutes, following We'll Bring the Beers (2020). They tag themselves rock, party rock, pop punk and rock and roll, and sit next to bands like Sheer Mag on the Bandcamp shelf.",
+    "sounds_like": [
+      "Sheer Mag",
+      "The Hold Steady",
+      "Romero"
+    ],
+    "genre_tags": [
+      "rock",
+      "punk",
+      "garage",
+      "pop"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 1,
+      "brightness": 4,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://denimboys.bandcamp.com/album/responsibile-guys",
+      "https://open.spotify.com/artist/4gzOAxclpIzxlI82MH7kE5"
+    ]
+  },
+  {
+    "band_name": "The Flying T",
+    "one_liner": "Acoustic tall tales: antifolk originals, covers from Talking Heads to Ralph Stanley.",
+    "profile": "The Flying T is Tony Mills, who describes himself as the weird kid with the tall tales and played his high school talent show as a one-man band on guitar, harmonica, bass drum and hi-hat before landing in the mid-80s Tulsa new wave scene and early alternative radio. Now a Minneapolis string band, they play all-acoustic originals plus carefully chosen covers spanning Talking Heads to Ralph Stanley, with humor and storytelling doing most of the work between songs. Tracks so far include \"The Banshees of the Golden Valley,\" \"Rabbits With Knives\" and \"Closed Minnesota\"; a first album is due in 2026 and they have a cut on the Minnesota Musical Resistance compilation.",
+    "sounds_like": [
+      "John Prine",
+      "Jeffrey Lewis",
+      "Violent Femmes"
+    ],
+    "genre_tags": [
+      "americana",
+      "folk",
+      "singer-songwriter",
+      "bluegrass"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 3,
+      "electronic": 1,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://theflyingt.bandcamp.com",
+      "https://theflyingtmusic.com/home",
+      "https://www.facebook.com/TheFlyingTmusic/"
+    ]
+  },
+  {
+    "band_name": "The Grainbelters",
+    "one_liner": "Six Mendota Heights lifers, 26 years deep in country, R&B and rock and roll.",
+    "profile": "Six friends who started playing together in 1999 and never managed to quit, the Grainbelters work a wide Americana lane: original songs plus covers that wander from honky-tonk into rhythm and blues, ballads and straight rock and roll. Their 2025 Spotify EP Meet the Grainbelters collects originals including \"Nobody Loves Daddy\" and \"Might as Well Hit the Road.\" Their online footprint is close to nonexistent, so expect an unpretentious, well-worn six-piece bar band rather than a road-hardened touring act.",
+    "sounds_like": [
+      "The Band",
+      "Tom Petty and the Heartbreakers",
+      "Little Feat"
+    ],
+    "genre_tags": [
+      "americana",
+      "rock",
+      "country",
+      "blues",
+      "cover-band"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 2,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 1,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "low",
+    "sources": [
+      "https://open.spotify.com/artist/6mcThtRDMhsBnOrp40CA2L"
+    ]
+  },
+  {
+    "band_name": "The Hamm Sammies",
+    "one_liner": "Swampy honky-tonk with a baritone sax — country played between the cracks.",
+    "profile": "A five-piece Twin Cities outfit that plays honky-tonk sideways: syncopated, swampy grooves with Memphis-soul horns instead of clean Nashville lines. Shaun Donovan sings out front over Clayton Anderson's lead guitar and Fuzz Lutz's baritone sax and keys, with Drew Nelson on bass and Dave Blomquist on drums, and the arrangements lurch from quiet to chaos on purpose. They played their first show at the end of 2023 and have since worked Palmer's Bar, the Driftwood Char Bar, Father Hennepin Park and Day Block Brewing. Their 12-song album Poor Company came out August 15, 2025.",
+    "sounds_like": [
+      "Tyler Childers",
+      "Booker T. & the M.G.'s",
+      "Dr. John"
+    ],
+    "genre_tags": [
+      "country",
+      "blues",
+      "soul",
+      "americana",
+      "rock"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://thehammsammies.bandcamp.com/album/poor-company",
+      "https://thehammsammies.com/",
+      "https://www.dayblockbrewing.com/live-events/the-hamm-sammies-and-23watts/"
+    ]
+  },
+  {
+    "band_name": "The Hazy Phase",
+    "one_liner": "Cigar-box slide guitar, swamp tone and stomp from a Twin Cities blues-rock trio.",
+    "profile": "A trio built around Chris Milinovich's custom-built cigar-box guitars, which give their blues rock an unconventional, raw and swampy voicing no standard six-string produces. Dave McDevitt sings and plays guitar and David Quamme drums, landing the band somewhere between Muddy Waters and ZZ Top with a Black Keys-sized low end. Formed in 2020, they cut their self-titled debut at The Garage in Burnsville in July 2021 and released it in January 2022. They have played the Hook and Ladder, the White Squirrel, the Terminal Bar, Big Turn Music Fest in Red Wing and Uptown Porchfest before.",
+    "sounds_like": [
+      "The Black Keys",
+      "ZZ Top",
+      "Left Lane Cruiser"
+    ],
+    "genre_tags": [
+      "blues",
+      "rock",
+      "garage",
+      "soul"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 5,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://thehazyphase.bandcamp.com/",
+      "https://thehazyphase.weebly.com/",
+      "https://thehookmpls.com/event/the-hazy-phase/",
+      "https://bigturnmusicfest.com/artists/the-hazy-phase/"
+    ]
+  },
+  {
+    "band_name": "The Japhies",
+    "one_liner": "Loud, fast, no-rules rock and roll, back after 13 years with a lost Ackerson LP.",
+    "profile": "A Twin Cities rock band formed in 2009 around frontman Reed Wilkerson and guitarist Ben Hovorka, who played more than 50 shows across five states behind a self-released six-song EP in 2011 before falling apart. The full-length they recorded with Ed Ackerson at Flowers Studio sat unreleased for over a decade; reunited with drummer Anthony \"Gorgeous\" Gore and new bassist Lee Carter of the 4onthefloor, they are finally putting it out as Allegations in 2026. Live they go for visceral, amps-up volume — First Avenue's own performer page bills it as \"loud, fast no rules rock n roll.\"",
+    "sounds_like": [
+      "The Replacements",
+      "The Hold Steady",
+      "Kings of Leon"
+    ],
+    "genre_tags": [
+      "rock",
+      "garage",
+      "alternative",
+      "punk"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "high",
+    "sources": [
+      "https://first-avenue.com/performer/the-japhies/",
+      "https://www.startribune.com/local-music-come-on-get-japhies/138575504",
+      "https://thejaphies.hearnow.com/"
+    ]
+  },
+  {
+    "band_name": "The Midnight Current",
+    "one_liner": "Power trio that treats song structure as a starting line, not a fence.",
+    "profile": "A Minneapolis power trio formed in 2024 that stretches blues and folk bones into long, improvised psychedelic runs — most of Swell Sounds sits in the five-to-six-minute range because the songs get reshaped in real time. Andy Caron's vocals shift from intimate to unhinged, Cody Bryan pushes melodic bass lines to the front, and Andrew Teunis holds the pocket while the other two wander. Their debut album Swell Sounds arrived March 30, 2026, engineered and produced by Bryan. Live, expect loud, jam-leaning garage psych with a genuinely unpredictable streak.",
+    "sounds_like": [
+      "Cream",
+      "Ty Segall",
+      "The Black Keys"
+    ],
+    "genre_tags": [
+      "garage",
+      "psychedelic",
+      "rock",
+      "blues",
+      "jam"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://themidnightcurrent.bandcamp.com/",
+      "https://open.spotify.com/album/53pjAjOgwjunVBuOp33EDG"
+    ]
+  },
+  {
+    "band_name": "The Mood Swings",
+    "one_liner": "Female-fronted Minneapolis fuzzpop: hooks, hard garage edge, psychedelic mayhem.",
+    "profile": "Formed in 2004 by singer-guitarists Ashley Ackerson and Sallie Watson, the Mood Swings write short, sharp pop songs and then bury them in fuzz — catchy melodies with a hard garage edge and streaks of psychedelia. They released three albums on Susstones (Come On Tell Me, Recessionista, No Limit) between 2005 and 2009, all produced by the late Ed Ackerson, and the current lineup draws on members of BNLX, 27 Various and the Melismatics. Live it is a loud, high-energy guitar set from players who have been doing this in the Twin Cities for two decades.",
+    "sounds_like": [
+      "The Breeders",
+      "Veruca Salt",
+      "The Muffs"
+    ],
+    "genre_tags": [
+      "indie",
+      "garage",
+      "rock",
+      "pop",
+      "psychedelic"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://themoodswings.bandcamp.com/",
+      "https://first-avenue.com/performer/the-mood-swings/",
+      "http://www.susstonesshop.com/moodswings.html"
+    ]
+  },
+  {
+    "band_name": "The Quantum Mechanics",
+    "one_liner": "Pseudoscience jazz fusion with electric banjo and songs about subatomic particles.",
+    "profile": "A Mankato-based jam outfit playing original jazz-rock fusion about subatomic particles, parallel dimensions and inter-dimensional travel; they bill themselves as \"a pseudoscience jazz fusion band from this dimension.\" The lineup pairs Cara Lucille's vocals with Larry McDonough on keys, Eli Hoehn on electric banjo, Zach Sproles on guitar, Mark Krogmann on bass and Eric Bunde on drums, which is why the textures get strange fast. They released a debut album and marked it with a show at the Hook and Ladder in Minneapolis. Expect long, psychedelic instrumental stretches delivered with a straight face and an obvious sense of humor.",
+    "sounds_like": [
+      "Return to Forever",
+      "Phish",
+      "Frank Zappa"
+    ],
+    "genre_tags": [
+      "jazz",
+      "jam",
+      "psychedelic",
+      "experimental",
+      "rock"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 3,
+      "experimental": 4,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.southernminn.com/st_peter_herald/news/local-band-the-quantum-mechanics-releases-debut-quirky-cosmic-album/article_db5bae60-c94a-412a-8a92-e34fef24f9a9.html",
+      "https://www.facebook.com/quantummechanicsband/",
+      "https://thehookmpls.com/event/quantum-mechanics/"
+    ]
+  },
+  {
+    "band_name": "The Real Chuck Norad",
+    "one_liner": "A dance party on a spaceship, with horns: dystopian trip-hop funk ten players deep.",
+    "profile": "A large Minneapolis crew — full rhythm section plus baritone sax, tenor sax, trumpet, trombone and percussion — playing experimental funk crossed with trip-hop and brass-fueled psychedelia, self-described as \"a soundtrack to a dystopian future we deserve.\" The horns are the hook and the bass is heavy, so sets land closer to a dance party than a jam session; the band's own shorthand is \"a dance party on a spaceship, with horns.\" Their album Circuit is up on Bandcamp alongside tracks like \"Sleep Spindles\" and \"Tiny Town.\" They hold a monthly 4th-Sunday residency at the 331 Club and have played the Cedar Cultural Center, the Hook and Ladder, 56 Brewing and the Driftless Music Festival.",
+    "sounds_like": [
+      "The Budos Band",
+      "Galactic",
+      "Thievery Corporation"
+    ],
+    "genre_tags": [
+      "funk",
+      "brass",
+      "psychedelic",
+      "experimental",
+      "electronic"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 4,
+      "vocal_forward": 3,
+      "danceability": 5,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://therealchucknorad.com/home",
+      "https://therealchucknorad.bandcamp.com/",
+      "https://56brewing.com/event/barrel-room-music-the-real-chuck-norad/",
+      "https://www.croonersmn.com/event/brass-messengers-the-real-chuck-norad-dance-party-outside-under-the-tent/"
+    ]
+  },
+  {
+    "band_name": "The Sound Insurgent",
+    "one_liner": "Twenty years on the decks: techno, drum & bass, house and dusty 70s 45s.",
+    "profile": "The Sound Insurgent (TSI) is a Sioux City, Iowa DJ who came up on vinyl turntables and still leans on that crate-digger instinct, cutting between techno, drum & bass, house, hip-hop and classic 70s and 80s 45s in a single set. He works the Sioux City club circuit (including Downtown Sioux City's After Dark series) and has toured the Midwest opening for hip-hop acts such as Lazer Rocket Arm. Expect a beat-driven, read-the-crowd set rather than a fixed setlist — the tempo and era shift depending on who is standing in front of the speakers.",
+    "sounds_like": [
+      "DJ Shadow",
+      "Goldie",
+      "Z-Trip"
+    ],
+    "genre_tags": [
+      "electronic",
+      "hiphop",
+      "funk",
+      "pop"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 5,
+      "vocal_forward": 2,
+      "danceability": 5,
+      "experimental": 2,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.virtualdj.com/user/the_SOUND_INSURGENT/",
+      "https://downtownsiouxcity.com/events/after-dark-dj-tsi/",
+      "https://soundcloud.com/thesoundinsurgent",
+      "https://www.instagram.com/soundinsurgent/"
+    ]
+  },
+  {
+    "band_name": "The Stinging Nettles",
+    "one_liner": "All-women Minneapolis five-piece turning everyday rage into catchy punk-folk.",
+    "profile": "The Stinging Nettles are an all-female five-piece from the Twin Cities, formed in June 2024, playing mostly originals with a handful of covers. Billing themselves as a group of women writing about their experiences — and their rage — with the world, they land somewhere between folk-rock and punk, and have built a local reputation on high-energy, hooky live sets. They played the Hook & Ladder in August 2026 on the 'Rock Your Ride' bill benefiting Move Minnesota, and recorded a debut EP in January that has not yet been released.",
+    "sounds_like": [
+      "The Beths",
+      "Bikini Kill",
+      "Waxahatchee"
+    ],
+    "genre_tags": [
+      "punk",
+      "rock",
+      "indie",
+      "folk"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://thehookmpls.com/shows/rock-your-ride-august-06-2026-711801/",
+      "https://www.instagram.com/thestingingnettlesmpls",
+      "https://www.instagram.com/reel/C616RrSSiEe/"
+    ]
+  },
+  {
+    "band_name": "The Stress of Her Regard",
+    "one_liner": "Jesus and Mary Chain fuzz and literary spite, Minneapolis club-circuit veterans.",
+    "profile": "A Minneapolis rock band led by Ciaran Daly (vocals, guitar) with Kristopher Johnson (guitar), Criostoir Daly (bass) and Eric Wilson (drums, vocals), trading in wall-of-guitar noise-pop with literary, politically pointed lyrics — they cite The Jesus & Mary Chain, Johnny Cash and Jim Jarmusch as touchstones. They were a 2015 Are You Local? Best New Band finalist, have supported The Twilight Sad, The Suburbs and Marmozets, and play the 7th Street Entry and Turf Club regularly. Their 2015 EP Sport Marriage drew City Pages coverage, and their self-titled 2021 LP was produced at Flowers Studio by the late Ed Ackerson, who died during the sessions; a new single, 'Robot Dogs,' arrived in July 2026.",
+    "sounds_like": [
+      "The Jesus and Mary Chain",
+      "The Twilight Sad",
+      "Interpol"
+    ],
+    "genre_tags": [
+      "indie",
+      "alternative",
+      "rock",
+      "shoegaze"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 3,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://thestressofherregard.bandcamp.com/album/the-stress-of-her-regard-2",
+      "https://www.xsnoize.com/album-review-the-stress-of-her-regard-self-titled-lp/",
+      "https://newnoisemagazine.com/premieres/track-premiere-the-stress-of-her-regard-callipygian/",
+      "https://first-avenue.com/performer/the-stress-of-her-regard/",
+      "https://www.instagram.com/sohrband/"
+    ]
+  },
+  {
+    "band_name": "Threads Electric",
+    "one_liner": "Basement-built synthpop anthems: melancholy lyrics, irrepressible hooks, danceable.",
+    "profile": "Threads Electric is a Minneapolis indie rock / electro-pop four-piece that began with multi-instrumentalists Joe Capacete and Brian Perry cutting a debut album in Perry's basement with producer Yoo Soo Kim, then adding Alex Cheng (bass) and Katie Rider (synth) in summer 2025. That debut, Breath & Bones, came out in April 2025 after a run of singles including 'The Tide,' 'Dust' and 'The We We Are' — the last of which Reviler picked for its Local Fresh Five, calling it 'a dreamy synthpop jam with melancholy lyricism, danceable beat, and irrepressibly catchy pop hooks.' Live it's a bright, synth-washed guitar-pop set built around big choruses.",
+    "sounds_like": [
+      "Future Islands",
+      "The 1975",
+      "Phoenix"
+    ],
+    "genre_tags": [
+      "indie",
+      "pop",
+      "electronic",
+      "rock"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 4,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://threadselectric.com/",
+      "https://threadselectric.bandcamp.com/",
+      "https://threadselectric.bandcamp.com/album/breath-bones",
+      "https://www.reviler.org/2024/07/31/the-local-fresh-five-marsgarb-molly-brandt-wish-wash-rice-and-threads-electric/"
+    ]
+  },
+  {
+    "band_name": "Tinynormous",
+    "one_liner": "Instrumental jazz-fusion jam that stays warm, groovy and unhurried. No vocals.",
+    "profile": "Tinynormous is a Twin Cities instrumental group that self-describes as 'Instrumentally Chill' — guitars, keys, bass and drums working through jazz-fusion harmony with a jam band's patience, tagged on Bandcamp as jazz, groovy, instrumental and jam. Their debut full-length, the 12-inch vinyl Mellow Toning, arrived in March 2025, followed by a live CD, All Are Welcome, compiled from 2025 performances and celebrated with a release show at the White Squirrel Bar. It's a set you can sit on a curb and listen to or nod along with: technical but never cold, and entirely wordless.",
+    "sounds_like": [
+      "Khruangbin",
+      "Medeski Martin & Wood",
+      "Joe Satriani"
+    ],
+    "genre_tags": [
+      "jazz",
+      "jam",
+      "funk",
+      "rock"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 3,
+      "tempo": 2,
+      "electronic": 3,
+      "vocal_forward": 1,
+      "danceability": 3,
+      "experimental": 3,
+      "brightness": 4,
+      "grit": 2,
+      "kid_friendly": 5
+    },
+    "confidence": "high",
+    "sources": [
+      "https://tinynormous.bandcamp.com/",
+      "https://tinynormous.bandcamp.com/album/mellow-toning",
+      "https://whitesquirrelbar.com/event/all-are-welcome-cd-release-w-okie-tinynormous-maggie-black-kirby-gage/",
+      "http://tinynormous.net"
+    ]
+  },
+  {
+    "band_name": "Topiary Blush",
+    "one_liner": "Crunchy alternative soul: Hiatus Kaiyote grooves with a rock band's teeth.",
+    "profile": "Topiary Blush is a Minneapolis four-piece billing itself as 'your crunchy alternative soul bards from the Twin Cities' — art-rock arrangements draped over soul and R&B songwriting, with named influences spanning Hiatus Kaiyote, The Police, Brittany Howard and jazz/R&B classics. The rhythm section does most of the talking, and the band says the heaviness surfaces only when a song asks for it, so sets swing between slinky grooves and full-throated rock. They gig steadily around the Twin Cities, including MetroNOME Brewery and Downtown St. Paul's outdoor music series.",
+    "sounds_like": [
+      "Hiatus Kaiyote",
+      "Brittany Howard",
+      "Alabama Shakes"
+    ],
+    "genre_tags": [
+      "soul",
+      "alternative",
+      "rnb",
+      "rock",
+      "jazz"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 3,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 4,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://topiaryblush.com/",
+      "https://www.instagram.com/topiaryblush/",
+      "https://metronomebrewery.com/live-music/topiary-blush-the-solo-project/",
+      "https://downtownstpaul.com/do/topiary-blush-and-the-solo-project"
+    ]
+  },
+  {
+    "band_name": "Van Cleaver",
+    "one_liner": "College-forged trio: Green Day drive one song, folk-rock hush the next.",
+    "profile": "Van Cleaver is a Minneapolis three-piece that formed during the members' time at the University of Minnesota and has been playing together for years since. Their own description puts them between driving alt-rock and quieter folk-tinged material, drawing on Green Day, Muse, Rage Against the Machine and Taylor Swift, and they play weddings, birthdays and protests alike — mixed-race and openly left-leaning. Web footprint is essentially just their Instagram, so treat the sonic details as self-reported rather than road-tested by press.",
+    "sounds_like": [
+      "Green Day",
+      "Muse",
+      "Rage Against the Machine"
+    ],
+    "genre_tags": [
+      "punk",
+      "rock",
+      "alternative",
+      "folk"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 4,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 3,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 3,
+      "kid_friendly": 3
+    },
+    "confidence": "low",
+    "sources": [
+      "https://www.instagram.com/vancleavermusic"
+    ]
+  },
+  {
+    "band_name": "Waar Party",
+    "one_liner": "Indigenous hard rock trio: 90s grunge weight, riffs and Midwest road grit.",
+    "profile": "Waar Party is a Minneapolis-based Indigenous rock trio — Wigs, Jason and Chad Nation, from different tribal heritage backgrounds — playing all original material they pitch as epic, spiritual and deeply moving. Their own site bills them as a hard rock / heavy metal band, and a review of their self-released Better Off Dead describes music that fuses 'heavy, brooding textures of '90s alternative rock and grunge with sharp, melodic progressions,' crediting the record with catching the visceral, high-energy presence of their Minnesota live shows. Recent tracks include 'Cold,' 'Virus' and 'Baptized By Fire' — expect volume, minor keys and a DIY chip on the shoulder.",
+    "sounds_like": [
+      "Alice in Chains",
+      "Soundgarden",
+      "Godsmack"
+    ],
+    "genre_tags": [
+      "rock",
+      "metal",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 5,
+      "loudness": 5,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 3,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 4,
+      "kid_friendly": 2
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.waarparty.com/",
+      "https://whfr.fm/node/5486",
+      "https://www.facebook.com/WaarPartyMusicMN/",
+      "https://www.instagram.com/waarparty"
+    ]
+  },
+  {
+    "band_name": "ditch pigeon",
+    "one_liner": "Cute-gaze: fuzz-drenched crescendos, violin, and heart-wrenching songs from the DIY scene",
+    "profile": "Minneapolis band built around the songwriting of guitarist Hayley Anne, who calls the sound \"cute-gaze\" or \"mew mew metal\" — shoegaze haze and indie melancholy carrying real post-metal weight. Venue write-ups describe a set that moves between intimate slow burns and walls of fuzz-drenched noise, with sentimental lyrics, melodic guitar lines and Anna Herr's violin threading through Morgan Liluna's punk-leaning drums and Nathan Honeypants' bass. The lineup is deliberately fluid — Hayley rearranges both setlist and personnel show to show, so a solo set runs slower and more emotional while the full band leans into the crescendos. They gig steadily around the Twin Cities DIY circuit (Day Block Brewing, Palmer's Bar) and shows are pitched as a balance of humor, vulnerability and raw intensity.",
+    "sounds_like": [
+      "Slowdive",
+      "Julien Baker",
+      "Hop Along"
+    ],
+    "genre_tags": [
+      "shoegaze",
+      "indie",
+      "metal",
+      "emo",
+      "alternative"
+    ],
+    "dims": {
+      "energy": 3,
+      "loudness": 4,
+      "tempo": 2,
+      "electronic": 2,
+      "vocal_forward": 3,
+      "danceability": 2,
+      "experimental": 3,
+      "brightness": 3,
+      "grit": 4,
+      "kid_friendly": 3
+    },
+    "confidence": "medium",
+    "sources": [
+      "https://www.dayblockbrewing.com/live-events/ditch-pigeon-miid-johnny-sincerely-orchestra/",
+      "https://palmers-bar.com/calendar/2025/3/28/the-del-viles-and-friends",
+      "https://www.instagram.com/ditchpigeon/"
+    ]
+  },
+  {
+    "band_name": "emmy woods",
+    "one_liner": "Dirt-road storytelling and an ethereal voice — queer farm vibes with cello and grief",
+    "profile": "Emmy Woods (Emily Royer) grew up on a rural North Dakota dirt road and now writes out of Saint Paul, mixing country, folk and blues into narrative songs delivered in a clear, ethereal voice — she cites Billie Holiday, Emmylou Harris and Against Me! as touchstones, and a friend's three-word summary, \"Queer Farm Vibes,\" sticks. Live she works both solo-acoustic and with collaborators including cellist Rosie Harris and the Red Pine Ramblers (Jake Johnson, Brody Kucera, Bob Delage, Lydia Lecher), so a set can be a hushed ballad or a full string-backed americana band. Since breaking out of her living room in 2023 she has been prolific: Bandcamp carries Tristia Bella, The Manifold, Delirium, Volume 1, the location-recorded Live From the Haunt (Jan 2025) and When the Day Breaks (Dec 2025), the last written across four years after losing a loved one to addiction and overdose. She plays real rooms — Turf Club, the Cedar, Mall of America's Minnesota Musician Spotlight — and runs MN Songbird, a community effort connecting local musicians, fans and venues.",
+    "sounds_like": [
+      "Emmylou Harris",
+      "Gillian Welch",
+      "Adeem the Artist"
+    ],
+    "genre_tags": [
+      "americana",
+      "folk",
+      "singer-songwriter",
+      "country",
+      "blues"
+    ],
+    "dims": {
+      "energy": 2,
+      "loudness": 2,
+      "tempo": 2,
+      "electronic": 1,
+      "vocal_forward": 5,
+      "danceability": 2,
+      "experimental": 2,
+      "brightness": 2,
+      "grit": 3,
+      "kid_friendly": 4
+    },
+    "confidence": "high",
+    "sources": [
+      "https://emmywoods.bandcamp.com/",
+      "https://emmywoods.bandcamp.com/album/when-the-day-breaks",
+      "https://emmywoods.bandcamp.com/album/live-from-the-haunt",
+      "https://first-avenue.com/performer/emmy-woods/",
+      "https://www.thecedar.org/events/the-wildwoods"
+    ]
+  },
+  {
+    "band_name": "pity party",
+    "one_liner": "Theatre kids turned alt-rock band: early-2000s pop sheen aimed at the headlines",
+    "profile": "Minneapolis four-piece fronted by Abbie Marie on lead vocals, keys and synth, with Tim McVean on guitar, Micah on bass and Bryan on drums. They met as the house cover band for Wayward Theatre Company and went original in March 2024, and it shows — the live set is pitched as energetic and performative, with pop sheen over a rock-and-roll core plus streaks of bedroom pop and midwest emo. Venues put them next to No Doubt, Olivia Rodrigo and Metric, and they still fold in covers like Billy Joel's \"Movin' Out\" and Metric's \"Black Sheep.\" Their own songs channel outrage at US and global politics; the debut single \"therapist\" was followed by \"Anymore,\" and they keep a steady local calendar including Green Room and Day Block Brewing.",
+    "sounds_like": [
+      "No Doubt",
+      "Olivia Rodrigo",
+      "Metric"
+    ],
+    "genre_tags": [
+      "alternative",
+      "indie",
+      "rock",
+      "pop",
+      "emo"
+    ],
+    "dims": {
+      "energy": 4,
+      "loudness": 3,
+      "tempo": 4,
+      "electronic": 3,
+      "vocal_forward": 4,
+      "danceability": 4,
+      "experimental": 2,
+      "brightness": 3,
+      "grit": 2,
+      "kid_friendly": 3
+    },
+    "confidence": "high",
+    "sources": [
+      "https://first-avenue.com/performer/pity-party/",
+      "https://tickets.venuepilot.com/e/pity-party-2026-08-18-green-room-minneapolis-bb45a9",
+      "https://voyageminnesota.com/interview/meet-abbie-marie-of-minneapolis-mn/",
+      "https://www.dayblockbrewing.com/live-events/of-the-orchard-with-alley-eyes-and-pity-party/"
+    ]
+  }
+]

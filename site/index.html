@@ -25,6 +25,7 @@
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
     <a href="vehicle/">Vehicle Finder</a>
+    <a href="porchfest/">Porchfest Planner</a>
     <a href="#about">About</a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark">🌙</button>
   </div>
@@ -113,6 +114,7 @@
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
     <a href="vehicle/">Vehicle Finder</a>
+    <a href="porchfest/">Porchfest Planner</a>
   </div>
   <div class="foot-meta">© 2026 · a workshop of made things · shared in the open</div>
 </footer>
@@ -165,7 +167,14 @@
     '(Red Carpet Metallic + light Smoked Truffle) and a 2026 Subaru Forester Touring Hybrid in Crimson Red Pearl — ' +
     'with photos, window stickers, prices, value ratings, VINs, dealers, and contacts.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live · open the app ↗</div></a>';
-  grid.innerHTML = chicagoCard + vehicleCard + projects.map(function (p) {
+  var porchfestCard = '<a class="app-card reveal" href="porchfest/" style="--c:#ff6b4a">' +
+    '<div class="app-top"><span class="app-glyph">\uD83C\uDFB8</span>' +
+    '<div><div class="app-name">Porchfest Planner</div><div class="app-sub">porchfest \u00b7 91 bands, one afternoon</div></div></div>' +
+    '<p class="app-tagline">Plan a walking route through Uptown Porchfest 2026. Every band rated across ten dimensions \u2014 ' +
+    'energy, loudness, kid-friendly and the rest \u2014 so you can ask for &quot;loud and fast&quot; or &quot;quiet enough for a stroller&quot;, ' +
+    'pick how many bands you want, and get an optimised schedule, walking map and a shareable link.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the planner \u2197</div></a>';
+  grid.innerHTML = chicagoCard + vehicleCard + porchfestCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +

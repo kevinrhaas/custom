@@ -1,0 +1,290 @@
+[
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 22nd Street",
+    "lat": 44.960918,
+    "lon": -93.289276
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 24th Street",
+    "lat": 44.959122,
+    "lon": -93.289291
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 25th Street",
+    "lat": 44.957329,
+    "lon": -93.2893054
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 26th Street",
+    "lat": 44.955537,
+    "lon": -93.289322
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 27th Street",
+    "lat": 44.953736,
+    "lon": -93.2893377
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W 28th Street",
+    "lat": 44.9519632,
+    "lon": -93.2893581
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W Franklin Avenue",
+    "lat": 44.962704,
+    "lon": -93.289268
+  },
+  {
+    "kind": "corner",
+    "label": "Aldrich Ave S & W Lake Street",
+    "lat": 44.9483772,
+    "lon": -93.289389
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 22nd Street",
+    "lat": 44.960918,
+    "lon": -93.29055
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 24th Street",
+    "lat": 44.959122,
+    "lon": -93.290558
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 25th Street",
+    "lat": 44.9573367,
+    "lon": -93.2905813
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 26th Street",
+    "lat": 44.9555433,
+    "lon": -93.2905961
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 27th Street",
+    "lat": 44.953738,
+    "lon": -93.290616
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W 28th Street",
+    "lat": 44.9519618,
+    "lon": -93.2906272
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W Franklin Avenue",
+    "lat": 44.9627464,
+    "lon": -93.2905339
+  },
+  {
+    "kind": "corner",
+    "label": "Bryant Ave S & W Lake Street",
+    "lat": 44.9483762,
+    "lon": -93.2906516
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 22nd Street",
+    "lat": 44.960918,
+    "lon": -93.291824
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 24th Street",
+    "lat": 44.959122,
+    "lon": -93.291832
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 25th Street",
+    "lat": 44.9573367,
+    "lon": -93.2918593
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 26th Street",
+    "lat": 44.955539,
+    "lon": -93.291862
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 27th Street",
+    "lat": 44.9537414,
+    "lon": -93.2918914
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W 28th Street",
+    "lat": 44.9519582,
+    "lon": -93.2919136
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W Franklin Avenue",
+    "lat": 44.9627132,
+    "lon": -93.2918085
+  },
+  {
+    "kind": "corner",
+    "label": "Colfax Ave S & W Lake Street",
+    "lat": 44.9483809,
+    "lon": -93.2919411
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 22nd Street",
+    "lat": 44.9609215,
+    "lon": -93.2931101
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 24th Street",
+    "lat": 44.959122,
+    "lon": -93.293106
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 25th Street",
+    "lat": 44.957336,
+    "lon": -93.293129
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 26th Street",
+    "lat": 44.95554,
+    "lon": -93.293152
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 27th Street",
+    "lat": 44.953743,
+    "lon": -93.293159
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W 28th Street",
+    "lat": 44.9519619,
+    "lon": -93.2931747
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W Franklin Avenue",
+    "lat": 44.9627177,
+    "lon": -93.2930908
+  },
+  {
+    "kind": "corner",
+    "label": "Dupont Ave S & W Lake Street",
+    "lat": 44.9483587,
+    "lon": -93.2932119
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 22nd Street",
+    "lat": 44.9609251,
+    "lon": -93.294379
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 24th Street",
+    "lat": 44.959122,
+    "lon": -93.29438
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 25th Street",
+    "lat": 44.957333,
+    "lon": -93.294395
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 26th Street",
+    "lat": 44.9555403,
+    "lon": -93.2944147
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 27th Street",
+    "lat": 44.953745,
+    "lon": -93.2944334
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W 28th Street",
+    "lat": 44.9519583,
+    "lon": -93.2944471
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W Franklin Avenue",
+    "lat": 44.962718,
+    "lon": -93.294364
+  },
+  {
+    "kind": "corner",
+    "label": "Emerson Ave S & W Lake Street",
+    "lat": 44.9483598,
+    "lon": -93.2944678
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 22nd Street",
+    "lat": 44.960918,
+    "lon": -93.28801
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 24th Street",
+    "lat": 44.959118,
+    "lon": -93.288017
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 25th Street",
+    "lat": 44.9572663,
+    "lon": -93.28811
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 26th Street",
+    "lat": 44.9555361,
+    "lon": -93.288057
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 27th Street",
+    "lat": 44.9537449,
+    "lon": -93.2881249
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W 28th Street",
+    "lat": 44.9519609,
+    "lon": -93.2880833
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W Franklin Avenue",
+    "lat": 44.9627,
+    "lon": -93.288002
+  },
+  {
+    "kind": "corner",
+    "label": "Lyndale Ave S & W Lake Street",
+    "lat": 44.9483739,
+    "lon": -93.2881173
+  }
+]
