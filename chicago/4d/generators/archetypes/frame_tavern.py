@@ -85,9 +85,9 @@ def build(params: FrameTavernParams, name: str):
     if params.log_wing:
         _log_wing(b, params, d)
 
-    # chimneys — both depictions show two. Not separately attested.
+    # chimneys — as many stacks as the record counts, on the ridge line.
     c_ch = params.conf("chimneys")
-    for fx in (0.22, 0.78):
+    for fx in _stack_fractions(params.chimneys):
         cx = w * fx
         b.add_box(cx - 0.45, d / 2 - 0.45, wall_z, cx + 0.45, d / 2 + 0.45,
                   ridge_z + 0.55, c_ch, M_ROOF, skip=("bottom",))
@@ -101,6 +101,27 @@ def build(params: FrameTavernParams, name: str):
         simple_material("glass", (0.09, 0.11, 0.13, 1.0), roughness=0.25),
     ]
     return b.to_object(mats)
+
+
+def _stack_fractions(n: int) -> tuple[float, ...]:
+    """Where n stacks stand, as fractions of the frontage.
+
+    The pair sits at 0.22 and 0.78 — the positions this archetype has always used,
+    read off the two retrospective depictions of the Sauganash, and kept exactly so
+    that making the count a parameter does not quietly move the buildings that
+    already had the number the record states. More than two spaces evenly between
+    the same two ends; one goes to 0.22 rather than to the middle, because a single
+    stack on a central-hall block stands at an end of the block and not in the hall.
+
+    None of these positions is attested for any building in the dataset. The count
+    is the record's and the arrangement is the archetype's; docs/LIBERTIES.md says so.
+    """
+    if n <= 0:
+        return ()
+    if n == 1:
+        return (0.22,)
+    step = (0.78 - 0.22) / (n - 1)
+    return tuple(0.22 + i * step for i in range(n))
 
 
 def _clapboard(b: MeshBuilder, w: float, d: float, wall_z: float, conf: float) -> None:

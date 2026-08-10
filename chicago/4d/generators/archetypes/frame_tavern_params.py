@@ -27,16 +27,18 @@ CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
 # the mesh either contains nothing of it or contains a fixed default in its place.
 #
 # Reading an attribute's CONFIDENCE is deliberately not membership. `fenestration`
-# and `chimneys` tint their geometry with the record's confidence while the shape
-# itself is fixed by this module, and a tint is not a building — treating that as
-# "consumed" would let the exact case this set exists to surface pass unremarked.
+# tints its geometry with the record's confidence while the shape itself is fixed
+# by this module, and a tint is not a building — treating that as "consumed" would
+# let the exact case this set exists to surface pass unremarked. `chimneys` was in
+# that category until 2026-08-10 and is not any more: the count now decides how
+# many stacks get built, so the value moves a vertex and the name belongs here.
 #
 # tools/validate.py holds every attribute outside it to a `geometry:` declaration
 # on the record, so adding a parameter here without adding its name is a gate
 # failure rather than a silently unbuilt attribute.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
-    "paint", "shutters", "gallery", "log_wing",
+    "paint", "shutters", "gallery", "log_wing", "chimneys",
 })
 
 
@@ -65,6 +67,13 @@ class FrameTavernParams:
     paint: str = "white"
     shutters: str | None = None
     gallery: bool = False
+
+    # How many stacks stand on the block. The COUNT comes from the record; where
+    # they stand and what they are made of do not — no source describes a stack on
+    # any of these buildings — so the archetype spaces them across the frontage and
+    # docs/LIBERTIES.md owns the arrangement. Two is the default because two is what
+    # both surviving depictions of the Sauganash show.
+    chimneys: int = 2
 
     # the attached log wing — the Sauganash's 1829 cabin surviving as a wing.
     # See docs/RESEARCH/sauganash_hotel.md.
@@ -105,6 +114,16 @@ class FrameTavernParams:
             raise ParamError(f"roof_pitch_deg {self.roof_pitch_deg} outside 10-60 deg")
         if self.construction not in CONSTRUCTIONS:
             raise ParamError(f"construction '{self.construction}' not in {CONSTRUCTIONS}")
+        # 0 is allowed and is a claim, not an absence: a record saying a building
+        # had no stack gets a building with no stack. The ceiling is the number the
+        # frontage can space without the stacks touching.
+        if not isinstance(self.chimneys, int) or isinstance(self.chimneys, bool):
+            raise ParamError(f"chimneys {self.chimneys!r} is not a whole number — the "
+                             f"record states a count, not whether there was one")
+        if not 0 <= self.chimneys <= 4:
+            raise ParamError(f"chimneys {self.chimneys} outside 0..4; a frame block of "
+                             f"these proportions cannot carry more, and a record that "
+                             f"means it should say where they stood")
         for k, v in self.confidence.items():
             if v not in CONFIDENCE_VALUE:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
@@ -167,6 +186,7 @@ def from_phase(phase: dict) -> FrameTavernParams:
         shutters=val("shutters"),
         gallery=bool(val("gallery", False)),
         log_wing=bool(val("log_wing", False)),
+        chimneys=int(val("chimneys", 2)),
         confidence=confidences,
     )
     p.validate()

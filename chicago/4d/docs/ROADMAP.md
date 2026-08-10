@@ -127,11 +127,22 @@ unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L2
 |---|---|---|---|
 | ~~`wolf_point_tavern`~~ | ~~`frame_extension`~~ | `frame_addition` | **DONE 2026-08-10** — renamed, dimensioned and re-baked in one slice |
 | ~~`wolf_point_tavern`~~ | ~~`signage`~~ | `sign` | **DONE 2026-08-10** — the board hangs on the river front; the wolf is not drawn (L25) |
-| `miller_house` | `chimneys: 2` (inferred) | `chimney` (a boolean) | one stack built where the record claims two |
+| ~~`miller_house`~~ | ~~`chimneys: 2`~~ | `chimney` (a boolean) | **DONE 2026-08-10** — the count is a parameter of both archetypes; the second stack stands on the frame range |
 
-Each is a small data edit plus a re-bake, so **record and geometry land in one slice** — the
-same coupling the note below describes. The chimney count needs a parameter in both archetypes
-first, so it is the larger of the three and is what remains.
+Each was a small data edit plus a re-bake, so **record and geometry landed in one slice** — the
+same coupling the note below describes. All three are done.
+
+**The list refills itself, which is the point of the gate.** Making the chimney count real
+required placing Miller's second stack, and placing it exposed the next repair of exactly the
+same kind:
+
+| record | attribute | what the archetype does | effect |
+|---|---|---|---|
+| `miller_house` | `frame_addition` (documented, undimensioned) | picks side, width, depth and storey count from its defaults | a documented two-storey range fronting the river, built at an invented size with nothing admitting it |
+
+That is L24's defect one building over — the Wolf Point repair had to state all four numbers on
+the record for exactly this reason. It is a record edit that moves vertices, so: state the four,
+admit the invented ones in `docs/LIBERTIES.md`, re-bake, one slice.
 
 **The Wolf Point pair landed together, which is the shape** (2026-08-10). Both renames, the four
 attributes the frame bay needed, the re-bake, the publish and the liberties moved in one PR. Two
@@ -141,6 +152,17 @@ defaults, so a documented feature would have arrived at an invented size with no
 it — the record now states all four and L24 admits the three that are conjectural. Second, the
 staleness gate did exactly what it was written for: the record edit turned the tavern's GLB STALE
 on the spot and the commit could not go green until the bake landed with it.
+
+**And the count of a thing is not the thing** (2026-08-10). `chimneys` was stated by every record
+and read by neither archetype: `frame_tavern` built two stacks and `log_dwelling` built one,
+whatever the number said. Both take the count now, and the frame pair keeps its exact positions so
+that parameterising a number did not move a building whose count was already right. The
+`log_dwelling` half was the `frame_extension`/`signage` failure a third time — the parameter was
+`chimney` and no record has ever contained that word — so the class has a check now rather than
+another discoverer: `test_consumed_attributes_actually_reach_the_parameters` perturbs every stated
+value an archetype declares it consumes and requires the resolved parameters to change. What the
+count still does not carry is where a stack stood, how big it was or what it was made of; nothing
+in the dataset records that for any building, and L26 is where it is admitted.
 
 **You cannot land half of one any more** (2026-08-10). `check.sh` recomputes each committed GLB's
 inputs and fails when the record and the mesh disagree. The working shape: prepare the record on

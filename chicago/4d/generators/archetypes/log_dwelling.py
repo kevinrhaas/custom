@@ -96,11 +96,10 @@ def build(params: LogDwellingParams, name: str):
     _core_openings(b, params, cx0, cy0, cx1, cy1, wall_z,
                    params.conf("fenestration", "inferred"))
 
-    if params.frame_addition:
-        _frame_addition(b, params)
+    addition_ridge_z = _frame_addition(b, params) if params.frame_addition else None
 
-    if params.chimney:
-        _chimney(b, cx0, cy0, cx1, cy1, ridge_z, params.conf("chimney"))
+    _chimneys(b, params, cx0, cy0, cx1, cy1, ridge_z, addition_ridge_z,
+              params.conf("chimneys", "inferred"))
 
     if params.sign:
         # The BOARD's confidence is the confidence that a sign hung there. Its size
@@ -314,12 +313,16 @@ def _core_openings(b: MeshBuilder, p: LogDwellingParams, x0, y0, x1, y1,
 
 # ------------------------------------------------------------- frame addition
 
-def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> None:
-    """The clapboarded frame block.
+def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> float:
+    """The clapboarded frame block. Returns its ridge height.
 
     Its confidence is its own — Miller's two-storey addition is documented, Wolf
     Point's frame part is documented only as "partly frame" with no size — and it does
     not inherit the log core's.
+
+    The ridge height goes back to the caller because a second stack stands on this
+    block when the record counts two, and a stack has to clear the roof it comes
+    through.
     """
     c = p.worst_conf("frame_addition", "frame_addition_stories")
     c_clad = p.conf("frame_addition", "inferred")
@@ -333,8 +336,8 @@ def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> None:
     # `add_gable_roof` grows uniformly, and 0.25 m of eave driven into the core's roof
     # plane is a z-fighting stripe right down the most visible surface of the building.
     rx0 = ax0 + 0.26 if p.frame_addition_side == "end" else ax0
-    b.add_gable_roof(rx0, ay0, ax1, ay1, az, p.roof_pitch_deg, c, M_ROOF,
-                     ridge_along_x=True)
+    add_ridge_z = b.add_gable_roof(rx0, ay0, ax1, ay1, az, p.roof_pitch_deg, c, M_ROOF,
+                                   ridge_along_x=True)
 
     xm = (ax0 + ax1) / 2.0
     story_h = az / max(p.frame_addition_stories, 1)
@@ -358,6 +361,7 @@ def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> None:
             z0 = story * story_h + story_h * 0.32
             _opening(b, "x", ax1, yc - 0.36, yc + 0.36, z0, z0 + 1.05, 1, c_fen,
                      relief=rel)
+    return add_ridge_z
 
 
 def _clapboard(b: MeshBuilder, x0, y0, x1, y1, wall_z: float, conf: float) -> None:
@@ -376,21 +380,67 @@ def _clapboard(b: MeshBuilder, x0, y0, x1, y1, wall_z: float, conf: float) -> No
 
 # ------------------------------------------------------------ chimney and sign
 
-def _chimney(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float) -> None:
-    """An exterior stack against the -x gable end.
+def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
+              ridge_z: float, add_ridge_z: float | None, conf: float) -> None:
+    """As many stacks as the record counts, placed by the archetype.
+
+    The count is the record's; every other property of a stack here is invented, so
+    the arrangement needs an argument rather than a preference, and the argument is
+    the one the records themselves give:
+
+    - The first stack stands against the log core's -x gable. That is the frontier
+      pattern and it is what this archetype has always built.
+    - The second stands on the FRAME ADDITION when there is one. Miller's record
+      counts two because "a two-part building of this size — a former tavern with a
+      log cabin behind — would normally carry a stack in each element", and putting
+      both on the log core would build a number the record gives while contradicting
+      the reasoning it gives for the number. It goes against the addition's outer
+      gable, mirroring the core's.
+    - With no addition, a second stack goes against the core's +x gable, which is
+      the other end of the one element there is. No record in the dataset asks for
+      this case yet.
+
+    docs/LIBERTIES.md L26 owns all of it.
+    """
+    if p.chimneys <= 0:
+        return
+    _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, at_min_x=True)
+    if p.chimneys < 2:
+        return
+    if p.frame_addition and add_ridge_z is not None:
+        ax0, ay0, ax1, ay1 = _addition_extent(p)
+        _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, at_min_x=False)
+    else:
+        _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, at_min_x=False)
+
+
+def _stack(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float,
+           at_min_x: bool) -> None:
+    """One exterior stack against a gable end — the -x end, or mirrored to +x.
 
     Outside the wall, not inside it, which is the frontier pattern: a stick-and-clay
     or fieldstone stack built against the gable can be pulled away from the building
     when it catches fire, and it does not eat floor space. Nothing about the stack is
-    attested for any of these three buildings, so it carries its own confidence.
+    attested for any building in the dataset, so it carries the count's confidence
+    and no more.
     """
     yc = (y0 + y1) / 2.0
     half = 0.48
-    b.add_box(x0 - 0.72, yc - half, 0.0, x0 + 0.08, yc + half, ridge_z + 0.55,
+    face, out = (x0, -1.0) if at_min_x else (x1, 1.0)
+
+    def span(inset: float, proud: float) -> tuple[float, float]:
+        """(low x, high x) for a block reaching `proud` out from the gable face and
+        `inset` into it, on whichever side of the building this stack is on."""
+        a, c = face + out * proud, face - out * inset
+        return (a, c) if a < c else (c, a)
+
+    sx0, sx1 = span(0.08, 0.72)
+    b.add_box(sx0, yc - half, 0.0, sx1, yc + half, ridge_z + 0.55,
               conf, M_ROOF, skip=("bottom",))
     # a slight corbel at the head, so it reads as a chimney rather than a post
-    b.add_box(x0 - 0.82, yc - half - 0.08, ridge_z + 0.55,
-              x0 + 0.12, yc + half + 0.08, ridge_z + 0.72, conf, M_ROOF,
+    hx0, hx1 = span(0.12, 0.82)
+    b.add_box(hx0, yc - half - 0.08, ridge_z + 0.55,
+              hx1, yc + half + 0.08, ridge_z + 0.72, conf, M_ROOF,
               skip=("bottom",))
 
 

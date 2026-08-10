@@ -18,7 +18,7 @@ walkthrough rather than only in the repository.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 73 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does |
+| `tools/test_validate.py` | **done** — 77 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | 13 seeded, of which 4 carry real Wayback snapshots |
@@ -27,7 +27,7 @@ walkthrough rather than only in the repository.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 111 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 113 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -190,8 +190,9 @@ uncertainty of the 1834 sheets in its note.
     project's strongest confidence chip over both. That is the confidence model working as
     designed and still misleading, which makes it the sharpest argument for this rule that the
     project has produced. **Repaired 2026-08-10, in one slice with its bake** (see 18 below).
-    Miller's house is the same shape in miniature: its record says two chimneys and
-    `log_dwelling` builds one, and that one is still open. What is still unenforced is what no record mentions at all —
+    Miller's house was the same shape in miniature — its record says two chimneys and
+    `log_dwelling` built one — and is **repaired 2026-08-10, in one slice with its bake**
+    (see 19 below). What is still unenforced is what no record mentions at all —
     the Western's unmodelled stable yard is now claimed, but a liberty nobody noticed taking
     remains uncatchable by any mechanism.
 13. **The document and the data had drifted, and writing the claim down found it.** L12 still
@@ -267,6 +268,44 @@ uncertainty of the 1834 sheets in its note.
     for the Sauganash, which means the tint alone will not tell a visitor the width is a guess and
     only the popup's liberty chip will. And the whole repair rests on a footprint that is itself a
     placeholder: 4 m of an invented 12 m is a fraction of a guess.
+
+19. **FIXED — the chimney count is a number the archetypes read, and the third misspelling is now
+    a test.** Every record states `chimneys`; neither archetype read the value. `frame_tavern`
+    built two stacks whatever the record said and `log_dwelling` built one, so Samuel Miller's
+    house — record two, model one — stood a stack short from its first bake. Both archetypes take
+    the count now. The pair on a frame block keeps its exact positions (0.22 and 0.78 of the
+    frontage, read off the Sauganash depictions) so that parameterising the number did not quietly
+    move a building whose count was already right; a log building's second stack goes on the frame
+    addition rather than the far gable, because *the record's own reason* for counting two is "a
+    stack in each element", and honouring the number while contradicting its argument is not
+    honouring it. L21 moves to Resolved and the six records drop the `geometry: 'simplified'`
+    declaration that was true until this landed.
+    **The `log_dwelling` half was the Wolf Point defect a third time.** The parameter was
+    `chimney`, a boolean; no record in this dataset has ever contained that word, so `from_phase`
+    took its default on every log building and nothing complained. Three occurrences of one
+    failure is a pattern rather than bad luck, so it now has a check instead of another
+    discoverer: `test_consumed_attributes_actually_reach_the_parameters` perturbs every stated
+    value its archetype declares it CONSUMES and requires the resolved parameters to change — 55
+    attributes exercised across the six records, with a `ParamError` counted as read, since
+    refusing a value is the loudest possible proof of having seen it. The opposite direction (an
+    attribute stated and *not* declared) was already the omission gate; this closes the direction
+    where the declaration itself is the false one, which is the worse of the two, because an
+    attribute inside CONSUMED is excused from admitting anything.
+    **What it does not fix, and that is the more interesting half.** The count is `inferred` on
+    every building and nothing else about a stack is recorded anywhere — not one source describes
+    a chimney on any of these six. Position, girth, height above the ridge and material are all
+    the archetype's, so the confidence chip a visitor reads on that row grades only *how many*.
+    L26 is new and is the only place that distinction is legible.
+
+20. **Miller's frame range is dimensioned by default, which is L24's defect one building over.**
+    Found while placing his second stack, and deliberately NOT fixed here: it is a record edit
+    that moves vertices, so it is its own slice with its own bake. `frame_addition` is
+    `documented` on `miller_house` — "a two-story house added to the cabin, fronting the river" —
+    and the record states no side, no width, no depth and no storey count for it, so
+    `log_dwelling` supplies all four from its defaults: front, half the footprint's width, half
+    its depth, two storeys. That is precisely what the Wolf Point repair exists to stop — a
+    documented feature arriving at an invented size with nothing admitting it. Queued in
+    ROADMAP § S5. The new stack inherits it, standing against a bay whose width is a default.
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: six buildings stand where
@@ -280,8 +319,11 @@ to land together, so the bake workflow's PR is part of the same slice rather tha
 generator reads makes the committed GLB stale and `check.sh` fails until the re-bake lands with
 it. It was then exercised for real by the Wolf Point repair the same day — the rename turned the
 tavern's asset stale on the spot and the branch could not go green until the bake landed on it,
-which is the whole point of writing the check. What remains queued from that list is Miller's
-house's second chimney, and that one needs a parameter in two archetypes before it needs a bake.
+which is the whole point of writing the check, and again the same day by Miller's second chimney.
+**That list is now empty.** What replaced it is one repair of the same kind, found while making
+the chimney count real: `miller_house` records a `documented` frame range and gives it no side,
+width, depth or storey count, so `log_dwelling` chooses all four — the L24 defect one building
+over. Record edit plus bake, one slice.
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled

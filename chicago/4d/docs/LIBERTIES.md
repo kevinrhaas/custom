@@ -349,23 +349,6 @@ anyone opens it. For the Western, any depiction at all — the project holds non
 **Covers:** `green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`.
 **Recorded:** 2026-08-10.
 
-### L21 — Chimneys are counted in the records and fixed in the archetypes
-**Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
-builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
-The records that say two get two only where the archetype already built two.
-**Why:** the counts were written from the depictions ("both depictions show two") and the
-archetypes were written from the same depictions, so they have never disagreed — which is
-precisely why nothing caught that they were never connected. Samuel Miller's house is the case
-that shows it: the record says two chimneys and the `log_dwelling` archetype builds one.
-**Consequence:** a record could raise a chimney count on new evidence and the town would not
-change. For Miller's house the model already shows one stack fewer than the record claims.
-**How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
-on the data side, a geometry change on the other, so it lands as one slice.
-**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`,
-`sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`,
-`western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
-**Recorded:** 2026-08-10.
-
 ### L22 — Wall surfaces are the archetype's, not the record's
 **Decision:** `cladding` on the four frame buildings and `paint` on the three log ones are
 recorded and unread. Frame walls always get clapboard lap courses; log walls always get bare
@@ -445,6 +428,33 @@ a visitor might otherwise take for an unfinished model.
 **How to resolve:** any period description or depiction of the board. None is held.
 **Recorded:** 2026-08-10.
 
+### L26 — Every chimney stands where the archetype puts it
+**Decision:** the records count the stacks and the archetypes place them. On a frame block
+(`sauganash_hotel`, `green_tree_tavern`, `western_hotel`) they sit on the ridge line, spaced
+evenly between 0.22 and 0.78 of the frontage. On a log building (`wolf_point_tavern`,
+`miller_house`, `walker_meeting_house`) the first stands outside the log core's gable wall, and a
+second — where a record counts two — stands against the outer gable of the frame addition. Every
+stack is the same 0.96 m square shaft with a corbelled head, rising 0.55 m above the ridge it
+passes.
+**Why:** not one source in this dataset describes a chimney on any of these six buildings. What
+the sources give is a count, and only for the Sauganash is even that drawn ("both depictions show
+two"); everything else — position, size, material, whether the stack was inside the wall or
+against it — is typological. Something has to be built, because a heated tavern with no stack is
+a claim too, and a stated count with no geometry is the failure L21 records. So the arrangement
+is argued rather than preferred: an exterior gable-end stack is the frontier pattern for a log
+pen, a pair on the ridge is what a central-hall frame block carries, and the second stack on
+Miller's house goes on the frame range because *the record's own reasoning for counting two* is
+"a stack in each element" — building both on the log core would honour the number and contradict
+the argument for it.
+**Consequence:** the confidence tint on a stack is the count's — `inferred` on every building
+here — and a visitor reasonably reads that as covering the thing they are looking at. It does
+not. It covers *how many*, and nothing at all about *where*, *how big* or *made of what*. This
+entry is the only place that distinction is legible.
+**How to resolve:** any depiction at plate level. The two retrospective Sauganash images would
+settle position and rough proportion for that building alone; nothing held would settle the
+others.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved
@@ -484,3 +494,30 @@ than inheriting the archetype's defaults, and every invented one of those is adm
 L24; what the board shows is admitted in L25. This entry stays exactly as written, including
 the two spellings that no longer resolve, because a silently corrected admission is not one.
 
+
+### L21 — Chimneys are counted in the records and fixed in the archetypes
+**Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
+builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
+The records that say two get two only where the archetype already built two.
+**Why:** the counts were written from the depictions ("both depictions show two") and the
+archetypes were written from the same depictions, so they have never disagreed — which is
+precisely why nothing caught that they were never connected. Samuel Miller's house is the case
+that shows it: the record says two chimneys and the `log_dwelling` archetype builds one.
+**Consequence:** a record could raise a chimney count on new evidence and the town would not
+change. For Miller's house the model already shows one stack fewer than the record claims.
+**How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
+on the data side, a geometry change on the other, so it lands as one slice.
+**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`,
+`sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`,
+`western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
+**Recorded:** 2026-08-10.
+**Resolved:** 2026-08-10 — `chimneys` is a parameter of both archetypes and the number built is
+the number recorded. Miller's house has its second stack, on the frame range, which is where the
+record's own reasoning for counting two puts it. The `log_dwelling` half was not a missing
+feature but a third misspelling of the kind L20 records: the parameter was `chimney`, a boolean,
+and no record has ever contained that word — so `from_phase` took its default and built one stack
+on every log building whatever the record said. That class of defect is now a test rather than a
+discovery (`test_consumed_attributes_actually_reach_the_parameters`): an attribute an archetype
+declares it consumes has to change the resolved parameters when its value changes. What this
+entry admitted is discharged; what it did not admit — that a stack's position, size and material
+are invented on every building — is now stated on its own, in L26.

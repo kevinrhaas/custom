@@ -62,7 +62,7 @@ GOLDEN = {
                         "wall_height_m": CONJ, "roof_type": CONJ,
                         "frame_addition": DOCUMENTED,
                         "frame_addition_stories": CONJ,
-                        "sign": DOCUMENTED, "loft": CONJ, "chimney": CONJ,
+                        "sign": DOCUMENTED, "loft": CONJ, "chimneys": INFERRED,
                         "footprint": CONJ})),
         # Samuel Miller's house: log cabin with a two-storey frame addition fronting
         # the river.
@@ -71,19 +71,24 @@ GOLDEN = {
             loft=True, frame_addition=True, frame_addition_side="front",
             frame_addition_width_m=9.5, frame_addition_depth_m=6.0,
             frame_addition_stories=2, frame_paint="unpainted",
+            # Two: the record counts one stack per element, and the preview is
+            # where the pair is looked at before the town is re-baked.
+            chimneys=2,
             confidence={"stories": DOCUMENTED, "construction": DOCUMENTED,
                         "wall_height_m": CONJ, "roof_type": CONJ,
                         "frame_addition": DOCUMENTED,
                         "frame_addition_stories": DOCUMENTED,
-                        "loft": CONJ, "chimney": CONJ, "footprint": CONJ})),
+                        "loft": CONJ, "chimneys": INFERRED, "footprint": CONJ})),
         # Walker's meeting house: "a small square log building, originally designed
         # for a school-house". The plain case.
         ("walker_meeting_house", LogDwellingParams(
             width_m=6.0, depth_m=6.0, stories=1, wall_height_m=2.45,
-            loft=False, chimney=False,
+            # None, so the preview keeps exercising the degenerate case — the
+            # archetype has to reduce to a bare cabin. The record says one.
+            loft=False, chimneys=0,
             confidence={"stories": INFERRED, "construction": DOCUMENTED,
                         "wall_height_m": CONJ, "roof_type": CONJ,
-                        "chimney": CONJ, "footprint": CONJ})),
+                        "chimneys": INFERRED, "footprint": CONJ})),
     ]),
     "bridge_timber": (bridge_timber.build, [
         # The North Branch bridge as it must have been by Aug 1835, when it carried

@@ -63,9 +63,16 @@ ADDITION_SIDES = ("front", "end")
 # documented painted sign went unbuilt without anything saying so. The record was
 # renamed to this vocabulary on 2026-08-10 and re-baked in the same slice; the set
 # is what found it, and it is what will find the next one.
+#
+# `chimney` was a third one of those, caught the same way and fixed on 2026-08-10.
+# Every record in the dataset states `chimneys`, a COUNT; this module read a
+# boolean called `chimney` that no record has ever contained, so `from_phase` took
+# its default and every log building got exactly one stack whatever the record
+# said. Samuel Miller's house says two. The parameter is now `chimneys` and it is
+# the count.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
-    "loft", "chimney", "sign", "frame_paint",
+    "loft", "chimneys", "sign", "frame_paint",
     "frame_addition", "frame_addition_side", "frame_addition_width_m",
     "frame_addition_depth_m", "frame_addition_stories", "frame_addition_height_m",
 })
@@ -104,10 +111,14 @@ class LogDwellingParams:
     # trace, and inventing a dormer would be adding evidence.
     loft: bool = False
 
-    # a chimney at one gable end. Log dwellings here were heated, so the default is
-    # True, but the record still carries the confidence — nothing about the stack's
-    # position or material is attested for any of these buildings.
-    chimney: bool = True
+    # How many stacks the building carries. Log dwellings here were heated, so the
+    # default is one, and the record supplies the number. Where each one stands is
+    # the archetype's: the first goes against the log core's gable end, and a second
+    # goes on the frame addition if there is one — which is the reasoning Miller's
+    # record gives for counting two, "a stack in each element" — or against the
+    # opposite gable if there is not. Nothing about a stack's position, size or
+    # material is attested for any of these buildings; docs/LIBERTIES.md owns that.
+    chimneys: int = 1
 
     # the frame addition. `front` puts it against the facade (Miller's house, the
     # two-storey block "fronting the river"); `end` extends the building sideways
@@ -177,6 +188,21 @@ class LogDwellingParams:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
         if self.sign is not None and not str(self.sign).strip():
             raise ParamError("sign is present but empty — omit it or say what it showed")
+        if not isinstance(self.chimneys, int) or isinstance(self.chimneys, bool):
+            raise ParamError(f"chimneys {self.chimneys!r} is not a whole number — the "
+                             f"record states a count, not whether there was one")
+        # Two is the ceiling because two is the number this archetype can place with
+        # an argument behind it: one on the log core, one on the frame addition. A
+        # third stack would have to go somewhere invented for no stated reason, and
+        # a log pen at the forks carrying three is a claim a record should make
+        # explicitly rather than have an archetype guess at.
+        if not 0 <= self.chimneys <= 2:
+            raise ParamError(f"chimneys {self.chimneys} outside 0..2 for a log dwelling; "
+                             f"this archetype places one at the core's gable and one on "
+                             f"the frame addition, and has nowhere argued to put a third")
+        if self.chimneys > 1 and not self.frame_addition and self.width_m < 4.0:
+            raise ParamError(f"two stacks on a {self.width_m} m log pen with no frame "
+                             f"addition would stand within a metre of each other")
         if self.frame_addition:
             self._validate_addition()
 
@@ -250,7 +276,7 @@ def from_phase(phase: dict) -> LogDwellingParams:
         roof_pitch_deg=float(val("roof_pitch_deg", 35.0)),
         construction=str(val("construction", "log")),
         loft=bool(val("loft", False)),
-        chimney=bool(val("chimney", True)),
+        chimneys=int(val("chimneys", 1)),
         frame_addition=bool(val("frame_addition", False)),
         frame_addition_side=str(val("frame_addition_side", "front")),
         frame_addition_width_m=float(val("frame_addition_width_m",

@@ -80,8 +80,7 @@
     "chimneys": {
       "value": 1,
       "confidence": "inferred",
-      "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence.",
-      "geometry": "simplified"
+      "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence."
     },
     "function": {
       "value": "meeting_house_school",
