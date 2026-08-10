@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the ground's staleness hash stops charging a bake for prose, and
-the three claims that were owed reasoning get it, § 34) ·
+**Last updated:** 2026-08-10 (the ground has to say what it does not build, and the first thing
+it admitted is what the surface is made of, § 35) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -41,6 +41,10 @@ back was a gate and not the research** (§ 34): writing a sentence of reasoning 
 spec used to re-stale the ground and demand a Blender bake, so three claims said *no reasoning
 is recorded* on the panel for a fortnight; the hash strips prose now, the three notes are
 written, and an unreasoned ground claim stops the commit exactly as it does on a building.
+**And the other half of the ground's honesty — what it states and does not build — is a gate
+now, which it never was** (§ 35): five surface materials, two of them `documented`, describe a
+soil no surface in this model is made of, and the panel showed them under the project's
+strongest chip with nothing saying so.
 
 ---
 
@@ -65,6 +69,7 @@ written, and an unreasoned ground claim stops the commit exactly as it does on a
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
+| **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35) |
 | Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
 
 ## Corrections made after the first live look
@@ -922,6 +927,65 @@ uncertainty of the 1834 sheets in its note.
     structure side, one file rather than the file every ground claim has to be written in, and
     written down in `terrain_inputs.py` rather than left to be rediscovered. And, as ever, this
     compares inputs and not output: a hand-edited GLB behind an untouched spec passes.
+
+35. **The ground says what it is made of and nothing is made of it, and the gate that found
+    that is the omission rule arriving on the terrain.** § 33 ends by naming its own limit: the
+    coverage rule fires on a `conjectural` tag, so the ground's *omissions* were outside it
+    exactly as a building's were before the geometry declarations, and there was no terrain
+    equivalent of `CONSUMED`. There is one now, and the first thing it reported is the sharpest
+    case of a confidence chip answering the wrong question that this dataset has produced.
+    **`terrain_spec.json` grades five surface materials and no surface in this model is made of
+    any of them.** The South Division's black loam over quicksand over blue clay is
+    `documented` — the strongest grade this project awards — and the marsh strip's peat and
+    muck is too, and the ground mesh carries one earth colour from one edge of the box to the
+    other. `terrain_gen.py` builds elevation and nothing else. A visitor reading that row is
+    being told how sure we are of a fact about the site, not what is under their feet, and
+    until today the panel could not tell them apart. **L35** admits it; the rows are marked
+    *not modelled from this*, in the provenance card's words, from the provenance card's module.
+    **The declaration is per figure and the admission is per claim**, which is a mismatch and is
+    stated rather than smoothed: `terrain.<epoch>.<claim>` is the vocabulary the document
+    already writes in, a soil profile is not separably admittable from the block that states it,
+    and the block-level grading § 32 and § 33 both flagged is the same limit one level down. The
+    note is where a reader learns which figure is the unbuilt one.
+    **Two new categories came out of writing it, and the second is a warning rather than an
+    admission.** `record_only` is the structure side's, unchanged — `dossier_zone` is a pointer
+    into the research table, `range_ft` is the dossier's span from which the built `near_ft` and
+    `far_ft` were picked, `bank_crest_ft` restates the crest the ramp already arrives at.
+    `restated_in_code` is new and exists only here: the water surface is `0.0` in the spec and a
+    literal zero in the generator, and the bank's ease-out is written out as a formula in the
+    spec and separately written in Python. **Those values are true about the mesh and the mesh
+    does not read them.** Calling that `absent` would be a lie in the visitor's direction and
+    `simplified` one in the reviewer's, and it gets no marker on the panel, because a visitor IS
+    looking at the thing it describes. What it owes is a warning to whoever edits the generator,
+    and nothing checks that the two halves still agree — same for `bank_crest_ft` against
+    `near_ft`, which carry the same number today by hand.
+    **Where the declaration lives is the interesting half, and it is § 15's fault arriving for
+    the third time.** An archetype declares `CONSUMED` beside the code that reads it, and that
+    works because a params module's bytes are out of the building hash. The terrain's reader is
+    `terrain_gen.py`, whose bytes go into the ground's hash WHOLE — so writing the map where it
+    belongs immediately re-staled the ground and demanded a Blender bake for a constant that
+    cannot move a vertex. That is exactly what § 34 paid off one level up, one week's worth of
+    the same lesson: it is in `generators/terrain_inputs.py` instead, beside the denylist, which
+    is the same kind of statement about the same generator. What co-location would have bought
+    is bought by `test_declared_terrain_reads_are_real_reads`, which scans the generator for a
+    read of every declared key — one step weaker than the structure side's perturbation test,
+    which needs numpy the gate deliberately does not have.
+    **And the key is called `mesh`, not `geometry`, because a test refused the obvious name.**
+    `geometry` is what a record calls this declaration, and in a GeoJSON it is the feature's
+    coordinates: adding it to the hash's denylist stripped every traced bank line, river ring
+    and slough centreline out of the ground's staleness hash, so a bank could have been redrawn
+    and the committed mesh would still have read fresh.
+    `test_terrain_prose_is_not_read_by_the_generator` — written for a different purpose in § 34
+    — caught it on the first run. The scheme is `resolved-spec-v2` and the manifest was
+    re-stamped without a bake; the proof is the same one § 34 gives, run rather than asserted:
+    the ground's input document at the previous commit and at this one are identical apart from
+    the scheme label.
+    **What it still cannot see.** A figure declared `simplified` when it is really `absent`, or
+    the reverse — the states are the author's reading of what the mesh does, and only the
+    CONSUMED half is checked against code. A zone the spec describes and the generator ignores
+    ENTIRELY is caught only if it grades itself, since an ungraded block makes no claim and
+    reaches no panel. And `restated_in_code` is the one state that asserts an agreement nothing
+    enforces, which is a smaller version of the fault this whole family of checks exists to end.
 
 ## Next
 

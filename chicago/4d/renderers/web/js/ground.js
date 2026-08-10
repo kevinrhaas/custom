@@ -35,6 +35,7 @@
  */
 
 import { citationItems, escapeHtml } from './citations.js';
+import { geometryMark } from './geometry.js';
 
 /** `near_ft` -> `near (ft)`. The unit lives in the key; a visitor should not. */
 function fieldName(key) {
@@ -70,9 +71,15 @@ function chip(confidence) {
  * third interface to read the same kind of disclosure.
  */
 export function groundClaimHtml(claim) {
+  // A figure the terrain generator does not read is marked with the same words
+  // the provenance card uses on a building's attribute, from the same module.
+  // The ground's version of the Wolf Point wolf sign is on this panel: two
+  // surface materials are `documented`, and the ground is one earth colour from
+  // one edge of the box to the other, so a chip alone tells a visitor how sure
+  // we are of a soil they are emphatically not looking at.
   const rows = (claim.fields || []).map((f) => `
     <dt>${escapeHtml(fieldName(f.key))}</dt>
-    <dd>${escapeHtml(fieldValue(f.value))}</dd>`).join('');
+    <dd>${escapeHtml(fieldValue(f.value))}${geometryMark(f.mesh)}</dd>`).join('');
 
   // An `inferred` value with no stated reasoning is an error on a structure
   // record and, since 2026-08-10, on a ground claim too — so the empty state is

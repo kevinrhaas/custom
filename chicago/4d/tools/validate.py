@@ -449,6 +449,136 @@ def check_terrain_claims(source_ids: set, rep: Report,
              f"{unreasoned} inferred without recorded reasoning")
 
 
+def terrain_consumed(rep: Report | None = None) -> dict[str, frozenset]:
+    """spec block -> the field keys whose value `terrain_gen.build_field` reads.
+
+    Declared as `CONSUMED` in `generators/terrain_inputs.py` — beside the
+    denylist, which is the same kind of statement about the same generator, and
+    NOT inside `terrain_gen.py`, whose bytes go into the ground's hash whole: a
+    constant that cannot move a vertex would have re-staled the terrain and asked
+    for a Blender bake to land a declaration. That module explains the choice at
+    length. Imported rather than parsed, and it costs nothing —
+    `terrain_inputs.py` imports only hashlib, json and pathlib, so `check.sh`
+    stays a sub-second gate with no dependencies.
+    """
+    sys.path.insert(0, str(ROOT / "generators"))
+    try:
+        import terrain_inputs  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        if rep:
+            rep.error("ground-geometry", f"cannot import generators/terrain_inputs.py, so "
+                                         f"nothing can tell which of the ground's claims "
+                                         f"reach a vertex: {e}")
+        return {}
+    consumed = getattr(terrain_inputs, "CONSUMED", None)
+    if consumed is None:
+        if rep:
+            rep.error("ground-geometry", "generators/terrain_inputs.py declares no CONSUMED "
+                                         "map, so a figure the spec states and the ground "
+                                         "does not contain cannot be told from one it does")
+        return {}
+    return {k: frozenset(v) for k, v in consumed.items()}
+
+
+def unbuilt_ground_values(index: dict[str, dict[str, dict]],
+                          consumed: dict[str, frozenset]) -> list[tuple]:
+    """Every figure the ground states that no vertex comes from.
+
+    Returns `(epoch, claim_id, field_key, state, where)` for the declared ones.
+    The fields are the ones `compile_scene.ground_fields` puts on the Evidence
+    panel, so the gate asks about exactly what a visitor is shown.
+    """
+    out: list[tuple] = []
+    for epoch, claims in sorted(index.items()):
+        for cid, claim in claims.items():
+            known = consumed.get(cid.split(".")[0])
+            if known is None:
+                continue
+            for f in claim.get("fields") or []:
+                if f["key"] in known:
+                    continue
+                out.append((epoch, cid, f["key"], f.get("mesh"),
+                            f"terrain {epoch}/{cid}"))
+    return out
+
+
+def check_ground_geometry(index: dict[str, dict[str, dict]],
+                          consumed: dict[str, frozenset], rep: Report) -> None:
+    """The ground may not state a figure the mesh does not contain without saying so.
+
+    This is `check_geometry_declarations` arriving on the terrain, and the
+    argument does not change in the move. A building's `documented` wolf sign
+    over a building with no sign on it is the failure that rule was written for;
+    the ground's version is `black_loam_over_quicksand_over_blue_clay`,
+    `documented`, on a surface that is one flat earth colour from one edge of the
+    box to the other. The confidence model grades how sure we are of the soil. It
+    has nothing to say about whether any of it was built, and a visitor reading
+    the panel cannot tell the two apart.
+
+    Nothing here depends on somebody noticing. The claims come from
+    `compile_scene.ground_claims`, which is what the panel renders; what reaches
+    a vertex comes from `terrain_inputs.CONSUMED`, held to the generator's actual
+    reads by a scan in the self-tests. Anything in the first and not the second owes a `mesh:`
+    declaration on its block, keyed by field name. (`mesh` rather than the
+    records' `geometry`, because in a GeoJSON `geometry` is the coordinates and
+    the terrain hash strips this key — see `generators/terrain_inputs.py`.)
+
+    Checked in both directions, as on the structure side: declaring a state over
+    a figure the generator DOES read is a false admission that would quietly
+    excuse a real omission the day the generator stopped reading it.
+    """
+    if not consumed:
+        rep.note("ground geometry check: no CONSUMED map to compare against")
+        return
+    missing_group = sorted({cid.split(".")[0]
+                            for claims in index.values() for cid in claims
+                            if cid.split(".")[0] not in consumed})
+    for group in missing_group:
+        rep.error("ground-geometry", f"the terrain spec grades a '{group}' block and "
+                                     f"terrain_inputs.CONSUMED says nothing about it — 'the "
+                                     f"generator ignores it' and 'nobody has said' are "
+                                     f"different states and only one of them is a finding")
+
+    declared = owed = 0
+    for epoch, cid, key, state, where in unbuilt_ground_values(index, consumed):
+        if state is None:
+            rep.error(where, f"'{key}' is a figure this claim states, the terrain generator "
+                             f"never reads it, and the Evidence panel shows it to a visitor "
+                             f"under a confidence chip — so nothing in the ground comes from "
+                             f"it and nothing says so. Declare what the ground does in "
+                             f"the block's mesh map: 'absent' (nothing of it is built), "
+                             f"'simplified' (a fixed default stands in its place), "
+                             f"'record_only' (recorded, never a build instruction) or "
+                             f"'restated_in_code' (the mesh agrees with it and does not read "
+                             f"it). Prose and declarations in terrain_spec.json are stripped "
+                             f"from the staleness hash, so this costs no bake")
+            continue
+        if state not in GROUND_GEOMETRY_STATES:
+            rep.error(where, f"'{key}' declares mesh: '{state}', which is not one of "
+                             f"{', '.join(GROUND_GEOMETRY_STATES)}")
+            continue
+        declared += 1
+        owed += state in GEOMETRY_OWES_LIBERTY
+
+    # The other direction: an admission over a figure that is built.
+    for epoch, claims in sorted(index.items()):
+        for cid, claim in claims.items():
+            known = consumed.get(cid.split(".")[0])
+            if known is None:
+                continue
+            for f in claim.get("fields") or []:
+                if f["key"] in known and f.get("mesh"):
+                    rep.error(f"terrain {epoch}/{cid}",
+                              f"'{f['key']}' declares mesh: '{f['mesh']}', but "
+                              f"terrain_gen reads this field — the ground is built from the "
+                              f"value, so there is nothing to declare. Drop it, or take the "
+                              f"key out of CONSUMED if the generator stopped using it")
+
+    rep.note(f"ground geometry check: {declared} stated figure(s) the terrain generator does "
+             f"not read, each declaring what the ground does instead; {owed} of them owe "
+             f"docs/LIBERTIES.md an admission")
+
+
 # --------------------------------------------------------------------------
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
@@ -537,6 +667,16 @@ def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
 # negative finding — has nothing missing from the model to admit to.
 GEOMETRY_STATES = ("absent", "simplified", "record_only")
 GEOMETRY_OWES_LIBERTY = ("absent", "simplified")
+
+# The ground's vocabulary is the same three plus one a record cannot need.
+# `restated_in_code` is a value the mesh AGREES with and does not come from: the
+# water plane is a literal zero in `terrain_gen.py` and the bank's ease-out is
+# written in Python, so those spec lines describe the ground accurately while
+# driving nothing. Calling that `absent` would be a lie in the visitor's
+# direction and `simplified` one in the reviewer's. It owes no liberty — nothing
+# is missing from the model — and what it does owe is a warning to whoever edits
+# the generator, which is why the declaration says where the duplicate lives.
+GROUND_GEOMETRY_STATES = GEOMETRY_STATES + ("restated_in_code",)
 
 
 def unbuilt_values(structures: dict, consumed: dict[str, frozenset]) -> list[tuple]:
@@ -854,7 +994,8 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                              consumed: dict[str, frozenset] | None = None,
                              unlanded: list[tuple] | None = None,
-                             ground: dict[str, dict[str, dict]] | None = None) -> None:
+                             ground: dict[str, dict[str, dict]] | None = None,
+                             ground_consumed: dict[str, frozenset] | None = None) -> None:
     """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
@@ -980,18 +1121,40 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     # the requirement is the identical one, and so is the argument for it.
     ground = ground or {}
     ground_honoured: set[tuple] = set()
-    ground_owed = terrain_conjectural_values(ground)
-    for epoch, cid, label, where in ground_owed:
+    ground_owed = [(e, c, lab, w, "invented")
+                   for e, c, lab, w in terrain_conjectural_values(ground)]
+    # And the ground's omissions, on the same terms as a building's. The claim is
+    # per FIELD and the admission is per CLAIM, because `terrain.<epoch>.<claim>`
+    # is the vocabulary the document already writes in and a soil profile is not
+    # separably admittable from the block that states it. The mismatch is the
+    # block-level grading this panel already carries, one level down: the note is
+    # where a reader learns which figure is the unbuilt one.
+    seen_omitted: set[tuple] = set()
+    for epoch, cid, key, state, where in unbuilt_ground_values(
+            ground, ground_consumed if ground_consumed is not None else terrain_consumed()):
+        if state not in GEOMETRY_OWES_LIBERTY or (epoch, cid) in seen_omitted:
+            continue
+        seen_omitted.add((epoch, cid))
+        label = (ground.get(epoch, {}).get(cid, {}) or {}).get("label") or cid
+        ground_owed.append((epoch, cid, label, where, state))
+    for epoch, cid, label, where, kind in ground_owed:
         key = (epoch, cid)
         if key in ground_claims_made:
             covered += 1
             ground_n += 1
             ground_honoured.add(key)
             continue
+        if kind == "invented":
+            why = (f"'{label}' is conjectural and no liberty in docs/LIBERTIES.md claims "
+                   f"it — the ground invents as freely as a record does, a visitor walks "
+                   f"on the result")
+        else:
+            why = (f"'{label}' states a figure the ground does not contain "
+                   f"(mesh: '{kind}') and no liberty in docs/LIBERTIES.md claims it — "
+                   f"the panel shows the claim with a confidence chip over it and nothing "
+                   f"tells a visitor there is no vertex behind it")
         rep.error(where,
-                  f"'{label}' is conjectural and no liberty in docs/LIBERTIES.md claims "
-                  f"it — the ground invents as freely as a record does, a visitor walks "
-                  f"on the result, and the standard is that they can tell you which parts. "
+                  f"{why}, and the standard is that they can tell you which parts. "
                   f"Append the liberty with '**Covers:** `terrain.{epoch}.{cid}`' and "
                   f"re-run tools/compile_liberties.py")
 
@@ -1013,9 +1176,11 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         if all((e.get("section") or "") == "resolved" for e in owners):
             continue
         rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}', but that "
-                               f"ground claim is not conjectural — either evidence arrived "
-                               f"and the spec caught up, in which case move the entry to the "
-                               f"Resolved section of docs/LIBERTIES.md, or the claim was "
+                               f"ground claim is neither conjectural nor stating a figure "
+                               f"declared absent or simplified — either evidence arrived "
+                               f"and the spec caught up, or the ground was built and the "
+                               f"declaration dropped, in which case move the entry to the "
+                               f"Resolved section of docs/LIBERTIES.md; or the claim was "
                                f"never true. An admission to something we did not do reads "
                                f"as diligence and provides none")
 
@@ -1364,6 +1529,11 @@ def main() -> int:
     # cannot be graded against one list and admitted to against another.
     ground_index = terrain_claim_index(load_terrain_specs(rep), rep)
     check_terrain_claims(source_ids, rep, index=ground_index)
+    # and the ground's omissions, which are the other half of the same question:
+    # every gate above asks how sure we are of what the ground claims, and none
+    # of them can see a claim with no vertex behind it at all.
+    ground_consumed = terrain_consumed(rep)
+    check_ground_geometry(ground_index, ground_consumed, rep)
 
     # scenes
     for name, sc in scenes.items():
@@ -1399,7 +1569,8 @@ def main() -> int:
         unlanded = unlanded_values(structures, scenes, rep, field, datum_origin, contacts)
         check_ground_contact(structures, unlanded, rep)
 
-    check_liberties_coverage(structures, liberties, rep, consumed, unlanded, ground_index)
+    check_liberties_coverage(structures, liberties, rep, consumed, unlanded, ground_index,
+                             ground_consumed)
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)

@@ -626,7 +626,7 @@ def test_liberties_cover_what_the_ground_invents() -> None:
                         ground_covers("e1834_harbor_cut", "water")]),
     ]}, rep, None, None, ground)
     check("claiming to have invented a documented ground claim is an error",
-          any("terrain.e1834_harbor_cut.water" in e and "not conjectural" in e
+          any("terrain.e1834_harbor_cut.water" in e and "neither conjectural" in e
               for e in rep.errors), rep.errors)
 
     rep = V.Report()
@@ -1408,6 +1408,158 @@ def test_writing_a_ground_claims_reasoning_costs_no_bake() -> None:
         (tmp / "terrain_spec.json").write_text(json.dumps(grown, indent=1))
         check("and a zone nobody had heard of is a mesh input the day it is added",
               T.terrain_inputs_sha(tmp) != base)
+
+
+def ground_claim_fixture(cid: str, conf: str, fields: list, label: str | None = None) -> dict:
+    """One claim of the shape `compile_scene.ground_claims` yields, with figures."""
+    return {"id": cid, "label": label or cid.split(".")[-1], "confidence": conf,
+            "fields": fields, "sources": [], "citations": [], "notes": []}
+
+
+def test_the_ground_must_say_what_it_does_not_build() -> None:
+    """A figure on the panel with no vertex behind it has to say so.
+
+    This is the omission rule arriving on the terrain, and the case that argues
+    for it is in the committed data: five surface materials, two of them
+    `documented`, over a ground mesh that is one earth colour edge to edge. The
+    confidence chip grades how sure we are of the soil and cannot say that none
+    of it was built.
+
+    Both directions are pinned, as on the structure side. A declaration over a
+    figure the generator DOES read is the more dangerous of the two errors — it
+    reads as diligence and would silently excuse a real omission the day the
+    generator stopped reading the value.
+    """
+    consumed = {"bank": frozenset({"face_m"}),
+                "surface_materials": frozenset()}
+    index = {"e1834_harbor_cut": {
+        "bank": ground_claim_fixture("bank", "conjectural", [
+            {"key": "face_m", "value": 6.0},
+            {"key": "profile", "value": "ease_out", "mesh": "restated_in_code"},
+        ]),
+        "surface_materials.south": ground_claim_fixture(
+            "surface_materials.south", "documented", [{"key": "material", "value": "loam"}]),
+    }}
+
+    rep = V.Report()
+    V.check_ground_geometry(index, consumed, rep)
+    check("a stated figure the generator never reads, undeclared, is an error",
+          any("'material'" in e and "nothing in the ground comes from it" in e
+              for e in rep.errors), rep.errors)
+    check("a figure the generator does read owes no declaration",
+          not any("'face_m'" in e for e in rep.errors), rep.errors)
+    check("and a declared one is accepted",
+          not any("'profile'" in e for e in rep.errors), rep.errors)
+
+    # The declaration has to be one of the four states, and the fourth is the
+    # ground's own: the water plane is a literal zero in the generator, so the
+    # mesh agrees with the spec without reading it.
+    rep = V.Report()
+    V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
+        "bank", "conjectural", [{"key": "profile", "value": "x", "mesh": "invented"}])}},
+        consumed, rep)
+    check("a declaration outside the vocabulary is an error",
+          any("not one of" in e for e in rep.errors), rep.errors)
+
+    # The false admission.
+    rep = V.Report()
+    V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
+        "bank", "conjectural", [{"key": "face_m", "value": 6.0, "mesh": "absent"}])}},
+        consumed, rep)
+    check("declaring an omission over a figure the ground IS built from is an error",
+          any("'face_m'" in e and "nothing to declare" in e for e in rep.errors), rep.errors)
+
+    # "The generator ignores this block" and "nobody has said" are different
+    # states, and only one of them is a finding — the same rule archetype_consumed
+    # applies to an archetype with no params module.
+    rep = V.Report()
+    V.check_ground_geometry({"e1834_harbor_cut": {"lagoons.x": ground_claim_fixture(
+        "lagoons.x", "inferred", [{"key": "depth_ft", "value": 2.0}])}}, consumed, rep)
+    check("a graded block CONSUMED says nothing about is an error, not a pass",
+          any("'lagoons'" in e for e in rep.errors), rep.errors)
+
+
+def test_an_unbuilt_ground_figure_owes_the_document_an_admission() -> None:
+    """The ground's omissions are claimed in the same namespace its inventions are.
+
+    Per FIELD in the spec and per CLAIM in the document, because
+    `terrain.<epoch>.<claim>` is the vocabulary `docs/LIBERTIES.md` already writes
+    in and a soil profile is not separably admittable from the block that states
+    it. `record_only` and `restated_in_code` owe nothing: neither is a thing
+    missing from the model.
+    """
+    consumed = {"surface_materials": frozenset(), "bank": frozenset({"face_m"})}
+    index = {"e1834_harbor_cut": {
+        "surface_materials.south": ground_claim_fixture(
+            "surface_materials.south", "documented",
+            [{"key": "material", "value": "loam", "mesh": "simplified"}]),
+        "bank": ground_claim_fixture("bank", "inferred", [
+            {"key": "face_m", "value": 6.0},
+            {"key": "dossier_zone", "value": 13, "mesh": "record_only"},
+        ]),
+    }}
+
+    rep = V.Report()
+    V.check_liberties_coverage({}, {"liberties": [liberty("L1", "No people", [])]},
+                               rep, None, None, index, consumed)
+    check("a soil the ground is not made of, unclaimed, is an error",
+          any("surface_materials.south" in e and "does not contain" in e
+              for e in rep.errors), rep.errors)
+    check("a record_only figure owes the document nothing",
+          not any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage({}, {"liberties": [
+        liberty("L2", "Terrain: the ground says what it is made of and nothing is", [],
+                covers=[ground_covers("e1834_harbor_cut", "surface_materials.south")]),
+    ]}, rep, None, None, index, consumed)
+    check("claiming it satisfies the check", not rep.errors, rep.errors)
+
+    # And the over-claim direction has to survive the new kind of obligation: a
+    # documented claim that owes an admission for an OMISSION must not be
+    # reported as an admission to an invention it never made.
+    rep = V.Report()
+    V.check_liberties_coverage({}, {"liberties": [
+        liberty("L3", "Terrain: the bank face", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank")]),
+    ]}, rep, None, None, index, consumed)
+    check("claiming a block that is neither invented nor unbuilt is still an error",
+          any("terrain.e1834_harbor_cut.bank" in e and "neither conjectural" in e
+              for e in rep.errors), rep.errors)
+
+
+def test_declared_terrain_reads_are_real_reads() -> None:
+    """CONSUMED is a claim about `terrain_gen.py`, so it is checked against it.
+
+    The map lives in `terrain_inputs.py` rather than beside `build_field`,
+    because that generator's bytes are hashed into the ground and a constant no
+    builder reads would have re-staled the terrain — see that module. What
+    co-location would have bought is bought here instead: every key declared
+    consumed must appear in the generator as a subscript or a `.get()`, so a
+    declaration that stops being true fails rather than quietly excusing an
+    omission. It is the terrain's answer to
+    `test_consumed_attributes_actually_reach_the_parameters`, one step weaker —
+    a text scan proves the key is read, not that the value moves a vertex — and
+    the generator needs numpy to run at all, which `check.sh` deliberately does
+    not have.
+    """
+    import re  # noqa: PLC0415
+    root = Path(__file__).resolve().parent.parent
+    T, _ = _terrain_inputs()
+    src = (root / "generators/terrain_gen.py").read_text()
+
+    def reads(key: str) -> bool:
+        return bool(re.search(rf"""\[\s*['"]{re.escape(key)}['"]\s*\]""", src)
+                    or re.search(rf"""\.get\(\s*['"]{re.escape(key)}['"]""", src))
+
+    declared = sorted({k for keys in T.CONSUMED.values() for k in keys})
+    missing = [k for k in declared if not reads(k)]
+    check("every key declared consumed is actually read by the generator",
+          not missing, f"{len(declared)} declared, unread: {missing}")
+    check("the scan can tell the difference (it is a regex, so prove it can fail)",
+          not reads("material") and not reads("bank_crest_ft"),
+          "the generator now reads a key the spec declares unbuilt, so this "
+          "scan proves nothing")
 
 
 def test_terrain_prose_is_not_read_by_the_generator() -> None:

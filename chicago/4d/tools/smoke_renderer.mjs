@@ -908,6 +908,13 @@ for (const [label, viewport, touch] of [
         conf: d.querySelector('summary .conf')?.textContent.trim() ?? '',
         body: d.querySelector('.lib-body')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
         cites: [...d.querySelectorAll('.cites li')].map((li) => li.textContent.trim()),
+        // Which of this claim's figures say they are not in front of you, by the
+        // figure's own name — a count would pass against a panel that marked the
+        // wrong row.
+        marks: [...d.querySelectorAll('.lib-body dd .geom')].map((g) => ({
+          field: g.closest('dd')?.previousElementSibling?.textContent.trim() ?? '',
+          text: g.textContent.trim(),
+        })),
       });
       const all = entries.map(read);
       const find = (labelRe, groupRe) => all.find(
@@ -990,6 +997,37 @@ for (const [label, viewport, touch] of [
       && !/No reasoning is recorded/.test(emptyState.with)
       && /because the sources say so/.test(emptyState.with),
       emptyState.without.slice(0, 120));
+    // The ground's version of the Wolf Point wolf sign, and the reason this slice
+    // exists: the surface materials are graded — two of them `documented`, the
+    // strongest grade this project awards — and NOTHING in the model is made of
+    // any of them. The assertion is the discriminating pair rather than "a mark
+    // exists": the material row is marked and the dossier-zone row beside it is
+    // not, and the bank, whose face_m is what shapes every bank in the box,
+    // carries no mark at all.
+    check(`${label}: a soil the ground is not made of says so, and the figures that are do not`,
+      (ground.material?.marks ?? []).some(
+        (m) => /material/.test(m.field) && m.text === 'not modelled from this')
+      && !(ground.material?.marks ?? []).some((m) => /dossier/.test(m.field))
+      && !(ground.bank?.marks ?? []).length,
+      `material marks ${JSON.stringify(ground.material?.marks ?? [])} · `
+      + `bank marks ${JSON.stringify(ground.bank?.marks ?? [])}`);
+    // And the mark is exercised at the renderer, so it survives the data being
+    // repaired: the day S6 colours the ground by zone, the declaration comes off
+    // the spec and the committed panel stops carrying this case.
+    const marking = await page.evaluate(async () => {
+      const { groundClaimHtml } = await import('/renderers/web/js/ground.js');
+      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'documented',
+        sources: [], citations: [], notes: ['because'] };
+      const html = (mesh) => groundClaimHtml({ ...claim,
+        fields: [{ key: 'material', value: 'loam', ...(mesh ? { mesh } : {}) }] });
+      return { unbuilt: html('simplified'), built: html(null),
+        restated: html('restated_in_code') };
+    });
+    check(`${label}: the mark is the declaration's, not the row's`,
+      /not modelled from this/.test(marking.unbuilt)
+      && !/not modelled from this/.test(marking.built)
+      && !/geom/.test(marking.restated),
+      marking.unbuilt.slice(0, 140));
     check(`${label}: the Evidence panel still does not overflow with the ground on it`,
       ground.overflow);
     await page.click('#panel-close');

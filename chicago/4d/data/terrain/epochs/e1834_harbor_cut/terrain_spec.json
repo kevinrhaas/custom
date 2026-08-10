@@ -26,6 +26,8 @@
     "confidence": "documented",
     "dossier_zone": 1,
     "sources": ["wikipedia_chicago_river"],
+    "mesh": { "surface_ft": "restated_in_code", "dossier_zone": "record_only" },
+    "mesh_note": "The water surface is the plane Z = 0 by the definition of this project's vertical datum, and terrain_gen.py emits it at a literal zero rather than reading this figure. So the mesh says exactly what this value says and does not say it BECAUSE of this value: change the 0.0 here and nothing moves. It is recorded because the datum has to be stated somewhere a reader meets it.",
     "note": "Flat. Pre-reversal flow was sluggish and outward into the lake with a near-zero surface gradient, so the water surface is effectively at lake level throughout the downtown reach; the river gradient is treated as zero."
   },
 
@@ -36,6 +38,7 @@
       "bed_ft": -12.0,
       "confidence": "inferred",
       "dossier_zone": 20,
+      "mesh": { "dossier_zone": "record_only" },
       "sources": ["wikipedia_chicago_river"],
       "note": "Dossier zone 20 gives the main-stem thalweg at -12 to -18 ft, with the -18 ft pool at the fort bend 1.2 miles downstream. The shallow end of that range is used here because the forks are the upstream end of the reach. Swearingen's 1803 sounding of 'upwards of 18 feet' is a measurement AT THE FORT and is not carried up to the forks."
     },
@@ -45,6 +48,7 @@
       "bed_ft": -8.0,
       "confidence": "inferred",
       "dossier_zone": 21,
+      "mesh": { "dossier_zone": "record_only" },
       "sources": [],
       "note": "Dossier zone 21 gives -6 to -10 ft for the branch beds above the forks, itself inferred. Midpoint taken. No sounding of either branch was located."
     },
@@ -54,6 +58,7 @@
       "bed_ft": -8.0,
       "confidence": "inferred",
       "dossier_zone": 21,
+      "mesh": { "dossier_zone": "record_only" },
       "sources": [],
       "note": "As north_branch."
     }
@@ -64,6 +69,8 @@
     "e_fold_m": 9.0,
     "e_fold_note": "The e-folding distance is the river's. A watercourse may override it: the north-side slough is 7 m wide, and a 9 m e-fold would make a 1 ft channel 4 in deep and invisible.",
     "bed_confidence": "conjectural",
+    "mesh": { "shape": "restated_in_code" },
+    "mesh_note": "The formula is written out here for a reader and implemented in terrain_gen.py, which does not read the string. The mesh does what this line says; nothing holds the two together, so a change to the code would leave this sentence describing a cross-section the ground no longer has.",
     "note": "The cross-section shape is a smooth approach to the reach bed and carries no evidence at all — no cross-section of the Chicago River at the forks exists for any date before dredging. It is under water and invisible; it is here so that the surface reaches Z=0 exactly at the traced bank line and so a boat draught question has an answer. Marked conjectural in the confidence channel."
   },
 
@@ -72,7 +79,9 @@
     "profile": "ease_out_quadratic: h = level * (1 - (1 - d/face)^2), steepest at the waterline",
     "note": "Horizontal distance over which the ground rises from the waterline to the local near-river level. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise; no source gives a bank profile at the forks. The resulting crest sits at each division's near_ft below, which is what implements dossier zone 13 (+2 to +4 ft at the forks).",
     "confidence": "conjectural",
-    "dossier_zone": 13
+    "dossier_zone": 13,
+    "mesh": { "profile": "restated_in_code", "dossier_zone": "record_only" },
+    "mesh_note": "As with the channel section: the ease-out is implemented in terrain_gen.py rather than read from this string, so the two agree by the hand that wrote them and by nothing else. face_m is the figure that shapes the bank."
   },
 
   "divisions": [
@@ -89,7 +98,9 @@
       "sources": ["chicago_architecture_history_115"],
       "note": "The plain west of State Street 'sloped down to the river in a level plain elevated only two to three feet above the river'. State Street is roughly 840 m east of the origin, so the whole South Division inside this box is that plain. The rise from 2.4 ft at the bank to 2.9 ft at 300 m inland is 0.15 ft of fall across a 300 ft chord — inside the dossier's flatness rule of 0.5 ft per 300-ft block. Marked inferred, not documented: the source is a secondary synthesis that gives no citation for the figure and no survey underlies it.",
       "bank_crest_ft": 2.4,
-      "bank_crest_dossier_zone": 13
+      "bank_crest_dossier_zone": 13,
+      "mesh": { "dossier_zone": "record_only", "range_ft": "record_only", "bank_crest_ft": "record_only", "bank_crest_dossier_zone": "record_only" },
+      "mesh_note": "range_ft is the dossier's stated span and near_ft/far_ft are the figures picked out of it, which are what the generator reads. bank_crest_ft restates the crest that the bank ramp arrives at from near_ft; the two carry the same number and nothing checks that they still will."
     },
     {
       "id": "north_division",
@@ -104,7 +115,9 @@
       "sources": ["chicagology_prefire273"],
       "note": "Zone 19 gives the North Division +4 to +7 ft, rising toward the lake; zone 13 gives the bank crest at the forks +2 to +4 ft and says the ground rises slightly on the timbered north side. Reconciled as a 3.6 ft bank crest rising to 4.6 ft at 300 m inland — 0.31 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The North Side is documented as carrying a thrifty heavy growth of timber, which is consistent with better-drained sandy ground.",
       "bank_crest_ft": 3.6,
-      "bank_crest_dossier_zone": 13
+      "bank_crest_dossier_zone": 13,
+      "mesh": { "dossier_zone": "record_only", "range_ft": "record_only", "bank_crest_ft": "record_only", "bank_crest_dossier_zone": "record_only" },
+      "mesh_note": "As south_division: the span is the dossier's, the two picked figures are the build instruction, and the crest restates near_ft."
     },
     {
       "id": "west_division",
@@ -119,7 +132,9 @@
       "sources": ["chicagology_prefire273"],
       "note": "Zone 18 gives the West Division wet prairie +3 to +6 ft with 1-2 ft slough swales; zone 13 caps the bank at the point at +2 to +4 ft. Reconciled as 3.2 ft at the bank rising to 4.3 ft at 300 m — 0.34 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The West Side is documented as open prairie entirely free from timber.",
       "bank_crest_ft": 3.2,
-      "bank_crest_dossier_zone": 13
+      "bank_crest_dossier_zone": 13,
+      "mesh": { "dossier_zone": "record_only", "range_ft": "record_only", "bank_crest_ft": "record_only", "bank_crest_dossier_zone": "record_only" },
+      "mesh_note": "As south_division."
     }
   ],
 
@@ -133,6 +148,7 @@
       "range_ft": [0.5, 2.0],
       "dossier_zone": 11,
       "confidence": "inferred",
+      "mesh": { "range_ft": "record_only", "dossier_zone": "record_only" },
       "sources": ["chicagology_prefire273"],
       "note": "The South Division was 'generally low and marshy ground', with 'a strip along the river shore that was still more marshy, where land and water mingled, covered with tall grass, reeds and rushes'. Dossier zone 11 puts that strip 40-120 ft back from the bank at +0.5 to +2.0 ft. 30 m (98 ft) at +1.25 ft is the middle of both ranges. Applied only to the South Division shore because that is the division the source names; the north and west shores get the plain bank profile instead. This is what makes the bank a crest rather than a ramp: the ground behind it is LOWER than the bank top, which is the natural-levee form a low alluvial bank takes."
     }
@@ -145,6 +161,7 @@
       "half_width_m": 30.0,
       "depth_ft": 0.75,
       "dossier_zone": 18,
+      "mesh": { "dossier_zone": "record_only" },
       "confidence": "conjectural",
       "sources": [],
       "note": "Zone 18 says the West Division wet prairie carried 1-2 ft slough swales. That they existed is inferred from the dossier; WHERE they ran is not attested anywhere and this alignment is invented. Kept shallow (0.75 ft over a 30 m half-width, about 2.3 ft per 300 ft) and recorded as a liberty in docs/LIBERTIES.md."
@@ -155,6 +172,7 @@
       "half_width_m": 26.0,
       "depth_ft": 0.6,
       "dossier_zone": 18,
+      "mesh": { "dossier_zone": "record_only" },
       "confidence": "conjectural",
       "sources": [],
       "note": "As west_prairie_swale_a."
@@ -168,6 +186,7 @@
       "bed_ft": -1.0,
       "e_fold_m": 1.2,
       "confidence": "conjectural",
+      "mesh": { "from": "record_only" },
       "sources": ["wright_1834"],
       "note": "Existence and course documented by Wright 1834; width measured off the drafted band; depth invented. A shallow, still, connected backwater is the form the sources describe for sloughs off the Main Branch: 'marshy, wet areas with little current'."
     }
@@ -179,18 +198,30 @@
     "seed": 18350701,
     "confidence": "conjectural",
     "applies_to": "land above the waterline, faded out across the bank face",
+    "mesh": { "applies_to": "restated_in_code" },
+    "mesh_note": "Where the noise applies is decided in terrain_gen.py — it multiplies the bank ramp, which is zero at the waterline — and this line describes that rather than driving it.",
     "note": "Two octaves of value noise at +/- 0.10 ft (30 mm) — below the 0.25 ft the dossier asks the heightmap to be quantised at, and far below the resolution of any statement in the record. It exists so that a surface the sources describe as dead flat still reads as ground rather than as a rendering error, and so that walking gives motion parallax. It is a texture, not a claim. Set amplitude_ft to 0 for a perfectly flat plain."
   },
 
   "surface_materials": [
-    { "zone": "south_division", "material": "black_loam_over_quicksand_over_blue_clay", "dossier_zone": 9, "confidence": "documented", "sources": ["chicago_architecture_history_115"] },
+    { "zone": "south_division", "material": "black_loam_over_quicksand_over_blue_clay", "dossier_zone": 9, "confidence": "documented", "sources": ["chicago_architecture_history_115"],
+      "mesh": { "material": "simplified", "dossier_zone": "record_only" },
+      "mesh_note": "Nothing in the model is made of this. The ground mesh carries one surface for the whole box — the renderer's earth colour — so the profile a visitor reads here, under the strongest confidence grade this project awards, is a statement about the site and not a description of the surface in front of them. What a soil section would change if it were built is the colour and texture of the ground, and neither is driven by this value." },
     { "zone": "north_division", "material": "black_loam_over_quicksand_over_blue_clay", "dossier_zone": 19, "confidence": "inferred", "sources": ["chicago_architecture_history_115"],
+      "mesh": { "material": "simplified", "dossier_zone": "record_only" },
+      "mesh_note": "As south_division: one earth colour covers the whole box and no surface material is modelled.",
       "note": "The profile itself — about a foot of black loam over three to four feet of saturated fine sand over eight to twelve feet of impervious blue clay — is stated for the BUSINESS DISTRICT, which is the South Division plain south of the main stem. Carrying it across the river is the dossier's own grouping of zones 8, 9, 18 and 19 under one entry (docs/research/01-terrain-hydrology.md, surface-material table), not a second observation, so this is inferred where the south_division entry is documented. Against it: the same dossier describes the North Division (zone 19) as timbered, better-drained sandy ground, which is not what the loam-over-quicksand-over-clay section describes. Nothing reached measures a section here." },
     { "zone": "west_division", "material": "black_loam_over_quicksand_over_blue_clay", "dossier_zone": 18, "confidence": "inferred", "sources": ["chicago_architecture_history_115"],
+      "mesh": { "material": "simplified", "dossier_zone": "record_only" },
+      "mesh_note": "As south_division: one earth colour covers the whole box and no surface material is modelled.",
       "note": "Inferred by the same extension as the north_division entry: the profile is stated for the business district and the dossier's surface-material table groups zones 8, 9, 18 and 19 under it. Two things weaken it here and are recorded rather than resolved. The dossier's own stratigraphic list maps the wet prairie west of the South Branch to the Equality Formation (lacustrine silt and clay), which is a different surface unit from the loam-over-sand-over-clay section; and the West Division is the one zone in this box whose ground is described as wet prairie carrying slough swales rather than as town ground. The grouping is followed because it is the statement that assigns zones, and the disagreement inside one report is the reason this is not documented." },
-    { "zone": "south_division_marsh", "material": "peat_muck_with_sedge_reeds_rushes", "dossier_zone": 11, "confidence": "documented", "sources": ["chicagology_prefire273"] },
+    { "zone": "south_division_marsh", "material": "peat_muck_with_sedge_reeds_rushes", "dossier_zone": 11, "confidence": "documented", "sources": ["chicagology_prefire273"],
+      "mesh": { "material": "simplified", "dossier_zone": "record_only" },
+      "mesh_note": "The marsh strip IS in the ground — it is the dip behind the bank crest — but what it is made of is not: peat, sedge, reeds and rushes are the flora and surface parcel (S6), and the strip renders in the same earth as the plain behind it." },
     { "zone": "channel", "material": "cahokia_alluvium_silt", "dossier_zone": 20,
       "confidence": "inferred",
+      "mesh": { "material": "simplified", "dossier_zone": "record_only" },
+      "mesh_note": "The note below has said since this entry was written that nothing in the renderer is coloured from it. That sentence is a declaration now, checked against what the generator reads, and it holds for the other four entries too — which no sentence said.",
       "note": "Nobody in this project has seen this bed and no source record here describes it. The Cahokia Alluvium is the unit modern geological mapping puts along the river margins of this region, and the dossier assigns it to the channel zones (20-21 and the abandoned southward channel) on that basis, tagging the assignment inferred itself (docs/research/01-terrain-hydrology.md, surface-material table; the mapping it rests on is a modern geology reference and is not among data/sources/). It is a formation name carried onto this reach by regional mapping, not an observation of the Chicago River bed in 1835 — which is why it is inferred and not documented, and why nothing in the renderer is coloured from it." }
   ],
 

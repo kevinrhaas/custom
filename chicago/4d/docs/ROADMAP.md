@@ -387,6 +387,13 @@ Per-cluster parcels, each one file per structure so parallel agents never collid
 
 ## S6 — Flora and fauna
 
+**And the ground's surface, which is now a declared omission rather than an unstated one**
+(2026-08-10, L35): the terrain spec grades five surface materials — the divisions' loam over
+quicksand over blue clay, the marsh strip's peat and sedge, the channel's silt — and the mesh is
+one earth colour. A per-zone surface treatment driven by those entries retires L35; the palette
+has to be argued from the sources rather than picked, which is the same trap the street surface
+is (§ S9).
+
 Per-zone parcels from the dossiers: 10 flora zones, 7 fauna zones. Honor the July phenology
 rules — big bluestem is vegetative in July, cordgrass is the tall flowering element, ramps are
 leafless scapes. Negative findings (no ring-billed gulls, no beaver, no periodical cicadas) go
@@ -653,9 +660,42 @@ token because `docs/EPOCHS.md` versions the ground, so a later shoreline's inven
 discharged by this one's admission — the self-test pins that. And the terrain is not modelled as
 a structure record called `terrain`: the domains are separate obligations, neither discharges the
 other, and the claim carries its `domain` rather than leaving a reader to infer it from a token's
-shape. What is still outside the rule is the ground's **omissions** — there is no terrain
-`CONSUMED`, so a zone the spec describes and `terrain_gen.py` ignores leaves no trace — and the
-grades stay block-level, so L34 admits more than the data does.
+shape. ~~What is still outside the rule is the ground's **omissions** — there is no terrain
+`CONSUMED`~~ — **DONE 2026-08-10, see the entry below**; the grades stay block-level, so L34
+admits more than the data does.
+
+**Done 2026-08-10 — the ground has to say what it does not build, and it is not made of what it
+says it is made of.** The entry above names its own limit: the coverage rule fires on a
+`conjectural` tag, so an invention was demanded and an omission left no trace. The terrain has a
+`CONSUMED` now — the spec figures `terrain_gen.build_field` actually reads — and
+`check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:`
+declaration on its block, in both directions, with `absent` and `simplified` owing a `Covers:`
+token exactly as they do on a record.
+
+**Five surface materials, two of them `documented`, describe a soil no surface in this model is
+made of.** The ground mesh is one earth colour edge to edge; `terrain_gen.py` builds elevation
+and nothing else. That is the Wolf Point wolf sign one domain over — the project's strongest
+chip over something a visitor is emphatically not looking at — and L35 is where it is admitted.
+The rows say *not modelled from this*, in the provenance card's words, out of the provenance
+card's module (`renderers/web/js/geometry.js`, now shared by both surfaces). Colouring ground by
+zone is **S6** and the declaration comes off the day the generator reads the value.
+
+Three things worth carrying, all of them about where a declaration may live:
+
+- **`terrain_inputs.CONSUMED`, not `terrain_gen.CONSUMED`.** An archetype declares its consumed
+  set beside the code that reads it, and that only works because a params module's bytes are out
+  of the building hash. `terrain_gen.py` goes into the ground's hash whole, so the map re-staled
+  the terrain on sight and asked for a Blender bake to land a constant. It sits beside the
+  denylist instead — same file, same subject — and `test_declared_terrain_reads_are_real_reads`
+  scans the generator for a read of every declared key, which is what co-location would have
+  bought.
+- **The key is `mesh` because `geometry` is taken.** In a GeoJSON that word is the coordinates;
+  stripping it from the hash would have taken every traced bank line out of the ground's
+  staleness. A test written for § 34's purpose refused it on the first run.
+- **`restated_in_code` is a fourth state and only the ground needs it.** The water plane's zero
+  and the bank's ease-out are written in the spec and separately written in Python. The mesh
+  agrees with them and does not read them; nothing holds the two together, and that is a warning
+  to whoever edits the generator rather than a caveat to a visitor, so it carries no marker.
 
 ## S8 — Milestone 1
 
