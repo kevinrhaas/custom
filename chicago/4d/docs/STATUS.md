@@ -181,9 +181,16 @@ that is not there — a 404 the smoke correctly fails on. **A structure record a
 unit.** An agent without Blender can prepare the record and the research memo, but the pair has
 to land together, so the bake workflow's PR is part of the same slice rather than a follow-up.
 
-**S2 remainder** — the shoreline layer (the 1835 lake shore is ~1.4 km east of the forks and
-belongs to a harbour parcel), Frog Pond, the Wells Street marsh, and the rest of the hydrology
-beyond the single traced slough centreline.
+**S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
+2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled
+box stops at local E +320, while the Fort Dearborn site is at E +1127 and the 1835 shore is
+about a kilometre further still. Fort Dearborn and the harbour works cannot be placed until
+the ground under them exists. The shoreline itself is a provenance problem before it is a
+modelling one — everything east of roughly Michigan Avenue is later landfill, so the edge
+must come off Wright 1834, not off a modern coast. See ROADMAP § S2e.
+
+**S2 remainder** — Frog Pond, the Wells Street marsh, and the rest of the hydrology beyond
+the single traced slough centreline.
 
 **S6 — flora and fauna records**, which is also what would retire liberty L2's promise: the
 palettes and placement tables exist in the dossiers and nothing has been turned into data.

@@ -30,6 +30,43 @@ dimensions (Hathaway annotates them) and snap to control rather than tracing pix
 
 ## S2 — Terrain, epoch `e1834_harbor_cut`
 
+### S2e — extend the ground EAST to the lake · **NEXT UP (raised 2026-08-10, Kevin)**
+
+Promoted above the rest of S2 because the free-fly camera made the gap impossible to
+miss from the air: **the modelled ground stops 800 m short of Fort Dearborn and about a
+kilometre short of Lake Michigan.**
+
+The numbers, measured against `data/datum.json` rather than estimated:
+
+| | local E | inside the box? |
+|---|---|---|
+| current terrain box | −320 … **+320** | — |
+| Lake St & State St | +842 | no |
+| **Fort Dearborn site** (Michigan Ave bridge) | **+1127** | no, 3.5× beyond the edge |
+| modern lakefront at the river mouth | +2155 | no |
+
+(Landmark positions are modern-successor scoping figures, not dataset claims — they say
+how far the box falls short, nothing about 1835.)
+
+**The shoreline is the interesting part, and it is a provenance problem, not a modelling
+one.** The 1835 lake edge is nowhere near the modern one: everything east of roughly
+Michigan Avenue is landfill, much of it fire debris after 1871. Drawing today's coast
+would be the single largest false claim in the dataset. The shore has to come off Wright
+1834 — which also carries the 1834 harbour cut, the two piers, the sand tongue and the
+decaying old southward channel — with the same ±20 m carried forward as everything else
+traced from those sheets. This is precisely the case the year-parameterized architecture
+exists for: `docs/EPOCHS.md` treats terrain as versioned per epoch, so a later year gets
+its own shoreline rather than editing this one.
+
+Scope, roughly: extend to about E +1500, giving a ~1.9 km × 0.7 km field. At the current
+2.5 m cell that is ~213k samples (~425 KB int16) against today's 66k (132 KB) — well
+inside the 25 MB publish budget, but worth considering a coarser cell east of the built
+blocks, where the evidence does not support 2.5 m detail anyway.
+
+Unblocks the **Fort Dearborn** and **Harbor works** parcels in S5, which cannot be placed
+onto ground that does not exist. It also retires the aerial view's worst artefact: from
+150 m up you currently see the ground simply end.
+
 Parcels (parallel once S1 lands):
 
 - **(a) Shoreline + river vectors** — banks, the 1834 cut, the decaying old southward channel behind the sand tongue, the accretion wedge north of the north pier.

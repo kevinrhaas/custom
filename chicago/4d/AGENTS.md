@@ -89,13 +89,20 @@ is the authority and this section is the local restatement.
 - **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
   `site/chicago/4d/` is a generated mirror and the repo's `deploy.yml` only fires on
   `site/**`, so skipping it ships nothing while looking merged.
-- **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with `ts: '', date: ''` —
-  both keys, because the stamper fills the empty `ts` but only *regenerates* a `date` that is
-  already there, so an entry authored without one fails the contract check — then
-  `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`. Nothing stamps
-  after merge. It is authored inside the app because the What's-new tab imports it;
-  `publish.sh` mirrors it to `site/chicago/4d/js/changelog.js`, which is the URL Manager
-  and the polecat.live launcher parse live and must not move.
+- **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with all three
+  authored fields blank — `v: null, ts: '', date: ''` — then run
+  `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`.
+  - `date: ''` must be *present*: the stamper fills an empty `ts` but only
+    *regenerates* a `date` that already exists, so an entry authored without the key
+    fails the contract check.
+  - `v: null` because the number is not yours to guess. Two branches that each compute
+    "top + 1" both get it wrong, and the second to merge ships a duplicate — that cost
+    three manual renumbers on 2026-08-10 alone. The stamper assigns it after the merge;
+    `.gitattributes` (`merge=union`) keeps the merge itself conflict-free.
+  - Nothing stamps after merge. The file is authored inside the app because the
+    What's-new tab imports it; `publish.sh` mirrors it to
+    `site/chicago/4d/js/changelog.js`, the URL Manager and the polecat.live launcher
+    parse live, which must not move.
 - **No Blender on the improve runner, and do not install one.** Geometry comes from the
   nightly `chicago-4d-bake.yml`, which opens its own PR. A unit that needs new geometry
   ships the data/archetype half and says so.
