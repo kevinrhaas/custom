@@ -68,9 +68,24 @@ export function exclusionEntryHtml(ex) {
  * compiler answers it. That is what keeps this section from being false about the
  * one building on it a visitor can walk up to — the Western Hotel is HERE, and its
  * doubt is about the date on its own card rather than about whether to build it.
+ *
+ * `onCard` is the same affordance the liberties have: one renderer, two surfaces,
+ * so the panel and the provenance card cannot describe one uncertainty
+ * differently. Two things change and nothing else does. The chip drops "standing
+ * here", which on the card is the visitor's own position rather than news, and
+ * carries only the grade of the claim the doubt sits on — a field's value, not a
+ * phrase composed here. And the line that points at the card stops pointing at
+ * the card it is printed on: on the panel it says the provenance card shows this
+ * claim, and on the card it names the claim shown a few centimetres above.
+ *
+ * @param {object} u  one entry of the compiled `uncertain` list
+ * @param {object} [opts]
+ * @param {boolean} [opts.onCard]  rendered inside the provenance popup
  */
-export function uncertaintyEntryHtml(u) {
-  const chip = u.standing
+export function uncertaintyEntryHtml(u, { onCard = false } = {}) {
+  const chip = onCard
+    ? `<span class="lib-scope">${escapeHtml(u.carried_confidence || 'graded')}</span>`
+    : u.standing
     ? `<span class="lib-scope">standing here — ${escapeHtml(u.carried_confidence || 'graded')}</span>`
     : '<span class="lib-scope">not built</span>';
 
@@ -82,9 +97,13 @@ export function uncertaintyEntryHtml(u) {
   // carries the doubt, so this section and the provenance card cannot describe
   // the same uncertainty differently.
   const carried = u.standing && u.carried_by
-    ? `<dt>Where it is carried</dt><dd>This building is in the scene; the doubt sits on its
-       <code>${escapeHtml(u.carried_by)}</code>, graded
-       <b>${escapeHtml(u.carried_confidence || '')}</b>, and the provenance card shows it.</dd>`
+    ? (onCard
+      ? `<dt>Where it is carried</dt><dd>The doubt sits on this record's
+         <code>${escapeHtml(u.carried_by)}</code>, graded
+         <b>${escapeHtml(u.carried_confidence || '')}</b> — the claim shown above.</dd>`
+      : `<dt>Where it is carried</dt><dd>This building is in the scene; the doubt sits on its
+         <code>${escapeHtml(u.carried_by)}</code>, graded
+         <b>${escapeHtml(u.carried_confidence || '')}</b>, and the provenance card shows it.</dd>`)
     : '';
 
   // An entry with no source record says so rather than showing an empty list of
@@ -114,6 +133,24 @@ export function uncertaintyEntryHtml(u) {
     ${cites}
     ${dossier}
   </details>`;
+}
+
+/**
+ * The open questions about ONE structure — the join the provenance card needs.
+ *
+ * The same shape as `libertiesFor`: the panel says what the whole scene leaves
+ * open, the card says what is open about the building you are standing in, and
+ * both read one derived list so they cannot disagree. The join is the id, because
+ * an entry names a structure and a card exists only for a structure in the scene;
+ * `standing` is the compiler's separate answer to a different question and is
+ * what the chip reads, not what selects.
+ *
+ * @param {object[]|null} uncertain  the compiled `uncertain` list
+ * @param {string} structureId
+ */
+export function openQuestionsFor(uncertain, structureId) {
+  if (!Array.isArray(uncertain)) return [];
+  return uncertain.filter((u) => u.id === structureId);
 }
 
 /**

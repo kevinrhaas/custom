@@ -622,6 +622,21 @@ the previous commit. What it cannot see is a chip whose reasoning is wrong, and 
 field the compiler never writes — `check_sidecar_contract`'s unread report is top-level only, and
 widening it to leaves was refused because the scan cannot follow a value into a function.
 
+**Done 2026-08-10 — the open question reaches the building it is about, and the panel's promise
+about the card is a gate.** § 26 said the watch list's uncertainty belongs on the records and in the
+provenance popup and left it unqueued; the panel half shipped and its entry for the one STANDING
+structure tells a visitor, in rendered text, that *the provenance card shows it*. The card showed
+the dated claim with an `inferred` chip and never that the claim is a tracked open question — not
+the dispute behind it (the builder's own statement against a hotel chronology), not that the later
+date would make the Western Hotel brand new on the scene date, not that the grade is held down on
+purpose. The card now carries the panel's own entry through the panel's own renderer with an
+`onCard` flag, filtered by `openQuestionsFor` exactly as the liberties are, so one uncertainty
+cannot be described two ways. The other seven buildings render nothing rather than a reassurance,
+because "no open questions recorded" would read as settled and the list cannot promise that.
+And `check_watch_list` now holds `carried_by` to a claim the card really renders — the path is read
+out of `popup.js` by § 29's scanner — which is the third instance of a sentence in this project
+describing a surface it could not see. Data and meshes untouched; nothing was re-baked. STATUS § 41.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

@@ -3,8 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the outline you are standing in front of says how much of itself is
-evidence, and a chip count now finds the next claim that goes silent, § 40) ·
+**Last updated:** 2026-08-10 (the one building in this scene whose date is a live argument says so
+on its own card, and the panel's promise about that card is a check now, § 41) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -61,6 +61,13 @@ the compiler carried their confidence and dropped their reasoning, and the tint 
 to stop showing dimensional uncertainty on the stated understanding that the card would show it
 instead. It never did. Second claim found graded-and-silent by somebody reading a file, so it is a
 chip count now: run against the previous commit it reports all eight buildings one chip short.
+**And the one building in this scene whose date is a live argument says so where a visitor meets it,
+after a fortnight of the panel promising it on the card's behalf** (§ 41): the Western Hotel's card
+showed the dated claim graded `inferred`, and the Evidence panel's entry for it ended with the words
+*and the provenance card shows it* — true of the claim and false of the doubt, so the dispute
+between the builder's own statement and the hotel chronology reached whoever opened a panel about
+the town and not whoever walked up to the house. Nothing was broken, again, and the promise about
+the other surface is a gate now instead of a sentence.
 
 ---
 
@@ -87,7 +94,7 @@ chip count now: run against the previous commit it reports all eight buildings o
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35). **The fourth state is checked as well as declared since § 36**: `terrain_inputs.RESTATES` names the half each restatement agrees with — the heightfield the bake wrote, another figure in the block, or a named line of the generator — and 7 figures are held to it |
 | Exclusions | 14 date-guarded structures — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
-| Watch list | **4 open questions**, structured data since 2026-08-10 (§ 37) — the category between a building and an exclusion. Each carries what is open, what settling it would change, a dossier pointer that has to resolve, and either citations that resolve or a sentence saying why there are none. `check_watch_list` enforces the file's own promise: the one entry that IS a committed record names the claim carrying the doubt, and that claim may not be `documented`. In the walkthrough under "What is still an open question", with the standing one chipped as standing |
+| Watch list | **4 open questions**, structured data since 2026-08-10 (§ 37) — the category between a building and an exclusion. Each carries what is open, what settling it would change, a dossier pointer that has to resolve, and either citations that resolve or a sentence saying why there are none. `check_watch_list` enforces the file's own promise: the one entry that IS a committed record names the claim carrying the doubt, that claim may not be `documented`, and — since § 41 — it must be a claim the provenance card actually renders, read off `popup.js` itself. In the walkthrough under "What is still an open question", with the standing one chipped as standing, **and on that building's own card since § 41** |
 
 ## Corrections made after the first live look
 
@@ -1250,6 +1257,49 @@ uncertainty of the 1834 sheets in its note.
     and refused — the scan cannot follow a value into a function, so `documented_range.note` and
     every field `evidence()` reads generically would come back as false findings, and a noisy gate
     gets disbelieved, which § 15 already paid for once.
+
+41. **The doubt was in the panel, the promise about the card was in the panel too, and the building
+    the argument is about said nothing.** § 26 ended by saying the watch list's uncertainty "belongs
+    on the records and in the provenance popup, which is a different slice and is not queued";
+    § 37 shipped the panel half and its entry for the one STANDING structure ends, in the rendered
+    text a visitor reads, with *and the provenance card shows it*. The card showed the **claim** —
+    `1834-01-01 → 1840-12-31`, `inferred`, with the record's own note behind a `why`. It never showed
+    that the claim is a tracked open question: not that the dispute is the builder's own statement
+    (chicagology, W. H. Stow, "it was built in 1834") against an undated line in a hotel chronology,
+    not that the later date would make the house brand new or unfinished on the scene date, and not
+    that the grade is being **held down deliberately** so the evidence has to arrive before it moves.
+    So the dispute reached whoever opened a panel about the whole town and not whoever walked up to
+    the house it is about — which is precisely the gap the liberties had before § 11 attached them to
+    their buildings.
+    **The section is the panel's own entry, rendered by the panel's own code.** `uncertaintyEntryHtml`
+    takes an `onCard` flag and `openQuestionsFor` is `libertiesFor` for the other list; two renderers
+    would have let one uncertainty be described two ways, which is the drift the shared liberty
+    entry exists to prevent. Two things change on the card and nothing else does: the chip drops
+    "standing here" (the visitor's own position, not news) and carries the grade of the claim the
+    doubt sits on, and the line that points at the card stops pointing at the card it is printed on.
+    Nothing was added to `data/`, no sidecar moved, and no mesh is stale — the derived list the panel
+    already fetches is the list the card filters.
+    **A building with nothing open renders nothing, which is a decision and not a missing empty
+    state.** "No open questions are recorded about this building" would read as *this building is
+    settled*, and § 37 states exactly why that cannot be promised: four entries against roughly forty
+    researched structures, and an open question nobody noticed is as invisible as a liberty nobody
+    noticed taking. The smoke asserts the silence across the other seven buildings, because a card
+    dumping the whole list would have passed every assertion about the Western Hotel.
+    **And the promise about the other surface is a gate.** This is the third time a sentence in this
+    project has described a surface it could not see — `documented_range` (§ 28) and
+    `asset_is_placeholder` (§ 29) were both read by a card the compiler never fed, and both were
+    found by a person reading a file. `carried_by` could have named any graded block on the phase,
+    including one the card renders no section for, and the panel would have gone on promising it.
+    `check_watch_list` now maps the record's claim to the sidecar path the card reads and holds that
+    path to being one `renderers/web/js/popup.js` really reads, scanned by § 29's own machinery — so
+    deleting a section from the card fails here rather than leaving a false sentence on the panel.
+    The self-test's discriminating case is a well-formed, correctly graded claim (`demolition`) that
+    the card has no words for. A smaller hole closed with it: a doubt may only sit on a claim that
+    carries a confidence, which `form` — a dict of graded attributes, graded nowhere itself — did not.
+    **What it still cannot see.** Whether the list is complete, which is § 37's limit and untouched
+    by any of this. Whether the question is the right question about the town. And the map from a
+    record's claim to a card section is authored: the check proves the card reads the path, not that
+    the section a visitor sees is the one the entry meant.
 
 ## Next
 

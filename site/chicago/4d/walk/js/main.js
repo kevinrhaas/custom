@@ -178,6 +178,12 @@ async function boot() {
     sceneId: loaded.scene.id ?? YEAR,
     problems,
   });
+  // And the open questions again, filtered to the building being inspected —
+  // exactly as the liberties are, and for the same reason. One of the four is
+  // standing in the scene, and the panel's entry for it promises that the
+  // provenance card shows the claim carrying the doubt; the card is where a
+  // visitor who walked up to that building would think to ask.
+  popup.setOpenQuestions(api.exclusions.uncertain);
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.

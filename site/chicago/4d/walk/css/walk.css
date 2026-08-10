@@ -558,6 +558,16 @@ ol.cites a { color: var(--accent); }
 }
 .pop-lib-none { margin: 0; font-size: 12px; line-height: 1.5; color: var(--ink-dim); }
 
+/* The open question about this building reuses the Evidence panel's entry the
+   same way, so the only delta is the sentence introducing it. It sits directly
+   under the two claims it qualifies and must not read as a fourth claim. */
+.pop-question .liberties { margin-top: 0; }
+.pop-question-lead {
+  margin: 0 0 8px;
+  font-size: 12px; line-height: 1.5;
+  color: var(--ink-dim);
+}
+
 /* The record's own account: several hundred words of prose, folded away behind
    the same disclosure the liberties use, because it is the same kind of thing —
    an argument a visitor opens when they want it, not a value they skim. Shown
