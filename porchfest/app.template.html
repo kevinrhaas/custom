@@ -1242,7 +1242,7 @@ const b64u={
 function encodeState(){
   const o={v:1, a:S.t0, b:S.t1, f:S.from, e:S.to, d:S.dwell, m:S.minStay, p:S.pace,
     mb:S.minBands, xb:S.maxBands,
-    r:D.dims.map(d=>S.pref[d]+2).join(''), pw:S.pop+2, g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
+    r:D.dims.map(d=>S.pref[d]+2).join(''), pw:S.pop+2, cw:S.crew, g:S.tags, n:S.pins,   // +2 keeps each pref a single digit
     s:S.plan?S.plan.stops.map(x=>x.b.id):null};
   return b64u.enc(JSON.stringify(o));
 }
@@ -1258,6 +1258,9 @@ function decodeState(str){
     // pw arrived with the draw slider; links shared before it simply have no
     // draw preference, which is the old behaviour.
     S.pop = /^[0-4]$/.test(String(o.pw)) ? (+o.pw)-2 : 0;
+    // Which group chip shows as picked. UI-only, but it has to ride along or
+    // Back leaves a chip highlighted that no longer matches the dials.
+    S.crew = CREW[o.cw] ? o.cw : '';
     S.tags=o.g||{}; S.pins=o.n||[];
     if(o.s){
       const seq=o.s.map(id=>D.bands.find(b=>b.id===id)).filter(Boolean);
@@ -1299,13 +1302,58 @@ function makeICS(){
 }
 
 /* ---------- wiring ---------- */
-function setView(v){
+/* ---- views and browser history ----------------------------------------
+   The four views are the app's navigation, so they are what Back and Forward
+   should move through — on Android, Back is a system gesture and leaving the
+   app because a tab change wasn't a history entry is just wrong.
+
+   Only a VIEW CHANGE pushes an entry. Tuning pushes nothing and replaces the
+   current one instead: a slider fires a burst of events, and an afternoon of
+   tuning would otherwise bury the entry you actually want to go back to under
+   a hundred identical ones. So Back steps through where you have BEEN, never
+   through every value a dial passed on the way.
+
+   The URL is `#s=<state>&v=<view>`. `v` is optional and appended, so links
+   shared before it existed still open, and shareUrl() deliberately omits it —
+   a shared plan should open where the app thinks best, not on whichever tab
+   the sender happened to be looking at. */
+const VIEWS = ['tune','route','map','bands'];
+let navLock = false;                 // set while WE are the ones moving history
+
+function hashParts(){
+  const out = {};
+  for(const part of location.hash.replace(/^#/,'').split('&')){
+    const i = part.indexOf('=');
+    if(i > 0) out[part.slice(0,i)] = part.slice(i+1);
+  }
+  return out;
+}
+const stateUrl = ()=> '#s='+encodeState()+'&v='+(document.body.dataset.view||'tune');
+
+function setView(v, push){
+  const was = document.body.dataset.view;
   document.body.dataset.view=v;
   $$('[data-go]').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.go===v)));
   if(v==='bands') renderBands();
   if(v==='map'||v==='route'||v==='tune') requestAnimationFrame(drawMap);
+  if(push !== false && !navLock && was && was !== v) history.pushState({v},'',stateUrl());
 }
 $$('[data-go]').forEach(b=>b.onclick=()=>setView(b.dataset.go));
+
+// Back / Forward. Restore the view and the plan that entry was holding.
+window.addEventListener('popstate', ()=>{
+  const p = hashParts();
+  navLock = true;
+  try{
+    // Re-decoding matters: an entry may predate tuning you did afterwards, and
+    // Back should undo that too, not just flip the tab.
+    if(p.s && decodeState(p.s)){ renderControls(); renderPlan(); }
+    setView(VIEWS.includes(p.v) ? p.v : (S.plan ? 'route' : 'tune'), false);
+    // Only re-solve when the entry carried no usable plan, so stepping back
+    // returns the route you had rather than a freshly randomised one.
+    if(!S.plan) replan(true);
+  } finally { navLock = false; }
+});
 
 /* ---- live re-planning -------------------------------------------------
    Every control re-plans; nothing waits on a button. Turning a dial fires a
@@ -1320,7 +1368,8 @@ function applyPlan(runs, onlyIfBetter){
   if(onlyIfBetter && S.plan && p && !(p.score > S.plan.score + 1e-9)) return;
   S.plan=p; S.sel=-1;
   renderPlan();
-  history.replaceState(null,'','#s='+encodeState());
+  // Replace, never push — see the history note above setView.
+  if(!navLock) history.replaceState({v:document.body.dataset.view},'',stateUrl());
 }
 function replan(immediate){
   clearTimeout(planTimer); clearTimeout(refineTimer);
@@ -1542,14 +1591,18 @@ function toast(msg){
   let theme='dark';
   try{ theme=localStorage.getItem('pf.theme')||'dark'; }catch(e){}
   $('#festline').textContent=`${D.fest.name} · Sat Aug 15, ${D.fest.year} · ${D.bands.length} bands`;
-  const hash=location.hash.match(/^#s=(.+)$/);
-  const restored = hash ? decodeState(hash[1]) : false;
+  const parts=hashParts();
+  const restored = parts.s ? decodeState(parts.s) : false;
   renderControls();
   applyTheme(theme);
   renderPlan();
   if(restored){
-    setView(S.plan?'route':'tune');
+    // An incoming link may name a view (from Back/Forward or a hand-edited
+    // URL); a plain shared link doesn't, and lands on the schedule.
+    setView(VIEWS.includes(parts.v) ? parts.v : (S.plan?'route':'tune'), false);
     toast(S.plan?'Shared plan loaded':'Shared settings loaded');
+    // Normalise the entry we landed on so it carries a view like every other.
+    history.replaceState({v:document.body.dataset.view},'',stateUrl());
     if(!S.plan) replan(true);
   } else {
     // Land on a real route rather than an empty state — there's always an

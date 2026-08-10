@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 4, title: 'Back and Forward work', kind: 'feature',
+    ts: '2026-08-10T01:58:21.397Z', date: 'Aug 9, 2026, 8:58 PM CT',
+    items: [
+      'The browser buttons now move through the four views. Before this, nothing was ever added to history, so Back left the app entirely — on a phone, where Back is a system gesture, that meant one stray swipe threw away the afternoon you had just planned.',
+      'Only changing view adds a history entry. Turning a dial replaces the current one instead, because a slider fires a burst of events and an afternoon of tuning would bury the tab you wanted to go back to under a hundred near-identical steps. Back walks through where you have been, not through every value a dial passed on the way.',
+      'Going back also restores the plan that entry was holding, rather than re-solving and handing you a different route than the one you left.',
+      'Tap a band in the schedule, read the full profile, press Back, carry on down the list.',
+    ] },
   { v: 3, title: 'Pick who is walking, and read the whole band from the schedule', kind: 'feature',
     ts: '2026-08-10T01:18:14.494Z', date: 'Aug 9, 2026, 8:18 PM CT',
     items: [

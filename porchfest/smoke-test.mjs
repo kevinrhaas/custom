@@ -329,8 +329,10 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       if (pop3 !== 2) fail(`${tag} — shared link lost the draw preference (got ${pop3})`);
       else ok('share link round-trips the draw preference');
       const legacy = await p3.evaluate(() => {
+        // The hash is `#s=<state>&v=<view>` now; take just the state.
+        const s = location.hash.replace(/^#s=/, '').split('&')[0];
         const o = JSON.parse(decodeURIComponent(escape(atob(
-          location.hash.slice(3).replace(/-/g, '+').replace(/_/g, '/')))));
+          s.replace(/-/g, '+').replace(/_/g, '/')))));
         delete o.pw;                                  // a link from before the slider
         return btoa(unescape(encodeURIComponent(JSON.stringify(o))))
           .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -359,6 +361,7 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // On mobile the schedule lives behind its own tab, so get there first.
     if (vp === 'mobile') await page.locator('[data-go="route"]:visible').first().click();
     await page.waitForTimeout(250);
+    const viewBeforeJump = await page.evaluate(() => document.body.dataset.view);
     const firstStopBand = await page.textContent('#stops .stop h3');
     await page.locator('#stops .stop .morebtn').first().click();
     await page.waitForTimeout(600);
@@ -372,6 +375,61 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else if (jumped.name !== wantName) fail(`${tag} — jumped to "${jumped.name}", expected "${wantName}"`);
     else if (!jumped.full) fail(`${tag} — focused card has no full profile text`);
     else ok(`"Full profile" opens the band card (${jumped.name})`);
+
+    // The flow that will actually happen: read the schedule, tap through to a
+    // band, then Back to carry on down the list. Desktop shows the schedule
+    // without switching tabs, so assert it returns where it came FROM rather
+    // than to a hardcoded view.
+    await page.goBack();
+    await page.waitForTimeout(700);
+    const cameBack = await page.evaluate(() => document.body.dataset.view);
+    if (cameBack !== viewBeforeJump)
+      fail(`${tag} — Back from a band card landed on ${cameBack}, came from ${viewBeforeJump}`);
+    else ok(`Back from a band card returns to ${cameBack}`);
+
+    // ---- browser Back / Forward ----
+    // Views are the app's navigation, so they must be history entries. On
+    // Android Back is a system gesture; leaving the app on a tab change is
+    // the bug this guards against.
+    const view = () => page.evaluate(() => document.body.dataset.view);
+    const goView = async (v) => {
+      await page.locator(`[data-go="${v}"]:visible`).first().click();
+      await page.waitForTimeout(350);
+    };
+    await goView('tune');
+    await goView('route');
+    await goView('map');
+    const beforeBack = await view();
+    await page.goBack(); await page.waitForTimeout(700);
+    const back1 = await view();
+    if (back1 !== 'route') fail(`${tag} — Back from ${beforeBack} landed on ${back1}, expected route`);
+    else ok('Back returns to the previous view');
+    await page.goBack(); await page.waitForTimeout(700);
+    const back2 = await view();
+    if (back2 !== 'tune') fail(`${tag} — second Back landed on ${back2}, expected tune`);
+    else ok('Back steps back through views');
+    await page.goForward(); await page.waitForTimeout(700);
+    const fwd = await view();
+    if (fwd !== 'route') fail(`${tag} — Forward landed on ${fwd}, expected route`);
+    else ok('Forward re-enters the view');
+
+    // A route must survive the trip, not come back empty or re-randomised.
+    const afterNav = await page.locator('#stops .stop').count();
+    if (afterNav === 0) fail(`${tag} — the route was lost navigating history`);
+    else ok(`route survives Back/Forward (${afterNav} stops)`);
+
+    // Tuning must NOT push entries, or Back becomes useless: an afternoon of
+    // dial-turning would bury the view you actually wanted to return to.
+    await goView('tune');
+    const depth0 = await page.evaluate(() => history.length);
+    await page.evaluate(() => {
+      const s = document.querySelector('.taste[data-dim="energy"] input');
+      for (const v of ['1', '2', '-1', '0']) { s.value = v; s.dispatchEvent(new Event('input', { bubbles: true })); }
+    });
+    await page.waitForTimeout(1800);
+    const depth1 = await page.evaluate(() => history.length);
+    if (depth1 !== depth0) fail(`${tag} — tuning pushed ${depth1 - depth0} history entries, expected 0`);
+    else ok('tuning replaces rather than pushing history');
 
     // bands browser
     await page.locator('[data-go="bands"]:visible').first().click();

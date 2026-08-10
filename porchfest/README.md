@@ -152,6 +152,32 @@ pace and the shorter loop a family actually needs. Don't reintroduce it.
 Keep these labels demographic, never personal names: this is a public page that
 strangers at the festival will open, and a name means nothing to them.
 
+## Back and Forward
+
+The four views are the app's navigation, so they are what the browser buttons
+move through. The URL is `#s=<state>&v=<view>`.
+
+The rule that makes this usable: **only a view change pushes a history entry.
+Tuning replaces the current one.** A slider fires a burst of input events, and
+an afternoon of tuning would otherwise bury the entry you actually wanted under
+a hundred near-identical ones — Back would need fifty presses to leave a tab.
+So Back walks where you have *been*, never every value a dial passed through.
+
+- `setView(v)` pushes when the view actually changes; pass `false` as the
+  second argument to switch without touching history (boot, and popstate).
+- `applyPlan` replaces, guarded by `navLock` so a restore doesn't rewrite the
+  entry it just landed on.
+- `popstate` re-decodes the state as well as the view, so Back also undoes
+  tuning done after that entry was made — and only re-solves when the entry
+  carried no usable plan, or stepping back would hand you a freshly randomised
+  route instead of the one you had.
+- `S.crew` rides in the payload as `cw`. It is UI-only, but without it Back
+  leaves a group chip highlighted that no longer matches the dials.
+
+`v` is optional and appended, so links shared before it existed still open.
+`shareUrl()` deliberately omits it: a shared plan should open where the app
+thinks best, not on whichever tab the sender happened to be looking at.
+
 ## Smoke before ship
 
 `node smoke-test.mjs` — Chromium **and** WebKit, 390×780 and desktop, zero
