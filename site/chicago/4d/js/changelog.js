@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 11, title: 'Where the lake was in 1834', kind: 'feature',
+    ts: '2026-08-10T05:06:01.254Z', date: 'Aug 10, 2026, 12:06 AM CT',
+    items: [
+      'The reconstruction now knows where the water ended. The shore from the edge of the modelled ground east to Lake Michigan is traced — the river past Fort Dearborn, the harbour cut between its two piers, the old channel still curling south behind the sand bar, and the bar itself.',
+      'It had to come off the 1834 survey rather than a modern map. Everything east of about Michigan Avenue is later landfill, a good deal of it rubble from the 1871 fire, so today\'s coast sits roughly a kilometre out from the 1835 one. Drawing it would have been the largest false claim in the dataset, and it would have looked like care.',
+      'Two edges the map does carry were found and thrown away: out in the lake the grey wash simply stops, and that stopping line is where the draughtsman lifted his brush. It is not a coast, so nothing was recorded there.',
+      'You will not see any of this yet. The ground still ends where it ended yesterday — this is the survey, not the land. Building it needs elevations, and for the sand bar nobody wrote one down: a bar is a thing a foot of lake level moves.',
+    ] },
   { v: 10, title: 'Each admission now says what it admits to', kind: 'feature',
     ts: '2026-08-10T04:12:36.029Z', date: 'Aug 9, 2026, 11:12 PM CT',
     items: [

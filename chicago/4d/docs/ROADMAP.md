@@ -30,7 +30,7 @@ dimensions (Hathaway annotates them) and snap to control rather than tracing pix
 
 ## S2 — Terrain, epoch `e1834_harbor_cut`
 
-### S2e — extend the ground EAST to the lake · **NEXT UP (raised 2026-08-10, Kevin)**
+### S2e — extend the ground EAST to the lake · **IN PROGRESS — parcel (a) DONE 2026-08-10**
 
 Promoted above the rest of S2 because the free-fly camera made the gap impossible to
 miss from the air: **the modelled ground stops 800 m short of Fort Dearborn and about a
@@ -69,8 +69,20 @@ onto ground that does not exist. It also retires the aerial view's worst artefac
 
 Parcels (parallel once S1 lands):
 
-- **(a) Shoreline + river vectors** — banks, the 1834 cut, the decaying old southward channel behind the sand tongue, the accretion wedge north of the north pier.
-- **(b) Heightfield** — the 30-zone table in `docs/research/01-terrain-hydrology.md`, quantized ≤0.25 ft at 5–10 ft cells. Z=0 at the 1835 lake surface.
+- **(a) Shoreline + river vectors** — **DONE 2026-08-10.** `tools/trace_shoreline.py` →
+  `data/terrain/epochs/e1834_harbor_cut/shoreline.geojson`: the main stem from the box edge
+  east, the 1834 cut between its piers, the old southward channel, the **sand bar as an
+  island** (the water polygon's interior ring), and the mainland lake shore — 2 466 m of south
+  shore, 1 568 m of north shore, a 1.5 km bar perimeter, all off the same Wright 1834 sheet
+  through the same affine, ±20 m. Memo: `docs/RESEARCH/shoreline_harbor_1834.md`. Two boundary
+  runs were found and dropped on purpose: the outer edge of the lake wash is where the
+  draughtsman stopped washing, not a coast. **Measured, which changes the box:** the mainland
+  shore reaches E +1257 and the bar's east edge E +1497, so the proposed +1500 clips the bar by
+  3 m — **use E +1560**, inside the traced window's +1570. The two windows overlap by 80 m and
+  agree there to 0.1–5.7 m, which is the check that the segmentation is reading the map rather
+  than its own parameters. Not yet consumed by `terrain_gen.py`; it is the evidence, not the
+  ground.
+- **(b) Heightfield** — the 30-zone table in `docs/research/01-terrain-hydrology.md`, quantized ≤0.25 ft at 5–10 ft cells. Z=0 at the 1835 lake surface. **Next slice**, and it needs a bake for the ground GLB, so record + mesh land together. Two things parcel (a) hands it: the bar is *land inside water*, so the signed-distance rule that builds the forks ground has to understand islands, not only banks; and no elevation for the bar exists in any source, so its height is a spec argument to be made in the open, not a number to pick.
 - **(c) Hydrology** — the slough (public-square pond → past Lake & Dearborn → river at the foot of State), Frog Pond at Lake & LaSalle, the Wells Street marsh, the marshy river-shore strip.
 - **(d) `terrain_gen.py`** — spec + vectors → terrain mesh + `heightfield.bin` for collision.
 
