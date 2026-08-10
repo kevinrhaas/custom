@@ -24,6 +24,25 @@
         "rotation_deg": 0.0,
         "symbolic_location": "South-east corner of Randolph Street and Canal Street, west side, one block south of the Green Tree; a 40 ft front with a 60 ft wing in an L, stables and a wagon yard behind, with entrances to the yard from both streets.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "platted_corner",
+          "control": "randolph_canal",
+          "constraints": [
+            {
+              "face": "west",
+              "street": "canal",
+              "kerb": "east",
+              "offset_m": 0
+            },
+            {
+              "face": "north",
+              "street": "randolph",
+              "kerb": "south",
+              "offset_m": 0
+            }
+          ],
+          "note": "A south-east corner lot: the north face on Randolph Street's south frontage, the west face on Canal Street's east frontage. This is the L-shaped footprint, so 'north face' is the northernmost point of the polygon as placed, which is the front of the L and the face the corner claim is about."
+        },
         "sources": [
           "chicagology_prefire278",
           "drloih_hotels",

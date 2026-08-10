@@ -26,6 +26,25 @@
         "rotation_deg": 180.0,
         "symbolic_location": "South bank of the main stem at the west end of the Lake Street / South Water Street block, near where the two streets converge east of Market Street; the north side of Lake Street, diagonally across it from the Sauganash.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "platted_corner",
+          "control": "lake_market",
+          "constraints": [
+            {
+              "face": "south",
+              "street": "lake",
+              "kerb": "north",
+              "offset_m": 0
+            },
+            {
+              "face": "west",
+              "street": "market",
+              "kerb": "east",
+              "offset_m": 5.0
+            }
+          ],
+          "note": "The one placement here whose sources give a junction rather than a corner, so it carries the only non-zero offset in the dataset: 5 m east of Market Street's kerb, one narrow lot in from the corner rather than hard against it, because both sources say NEAR and ABOUT. That 5 m is an invention of position within a documented junction and it is now a number in the data instead of a phrase in a paragraph."
+        },
         "sources": [
           "andreas_1884_v1",
           "chicagology_first_post_office",
