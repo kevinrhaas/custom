@@ -207,6 +207,14 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
             rep.error(where, f"documented_range: source '{sid}' does not resolve")
     if rng.get("confidence") == "inferred" and not (rng.get("note") or "").strip():
         rep.error(where, "documented_range: inferred requires a note")
+    # The confidence contract applied to the claim the whole scene rests on. Every
+    # other `documented` value in this dataset owes a resolving source (see
+    # check_attested); the date span was outside that rule for no reason but the
+    # order the checks were written in, and it is the claim that decides whether a
+    # building is in the town at all. It reaches the provenance card now, which is
+    # the argument for holding it to the same standard as a roof pitch.
+    if rng.get("confidence") == "documented" and not (rng.get("sources") or []):
+        rep.error(where, "documented_range: documented requires at least one source_id")
     return frm, to
 
 

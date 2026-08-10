@@ -11,11 +11,30 @@
   "asset": "gltf/miller_house__log_frame_1827.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1827-01-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "drloih_hotels",
+      "drloih_wolf_point",
+      "chicagology_prefire273"
+    ],
+    "note": "The phase begins when the log cabin acquired its two-storey front, which is the form this record models. THE DATE OF THAT ENLARGEMENT IS DISPUTED, and again by one publication against itself: the hotel chronology says 'In 1827, Samuel Miller and his brother John, with Archibald Clybourn holding a partnership interest, added a two-story house to the cabin, fronting the river', while the Wolf Point narrative says the brothers opened a store on the north bank in about 1829 and 'In 1830, they enlarged their store and began to operate it as a tavern'. 1827 is adopted because it is the statement that actually describes the FORM change being modelled — a two-storey house added to the cabin, fronting the river — where the 1830 statement describes a change of trade. The two may well be different events, an enlargement in 1827 and a conversion to innkeeping in 1830, in which case both are right. Either way the building had its 1835 form well before the scene date. THE END OF THE RANGE IS THE HONEST MINIMUM, NOT A FATE: no source reached says when the Miller house came down, so the range is closed at the end of 1835 — the last date this record needs to claim — rather than run on speculatively. Extend it when evidence appears; do not widen it to make something pass."
+  },
+  "change_note": "The two-storey house added to the log cabin, fronting the river, giving the composite form the settlement knew: a two-storey frame face to the water with the older cabin behind. The conversion to a tavern in 1830, the reversion to store use after 1832 and the end of Miller's involvement in 1834 are changes of USE and do not open new phases.",
   "placement": {
     "local_e": 14.0,
     "local_n": 61.0,
     "rotation_deg": 180.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire273",
+      "kinzie_waubun_1856",
+      "drloih_wolf_point",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-09. NO SURVIVING INTERSECTION LOCATES THIS BUILDING — the streets platted across this ground in Kinzie's Addition were staked in 1833-35 and the point itself has since been rebuilt — so the coordinate is derived from the datum origin at the forks confluence and from bank geometry. What is attested is unusually consistent for this dataset: chicagology, 'The Miller House stood on the point of land between the North Branch and the Main Channel'; Wau-Bun, 'on the north side of the river ... near the forks'; DRLOIH, a store 'on the north bank of the river at the forks'; and the Miller-Clybourn ferry ran across the North Branch between this house and the Wolf Point Tavern, which requires it to be on the point. A FOURTH SOURCE DISAGREES AND IS TREATED AS AN ERROR: the hotel chronology places Miller on the 'south branch of Chicago River, opposite Wolf Point'. Four independent statements against one, and the ferry route settles it. Method: modern water polygons from OpenStreetMap put the nose of the point at about 39 m north of the datum origin, with the main-stem north bank running east from there and the North Branch east bank running north-west. The footprint's south face is set 14 m north of the main-stem bank and its west face about 22 m east of the North Branch bank, which puts the building on the point and off both waters. Working uncertainty about 20 m from the georeference, plus an unquantified allowance for the modern banks not being the 1835 banks — this ground was filled and wharfed and is now built over, and unlike the west bank there is no street line here to check it against, so treat the along-bank position as the softer of the two axes. Facade bearing 180, due south onto the main stem, from 'a two-story house ... fronting the river'. On a point the river is on two sides: a bearing of about 215, fronting the confluence and Wolf Point across the water, is equally arguable and would rotate the building about 35 degrees.",
     "symbolic_location": "North bank at the forks, on the point of land between the North Branch and the main stem, directly opposite Wolf Point.",
     "uncertainty_m": 20,
     "placement_provisional": false,

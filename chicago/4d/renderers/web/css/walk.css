@@ -458,6 +458,17 @@ body.is-touch .crosshair { display: none; }
   color: var(--accent);
 }
 
+/* The phase's own account of itself, in the record's words. Prose rather than a
+   table row because it is an argument, not a value — it is where a record says a
+   building that held the post office for three years is not the post office on
+   the scene date, which no confidence chip can express. */
+.pop-account {
+  margin: 0 0 9px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
 table.attrs { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.attrs th, table.attrs td { text-align: left; vertical-align: top; padding: 6px 6px 6px 0; border-top: 1px solid var(--edge); }
 table.attrs tr:first-child th, table.attrs tr:first-child td { border-top: 0; }

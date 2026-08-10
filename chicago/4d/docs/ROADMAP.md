@@ -487,6 +487,28 @@ And the sidecars are re-derived on every commit (`compile_scene.py --all --check
 walkthrough and the archive together if a record edited without a recompile is a gate failure
 rather than a discovery on the deployed site. All eight were byte-identical on the first run.
 
+**Done 2026-08-10 — the card answers "was it here?", which it never had.** Every gate and every
+panel above asks how sure we are of something we built. None of them was asking the question a
+visitor asks first, and the card could not answer it: `popup.js` has read
+`sidecar.documented_range` since the card was written and `compile_scene.py` never emitted the
+field, so the line rendered as nothing on every building for the life of the project. The phase's
+claim about itself now travels to the card in the attribute shape — the dated span with its
+confidence, sources and reasoning; the phase's `change_note` in the record's own words; and the
+position's argument behind a `why` on the line that already showed its chip. Dates print as
+recorded, because seven of the eight spans end on 31 December of a year and that is a bound, not
+a day anybody wrote down.
+
+The failure class is worth carrying rather than the fix: **two halves each correct about their
+own side of an interface neither states**. The compiler was consistent with itself, which is all
+`--check` proves; the record validated clean; the markup was right. So the test opens the actual
+card and reads what a visitor would see, and asserts the discriminating pair — the Sauganash
+`documented`, Hogan's store `inferred` — because a card stamping one grade on all eight would
+have passed any check for "there is a chip". Any other sidecar field the renderer reads is in the
+same category; `test_the_card_is_fed_the_claims_it_renders` is where the next one goes.
+One gate came with it: a `documented` date span now owes a resolving source, like every other
+`documented` value. Still not on the card: the footprint's reasoning, because the footprint has
+no display value that is not itself a derivation — see STATUS § 28.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

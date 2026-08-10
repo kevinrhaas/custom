@@ -10,11 +10,29 @@
   "asset": "gltf/green_tree_tavern__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-01-01",
+    "to": "1880-12-31",
+    "confidence": "documented",
+    "sources": [
+      "chicagology_prefire127",
+      "drloih_hotels",
+      "drloih_wolf_point"
+    ],
+    "note": "Built 1833 by James Kinzie — 'the first structure ever erected in the place for hotel purposes' — and standing at the north-east corner of Lake and Canal until it was moved in 1880 to 35 and 37 Milwaukee Avenue to clear the site for the Jones & Laughlin works. Both ends are attested, which is why a forty-seven-year span is tagged documented rather than being a research gap in disguise. IT IS STILL TOO LONG TO BE ONE FORM-STATE, and that is a known limitation: John Gray, landlord 1838-41, recalls 'a low one-story addition to the right, the same as on the left', so the building demonstrably grew, and nothing dates those additions. The phase should be split the moment they can be dated. A second, smaller conflict: chicagology's Green Tree page dates the move to 1880, while its Town of Chicago page, written in 1883, says the building was 'removed two years ago', i.e. 1881. Immaterial to the 1835 scene. The carpenter is disputed too — chicagology names 'Philo Cobb', DRLOIH names Silas B. Cobb, who is the historically real person and is almost certainly correct."
+  },
+  "change_note": "Built 1833 as the first building in Chicago put up specifically to be a hotel. The phase carries the two-storey core as built; the low one-storey side additions attested by 1838-41 are recorded on the record but not in the geometry, because nothing dates them.",
   "placement": {
     "local_e": -135.3,
     "local_n": -96.2,
     "rotation_deg": 270.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire127",
+      "drloih_hotels",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-09. The corner is documented and agreed by two independent sources — chicagology gives 'Northeast Corner of Lake and Canal Streets' and DRLOIH gives 'the N.E. corner of what is now Lake and Canal Streets' — but the COORDINATE is derived, so the tag follows the weaker half. Method, the same as the Sauganash's: the modern intersection centre was read from OpenStreetMap (EPSG:26916 E 446913.0, N 4637287.4) and the footprint offset 12.2 m east and 12.2 m north of it, half an 80 ft platted street in each direction, so that the building's west face sits on the Canal frontage and its south face on the Lake frontage of a north-east corner lot. No extra depth offset is needed on either axis because the footprint origin is already its south-west corner. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 270, due west onto Canal: F. H. Taylor's recollection is explicit — 'The fornt was on Canal street and this side was on Lake' — with the long elevation on Lake and, per John Gray, a second entrance 'on the Lake street front about the middle of the long side'. RESIDUAL UNCERTAINTY WORTH RECORDING, because it is larger than the georeference's: DRLOIH's article title gives the corner as 'Lake and West Water Streets' and glosses West Water as 'now Canal Street'. Historically West Water Street ran along the west bank and Canal Street lay one block further west, and the modern geometry agrees — modern Canal at Lake is about 146 m back from the modern west-bank line, a full block. If the tavern actually stood on the riverbank street rather than on Canal, it belongs about 145 m east of where this record puts it. The Canal reading is adopted because both detailed sources name Canal in modern terms and one of them says 'what is now'. The check that would settle it is the lot geometry on Wright 1834 or Hathaway 1834, which is exactly what those sheets are good for.",
     "symbolic_location": "North-east corner of Lake Street and Canal Street (historically Lake and West Water), one block west of the river on the west bank; front on Canal, long side on Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,

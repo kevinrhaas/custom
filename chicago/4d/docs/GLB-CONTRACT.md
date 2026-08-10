@@ -174,9 +174,16 @@ GLB. The renderer reads placement, provenance and footprint from here.
   "name": "Sauganash Hotel",
   "aka": ["Eagle Exchange Tavern"],
   "asset": "gltf/sauganash_hotel__frame_1831.glb",
+  "documented_range": {
+    "from": "1831-01-01", "to": "1851-03-04", "confidence": "documented",
+    "sources": ["kinzie_waubun_1856"], "note": "..."
+  },
+  "change_note": "Two-story frame block built onto the log core ...",
   "placement": {
     "local_e": 0.0, "local_n": 0.0, "rotation_deg": 0.0,
     "position_confidence": "documented",
+    "position_sources": ["kinzie_waubun_1856"],
+    "position_note": "...",
     "symbolic_location": "SE corner of Lake St and Market St",
     "uncertainty_m": 20
   },
@@ -202,6 +209,14 @@ is better than about ±20 m.
 
 `footprint` is `{ "polygon": [[u,v],…], "confidence": "…" }` — the polygon alone would lose the
 footprint's confidence, which is exactly what the confidence view exists to show.
+
+`documented_range`, `change_note` and the `position_*` fields are the phase's claim about
+itself, carried in the same shape as an attribute (value/confidence/sources/note) so the card
+can render them with the attribute renderer. Additive, 2026-08-10, and added because the
+renderer had been reading `documented_range` off a sidecar that never contained it: the scene
+date falls inside the span by construction, so what a visitor needs is not the fact but its
+strength and its reasoning — for a building nobody followed past 1834, the end of the range is
+an argument rather than a source.
 
 **Discovery.** A static host cannot be globbed, so each scene publishes
 `sidecars/<scene>/index.json` listing `{id, name, sidecar, asset}` plus `excluded_by_date`.

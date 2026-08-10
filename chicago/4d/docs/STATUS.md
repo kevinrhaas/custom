@@ -16,7 +16,9 @@ a placeholder. As of 2026-08-10 it stands on **two bents rather than fifteen inv
 Hogan's store on Lake Street, where Chicago's post office opened in 1831, is recorded twice by
 Andreas as twenty by forty-five feet (§ 25). It is also the first record here with nothing
 conjectural in it, and the correction that came with it moved the post office's departure from
-this building by twenty months.
+this building by twenty months. **And the card now answers the question the whole scene rests
+on** — *was this building here on 1 July 1835* — which it never had, because the renderer read a
+sidecar field the compiler had never written (§ 28).
 
 ---
 
@@ -27,7 +29,7 @@ this building by twenty months.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 96 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene |
+| `tools/test_validate.py` | **done** — 112 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
@@ -36,7 +38,7 @@ this building by twenty months.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 129 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 139 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -604,6 +606,40 @@ uncertainty of the 1834 sheets in its note.
     switched on with no repair behind it. What it does NOT check is the direction the
     staleness gate covers — that the GLB matches the record — and neither of them can see a
     record that is wrong about the town.
+
+28. **The claim the whole scene rests on had never rendered, and no gate could have seen it.**
+    `popup.js` has read `sidecar.documented_range` since the card was written, and
+    `compile_scene.py` has never emitted the field. So the one line that answers *was this
+    building here on 1 July 1835* evaluated to an empty string on every building, on every
+    load, for the life of the project — while `roof_pitch_deg` carried a chip, its sources and
+    its reasoning. **Nothing in this repository could have caught it.** The compiler was
+    consistent with itself and `--check` (§ 27) only proves that; the record was complete and
+    validated clean; the renderer's markup was correct. Two halves each perfectly right about
+    their own side of an interface neither of them states.
+    **What ships is the phase's claim about itself**, in the attribute shape so the card
+    renders it with the attribute renderer rather than a second one that would drift:
+    `documented_range` (span, confidence, sources, note), the phase's `change_note`, and
+    `position_note` / `position_sources` beside the position chip that was already there. The
+    dates print as recorded — `1835-12-31`, not "December 1835" — because seven of the eight
+    ranges end on 31 December of some year, which is a BOUND and not a day anybody recorded (the
+    exception is the Sauganash, which burned on 4 March 1851). Prettifying a bound would dress
+    it up as a date somebody wrote down.
+    **The spread across the eight is the argument for showing it.** The Sauganash's frame phase
+    is `documented` (Wau-Bun watched it built, it burned on a recorded date); Hogan's store is
+    `inferred` and its note is the least comfortable paragraph on any card here — attested to
+    about July 1834, placed eleven months later on continuity, on the corner most exposed to the
+    1835 boom (§ 25). A card that stamped one grade on all eight would have looked like a
+    feature, so **the smoke asserts that discriminating pair** rather than the presence of a
+    chip, and asserts against the rendered card rather than the sidecar, because reading the
+    sidecar is exactly the check that would have passed all along.
+    **One gate came with it.** Every other `documented` value in this dataset owes a resolving
+    source; `documented_range` was outside that rule for no reason but the order the checks were
+    written in. It is inside it now — which matters more today than yesterday, because the claim
+    is something a visitor reads rather than something only a reviewer could find.
+    **What is still not on the card is the footprint's reasoning.** Its confidence drives the
+    tint and its note stays in the record, because the footprint has no display value that is
+    not itself a derivation — a bounding box over Miller's L-plan would be a new invention on
+    the panel that exists to admit them. It is a gap, and it is stated rather than filled.
 
 ## Next
 
