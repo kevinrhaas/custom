@@ -42,6 +42,18 @@ function aspectLabel(aspect) {
   return String(aspect).replace(/^form\./, '').replace(/_/g, ' ').replace(/\bm\b/, '(m)');
 }
 
+/**
+ * A ground claim's id as a reader would say it.
+ *
+ * The id carries its group for uniqueness — `swales.west_prairie_swale_a` — and
+ * the group is already the sentence the visitor is reading, so the chip shows
+ * the last segment. `bank` and `micro_relief` have only that one.
+ */
+function groundClaimLabel(claim) {
+  const parts = String(claim).split('.');
+  return parts[parts.length - 1].replace(/_/g, ' ');
+}
+
 const SECTION_LABEL = {
   standing: 'whole scene',
   per_subject: 'one subject',
@@ -87,14 +99,24 @@ export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, 
   // The commit gate reads the same claims against the records in both directions,
   // so a chip here is not a description of the entry — it is the assertion the
   // build refuses to ship without.
+  //
+  // Two domains, and the chip says which. A building's admission is read against
+  // its record; the ground's is read against the epoch's terrain spec, and the
+  // terrain is not a structure — the `domain` on the claim is the document's own
+  // word for that rather than something inferred here from the token's shape.
+  // "the ground" is not suppressed with the subjects, because it names which
+  // half of the dataset the claim lands in and not which building.
   const seen = new Set();
   const covers = (lib.covers || []).map((c) => {
-    const who = showSubjects ? (names.get(c.structure) || c.structure) : '';
-    const what = aspectLabel(c.aspect);
+    const ground = c.domain === 'terrain';
+    const who = ground ? 'the ground' : (showSubjects ? (names.get(c.structure) || c.structure) : '');
+    const what = ground ? groundClaimLabel(c.claim) : aspectLabel(c.aspect);
     const label = `${who} ${what}`.trim();
     if (seen.has(label)) return '';
     seen.add(label);
-    const token = [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
+    const token = ground
+      ? ['terrain', c.epoch, c.claim].join('.')
+      : [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
     return `<span class="lib-covers" title="admitted for ${escapeHtml(token)}">`
       + `${escapeHtml(who)}${who ? ' ' : ''}<em>${escapeHtml(what)}</em></span>`;
   }).join('');

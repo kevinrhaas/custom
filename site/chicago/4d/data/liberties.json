@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 33,
+  "count": 34,
   "liberties": [
     {
       "id": "L1",
@@ -153,11 +153,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "frame_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "footprint"
@@ -255,16 +257,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "footprint"
@@ -304,6 +309,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.side_additions"
@@ -347,6 +353,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.stables"
@@ -420,6 +427,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": "log_1831",
           "aspect": "position"
@@ -463,7 +471,13 @@
       "title": "Terrain: a conjectural micro-relief under every claim",
       "section": "per_subject",
       "subjects": [],
-      "covers": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "micro_relief"
+        }
+      ],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -480,6 +494,10 @@
           "text": "the plain is measurably rougher at cell scale (2.8 ft per 300 ft) than the dossier's flatness rule, while the *block* gradient the rule is actually about stays inside it (0.47 ft per 300 ft). The generator prints both on every run."
         },
         {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.micro_relief`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-10."
         }
@@ -490,7 +508,18 @@
       "title": "Terrain: the west-prairie swales are invented alignments",
       "section": "per_subject",
       "subjects": [],
-      "covers": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_a"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_b"
+        }
+      ],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -505,6 +534,10 @@
         {
           "label": "How to resolve",
           "text": "the 1821 GLO township plat land-cover, or the ISGS \"Illinois Landcover in the Early 1800s\" digitisation, both named in the dossier and neither reached."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.swales.west_prairie_swale_a`, `terrain.e1834_harbor_cut.swales.west_prairie_swale_b`."
         },
         {
           "label": "Recorded",
@@ -579,11 +612,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.wall_height_m"
@@ -628,11 +663,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.gallery"
@@ -681,36 +718,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.paint"
@@ -756,16 +800,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.fenestration"
@@ -809,16 +856,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_side"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_width_m"
@@ -933,11 +983,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_width_m"
@@ -981,6 +1033,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "ground_contact"
@@ -1059,9 +1112,15 @@
       "title": "Terrain: the bank face is a shape nobody recorded",
       "section": "per_subject",
       "subjects": [],
-      "covers": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "bank"
+        }
+      ],
       "recorded": "2026-08-10",
-      "revised": null,
+      "revised": "2026-08-10",
       "fields": [
         {
           "label": "Decision",
@@ -1084,8 +1143,16 @@
           "text": "a 19th-century cross-section, a wharf-building account with dimensions, or the 1850s Chesbrough survey read backwards through the grade raising."
         },
         {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.bank`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-10."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-10 — the sentence above is now out of date and stays, because a silently corrected admission is not one. The gate reads the terrain spec: this face is claimed by the `Covers:` field rather than by somebody having noticed, and removing this entry would fail the commit rather than pass it quietly."
         }
       ]
     },
@@ -1094,7 +1161,13 @@
       "title": "Terrain: the channel cross-section carries no evidence at all",
       "section": "per_subject",
       "subjects": [],
-      "covers": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "channel_profile"
+        }
+      ],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -1113,6 +1186,55 @@
         {
           "label": "How to resolve",
           "text": "an early sounding line, or the harbour engineers' pre-dredging sections."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.channel_profile`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L34",
+      "title": "Terrain: the north-side slough is one foot deep because a shallower one would not read",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "watercourses.north_side_slough"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the slough off the Main Branch is cut to a bed of **−1.0 ft** with a 1.2 m e-folding distance, and the whole block is tagged `conjectural` in `terrain_spec.json`."
+        },
+        {
+          "label": "Why",
+          "text": "its existence and its course are Wright 1834's, drawn on the sheet this terrain is fitted to, and its width is measured off the drafted band. Its **depth is invented outright** — no sounding, no description, nothing. One foot is the shallowest figure that still reads as water at the surface, which is a rendering argument and not a historical one, and the 1.2 m e-fold overrides the river's 9 m for the same reason: at 9 m a 1 ft channel would be four inches deep across a 7 m width and would look like damp grass."
+        },
+        {
+          "label": "Consequence",
+          "text": "the grade a visitor sees on this claim is the block's, so it says `conjectural` about a watercourse whose existence and course are the best-attested thing in this quadrant. The note is the only place that distinction is legible, which is a limit of block-level grading and not of the evidence — see `docs/STATUS.md` § 32."
+        },
+        {
+          "label": "Why it is recorded now",
+          "text": "it is the one ground invention the terrain slice never wrote down. L32 and L33 were noticed; this was not, and the coverage gate found it the first time it was allowed to look at the terrain spec — which is the whole argument for extending it there."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging sounding of the north-side backwater, or a description of it as fordable or not."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.watercourses.north_side_slough`."
         },
         {
           "label": "Recorded",
@@ -1167,11 +1289,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_extension"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.signage"
@@ -1224,31 +1348,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.chimneys"
@@ -1296,6 +1426,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "form.pier_spacing_m"

@@ -630,10 +630,32 @@ Two follow-ons, both real, both stated in STATUS § 32 rather than quietly dropp
   notes lands the bake with them and turns the rule into an error.** Worth doing at the same time:
   `terrain_inputs_sha` still hashes whole files, which is the false positive STATUS § 15 removed
   from the building hash arriving on the terrain side.
-- **The liberties coverage gate cannot see the terrain spec.** It reads `data/structures/`, so
-  L32 and L33 are owed by a person rather than demanded by a check, and the next invented
-  terrain value will be too. Extending the `Covers:` vocabulary to a `terrain.<epoch>.<aspect>`
-  namespace is the fix; the claims loop's "no structure has that id" branch is where it starts.
+- ~~**The liberties coverage gate cannot see the terrain spec.**~~ **DONE 2026-08-10** — see the
+  entry below.
+
+**Done 2026-08-10 — the ground answers to the coverage gate, and the first thing it asked for
+was an invention nobody had noticed.** The entry above names its own limit: the terrain's
+inventions reached the Evidence panel and stayed outside the gate, so L32 and L33 existed
+because a person noticed. `Covers:` now has a second namespace, `terrain.<epoch>.<claim>`,
+enumerated by the same `compile_scene.ground_claims` the panel renders from and matched in both
+directions — an unclaimed conjectural ground value fails, and so does a claim on a block that is
+not conjectural, on an epoch that is not committed, or on a claim id the spec does not grade.
+
+Six conjectural ground claims; five had prose behind them (L14 micro-relief, L15 the two swales,
+L32 the bank face, L33 the channel section) and adding their `Covers:` fields was bookkeeping.
+**The sixth had nothing.** The north-side slough's existence and course are Wright 1834's; its
+one-foot bed and 1.2 m e-fold are in the model because a shallower channel stops reading as
+water, and no list mentioned them. **L34** is new. Third check in this family to find something
+on its first run.
+
+Two decisions are asserted rather than assumed, and both are about naming. The epoch is in the
+token because `docs/EPOCHS.md` versions the ground, so a later shoreline's inventions must not be
+discharged by this one's admission — the self-test pins that. And the terrain is not modelled as
+a structure record called `terrain`: the domains are separate obligations, neither discharges the
+other, and the claim carries its `domain` rather than leaving a reader to infer it from a token's
+shape. What is still outside the rule is the ground's **omissions** — there is no terrain
+`CONSUMED`, so a zone the spec describes and `terrain_gen.py` ignores leaves no trace — and the
+grades stay block-level, so L34 admits more than the data does.
 
 ## S8 — Milestone 1
 
