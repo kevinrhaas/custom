@@ -3,7 +3,7 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 shipped; Milestone 1 (the forks) is most of the way in** — five more structures placed from the georeference, log_dwelling and bridge_timber archetypes, the fleet changelog contract. Terrain and the river are the outstanding piece.
+**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 shipped; Milestone 1 (the forks) is in** — five more structures placed from the georeference, log_dwelling and bridge_timber archetypes, the fleet changelog contract. Six structures, two new archetypes, real ground and a traced river.
 
 ---
 
@@ -55,8 +55,16 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
 - **No terrain.** The scene stands on a flat plane; the 30-zone heightfield spec exists in the
   research dossier but has not been turned into data. This is the next stage.
 - **No flora or fauna records.** The palettes and the placement table exist in the dossiers only.
-- **No terrain and no river** — at a river confluence. This is the next piece and it is in
-  progress. Everything currently stands on a flat green plane.
+- **Terrain and the river now exist**, traced from Wright 1834 through the same affine that
+  fixed the datum. Total land relief across the whole 640 m box is **4.30 ft** — that is not a
+  simplification, it is the site. The dossier's suggested 4–8x vertical exaggeration was
+  refused because it contradicts `docs/EPOCHS.md` and LIBERTIES L3.
+- **The bank profile is the largest unsourced assumption in the build.** No zone in the terrain
+  dossier gives a bank *profile* at all; the 6 m face and its ease-out shape were chosen partly
+  because a flat toe leaves the Z=0 contour — which IS the drawn waterline — ill-conditioned
+  against the grid.
+- **`chicagoarchitecturehistory.com` cites nothing** for the two best elevation figures in the
+  dossier, which is why no land elevation in this build is tagged `documented`.
 - **Placement is real but coarse.** All six structures now carry surveyed coordinates rather
   than nulls, at about ±20 m — the georeference's error, not an additional guess. Three of them
   (Wolf Point Tavern, Miller House, Walker's meeting house) have no surviving intersection and

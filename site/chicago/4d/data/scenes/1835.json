@@ -36,10 +36,10 @@
     },
     {
       "id": "forks",
-      "label": "The forks at Wolf Point",
-      "local_e": -20.0,
-      "local_n": -30.0,
-      "yaw_deg": 20.0
+      "label": "The forks, from Wolf Point",
+      "local_e": -100.0,
+      "local_n": -28.0,
+      "yaw_deg": 75.0
     },
     {
       "id": "green_tree",
@@ -64,5 +64,5 @@
     "fauna"
   ],
   "released": false,
-  "note": "The first scene. Population roughly 3,265 in the late-1835 count; the town is twenty months old and has grown roughly tenfold in two years. Wabansia and Kinzie's Addition are platted (the Wooley correction was approved 17 June 1835, two weeks before this date) but almost entirely unbuilt. Anchor coordinates are provisional until the datum is verified — they are placeholders in the same local frame, not survey positions. Spawn and the near anchors are now derived from the Sauganash's real placement at Lake and Market — about 100 m east and 130 m south of the forks confluence — rather than from the datum origin, which is in the middle of the river. Anchors for structures not yet placed (Green Tree, South Water) point at their surveyed corners and will resolve as those records land."
+  "note": "The first scene. Population roughly 3,265 in the late-1835 count; the town is twenty months old and has grown roughly tenfold in two years. Wabansia and Kinzie's Addition are platted (the Wooley correction was approved 17 June 1835, two weeks before this date) but almost entirely unbuilt. Anchor coordinates are provisional until the datum is verified — they are placeholders in the same local frame, not survey positions. Spawn and the near anchors are now derived from the Sauganash's real placement at Lake and Market — about 100 m east and 130 m south of the forks confluence — rather than from the datum origin, which is in the middle of the river. Anchors for structures not yet placed (Green Tree, South Water) point at their surveyed corners and will resolve as those records land. The forks anchor moved from (-20, -30) to (-100, -28) once the river channel was traced: the placeholder stood in the middle of the South Branch. It is now on the west bank at Wolf Point, which is what the name meant, looking east across the confluence and down the main stem."
 }

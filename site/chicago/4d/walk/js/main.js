@@ -15,7 +15,7 @@ import * as THREE from 'three';
 
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
-import { createTerrain, Heightfield, enuToWorld } from './terrain.js';
+import { createTerrain, enuToWorld } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
@@ -90,12 +90,20 @@ async function boot() {
     renderer, scene: scene3d, sceneJson: loaded.scene, datum: loaded.datum, lowSpec: coarse,
   });
 
-  // Flat ground today; the sampler is the real one and answers 0 until Track S2
-  // publishes heightfield.bin for the terrain epoch.
-  const terrain = createTerrain({ heightfield: new Heightfield() });
+  const confidence = createConfidenceView();
+
+  // The ground, the river, and the heightfield the walker stands on, all from
+  // the scene's terrain epoch. Awaited: everything after this asks it how high
+  // the ground is, and a flat answer would place every building at the datum.
+  const terrain = await createTerrain({
+    dataBase: bases.dataBase,
+    assetBase: bases.assetBase,
+    epochId: loaded.scene.terrain_epoch,
+    confidence,
+    problems,
+  });
   scene3d.add(terrain.group);
 
-  const confidence = createConfidenceView();
   const buildings = createBuildings({ registry: loaded.registry, confidence, terrain });
   problems.push(...buildings.problems);
   scene3d.add(buildings.group);
@@ -284,6 +292,7 @@ async function boot() {
     const dt = Math.min(clock.getDelta(), 0.05);
 
     backends.active?.update?.(dt);
+    terrain.update(dt);
     const asked = intent.takeInteract();
     if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
     walker.update(dt, intent);

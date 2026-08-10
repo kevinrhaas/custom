@@ -181,6 +181,61 @@ same way the Sauganash's attached log wing was (L4a). Until it lands, the log el
 taller than they were.
 **Recorded:** 2026-08-09.
 
+### L14 — Terrain: a conjectural micro-relief under every claim
+**Decision:** the land surface carries ±0.10 ft (30 mm) of two-octave value noise everywhere,
+and the `_CONFIDENCE` channel does **not** report it.
+**Why:** no contour survey of the 1835 town site exists, so the terrain is a set of zone levels
+from period narrative feet, and a zone level rendered literally is a dead-flat plane that reads
+as a rendering error rather than as ground — and gives a walker no motion parallax to judge
+distance by. The noise is a texture, not a claim: its amplitude is below the 0.25 ft the dossier
+asks the heightmap to be *quantised* at, and far below the resolution of any statement in the
+record. The confidence channel carries the zone's tag because the zone level is the claim being
+made. Setting `micro_relief.amplitude_ft` to 0 in `terrain_spec.json` removes it entirely.
+**Consequence:** the plain is measurably rougher at cell scale (2.8 ft per 300 ft) than the
+dossier's flatness rule, while the *block* gradient the rule is actually about stays inside it
+(0.47 ft per 300 ft). The generator prints both on every run.
+**Recorded:** 2026-08-10.
+
+### L15 — Terrain: the west-prairie swales are invented alignments
+**Decision:** two shallow swales (0.75 and 0.6 ft deep) cross the West Division wet prairie,
+tagged `conjectural` and rendered dithered-translucent in the confidence view.
+**Why:** dossier zone 18 says the West Division carried "1–2 ft slough swales", so that swales
+existed is inferred from a source. **Where they ran is attested nowhere**, and these two
+alignments were drawn to make the wet prairie read as wet prairie rather than as a lawn. They
+are the only piece of terrain geometry in this parcel invented outright.
+**How to resolve:** the 1821 GLO township plat land-cover, or the ISGS "Illinois Landcover in
+the Early 1800s" digitisation, both named in the dossier and neither reached.
+**Recorded:** 2026-08-10.
+
+### L16 — Terrain: the water is a wall to the walker
+**Decision:** the heightfield carries the real channel bed (about −12 ft in the main stem), the
+ground mesh draws it, and the walker cannot enter the water — `terrain.height()` reports a
+barrier at the waterline instead of the bed.
+**Why:** a walker whose eye is pinned to the bed walks into the river and looks at the town from
+under the water, which reads as a bug rather than as a river. This is a navigation rule, not a
+claim about the terrain: nothing about the modelled ground changes, and `groundHeight()` still
+reports the truth. It is a liberty because a person in 1835 could in fact cross — by the ferry
+at Wolf Point, or by boat — and the model currently offers neither.
+**Known edge:** a walker *teleported* into the channel — by a camera anchor or by the test
+harness, never by walking — stands on the barrier and appears to float. Every anchor in
+`data/scenes/1835.json` is on land (the `forks` placeholder that was not has been moved), so it
+is not reachable in normal use, but it is the shape of the compromise and it is written down
+rather than discovered.
+**How to resolve:** model the ferry and the bridges as structures, then let the walker use them.
+**Recorded:** 2026-08-10.
+
+### L17 — Terrain: the ground continues past the modelled box as a radial skirt
+**Decision:** the heightfield covers a 640 m square around the forks. Beyond it the ground mesh
+carries each boundary height radially outward to 1400 m, so the river widens into the fog rather
+than ending at a cliff.
+**Why:** the alternative — a hard edge at 320 m — is a worse lie than a smeared one, and the
+scene's fog is total by 1500 m. Nothing outside the box is modelled, sampled, or claimed: the
+heightfield's own sampler returns its fallback there, and the skirt is geometry for the horizon
+only.
+**Consequence:** the main stem appears to widen as it recedes east. Anyone extending the model
+east to the harbour replaces the skirt with real terrain rather than editing it.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved
