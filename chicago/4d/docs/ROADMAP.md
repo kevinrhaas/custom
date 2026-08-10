@@ -193,18 +193,39 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
 
 - **Position is settled and cross-checked**: local E +1152, N +221, two independent methods
   35 m apart (see S2e).
-- **The footprint is not.** Wright *labels* the reservation and draws no plan, so the
-  palisade, blockhouses, barracks, magazine and parade have to come from elsewhere —
-  Andreas 1884 carries fort plans, and the fort's own published drawings exist. Find and
-  record that source before modelling; do not infer a stockade outline from a banner.
+- **What it *was* on 1835-07-01 is SETTLED, 2026-08-10** — `docs/RESEARCH/fort_dearborn.md`.
+  An **occupied United States Army post, commanded by Major John Greene**, who held it from
+  18 December 1833 until 16 September 1835. Three separately written accounts agree the fort
+  was garrisoned through 1835 and the post surgeon's prescription book has an entry dated
+  15 March 1835. The soldiers left on 29 December 1836 and the post was not given up until
+  June or July 1837 — which is how Andreas manages to give 1836 in one chapter and
+  10 May 1837 in another. Nothing here goes to `data/exclusions.json`; the fort was here.
+- **The footprint is still NOT sourced, but the search is narrowed to three candidates.**
+  Wright *labels* the reservation and draws no plan; neither does Hathaway. The best lead is
+  a survey, not a picture: the War Department's agent, reporting on 21 November 1840, names
+  the platted lots of the **Fort-Dearborn Addition (1839)** that were withheld from sale
+  because they covered "the fortress of Fort Dearborn *within the pickets*". Find that plat,
+  fit it (its streets survive in the modern grid) and read the withheld lots. Second: **Henry
+  Hart's 1853 survey of the fort**, named but not yet located. Third: a War Department plan
+  of the rebuilt fort, never looked for. Ruled out with reasons in the memo § 7 — do not
+  re-run them. Still: do not infer a stockade outline from a banner.
+- **Four constraints exist now that did not.** Gurdon S. Hubbard, correcting the *Wau-Bun*
+  view in 1881, states that the enclosure ran "nearly north and south, east and west"; that
+  the north picket line stood nowhere more than 80 ft from the water and 50-60 ft opposite
+  the north gate; that the ground at the fort was "not over eight feet above the River at its
+  lowest stage"; and that the north and south gates were on one sight line. The first two are
+  usable against the traced 1834 bank. **The third is a finding about the terrain**: an 8 ft
+  platform is taller than any landform in the modelled box (total relief 4.30 ft), so it
+  belongs to S2e parcel (b) as much as to this parcel.
 - It is a **complex, not a building**: S5's Fort Dearborn parcel already itemises palisade,
   blockhouse, bastion, magazine, quarters, barracks, sutler, hospital, parade and gardens.
-  Expect several records and several bakes, not one.
-- **Settle what it *was* on 1835-07-01 before drawing it.** This is the second fort, rebuilt
-  1816. The garrison's comings and goings in the mid-1830s are exactly the kind of detail
-  this project gets wrong by assuming — an occupied fort and an empty one are different
-  scenes. Research it and cite it; `data/exclusions.json` is the place for whatever turns
-  out not to be there.
+  Expect several records and several bakes, not one. The interior arrangement is now attested
+  element by element (memo § 5) and the one open disagreement is whether there were two
+  bastions or one.
+- **A caution the memo pays for.** Three enclosures get confused in this literature and only
+  one is the 1835 fort: the 1816 stockade, the post-army compound of 1850 (pickets gone, a
+  whitewashed board fence, "say 400 feet"), and the 53¼-acre reservation. The 400 ft figure
+  is the middle one and must not be read as a palisade.
 
 ## S4 — Archetype generators
 
