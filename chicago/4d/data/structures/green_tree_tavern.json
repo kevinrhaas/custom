@@ -148,8 +148,7 @@
         "chimneys": {
           "value": 2,
           "confidence": "inferred",
-          "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference.",
-          "geometry": "simplified"
+          "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference."
         }
       },
       "change_note": "Built 1833 as the first building in Chicago put up specifically to be a hotel. The phase carries the two-storey core as built; the low one-storey side additions attested by 1838-41 are recorded on the record but not in the geometry, because nothing dates them."

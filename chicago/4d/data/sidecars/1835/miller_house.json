@@ -109,8 +109,7 @@
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference.",
-      "geometry": "simplified"
+      "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference."
     },
     "function": {
       "value": "store_residence",

@@ -122,8 +122,7 @@
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference.",
-      "geometry": "simplified"
+      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference."
     },
     "function": {
       "value": "tavern_inn",

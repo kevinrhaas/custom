@@ -120,8 +120,7 @@
     "chimneys": {
       "value": 1,
       "confidence": "inferred",
-      "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference.",
-      "geometry": "simplified"
+      "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference."
     },
     "function": {
       "value": "tavern_inn",

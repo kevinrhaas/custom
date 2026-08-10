@@ -243,8 +243,17 @@ for (const [label, viewport, touch] of [
       geom.wolf.sign === null && geom.wolf['frame addition'] === null,
       `sign ${geom.wolf.sign}, frame addition ${geom.wolf['frame addition']}`);
     check(`${label}: a value a fixed default stands in for is marked differently`,
-      geom.western.chimneys === 'not modelled from this',
-      `chimneys ${geom.western.chimneys}`);
+      geom.western.cladding === 'not modelled from this',
+      `cladding ${geom.western.cladding}`);
+    // Chimneys were the other half of that marker until 2026-08-10: every record
+    // counted its stacks and neither archetype read the number, so Miller's house
+    // showed one stack over a record claiming two. The count is a parameter now, so
+    // the row carries no marker — on the log building that gained a stack and on the
+    // frame building whose pair was already right, which are different reasons to
+    // pass and both have to hold.
+    check(`${label}: the recorded chimney count is built, so its row is unmarked`,
+      geom.wolf.chimneys === null && geom.western.chimneys === null,
+      `wolf ${geom.wolf.chimneys}, western ${geom.western.chimneys}`);
     // The discriminating cases. An attribute the archetype builds must carry no
     // marker at all, or the card teaches a visitor to distrust the whole model;
     // and a rejected reading is not a thing missing from the view.

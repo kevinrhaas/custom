@@ -113,8 +113,7 @@
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference.",
-      "geometry": "simplified"
+      "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference."
     },
     "function": {
       "value": "tavern_inn",

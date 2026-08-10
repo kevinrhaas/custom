@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 16, title: 'Miller\'s house gets its second chimney', kind: 'fix',
+    ts: '2026-08-10T07:34:46.858Z', date: 'Aug 10, 2026, 2:34 AM CT',
+    items: [
+      'Every building here records how many chimneys it had, and until now no building-maker read the number. It built two stacks on a frame tavern and one on a log house, always, whatever the record said. The counts and the models were written from the same pictures, so they agreed by accident and nobody noticed they were never connected.',
+      'Samuel Miller\'s house is where they disagreed. Its record says two — a former tavern with a log cabin behind it would carry a stack in each part — and the model had one. It has two now, and the second stands on the frame range facing the river, which is where the record\'s own reasoning for counting two puts it.',
+      'The cause was a spelling, for the third time this week. The record says "chimneys" and the building-maker asked for "chimney", so it found nothing, used its default of one, and said nothing. That failure now has a test instead of a discoverer: anything a building-maker claims to read has to actually change the building when you change it.',
+      'What the count does not tell you is where a stack stood, how big it was or what it was made of. Not one source describes a chimney on any of these six buildings, so every one of those is the model-maker\'s choice — an outside stack against the gable of a log house, a pair along the ridge of a frame one. The liberties list now says so on its own line, because the confidence mark on the row answers only "how many".',
+    ] },
   { v: 15, title: 'The wolf is back on Wolf Point', kind: 'fix',
     ts: '2026-08-10T07:01:28.833Z', date: 'Aug 10, 2026, 2:01 AM CT',
     items: [

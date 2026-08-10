@@ -455,6 +455,101 @@ def test_archetypes_declare_what_they_consume() -> None:
           consumed)
 
 
+def test_consumed_attributes_actually_reach_the_parameters() -> None:
+    """A declared attribute must MOVE something, not merely be listed.
+
+    `CONSUMED` is the claim "this value reaches the mesh", and the omission gate
+    excuses an attribute from admitting anything on the strength of it. So a name
+    in that set which `from_phase` never reads is worse than an undeclared one: it
+    is an admission the record is let off making, for geometry that is not there.
+
+    That is not hypothetical. It has happened twice, both times because the record
+    and the resolver spelled the same thing differently — `frame_extension` against
+    `frame_addition`, and `chimney` against the `chimneys` every record states,
+    which left Samuel Miller's second stack unbuilt while the count sat in the
+    record looking built. Neither resolver ever complained, because a resolver
+    reading an absent attribute just takes its default.
+
+    The check is mechanical: perturb each stated value that its archetype declares
+    it consumes, resolve again, and require the parameters to differ. A perturbation
+    the parameters refuse outright counts as read — a ParamError is the loudest
+    possible evidence that the value arrived.
+    """
+    import copy
+    import json as _json
+
+    sys.path.insert(0, str(V.ROOT / "generators"))
+    resolvers, errors = {}, []
+    for mod_path in sorted((V.ROOT / "generators" / "archetypes").glob("*_params.py")):
+        mod = __import__(f"archetypes.{mod_path.stem}", fromlist=["from_phase"])
+        resolvers[mod_path.stem.removesuffix("_params")] = mod
+
+    def perturb(value):
+        """A different value of the same kind, or None when there is nothing to try."""
+        if isinstance(value, bool):
+            return not value
+        if isinstance(value, (int, float)):
+            return value + 1
+        if isinstance(value, str):
+            return value + "_perturbed"
+        return None
+
+    def reaches(mod, ph: dict, attr: str) -> bool | None:
+        """Does this attribute's VALUE change the parameters? None if untestable.
+
+        Only the value is moved, never the confidence — `from_phase` copies every
+        attribute's confidence into the parameters whatever it does with the value,
+        so perturbing the whole block would report every attribute as read.
+        """
+        other = perturb(((ph.get("form") or {}).get(attr) or {}).get("value"))
+        if other is None:
+            return None
+        moved = copy.deepcopy(ph)
+        moved["form"][attr]["value"] = other
+        try:
+            return mod.from_phase(moved) != mod.from_phase(ph)
+        except mod.ParamError:
+            return True
+
+    consumed = V.archetype_consumed()
+    tested = 0
+    records = {}
+    for path in sorted((V.ROOT / "data" / "structures").glob("*.json")):
+        st = _json.loads(path.read_text())
+        records[st["id"]] = st
+        arch = st.get("archetype")
+        mod = resolvers.get(arch)
+        if mod is None or arch not in consumed:
+            continue
+        for ph in st.get("phases", []):
+            for attr in sorted((ph.get("form") or {}).keys()):
+                if attr not in consumed[arch]:
+                    continue
+                got = reaches(mod, ph, attr)
+                if got is None:
+                    continue
+                tested += 1
+                if not got:
+                    errors.append(f"{st['id']}/{ph['id']}: form.{attr} is in {arch}'s "
+                                  f"CONSUMED set, but changing its value resolves to "
+                                  f"identical parameters — the generator is not reading it")
+
+    check("every consumed attribute the records state changes the parameters",
+          not errors, "; ".join(errors))
+    check("the check had real attributes to exercise", tested >= 20, f"{tested} exercised")
+
+    # The discriminating cases, because a probe that cannot fail proves nothing.
+    # `cladding` is the shape of the defect: stated by the record, ignored by the
+    # resolver, and honest about it — it declares geometry: 'simplified'. If it were
+    # ever added to CONSUMED without a parameter behind it, the loop above must say so.
+    sauganash = records["sauganash_hotel"]["phases"][-1]
+    ft = resolvers["frame_tavern"]
+    check("an attribute the resolver ignores does not move the parameters",
+          reaches(ft, sauganash, "cladding") is False)
+    check("an attribute the resolver reads does",
+          reaches(ft, sauganash, "stories") is True)
+
+
 def test_covers_field_parses_to_claims() -> None:
     """The grammar the document is written in, checked at its own level.
 
