@@ -24,6 +24,7 @@ import { createTouchBackend, prefersTouch } from './controls/touch.js';
 import { createWalker, footprintsFrom, WALK } from './walker.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
+import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
 const BUDGET = { drawCalls: 80, triangles: 600000 };
@@ -133,6 +134,17 @@ async function boot() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
       }
     },
+  });
+
+  // The liberties the scene takes, in the Evidence panel. Awaited rather than
+  // fired and forgotten: it is one small JSON, and a visitor who opens the panel
+  // in the first second should not find it empty. A failure here degrades the
+  // panel and records a problem; it does not stop the walkthrough.
+  api.liberties = await mountLiberties({
+    mount: document.getElementById('liberties'),
+    dataBase: bases.dataBase,
+    registry: loaded.registry,
+    problems,
   });
 
   // Apply the visitor's stored settings before the first frame, so nothing

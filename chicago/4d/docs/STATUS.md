@@ -3,7 +3,11 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-09 · **Phase:** S0, S1 (datum), S4-partial (frame_tavern) and R1 (renderer) complete. **Milestone 0 shipped; Milestone 1 (the forks) is in** — five more structures placed from the georeference, log_dwelling and bridge_timber archetypes, the fleet changelog contract. Six structures, two new archetypes, real ground and a traced river.
+**Last updated:** 2026-08-10 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
+forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
+**Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
+georeference, real ground, a traced river, and the liberties now readable inside the
+walkthrough rather than only in the repository.
 
 ---
 
@@ -23,7 +27,8 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 49 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 71 checks green at 390×780 and 1280×800, zero page errors |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh` |
 | **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
@@ -135,18 +140,33 @@ uncertainty of the 1834 sheets in its note.
 10. **`gltf-transform` did not run**, so `assets/web/` currently holds copies of the
     uncompressed masters rather than meshopt/KTX2 derivatives. Harmless at 44 KB; it must work
     before the town scales.
-11. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+11. **The liberties are listed but not yet attached to their buildings.** The Evidence panel
+    shows all eighteen, and `data/liberties.json` already carries the `subjects` each one
+    constrains — L5 and L6 to the Sauganash, L9 to the Green Tree, L13 to the two composite
+    log-and-frame houses. The provenance popup does not read that field, so a visitor inspecting
+    the Green Tree is told its attributes' confidence but not that its footprint was reasoned out
+    of a room module and its side additions deliberately left off. The data supports the link; the
+    UI has not made it. Note also that the panel is only as complete as the markdown: it reports
+    liberties that were *recorded*, and nothing verifies that every liberty taken was written down.
+12. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
 ## Next
 
-**Trace the Sauganash footprint from Hathaway** so the building stands at Lake and Market
-instead of at the origin — the first real use of the georeference, and small.
+**S5 — more structure records**, which is now the binding constraint: six buildings stand where
+the sources describe roughly forty. Note the coupling discovered on 2026-08-10, because it sets
+the shape of the work: `tools/compile_scene.py` writes an `asset` path for every structure that
+resolves into the scene, so a record committed without its GLB makes the renderer fetch a file
+that is not there — a 404 the smoke correctly fails on. **A structure record and its bake are one
+unit.** An agent without Blender can prepare the record and the research memo, but the pair has
+to land together, so the bake workflow's PR is part of the same slice rather than a follow-up.
 
-**S2 — terrain epoch `e1834_harbor_cut`** (shoreline/river vectors traced through the fitted
-transforms; the 30-zone heightfield; the slough and ponds; `terrain_gen.py`) and **R1 — the
-renderer shell** (input-intent walker, confidence shader, smoke harness) — independent tracks
-that can run in parallel now that the spatial frame exists.
+**S2 remainder** — the shoreline layer (the 1835 lake shore is ~1.4 km east of the forks and
+belongs to a harbour parcel), Frog Pond, the Wells Street marsh, and the rest of the hydrology
+beyond the single traced slough centreline.
+
+**S6 — flora and fauna records**, which is also what would retire liberty L2's promise: the
+palettes and placement tables exist in the dossiers and nothing has been turned into data.
 
 New findings for S2 from the datum work: Hathaway carries survey bearings and lot dimensions
 ("N.51°E." along the main stem, 80-ft streets annotated); both 1834 sheets are anisotropically

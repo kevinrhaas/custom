@@ -95,6 +95,14 @@ into the data as `absent` entries with citations, so nobody re-adds them later.
 Performance against the budgets, licensed ambience audio, provenance-popup UX, `LIBERTIES.md`
 completeness pass, mobile release gate.
 
+**Done 2026-08-10 — the liberties are in the walkthrough.** `docs/LIBERTIES.md` stays the
+append-only source of truth; `tools/compile_liberties.py` derives `data/liberties.json`,
+`check.sh` re-derives it and fails on drift, and the Evidence panel lists all eighteen with
+their reasoning. Remaining in this line of work: the popup does not yet show the liberties that
+constrain the building being inspected, though `subjects` is already in the derived data
+(STATUS weakness 11); and a completeness pass — the panel reports what was *recorded*, which is
+not the same claim as everything taken having been written down.
+
 ## S8 — Milestone 1
 
 Wolf Point cluster + South Water block D (LaSalle–Clark). The first test of whether the

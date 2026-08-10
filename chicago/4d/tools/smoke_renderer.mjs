@@ -14,6 +14,7 @@
  *   confidence toggle ........... the deliverable measurably changes the render
  *   pick -> citation ............ the visual claim and the citable claim connect
  *   walk moves the camera ....... input intent reaches the walker
+ *   liberties are readable ...... what we made up is in the panel, not only in the repo
  *   draw calls under budget ..... the batch strategy is doing its job
  *   zero page errors ............ everywhere, both widths
  *
@@ -399,6 +400,62 @@ for (const [label, viewport, touch] of [
     check(`${label}: a returning visitor sees only what shipped since last time`,
       ret.flagged.length === ret.total - 3 && ret.flagged.length > 0,
       `${ret.flagged.length} of ${ret.total} flagged: ${ret.flagged.join(' | ')}`);
+    // --- the liberties, in the Evidence panel ------------------------------
+    // The claim this project makes is that a visitor can tell which parts we
+    // made up. The confidence view covers attributes; these are the decisions
+    // that belong to no attribute, and they are only a disclosure if they are
+    // reachable from the page rather than from the repository.
+    const lib = await page.evaluate(() => {
+      // The what's-new checks above leave the panel open on their tab, and a
+      // toggle here would close it — open only if it is shut.
+      if (document.getElementById('panel').hasAttribute('hidden')) {
+        document.getElementById('btn-help').click();
+      }
+      const tab = [...document.querySelectorAll('.panel-tab')]
+        .find((t) => t.dataset.tab === 'evidence');
+      tab?.click();
+      const mount = document.getElementById('liberties');
+      return {
+        counted: window.__chicago4d.liberties?.count ?? 0,
+        error: window.__chicago4d.liberties?.error ?? 'no liberties on the handle',
+        rendered: mount ? mount.querySelectorAll('details.lib').length : 0,
+        busy: mount ? mount.hasAttribute('aria-busy') : true,
+        text: mount ? mount.textContent : '',
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the liberties list loads`, lib.counted >= 17 && !lib.busy,
+      `${lib.counted} loaded (${lib.error})`);
+    check(`${label}: every loaded liberty is rendered`, lib.rendered === lib.counted,
+      `${lib.rendered} rendered of ${lib.counted}`);
+    check(`${label}: the list names a scene-wide liberty`,
+      /No people, anywhere/.test(lib.text) && /L1\b/.test(lib.text),
+      lib.text.slice(0, 160));
+    check(`${label}: the Evidence panel does not overflow`, lib.overflow);
+
+    // Collapsed by default, and opening one gives the reasoning — not just the
+    // admission that a liberty was taken.
+    // A closed <details> still lays its contents out — measuring the body's own
+    // box reads the same number open or shut. checkVisibility() is the signal
+    // that answers the question actually being asked, and the list's height
+    // confirms the panel really grew around it.
+    const opened = await page.evaluate(() => {
+      const mount = document.getElementById('liberties');
+      const first = mount.querySelector('details.lib');
+      const body = first.querySelector('.lib-body');
+      const snap = () => ({
+        shown: body.checkVisibility(),
+        list: mount.getBoundingClientRect().height,
+      });
+      const before = snap();
+      first.open = true;
+      return { before, after: snap(), text: first.textContent };
+    });
+    check(`${label}: expanding a liberty reveals its reasoning`,
+      opened.before.shown === false && opened.after.shown === true
+      && opened.after.list > opened.before.list + 40 && /Why/i.test(opened.text),
+      `shown ${opened.before.shown} -> ${opened.after.shown}, `
+      + `list ${opened.before.list.toFixed(0)} -> ${opened.after.list.toFixed(0)} px`);
     await page.click('#panel-close');
 
     if (KEEP) {
