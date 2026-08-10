@@ -27,7 +27,7 @@ walkthrough rather than only in the repository.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 109 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 111 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -189,7 +189,7 @@ uncertainty of the 1834 sheets in its note.
     the two best-attested features of the house were dropped in silence and the popup showed the
     project's strongest confidence chip over both. That is the confidence model working as
     designed and still misleading, which makes it the sharpest argument for this rule that the
-    project has produced. **Repaired 2026-08-10, in one slice with its bake** (see 17 below).
+    project has produced. **Repaired 2026-08-10, in one slice with its bake** (see 18 below).
     Miller's house is the same shape in miniature: its record says two chimneys and
     `log_dwelling` builds one, and that one is still open. What is still unenforced is what no record mentions at all —
     the Western's unmodelled stable yard is now claimed, but a liberty nobody noticed taking
@@ -233,10 +233,19 @@ uncertainty of the 1834 sheets in its note.
     What this still does not catch is stated in `mesh_inputs.py`: it compares inputs, not output.
     Cycles AO is not bit-reproducible across hardware, which is why freshness is defined on inputs
     at all — a hand-edited GLB behind an untouched record passes, and nothing here can see it.
-16. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+16. **The nightly bake pushes its branch and cannot open its PR.** `chicago-4d-bake.yml` ends
+    by creating a pull request and that step has been failing on a repository setting —
+    "GitHub Actions is not permitted to create or approve pull requests" — so every bake since
+    the workflow was written has left its geometry on an orphan `steward/bake-*` branch that
+    nothing merges. Eight such branches exist. This slice worked around it by fetching the bake
+    branch and fast-forwarding onto it, which is fine for an agent that is watching, and no use
+    at all for the nightly. The fix is one checkbox in the repository's Actions settings, or a
+    PAT on that step; the workflow lives outside `chicago/4d/` and is therefore outside this
+    lane's scope to edit, so it is recorded here rather than fixed.
+17. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
-17. **FIXED — the Wolf Point Tavern has its frame half and its wolf sign.** The defect the
+18. **FIXED — the Wolf Point Tavern has its frame half and its wolf sign.** The defect the
     omission gate found on 2026-08-10 is repaired the same day, record and mesh in one commit:
     `frame_extension` → `frame_addition`, `signage` → `sign`, the two names `log_dwelling`
     actually reads. The building that named Wolf Point now has a board hanging outside it.
