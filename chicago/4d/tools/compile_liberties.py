@@ -56,13 +56,14 @@ DATE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 # derived file uncompilable.
 #
 # Two shapes of aspect, and the difference is deliberate. The record's fixed
-# blocks — `footprint`, `position`, `documented_range`, and the structure-level
-# `function` and `occupants` — are a closed list, because their names are part of
-# the schema. Everything under `form` is open, because that is where a building's
+# blocks — `footprint`, `position`, `documented_range`, `ground_contact`, and the
+# structure-level `function` and `occupants` — are a closed list, because their
+# names are part of the schema. Everything under `form` is open, because that is where a building's
 # character is written and the vocabulary grows with the archetypes; a form claim
 # therefore carries its `form.` prefix, which is also what keeps the last segment
 # from having to be guessed at.
-COVER_ASPECTS = ("footprint", "position", "documented_range", "function", "occupants")
+COVER_ASPECTS = ("footprint", "position", "documented_range", "function", "occupants",
+                 "ground_contact")
 FORM_ASPECT = r"form(?:\.[a-z0-9_]+)+"
 COVER_TOKEN = re.compile(
     r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.("

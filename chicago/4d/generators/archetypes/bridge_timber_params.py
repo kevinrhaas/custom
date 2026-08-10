@@ -70,6 +70,37 @@ DOC_CLEARANCE_M = 1.83    # "clearing the water by about 6 ft" — dossier only,
 # anything that does not declare one is placed against the terrain as before.
 VERTICAL_ANCHOR = "water"
 
+# Where this archetype touches the ground, read by tools/validate.py's ground
+# contact check. A building meets the terrain all the way round its outline at
+# the base of its walls; a crossing does not meet it anywhere in between, and
+# where it DOES meet it is the deck, not the base — the piers run down to a bed
+# this project does not model. So `ends`: the two end edges of the footprint,
+# at `deck_height_m` above the anchor.
+#
+# Declaring it is what lets the gate ask whether a bridge lands on anything.
+# It is a separate question from VERTICAL_ANCHOR, which says where the structure
+# is placed; this says where a person could step off it.
+GROUND_CONTACT = "ends"
+
+
+def ground_contact_z(params: "BridgeTimberParams") -> float:
+    """Local z at which a bridge could meet the ground: the deck.
+
+    A module-level function rather than a `@property` on the parameter class, and
+    the reason is the staleness gate: `generators/mesh_inputs.py` hashes every
+    property the class derives, because a derived constant is as load-bearing as
+    a field. This one is not — it is read by `tools/validate.py` and by nothing
+    that turns parameters into vertices — so making it a property would have
+    re-staled the bridge for a number no builder looks at, which is precisely
+    the false positive that module was rewritten to end.
+
+    Separate from `deck_height_m` because the two answer different questions and
+    only happen to agree today: the deck is where the traffic is, and a bridge
+    whose approach ramps were modelled would meet the ground lower down without
+    its deck moving at all.
+    """
+    return float(params.deck_height_m or 0.0)
+
 # The form attributes whose VALUE this archetype reads. See frame_tavern_params
 # for the argument. No bridge record is committed yet, so this set is a promise
 # made before it can be broken rather than one being repaired.

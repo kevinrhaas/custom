@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 19, title: 'The bridge arrives nowhere, and now the gate says so', kind: 'fix',
+    ts: '2026-08-10T10:10:21.159Z', date: 'Aug 10, 2026, 5:10 AM CT',
+    items: [
+      'The bridge that arrived on the site earlier today does not touch either bank. Its deck stands about 2.4 metres above the ground at both ends, and the highest piece of land anywhere in the modelled area is lower than the deck, so there is nothing for it to arrive at. Walk to the water\'s edge and the crossing simply begins in mid-air over the river.',
+      'Nothing in the record is wrong, which is why nothing here had caught it. The bridge was built exactly as its record describes, from numbers that are the best-evidenced in the project — and it was placed onto ground that is not underneath it. The three checks that already guard this dataset all ask whether the record is honest; none of them could ask whether the thing the record describes lands on anything.',
+      'So there is a fourth check. Each kind of structure now says where it meets the ground — a building all the way round the base of its walls, a crossing only at the two ends of its deck — and every structure is measured against the actual ground surface under that outline. The tolerance is not a new number: it is the same step-up height the walking visitor uses, a little over a foot, because the question being asked is exactly whether a person could step between the two.',
+      'The six buildings pass, with the worst corner a hand\'s breadth off the ground where the bank falls away. The bridge fails, and it fails for a reason no amount of care could have fixed: what is missing is the approach at either end, and no source describes one. Nobody wrote down how a person or a team got from the bank up onto that deck. Building a ramp would be inventing the one part of the bridge a visitor would walk over, so it is left out and stated instead — the bridge\'s card now says the approach is not modelled, and the liberties list carries the whole argument.',
+      'It also means walking across the bridge, already noted as missing, is further off than it looked: even if the visitor learned to walk on surfaces above the ground, there is nothing at either end to step from.',
+    ] },
   { v: 18, title: 'The first bridge in Chicago', kind: 'feature',
     ts: '2026-08-10T09:06:54.649Z', date: 'Aug 10, 2026, 4:06 AM CT',
     items: [

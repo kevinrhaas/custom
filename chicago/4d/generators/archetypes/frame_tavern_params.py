@@ -41,6 +41,13 @@ CONSUMED = frozenset({
     "paint", "shutters", "gallery", "log_wing", "chimneys",
 })
 
+# Where this archetype touches the ground, read by tools/validate.py's ground
+# contact check. `perimeter`: the whole footprint outline meets the terrain at
+# local z = 0, which is what "y = 0 at the base of the walls" means in
+# docs/GLB-CONTRACT.md. A building that says this and stands on ground its own
+# outline does not reach is floating on one corner or buried at another.
+GROUND_CONTACT = "perimeter"
+
 
 class ParamError(ValueError):
     """A structure record cannot be resolved into valid archetype parameters."""
