@@ -459,6 +459,64 @@ for (const [label, viewport, touch] of [
     check(`${label}: and says nothing of the kind over a real bake`,
       placeholder.shown === false, `flag shown: ${placeholder.shown}`);
 
+    // --- the record's own account -----------------------------------------
+    // `research_note` is on every record and in every compiled sidecar, and the
+    // sidecar-contract gate reported it as compiled-and-never-read: an unshipped
+    // claim rather than dead weight. It is the paragraph that says which of two
+    // sources was believed, or that the likeliest reading of the evidence is that
+    // the record models the wrong building. Nothing was broken — the field simply
+    // had no surface — so unlike the two faults before it, this is asserted
+    // against what a visitor reads for the first time here.
+    //
+    // The assertion that matters is VERBATIM, and it is deliberately an exact
+    // string comparison against the sidecar rather than a substring match. A note
+    // about the limit of the evidence is the last text on this card that should be
+    // trimmed or summarised, and a renderer that showed a first sentence and an
+    // ellipsis would pass every looser check written here.
+    const account = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = [...document.querySelectorAll('#popup .pop-sec')]
+          .find((s) => /own account/i.test(s.querySelector('h3')?.textContent ?? ''));
+        const body = sec?.querySelector('.research-body');
+        return {
+          present: !!sec,
+          shown: body?.textContent ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.research_note ?? '',
+        };
+      };
+      return { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
+    });
+    check(`${label}: the record's own account reaches the card`,
+      account.hogan.present && /THE BUILDING WHERE CHICAGO'S MAIL BEGAN/.test(account.hogan.shown),
+      `present ${account.hogan.present}, "${account.hogan.shown.slice(0, 90)}"`);
+    check(`${label}: it is the record's words, unabridged`,
+      account.hogan.shown === account.hogan.recorded && account.hogan.recorded.length > 500,
+      `${account.hogan.shown.length} chars shown of ${account.hogan.recorded.length} recorded`);
+    // The discriminating case, as everywhere else on this card: a second building
+    // gets its own account. A section rendering one fixed block of prose — or the
+    // scene's, or the previous pick's — would pass both checks above.
+    check(`${label}: another building gets its own account, not this one's`,
+      account.saug.shown === account.saug.recorded
+      && account.saug.shown !== account.hogan.shown
+      && /MILESTONE 0 REFERENCE RECORD/.test(account.saug.shown),
+      `sauganash "${account.saug.shown.slice(0, 90)}"`);
+
+    // Collapsed by default, for the same reason the liberties are: these run to
+    // several hundred words, and on a phone the panel is 62vh — an open account
+    // would push the citations off the card entirely.
+    const accountOpen = await page.evaluate(() => {
+      window.__chicago4d.pick('hogan_store');
+      const d = document.querySelector('#popup .pop-research details.research');
+      const body = d.querySelector('.research-body');
+      const before = body.checkVisibility();
+      d.open = true;
+      return { before, after: body.checkVisibility() };
+    });
+    check(`${label}: the account starts collapsed and opens on demand`,
+      accountOpen.before === false && accountOpen.after === true,
+      `${accountOpen.before} -> ${accountOpen.after}`);
+
     // --- a raycast pick down the crosshair, not just by id ----------------
     const rayPick = await page.evaluate(() => {
       const hit = window.__chicago4d.pick();

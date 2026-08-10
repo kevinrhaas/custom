@@ -21,7 +21,10 @@ on** — *was this building here on 1 July 1835* — which it never had, because
 sidecar field the compiler had never written (§ 28). **That fault has a gate now rather than a
 discoverer, and switching it on found the second one the same day** (§ 29): the card had also
 been asking the sidecar whether the shape in front of you is a placeholder massing — a question
-the compiler has never answered and, reading only `data/`, cannot.
+the compiler has never answered and, reading only `data/`, cannot. **And the gate's other
+direction — what is compiled and never read — is now empty of unshipped claims** (§ 30): every
+record's `research_note`, written for a reader and displayed nowhere for the life of the project,
+is on the card verbatim.
 
 ---
 
@@ -41,7 +44,7 @@ the compiler has never answered and, reading only `data/`, cannot.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 143 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 151 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -690,6 +693,32 @@ uncertainty of the 1834 sheets in its note.
     weight. Every record carries a research note written for a reader, it is compiled into every
     sidecar, and no surface in the walkthrough shows it. That is an unshipped claim, it is not
     fixed here, and it is not queued: it belongs to whoever next works on the card.
+
+30. **The last compiled field that reached nobody is on the card, and it was never broken.**
+    § 29 ends with a finding it declined to fix: `research_note` is on every structure record,
+    compiled into every sidecar, and shown by no surface in the walkthrough. It is not the
+    failure class of § 28 and § 29 — nothing asked for a field nobody wrote, every gate was
+    right, and the two halves agreed. **The field simply had no surface**, which is the quieter
+    way for a claim to go unshipped and the harder one to notice, because there is no fault to
+    find. The card carries it now, under *the record's own account*, below the liberties and
+    above the citations.
+    **It is shown verbatim, and the smoke asserts that with an exact string comparison** against
+    the sidecar rather than a substring match. These notes are the record talking about the limit
+    of its own evidence — Walker's opens by stating what it actually asserts and closes by saying
+    the likeliest reading of the sources is that this record models the wrong building; the Green
+    Tree's names an 1859 photograph nobody has opened as the highest-value lead in the parcel.
+    A renderer that showed a first sentence and an ellipsis would pass every looser assertion
+    that could have been written here, and it would be editing a source. The discriminating case
+    is asserted too: a second building gets its own account, so a section rendering one fixed
+    block of prose — or the previous pick's — fails.
+    **Collapsed, for the reason the liberties are.** Several hundred words open by default pushes
+    the citations off a 62vh panel on a phone.
+    **What this leaves.** The empty state — a record with no note — is unexercised by real data:
+    all eight carry one. It renders nothing at all rather than a sentence explaining the absence,
+    which is deliberate (there is no finding in a note that was never written) and therefore
+    untested. And the sidecar-contract note now reports three unread top-level fields rather than
+    four; `archetype`, `scene` and `target_date` are machinery the card has no reason to show, so
+    that list is finally empty of unshipped claims.
 
 ## Next
 
