@@ -27,8 +27,8 @@ walkthrough rather than only in the repository.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 71 checks green at 390×780 and 1280×800, zero page errors |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh` |
+| **Smoke** | 81 checks green at 390×780 and 1280×800, zero page errors |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting |
 | **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
@@ -140,14 +140,17 @@ uncertainty of the 1834 sheets in its note.
 10. **`gltf-transform` did not run**, so `assets/web/` currently holds copies of the
     uncompressed masters rather than meshopt/KTX2 derivatives. Harmless at 44 KB; it must work
     before the town scales.
-11. **The liberties are listed but not yet attached to their buildings.** The Evidence panel
-    shows all eighteen, and `data/liberties.json` already carries the `subjects` each one
-    constrains — L5 and L6 to the Sauganash, L9 to the Green Tree, L13 to the two composite
-    log-and-frame houses. The provenance popup does not read that field, so a visitor inspecting
-    the Green Tree is told its attributes' confidence but not that its footprint was reasoned out
-    of a room module and its side additions deliberately left off. The data supports the link; the
-    UI has not made it. Note also that the panel is only as complete as the markdown: it reports
-    liberties that were *recorded*, and nothing verifies that every liberty taken was written down.
+11. **FIXED — the liberties are now attached to their buildings.** The provenance popup reads
+    `subjects` and shows the liberties taken with the building being inspected: the Sauganash's
+    four, L9 on the Green Tree, L7/L8 on the three Wolf Point placements. Both views render from
+    one derived record through one entry renderer, so the panel and the card cannot describe the
+    same liberty differently, and the smoke asserts the discriminating case — a second building
+    gets its own set, not the whole list, and a scene-wide liberty is not pinned to any building.
+    **The completeness question is untouched and stands.** The card, like the panel, reports the
+    liberties that were *recorded*; nothing verifies that every liberty taken was written down,
+    and a building with none recorded now says so in those words rather than implying innocence.
+    Six of six structures currently carry at least one, so the empty state is unexercised by real
+    data.
 12. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 

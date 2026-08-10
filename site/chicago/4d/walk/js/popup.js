@@ -8,13 +8,28 @@
  *
  * The card shows, in order: what it is, where it stands and how sure we are of
  * that, every attribute with its own confidence chip and reasoning, the
- * citations with links to both the source and its archived copy, and a link out
- * to the full research dossier where the disagreements are argued.
+ * liberties taken with THIS building, the citations with links to both the
+ * source and its archived copy, and a link out to the full research dossier
+ * where the disagreements are argued.
+ *
+ * The liberties section is the answer to a gap this card had until now. An
+ * attribute chip tells a visitor how sure we are of a value we recorded; it
+ * cannot tell them about the decisions that belong to no attribute — that the
+ * Green Tree's footprint was reasoned out of a room module and its side
+ * additions deliberately left off, that three Wolf Point buildings were placed
+ * from bank geometry because no corner survives. Those were readable in the
+ * Evidence panel as one undifferentiated list of eighteen. Now the ones that
+ * constrain the building you are looking at are on the building you are looking
+ * at, which is where a visitor would think to ask.
  *
  * Nothing here invents a display value. An attribute with no note shows no note.
  * A citation with no archived copy says so, because the archived copy is part of
- * whether a claim can be re-read at all.
+ * whether a claim can be re-read at all. And a building with no recorded
+ * liberties says exactly that — that none were written down, which is not the
+ * same claim as none having been taken.
  */
+
+import { libertiesFor, libertyEntryHtml } from './liberties.js';
 
 const CONF_ORDER = { documented: 0, inferred: 1, conjectural: 2 };
 
@@ -82,15 +97,45 @@ function citationItems(citations) {
 }
 
 /**
+ * The liberties taken with this building, or an honest note that none are
+ * recorded. Rendered with the Evidence panel's own entry renderer so the two
+ * views cannot describe the same liberty differently.
+ *
+ * The scope chip is suppressed for `per_subject` entries — here the subject IS
+ * the card — but kept for anything broader, because a scene-wide liberty landing
+ * on one building is a fact worth showing rather than flattening.
+ */
+function libertySection(liberties, structureId) {
+  if (!Array.isArray(liberties)) return '';   // not loaded: claim nothing
+  const mine = libertiesFor(liberties, structureId);
+  const body = mine.length
+    ? `<div class="liberties">${mine.map((lib) => libertyEntryHtml(lib, {
+      showSubjects: false,
+      showScope: lib.section !== 'per_subject',
+    })).join('')}</div>`
+    : `<p class="pop-lib-none">No liberties are recorded against this building —
+         which means none were written down, not that none were taken.</p>`;
+
+  return `<section class="pop-sec pop-liberties">
+    <h3>What we made up here${mine.length ? ` <span class="pop-count">${mine.length}</span>` : ''}</h3>
+    ${body}
+  </section>`;
+}
+
+/**
  * @param {HTMLElement} root  the <aside> to render into
  * @param {object} opts
  * @param {string} opts.docBase  where docs/ lives relative to the page
  */
 export function createPopup(root, { docBase = '../../' } = {}) {
   let currentId = null;
+  /** Null until the derived list loads; never faked to an empty list. */
+  let liberties = null;
+  let currentRecord = null;
 
   function close() {
     currentId = null;
+    currentRecord = null;
     root.setAttribute('hidden', '');
     root.innerHTML = '';
   }
@@ -110,11 +155,26 @@ export function createPopup(root, { docBase = '../../' } = {}) {
     get openId() { return currentId; },
     close,
 
+    /**
+     * Hand the popup the derived liberties once they load. Boot awaits the list
+     * before the gate opens, so in practice a card is never drawn without it —
+     * but a card already on screen is redrawn rather than left stale, because
+     * the one failure mode that matters here is a building quietly showing
+     * fewer admissions than the record holds.
+     *
+     * @param {object[]|null} list  `data/liberties.json`'s `liberties`
+     */
+    setLiberties(list) {
+      liberties = Array.isArray(list) ? list : null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
     /** @param {object} record  a registry entry: { id, sidecar, ... } */
     show(record) {
       if (!record?.sidecar) return false;
       const s = record.sidecar;
       currentId = record.id;
+      currentRecord = record;
 
       const p = s.placement ?? {};
       const provisional = p.placement_provisional
@@ -160,6 +220,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
           <h3>Attributes and evidence</h3>
           <table class="attrs"><tbody>${attributeRows(s.attributes)}</tbody></table>
         </section>
+
+        ${libertySection(liberties, record.id)}
 
         <section class="pop-sec">
           <h3>Citations</h3>

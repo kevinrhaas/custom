@@ -37,7 +37,22 @@ const SECTION_LABEL = {
   resolved: 'resolved',
 };
 
-function entryHtml(lib, names) {
+/**
+ * One liberty as a collapsed `<details>`. Exported because the provenance popup
+ * shows the same entries filtered to the building being inspected, and two
+ * renderers for one record is how the two views start disagreeing about what
+ * we admitted to.
+ *
+ * @param {object} lib                   a liberty from the derived list
+ * @param {object} [o]
+ * @param {Map<string,string>} [o.names] structure_id -> display name
+ * @param {boolean} [o.showSubjects]     list what it constrains (off where the
+ *                                       subject is already the thing on screen)
+ * @param {boolean} [o.showScope]        show the scope chip; suppressed for
+ *                                       `per_subject` in a per-subject context,
+ *                                       where it would only restate the obvious
+ */
+export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, showScope = true } = {}) {
   const fields = (lib.fields || [])
     // Recorded/Revised are shown as a dateline, not as rows of their own.
     .filter((f) => !/^(Recorded|Revised)$/i.test(f.label));
@@ -46,9 +61,15 @@ function entryHtml(lib, names) {
     <dt>${escapeHtml(f.label)}</dt>
     <dd>${inline(f.text)}</dd>`).join('');
 
-  const subjects = (lib.subjects || [])
-    .map((id) => `<span class="lib-subject">${escapeHtml(names.get(id) || id)}</span>`)
-    .join('');
+  const subjects = showSubjects
+    ? (lib.subjects || [])
+      .map((id) => `<span class="lib-subject">${escapeHtml(names.get(id) || id)}</span>`)
+      .join('')
+    : '';
+
+  const scope = showScope
+    ? `<span class="lib-scope">${escapeHtml(SECTION_LABEL[lib.section] || lib.section)}</span>`
+    : '';
 
   const dateline = lib.revised && lib.revised !== lib.recorded
     ? `recorded ${escapeHtml(lib.recorded)} · revised ${escapeHtml(lib.revised)}`
@@ -58,11 +79,26 @@ function entryHtml(lib, names) {
     <summary>
       <span class="lib-id">${escapeHtml(lib.id)}</span>
       <span class="lib-title">${escapeHtml(lib.title)}</span>
-      <span class="lib-scope">${escapeHtml(SECTION_LABEL[lib.section] || lib.section)}</span>
+      ${scope}
     </summary>
     <dl class="lib-body">${rows}</dl>
     <p class="lib-meta">${subjects}<span class="lib-date">${dateline}</span></p>
   </details>`;
+}
+
+/**
+ * The liberties that constrain one structure.
+ *
+ * `subjects` is written by `tools/compile_liberties.py` from the markdown's own
+ * subject line, so this filter is a lookup, not a judgement — a liberty appears
+ * against a building because the document says it does.
+ *
+ * @param {object[]} liberties  the derived list
+ * @param {string} subjectId    a structure_id
+ */
+export function libertiesFor(liberties, subjectId) {
+  if (!subjectId || !Array.isArray(liberties)) return [];
+  return liberties.filter((lib) => Array.isArray(lib.subjects) && lib.subjects.includes(subjectId));
 }
 
 /**
@@ -100,7 +136,7 @@ export async function mountLiberties({ mount, dataBase, registry = new Map(), pr
 
   const liberties = Array.isArray(doc.liberties) ? doc.liberties : [];
   if (mount) {
-    mount.innerHTML = liberties.map((lib) => entryHtml(lib, names)).join('')
+    mount.innerHTML = liberties.map((lib) => libertyEntryHtml(lib, { names })).join('')
       || '<p class="legend-note">No liberties recorded.</p>';
     mount.removeAttribute('aria-busy');
   }

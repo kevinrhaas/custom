@@ -13,6 +13,7 @@
  *   canvas renders non-black .... WebGL produced an image, not a cleared buffer
  *   confidence toggle ........... the deliverable measurably changes the render
  *   pick -> citation ............ the visual claim and the citable claim connect
+ *   pick -> liberties ........... and what we made up about THAT building
  *   walk moves the camera ....... input intent reaches the walker
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
  *   draw calls under budget ..... the batch strategy is doing its job
@@ -208,6 +209,58 @@ for (const [label, viewport, touch] of [
       picked.text.slice(0, 160));
     check(`${label}: popup links the research dossier`,
       /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
+
+    // --- the liberties for THIS building, on the card ----------------------
+    // The confidence chips answer "how sure are you of this value". They cannot
+    // answer "what did you decide without evidence at all", which is what the
+    // liberties record. Asserted per-building rather than as a count, because
+    // the failure this guards against is the card showing all eighteen (or the
+    // wrong four) instead of the ones the markdown attaches to this structure.
+    const popLib = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = document.querySelector('#popup .pop-liberties');
+        return {
+          present: !!sec,
+          ids: [...document.querySelectorAll('#popup .pop-liberties .lib-id')]
+            .map((n) => n.textContent.trim()),
+          text: sec?.textContent ?? '',
+        };
+      };
+      return { sauganash: read('sauganash_hotel'), greenTree: read('green_tree_tavern') };
+    });
+    check(`${label}: the popup carries the liberties taken with this building`,
+      popLib.sauganash.present
+      && ['L4', 'L4a', 'L5', 'L6'].every((id) => popLib.sauganash.ids.includes(id)),
+      `got [${popLib.sauganash.ids.join(', ')}]`);
+    check(`${label}: it shows the reasoning, not just the admission`,
+      /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
+      popLib.sauganash.text.slice(0, 200));
+    // The discriminating case: a different building, a different set. A popup
+    // that dumped the whole list would pass every assertion above.
+    check(`${label}: another building gets its own liberties, not the whole list`,
+      popLib.greenTree.ids.includes('L9')
+      && !popLib.greenTree.ids.some((id) => ['L4', 'L5', 'L6', 'L1'].includes(id)),
+      `green tree got [${popLib.greenTree.ids.join(', ')}]`);
+    check(`${label}: a scene-wide liberty is not attached to a building`,
+      !popLib.sauganash.ids.includes('L1') && !popLib.sauganash.ids.includes('L14'),
+      `sauganash got [${popLib.sauganash.ids.join(', ')}]`);
+
+    // Collapsed by default here too — the card must stay skimmable, and a
+    // building with four liberties would otherwise push the citations off it.
+    const popLibOpen = await page.evaluate(() => {
+      window.__chicago4d.pick('sauganash_hotel');
+      const first = document.querySelector('#popup .pop-liberties details.lib');
+      const body = first.querySelector('.lib-body');
+      const before = body.checkVisibility();
+      first.open = true;
+      return { before, after: body.checkVisibility() };
+    });
+    check(`${label}: popup liberties start collapsed and open on demand`,
+      popLibOpen.before === false && popLibOpen.after === true,
+      `${popLibOpen.before} -> ${popLibOpen.after}`);
+
+    await page.evaluate(() => window.__chicago4d.pick('sauganash_hotel'));
 
     // --- a raycast pick down the crosshair, not just by id ----------------
     const rayPick = await page.evaluate(() => {
