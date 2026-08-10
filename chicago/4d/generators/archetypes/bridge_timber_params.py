@@ -50,6 +50,15 @@ PIER_KINDS = ("crib", "pile")
 DOC_WIDTH_M = 3.05        # "about 10 ft wide"
 DOC_CLEARANCE_M = 1.83    # "clearing the water by about 6 ft"
 
+# The form attributes whose VALUE this archetype reads. See frame_tavern_params
+# for the argument. No bridge record is committed yet, so this set is a promise
+# made before it can be broken rather than one being repaired.
+CONSUMED = frozenset({
+    "width_m", "clearance_m", "pier_spacing_m", "pier_kind", "stringer_count",
+    "stringer_d_m", "plank_t_m", "abutments", "construction", "railing",
+    "deck_height_m",
+})
+
 
 class ParamError(ValueError):
     """A structure record cannot be resolved into valid archetype parameters."""

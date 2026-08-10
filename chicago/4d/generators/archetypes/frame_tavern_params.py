@@ -21,6 +21,24 @@ CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
 ROOF_TYPES = ("gable", "hip", "shed", "gambrel")
 CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
 
+# The form attributes whose VALUE this archetype reads — the ones from_phase below
+# turns into a parameter, and therefore the only ones a vertex position can depend
+# on. An attribute outside this set contributes nothing the record says it should:
+# the mesh either contains nothing of it or contains a fixed default in its place.
+#
+# Reading an attribute's CONFIDENCE is deliberately not membership. `fenestration`
+# and `chimneys` tint their geometry with the record's confidence while the shape
+# itself is fixed by this module, and a tint is not a building — treating that as
+# "consumed" would let the exact case this set exists to surface pass unremarked.
+#
+# tools/validate.py holds every attribute outside it to a `geometry:` declaration
+# on the record, so adding a parameter here without adding its name is a gate
+# failure rather than a silently unbuilt attribute.
+CONSUMED = frozenset({
+    "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
+    "paint", "shutters", "gallery", "log_wing",
+})
+
 
 class ParamError(ValueError):
     """A structure record cannot be resolved into valid archetype parameters."""

@@ -210,6 +210,43 @@ for (const [label, viewport, touch] of [
     check(`${label}: popup links the research dossier`,
       /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
 
+    // --- what the chip cannot say: whether you are looking at it -----------
+    // A confidence chip grades the evidence. It says nothing about whether the
+    // value reached the mesh, and the two come apart in the worst direction: the
+    // Wolf Point sign is `documented` on a building that has no sign. Asserted
+    // per-attribute rather than by presence, because a card that marked every row
+    // — or the wrong rows — would pass a count.
+    const geom = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const rows = {};
+        for (const tr of document.querySelectorAll('#popup table.attrs tr')) {
+          const mark = tr.querySelector('.geom');
+          rows[tr.querySelector('th')?.textContent.trim() ?? '?'] =
+            mark ? mark.textContent.trim() : null;
+        }
+        return rows;
+      };
+      return { western: read('western_hotel'), wolf: read('wolf_point_tavern'),
+               greenTree: read('green_tree_tavern') };
+    });
+    check(`${label}: an attested feature the model omits says so on its row`,
+      geom.western.stables === 'not built' && geom.wolf.signage === 'not built',
+      `stables ${geom.western.stables}, signage ${geom.wolf.signage}`);
+    check(`${label}: a value a fixed default stands in for is marked differently`,
+      geom.western.chimneys === 'not modelled from this',
+      `chimneys ${geom.western.chimneys}`);
+    // The discriminating cases. An attribute the archetype builds must carry no
+    // marker at all, or the card teaches a visitor to distrust the whole model;
+    // and a rejected reading is not a thing missing from the view.
+    check(`${label}: an attribute the generator builds carries no marker`,
+      geom.western.stories === null && geom.western['roof type'] === null,
+      `stories ${geom.western.stories}, roof type ${geom.western['roof type']}`);
+    check(`${label}: a reading recorded but never a build instruction is not marked`,
+      geom.greenTree['log core'] === null && geom.greenTree.side_additions === undefined
+      && geom.greenTree['side additions'] === 'not built',
+      `log core ${geom.greenTree['log core']}, side additions ${geom.greenTree['side additions']}`);
+
     // --- the liberties for THIS building, on the card ----------------------
     // The confidence chips answer "how sure are you of this value". They cannot
     // answer "what did you decide without evidence at all", which is what the

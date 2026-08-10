@@ -37,9 +37,27 @@ is the same claim in the negative — the front of the building is rendered plai
 found evidence either way. The confidence chip says *we do not know*; only the liberty says what
 we did about not knowing.
 
-An entry with no `Covers:` field claims nothing and is still a liberty: omissions,
-simplifications, navigation rules and scope decisions have nothing drawn to point at. When
-evidence settles a claimed invention, move the entry to **Resolved** — the gate exempts that
+The rule runs in the other direction too, and this is the half that took longest to find a
+mechanism for. An invention is a value with no evidence behind it. An **omission** is the
+opposite — evidence with no geometry in front of it — and it leaves no trace in a record that
+looks any different from a well-attested one. So the claim comes from the generator rather than
+from a reader's attention: each archetype declares the attributes it actually reads, and any
+attribute outside that set must say on the record what the mesh does instead —
+
+```
+"stables": { "value": true, "confidence": "documented", "geometry": "absent", … }
+```
+
+`absent` means nothing of it is built; `simplified` means something stands in its place that
+this value does not drive; `record_only` means it was never a build instruction — a rejected
+reading or a negative finding, which owes nothing. The first two are admissions, and the gate
+holds each of them to a `Covers:` token exactly as it holds an invention. That is what closes
+the gap this document had against a `documented` chip sitting over something a visitor cannot
+see.
+
+An entry with no `Covers:` field claims nothing and is still a liberty: navigation rules and
+scope decisions have nothing in the data to point at. When evidence settles a claimed invention,
+or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that
 section, which is what lets an append-only document survive its data being corrected.
 
 ---
@@ -160,7 +178,12 @@ side additions are attested by John Gray, landlord 1838–41, which is *after* t
 nothing dates them; modelling them would assert they existed in July 1835.
 **How to resolve:** the c. 1859 photograph (CHM ICHi-040230), which shows the building at its
 original corner and would settle dimensions, exterior finish and the gallery at once.
+**Covers:** `green_tree_tavern.frame_1833.form.side_additions`.
 **Recorded:** 2026-08-09.
+**Revised:** 2026-08-10 — the omission is now claimed rather than described. The record carries
+`side_additions: true` and the `frame_tavern` archetype has no parameter for it, so the attribute
+reaches the mesh nowhere; the record says so with `geometry: "absent"` and this entry is what the
+gate matches that declaration against.
 
 ### L10 — Western Hotel: the stable and wagon yard are attested and not modelled
 **Decision:** only the hotel block is built. The "large stable and the yard into which the trains
@@ -172,7 +195,12 @@ archetype builds a building, not a parcel.
 **Consequence:** this understates the site more than any confidence tag can express — the yard
 *is* the west-side teamsters' house as a visitor experienced it, and the model shows a hotel
 standing in nothing. A parcel-level or yard archetype would fix it.
+**Covers:** `western_hotel.frame_1834.form.stables`.
 **Recorded:** 2026-08-09.
+**Revised:** 2026-08-10 — claimed rather than merely described. `stables` is `documented`, which
+is the strongest chip this project has, and it sits over a building with no stable within a
+hundred metres of it; the record now declares `geometry: "absent"` and the gate holds that
+declaration to this entry.
 
 ### L11 — Western Hotel: one completed phase on a disputed date, rather than a construction phase
 **Decision:** modelled as complete and in operation on 1835-07-01, on the 1834 build date, with
@@ -312,6 +340,83 @@ here because the model shows two blank fronts that no source put there.
 **How to resolve:** the c. 1859 photograph (CHM ICHi-040230) settles the Green Tree the moment
 anyone opens it. For the Western, any depiction at all — the project holds none.
 **Covers:** `green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`.
+**Recorded:** 2026-08-10.
+
+### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
+**Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
+`documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin
+with no frame piece and no sign.
+**Why:** not a judgement — an accident, and it is recorded as one rather than dressed up. The
+`log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two
+things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever
+complained, because `from_phase` fills an absent attribute with a default: no frame addition, no
+sign. The building was baked from those defaults and nothing anywhere said the two best-attested
+features of the house had been dropped.
+**Consequence:** this is the worst case the confidence model has, because the model is working
+exactly as designed and still misleads. `documented` is the strongest claim the project makes.
+A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building
+with no sign on it, and *construction · partly log and partly frame* on a building that is
+entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the
+painted wolf hung outside it. The chips were true about the evidence and false about the view.
+**How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
+That is a data change plus geometry, and the two have to land in one slice, so it is queued in
+`docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`,
+`wolf_point_tavern.log_frame_1828.form.signage`.
+**Recorded:** 2026-08-10.
+
+### L21 — Chimneys are counted in the records and fixed in the archetypes
+**Decision:** every record states a chimney count and no archetype reads it. `frame_tavern`
+builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end.
+The records that say two get two only where the archetype already built two.
+**Why:** the counts were written from the depictions ("both depictions show two") and the
+archetypes were written from the same depictions, so they have never disagreed — which is
+precisely why nothing caught that they were never connected. Samuel Miller's house is the case
+that shows it: the record says two chimneys and the `log_dwelling` archetype builds one.
+**Consequence:** a record could raise a chimney count on new evidence and the town would not
+change. For Miller's house the model already shows one stack fewer than the record claims.
+**How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
+on the data side, a geometry change on the other, so it lands as one slice.
+**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`,
+`sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`,
+`western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
+**Recorded:** 2026-08-10.
+
+### L22 — Wall surfaces are the archetype's, not the record's
+**Decision:** `cladding` on the four frame buildings and `paint` on the three log ones are
+recorded and unread. Frame walls always get clapboard lap courses; log walls always get bare
+hewn log. A record saying `cladding: board_and_batten` or `paint: white` on a log core would
+change nothing on screen.
+**Why:** each archetype was written for the buildings it had, and every one of them is
+clapboarded or unpainted, so the fixed surface and the recorded value have never differed. The
+`frame_paint` parameter drives a frame addition's colour; nothing drives the log core's.
+**Consequence:** the dataset's weakest inferences are here — `cladding` and `paint` are
+`inferred` on almost every record, several of them explicitly "not attested either way" — and a
+visitor cannot tell that the surface they are looking at is the archetype's default rather than
+the record's reading. Where evidence is thin, an unread attribute is a claim made twice.
+**How to resolve:** wire both attributes through `from_phase` and re-bake. Note the ordering
+this creates: the Sauganash's documented white paint IS read, so painted frame is already
+data-driven; it is the surface *texture* that is not.
+**Covers:** `green_tree_tavern.form.cladding`, `miller_house.form.cladding`,
+`sauganash_hotel.form.cladding`, `western_hotel.form.cladding`, `miller_house.form.paint`,
+`walker_meeting_house.form.paint`, `wolf_point_tavern.form.paint`.
+**Recorded:** 2026-08-10.
+
+### L23 — One window arrangement, on every frame building
+**Decision:** `fenestration` is recorded on the three frame taverns and read by none of them.
+The archetype builds the same elevation on all three: five bays above, four plus a centred door
+below.
+**Why:** the arrangement came from the two Sauganash depictions and was made the archetype's
+default. The Green Tree's record says `small_paned_sash`, which describes the glazing and not
+the layout, and the Western's says `regular_bays`, which describes the layout only loosely —
+neither is a rhythm anyone could build from, so the default was never replaced.
+**Consequence:** three buildings of different sizes wear one facade. The Western is 40 ft on its
+front and the Sauganash's five-bay rhythm is spread across it unchanged, which reads as a
+finding about how the town was built and is instead an artefact of one archetype.
+**How to resolve:** a bay-count parameter derived from frontage, and records that state a rhythm
+rather than a glazing type. Both, then a re-bake.
+**Covers:** `green_tree_tavern.form.fenestration`, `sauganash_hotel.form.fenestration`,
+`western_hotel.form.fenestration`.
 **Recorded:** 2026-08-10.
 
 ---

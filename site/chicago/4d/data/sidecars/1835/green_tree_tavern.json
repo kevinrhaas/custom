@@ -66,12 +66,14 @@
       "sources": [
         "chicagology_prefire278"
       ],
-      "note": "Records the rejected reading so it stays visible. W. H. Stow claimed the Green Tree was originally of logs and weatherboarded only years later. Adopted as false for the reasons in the construction note; if it is true, the 1835 building is a weatherboarded log structure rather than a frame one, which changes the wall section but not the massing, the plan or the placement."
+      "note": "Records the rejected reading so it stays visible. W. H. Stow claimed the Green Tree was originally of logs and weatherboarded only years later. Adopted as false for the reasons in the construction note; if it is true, the 1835 building is a weatherboarded log structure rather than a frame one, which changes the wall section but not the massing, the plan or the placement.",
+      "geometry": "record_only"
     },
     "cladding": {
       "value": "clapboard",
       "confidence": "inferred",
-      "note": "Not directly attested for this building. Clapboard is the standard cladding for a frame building of this type and period, and the competing log-core account calls the covering 'weatherboarding', which is the same thing under another name — so both readings of the construction converge on a lapped horizontal board exterior."
+      "note": "Not directly attested for this building. Clapboard is the standard cladding for a frame building of this type and period, and the competing log-core account calls the covering 'weatherboarding', which is the same thing under another name — so both readings of the construction converge on a lapped horizontal board exterior.",
+      "geometry": "simplified"
     },
     "paint": {
       "value": "unpainted",
@@ -108,7 +110,8 @@
       "sources": [
         "chicagology_prefire127"
       ],
-      "note": "The PANE CHARACTER is attested — a guest chamber 'about 12x12, with two windows 6x8', small-paned sash, plus 'a small attic window in the gable end'. Two windows per 12 ft chamber on a 40 x 25 ft two-storey block implies a regularly fenestrated elevation. The ARRANGEMENT — bay count, spacing, whether the Canal front is centred on its door — is not described by any source, so the value states the character and the disposition is inference."
+      "note": "The PANE CHARACTER is attested — a guest chamber 'about 12x12, with two windows 6x8', small-paned sash, plus 'a small attic window in the gable end'. Two windows per 12 ft chamber on a 40 x 25 ft two-storey block implies a regularly fenestrated elevation. The ARRANGEMENT — bay count, spacing, whether the Canal front is centred on its door — is not described by any source, so the value states the character and the disposition is inference.",
+      "geometry": "simplified"
     },
     "gallery": {
       "value": false,
@@ -121,12 +124,14 @@
       "sources": [
         "chicagology_prefire127"
       ],
-      "note": "John Gray, landlord 1838-41, correcting a drawing of the house: 'There should also be a low one-story addition to the right, the same as on the left.' So by the end of the 1830s the two-storey core had a low single-storey addition at each end. WHETHER THEY EXISTED ON 1835-07-01 IS NOT ATTESTED — Gray's testimony describes the building three to six years after the scene date — which is why this is inferred and why the additions are excluded from the footprint polygon. Recorded here so a later agent can add them with a date rather than rediscovering them."
+      "note": "John Gray, landlord 1838-41, correcting a drawing of the house: 'There should also be a low one-story addition to the right, the same as on the left.' So by the end of the 1830s the two-storey core had a low single-storey addition at each end. WHETHER THEY EXISTED ON 1835-07-01 IS NOT ATTESTED — Gray's testimony describes the building three to six years after the scene date — which is why this is inferred and why the additions are excluded from the footprint polygon. Recorded here so a later agent can add them with a date rather than rediscovering them.",
+      "geometry": "absent"
     },
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference."
+      "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference.",
+      "geometry": "simplified"
     },
     "function": {
       "value": "tavern_inn",

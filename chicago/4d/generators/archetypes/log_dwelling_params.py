@@ -51,6 +51,23 @@ CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
 LOG_ROOF_TYPES = ("gable", "shed")
 ADDITION_SIDES = ("front", "end")
 
+# The form attributes whose VALUE this archetype reads. See the same set in
+# frame_tavern_params for the argument; the short version is that an attribute
+# outside it cannot move a vertex, so the record states something the mesh does
+# not contain and `tools/validate.py` makes the record say which.
+#
+# Note the two spellings this set makes visible rather than tolerant. The Wolf
+# Point record writes `frame_extension` and `signage`; the parameters are
+# `frame_addition` and `sign`. Neither name is wrong on its own and neither
+# resolver ever complained, which is exactly why a documented frame half and a
+# documented painted sign went unbuilt without anything saying so.
+CONSUMED = frozenset({
+    "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "construction",
+    "loft", "chimney", "sign", "frame_paint",
+    "frame_addition", "frame_addition_side", "frame_addition_width_m",
+    "frame_addition_depth_m", "frame_addition_stories", "frame_addition_height_m",
+})
+
 
 class ParamError(ValueError):
     """A structure record cannot be resolved into valid archetype parameters."""

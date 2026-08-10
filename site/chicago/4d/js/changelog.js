@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 13, title: 'The tavern with no sign on it', kind: 'feature',
+    ts: '2026-08-10T06:11:02.458Z', date: 'Aug 10, 2026, 1:11 AM CT',
+    items: [
+      'Inspect a building and some rows now say "not built" or "not modelled from this". They mark the things a record states that the model does not show — and finding them turned up a documented feature missing from the town.',
+      'The Wolf Point Tavern is the case. Its record says the house was partly log and partly frame, and that a painted sign of a wolf hung outside it by about 1833; both are recorded as documented, the strongest claim this project makes. Neither is in the model. The record and the mesh-builder called the same two things by different names, so the builder found nothing, used its defaults, and nobody was told. What stands there is a plain log cabin with no sign — on the one building at the forks that everybody knew by its sign.',
+      'The confidence tint could never have caught it: it grades how good the evidence is, not whether you are looking at the thing. So the check now comes from the other end. Each building-maker declares which parts of a record it actually reads, and anything outside that list has to say on the record what the model does instead — nothing of it, or a fixed stand-in — and own up in the liberties document like any invention.',
+      'Twenty-one such values turned up across the six buildings. Most are honest simplifications now written down: chimney counts nobody reads, one window arrangement worn by all three frame taverns, wall surfaces fixed by the building-maker rather than the record. Wolf Point\'s two, and Miller\'s missing second chimney, are queued as repairs — each needs the geometry rebuilt, so the fix and the rebuild ship together.',
+    ] },
   { v: 12, title: 'A guessed roof is an invention too', kind: 'feature',
     ts: '2026-08-10T05:26:06.281Z', date: 'Aug 10, 2026, 12:26 AM CT',
     items: [

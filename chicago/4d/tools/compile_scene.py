@@ -80,14 +80,18 @@ def compile_scene(scene_id: str, sources: dict) -> int:
         for key in ("function", "occupants"):
             collect(st.get(key, {}))
 
+        # `geometry` travels with the attribute because it qualifies the chip next
+        # to it: a documented value the mesh does not contain is a true statement
+        # about the evidence and a false one about the view, and the popup has to
+        # be able to say which it is showing.
         attributes = {}
         for attr, a in (phase.get("form") or {}).items():
             attributes[attr] = {k: v for k, v in a.items() if k in
-                                ("value", "confidence", "sources", "note")}
+                                ("value", "confidence", "sources", "note", "geometry")}
         for key in ("function", "occupants"):
             if key in st:
                 attributes[key] = {k: v for k, v in st[key].items() if k in
-                                   ("value", "confidence", "sources", "note")}
+                                   ("value", "confidence", "sources", "note", "geometry")}
 
         pos = phase.get("position", {})
         provisional = pos.get("utm_e") is None

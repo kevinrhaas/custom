@@ -67,7 +67,8 @@
     "cladding": {
       "value": "clapboard",
       "confidence": "inferred",
-      "note": "Not directly attested. Clapboard is the standard cladding for a frame building of this type and period."
+      "note": "Not directly attested. Clapboard is the standard cladding for a frame building of this type and period.",
+      "geometry": "simplified"
     },
     "paint": {
       "value": "unpainted",
@@ -92,7 +93,8 @@
     "fenestration": {
       "value": "regular_bays",
       "confidence": "inferred",
-      "note": "No source describes the elevation. A regularly fenestrated front is the standard disposition for a two-storey hotel of this size, and that it was regularly fenestrated is safe; the bay COUNT and SPACING are inference."
+      "note": "No source describes the elevation. A regularly fenestrated front is the standard disposition for a two-storey hotel of this size, and that it was regularly fenestrated is safe; the bay COUNT and SPACING are inference.",
+      "geometry": "simplified"
     },
     "gallery": {
       "value": false,
@@ -105,12 +107,14 @@
       "sources": [
         "chicagology_prefire278"
       ],
-      "note": "'the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.' THE STABLE AND THE ENCLOSED WAGON YARD ARE THE POINT OF THIS BUILDING — it is the west-side teamsters' house and the yard is most of what a visitor would have seen from Randolph. Neither is dimensioned and neither is modelled by the frame_tavern archetype, so the yard, the stable range and the two gateways are an attested absence in the geometry. Recorded in docs/LIBERTIES.md."
+      "note": "'the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.' THE STABLE AND THE ENCLOSED WAGON YARD ARE THE POINT OF THIS BUILDING — it is the west-side teamsters' house and the yard is most of what a visitor would have seen from Randolph. Neither is dimensioned and neither is modelled by the frame_tavern archetype, so the yard, the stable range and the two gateways are an attested absence in the geometry. Recorded in docs/LIBERTIES.md.",
+      "geometry": "absent"
     },
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference."
+      "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference.",
+      "geometry": "simplified"
     },
     "function": {
       "value": "tavern_inn",

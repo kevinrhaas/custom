@@ -18,7 +18,7 @@ walkthrough rather than only in the repository.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 21 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene and that a liberty naming a building does not cover an invention it never mentions |
+| `tools/test_validate.py` | **done** — 63 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, and that an attribute the archetype never reads cannot pass without saying what the mesh does instead |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | 13 seeded, of which 4 carry real Wayback snapshots |
@@ -27,8 +27,8 @@ walkthrough rather than only in the repository.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 81 checks green at 390×780 and 1280×800, zero page errors |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 20, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps*, refusing any conjectural value — footprint, position, or a stated form attribute — that no liberty admits to |
+| **Smoke** | 109 checks green at 390×780 and 1280×800, zero page errors |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 24, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
@@ -170,14 +170,39 @@ uncertainty of the 1834 sheets in its note.
     and the Green Tree's side additions (L9) are covered by prose alone. No mechanism can catch a
     liberty taken that nobody noticed taking. Six of six structures carry at least one liberty,
     so the popup's empty state remains unexercised by real data.
-12. **The document and the data had drifted, and writing the claim down found it.** L12 still
+12. **The omission half is enforced now too, and switching it on found a documented feature
+    that was never built.** The invention rule reads a `conjectural` tag and demands an
+    admission. An omission leaves no tag: evidence with no geometry in front of it looks exactly
+    like evidence with geometry in front of it, which is why prose was the only thing holding it
+    until now. The claim therefore comes from the generator — each `*_params.py` declares the
+    form attributes its `from_phase` actually reads (`CONSUMED`), and every attribute outside
+    that set must say on the record what the mesh does instead: `absent`, `simplified`, or
+    `record_only` for something that was never a build instruction. The first two owe
+    `docs/LIBERTIES.md` a `Covers:` token exactly as an invention does, and the popup marks
+    those rows so a visitor sees it and not only the repository. **Twenty-one attributes across
+    six buildings turned out to reach no vertex.** Most are benign-but-real simplifications — a
+    chimney count no archetype reads, one window rhythm on all three frame taverns, wall surfaces
+    fixed by the archetype rather than the record. One is not. **The Wolf Point Tavern's frame
+    extension and its painted wolf sign are both `documented` and both absent from the model**:
+    the record spells them `frame_extension` and `signage`, the `log_dwelling` archetype reads
+    `frame_addition` and `sign`, and `from_phase` fills an absent attribute with a default, so
+    the two best-attested features of the house were dropped in silence and the popup showed the
+    project's strongest confidence chip over both. That is the confidence model working as
+    designed and still misleading, which makes it the sharpest argument for this rule that the
+    project has produced. The fix is a rename plus a re-bake — record and geometry in one slice
+    — and it is queued in ROADMAP § S5, not half-done here. L20 admits to it meanwhile.
+    Miller's house is the same shape in miniature: its record says two chimneys and
+    `log_dwelling` builds one. What is still unenforced is what no record mentions at all —
+    the Western's unmodelled stable yard is now claimed, but a liberty nobody noticed taking
+    remains uncatchable by any mechanism.
+13. **The document and the data had drifted, and writing the claim down found it.** L12 still
     read "position tagged `inferred`" for the Walker meeting house; the record was downgraded to
     `conjectural` on 2026-08-09 and nothing carried the change back. The keyword rule was
     indifferent to the disagreement — the entry says "placed", the value was conjectural, and the
     match held for a reason that had nothing to do with whether the two agreed. Declaring the
     claim forced the comparison. L12 now carries a Revised line saying so, and the stale sentence
     stays: the file is append-only, and a silently corrected admission is not one.
-13. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+14. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
 ## Next

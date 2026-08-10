@@ -113,17 +113,20 @@
           "sources": [
             "chicagology_prefire273"
           ],
-          "note": "'a log structure partly sided' — siding is attested on part of the building, and clapboard is the standard board siding for the type and period. Which part was sided, and whether the frame range was clad differently from the cabin, is not stated."
+          "note": "'a log structure partly sided' — siding is attested on part of the building, and clapboard is the standard board siding for the type and period. Which part was sided, and whether the frame range was clad differently from the cabin, is not stated.",
+          "geometry": "simplified"
         },
         "paint": {
           "value": "unpainted",
           "confidence": "inferred",
-          "note": "No source describes a finish. Unpainted is the default reading and is positively supported by Wau-Bun's account of the Sauganash's white paint being the admiration of the little circle at Wolf Point in 1831 — the Miller house was directly across the water from it and is not singled out that way."
+          "note": "No source describes a finish. Unpainted is the default reading and is positively supported by Wau-Bun's account of the Sauganash's white paint being the admiration of the little circle at Wolf Point in 1831 — the Miller house was directly across the water from it and is not singled out that way.",
+          "geometry": "simplified"
         },
         "chimneys": {
           "value": 2,
           "confidence": "inferred",
-          "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference."
+          "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference.",
+          "geometry": "simplified"
         }
       },
       "change_note": "The two-storey house added to the log cabin, fronting the river, giving the composite form the settlement knew: a two-storey frame face to the water with the older cabin behind. The conversion to a tavern in 1830, the reversion to store use after 1832 and the end of Miller's involvement in 1834 are changes of USE and do not open new phases."

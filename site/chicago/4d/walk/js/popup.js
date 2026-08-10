@@ -22,6 +22,13 @@
  * constrain the building you are looking at are on the building you are looking
  * at, which is where a visitor would think to ask.
  *
+ * The attribute table now answers a second question beside "how sure are you":
+ * whether you are looking at the thing at all. An attribute its archetype never
+ * reads is marked — `not built` where the model contains nothing of it, `not
+ * modelled from this` where a fixed default stands in its place — because a
+ * `documented` chip over an unbuilt feature is true about the evidence and false
+ * about the view, and the view is what a visitor is standing in.
+ *
  * Nothing here invents a display value. An attribute with no note shows no note.
  * A citation with no archived copy says so, because the archived copy is part of
  * whether a claim can be re-read at all. And a building with no recorded
@@ -55,6 +62,32 @@ function chip(confidence) {
   return `<span class="conf conf-${escapeHtml(c)}">${escapeHtml(c)}</span>`;
 }
 
+/**
+ * What the mesh does with a value its archetype never reads.
+ *
+ * A confidence chip answers how sure we are of a value. It cannot answer whether
+ * you are looking at it — and the two come apart in the worst possible direction:
+ * the Wolf Point Tavern's painted wolf sign is `documented`, the strongest claim
+ * this project makes, on a building with no sign on it. So an attribute the
+ * generator does not read says so beside its chip, in the visitor's words rather
+ * than the schema's.
+ *
+ * `record_only` gets no marker on purpose. A rejected reading carried in the
+ * record is not a thing missing from the view, and marking it would tell a
+ * visitor to go looking for something that was never there.
+ */
+const GEOMETRY_LABEL = {
+  absent: ['not built', 'Attested, and nothing of it is in the model.'],
+  simplified: ['not modelled from this', 'Something stands in its place, but this value does not drive it.'],
+};
+
+function geometryMark(state) {
+  const mark = GEOMETRY_LABEL[state];
+  if (!mark) return '';
+  return `<span class="geom geom-${escapeHtml(state)}" title="${escapeHtml(mark[1])}"
+    >${escapeHtml(mark[0])}</span>`;
+}
+
 function sourceList(sources) {
   if (!Array.isArray(sources) || !sources.length) return '';
   return `<span class="attr-note">sources: ${sources.map(escapeHtml).join(', ')}</span>`;
@@ -73,7 +106,7 @@ function attributeRows(attributes) {
     return `<tr>
       <th scope="row">${escapeHtml(prettyName(key))}</th>
       <td><span class="val">${escapeHtml(prettyValue(attr.value))}</span>${chip(attr.confidence)}
-        ${sourceList(attr.sources)}${note}</td>
+        ${geometryMark(attr.geometry)}${sourceList(attr.sources)}${note}</td>
     </tr>`;
   }).join('');
 }

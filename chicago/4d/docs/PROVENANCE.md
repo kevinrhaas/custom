@@ -88,6 +88,29 @@ The visual claim and the citable claim come from the same record and cannot drif
 For a museum, a classroom, or a civic audience this is the single most valuable thing the
 project offers.
 
+## Confidence grades the evidence, not the view
+
+A confidence chip answers *how sure are we of this value*. It cannot answer *are you looking at
+it*, and the two come apart in the direction that does the most damage: a `documented` attribute
+the generator never reads renders nothing and still shows the strongest claim the project makes.
+Wolf Point Tavern's painted wolf sign was exactly that for as long as nobody checked.
+
+So the two questions are recorded separately. Each archetype's `*_params.py` declares `CONSUMED`
+— the form attributes its `from_phase` actually reads — and any attribute outside that set
+carries a `geometry:` field saying what the mesh does instead:
+
+- `absent` — the record attests it and nothing of it is built
+- `simplified` — something stands in its place, but this value does not drive it
+- `record_only` — never a build instruction: a rejected reading, a negative finding
+
+`absent` and `simplified` are admissions, so `tools/validate.py` requires a matching `Covers:`
+token in `docs/LIBERTIES.md` and the provenance popup marks the row. A missing declaration is a
+gate failure, which means adding a generator parameter without adding it to `CONSUMED` fails
+loudly rather than quietly excusing an omission.
+
+The absence of the field asserts nothing on its own. An attribute inside `CONSUMED` is built
+from its value by construction, which is the only reason it needs no declaration.
+
 ## When sources disagree
 
 Record the disagreement in `docs/RESEARCH/<structure_id>.md`, state both readings and their

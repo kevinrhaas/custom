@@ -120,6 +120,20 @@ knowledgeable viewer checks.
 
 ## S5 — Structure records
 
+**Queued first, and it is a repair, not an addition: three attributes that are recorded and
+unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L20 and L21.
+
+| record | attribute | what the archetype reads | effect |
+|---|---|---|---|
+| `wolf_point_tavern` | `frame_extension` (documented) | `frame_addition` | the frame half of a "partly log and partly frame" house is missing |
+| `wolf_point_tavern` | `signage` (documented) | `sign` | the painted wolf the tavern was known by is missing |
+| `miller_house` | `chimneys: 2` (inferred) | `chimney` (a boolean) | one stack built where the record claims two |
+
+Each is a small data edit plus a re-bake, so **record and geometry land in one slice** — the
+same coupling the note below describes. Do the two Wolf Point renames together; they are the same
+building and the same bake. The chimney count needs a parameter in both archetypes first, so it
+is the larger of the two and can follow.
+
 Per-cluster parcels, each one file per structure so parallel agents never collide:
 
 | parcel | contents |
@@ -203,12 +217,24 @@ the Western's galleries (L19). Ten conjectural values, ten declarations. The chi
 attributes — "Sauganash Hotel roof type" — while the token the gate matches keeps its `form.`
 prefix.
 
-Remaining in this line of work: **omissions and simplifications**, which are the hard half and
-were always going to be. A footprint drawn from nothing has a record to point at; the stable and
-wagon yard the Western is missing (L10) and the Green Tree's side additions (L9) have none, so
-holding those to a mechanical rule needs a different kind of claim — something the *record*
-declares as not-modelled, rather than something the document declares as invented. Note the
-standing limit either way: nothing can catch a liberty taken that nobody noticed taking.
+**Done 2026-08-10 — the hard half: omissions and simplifications are enforced.** The missing
+claim turned out to belong to the *generator*, not to the record or the document. Each
+`generators/archetypes/*_params.py` now declares `CONSUMED`, the form attributes its `from_phase`
+actually reads, and `validate.py` holds every attribute outside that set to a `geometry:`
+declaration on the record — `absent` (nothing of it is built), `simplified` (a fixed default
+stands in its place) or `record_only` (a rejected reading, which owes nothing). `absent` and
+`simplified` need a `Covers:` token exactly as an invention does, checked both ways, and the
+popup marks those rows *not built* / *not modelled from this* so the admission reaches a visitor
+and not only a reviewer. Twenty-one attributes across six buildings reach no vertex; L9 and L10
+now claim theirs, and L20–L23 are new.
+
+Switching it on found a real defect, which is the argument for the rule in one line: **the Wolf
+Point Tavern's frame extension and its painted wolf sign are both `documented` and neither is
+modelled.** The record spells them `frame_extension` and `signage`; `log_dwelling` reads
+`frame_addition` and `sign`; the absent attributes resolved to defaults and nothing complained.
+See S5 below for the fix, which is a rename plus a re-bake. The standing limit is unchanged and
+worth repeating: nothing can catch a liberty taken that nobody noticed taking — but an attribute
+recorded and never built is no longer in that category.
 
 ## S8 — Milestone 1
 

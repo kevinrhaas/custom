@@ -82,7 +82,8 @@
           "sources": [
             "chicagology_prefire273"
           ],
-          "note": "'partly log and partly frame' — the tavern had grown a frame element by the early 1830s. Its SIZE, POSITION on the building and DATE are all unattested, so the footprint above does not distinguish it and the log_dwelling archetype will need a parameter for it. Recorded as a requirement discovered from the evidence, in the same way the Sauganash's attached log wing was."
+          "note": "'partly log and partly frame' — the tavern had grown a frame element by the early 1830s. Its SIZE, POSITION on the building and DATE are all unattested, so the footprint above does not distinguish it and the log_dwelling archetype will need a parameter for it. Recorded as a requirement discovered from the evidence, in the same way the Sauganash's attached log wing was.",
+          "geometry": "absent"
         },
         "wall_height_m": {
           "value": 2.6,
@@ -102,7 +103,8 @@
         "paint": {
           "value": "unpainted",
           "confidence": "inferred",
-          "note": "No source describes a finish. Unpainted weathered log is the default reading, and it is positively supported by the contrast Wau-Bun draws: a painted white building at Wolf Point in 1831 was 'the admiration of all the little circle' precisely because the buildings around it were not painted. This tavern was one of those buildings."
+          "note": "No source describes a finish. Unpainted weathered log is the default reading, and it is positively supported by the contrast Wau-Bun draws: a painted white building at Wolf Point in 1831 was 'the admiration of all the little circle' precisely because the buildings around it were not painted. This tavern was one of those buildings.",
+          "geometry": "simplified"
         },
         "signage": {
           "value": "painted_wolf_sign",
@@ -110,12 +112,14 @@
           "sources": [
             "drloih_wolf_point"
           ],
-          "note": "'A painted sign of a wolf was hung outside the tavern by approximately 1833.' THE SINGLE MOST DISTINCTIVE DOCUMENTED VISUAL FEATURE OF THIS BUILDING and the thing that gave the point its name in popular usage — hung well before the scene date, so it belongs in the 1835 model. What the sign LOOKED LIKE — its size, its board shape, how it was hung, how the wolf was drawn — is entirely unattested, so the archetype should carry the sign as a distinct, separately-confidenced element rather than folding it into the massing. Wau-Bun separately derives the Wolf Point name from an Indian resident called Moa-way, 'the Wolf', which is a competing etymology, not a competing fact about the sign."
+          "note": "'A painted sign of a wolf was hung outside the tavern by approximately 1833.' THE SINGLE MOST DISTINCTIVE DOCUMENTED VISUAL FEATURE OF THIS BUILDING and the thing that gave the point its name in popular usage — hung well before the scene date, so it belongs in the 1835 model. What the sign LOOKED LIKE — its size, its board shape, how it was hung, how the wolf was drawn — is entirely unattested, so the archetype should carry the sign as a distinct, separately-confidenced element rather than folding it into the massing. Wau-Bun separately derives the Wolf Point name from an Indian resident called Moa-way, 'the Wolf', which is a competing etymology, not a competing fact about the sign.",
+          "geometry": "absent"
         },
         "chimneys": {
           "value": 1,
           "confidence": "inferred",
-          "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference."
+          "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference.",
+          "geometry": "simplified"
         }
       },
       "change_note": "The tavern as it stood through the 1830s: a log building that had acquired a frame element by the early 1830s, with the painted wolf sign hung outside by about 1833. No documented change of fabric falls inside the phase, so the whole 1828-1836 span is modelled as one state — which is a limitation of the evidence, not a claim that nothing changed."

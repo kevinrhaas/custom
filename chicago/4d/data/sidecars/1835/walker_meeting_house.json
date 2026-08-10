@@ -74,12 +74,14 @@
     "paint": {
       "value": "unpainted",
       "confidence": "inferred",
-      "note": "No source describes a finish. Unpainted weathered log is the default for the type, and a mission meeting house that doubled as a school is the last building at Wolf Point that would have carried paint when the taverns did not."
+      "note": "No source describes a finish. Unpainted weathered log is the default for the type, and a mission meeting house that doubled as a school is the last building at Wolf Point that would have carried paint when the taverns did not.",
+      "geometry": "simplified"
     },
     "chimneys": {
       "value": 1,
       "confidence": "inferred",
-      "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence."
+      "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence.",
+      "geometry": "simplified"
     },
     "function": {
       "value": "meeting_house_school",

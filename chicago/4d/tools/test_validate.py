@@ -236,7 +236,8 @@ def test_liberties_cover_conjectural_inventions() -> None:
         liberty("L7", "x: the footprint was invented", ["x"], covers=[covers("x", "footprint")]),
     ]}, rep)
     check("claiming an invention that the data no longer contains is an error",
-          any("is not conjectural" in e and "L7" in e for e in rep.errors), rep.errors)
+          any("neither conjectural nor declared" in e and "L7" in e
+              for e in rep.errors), rep.errors)
 
     rep = V.Report()
     V.check_liberties_coverage(settled, {"liberties": [
@@ -300,7 +301,158 @@ def test_liberties_cover_invented_form() -> None:
                                    covers("x", "form.stories", "p")]),
     ]}, rep)
     check("claiming an attribute that is not conjectural is an error",
-          any("form.stories" in e and "is not conjectural" in e for e in rep.errors), rep.errors)
+          any("form.stories" in e and "neither conjectural nor declared" in e
+              for e in rep.errors), rep.errors)
+
+
+def test_geometry_declaration_is_required_for_unread_attributes() -> None:
+    """An attribute no generator reads is a claim with no geometry behind it.
+
+    This is the omission half of the standard, and it is harder than the
+    invention half for a reason worth stating: an invention leaves a mark in the
+    record — a `conjectural` tag — and an omission leaves none at all. A
+    `documented` attested value the archetype never reads looks exactly like a
+    `documented` value it builds. The only thing that can tell them apart is the
+    generator's own declaration of what it consumes, which is why the rule is
+    driven from there rather than from a reviewer noticing.
+    """
+    consumed = {"a": frozenset({"roof_type"})}
+    form = {"roof_type": {"value": "gable", "confidence": "documented", "sources": ["s1"]},
+            "signage": {"value": "painted_wolf_sign", "confidence": "documented",
+                        "sources": ["s1"]}}
+    st = {"x.json": {"id": "x", "archetype": "a",
+                     "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
+
+    rep = V.Report()
+    V.check_geometry_declarations(st, consumed, rep)
+    check("an attribute the archetype never reads must declare what the mesh does",
+          any("form.signage" in e and "never reads it" in e for e in rep.errors), rep.errors)
+    check("an attribute the archetype does read needs no declaration",
+          not any("form.roof_type" in e for e in rep.errors), rep.errors)
+
+    # Declaring over an attribute that IS built is a false admission, and would
+    # quietly excuse a real omission if the parameter were ever dropped.
+    rep = V.Report()
+    form["roof_type"]["geometry"] = "absent"
+    form["signage"]["geometry"] = "absent"
+    V.check_geometry_declarations(st, consumed, rep)
+    check("declaring geometry on an attribute the archetype builds is an error",
+          any("form.roof_type" in e and "reads this attribute" in e for e in rep.errors),
+          rep.errors)
+    del form["roof_type"]["geometry"]
+
+    # 'absent' over a false value admits to leaving out something the record says
+    # was never there — the difference between a gap and a nothing.
+    rep = V.Report()
+    form["log_core"] = {"value": False, "confidence": "inferred", "note": "rejected reading",
+                        "geometry": "absent"}
+    V.check_geometry_declarations(st, consumed, rep)
+    check("admitting to omitting a value the record says is false is an error",
+          any("form.log_core" in e and "not there" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    form["log_core"]["geometry"] = "record_only"
+    V.check_geometry_declarations(st, consumed, rep)
+    check("a rejected reading declares record_only and passes", not rep.errors, rep.errors)
+
+    rep = V.Report()
+    form["signage"]["geometry"] = "invisible"
+    V.check_geometry_declarations(st, consumed, rep)
+    check("a geometry state outside the vocabulary is an error",
+          any("'invisible'" in e for e in rep.errors), rep.errors)
+    form["signage"]["geometry"] = "absent"
+
+    # An archetype with no params module yet is skipped, not assumed to build
+    # nothing: "no generator written" and "the generator ignores it" are
+    # different states and only one is a finding.
+    rep = V.Report()
+    V.check_geometry_declarations(st, {}, rep)
+    check("an archetype with no declared CONSUMED set is skipped, not indicted",
+          not rep.errors, rep.errors)
+
+
+def test_liberties_cover_omissions_and_simplifications() -> None:
+    """An omission owes the document an entry exactly as an invention does.
+
+    The discriminating case is the last one: `record_only` claims nothing is
+    missing, so requiring a liberty for it would push the document toward
+    admitting to things that were never taken — which devalues every admission
+    that was.
+    """
+    consumed = {"a": frozenset({"roof_type"})}
+    form = {"roof_type": {"value": "gable", "confidence": "documented", "sources": ["s1"]},
+            "stables": {"value": True, "confidence": "documented", "sources": ["s1"],
+                        "geometry": "absent"},
+            "chimneys": {"value": 2, "confidence": "inferred", "note": "two on both views",
+                         "geometry": "simplified"},
+            "log_core": {"value": False, "confidence": "inferred", "note": "rejected",
+                         "geometry": "record_only"}}
+    st = {"x.json": {"id": "x", "archetype": "a",
+                     "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
+    geometry = [covers("x", "footprint"), covers("x", "position")]
+
+    rep = V.Report()
+    V.check_liberties_coverage(st, {"liberties": [
+        liberty("L1", "x: the outline and the placement are invented", ["x"], covers=geometry),
+    ]}, rep, consumed)
+    check("an attested feature the mesh omits with no liberty is an error",
+          any("form.stables" in e and "'absent'" in e for e in rep.errors), rep.errors)
+    check("a value a fixed default stands in for is an error too",
+          any("form.chimneys" in e and "'simplified'" in e for e in rep.errors), rep.errors)
+    check("the error says the model does not show what the record states",
+          any("the model does not show" in e for e in rep.errors), rep.errors)
+    check("a rejected reading owes no admission",
+          not any("form.log_core" in e for e in rep.errors), rep.errors)
+    check("an attribute the archetype builds owes no admission",
+          not any("form.roof_type" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(st, {"liberties": [
+        liberty("L2", "x: the outline, the placement, the yard and the stacks", ["x"],
+                covers=geometry + [covers("x", "form.stables", "p"),
+                                   covers("x", "form.chimneys", "p")]),
+    ]}, rep, consumed)
+    check("claiming both discharges them", not rep.errors, rep.errors)
+
+    # Over-claiming an omission fails for the same reason over-claiming an
+    # invention does. `roof_type` is built from the record, so admitting to
+    # leaving it out is an admission to something that did not happen.
+    rep = V.Report()
+    V.check_liberties_coverage(st, {"liberties": [
+        liberty("L3", "x: we left the roof off", ["x"],
+                covers=geometry + [covers("x", "form.stables", "p"),
+                                   covers("x", "form.chimneys", "p"),
+                                   covers("x", "form.roof_type", "p")]),
+    ]}, rep, consumed)
+    check("claiming to have omitted something that is built is an error",
+          any("form.roof_type" in e and "neither conjectural nor declared" in e
+              for e in rep.errors), rep.errors)
+
+    # Without the archetype map the omission rule cannot run at all, and must not
+    # pretend it did — the invention half still stands on its own.
+    rep = V.Report()
+    V.check_liberties_coverage(st, {"liberties": [
+        liberty("L4", "x: the outline and the placement are invented", ["x"], covers=geometry),
+    ]}, rep)
+    check("with no CONSUMED map the omission rule reports nothing rather than guessing",
+          not rep.errors, rep.errors)
+
+
+def test_archetypes_declare_what_they_consume() -> None:
+    """Every committed archetype states which attributes reach its mesh.
+
+    Without this the gate above silently stops asking: an archetype that forgets
+    the declaration would report zero unread attributes, which looks identical to
+    an archetype that reads all of them.
+    """
+    rep = V.Report()
+    consumed = V.archetype_consumed(rep)
+    check("every params module declares a CONSUMED set", not rep.errors, rep.errors)
+    check("the shipped archetypes are covered",
+          {"frame_tavern", "log_dwelling"} <= set(consumed), sorted(consumed))
+    check("the sets name real parameters, not prose",
+          all(isinstance(a, str) and a.islower() for s in consumed.values() for a in s),
+          consumed)
 
 
 def test_covers_field_parses_to_claims() -> None:
