@@ -48,20 +48,60 @@ The numbers, measured against `data/datum.json` rather than estimated:
 (Landmark positions are modern-successor scoping figures, not dataset claims — they say
 how far the box falls short, nothing about 1835.)
 
-**The shoreline is the interesting part, and it is a provenance problem, not a modelling
-one.** The 1835 lake edge is nowhere near the modern one: everything east of roughly
-Michigan Avenue is landfill, much of it fire debris after 1871. Drawing today's coast
-would be the single largest false claim in the dataset. The shore has to come off Wright
-1834 — which also carries the 1834 harbour cut, the two piers, the sand tongue and the
-decaying old southward channel — with the same ±20 m carried forward as everything else
-traced from those sheets. This is precisely the case the year-parameterized architecture
-exists for: `docs/EPOCHS.md` treats terrain as versioned per epoch, so a later year gets
-its own shoreline rather than editing this one.
+**The 1835 lake edge is nowhere near the modern one** — everything east of roughly Michigan
+Avenue is later landfill, much of it fire debris after 1871 — so drawing today's coast
+would be the single largest false claim in the dataset. It comes off Wright 1834. This is
+precisely the case the year-parameterized architecture exists for: `docs/EPOCHS.md` treats
+terrain as versioned per epoch, so a later year gets its own shoreline rather than editing
+this one.
 
-Scope, roughly: extend to about E +1500, giving a ~1.9 km × 0.7 km field. At the current
-2.5 m cell that is ~213k samples (~425 KB int16) against today's 66k (132 KB) — well
-inside the 25 MB publish budget, but worth considering a coarser cell east of the built
-blocks, where the evidence does not support 2.5 m detail anyway.
+**Which source drives which element** (set 2026-08-10 by Kevin, who is right that the
+earlier reading of these sources was over-cautious — see `docs/PROVENANCE.md` § tier 5):
+
+| element | source | confidence it supports |
+|---|---|---|
+| lake shore, harbour cut, piers, sand tongue, the old southward channel | **Wright 1834** — a survey, and the master warping raster | `inferred`, ±20 m; a fair estimate is expected rather than avoided |
+| the river through the central blocks; street and block geometry | **Thompson plat 1830** — 80-ft streets, 18-ft alleys, generated analytically from the module, not traced | `documented` for the module, `inferred` for the fit |
+| the streams coming in, and where each one terminates | **Conley/Stelzer 1833** as primary guide, Wright as the check | `inferred`, named in the note |
+| **bridge positions** | **Conley/Stelzer 1833** — it draws them in place | `inferred` |
+| general cross-check on all of the above | an 1836 map — **not yet in `data/sources/`; find and record one first** | — |
+
+The standing rule still holds where it earns its keep: nothing traced from a pictorial
+sheet becomes an *outline*. A reconstruction tells you a bridge was here; it does not tell
+you its plan. Position `inferred` with a note, geometry from the archetype.
+
+**Do not let ±20 m stop the work.** The uncertainty is recorded per structure and shown in
+the popup; that is the mechanism for handling it. Leaving the east half of the town empty
+because the shore cannot be fixed to the metre is the more misleading of the two options.
+
+**Scope, now measured off the sheet rather than guessed.** First readings are committed in
+`data/traces/vectors/wright_1834_east.json`, derived by `tools/wright_px.py` from the same
+fitted affine the datum is checked against:
+
+| feature, from Wright 1834 | local E | local N |
+|---|---|---|
+| Fort Dearborn (label centre) | **+1152** | +221 |
+| river mouth, south bank | +1180 | +272 |
+| lake shore north of the harbour | **+1331 … +1365** | +330 … +735 |
+| north pier, outer end | **+1544** | +178 |
+
+So the box must reach about **E +1700**, not the +1500 I first estimated — the harbour
+works run further out than the shore does. That gives a ~2.0 km × 0.7 km field; at the
+current 2.5 m cell, ~224k samples (~450 KB int16) against today's 66k (132 KB). Well inside
+the 25 MB publish budget, but worth a coarser cell east of the built blocks, where the
+evidence does not support 2.5 m detail anyway.
+
+Two things the first pass settled, and one it did not:
+
+- **The Fort Dearborn position is cross-checked.** Wright puts it at E +1152, N +221; the
+  modern successor landmark (Michigan Avenue bridge) independently gives E +1127, N +195.
+  35 m apart, from methods sharing no input. That is what licenses `inferred`.
+- **Wright labels the reservation, not the fort.** There is no palisade plan on this sheet,
+  so the footprint has to come from elsewhere — Andreas, or the fort's own published plans.
+  Do not trace an outline off the banner.
+- **The sand bar and the old southward channel still need a dedicated read.** They are the
+  fiddliest shapes on the sheet and were deliberately left out of the first pass rather
+  than guessed at speed.
 
 Unblocks the **Fort Dearborn** and **Harbor works** parcels in S5, which cannot be placed
 onto ground that does not exist. It also retires the aerial view's worst artefact: from

@@ -44,6 +44,38 @@ Tier 5 and 6 sources may inform *inventory* (what existed, roughly where) and *c
 They must never be the sole evidence for a `documented` attribute, and no geometry is traced
 from them.
 
+### They may, however, carry a position to `inferred` (revised 2026-08-10)
+
+The first reading of the rule above was too strict, and the strictness made the dataset
+*less* accurate rather than more. A researched retrospective — Conley/Stelzer 1933 is the
+case in point — is real evidence about where a building or a bridge stood. Refusing to use
+it left those things tagged `conjectural`, which asserts *no evidence exists*. That is not
+caution; it is a false statement in the modest direction, and this project already holds
+that under-claiming is as wrong as over-claiming (see `generators/archetypes/frame_tavern.py`,
+where the same mistake dithered a well-attested building into a ghost).
+
+So, precisely:
+
+- **`documented`** still requires a period source. A tier-5 map never reaches it, alone or
+  in company.
+- **`inferred` is available** to a tier-5 source, and is the right tag when a researched
+  reconstruction places something. The `note` must name the map, say that it is a
+  reconstruction, and say what it shows.
+- **Geometry is still not traced from them.** A pictorial elevation is not a survey: it
+  gives you *that a thing was here*, not its outline, its footprint or a shoreline. Outlines
+  come from tier-1 sheets or stay conjectural.
+
+Judge a tier-5 source by how it was made, not only by its date. Conley worked about two
+years in libraries and archives, and Caroline McIlvaine had thirty years earlier collected
+testimony directly from the last surviving pioneers. That is a real evidentiary chain with
+one weak link, not a decoration. It still gets things wrong — it labels the du Sable/Kinzie
+house "built 1832" against every documentary source (`data/exclusions.json`) — which is
+exactly why it informs `inferred` and never `documented`.
+
+`asset_use` on the source record is the operative switch, and the vocabulary already had the
+right rung: **`orientation` — "toponyms and rough placement only"**. That, not `cross_check`,
+is what a map like this should carry.
+
 ## Rights are part of provenance
 
 Each source carries `rights_status`:
