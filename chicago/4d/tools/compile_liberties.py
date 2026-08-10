@@ -17,9 +17,11 @@ the derived artefact is committed so the site needs no build step, and `check.sh
 re-derives it on every commit, so an edit to the prose that never reaches the JSON
 is a gate failure rather than a silent divergence.
 
-One field is read as data rather than as prose: `**Covers:**` lists the drawn
-inventions an entry admits to, as `structure_id[.phase_id].aspect` tokens, and
-`validate.py` matches those claims against the records in both directions.
+One field is read as data rather than as prose: `**Covers:**` lists the inventions
+an entry admits to, as `structure_id[.phase_id].aspect` tokens, and `validate.py`
+matches those claims against the records in both directions. The aspect may be a
+drawn one (`footprint`, `position`) or any attribute of the building's form
+(`form.roof_type`) — anything a record states without evidence.
 
 Deliberately NOT a markdown renderer. It reads the one shape this document has —
 `### L<n> — <title>` followed by `**Label:** text` fields — and carries the field
@@ -52,9 +54,19 @@ DATE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 # resolves to a real phase carrying a real invention is validate.py's business,
 # so a renamed record fails the gate as a semantic error rather than by making the
 # derived file uncompilable.
-COVER_ASPECTS = ("footprint", "position")
+#
+# Two shapes of aspect, and the difference is deliberate. The record's fixed
+# blocks — `footprint`, `position`, `documented_range`, and the structure-level
+# `function` and `occupants` — are a closed list, because their names are part of
+# the schema. Everything under `form` is open, because that is where a building's
+# character is written and the vocabulary grows with the archetypes; a form claim
+# therefore carries its `form.` prefix, which is also what keeps the last segment
+# from having to be guessed at.
+COVER_ASPECTS = ("footprint", "position", "documented_range", "function", "occupants")
+FORM_ASPECT = r"form(?:\.[a-z0-9_]+)+"
 COVER_TOKEN = re.compile(
-    r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.(" + "|".join(COVER_ASPECTS) + r")$")
+    r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.("
+    + "|".join(COVER_ASPECTS) + r"|" + FORM_ASPECT + r")$")
 
 SECTION_KEY = {
     "standing liberties": "standing",
@@ -71,10 +83,12 @@ def _clean(text: str) -> str:
 def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
     """`structure_id[.phase_id].aspect` tokens -> the claims this entry makes.
 
-    The aspect is the last segment and comes from a closed vocabulary, so a
-    two-segment token and a three-segment one are told apart without guessing:
-    `walker_meeting_house.position` covers whichever phases drew a position from
-    nothing, `walker_meeting_house.log_1831.position` covers exactly one.
+    The aspect is the trailing segment (or `form.` plus one, for the open half of
+    the vocabulary), so a two-segment token and a three-segment one are told apart
+    without guessing: `walker_meeting_house.position` covers whichever phases drew
+    a position from nothing, `walker_meeting_house.log_1831.position` covers
+    exactly one, and `sauganash_hotel.log_1829.form.roof_type` names the one
+    attribute in the one phase.
     """
     claims: list[dict] = []
     for raw in re.split(r"[,;]", text):
@@ -84,7 +98,8 @@ def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
         m = COVER_TOKEN.match(token)
         if not m:
             problems.append(f"{lid}: Covers entry '{token}' is not "
-                            f"structure_id[.phase_id].<{'|'.join(COVER_ASPECTS)}>")
+                            f"structure_id[.phase_id].<{'|'.join(COVER_ASPECTS)}"
+                            f"|form.attribute>")
             continue
         claims.append({"structure": m.group(1), "phase": m.group(2), "aspect": m.group(3)})
     if not claims:

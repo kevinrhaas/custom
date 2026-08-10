@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 12, title: 'A guessed roof is an invention too', kind: 'feature',
+    ts: '2026-08-10T05:26:06.281Z', date: 'Aug 10, 2026, 12:26 AM CT',
+    items: [
+      'Owning up used to stop at the shapes on the ground. If a building\'s outline or its place on the map was invented, the liberties list had to say so — but the roof over it, the height of its walls and whether it had a porch could all be guesses without anyone writing that down.',
+      'They are guesses you cannot see being made. A dithered wall tells you a size is unknown; nothing tells you that a gable was chosen because gables were usual, or that a front was left plain because no source mentioned a porch either way. The confidence tint says we do not know. Only the liberty says what we did about not knowing.',
+      'So the gate now holds every stated value to the same rule, and four more admissions were owed. The Sauganash\'s 1829 log cabin — the oldest thing standing in the scene — has an invented height and an invented roof. The Green Tree and the Western are both drawn with plain fronts because nobody found a porch, which is a decision, not a finding.',
+      'The chips in the Evidence panel and on each building\'s card now name those too: "Sauganash Hotel roof type", "Western Hotel gallery". What is still unclaimed is what was left out entirely — an omission has no record to point at, and that needs a different kind of claim.',
+    ] },
   { v: 11, title: 'Where the lake was in 1834', kind: 'feature',
     ts: '2026-08-10T05:06:01.254Z', date: 'Aug 10, 2026, 12:06 AM CT',
     items: [

@@ -31,6 +31,17 @@ function inline(text) {
     .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
 }
 
+/**
+ * A `Covers:` aspect as a visitor should read it. `footprint` and `position` are
+ * already words; the form attributes carry a `form.` prefix that exists to keep
+ * the token unambiguous for the gate and means nothing on a chip. The rest
+ * matches how the provenance card labels the same attribute, because the chip
+ * and the attribute row are naming one thing.
+ */
+function aspectLabel(aspect) {
+  return String(aspect).replace(/^form\./, '').replace(/_/g, ' ').replace(/\bm\b/, '(m)');
+}
+
 const SECTION_LABEL = {
   standing: 'whole scene',
   per_subject: 'one subject',
@@ -79,12 +90,13 @@ export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, 
   const seen = new Set();
   const covers = (lib.covers || []).map((c) => {
     const who = showSubjects ? (names.get(c.structure) || c.structure) : '';
-    const label = `${who} ${c.aspect}`.trim();
+    const what = aspectLabel(c.aspect);
+    const label = `${who} ${what}`.trim();
     if (seen.has(label)) return '';
     seen.add(label);
     const token = [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
     return `<span class="lib-covers" title="admitted for ${escapeHtml(token)}">`
-      + `${escapeHtml(who)}${who ? ' ' : ''}<em>${escapeHtml(c.aspect)}</em></span>`;
+      + `${escapeHtml(who)}${who ? ' ' : ''}<em>${escapeHtml(what)}</em></span>`;
   }).join('');
 
   const dateline = lib.revised && lib.revised !== lib.recorded

@@ -214,8 +214,8 @@ for (const [label, viewport, touch] of [
     // The confidence chips answer "how sure are you of this value". They cannot
     // answer "what did you decide without evidence at all", which is what the
     // liberties record. Asserted per-building rather than as a count, because
-    // the failure this guards against is the card showing all eighteen (or the
-    // wrong four) instead of the ones the markdown attaches to this structure.
+    // the failure this guards against is the card showing the whole list (or the
+    // wrong subset) instead of the ones the markdown attaches to this structure.
     const popLib = await page.evaluate(() => {
       const read = (id) => {
         window.__chicago4d.pick(id);
@@ -231,7 +231,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the popup carries the liberties taken with this building`,
       popLib.sauganash.present
-      && ['L4', 'L4a', 'L5', 'L6'].every((id) => popLib.sauganash.ids.includes(id)),
+      && ['L4', 'L4a', 'L5', 'L6', 'L18'].every((id) => popLib.sauganash.ids.includes(id)),
       `got [${popLib.sauganash.ids.join(', ')}]`);
     check(`${label}: it shows the reasoning, not just the admission`,
       /invented/i.test(popLib.sauganash.text) && /Why/i.test(popLib.sauganash.text),
@@ -239,15 +239,15 @@ for (const [label, viewport, touch] of [
     // The discriminating case: a different building, a different set. A popup
     // that dumped the whole list would pass every assertion above.
     check(`${label}: another building gets its own liberties, not the whole list`,
-      popLib.greenTree.ids.includes('L9')
-      && !popLib.greenTree.ids.some((id) => ['L4', 'L5', 'L6', 'L1'].includes(id)),
+      popLib.greenTree.ids.includes('L9') && popLib.greenTree.ids.includes('L19')
+      && !popLib.greenTree.ids.some((id) => ['L4', 'L5', 'L6', 'L1', 'L18'].includes(id)),
       `green tree got [${popLib.greenTree.ids.join(', ')}]`);
     check(`${label}: a scene-wide liberty is not attached to a building`,
       !popLib.sauganash.ids.includes('L1') && !popLib.sauganash.ids.includes('L14'),
       `sauganash got [${popLib.sauganash.ids.join(', ')}]`);
 
     // Collapsed by default here too — the card must stay skimmable, and a
-    // building with four liberties would otherwise push the citations off it.
+    // building carrying several liberties would otherwise push the citations off it.
     const popLibOpen = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
       const first = document.querySelector('#popup .pop-liberties details.lib');
@@ -499,7 +499,10 @@ for (const [label, viewport, touch] of [
           .find((d) => d.querySelector('.lib-id')?.textContent.trim() === id);
         return [...(el?.querySelectorAll('.lib-covers') ?? [])].map((n) => n.textContent.trim());
       };
-      return { l5: read('L5'), l8: read('L8'), l1: read('L1'), l4: read('L4') };
+      return {
+        l5: read('L5'), l8: read('L8'), l1: read('L1'), l4: read('L4'),
+        l18: read('L18'), l19: read('L19'),
+      };
     });
     check(`${label}: an entry shows the inventions it admits to`,
       claims.l5.length > 0 && claims.l5.every((t) => /footprint/.test(t))
@@ -511,6 +514,21 @@ for (const [label, viewport, touch] of [
     check(`${label}: an entry that invented nothing drawn claims nothing`,
       claims.l1.length === 0 && claims.l4.length === 0,
       `L1 [${claims.l1.join(' | ')}] L4 [${claims.l4.join(' | ')}]`);
+
+    // The admissions are not only about drawn geometry. A roof chosen because it
+    // was usual and a porch left off because nobody found one are inventions a
+    // visitor cannot see being made, so they get chips of their own — and the
+    // chip reads as an attribute, not as the `form.` token the gate matches on.
+    check(`${label}: an invented roof and height are admitted like an outline`,
+      claims.l18.length === 2 && claims.l18.every((t) => /Sauganash/i.test(t))
+      && claims.l18.some((t) => /roof type/.test(t))
+      && claims.l18.some((t) => /wall height/.test(t))
+      && !claims.l18.some((t) => /form\./.test(t)),
+      `L18 claims [${claims.l18.join(' | ')}]`);
+    check(`${label}: a decision made by default is admitted in two buildings`,
+      claims.l19.length === 2 && new Set(claims.l19).size === 2
+      && claims.l19.every((t) => /gallery/.test(t)),
+      `L19 claims [${claims.l19.join(' | ')}]`);
 
     // Collapsed by default, and opening one gives the reasoning — not just the
     // admission that a liberty was taken.

@@ -28,7 +28,7 @@ def check(name: str, cond: bool, detail: str = "") -> None:
         FAILURES.append(name)
 
 
-def phase(pid: str, frm: str, to: str) -> dict:
+def phase(pid: str, frm: str, to: str, form: dict | None = None) -> dict:
     return {
         "id": pid,
         "documented_range": {"from": frm, "to": to, "confidence": "documented",
@@ -36,7 +36,7 @@ def phase(pid: str, frm: str, to: str) -> dict:
         "position": {"utm_e": None, "utm_n": None, "symbolic_location": "somewhere",
                      "confidence": "conjectural"},
         "footprint": {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "conjectural"},
-        "form": {},
+        "form": form or {},
     }
 
 
@@ -255,6 +255,54 @@ def test_liberties_cover_conjectural_inventions() -> None:
           any("data/liberties.json" in e for e in rep.errors), rep.errors)
 
 
+def test_liberties_cover_invented_form() -> None:
+    """The requirement reaches past the drawn geometry to what the record states.
+
+    A conjectural `roof_type` builds a gable and a visitor sees a gable; a
+    conjectural `gallery: false` renders a plain front and a visitor sees a plain
+    front. Neither announces itself the way an invented outline does, which is the
+    argument for holding them to the same rule rather than a weaker one.
+    """
+    form = {"roof_type": {"value": "gable", "confidence": "conjectural",
+                          "note": "PLACEHOLDER. Typical for the type."},
+            "stories": {"value": 2, "confidence": "documented", "sources": ["s1"]}}
+    structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
+    geometry = [covers("x", "footprint"), covers("x", "position")]
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L1", "x: the outline and the placement are invented", ["x"], covers=geometry),
+    ]}, rep)
+    check("a conjectural form attribute with no claim is an error",
+          any("form.roof_type is conjectural" in e for e in rep.errors), rep.errors)
+    check("owning up to the geometry does not cover what the record says the building was",
+          not any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+    check("the error shows the form token that would fix it",
+          any("`x.p.form.roof_type`" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L2", "x: outline, placement and roof", ["x"],
+                covers=geometry + [covers("x", "form.roof_type", "p")]),
+    ]}, rep)
+    check("claiming the form attribute satisfies the check", not rep.errors, rep.errors)
+
+    check("a documented form attribute is never required to be claimed",
+          not any("form.stories" in e for e in rep.errors), rep.errors)
+
+    # Over-claiming a form attribute has to fail for the same reason over-claiming
+    # a footprint does: an admission to something we did not invent reads as
+    # diligence and provides none.
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L3", "x: everything about the roof was invented", ["x"],
+                covers=geometry + [covers("x", "form.roof_type", "p"),
+                                   covers("x", "form.stories", "p")]),
+    ]}, rep)
+    check("claiming an attribute that is not conjectural is an error",
+          any("form.stories" in e and "is not conjectural" in e for e in rep.errors), rep.errors)
+
+
 def test_covers_field_parses_to_claims() -> None:
     """The grammar the document is written in, checked at its own level.
 
@@ -271,6 +319,14 @@ def test_covers_field_parses_to_claims() -> None:
     check("a three-segment token names its phase",
           claims[1] == {"structure": "x", "phase": "p1", "aspect": "position"}, claims)
     check("well-formed tokens report no problems", not problems, problems)
+
+    problems = []
+    claims = C.parse_covers("`x.p1.form.roof_type`, `x.form.gallery`", "L1b", problems)
+    check("a form token keeps its prefix as part of the aspect",
+          claims[1] == {"structure": "x", "phase": "p1", "aspect": "form.roof_type"}, claims)
+    check("a form token without a phase covers the structure",
+          claims[0] == {"structure": "x", "phase": None, "aspect": "form.gallery"}, claims)
+    check("well-formed form tokens report no problems", not problems, problems)
 
     problems = []
     C.parse_covers("`x.roof_type`, `x`, the footprint", "L2", problems)

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 18,
+  "count": 20,
   "liberties": [
     {
       "id": "L1",
@@ -565,6 +565,103 @@
         {
           "label": "Consequence",
           "text": "the main stem appears to widen as it recedes east. Anyone extending the model east to the harbour replaces the skirt with real terrain rather than editing it."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L18",
+      "title": "Sauganash Hotel: the 1829 cabin's height and its roof are placeholders",
+      "section": "per_subject",
+      "subjects": [
+        "sauganash_hotel"
+      ],
+      "covers": [
+        {
+          "structure": "sauganash_hotel",
+          "phase": "log_1829",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "sauganash_hotel",
+          "phase": "log_1829",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged `conjectural`, both carrying the word PLACEHOLDER in their own notes."
+        },
+        {
+          "label": "Why",
+          "text": "nothing attests either. 2.4 m is an ordinary single-storey hewn-log wall and a gable is the near-universal roof for the type and the period — but the ordinary reading of a *type* is not evidence about a *building*, and that is exactly where this project draws the line between `inferred` and `conjectural`. The 1831 frame block's height and roof are `inferred` because the reasoning is about that block: two storeys are documented and the form is described. The cabin has neither, so its numbers were chosen rather than derived."
+        },
+        {
+          "label": "Consequence",
+          "text": "the oldest thing standing in the scene — the attached wing of L4a, which a visitor walks straight past — has an invented height and an invented roof. The dithered massing says its size is unknown; it does not say that 2.4 m and a gable were picked because they are usual."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any dimensioned description of the 1829 cabin. Failing that, the Braunhold engraving at page-image level, where the wing's height can be measured against a block whose storey count is documented."
+        },
+        {
+          "label": "Covers",
+          "text": "`sauganash_hotel.log_1829.form.wall_height_m`, `sauganash_hotel.log_1829.form.roof_type`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L19",
+      "title": "Green Tree and Western: two galleries decided by default, not by evidence",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "structure": "green_tree_tavern",
+          "phase": "frame_1833",
+          "aspect": "form.gallery"
+        },
+        {
+          "structure": "western_hotel",
+          "phase": "frame_1834",
+          "aspect": "form.gallery"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`gallery: false` on both the Green Tree Tavern and the Western Hotel, tagged `conjectural` on both. Both buildings render with a plain front."
+        },
+        {
+          "label": "Why",
+          "text": "no source reached describes a porch, veranda or gallery on either building, and none rules one out. False is what the archetype falls back to, not a finding. The Green Tree's witnesses describe two entrances — the front on Canal and one \"about the middle of the long side\" on Lake — without mentioning a porch, which is weak negative evidence at best: they were correcting a drawing, not inventorying an elevation. The Western is more open still. A wagon house with entrances to its yard from both streets is precisely the type that often carried a porch over the door, and nothing here says it did not."
+        },
+        {
+          "label": "Consequence",
+          "text": "this is an invention that does not look like one. A drawn footprint announces itself — the visitor can see that a shape was chosen. A plain elevation reads as the finding, and the confidence tint on an attribute whose value is `false` has nothing to dither. Recorded here because the model shows two blank fronts that no source put there."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the c. 1859 photograph (CHM ICHi-040230) settles the Green Tree the moment anyone opens it. For the Western, any depiction at all — the project holds none."
+        },
+        {
+          "label": "Covers",
+          "text": "`green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`."
         },
         {
           "label": "Recorded",

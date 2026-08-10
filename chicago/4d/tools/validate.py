@@ -41,15 +41,12 @@ SITE_BUDGET_MB = 25
 CONFIDENCE = ("documented", "inferred", "conjectural")
 SLUG = re.compile(r"^[a-z0-9_]+$")
 
-# What a liberty has to be ABOUT before it counts as disclosing an invented
-# footprint or an invented position. Naming the building is not enough: a
-# liberty about the Sauganash's gallery does not tell a visitor that its
-# footprint was drawn from nothing. Matched against the entry's title and its
-# field text, which is the prose the walkthrough actually shows.
-# The aspects a liberty can claim to have invented: the two that get DRAWN, so a
-# visitor sees one specific shape in one specific place whether or not anything
-# attests it. Kept in step with tools/compile_liberties.py's COVER_ASPECTS.
-COVERAGE_ASPECTS = ("footprint", "position")
+# The record's fixed attested blocks, in the order a claim reads best. Everything
+# else a liberty can be held to is under `form`, whose vocabulary is open and is
+# enumerated from the data rather than listed here. Kept in step with
+# tools/compile_liberties.py's COVER_ASPECTS.
+PHASE_ASPECTS = ("footprint", "position", "documented_range")
+STRUCTURE_ASPECTS = ("function", "occupants")
 
 
 class Report:
@@ -271,8 +268,50 @@ def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
 
+def conjectural_values(structures: dict) -> list[tuple]:
+    """Every value a structure record states without evidence.
+
+    Returns `(structure_id, phase_id|None, aspect, where)`, with `aspect` in the
+    same vocabulary a `Covers:` token is written in — `footprint`, `position`,
+    `documented_range`, the structure-level `function` and `occupants`, and
+    `form.<attribute>` for anything under a phase's form, however deeply nested.
+
+    The form half is enumerated from the data rather than from a list, because
+    the archetypes keep adding attributes and a hard-coded vocabulary would
+    quietly stop asking about the newest ones — which is the exact failure this
+    check exists to prevent, one level up.
+    """
+    found: list[tuple] = []
+
+    def walk_form(node, sid: str, pid: str, where: str, path: str) -> None:
+        if not isinstance(node, dict):
+            return
+        if "confidence" in node and "value" in node:
+            if node.get("confidence") == "conjectural":
+                found.append((sid, pid, path, where))
+            return
+        for k, v in node.items():
+            walk_form(v, sid, pid, where, f"{path}.{k}")
+
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for aspect in STRUCTURE_ASPECTS:
+            block = st.get(aspect)
+            if isinstance(block, dict) and block.get("confidence") == "conjectural":
+                found.append((sid, None, aspect, f"structure {sid}"))
+        for ph in st.get("phases", []):
+            pid = ph.get("id", "?")
+            where = f"structure {sid}/{pid}"
+            for aspect in PHASE_ASPECTS:
+                block = ph.get(aspect)
+                if isinstance(block, dict) and block.get("confidence") == "conjectural":
+                    found.append((sid, pid, aspect, where))
+            walk_form(ph.get("form") or {}, sid, pid, where, "form")
+    return found
+
+
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> None:
-    """Every conjectural footprint or position must be CLAIMED in LIBERTIES.md.
+    """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
     the provenance card report the liberties that were *recorded* — which is not
@@ -282,12 +321,21 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
     and the visitor sees one specific shape. That is an invention, and an
     invention nobody wrote down is exactly the gap the standard is about.
 
-    So the confidence value drives the requirement, mechanically: mark a footprint
-    or a position conjectural and the gate demands an entry whose `Covers:` field
-    names that structure and that aspect. The claim is DECLARED, not inferred from
-    the entry's wording. Reading the prose — the earlier rule — meant a liberty
-    could discharge a footprint by mentioning the word while discussing a gallery,
-    which is a coverage check that can be satisfied by an accident of phrasing.
+    The same argument runs past the drawn geometry, which is why the requirement
+    now covers every attested value in the record. A conjectural `roof_type` is
+    not an absence in the model: a gable gets built, and the visitor sees a gable.
+    A conjectural `gallery: false` is the same claim in the negative — the front
+    of the building is rendered plain because nobody found evidence either way,
+    and *that* is a decision a visitor cannot recover from a dithered tint. The
+    confidence chip says "we do not know"; only the liberty says what we did about
+    not knowing.
+
+    So the confidence value drives the requirement, mechanically: mark anything
+    conjectural and the gate demands an entry whose `Covers:` field names that
+    structure and that aspect. The claim is DECLARED, not inferred from the
+    entry's wording. Reading the prose — the earlier rule — meant a liberty could
+    discharge a footprint by mentioning the word while discussing a gallery, which
+    is a coverage check that can be satisfied by an accident of phrasing.
 
     The claims are checked the other way too. A `Covers:` token that names no such
     structure, no such phase, or an attribute that is not conjectural is an
@@ -298,8 +346,8 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
     """
     entries = liberties.get("liberties") if isinstance(liberties, dict) else None
     if not entries:
-        rep.error("liberties", "data/liberties.json holds no entries, so conjectural "
-                               "footprints and positions cannot be checked against "
+        rep.error("liberties", "data/liberties.json holds no entries, so the values "
+                               "invented in data/structures/ cannot be checked against "
                                "docs/LIBERTIES.md — run tools/compile_liberties.py")
         return
 
@@ -317,29 +365,26 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
 
     covered = 0
     honoured: set[tuple] = set()
-    for name, st in sorted(structures.items()):
-        sid = st.get("id", name)
-        for ph in st.get("phases", []):
-            pid = ph.get("id", "?")
-            pwhere = f"structure {sid}/{pid}"
-            for aspect in COVERAGE_ASPECTS:
-                block = ph.get(aspect) or {}
-                if not isinstance(block, dict) or block.get("confidence") != "conjectural":
-                    continue
-                keys = [(sid, pid, aspect), (sid, None, aspect)]
-                hit = [k for k in keys if k in claims]
-                if hit:
-                    covered += 1
-                    honoured.update(hit)
-                    continue
-                named = ", ".join(e.get("id", "?") for e in by_subject.get(sid, [])) or "none"
-                rep.error(pwhere,
-                          f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
-                          f"claims it — a drawn {aspect} nobody can defend is something we "
-                          f"made up, and the standard is that a visitor can tell you which "
-                          f"parts. Append the liberty with "
-                          f"'**Covers:** `{sid}.{pid}.{aspect}`' and re-run "
-                          f"tools/compile_liberties.py (liberties naming {sid}: {named})")
+    for sid, pid, aspect, where in conjectural_values(structures):
+        keys = [(sid, pid, aspect), (sid, None, aspect)]
+        hit = [k for k in keys if k in claims]
+        if hit:
+            covered += 1
+            honoured.update(hit)
+            continue
+        named = ", ".join(e.get("id", "?") for e in by_subject.get(sid, [])) or "none"
+        token = ".".join(t for t in (sid, pid, aspect) if t)
+        # A drawn shape and a stated attribute are invented in different ways, and
+        # the message says which one the reader is looking at.
+        what = (f"a drawn {aspect}" if aspect in ("footprint", "position")
+                else "a stated " + re.sub(r"\bm\b", "(m)",
+                                          aspect.split(".")[-1].replace("_", " ")))
+        rep.error(where,
+                  f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
+                  f"claims it — {what} nobody can defend is something we made up, "
+                  f"and the standard is that a visitor can tell you which parts. "
+                  f"Append the liberty with '**Covers:** `{token}`' and re-run "
+                  f"tools/compile_liberties.py (liberties naming {sid}: {named})")
 
     # The claims answer for themselves.
     for (csid, cpid, aspect), owners in sorted(claims.items(), key=lambda kv: str(kv[0])):
@@ -365,8 +410,8 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
                                f"claim was never true. An admission to something we did not do "
                                f"reads as diligence and provides none")
 
-    rep.note(f"liberties coverage: {covered} conjectural footprint/position value(s) "
-             f"claimed by {len(honoured)} declaration(s) in docs/LIBERTIES.md")
+    rep.note(f"liberties coverage: {covered} conjectural value(s) — geometry and stated "
+             f"form alike — claimed by {len(honoured)} declaration(s) in docs/LIBERTIES.md")
 
 
 # --------------------------------------------------------------------------

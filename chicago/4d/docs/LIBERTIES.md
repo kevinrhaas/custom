@@ -13,19 +13,29 @@ reader would otherwise have to reverse-engineer.
 
 ## The `Covers:` field — what an entry claims to discharge
 
-An entry that admits to a **drawn** invention says so in machine-readable form:
+An entry that admits to an invention says so in machine-readable form:
 
 ```
-**Covers:** `sauganash_hotel.log_1829.footprint`, `wolf_point_tavern.footprint`
+**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.log_1829.form.roof_type`
 ```
 
-Each token is `structure_id[.phase_id].aspect`, with `aspect` one of `footprint` or `position`.
-Naming the phase covers that phase; leaving it out covers whichever of the structure's phases
-drew that aspect from nothing. The commit gate reads these claims in both directions: every
-`conjectural` footprint or position in `data/structures/` must be claimed by some entry, and
-every claim must land on a value that is actually invented. The prose stays the explanation and
-the field is the assertion — the gate used to infer coverage from an entry's *wording*, which a
-liberty could satisfy by mentioning a footprint while discussing something else.
+Each token is `structure_id[.phase_id].aspect`. The aspect is either one of the record's fixed
+blocks — `footprint`, `position`, `documented_range`, or the structure-level `function` and
+`occupants` — or any attribute of the building's form, written with its prefix:
+`form.roof_type`, `form.gallery`, `form.wall_height_m`. Naming the phase covers that phase;
+leaving it out covers whichever of the structure's phases stated that aspect without evidence.
+
+The commit gate reads these claims in both directions: every `conjectural` value in
+`data/structures/` must be claimed by some entry, and every claim must land on a value that is
+actually invented. The prose stays the explanation and the field is the assertion — the gate
+used to infer coverage from an entry's *wording*, which a liberty could satisfy by mentioning a
+footprint while discussing something else.
+
+The requirement reaches past the drawn geometry on purpose. A conjectural `roof_type` is not a
+gap in the model: a gable gets built and a visitor sees a gable. A conjectural `gallery: false`
+is the same claim in the negative — the front of the building is rendered plain because nobody
+found evidence either way. The confidence chip says *we do not know*; only the liberty says what
+we did about not knowing.
 
 An entry with no `Covers:` field claims nothing and is still a liberty: omissions,
 simplifications, navigation rules and scope decisions have nothing drawn to point at. When
@@ -264,6 +274,44 @@ heightfield's own sampler returns its fallback there, and the skirt is geometry 
 only.
 **Consequence:** the main stem appears to widen as it recedes east. Anyone extending the model
 east to the harbour replaces the skirt with real terrain rather than editing it.
+**Recorded:** 2026-08-10.
+
+### L18 — Sauganash Hotel: the 1829 cabin's height and its roof are placeholders
+**Decision:** the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged
+`conjectural`, both carrying the word PLACEHOLDER in their own notes.
+**Why:** nothing attests either. 2.4 m is an ordinary single-storey hewn-log wall and a gable is
+the near-universal roof for the type and the period — but the ordinary reading of a *type* is not
+evidence about a *building*, and that is exactly where this project draws the line between
+`inferred` and `conjectural`. The 1831 frame block's height and roof are `inferred` because the
+reasoning is about that block: two storeys are documented and the form is described. The cabin
+has neither, so its numbers were chosen rather than derived.
+**Consequence:** the oldest thing standing in the scene — the attached wing of L4a, which a
+visitor walks straight past — has an invented height and an invented roof. The dithered massing
+says its size is unknown; it does not say that 2.4 m and a gable were picked because they are
+usual.
+**How to resolve:** any dimensioned description of the 1829 cabin. Failing that, the Braunhold
+engraving at page-image level, where the wing's height can be measured against a block whose
+storey count is documented.
+**Covers:** `sauganash_hotel.log_1829.form.wall_height_m`, `sauganash_hotel.log_1829.form.roof_type`.
+**Recorded:** 2026-08-10.
+
+### L19 — Green Tree and Western: two galleries decided by default, not by evidence
+**Decision:** `gallery: false` on both the Green Tree Tavern and the Western Hotel, tagged
+`conjectural` on both. Both buildings render with a plain front.
+**Why:** no source reached describes a porch, veranda or gallery on either building, and none
+rules one out. False is what the archetype falls back to, not a finding. The Green Tree's
+witnesses describe two entrances — the front on Canal and one "about the middle of the long side"
+on Lake — without mentioning a porch, which is weak negative evidence at best: they were
+correcting a drawing, not inventorying an elevation. The Western is more open still. A wagon
+house with entrances to its yard from both streets is precisely the type that often carried a
+porch over the door, and nothing here says it did not.
+**Consequence:** this is an invention that does not look like one. A drawn footprint announces
+itself — the visitor can see that a shape was chosen. A plain elevation reads as the finding,
+and the confidence tint on an attribute whose value is `false` has nothing to dither. Recorded
+here because the model shows two blank fronts that no source put there.
+**How to resolve:** the c. 1859 photograph (CHM ICHi-040230) settles the Green Tree the moment
+anyone opens it. For the Western, any depiction at all — the project holds none.
+**Covers:** `green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`.
 **Recorded:** 2026-08-10.
 
 ---
