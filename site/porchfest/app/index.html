@@ -373,6 +373,16 @@ input[type=range]::-moz-range-thumb{
 .pickfind{position:relative;padding:0 14px;flex:none}
 .pickfind svg{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-3);pointer-events:none}
 .pickfind input{width:100%;padding-left:32px}
+.homebar{flex:none;display:flex;align-items:center;gap:8px;margin:9px 14px 0;padding:8px 10px;
+  border:1px solid var(--border);border-radius:10px;background:var(--surface-2);font-size:12px}
+.homebar svg{width:14px;height:14px;flex:none;color:var(--accent)}
+.homebar .ht{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2)}
+.homebar .ht b{color:var(--text);font-weight:650}
+.homebar button{flex:none;padding:3px 9px;border-radius:99px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);font-size:11px;font-weight:650;cursor:pointer}
+.homebar button:hover{border-color:var(--brand);color:var(--brand)}
+.homebar button.go{border-color:var(--brand);color:var(--brand);background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.homebar button:disabled{opacity:.5;cursor:default}
 .segs{display:flex;gap:7px;padding:10px 14px 0;flex:none}
 .segs button{
   flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
@@ -388,7 +398,7 @@ input[type=range]::-moz-range-thumb{
 .pickmapwrap{flex:none;position:relative;margin:10px 14px 0;height:136px;border-radius:11px;overflow:hidden;background:var(--map-ground);border:1px solid var(--border)}
 #pickMap{width:100%;height:100%;display:block}
 .pickmaplab{
-  position:absolute;left:7px;bottom:6px;right:7px;font-size:10.5px;font-weight:650;
+  position:absolute;left:7px;bottom:6px;right:7px;pointer-events:none;font-size:10.5px;font-weight:650;
   color:var(--text-2);background:color-mix(in srgb,var(--surface) 84%,transparent);
   padding:3px 6px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
@@ -800,8 +810,11 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
     </header>
     <div class="pickfind">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="pickQ" type="search" placeholder="Type a street or address — “26th”, “Lyndale”, “2441”" autocomplete="off">
+      <input id="pickQ" type="search" placeholder="Street, address, or your own — “26th”, “2911 James Ave S”" autocomplete="off">
     </div>
+    <!-- Home was a small icon on each row and went unnoticed. It gets its own
+         line, states what home currently is, and is where you change it. -->
+    <div class="homebar" id="homeBar"></div>
     <div class="segs" id="pickSegs" role="tablist">
       <button role="tab" data-seg="corner" aria-selected="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg>
@@ -1041,7 +1054,7 @@ const S = {
   recent: [],                        // recent routes, so Shuffle doesn't cycle
   bfilter: [],                       // genre filters for the band browser only
   rejected: [],                      // bands swapped away, out until brought back
-  home: null,                        // PLACES index you call home, or null
+  home: null,                        // {lat,lon,label} you call home, or null
 };
 function idxCorner(label){
   const i = D.corners.findIndex(c=>c.a===label);
@@ -1197,22 +1210,65 @@ function plan(runs, opts){
 }
 
 /* ---- where you stand: home, and the picker -----------------------------
-   Home is a PLACES index, not a typed address — there is no geocoder here and
-   there will not be one, because a network round trip is exactly what this app
-   is built to survive without. The search box does the same job locally: the
-   porch labels ARE street addresses and the corner labels are cross streets,
-   so typing "2441" or "26th" finds the place. Anything outside the festival
-   's few blocks is not somewhere you would start walking from anyway. */
+   Home is a COORDINATE — {lat, lon, label} — not one of the festival's 81
+   places. It was a place index, on the assumption that nobody would need an
+   address outside the few blocks the festival covers. That was wrong: people
+   walk to a porchfest from home, and home is usually a few streets past the
+   edge of it. The street graph reaches further than the porches do, so an
+   address just outside still snaps onto it and its distances are real.
+
+   Addresses off the graph are geocoded ONCE, on an explicit tap, and the
+   coordinates are kept forever. Planning still never touches the network —
+   that guarantee is about being able to work out your afternoon on a dead
+   tower, and it survives a one-off setup step that you opt into. */
 const HOME_KEY='pf.home';
 function loadHome(){
-  try{ const v=+localStorage.getItem(HOME_KEY);
-    if(Number.isInteger(v) && v>=0 && v<PLACES.length) S.home=v; }catch(e){}
+  try{
+    const raw=localStorage.getItem(HOME_KEY); if(!raw) return;
+    // Migration: home used to be a bare PLACES index.
+    if(/^\d+$/.test(raw)){
+      const i=+raw;
+      if(i>=0 && i<PLACES.length) setHome({lat:PLACES[i].lat, lon:PLACES[i].lon, label:PLACES[i].label});
+      return;
+    }
+    const o=JSON.parse(raw);
+    if(o && Number.isFinite(o.lat) && Number.isFinite(o.lon)) setHome(o);
+  }catch(e){}
 }
-function setHome(i){
-  S.home = (S.home===i) ? null : i;
-  try{ S.home===null ? localStorage.removeItem(HOME_KEY) : localStorage.setItem(HOME_KEY,S.home); }catch(e){}
+let HOMED=null;                       // distances from home to every place
+function setHome(h){
+  S.home = h || null;
+  HOMED = null;
+  try{ S.home ? localStorage.setItem(HOME_KEY, JSON.stringify(S.home)) : localStorage.removeItem(HOME_KEY); }catch(e){}
 }
-const homeDist = (i) => S.home===null ? null : placeDist(S.home, i);
+function homeDists(){
+  if(HOMED || !S.home) return HOMED;
+  // Same shape as the porch-to-porch table: snap onto the graph, walk from
+  // there, and add the straight-line offset at each end. A home a few blocks
+  // outside the mapped streets gets a fair estimate rather than nothing.
+  const s=snap(G, S.home.lat, S.home.lon);
+  const {dist}=dijkstra(G, [[s.a,s.da],[s.b,s.db]]);
+  HOMED=new Float64Array(PLACES.length);
+  PLACES.forEach((p,j)=>{
+    const t=p.snap;
+    let d = s.offset + Math.min(dist[t.a]+t.da, dist[t.b]+t.db) + t.offset;
+    // Routing out to a junction and back overstates anything on the same
+    // stretch of street — including home itself, which came out as twice its
+    // own offset instead of zero and sorted below its own neighbours.
+    if((s.a===t.a && s.b===t.b) || (s.a===t.b && s.b===t.a)){
+      const along = (s.a===t.a) ? Math.abs(s.da-t.da) : Math.abs(s.da-t.db);
+      d = Math.min(d, s.offset + along + t.offset);
+    }
+    HOMED[j] = isHomePlace(j) ? 0 : d;
+  });
+  return HOMED;
+}
+const homeDist = (i) => S.home ? homeDists()[i] : null;
+// A place counts as "home" when it is essentially on top of it.
+// Guarded: -1 is a real argument here — it means "nothing highlighted", which
+// happens whenever a search matches no festival place.
+const isHomePlace = (i) => !!S.home && !!PLACES[i]
+  && Math.hypot((PLACES[i].lat-S.home.lat)*M_LAT, (PLACES[i].lon-S.home.lon)*M_LON) < 30;
 
 const PICK={slot:'from', seg:'corner', q:'', cur:-1, rows:[]};
 
@@ -1235,15 +1291,89 @@ function pickClose(){
   const btn = PICK.slot==='from' ? $('#fromBtn') : $('#toBtn');
   if(btn) btn.focus();
 }
+/* A pasted address has to work. Plain substring matching only ever found a
+   query SHORTER than the label, so "2441 Lyndale Ave S, Minneapolis MN 55405"
+   matched nothing at all — including the porch it names. Tokenise instead,
+   drop the parts a festival label never carries (unit, city, state, ZIP) and
+   the interchangeable street-type words, then require what is left to appear. */
+const ADDR_NOISE=new Set(['apt','apartment','unit','ste','suite','no','minneapolis','mn','minnesota','usa','us','#']);
+const STREET_WORD={av:'ave', avenue:'ave', st:'st', street:'st', str:'st', rd:'rd', road:'rd',
+                   dr:'dr', drive:'dr', blvd:'blvd', boulevard:'blvd', pkwy:'pkwy', parkway:'pkwy',
+                   ln:'ln', lane:'ln', ct:'ct', court:'ct', pl:'pl', place:'pl', ter:'ter', terrace:'ter'};
+function addrTokens(s){
+  return s.toLowerCase().replace(/[.,#]/g,' ').split(/\s+/)
+    .filter(Boolean)
+    .filter(t=>!ADDR_NOISE.has(t))
+    .filter(t=>!/^\d{5}(-\d{4})?$/.test(t))          // ZIP
+    .map(t=>STREET_WORD[t]||t)
+    // "404" in "Apt 404" is already gone with its label; a bare 3+ digit run
+    // that is not the house number still helps nothing, but keeping it is
+    // safe because matching requires ALL tokens.
+    .map(t=>t.replace(/(\d+)(st|nd|rd|th)$/,'$1'));  // 26th -> 26
+}
+// "2911 James Ave S, Apt 404 Minneapolis MN 55408" is not a label. Keep the
+// street address and drop the unit, city, state and ZIP.
+function shortAddr(s){
+  let t=s.split(',')[0].trim();
+  t=t.replace(/\s+(apt|apartment|unit|ste|suite|#)\s*\S+.*$/i,'');
+  t=t.replace(/\s+minneapolis\b.*$/i,'');
+  t=t.replace(/\s+mn\s*\d{5}(-\d{4})?\s*$/i,'');
+  return t.trim() || s.trim();
+}
+function placeMatches(label, toks){
+  const hay=addrTokens(label);
+  // Prefix matching in ONE direction only, and only for tokens long enough to
+  // mean something: allowing the query to be a prefix of the label too made
+  // "2441" match the "24" in W 24th Street.
+  return toks.every(t=>hay.some(h=>h===t || (t.length>=3 && h.startsWith(t))));
+}
 function pickCandidates(){
-  const q=PICK.q.trim().toLowerCase();
+  const q=PICK.q.trim();
   let list=PLACES.map((p,i)=>({p,i})).filter(({p})=>p.kind===PICK.seg);
   // A search looks across both kinds — you know the street, not whether the
   // festival calls it a corner or a porch.
-  if(q) list=PLACES.map((p,i)=>({p,i})).filter(({p})=>p.label.toLowerCase().includes(q));
-  if(S.home!==null) list.sort((a,b)=>homeDist(a.i)-homeDist(b.i));
+  if(q){
+    const toks=addrTokens(q);
+    list = toks.length
+      ? PLACES.map((p,i)=>({p,i})).filter(({p})=>placeMatches(p.label,toks))
+      : [];
+  }
+  if(S.home) list.sort((a,b)=>homeDist(a.i)-homeDist(b.i));
   else list.sort((a,b)=>a.p.label.localeCompare(b.p.label,undefined,{numeric:true}));
   return list;
+}
+/* The one network call in the app, and only from an explicit tap. Nominatim
+   is the OpenStreetMap geocoder — the same project the map data is credited
+   to. The answer is stored as coordinates, so this never runs again. */
+async function geocodeHome(text){
+  const q=text.trim();
+  if(!q) return null;
+  // Bias to the city the festival is in; a bare "James Ave S" is otherwise
+  // ambiguous across the country.
+  const full=/minneapolis|,\s*mn\b/i.test(q) ? q : q+', Minneapolis, MN';
+  const url='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q='+encodeURIComponent(full);
+  const res=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!res.ok) throw new Error('geocoder said '+res.status);
+  const j=await res.json();
+  if(!j.length) throw new Error('no match');
+  return {lat:+j[0].lat, lon:+j[0].lon, label:shortAddr(q)};
+}
+function renderHomeBar(){
+  const el=$('#homeBar'), q=PICK.q.trim();
+  const house='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>';
+  // Typing something the festival does not contain is the moment to offer
+  // geocoding — that is exactly when a real home address has been typed.
+  const noLocal = q && !PICK.rows.length;
+  if(noLocal){
+    el.innerHTML=`${house}<span class="ht">Not in the festival — it can still be your home</span>
+      <button class="go" id="homeSet">Set as home</button>`;
+  } else if(S.home){
+    el.innerHTML=`${house}<span class="ht">Home: <b>${esc(S.home.label||'set')}</b></span>
+      <button id="homeClear">Clear</button>`;
+  } else {
+    el.innerHTML=`${house}<span class="ht">Set a home to see how far each spot is</span>
+      <button id="homeHere">Use my location</button>`;
+  }
 }
 function pickRender(reset){
   const list=pickCandidates();
@@ -1262,24 +1392,25 @@ function pickRender(reset){
     return at<0 ? esc(s) : esc(s.slice(0,at))+'<mark>'+esc(s.slice(at,at+q.length))+'</mark>'+esc(s.slice(at+q.length));
   };
   if(!list.length){
-    $('#pickList').innerHTML=`<div class="pickempty">Nothing matches “${esc(q)}”.<br>Try a street name or a house number.</div>`;
-    pickMap(-1); return;
+    $('#pickList').innerHTML=`<div class="pickempty">No festival spot matches “${esc(q)}”.<br>If that is your own address, set it as your home below.</div>`;
+    renderHomeBar(); pickMap(-1); return;
   }
   $('#pickList').innerHTML=list.map(({p,i},n)=>{
     const d=homeDist(i);
     const bits=[];
-    if(d!==null) bits.push(d===0 ? 'your home' : km(d)+' from home');
+    if(d!==null) bits.push(isHomePlace(i) ? 'your home' : km(d)+' from home');
     if(p.kind==='porch'){ const np=D.bands.filter(b=>b.p===p.i).length; bits.push(np+' band'+(np===1?'':'s')); }
     return `<button class="pickrow${n===PICK.cur?' cur':''}${i===cur?' sel':''}" data-i="${i}" data-n="${n}" role="option" aria-selected="${i===cur}">
       <span class="ico">${p.kind==='porch'
         ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>'
         : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.8" fill="currentColor" stroke="none"/></svg>'}</span>
       <span class="tx"><b>${mark(p.label)}</b>${bits.length?`<small>${bits.join(' · ')}</small>`:''}</span>
-      <span class="pickhome${S.home===i?' on':''}" data-home="${i}" role="button" tabindex="-1" title="${S.home===i?'This is your home':'Set as my home'}">
-        <svg viewBox="0 0 24 24" fill="${S.home===i?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span>
+      <span class="pickhome${isHomePlace(i)?' on':''}" data-home="${i}" role="button" tabindex="-1" title="${isHomePlace(i)?'This is your home':'Set as my home'}">
+        <svg viewBox="0 0 24 24" fill="${isHomePlace(i)?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span>
     </button>`;
   }).join('');
-  $('#pickHomeGo').hidden = S.home===null;
+  $('#pickHomeGo').hidden = !S.home;
+  renderHomeBar();
   pickMap(list[PICK.cur] ? list[PICK.cur].i : -1);
   const el=$('#pickList').querySelector('.pickrow.cur');
   if(el) el.scrollIntoView({block:'nearest'});
@@ -1315,8 +1446,8 @@ function pickMap(i){
         <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.6" fill="var(--brand)" stroke="#fff" stroke-width="1.6"/>`;
     $('#pickMapLab').textContent=p.label;
   } else $('#pickMapLab').textContent='';
-  if(S.home!==null && S.home!==i){
-    const h=PLACES[S.home];
+  if(S.home && !isHomePlace(i)){
+    const h=S.home;
     hi+=`<circle cx="${X(h.lon).toFixed(1)}" cy="${Y(h.lat).toFixed(1)}" r="3.6" fill="var(--ok)" stroke="#fff" stroke-width="1.4"/>`;
   }
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
@@ -1336,13 +1467,13 @@ function renderEnds(){
   const kindOf=(p)=> p.kind==='porch' ? 'Porch' : 'Street corner';
   const f=PLACES[S.from];
   $('#fromLabel').textContent = f ? f.label : '—';
-  $('#fromSub').textContent = f ? kindOf(f) + (S.home===S.from ? ' · your home' : '') : '';
+  $('#fromSub').textContent = f ? kindOf(f) + (isHomePlace(S.from) ? ' · your home' : '') : '';
   // A round trip says so rather than repeating the start address twice.
   const back = S.to<0;
   const t = back ? f : PLACES[S.to];
   $('#toLabel').textContent = back ? 'Back where you started' : (t ? t.label : '—');
   $('#toSub').textContent = back ? 'Round trip'
-    : (t ? kindOf(t) + (S.home===S.to ? ' · your home' : '') : '');
+    : (t ? kindOf(t) + (S.to>=0 && isHomePlace(S.to) ? ' · your home' : '') : '');
   // A round trip has nothing to swap — A→A reversed is still A→A. Saying
   // "swapped" and changing nothing is worse than not offering it.
   const sw=$('#endSwap');
@@ -1981,8 +2112,10 @@ $('#pickList').addEventListener('click', e=>{
   const h=e.target.closest('[data-home]');
   if(h){
     e.stopPropagation();
-    setHome(+h.dataset.home); pickRender();
-    toast(S.home===null ? 'Home cleared' : `Home set — distances are from ${PLACES[S.home].label}`);
+    const i=+h.dataset.home;
+    setHome(isHomePlace(i) ? null : {lat:PLACES[i].lat, lon:PLACES[i].lon, label:PLACES[i].label});
+    pickRender();
+    toast(!S.home ? 'Home cleared' : `Home set — distances are from ${S.home.label}`);
     return;
   }
   const row=e.target.closest('.pickrow');
@@ -1995,7 +2128,49 @@ $('#pickList').addEventListener('mousemove', e=>{
   $$('#pickList .pickrow').forEach(r=>r.classList.toggle('cur', +r.dataset.n===n));
   pickMap(+row.dataset.i);
 });
-$('#pickHomeGo').addEventListener('click',()=>{ if(S.home!==null) pickChoose(S.home); });
+$('#pickHomeGo').addEventListener('click',()=>{
+  if(!S.home) return;
+  // Home may be a street away from anything the festival lists, so start from
+  // the closest place to it rather than pretending it is one.
+  const d=homeDists(); let best=0;
+  for(let i=1;i<d.length;i++) if(d[i]<d[best]) best=i;
+  pickChoose(best);
+});
+$('#homeBar').addEventListener('click', async e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.id==='homeClear'){ setHome(null); pickRender(); toast('Home cleared'); return; }
+  if(b.id==='homeHere'){
+    // From here it means "home is where I am standing", which is a real
+    // coordinate — not the nearest festival spot, which is what the footer
+    // button means when you are choosing where to start.
+    if(!navigator.geolocation){ toast('This browser cannot share a location'); return; }
+    b.disabled=true; b.textContent='Locating…';
+    navigator.geolocation.getCurrentPosition(pos=>{
+      setHome({lat:pos.coords.latitude, lon:pos.coords.longitude, label:'My location'});
+      pickRender(); toast('Home set to where you are');
+    }, ()=>{ b.disabled=false; b.textContent='Use my location'; toast('Could not get your location'); },
+       {timeout:8000});
+    return;
+  }
+  if(b.id!=='homeSet') return;
+  const q=PICK.q.trim();
+  b.disabled=true; b.textContent='Looking up…';
+  try{
+    const h=await geocodeHome(q);
+    setHome(h);
+    // Show what it actually resolved to; a silent pin somewhere wrong is
+    // worse than no pin at all.
+    const d=homeDists(); let best=0;
+    for(let i=1;i<d.length;i++) if(d[i]<d[best]) best=i;
+    PICK.q=''; $('#pickQ').value=''; pickRender(true);
+    toast(`Home set — ${km(d[best])} to the nearest festival spot`);
+  }catch(err){
+    b.disabled=false; b.textContent='Set as home';
+    toast(String(err.message)==='no match'
+      ? "Couldn't find that address"
+      : "Couldn't look that up — you may be offline");
+  }
+});
 $('#pickGeo').addEventListener('click',()=>{
   if(!navigator.geolocation){ toast('This browser cannot share a location'); return; }
   const btn=$('#pickGeo'); btn.disabled=true;

@@ -80,6 +80,14 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // run. Failing them immediately is the same outcome the app is built for
     // (it degrades to initials) and keeps the suite deterministic.
     await ctx.route(/porchfest-band-photos|drive\.google/, r => r.abort());
+    // The geocoder is the app's ONLY network call and must fire only from an
+    // explicit tap. Count every hit and stand in for it so this stays offline.
+    let geoCalls = 0;
+    await ctx.route(/nominatim\.openstreetmap\.org/, r => {
+      geoCalls++;
+      r.fulfill({ status: 200, contentType: 'application/json',
+        body: JSON.stringify([{ lat: '44.9490277', lon: '-93.3031901' }]) });
+    });
     const page = await ctx.newPage();
     const tag = `${name}/${vp}`;
     console.log(`\n${tag}`);
@@ -114,6 +122,9 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       .catch(() => fail(`${tag} — no route on load`));
     const ms = Date.now() - t0;
     ok('routes on load without a click');
+    // Remember the shipped endpoints so later tests can put them back before
+    // measuring anything that depends on where the walk starts.
+    const ENDS0 = await page.evaluate(() => ({ from: S.from, to: S.to }));
     if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
 
     // Moving a dial must re-plan on its own.
@@ -633,22 +644,91 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     await page.waitForTimeout(1200);
 
     // Home outlives the session — it is a property of you, not of this plan.
-    const homeIdx = await page.evaluate(() => S.home);
-    if (homeIdx === null) fail(`${tag} — home was not retained`);
+    const homeIdx = await page.evaluate(() => S.home && S.home.label);
+    if (!homeIdx) fail(`${tag} — home was not retained`);
     else {
       const hp = await ctx.newPage();
       const doneHp = watch(hp, `${tag}/home`);
       await hp.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
       await hp.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
         null, { timeout: 25000 }).catch(() => {});
-      const kept = await hp.evaluate(() => S.home);
+      const kept = await hp.evaluate(() => S.home && S.home.label);
       if (kept !== homeIdx) fail(`${tag} — home did not persist: ${homeIdx} -> ${kept}`);
       else ok(`home persists into a new session (${kept})`);
       doneHp();
       await hp.close();
     }
 
+    // ---- a real, pasted address ----
+    // Plain substring matching only found queries SHORTER than the label, so
+    // pasting a full postal address matched nothing — including the porch it
+    // names. This is the exact string a phone's autofill hands you.
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(400);
+    await page.fill('#pickQ', '2441 Lyndale Ave S, Minneapolis MN 55405');
+    await page.waitForTimeout(400);
+    const pasted = await page.locator('.pickrow .tx b').allTextContents();
+    if (pasted.length !== 1 || !pasted[0].startsWith('2441 Lyndale'))
+      fail(`${tag} — pasting a full address gave ${pasted.length} rows (${pasted.slice(0,2)})`);
+    else ok('a pasted postal address finds its porch');
+    // House numbers must not bleed into street numbers.
+    await page.fill('#pickQ', '2441');
+    await page.waitForTimeout(350);
+    const numOnly = await page.locator('.pickrow .tx b').allTextContents();
+    if (numOnly.some(t => /24th/.test(t)))
+      fail(`${tag} — "2441" matched a 24th Street corner`);
+    else ok(`a house number does not match a street number (${numOnly.length})`);
+
+    // An address outside the festival is offered as a home, not dead-ended.
+    const geoBefore = geoCalls;
+    await page.fill('#pickQ', '2911 James Ave S, Apt 404 Minneapolis MN 55408');
+    await page.waitForTimeout(400);
+    if (await page.locator('.pickrow').count())
+      fail(`${tag} — an out-of-area address matched a festival place`);
+    if (!(await page.locator('#homeSet').count()))
+      fail(`${tag} — no way to make an out-of-area address your home`);
+    else ok('an address outside the festival can still become home');
+    if (geoCalls !== geoBefore)
+      fail(`${tag} — the geocoder fired on typing, before any tap`);
+    else ok('typing never calls the geocoder');
+
+    await page.locator('#homeSet').click();
+    await page.waitForTimeout(1400);
+    if (geoCalls !== geoBefore + 1)
+      fail(`${tag} — expected exactly one geocode, saw ${geoCalls - geoBefore}`);
+    else ok('setting a home address geocodes exactly once');
+    const setLabel = await page.evaluate(() => S.home && S.home.label);
+    if (setLabel !== '2911 James Ave S')
+      fail(`${tag} — home label kept the unit/city cruft: "${setLabel}"`);
+    else ok(`home label is the street address (${setLabel})`);
+    const away = await page.evaluate(() => {
+      const d = homeDists();
+      return Math.min(...Array.from(d));
+    });
+    if (!(away > 100 && away < 5000))
+      fail(`${tag} — distance from an off-graph home is implausible (${Math.round(away)} m)`);
+    else ok(`an off-map home still measures (${(away / 1609).toFixed(1)} mi to nearest)`);
+
+    // A home stored in the old index form must survive the upgrade.
+    await page.evaluate(() => { localStorage.setItem('pf.home', '7'); });
+    const mp = await ctx.newPage();
+    const doneMp = watch(mp, `${tag}/migrate`);
+    await mp.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
+    await mp.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
+      null, { timeout: 25000 }).catch(() => {});
+    const migrated = await mp.evaluate(() => S.home);
+    if (!migrated || !Number.isFinite(migrated.lat))
+      fail(`${tag} — a legacy index home did not migrate (${JSON.stringify(migrated)})`);
+    else ok(`legacy home index migrates to coordinates (${migrated.label})`);
+    doneMp();
+    await mp.close();
+    await page.evaluate(() => localStorage.removeItem('pf.home'));
+
     // Escape has to close it — it is a modal over the whole app.
+    // (The picker is still open from the address tests above; close it first
+    // or this click lands on the overlay rather than the button.)
+    await page.locator('#pickX').click();
+    await page.waitForTimeout(300);
     await page.locator('#fromBtn').click();
     await page.waitForTimeout(400);
     await page.keyboard.press('Escape');
@@ -734,6 +814,14 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // variety does not cost too much match quality.
     if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
     await page.waitForTimeout(250);
+    // Back to the shipped start/end first. The picker tests above move where
+    // the walk begins, and shuffle quality is measured against the route from
+    // a given start — inheriting a relocated one measures the wrong thing.
+    await page.evaluate((e) => {
+      S.from = e.from; S.to = e.to; S.rejected = []; S.recent = []; setHome(null);
+      renderEnds(); replan(true);
+    }, ENDS0);
+    await page.waitForTimeout(1700);
     await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
       .find(b => b.dataset.preset === 'Loud & fast').click());
     await page.waitForTimeout(1800);

@@ -212,10 +212,10 @@ which endpoint it is writing to).
 
 The picker answers the daunting-list problem three ways: **search** matches the
 labels, which already ARE addresses — porches are house numbers, corners are
-cross streets, so "2441" or "26th" finds the place; **two tabs** make the two
-kinds of standing-place explicit instead of hiding them in optgroups; and a
-**mini-map** shows where the highlighted place actually is, because a list of
-48 corner names tells you nothing about which side of the park you'd be on.
+cross streets; **two tabs** make the two kinds of standing-place explicit
+instead of hiding them in optgroups; and a **mini-map** shows where the
+highlighted place actually is, because a list of 48 corner names tells you
+nothing about which side of the park you'd be on.
 
 That map fits the full **east–west** extent and crops vertically around the
 highlighted place. Fitting the whole neighbourhood renders an unreadable blob —
@@ -228,15 +228,48 @@ nothing. And there is no `--map-road` token — an undefined colour makes SVG
 `stroke` fall back to black, which is invisible on the map ground; the real
 tokens are `--map-major` / `--map-mid` / `--map-minor`.
 
-**Home** is a PLACES index at `pf.home`, not a typed address. There is no
-geocoder and there should not be one — a network round trip is exactly what
-this app is built to survive without. Set it from the picker, and every option
-lists its walking distance from there with the list sorted nearest-first.
-"Use my location" snaps the browser's coordinates to the nearest place, since
-the planner runs on the street graph and cannot start from an arbitrary point.
+### Searching a real address
 
-Swap is **disabled on a round trip** — A→A reversed is still A→A, and claiming
-"swapped" while changing nothing is worse than not offering it.
+Matching was `label.includes(query)`, which only ever finds a query SHORTER
+than the label. Pasting "2441 Lyndale Ave S, Minneapolis MN 55405" — what a
+phone's autofill hands you — matched nothing, including the porch it names.
+
+`addrTokens()` now tokenises both sides, drops what a festival label never
+carries (unit, city, state, ZIP) and normalises street-type words and ordinals
+(`26th` → `26`). Prefix matching runs in ONE direction and only for tokens of
+three characters or more: allowing the query to be a prefix of the label too
+made "2441" match the "24" in W 24th Street.
+
+### Home is a coordinate, not a place
+
+Home was a PLACES index, on the assumption nobody would need an address outside
+the festival's few blocks. **That was wrong** — people walk to a porchfest from
+home, and home is usually a few streets past the edge of it. The first real
+user's address was four avenues west of anything in the graph.
+
+It is now `{lat, lon, label}` at `pf.home`, and a stored bare integer migrates
+on load. `homeDists()` snaps it onto the street graph and runs one dijkstra,
+adding the straight-line offset at each end — the graph reaches further than
+the porches do, so an address just outside still measures honestly. Two
+corrections live in there: same-edge targets take the direct walk rather than
+routing out to a junction and back, and home-to-itself is pinned to zero
+(it came out as twice its own offset and sorted below its own neighbours).
+
+`isHomePlace(i)` must tolerate `i === -1`, which is a real argument meaning
+"nothing highlighted" — it happens whenever a search matches no festival place.
+
+### The one network call
+
+`geocodeHome()` hits Nominatim, the OpenStreetMap geocoder the map data is
+already credited to. It fires ONLY from an explicit tap on "Set as home",
+exactly once, and the answer is stored as coordinates so it never runs again.
+The zero-network guarantee is about working out your afternoon on a dead tower,
+and it survives a one-off setup step you opt into — planning still never
+touches the network, and the suite counts geocoder hits to prove typing alone
+never causes one.
+
+Home also got its own line in the picker. It was a small house icon on each
+row and went unnoticed by the first person to use it.
 
 ## Units
 
