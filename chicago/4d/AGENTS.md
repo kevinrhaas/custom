@@ -70,6 +70,34 @@ Work is parceled so parallel agents never collide. If you are a subagent:
 
 Agents consume committed GLBs. A stale committed GLB is a check failure, not a warning.
 
+## How work ships
+
+This project runs on the Polecat fleet's continuous improvement loop —
+`kevinrhaas/polecat-platform`, focus lane `custom`, hourly, one unit of work per run. The
+steward's prompt is that repo's `.github/steward/improve.md`; its CUSTOM / CHICAGO 4D rule
+is the authority and this section is the local restatement.
+
+- **Scope is `chicago/4d/` and its published mirror `site/chicago/4d/`. Nothing else.**
+  `kevinrhaas/custom` is a monorepo of unrelated personal projects — CAD, print models, the
+  Joliet game, a landing site. A run that edits any of them is out of bounds.
+- **Branch `steward/<topic>` off `main`, PR into `main`, merge your own PR when green.**
+  Never push to main. Ambiguous or unverified work stays an open PR with the `hold` label
+  and a written explanation.
+- **Both gates, in the foreground, before merging**: `tools/check.sh` (needs
+  `jsonschema` + `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND
+  1280×800, zero page errors). Mobile is a release gate. Never weaken an assertion to pass.
+- **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
+  `site/chicago/4d/` is a generated mirror and the repo's `deploy.yml` only fires on
+  `site/**`, so skipping it ships nothing while looking merged.
+- **Changelog**: prepend one entry to `site/chicago/4d/js/changelog.js` with `ts: ''`, then
+  `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`. Nothing stamps
+  after merge, and Manager plus the polecat.live launcher parse that file live.
+- **No Blender on the improve runner, and do not install one.** Geometry comes from the
+  nightly `chicago-4d-bake.yml`, which opens its own PR. A unit that needs new geometry
+  ships the data/archetype half and says so.
+- **`docs/ROADMAP.md` is the backlog and `docs/STATUS.md` is the honest state** — update
+  both in the same PR as the work.
+
 ## Honesty rules
 
 - `docs/LIBERTIES.md` is append-only. Every compression and invention gets recorded. The
