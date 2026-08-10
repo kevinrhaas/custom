@@ -27,7 +27,7 @@ this building by twenty months.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 77 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes |
+| `tools/test_validate.py` | **done** — 96 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
@@ -36,11 +36,11 @@ this building by twenty months.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 117 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 129 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
-| **Published** | `site/chicago/4d/` (4.05 MB of a 25 MB budget) + a tile on the Chicago landing page |
-| Exclusions | 14 date-guarded structures + a 4-item watch list |
+| **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
+| Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
 
 ## Corrections made after the first live look
 
@@ -555,6 +555,55 @@ uncertainty of the 1834 sheets in its note.
     The difference is 2.1 m, an order of magnitude inside the georeference's own error, so nothing
     moves — but the two cannot both be right about the same street, and the reconciliation worth
     testing is that they are not about the same street. See `docs/RESEARCH/hogan_store.md` § 5.
+
+26. **What was left out is readable in the walkthrough, and enforcing it found the one file
+    where rule one was never checked.** `data/exclusions.json` — fourteen researched
+    structures with the evidence that dates them, plus a four-item watch list — has existed
+    since the scaffold and has been read by agents only. A visitor standing in an empty lot
+    cannot distinguish three different statements: nobody researched this, the evidence
+    dates it after the scene, or it had already come down. The first is a gap in the work
+    and the other two are findings that cost research to establish. The Evidence panel now
+    carries them under **What is not here**, derived per scene by `compile_scene.py` with
+    the citations joined, below the liberties and in the same `<details>` entry, because
+    they are the same kind of disclosure.
+    **The chip is the record's field, never a phrase derived from an absence.** Ten entries
+    carry `earliest_scene` and show "not until 1837"; `kinzie_house` and `ouilmette_cabin`
+    were excluded because they were GONE, carry no such field, and get no chip — stamping
+    one on them would be an invention on the panel that exists to admit inventions. The
+    smoke asserts that discriminating pair rather than a count, and asserts that a building
+    the visitor can walk up to is *not* on the list, which a section dumping the whole
+    dataset would still have passed.
+    **The list states what it is not**, and that sentence is a smoke assertion too: eight of
+    roughly forty researched structures stand, so a fourteen-item list of absences with no
+    such note reads as "this is what is missing", which would be the largest false claim the
+    panel could make.
+    **Two rules arrived with it, and the first is embarrassing in the useful way.** AGENTS.md
+    rule 1 is that every `source_id` resolves in `data/sources/`; `exclusions.json` was the
+    one file where nothing enforced it, because until now nothing read it — a citation there
+    could have named a source that never existed and the gate would have stayed green.
+    `check_exclusions` holds it to the same standard as a structure record: a slug id, a
+    name, a stated reason (an exclusion without one is a deletion with a filename), and at
+    least one citation that resolves. The committed file passes unchanged; the value is that
+    the next entry cannot. The second is the date gate read backwards: an entry dating a
+    building to 1837 is a correct exclusion from 1835 and a WRONG one from 1837, and no
+    comparison against the records can catch it because an excluded structure has no record
+    to compare with. In a year-parameterized project that is exactly the check worth having
+    before the second scene exists rather than after.
+    **The watch list is deliberately not shown.** Its four items are structures whose 1835
+    status is uncertain rather than settled, and one of them (`western_hotel`) is standing in
+    the scene — putting them under "what is not here" would be false about the one thing the
+    section is for. Their uncertainty belongs on the records and in the provenance popup,
+    which is a different slice and is not queued.
+27. **The sidecars are re-derived by the gate now, which they were not.** `compile_scene.py`
+    writes what the renderer reads and the outputs are committed so the site needs no build
+    step — an arrangement that only holds if drift is a failure. Nothing recomputed them, so
+    a record edited without a recompile shipped a walkthrough quoting the previous dataset
+    with every citation still looking authoritative. `--check` re-derives to memory and
+    compares; `check.sh` runs it, the same way it already re-derived `liberties.json`. The
+    eight committed sidecars and the index were byte-identical on the first run, so this
+    switched on with no repair behind it. What it does NOT check is the direction the
+    staleness gate covers — that the GLB matches the record — and neither of them can see a
+    record that is wrong about the town.
 
 ## Next
 

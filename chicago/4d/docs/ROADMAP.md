@@ -365,6 +365,29 @@ block across the river front, on a tavern the sources describe as low — so the
 bay's side, width, depth and storey count, and L24 admits the three of those that are invented.
 The board is deliberately blank: the sign is documented and the painting on it is not (L25).
 
+**Done 2026-08-10 — what is not here, and the file that said so reaching a visitor.** Every
+gate above asks whether what we *built* is honest. None of them could reach the structures
+this project researched and deliberately did not build: `data/exclusions.json` has held
+fourteen of them, with the evidence that dates each one, since the scaffold — and it shipped
+nowhere a visitor could read it. The Evidence panel now carries them under **What is not
+here**, derived per scene by `compile_scene.py` with citations joined, in the same entry the
+liberties use. The panel states, and the smoke asserts, that this is **not** a list of
+everything missing: eight of roughly forty researched structures stand, and the aerial view
+remains the honest picture of the rest.
+
+Switching it on found the one file where rule 1 was never enforced. Every `source_id` in this
+project must resolve in `data/sources/`; nothing read the exclusions file's, so a citation
+there could have named a source that never existed. `check_exclusions` now requires a slug id,
+a name, a stated reason and a citation that resolves — the committed file passes unchanged,
+and the next entry cannot skip it. The date gate also runs backwards now: an entry dating a
+building to 1837 is a correct exclusion from 1835 and a wrong one from 1837, which no
+comparison against the records can catch, because an excluded structure has no record.
+
+And the sidecars are re-derived on every commit (`compile_scene.py --all --check`, in
+`check.sh`). They are committed so the site needs no build step, which only keeps the
+walkthrough and the archive together if a record edited without a recompile is a gate failure
+rather than a discovery on the deployed site. All eight were byte-identical on the first run.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

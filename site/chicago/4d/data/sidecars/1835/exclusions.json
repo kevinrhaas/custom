@@ -1,0 +1,259 @@
+{
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "standard": "Structures this project researched and deliberately left out of this scene, with the evidence that dates them. It is not a list of everything missing: most of the town is simply not built yet.",
+  "excluded": [
+    {
+      "id": "saloon_building",
+      "name": "Saloon Building",
+      "reason": "Built 1836 — after the 1835 scene date.",
+      "detail": "South-east corner Clark and Lake; three-story brick, erected 1836 by Capt. J. B. F. Russell and George W. Doan. Chicago's first three-story structure and the largest hall west of Buffalo; the city charter was received here in 1837 and it served as City Hall to 1842.",
+      "earliest_scene": "1837",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        },
+        {
+          "source_id": "drloih_hotels",
+          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+          "archived_url": "",
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "id": "city_hotel_sherman",
+      "name": "City Hotel (later Sherman House)",
+      "reason": "Built 1836-37 — after the scene date.",
+      "detail": "North-west corner Clark and Randolph; large three-story brick, built by Francis C. Sherman.",
+      "earliest_scene": "1838",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "clarke_house",
+      "name": "Henry B. Clarke House (\"Widow Clarke House\")",
+      "reason": "Built 1836, and well outside the platted town in any case.",
+      "detail": "Greek Revival on 20 acres near what is now Michigan Ave and 16th St. Frequently and wrongly pulled into early-Chicago scenes because it survives today as the city's oldest house.",
+      "earliest_scene": "1837",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "new_york_house",
+      "name": "New York House",
+      "reason": "Dated 1836 by the hotel chronology; build date not attested in Andreas.",
+      "detail": "Frame building on the north side of Lake Street near Wells, two stories with eaves to the street. High uncertainty — excluded on the balance of evidence rather than a firm date.",
+      "earliest_scene": "1837",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        },
+        {
+          "source_id": "drloih_hotels",
+          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+          "archived_url": "",
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "id": "peck_brick_house",
+      "name": "P. F. W. Peck brick house",
+      "reason": "Built 1837 — the first brick house erected in Chicago.",
+      "detail": "Peck in 1835 was living at his two-story frame store at the south-west corner of South Water and LaSalle. His LaSalle and Washington dwelling appears in an 1837 description. Model Peck at the store.",
+      "earliest_scene": "1838",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "market_house_lake_state",
+      "name": "Market House at Lake and State",
+      "reason": "Later than 1835.",
+      "detail": "",
+      "earliest_scene": "1837",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "first_fire_engine_house",
+      "name": "Engine house / Engine Company No. 1",
+      "reason": "The town's first fire engine was purchased 1 December 1835 for $894.38 — five months AFTER the scene date.",
+      "detail": "A tidy example of why the date gate matters: 1835 is the right year and still the wrong scene.",
+      "earliest_scene": "1836",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "frink_walker_stage_office",
+      "name": "Frink & Walker stage office",
+      "reason": "Appears only in later material. In 1835-36 stage seats were taken at Markle's Exchange Coffee House at Lake and Wells — there is no separate stage-office building yet.",
+      "detail": "",
+      "earliest_scene": "1840",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "hubbard_south_water_warehouse",
+      "name": "G. S. Hubbard's South Water Street packing house",
+      "reason": "Dates to 1840; his Kinzie Street packing house is 1837-38.",
+      "detail": "In 1834 Hubbard packed in the old bank building at Lake and LaSalle. Any 1835 Hubbard warehouse on South Water is unsupported — 'Hubbard's Folly' does not appear in Andreas at all.",
+      "earliest_scene": "1841",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "north_pier_lighthouse",
+      "name": "Pier-head light at the end of the North Pier",
+      "reason": "A later structure; the skeletal iron pier light dates to 1859.",
+      "detail": "The light standing in 1835 is the 1832 conical masonry tower beside the fort. Do not put a light on the pier.",
+      "earliest_scene": "1860",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "id": "kinzie_house",
+      "name": "John Kinzie House (the old Kinzie mansion)",
+      "reason": "GONE by the scene date — documented absence, not a date guard.",
+      "detail": "The du Sable/Kinzie house on the north bank opposite the fort was unoccupied and 'dilapidated beyond repair' from 1832 and reported gone by 1835. The commemorative plaque dates it 1784-1832. Note that the Conley/Stelzer 1933 map labels it 'Old Kinzie Mansion, built 1832', which contradicts every documentary source — a good illustration of why a tier-5 reconstruction is never sole evidence. The two large cottonwoods behind the house are separately attested and one survived into the 20th century, so the TREES belong in the 1835 scene even though the house does not.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 4
+        },
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5
+        }
+      ]
+    },
+    {
+      "id": "ouilmette_cabin",
+      "name": "Antoine Ouilmette's cabin",
+      "reason": "Almost certainly gone — Ouilmette left for Gross Pointe in the later 1820s and no source attests the cabin's survival past that decade.",
+      "detail": "It belonged to the Kinzie mansion group, which was derelict by 1832. Omit, or model as a ruin at most, and only with better evidence than currently exists.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "id": "methodist_meeting_house_south",
+      "name": "Methodist Episcopal church, south side",
+      "reason": "LOCATION guard rather than a date guard. The Methodist meeting house was NOT on the south side in 1835 — the congregation floated it across the river and rolled it on logs to Clark and Washington only in 1838. Which bank it was on BEFORE that move is disputed and this entry no longer asserts it: see data/structures/walker_meeting_house.json, where the west-bank and north-bank readings are set out and the position is tagged conjectural. The guard holds either way, because both candidate banks are north or west of the south division.",
+      "detail": "The 'M.E. Church' shown south of the river on the 1833 reconstructed map is best read as showing where Methodists met — the fort, and later the Temple Building — not a Methodist-owned building. The brick Clark Street church is 1844. Amended 2026-08-09: this entry previously stated the north bank as settled fact, which contradicted the structure record written against the same evidence. An exclusion should guard a boundary, not quietly decide an open question on the way past.",
+      "earliest_scene": "1839",
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        },
+        {
+          "source_id": "conley_stelzer_1933",
+          "citation": "Conley, Walter H. (copyright holder) and O. E. Stelzer (artist), with Caroline M. McIlvaine (historical adviser). A map of Chicago: incorporated as a town August 5, 1833. 1933.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:0r96fm830",
+          "archived_url": "",
+          "tier": 5
+        }
+      ]
+    },
+    {
+      "id": "lake_house_finished",
+      "name": "Lake House hotel (completed)",
+      "reason": "Ground was broken in 1835 but it opened in the fall of 1836.",
+      "detail": "On the scene date this is a CONSTRUCTION SITE, not a building — a partial three-story brick shell on the north bank at Rush and Kinzie. It should be modelled in that state as a structure phase, not excluded outright; this entry exists to stop the finished hotel appearing.",
+      "earliest_scene": "1837",
+      "citations": [
+        {
+          "source_id": "drloih_hotels",
+          "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
+          "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
+          "archived_url": "",
+          "tier": 4
+        }
+      ]
+    }
+  ]
+}

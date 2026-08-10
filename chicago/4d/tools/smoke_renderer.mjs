@@ -660,6 +660,66 @@ for (const [label, viewport, touch] of [
       && opened.after.list > opened.before.list + 40 && /Why/i.test(opened.text),
       `shown ${opened.before.shown} -> ${opened.after.shown}, `
       + `list ${opened.before.list.toFixed(0)} -> ${opened.after.list.toFixed(0)} px`);
+
+    // --- what is not here, in the same panel --------------------------------
+    // The liberties answer "which parts did you make up". They cannot answer
+    // "which parts did you find and leave out", and an empty street looks the
+    // same whether a building is missing because nobody researched it or because
+    // the evidence puts it two years later. The second is a finding with a
+    // citation, and it shipped nowhere a visitor could read it until now.
+    const excl = await page.evaluate(() => {
+      const mount = document.getElementById('exclusions');
+      const entries = [...mount.querySelectorAll('details.excl')];
+      const byName = (re) => entries.find((d) => re.test(d.querySelector('.lib-title')?.textContent ?? ''));
+      const saloon = byName(/Saloon Building/);
+      const kinzie = byName(/Kinzie House/);
+      return {
+        counted: window.__chicago4d.exclusions?.count ?? 0,
+        error: window.__chicago4d.exclusions?.error ?? 'no exclusions on the handle',
+        rendered: entries.length,
+        busy: mount.hasAttribute('aria-busy'),
+        text: mount.textContent,
+        saloonWhen: saloon?.querySelector('.lib-scope')?.textContent.trim() ?? '',
+        saloonReason: saloon?.querySelector('.lib-body dd')?.textContent.trim() ?? '',
+        saloonCite: saloon?.querySelector('.cites .cite-text')?.textContent.trim() ?? '',
+        saloonLinks: [...(saloon?.querySelectorAll('.cites a') ?? [])].map((a) => a.href),
+        kinzieWhen: kinzie?.querySelector('.lib-scope')?.textContent.trim() ?? '',
+        kinzieReason: kinzie?.querySelector('.lib-body dd')?.textContent.trim() ?? '',
+        // Collapsed: the standing note wraps across source lines, so a raw
+        // textContent match would be asserting the HTML's line breaks.
+        heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
+          .replace(/\s+/g, ' '),
+        overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      };
+    });
+    check(`${label}: the researched exclusions load`,
+      excl.counted >= 14 && !excl.busy && excl.rendered === excl.counted,
+      `${excl.rendered} rendered of ${excl.counted} (${excl.error})`);
+    check(`${label}: an exclusion gives its reason and the source it rests on`,
+      /1836/.test(excl.saloonReason) && /Andreas/.test(excl.saloonCite)
+      && excl.saloonLinks.length > 0,
+      `"${excl.saloonReason}" — ${excl.saloonCite} [${excl.saloonLinks.length} link(s)]`);
+    // The chip is the record's own `earliest_scene`, never a phrase derived from
+    // its absence: the Kinzie house is not here because it was GONE, and stamping
+    // it "not until 1836" would be an invention on a panel about inventions.
+    check(`${label}: a later building says when, and a vanished one says why instead`,
+      /not until 1837/.test(excl.saloonWhen) && excl.kinzieWhen === ''
+      && /GONE/i.test(excl.kinzieReason),
+      `saloon "${excl.saloonWhen}" · kinzie "${excl.kinzieWhen}" / "${excl.kinzieReason.slice(0, 40)}"`);
+    // The discriminating case: this is the list of things NOT in the scene, so a
+    // building the visitor can walk up to must not appear on it. A section that
+    // dumped the whole dataset would still have passed every check above.
+    check(`${label}: a building standing in the scene is not on the not-here list`,
+      !/Sauganash|Green Tree|Wolf Point Tavern/.test(excl.text),
+      excl.text.slice(0, 160));
+    // …and it says so itself. A list of fourteen absences with no such sentence
+    // reads as "this is what is missing", which would be the largest false claim
+    // the panel could make — the town is short about thirty more buildings.
+    check(`${label}: the list says it is not everything missing`,
+      /What is not here/.test(excl.heading)
+      && /not a list of everything missing/i.test(excl.heading),
+      excl.heading.slice(-200));
+    check(`${label}: the Evidence panel still does not overflow`, excl.overflow);
     await page.click('#panel-close');
 
     // --- free-fly -----------------------------------------------------------

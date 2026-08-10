@@ -36,6 +36,7 @@
  * same claim as none having been taken.
  */
 
+import { citationItems } from './citations.js';
 import { libertiesFor, libertyEntryHtml } from './liberties.js';
 
 const CONF_ORDER = { documented: 0, inferred: 1, conjectural: 2 };
@@ -108,24 +109,6 @@ function attributeRows(attributes) {
       <td><span class="val">${escapeHtml(prettyValue(attr.value))}</span>${chip(attr.confidence)}
         ${geometryMark(attr.geometry)}${sourceList(attr.sources)}${note}</td>
     </tr>`;
-  }).join('');
-}
-
-function citationItems(citations) {
-  if (!Array.isArray(citations) || !citations.length) {
-    return '<li>No citations in this record — that is itself a finding.</li>';
-  }
-  return citations.map((c) => {
-    const links = [];
-    if (c.url) links.push(`<a href="${escapeHtml(c.url)}" target="_blank" rel="noopener">source</a>`);
-    if (c.archived_url) {
-      links.push(`<a href="${escapeHtml(c.archived_url)}" target="_blank" rel="noopener">archived</a>`);
-    } else if (c.url) {
-      links.push('<span title="No archived copy recorded; this link may not survive">not archived</span>');
-    }
-    const tier = c.tier ? `<span class="tier">tier ${escapeHtml(c.tier)}</span>` : '';
-    return `<li><span class="cite-text">${escapeHtml(c.citation ?? c.source_id)}</span>
-      ${tier} ${links.join(' · ')}</li>`;
   }).join('');
 }
 

@@ -102,6 +102,47 @@ def test_exclusions_cannot_contradict_the_dataset() -> None:
           any("exclusions.json" in e for e in rep.errors), rep.errors)
 
 
+def test_an_exclusion_expires_at_its_own_earliest_scene() -> None:
+    """The date gate runs both ways.
+
+    An entry saying a building dates from 1837 is a correct exclusion from 1835
+    and a wrong one from 1837 — and the second cannot be caught by comparing
+    against the records, because an excluded structure has no record to compare
+    with. In a year-parameterized project that difference is the whole point.
+    """
+    excl = {"excluded": [{"id": "saloon_building", "name": "Saloon Building",
+                          "reason": "built 1836", "earliest_scene": "1837",
+                          "sources": ["s1"]}]}
+    rep = V.Report()
+    V.validate_scene(scene(), {}, EPOCHS, excl, rep)
+    check("an 1837 building is legitimately excluded from an 1835 scene", not rep.errors,
+          rep.errors)
+
+    rep = V.Report()
+    V.validate_scene(scene("1837-07-01"), {}, EPOCHS, excl, rep)
+    check("the same entry excluded from its own earliest scene is an error",
+          any("earliest_scene" in e for e in rep.errors), rep.errors)
+
+
+def test_exclusions_carry_a_reason_and_a_citation_that_resolves() -> None:
+    """Rule one — never invent a source — applied where nothing applied it."""
+    def run(entry: dict) -> list:
+        rep = V.Report()
+        V.check_exclusions({"excluded": [entry]}, {"s1"}, rep)
+        return rep.errors
+
+    good = {"id": "saloon_building", "name": "Saloon Building",
+            "reason": "built 1836", "sources": ["s1"]}
+    check("a named, reasoned, cited exclusion passes", not run(good), run(good))
+    check("a citation that resolves in no source record is an error",
+          any("does not resolve" in e for e in run({**good, "sources": ["nope"]})),
+          run({**good, "sources": ["nope"]}))
+    check("excluding a structure with no citation at all is an error",
+          any("no sources" in e for e in run({**good, "sources": []})))
+    check("an exclusion with no stated reason is a deletion, and an error",
+          any("no reason" in e for e in run({**good, "reason": ""})))
+
+
 def test_confidence_contract() -> None:
     ids = {"s1"}
 

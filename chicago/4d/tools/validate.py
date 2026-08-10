@@ -265,6 +265,54 @@ def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict
         if ex.get("id") in [i.split(":")[0] for i in included]:
             rep.error(where, f"'{ex.get('id')}' is listed in exclusions.json but resolves "
                              f"into this scene — the data and the research record disagree")
+        # The same disagreement in its second form, which no record can report
+        # because the excluded structure has no record: an entry that dates a
+        # building to 1837 is not an exclusion from an 1837 scene. Nothing here
+        # is wrong at one year and becomes wrong later without saying so — this
+        # project is year-parameterized, so the year has to be asked.
+        earliest = str(ex.get("earliest_scene") or "")
+        if earliest.isdigit() and int(earliest) <= target.year:
+            rep.error(where, f"'{ex.get('id')}' is excluded, but its own earliest_scene "
+                             f"({earliest}) is on or before this scene ({target.year}) — "
+                             f"it belongs in the dataset here, or the entry is wrong")
+
+
+def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
+    """The research record of what was left out is held to the citation rule.
+
+    Every `source_id` in this project must resolve in `data/sources/` — rule one
+    in AGENTS.md — and until this check, exclusions.json was the one file where
+    it did not: nothing read its `sources` arrays, so a citation there could name
+    a source that has never existed. That mattered least while the file was read
+    only by agents and matters most now that the walkthrough quotes it: a visitor
+    reading why the Saloon Building is not here is reading these ids joined to
+    their citations.
+
+    A reason is required for the same reason a `note` is required on an inferred
+    value. "Left out" without a stated ground is not a finding, it is a deletion
+    with a filename.
+    """
+    seen: set[str] = set()
+    for ex in exclusions.get("excluded", []):
+        eid = ex.get("id") or "?"
+        where = f"exclusion {eid}"
+        if not SLUG.match(eid):
+            rep.error(where, f"id '{eid}' is not a lowercase slug")
+        if eid in seen:
+            rep.error(where, "duplicate id in exclusions.json")
+        seen.add(eid)
+        if not (ex.get("name") or "").strip():
+            rep.error(where, "no name — the list is read by people, not only by ids")
+        if not (ex.get("reason") or "").strip():
+            rep.error(where, "no reason — an exclusion without a stated ground is a "
+                             "deletion, and this file exists so that it is a finding")
+        srcs = ex.get("sources") or []
+        if not srcs:
+            rep.error(where, "no sources — excluding a structure is a claim about the "
+                             "evidence and carries a citation like any other")
+        for s in srcs:
+            if s not in source_ids:
+                rep.error(where, f"source '{s}' does not resolve in data/sources/")
 
 
 # --------------------------------------------------------------------------
@@ -907,6 +955,10 @@ def main() -> int:
                 check_attested(where, key, st[key], source_ids, rep)
                 c = st[key].get("confidence")
                 tally[c] = tally.get(c, 0) + 1
+
+    # what was researched and left out — a record with the same citation rule as
+    # anything else here, and now one the walkthrough quotes to a visitor
+    check_exclusions(exclusions, source_ids, rep)
 
     # scenes
     for name, sc in scenes.items():
