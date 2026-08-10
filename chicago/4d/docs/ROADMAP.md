@@ -134,6 +134,13 @@ same coupling the note below describes. Do the two Wolf Point renames together; 
 building and the same bake. The chimney count needs a parameter in both archetypes first, so it
 is the larger of the two and can follow.
 
+**You cannot land half of one any more** (2026-08-10). `check.sh` recomputes each committed GLB's
+inputs and fails when the record and the mesh disagree, so the moment `signage` becomes `sign`
+the tavern's asset reads STALE and the gate stops the commit until the re-bake arrives with it.
+Which is the correct shape for the work: prepare the record on a branch, run the bake workflow
+against that branch, and merge one PR carrying both. See `generators/mesh_inputs.py` for what
+counts as an input and what deliberately does not.
+
 Per-cluster parcels, each one file per structure so parallel agents never collide:
 
 | parcel | contents |
@@ -235,6 +242,22 @@ modelled.** The record spells them `frame_extension` and `signage`; `log_dwellin
 See S5 below for the fix, which is a rename plus a re-bake. The standing limit is unchanged and
 worth repeating: nothing can catch a liberty taken that nobody noticed taking — but an attribute
 recorded and never built is no longer in that category.
+
+**Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
+assumes the shipped mesh is the one the record describes, and nothing was testing that: the
+manifest had carried an `inputs_sha256` per asset since the first bake and no code ever
+recomputed it. It does now, for buildings and terrain alike, with the recipe living beside the
+generators so the writer and the checker cannot drift.
+
+Turning it on meant rewriting what the hash is over, because the old one reported all six
+buildings stale for reasons that cannot move a vertex — record prose, and a constant added to a
+sibling archetype's parameter module. It now hashes the *resolved* parameters, the derived
+properties, the confidence floats and the builder's bytes; parameter-module source is out,
+because its entire effect on the mesh is the object it returns. The eight committed hashes were
+re-stamped without a bake and the re-stamp is proved rather than asserted: run the new recipe
+inside a worktree of the last bake commit and the input documents come out identical, `build.py`
+excepted, whose only change is delegating the hash. See STATUS § 15 for the full account and the
+limit — this compares inputs, not output, so a hand-edited GLB still passes.
 
 ## S8 — Milestone 1
 

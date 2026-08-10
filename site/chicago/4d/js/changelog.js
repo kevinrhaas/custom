@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 14, title: 'Checking that the town you see is the town on file', kind: 'fix',
+    ts: '2026-08-10T06:30:08.481Z', date: 'Aug 10, 2026, 1:30 AM CT',
+    items: [
+      'Every building here is built by a program from a written record, and the two are supposed to stay in step. Nothing was checking that they did. The record could be corrected and the building you walk up to would quietly stay the old one — no warning, no mark on the card, and the build would report itself clean.',
+      'It checks now. Each shipped building and the ground itself carry a fingerprint of what they were made from, and that fingerprint is recomputed on every change. If a record no longer describes the thing standing in the scene, the build stops until the model is rebuilt to match.',
+      'Making it useful meant deciding what actually counts as a change. Rewriting the reasoning in a note does not alter a wall, and a check that complains about prose is one people learn to wave through — so it now watches only what the model-builder can actually see: measurements, materials, outlines, and how sure we are of each. Rewrite a paragraph and nothing moves; change a height and the building has to be rebuilt.',
+      'The first thing it catches is a repair already on the list. The Wolf Point Tavern\'s missing frame half and its painted wolf sign cannot be fixed on paper alone any more — the correction and the rebuilt building now have to arrive together, which is what should have been true all along.',
+    ] },
   { v: 13, title: 'The tavern with no sign on it', kind: 'feature',
     ts: '2026-08-10T06:11:02.458Z', date: 'Aug 10, 2026, 1:11 AM CT',
     items: [

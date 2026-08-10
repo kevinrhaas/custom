@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import hashlib
 import json
 import sys
 from pathlib import Path
@@ -26,6 +25,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "generators"))
 
 import bpy  # noqa: E402
+
+import mesh_inputs  # noqa: E402
 
 from common.mesh import reset_scene  # noqa: E402
 from archetypes import bridge_timber, frame_tavern, log_dwelling  # noqa: E402
@@ -67,16 +68,15 @@ def resolve_phase(structure: dict, target: dt.date):
 
 
 def inputs_hash(structure: dict, phase: dict, archetype: str) -> str:
-    """Hash of everything that determines this mesh: the resolved phase, the
-    archetype modules, and the pinned Blender. assets/manifest.json stores it so
-    check.sh can tell a stale committed GLB from a fresh one — determinism is
-    defined on inputs, because Cycles AO is not bit-reproducible across hardware."""
-    h = hashlib.sha256()
-    h.update(json.dumps({"id": structure["id"], "phase": phase}, sort_keys=True).encode())
-    for f in sorted((ROOT / "generators").rglob("*.py")):
-        h.update(f.read_bytes())
-    h.update((ROOT / "generators" / "blender.pin").read_bytes())
-    return h.hexdigest()
+    """Hash of everything that determines this mesh, written into
+    `assets/manifest.json` so `tools/check.sh` can tell a stale committed GLB from
+    a fresh one. Determinism is defined on inputs, because Cycles AO is not
+    bit-reproducible across hardware.
+
+    The recipe lives in `generators/mesh_inputs.py` rather than here, because the
+    gate that compares the hash has to recompute it in a sandbox with no Blender,
+    and this module cannot be imported without bpy."""
+    return mesh_inputs.structure_inputs_sha(structure, phase, archetype)
 
 
 def unwrap(ob) -> None:
@@ -199,6 +199,9 @@ def main() -> int:
     manifest = load(manifest_path) if manifest_path.exists() else {}
     manifest.setdefault("assets", {})
     manifest["blender"] = bpy.app.version_string.split()[0]
+    # What the hashes below mean. tools/validate.py refuses to compare against a
+    # scheme it does not compute, so redefining freshness is a visible event.
+    manifest["inputs_scheme"] = mesh_inputs.SCHEME
 
     built = 0
     for path in sorted((ROOT / "data" / "structures").glob("*.json")):

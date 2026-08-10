@@ -6,7 +6,7 @@ Runs in seconds and needs no Blender. This is the per-commit gate.
     validate.py              schema + referential + semantic + scene date gates
     validate.py --params     also resolve every phase's form to archetype params
     validate.py --licenses   also check asset license coverage and rights gating
-    validate.py --stale      also check committed GLBs against assets/manifest.json
+    validate.py --stale      also recompute every committed GLB's input hash
     validate.py --site       also check publish sync and the published size budget
     validate.py --all        everything
     validate.py --strict     warnings become errors
@@ -705,7 +705,7 @@ def main() -> int:
     if args.licenses:
         run_license_check(sources, rep)
     if args.stale:
-        run_stale_check(rep)
+        run_stale_check(structures, rep)
     if args.site:
         run_site_check(rep)
 
@@ -813,23 +813,106 @@ def run_license_check(sources: dict, rep: Report) -> None:
                       f"resolve the rights check before deriving geometry from this source")
 
 
-def run_stale_check(rep: Report) -> None:
+def run_stale_check(structures: dict, rep: Report) -> None:
+    """Does every committed GLB still match the inputs that made it?
+
+    Until 2026-08-10 this function only asked whether each GLB appeared in
+    `assets/manifest.json`. The manifest has recorded an `inputs_sha256` per asset
+    since the first bake and nothing ever recomputed it, so "a stale committed GLB
+    is a check failure, not a warning" (AGENTS.md) was a sentence, not a gate: a
+    record could be edited into a different building and the town would keep
+    rendering the old one, green.
+
+    The recipe lives with the generators — `generators/mesh_inputs.py` for
+    structures, `terrain_gen.terrain_inputs_sha` for the ground — so the bake that
+    writes the hash and the gate that checks it cannot drift apart.
+    """
     manifest_path = ROOT / "assets" / "manifest.json"
-    glbs = sorted((ROOT / "assets" / "gltf").glob("*.glb"))
+    gltf_dir = ROOT / "assets" / "gltf"
+    glbs = sorted(gltf_dir.glob("*.glb"))
     if not manifest_path.exists():
         if glbs:
             rep.error("stale", "assets/gltf contains GLBs but assets/manifest.json is missing")
         else:
             rep.note("stale check: no baked assets yet")
         return
+
     manifest = json.loads(manifest_path.read_text())
-    known = set(manifest.get("assets", {}))
+    assets = manifest.get("assets", {})
     for g in glbs:
-        if g.name not in known:
+        if g.name not in assets:
             rep.error("stale", f"assets/gltf/{g.name} is not in manifest.json — "
                                f"it was not produced by a tracked bake")
-    rep.note(f"stale check: {len(glbs)} baked asset(s), manifest blender "
-             f"{manifest.get('blender', '?')}")
+
+    sys.path.insert(0, str(ROOT / "generators"))
+    try:
+        import mesh_inputs  # noqa: PLC0415
+        import terrain_gen  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        rep.error("stale", f"cannot import the generators' input-hash recipe, so no committed "
+                           f"asset can be checked against its inputs: {e}")
+        return
+
+    scheme = manifest.get("inputs_scheme")
+    if scheme != mesh_inputs.SCHEME:
+        rep.error("stale", f"manifest inputs_scheme is {scheme!r} but the generators compute "
+                           f"{mesh_inputs.SCHEME!r} — the two sides are hashing different things, "
+                           f"so every comparison below would be meaningless. Re-stamp the manifest "
+                           f"(and say in the commit why the definition changed)")
+        return
+
+    by_id = {st.get("id"): st for st in structures.values() if isinstance(st, dict)}
+    fresh, stale, unchecked = 0, 0, 0
+
+    for name, entry in sorted(assets.items()):
+        if not (gltf_dir / name).exists():
+            rep.error("stale", f"manifest.json lists {name} but assets/gltf/{name} does not "
+                               f"exist — the record of a bake outlived its output")
+            continue
+        recorded = entry.get("inputs_sha256")
+        if not recorded:
+            rep.error("stale", f"{name} has no inputs_sha256, so nothing can say whether it "
+                               f"still matches the data it was built from")
+            continue
+        try:
+            if entry.get("structure_id"):
+                st = by_id.get(entry["structure_id"])
+                if st is None:
+                    rep.error("stale", f"{name} was built from structure "
+                                       f"'{entry['structure_id']}', which no longer exists in "
+                                       f"data/structures — a mesh with no record behind it")
+                    continue
+                phase = next((p for p in st.get("phases", [])
+                              if p.get("id") == entry.get("phase_id")), None)
+                if phase is None:
+                    rep.error("stale", f"{name} was built from phase '{entry.get('phase_id')}' "
+                                       f"of {entry['structure_id']}, which the record no longer "
+                                       f"has")
+                    continue
+                got = mesh_inputs.structure_inputs_sha(st, phase, entry.get("archetype"))
+            elif entry.get("terrain_epoch"):
+                ep_dir = DATA / "terrain" / "epochs" / entry["terrain_epoch"]
+                got = terrain_gen.terrain_inputs_sha(ep_dir)
+            else:
+                unchecked += 1
+                continue
+        except Exception as e:  # noqa: BLE001 — an unresolvable input is a failure, not a skip
+            rep.error("stale", f"{name}: cannot recompute its input hash: {e}")
+            continue
+
+        if got == recorded:
+            fresh += 1
+        else:
+            stale += 1
+            rep.error("stale", f"{name} is STALE — its inputs now hash to {got[:12]}, the "
+                               f"committed mesh was built from {recorded[:12]}. The data and the "
+                               f"geometry disagree, so the renderer is showing the old building. "
+                               f"Re-bake it (tools/bake.sh, or the chicago-4d-bake workflow) and "
+                               f"land the GLB with the change that caused this")
+
+    rep.note(f"stale check: {fresh} asset(s) match their inputs, {stale} stale"
+             + (f", {unchecked} not input-tracked" if unchecked else "")
+             + f"; scheme {scheme}, manifest blender {manifest.get('blender', '?')}")
 
 
 def run_site_check(rep: Report) -> None:

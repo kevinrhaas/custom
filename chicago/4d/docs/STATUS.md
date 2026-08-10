@@ -18,7 +18,7 @@ walkthrough rather than only in the repository.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 63 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, and that an attribute the archetype never reads cannot pass without saying what the mesh does instead |
+| `tools/test_validate.py` | **done** — 73 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | 13 seeded, of which 4 carry real Wayback snapshots |
@@ -202,7 +202,39 @@ uncertainty of the 1834 sheets in its note.
     match held for a reason that had nothing to do with whether the two agreed. Declaring the
     claim forced the comparison. L12 now carries a Revised line saying so, and the stale sentence
     stays: the file is append-only, and a silently corrected admission is not one.
-14. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+15. **FIXED — the staleness gate existed in the documentation and nowhere else.** `AGENTS.md`
+    has said since the scaffold that "a stale committed GLB is a check failure, not a warning",
+    and `assets/manifest.json` has carried an `inputs_sha256` per asset since the first bake.
+    Nothing ever recomputed it. `run_stale_check` asked only whether each GLB appeared in the
+    manifest, so a record could be edited into a different building and the town would keep
+    rendering the old one with the gate green — the exact failure mode the S5 repairs are queued
+    for, unguarded. The check now recomputes every committed asset's inputs and fails on
+    disagreement, and the recipe lives with the generators (`generators/mesh_inputs.py`,
+    `terrain_gen.terrain_inputs_sha`) so the side that writes the hash and the side that checks
+    it cannot drift.
+    **Switching it on required redefining the hash, because the old one was unusable.** It hashed
+    the whole phase record plus every `.py` under `generators/`, which meant all six buildings
+    read stale for reasons that cannot move a vertex: the `geometry:` declarations added on
+    2026-08-10, and a `CONSUMED` constant added to one archetype's parameter module invalidating
+    the others' buildings. A hash that cries stale over a rewritten note gets disbelieved, and a
+    disbelieved gate is worse than none. It now hashes what the builder can see — the *resolved*
+    parameters, the class's derived properties, the confidence floats, and the bytes of the
+    builder, `common/`, `build.py` and the Blender pin. Parameter-module bytes are deliberately
+    out: that module's whole effect on the mesh is the object it returns, and the object is
+    hashed in more detail than its source would give.
+    **The eight committed hashes were re-stamped without a bake, and that is a claim, so here is
+    the proof.** Under the new recipe, every input to all six buildings is byte-identical to what
+    it was at the last bake (`c3953d2`) — checked by running the new recipe inside a worktree of
+    that commit and diffing the input documents, not by inspection. The single difference is
+    `build.py`, whose only change in this slice is delegating the hash to the new module. Terrain
+    re-stamped for the same reason: `terrain_gen.py` hashes its own bytes and gained an extracted
+    function. No mesh was regenerated and none needed to be. `manifest.json` now records
+    `inputs_scheme`, and the gate refuses a manifest stamped under a scheme it does not compute
+    rather than comparing two hashes that mean different things.
+    What this still does not catch is stated in `mesh_inputs.py`: it compares inputs, not output.
+    Cycles AO is not bit-reproducible across hardware, which is why freshness is defined on inputs
+    at all — a hand-edited GLB behind an untouched record passes, and nothing here can see it.
+16. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
 ## Next
@@ -214,6 +246,10 @@ resolves into the scene, so a record committed without its GLB makes the rendere
 that is not there — a 404 the smoke correctly fails on. **A structure record and its bake are one
 unit.** An agent without Blender can prepare the record and the research memo, but the pair has
 to land together, so the bake workflow's PR is part of the same slice rather than a follow-up.
+**That coupling is now enforced rather than remembered** (2026-08-10): editing a value a
+generator reads makes the committed GLB stale and `check.sh` fails until the re-bake lands with
+it. Verified against the queued Wolf Point rename — renaming `signage` to `sign` fails the gate
+on the spot, which is the whole point of writing the check.
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled
