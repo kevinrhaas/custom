@@ -1594,6 +1594,119 @@ def test_terrain_prose_is_not_read_by_the_generator() -> None:
           "the generator stopped reading spec['grid'], so this scan proves nothing")
 
 
+def test_a_restatement_is_held_to_the_half_it_restates() -> None:
+    """`restated_in_code` is a promise, and a promise nothing checks is a note.
+
+    The other three `mesh:` states say the ground does not contain a figure, and a
+    reader who doubts one can go and look at the ground. This one says the mesh
+    contains exactly what the figure says and gets it from somewhere else — a
+    claim about two documents at once, held together until now by the hand that
+    wrote them. Every kind of restatement is exercised here, including the two
+    directions of the declaration itself, because an admission nobody made and a
+    check guarding nothing are different failures with the same green result.
+    """
+    EP = "e1834_harbor_cut"
+
+    def idx(cid, fields):
+        return {EP: {cid: ground_claim_fixture(cid, "inferred", fields)}}
+
+    # (1) figure — the restatement and the build instruction disagree.
+    restates = {"divisions": {"bank_crest_ft": ("figure", "near_ft")}}
+    rep = V.Report()
+    V.check_restated_agreement(idx("divisions.south", [
+        {"key": "near_ft", "value": 2.4},
+        {"key": "bank_crest_ft", "value": 3.1, "mesh": "restated_in_code"}]), restates, rep)
+    check("a crest that stopped matching the level the ramp is built to is an error",
+          any("'bank_crest_ft'" in e and "'near_ft'" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_restated_agreement(idx("divisions.south", [
+        {"key": "near_ft", "value": 2.4},
+        {"key": "bank_crest_ft", "value": 2.4, "mesh": "restated_in_code"}]), restates, rep)
+    check("and agreeing passes", not rep.errors, rep.errors)
+
+    # (2) artifact — held against the heightfield the bake actually wrote, in the
+    # units that artifact uses. This is the strong one: the thing being agreed
+    # with is the ground, not a description of it.
+    art = {"water": {"surface_ft": ("artifact", "heightfield.json:water_surface_m", 0.3048)}}
+    rep = V.Report()
+    V.check_restated_agreement(idx("water", [
+        {"key": "surface_ft", "value": 1.5, "mesh": "restated_in_code"}]), art, rep)
+    check("a water surface the committed ground does not have is an error",
+          any("water_surface_m" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_restated_agreement(idx("water", [
+        {"key": "surface_ft", "value": 0.0, "mesh": "restated_in_code"}]), art, rep)
+    check("and the committed zero passes", not rep.errors, rep.errors)
+
+    # (3) both directions of the declaration. A figure carrying the state with
+    # nothing named on the other side of it is back where § 35 found it; an entry
+    # naming a figure that no longer declares the state is a check guarding a
+    # promise nobody made, which reads as diligence and is worse.
+    rep = V.Report()
+    V.check_restated_agreement(idx("bank", [
+        {"key": "profile", "value": "ease_out", "mesh": "restated_in_code"}]),
+        {"bank": {}}, rep)
+    check("declaring the state with no named second half is an error",
+          any("'profile'" in e and "unnamed second half" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_restated_agreement(idx("divisions.south", [
+        {"key": "near_ft", "value": 2.4},
+        {"key": "bank_crest_ft", "value": 2.4, "mesh": "record_only"}]), restates, rep)
+    check("a restatement declared as something that owes nothing is an error",
+          any("'bank_crest_ft'" in e and "guarding" in e for e in rep.errors), rep.errors)
+
+
+def test_a_prose_restatement_is_pinned_to_the_line_it_describes() -> None:
+    """Prose cannot be compared to Python, so the weak check is labelled weak.
+
+    A formula written out for a reader and implemented separately in
+    `terrain_gen.py` can only be held to the presence of the line it names. That
+    buys the realistic drift — the code moves and the sentence is left describing
+    a cross-section the ground no longer has — and nothing else, which is why
+    `RESTATES` says so and this test proves the two failure directions rather
+    than the claim.
+    """
+    EP = "e1834_harbor_cut"
+
+    def run(expr, key="profile"):
+        rep = V.Report()
+        V.check_restated_agreement(
+            {EP: {"bank": ground_claim_fixture("bank", "conjectural", [
+                {"key": key, "value": "written out for a reader",
+                 "mesh": "restated_in_code"}])}},
+            {"bank": {key: ("code", expr)}}, rep)
+        return rep
+
+    check("the ease-out the spec describes is in the generator",
+          not run("ramp = 1.0 - (1.0 - t_bank) ** 2").errors,
+          run("ramp = 1.0 - (1.0 - t_bank) ** 2").errors)
+    check("a line that is not there is an error",
+          any("appears 0 times" in e for e in run("ramp = smoothstep(t_bank)").errors),
+          run("ramp = smoothstep(t_bank)").errors)
+
+    # The comment trap, which is not hypothetical: `check_sidecar_contract`
+    # reported ITSELF on its first run, because the comment explaining why a field
+    # is no longer read names that field. A scan that a comment can satisfy proves
+    # nothing at all, so the phrase below — which exists in `terrain_gen.py` only
+    # inside the comment arguing for the ease-out — must not count as an
+    # implementation of anything.
+    check("a phrase that lives only in a comment does not satisfy the scan",
+          any("appears 0 times" in e for e in run("undercut by the flow").errors),
+          run("undercut by the flow").errors)
+
+    # ...and the stripper has to know a `#` in a string from a comment, or it
+    # would blank half the generator and pass everything.
+    src = 'a = "keep # this"  # drop this\nb = 2\n'
+    out = V.strip_py_comments(src)
+    check("stripping comments leaves string literals alone",
+          '"keep # this"' in out and "drop this" not in out, out)
+    check("and leaves the line structure where it was",
+          out.count("\n") == src.count("\n"), repr(out))
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

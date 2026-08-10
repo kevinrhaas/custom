@@ -694,8 +694,15 @@ Three things worth carrying, all of them about where a declaration may live:
   staleness. A test written for § 34's purpose refused it on the first run.
 - **`restated_in_code` is a fourth state and only the ground needs it.** The water plane's zero
   and the bank's ease-out are written in the spec and separately written in Python. The mesh
-  agrees with them and does not read them; nothing holds the two together, and that is a warning
-  to whoever edits the generator rather than a caveat to a visitor, so it carries no marker.
+  agrees with them and does not read them; that is a warning to whoever edits the generator rather
+  than a caveat to a visitor, so it carries no marker. **What held the two halves together was
+  nothing, and since 2026-08-10 (STATUS § 36) it is `terrain_inputs.RESTATES`**: each restatement
+  names the half it agrees with — a figure in the heightfield the bake wrote, another figure in
+  the same block, or a line of `terrain_gen.py` — and `check_restated_agreement` compares them.
+  Switching it on found three figures making the promise under the wrong state: every division's
+  `bank_crest_ft` restates `near_ft` and was declared `record_only`, which owes nothing and asks
+  nothing. All seven agree today; the value is that the next edit to a division level cannot leave
+  the panel showing the old crest.
 
 ## S8 — Milestone 1
 
