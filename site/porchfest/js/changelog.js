@@ -2,7 +2,7 @@ export const CHANGELOG = [ // newest first
   { v: 11, title: 'Addresses with an apartment number work', kind: 'fix',
     ts: '2026-08-10T16:04:11.500Z', date: 'Aug 10, 2026, 11:04 AM CT',
     items: [
-      'Setting a home address failed for anything with an apartment or unit number on it — the lookup service returns nothing at all for those. The unit and the postcode are now trimmed before it asks, which is exactly the form that does resolve.',
+      'Setting a home address failed for anything with an apartment or unit number on it — the lookup service returns nothing at all for those. The unit and the postcode are now trimmed before it asks, which is exactly the form that does resolve. Apt, Unit, Suite, Ste and a bare hash number are all handled.',
     ] },
   { v: 10, title: 'Your own address works now', kind: 'fix',
     ts: '2026-08-10T15:36:24.215Z', date: 'Aug 10, 2026, 10:36 AM CT',

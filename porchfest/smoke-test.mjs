@@ -89,7 +89,7 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       // carrying a unit number or a ZIP. A mock that accepts anything hid a
       // live failure on exactly the address that prompted this feature.
       const q = decodeURIComponent(new URL(r.request().url()).searchParams.get('q') || '');
-      const dirty = /\b(apt|apartment|unit|ste|suite|#)\b/i.test(q) || /\b\d{5}\b/.test(q);
+      const dirty = /(\b(apt|apartment|unit|ste|suite)\b|#)/i.test(q) || /\b\d{5}\b/.test(q);
       r.fulfill({ status: 200, contentType: 'application/json',
         body: JSON.stringify(dirty ? [] : [{ lat: '44.9490277', lon: '-93.3031901' }]) });
     });
@@ -702,6 +702,16 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     if (geoCalls !== geoBefore + 1)
       fail(`${tag} — expected exactly one geocode, saw ${geoCalls - geoBefore}`);
     else ok('setting a home address geocodes exactly once');
+    // Every unit form a phone's autofill produces has to survive the trip to
+    // the geocoder, which returns nothing for any of them if left in.
+    const unitForms = await page.evaluate(() => ['2911 James Ave S, Apt 404 Minneapolis MN 55408',
+      '1420 W 28th St #2', '123 Main St Unit B', '2416 Aldrich Ave S Ste 3, Minneapolis MN 55405']
+      .map(a => geocodeQuery(a)));
+    const stillDirty = unitForms.filter(q => /(\b(apt|unit|ste|suite)\b|#|\b\d{5}\b)/i.test(q));
+    if (stillDirty.length)
+      fail(`${tag} — unit/ZIP survived into the geocoder query: ${stillDirty.join(' | ')}`);
+    else ok('every unit form is stripped before the lookup');
+
     const setLabel = await page.evaluate(() => S.home && S.home.label);
     if (setLabel !== '2911 James Ave S')
       fail(`${tag} — home label kept the unit/city cruft: "${setLabel}"`);

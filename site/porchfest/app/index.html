@@ -1346,7 +1346,10 @@ function pickCandidates(){
    is the OpenStreetMap geocoder — the same project the map data is credited
    to. The answer is stored as coordinates, so this never runs again. */
 function geocodeQuery(s){
-  let t=s.replace(/\b(apt|apartment|unit|ste|suite|#)\s*[\w-]+/ig,' ')
+  // "#" gets its own pass: \b never matches before it after a space, since
+  // both are non-word characters, so "St #2" kept its unit and found nothing.
+  let t=s.replace(/#\s*[\w-]+/g,' ')
+         .replace(/\b(apt|apartment|unit|ste|suite)\b\.?\s*[\w-]+/ig,' ')
          .replace(/\b\d{5}(-\d{4})?\b/g,' ')
          .replace(/\s*,\s*,/g,',').replace(/\s+/g,' ')
          .replace(/\s*,\s*$/,'').trim();
