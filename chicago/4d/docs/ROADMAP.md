@@ -334,6 +334,29 @@ inside a worktree of the last bake commit and the input documents come out ident
 excepted, whose only change is delegating the hash. See STATUS § 15 for the full account and the
 limit — this compares inputs, not output, so a hand-edited GLB still passes.
 
+**Done 2026-08-10 — a structure has to reach the ground, and one does not.** The third
+honesty gate in the family that began with liberties coverage. The confidence model grades what
+a value claims and the geometry declarations grade whether it was built; neither can see a
+structure assembled faithfully onto ground that is not under it, because every name resolves and
+every value reaches a vertex. Each archetype now declares where it touches the terrain —
+`perimeter` at the base of the walls, `ends` at deck height for a crossing — and `validate.py`
+measures that outline against the committed heightfield. The tolerance is the walker's 0.35 m
+step-up rule rather than a fresh number, because the gate is asking the walker's question.
+
+The six buildings land, worst corner 0.16 m. **The North Branch bridge stands 2.42 m clear of
+the ground at both landings and no land in the 640 m box rises to its deck**, so the crossing
+touches neither bank. The record declares `ground_contact: approach_not_modelled`, L30 admits
+it, and the chip reaches the visitor through the provenance popup. Two follow-ons this leaves
+on the table, both real and both bigger than a slice:
+
+- **The approach itself is unattested.** Nothing describes how a person got from the bank onto
+  the deck, so the fix is research before it is geometry — the 1834/1835 Wabansia and Kinzie's
+  Addition plat is the best candidate, and a sourced clearance would narrow it too, since a
+  lower deck needs less approach.
+- **Walking the deck** (STATUS § 21) is now measurably blocked rather than merely unbuilt: even
+  with surfaces-above-the-ground in the walker, there is nothing to step from. The two are one
+  piece of work, in that order.
+
 ## S8 — Milestone 1
 
 Wolf Point cluster + South Water block D (LaSalle–Clark). The first test of whether the

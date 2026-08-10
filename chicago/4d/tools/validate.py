@@ -22,9 +22,12 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import math
 import re
 import sys
 from pathlib import Path
+
+from heightfield import Heightfield
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -454,8 +457,221 @@ def check_geometry_declarations(structures: dict, consumed: dict[str, frozenset]
              f"declaring what the mesh does instead")
 
 
+# How far a structure's ground contact may sit off the terrain under it before
+# the record has to say so. The number is not a fresh tolerance: it is the
+# walker's step-up rule from renderers/web/js/walker.js — "a little over a foot,
+# which is what a plank walk stands above the mud and what a person steps onto
+# without thinking". The question this gate asks IS that question. Anything a
+# visitor could step onto has met the ground; anything they could not has not.
+GROUND_CONTACT_TOL_M = 0.35
+
+# What a phase may say when its structure does not reach the ground. One state
+# so far, and it is deliberately narrow: the model stops at the structure and
+# the ground it needed to arrive at is not built. A second state would need its
+# own argument.
+GROUND_CONTACT_STATES = ("approach_not_modelled",)
+
+
+def archetype_ground_contact(rep: Report | None = None) -> dict[str, dict]:
+    """archetype -> {mode, anchor}, declared beside the generator that builds it.
+
+    `GROUND_CONTACT` is `perimeter` (the footprint outline meets the terrain at
+    the base of the walls) or `ends` (only the end edges of the footprint meet
+    it, at the params object's `ground_contact_z`). An archetype that declares
+    nothing is skipped, not assumed — the same rule `archetype_consumed` uses,
+    for the same reason.
+    """
+    out: dict[str, dict] = {}
+    arch_dir = ROOT / "generators" / "archetypes"
+    if not arch_dir.exists():
+        return out
+    sys.path.insert(0, str(ROOT / "generators"))
+    for mod_path in sorted(arch_dir.glob("*_params.py")):
+        name = mod_path.stem.removesuffix("_params")
+        try:
+            mod = __import__(f"archetypes.{mod_path.stem}", fromlist=["GROUND_CONTACT"])
+        except Exception:  # noqa: BLE001 — archetype_consumed already reported it
+            continue
+        mode = getattr(mod, "GROUND_CONTACT", None)
+        if mode is None:
+            continue
+        if mode not in ("perimeter", "ends"):
+            if rep:
+                rep.error("ground contact", f"{mod_path.name} declares GROUND_CONTACT "
+                                            f"'{mode}', which is not perimeter or ends")
+            continue
+        if mode == "ends" and not callable(getattr(mod, "ground_contact_z", None)):
+            if rep:
+                rep.error("ground contact", f"{mod_path.name} declares GROUND_CONTACT 'ends' "
+                                            f"but no ground_contact_z(params) to say at what "
+                                            f"height those ends arrive")
+            continue
+        out[name] = {"mode": mode,
+                     "anchor": getattr(mod, "VERTICAL_ANCHOR", None),
+                     "contact_z": getattr(mod, "ground_contact_z", None)}
+    return out
+
+
+def _resample(a: tuple, b: tuple, step: float = 1.0) -> list[tuple]:
+    """Points along a segment, no farther apart than `step`, ends included."""
+    d = math.hypot(b[0] - a[0], b[1] - a[1])
+    n = max(1, int(math.ceil(d / step)))
+    return [(a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n) for i in range(n + 1)]
+
+
+def _contact_outline(poly: list, mode: str) -> list[tuple]:
+    """The footprint edges, in local (u, v), where this archetype meets the ground.
+
+    `perimeter` is the whole outline. `ends` is the two edges at the extremes of
+    u — the span axis — which for a crossing is where the deck arrives at land
+    and everything between is over water by construction.
+    """
+    edges = [(tuple(poly[i]), tuple(poly[(i + 1) % len(poly)])) for i in range(len(poly))]
+    if mode == "perimeter":
+        return edges
+    us = [p[0] for p in poly]
+    lo, hi = min(us), max(us)
+    return [(a, b) for a, b in edges
+            if (abs(a[0] - lo) < 1e-6 and abs(b[0] - lo) < 1e-6)
+            or (abs(a[0] - hi) < 1e-6 and abs(b[0] - hi) < 1e-6)]
+
+
+def unlanded_values(structures: dict, scenes: dict, rep: Report,
+                    field=None, origin: tuple | None = None,
+                    contacts: dict | None = None,
+                    resolvers: dict | None = None) -> list[tuple]:
+    """Every structure whose ground contact does not reach the ground.
+
+    Returns `(structure_id, phase_id, "ground_contact", where, gap_m)`.
+
+    The confidence model grades what a value claims; the geometry declarations
+    grade whether a value was built. Neither can see a structure that WAS built,
+    faithfully, onto ground that is not underneath it — because nothing in the
+    record is wrong. The Wolf Point Tavern's `frame_extension` was a name the
+    archetype could not find; this is the class where every name resolves and the
+    result still stands in the air.
+
+    Measured against the raw heightfield, not the renderer's walkable surface:
+    `terrain.js` reports a wading barrier at +4 m over water so a walker cannot
+    stroll into the river, and measuring a bridge against that barrier would be
+    measuring it against a navigation rule.
+    """
+    found: list[tuple] = []
+    if field is None or origin is None or not contacts:
+        return found
+    o_e, o_n = origin
+    if resolvers is None:
+        resolvers = {}
+        sys.path.insert(0, str(ROOT / "generators"))
+        for mod_path in sorted((ROOT / "generators" / "archetypes").glob("*_params.py")):
+            try:
+                mod = __import__(f"archetypes.{mod_path.stem}", fromlist=["from_phase"])
+                resolvers[mod_path.stem.removesuffix("_params")] = mod.from_phase
+            except Exception:  # noqa: BLE001 — reported by the param check
+                continue
+
+    targets = [d for d in (parse_date(sc.get("target_date", "")) for sc in scenes.values()) if d]
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        arch = st.get("archetype")
+        decl = contacts.get(arch)
+        if decl is None or arch not in resolvers:
+            continue
+        for ph in st.get("phases", []):
+            pid = ph.get("id", "?")
+            r = ph.get("documented_range", {})
+            frm, to = parse_date(r.get("from", "")), parse_date(r.get("to", ""))
+            if not (frm and to and any(frm <= t <= to for t in targets)):
+                continue
+            pos = ph.get("position") or {}
+            poly = (ph.get("footprint") or {}).get("polygon")
+            if not isinstance(poly, list) or len(poly) < 3:
+                continue
+            if pos.get("utm_e") is None or pos.get("utm_n") is None:
+                continue
+            try:
+                params = resolvers[arch](ph)
+            except Exception:  # noqa: BLE001 — reported by the param check
+                continue
+
+            e0 = float(pos["utm_e"]) - o_e
+            n0 = float(pos["utm_n"]) - o_n
+            th = math.radians(float(pos.get("rotation_deg") or 0.0))
+            cos, sin = math.cos(th), math.sin(th)
+
+            def to_world(p, e0=e0, n0=n0, cos=cos, sin=sin):
+                u, v = float(p[0]), float(p[1])
+                return (e0 + u * cos + v * sin, n0 - u * sin + v * cos)
+
+            base_y = 0.0 if decl["anchor"] == "water" else field.height(e0, n0)
+            contact_z = 0.0 if decl["mode"] == "perimeter" else float(decl["contact_z"](params))
+            contact_y = base_y + contact_z
+
+            worst = 0.0
+            for a, b in _contact_outline(poly, decl["mode"]):
+                for e, n in _resample(to_world(a), to_world(b)):
+                    gap = contact_y - field.height(e, n)
+                    if abs(gap) > abs(worst):
+                        worst = gap
+            if abs(worst) > GROUND_CONTACT_TOL_M:
+                found.append((sid, pid, "ground_contact", f"structure {sid}/{pid}", worst))
+    return found
+
+
+def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -> None:
+    """A structure that does not reach the ground has to say so on the record.
+
+    Checked in both directions, like the geometry declarations: a structure that
+    stands clear of the terrain and admits nothing is an unrecorded liberty, and
+    a structure that admits to one while sitting flat on the ground is an
+    admission to something we did not do.
+    """
+    gapped = {(sid, pid): gap for sid, pid, _, _, gap in unlanded}
+    declared = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for ph in st.get("phases", []):
+            pid = ph.get("id", "?")
+            where = f"structure {sid}/{pid}"
+            block = ph.get("ground_contact")
+            gap = gapped.get((sid, pid))
+            if block is not None and not isinstance(block, dict):
+                rep.error(where, "ground_contact must be an object with a state and a note")
+                continue
+            state = (block or {}).get("state")
+            if gap is None:
+                if block is not None:
+                    rep.error(where, f"declares ground_contact: '{state}', but its contact "
+                                     f"outline sits within {GROUND_CONTACT_TOL_M} m of the "
+                                     f"terrain under it — it lands. Drop the declaration, or "
+                                     f"move the entry claiming it to the Resolved section of "
+                                     f"docs/LIBERTIES.md if the ground caught up")
+                continue
+            if block is None:
+                rep.error(where, f"its ground contact stands {gap:+.2f} m off the terrain "
+                                 f"beneath it — more than the walker's {GROUND_CONTACT_TOL_M} m "
+                                 f"step-up rule, so a visitor could not step between the two. "
+                                 f"Nothing in the record is wrong and nothing shows it: declare "
+                                 f"ground_contact: {{state: 'approach_not_modelled', note: ...}} "
+                                 f"on the phase and admit it in docs/LIBERTIES.md")
+                continue
+            if state not in GROUND_CONTACT_STATES:
+                rep.error(where, f"ground_contact state '{state}' is not one of "
+                                 f"{', '.join(GROUND_CONTACT_STATES)}")
+                continue
+            if not (block.get("note") or "").strip():
+                rep.error(where, "ground_contact declares a state with no note — the note is "
+                                 "where the reasoning lives, exactly as it is for an inferred "
+                                 "value")
+                continue
+            declared += 1
+    rep.note(f"ground contact: {len(gapped)} structure(s) do not reach the terrain under them, "
+             f"{declared} declaring it")
+
+
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
-                             consumed: dict[str, frozenset] | None = None) -> None:
+                             consumed: dict[str, frozenset] | None = None,
+                             unlanded: list[tuple] | None = None) -> None:
     """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
@@ -516,9 +732,12 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         state = attr.get("geometry")
         if state in GEOMETRY_OWES_LIBERTY and attr.get("value"):
             owed.append((sid, pid, aspect, where, state))
+    # And a third: a structure built faithfully onto ground that is not under it.
+    for sid, pid, aspect, where, _gap in (unlanded or []):
+        owed.append((sid, pid, aspect, where, "unlanded"))
 
     covered = 0
-    invented = omitted = 0
+    invented = omitted = unlanded_n = 0
     honoured: set[tuple] = set()
     for sid, pid, aspect, where, kind in owed:
         keys = [(sid, pid, aspect), (sid, None, aspect)]
@@ -526,7 +745,8 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         if hit:
             covered += 1
             invented += kind == "invented"
-            omitted += kind != "invented"
+            unlanded_n += kind == "unlanded"
+            omitted += kind not in ("invented", "unlanded")
             honoured.update(hit)
             continue
         named = ", ".join(e.get("id", "?") for e in by_subject.get(sid, [])) or "none"
@@ -539,6 +759,10 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                                               aspect.split(".")[-1].replace("_", " ")))
             why = (f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
                    f"claims it — {what} nobody can defend is something we made up")
+        elif kind == "unlanded":
+            why = ("this structure does not reach the ground it stands over and no "
+                   "liberty in docs/LIBERTIES.md claims it — the record is right, the "
+                   "mesh is right, and the model still shows a thing arriving nowhere")
         else:
             why = (f"{aspect} declares geometry: '{kind}' but no liberty in "
                    f"docs/LIBERTIES.md claims it — the record states something the "
@@ -568,15 +792,16 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
             continue
         rep.error("liberties", f"{who} claims to cover '{csid}"
                                f"{'.' + cpid if cpid else ''}.{aspect}', but that value is "
-                               f"neither conjectural nor declared absent or simplified — either "
+                               f"neither conjectural, nor declared absent or simplified, nor "
+                               f"standing off the ground — either "
                                f"the evidence arrived and the model caught up, in which case "
                                f"move the entry to the Resolved section of docs/LIBERTIES.md, or "
                                f"the claim was never true. An admission to something we did not "
                                f"do reads as diligence and provides none")
 
     rep.note(f"liberties coverage: {covered} value(s) owed an admission — {invented} invented, "
-             f"{omitted} stated and not built — claimed by {len(honoured)} declaration(s) in "
-             f"docs/LIBERTIES.md")
+             f"{omitted} stated and not built, {unlanded_n} standing off the ground — claimed by "
+             f"{len(honoured)} declaration(s) in docs/LIBERTIES.md")
 
 
 # --------------------------------------------------------------------------
@@ -691,7 +916,33 @@ def main() -> int:
     # what we recorded and never built, which is the same standard read backwards
     consumed = archetype_consumed(rep)
     check_geometry_declarations(structures, consumed, rep)
-    check_liberties_coverage(structures, liberties, rep, consumed)
+
+    # Does each structure reach the ground it stands over? Needs the committed
+    # heightfield and the datum origin; without either the question cannot be
+    # asked, and a gate that silently answers "yes" when it cannot see is worse
+    # than one that says it did not run.
+    contacts = archetype_ground_contact(rep)
+    epoch_ids = {sc.get("terrain_epoch") for sc in scenes.values() if sc.get("terrain_epoch")}
+    field = None
+    for ep in sorted(i for i in epoch_ids if i):
+        try:
+            field = Heightfield.load(DATA / "terrain" / "epochs" / ep)
+        except Exception as e:  # noqa: BLE001
+            rep.error("ground contact", f"cannot read the {ep} heightfield: {e}")
+        if field is not None:
+            break
+    datum_origin = None
+    if datum.get("origin_utm_e") is not None and datum.get("origin_utm_n") is not None:
+        datum_origin = (float(datum["origin_utm_e"]), float(datum["origin_utm_n"]))
+    unlanded: list[tuple] = []
+    if field is None or datum_origin is None or not contacts:
+        rep.note("ground contact: skipped — needs a committed heightfield, a datum origin "
+                 "and at least one archetype declaring GROUND_CONTACT")
+    else:
+        unlanded = unlanded_values(structures, scenes, rep, field, datum_origin, contacts)
+        check_ground_contact(structures, unlanded, rep)
+
+    check_liberties_coverage(structures, liberties, rep, consumed, unlanded)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

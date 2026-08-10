@@ -77,6 +77,10 @@ CONSUMED = frozenset({
     "frame_addition_depth_m", "frame_addition_stories", "frame_addition_height_m",
 })
 
+# See frame_tavern_params for the argument. `perimeter`: the footprint outline
+# meets the terrain at local z = 0, the base of the walls.
+GROUND_CONTACT = "perimeter"
+
 
 class ParamError(ValueError):
     """A structure record cannot be resolved into valid archetype parameters."""

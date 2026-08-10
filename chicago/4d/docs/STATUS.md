@@ -389,6 +389,46 @@ uncertainty of the 1834 sheets in its note.
     across the river with nothing visible at head height to explain it. A walkable deck needs the
     walker to learn about surfaces above the ground, which is its own unit of work.
 
+22. **The bridge arrives nowhere, and the gate that says so is new.** Three rules now ask
+    whether a record is honest: the confidence model grades what a value claims, the liberties
+    coverage check demands an admission for anything invented, and the geometry declarations
+    demand one for anything stated and not built. None of them can see a structure that was
+    built faithfully onto ground that is not underneath it, because **nothing in the record is
+    wrong**. Every name resolves, every value reaches a vertex, every confidence chip is earned,
+    and the North Branch bridge still stands 2.42 m clear of the terrain at both landings.
+    `check_ground_contact` closes that direction. Each archetype declares where it touches the
+    ground — `perimeter` for a building (the footprint outline, at the base of the walls) and
+    `ends` for a crossing (the two end edges, at deck height) — and `validate.py` measures that
+    outline against the committed heightfield through `tools/heightfield.py`. **The tolerance is
+    not a new number: it is the walker's 0.35 m step-up rule**, because the question the gate
+    asks is literally the walker's question, and a structure a visitor could not step onto has
+    not met the ground.
+    **What it found is the only thing it found, and that is worth stating too.** The six
+    buildings land: their worst corner sits 0.16 m off (the Wolf Point Tavern, over the bank
+    fall), well inside a step. The bridge does not, and cannot with the data as it stands — the
+    deck sits at 2.22 m (Cleaver's inferred six-foot clearance plus the stringer and plank depth
+    under it) and the highest land anywhere in the 640 m box is 1.31 m, so there is no ground in
+    this epoch for it to arrive at. The record declares `ground_contact: approach_not_modelled`
+    and L30 admits it; the popup shows the chip on the building being inspected, so the
+    admission reaches a visitor and not only a reviewer.
+    **The approach is not modelled because nothing describes one.** Andreas gives the stringers,
+    Cleaver gives the width and the log abutments "in the shallow water near the banks", and no
+    source reached says how a person or a team got from the bank onto the deck. An embankment
+    would be a second invention stacked on the clearance figure — which is itself only
+    `inferred` and unsourced in the dossier that supplied it — and unlike L29's fifteen cribs it
+    is the invention a visitor would walk over rather than look at.
+    **A smaller thing came out of writing it, and it is a warning about the staleness hash.**
+    The contact height was first written as a `@property` on `BridgeTimberParams`, and
+    `mesh_inputs.py` hashes every property a parameter class derives — so a number no builder
+    reads immediately re-staled the bridge. That is exactly the false positive § 15 rewrote the
+    hash to end, arriving from a new direction: the rule "a derived property is a mesh input" is
+    right about constants and wrong about accessors. It is a module-level
+    `ground_contact_z(params)` instead, and the docstring says why so the next one does not
+    rediscover it.
+    **What it still cannot see** is a structure standing on ground that exists and is wrong —
+    the check compares a mesh against the heightfield, and both can agree on a surface no
+    source supports.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand

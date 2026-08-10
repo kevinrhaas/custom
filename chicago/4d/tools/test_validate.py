@@ -236,7 +236,7 @@ def test_liberties_cover_conjectural_inventions() -> None:
         liberty("L7", "x: the footprint was invented", ["x"], covers=[covers("x", "footprint")]),
     ]}, rep)
     check("claiming an invention that the data no longer contains is an error",
-          any("neither conjectural nor declared" in e and "L7" in e
+          any("neither conjectural, nor declared" in e and "L7" in e
               for e in rep.errors), rep.errors)
 
     rep = V.Report()
@@ -301,7 +301,7 @@ def test_liberties_cover_invented_form() -> None:
                                    covers("x", "form.stories", "p")]),
     ]}, rep)
     check("claiming an attribute that is not conjectural is an error",
-          any("form.stories" in e and "neither conjectural nor declared" in e
+          any("form.stories" in e and "neither conjectural, nor declared" in e
               for e in rep.errors), rep.errors)
 
 
@@ -425,7 +425,7 @@ def test_liberties_cover_omissions_and_simplifications() -> None:
                                    covers("x", "form.roof_type", "p")]),
     ]}, rep, consumed)
     check("claiming to have omitted something that is built is an error",
-          any("form.roof_type" in e and "neither conjectural nor declared" in e
+          any("form.roof_type" in e and "neither conjectural, nor declared" in e
               for e in rep.errors), rep.errors)
 
     # Without the archetype map the omission rule cannot run at all, and must not
@@ -664,6 +664,152 @@ def test_manifest_declares_the_scheme_the_generators_compute() -> None:
     check("the committed manifest was stamped under the current scheme",
           manifest.get("inputs_scheme") == M.SCHEME,
           f"{manifest.get('inputs_scheme')!r} vs {M.SCHEME!r}")
+
+
+class _Ramp:
+    """A test heightfield: flat at `west` metres west of x, at `east` east of it.
+
+    A step rather than a slope, because the thing under test is whether the
+    check looks at the whole contact outline or only at the point the record
+    happens to be placed on, and a step makes the difference unmissable.
+    """
+
+    def __init__(self, west: float, east: float, at_e: float = 5.0) -> None:
+        self.west, self.east, self.at_e = west, east, at_e
+
+    def height(self, e: float, n: float) -> float:  # noqa: ARG002 — n is flat
+        return self.west if e < self.at_e else self.east
+
+
+def _landing(structures, contacts, field, resolvers):
+    return V.unlanded_values(structures, {"s.json": scene()}, V.Report(),
+                             field, (0.0, 0.0), contacts, resolvers)
+
+
+def _box(pid: str = "p", origin=(0.0, 0.0), poly=None) -> dict:
+    ph = phase(pid, "1831-01-01", "1851-01-01")
+    ph["position"] = {"utm_e": origin[0], "utm_n": origin[1], "rotation_deg": 0.0,
+                      "confidence": "conjectural"}
+    ph["footprint"] = {"polygon": poly or [[0, 0], [10, 0], [10, 6], [0, 6]],
+                       "confidence": "conjectural"}
+    return ph
+
+
+def test_ground_contact_measures_the_whole_outline() -> None:
+    """A structure has to reach the ground, and the origin is not the outline.
+
+    The failure this rules out is the one the placement code invites: a building
+    is put down at `terrain.height()` of its origin corner, so the origin sits on
+    the ground by construction and the far corner can be anywhere.
+    """
+    st = {"x.json": {"id": "x", "archetype": "a", "phases": [_box()]}}
+    contacts = {"a": {"mode": "perimeter", "anchor": None, "contact_z": None}}
+    resolvers = {"a": lambda ph: object()}
+
+    flat = _landing(st, contacts, _Ramp(0.0, 0.0), resolvers)
+    check("a building on flat ground lands", not flat, flat)
+
+    # The origin corner (0, 0) still sits on 0.0 — only the far half drops away.
+    stepped = _landing(st, contacts, _Ramp(0.0, -1.2), resolvers)
+    check("a building whose far corner hangs over a drop does not land",
+          [f[0] for f in stepped] == ["x"], stepped)
+
+
+def test_ground_contact_tolerance_is_the_step_up_rule() -> None:
+    """0.35 m, and it is the walker's number rather than a fresh one."""
+    st = {"x.json": {"id": "x", "archetype": "a", "phases": [_box()]}}
+    contacts = {"a": {"mode": "perimeter", "anchor": None, "contact_z": None}}
+    resolvers = {"a": lambda ph: object()}
+    check("a step a person could take is not a finding",
+          not _landing(st, contacts, _Ramp(0.0, -0.30), resolvers))
+    check("a step a person could not take is",
+          bool(_landing(st, contacts, _Ramp(0.0, -0.40), resolvers)))
+
+
+def test_ground_contact_of_a_crossing_is_its_deck() -> None:
+    """`ends` mode: only the end edges meet the ground, and at deck height.
+
+    The discriminating case is a deck over a channel. Every sample between the
+    ends is over water and would fail a perimeter test trivially — so a check
+    that measured the whole outline would report every bridge ever built.
+    """
+    poly = [[0, 0], [20, 0], [20, 3], [0, 3]]
+    st = {"b.json": {"id": "b", "archetype": "c", "phases": [_box(poly=poly)]}}
+
+    class Channel:
+        """Banks at +1.0, a bed at -3.0 between local E 4 and 16."""
+
+        def height(self, e, n):  # noqa: ARG002
+            return -3.0 if 4.0 < e < 16.0 else 1.0
+
+    resolvers = {"c": lambda ph: object()}
+    high = {"c": {"mode": "ends", "anchor": "water", "contact_z": lambda p: 2.22}}
+    check("a deck 2.22 m over banks 1.0 m high does not land",
+          [f[0] for f in _landing(st, high, Channel(), resolvers)] == ["b"])
+
+    low = {"c": {"mode": "ends", "anchor": "water", "contact_z": lambda p: 1.10}}
+    check("the same deck at bank height lands, and the water between is not counted",
+          not _landing(st, low, Channel(), resolvers))
+
+
+def test_ground_contact_declaration_is_checked_both_ways() -> None:
+    """An unadmitted gap fails, and so does an admission with no gap."""
+    gap = [("x", "p", "ground_contact", "structure x/p", 2.42)]
+
+    rep = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [_box()]}}, gap, rep)
+    check("a structure standing off the ground and saying nothing is an error",
+          any("step-up rule" in e for e in rep.errors), rep.errors)
+
+    declared = _box()
+    declared["ground_contact"] = {"state": "approach_not_modelled", "note": "no source."}
+    rep = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [declared]}}, gap, rep)
+    check("declaring it satisfies the check", not rep.errors, rep.errors)
+
+    rep = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [declared]}}, [], rep)
+    check("declaring it while sitting on the ground is an error too",
+          any("it lands" in e for e in rep.errors), rep.errors)
+
+    bare = _box()
+    bare["ground_contact"] = {"state": "approach_not_modelled", "note": "  "}
+    rep = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [bare]}}, gap, rep)
+    check("a state with no reasoning is an error", any("no note" in e for e in rep.errors),
+          rep.errors)
+
+
+def test_ground_contact_owes_the_liberties_document_an_entry() -> None:
+    """The gap is an invention nobody drew, so the document has to own it."""
+    ph = _box()
+    ph["footprint"]["confidence"] = "documented"
+    ph["position"]["confidence"] = "documented"
+    structures = {"x.json": {"id": "x", "phases": [ph]}}
+    unlanded = [("x", "p", "ground_contact", "structure x/p", 2.42)]
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L1", "x stands on nothing", ["x"]),
+    ]}, rep, {}, unlanded)
+    check("a structure that reaches no ground and no liberty saying so is an error",
+          any("arriving nowhere" in e and "ground_contact" in e for e in rep.errors),
+          rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L1", "x stands on nothing", ["x"],
+                covers=[covers("x", "ground_contact", "p")]),
+    ]}, rep, {}, unlanded)
+    check("claiming it satisfies the check", not rep.errors, rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L1", "x stands on nothing", ["x"],
+                covers=[covers("x", "ground_contact", "p")]),
+    ]}, rep, {}, [])
+    check("claiming a landing that is fine is an over-claim",
+          any("standing off the ground" in e for e in rep.errors), rep.errors)
 
 
 def test_real_dataset_passes() -> None:

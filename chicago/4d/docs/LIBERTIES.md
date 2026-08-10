@@ -490,6 +490,32 @@ sits.
 **Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
 **Recorded:** 2026-08-10.
 
+### L30 — The bridge lands on nothing, and no approach is modelled
+**Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
+2.42 m above the ground beneath it, and **no approach of any kind is built** — no embankment, no
+ramp, no sloping run of deck. The crossing stands in the river and touches neither bank.
+**Why:** the deck sits 2.22 m above the water (Cleaver's inferred six-foot clearance plus the
+stringer and plank depth under it), and the modelled ground at both landings is Z = 0 by
+construction, because the terrain surface crosses the datum exactly along the drawn waterline.
+The highest land anywhere in the 640 m box is 1.31 m. So there is nothing for the deck to arrive
+at, and nothing anybody wrote says what did. Andreas gives the stringers; Cleaver gives the
+width and log abutments "in the shallow water near the banks"; no source reached describes how a
+person or a team got from the bank up onto the deck. Building one would stack a second invention
+on top of the clearance figure — which is itself only `inferred`, and unsourced in the dossier
+that supplied it — and unlike the fifteen cribs of L29, it is the invention a visitor would walk
+over rather than look at.
+**Consequence:** the crossing reads as a bridge to nowhere. From the bank you cannot step onto
+it, and the walkthrough cannot pretend otherwise: the walker follows the terrain, so the deck is
+scenery you pass under. That is honest about the evidence and wrong about the town — a bridge
+that carried a procession of hundreds in August 1835 plainly met its banks. Every part of that
+gap is unrecorded, so it is stated rather than drawn.
+**How to resolve:** a period depiction of the crossing or a levelled section. The 1834/1835
+Wabansia and Kinzie's Addition plat, contemporaneous to within two weeks of the scene date, is
+the best candidate; a sourced clearance figure would also narrow it, since a lower deck needs
+less approach and the six feet is the weakest number in the record.
+**Covers:** `north_branch_bridge.log_1832.ground_contact`.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved

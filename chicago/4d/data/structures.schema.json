@@ -189,6 +189,24 @@
           }
         },
 
+        "ground_contact": {
+          "type": "object",
+          "description": "Present ONLY when this structure does not reach the ground it stands over. tools/validate.py measures the archetype's declared contact outline against the committed heightfield and requires this declaration once the gap exceeds the walker's 0.35 m step-up rule; it rejects one on a structure that lands, so the claim is checked in both directions. Owes docs/LIBERTIES.md a `Covers: <id>.<phase>.ground_contact` token.",
+          "additionalProperties": false,
+          "required": ["state", "note"],
+          "properties": {
+            "state": {
+              "enum": ["approach_not_modelled"],
+              "description": "approach_not_modelled: the structure is built and the ground it needed to arrive at is not."
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The reasoning, as an inferred value carries one: what is missing, why it was not built, and what would settle it."
+            }
+          }
+        },
+
         "change_note": {
           "type": "string",
           "description": "What changed at the start of this phase, and on what evidence."
