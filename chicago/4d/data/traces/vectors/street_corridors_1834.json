@@ -1,0 +1,1394 @@
+{
+ "_doc": "Platted street corridors measured off BOTH 1834 sheets, to settle the disagreement recorded in data/traces/street_control.json: 80 ft annotated on Hathaway against Currey's 66 ft for the 1830 plat. A corridor here is the space between two block boundary lines, measured centre to centre along a traverse that starts at a committed ground-control pixel \u2014 not a second reading of the annotation, and not a hand-placed anchor per street. Pixels are the evidence and are committed as such; metres are derived from them through each sheet's own affine, and check_street_module in tools/validate.py re-derives every one of them offline on every commit. Written by tools/measure_street_widths.py, which needs the network and is therefore not part of tools/check.sh.",
+ "sources": [
+  "hathaway_1834",
+  "wright_1834"
+ ],
+ "tool": "tools/measure_street_widths.py",
+ "read_on": "2026-08-10",
+ "confidence": "documented",
+ "confidence_note": "A corridor width is measured at a stated place by a stated method that anyone can re-run, which is what documented means here. What it is documented ABOUT is the sheet: the figure it supports is the width these surveys DRAW. Both sheets carry 3.7-4.5% anisotropic paper stretch, which puts about a metre of local scale error on a 24 m street \u2014 small against the 4.27 m between the two candidate figures, and large against the 0.6 m between 18 ft and 16 ft alleys. That is why the streets are settled here and the alleys are reported but not settled.",
+ "method": {
+  "traverse": "each traverse starts at a committed GCP pixel and runs along one axis of the plat grid, reporting every boundary line it crosses; the axes come from the modern control through the sheet's own affine",
+  "boundary_line": "a contiguous run of the profile inked over line_frac of a band running along the line \u2014 lot numerals, block numbers, street names and the sheets' width annotations cover a fraction of it",
+  "classification": "by measured width alone: street_min_m or wider is a street, alley_lo_m..alley_hi_m is an alley, narrower is lot subdivision. No candidate figure enters the test",
+  "width": "boundary line centroid to boundary line centroid, so a reading does not depend on how heavily either line was inked",
+  "params": {
+   "reach_m": 380.0,
+   "band_m": 9.0,
+   "step_px": 0.5,
+   "ink_ratio": 0.68,
+   "line_frac": 0.88,
+   "paper_frac": 0.3,
+   "ink_share": 0.35,
+   "street_min_m": 15.0,
+   "street_max_m": 30.0,
+   "face_min_m": 60.0,
+   "face_reach_m": 150.0,
+   "face_gap_m": 9.0,
+   "pitch_lo_m": 95.0,
+   "pitch_hi_m": 145.0,
+   "alley_lo_m": 3.0,
+   "alley_hi_m": 9.0,
+   "margin_m": 25.0
+  }
+ },
+ "candidates": {
+  "adopted": {
+   "width_ft": 80,
+   "sources": [
+    "hathaway_1834",
+    "thompson_plat_1830"
+   ]
+  },
+  "dissent": {
+   "width_ft": 66,
+   "sources": [
+    "chicagology_first_post_office"
+   ]
+  },
+  "tolerance_ft": 4.0,
+  "tolerance_note": "4 ft is the local scale error these sheets carry (3.7-4.5% of 80 ft is 3.0-3.6 ft) rounded up, and it is deliberately less than half the 14 ft between the candidates, so the band cannot admit both. It is used for EXCLUSION: a candidate no reading comes within tolerance_ft of is not the figure these sheets draw.",
+  "nearest_ft": 80,
+  "excluded_ft": [
+   66
+  ],
+  "median_above_adopted_ft": 4.8,
+  "reading_note": "The median runs about 5 ft ABOVE the adopted 80, on both sheets, and that is recorded rather than rounded away: the corridors these draughtsmen drew are a few per cent wider than 80 ft. Paper stretch of 3.7-4.5% accounts for most of it and the placement of a pen line for the rest, so what this measurement settles is WHICH candidate \u2014 every one of the readings is at least 9 ft clear of 66, and the nearest is within 5 of 80 \u2014 and not the platted figure to the foot."
+ },
+ "summary": {
+  "n_corridors": 8,
+  "median_ft": 84.8,
+  "min_ft": 75.7,
+  "max_ft": 92.8,
+  "by_sheet": {
+   "hathaway_1834": {
+    "n": 4,
+    "median_ft": 83.7,
+    "min_ft": 75.7,
+    "max_ft": 86.9
+   },
+   "wright_1834": {
+    "n": 4,
+    "median_ft": 86.4,
+    "min_ft": 80.0,
+    "max_ft": 92.8
+   }
+  }
+ },
+ "datum_exposure": {
+  "_doc": "What adopting the corrected Wright pixel would do, computed and NOT adopted. Wright G5 is one of the eight points data/datum.json is fitted from, so correcting it moves the origin, which re-derives every coordinate in the dataset and stales every committed mesh. That is a decision with a bake attached; this file records its cost.",
+  "gcp": "G5",
+  "recorded_px": [
+   1197,
+   1955
+  ],
+  "measured_px": [
+   1225.9,
+   1955.8
+  ],
+  "refit_rms_m": {
+   "as_committed": 17.5,
+   "with_correction": 17.5
+  },
+  "origin_shift_m": 15.0,
+  "origin_shift_en": [
+   -15.0,
+   0.2
+  ],
+  "status": "queued, not adopted"
+ },
+ "sheets": {
+  "hathaway_1834": {
+   "note": "LOC scan, pixels in the 4000 x 5702 working raster",
+   "raster": {
+    "iiif_image": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd410:g4104:g4104c:ct007620",
+    "region": [
+     698,
+     2489,
+     2269,
+     2269
+    ],
+    "region_sha256": "4b8d3857248a0b797bb16fd5321782bbc11ae4b247fa3a87b56d6e80832f255f",
+    "gcp_px_to_native": 1.634,
+    "m_per_native_px": 0.4011,
+    "m_per_gcp_px": 0.6553
+   },
+   "affine": {
+    "source": "data/traces/gcp/hathaway_1834_gcps.json",
+    "refit_rms_m": 17.7,
+    "coefficients": {
+     "a": 0.64110402,
+     "b": 0.048288221,
+     "c": 446089.229652378,
+     "d": -0.002896688,
+     "e": -0.667825439,
+     "f": 4638784.223750403
+    },
+    "grid_skew_deg": 2.26
+   },
+   "traverses": [
+    {
+     "id": "along_lake",
+     "axis": "ew",
+     "reads": "the N-S streets Lake Street crosses, read along the block row south of it",
+     "start_px": [
+      1828.0,
+      3748.8
+     ],
+     "n_boundary_lines": 21,
+     "corridors": [
+      {
+       "px": [
+        [
+         1048.0,
+         3746.1
+        ],
+        [
+         1115.5,
+         3746.3
+        ]
+       ],
+       "centre_px": [
+        1081.8,
+        3746.2
+       ],
+       "centre_t_px": -746.23,
+       "width_m": 26.49,
+       "width_ft": 86.9,
+       "line_thickness_px": [
+        6.5,
+        1.5
+       ],
+       "interior_ink_share": 0.27,
+       "boundary_run_m": [
+        110.3,
+        108.7
+       ]
+      },
+      {
+       "px": [
+        [
+         1345.5,
+         3747.1
+        ],
+        [
+         1410.5,
+         3747.3
+        ]
+       ],
+       "centre_px": [
+        1378.0,
+        3747.2
+       ],
+       "centre_t_px": -449.99,
+       "width_m": 25.51,
+       "width_ft": 83.7,
+       "line_thickness_px": [
+        5.5,
+        1.5
+       ],
+       "interior_ink_share": 0.14,
+       "boundary_run_m": [
+        109.5,
+        109.9
+       ]
+      },
+      {
+       "px": [
+        [
+         1640.0,
+         3748.1
+        ],
+        [
+         1701.5,
+         3748.3
+        ]
+       ],
+       "centre_px": [
+        1670.8,
+        3748.2
+       ],
+       "centre_t_px": -157.22,
+       "width_m": 24.14,
+       "width_ft": 79.2,
+       "line_thickness_px": [
+        4.5,
+        1.5
+       ],
+       "interior_ink_share": 0.06,
+       "boundary_run_m": [
+        110.7,
+        110.7
+       ]
+      },
+      {
+       "px": [
+        [
+         1932.0,
+         3749.1
+        ],
+        [
+         1990.8,
+         3749.3
+        ]
+       ],
+       "centre_px": [
+        1961.4,
+        3749.2
+       ],
+       "centre_t_px": 133.4,
+       "width_m": 23.08,
+       "width_ft": 75.7,
+       "line_thickness_px": [
+        4.5,
+        1.0
+       ],
+       "interior_ink_share": 0.16,
+       "boundary_run_m": [
+        110.3,
+        109.5
+       ]
+      }
+     ],
+     "alleys": [
+      {
+       "px": [
+        [
+         1514.8,
+         3747.7
+        ],
+        [
+         1527.5,
+         3747.7
+        ]
+       ],
+       "centre_px": [
+        1521.2,
+        3747.7
+       ],
+       "centre_t_px": -306.85,
+       "width_m": 4.98,
+       "width_ft": 16.3,
+       "line_thickness_px": [
+        1.0,
+        1.5
+       ],
+       "interior_ink_share": 0.05,
+       "boundary_run_m": [
+        123.1,
+        114.7
+       ]
+      },
+      {
+       "px": [
+        [
+         1806.5,
+         3748.7
+        ],
+        [
+         1819.5,
+         3748.7
+        ]
+       ],
+       "centre_px": [
+        1813.0,
+        3748.7
+       ],
+       "centre_t_px": -14.97,
+       "width_m": 5.1,
+       "width_ft": 16.7,
+       "line_thickness_px": [
+        1.5,
+        1.5
+       ],
+       "interior_ink_share": 0.05,
+       "boundary_run_m": [
+        111.1,
+        111.1
+       ]
+      },
+      {
+       "px": [
+        [
+         2095.8,
+         3749.7
+        ],
+        [
+         2110.0,
+         3749.7
+        ]
+       ],
+       "centre_px": [
+        2102.9,
+        3749.7
+       ],
+       "centre_t_px": 274.9,
+       "width_m": 5.57,
+       "width_ft": 18.3,
+       "line_thickness_px": [
+        1.0,
+        0.5
+       ],
+       "interior_ink_share": 0.04,
+       "boundary_run_m": [
+        108.7,
+        109.1
+       ]
+      }
+     ],
+     "unclassified_wide_gaps": [
+      {
+       "px": [
+        [
+         1115.5,
+         3746.3
+        ],
+        [
+         1223.0,
+         3746.7
+        ]
+       ],
+       "centre_px": [
+        1169.2,
+        3746.5
+       ],
+       "centre_t_px": -658.73,
+       "width_m": 42.19,
+       "width_ft": 138.4,
+       "line_thickness_px": [
+        1.5,
+        0.5
+       ],
+       "interior_ink_share": 0.09,
+       "boundary_run_m": [
+        108.7,
+        109.9
+       ]
+      },
+      {
+       "px": [
+        [
+         1223.0,
+         3746.7
+        ],
+        [
+         1345.5,
+         3747.1
+        ]
+       ],
+       "centre_px": [
+        1284.2,
+        3746.9
+       ],
+       "centre_t_px": -543.73,
+       "width_m": 48.08,
+       "width_ft": 157.7,
+       "line_thickness_px": [
+        0.5,
+        5.5
+       ],
+       "interior_ink_share": 0.12,
+       "boundary_run_m": [
+        109.9,
+        109.5
+       ]
+      },
+      {
+       "px": [
+        [
+         1410.5,
+         3747.3
+        ],
+        [
+         1514.8,
+         3747.7
+        ]
+       ],
+       "centre_px": [
+        1462.7,
+        3747.5
+       ],
+       "centre_t_px": -365.36,
+       "width_m": 40.94,
+       "width_ft": 134.3,
+       "line_thickness_px": [
+        1.5,
+        1.0
+       ],
+       "interior_ink_share": 0.07,
+       "boundary_run_m": [
+        109.9,
+        123.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1527.5,
+         3747.7
+        ],
+        [
+         1640.0,
+         3748.1
+        ]
+       ],
+       "centre_px": [
+        1583.8,
+        3747.9
+       ],
+       "centre_t_px": -244.22,
+       "width_m": 44.15,
+       "width_ft": 144.9,
+       "line_thickness_px": [
+        1.5,
+        4.5
+       ],
+       "interior_ink_share": 0.07,
+       "boundary_run_m": [
+        114.7,
+        110.7
+       ]
+      },
+      {
+       "px": [
+        [
+         1701.5,
+         3748.3
+        ],
+        [
+         1806.5,
+         3748.7
+        ]
+       ],
+       "centre_px": [
+        1754.0,
+        3748.5
+       ],
+       "centre_t_px": -73.97,
+       "width_m": 41.21,
+       "width_ft": 135.2,
+       "line_thickness_px": [
+        1.5,
+        1.5
+       ],
+       "interior_ink_share": 0.02,
+       "boundary_run_m": [
+        110.7,
+        111.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1819.5,
+         3748.7
+        ],
+        [
+         1932.0,
+         3749.1
+        ]
+       ],
+       "centre_px": [
+        1875.8,
+        3748.9
+       ],
+       "centre_t_px": 47.77,
+       "width_m": 44.15,
+       "width_ft": 144.9,
+       "line_thickness_px": [
+        1.5,
+        4.5
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        111.1,
+        110.3
+       ]
+      },
+      {
+       "px": [
+        [
+         1990.8,
+         3749.3
+        ],
+        [
+         2095.8,
+         3749.7
+        ]
+       ],
+       "centre_px": [
+        2043.3,
+        3749.5
+       ],
+       "centre_t_px": 215.28,
+       "width_m": 41.21,
+       "width_ft": 135.2,
+       "line_thickness_px": [
+        1.0,
+        1.0
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        109.5,
+        108.7
+       ]
+      },
+      {
+       "px": [
+        [
+         2110.0,
+         3749.7
+        ],
+        [
+         2222.0,
+         3750.1
+        ]
+       ],
+       "centre_px": [
+        2166.0,
+        3749.9
+       ],
+       "centre_t_px": 338.0,
+       "width_m": 43.96,
+       "width_ft": 144.2,
+       "line_thickness_px": [
+        0.5,
+        6.5
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        109.1,
+        109.9
+       ]
+      },
+      {
+       "px": [
+        [
+         2222.0,
+         3750.1
+        ],
+        [
+         2311.2,
+         3750.4
+        ]
+       ],
+       "centre_px": [
+        2266.6,
+        3750.2
+       ],
+       "centre_t_px": 438.62,
+       "width_m": 35.01,
+       "width_ft": 114.9,
+       "line_thickness_px": [
+        6.5,
+        11.0
+       ],
+       "interior_ink_share": 0.07,
+       "boundary_run_m": [
+        109.9,
+        213.4
+       ]
+      },
+      {
+       "px": [
+        [
+         2320.0,
+         3750.5
+        ],
+        [
+         2489.5,
+         3751.1
+        ]
+       ],
+       "centre_px": [
+        2404.8,
+        3750.8
+       ],
+       "centre_t_px": 576.77,
+       "width_m": 66.52,
+       "width_ft": 218.3,
+       "line_thickness_px": [
+        0.5,
+        4.5
+       ],
+       "interior_ink_share": 0.05,
+       "boundary_run_m": [
+        213.4,
+        206.9
+       ]
+      },
+      {
+       "px": [
+        [
+         2489.5,
+         3751.1
+        ],
+        [
+         2604.0,
+         3751.4
+        ]
+       ],
+       "centre_px": [
+        2546.8,
+        3751.2
+       ],
+       "centre_t_px": 718.77,
+       "width_m": 44.93,
+       "width_ft": 147.4,
+       "line_thickness_px": [
+        4.5,
+        0.5
+       ],
+       "interior_ink_share": 0.15,
+       "boundary_run_m": [
+        206.9,
+        110.3
+       ]
+      },
+      {
+       "px": [
+        [
+         2604.0,
+         3751.4
+        ],
+        [
+         2716.0,
+         3751.8
+        ]
+       ],
+       "centre_px": [
+        2660.0,
+        3751.6
+       ],
+       "centre_t_px": 832.02,
+       "width_m": 43.96,
+       "width_ft": 144.2,
+       "line_thickness_px": [
+        0.5,
+        0.5
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        110.3,
+        36.9
+       ]
+      }
+     ],
+     "rejected_short_boundaries": [],
+     "rejected_off_module": [],
+     "block_pitch_m": [
+      118.8,
+      117.4,
+      116.6
+     ]
+    }
+   ],
+   "control_point_check": {
+    "gcp": "HA",
+    "map_feature": "Canal St & Lake St",
+    "recorded_px": [
+     1122,
+     2218
+    ],
+    "recorded_native_px": [
+     1833.3,
+     3624.2
+    ],
+    "on_centreline_native_px": [
+     1966.7,
+     3624.7
+    ],
+    "on_centreline_px": [
+     1203.6,
+     2218.3
+    ],
+    "offset_m": 52.4,
+    "offset_is": "across Canal Street only; the point's position ALONG the street is left where it was recorded, because a traverse across a corridor cannot see it",
+    "finding": "the recorded pixel falls inside block 28 rather than in the Canal Street corridor; on both sheets the block number straddles it"
+   },
+   "widths_ft": {
+    "n": 4,
+    "median_ft": 83.7,
+    "min_ft": 75.7,
+    "max_ft": 86.9
+   }
+  },
+  "wright_1834": {
+   "note": "BPL/Digital Commonwealth scan, pixels in the 4204 x 5166 resource space",
+   "raster": {
+    "iiif_image": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g",
+    "region": [
+     557,
+     1315,
+     1279,
+     1279
+    ],
+    "region_sha256": "1969f5b0c26b873db3e341baa78f10fccf431c7fd060c7117e6e63a3c612fd67",
+    "gcp_px_to_native": 1.0,
+    "m_per_native_px": 0.7115,
+    "m_per_gcp_px": 0.7115
+   },
+   "affine": {
+    "source": "data/traces/gcp/wright_1834_gcps.json",
+    "refit_rms_m": 17.5,
+    "coefficients": {
+     "a": 0.698279116,
+     "b": 0.004304545,
+     "c": 446067.750450577,
+     "d": 0.014424895,
+     "e": -0.724562957,
+     "f": 4638688.114617579
+    },
+    "grid_skew_deg": 3.08
+   },
+   "traverses": [
+    {
+     "id": "along_lake",
+     "axis": "ew",
+     "reads": "the N-S streets Lake Street crosses, read along the block row south of it",
+     "start_px": [
+      1198.8,
+      2025.3
+     ],
+     "n_boundary_lines": 22,
+     "corridors": [
+      {
+       "px": [
+        [
+         701.7,
+         2011.5
+        ],
+        [
+         738.7,
+         2012.5
+        ]
+       ],
+       "centre_px": [
+        720.2,
+        2012.0
+       ],
+       "centre_t_px": -478.83,
+       "width_m": 25.84,
+       "width_ft": 84.8,
+       "line_thickness_px": [
+        2.0,
+        2.0
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        110.3,
+        111.7
+       ]
+      },
+      {
+       "px": [
+        [
+         874.4,
+         2016.3
+        ],
+        [
+         912.1,
+         2017.3
+        ]
+       ],
+       "centre_px": [
+        893.2,
+        2016.8
+       ],
+       "centre_t_px": -305.72,
+       "width_m": 26.33,
+       "width_ft": 86.4,
+       "line_thickness_px": [
+        1.5,
+        3.0
+       ],
+       "interior_ink_share": 0.04,
+       "boundary_run_m": [
+        112.4,
+        185.7
+       ]
+      },
+      {
+       "px": [
+        [
+         1045.1,
+         2021.0
+        ],
+        [
+         1080.0,
+         2022.0
+        ]
+       ],
+       "centre_px": [
+        1062.5,
+        2021.5
+       ],
+       "centre_t_px": -136.33,
+       "width_m": 24.38,
+       "width_ft": 80.0,
+       "line_thickness_px": [
+        1.0,
+        3.0
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        184.3,
+        113.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1207.5,
+         2025.5
+        ],
+        [
+         1248.0,
+         2026.6
+        ]
+       ],
+       "centre_px": [
+        1227.8,
+        2026.0
+       ],
+       "centre_t_px": 28.92,
+       "width_m": 28.29,
+       "width_ft": 92.8,
+       "line_thickness_px": [
+        2.0,
+        3.0
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        113.1,
+        112.4
+       ]
+      }
+     ],
+     "alleys": [
+      {
+       "px": [
+        [
+         803.9,
+         2014.3
+        ],
+        [
+         810.9,
+         2014.5
+        ]
+       ],
+       "centre_px": [
+        807.4,
+        2014.4
+       ],
+       "centre_t_px": -391.58,
+       "width_m": 4.89,
+       "width_ft": 16.0,
+       "line_thickness_px": [
+        0.5,
+        0.5
+       ],
+       "interior_ink_share": 0.33,
+       "boundary_run_m": [
+        111.0,
+        111.7
+       ]
+      },
+      {
+       "px": [
+        [
+         976.6,
+         2019.1
+        ],
+        [
+         982.1,
+         2019.2
+        ]
+       ],
+       "centre_px": [
+        979.4,
+        2019.2
+       ],
+       "centre_t_px": -219.58,
+       "width_m": 3.84,
+       "width_ft": 12.6,
+       "line_thickness_px": [
+        2.0,
+        1.0
+       ],
+       "interior_ink_share": 0.14,
+       "boundary_run_m": [
+        298.8,
+        298.8
+       ]
+      },
+      {
+       "px": [
+        [
+         1140.0,
+         2023.6
+        ],
+        [
+         1148.0,
+         2023.8
+        ]
+       ],
+       "centre_px": [
+        1144.0,
+        2023.7
+       ],
+       "centre_t_px": -54.83,
+       "width_m": 5.59,
+       "width_ft": 18.3,
+       "line_thickness_px": [
+        1.0,
+        1.0
+       ],
+       "interior_ink_share": 0.0,
+       "boundary_run_m": [
+        113.1,
+        111.7
+       ]
+      }
+     ],
+     "unclassified_wide_gaps": [
+      {
+       "px": [
+        [
+         738.7,
+         2012.5
+        ],
+        [
+         803.9,
+         2014.3
+        ]
+       ],
+       "centre_px": [
+        771.3,
+        2013.4
+       ],
+       "centre_t_px": -427.71,
+       "width_m": 45.54,
+       "width_ft": 149.4,
+       "line_thickness_px": [
+        2.0,
+        0.5
+       ],
+       "interior_ink_share": 0.02,
+       "boundary_run_m": [
+        111.7,
+        111.0
+       ]
+      },
+      {
+       "px": [
+        [
+         810.9,
+         2014.5
+        ],
+        [
+         874.4,
+         2016.3
+        ]
+       ],
+       "centre_px": [
+        842.6,
+        2015.4
+       ],
+       "centre_t_px": -356.33,
+       "width_m": 44.35,
+       "width_ft": 145.5,
+       "line_thickness_px": [
+        0.5,
+        1.5
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        111.7,
+        112.4
+       ]
+      },
+      {
+       "px": [
+        [
+         912.1,
+         2017.3
+        ],
+        [
+         976.6,
+         2019.1
+        ]
+       ],
+       "centre_px": [
+        944.4,
+        2018.2
+       ],
+       "centre_t_px": -254.59,
+       "width_m": 45.05,
+       "width_ft": 147.8,
+       "line_thickness_px": [
+        3.0,
+        2.0
+       ],
+       "interior_ink_share": 0.1,
+       "boundary_run_m": [
+        185.7,
+        298.8
+       ]
+      },
+      {
+       "px": [
+        [
+         982.1,
+         2019.2
+        ],
+        [
+         1045.1,
+         2021.0
+        ]
+       ],
+       "centre_px": [
+        1013.6,
+        2020.1
+       ],
+       "centre_t_px": -185.33,
+       "width_m": 44.0,
+       "width_ft": 144.4,
+       "line_thickness_px": [
+        1.0,
+        1.0
+       ],
+       "interior_ink_share": 0.06,
+       "boundary_run_m": [
+        298.8,
+        184.3
+       ]
+      },
+      {
+       "px": [
+        [
+         1080.0,
+         2022.0
+        ],
+        [
+         1140.0,
+         2023.6
+        ]
+       ],
+       "centre_px": [
+        1110.0,
+        2022.8
+       ],
+       "centre_t_px": -88.83,
+       "width_m": 41.9,
+       "width_ft": 137.5,
+       "line_thickness_px": [
+        3.0,
+        1.0
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        113.1,
+        113.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1148.0,
+         2023.8
+        ],
+        [
+         1207.5,
+         2025.5
+        ]
+       ],
+       "centre_px": [
+        1177.8,
+        2024.7
+       ],
+       "centre_t_px": -21.08,
+       "width_m": 41.56,
+       "width_ft": 136.3,
+       "line_thickness_px": [
+        1.0,
+        2.0
+       ],
+       "interior_ink_share": 0.0,
+       "boundary_run_m": [
+        111.7,
+        113.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1248.0,
+         2026.6
+        ],
+        [
+         1311.0,
+         2028.4
+        ]
+       ],
+       "centre_px": [
+        1279.5,
+        2027.5
+       ],
+       "centre_t_px": 80.67,
+       "width_m": 44.0,
+       "width_ft": 144.4,
+       "line_thickness_px": [
+        3.0,
+        1.0
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        112.4,
+        113.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1311.0,
+         2028.4
+        ],
+        [
+         1383.9,
+         2030.4
+        ]
+       ],
+       "centre_px": [
+        1347.5,
+        2029.4
+       ],
+       "centre_t_px": 148.67,
+       "width_m": 50.91,
+       "width_ft": 167.0,
+       "line_thickness_px": [
+        1.0,
+        3.0
+       ],
+       "interior_ink_share": 0.03,
+       "boundary_run_m": [
+        113.1,
+        113.1
+       ]
+      },
+      {
+       "px": [
+        [
+         1383.9,
+         2030.4
+        ],
+        [
+         1437.4,
+         2031.9
+        ]
+       ],
+       "centre_px": [
+        1410.7,
+        2031.2
+       ],
+       "centre_t_px": 211.93,
+       "width_m": 37.37,
+       "width_ft": 122.6,
+       "line_thickness_px": [
+        3.0,
+        4.0
+       ],
+       "interior_ink_share": 0.0,
+       "boundary_run_m": [
+        113.1,
+        209.9
+       ]
+      },
+      {
+       "px": [
+        [
+         1437.4,
+         2031.9
+        ],
+        [
+         1590.8,
+         2036.1
+        ]
+       ],
+       "centre_px": [
+        1514.1,
+        2034.0
+       ],
+       "centre_t_px": 315.42,
+       "width_m": 107.14,
+       "width_ft": 351.5,
+       "line_thickness_px": [
+        4.0,
+        2.0
+       ],
+       "interior_ink_share": 0.05,
+       "boundary_run_m": [
+        209.9,
+        112.4
+       ]
+      }
+     ],
+     "rejected_short_boundaries": [],
+     "rejected_off_module": [
+      {
+       "px": [
+        [
+         1590.8,
+         2036.1
+        ],
+        [
+         1629.6,
+         2037.2
+        ]
+       ],
+       "centre_px": [
+        1610.2,
+        2036.7
+       ],
+       "centre_t_px": 411.54,
+       "width_m": 27.1,
+       "width_ft": 88.9,
+       "line_thickness_px": [
+        2.0,
+        1.5
+       ],
+       "interior_ink_share": 0.01,
+       "boundary_run_m": [
+        112.4,
+        115.3
+       ],
+       "rejected": "no other candidate on this traverse is a block pitch away from it, so it is not part of the platted module"
+      },
+      {
+       "px": [
+        [
+         1629.6,
+         2037.2
+        ],
+        [
+         1663.6,
+         2038.1
+        ]
+       ],
+       "centre_px": [
+        1646.6,
+        2037.7
+       ],
+       "centre_t_px": 447.93,
+       "width_m": 23.75,
+       "width_ft": 77.9,
+       "line_thickness_px": [
+        1.5,
+        1.5
+       ],
+       "interior_ink_share": 0.0,
+       "boundary_run_m": [
+        115.3,
+        112.4
+       ],
+       "rejected": "no other candidate on this traverse is a block pitch away from it, so it is not part of the platted module"
+      },
+      {
+       "px": [
+        [
+         1663.6,
+         2038.1
+        ],
+        [
+         1697.1,
+         2039.1
+        ]
+       ],
+       "centre_px": [
+        1680.3,
+        2038.6
+       ],
+       "centre_t_px": 481.67,
+       "width_m": 23.4,
+       "width_ft": 76.8,
+       "line_thickness_px": [
+        1.5,
+        0.5
+       ],
+       "interior_ink_share": 0.02,
+       "boundary_run_m": [
+        112.4,
+        111.7
+       ],
+       "rejected": "no other candidate on this traverse is a block pitch away from it, so it is not part of the platted module"
+      },
+      {
+       "px": [
+        [
+         1697.1,
+         2039.1
+        ],
+        [
+         1728.5,
+         2039.9
+        ]
+       ],
+       "centre_px": [
+        1712.8,
+        2039.5
+       ],
+       "centre_t_px": 514.17,
+       "width_m": 21.93,
+       "width_ft": 71.9,
+       "line_thickness_px": [
+        0.5,
+        1.5
+       ],
+       "interior_ink_share": 0.02,
+       "boundary_run_m": [
+        111.7,
+        113.8
+       ],
+       "rejected": "no other candidate on this traverse is a block pitch away from it, so it is not part of the platted module"
+      }
+     ],
+     "block_pitch_m": [
+      123.2,
+      120.5,
+      117.6
+     ]
+    }
+   ],
+   "control_point_check": {
+    "gcp": "G5",
+    "map_feature": "Canal St & Lake St",
+    "recorded_px": [
+     1197,
+     1955
+    ],
+    "recorded_native_px": [
+     1197.0,
+     1955.0
+    ],
+    "on_centreline_native_px": [
+     1225.9,
+     1955.8
+    ],
+    "on_centreline_px": [
+     1225.9,
+     1955.8
+    ],
+    "offset_m": 20.2,
+    "offset_is": "across Canal Street only; the point's position ALONG the street is left where it was recorded, because a traverse across a corridor cannot see it",
+    "finding": "the recorded pixel falls inside block 28 rather than in the Canal Street corridor; on both sheets the block number straddles it"
+   },
+   "widths_ft": {
+    "n": 4,
+    "median_ft": 86.4,
+    "min_ft": 80.0,
+    "max_ft": 92.8
+   }
+  }
+ }
+}

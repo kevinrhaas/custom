@@ -1958,6 +1958,165 @@ def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int,
     return sorted((line, path) for path, line in reads.items())
 
 
+def check_street_module(source_ids: set, rep: Report, data_root: Path | None = None) -> None:
+    """The module every placement stands on is held to the sheets it was measured off.
+
+    `check_position_derivations` recomputes each placement FROM the module. Nothing
+    checked the module itself: 80 ft was an annotation read once during the datum work,
+    a second source said 66, and the file recorded the disagreement and left it. The
+    corridors are measured now (`data/traces/vectors/street_corridors_1834.json`,
+    written by `tools/measure_street_widths.py`), and this is the offline half of that
+    measurement — the half that runs on every commit, because the tool needs the network
+    and a commit gate that needs the network fails for reasons that have nothing to do
+    with the commit.
+
+    Three things are held, and the third is the one with teeth:
+
+    - **Every metre is re-derived from its pixels.** A corridor's width comes back out
+      of the two committed boundary pixels through the sheet's own committed affine, and
+      the summary comes back out of the corridor list. A metre edited by hand, or a
+      median that no longer matches the readings under it, is an error — the same rule
+      `tools/rederive_datum.py` applies to the origin.
+    - **The adopted figure has to be the one the readings support.** `platted_street`
+      may only carry the candidate nearest the measured median, and may not carry a
+      candidate the readings exclude. Moving the module to 66 ft now fails here instead
+      of moving five buildings quietly.
+    - **The control-point finding may not go stale.** The measurement recorded that two
+      GCPs sit inside a block rather than in the Canal Street corridor, and what it costs
+      the datum to correct one of them. Both figures are pinned to the GCP pixels they
+      were computed from, so the day somebody adopts either correction the gate fails
+      until the sheet is read again. A finding whose inputs have moved is not a finding.
+    """
+    base = data_root or DATA
+    path = base / "traces" / "vectors" / "street_corridors_1834.json"
+    doc = load_json(path, rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error("street module", "data/traces/vectors/street_corridors_1834.json is missing "
+                                   "or unreadable — the platted module is the one figure every "
+                                   "placement in this dataset stands on and it is measured, not "
+                                   "asserted")
+        return
+    for s in doc.get("sources") or []:
+        if s not in source_ids:
+            rep.error("street module", f"the corridor measurement cites '{s}', which does not "
+                                       f"resolve in data/sources/")
+
+    ft = 0.3048
+    all_ft: list[float] = []
+    for sheet, sh in (doc.get("sheets") or {}).items():
+        if sheet not in source_ids:
+            rep.error("street module", f"sheet '{sheet}' is not a source in data/sources/")
+        co = ((sh.get("affine") or {}).get("coefficients") or {})
+        try:
+            a, b, c, d, e, f = (float(co[k]) for k in "abcdef")
+        except (KeyError, TypeError, ValueError):
+            rep.error("street module", f"sheet '{sheet}' records no usable affine, so its "
+                                       f"metres cannot be re-derived from its pixels")
+            continue
+        k = float((sh.get("raster") or {}).get("gcp_px_to_native") or 0) or None
+        if not k:
+            rep.error("street module", f"sheet '{sheet}' does not say how its pixels relate to "
+                                       f"the image they were read in")
+            continue
+        for tv in sh.get("traverses") or []:
+            for c_ in tv.get("corridors") or []:
+                pts = c_.get("px") or []
+                if len(pts) != 2:
+                    rep.error("street module", f"{sheet}/{tv.get('id')}: a corridor with no two "
+                                               f"boundary pixels is not a measurement")
+                    continue
+                (x1, y1), (x2, y2) = pts
+                e1, n1 = a * (x1 / k) + b * (y1 / k) + c, d * (x1 / k) + e * (y1 / k) + f
+                e2, n2 = a * (x2 / k) + b * (y2 / k) + c, d * (x2 / k) + e * (y2 / k) + f
+                w = math.hypot(e2 - e1, n2 - n1)
+                if abs(w - float(c_.get("width_m", -1))) > 0.05:
+                    rep.error("street module",
+                              f"{sheet}/{tv.get('id')}: a corridor records {c_.get('width_m')} m "
+                              f"but its pixels re-derive to {w:.2f} m through the sheet's own "
+                              f"affine")
+                if abs(w / ft - float(c_.get("width_ft", -1))) > 0.1:
+                    rep.error("street module",
+                              f"{sheet}/{tv.get('id')}: {c_.get('width_m')} m is not "
+                              f"{c_.get('width_ft')} ft")
+                all_ft.append(round(w / ft, 1))
+
+    summary = doc.get("summary") or {}
+    if not all_ft:
+        rep.error("street module", "the file records no corridor at all")
+    else:
+        all_ft.sort()
+        median = all_ft[len(all_ft) // 2]
+        for key, got in (("n_corridors", len(all_ft)), ("median_ft", median),
+                         ("min_ft", all_ft[0]), ("max_ft", all_ft[-1])):
+            if summary.get(key) != got:
+                rep.error("street module", f"summary.{key} says {summary.get(key)} and the "
+                                           f"committed readings give {got}")
+
+    cand = doc.get("candidates") or {}
+    tol = float(cand.get("tolerance_ft") or 0)
+    figures = [cand.get("adopted", {}).get("width_ft"), cand.get("dissent", {}).get("width_ft")]
+    if all_ft and tol > 0 and all(isinstance(x, (int, float)) for x in figures):
+        median = all_ft[len(all_ft) // 2]
+        nearest = min(figures, key=lambda x: abs(median - x))
+        excluded = [x for x in figures if all(abs(r - x) > tol for r in all_ft)]
+        if cand.get("nearest_ft") != nearest:
+            rep.error("street module", f"candidates.nearest_ft says {cand.get('nearest_ft')} and "
+                                       f"the readings are nearest {nearest} ft")
+        if sorted(cand.get("excluded_ft") or []) != sorted(excluded):
+            rep.error("street module", f"candidates.excluded_ft says {cand.get('excluded_ft')} "
+                                       f"and the readings exclude {excluded}")
+        module = ((load_json(base / "traces" / "street_control.json", rep,
+                            required=False) or {}).get("platted_street") or {})
+        adopted = module.get("width_ft")
+        if adopted is not None:
+            if adopted in excluded:
+                rep.error("street module", f"the placements step half of {adopted} ft and no "
+                                           f"corridor measured on either 1834 sheet comes within "
+                                           f"{tol:g} ft of it")
+            elif adopted != nearest:
+                rep.error("street module", f"the placements step half of {adopted} ft while the "
+                                           f"measured corridors are nearest {nearest} ft; the "
+                                           f"module and the sheets have to agree or the "
+                                           f"disagreement has to be argued in the file")
+
+    # The finding, pinned to the pixels it was computed from.
+    for sheet, sh in (doc.get("sheets") or {}).items():
+        cpc = sh.get("control_point_check") or {}
+        gid, recorded = cpc.get("gcp"), cpc.get("recorded_px")
+        gcp_file = (sh.get("affine") or {}).get("source")
+        if not (gid and recorded and gcp_file):
+            rep.error("street module", f"sheet '{sheet}' states no control-point reading to check")
+            continue
+        # Repo-relative in the file, resolved against the data root so the rule is
+        # testable against a fixture rather than only against the committed tree.
+        gdoc = load_json(base / str(gcp_file).removeprefix("data/"), rep,
+                         required=False) or {}
+        found = [g for g in gdoc.get("gcps", []) if g.get("id") == gid]
+        if not found:
+            rep.error("street module", f"sheet '{sheet}' measures GCP {gid}, which is not in "
+                                       f"{gcp_file}")
+        elif list(found[0].get("pixel") or []) != list(recorded):
+            rep.error("street module",
+                      f"{gcp_file} GCP {gid} is now at pixel {found[0].get('pixel')} and the "
+                      f"corridor measurement was taken against {recorded}. If the correction "
+                      f"has been adopted, re-run tools/measure_street_widths.py: the offset and "
+                      f"the datum exposure it reports are about the old pixel.")
+
+    exp = doc.get("datum_exposure") or {}
+    wg = load_json(base / "traces" / "gcp" / "wright_1834_gcps.json", rep,
+                   required=False) or {}
+    g5 = [g for g in wg.get("gcps", []) if g.get("id") == exp.get("gcp")]
+    if g5 and list(g5[0].get("pixel") or []) != list(exp.get("recorded_px") or []):
+        rep.error("street module",
+                  f"datum_exposure is computed against {exp.get('gcp')} at "
+                  f"{exp.get('recorded_px')} and the committed pixel is "
+                  f"{g5[0].get('pixel')} — the figure for what the correction costs is "
+                  f"stale, which is worse than not having it")
+    if exp and exp.get("status") not in ("queued, not adopted", "adopted"):
+        rep.error("street module", "datum_exposure has to say whether the correction it prices "
+                                   "has been adopted")
+
+
 def check_sidecar_contract(rep: Report) -> None:
     """Every sidecar field the renderer reads must be one the compiler writes."""
     shape = sidecar_shape()
@@ -2180,6 +2339,10 @@ def main() -> int:
     # in prose and nothing recomputed. The corners come back out of the control
     # and the platted module; the crossing comes back out of the traced bank.
     check_position_derivations(structures, source_ids, rep)
+
+    # and the module those corners are stepped from, which nothing checked until the
+    # corridors were measured off both 1834 sheets
+    check_street_module(source_ids, rep)
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)
