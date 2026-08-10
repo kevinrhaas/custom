@@ -141,15 +141,101 @@ stops asserting what it cannot show. Promote it if the page behind it is found.
 
 ---
 
-## 6. Open threads, in the order worth pulling
+## 6. The middle of the bridge is described after all — 2026-08-10
 
-1. **The 1834/1835 Wabansia and Kinzie's Addition plat** (Encyclopedia of Chicago item 10634; LoC
-   g4104c.ct007620), in its state corrected 17 June 1835 — contemporaneous to within two weeks of
-   the scene date, covering exactly this ground, and the one document that could show the
-   crossing drawn.
-2. **Andreas vol. I at page-image level**, where the prose transcribed above sits; the same
-   unopened source that would settle Miller's house one bank away.
-3. **What happened between 1833 and 1835.** A town that could build the 200-ft Dearborn Street
-   drawbridge in 1834 did something to the crossing that was useless for teams in 1833. Trustee
-   minutes are the likely home of it.
-4. **The six-foot clearance.** Find the page, or downgrade the dossier's tag where it stands.
+Four of §7's threads were pulled the same week they were written down, and the second one paid
+for all of them. **Andreas prints, as a footnote at the foot of pp. 631-632, a signed statement
+by four men who used these bridges** — J. D. Caton, John Bates, Charles Cleaver and John Noble —
+agreed at a meeting of old settlers late in the fall of 1883 and handed to the editors by Bates.
+Source record: `old_settlers_bridges_1883`. It reads, in the part this project can defend:
+
+> ...both bridges were built on abutments and two "bents." The abutments were built of logs in
+> the shallow water near the banks. The bents were of four heavy logs, resting on the bottom, in
+> deeper water. Stringers of heavy logs stretched from the abutments to the bents, and between
+> the bents. On these stringers puncheons or split logs were laid for a floor. These bridges were
+> about ten feet wide and without railings, for the first few years, after which guards, or
+> railings, were added. These were both wagon bridges, and were about six feet above the water,
+> so that teams passed under them on the ice freely.
+>
+> Cleaver remembers driving across the first bridge over the North Branch; it was a wagon bridge,
+> ten or twelve feet wide.
+
+**Why this was missed, and it is not an excuse.** It is a footnote in small type under the very
+paragraph this project has been quoting for the structure — "It was formed of stringers and only
+fitted for foot passengers" — and it is badly OCR'd in the archive.org index, so a phrase search
+for *bridge* does not reach it. It was found by reading the printed pages either side of the
+Wolf Point narrative rather than by searching for the answer. **Both scans were read against each
+other** (`historyofchicago01andr` and `historyofchicago01inandr`) because neither OCR is
+trustworthy alone; every sentence quoted above is one on which the two independently agree. The
+South Branch dates in the same footnote are one on which they do **not** agree, and nothing in
+this dataset cites them.
+
+What it settles, in the order the record is wrong:
+
+- **The middle of the bridge — `pier_spacing_m`, and it is the big one.** L29 says in as many
+  words that "nothing anybody wrote describes the middle of this bridge at all", and puts fifteen
+  cribs in the river on the archetype's 4.5 m default. The letter says **two bents**, each of
+  **four heavy logs resting on the bottom**, in the deeper water between the log abutments. Two,
+  not fifteen. The most conspicuous invention in this structure turns out to be answerable.
+- **`pier_kind`, and this record's reasoning was inverted.** The record adopts `crib` and argues
+  that the Kinzie Street page's "Wood, Fixed, Bent" is "a modern editorial classification applied
+  uniformly down a column". It is nothing of the kind: **"bents" is the settlers' own word**, and
+  Cleaver — the eyewitness this record set against the table — signed it. The table is very
+  probably reading this footnote. A bent of four heavy logs standing on the bottom is not a crib.
+- **`clearance_m` is documented, and the reason is better than the number.** "About six feet above
+  the water, **so that teams passed under them on the ice freely**." The clearance is not a
+  construction convenience; it is the winter road under the bridge. `docs/research/03-structures-north.md`
+  §5 tagged the figure `[DOC]`, this record demoted it to `inferred` for want of a page, and the
+  page exists. The dossier was right and the demotion was the correct thing to have done in the
+  meantime.
+- **The deck** is `puncheons or split logs`, stated rather than inherited from the archetype.
+- **`railing`** — "without railings, for the first few years, after which guards, or railings,
+  were added". The record's `false` survives for a scene three years after the build, but it is
+  now an inference against a stated timeline instead of an argument from silence, and "the first
+  few years" is exactly the kind of phrase that will not settle 1835 on its own.
+- **The build date stays disputed and the dispute gets a third signature.** The letter's opening
+  clause has the North Branch bridge built "in the winter of 1831 and 1832", which is Cleaver's
+  1893 date again — but now over four names, one of them Caton's. Andreas's own prose says summer
+  1832. Nothing here breaks the tie; the record keeps Andreas and now records that the other
+  reading has four men behind it rather than one.
+
+**And a fact for the 1833-1835 gap** (§7 thread 3), from Andreas's main text on the same subject:
+a committee of G. W. Dole, Madore B. Beaubien and Edmund S. Kimberly was appointed in December
+1833 "to see that they were properly repaired", and "in September the corporation paid $166.67 on
+account of repairing". That does not say what was done to the North Branch crossing, but it dates
+and funds work on it in the window where this record has always said *something* happened and
+nothing said what.
+
+**What it does not settle is the approach**, which is why the bridge still arrives nowhere. No
+sentence anywhere describes how a wagon got from the bank up onto a deck standing six feet above
+the water. The letter tightens the problem rather than solving it: these were **wagon** bridges,
+so an approach at each end is now attested by implication and is still undrawn and undescribed.
+
+## 7. Open threads, in the order worth pulling
+
+1. ~~**The 1834/1835 Wabansia and Kinzie's Addition plat**~~ — **pulled 2026-08-10, and it is a
+   negative finding.** The plat is the sheet this project already holds as `hathaway_1834` (LoC
+   `g4104c.ct007620` = "Chicago with the school section Wabansia and Kinzie's addition"), and it
+   is already georeferenced here, so the crossing could be inspected at its own fitted pixel
+   rather than hunted for by eye. **Neither 1834 sheet draws a bridge.** On Wright 1834
+   (resource-space px ~1262-1365, 1447) the pink Kinzie Street band and its black boundary lines
+   stop dead at each traced waterline and nothing spans the channel. On Hathaway (native px
+   ~2000-2183, 2747) the street lines likewise stop at the bank, and the only mark inside the
+   channel at the crossing station is the letter **H** of "BRANCH", lettered down the water — a
+   hatched capital that reads convincingly as a plank-and-stringer symbol until it is enlarged,
+   and is recorded here so the next reader does not rediscover it as a bridge. Both sheets draw
+   the *street*; a platted street is a dedication, not a structure. Method is reproducible: fit
+   each sheet's committed GCPs, invert the affine at the record's deck line, fetch that IIIF
+   region.
+2. ~~**Andreas vol. I at page-image level**~~ — **pulled 2026-08-10, and it paid**: see §6.
+   Read the pages, not the index. The full-text index missed the single most informative
+   paragraph in the volume about this structure.
+3. **What happened between 1833 and 1835.** Narrowed, not closed — §6 gives a repair committee
+   (December 1833) and a payment ($166.67, September 1834). The Trustees' own minutes are the
+   likely home of what the money bought.
+4. ~~**The six-foot clearance**~~ — **found**, §6. It is Andreas p. 632, and the dossier's tag was
+   right.
+5. **New, and it is the last thing standing between this bridge and the ground:** the approach.
+   Nothing describes one. §6 makes it harder to leave out — a wagon bridge implies a way for a
+   wagon to reach the deck — and no better candidate document than the Trustees' minutes has
+   turned up.

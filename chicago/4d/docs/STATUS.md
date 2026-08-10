@@ -429,6 +429,50 @@ uncertainty of the 1834 sheets in its note.
     the check compares a mesh against the heightfield, and both can agree on a surface no
     source supports.
 
+23. **Four attributes of the bridge are now behind their evidence, and the evidence was a
+    footnote under a paragraph this project has quoted for weeks.** The record's own memo listed
+    four open threads on 2026-08-10; two were pulled the same day and one of them paid for
+    everything. **Andreas prints, at the foot of pp. 631-632, a statement signed by four men who
+    used the branch bridges** — J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed
+    at a meeting of old settlers late in the fall of 1883 and handed to the editors by Bates.
+    It is the only description anybody wrote of how these crossings were put together:
+    abutments of logs in the shallow water near the banks, **two "bents" of four heavy logs
+    resting on the bottom in deeper water**, stringers of heavy logs from the abutments to the
+    bents and between them, **puncheons or split logs for a floor**, about ten feet wide,
+    **without railings for the first few years, after which guards or railings were added**, and
+    **about six feet above the water, "so that teams passed under them on the ice freely."**
+    Source record: `old_settlers_bridges_1883`, tier 2.
+    **What it corrects, and none of it is corrected yet.** `pier_spacing_m` puts fifteen cribs in
+    the river on the archetype's default; the letter says two bents. `pier_kind` is `crib`, and
+    this record argued its way there by treating the Kinzie Street page's type-word "Bent" as
+    modern editorial classification — it is the settlers' own word, and Cleaver, the eyewitness
+    that argument leaned on, signed it. `clearance_m` was demoted to `inferred` here for want of
+    a page; the page exists, and the dossier's `[DOC]` tag was right. The deck is the archetype's
+    and the letter states it. **Every one of those is a mesh input**, so the record cannot move
+    without the GLB moving with it, and this commit deliberately changes no value and no
+    confidence tag: it lands the source, the memo, the liberties updates and the notes that say
+    on each attribute's own face that it is behind its evidence. **The repair and its bake are
+    one slice and it is the next one.**
+    **The work order**, so the next slice does not have to re-derive it: `bridge_timber` builds
+    intermediate supports from a spacing, and the evidence is a count and a form, not a spacing —
+    two bents at the thirds of a 71.83 m span is a different parameterisation, not a different
+    number, so the archetype changes before the record does. `pier_kind` wants a `bent` value
+    (four heavy logs standing on the bottom) beside `crib`. `clearance_m` moves to `documented`
+    with this source. `railing` stays `false` and its note changes from an argument from silence
+    to a reading of "the first few years". L29 moves to **Resolved** when the mesh shows two
+    supports, and not before.
+    **Two negative findings came with it, and they cost as much to establish as the positive
+    one.** Neither 1834 sheet draws this bridge. Both were inspected at the crossing's own fitted
+    pixel rather than by eye — invert each sheet's committed GCP affine at the record's deck line,
+    fetch that IIIF region — and on both, the street stops at the waterline: a platted street is a
+    dedication, not a structure. The thread the memo rated most promising, "the 1834/1835 Wabansia
+    and Kinzie's Addition plat", turns out to be `hathaway_1834`, a sheet already in this dataset
+    and already georeferenced, which is its own small lesson about open-thread lists. And on
+    Hathaway a hatched, ladder-like mark sits in the channel within 35 m of the crossing and reads
+    convincingly as a plank-and-stringer bridge symbol at moderate zoom; at full resolution it is
+    the letter **H** of "BRANCH", lettered down the water. It is written down here so that it is
+    found once rather than discovered twice.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -444,7 +488,16 @@ it. It was then exercised for real by the Wolf Point repair the same day — the
 tavern's asset stale on the spot and the branch could not go green until the bake landed on it,
 which is the whole point of writing the check, and again the same day by Miller's second chimney,
 and a third time by his frame range.
-**The repair list is empty and this time nothing refilled it.** The last entry —
+**The repair list refilled itself from the archive rather than from the gates** (2026-08-10, § 23).
+Every previous entry on it was found by a check: a misspelled attribute, a name read as being
+about the wrong half of a building. This one was found by reading a page. The North Branch
+bridge's `pier_spacing_m`, `pier_kind` and `clearance_m` are all behind an 1883 statement by four
+men who used the thing, and the deck is too — **one record, one archetype change, one bake, and it
+is the next slice.** Nothing about it is speculative: the finding, the quoted text and the
+parameterisation it implies are written down in § 23 and in `docs/RESEARCH/north_branch_bridge.md`
+§ 6, and the commit that found them deliberately changed no value, because a value a generator
+reads cannot move without its mesh. The older account of the queue, still true of everything
+before this entry: The last entry —
 `miller_house` recording a `documented` frame range with no side, width, depth or storey count —
 landed 2026-08-10 with its bake (§ 20), and it was the fourth and last of the faults the omission
 gate opened. Three of the four were spelling; the fourth was a name read as being about the wrong
