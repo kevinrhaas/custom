@@ -3,9 +3,9 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the platted street width is measured off both 1834 sheets rather
-than read off one annotation, 66 ft is excluded, and the control point the traverse started from
-turned out to be inside a block — 15.0 m of datum exposure, priced and queued, § 42) ·
+**Last updated:** 2026-08-10 (the evidence ladder is enforced for the first time and printed at
+a visitor in words — and switching it on found four `documented` values resting on nothing but a
+source whose own record says never as sole evidence, § 43) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1358,6 +1358,75 @@ uncertainty of the 1834 sheets in its note.
     unmeasured, which is also what S9 needs, and it needs a method that identifies a corridor by
     something other than its width. Ten of the thirteen control points on the two sheets have not
     been checked against their corridors either.
+
+43. **The ladder every one of these gates stands on was enforced by nothing, and switching it
+    on found four `documented` values resting on a source whose own record forbids exactly
+    that.** Every honesty check in this project asks a question that presumes an answer to an
+    earlier one. Is the value graded? Does the grade owe a source? Does the source resolve? Was
+    the invention admitted? Did the attribute reach a vertex? Is the mesh the one the record
+    describes? None of them ever asked **how good the source is** — the word `tier` did not
+    occur anywhere in `tools/validate.py`. `docs/PROVENANCE.md` ranks the evidence on six rungs
+    and attaches two rules to the ranking; `data/source.schema.json` writes the same ladder into
+    the field description; and a `documented` attribute could have rested on a decorative 1940
+    pictorial map without a single check complaining.
+    **The ladder is read from one place now.** `tools/tiers.py` parses the rungs out of the
+    schema's own `tier` description, and both halves of the project consume that one parse:
+    `check_evidence_ladder` holds the dataset to it, and `tools/compile_scene.py` compiles the
+    words into each joined citation so the provenance card can print them. A rung the schema
+    validates but does not spell out raises rather than returning a shorter ladder — a silently
+    empty ladder passes everything, which is the failure mode this family of checks exists to
+    stop. Three rules are errors and pass on the committed data today: a `documented` value
+    needs one source at tier 4 or better, a `footprint` graded above `conjectural` may not cite
+    a tier 5-6 retrospective, and no tier 5-6 source may declare `asset_use: geometry`. The
+    self-tests carry the discriminating cases, including the two the rule must NOT fire on: a
+    period survey cross-checked against a 1933 pictorial map, and that same map carrying a
+    *position* to `inferred`, which is what the 2026-08-10 revision of the tier rule exists to
+    permit.
+    **Where the document disagreed with itself, the disagreement is recorded and a reading is
+    picked.** `docs/PROVENANCE.md` states the tier-5 rule twice and not identically — the table
+    says never the *sole* evidence, the revision says "never reaches it, alone or in company".
+    The table's reading is enforced, because forbidding a documented value from *citing* a
+    retrospective beside a period survey would punish corroboration, which is the opposite of
+    what the revision was written for.
+    **The fourth rule is a warning and it has 21 findings in it.** A `documented` value with no
+    source at tier 3 or better rests on later scholarship alone — no period document, no
+    eyewitness recollection, no compilation from pioneer testimony. Five values on the Green
+    Tree, four on Miller House, four on the Western, three on the Wolf Point Tavern, two on the
+    Sauganash and three ground claims. **Four of the twenty-one are sharper than the count
+    says**, and they were found by reading the source records rather than by the gate:
+    `sauganash_hotel` `form.stories` and `form.construction`, `miller_house`
+    `form.frame_addition_stories`, and `wolf_point_tavern` `form.sign` are supported by nothing
+    but `drloih_hotels` or `drloih_wolf_point` — two unfootnoted blog compilations whose OWN
+    records in `data/sources/` say, in their own words, *use only to generate leads and to
+    corroborate; never as sole evidence*. The dataset is making exactly the use its own source
+    records forbid, and the wolf sign is one of them: the `documented` chip that justified a
+    whole slice of modelling work rests on a page that says do not rest on it.
+    **Priced and queued rather than taken, for the reason § 42's datum exposure was.** Failing
+    these would force a regrade, a confidence is a mesh input, and a regrade therefore arrives
+    with a Blender bake attached. It is also not a rename: a page transcribing an 1833 newspaper
+    is tier 2 whatever site hosts it, and this dataset already grades `chicagology_prefire252`
+    that way, so each of the 21 is either an over-graded value or an under-tiered source and
+    only reading the page settles which. The queue is in `docs/ROADMAP.md` § S5, and the machine
+    -readable half of it — a `never_sole_evidence` flag on a source record, which would turn
+    those four into errors — is queued behind the regrade rather than added now, because a gate
+    that fails the committed dataset the day it lands is a gate that gets switched off.
+    **And the number the card printed at a visitor said nothing.** `tier 4` has been on the
+    citation line since it was written, beside a citation, in a panel whose entire argument is
+    that a person can judge the evidence for themselves — with no table anywhere in the
+    walkthrough to look a rung up in. It reads `tier 4 · later scholarship` now, out of the same
+    ladder the gate enforces. The smoke asserts it as a pair on one card, each label matched to
+    its own citation: the Sauganash cites Wright 1834, Wau-Bun and a Kurz & Allison
+    chromolithograph, so a card stamping one rung on every line, or the right words against the
+    wrong citation, fails where a presence check would pass. Run against the previous commit it
+    reports every citation on the card one label short.
+    **What it still cannot see.** A tier is a judgement about a source made once, in the source
+    record, and nothing re-examines it — the ladder checks that a claim rests on a rung, not
+    that the rung is the right one. `chicagology` pages are graded per page, which is correct
+    and is also why the 21 exist; the two `drloih` pages are graded 4 and their own notes argue
+    they are weaker than that. And `asset_use` cannot be used as a rule: `cross_check` is the
+    schema's default and 22 of 28 sources wear it, including both tier-1 survey sheets, so it
+    means "nobody set it" and not "corroboration only". Do not build a gate on that field
+    without setting it deliberately first.
 
 ## Next
 

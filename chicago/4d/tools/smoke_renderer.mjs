@@ -259,6 +259,32 @@ for (const [label, viewport, touch] of [
     check(`${label}: popup shows per-attribute confidence`,
       /documented/.test(picked.text) && /conjectural/.test(picked.text),
       picked.text.slice(0, 160));
+
+    // --- and what KIND of source each citation is ---------------------------
+    // The card has printed a bare `tier 4` beside a citation since it was
+    // written, at a visitor with no table to look it up in, while the panel
+    // around it argues that a person can judge the evidence for themselves. The
+    // words come off `data/source.schema.json` through the compiled sidecar.
+    // Asserted as a pair on ONE card, each label matched to its own citation: the
+    // Sauganash cites a period survey, a near-primary recollection and a modern
+    // retrospective, so a card stamping one rung on every line — or the right
+    // words on the wrong citation — fails where a presence check would pass.
+    const rungs = await page.evaluate(() => {
+      window.__chicago4d.pick('sauganash_hotel');
+      return [...document.querySelectorAll('#popup .cites li')].map((li) => ({
+        cite: li.querySelector('.cite-text')?.textContent.trim() ?? '',
+        tier: li.querySelector('.tier')?.textContent.trim() ?? '',
+      }));
+    });
+    const rungOf = (re) => rungs.find((r) => re.test(r.cite))?.tier ?? '(no such citation)';
+    check(`${label}: every citation says what rung it is on`,
+      rungs.length > 0 && rungs.every((r) => /^tier \d+ · \S/.test(r.tier)),
+      JSON.stringify(rungs.map((r) => r.tier)));
+    check(`${label}: the rung belongs to its own citation`,
+      /^tier 2 · near-primary recollection$/.test(rungOf(/Wau-Bun/))
+      && /^tier 1 · period\/eyewitness$/.test(rungOf(/Wright/))
+      && /^tier 5 · modern retrospective/.test(rungOf(/Kurz/)),
+      `Wau-Bun "${rungOf(/Wau-Bun/)}" · Wright "${rungOf(/Wright/)}" · Kurz "${rungOf(/Kurz/)}"`);
     check(`${label}: popup links the research dossier`,
       /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
 

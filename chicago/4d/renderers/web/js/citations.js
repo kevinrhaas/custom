@@ -9,6 +9,14 @@
  *
  * A citation with no archived copy says so. Whether a claim can be re-read is
  * part of the claim, and several of this project's hosts return 503 on a bad day.
+ *
+ * And a tier says what KIND of source it is, in words. The number alone has been
+ * on this line since it was written — `tier 4`, at a visitor with no table to
+ * look it up in — while the panel around it argues that a person should be able
+ * to judge the evidence themselves. The words are compiled into the sidecar from
+ * `data/source.schema.json` (see `tools/tiers.py`), which is the same ladder
+ * `check_evidence_ladder` holds the dataset to, so what a value is graded
+ * against and what a visitor is told cannot come apart.
  */
 
 export function escapeHtml(s) {
@@ -20,7 +28,7 @@ export function escapeHtml(s) {
  * `<li>` rows for an `<ol class="cites">`.
  *
  * @param {object[]} citations  joined citation records: source_id, citation, url,
- *                              archived_url, tier
+ *                              archived_url, tier, tier_label
  * @param {object} [o]
  * @param {string} [o.empty]    what to say when there are none — the honest note
  *                              differs by context, and "none recorded" is itself
@@ -36,7 +44,12 @@ export function citationItems(citations, { empty = 'No citations in this record 
     } else if (c.url) {
       links.push('<span title="No archived copy recorded; this link may not survive">not archived</span>');
     }
-    const tier = c.tier ? `<span class="tier">tier ${escapeHtml(c.tier)}</span>` : '';
+    // the label is the point; the bare number is the fallback for a rung the
+    // compiled ladder has no words for, which is a finding for the validator
+    // rather than something to print a guess about
+    const tier = c.tier
+      ? `<span class="tier">tier ${escapeHtml(c.tier)}${c.tier_label ? ` · ${escapeHtml(c.tier_label)}` : ''}</span>`
+      : '';
     return `<li><span class="cite-text">${escapeHtml(c.citation ?? c.source_id)}</span>
       ${tier} ${links.join(' · ')}</li>`;
   }).join('');

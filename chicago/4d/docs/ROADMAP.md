@@ -267,8 +267,31 @@ knowledgeable viewer checks.
 
 ## S5 — Structure records
 
-**Queued first, and it is a repair, not an addition: three attributes that are recorded and
-unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L20 and L21.
+**Queued first, and it is a regrade rather than an addition: 21 `documented` values rest on
+later scholarship alone** (2026-08-10, STATUS § 43). The evidence ladder has a gate now, and its
+fourth rule is a counted warning rather than an error: a `documented` value with no source at
+tier 3 or better — no period document, no eyewitness recollection, no compilation from pioneer
+testimony — is either an over-graded value or an under-tiered source, and only reading the page
+settles which. Five on the Green Tree, four on Miller House, four on the Western, three on the
+Wolf Point Tavern, two on the Sauganash, three ground claims.
+
+**Four of them are the sharp ones and they come first**: `sauganash_hotel` `form.stories` and
+`form.construction`, `miller_house` `form.frame_addition_stories` and `wolf_point_tavern`
+`form.sign` are supported by nothing but the two `drloih` blog compilations, whose own source
+records say *never as sole evidence*. Do those four first, and note what they cost: a confidence
+is a mesh input, so a regrade stales the building's GLB and the slice lands with a bake. Behind
+the regrade, the machine-readable half — a `never_sole_evidence` flag on a source record, which
+turns those four into errors — deliberately not added first, because a gate that fails the
+committed dataset on the day it lands is a gate that gets switched off.
+
+The shape of the work is a source at a time rather than a value at a time: `chicagology` pages
+are already graded per page (`chicagology_prefire252` is tier 2 because it transcribes a
+newspaper), so re-reading `prefire127`, `prefire273` and `prefire278` may clear eleven of the
+twenty-one without touching a record.
+
+
+**The repair queue that came before it, all of it DONE — three attributes that were recorded
+and unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L20 and L21.
 
 | record | attribute | what the archetype reads | effect |
 |---|---|---|---|

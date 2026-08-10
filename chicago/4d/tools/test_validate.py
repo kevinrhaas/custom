@@ -11,7 +11,9 @@ A gate nobody tests is a gate nobody has.
 from __future__ import annotations
 
 import datetime as dt
+import json
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -2040,6 +2042,165 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
     check("a module the sheets exclude is an error even when the file is otherwise clean",
           any("comes within" in e for e in run(doc(width_ft=66), module_ft=66)),
           run(doc(width_ft=66), module_ft=66))
+
+
+def _sources(**tiers) -> dict:
+    """`{filename: source record}` with the tiers a case needs and nothing else."""
+    return {f"{sid}.json": {"id": sid, "type": "book", "citation": "a citation of some length",
+                            "tier": t, "rights_status": "public_domain", "verified": True,
+                            "asset_use": "cross_check"}
+            for sid, t in tiers.items()}
+
+
+def _graded(conf: str, sources: list[str], **extra) -> dict:
+    return {"value": "x", "confidence": conf, "sources": sources,
+            "note": "a stated reason", **extra}
+
+
+def test_the_ladder_is_read_from_the_schema_and_covers_every_rung() -> None:
+    """One ladder, parsed from the schema, or a loud failure — never a silent gap.
+
+    A ladder that quietly came back short would let a tier no rule has an opinion
+    on pass every check below, and would print a bare number at a visitor.
+    """
+    import tiers as T
+    ladder = T.tier_ladder()
+    schema = json.loads((V.DATA / "source.schema.json").read_text())
+    spec = schema["properties"]["tier"]
+    check("every rung the schema validates has words for it",
+          sorted(ladder) == list(range(spec["minimum"], spec["maximum"] + 1)), sorted(ladder))
+    check("the rungs read as the schema writes them",
+          ladder[1].startswith("period") and "retrospective" in ladder[5], ladder)
+
+    # the discriminating case: a description that stops short of the range it
+    # validates is a hole, not a shorter ladder
+    holed = json.loads(json.dumps(schema))
+    holed["properties"]["tier"]["description"] = "1 period · 2 recollection · 3 compiled"
+    tmp = Path(tempfile.mkdtemp()) / "source.schema.json"
+    tmp.write_text(json.dumps(holed))
+    try:
+        T.tier_ladder(tmp)
+        check("a ladder missing a rung the schema accepts raises", False, "no raise")
+    except ValueError as e:
+        check("a ladder missing a rung the schema accepts raises", "4, 5, 6" in str(e), str(e))
+
+
+def test_a_documented_value_may_not_rest_on_a_retrospective_alone() -> None:
+    """PROVENANCE.md's tier rule, which nothing enforced until now."""
+    srcs = _sources(wright=1, conley=5, nelson=6)
+
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("documented", ["conley"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("documented on a tier-5 reconstruction alone is an error",
+          any("may never be the sole evidence" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("documented",
+                                                                  ["conley", "nelson"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("a second retrospective is not corroboration up the ladder", bool(rep.errors),
+          rep.errors)
+
+    # and the reading this deliberately does NOT take: a period source carries the
+    # value and citing the map beside it is corroboration, not contamination
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("documented",
+                                                                  ["wright", "conley"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("a period source with a retrospective cross-check is not an error",
+          not rep.errors, rep.errors)
+
+    # inferred is explicitly available to a tier-5 source (PROVENANCE.md, revised)
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("inferred", ["conley"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("a retrospective may still carry a value to inferred", not rep.errors, rep.errors)
+
+
+def test_an_outline_is_not_traced_from_a_picture() -> None:
+    """'Outlines come from tier-1 sheets or stay conjectural.'"""
+    srcs = _sources(wright=1, conley=5)
+    ph = phase("p", "1831-01-01", "1851-01-01")
+    ph["footprint"] = {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "inferred",
+                       "note": "read off the pictorial map", "sources": ["conley"]}
+    rep = V.Report()
+    V.check_evidence_ladder({"x.json": {"id": "x", "phases": [ph]}}, srcs, rep)
+    check("an inferred footprint citing a tier-5 picture is an error",
+          any("outline comes from a period sheet" in e for e in rep.errors), rep.errors)
+
+    # a POSITION from the same map is fine, and that is the whole point of the
+    # 2026-08-10 revision — the map says a thing was here, not what shape it was
+    ph2 = phase("p", "1831-01-01", "1851-01-01")
+    ph2["position"] = {"utm_e": 1.0, "utm_n": 2.0, "confidence": "inferred",
+                       "note": "the map places it here", "sources": ["conley"]}
+    rep = V.Report()
+    V.check_evidence_ladder({"x.json": {"id": "x", "phases": [ph2]}}, srcs, rep)
+    check("a position from the same map is not an error", not rep.errors, rep.errors)
+
+
+def test_a_source_may_not_declare_a_use_its_rung_does_not_support() -> None:
+    rep = V.Report()
+    srcs = _sources(conley=5)
+    srcs["conley.json"]["asset_use"] = "geometry"
+    V.check_evidence_ladder({}, srcs, rep)
+    check("asset_use geometry on a tier-5 source is an error",
+          any("no geometry is traced" in e for e in rep.errors), rep.errors)
+
+
+def test_documented_on_later_scholarship_alone_is_counted_not_failed() -> None:
+    """The exposure this check found, kept visible without being decided by fiat.
+
+    Twenty-one committed values are here today. Failing them would force a
+    regrade — a mesh input, so a bake — on a question that is research: a page
+    transcribing a period newspaper is tier 2 whatever site hosts it.
+    """
+    srcs = _sources(andreas=3, later=4)
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("documented", ["later"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("documented on tier 4 alone warns rather than fails", not rep.errors, rep.errors)
+    check("and it is counted and named",
+          any("no source at tier 3 or better" in w and "form.roof" in w for w in rep.warnings),
+          rep.warnings)
+
+    rep = V.Report()
+    st = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01",
+                                                 {"roof": _graded("documented",
+                                                                  ["andreas", "later"])})]}}
+    V.check_evidence_ladder(st, srcs, rep)
+    check("a compilation from pioneer testimony clears it", not rep.warnings, rep.warnings)
+
+
+def test_the_ground_is_held_to_the_same_ladder() -> None:
+    """The terrain grades itself like a record, so it answers to the ladder too."""
+    srcs = _sources(conley=5)
+    index = {"e1834": {"water.depth": {"id": "water.depth", "confidence": "documented",
+                                       "sources": ["conley"]}}}
+    rep = V.Report()
+    V.check_evidence_ladder({}, srcs, rep, index)
+    check("a documented ground claim on a tier-5 source alone is an error",
+          any("ground e1834" in e and "sole evidence" in e for e in rep.errors), rep.errors)
+
+
+def test_the_card_says_what_a_tier_is() -> None:
+    """The compiled citation carries the words, not only the number."""
+    import compile_scene as C
+    srcs = {"wright_1834": json.loads((V.DATA / "sources" / "wright_1834.json").read_text())}
+    got = C.cite(["wright_1834"], srcs)
+    check("a joined citation carries its rung in words",
+          got[0]["tier"] == 1 and got[0]["tier_label"].startswith("period"), got)
+
+    shipped = json.loads((V.DATA / "sidecars" / "1835" / "sauganash_hotel.json").read_text())
+    labelled = [c for c in shipped.get("citations", []) if c.get("tier_label")]
+    check("the committed sidecar ships the label the card renders",
+          len(labelled) == len(shipped.get("citations", [])) and labelled,
+          [c.get("tier_label") for c in shipped.get("citations", [])])
 
 
 def test_real_dataset_passes() -> None:
