@@ -18,7 +18,7 @@ walkthrough rather than only in the repository.
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 15 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene |
+| `tools/test_validate.py` | **done** — 21 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene and that a liberty naming a building does not cover an invention it never mentions |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | 13 seeded, of which 4 carry real Wayback snapshots |
@@ -28,7 +28,7 @@ walkthrough rather than only in the repository.
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 81 checks green at 390×780 and 1280×800, zero page errors |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 18, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate now checks the document *for gaps*, refusing any conjectural footprint or position that no liberty admits to |
 | **Published** | `site/chicago/4d/` (2.4 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
@@ -146,11 +146,19 @@ uncertainty of the 1834 sheets in its note.
     one derived record through one entry renderer, so the panel and the card cannot describe the
     same liberty differently, and the smoke asserts the discriminating case — a second building
     gets its own set, not the whole list, and a scene-wide liberty is not pinned to any building.
-    **The completeness question is untouched and stands.** The card, like the panel, reports the
-    liberties that were *recorded*; nothing verifies that every liberty taken was written down,
-    and a building with none recorded now says so in those words rather than implying innocence.
-    Six of six structures currently carry at least one, so the empty state is unexercised by real
-    data.
+    **Completeness is now enforced for one class of invention, and only one.** `validate.py`
+    runs the inverse check: every phase whose `footprint` or `position` is `conjectural` must be
+    named by a liberty that is about *that* aspect, not merely about that building — a liberty
+    concerning the Sauganash's gallery does not discharge the footprint drawn underneath it. Six
+    such inventions exist in the committed data (five footprints, plus Walker's position) and all
+    six are covered. The self-test asserts the discriminating case, because a check that only
+    asked "does this building appear in the liberties at all" would have passed the gap it exists
+    to catch. **What is still unenforced is everything else**: omissions, simplifications, and
+    conjectural *form* attributes carry no such requirement, and no mechanism can catch a liberty
+    taken that nobody noticed taking. The aspect match is keyword-based over the liberty's own
+    prose, which is a heuristic — it can be satisfied by prose that mentions a footprint while
+    discussing something else. Six of six structures carry at least one liberty, so the popup's
+    empty state remains unexercised by real data.
 12. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 

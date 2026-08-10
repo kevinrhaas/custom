@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 8, title: 'The list of what we made up is now checked for gaps', kind: 'feature',
+    ts: '2026-08-10T03:25:03.587Z', date: 'Aug 9, 2026, 10:25 PM CT',
+    items: [
+      'The walkthrough has been telling you which parts we invented. Nothing checked that the telling was complete — both views reported the liberties that had been written down, which is a weaker claim than it sounds.',
+      'The commit gate now works the other way round: it reads every building record, finds the footprints and positions drawn from nothing, and refuses the build unless the liberties document names that building and that specific invention. A liberty about a building\'s gallery no longer counts as owning up to the footprint underneath it.',
+      'Six inventions currently stand behind the six buildings at the forks — five drawn footprints and Walker\'s meeting house, placed on a bank the sources disagree about. All six are named in the panel, and now they have to be.',
+    ] },
   { v: 7, title: 'What we made up about the building you are looking at', kind: 'feature',
     ts: '2026-08-10T02:41:16.630Z', date: 'Aug 9, 2026, 9:41 PM CT',
     items: [
