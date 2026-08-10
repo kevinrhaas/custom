@@ -1399,6 +1399,25 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                                         f"no `gap` saying so — data/sources/osm_streets_2026.json "
                                         f"promises the ids are recorded, and a control point that "
                                         f"cannot be re-fetched has to say it cannot")
+        # Ids alone are not re-derivability. A list of node ids says which nodes
+        # were averaged; it does not say what junction they are, so nobody can
+        # tell whether the SET is right — and a wrong set is exactly the fault
+        # that cost this dataset two coordinates (a substring name query pulling
+        # a bikeway's crossings in beside the roadway's, 2026-08-10). The names
+        # make the set re-derivable rather than merely re-fetchable, which is the
+        # difference between checking the number and checking the reading.
+        if c.get("osm_node_ids"):
+            ways = c.get("osm_ways") or []
+            if len(ways) != 2 or not all(isinstance(w, str) and w.strip() for w in ways):
+                rep.error("street control", f"control '{cid}' records node ids but not the two "
+                                            f"modern street names in `osm_ways` that make the "
+                                            f"junction — without them the node SET cannot be "
+                                            f"re-derived, only re-fetched, and a set with the "
+                                            f"wrong nodes in it re-fetches perfectly")
+            if c.get("lat") is None or c.get("lon") is None:
+                rep.error("street control", f"control '{cid}' records node ids and no lat/lon — "
+                                            f"the re-fetch reads WGS84 and the comparison would "
+                                            f"have to reproject the answer it is checking")
 
     checked = declared = 0
     for name, st in sorted(structures.items()):

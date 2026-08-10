@@ -164,8 +164,11 @@ that have a specific answer here, and the second one is a trap.
 **Half of that sentence is committed data as of 2026-08-10.** `data/traces/street_control.json`
 holds the module (80 ft streets, `inferred`, with the 66 ft dissent recorded beside it) and the
 control table this project actually snaps to, each street carrying its axis and its modern
-equivalent. What is still missing for this parcel is the plat's **block dimensions and extent** —
-that file holds only what the existing placements used. See `docs/RESEARCH/street_module_1830.md`.
+equivalent — and, since 2026-08-10, the rule that makes a control point re-derivable rather than
+merely re-fetchable (`node_rule`: the nodes shared by the two named surface roadways, averaged,
+with bikeways and stacked lower-level streets excluded). What is still missing for this parcel is
+the plat's **block dimensions and extent** — that file holds only what the existing placements
+used. See `docs/RESEARCH/street_module_1830.md`.
 
 **Geometry comes from the Thompson module, generated, not traced.** The 1830 plat gives
 80-ft streets and 18-ft alleys over the original 0.375 sq mi; Wright 1834 shows the same
@@ -749,6 +752,13 @@ Three things worth carrying:
   not moved: its span is the distance between the traced banks along its centreline, that distance
   is a mesh parameter, and re-deriving it asks for a bake. The variance is declared and checked
   instead. See `docs/RESEARCH/street_module_1830.md`.
+- **And re-fetching the control the next day said which of the two was right** (2026-08-10,
+  STATUS § 39). A junction is the nodes shared by the two named *surface roadways*; two of Kinzie
+  and Canal's five committed nodes are bikeway crossings, and the other three are the bridge's
+  reading to a centimetre. The same inclusion had put Randolph and Canal 4.44 m out, which moved
+  the Western Hotel. `tools/refetch_control.py` re-derives a junction from the street names and
+  re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
+  `tools/check.sh`.
 
 ## S8 — Milestone 1
 

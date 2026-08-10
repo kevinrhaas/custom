@@ -1810,7 +1810,8 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
             "streets": {"a": {"name": "A St", "axis": "ns"},
                         "b": {"name": "B St", "axis": "ew"}},
             "control": {"a_b": {"streets": ["a", "b"], "utm_e": 1000.0, "utm_n": 2000.0,
-                                "osm_node_ids": [1]}},
+                                "osm_node_ids": [1], "osm_ways": ["A St", "B St"],
+                                "lat": 41.0, "lon": -87.0}},
         }
         doc.update(over)
         return doc
@@ -1877,6 +1878,18 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
     check("the same control saying so passes",
           not run(ok, control(control={"a_b": {"streets": ["a", "b"], "utm_e": 1000.0,
                                                "utm_n": 2000.0, "gap": "ids not recorded"}})))
+
+    # ids are re-fetchability; the names are re-derivability. The fault they
+    # catch is a node set that re-fetches perfectly and is the wrong junction.
+    unnamed = control(control={"a_b": {"streets": ["a", "b"], "utm_e": 1000.0, "utm_n": 2000.0,
+                                       "osm_node_ids": [1], "lat": 41.0, "lon": -87.0}})
+    check("node ids with no street names to re-derive the set from is an error",
+          any("`osm_ways`" in e for e in run(ok, unnamed)), run(ok, unnamed))
+    uncoordinated = control(control={"a_b": {"streets": ["a", "b"], "utm_e": 1000.0,
+                                             "utm_n": 2000.0, "osm_node_ids": [1],
+                                             "osm_ways": ["A St", "B St"]}})
+    check("node ids with no lat/lon is an error",
+          any("no lat/lon" in e for e in run(ok, uncoordinated)), run(ok, uncoordinated))
 
     # a crossing is derived from the traced bank instead, and the ends have to meet it
     def bridge(e0: float, var: float = 0.0, note: str = "why") -> dict:
