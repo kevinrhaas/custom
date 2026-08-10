@@ -486,6 +486,32 @@ for (const [label, viewport, touch] of [
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
 
+    // The admissions themselves, on the page. `Covers:` is what the commit gate
+    // reads to decide whether every invented footprint has been owned up to, and
+    // a guarantee enforced in the repository but invisible in the walkthrough is
+    // the same filed confession this panel exists to stop being. Asserted
+    // discriminatingly: the entry that admits to the Sauganash's two invented
+    // outlines shows footprint chips, and the scene-wide "no people" entry —
+    // which invents nothing that gets drawn — claims nothing.
+    const claims = await page.evaluate(() => {
+      const read = (id) => {
+        const el = [...document.querySelectorAll('#liberties details.lib')]
+          .find((d) => d.querySelector('.lib-id')?.textContent.trim() === id);
+        return [...(el?.querySelectorAll('.lib-covers') ?? [])].map((n) => n.textContent.trim());
+      };
+      return { l5: read('L5'), l8: read('L8'), l1: read('L1'), l4: read('L4') };
+    });
+    check(`${label}: an entry shows the inventions it admits to`,
+      claims.l5.length > 0 && claims.l5.every((t) => /footprint/.test(t))
+      && claims.l5.some((t) => /Sauganash/i.test(t)),
+      `L5 claims [${claims.l5.join(' | ')}]`);
+    check(`${label}: a claim over several buildings names each of them`,
+      claims.l8.length === 3 && new Set(claims.l8).size === 3,
+      `L8 claims [${claims.l8.join(' | ')}]`);
+    check(`${label}: an entry that invented nothing drawn claims nothing`,
+      claims.l1.length === 0 && claims.l4.length === 0,
+      `L1 [${claims.l1.join(' | ')}] L4 [${claims.l4.join(' | ')}]`);
+
     // Collapsed by default, and opening one gives the reasoning — not just the
     // admission that a liberty was taken.
     // A closed <details> still lays its contents out — measuring the body's own

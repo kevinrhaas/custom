@@ -10,6 +10,7 @@
       "title": "No people, anywhere",
       "section": "standing",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -36,6 +37,7 @@
       "title": "Fauna presented at low density, and often as sound only",
       "section": "standing",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -58,6 +60,7 @@
       "title": "Vertical exaggeration available but off by default",
       "section": "standing",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -82,6 +85,7 @@
       "subjects": [
         "sauganash_hotel"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": "2026-08-09",
       "fields": [
@@ -118,6 +122,7 @@
       "subjects": [
         "sauganash_hotel"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -146,6 +151,18 @@
       "subjects": [
         "sauganash_hotel"
       ],
+      "covers": [
+        {
+          "structure": "sauganash_hotel",
+          "phase": "frame_1831",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "sauganash_hotel",
+          "phase": "log_1829",
+          "aspect": "footprint"
+        }
+      ],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -162,6 +179,10 @@
           "text": "Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building rectangle once the datum is verified."
         },
         {
+          "label": "Covers",
+          "text": "`sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
         }
@@ -174,6 +195,7 @@
       "subjects": [
         "sauganash_hotel"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -200,6 +222,7 @@
         "walker_meeting_house",
         "wolf_point_tavern"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -230,6 +253,23 @@
         "walker_meeting_house",
         "wolf_point_tavern"
       ],
+      "covers": [
+        {
+          "structure": "miller_house",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "walker_meeting_house",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "wolf_point_tavern",
+          "phase": null,
+          "aspect": "footprint"
+        }
+      ],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -246,6 +286,10 @@
           "text": "Andreas vol. 1, \"Wharfs, Piers and Early Hotels\", pp. 626–631, at page-image level."
         },
         {
+          "label": "Covers",
+          "text": "`wolf_point_tavern.footprint`, `miller_house.footprint`, `walker_meeting_house.footprint`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
         }
@@ -258,6 +302,7 @@
       "subjects": [
         "green_tree_tavern"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -286,6 +331,7 @@
       "subjects": [
         "western_hotel"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -314,6 +360,7 @@
       "subjects": [
         "western_hotel"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -343,8 +390,15 @@
         "walker_meeting_house",
         "wolf_point_tavern"
       ],
+      "covers": [
+        {
+          "structure": "walker_meeting_house",
+          "phase": "log_1831",
+          "aspect": "position"
+        }
+      ],
       "recorded": "2026-08-09",
-      "revised": null,
+      "revised": "2026-08-10",
       "fields": [
         {
           "label": "Decision",
@@ -363,8 +417,16 @@
           "text": "Andreas on the early Methodist society; the congregation's own archives; or the reported 1835 painting showing Wolf Tavern, Miller's House and Walker's cabin in one view."
         },
         {
+          "label": "Covers",
+          "text": "`walker_meeting_house.log_1831.position`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-10 — the Decision line above still reads `inferred`, which is what this entry claimed when it was written. The record was downgraded to `conjectural` on 2026-08-09, on the reasoning in its own position note: choosing between two readings 150 m apart across a river is a coin flip with an argument attached, not a derivation. The `Covers:` claim is the binding statement of what this entry discharges; the stale word is left standing because the file is append-only and a silently corrected admission is not one."
         }
       ]
     },
@@ -376,6 +438,7 @@
         "miller_house",
         "wolf_point_tavern"
       ],
+      "covers": [],
       "recorded": "2026-08-09",
       "revised": null,
       "fields": [
@@ -402,6 +465,7 @@
       "title": "Terrain: a conjectural micro-relief under every claim",
       "section": "per_subject",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -428,6 +492,7 @@
       "title": "Terrain: the west-prairie swales are invented alignments",
       "section": "per_subject",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -454,6 +519,7 @@
       "title": "Terrain: the water is a wall to the walker",
       "section": "per_subject",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [
@@ -484,6 +550,7 @@
       "title": "Terrain: the ground continues past the modelled box as a radial skirt",
       "section": "per_subject",
       "subjects": [],
+      "covers": [],
       "recorded": "2026-08-10",
       "revised": null,
       "fields": [

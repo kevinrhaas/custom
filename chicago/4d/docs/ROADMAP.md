@@ -129,13 +129,23 @@ sufficient, and the self-test asserts exactly that case. Six inventions in the c
 six covered. The Evidence panel states the guarantee, because a promise a visitor cannot read
 is not one.
 
+**Done 2026-08-10 — coverage is now asserted, not inferred.** Entries carry a `**Covers:**`
+field of `structure_id[.phase_id].aspect` tokens; `compile_liberties.py` parses it, and
+`check_liberties_coverage` matches the claims against the records **in both directions** — an
+invention with no admission fails, and so does an admission whose value is not conjectural
+(exempt under **Resolved**, so evidence is allowed to arrive without breaking the gate). The
+keyword match over prose is gone, and the self-test's discriminating case is now an entry that
+talks about footprints and placement while claiming nothing. Writing the claims down immediately
+found a drift the heuristic was indifferent to: L12 described the Walker meeting house position
+as `inferred` months after the record was downgraded to `conjectural`. The chips are in the
+Evidence panel and on the provenance card, because a guarantee enforced only in the repository
+is the filed confession this whole line of work exists to stop being.
+
 Remaining in this line of work: the check covers **drawn geometry only**. Omissions,
-simplifications and conjectural *form* attributes carry no equivalent requirement, and the
-aspect match is a keyword heuristic over prose rather than a structured claim — a liberty could
-satisfy it by mentioning a footprint while discussing something else. The next honest step is
-probably a `subjects`-style structured field in `LIBERTIES.md` (`covers: sauganash_hotel.footprint`)
-so coverage is asserted by the document rather than inferred from its wording. Note the standing
-limit: nothing can catch a liberty taken that nobody noticed taking.
+simplifications and conjectural *form* attributes carry no equivalent requirement — extending
+the vocabulary beyond `footprint`/`position` is the obvious next step, and the harder half is
+that "this was omitted" has no record to point at, so it needs a different kind of claim.
+Note the standing limit: nothing can catch a liberty taken that nobody noticed taking.
 
 ## S8 — Milestone 1
 

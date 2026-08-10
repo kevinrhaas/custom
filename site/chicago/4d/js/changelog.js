@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 10, title: 'Each admission now says what it admits to', kind: 'feature',
+    ts: '2026-08-10T04:12:36.029Z', date: 'Aug 9, 2026, 11:12 PM CT',
+    items: [
+      'The liberties in the Evidence panel now carry dashed chips naming exactly what they own up to — "Sauganash Hotel footprint", "Miller House footprint" — so you can see which invented shape an entry is answering for instead of reading three paragraphs to work it out.',
+      'That is also how the commit gate decides. Until now it matched the wording of an entry against the building record, which meant a liberty could discharge an invented footprint by mentioning the word while discussing something else. Coverage is now declared by the document and checked against the data.',
+      'The check runs both ways: an invention with no admission fails the build, and so does an admission with no invention. Claiming to have guessed something the sources actually settle reads as diligence and provides none.',
+      'One entry was quietly out of date because of it. The Walker meeting house was recorded as "placed on the west bank, inferred" in the liberties document, while the record itself had already been downgraded to conjectural — a choice between two readings 150 m apart across a river is not a derivation. The document now says so.',
+    ] },
   { v: 9, title: 'Rise above the town', kind: 'feature',
     ts: '2026-08-10T03:39:28.412Z', date: 'Aug 9, 2026, 10:39 PM CT',
     items: [

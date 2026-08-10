@@ -148,18 +148,27 @@ uncertainty of the 1834 sheets in its note.
     gets its own set, not the whole list, and a scene-wide liberty is not pinned to any building.
     **Completeness is now enforced for one class of invention, and only one.** `validate.py`
     runs the inverse check: every phase whose `footprint` or `position` is `conjectural` must be
-    named by a liberty that is about *that* aspect, not merely about that building — a liberty
-    concerning the Sauganash's gallery does not discharge the footprint drawn underneath it. Six
-    such inventions exist in the committed data (five footprints, plus Walker's position) and all
-    six are covered. The self-test asserts the discriminating case, because a check that only
-    asked "does this building appear in the liberties at all" would have passed the gap it exists
-    to catch. **What is still unenforced is everything else**: omissions, simplifications, and
-    conjectural *form* attributes carry no such requirement, and no mechanism can catch a liberty
-    taken that nobody noticed taking. The aspect match is keyword-based over the liberty's own
-    prose, which is a heuristic — it can be satisfied by prose that mentions a footprint while
-    discussing something else. Six of six structures carry at least one liberty, so the popup's
-    empty state remains unexercised by real data.
-12. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
+    claimed by a liberty's `Covers:` field — `structure_id[.phase_id].aspect`, declared by the
+    document rather than inferred from its wording. Six such inventions exist in the committed
+    data (five footprints, plus Walker's position); six declarations cover them. The self-test
+    asserts the discriminating case, and that case got stricter: an entry whose prose is *about*
+    footprints and placement, and which names the building, no longer covers anything at all.
+    The claims are checked the other way too — a token naming no such structure, no such phase,
+    or an attribute that is not conjectural fails the gate, so an over-claim is as loud as a gap.
+    Entries under **Resolved** are exempt from that last rule, which is what lets an append-only
+    document survive its own data being corrected. **What is still unenforced is everything
+    else**: omissions, simplifications, and conjectural *form* attributes carry no such
+    requirement, and no mechanism can catch a liberty taken that nobody noticed taking. Six of
+    six structures carry at least one liberty, so the popup's empty state remains unexercised by
+    real data.
+12. **The document and the data had drifted, and writing the claim down found it.** L12 still
+    read "position tagged `inferred`" for the Walker meeting house; the record was downgraded to
+    `conjectural` on 2026-08-09 and nothing carried the change back. The keyword rule was
+    indifferent to the disagreement — the entry says "placed", the value was conjectural, and the
+    match held for a reason that had nothing to do with whether the two agreed. Declaring the
+    claim forced the comparison. L12 now carries a Revised line saying so, and the stale sentence
+    stays: the file is append-only, and a silently corrected admission is not one.
+13. **Frame rate figures are meaningless here.** 2–9 fps under headless SwiftShader is software
     rasterisation, not a GPU measurement. Draw calls (12) and triangles (1,006) are real.
 
 ## Next

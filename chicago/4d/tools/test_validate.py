@@ -147,18 +147,25 @@ def test_wide_range_rule_targets_guesses_not_facts() -> None:
           any("precedes" in e for e in rep.errors), rep.errors)
 
 
-def liberty(lid: str, title: str, subjects: list, text: str = "") -> dict:
-    return {"id": lid, "title": title, "section": "per_subject", "subjects": subjects,
+def liberty(lid: str, title: str, subjects: list, text: str = "",
+            covers: list | None = None, section: str = "per_subject") -> dict:
+    return {"id": lid, "title": title, "section": section, "subjects": subjects,
+            "covers": covers or [],
             "fields": [{"label": "Decision", "text": text}]}
+
+
+def covers(structure: str, aspect: str, phase_id: str | None = None) -> dict:
+    return {"structure": structure, "phase": phase_id, "aspect": aspect}
 
 
 def test_liberties_cover_conjectural_inventions() -> None:
     """A drawn shape nobody can defend has to be admitted somewhere a visitor reads.
 
-    The load-bearing case is the third one: a liberty that names the building but
-    is about something else. A coverage check that only asked "does this building
-    appear in the liberties at all" would pass it, and the building's invented
-    footprint would go unrecorded while looking covered.
+    The load-bearing case is the third one: a liberty whose prose is all about
+    footprints and placement, and which names the building, but which claims
+    nothing. That is exactly the entry the old wording-matched rule accepted — and
+    an entry can talk about a footprint while discharging something else entirely,
+    so the building's invented outline went unrecorded while looking covered.
     """
     structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
 
@@ -173,20 +180,71 @@ def test_liberties_cover_conjectural_inventions() -> None:
 
     rep = V.Report()
     V.check_liberties_coverage(structures, {"liberties": [
-        liberty("L2", "x: both footprints are invented", ["x"]),
-        liberty("L3", "x: placed from the shape of the bank", ["x"]),
+        liberty("L2", "x: both footprints are invented", ["x"], covers=[covers("x", "footprint")]),
+        liberty("L3", "x: placed from the shape of the bank", ["x"],
+                covers=[covers("x", "position", "p")]),
     ]}, rep)
-    check("naming the footprint and the placement satisfies the check", not rep.errors, rep.errors)
+    check("claiming the footprint and the placement satisfies the check",
+          not rep.errors, rep.errors)
 
     rep = V.Report()
     V.check_liberties_coverage(structures, {"liberties": [
-        liberty("L4", "x: the gallery is inferred from two derivative images", ["x"],
-                "The veranda was dropped after reading both retrospective views."),
+        liberty("L4", "x: the footprint question, and how the building was placed", ["x"],
+                "The outline drawn under it and its position were both discussed at length."),
     ]}, rep)
-    check("a liberty naming the building but not the invention does not cover it",
-          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+    check("prose about footprints and placement does not cover them — only a claim does",
+          any("footprint is conjectural" in e for e in rep.errors)
+          and any("position is conjectural" in e for e in rep.errors), rep.errors)
     check("the error says which liberties do name the building",
           any("L4" in e for e in rep.errors), rep.errors)
+    check("the error shows the Covers token that would fix it",
+          any("`x.p.footprint`" in e for e in rep.errors), rep.errors)
+
+    # Naming a phase claims that phase and no other. A second phase invented the
+    # same way needs its own admission — the whole point of phase granularity.
+    rep = V.Report()
+    two = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1841-01-01"),
+                                            phase("q", "1841-01-01", "1851-01-01")]}}
+    V.check_liberties_coverage(two, {"liberties": [
+        liberty("L5", "x: the first footprint is invented", ["x"],
+                covers=[covers("x", "footprint", "p"), covers("x", "position")]),
+    ]}, rep)
+    check("a phase-scoped claim does not silently cover a sibling phase",
+          any("x/q" in e and "footprint" in e for e in rep.errors)
+          and not any("x/p" in e and "footprint" in e for e in rep.errors), rep.errors)
+    check("a structure-scoped claim covers every phase that drew that aspect",
+          not any("position is conjectural" in e for e in rep.errors), rep.errors)
+
+    # The claims answer for themselves: over-claiming is as much a
+    # misrepresentation as under-claiming.
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L6", "x: everything is invented", ["x"],
+                covers=[covers("x", "footprint"), covers("x", "position"),
+                        covers("ghost", "footprint"), covers("x", "position", "nosuch")]),
+    ]}, rep)
+    check("a claim against a structure that does not exist is an error",
+          any("'ghost.footprint'" in e for e in rep.errors), rep.errors)
+    check("a claim against a phase that does not exist is an error",
+          any("no phase 'nosuch'" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    settled = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
+    settled["x.json"]["phases"][0]["footprint"]["confidence"] = "documented"
+    settled["x.json"]["phases"][0]["position"]["confidence"] = "documented"
+    V.check_liberties_coverage(settled, {"liberties": [
+        liberty("L7", "x: the footprint was invented", ["x"], covers=[covers("x", "footprint")]),
+    ]}, rep)
+    check("claiming an invention that the data no longer contains is an error",
+          any("is not conjectural" in e and "L7" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(settled, {"liberties": [
+        liberty("L7", "x: the footprint was invented — settled by the 1834 survey", ["x"],
+                covers=[covers("x", "footprint")], section="resolved"),
+    ]}, rep)
+    check("the same claim under Resolved is not an error — evidence is allowed to arrive",
+          not rep.errors, rep.errors)
 
     rep = V.Report()
     documented = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
@@ -195,6 +253,37 @@ def test_liberties_cover_conjectural_inventions() -> None:
     V.check_liberties_coverage(documented, {"liberties": []}, rep)
     check("an empty liberties file is an error, not a silent pass",
           any("data/liberties.json" in e for e in rep.errors), rep.errors)
+
+
+def test_covers_field_parses_to_claims() -> None:
+    """The grammar the document is written in, checked at its own level.
+
+    The aspect is the last segment and comes from a closed set, which is what
+    tells `x.footprint` (all phases) from `x.p.footprint` (one) without guessing.
+    """
+    sys.path.insert(0, str(Path(__file__).parent))
+    import compile_liberties as C
+
+    problems: list[str] = []
+    claims = C.parse_covers("`x.footprint`, `x.p1.position`", "L1", problems)
+    check("a two-segment token covers the structure, not one phase",
+          claims[0] == {"structure": "x", "phase": None, "aspect": "footprint"}, claims)
+    check("a three-segment token names its phase",
+          claims[1] == {"structure": "x", "phase": "p1", "aspect": "position"}, claims)
+    check("well-formed tokens report no problems", not problems, problems)
+
+    problems = []
+    C.parse_covers("`x.roof_type`, `x`, the footprint", "L2", problems)
+    check("an aspect outside the vocabulary is reported", any("roof_type" in p for p in problems),
+          problems)
+    check("a bare structure id is reported", any("'x'" in p for p in problems), problems)
+    check("prose in a Covers field is reported, not silently parsed",
+          any("the footprint" in p for p in problems), problems)
+
+    problems = []
+    C.parse_covers("  ", "L3", problems)
+    check("a Covers field that claims nothing is reported",
+          any("claims nothing" in p for p in problems), problems)
 
 
 def test_real_dataset_passes() -> None:

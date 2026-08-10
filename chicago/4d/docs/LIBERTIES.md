@@ -11,6 +11,27 @@ The per-attribute confidence model in the data covers *attributes*. This file co
 decisions that do not live in any single attribute — scope, scale, omission, and the choices a
 reader would otherwise have to reverse-engineer.
 
+## The `Covers:` field — what an entry claims to discharge
+
+An entry that admits to a **drawn** invention says so in machine-readable form:
+
+```
+**Covers:** `sauganash_hotel.log_1829.footprint`, `wolf_point_tavern.footprint`
+```
+
+Each token is `structure_id[.phase_id].aspect`, with `aspect` one of `footprint` or `position`.
+Naming the phase covers that phase; leaving it out covers whichever of the structure's phases
+drew that aspect from nothing. The commit gate reads these claims in both directions: every
+`conjectural` footprint or position in `data/structures/` must be claimed by some entry, and
+every claim must land on a value that is actually invented. The prose stays the explanation and
+the field is the assertion — the gate used to infer coverage from an entry's *wording*, which a
+liberty could satisfy by mentioning a footprint while discussing something else.
+
+An entry with no `Covers:` field claims nothing and is still a liberty: omissions,
+simplifications, navigation rules and scope decisions have nothing drawn to point at. When
+evidence settles a claimed invention, move the entry to **Resolved** — the gate exempts that
+section, which is what lets an append-only document survive its data being corrected.
+
 ---
 
 ## Standing liberties
@@ -78,6 +99,7 @@ geometry requirement that came out of the evidence rather than the plan.
 type and carry no evidence whatsoever.
 **How to resolve:** Andreas vol. 1 p. 106 at page-image level; then the Hathaway 1834 building
 rectangle once the datum is verified.
+**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.frame_1831.footprint`.
 **Recorded:** 2026-08-09.
 
 ### L6 — Sauganash Hotel: the pre-1830 position is not represented
@@ -114,6 +136,8 @@ as "a small square log building" — so the polygons carry an attested proportio
 scale. That distinction is stated in each footprint note.
 **How to resolve:** Andreas vol. 1, "Wharfs, Piers and Early Hotels", pp. 626–631, at page-image
 level.
+**Covers:** `wolf_point_tavern.footprint`, `miller_house.footprint`,
+`walker_meeting_house.footprint`.
 **Recorded:** 2026-08-09.
 
 ### L9 — Green Tree Tavern: the footprint is derived from a room, and the side additions are left off
@@ -167,7 +191,13 @@ cabin on the north — in which case the model has the wrong one. Note also that
 file and this record disagree and neither was edited to match the other.
 **How to resolve:** Andreas on the early Methodist society; the congregation's own archives; or
 the reported 1835 painting showing Wolf Tavern, Miller's House and Walker's cabin in one view.
-**Recorded:** 2026-08-09.
+**Covers:** `walker_meeting_house.log_1831.position`.
+**Recorded:** 2026-08-09. **Revised:** 2026-08-10 — the Decision line above still reads
+`inferred`, which is what this entry claimed when it was written. The record was downgraded to
+`conjectural` on 2026-08-09, on the reasoning in its own position note: choosing between two
+readings 150 m apart across a river is a coin flip with an argument attached, not a derivation.
+The `Covers:` claim is the binding statement of what this entry discharges; the stale word is
+left standing because the file is append-only and a silently corrected admission is not one.
 
 ### L13 — Composite log-and-frame buildings are extruded to a single wall height
 **Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
