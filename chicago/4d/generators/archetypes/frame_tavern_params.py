@@ -121,6 +121,19 @@ def from_phase(phase: dict) -> FrameTavernParams:
     ys = [p[1] for p in poly]
     width, depth = max(xs) - min(xs), max(ys) - min(ys)
 
+    # The contract pins the mesh origin to polygon coordinate (0, 0). Deriving
+    # only a bounding-box SIZE and then building from the origin silently
+    # translates any polygon not anchored there, so the building would stand
+    # somewhere its own footprint does not describe. Refuse instead: a footprint
+    # that needs an offset is asking for something this archetype does not model.
+    if abs(min(xs)) > 1e-6 or abs(min(ys)) > 1e-6:
+        raise ParamError(
+            f"footprint polygon starts at ({min(xs)}, {min(ys)}), not the origin. "
+            f"docs/GLB-CONTRACT.md pins the mesh origin to polygon coordinate (0, 0); "
+            f"building from a bounding box would silently move the structure "
+            f"{max(abs(min(xs)), abs(min(ys))):.2f} m from where its footprint puts it. "
+            f"Re-anchor the polygon at the origin and put the offset in position.")
+
     confidences = {a: conf(a) for a in form}
     confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
 

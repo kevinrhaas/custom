@@ -141,17 +141,25 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
                 continue
             for y, sgn in ((0.0, -1.0), (d, 1.0)):
                 yy = y + sgn * depth
-                b.add_poly([(cx - win_w / 2, yy, z0), (cx + win_w / 2, yy, z0),
-                            (cx + win_w / 2, yy, z0 + win_h),
-                            (cx - win_w / 2, yy, z0 + win_h)], conf, M_GLASS)
+                # Wind by the elevation's outward normal. Using one point order
+                # for both faces leaves the +y openings facing INTO the building;
+                # that was invisible only because the exporter writes
+                # doubleSided by default, which is not a guarantee to build on.
+                x0q, x1q = ((cx - win_w / 2, cx + win_w / 2) if sgn < 0
+                            else (cx + win_w / 2, cx - win_w / 2))
+                b.add_poly([(x0q, yy, z0), (x1q, yy, z0),
+                            (x1q, yy, z0 + win_h), (x0q, yy, z0 + win_h)],
+                           conf, M_GLASS)
                 if params.shutters:
                     for side in (-1, 1):
                         x0 = cx + side * (win_w / 2)
                         x1 = x0 + side * (win_w * 0.42)
                         yl = y + sgn * (depth * 0.4)
-                        b.add_poly([(min(x0, x1), yl, z0), (max(x0, x1), yl, z0),
-                                    (max(x0, x1), yl, z0 + win_h),
-                                    (min(x0, x1), yl, z0 + win_h)], c_shut, M_SHUTTER)
+                        lo, hi = min(x0, x1), max(x0, x1)
+                        a_, b_ = (lo, hi) if sgn < 0 else (hi, lo)
+                        b.add_poly([(a_, yl, z0), (b_, yl, z0),
+                                    (b_, yl, z0 + win_h), (a_, yl, z0 + win_h)],
+                                   c_shut, M_SHUTTER)
 
 
 def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:

@@ -25,6 +25,7 @@ differently and placed the same building 6 m apart before these were written dow
 |---|---|
 | mesh local origin, in plan | the **footprint polygon's own coordinate origin** — the point the record's `position` refers to, i.e. polygon coordinate `(0, 0)`. NOT the centroid and NOT the bbox corner (they coincide only by accident). |
 | mesh local origin, vertically | `y = 0` at the base of the walls |
+| …for a structure over water | `y = 0` at the **design water surface**, not the ground — a bridge's one documented dimension is its clearance above the water, and its piers run to a bed we do not model. The renderer must place such a structure against the water plane rather than sampling the terrain. Declared per archetype; `bridge_timber` is the first. |
 | footprint axes → 3D | polygon `u` → **+X**, polygon `v` → **−Z** (so +v is north, matching ENU) |
 | `rotation_deg` | facade bearing, **degrees clockwise from grid north**, 0 = facing north. In three.js: `rotation.y = -deg * PI/180`. |
 | ENU → three.js | `local_e` → **+X**, `local_n` → **−Z**, up → **+Y** |
@@ -46,9 +47,13 @@ node.extras  = { "structure_id": "...", "phase_id": "..." }
 diffable in git. The renderer resolves picks through `extras.structure_id`, never by parsing the
 name.
 
-**Multi-material split — verified 2026-08-09, matters for picking.** A structure with several
-materials exports as ONE node with several child meshes (`…__frame_1831_1`, `…_2`, …). glTF
-primitives cannot span materials, so this is unavoidable. Consequences:
+**Multi-material split — matters for picking.** glTF primitives cannot span materials, so a
+structure with several materials exports as ONE node holding ONE mesh with several PRIMITIVES.
+**three.js then represents that as a Group with one child Mesh per primitive**
+(`…__frame_1831_1`, `…_2`, …) — the split is created by the loader, not present in the file.
+Corrected 2026-08-09 after the archetype track inspected the GLB directly and found no child
+nodes; the original wording described the loader's output as though it were the file's
+structure, which sent someone looking for children that were never there. Consequences:
 
 - `extras` lands on the **parent node** (three.js: `object.userData`). The child meshes carry
   **empty** `userData`. A raycast hits a *child*, so **the renderer must walk up the ancestors
