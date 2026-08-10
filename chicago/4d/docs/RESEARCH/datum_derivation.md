@@ -12,7 +12,7 @@ the committed traces, and `tools/check.sh` fails if it ever stops matching.
 | **EPSG:26916** | E **447072.7**, N **4637395.8** |
 | **WGS84** | 41.886721, -87.637951 |
 | **Fit quality** | RMS 17.5 m over 8 control points (max 32.7 m) |
-| **Cross-checks** | independently georeferenced Hathaway forks 57.9 m away; modern OSM river junction 39.4 m away |
+| **Cross-checks** | independently georeferenced Hathaway forks 57.9 m away (see the 2026-08-10 section: two of that georeference's five control points are half a block out); modern OSM river junction 39.4 m away |
 | **Brief's placeholder** | (41.8885, -87.6385) — **203 m NNW of the derived point**, up the North Branch. The gate that refused to generate geometry until verification existed for exactly this case. |
 
 ## Method
@@ -104,6 +104,47 @@ Consequences, and they are not all bad:
 | Hathaway GCPs + fit | `data/traces/gcp/hathaway_1834_gcps.json` |
 | Modern control | OSM node ids recorded per GCP; © OpenStreetMap contributors, ODbL (`data/sources/osm_streets_2026.json`) |
 | Re-derivation | `tools/rederive_datum.py`, run by `tools/check.sh` |
+
+## The control point that is inside a block (2026-08-10)
+
+Reading the platted street corridors off both 1834 sheets started from each sheet's own
+*Canal St & Lake St* control pixel, and found that **neither of them is on Canal Street**.
+Hathaway's HA sits **52.4 m** west of the Canal corridor centreline, Wright's **G5 20.2 m**
+west, and both fall inside block 28 — on both sheets the block number *28* is printed
+straddling the recorded pixel, and a block number is never printed in a street. The most
+likely reading is that both took block 28's mid-block **alley** for the street; the alley
+measures 5.2 m and sits about 6 m from HA. Method, table and limits:
+`docs/RESEARCH/street_module_1830.md` § 9; readings in
+`data/traces/vectors/street_corridors_1834.json`.
+
+**What it costs this origin, computed rather than argued.** G5 is one of the eight points the
+Wright fit stands on. Refitting with G5 moved onto the corridor centreline and nothing else
+changed moves the origin **15.0 m** (dE −15.0, dN +0.2) and leaves the RMS at 17.5 m. That is
+inside the ±20 m this memo already declares as the working uncertainty of anything traced from
+these sheets, which is the reason it is not an emergency — and it is also 40% of that
+uncertainty, which is the reason it is not nothing.
+
+**Queued, not adopted, and pinned so it cannot rot.** Moving the origin re-derives every
+coordinate in the dataset and stales every committed mesh: a Blender bake and a whole-dataset
+review, not a slice. So `datum_exposure` in the corridor file carries the figure with
+`status: "queued, not adopted"`, and `check_street_module` holds both the offset and the
+exposure to the GCP pixels they were computed from — the day either correction is adopted, the
+gate fails until the sheets are read again.
+
+**Two things this does NOT say.** It does not say Canal and Lake is somewhere else: the modern
+junction is a well-recorded coordinate whose node ids are committed and which re-fetches to
+0.00 m. And the correction measured is *across* Canal Street only — whether HA and G5 sit at
+the right northing is a separate reading, untouched. Three of the five Hathaway points and
+seven of the eight Wright points have not been checked this way at all. The one that has been
+looked at, HC (State & Madison), appears to be in its corridor.
+
+**It does, however, put a number on § 6's 57.9 m.** The cross-check between the two
+georeferences was recorded as the honest ceiling on this datum, with no account of where the
+disagreement came from. Two of Hathaway's five control points being half a block out is now a
+candidate account of a good part of it. Testing that means refitting the Hathaway control with
+HA and HB corrected and re-reading its forks pixel — which is a slice, not a note, and the
+forks pixel on the Hathaway sheet is not committed anywhere, so `hathaway_forks_distance_m`
+cannot currently be re-derived at all. Both are queued.
 
 ## What could move this origin later
 

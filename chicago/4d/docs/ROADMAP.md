@@ -170,6 +170,24 @@ with bikeways and stacked lower-level streets excluded). What is still missing f
 the plat's **block dimensions and extent** — that file holds only what the existing placements
 used. See `docs/RESEARCH/street_module_1830.md`.
 
+**And the module is measured rather than annotated, 2026-08-10** (STATUS § 42,
+`docs/RESEARCH/street_module_1830.md` § 8, `data/traces/vectors/street_corridors_1834.json`).
+Eight platted corridors read off BOTH 1834 sheets, 75.7-92.8 ft, none within 9 ft of 66: the
+dissent is excluded and so is the reconciliation that it might be about different streets. Two
+things this parcel inherits. First, a **measured block pitch** — seven consecutive corridor
+spacings of 116.6-123.2 m, the 300 ft block plus one street — which is the beginning of the block
+dimensions this section asks for, though not yet the plat's extent. Second, a **method problem to
+solve before the E-W streets can be measured**: the N-S traverse reads Wright's lot lines, whose
+depths are a platted street's width and whose lines run as far as a block face does, so a corridor
+here has to be identified by something other than its width. Lake, Randolph, South Water and
+Market are unmeasured until that exists.
+
+**A caution for the generator, from the same slice.** The corridors drawn on these sheets run
+about 5 ft wider than 80 ft on both, and that is paper stretch plus pen placement, not evidence
+of a wider street. Generate the grid from the platted module (§ above) and snap it to control —
+do not fit it to the traced corridor widths, which would bake 4% of paper distortion into the
+town.
+
 **Geometry comes from the Thompson module, generated, not traced.** The 1830 plat gives
 80-ft streets and 18-ft alleys over the original 0.375 sq mi; Wright 1834 shows the same
 grid extended, and both sheets carry ±20 m of georeferencing slop that tracing would bake
@@ -790,6 +808,12 @@ Three things worth carrying:
   not moved: its span is the distance between the traced banks along its centreline, that distance
   is a mesh parameter, and re-deriving it asks for a bake. The variance is declared and checked
   instead. See `docs/RESEARCH/street_module_1830.md`.
+- **The control point the whole west division is measured from is inside a block** (2026-08-10,
+  STATUS § 42): Hathaway HA is 52.4 m west of the Canal Street corridor and Wright G5 20.2 m west,
+  both with block 28's number printed across them. G5 is a datum GCP, so the exposure is priced
+  (15.0 m of origin movement, RMS unchanged) and queued rather than taken — adopting it re-derives
+  every coordinate and stales every mesh. `check_street_module` fails the day either correction
+  lands, because the finding's inputs would have moved.
 - **And re-fetching the control the next day said which of the two was right** (2026-08-10,
   STATUS § 39). A junction is the nodes shared by the two named *surface roadways*; two of Kinzie
   and Canal's five committed nodes are bikeway crossings, and the other three are the bridge's

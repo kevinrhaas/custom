@@ -10,12 +10,25 @@
     "half_width_m": 12.192,
     "confidence": "inferred",
     "sources": ["hathaway_1834", "thompson_plat_1830"],
-    "note": "80 ft is the street width annotated on Hathaway 1834 and read off the sheet during the datum work; this project has applied it town-wide to Lake, Market, Canal, Randolph and Kinzie. It is INFERRED rather than documented because a second source gives a different town-wide number and the sheet has not been read street by street: half an 80 ft street is a reading of an annotation, not a measurement of each of these five streets. Alleys are 18 ft on the same reading (16 ft on the dissenting one) and no placement here uses them.",
+    "note": "80 ft is the street width annotated on Hathaway 1834 and read off the sheet during the datum work; this project applies it town-wide to Lake, Market, Canal, Randolph and Kinzie. MEASURED 2026-08-10, AND THE RIVAL FIGURE IS OUT: eight platted corridors were measured off BOTH 1834 sheets, block boundary line to block boundary line, and every one of them falls between 75.7 and 92.8 ft. None comes within 9 ft of 66. See `measured` below; the gate is check_street_module in tools/validate.py, which re-derives every one of those metres from its committed pixels, offline, on every commit. It stays INFERRED rather than documented and the reason has CHANGED. It is no longer that the sheet was never read street by street; it is that what has now been read is the corridor these draughtsmen DREW in 1834 — median about 5 ft wide of 80 on both sheets — while this figure claims what Thompson PLATTED in 1830. Between those two sit 3.7-4.5% of paper stretch and the placement of a pen line, so the measurement settles WHICH candidate and not the platted figure to the foot. Alleys read 17.1-18.7 ft on the same traverses, which is consistent with 18 ft and NOT conclusive against 16: two feet is inside this method's error, and a reading that cannot separate two figures does not get to pick one.",
+    "measured": {
+      "file": "data/traces/vectors/street_corridors_1834.json",
+      "tool": "tools/measure_street_widths.py",
+      "read_on": "2026-08-10",
+      "sheets": ["hathaway_1834", "wright_1834"],
+      "n_corridors": 8,
+      "median_ft": 84.8,
+      "range_ft": [75.7, 92.8],
+      "nearest_candidate_ft": 80,
+      "excluded_ft": [66],
+      "note": "One traverse per sheet, along the block row south of Lake Street: four N-S corridors on each at a centre-to-centre pitch of 116.6-123.2 m, which is the 300 ft block plus one street the plat describes and is the check that the reading is the module rather than the tool's own thresholds. The corridors are Desplaines, Jefferson, Clinton and Canal, named from the sheets' own street labels. The E-W streets are NOT measured: on the Wright sheet a N-S traverse reads lot lines whose depths are a platted street's width, and that half of the reading was dropped rather than filtered until it looked right. See docs/RESEARCH/street_module_1830.md § 8."
+    },
     "dissent": {
       "width_ft": 66,
       "alley_ft": 16,
       "sources": ["chicagology_first_post_office"],
-      "note": "Currey states Thompson's 1830 plat laid the town out with 'straight streets uniformly 66 feet wide (the length of a surveyor's chain) with alleys 16 feet wide'. NOT ADOPTED, and not averaged: an annotation on a cadastral survey sheet outweighs a narrative sentence about the town as a whole. The reconciliation worth testing is that the two figures are not about the same streets — 66 ft general, the riverfront and market streets platted wider — which is settled by reading widths off Hathaway 1834 at Lake, South Water and Market specifically. See docs/RESEARCH/hogan_store.md § 5. WHAT IT WOULD COST TO BE WRONG, stated because it is now computable rather than arguable: every offset drops from 12.192 m to 10.058 m, moving five buildings 2.13 m — an order of magnitude inside the georeference's own ±20 m, and one edit to this file rather than five."
+      "status": "excluded by measurement, 2026-08-10",
+      "note": "Currey states Thompson's 1830 plat laid the town out with 'straight streets uniformly 66 feet wide (the length of a surveyor's chain) with alleys 16 feet wide'. NOT ADOPTED, and not averaged: an annotation on a cadastral survey sheet outweighs a narrative sentence about the town as a whole. EXCLUDED BY MEASUREMENT 2026-08-10, together with the reconciliation that was standing in for a reading. The suggestion was that the two figures are about different streets — 66 ft general, the riverfront and market streets platted wider. The eight corridors measured are the general streets of the west division (Desplaines, Jefferson, Clinton, Canal), which is exactly where a 66 ft general width would have to show, and they read 75.7-92.8 ft. So this is not a reading about other streets; it is a narrative summary that matches neither survey. It stays recorded, because a source is not deleted for turning out to be wrong. See docs/RESEARCH/hogan_store.md § 5. WHAT IT WOULD HAVE COST, kept because it is the reason the module was made one figure in one file: every offset drops from 12.192 m to 10.058 m, moving five buildings 2.13 m — an order of magnitude inside the georeference's own ±20 m, and one edit to this file rather than five."
     }
   },
 
