@@ -9,6 +9,9 @@ const corners = JSON.parse(fs.readFileSync('intersections.json', 'utf8'));
 const streets = JSON.parse(fs.readFileSync('streets.json', 'utf8'));
 // Draw scores are derived by build-draw.mjs from the profiles; run that first.
 const draw = fs.existsSync('draw.json') ? JSON.parse(fs.readFileSync('draw.json', 'utf8')) : {};
+// Local card-sized thumbnails written by fetch-photos.py. Without it the app
+// falls back to hotlinking the festival's full-resolution originals.
+const photos = fs.existsSync('photos.json') ? JSON.parse(fs.readFileSync('photos.json', 'utf8')) : {};
 
 const byName = new Map(profs.map(p => [p.band_name, p]));
 
@@ -48,7 +51,9 @@ for (const b of raw) {
     id, n: b.band_name, g: b.genre || '', t: win, p: porchIdx.get(b.porch_address),
     one: p.one_liner, pr: p.profile, sl: p.sounds_like || [], tg: p.genre_tags || [],
     d: DIMS.map(k => p.dims[k]), cf: { high: 2, medium: 1, low: 0 }[p.confidence] ?? 1,
-    bio: b.bio || '', img: b.img_url || '', l: links,
+    // Prefer the local thumbnail; the remote original is the fallback only
+    // when the photo step hasn't run.
+    bio: b.bio || '', img: photos[id] || b.img_url || '', l: links,
     // dw = draw 0-100 (evidence of footprint, see build-draw.mjs); wy = why.
     dw: draw[b.band_name]?.d ?? 0, wy: draw[b.band_name]?.why ?? [],
   });

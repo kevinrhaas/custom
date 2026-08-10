@@ -23,8 +23,30 @@ no API. That buys three things that matter at a street festival:
 - a shared plan is just a URL — no backend, no account, nothing to keep running;
 - there is no third-party rate limit or API key to expire between now and August.
 
-Band photos are the one deliberate exception: they hotlink the festival's own S3
-bucket and degrade to the band's initials if they don't load.
+Band photos used to be the one exception, hotlinking the festival's S3 bucket.
+They are local now (see below) and still degrade to the band's initials if they
+don't load.
+
+## Band photos are local
+
+`python3 fetch-photos.py` downloads each photo once and writes a card-sized
+thumbnail to `../site/porchfest/app/img/<id>.jpg`. Needs `Pillow` and
+`pillow-heif`. It skips anything already fetched; `--force` re-fetches.
+
+The originals are full-resolution camera JPEGs — around 5000px wide and several
+megabytes each, one of them 24 MB. Browsing the lineup pulled **304 MB** off
+someone else's bucket, over the same saturated cell tower this app exists to
+avoid needing. The thumbnails come to **2.8 MB total, 0.9% of that**.
+
+Three photos are HEIC straight off an iPhone. Those never displayed at all
+outside Safari, since Chrome and Firefox cannot decode HEIC — converting them
+here fixes them rather than merely relocating them.
+
+They stay as files rather than base64 inlined into the page. Routing already
+works with zero requests because the street graph and every set time are in the
+payload; photos are decoration that loads lazily as you scroll the browser.
+Inlining ~2 MB would slow the thing that matters to speed up the thing that
+doesn't.
 
 ## How it plans
 
@@ -81,9 +103,10 @@ node geocode.mjs        # 1. porch addresses -> lat/lon (Nominatim)
 node build-matrix.mjs   # 2. street corners (Overpass) + an OSRM foot matrix to validate against
 node build-streets.mjs  # 3. street network -> streets.json
 node build-draw.mjs     # 4. profiles -> draw.json (how big a name each act is)
-node build-data.mjs     # 5. merge lineup + profiles + geo + draw -> data.json
-node build-app.mjs      # 6. inject data into the template -> ../site/porchfest/app/index.html
-node smoke-test.mjs     # 7. the ship gate
+python3 fetch-photos.py # 5. band photos -> local thumbnails + photos.json
+node build-data.mjs     # 6. merge lineup + profiles + geo + draw + photos -> data.json
+node build-app.mjs      # 7. inject data into the template -> ../site/porchfest/app/index.html
+node smoke-test.mjs     # 8. the ship gate
 ```
 
 Editing `app.template.html` only needs step 5.
@@ -160,6 +183,41 @@ pace and the shorter loop a family actually needs. Don't reintroduce it.
 
 Keep these labels demographic, never personal names: this is a public page that
 strangers at the festival will open, and a name means nothing to them.
+
+## Desktop panels
+
+Above 1080px the three views are resizable cards. Widths live in the
+`--col-tune` / `--col-route` custom properties, so dragging only ever writes
+two numbers, and a collapsed panel is simply width 0 — no separate state to
+keep in sync. The handle deliberately stays put when a panel collapses, because
+it is the way to pull it back. Sizes persist at `pf.layout`; the header button
+on the map resets them.
+
+Below 1080px the map moves under the other two, so there is no third column to
+drag against and the handles are hidden rather than resizing into nothing.
+Phones get the tab bar instead: no cards, no headers, no handles.
+
+**Watch the specificity.** The card rules set `overflow-x` on `#tune` / `#route`,
+which are ID selectors — the mobile override that returns the panes to
+`overflow:visible` has to match that specificity or the pane becomes its own
+scrollport and the sticky CTA silently breaks. That is a real regression the
+suite caught; the comment is in the CSS.
+
+## Shuffle
+
+Shuffle has to produce a *different* good afternoon, not the same one again.
+The search is randomised but the objective is not, so 64 restarts all converge
+on one optimum — the button re-derived the identical winner and looked broken.
+
+`shuffledPlan()` penalises repeating bands from the recent routes (`cfg.avoid`
+as a Map of id → weight, `cfg.avoidW` the multiplier), escalating the weight
+until the route actually changes, and gives up honestly — saying so — when the
+constraints admit only one answer. It remembers the last three routes, not just
+the current one: avoiding only what is on screen makes it ping-pong between two
+answers forever. Must-sees are exempt; you pinned them so they'd stay.
+
+The stored `score` is deliberately the unpenalised one, or a later
+"only replace if better" pass would compare two different yardsticks.
 
 ## Back and Forward
 

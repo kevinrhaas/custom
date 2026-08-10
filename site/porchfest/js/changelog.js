@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 7, title: 'Panels you can resize, a shuffle that shuffles, and 304 MB less to download', kind: 'feature',
+    ts: '2026-08-10T04:41:06.887Z', date: 'Aug 9, 2026, 11:41 PM CT',
+    items: [
+      'Band photos are local now. The lineup linked full-resolution camera shots on the festival server, around five thousand pixels wide and several megabytes each, one of them twenty-four. Browsing the bands pulled three hundred and four megabytes over the same crowded cell tower this whole app exists to avoid needing. The same photos, sized for the cards they appear in, come to under three megabytes.',
+      'Three of those were iPhone HEIC files that never displayed at all outside Safari. Converting them fixed them rather than just moving them.',
+      'On a wide screen the three views are now cards you can resize by dragging the handle between them, collapse when you want the map to yourself, and reset from the button on the map. Your sizes are remembered. Phones are untouched.',
+      'Shuffle the route now actually shuffles. It was re-running the same search, and since the search always converged on the same best answer it handed back the identical afternoon every time. It now looks for a different good afternoon, remembers the last few so it does not bounce between two, and tells you how many bands changed. When the constraints genuinely allow only one route it says so rather than pretending.',
+      'The band browser has genre filters. Picking several shows bands matching any of them, and they work alongside the search box.',
+    ] },
   { v: 6, title: 'No more 2:60 PM', kind: 'fix',
     ts: '2026-08-10T03:00:41.045Z', date: 'Aug 9, 2026, 10:00 PM CT',
     items: [

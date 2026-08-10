@@ -15,7 +15,10 @@ import { chromium, webkit } from 'playwright';
 const ROOT = join(dirname(new URL(import.meta.url).pathname), '..', 'site', 'porchfest');
 const PORT = 4191;
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css',
-  '.json': 'application/json', '.svg': 'image/svg+xml' };
+  '.json': 'application/json', '.svg': 'image/svg+xml',
+  // Band photos are local files now, so they have to be served as images —
+  // octet-stream would leave every card showing its fallback initials.
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp' };
 
 const server = http.createServer(async (req, res) => {
   try {
@@ -71,6 +74,12 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
   }
   for (const [vp, size] of [['mobile', { width: 390, height: 780 }], ['desktop', { width: 1440, height: 900 }]]) {
     const ctx = await browser.newContext({ viewport: size, deviceScaleFactor: 1 });
+    // Band photos hotlink an S3 bucket this environment cannot reach, so they
+    // HANG rather than fail. Re-rendering the 91-card grid re-issues all of
+    // them, and enough pending sockets eventually take the renderer down mid
+    // run. Failing them immediately is the same outcome the app is built for
+    // (it degrades to initials) and keeps the suite deterministic.
+    await ctx.route(/porchfest-band-photos|drive\.google/, r => r.abort());
     const page = await ctx.newPage();
     const tag = `${name}/${vp}`;
     console.log(`\n${tag}`);
@@ -517,6 +526,51 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else ok(`longest star toast fits (${worst.h.toFixed(0)}px)`);
     await setPop(0);
 
+    // ---- shuffle ----
+    // It has to produce a DIFFERENT afternoon. The search is randomised but
+    // the objective is not, so restarts all converge on one optimum — the
+    // button re-derived the same winner and looked broken. It now penalises
+    // repeating the current route, so this checks variety AND that the
+    // variety does not cost too much match quality.
+    if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
+    await page.waitForTimeout(250);
+    await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
+      .find(b => b.dataset.preset === 'Loud & fast').click());
+    await page.waitForTimeout(1800);
+    const routeNow = () => page.evaluate(() => ({
+      names: [...document.querySelectorAll('#stops .stop h3')].map(h => h.childNodes[0].textContent.trim()),
+      fit: +document.getElementById('sFit').textContent.replace('%', ''),
+    }));
+    const first = await routeNow();
+    const seenRoutes = new Set([first.names.join('|')]);
+    let worstFit = first.fit, everChanged = 0;
+    for (let i = 0; i < 4; i++) {
+      const before = await routeNow();
+      // Shuffling jumps to the schedule on mobile, which hides the button that
+      // lives in the plan pane — so come back before pressing it again.
+      if (vp === 'mobile') {
+        await page.locator('[data-go="tune"]:visible').first().click();
+        await page.waitForTimeout(250);
+      }
+      await page.locator('#go').click();
+      await page.waitForTimeout(1500);
+      const afterShuffle = await routeNow();
+      seenRoutes.add(afterShuffle.names.join('|'));
+      worstFit = Math.min(worstFit, afterShuffle.fit);
+      everChanged += afterShuffle.names.filter(n => !before.names.includes(n)).length;
+    }
+    if (seenRoutes.size < 3)
+      fail(`${tag} — 4 shuffles produced only ${seenRoutes.size} distinct route(s)`);
+    else ok(`shuffle varies the route (${seenRoutes.size} distinct across 5)`);
+    if (!everChanged) fail(`${tag} — shuffle never swapped a single band`);
+    // Variety is worthless if it hands you a bad afternoon.
+    if (first.fit - worstFit > 15)
+      fail(`${tag} — shuffle cost ${first.fit - worstFit} match points (${first.fit}% -> ${worstFit}%)`);
+    else ok(`shuffle keeps quality (${first.fit}% -> worst ${worstFit}%)`);
+    await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
+      .find(b => b.dataset.preset === '__clear').click());
+    await page.waitForTimeout(1600);
+
     // ---- browser Back / Forward ----
     // Views are the app's navigation, so they must be history entries. On
     // Android Back is a system gesture; leaving the app on a tab change is
@@ -573,6 +627,53 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     await page.fill('#bq', '');
     await page.waitForTimeout(200);
 
+    // ---- genre filters in the browser ----
+    const shown = () => page.locator('#bgrid .card').count();
+    const chipN = await page.locator('#bgenres .chip').count();
+    if (chipN < 20) fail(`${tag} — only ${chipN} genre filter chips`); else ok(`${chipN} genre filters`);
+
+    // A chip must narrow to exactly the bands carrying that tag.
+    const punkExpected = await page.evaluate(() =>
+      JSON.parse(document.getElementById('payload').textContent).bands.filter(b => b.tg.includes('punk')).length);
+    await page.locator('[data-bf="punk"]').click();
+    await page.waitForTimeout(300);
+    const punkShown = await shown();
+    if (punkShown !== punkExpected) fail(`${tag} — punk filter showed ${punkShown}, expected ${punkExpected}`);
+    else ok(`genre filter narrows (punk -> ${punkShown})`);
+
+    // Two genres must be a union, not an intersection: picking punk and folk
+    // should widen the view, not demand a band that is somehow both.
+    await page.locator('[data-bf="folk"]').click();
+    await page.waitForTimeout(300);
+    const bothShown = await shown();
+    const unionExpected = await page.evaluate(() =>
+      JSON.parse(document.getElementById('payload').textContent).bands
+        .filter(b => b.tg.includes('punk') || b.tg.includes('folk')).length);
+    if (bothShown !== unionExpected)
+      fail(`${tag} — punk+folk showed ${bothShown}, expected the union ${unionExpected}`);
+    else ok(`two genres union rather than intersect (${bothShown})`);
+
+    // Filters and the search box must compose.
+    await page.fill('#bq', 'women');
+    await page.waitForTimeout(300);
+    const composed = await shown();
+    if (composed >= bothShown) fail(`${tag} — search did not narrow the filtered set (${composed})`);
+    else ok(`filters compose with search (${composed})`);
+
+    // An impossible combination explains itself instead of showing a blank grid.
+    await page.fill('#bq', 'zzzznope');
+    await page.waitForTimeout(300);
+    const emptyMsg = await page.locator('#bgrid .empty').count();
+    if (!emptyMsg) fail(`${tag} — no empty state when nothing matches`);
+    else ok('empty state when nothing matches');
+
+    await page.fill('#bq', '');
+    await page.locator('#bfClear').click();
+    await page.waitForTimeout(300);
+    const cleared = await shown();
+    if (cleared !== 91) fail(`${tag} — clearing filters left ${cleared} of 91`);
+    else ok('clearing filters restores all 91');
+
     // Sorting by biggest names must actually order by draw, descending, and
     // the badge must land on the acts that earned it — with its evidence.
     await page.selectOption('#bsort', 'draw');
@@ -626,6 +727,95 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       else ok(`toast sized correctly (${geo.toastH.toFixed(0)}px)`);
       if (geo.goBottom > geo.tabsTop + 1) fail(`${tag} — CTA bottom ${geo.goBottom.toFixed(0)} is under the tab bar at ${geo.tabsTop.toFixed(0)}`);
       else ok('primary action clears the tab bar');
+    }
+
+    // ---- desktop panel layout ----
+    if (vp === 'desktop') {
+      // The bands view hides .wrap entirely, so get back to the panels first
+      // or every measurement below is taken against a display:none element.
+      await page.locator('[data-go="tune"]:visible').first().click();
+      await page.waitForTimeout(300);
+      const cols = () => page.evaluate(() =>
+        getComputedStyle(document.querySelector('.wrap')).gridTemplateColumns
+          .split(' ').map(v => Math.round(parseFloat(v))));
+
+      // Nothing in the map's header may sit under the zoom cluster.
+      const clash = await page.evaluate(() => {
+        const a = document.querySelector('#resetLayout')?.getBoundingClientRect();
+        const b = document.querySelector('.mapctl')?.getBoundingClientRect();
+        if (!a || !b) return 'missing';
+        return (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom)
+          ? `reset ${a.left.toFixed(0)}-${a.right.toFixed(0)} vs zoom ${b.left.toFixed(0)}-${b.right.toFixed(0)}` : '';
+      });
+      if (clash) fail(`${tag} — map header overlaps the zoom controls: ${clash}`);
+      else ok('map header clears the zoom controls');
+
+      // Dragging a divider must actually resize, and persist.
+      const before = await cols();
+      const g = await page.locator('.gutter').first().boundingBox();
+      await page.mouse.move(g.x + g.width / 2, g.y + 200);
+      await page.mouse.down();
+      await page.mouse.move(g.x + g.width / 2 + 120, g.y + 200, { steps: 10 });
+      await page.mouse.up();
+      await page.waitForTimeout(400);
+      const after = await cols();
+      if (after[0] <= before[0]) fail(`${tag} — dragging the divider did not widen: ${before[0]} -> ${after[0]}`);
+      else ok(`divider resizes the panel (${before[0]}px -> ${after[0]}px)`);
+
+      // A FRESH PAGE rather than a reload. It shares localStorage, so this
+      // still proves boot restores the stored width — and it proves it on a
+      // renderer that has not just been through 250 automated operations.
+      // (Reloading this page crashed headless WebKit at the tail of a full
+      // run; the heap is flat across the same work, so that is the harness
+      // wearing out, not a leak. Chromium never does it.)
+      const fresh = await ctx.newPage();
+      const doneFresh = watch(fresh, `${tag}/fresh`);
+      await fresh.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
+      await fresh.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
+        null, { timeout: 25000 }).catch(() => {});
+      await fresh.waitForTimeout(300);
+      const restored = await fresh.evaluate(() =>
+        getComputedStyle(document.querySelector('.wrap')).gridTemplateColumns
+          .split(' ').map(v => Math.round(parseFloat(v))));
+      if (restored[0] !== after[0]) fail(`${tag} — panel width did not persist: ${after[0]} -> ${restored[0]}`);
+      else ok(`panel width persists into a new session (${restored[0]}px)`);
+      doneFresh();
+      await fresh.close();
+
+      // Collapse to zero, then the divider brings it back.
+      await page.locator('[data-collapse="tune"]').click();
+      await page.waitForTimeout(400);
+      const collapsed = await cols();
+      if (collapsed[0] !== 0) fail(`${tag} — collapse left the panel at ${collapsed[0]}px`);
+      else ok('a panel collapses to nothing');
+      const stillThere = await page.locator('.gutter').first().isVisible();
+      if (!stillThere) fail(`${tag} — the divider vanished with the collapsed panel, no way back`);
+      else ok('the divider survives so the panel can be recovered');
+      await page.locator('.gutter').first().click();
+      await page.waitForTimeout(400);
+      const back = await cols();
+      if (back[0] === 0) fail(`${tag} — clicking the divider did not restore the panel`);
+      else ok(`clicking the divider restores it (${back[0]}px)`);
+
+      // Reset puts it back to the shipped defaults.
+      await page.locator('#resetLayout').click();
+      await page.waitForTimeout(400);
+      const reset = await cols();
+      if (reset[0] !== 344 || reset[2] !== 400)
+        fail(`${tag} — reset gave ${reset[0]}/${reset[2]}, expected 344/400`);
+      else ok('reset restores the default layout');
+
+      // Panels must never push the page sideways at any width.
+      for (const w of [1100, 1280, 1512, 1920]) {
+        await page.setViewportSize({ width: w, height: 900 });
+        await page.waitForTimeout(250);
+        const over = await page.evaluate(() =>
+          document.documentElement.scrollWidth - document.documentElement.clientWidth);
+        if (over > 0) fail(`${tag} — ${over}px horizontal overflow at ${w}px wide`);
+      }
+      ok('no horizontal overflow at any desktop width');
+      await page.setViewportSize(size);
+      await page.waitForTimeout(250);
     }
 
     // no horizontal overflow on mobile

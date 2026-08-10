@@ -76,32 +76,88 @@ a{color:var(--brand-2)}
 .iconbtn svg{width:17px;height:17px}
 
 /* ---- layout ---- */
-.wrap{display:grid;grid-template-columns:344px 400px 1fr;height:calc(100dvh - 55px)}
+/* ---- desktop panels ------------------------------------------------------
+   Three resizable cards rather than three columns divided by hairlines. The
+   widths live in custom properties so the drag handles only have to write two
+   numbers, and the collapsed state is just a width of zero. */
+:root{--col-tune:344px; --col-route:400px; --gut:9px}
+.wrap{
+  display:grid;grid-template-columns:var(--col-tune) var(--gut) var(--col-route) var(--gut) 1fr;
+  height:calc(100dvh - 55px);padding:9px;gap:0;background:var(--bg);
+}
 .pane{overflow-y:auto;overscroll-behavior:contain}
-#tune{border-right:1px solid var(--border);background:var(--surface)}
-#route{border-right:1px solid var(--border);background:var(--bg-2)}
+#tune,#route,#mapPane{
+  border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);
+  /* A collapsed column is 0 wide; without this its content would spill out. */
+  overflow-x:hidden;min-width:0;
+}
+#tune{background:var(--surface)}
+#route{background:var(--bg-2)}
 #mapPane{position:relative;background:var(--map-ground);overflow:hidden}
+
+/* The drag handle between two panels. Wider hit area than it looks, with the
+   grip only showing on hover so the chrome stays quiet until you reach for it. */
+.gutter{
+  position:relative;cursor:col-resize;background:none;border:0;padding:0;
+  display:grid;place-items:center;touch-action:none;
+}
+.gutter::before{
+  content:'';width:3px;height:34px;border-radius:2px;background:var(--border);
+  transition:background .15s,height .15s;
+}
+.gutter:hover::before,.gutter:focus-visible::before{background:var(--brand);height:56px}
+.gutter:focus-visible{outline:2px solid var(--brand);outline-offset:-2px;border-radius:6px}
+body.resizing{cursor:col-resize;user-select:none}
+/* A collapsed neighbour turns the handle into the way to get it back. */
+.gutter.collapsed::before{height:56px;background:var(--brand-2)}
+
+/* Panel header — gives each card a name and somewhere for the collapse
+   control to live. Sticky so it survives scrolling the panel body. */
+.panehd{
+  position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:7px;
+  padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--border);
+  border-radius:13px 13px 0 0;
+}
+.panehd svg{width:15px;height:15px;color:var(--brand);flex:none}
+.panehd h2{
+  margin:0;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-2);flex:1;
+}
+.panehd .panebtn{
+  width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  color:var(--text-3);background:none;border:0;cursor:pointer;flex:none;
+}
+.panehd .panebtn:hover{background:var(--surface-3);color:var(--brand)}
+.panehd .panebtn svg{width:13px;height:13px;color:currentColor}
+#mapPane .panehd{position:absolute;left:0;right:0;top:0;background:color-mix(in srgb,var(--surface-2) 88%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 #bands{display:none;height:calc(100dvh - 55px);overflow-y:auto}
 body[data-view="bands"] .wrap{display:none}
 body[data-view="bands"] #bands{display:block}
 .mobtabs{display:none}
 
 @media (max-width:1080px){
-  .wrap{grid-template-columns:320px 1fr}
-  #route{border-right:0}
-  #mapPane{grid-column:1/-1;height:52vh;border-top:1px solid var(--border)}
-  .wrap{grid-template-rows:1fr auto;height:calc(100dvh - 55px)}
+  /* Below this the map moves under the other two, so there is no third column
+     to drag against — the handles go away rather than resizing into nothing. */
+  .wrap{grid-template-columns:320px 1fr;grid-template-rows:1fr auto;height:calc(100dvh - 55px);gap:9px;padding:9px}
+  .gutter{display:none}
+  #mapPane{grid-column:1/-1;height:52vh}
 }
 @media (max-width:760px){
   /* the tab bar is fixed over the page, so everything that reaches the bottom
      edge — scroll panes and the sticky CTA — has to clear it */
   :root{--mobtab:54px; --mobtab-safe:calc(54px + env(safe-area-inset-bottom))}
-  .wrap{display:block;height:auto}
+  .wrap{display:block;height:auto;padding:0;gap:0}
   /* the body becomes the scroller on phones — leaving overflow:auto here would
-     make each pane its own (non-scrolling) scrollport and break position:sticky */
-  .pane{overflow:visible}
+     make each pane its own (non-scrolling) scrollport and break position:sticky.
+     Has to be ID-specificity: the desktop panel rules set overflow-x on #tune /
+     #route, and a bare .pane selector loses to them and re-breaks the CTA. */
+  .pane,#tune,#route{overflow:visible}
   .pane,#mapPane{height:auto}
-  #tune,#route,#mapPane{display:none;border:0}
+  /* Phones get the tab bar instead of panels: no cards, no headers, no handles. */
+  #tune,#route,#mapPane{display:none;border:0;border-radius:0;box-shadow:none}
+  .panehd{display:none}
+  /* No panel header on phones, so the zoom cluster goes back to the top. */
+  .mapctl{top:10px}
   body[data-view="tune"] #tune,
   body[data-view="route"] #route{
     display:block;min-height:calc(100dvh - 55px - var(--mobtab-safe));
@@ -288,7 +344,9 @@ input[type=range]::-moz-range-thumb{
 /* ---- map ---- */
 #map{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
 #map:active{cursor:grabbing}
-.mapctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:5px;z-index:10}
+/* Clears the map's panel header, which occupies the top strip on desktop and
+   would otherwise sit underneath the zoom cluster. */
+.mapctl{position:absolute;right:10px;top:53px;display:flex;flex-direction:column;gap:5px;z-index:10}
 .mapctl button{
   width:31px;height:31px;border-radius:9px;background:var(--surface);border:1px solid var(--border);
   color:var(--text-2);display:grid;place-items:center;box-shadow:var(--shadow-sm);font-size:15px;font-weight:700;
@@ -315,6 +373,26 @@ input[type=range]::-moz-range-thumb{
 }
 .bandbar input{max-width:280px}
 .bandbar .n{font-size:12px;color:var(--text-2);font-weight:600}
+/* Genre filters for the browser. Sticks under the search bar so they stay
+   reachable while scrolling 91 cards. */
+.bandfilter{
+  position:sticky;top:53px;z-index:9;display:flex;gap:8px;align-items:flex-start;
+  padding:9px 16px;background:var(--surface);border-bottom:1px solid var(--border);
+}
+.bandfilter .chips{flex:1}
+.bandfilter .chip{cursor:pointer}
+.bandfilter .chip[data-s="1"]{
+  background:color-mix(in srgb,var(--brand) 20%,transparent);
+  border-color:var(--brand);color:var(--brand);
+}
+.bfclear{
+  flex:none;padding:4px 10px;border-radius:99px;font-size:11.5px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);cursor:pointer;
+}
+.bfclear:hover{border-color:var(--brand);color:var(--brand)}
+@media (max-width:760px){
+  .bandfilter{top:0;position:static;flex-wrap:wrap}
+}
 .grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;padding:14px 16px 40px;
 }
@@ -420,6 +498,11 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
 <div class="wrap">
   <!-- ---------------- tune ---------------- -->
   <aside class="pane" id="tune">
+    <header class="panehd">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+      <h2>Plan</h2>
+      <button class="panebtn" data-collapse="tune" title="Collapse this panel" aria-label="Collapse the Plan panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    </header>
     <!-- First, because picking a person sets the pace and band cap below. -->
     <div class="sec">
       <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M16 15c3 0 5 1.7 5 5"/></svg>Who's walking</h2>
@@ -483,8 +566,16 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
     </div>
   </aside>
 
+  <div class="gutter" data-resize="tune" role="separator" aria-orientation="vertical" tabindex="0"
+       aria-label="Resize the Plan panel — arrow keys to adjust, Enter to collapse"></div>
+
   <!-- ---------------- schedule ---------------- -->
   <section class="pane" id="route">
+    <header class="panehd">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+      <h2>Schedule</h2>
+      <button class="panebtn" data-collapse="route" title="Collapse this panel" aria-label="Collapse the Schedule panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    </header>
     <div class="sum">
       <div class="sumgrid">
         <div><b id="sBands">—</b><small>bands</small></div>
@@ -502,7 +593,15 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
   </section>
 
   <!-- ---------------- map ---------------- -->
+  <div class="gutter" data-resize="route" role="separator" aria-orientation="vertical" tabindex="0"
+       aria-label="Resize the Schedule panel — arrow keys to adjust, Enter to collapse"></div>
+
   <section id="mapPane">
+    <header class="panehd">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 20l-5.4 1.8L5.4 3.2 9 2l6 3 5.4-1.8L18.6 20.8 15 22z"/><path d="M9 2v18M15 5v17"/></svg>
+      <h2>Map</h2>
+      <button class="panebtn" id="resetLayout" title="Reset the panel layout" aria-label="Reset the panel layout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+    </header>
     <svg id="map" role="img" aria-label="Route map"></svg>
     <div class="mapctl">
       <button id="zIn" title="Zoom in" aria-label="Zoom in">+</button>
@@ -525,6 +624,13 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
       <option value="draw">Sort: biggest names</option>
     </select>
     <span class="n" id="bcount"></span>
+  </div>
+  <!-- Filters the browser only. Deliberately separate from the planner's
+       seek/avoid chips: this answers "show me the punk bands", not "route me
+       toward punk", and conflating the two would silently rewrite your plan. -->
+  <div class="bandfilter">
+    <div class="chips" id="bgenres"></div>
+    <button class="bfclear" id="bfClear" hidden>Clear filters</button>
   </div>
   <div class="grid" id="bgrid"></div>
 </section>
@@ -754,6 +860,8 @@ const S = {
   tags: {}, pins: [], plan: null, sel: -1, err: '',
   focus: '',                         // band card to highlight after a jump
   crew: '',                          // which of the four presets is showing
+  recent: [],                        // recent routes, so Shuffle doesn't cycle
+  bfilter: [],                       // genre filters for the band browser only
 };
 function idxCorner(label){
   const i = D.corners.findIndex(c=>c.a===label);
@@ -813,6 +921,9 @@ function scoreOf(sim, cfg){
     const credit=Math.min(1, st.stay/cfg.dwell);
     s += (cfg.ms.get(st.b.id) + 1.15) * credit;        // +1.15 so any set beats none
     if(cfg.pin.has(st.b.id)) s += 6;
+    // Repeating a band the last route already had is discouraged during a
+    // shuffle. Must-sees are exempt — you pinned them precisely so they stay.
+    if(cfg.avoid && !cfg.pin.has(st.b.id)) s -= cfg.avoidW * (cfg.avoid.get(st.b.id)||0);
   }
   s -= sim.walk*0.0016 + sim.wait*0.012;
   // "at least N" is a goal, not a filter: a route that falls short is still
@@ -820,12 +931,17 @@ function scoreOf(sim, cfg){
   if(cfg.minB && sim.stops.length < cfg.minB) s -= 400*(cfg.minB - sim.stops.length);
   return s;
 }
-function plan(runs){
+function plan(runs, avoid, avoidW){
   const cfg={
     t0:S.t0, t1:S.t1, from:S.from, to:S.to<0?S.from:S.to,
     dwell:S.dwell, minStay:Math.min(S.minStay,S.dwell), mpm:S.pace*1000/60,
     ms:new Map(), pin:new Set(S.pins),
     minB:S.minBands||0, maxB:S.maxBands||Infinity,
+    // Shuffle only: bands already in the route cost a little, so the search
+    // looks for a DIFFERENT good afternoon instead of re-deriving the same
+    // winner. Without this, restarts all converge on one optimum and the
+    // button appears to do nothing.
+    avoid:avoid||null, avoidW:avoidW||0,
   };
   const pool=D.bands.filter(b=>!excluded(b)||cfg.pin.has(b.id));
   pool.forEach(b=>cfg.ms.set(b.id, matchScore(b)));
@@ -884,8 +1000,47 @@ function plan(runs){
     const sc=scoreOf(cur,cfg);
     if(cur && sc>bestScore){ bestScore=sc; best=cur; }
   }
-  if(best){ best.dropped=dropped; best.score=bestScore; best.short=cfg.minB && best.stops.length<cfg.minB ? cfg.minB : 0; }
+  if(best){
+    best.dropped=dropped;
+    // Store the HONEST score, not the shuffle-penalised one, or a later
+    // "only replace if better" pass would compare two different yardsticks.
+    if(cfg.avoid){ const a=cfg.avoid; cfg.avoid=null; best.score=scoreOf(best,cfg); cfg.avoid=a; }
+    else best.score=bestScore;
+    best.short=cfg.minB && best.stops.length<cfg.minB ? cfg.minB : 0;
+  }
   return best;
+}
+
+/* Ask for a different good afternoon, not the same one again. Escalates the
+   repeat penalty until the route actually changes, so a near-tie doesn't come
+   back identical — and gives up honestly when the constraints admit only one
+   answer rather than pretending to shuffle. */
+function shuffledPlan(){
+  const prev=new Set(S.plan ? S.plan.stops.map(s=>s.b.id) : []);
+  if(!prev.size) return {p:plan(64), changed:0, only:false};
+
+  // Remember the last few routes, not just the current one — avoiding only the
+  // route on screen makes it ping-pong between two answers forever. Older ones
+  // weigh less, so the search drifts onward instead of cycling.
+  const hist=[prev, ...S.recent].slice(0,3);
+  const avoid=new Map();
+  hist.forEach((set,i)=>{
+    const w=[1, 0.6, 0.35][i];
+    for(const id of set) avoid.set(id, Math.max(avoid.get(id)||0, w));
+  });
+
+  let last=null;
+  for(const w of [0.3, 0.75, 1.6, 3.2]){
+    const p=plan(64, avoid, w);
+    if(!p) break;
+    last=p;
+    const changed=p.stops.filter(s=>!prev.has(s.b.id)).length;
+    if(changed){
+      S.recent=[prev, ...S.recent].slice(0,3);
+      return {p, changed, only:false};
+    }
+  }
+  return {p:last||plan(64), changed:0, only:true};
 }
 
 /* ---------- formatting ---------- */
@@ -1211,15 +1366,37 @@ function drawMap(){
 }
 
 /* ---------- bands browser ---------- */
+function renderBandGenres(){
+  // Counts are of what's currently showing, so a chip never promises results
+  // it can't deliver alongside the filters already on.
+  const counts={};
+  for(const b of D.bands) for(const t of b.tg) counts[t]=(counts[t]||0)+1;
+  const on=S.bfilter;
+  $('#bgenres').innerHTML=Object.keys(counts)
+    .sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b))
+    .map(t=>`<button class="chip" data-bf="${t}" data-s="${on.includes(t)?1:0}" aria-pressed="${on.includes(t)}">${t} <span style="opacity:.55">${counts[t]}</span></button>`).join('');
+  $('#bfClear').hidden = !on.length;
+}
 function renderBands(){
   const q=$('#bq').value.trim().toLowerCase();
   const sort=$('#bsort').value;
+  const bf=S.bfilter;
   let list=D.bands.filter(b=>!q ||
     (b.n+' '+b.g+' '+b.tg.join(' ')+' '+b.sl.join(' ')+' '+b.one).toLowerCase().includes(q));
+  // Several genres selected means ANY of them — picking punk and folk should
+  // widen what you see, not demand a band that is somehow both.
+  if(bf.length) list=list.filter(b=>b.tg.some(t=>bf.includes(t)));
   if(sort==='name') list=[...list].sort((a,b)=>a.n.localeCompare(b.n));
   else if(sort==='fit') list=[...list].sort((a,b)=>matchScore(b)-matchScore(a));
   else if(sort==='draw') list=[...list].sort((a,b)=>b.dw-a.dw || a.n.localeCompare(b.n));
   $('#bcount').textContent=`${list.length} of ${D.bands.length}`;
+  renderBandGenres();
+  if(!list.length){
+    $('#bgrid').innerHTML=`<div class="empty" style="grid-column:1/-1">
+      <div><b>No bands match</b></div>
+      <div style="font-size:12px;margin-top:4px">Try fewer genres, or clear the search.</div></div>`;
+    return;
+  }
   $('#bgrid').innerHTML=list.map(b=>{
     const pr=D.porches[b.p];
     const ini=b.n.split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
@@ -1497,6 +1674,13 @@ $('#bgrid').addEventListener('click',e=>{
   toast(S.pins.includes(id)?'Pinned as must-see':'Unpinned');
 });
 $('#bq').oninput=renderBands; $('#bsort').onchange=renderBands;
+$('#bgenres').addEventListener('click',e=>{
+  const c=e.target.closest('[data-bf]'); if(!c) return;
+  const t=c.dataset.bf;
+  S.bfilter = S.bfilter.includes(t) ? S.bfilter.filter(x=>x!==t) : [...S.bfilter, t];
+  renderBands();
+});
+$('#bfClear').addEventListener('click',()=>{ S.bfilter=[]; renderBands(); });
 
 $('#stops').addEventListener('click',e=>{
   // The star explains itself on tap. It has to be tested before the row,
@@ -1547,10 +1731,17 @@ $('#go').onclick=()=>{
   const btn=$('#go'); btn.disabled=true; btn.textContent='Shuffling…';
   clearTimeout(planTimer); clearTimeout(refineTimer);
   setTimeout(()=>{
-    applyPlan(64, false);
+    const {p, changed, only}=shuffledPlan();
+    if(p){ S.plan=p; S.sel=-1; renderPlan(); if(!navLock) history.replaceState({v:document.body.dataset.view},'',stateUrl()); }
     btn.disabled=false; renderGoBtn(); setBusy(false);
     if(window.matchMedia('(max-width:760px)').matches) setView('route');
-    toast(S.plan&&S.plan.stops.length ? `${S.plan.stops.length} bands, ${km(S.plan.walk)} of walking` : 'Nothing fits — try loosening things');
+    // Say what actually happened. "Same list again" with a cheerful summary is
+    // what made this button feel broken.
+    toast(
+      !S.plan || !S.plan.stops.length ? 'Nothing fits — try loosening things'
+      : only ? "That's the only afternoon that fits — loosen something for alternatives"
+      : `${changed} of ${S.plan.stops.length} bands swapped · ${km(S.plan.walk)} walking`
+    );
   },30);
 };
 function renderGoBtn(){
@@ -1624,6 +1815,94 @@ function toast(msg){
   clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);
 }
 
+/* ---- panel layout (desktop only) --------------------------------------
+   The two left columns are custom properties, so dragging only ever writes
+   two numbers. A collapsed panel is simply width 0 — no separate state to
+   keep in sync — and the handle stays put as the way to pull it back, which
+   is why it never fully disappears. The map redraws itself: #mapPane already
+   has a ResizeObserver, so nothing here needs to call drawMap. */
+const LAYOUT_KEY='pf.layout';
+const LAYOUT_DEFAULT={tune:344, route:400};
+const LAYOUT_LIMITS={tune:[240,560], route:[300,680]};
+let LAY={...LAYOUT_DEFAULT};
+const wide=()=>matchMedia('(min-width:1081px)').matches;
+
+function clampCol(k,v){
+  const [lo,hi]=LAYOUT_LIMITS[k];
+  // Drag it small enough and it collapses, rather than sticking at the
+  // minimum and giving you no way to reclaim the space by dragging.
+  if(v < lo*0.55) return 0;
+  return Math.max(lo, Math.min(hi, v));
+}
+function applyLayout(){
+  const r=document.documentElement.style;
+  r.setProperty('--col-tune', LAY.tune+'px');
+  r.setProperty('--col-route', LAY.route+'px');
+  $$('.gutter').forEach(g=>{
+    const k=g.dataset.resize, off=LAY[k]===0;
+    g.classList.toggle('collapsed', off);
+    g.title = off ? 'Click to bring this panel back' : 'Drag to resize';
+  });
+  $$('[data-collapse]').forEach(b=>{
+    const off=LAY[b.dataset.collapse]===0;
+    b.title = off ? 'Expand this panel' : 'Collapse this panel';
+  });
+}
+function saveLayout(){ try{ localStorage.setItem(LAYOUT_KEY, JSON.stringify(LAY)); }catch(e){} }
+function loadLayout(){
+  try{
+    const o=JSON.parse(localStorage.getItem(LAYOUT_KEY)||'null');
+    if(o && Number.isFinite(o.tune) && Number.isFinite(o.route))
+      LAY={tune:o.tune===0?0:clampCol('tune',o.tune), route:o.route===0?0:clampCol('route',o.route)};
+  }catch(e){}
+  applyLayout();
+}
+function setCol(k,v){ LAY[k]=clampCol(k,v); applyLayout(); saveLayout(); }
+function toggleCol(k){ LAY[k]=LAY[k]===0?LAYOUT_DEFAULT[k]:0; applyLayout(); saveLayout(); }
+
+$$('.gutter').forEach(g=>{
+  const k=g.dataset.resize;
+  g.addEventListener('pointerdown', e=>{
+    if(!wide()) return;
+    e.preventDefault();
+    const x0=e.clientX, w0=LAY[k];
+    let moved=false;
+    document.body.classList.add('resizing');
+    const move=(ev)=>{
+      const dx=ev.clientX-x0;
+      if(Math.abs(dx)>2) moved=true;
+      LAY[k]=clampCol(k, w0+dx); applyLayout();
+    };
+    const up=()=>{
+      window.removeEventListener('pointermove',move);
+      window.removeEventListener('pointerup',up);
+      document.body.classList.remove('resizing');
+      // A click with no drag on a collapsed handle is how you get it back.
+      if(!moved && LAY[k]===0) LAY[k]=LAYOUT_DEFAULT[k];
+      applyLayout(); saveLayout();
+    };
+    window.addEventListener('pointermove',move);
+    window.addEventListener('pointerup',up);
+  });
+  // Keyboard: a separator you can only drag with a mouse is unreachable.
+  g.addEventListener('keydown', e=>{
+    const step=e.shiftKey?48:16;
+    if(e.key==='ArrowLeft') setCol(k,(LAY[k]||LAYOUT_LIMITS[k][0])-step);
+    else if(e.key==='ArrowRight') setCol(k,(LAY[k]||0)+step);
+    else if(e.key==='Enter'||e.key===' ') toggleCol(k);
+    else return;
+    e.preventDefault();
+  });
+});
+$$('[data-collapse]').forEach(b=>b.addEventListener('click',()=>{
+  const k=b.dataset.collapse;
+  toggleCol(k);
+  toast(LAY[k]===0 ? 'Panel collapsed — click the handle to bring it back' : 'Panel restored');
+}));
+$('#resetLayout').addEventListener('click',()=>{
+  LAY={...LAYOUT_DEFAULT}; applyLayout(); saveLayout(); toast('Layout reset');
+});
+
 /* boot */
 (function(){
   let theme='dark';
@@ -1631,6 +1910,7 @@ function toast(msg){
   $('#festline').textContent=`${D.fest.name} · Sat Aug 15, ${D.fest.year} · ${D.bands.length} bands`;
   const parts=hashParts();
   const restored = parts.s ? decodeState(parts.s) : false;
+  loadLayout();
   renderControls();
   applyTheme(theme);
   renderPlan();
