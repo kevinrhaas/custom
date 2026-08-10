@@ -51,6 +51,9 @@ mkdir -p "$SITE/data/scenes"
 cp -f data/scenes/*.json "$SITE/data/scenes/" 2>/dev/null || true
 rm -f "$SITE"/data/[0-9]*.json
 cp -f data/datum.json "$SITE/data/"
+# The liberties list the Evidence panel reads. Derived from docs/LIBERTIES.md,
+# which itself stays out of the payload.
+cp -f data/liberties.json "$SITE/data/"
 
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —

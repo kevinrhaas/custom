@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 6, title: 'What we made up, in the walkthrough', kind: 'feature',
+    ts: '2026-08-10T02:03:59.472Z', date: 'Aug 9, 2026, 9:03 PM CT',
+    items: [
+      'The Evidence panel now lists every liberty the reconstruction takes — eighteen of them, from the town being uniformly unpeopled to two prairie swales drawn where nothing attests them.',
+      'Each one gives the decision, the reasoning behind it, what it costs the scene, and what evidence would settle it. The confidence chips cover attributes; this covers the choices that belong to no attribute.',
+      'The list is derived from the project\'s append-only liberties record and re-derived by the commit gate, so what the panel shows cannot drift from what the repository admits.',
+    ] },
   { v: 5, title: 'What\'s new, in the walkthrough itself', kind: 'feature',
     ts: '2026-08-10T01:48:34.145Z', date: 'Aug 9, 2026, 8:48 PM CT',
     items: [

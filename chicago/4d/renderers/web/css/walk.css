@@ -226,6 +226,66 @@ body.is-touch .gate-touch { display: block; }
 .sw-inf { background: var(--inf); }
 .sw-con { background: repeating-linear-gradient(45deg, var(--con) 0 2px, transparent 2px 4px); border: 1px solid var(--con); }
 .legend-note { margin: 10px 0 0; color: var(--ink-dim); font-size: 11.5px; }
+.legend-note code { font-size: 11px; }
+
+/* ----------------------------------------------------------- liberties --- */
+/* One <details> per recorded liberty. Collapsed by default because eighteen
+   confessions opened at once is a wall rather than a disclosure — the titles
+   are the index, and the reasoning is one tap away. */
+
+.legend-h {
+  margin: 16px 0 0;
+  padding-top: 13px;
+  border-top: 1px solid var(--edge);
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent);
+}
+.liberties { margin-top: 10px; display: grid; gap: 4px; }
+
+.lib { border: 1px solid var(--edge); border-radius: 9px; background: rgb(255 255 255 / 3%); }
+.lib summary {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 7px 9px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  color: var(--ink);
+}
+.lib summary::-webkit-details-marker { display: none; }
+.lib summary:hover { background: rgb(255 255 255 / 5%); border-radius: 8px; }
+.lib[open] summary { border-bottom: 1px solid var(--edge); border-radius: 8px 8px 0 0; }
+.lib-id {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 11px; font-variant-numeric: tabular-nums; letter-spacing: .04em;
+}
+.lib-title { flex: 1 1 auto; }
+.lib-scope {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border: 1px solid var(--edge); border-radius: 999px;
+  color: var(--ink-dim); font-size: 10px; white-space: nowrap;
+}
+
+.lib-body { margin: 0; padding: 9px 10px 2px; display: grid; gap: 3px; }
+.lib-body dt {
+  color: var(--accent);
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+}
+.lib-body dd { margin: 0 0 8px; color: var(--ink-dim); font-size: 11.5px; line-height: 1.5; }
+.lib-body code { font-size: 11px; }
+.lib-body b { color: var(--ink); font-weight: 600; }
+
+.lib-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+  margin: 0; padding: 0 10px 9px;
+}
+.lib-subject {
+  padding: 1px 6px;
+  border: 1px solid var(--edge); border-radius: 999px;
+  color: var(--ink); font-size: 10px;
+}
+.lib-date { color: var(--ink-dim); font-size: 10px; font-variant-numeric: tabular-nums; }
 
 .crosshair {
   position: absolute;

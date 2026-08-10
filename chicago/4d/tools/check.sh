@@ -36,6 +36,13 @@ step "validator self-tests" \
 step "datum re-derivation" \
   python3 tools/rederive_datum.py
 
+# The liberties the walkthrough shows must still be the ones the markdown
+# states. LIBERTIES.md is append-only and is the source of truth; data/
+# liberties.json is derived and committed so the site needs no build step, which
+# only holds up if drift is a gate failure rather than a discovery.
+step "liberties derived from docs/LIBERTIES.md" \
+  python3 tools/compile_liberties.py --check
+
 # Renderer JS must at least parse. The repo's deploy workflow does the same thing
 # for site/, and a syntax error there is a blank page for everyone.
 check_js() {
