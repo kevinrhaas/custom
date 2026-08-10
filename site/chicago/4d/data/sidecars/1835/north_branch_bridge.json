@@ -59,7 +59,12 @@
         3.048
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire252",
+      "wright_1834"
+    ],
+    "note": "THE DECK OUTLINE, AND THE ONLY FOOTPRINT IN THIS DATASET THAT IS NOT A PLACEHOLDER — both of its dimensions come from something. The width, 3.048 m, is Cleaver's 'These bridges were ten feet wide', recorded here in its original unit. The length, 71.83 m, is MEASURED rather than chosen: it is the distance between the two traced 1834 waterlines along the Kinzie alignment, read off data/terrain/epochs/e1834_harbor_cut/river.geojson at the crossing station (west bank local E -117.52, east bank local E -45.69), which is the same Wright 1834 segmentation the ground and the river are built from. It agrees with the reach's drafted mean width of 72.9 m to about a metre. THE SPAN IS THEREFORE AN OVERSTATEMENT OF THE CLEAR SPAN, deliberately and by an unrecorded amount: Cleaver puts the abutments 'in the shallow water near the banks', which is inside the drawn line, and nobody recorded how far inside. Landing the deck exactly on the traced waterline was chosen because that line is the one thing here that is evidence — the terrain surface crosses Z=0 along it by construction — and an inset would have added a second invention on top of the first. Carried uncertainty: the georeference's plus or minus 20 m, which is larger than the difference being argued about."
   },
   "attributes": {
     "construction": {

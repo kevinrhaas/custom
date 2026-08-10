@@ -434,6 +434,92 @@ for (const [label, viewport, touch] of [
       posWhy.before === true && posWhy.after === false && posWhy.text.length > 200,
       `${posWhy.before} -> ${posWhy.after}, ${posWhy.text.length} chars`);
 
+    // --- was it this shape? -----------------------------------------------
+    // The footprint is the largest claim a visitor is standing in front of and
+    // the card said nothing about it at all: `compile_scene.py` carried its
+    // confidence and dropped its sources and its argument. Six of the eight
+    // outlines here open with the word PLACEHOLDER and two are the opposite, and
+    // none of that reached anybody.
+    //
+    // Asserted on the discriminating pair, as everywhere else on this card, and
+    // the pair is the strongest one in the dataset: Hogan's store is the only
+    // BUILDING footprint that is evidence — Andreas gives twenty by forty-five
+    // feet twice — and the Sauganash's is the placeholder its own note calls the
+    // central unresolved question of the record. A card stamping one grade on all
+    // eight outlines would pass any check for "there is a chip".
+    const shape = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = [...document.querySelectorAll('#popup .pop-sec')]
+          .find((s) => /Was it this shape/i.test(s.querySelector('h3')?.textContent ?? ''));
+        const row = sec?.querySelector('table.attrs tr');
+        return {
+          present: !!sec,
+          conf: row?.querySelector('.conf')?.textContent.trim() ?? '',
+          shown: row?.querySelector('[data-note]')?.textContent ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.footprint?.note ?? '',
+        };
+      };
+      const pair = { hogan: read('hogan_store'), saug: read('sauganash_hotel') };
+      // Every building, because the omission below is a rule and not a property
+      // of the two buildings the pair happens to name.
+      let valued = [];
+      for (const id of window.__chicago4d.registry.keys()) {
+        window.__chicago4d.pick(id);
+        if (document.querySelector('#popup .pop-shape .val')) valued.push(id);
+      }
+      return { ...pair, valued };
+    });
+    check(`${label}: the card says how much of the shape is evidence`,
+      shape.hogan.present && shape.saug.present
+      && shape.hogan.conf === 'documented' && shape.saug.conf === 'conjectural',
+      `hogan ${shape.hogan.conf}, sauganash ${shape.saug.conf}`);
+    check(`${label}: the footprint's reasoning is the record's, verbatim`,
+      shape.saug.shown === shape.saug.recorded && shape.saug.recorded.length > 300
+      && /PLACEHOLDER/.test(shape.saug.shown)
+      && shape.hogan.shown === shape.hogan.recorded
+      && shape.hogan.shown !== shape.saug.shown,
+      `${shape.saug.shown.length} shown of ${shape.saug.recorded.length} recorded`);
+    // A deliberate omission, pinned so that a later slice cannot fill it by
+    // accident. The only printable value is the polygon and the only way to print
+    // a polygon in a table is to reduce it — a bounding box over Miller's L-plan
+    // would be a measurement the record does not make, on the card that exists to
+    // admit inventions. The shape is already in front of the visitor at full size.
+    check(`${label}: and prints no dimension it would have had to invent`,
+      shape.valued.length === 0,
+      shape.valued.length ? `value printed on ${shape.valued.join(', ')}` : 'no value cell on any building');
+
+    // The mechanism, rather than a third instance of the same discovery. Both
+    // `documented_range` and the footprint were graded in the sidecar and silent
+    // on the card, and each was found by somebody reading a file. A claim that
+    // carries a confidence and reaches no chip is exactly what a program can see:
+    // count the graded claims in the record and count the chips on the claim
+    // tables, for every building, and require them to agree. Scoped to the claim
+    // tables and the location line — the liberties carry their own chips and are
+    // not claims about a recorded value.
+    const chipCover = await page.evaluate(() => {
+      const out = [];
+      for (const id of window.__chicago4d.registry.keys()) {
+        const s = window.__chicago4d.registry.get(id)?.sidecar;
+        if (!s) continue;
+        window.__chicago4d.pick(id);
+        let graded = Object.keys(s.attributes ?? {}).length;
+        if (s.documented_range?.confidence) graded += 1;
+        if (s.placement?.position_confidence) graded += 1;
+        if (s.footprint?.confidence) graded += 1;
+        const chips = document.querySelectorAll(
+          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf').length;
+        out.push({ id, graded, chips });
+      }
+      return out;
+    });
+    const uncovered = chipCover.filter((r) => r.graded !== r.chips);
+    check(`${label}: every graded claim in a record reaches the card as a chip`,
+      chipCover.length >= 8 && uncovered.length === 0,
+      uncovered.length
+        ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
+        : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
+
     // Is the shape a bake from the record, or a stand-in? The card asked the
     // SIDECAR that until 2026-08-10 — a field `compile_scene.py` has never
     // written and, compiling from data/ alone, cannot — so the flag never once

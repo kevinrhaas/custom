@@ -67,7 +67,9 @@
         11
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED. The SHAPE carries evidence and the SIZE does not, and the two should not be confused. What is attested is the composition: a log cabin with a two-storey house added to it fronting the river, described from the south bank in 1833 as 'a two-story building and adjoining log cabin', and by chicagology as 'a log structure partly sided'. This L reflects that — a 9 x 6 m two-storey range along the river frontage with a 6 x 5 m log cabin set back behind it — but every number in it is invented, so the whole polygon is tagged conjectural and cites no sources. The bounding box is 9 x 11 m. To resolve: Andreas vol. 1, 'Wharfs, Piers and Early Hotels' pp. 626-631, at page-image level."
   },
   "attributes": {
     "stories": {

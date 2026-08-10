@@ -57,7 +57,11 @@
         6.096
       ]
     ],
-    "confidence": "documented"
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE FIRST BUILDING FOOTPRINT IN THIS DATASET THAT IS NOT A PLACEHOLDER. Andreas gives the size twice, in two independently written passages: 'The building was twenty by forty-five feet in size, was partitioned off so as to serve as a post-office on one side, and as the store of Brewster, Hogan & Co., on the other', and, in the postmaster chronology, 'the store only occupied an area of forty-five by twenty feet'. 45 x 20 ft is 13.716 x 6.096 m, recorded here converted with the original figures stated, per data/datum.json's units rule. WHAT IS DOCUMENTED IS THE SIZE AND NOT THE PLAN: 'twenty by forty-five feet' is a rectangle in any reading, and this polygon is that rectangle, but nothing attests a door, a partition line on the ground, or that the building was exactly rectangular rather than a rectangle with something small attached. WHICH AXIS RUNS ALONG THE STREET IS NOT IN THE SOURCE either; it is decided by the facade bearing and argued in the position note, where it belongs, because rotating the building is what changes it. The 20 ft depth is worth reading twice: this is a 6 m deep building 13.7 m long, partitioned into a post office and a store, which is why Andreas offers it as evidence of 'the limited accommodations that were ample for the post-office of those days'."
   },
   "attributes": {
     "construction": {

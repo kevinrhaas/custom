@@ -57,7 +57,9 @@
         8
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER — the central unresolved question of this record. NO DIMENSIONS FOR THE SAUGANASH ARE ATTESTED in any source reached. This 12 x 8 m rectangle is a plausible two-story frame tavern footprint and nothing more. Two leads remain: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834, which requires the datum work first. Until then this renders as conjectural massing. NOTE ON WHAT THIS TAG MEANS: conjectural here is about SIZE, not about existence or character. That the building was a two-storey white frame block is documented (Wau-Bun); how big it was is unknown. The renderer therefore does NOT dither the massing on account of this tag — see generators/archetypes/frame_tavern.py — and the dimensional uncertainty is carried in the sidecar instead."
   },
   "attributes": {
     "stories": {
