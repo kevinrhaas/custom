@@ -12,6 +12,11 @@ not a building**: the North Branch bridge is the first record built on the `brid
 archetype and the first in this dataset whose dimensions come from evidence rather than from
 a placeholder. As of 2026-08-10 it stands on **two bents rather than fifteen invented cribs**
 (§ 24) — the first time a reading of an archive has taken something *out* of this model.
+**Eight structures now, and the eighth is the first BUILDING whose footprint is evidence**:
+Hogan's store on Lake Street, where Chicago's post office opened in 1831, is recorded twice by
+Andreas as twenty by forty-five feet (§ 25). It is also the first record here with nothing
+conjectural in it, and the correction that came with it moved the post office's departure from
+this building by twenty months.
 
 ---
 
@@ -25,16 +30,16 @@ a placeholder. As of 2026-08-10 it stands on **two bents rather than fifteen inv
 | `tools/test_validate.py` | **done** — 77 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | **24**, of which **13** carry a Wayback snapshot — the three added with the bridge all do |
-| Structure records | **7** — six buildings at the forks and the North Branch bridge |
+| Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
+| Structure records | **8** — six buildings at the forks, the North Branch bridge, and Hogan's store on Lake Street |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 113 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 117 checks green at 390×780 and 1280×800, zero page errors |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
-| **Published** | `site/chicago/4d/` (3.7 MB of a 25 MB budget) + a tile on the Chicago landing page |
+| **Published** | `site/chicago/4d/` (4.05 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list |
 
 ## Corrections made after the first live look
@@ -61,7 +66,7 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
 
 ## What does not exist yet
 
-- **Six buildings** at the forks. Eight archetypes and ~40 researched structures are still unbuilt.
+- **Seven buildings** — six at the forks and Hogan's store a block east on Lake Street. Eight archetypes and ~40 researched structures are still unbuilt.
 - **No terrain.** The scene stands on a flat plane; the 30-zone heightfield spec exists in the
   research dossier but has not been turned into data. This is the next stage.
 - **No flora or fauna records.** The palettes and the placement table exist in the dossiers only.
@@ -75,7 +80,7 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
   against the grid.
 - **`chicagoarchitecturehistory.com` cites nothing** for the two best elevation figures in the
   dossier, which is why no land elevation in this build is tagged `documented`.
-- **Placement is real but coarse.** All six structures now carry surveyed coordinates rather
+- **Placement is real but coarse.** All eight structures now carry surveyed coordinates rather
   than nulls, at about ±20 m — the georeference's error, not an additional guess. Three of them
   (Wolf Point Tavern, Miller House, Walker's meeting house) have no surviving intersection and
   are derived from the confluence and the modern bank, with a larger and differently shaped
@@ -509,6 +514,47 @@ uncertainty of the 1834 sheets in its note.
     and above the waterline the two are the same picture; `_log_bent` differs from `_pile_bent` by
     four heavy logs against three light ones, which is what a visitor can actually see. The rest
     of the distinction lives in the record and in this file.
+
+25. **The first building whose footprint is evidence, and a correction to our own dossier that
+    changes what it is.** `hogan_store` — the log store at the west end of the Lake Street block
+    in which the United States opened a post office at Chicago on 31 March 1831 — is the eighth
+    structure and the first BUILDING here whose outline is not a placeholder. Andreas gives its
+    size twice, in two independently written passages: "The building was twenty by forty-five feet
+    in size, was partitioned off so as to serve as a post-office on one side, and as the store of
+    Brewster, Hogan & Co., on the other", and "the store only occupied an area of forty-five by
+    twenty feet". 45 × 20 ft is 13.716 × 6.096 m and the footprint is tagged `documented`, which
+    no building footprint in this dataset has been before. **What is documented is the SIZE and
+    not the plan**: which axis runs along the street is nobody's evidence, so that assignment sits
+    on the facade bearing in the position note, where rotating the building is what changes it.
+    **This is also the first record here with nothing conjectural in it**, which is not a boast —
+    it means its gaps are gaps in the sources' precision rather than holes filled by invention.
+    It does mean the popup's empty "What we made up here" state is finally exercised by real data,
+    which § 11 recorded as unexercised.
+    **The correction is the more useful half.** `docs/research/03-structures-north.md` § 4 dates
+    the post office's move to the Franklin and South Water address from 2 November 1832, the day
+    Hogan succeeded Bailey as postmaster, and calls that the 1835 office. Andreas says twice that
+    the office was still at Lake and South Water through 1833 and moved **about July 1834**. The
+    dossier's conclusion survives and its chronology does not: the 1832 date is the postmaster's,
+    not the building's. The conflation is traceable to the Currey page the dossier used, which
+    makes the appointment and the move one sentence — and which also supplies the "south west
+    corner" that Andreas never gives. Source record `chicagology_first_post_office` says on its
+    own face where it is followed and where it is not. **The consequence for the scene**: on
+    1835-07-01 this building is a store that used to be the post office, and the town's actual
+    post office is a different, unmodelled building about 100 m east, of which nothing survives
+    but a street junction — it would be the most invented building in the dataset and it is
+    written down rather than built (`docs/RESEARCH/hogan_store.md` § 4).
+    **The weak point is survival, not geometry, and it is stated on the record.** The building is
+    attested standing to about July 1834 and no source reached follows it past that; it is placed
+    in a scene set eleven months later on the continuity argument, with the counter-argument —
+    Lake and South Water was the corner most exposed to the 1835 boom — in the same note. If
+    evidence turns up that it came down first, it belongs in `exclusions.json` and this record
+    leaves the scene.
+    **One smaller thing came out of the same page and is recorded rather than acted on.** Currey
+    has Thompson's 1830 plat laying out streets "uniformly 66 feet wide"; every position in this
+    dataset offsets by half of an **80 ft** street, from the widths annotated on Hathaway 1834.
+    The difference is 2.1 m, an order of magnitude inside the georeference's own error, so nothing
+    moves — but the two cannot both be right about the same street, and the reconciliation worth
+    testing is that they are not about the same street. See `docs/RESEARCH/hogan_store.md` § 5.
 
 ## Next
 

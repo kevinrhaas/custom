@@ -35,6 +35,13 @@
       "yaw_deg": 135.0
     },
     {
+      "id": "first_post_office",
+      "label": "Hogan's store, where the mail came",
+      "local_e": 113.0,
+      "local_n": -108.0,
+      "yaw_deg": 0.0
+    },
+    {
       "id": "forks",
       "label": "The forks, from Wolf Point",
       "local_e": -100.0,
