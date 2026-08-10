@@ -143,6 +143,83 @@ def test_exclusions_carry_a_reason_and_a_citation_that_resolves() -> None:
           any("no reason" in e for e in run({**good, "reason": ""})))
 
 
+def test_the_watch_list_stops_a_promotion_it_only_used_to_ask_for() -> None:
+    """The third category, and the sentence that had nothing behind it.
+
+    `watch_list` has said since the scaffold that its entries are listed "so
+    nobody promotes them to documented without new evidence". One of the four IS
+    a committed record, so that sentence is checkable — and until this gate,
+    nothing checked it. The discriminating case is therefore not a malformed
+    entry but a well-formed one whose record has quietly been promoted.
+    """
+    import tempfile
+    tmp = Path(tempfile.mkdtemp())
+    (tmp / "docs").mkdir()
+    (tmp / "docs" / "d.md").write_text("## 1. Conflict: built 1834 or 1835?\n", encoding="utf-8")
+
+    def entry(**over) -> dict:
+        base = {"id": "western_hotel", "name": "Western Hotel",
+                "question": "1834 or 1835?", "in_dataset": True,
+                "carried_by": "frame_1834.documented_range",
+                "dossier": {"file": "docs/d.md", "anchor": "Conflict: built 1834 or 1835?"},
+                "sources": ["s1"]}
+        base.update(over)
+        return base
+
+    def record(conf: str) -> dict:
+        return {"w.json": {"id": "western_hotel", "phases": [
+            {"id": "frame_1834",
+             "documented_range": {"from": "1834-01-01", "to": "1840-12-31",
+                                  "confidence": conf, "sources": ["s1"]}}]}}
+
+    def run(item: dict, structures: dict | None = None, excluded=()) -> list:
+        rep = V.Report()
+        V.check_watch_list({"watch_list": [item], "excluded": list(excluded)},
+                           structures if structures is not None else record("inferred"),
+                           {"s1"}, rep, root=tmp)
+        return rep.errors
+
+    check("an open question on an inferred claim passes", not run(entry()), run(entry()))
+    check("the same claim promoted to documented is an error",
+          any("documented" in e for e in run(entry(), record("documented"))),
+          run(entry(), record("documented")))
+    check("an entry in the dataset that does not name the claim carrying the doubt fails",
+          any("which claim" in e for e in run(entry(carried_by=""))))
+    check("carried_by naming a phase the record does not have is an error",
+          any("does not have" in e for e in run(entry(carried_by="nope.documented_range"))))
+    check("carried_by naming something that is not a graded claim is an error",
+          any("not a graded claim" in e for e in run(entry(carried_by="frame_1834.id"))))
+
+    # both directions against the dataset — the L12 drift, which is a document
+    # and its data disagreeing because nobody carried a change back
+    check("declaring in_dataset with no such record is an error",
+          any("no record of that id" in e for e in run(entry(), {})))
+    check("a committed record the entry still calls unbuilt is an error",
+          any("disagree" in e for e in run(entry(in_dataset=False))))
+
+    # rule one, and the sentence that stands in for a citation when there is none
+    check("a citation that resolves in no source record is an error",
+          any("does not resolve" in e for e in run(entry(sources=["nope"]))))
+    check("no sources and no stated reason for having none is an error",
+          any("no_source_record" in e for e in run(entry(sources=[]))))
+    check("no sources WITH the reason stated passes",
+          not run(entry(sources=[], no_source_record="the dossier names no page")),
+          run(entry(sources=[], no_source_record="the dossier names no page")))
+
+    # a pointer into research that nobody can follow is not one
+    check("a dossier file that is not committed is an error",
+          any("not a committed file" in e
+              for e in run(entry(dossier={"file": "docs/gone.md", "anchor": "x"}))))
+    check("a dossier anchor that is not in the file is an error",
+          any("anchor" in e for e in run(entry(dossier={"file": "docs/d.md",
+                                                       "anchor": "not in there"}))))
+    check("an entry with no question at all is an error",
+          any("no question" in e for e in run(entry(question=""))))
+    check("an id that is both excluded and an open question is an error",
+          any("either ruled out" in e
+              for e in run(entry(), excluded=[{"id": "western_hotel"}])))
+
+
 def test_confidence_contract() -> None:
     ids = {"s1"}
 

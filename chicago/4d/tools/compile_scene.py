@@ -110,7 +110,8 @@ def cite(source_ids, sources: dict) -> list[dict]:
 
 
 def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
-                       sources: dict, exclusions: dict, outdir: Path) -> int:
+                       sources: dict, exclusions: dict, outdir: Path,
+                       in_scene: dict | None = None) -> int:
     """The structures researched and deliberately LEFT OUT of this scene.
 
     `data/exclusions.json` is the authored research record and has lived only in
@@ -125,6 +126,7 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
     whose `earliest_scene` this scene has reached is not an exclusion here, and
     the validator reports that contradiction rather than this compiler hiding it.
     """
+    in_scene = in_scene or {}
     year = target.year
     entries = []
     for ex in exclusions.get("excluded", []):
@@ -140,6 +142,8 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
             "citations": cite(ex.get("sources", []) or [], sources),
         })
 
+    uncertain = compile_watch_list(scene_id, sources, exclusions, in_scene)
+
     emit(outdir / "exclusions.json", {
         "scene": scene_id,
         "target_date": scene["target_date"],
@@ -149,8 +153,56 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
                     "this scene, with the evidence that dates them. It is not a list of "
                     "everything missing: most of the town is simply not built yet.",
         "excluded": entries,
+        "uncertain_standard": "Structures whose status on this date is genuinely OPEN — "
+                              "neither built with confidence nor ruled out. They are the "
+                              "third category, and one of them is standing in front of you.",
+        "uncertain": uncertain,
     })
     return len(entries)
+
+
+def compile_watch_list(scene_id: str, sources: dict, exclusions: dict,
+                       in_scene: dict) -> list[dict]:
+    """The open questions, which are neither a building nor an exclusion.
+
+    A visitor can be told what stands and, since the exclusions shipped, what was
+    researched and left out. Between those sits a third statement the walkthrough
+    could not make: researched, and still open. Three of the four are empty
+    ground for the same reason a gap is empty — nobody could establish whether
+    the building was there — and the fourth is standing in the scene with an
+    `inferred` claim about its own date. Putting all four under "what is not
+    here" would be false about that one, which is why they get their own section
+    rather than a footnote on somebody else's.
+
+    `standing` is derived from the scene rather than read off the entry: whether
+    a structure resolves into 1 July 1835 is a fact about the dataset and the
+    date, and an entry that asserted it would be one more thing to drift.
+    """
+    out = []
+    for item in exclusions.get("watch_list", []):
+        wid = item.get("id")
+        phase = in_scene.get(wid)
+        entry = {
+            "id": wid,
+            "name": item.get("name", wid),
+            "question": item.get("question", ""),
+            "consequence": item.get("consequence", ""),
+            "standing": phase is not None,
+            "no_source_record": item.get("no_source_record", ""),
+            "dossier": item.get("dossier", {}),
+            "citations": cite(item.get("sources", []) or [], sources),
+        }
+        # For the one that IS standing, name the claim on its own record that
+        # carries the doubt and repeat that claim's grade — so the section and
+        # the provenance card cannot describe the same uncertainty differently.
+        ref = (item.get("carried_by") or "").strip()
+        if phase is not None and ref.count(".") == 1:
+            _, field = ref.split(".")
+            claim = phase.get(field) or {}
+            entry["carried_by"] = ref
+            entry["carried_confidence"] = claim.get("confidence", "")
+        out.append(entry)
+    return out
 
 
 # Keys that are the claim's machinery rather than part of what it states: the
@@ -380,6 +432,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
 
     written, skipped = 0, []
     index = []
+    # id -> the phase that resolves into this scene, for the watch list below
+    resolved: dict[str, dict] = {}
 
     for path in sorted((DATA / "structures").glob("*.json")):
         st = load(path)
@@ -496,6 +550,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "review_required": st.get("review_required", False),
         }
         emit(outdir / f"{st['id']}.json", sidecar)
+        resolved[st["id"]] = phase
         index.append({"id": st["id"], "name": st["name"],
                       "sidecar": f"sidecars/{scene_id}/{st['id']}.json",
                       "asset": sidecar["asset"]})
@@ -508,7 +563,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
         "excluded_by_date": skipped,
     })
 
-    left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir)
+    left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir,
+                                  in_scene=resolved)
     ground = compile_ground(scene_id, scene, sources, outdir)
 
     print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
