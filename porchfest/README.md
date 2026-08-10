@@ -124,6 +124,15 @@ Only the top two tiers are labelled in the UI (≥60 "Big draw", ≥42 "Known
 name") and each badge shows the evidence behind it. Nothing is labelled
 negatively — an act with no footprint simply gets no badge.
 
+**The tier must be carried by shape, not hue.** In the schedule it is `★★` for
+a big draw and `★` for a known name (`TIERMARK`). The two tiers were once told
+apart only by colour and both colours are orange (`--brand` / `--brand-2`) —
+at 10px that is a coin flip for anyone, and no distinction at all with
+red-green colour blindness. Colour still rides along as a second cue; it must
+never be the only one. The star is also a button: tapping it toasts the tier
+and its evidence, because the only explanation before was a `title` tooltip
+and a phone has no hover.
+
 If you re-run the research, re-run this too: it reads `profiles.merged.json`.
 `node build-draw.mjs --report` prints the full ranking with the evidence per
 act, which is the fastest way to sanity-check a change to the patterns.

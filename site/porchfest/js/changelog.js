@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 5, title: 'The stars say what they mean', kind: 'fix',
+    ts: '2026-08-10T02:41:30.705Z', date: 'Aug 9, 2026, 9:41 PM CT',
+    items: [
+      'The star beside a notable act in the schedule had two tiers told apart only by colour, and both colours were orange. At that size it was a coin flip for anyone, and no distinction at all with red-green colour blindness. Two stars now mean a big draw and one means a known name, so the tier is carried by shape.',
+      'Tapping a star says what it means and what earned it. The only explanation before was a hover tooltip, which does not exist on a phone, so on the device most people will use it was unexplained by design.',
+      'The toast is now bounded, so a longer message wraps inside it instead of stretching off the side of the screen.',
+    ] },
   { v: 4, title: 'Back and Forward work', kind: 'feature',
     ts: '2026-08-10T01:58:21.397Z', date: 'Aug 9, 2026, 8:58 PM CT',
     items: [

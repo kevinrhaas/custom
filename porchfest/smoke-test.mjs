@@ -33,14 +33,26 @@ let failures = 0;
 const fail = (m) => { failures++; console.log(`   ✗ ${m}`); };
 const ok = (m) => console.log(`   ✓ ${m}`);
 
+// The app must make zero network requests; band photos are the one deliberate
+// exception and are allowed to fail (offline / hotlink).
+const PHOTO = /porchfest-band-photos|drive\.google/;
+
 function watch(page, label) {
   const errs = [];
   page.on('pageerror', e => errs.push(`pageerror: ${e.message}`));
-  page.on('console', m => { if (m.type() === 'error') errs.push(`console.error: ${m.text()}`); });
+  page.on('console', m => {
+    if (m.type() !== 'error') return;
+    // A failing image reports through BOTH requestfailed and console, so the
+    // photo exception has to cover both channels — matched on the resource
+    // URL, never on the message, so real console errors still fail the run.
+    // (This only surfaced once a later test waited long enough for the lazy
+    // photos to time out inside a watch window; before that the suite was
+    // passing on timing rather than on being clean.)
+    if (PHOTO.test((m.location() || {}).url || '')) return;
+    errs.push(`console.error: ${m.text()}`);
+  });
   page.on('requestfailed', r => {
-    // The app must make zero network requests; band photos are the one
-    // deliberate exception and are allowed to fail (offline / hotlink).
-    if (!/porchfest-band-photos|drive\.google/.test(r.url())) errs.push(`requestfailed: ${r.url()}`);
+    if (!PHOTO.test(r.url())) errs.push(`requestfailed: ${r.url()}`);
   });
   return () => { errs.forEach(e => fail(`${label} — ${e}`)); return errs.length === 0; };
 }
@@ -386,6 +398,83 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     if (cameBack !== viewBeforeJump)
       fail(`${tag} — Back from a band card landed on ${cameBack}, came from ${viewBeforeJump}`);
     else ok(`Back from a band card returns to ${cameBack}`);
+
+    // ---- the notable-act star ----
+    // Ask for big names so the route is guaranteed to contain starred acts.
+    await setPop(2);
+    if (vp === 'mobile') await page.locator('[data-go="route"]:visible').first().click();
+    await page.waitForTimeout(400);
+    const starred = await page.evaluate(() => {
+      const D = JSON.parse(document.getElementById('payload').textContent);
+      const by = new Map(D.bands.map(b => [b.n, b.dw]));
+      return [...document.querySelectorAll('#stops .stop')].map(s => {
+        const h3 = s.querySelector('h3');
+        const btn = h3.querySelector('.tierdot');
+        return {
+          name: h3.childNodes[0].textContent.trim(),
+          mark: btn ? btn.textContent.trim() : '',
+          big: btn ? btn.classList.contains('big') : false,
+          dw: by.get(h3.childNodes[0].textContent.trim()),
+        };
+      });
+    });
+    // Tier must be carried by SHAPE, not hue alone — two orange shades at 10px
+    // are indistinguishable, and identical under red-green colour blindness.
+    const wrongMark = starred.filter(s => typeof s.dw === 'number' &&
+      s.mark !== (s.dw >= 60 ? '★★' : s.dw >= 42 ? '★' : ''));
+    if (wrongMark.length)
+      fail(`${tag} — wrong star for ${wrongMark.map(s => `${s.name}(${s.dw})="${s.mark}"`).join(', ')}`);
+    else ok(`star shape matches tier (${starred.filter(s => s.mark).length} starred in route)`);
+    if (!starred.some(s => s.mark)) fail(`${tag} — "big names" route contains no starred act to test`);
+
+    // Tapping it must explain itself — the tooltip it replaces never showed on
+    // a phone, which is how this went unexplained in the first place.
+    const starIdx = starred.findIndex(s => s.mark);
+    if (starIdx >= 0) {
+      const viewBeforeStar = await page.evaluate(() => document.body.dataset.view);
+      await page.locator('#stops .stop .tierdot').first().click();
+      await page.waitForTimeout(300);
+      const t = await page.evaluate(() => {
+        const el = document.getElementById('toast');
+        const r = el.getBoundingClientRect();
+        return { shown: el.classList.contains('show'), text: el.textContent,
+                 h: r.height, right: r.right, left: r.left, vw: innerWidth };
+      });
+      if (!t.shown || !/Big draw|Known name/.test(t.text))
+        fail(`${tag} — tapping the star showed "${t.text}" (shown=${t.shown})`);
+      else ok(`tapping the star explains it ("${t.text}")`);
+      if (t.h > 120 || t.left < 0 || t.right > t.vw + 1)
+        fail(`${tag} — star toast is ${t.h.toFixed(0)}px tall, ${t.left.toFixed(0)}-${t.right.toFixed(0)} in ${t.vw}px`);
+      else ok('star toast fits the screen');
+      // It must not also fire the row's own actions.
+      const viewAfterStar = await page.evaluate(() => document.body.dataset.view);
+      if (viewAfterStar !== viewBeforeStar)
+        fail(`${tag} — tapping the star navigated to ${viewAfterStar}`);
+      else ok('tapping the star does not trigger the row');
+    }
+
+    // Worst case: the longest explanation any band can produce must still fit.
+    const worst = await page.evaluate(() => {
+      const D = JSON.parse(document.getElementById('payload').textContent);
+      const MARK = { big: '★★', known: '★' }, LABEL = { big: 'Big draw', known: 'Known name' };
+      let longest = '';
+      for (const b of D.bands) {
+        const tier = b.dw >= 60 ? 'big' : b.dw >= 42 ? 'known' : '';
+        if (!tier) continue;
+        const why = (b.wy || []).slice(0, 2).join(', ');
+        const msg = `${MARK[tier]} ${LABEL[tier]}${why ? ' — ' + why : ''}`;
+        if (msg.length > longest.length) longest = msg;
+      }
+      const el = document.getElementById('toast');
+      el.textContent = longest; el.classList.add('show');
+      const r = el.getBoundingClientRect();
+      el.classList.remove('show');
+      return { longest, h: r.height, left: r.left, right: r.right, vw: innerWidth };
+    });
+    if (worst.h > 120 || worst.left < 0 || worst.right > worst.vw + 1)
+      fail(`${tag} — longest star toast "${worst.longest}" is ${worst.h.toFixed(0)}px tall / overflows`);
+    else ok(`longest star toast fits (${worst.h.toFixed(0)}px)`);
+    await setPop(0);
 
     // ---- browser Back / Forward ----
     // Views are the app's navigation, so they must be history entries. On

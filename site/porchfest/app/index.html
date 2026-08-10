@@ -255,8 +255,19 @@ input[type=range]::-moz-range-thumb{
 }
 .stop .morebtn:hover{border-color:var(--brand);color:var(--brand)}
 .stop .morebtn svg{width:12px;height:12px}
-.stop h3 .tierdot{margin-left:5px;font-size:10px;color:var(--brand-2);vertical-align:1px}
+/* The notable-act marker. Two stars for a big draw, one for a known name:
+   the tiers must differ by SHAPE, not only hue — both hues are orange, which
+   at this size is a coin-flip for anyone and no distinction at all with
+   red-green colour blindness. Tappable, because the only other explanation
+   was a title tooltip and a phone has no hover. Padded out to a real hit
+   target, with the margin pulled back so it still sits tight to the name. */
+.stop h3 .tierdot{
+  font-size:10px;color:var(--brand-2);vertical-align:1px;letter-spacing:-1px;
+  background:none;border:0;font-family:inherit;cursor:pointer;line-height:1;
+  padding:6px;margin:-6px 0 -6px 1px;
+}
 .stop h3 .tierdot.big{color:var(--brand)}
+.stop h3 .tierdot:hover{filter:brightness(1.25)}
 /* Where a "full profile" jump lands. */
 .card.focus{border-color:var(--brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 35%,transparent)}
 .tg{font-size:9.5px;font-weight:700;padding:1.5px 6px;border-radius:99px;background:var(--surface-3);color:var(--text-2);text-transform:uppercase;letter-spacing:.04em}
@@ -350,9 +361,12 @@ input[type=range]::-moz-range-thumb{
 /* ---- toast / modal ---- */
 .toast{
   position:fixed;left:50%;transform:translateX(-50%);bottom:26px;z-index:100;
-  background:var(--surface);border:1px solid var(--brand);border-radius:99px;
+  background:var(--surface);border:1px solid var(--brand);border-radius:16px;
   padding:9px 18px;font-size:13px;font-weight:600;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+  /* Bounded so a longer message wraps inside the pill instead of stretching
+     it off the side of a phone. */
+  max-width:min(340px,calc(100vw - 32px));text-align:center;line-height:1.35;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
 dialog{
@@ -726,6 +740,8 @@ const POP = (()=>{
 const DRAW_BIG = 60, DRAW_KNOWN = 42;
 const drawTier = (b)=> b.dw>=DRAW_BIG ? 'big' : b.dw>=DRAW_KNOWN ? 'known' : '';
 const DRAWLABEL = {big:'Big draw', known:'Known name'};
+// Shape, not just colour — see the .tierdot note in the CSS.
+const TIERMARK = {big:'★★', known:'★'};
 
 /* ---------- state ---------- */
 const S = {
@@ -998,7 +1014,7 @@ function renderPlan(){
       <div class="when"><b>${hhmm(s.begin)}</b><small>${mins(s.stay)}</small>
         <div style="margin-top:4px"><span class="num">${i+1}</span></div></div>
       <div>
-        <h3>${esc(b.n)}${drawTier(b)?`<span class="tierdot ${drawTier(b)}" title="${esc(DRAWLABEL[drawTier(b)])}">★</span>`:''}</h3>
+        <h3>${esc(b.n)}${drawTier(b)?`<button class="tierdot ${drawTier(b)}" data-tier="${b.id}" title="${esc(DRAWLABEL[drawTier(b)])}" aria-label="${esc(DRAWLABEL[drawTier(b)])} — what this means">${TIERMARK[drawTier(b)]}</button>`:''}</h3>
         <div class="meta">${esc(porch.a)} · set ${hhmm(b.t[0])}–${hhmm(b.t[1])} · ${fitPct(b)}% match</div>
         <div class="one">${esc(b.one)}</div>
         <div class="tags">${b.tg.map(t=>`<span class="tg${S.tags[t]===1?' hit':''}">${t}</span>`).join('')}</div>
@@ -1208,7 +1224,7 @@ function renderBands(){
       <div class="ph">
         <span class="ini">${esc(ini)}</span>
         ${b.img?`<img loading="lazy" src="${esc(b.img)}" alt="" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s;position:absolute;inset:0" onerror="this.remove()">`:''}
-        ${tier?`<span class="drawbadge ${tier}" title="${esc(b.wy.join(' · ')||'')}">★ ${DRAWLABEL[tier]}</span>`:''}
+        ${tier?`<span class="drawbadge ${tier}" title="${esc(b.wy.join(' · ')||'')}">${TIERMARK[tier]} ${DRAWLABEL[tier]}</span>`:''}
         <span class="slot">${hhmm(b.t[0])}–${hhmm(b.t[1])}</span>
       </div>
       <div class="bd">
@@ -1478,6 +1494,15 @@ $('#bgrid').addEventListener('click',e=>{
 $('#bq').oninput=renderBands; $('#bsort').onchange=renderBands;
 
 $('#stops').addEventListener('click',e=>{
+  // The star explains itself on tap. It has to be tested before the row,
+  // which would otherwise swallow it into selecting the stop.
+  const star=e.target.closest('[data-tier]');
+  if(star){
+    e.stopPropagation();
+    const b=D.bands.find(x=>x.id===star.dataset.tier);
+    if(b) toast(explainTier(b));
+    return;
+  }
   // "Full profile" wins over selecting the stop, so the row stays clickable
   // for the map without swallowing the jump to the band.
   const more=e.target.closest('[data-band]');
@@ -1487,6 +1512,14 @@ $('#stops').addEventListener('click',e=>{
   renderPlan();
   if(window.matchMedia('(max-width:760px)').matches) setView('map');
 });
+
+// What a star means, in one line. Evidence is capped at two items so the
+// message stays inside the toast rather than growing it into a paragraph.
+function explainTier(b){
+  const tier=drawTier(b);
+  const why=(b.wy||[]).slice(0,2).join(', ');
+  return `${TIERMARK[tier]} ${DRAWLABEL[tier]}${why?' — '+why:''}`;
+}
 
 // Jump from a scheduled stop to that band's full card in the browser.
 function focusBand(id){
