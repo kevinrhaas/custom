@@ -3,7 +3,8 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
+**Last updated:** 2026-08-10 (the ground answers to the liberties coverage gate, § 33) ·
+**Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
 georeference, real ground, a traced river, and the liberties now readable inside the
@@ -31,6 +32,9 @@ its footprint stays honestly unsourced, with the search narrowed from "find a pl
 1839 plat. **And the surface every one of those buildings stands on can finally answer the same
 questions they can** (§ 32): the terrain graded itself as carefully as any record, dithered under
 the confidence view like any building, and had never once told a visitor what it was grading.
+**And what the ground makes up is demanded by a check now rather than owed to somebody's
+attention** (§ 33): the liberties coverage gate reads the terrain spec, and the first thing it
+found was an invented depth on a watercourse no entry in the document had ever mentioned.
 
 ---
 
@@ -41,7 +45,7 @@ the confidence view like any building, and had never once told a visitor what it
 | Repository scaffold | **done** — full tree per `docs/PLAN.md` |
 | Schemas (structure, source, scene) | **done** — phases, tiers, rights gating, scene-owned dates |
 | `tools/validate.py` | **done** — schema, referential, confidence contract, per-scene date gates, phase-overlap, epoch coverage, release blocking, license + rights gating, staleness, publish budget |
-| `tools/test_validate.py` | **done** — 121 checks, all green, including a proof that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
+| `tools/test_validate.py` | **done** — 157 checks, all green, including a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
@@ -52,7 +56,7 @@ the confidence view like any building, and had never once told a visitor what it
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 165 checks green at 390×780 and 1280×800, zero page errors |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) |
-| **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
+| **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
@@ -809,11 +813,48 @@ uncertainty of the 1834 sheets in its note.
     underwater channel profile (L33) are `conjectural` in the data and were admitted nowhere: the
     coverage gate reads `data/structures/` and cannot see the terrain spec, so nothing demanded
     them. That limit is the honest headline of this slice — the ground's inventions are inside the
-    *panel* now and still outside the *gate*.
+    *panel* now and still outside the *gate*. **Closed the same day by § 33**, which found a
+    third one that neither L32 nor L33 had noticed.
     **What it still cannot say.** The claims are block-level, so a grade covers a whole zone: the
     north-side slough is `conjectural` as a block while its existence and course are Wright's and
     only its depth is invented, and its note is the only thing that says so. And a claim can be
     perfectly graded, perfectly cited and wrong about the town.
+
+33. **The ground is inside the coverage gate now, and switching it on found the invention nobody
+    had noticed.** § 32 ends by naming its own limit: the terrain's inventions had reached the
+    *panel* and were still outside the *gate*, because `check_liberties_coverage` reads
+    `data/structures/` and can see nothing else. So L32 and L33 existed because somebody noticed
+    and wrote them, which is exactly the arrangement this family of checks was built to replace —
+    a coverage rule that depends on attention is the filed confession, one level up.
+    The `Covers:` vocabulary now has a second namespace, `terrain.<epoch>.<claim>`, matched in
+    both directions against the same enumeration the Evidence panel renders from.
+    **Six conjectural ground claims, and only five had prose behind them.** The bank face (L32),
+    the channel cross-section (L33), the micro-relief (L14) and the two west-prairie swales (L15)
+    were all admitted somewhere in the document and none of them was *claimed*; adding the field
+    to each was bookkeeping. The sixth was not. **The north-side slough's depth is invented and
+    appeared on no list at all** — its existence and course are Wright 1834's, drawn on the sheet
+    this whole terrain is fitted to, and its one-foot bed and 1.2 m e-fold are in the model
+    because a shallower channel stops reading as water, which is a rendering argument wearing a
+    terrain claim's clothes. **L34** is new and says so. That is the second time a check of this
+    family has found something on its first run (§ 26 and § 29 were the others), and the argument
+    for writing them is the same each time: the entries that were already there prove the author
+    was diligent, and the one that was not is what the mechanism is for.
+    **Two design decisions are load-bearing and are asserted rather than assumed.** The epoch is
+    part of the token because `docs/EPOCHS.md` versions the ground — a later scene brings a second
+    shoreline with second inventions, and an admission about this one must not silently discharge
+    that one; the self-test asserts that a claim against `e1830_pre_cut` leaves `e1834_harbor_cut`
+    failing. And the terrain is **not** squeezed into the structures' grammar as a record named
+    `terrain`: the two domains are separate obligations that neither discharges for the other,
+    which the self-test also pins, and the claim carries its `domain` rather than leaving a reader
+    to infer it from a token's shape. This is the document whose subject is calling things what
+    they are; § 20 is what it costs when a name is read as being about the wrong thing.
+    **What it still cannot see.** The rule fires on a `conjectural` tag, so the ground's
+    *omissions* are outside it exactly as a building's were before the geometry declarations —
+    there is no terrain equivalent of `CONSUMED`, and a zone the spec describes and the generator
+    ignores would leave no trace. The grades are also block-level: the slough is `conjectural` as
+    a whole while only its depth is invented, so L34 admits more than the data does and the note
+    is the only place the distinction is legible. And a ground claim can be perfectly graded,
+    perfectly cited, perfectly admitted to, and wrong about the town.
 
 ## Next
 

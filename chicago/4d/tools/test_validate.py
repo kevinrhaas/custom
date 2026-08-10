@@ -268,7 +268,17 @@ def liberty(lid: str, title: str, subjects: list, text: str = "",
 
 
 def covers(structure: str, aspect: str, phase_id: str | None = None) -> dict:
-    return {"structure": structure, "phase": phase_id, "aspect": aspect}
+    return {"domain": "structure", "structure": structure, "phase": phase_id, "aspect": aspect}
+
+
+def ground_covers(epoch: str, claim: str) -> dict:
+    return {"domain": "terrain", "epoch": epoch, "claim": claim}
+
+
+def ground_index(claims: dict, epoch: str = "e1834_harbor_cut") -> dict:
+    """A terrain claim index of the shape `compile_scene.ground_claims` yields."""
+    return {epoch: {cid: {"id": cid, "label": cid.split(".")[-1], "confidence": conf}
+                    for cid, conf in claims.items()}}
 
 
 def test_liberties_cover_conjectural_inventions() -> None:
@@ -551,6 +561,175 @@ def test_liberties_cover_omissions_and_simplifications() -> None:
           not rep.errors, rep.errors)
 
 
+def test_liberties_cover_what_the_ground_invents() -> None:
+    """The terrain invents too, and until now no check could see that it had.
+
+    Every other case in this file is about a building, because the gate read
+    `data/structures/` and nothing else — so a 6 m bank face nobody recorded, on
+    every bank in the box, was admitted only because somebody noticed and wrote
+    L32. A liberty owed to attention is the arrangement this gate replaces.
+
+    Two discriminating cases carry the design. The first is that the epoch is
+    part of the claim: `docs/EPOCHS.md` versions the ground, so an admission
+    about one shoreline must not silently discharge whatever the next one makes
+    up. The second is that the domains do not reach into each other — a terrain
+    token is not a structure named `terrain`, and neither can satisfy the other's
+    obligation.
+    """
+    ground = ground_index({"bank": "conjectural",
+                           "swales.west_prairie_swale_a": "conjectural",
+                           "water": "documented"})
+    empty: dict = {}
+
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L1", "No people, anywhere", []),
+    ]}, rep, None, None, ground)
+    check("a conjectural bank face with no liberty at all is an error",
+          any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
+    check("a conjectural swale with no liberty at all is an error",
+          any("swales.west_prairie_swale_a" in e for e in rep.errors), rep.errors)
+    check("the error quotes the token that would discharge it",
+          any("`terrain.e1834_harbor_cut.bank`" in e for e in rep.errors), rep.errors)
+    check("a documented ground claim owes no admission",
+          not any("/water" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L2", "Terrain: the bank face is a shape nobody recorded", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a")]),
+    ]}, rep, None, None, ground)
+    check("claiming both ground inventions satisfies the check", not rep.errors, rep.errors)
+
+    # The epoch is load-bearing. An admission about the 1830 ground says nothing
+    # about the 1834 ground, and a check that shrugged at the difference would
+    # let the second scene ship with the first scene's confession attached.
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L3", "Terrain: the bank face is a shape nobody recorded", [],
+                covers=[ground_covers("e1830_pre_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a")]),
+    ]}, rep, None, None, ground)
+    check("a claim against another epoch does not discharge this one's invention",
+          any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
+    check("and the claim against an epoch that is not committed is itself an error",
+          any("no terrain epoch 'e1830_pre_cut'" in e for e in rep.errors), rep.errors)
+
+    # Over-claiming, exactly as on a record. The water plane is documented, so
+    # admitting to having invented it reads as diligence and provides none.
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L4", "Terrain: everything about the ground is a guess", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a"),
+                        ground_covers("e1834_harbor_cut", "water")]),
+    ]}, rep, None, None, ground)
+    check("claiming to have invented a documented ground claim is an error",
+          any("terrain.e1834_harbor_cut.water" in e and "not conjectural" in e
+              for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L5", "Terrain: the bank face is a shape nobody recorded", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a")]),
+        liberty("L6", "Terrain: the bed was sounded after all", [],
+                covers=[ground_covers("e1834_harbor_cut", "water")], section="resolved"),
+    ]}, rep, None, None, ground)
+    check("a resolved entry may keep a claim the evidence has settled",
+          not rep.errors, rep.errors)
+
+    # A token naming a block the spec does not grade admits to nothing a visitor
+    # can read, because the claims ARE what the Evidence panel shows.
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [
+        liberty("L7", "Terrain: the bank face and something else", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a"),
+                        ground_covers("e1834_harbor_cut", "esplanade")]),
+    ]}, rep, None, None, ground)
+    check("a claim on a block the spec does not grade is an error",
+          any("makes no graded claim 'esplanade'" in e for e in rep.errors), rep.errors)
+
+    # The two domains are separate obligations. A structure's invention is not
+    # discharged by a ground claim and the reverse holds too.
+    structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L8", "Terrain: the bank face is a shape nobody recorded", ["x"],
+                covers=[ground_covers("e1834_harbor_cut", "bank"),
+                        ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a")]),
+    ]}, rep, None, None, ground)
+    check("a ground admission does not cover a building's invented outline",
+          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+    check("and the ground's own claims stay discharged while it fails",
+          not any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
+
+    # With no terrain index the rule reports nothing rather than pretending the
+    # ground invented nothing — the same shape as the CONSUMED map above.
+    rep = V.Report()
+    V.check_liberties_coverage(empty, {"liberties": [liberty("L9", "No people", [])]}, rep)
+    check("with no terrain index the ground rule reports nothing rather than guessing",
+          not rep.errors, rep.errors)
+
+
+def test_the_checked_ground_is_the_ground_on_the_panel() -> None:
+    """The set a liberty may admit to is the set a visitor reads. One enumeration.
+
+    A gate walking its own copy of the spec would agree with the panel until the
+    day somebody added a zone — and the new zone would be the one nobody had to
+    own up to, which is precisely the failure the rule exists to prevent, one
+    level up from where it was last found.
+    """
+    spec = {
+        "bank": {"face_m": 6.0, "confidence": "conjectural"},
+        "swales": [{"id": "new_zone_nobody_admitted_to", "depth_ft": 1.0,
+                    "confidence": "conjectural"}],
+        "water": {"surface_ft": 0.0, "confidence": "documented", "sources": ["s1"]},
+    }
+    rep = V.Report()
+    index = V.terrain_claim_index({"e1834_harbor_cut": spec}, rep)
+    check("the index is built off the compiler the panel renders from",
+          not rep.errors and set(index["e1834_harbor_cut"])
+          == {"bank", "swales.new_zone_nobody_admitted_to", "water"},
+          sorted(index.get("e1834_harbor_cut", {})))
+
+    owed = V.terrain_conjectural_values(index)
+    check("a zone added to the spec is owed an admission the day it appears",
+          sorted(cid for _e, cid, _l, _w in owed)
+          == ["bank", "swales.new_zone_nobody_admitted_to"], owed)
+
+    rep = V.Report()
+    V.check_liberties_coverage({}, {"liberties": [
+        liberty("L1", "Terrain: the bank face", [],
+                covers=[ground_covers("e1834_harbor_cut", "bank")]),
+    ]}, rep, None, None, index)
+    check("and the gate demands it by name",
+          any("new_zone_nobody_admitted_to" in e for e in rep.errors), rep.errors)
+
+
+def test_the_committed_ground_admits_to_everything_it_invents() -> None:
+    """The real dataset, against the real document.
+
+    `test_real_dataset_passes` covers this through `validate.py --all`, but this
+    one states the number, because the whole slice is the claim that the ground's
+    inventions are inside the gate rather than only inside the panel.
+    """
+    rep = V.Report()
+    index = V.terrain_claim_index(V.load_terrain_specs(rep), rep)
+    owed = V.terrain_conjectural_values(index)
+    check("the committed terrain states inventions a visitor walks on",
+          len(owed) >= 6, f"{len(owed)} conjectural ground claim(s)")
+
+    liberties = V.load_json(V.DATA / "liberties.json", rep) or {}
+    claimed = {(c.get("epoch"), c.get("claim"))
+               for e in liberties.get("liberties", [])
+               for c in (e.get("covers") or []) if c.get("domain") == "terrain"}
+    missing = [f"{e}.{c}" for e, c, _l, _w in owed if (e, c) not in claimed]
+    check("and docs/LIBERTIES.md admits to every one of them", not missing, missing)
+
+
 def test_archetypes_declare_what_they_consume() -> None:
     """Every committed archetype states which attributes reach its mesh.
 
@@ -675,18 +854,43 @@ def test_covers_field_parses_to_claims() -> None:
     problems: list[str] = []
     claims = C.parse_covers("`x.footprint`, `x.p1.position`", "L1", problems)
     check("a two-segment token covers the structure, not one phase",
-          claims[0] == {"structure": "x", "phase": None, "aspect": "footprint"}, claims)
+          claims[0] == covers("x", "footprint"), claims)
     check("a three-segment token names its phase",
-          claims[1] == {"structure": "x", "phase": "p1", "aspect": "position"}, claims)
+          claims[1] == covers("x", "position", "p1"), claims)
     check("well-formed tokens report no problems", not problems, problems)
 
     problems = []
     claims = C.parse_covers("`x.p1.form.roof_type`, `x.form.gallery`", "L1b", problems)
     check("a form token keeps its prefix as part of the aspect",
-          claims[1] == {"structure": "x", "phase": "p1", "aspect": "form.roof_type"}, claims)
+          claims[1] == covers("x", "form.roof_type", "p1"), claims)
     check("a form token without a phase covers the structure",
-          claims[0] == {"structure": "x", "phase": None, "aspect": "form.gallery"}, claims)
+          claims[0] == covers("x", "form.gallery"), claims)
     check("well-formed form tokens report no problems", not problems, problems)
+
+    # The ground's namespace. It is deliberately NOT the structures' grammar, so
+    # the parse is asserted to produce a different shape rather than a structure
+    # named `terrain` — which is what a reader would have to disentangle later.
+    problems = []
+    claims = C.parse_covers("`terrain.e1834_harbor_cut.bank`, "
+                            "`terrain.e1834_harbor_cut.swales.west_prairie_swale_a`",
+                            "L4", problems)
+    check("a terrain token parses into the terrain domain, not into a structure",
+          claims[0] == ground_covers("e1834_harbor_cut", "bank"), claims)
+    check("a ground claim keeps the group its id carries",
+          claims[1] == ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a"), claims)
+    check("well-formed terrain tokens report no problems", not problems, problems)
+    check("both domains round-trip to the text the document wrote",
+          [C.claim_token(c) for c in claims]
+          == ["terrain.e1834_harbor_cut.bank",
+              "terrain.e1834_harbor_cut.swales.west_prairie_swale_a"],
+          [C.claim_token(c) for c in claims])
+
+    problems = []
+    C.parse_covers("`terrain.bank`, `terrain.e1834_harbor_cut`", "L5", problems)
+    check("a terrain token without an epoch is reported, not read as a structure",
+          any("terrain.bank" in p for p in problems), problems)
+    check("a terrain token naming no claim is reported",
+          any("terrain.e1834_harbor_cut'" in p for p in problems), problems)
 
     problems = []
     C.parse_covers("`x.roof_type`, `x`, the footprint", "L2", problems)

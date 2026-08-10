@@ -749,14 +749,16 @@ for (const [label, viewport, touch] of [
     // outlines shows footprint chips, and the scene-wide "no people" entry —
     // which invents nothing that gets drawn — claims nothing.
     const claims = await page.evaluate(() => {
-      const read = (id) => {
-        const el = [...document.querySelectorAll('#liberties details.lib')]
-          .find((d) => d.querySelector('.lib-id')?.textContent.trim() === id);
-        return [...(el?.querySelectorAll('.lib-covers') ?? [])].map((n) => n.textContent.trim());
-      };
+      const entry = (id) => [...document.querySelectorAll('#liberties details.lib')]
+        .find((d) => d.querySelector('.lib-id')?.textContent.trim() === id);
+      const read = (id) => [...(entry(id)?.querySelectorAll('.lib-covers') ?? [])]
+        .map((n) => n.textContent.trim());
+      const tokens = (id) => [...(entry(id)?.querySelectorAll('.lib-covers') ?? [])]
+        .map((n) => n.getAttribute('title') ?? '');
       return {
         l5: read('L5'), l8: read('L8'), l1: read('L1'), l4: read('L4'),
         l18: read('L18'), l19: read('L19'),
+        l32: read('L32'), l34: read('L34'), l32tokens: tokens('L32'),
       };
     });
     check(`${label}: an entry shows the inventions it admits to`,
@@ -784,6 +786,28 @@ for (const [label, viewport, touch] of [
       claims.l19.length === 2 && new Set(claims.l19).size === 2
       && claims.l19.every((t) => /gallery/.test(t)),
       `L19 claims [${claims.l19.join(' | ')}]`);
+
+    // The ground admits to its inventions on the same terms, and the chip has to
+    // say which half of the dataset it lands in: a 6 m bank face nobody recorded
+    // is the piece of ground every visitor walks down to the water on, and until
+    // the coverage gate could read the terrain spec it was owned up to only
+    // because somebody noticed. Asserted discriminatingly — a building's
+    // admission must NOT read as the ground's, which a chip that simply printed
+    // the token's first segment would have failed.
+    check(`${label}: the ground admits to what it invented, and says it is the ground`,
+      claims.l32.length === 1 && /the ground/.test(claims.l32[0])
+      && /bank/.test(claims.l32[0]) && !claims.l5.some((t) => /the ground/.test(t)),
+      `L32 claims [${claims.l32.join(' | ')}]`);
+    check(`${label}: the chip carries the epoch the admission is about`,
+      claims.l32tokens.length === 1
+      && /^admitted for terrain\.[a-z0-9_]+\.bank$/.test(claims.l32tokens[0]),
+      `L32 tokens [${claims.l32tokens.join(' | ')}]`);
+    // The one ground invention nobody had written down until the gate demanded
+    // it. A visitor reading "north side slough" here is reading a depth that no
+    // source gives, on a watercourse whose course is Wright's.
+    check(`${label}: the invention the gate found is on the page, not only in the repo`,
+      claims.l34.length === 1 && /north side slough/.test(claims.l34[0]),
+      `L34 claims [${claims.l34.join(' | ')}]`);
 
     // Collapsed by default, and opening one gives the reasoning — not just the
     // admission that a liberty was taken.

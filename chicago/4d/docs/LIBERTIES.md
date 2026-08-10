@@ -55,6 +55,23 @@ holds each of them to a `Covers:` token exactly as it holds an invention. That i
 the gap this document had against a `documented` chip sitting over something a visitor cannot
 see.
 
+The ground answers to the same rule, in a namespace of its own:
+
+```
+**Covers:** `terrain.e1834_harbor_cut.bank`, `terrain.e1834_harbor_cut.swales.west_prairie_swale_a`
+```
+
+The token is `terrain.<epoch>.<claim>`, where the claim is a graded block of that epoch's
+`terrain_spec.json` — one segment for a whole block (`bank`, `micro_relief`) and two for a
+member of a list of them. It is not a `structure_id`, and it is not written as one: the terrain
+is not a building, and this is the document that should be least willing to call a thing by the
+wrong name. The epoch is in the token because `docs/EPOCHS.md` versions the ground per epoch, so
+a later scene brings a second shoreline with second-hand inventions of its own, and one
+admission must not discharge both. The claims are the ones the Evidence panel shows a visitor,
+enumerated by the same function, so what the gate demands and what a visitor reads cannot drift
+apart. Everything the structure half does — both directions, and the **Resolved** exemption —
+applies here unchanged.
+
 An entry with no `Covers:` field claims nothing and is still a liberty: navigation rules and
 scope decisions have nothing in the data to point at. When evidence settles a claimed invention,
 or the model catches up with an omission, move the entry to **Resolved** — the gate exempts that
@@ -250,6 +267,7 @@ made. Setting `micro_relief.amplitude_ft` to 0 in `terrain_spec.json` removes it
 **Consequence:** the plain is measurably rougher at cell scale (2.8 ft per 300 ft) than the
 dossier's flatness rule, while the *block* gradient the rule is actually about stays inside it
 (0.47 ft per 300 ft). The generator prints both on every run.
+**Covers:** `terrain.e1834_harbor_cut.micro_relief`.
 **Recorded:** 2026-08-10.
 
 ### L15 — Terrain: the west-prairie swales are invented alignments
@@ -261,6 +279,8 @@ alignments were drawn to make the wet prairie read as wet prairie rather than as
 are the only piece of terrain geometry in this parcel invented outright.
 **How to resolve:** the 1821 GLO township plat land-cover, or the ISGS "Illinois Landcover in
 the Early 1800s" digitisation, both named in the dossier and neither reached.
+**Covers:** `terrain.e1834_harbor_cut.swales.west_prairie_swale_a`,
+`terrain.e1834_harbor_cut.swales.west_prairie_swale_b`.
 **Recorded:** 2026-08-10.
 
 ### L16 — Terrain: the water is a wall to the walker
@@ -557,7 +577,12 @@ the terrain spec, so this entry is owed by a person rather than demanded by a ch
 conjectural in the data since the terrain landed and admitted nowhere for that whole time.
 **How to resolve:** a 19th-century cross-section, a wharf-building account with dimensions, or
 the 1850s Chesbrough survey read backwards through the grade raising.
+**Covers:** `terrain.e1834_harbor_cut.bank`.
 **Recorded:** 2026-08-10.
+**Revised:** 2026-08-10 — the sentence above is now out of date and stays, because a silently
+corrected admission is not one. The gate reads the terrain spec: this face is claimed by the
+`Covers:` field rather than by somebody having noticed, and removing this entry would fail the
+commit rather than pass it quietly.
 
 ### L33 — Terrain: the channel cross-section carries no evidence at all
 **Decision:** below the waterline the bed falls away as `depth = bed_ft * (1 - exp(-d / 9 m))`,
@@ -572,6 +597,28 @@ meets the land, because the waterline is where it crosses zero. A slough overrid
 e-folding distance with 1.2 m for the same reason — at 9 m a 1 ft channel would be four inches
 deep and would not read as water at all.
 **How to resolve:** an early sounding line, or the harbour engineers' pre-dredging sections.
+**Covers:** `terrain.e1834_harbor_cut.channel_profile`.
+**Recorded:** 2026-08-10.
+
+### L34 — Terrain: the north-side slough is one foot deep because a shallower one would not read
+**Decision:** the slough off the Main Branch is cut to a bed of **−1.0 ft** with a 1.2 m
+e-folding distance, and the whole block is tagged `conjectural` in `terrain_spec.json`.
+**Why:** its existence and its course are Wright 1834's, drawn on the sheet this terrain is
+fitted to, and its width is measured off the drafted band. Its **depth is invented outright** —
+no sounding, no description, nothing. One foot is the shallowest figure that still reads as
+water at the surface, which is a rendering argument and not a historical one, and the 1.2 m
+e-fold overrides the river's 9 m for the same reason: at 9 m a 1 ft channel would be four inches
+deep across a 7 m width and would look like damp grass.
+**Consequence:** the grade a visitor sees on this claim is the block's, so it says `conjectural`
+about a watercourse whose existence and course are the best-attested thing in this quadrant. The
+note is the only place that distinction is legible, which is a limit of block-level grading and
+not of the evidence — see `docs/STATUS.md` § 32.
+**Why it is recorded now:** it is the one ground invention the terrain slice never wrote down.
+L32 and L33 were noticed; this was not, and the coverage gate found it the first time it was
+allowed to look at the terrain spec — which is the whole argument for extending it there.
+**How to resolve:** any pre-dredging sounding of the north-side backwater, or a description of it
+as fordable or not.
+**Covers:** `terrain.e1834_harbor_cut.watercourses.north_side_slough`.
 **Recorded:** 2026-08-10.
 
 ---

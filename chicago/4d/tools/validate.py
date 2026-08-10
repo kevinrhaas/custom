@@ -331,8 +331,53 @@ def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
 LAND_ELEVATION_GROUPS = ("bank", "divisions", "marsh_strips", "swales", "micro_relief")
 
 
+def load_terrain_specs(rep: Report) -> dict[str, dict]:
+    """epoch -> its committed `terrain_spec.json`."""
+    specs: dict[str, dict] = {}
+    for spec_path in sorted((DATA / "terrain" / "epochs").glob("*/terrain_spec.json")):
+        specs[spec_path.parent.name] = load_json(spec_path, rep) or {}
+    return specs
+
+
+def terrain_claim_index(specs: dict[str, dict], rep: Report) -> dict[str, dict[str, dict]]:
+    """epoch -> claim id -> the graded statement the ground makes.
+
+    Off `compile_scene.ground_claims`, which is also what puts these on the
+    Evidence panel — so the set a gate checks, the set a liberty may admit to and
+    the set a visitor reads are one set. A second enumeration would agree with
+    the panel until the day somebody added a zone to the spec, which is the drift
+    this project keeps closing everywhere else.
+    """
+    sys.path.insert(0, str(ROOT / "tools"))
+    try:
+        import compile_scene as ground  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        rep.error("terrain", f"cannot import the ground compiler, so the claims the "
+                             f"Evidence panel shows cannot be checked: {e}")
+        return {}
+    return {epoch: {c["id"]: c for c in ground.ground_claims(spec, {})}
+            for epoch, spec in sorted(specs.items())}
+
+
+def terrain_conjectural_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
+    """Every value the ground states without evidence.
+
+    Returns `(epoch, claim_id, label, where)`. The ground invents as freely as a
+    record does — a bank face nobody drew, two swale alignments attested nowhere,
+    a channel section whose own note says it carries no evidence at all — and a
+    visitor walks on all of it. The confidence view even dithers it. So it owes
+    `docs/LIBERTIES.md` an admission on exactly the argument a conjectural
+    footprint does.
+    """
+    return [(epoch, cid, claim.get("label") or cid, f"terrain {epoch}/{cid}")
+            for epoch, claims in sorted(index.items())
+            for cid, claim in claims.items()
+            if claim.get("confidence") == "conjectural"]
+
+
 def check_terrain_claims(source_ids: set, rep: Report,
-                         specs: dict[str, dict] | None = None) -> None:
+                         specs: dict[str, dict] | None = None,
+                         index: dict[str, dict[str, dict]] | None = None) -> None:
     """The ground is held to the rules a structure record is held to.
 
     `terrain_spec.json` is as fully graded as any record — a documented water
@@ -367,22 +412,12 @@ def check_terrain_claims(source_ids: set, rep: Report,
     un-archived sources have carried one for weeks). The rule becomes an error in
     the slice that writes the notes and lands the bake with them.
     """
-    sys.path.insert(0, str(ROOT / "tools"))
-    try:
-        import compile_scene as ground  # noqa: PLC0415
-    except Exception as e:  # noqa: BLE001
-        rep.error("terrain", f"cannot import the ground compiler, so the claims the "
-                             f"Evidence panel shows cannot be checked: {e}")
-        return
-
-    if specs is None:
-        specs = {}
-        for spec_path in sorted((DATA / "terrain" / "epochs").glob("*/terrain_spec.json")):
-            specs[spec_path.parent.name] = load_json(spec_path, rep) or {}
+    if index is None:
+        index = terrain_claim_index(specs if specs is not None else load_terrain_specs(rep), rep)
 
     total = unreasoned = 0
-    for epoch, spec in sorted(specs.items()):
-        for claim in ground.ground_claims(spec, {}):
+    for epoch, claims in sorted(index.items()):
+        for claim in claims.values():
             total += 1
             where = f"terrain {epoch}/{claim['id']}"
             conf = claim["confidence"]
@@ -818,7 +853,8 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
 
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                              consumed: dict[str, frozenset] | None = None,
-                             unlanded: list[tuple] | None = None) -> None:
+                             unlanded: list[tuple] | None = None,
+                             ground: dict[str, dict[str, dict]] | None = None) -> None:
     """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
@@ -851,6 +887,18 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     reads as diligence while providing none. Entries under **Resolved** are exempt
     from the last of those, because an append-only document has to be able to say
     "evidence settled this" without the settlement itself becoming a gate failure.
+
+    **And the ground answers to all of it too.** Every paragraph above is about a
+    building, because the check read `data/structures/` and nothing else. The
+    terrain invents on the same terms and at a larger scale — a 6 m bank face
+    nobody recorded, on every bank in the box, which is the piece of ground every
+    visitor walks down to the water on — and none of that was demanded by a
+    check: L32 and L33 were written by a person who noticed. A liberty owed by
+    somebody's attention is precisely the arrangement this gate exists to
+    replace. Ground claims are enumerated by the same function that puts them on
+    the Evidence panel and claimed in a namespace of their own,
+    `terrain.<epoch>.<claim>`, because the terrain is not a structure and the one
+    document whose subject is honesty should not have to call it one.
     """
     entries = liberties.get("liberties") if isinstance(liberties, dict) else None
     if not entries:
@@ -859,10 +907,17 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                                "docs/LIBERTIES.md — run tools/compile_liberties.py")
         return
 
-    # (structure, phase|None, aspect) -> the entries claiming it.
+    # (structure, phase|None, aspect) -> the entries claiming it, and the ground's
+    # (epoch, claim) beside it. Two dicts rather than one keyspace with a marker
+    # in it: the two domains are checked against different documents and fail for
+    # different reasons, and a shared key would only make that harder to read.
     claims: dict[tuple, list[dict]] = {}
+    ground_claims_made: dict[tuple, list[dict]] = {}
     for e in entries:
         for c in e.get("covers") or []:
+            if c.get("domain") == "terrain":
+                ground_claims_made.setdefault((c.get("epoch"), c.get("claim")), []).append(e)
+                continue
             key = (c.get("structure"), c.get("phase"), c.get("aspect"))
             claims.setdefault(key, []).append(e)
 
@@ -884,7 +939,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         owed.append((sid, pid, aspect, where, "unlanded"))
 
     covered = 0
-    invented = omitted = unlanded_n = 0
+    invented = omitted = unlanded_n = ground_n = 0
     honoured: set[tuple] = set()
     for sid, pid, aspect, where, kind in owed:
         keys = [(sid, pid, aspect), (sid, None, aspect)]
@@ -920,6 +975,50 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                   f"Append the liberty with '**Covers:** `{token}`' and re-run "
                   f"tools/compile_liberties.py (liberties naming {sid}: {named})")
 
+    # The ground, on the same terms. Its claims are blocks of a spec rather than
+    # attributes of a record, so they are matched by id and not by aspect — but
+    # the requirement is the identical one, and so is the argument for it.
+    ground = ground or {}
+    ground_honoured: set[tuple] = set()
+    ground_owed = terrain_conjectural_values(ground)
+    for epoch, cid, label, where in ground_owed:
+        key = (epoch, cid)
+        if key in ground_claims_made:
+            covered += 1
+            ground_n += 1
+            ground_honoured.add(key)
+            continue
+        rep.error(where,
+                  f"'{label}' is conjectural and no liberty in docs/LIBERTIES.md claims "
+                  f"it — the ground invents as freely as a record does, a visitor walks "
+                  f"on the result, and the standard is that they can tell you which parts. "
+                  f"Append the liberty with '**Covers:** `terrain.{epoch}.{cid}`' and "
+                  f"re-run tools/compile_liberties.py")
+
+    for (epoch, cid), owners in sorted(ground_claims_made.items(), key=lambda kv: str(kv[0])):
+        who = ", ".join(e.get("id", "?") for e in owners)
+        if epoch not in ground:
+            rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}' but no "
+                                   f"terrain epoch '{epoch}' is committed — an admission "
+                                   f"about ground that does not exist")
+            continue
+        if cid not in ground[epoch]:
+            rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}' but that "
+                                   f"epoch's spec makes no graded claim '{cid}' — the claims "
+                                   f"are the ones the Evidence panel shows, so a token "
+                                   f"naming none of them admits to nothing a visitor reads")
+            continue
+        if (epoch, cid) in ground_honoured:
+            continue
+        if all((e.get("section") or "") == "resolved" for e in owners):
+            continue
+        rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}', but that "
+                               f"ground claim is not conjectural — either evidence arrived "
+                               f"and the spec caught up, in which case move the entry to the "
+                               f"Resolved section of docs/LIBERTIES.md, or the claim was "
+                               f"never true. An admission to something we did not do reads "
+                               f"as diligence and provides none")
+
     # The claims answer for themselves.
     for (csid, cpid, aspect), owners in sorted(claims.items(), key=lambda kv: str(kv[0])):
         who = ", ".join(e.get("id", "?") for e in owners)
@@ -947,8 +1046,9 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                                f"do reads as diligence and provides none")
 
     rep.note(f"liberties coverage: {covered} value(s) owed an admission — {invented} invented, "
-             f"{omitted} stated and not built, {unlanded_n} standing off the ground — claimed by "
-             f"{len(honoured)} declaration(s) in docs/LIBERTIES.md")
+             f"{omitted} stated and not built, {unlanded_n} standing off the ground, "
+             f"{ground_n} invented in the ground itself — claimed by "
+             f"{len(honoured) + len(ground_honoured)} declaration(s) in docs/LIBERTIES.md")
 
 
 # --------------------------------------------------------------------------
@@ -1259,8 +1359,11 @@ def main() -> int:
     check_exclusions(exclusions, source_ids, rep)
 
     # and the ground itself, which makes graded claims like everything else here
-    # and was checked by nothing until it started making them to a visitor
-    check_terrain_claims(source_ids, rep)
+    # and was checked by nothing until it started making them to a visitor. One
+    # enumeration serves this check and the coverage gate below, so the ground
+    # cannot be graded against one list and admitted to against another.
+    ground_index = terrain_claim_index(load_terrain_specs(rep), rep)
+    check_terrain_claims(source_ids, rep, index=ground_index)
 
     # scenes
     for name, sc in scenes.items():
@@ -1296,7 +1399,7 @@ def main() -> int:
         unlanded = unlanded_values(structures, scenes, rep, field, datum_origin, contacts)
         check_ground_contact(structures, unlanded, rep)
 
-    check_liberties_coverage(structures, liberties, rep, consumed, unlanded)
+    check_liberties_coverage(structures, liberties, rep, consumed, unlanded, ground_index)
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)
