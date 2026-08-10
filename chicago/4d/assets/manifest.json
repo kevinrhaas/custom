@@ -4,7 +4,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19928,
-      "inputs_sha256": "6acbebb8f694e6de1b58678c356b817e03c4f4026c5da93ce3cfe46faec0242b",
+      "inputs_sha256": "65480804df43a71fb4d5816aecdc9857d18d3e17ed981e6fdccf5bebb6f940c1",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
@@ -12,8 +12,8 @@
     "miller_house__log_frame_1827.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
-      "bytes": 70116,
-      "inputs_sha256": "339b21939f7839336916bd1ca0cad907d366561291eda7b254d4d76e3ea32ce7",
+      "bytes": 71680,
+      "inputs_sha256": "570e4eb106aec73b953764adcb625a8f4876cacdd7bfe87b0ea50a59342ac6a0",
       "kind": "generated",
       "phase_id": "log_frame_1827",
       "structure_id": "miller_house"
@@ -22,7 +22,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 44352,
-      "inputs_sha256": "33a0330d47e9692bc44f917203485571c3ddfbbd4fb647859607600e6a784e7c",
+      "inputs_sha256": "ef0dfec646ae0ccd202069a067380f72348c818641bf15b516b9dcfb0ca8c1b5",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
@@ -47,7 +47,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31308,
-      "inputs_sha256": "96805cb9da5d3a155e49e07dd171e8c8f641d92140f6ec86a9608c5aad9e3b56",
+      "inputs_sha256": "7f96e432f6a25b589f2eff2a4b245aa2b35a709f717ab46ff5984a85bd54a3eb",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "walker_meeting_house"
@@ -66,7 +66,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 21184,
-      "inputs_sha256": "ada1178d53c048d5c2c17624f48d0497f7d24e2c5c3224f0edd7a251b01a12f3",
+      "inputs_sha256": "a5d9f01fc718fe3d8fe241aaaa882c6df3851535c9284a363b620d31297dd11f",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "western_hotel"
@@ -75,7 +75,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 43640,
-      "inputs_sha256": "5589cc8d8bdebba908554266b9ae9ec6be2b3117b28b2d903a496fdbcd4139a0",
+      "inputs_sha256": "6212b7232947d1dd153d384820d34b8b56e9cd4e0bb4ccfd135d1e781b6cfdd5",
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"
