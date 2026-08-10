@@ -218,6 +218,23 @@ date falls inside the span by construction, so what a visitor needs is not the f
 strength and its reasoning — for a building nobody followed past 1834, the end of the range is
 an argument rather than a source.
 
+**This list is now checked from both sides, and the check is what makes it a contract rather
+than a description.** `validate.py`'s `check_sidecar_contract` reads what the compiler emits off
+the committed sidecars — which `compile_scene.py --check` proves are exactly what the dataset
+compiles to — and scans what the renderer reads out of the renderer's own modules. A field read
+on one side and absent from the other is a gate failure. It was switched on 2026-08-10 and found
+a second live instance of the fault that prompted the `documented_range` fix above: the
+provenance card had been asking the sidecar `asset_is_placeholder`, which the compiler has never
+written and, reading only `data/`, could not write. Whether a mesh is a stand-in is a fact the
+GLB states about itself, so it now travels from the loader that opens the file to the card
+(`record.assetIsPlaceholder`) rather than through a sidecar field.
+
+The scan follows `record.sidecar` and the names bound directly to it; a value handed to a
+function is read through that function's parameter and is out of its reach. It reports the
+reverse direction — fields compiled and never read — as a note rather than an error, because at
+the top level that limit does not bite and an unread field is dead weight rather than a false
+claim.
+
 **Discovery.** A static host cannot be globbed, so each scene publishes
 `sidecars/<scene>/index.json` listing `{id, name, sidecar, asset}` plus `excluded_by_date`.
 The renderer reads the index, never a directory listing.

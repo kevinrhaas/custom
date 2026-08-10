@@ -861,6 +861,199 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
 
 
 # --------------------------------------------------------------------------
+# the sidecar interface
+# --------------------------------------------------------------------------
+#
+# `tools/compile_scene.py` writes the sidecars and the renderer reads them, and
+# until now nothing stated what passes between them. That is not a hypothetical
+# gap: `popup.js` read `sidecar.documented_range` from the day the card was
+# written and the compiler never emitted it, so the one line answering *was this
+# building here on 1 July 1835* rendered as nothing for the life of the project
+# (STATUS § 28). Every existing gate was silent, and correctly so — each half was
+# consistent with itself, `--check` proves only that the compiler agrees with its
+# own output, and the record validated clean.
+#
+# So the interface is derived from both sides and compared. What the compiler
+# emits is read off the committed sidecars, which `compile_scene.py --check`
+# proves are exactly what the dataset compiles to; what the renderer reads is
+# scanned out of the renderer's own source. A field read on one side and absent
+# on the other is an error.
+
+# `record.sidecar`, or the bare `sidecar` the loader binds when it fetches one.
+SIDECAR_ROOT = r"(?:\brecord\b\s*\??\.\s*)?\bsidecar\b"
+JS_IDENT = r"[A-Za-z_$][\w$]*"
+JS_CHAIN = r"((?:\s*\??\.\s*[A-Za-z_$][\w$]*)*)"
+
+
+def sidecar_shape() -> dict:
+    """The shape of a per-structure sidecar, unioned over every committed one.
+
+    A union rather than one file because a field is part of the interface even
+    when only one structure carries it — `aka` is empty on most records and the
+    card still reads it. `index.json` and `exclusions.json` are different derived
+    documents with their own readers and are deliberately out: this gate covers
+    the record the popup, the walker and the placement code all read.
+
+    Dict values recurse; anything else becomes a leaf. Resolution stops at a
+    leaf, which is what keeps `aka.length` and `polygon.map` from being read as
+    missing fields of a list.
+    """
+    def merge(shape: dict, doc: dict) -> dict:
+        for k, v in doc.items():
+            if isinstance(v, dict):
+                prev = shape.get(k)
+                shape[k] = merge(prev if isinstance(prev, dict) else {}, v)
+            else:
+                shape.setdefault(k, None)
+        return shape
+
+    shape: dict = {}
+    for p in sorted((DATA / "sidecars").glob("*/*.json")):
+        if p.stem in ("index", "exclusions"):
+            continue
+        doc = json.loads(p.read_text())
+        if isinstance(doc, dict):
+            merge(shape, doc)
+    return shape
+
+
+def strip_js_comments(text: str) -> str:
+    """Comments out, line numbers intact.
+
+    Not cosmetic: this file's modules explain their own history in prose, and the
+    first thing the gate reported was a field named in the comment that documents
+    why it is no longer read. A sentence about a field is not a read of it.
+
+    Block comments collapse to their own newlines so a reported line still points
+    at the right line. The line-comment rule refuses a `//` preceded by a colon or
+    a quote, which is what keeps a URL inside a string from truncating the code
+    after it; the cost of the heuristic is a missed read on such a line, never a
+    false one.
+    """
+    text = re.sub(r"/\*[\s\S]*?\*/", lambda m: "\n" * m.group(0).count("\n"), text)
+    return re.sub(r"""(?<![:'"\\\w])//[^\n]*""", "", text)
+
+
+def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int, str]]:
+    """Every sidecar field one renderer module reads, as (line, dotted path).
+
+    A regex over JavaScript is a blunt instrument and this one is deliberately
+    narrow: it follows `record.sidecar` and the local names bound directly to it
+    (`const s = record.sidecar`, `const p = s.placement ?? {}`), and nothing
+    else. A name is only followed when its path lands on a dict, so `const e =
+    p.local_e` binds nothing further and a later unrelated `e` in the same file
+    cannot be mistaken for it.
+
+    What it cannot see is stated rather than implied: a sidecar value handed to a
+    function is read through that function's parameter, so `claimRow(label, span,
+    range)` puts `range.confidence` out of reach. This finds the reads that name
+    the field where the sidecar is in hand, which is where the field name is
+    chosen and therefore where it can be wrong.
+
+    Where it errs it errs loudly. Bind a name to a sidecar block and then reuse
+    that name for an unrelated object in the same module, and this attributes the
+    second object's fields to the sidecar and reports them missing. That is a
+    false alarm a reader resolves in a minute by renaming the variable, and it is
+    the direction to fail in: the alternative is the silence that let a card read
+    a field nobody wrote for the life of the project.
+    """
+    shape = sidecar_shape() if shape is None else shape
+    text = strip_js_comments(text)
+
+    def resolve(path: list[str]):
+        """(node, ok, missing_segment) — resolution stops at the first leaf."""
+        node = shape
+        for i, seg in enumerate(path):
+            if not isinstance(node, dict):
+                return node, True, None, path[:i]
+            if seg not in node:
+                return None, False, seg, path[:i + 1]
+            node = node[seg]
+        return node, True, None, path
+
+    def segments(chain: str) -> list[str]:
+        return re.findall(JS_IDENT, chain or "")
+
+    bound: dict[str, list[str]] = {}
+    for _ in range(3):          # `s` binds before `p = s.placement` resolves
+        anchors = [(SIDECAR_ROOT, [])] + [(r"\b%s\b" % re.escape(n), p)
+                                          for n, p in bound.items()]
+        for anchor, prefix in anchors:
+            pat = r"\b(?:const|let|var)\s+(%s)\s*=\s*%s%s" % (JS_IDENT, anchor, JS_CHAIN)
+            for m in re.finditer(pat, text):
+                name, path = m.group(1), prefix + segments(m.group(2))
+                node, ok, _, _ = resolve(path)
+                if name not in bound and ok and isinstance(node, dict):
+                    bound[name] = path
+
+    reads: dict[str, int] = {}
+    anchors = [(SIDECAR_ROOT, [])] + [(r"\b%s\b" % re.escape(n), p)
+                                      for n, p in bound.items()]
+    for anchor, prefix in anchors:
+        for m in re.finditer(anchor + JS_CHAIN, text):
+            path = prefix + segments(m.group(1))
+            if not path:
+                continue
+            _, _, _, reached = resolve(path)
+            key = ".".join(reached)
+            line = text[:m.start()].count("\n") + 1
+            if key and reads.get(key, 1 << 30) > line:
+                reads[key] = line
+    return sorted((line, path) for path, line in reads.items())
+
+
+def check_sidecar_contract(rep: Report) -> None:
+    """Every sidecar field the renderer reads must be one the compiler writes."""
+    shape = sidecar_shape()
+    if not shape:
+        rep.note("sidecar contract: skipped — no committed sidecars to read the shape from")
+        return
+
+    js = sorted(p for p in (ROOT / "renderers").rglob("*.js") if "vendor" not in p.parts)
+    read_paths: set[str] = set()
+    files_reading = 0
+    for path in js:
+        reads = sidecar_field_reads(path.read_text(), shape)
+        if reads:
+            files_reading += 1
+        for line, dotted in reads:
+            read_paths.add(dotted)
+            node = shape
+            for seg in dotted.split("."):
+                if not isinstance(node, dict):
+                    break
+                if seg not in node:
+                    rep.error("sidecar contract",
+                              f"{path.relative_to(ROOT)}:{line} reads `{dotted}` and no "
+                              f"committed sidecar carries it — the renderer would read "
+                              f"undefined on every building, silently, forever. Either "
+                              f"tools/compile_scene.py emits the field or the renderer "
+                              f"stops asking for it")
+                    break
+                node = node[seg]
+
+    # A scanner that matched nothing would pass every renderer ever written, so
+    # it reports what it found and the floor it is holding itself to.
+    if read_paths and files_reading < 2:
+        rep.error("sidecar contract",
+                  f"only {files_reading} renderer module reads a sidecar — the scan has "
+                  f"probably stopped matching; check sidecar_field_reads")
+    rep.note(f"sidecar contract: {len(read_paths)} field(s) read across {files_reading} "
+             f"renderer module(s), all present in the compiled sidecars")
+
+    # The other direction is reported and not enforced, because the scan cannot
+    # follow a value into a function: `documented_range` is read field by field
+    # inside the row renderer it is passed to. At the top level that limit does
+    # not bite, so an unread root key is a real finding — something the compiler
+    # writes for a visitor who never sees it.
+    unread = sorted(k for k in shape if k not in {p.split(".")[0] for p in read_paths})
+    if unread:
+        rep.note(f"sidecar contract: {len(unread)} top-level field(s) compiled and never "
+                 f"read by the renderer ({', '.join(unread)}) — dead weight or an "
+                 f"unshipped claim, not an error either way")
+
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -1003,6 +1196,9 @@ def main() -> int:
         check_ground_contact(structures, unlanded, rep)
 
     check_liberties_coverage(structures, liberties, rep, consumed, unlanded)
+
+    # what passes between the compiler and the renderer, checked from both sides
+    check_sidecar_contract(rep)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):
