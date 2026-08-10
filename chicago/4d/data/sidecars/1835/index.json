@@ -9,6 +9,12 @@
       "asset": "gltf/green_tree_tavern__frame_1833.glb"
     },
     {
+      "id": "hogan_store",
+      "name": "Hogan's Store",
+      "sidecar": "sidecars/1835/hogan_store.json",
+      "asset": "gltf/hogan_store__log_1831.glb"
+    },
+    {
       "id": "miller_house",
       "name": "Miller House",
       "sidecar": "sidecars/1835/miller_house.json",

@@ -9,6 +9,15 @@
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
     },
+    "hogan_store__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31312,
+      "inputs_sha256": "de90f13058ab5c5ce8c41b98a1b772306911696073e1c391e69d0b562dddc62b",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "hogan_store"
+    },
     "miller_house__log_frame_1827.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
