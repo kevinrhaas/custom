@@ -54,8 +54,9 @@ const SECTION_LABEL = {
  */
 export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, showScope = true } = {}) {
   const fields = (lib.fields || [])
-    // Recorded/Revised are shown as a dateline, not as rows of their own.
-    .filter((f) => !/^(Recorded|Revised)$/i.test(f.label));
+    // Recorded/Revised are shown as a dateline, not as rows of their own, and
+    // `Covers:` is shown as its chips — its raw tokens are the gate's business.
+    .filter((f) => !/^(Recorded|Revised|Covers)$/i.test(f.label));
 
   const rows = fields.map((f) => `
     <dt>${escapeHtml(f.label)}</dt>
@@ -71,6 +72,21 @@ export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, 
     ? `<span class="lib-scope">${escapeHtml(SECTION_LABEL[lib.section] || lib.section)}</span>`
     : '';
 
+  // What this entry admits it invented, from the document's own `Covers:` field.
+  // The commit gate reads the same claims against the records in both directions,
+  // so a chip here is not a description of the entry — it is the assertion the
+  // build refuses to ship without.
+  const seen = new Set();
+  const covers = (lib.covers || []).map((c) => {
+    const who = showSubjects ? (names.get(c.structure) || c.structure) : '';
+    const label = `${who} ${c.aspect}`.trim();
+    if (seen.has(label)) return '';
+    seen.add(label);
+    const token = [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
+    return `<span class="lib-covers" title="admitted for ${escapeHtml(token)}">`
+      + `${escapeHtml(who)}${who ? ' ' : ''}<em>${escapeHtml(c.aspect)}</em></span>`;
+  }).join('');
+
   const dateline = lib.revised && lib.revised !== lib.recorded
     ? `recorded ${escapeHtml(lib.recorded)} · revised ${escapeHtml(lib.revised)}`
     : `recorded ${escapeHtml(lib.recorded || '—')}`;
@@ -82,7 +98,7 @@ export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, 
       ${scope}
     </summary>
     <dl class="lib-body">${rows}</dl>
-    <p class="lib-meta">${subjects}<span class="lib-date">${dateline}</span></p>
+    <p class="lib-meta">${covers}${subjects}<span class="lib-date">${dateline}</span></p>
   </details>`;
 }
 

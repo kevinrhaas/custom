@@ -17,6 +17,10 @@ the derived artefact is committed so the site needs no build step, and `check.sh
 re-derives it on every commit, so an edit to the prose that never reaches the JSON
 is a gate failure rather than a silent divergence.
 
+One field is read as data rather than as prose: `**Covers:**` lists the drawn
+inventions an entry admits to, as `structure_id[.phase_id].aspect` tokens, and
+`validate.py` matches those claims against the records in both directions.
+
 Deliberately NOT a markdown renderer. It reads the one shape this document has —
 `### L<n> — <title>` followed by `**Label:** text` fields — and carries the field
 text through verbatim, markdown and all, for the renderer to display. Anything it
@@ -43,6 +47,15 @@ SECTION = re.compile(r"^##\s+(.+?)\s*$", re.M)
 FIELD = re.compile(r"\*\*([A-Z][^*:]{0,60}):\*\*")
 DATE = re.compile(r"(\d{4}-\d{2}-\d{2})")
 
+# "**Covers:** `sauganash_hotel.log_1829.footprint`, `wolf_point_tavern.footprint`"
+# — the structured half of an admission. Shape is checked here; whether the token
+# resolves to a real phase carrying a real invention is validate.py's business,
+# so a renamed record fails the gate as a semantic error rather than by making the
+# derived file uncompilable.
+COVER_ASPECTS = ("footprint", "position")
+COVER_TOKEN = re.compile(
+    r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.(" + "|".join(COVER_ASPECTS) + r")$")
+
 SECTION_KEY = {
     "standing liberties": "standing",
     "per-subject liberties": "per_subject",
@@ -53,6 +66,31 @@ SECTION_KEY = {
 def _clean(text: str) -> str:
     """Collapse the markdown's hard-wrapped lines into one paragraph."""
     return re.sub(r"\s*\n\s*", " ", text).strip().rstrip()
+
+
+def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
+    """`structure_id[.phase_id].aspect` tokens -> the claims this entry makes.
+
+    The aspect is the last segment and comes from a closed vocabulary, so a
+    two-segment token and a three-segment one are told apart without guessing:
+    `walker_meeting_house.position` covers whichever phases drew a position from
+    nothing, `walker_meeting_house.log_1831.position` covers exactly one.
+    """
+    claims: list[dict] = []
+    for raw in re.split(r"[,;]", text):
+        token = raw.strip().strip(".").strip("`").strip()
+        if not token:
+            continue
+        m = COVER_TOKEN.match(token)
+        if not m:
+            problems.append(f"{lid}: Covers entry '{token}' is not "
+                            f"structure_id[.phase_id].<{'|'.join(COVER_ASPECTS)}>")
+            continue
+        claims.append({"structure": m.group(1), "phase": m.group(2), "aspect": m.group(3)})
+    if not claims:
+        problems.append(f"{lid}: a Covers field that claims nothing — drop the field "
+                        f"or name what it discharges")
+    return sorted(claims, key=lambda c: (c["structure"], c["phase"] or "", c["aspect"]))
 
 
 def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
@@ -110,11 +148,15 @@ def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:
         subjects = sorted(sid for sid, name in known.items()
                           if sid in blob or (name and name in blob))
 
+        covers = (parse_covers(by_label["covers"], m.group(1), problems)
+                  if "covers" in by_label else [])
+
         entries.append({
             "id": m.group(1),
             "title": m.group(2).strip(),
             "section": section_at(m.start()),
             "subjects": subjects,
+            "covers": covers,
             "recorded": recorded.group(1) if recorded else None,
             "revised": revised.group(1) if revised else None,
             "fields": fields,

@@ -299,6 +299,15 @@ body.is-touch .gate-touch { display: block; }
   border: 1px solid var(--edge); border-radius: 999px;
   color: var(--ink); font-size: 10px;
 }
+/* An admission, not a label: this entry says it invented that building's
+   footprint or position, and the commit gate holds it to the claim. Tinted to
+   read as the conjectural swatch does, since that is what it is describing. */
+.lib-covers {
+  padding: 1px 6px;
+  border: 1px dashed var(--con); border-radius: 999px;
+  color: var(--ink); font-size: 10px; white-space: nowrap;
+}
+.lib-covers em { font-style: normal; color: var(--ink-dim); }
 .lib-date { color: var(--ink-dim); font-size: 10px; font-variant-numeric: tabular-nums; }
 
 .crosshair {
