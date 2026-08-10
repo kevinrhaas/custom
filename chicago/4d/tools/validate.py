@@ -310,7 +310,152 @@ def conjectural_values(structures: dict) -> list[tuple]:
     return found
 
 
-def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> None:
+def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
+    """archetype name -> the form attributes whose value its generator reads.
+
+    Declared by each `generators/archetypes/*_params.py` as `CONSUMED`, next to
+    the `from_phase` that does the reading, because the two drift apart the
+    moment they live in different files. Imports only the pure-Python halves, so
+    this costs milliseconds and needs no Blender.
+
+    An archetype with no params module yet returns nothing and is skipped rather
+    than assumed empty: "we have not written the generator" and "the generator
+    ignores everything" are different states and only one of them is a finding.
+    """
+    out: dict[str, frozenset] = {}
+    arch_dir = ROOT / "generators" / "archetypes"
+    if not arch_dir.exists():
+        return out
+    sys.path.insert(0, str(ROOT / "generators"))
+    for mod_path in sorted(arch_dir.glob("*_params.py")):
+        name = mod_path.stem.removesuffix("_params")
+        try:
+            mod = __import__(f"archetypes.{mod_path.stem}", fromlist=["CONSUMED"])
+        except Exception as e:  # noqa: BLE001
+            if rep:
+                rep.error("geometry", f"cannot import {mod_path.name}: {e}")
+            continue
+        consumed = getattr(mod, "CONSUMED", None)
+        if consumed is None:
+            if rep:
+                rep.error("geometry", f"{mod_path.name} declares no CONSUMED set, so nothing "
+                                      f"can tell which of a {name} record's attributes reach "
+                                      f"the mesh and which are stated and never built")
+            continue
+        out[name] = frozenset(consumed)
+    return out
+
+
+# What a `geometry:` declaration may say, and whether saying it is an admission
+# that owes the liberties document an entry. `record_only` does not: an attribute
+# that is a research note rather than a build instruction — a rejected reading, a
+# negative finding — has nothing missing from the model to admit to.
+GEOMETRY_STATES = ("absent", "simplified", "record_only")
+GEOMETRY_OWES_LIBERTY = ("absent", "simplified")
+
+
+def unbuilt_values(structures: dict, consumed: dict[str, frozenset]) -> list[tuple]:
+    """Every form attribute whose archetype does not read it.
+
+    Returns `(structure_id, phase_id, aspect, where, attr_dict)` with `aspect` in
+    the `Covers:` vocabulary — `form.<attribute>` — so an omission is claimed by
+    the same grammar an invention is.
+
+    Attributes whose value is falsy are excluded, and the exclusion is the whole
+    difference between a gap and a nothing: `log_core: false` records a reading
+    the project rejected, and there is no missing stable, sign or wing behind it
+    to admit to. What is left is the set of things a record says the building had
+    and the mesh cannot show.
+    """
+    found: list[tuple] = []
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        known = consumed.get(st.get("archetype"))
+        if known is None:
+            continue
+        for ph in st.get("phases", []):
+            pid = ph.get("id", "?")
+            for attr, a in sorted((ph.get("form") or {}).items()):
+                if attr in known or not isinstance(a, dict):
+                    continue
+                found.append((sid, pid, f"form.{attr}", f"structure {sid}/{pid}", a))
+    return found
+
+
+def check_geometry_declarations(structures: dict, consumed: dict[str, frozenset],
+                                rep: Report) -> None:
+    """A record may not state something the mesh does not contain without saying so.
+
+    The confidence model answers "how sure are we of this value". It has nothing
+    to say about a value nobody builds — and the two are not the same claim at
+    all. The Wolf Point Tavern's painted wolf sign is `documented`: the popup
+    shows the strongest chip the project has, over a building that has no sign on
+    it. That reads as a well-evidenced feature you are looking at, and it is a
+    well-evidenced feature you are not.
+
+    So the rule is mechanical and comes from the generator rather than from a
+    reviewer's attention: every form attribute outside its archetype's `CONSUMED`
+    set carries a `geometry:` declaration saying what the mesh does instead —
+    `absent`, `simplified`, or `record_only` for something that was never a build
+    instruction. The first two are omissions and simplifications, so they owe
+    docs/LIBERTIES.md an entry, which `check_liberties_coverage` collects.
+
+    The declaration is checked the other way too. Putting `geometry:` on an
+    attribute the archetype *does* read is a false admission — the value drives
+    the mesh by construction — and it would quietly excuse a real omission if the
+    parameter were ever removed.
+    """
+    if not consumed:
+        rep.note("geometry check: no archetype params modules to compare against")
+        return
+    declared = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        known = consumed.get(st.get("archetype"))
+        if known is None:
+            continue
+        for ph in st.get("phases", []):
+            pid = ph.get("id", "?")
+            where = f"structure {sid}/{pid}"
+            for attr, a in sorted((ph.get("form") or {}).items()):
+                if not isinstance(a, dict):
+                    continue
+                state = a.get("geometry")
+                if attr in known:
+                    if state is not None:
+                        rep.error(where, f"form.{attr} carries geometry: '{state}', but the "
+                                         f"{st.get('archetype')} archetype reads this attribute "
+                                         f"— it is built from the value, so there is nothing to "
+                                         f"declare. Drop the field, or remove the attribute from "
+                                         f"CONSUMED if the generator stopped using it")
+                    continue
+                if state is None:
+                    rep.error(where, f"form.{attr} is stated by the record and the "
+                                     f"{st.get('archetype')} archetype never reads it, so "
+                                     f"nothing in the mesh comes from it — and the popup still "
+                                     f"shows the value with a confidence chip. Declare what the "
+                                     f"geometry does: geometry: 'absent' (nothing of it is "
+                                     f"built), 'simplified' (a fixed default stands in its "
+                                     f"place), or 'record_only' (a reading recorded, not a "
+                                     f"build instruction)")
+                    continue
+                if state not in GEOMETRY_STATES:
+                    rep.error(where, f"form.{attr} declares geometry: '{state}', which is not "
+                                     f"one of {', '.join(GEOMETRY_STATES)}")
+                    continue
+                if state in GEOMETRY_OWES_LIBERTY and not a.get("value"):
+                    rep.error(where, f"form.{attr} declares geometry: '{state}' over the value "
+                                     f"{a.get('value')!r} — admitting to leaving out something "
+                                     f"the record says was not there. Use 'record_only' for a "
+                                     f"reading recorded rather than a thing omitted")
+                    continue
+                declared += 1
+    rep.note(f"geometry check: {declared} attribute(s) the archetypes do not read, each "
+             f"declaring what the mesh does instead")
+
+
+def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
+                             consumed: dict[str, frozenset] | None = None) -> None:
     """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
@@ -363,26 +508,44 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
         for sid in e.get("subjects") or []:
             by_subject.setdefault(sid, []).append(e)
 
+    # Two kinds of thing owe the document an entry, and they are opposites: a
+    # value invented to fill a gap, and a value we have but did not build.
+    owed: list[tuple] = [(sid, pid, aspect, where, "invented")
+                         for sid, pid, aspect, where in conjectural_values(structures)]
+    for sid, pid, aspect, where, attr in unbuilt_values(structures, consumed or {}):
+        state = attr.get("geometry")
+        if state in GEOMETRY_OWES_LIBERTY and attr.get("value"):
+            owed.append((sid, pid, aspect, where, state))
+
     covered = 0
+    invented = omitted = 0
     honoured: set[tuple] = set()
-    for sid, pid, aspect, where in conjectural_values(structures):
+    for sid, pid, aspect, where, kind in owed:
         keys = [(sid, pid, aspect), (sid, None, aspect)]
         hit = [k for k in keys if k in claims]
         if hit:
             covered += 1
+            invented += kind == "invented"
+            omitted += kind != "invented"
             honoured.update(hit)
             continue
         named = ", ".join(e.get("id", "?") for e in by_subject.get(sid, [])) or "none"
         token = ".".join(t for t in (sid, pid, aspect) if t)
-        # A drawn shape and a stated attribute are invented in different ways, and
-        # the message says which one the reader is looking at.
-        what = (f"a drawn {aspect}" if aspect in ("footprint", "position")
-                else "a stated " + re.sub(r"\bm\b", "(m)",
-                                          aspect.split(".")[-1].replace("_", " ")))
+        if kind == "invented":
+            # A drawn shape and a stated attribute are invented in different ways, and
+            # the message says which one the reader is looking at.
+            what = (f"a drawn {aspect}" if aspect in ("footprint", "position")
+                    else "a stated " + re.sub(r"\bm\b", "(m)",
+                                              aspect.split(".")[-1].replace("_", " ")))
+            why = (f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
+                   f"claims it — {what} nobody can defend is something we made up")
+        else:
+            why = (f"{aspect} declares geometry: '{kind}' but no liberty in "
+                   f"docs/LIBERTIES.md claims it — the record states something the "
+                   f"model does not show, which a confidence chip cannot say and a "
+                   f"visitor cannot see")
         rep.error(where,
-                  f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
-                  f"claims it — {what} nobody can defend is something we made up, "
-                  f"and the standard is that a visitor can tell you which parts. "
+                  f"{why}, and the standard is that a visitor can tell you which parts. "
                   f"Append the liberty with '**Covers:** `{token}`' and re-run "
                   f"tools/compile_liberties.py (liberties naming {sid}: {named})")
 
@@ -403,15 +566,17 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> 
             continue
         if all((e.get("section") or "") == "resolved" for e in owners):
             continue
-        rep.error("liberties", f"{who} claims to have invented '{csid}"
-                               f"{'.' + cpid if cpid else ''}.{aspect}', but that value is not "
-                               f"conjectural — either the evidence arrived, in which case move "
-                               f"the entry to the Resolved section of docs/LIBERTIES.md, or the "
-                               f"claim was never true. An admission to something we did not do "
-                               f"reads as diligence and provides none")
+        rep.error("liberties", f"{who} claims to cover '{csid}"
+                               f"{'.' + cpid if cpid else ''}.{aspect}', but that value is "
+                               f"neither conjectural nor declared absent or simplified — either "
+                               f"the evidence arrived and the model caught up, in which case "
+                               f"move the entry to the Resolved section of docs/LIBERTIES.md, or "
+                               f"the claim was never true. An admission to something we did not "
+                               f"do reads as diligence and provides none")
 
-    rep.note(f"liberties coverage: {covered} conjectural value(s) — geometry and stated "
-             f"form alike — claimed by {len(honoured)} declaration(s) in docs/LIBERTIES.md")
+    rep.note(f"liberties coverage: {covered} value(s) owed an admission — {invented} invented, "
+             f"{omitted} stated and not built — claimed by {len(honoured)} declaration(s) in "
+             f"docs/LIBERTIES.md")
 
 
 # --------------------------------------------------------------------------
@@ -522,8 +687,11 @@ def main() -> int:
     for name, sc in scenes.items():
         validate_scene(sc, structures, epochs, exclusions, rep)
 
-    # what we invented has to be written down, not merely tagged
-    check_liberties_coverage(structures, liberties, rep)
+    # what we invented has to be written down, not merely tagged — and so does
+    # what we recorded and never built, which is the same standard read backwards
+    consumed = archetype_consumed(rep)
+    check_geometry_declarations(structures, consumed, rep)
+    check_liberties_coverage(structures, liberties, rep, consumed)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

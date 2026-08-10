@@ -77,7 +77,8 @@
     "cladding": {
       "value": "clapboard",
       "confidence": "inferred",
-      "note": "Implied by 'white' painted finish on a frame building; clapboard is the standard cladding for the type and period. Not directly attested."
+      "note": "Implied by 'white' painted finish on a frame building; clapboard is the standard cladding for the type and period. Not directly attested.",
+      "geometry": "simplified"
     },
     "wall_height_m": {
       "value": 5.5,
@@ -115,12 +116,14 @@
     "fenestration": {
       "value": "five_bay_regular",
       "confidence": "inferred",
-      "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe."
+      "note": "No period source describes the window arrangement. A regular five-bay elevation with a centred entrance is the standard disposition for a building of this size and type, and both retrospective depictions show regular bays. The COUNT and SPACING are inference; that it was regularly fenestrated is safe.",
+      "geometry": "simplified"
     },
     "chimneys": {
       "value": 2,
       "confidence": "inferred",
-      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference."
+      "note": "Both retrospective depictions show two. A tavern of this size needed multiple fireplaces. Not attested by a period source; the number is inference.",
+      "geometry": "simplified"
     },
     "function": {
       "value": "tavern_inn",

@@ -476,6 +476,26 @@ table.attrs td .val { font-variant-numeric: tabular-nums; }
 [data-theme="light"] .conf-inferred { color: #8a5a12; }
 [data-theme="light"] .conf-conjectural { color: #4d5560; }
 
+/* What the mesh does with a value nothing reads. Deliberately NOT a confidence
+   chip: it answers a different question, so it is dashed rather than filled and
+   sits outside the three-colour scale. A visitor should never read "not built"
+   as a fourth grade of certainty. */
+.geom {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+  white-space: nowrap;
+  color: var(--ink-dim);
+  border: 1px dashed currentColor;
+  background: transparent;
+}
+.geom-absent { font-weight: 600; }
+
 .attr-note {
   display: block;
   margin-top: 4px;

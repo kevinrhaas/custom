@@ -90,6 +90,10 @@
         "note": {
           "type": "string",
           "description": "Required for inferred. State the reasoning, and record original historical units here."
+        },
+        "geometry": {
+          "enum": ["absent", "simplified", "record_only"],
+          "description": "What the generated mesh does with this value, for attributes the archetype does not read. 'absent': the thing is attested and nothing of it is built. 'simplified': something stands in its place but this value does not drive it. 'record_only': not a build instruction at all — a rejected reading or a negative finding. Required by tools/validate.py on every attribute outside its archetype's CONSUMED set; 'absent' and 'simplified' must be claimed by a liberty in docs/LIBERTIES.md. Its absence asserts nothing on its own: an attribute the archetype does read is built from the value by construction."
         }
       }
     },

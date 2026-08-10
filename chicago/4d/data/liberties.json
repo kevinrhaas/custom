@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 20,
+  "count": 24,
   "liberties": [
     {
       "id": "L1",
@@ -302,9 +302,15 @@
       "subjects": [
         "green_tree_tavern"
       ],
-      "covers": [],
+      "covers": [
+        {
+          "structure": "green_tree_tavern",
+          "phase": "frame_1833",
+          "aspect": "form.side_additions"
+        }
+      ],
       "recorded": "2026-08-09",
-      "revised": null,
+      "revised": "2026-08-10",
       "fields": [
         {
           "label": "Decision",
@@ -319,8 +325,16 @@
           "text": "the c. 1859 photograph (CHM ICHi-040230), which shows the building at its original corner and would settle dimensions, exterior finish and the gallery at once."
         },
         {
+          "label": "Covers",
+          "text": "`green_tree_tavern.frame_1833.form.side_additions`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-10 — the omission is now claimed rather than described. The record carries `side_additions: true` and the `frame_tavern` archetype has no parameter for it, so the attribute reaches the mesh nowhere; the record says so with `geometry: \"absent\"` and this entry is what the gate matches that declaration against."
         }
       ]
     },
@@ -331,9 +345,15 @@
       "subjects": [
         "western_hotel"
       ],
-      "covers": [],
+      "covers": [
+        {
+          "structure": "western_hotel",
+          "phase": "frame_1834",
+          "aspect": "form.stables"
+        }
+      ],
       "recorded": "2026-08-09",
-      "revised": null,
+      "revised": "2026-08-10",
       "fields": [
         {
           "label": "Decision",
@@ -348,8 +368,16 @@
           "text": "this understates the site more than any confidence tag can express — the yard *is* the west-side teamsters' house as a visitor experienced it, and the model shows a hotel standing in nothing. A parcel-level or yard archetype would fix it."
         },
         {
+          "label": "Covers",
+          "text": "`western_hotel.frame_1834.form.stables`."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-10 — claimed rather than merely described. `stables` is `documented`, which is the strongest chip this project has, and it sits over a building with no stable within a hundred metres of it; the record now declares `geometry: \"absent\"` and the gate holds that declaration to this entry."
         }
       ]
     },
@@ -662,6 +690,260 @@
         {
           "label": "Covers",
           "text": "`green_tree_tavern.frame_1833.form.gallery`, `western_hotel.frame_1834.form.gallery`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L20",
+      "title": "Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt",
+      "section": "per_subject",
+      "subjects": [
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "structure": "wolf_point_tavern",
+          "phase": "log_frame_1828",
+          "aspect": "form.frame_extension"
+        },
+        {
+          "structure": "wolf_point_tavern",
+          "phase": "log_frame_1828",
+          "aspect": "form.signage"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the record states `frame_extension: true` and `signage: painted_wolf_sign`, both `documented`, and the mesh contains neither. What stands at Wolf Point is a plain hewn-log cabin with no frame piece and no sign."
+        },
+        {
+          "label": "Why",
+          "text": "not a judgement — an accident, and it is recorded as one rather than dressed up. The `log_dwelling` archetype reads `frame_addition` and `sign`; this record spells the same two things `frame_extension` and `signage`. Neither spelling is wrong and neither resolver ever complained, because `from_phase` fills an absent attribute with a default: no frame addition, no sign. The building was baked from those defaults and nothing anywhere said the two best-attested features of the house had been dropped."
+        },
+        {
+          "label": "Consequence",
+          "text": "this is the worst case the confidence model has, because the model is working exactly as designed and still misleads. `documented` is the strongest claim the project makes. A visitor who picks the tavern reads *signage · painted wolf sign · documented* on a building with no sign on it, and *construction · partly log and partly frame* on a building that is entirely log — and the one thing every source agrees the Wolf Point tavern was known by is the painted wolf hung outside it. The chips were true about the evidence and false about the view."
+        },
+        {
+          "label": "How to resolve",
+          "text": "rename the two attributes to the parameters the archetype reads and re-bake. That is a data change plus geometry, and the two have to land in one slice, so it is queued in `docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap."
+        },
+        {
+          "label": "Covers",
+          "text": "`wolf_point_tavern.log_frame_1828.form.frame_extension`, `wolf_point_tavern.log_frame_1828.form.signage`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L21",
+      "title": "Chimneys are counted in the records and fixed in the archetypes",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "miller_house",
+        "sauganash_hotel",
+        "walker_meeting_house",
+        "western_hotel",
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "miller_house",
+          "phase": null,
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "sauganash_hotel",
+          "phase": null,
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "walker_meeting_house",
+          "phase": null,
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "western_hotel",
+          "phase": null,
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "wolf_point_tavern",
+          "phase": null,
+          "aspect": "form.chimneys"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every record states a chimney count and no archetype reads it. `frame_tavern` builds two stacks at 0.22 and 0.78 of the frontage; `log_dwelling` builds one, at the gable end. The records that say two get two only where the archetype already built two."
+        },
+        {
+          "label": "Why",
+          "text": "the counts were written from the depictions (\"both depictions show two\") and the archetypes were written from the same depictions, so they have never disagreed — which is precisely why nothing caught that they were never connected. Samuel Miller's house is the case that shows it: the record says two chimneys and the `log_dwelling` archetype builds one."
+        },
+        {
+          "label": "Consequence",
+          "text": "a record could raise a chimney count on new evidence and the town would not change. For Miller's house the model already shows one stack fewer than the record claims."
+        },
+        {
+          "label": "How to resolve",
+          "text": "make the count a parameter in both archetypes and re-bake — a small change on the data side, a geometry change on the other, so it lands as one slice."
+        },
+        {
+          "label": "Covers",
+          "text": "`green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`, `sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`, `western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L22",
+      "title": "Wall surfaces are the archetype's, not the record's",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "miller_house",
+        "sauganash_hotel",
+        "walker_meeting_house",
+        "western_hotel",
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.cladding"
+        },
+        {
+          "structure": "miller_house",
+          "phase": null,
+          "aspect": "form.cladding"
+        },
+        {
+          "structure": "miller_house",
+          "phase": null,
+          "aspect": "form.paint"
+        },
+        {
+          "structure": "sauganash_hotel",
+          "phase": null,
+          "aspect": "form.cladding"
+        },
+        {
+          "structure": "walker_meeting_house",
+          "phase": null,
+          "aspect": "form.paint"
+        },
+        {
+          "structure": "western_hotel",
+          "phase": null,
+          "aspect": "form.cladding"
+        },
+        {
+          "structure": "wolf_point_tavern",
+          "phase": null,
+          "aspect": "form.paint"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`cladding` on the four frame buildings and `paint` on the three log ones are recorded and unread. Frame walls always get clapboard lap courses; log walls always get bare hewn log. A record saying `cladding: board_and_batten` or `paint: white` on a log core would change nothing on screen."
+        },
+        {
+          "label": "Why",
+          "text": "each archetype was written for the buildings it had, and every one of them is clapboarded or unpainted, so the fixed surface and the recorded value have never differed. The `frame_paint` parameter drives a frame addition's colour; nothing drives the log core's."
+        },
+        {
+          "label": "Consequence",
+          "text": "the dataset's weakest inferences are here — `cladding` and `paint` are `inferred` on almost every record, several of them explicitly \"not attested either way\" — and a visitor cannot tell that the surface they are looking at is the archetype's default rather than the record's reading. Where evidence is thin, an unread attribute is a claim made twice."
+        },
+        {
+          "label": "How to resolve",
+          "text": "wire both attributes through `from_phase` and re-bake. Note the ordering this creates: the Sauganash's documented white paint IS read, so painted frame is already data-driven; it is the surface *texture* that is not."
+        },
+        {
+          "label": "Covers",
+          "text": "`green_tree_tavern.form.cladding`, `miller_house.form.cladding`, `sauganash_hotel.form.cladding`, `western_hotel.form.cladding`, `miller_house.form.paint`, `walker_meeting_house.form.paint`, `wolf_point_tavern.form.paint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L23",
+      "title": "One window arrangement, on every frame building",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "sauganash_hotel",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "structure": "green_tree_tavern",
+          "phase": null,
+          "aspect": "form.fenestration"
+        },
+        {
+          "structure": "sauganash_hotel",
+          "phase": null,
+          "aspect": "form.fenestration"
+        },
+        {
+          "structure": "western_hotel",
+          "phase": null,
+          "aspect": "form.fenestration"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`fenestration` is recorded on the three frame taverns and read by none of them. The archetype builds the same elevation on all three: five bays above, four plus a centred door below."
+        },
+        {
+          "label": "Why",
+          "text": "the arrangement came from the two Sauganash depictions and was made the archetype's default. The Green Tree's record says `small_paned_sash`, which describes the glazing and not the layout, and the Western's says `regular_bays`, which describes the layout only loosely — neither is a rhythm anyone could build from, so the default was never replaced."
+        },
+        {
+          "label": "Consequence",
+          "text": "three buildings of different sizes wear one facade. The Western is 40 ft on its front and the Sauganash's five-bay rhythm is spread across it unchanged, which reads as a finding about how the town was built and is instead an artefact of one archetype."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a bay-count parameter derived from frontage, and records that state a rhythm rather than a glazing type. Both, then a re-bake."
+        },
+        {
+          "label": "Covers",
+          "text": "`green_tree_tavern.form.fenestration`, `sauganash_hotel.form.fenestration`, `western_hotel.form.fenestration`."
         },
         {
           "label": "Recorded",
