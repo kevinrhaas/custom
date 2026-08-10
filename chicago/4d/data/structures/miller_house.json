@@ -67,12 +67,13 @@
       },
       "form": {
         "stories": {
-          "value": 2,
-          "confidence": "documented",
+          "value": 1,
+          "confidence": "inferred",
           "sources": [
+            "chicagology_prefire273",
             "drloih_hotels"
           ],
-          "note": "'added a two-story house to the cabin, fronting the river'. THE BUILDING IS NOT UNIFORMLY TWO STOREYS — this value describes the river-fronting range, with the older log cabin standing one storey behind it, which is what the 1833 view of 'a two-story building and adjoining log cabin' shows. The log_dwelling archetype therefore needs to build a mixed-height mass rather than extruding the whole footprint to one wall height; recorded as a geometry requirement discovered from the evidence, the same way the Sauganash's attached log wing was."
+          "note": "THIS VALUE IS THE LOG CORE'S, AND UNTIL 2026-08-10 IT CARRIED THE FRAME RANGE'S. It read 'value 2, documented', with a note saying in as many words that the two storeys described the river-fronting range rather than the whole building — but `log_dwelling` reads `stories` as the storey count of the log core, the range having its own `frame_addition_stories`, so the documented claim was being spent on the cabin and the range then took the archetype's default. The result was the composition inverted: a two-storey log cabin standing behind a shorter frame block, which is the opposite of every description of this building. The two-storey claim now sits on `frame_addition_stories`, where the archetype reads it and where the source's sentence actually points. ONE STOREY FOR THE CABIN IS INFERENCE, not attestation: no source gives the log part a height, and the reading rests on the 1833 view from the south bank — 'a two-story building and adjoining log cabin' — which only reads as a contrast if the cabin stood lower, together with the single-pen log house being the near-universal form at the forks. Recorded rather than assumed, because the number the archetype builds from should be the number a reader can argue with."
         },
         "construction": {
           "value": "log",
@@ -90,12 +91,44 @@
             "drloih_hotels",
             "chicagology_prefire273"
           ],
-          "note": "A two-storey house added to the log cabin, fronting the river. This is the element that faced the settlement across the water and the one a viewer standing at Wolf Point would have seen. Its DIMENSIONS are unattested."
+          "note": "A two-storey house added to the log cabin, fronting the river. This is the element that faced the settlement across the water and the one a viewer standing at Wolf Point would have seen. THAT IT EXISTED IS DOCUMENTED AND ITS SIZE IS NOT, so the four attributes below state the side, the width, the depth and the storey count explicitly rather than leaving them to the archetype's defaults. Until 2026-08-10 they were left to the defaults, which is the failure docs/LIBERTIES.md L24 exists to stop one building over: a documented feature arriving at an invented size with nothing admitting it."
         },
-        "wall_height_m": {
+        "frame_addition_side": {
+          "value": "front",
+          "confidence": "documented",
+          "sources": [
+            "drloih_hotels",
+            "chicagology_prefire273"
+          ],
+          "note": "'a two-story house added to the cabin, FRONTING THE RIVER', corroborated by the 1833 view from the south bank showing the two-storey building in front of the cabin rather than beside it. `front` is the archetype's term for the facade side, and this record's facade bearing is set due south onto the main stem for the same clause, so the range stands between the cabin and the water. This is the one dimension of the addition that is attested, and it is the one the Wolf Point Tavern's record had to invent — worth stating because the two records otherwise look alike. The caveat is the position note's, not this attribute's: if the building fronted the confluence at about 215 degrees instead, the whole building rotates and the range stays on its facade."
+        },
+        "frame_addition_stories": {
+          "value": 2,
+          "confidence": "documented",
+          "sources": [
+            "drloih_hotels"
+          ],
+          "note": "'added a TWO-STORY house to the cabin, fronting the river', with the 1833 view's 'a two-story building and adjoining log cabin' saying the same thing from the south bank. This is the storey count the sources actually give, and until 2026-08-10 it was recorded on `stories`, where the archetype spent it on the log core instead; see the note there."
+        },
+        "frame_addition_width_m": {
+          "value": 9.0,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED. Read off this record's own footprint polygon — the river-fronting limb is 9 m across — rather than chosen afresh, so the mesh agrees with the plan the record already draws instead of taking the archetype's default half-width of 4.5 m, which would have put a narrow block in the middle of a frontage the polygon draws full-width. That is a smaller invention than a new number and it is still an invention, because the polygon itself is a PLACEHOLDER whose every dimension is invented. Admitted in docs/LIBERTIES.md L27."
+        },
+        "frame_addition_depth_m": {
+          "value": 6.0,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED, and read off the footprint polygon on the same terms as the width: the river-fronting limb is 6 m deep of the bounding box's 11 m, leaving the 5 m the polygon gives the log cabin behind it. Inherits the polygon's invention. Admitted in docs/LIBERTIES.md L27."
+        },
+        "frame_addition_height_m": {
           "value": 5.2,
           "confidence": "inferred",
-          "note": "No figure is attested. 5.2 m is about 17 ft: two storeys at typical period floor heights plus structure and a sill, for the frame range. The log cabin behind it should stand at roughly 2.6 m — half this — which the archetype cannot yet express, so the single value here overstates the log part. Flagged rather than averaged, because averaging would produce a building that matches neither description."
+          "note": "No figure is attested. 5.2 m is about 17 ft: two storeys at typical period floor heights plus structure and a sill. THIS IS THE HEIGHT THIS RECORD HAS CARRIED SINCE 2026-08-09, moved to the element it was written about — it sat on `wall_height_m`, which the archetype applies to the log core, and the note there said so and flagged the overstatement because the archetype could not then express two heights. It can, so the value moves rather than staying flagged. Stated explicitly instead of taking the archetype's 4.7 m default for two storeys, so that the reasoning already recorded for this building is what the mesh is built from."
+        },
+        "wall_height_m": {
+          "value": 2.6,
+          "confidence": "inferred",
+          "note": "THE LOG CABIN'S WALL, not the frame range's. No figure is attested for either. 2.6 m is a single-pen log wall at the forks — the same height this record has named for the cabin since 2026-08-09, when it stood in this note as the height the archetype could not yet express while the field itself carried the range's 5.2 m. The two heights are now separate attributes, so the overstatement this note used to flag is gone rather than described: docs/LIBERTIES.md L13, the entry that recorded it, moves to Resolved with this slice."
         },
         "roof_type": {
           "value": "gable",

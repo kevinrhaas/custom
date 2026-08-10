@@ -12,8 +12,8 @@
     "miller_house__log_frame_1827.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
-      "bytes": 71680,
-      "inputs_sha256": "570e4eb106aec73b953764adcb625a8f4876cacdd7bfe87b0ea50a59342ac6a0",
+      "bytes": 47008,
+      "inputs_sha256": "77874d96be87da612aac923eb2e016f87ed803a11db30b675a773b62765f986f",
       "kind": "generated",
       "phase_id": "log_frame_1827",
       "structure_id": "miller_house"

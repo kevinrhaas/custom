@@ -237,25 +237,6 @@ readings 150 m apart across a river is a coin flip with an argument attached, no
 The `Covers:` claim is the binding statement of what this entry discharges; the stale word is
 left standing because the file is append-only and a silently corrected admission is not one.
 
-### L13 — Composite log-and-frame buildings are extruded to a single wall height
-**Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
-although both are attested as composites — Miller's as a two-storey frame range fronting the
-river with a one-storey log cabin behind, the Wolf Point Tavern as "partly log and partly frame".
-**Why:** the `log_dwelling` archetype does not yet build a mixed-height mass, and averaging the
-two heights would produce a building matching neither description. The records carry the taller
-element's height and flag the overstatement rather than hiding it.
-**Consequence:** a geometry requirement for `log_dwelling`, discovered from the evidence in the
-same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
-taller than they were.
-**Recorded:** 2026-08-09.
-**Revised:** 2026-08-10 — half of this is no longer true. The archetype does build a mixed-height
-mass: a frame addition carries its own storey count and its own height, and the Wolf Point Tavern
-now stands as a 2.6 m log core with a 2.55 m frame bay rather than one extrusion. Miller's house
-is unchanged and still the case this entry describes — its record carries the taller element's
-5.2 m and its log cabin is rendered two storeys high — because setting its frame range's height
-without also settling how much of the footprint the range takes would swap one overstatement for
-a different one. The entry stays here rather than moving to Resolved for exactly that reason.
-
 ### L14 — Terrain: a conjectural micro-relief under every claim
 **Decision:** the land surface carries ±0.10 ft (30 mm) of two-octave value noise everywhere,
 and the `_CONFIDENCE` channel does **not** report it.
@@ -455,6 +436,35 @@ settle position and rough proportion for that building alone; nothing held would
 others.
 **Recorded:** 2026-08-10.
 
+### L27 — Miller House: the frame range's width and depth come from an invented plan
+**Decision:** the two-storey range fronting the river is built 9 m wide and 6 m deep — the whole
+frontage of the footprint and a little over half its depth — with the log cabin occupying the 5 m
+behind it. Both numbers are tagged `conjectural`. That the range existed, that it stood on the
+river front and that it was two storeys are all `documented`; only its size is invented.
+**Why:** the sources give this building a composition and never a dimension. "A two-story house
+added to the cabin, fronting the river" and the 1833 view's "a two-story building and adjoining
+log cabin" say what the parts were and how they sat, and no source reached says how big either
+one was. The width and depth are therefore read off this record's own footprint polygon, whose
+river-fronting limb is 9 × 6 m, rather than picked afresh — which makes the mesh agree with the
+plan the record already draws instead of taking the archetype's defaults of half the width and
+half the depth, a 4.5 m block in the middle of a frontage the polygon draws full-width. That is a
+smaller invention than a new number and it is still an invention, because the polygon is a
+PLACEHOLDER: its own note says every number in it is made up. A fraction of a guess, exactly as
+L24 says of the Wolf Point bay.
+**Consequence:** two things a visitor cannot see from the confidence tint. The range is dithered
+by what it IS — documented that it existed and was two storeys — and not by its unknown size,
+which is the rule set for the Sauganash and repeated for Wolf Point in L24. And the record draws
+an L while the archetype masses a rectangle: the log core is carved out of the footprint's
+bounding box, so it comes out the full 9 m wide rather than the polygon's 6 m, and the 3 × 5 m
+re-entrant corner behind the range is filled in. Stating the range's own numbers is what makes
+that visible — before this slice the defaults left an inverted-T that matched neither the polygon
+nor the sources.
+**How to resolve:** Andreas vol. 1, "Wharfs, Piers and Early Hotels" pp. 626-631 at page-image
+level — the same unopened source that would settle the footprint this inherits from.
+**Covers:** `miller_house.log_frame_1827.form.frame_addition_width_m`,
+`miller_house.log_frame_1827.form.frame_addition_depth_m`.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved
@@ -463,6 +473,35 @@ Entries here were true when they were written and are kept verbatim, with a **Re
 line saying what settled them. The gate exempts this section from the check that a claimed
 value is still an invention, which is what lets an append-only document survive its own data
 being corrected.
+
+### L13 — Composite log-and-frame buildings are extruded to a single wall height
+**Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
+although both are attested as composites — Miller's as a two-storey frame range fronting the
+river with a one-storey log cabin behind, the Wolf Point Tavern as "partly log and partly frame".
+**Why:** the `log_dwelling` archetype does not yet build a mixed-height mass, and averaging the
+two heights would produce a building matching neither description. The records carry the taller
+element's height and flag the overstatement rather than hiding it.
+**Consequence:** a geometry requirement for `log_dwelling`, discovered from the evidence in the
+same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
+taller than they were.
+**Recorded:** 2026-08-09.
+**Revised:** 2026-08-10 — half of this is no longer true. The archetype does build a mixed-height
+mass: a frame addition carries its own storey count and its own height, and the Wolf Point Tavern
+now stands as a 2.6 m log core with a 2.55 m frame bay rather than one extrusion. Miller's house
+is unchanged and still the case this entry describes — its record carries the taller element's
+5.2 m and its log cabin is rendered two storeys high — because setting its frame range's height
+without also settling how much of the footprint the range takes would swap one overstatement for
+a different one. The entry stays here rather than moving to Resolved for exactly that reason.
+**Resolved:** 2026-08-10 — the other half landed the same day, in the slice the Revised line
+above asks for. Miller's range now carries its own width (9 m), depth (6 m), storey count (2,
+`documented`) and height (5.2 m), so the 5.2 m came off `wall_height_m` and the log cabin stands
+at the 2.6 m this record has named for it since it was written. Neither building is a single
+extrusion any more, and the overstatement this entry existed to flag is gone rather than
+described. Worth keeping the sentence "the records carry the taller element's height": for
+Miller's house that had a sharper edge than it reads. `stories` was `2, documented`, and the
+archetype reads `stories` as the LOG CORE's — so the documented claim was spent on the cabin,
+the range fell back to a default height of 4.7 m, and the model stood the taller element behind
+the shorter one. The invented dimensions that replaced the defaults are admitted in L27.
 
 ### L20 — Wolf Point Tavern: the frame half and the painted wolf sign are recorded and unbuilt
 **Decision:** the record states `frame_extension: true` and `signage: painted_wolf_sign`, both
