@@ -129,7 +129,22 @@ unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L2
 | ~~`wolf_point_tavern`~~ | ~~`signage`~~ | `sign` | **DONE 2026-08-10** — the board hangs on the river front; the wolf is not drawn (L25) |
 | ~~`miller_house`~~ | ~~`chimneys: 2`~~ | `chimney` (a boolean) | **DONE 2026-08-10** — the count is a parameter of both archetypes; the second stack stands on the frame range |
 
-Each was a small data edit plus a re-bake, so **record and geometry landed in one slice** — the
+**Queued now, above the additions, and it is a repair again — found by reading rather than by a
+gate** (2026-08-10, STATUS § 23):
+
+| record | attribute | what the evidence says | effect |
+|---|---|---|---|
+| `north_branch_bridge` | `pier_spacing_m` (15 cribs at the archetype default) | **two "bents" of four heavy logs resting on the bottom** | the archetype needs a count-and-form, not a spacing; L29 resolves when the mesh does |
+| `north_branch_bridge` | `pier_kind: crib` | the settlers' own word is **bents** — and Cleaver signed it | a `bent` value beside `crib` in `bridge_timber` |
+| `north_branch_bridge` | `clearance_m` (`inferred`, page not found) | **"about six feet above the water, so that teams passed under them on the ice freely"** | promote to `documented` with `old_settlers_bridges_1883` |
+| `north_branch_bridge` | deck (archetype's, unstated) | **"puncheons or split logs were laid for a floor"** | state it on the record |
+
+All four are mesh inputs, so **the record, the archetype change and the bake are one slice** —
+the same coupling the note below describes, arriving from a new direction. The evidence is a
+signed 1883 statement by four men who used the bridge, printed as a footnote at Andreas
+pp. 631-632 and missed by the full-text index; see `docs/RESEARCH/north_branch_bridge.md` § 6.
+
+Each of the earlier repairs was a small data edit plus a re-bake, so **record and geometry landed in one slice** — the
 same coupling the note below describes. All three are done.
 
 **The list refills itself, which is the point of the gate.** Making the chimney count real

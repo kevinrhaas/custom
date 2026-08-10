@@ -489,6 +489,19 @@ the scene date, and Andreas vol. 1 at page-image level, where the bridge prose t
 sits.
 **Covers:** `north_branch_bridge.log_1832.form.pier_spacing_m`.
 **Recorded:** 2026-08-10.
+**Evidence since:** the sentence above — "nothing anybody wrote describes the middle of it" — is
+no longer true, and the entry stays here rather than moving to Resolved because the model still
+shows fifteen cribs. Somebody did write it down: at the foot of Andreas pp. 631-632 is a
+statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting
+of old settlers in the fall of 1883, saying that both branch bridges "were built on abutments and
+two 'bents'", each bent "of four heavy logs, resting on the bottom, in deeper water". **Two
+intermediate supports, not fifteen**, and bents rather than cribs. It was found by reading the
+printed pages either side of the passage this project already quoted, rather than by searching
+the index, which does not reach it. Until the record and its re-bake land together the river
+still carries a colonnade that the evidence does not, and this admission stands exactly as
+written. Source: `old_settlers_bridges_1883`; the finding is
+`docs/RESEARCH/north_branch_bridge.md` §6 and the work order is `docs/STATUS.md` §23.
+**Revised:** 2026-08-10.
 
 ### L30 — The bridge lands on nothing, and no approach is modelled
 **Decision:** the North Branch bridge's deck stops at the traced 1834 waterline at both ends,
@@ -515,6 +528,18 @@ the best candidate; a sourced clearance figure would also narrow it, since a low
 less approach and the six feet is the weakest number in the record.
 **Covers:** `north_branch_bridge.log_1832.ground_contact`.
 **Recorded:** 2026-08-10.
+**Evidence since:** both candidates named above were pulled on 2026-08-10 and **the gap is
+unchanged, but two of the escape routes out of it are closed.** The Wabansia and Kinzie's
+Addition plat is the sheet this project already holds as `hathaway_1834`; inspected at the
+crossing's own georeferenced pixel it draws no bridge, and neither does Wright 1834 — both stop
+their street lines at the waterline, because a platted street is a dedication and not a
+structure. And the six feet is no longer "the weakest number in the record": Caton, Bates,
+Cleaver and Noble state it in 1883, and state why — the bridges "were about six feet above the
+water, so that teams passed under them on the ice freely" — so a lower deck is not available as
+the cheap way to shorten an approach nobody described. The same sentence calls these **wagon**
+bridges, which means a wagon reached the deck somehow. The approach is therefore better attested
+as a fact and no better described than it was. See `docs/RESEARCH/north_branch_bridge.md` §6.
+**Revised:** 2026-08-10.
 
 ---
 
