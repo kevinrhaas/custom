@@ -128,22 +128,29 @@ If you re-run the research, re-run this too: it reads `profiles.merged.json`.
 `node build-draw.mjs --report` prints the full ranking with the evidence per
 act, which is the fastest way to sanity-check a change to the patterns.
 
-## Who's walking (the crew presets)
+## Who's walking (the group presets)
 
-`CREW` in `app.template.html` holds one preset per person in the group this was
-built for, plus one for all of them together. A preset sets taste dimensions by
-name and may add `__tags` (genres to seek, replacing the current chips),
-`__pop` (draw), `__pace` and `__max` (band cap).
+`CREW` in `app.template.html` holds four life-stage profiles — *With kids*,
+*Twenties*, *Easy does it*, *All ages*. A preset sets taste dimensions by name
+and may add `__tags` (genres to seek, replacing the current chips), `__pop`
+(draw), `__pace` and `__max` (band cap).
 
-The last two matter: for an eighty-something the walk is as much of a
-constraint as the music, so Pat's preset drops the pace to 3 km/h and caps the
-route at four stops — which lands at roughly 1.4 km for the afternoon. Reset
-restores pace and cap along with everything else, otherwise a slow pace
-silently outlives the preset that set it.
+Those last two are the reason this row exists at all and isn't just more vibe
+presets: **stamina is a real constraint, and only these can express it.** A
+stroller or a pair of eighty-year-old knees changes how far the route should
+reach, not just what it should sound like. *Easy does it* drops the pace to
+3 km/h and caps the route at four stops, which lands around 1.4 km for the
+whole afternoon. Reset restores pace and cap along with everything else,
+otherwise a slow pace silently outlives the preset that set it.
 
-The names are real people and this is a public page. Swapping them for generic
-labels ("Grown-ups", "Twenties", "Gentle pace", "Everyone") is a one-line
-change to `CREW` and `CREWNOTE` if that is ever wanted.
+The row sits at the TOP of the plan pane on purpose: picking a profile
+overwrites the pace and band cap shown below it, so it has to come first.
+
+*With kids* absorbed the old *Family stroll* vibe preset — same taste, plus the
+pace and the shorter loop a family actually needs. Don't reintroduce it.
+
+Keep these labels demographic, never personal names: this is a public page that
+strangers at the festival will open, and a name means nothing to them.
 
 ## Smoke before ship
 
@@ -162,7 +169,8 @@ and hidden gems must *lower* it, the preset must drive the slider, Reset must
 clear it, the browser sort must be descending, every badge must carry its
 evidence, and a share link cut before the slider existed must still open.
 
-For the crew presets it asserts the one that does the most work: Pat's must
+For the group presets it asserts the one that does the most work: *Easy does
+it* must
 ease the pace *and* the band cap and seek her genres, Reset must put all three
 back, and "Full profile" on a scheduled stop must land on that band's card.
 

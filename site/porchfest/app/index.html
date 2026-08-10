@@ -677,29 +677,32 @@ const DIMLABEL = [
    A preset that declares __tags REPLACES the genre selection; one that doesn't
    leaves your chips alone, which is how the vibe presets have always behaved. */
 
-// The people actually walking this thing. Sets the logistics too, because for
-// an eighty-something the walk is as much of a constraint as the music.
+// Who the afternoon is for. These set the logistics as well as the taste,
+// because stamina is as real a constraint as volume: a stroller or a pair of
+// eighty-year-old knees changes how far the route should reach, not just what
+// it should sound like. That is the axis the vibe presets below can't express.
 const CREW = {
-  'Kevin & Lee': {vocal_forward:2, electronic:-2, loudness:-1, energy:-1, grit:1,
-                  __tags:['folk','americana','singer-songwriter','blues','country']},
-  'Maura':       {danceability:2, energy:1, tempo:1, brightness:1, loudness:1,
-                  __tags:['indie','alternative','pop','electronic']},
-  'Pat':         {loudness:-2, electronic:-2, energy:-1, tempo:-1, vocal_forward:1, kid_friendly:1,
-                  __tags:['jazz','folk','blues','soul','americana'], __pace:3, __max:4},
-  'Whole crew':  {loudness:-1, vocal_forward:1, danceability:1, brightness:1, kid_friendly:1,
-                  __tags:['soul','funk','folk','americana','blues'], __pace:3.5, __max:5},
+  'With kids':    {kid_friendly:2, loudness:-2, brightness:1, energy:-1,
+                   __tags:['folk','pop','brass','soul'], __pace:3.5, __max:5},
+  'Twenties':     {danceability:2, energy:1, tempo:1, brightness:1, loudness:1,
+                   __tags:['indie','alternative','pop','electronic']},
+  'Easy does it': {loudness:-2, electronic:-2, energy:-1, tempo:-1, vocal_forward:1, kid_friendly:1,
+                   __tags:['jazz','folk','blues','soul','americana'], __pace:3, __max:4},
+  'All ages':     {loudness:-1, vocal_forward:1, danceability:1, brightness:1, kid_friendly:1,
+                   __tags:['soul','funk','folk','americana','blues'], __pace:3.5, __max:5},
 };
 const CREWNOTE = {
-  'Kevin & Lee':'Words first — folk, americana and blues, acoustic and not too loud.',
-  'Maura':'Loud, bright and danceable — indie, pop and something with a beat.',
-  'Pat':'Quiet, acoustic and unhurried: a slower pace and no more than four stops.',
-  'Whole crew':'The overlap — gentle enough for Pat, not boring for Maura. Five stops at a stroll.',
+  'With kids':'Bright and all-ages, nothing too loud — a short loop at stroller pace.',
+  'Twenties':'Loud, bright and danceable — indie, pop and something with a beat.',
+  'Easy does it':'Quiet and acoustic, unhurried: a slower pace and no more than four stops.',
+  'All ages':'For a mixed group — gentle enough for grandparents, not boring for anyone. Five stops at a stroll.',
 };
 
 const PRESETS = {
   'Big names':        {__pop:2},
   'Loud & fast':      {energy:2, loudness:2, tempo:2, grit:1, kid_friendly:0},
-  'Family stroll':    {kid_friendly:2, loudness:-2, brightness:1, energy:-1},
+  // "Family stroll" lived here until "With kids" above absorbed it — same
+  // taste, plus the pace and the shorter loop that a family actually needs.
   'Jazz & porch beer':{energy:-1, experimental:1, danceability:0, loudness:-1, electronic:-1},
   'Dance party':      {danceability:2, energy:1, electronic:1, brightness:1},
   'Songwriters':      {vocal_forward:2, loudness:-1, electronic:-2, energy:-1},
@@ -1375,7 +1378,7 @@ function applyPreset(name){
   S.pop=0;
   if(name==='__clear'){
     // Reset undoes everything a preset can touch, including the logistics the
-    // crew presets set — otherwise Pat's slow pace silently outlives her preset.
+    // group presets set — otherwise a slow pace silently outlives its preset.
     S.tags={}; S.pace=4.5; S.minBands=0; S.maxBands=0; S.crew='';
     renderControls(); changed(); return;
   }

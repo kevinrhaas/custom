@@ -203,33 +203,34 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // ---- who's walking (the crew presets) ----
     const crewNames = await page.evaluate(() =>
       [...document.querySelectorAll('#crew [data-preset]')].map(b => b.dataset.preset));
-    if (crewNames.length !== 4) fail(`${tag} — expected 4 crew presets, found ${crewNames.length}`);
-    else ok(`crew presets: ${crewNames.join(', ')}`);
+    if (crewNames.length !== 4) fail(`${tag} — expected 4 group presets, found ${crewNames.length}`);
+    else ok(`group presets: ${crewNames.join(', ')}`);
 
     const clickPreset = async (name) => {
       await page.evaluate((n) => [...document.querySelectorAll('[data-preset]')]
         .find(b => b.dataset.preset === n).click(), name);
       await page.waitForTimeout(1800);
     };
-    // Pat's is the one that also eases the walking, so it is the one worth
-    // asserting: a preset that only moved taste would quietly under-serve her.
-    await clickPreset('Pat');
-    const pat = await page.evaluate(() => ({
+    // "Easy does it" is the one that also eases the walking, so it is the one
+    // worth asserting: a preset that only moved taste would quietly under-serve
+    // someone whose limit is the distance, not the volume.
+    await clickPreset('Easy does it');
+    const easy = await page.evaluate(() => ({
       pace: +document.querySelector('#pace').value,
       max: +document.querySelector('#maxB').value,
       tags: [...document.querySelectorAll('#genres .chip[data-s="1"]')].map(c => c.dataset.tag),
       stops: document.querySelectorAll('#stops .stop').length,
       on: !!document.querySelector('#crew button.on'),
     }));
-    if (pat.pace !== 3) fail(`${tag} — Pat's preset left pace at ${pat.pace}, expected 3`);
-    else ok(`Pat eases the pace (${pat.pace} km/h)`);
-    if (pat.max !== 4 || pat.stops > 4) fail(`${tag} — Pat's preset gave ${pat.stops} stops (cap ${pat.max})`);
-    else ok(`Pat caps the walk (${pat.stops} stops)`);
-    if (!pat.tags.length) fail(`${tag} — Pat's preset set no genres`);
-    else ok(`Pat seeks genres (${pat.tags.join(', ')})`);
-    if (!pat.on) fail(`${tag} — no crew preset shows as selected`); else ok('selected crew preset is marked');
+    if (easy.pace !== 3) fail(`${tag} — "Easy does it" left pace at ${easy.pace}, expected 3`);
+    else ok(`"Easy does it" eases the pace (${easy.pace} km/h)`);
+    if (easy.max !== 4 || easy.stops > 4) fail(`${tag} — "Easy does it" gave ${easy.stops} stops (cap ${easy.max})`);
+    else ok(`"Easy does it" caps the walk (${easy.stops} stops)`);
+    if (!easy.tags.length) fail(`${tag} — "Easy does it" set no genres`);
+    else ok(`"Easy does it" seeks genres (${easy.tags.join(', ')})`);
+    if (!easy.on) fail(`${tag} — no group preset shows as selected`); else ok('selected group preset is marked');
 
-    // Reset has to undo the logistics too, or Pat's slow pace outlives her preset.
+    // Reset has to undo the logistics too, or the slow pace outlives the preset.
     await clickPreset('__clear');
     const afterReset = await page.evaluate(() => ({
       pace: +document.querySelector('#pace').value,

@@ -2,8 +2,9 @@ export const CHANGELOG = [ // newest first
   { v: 3, title: 'Pick who is walking, and read the whole band from the schedule', kind: 'feature',
     ts: '2026-08-10T01:18:14.494Z', date: 'Aug 9, 2026, 8:18 PM CT',
     items: [
-      'A Who is walking row now sits at the top of the plan, with a preset per person and one for the whole group. Picking someone sets their taste and the genres they lean toward.',
-      'The gentler presets also set the logistics, because for an eighty-something the walk is as much of a constraint as the music: a slower pace and a cap on how many stops the route makes. Reset puts the pace and the cap back too, so a slow setting cannot quietly outlive the preset that made it.',
+      'A Who is walking row now sits at the top of the plan: With kids, Twenties, Easy does it and All ages. Picking one sets the taste and the genres that group tends to lean toward.',
+      'The gentler ones also set the logistics, because stamina is as real a constraint as volume: a stroller or a pair of eighty-year-old knees changes how far the route should reach, not just what it should sound like. Easy does it drops to a slower pace and caps the walk at four stops. Reset puts the pace and the cap back too, so a slow setting cannot quietly outlive the preset that made it.',
+      'With kids absorbs the old Family stroll preset, which had the same taste but none of the pace or distance a family actually needs.',
       'Every stop in the schedule now has a Full profile button that jumps to that band card in the browser and highlights it. A notable act also carries a small star in the schedule, matching its badge.',
       'Renamed the two time dials, which read as near-synonyms. Time at each band is the most you will stay for one set, cut short if the set ends first. Do not stop for less than is the floor below which the planner walks on by. Each now says so under its name.',
       'The marketing page counted network calls at you, which is a developer word. It now says what that actually buys you: no bars of signal needed.',
