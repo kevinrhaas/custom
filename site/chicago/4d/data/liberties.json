@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 31,
+  "count": 33,
   "liberties": [
     {
       "id": "L1",
@@ -1047,6 +1047,72 @@
         {
           "label": "How to resolve",
           "text": "a survey, a section, or a repair account with dimensions. Andreas's main text records that a committee was appointed in December 1833 \"to see that they were properly repaired\" and that \"in September the corporation paid $166.67 on account of repairing\" — a voucher or a council minute behind that payment is the most likely thing to describe the structure member by member."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L32",
+      "title": "Terrain: the bank face is a shape nobody recorded",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the ground rises from the traced waterline to its division's near-river level over a **6 m** horizontal face, on an ease-out quadratic that is steepest at the water. Tagged `conjectural` in `terrain_spec.json`, on every bank in the box."
+        },
+        {
+          "label": "Why",
+          "text": "no source gives a bank *profile* anywhere at the forks. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise, and the ease-out shape was chosen partly for a numerical reason rather than a historical one: a flat toe leaves the Z=0 contour — which IS the drawn waterline, the one line on the 1834 sheet this whole terrain is fitted to — ill-conditioned against a 2.5 m grid. It is the largest unsourced assumption in the build, and it is the piece of ground every visitor walks down to the water on."
+        },
+        {
+          "label": "Consequence",
+          "text": "the crest sits at each division's `near_ft`, which is what makes the bank a crest rather than a ramp; change the face and the apparent position of the shoreline moves by metres in a model whose whole horizontal claim is ±20 m. The confidence view dithers it, which says a grade exists and nothing about what was graded — the claim is legible in the Evidence panel's ground section as of 2026-08-10, and here."
+        },
+        {
+          "label": "Why it is recorded now",
+          "text": "the liberties coverage gate reads `data/structures/` and cannot see the terrain spec, so this entry is owed by a person rather than demanded by a check. It has been conjectural in the data since the terrain landed and admitted nowhere for that whole time."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a 19th-century cross-section, a wharf-building account with dimensions, or the 1850s Chesbrough survey read backwards through the grade raising."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L33",
+      "title": "Terrain: the channel cross-section carries no evidence at all",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "below the waterline the bed falls away as `depth = bed_ft * (1 - exp(-d / 9 m))`, tagged `conjectural` in the spec's own words as carrying no evidence."
+        },
+        {
+          "label": "Why",
+          "text": "no cross-section of the Chicago River at the forks exists for any date before dredging, and the reach beds it approaches are themselves inferred off a range in the dossier. The shape is under water and invisible; it is in the model so that the ground surface reaches Z = 0 exactly at the traced bank line, and so that a question about a boat's draught has an answer rather than a shrug."
+        },
+        {
+          "label": "Consequence",
+          "text": "the one thing this invisible curve decides in plain sight is where the water meets the land, because the waterline is where it crosses zero. A slough overrides the 9 m e-folding distance with 1.2 m for the same reason — at 9 m a 1 ft channel would be four inches deep and would not read as water at all."
+        },
+        {
+          "label": "How to resolve",
+          "text": "an early sounding line, or the harbour engineers' pre-dredging sections."
         },
         {
           "label": "Recorded",

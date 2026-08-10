@@ -607,6 +607,34 @@ on the table, both real and both bigger than a slice:
   with surfaces-above-the-ground in the walker, there is nothing to step from. The two are one
   piece of work, in that order.
 
+**Done 2026-08-10 — the ground states its own claims, and stating them found the second file
+where rule one was never checked.** Every honesty surface above belongs to a building. The
+terrain grades itself as carefully as any record — `documented` water, `inferred` division
+levels off period narrative feet, a `conjectural` bank face, a channel section whose note says
+it carries no evidence at all — and said none of it to a visitor, while dithering under the
+confidence view like everything else, which shows that a judgement exists and nothing about
+what was judged. The Evidence panel now carries *The ground you are standing on*: 20 claims
+with the spec's own figures, its reasoning verbatim and its citations joined, derived by
+`compile_scene.py` and re-derived by `check.sh`. `check_terrain_claims` holds them to the
+record's rules — sources resolve, `documented` owes evidence, no land elevation may claim to be
+documented — off the same enumeration the panel renders, so the checked set cannot stop being
+the displayed set. L32 and L33 admit the bank face and the channel profile, which have been
+conjectural in the data since the terrain landed and were admitted nowhere.
+
+Two follow-ons, both real, both stated in STATUS § 32 rather than quietly dropped:
+
+- **Three claims are `inferred` with no reasoning at all** — the north and west division soils
+  and the channel's. On a record that is an error; here it is a warning, because the note has to
+  go in `terrain_spec.json`, whose *bytes* are the terrain's staleness hash, so a sentence that
+  cannot move a vertex re-stales the ground and needs a bake. **The slice that writes those three
+  notes lands the bake with them and turns the rule into an error.** Worth doing at the same time:
+  `terrain_inputs_sha` still hashes whole files, which is the false positive STATUS § 15 removed
+  from the building hash arriving on the terrain side.
+- **The liberties coverage gate cannot see the terrain spec.** It reads `data/structures/`, so
+  L32 and L33 are owed by a person rather than demanded by a check, and the next invented
+  terrain value will be too. Extending the `Covers:` vocabulary to a `terrain.<epoch>.<aspect>`
+  namespace is the fix; the claims loop's "no structure has that id" branch is where it starts.
+
 ## S8 — Milestone 1
 
 Wolf Point cluster + South Water block D (LaSalle–Clark). The first test of whether the

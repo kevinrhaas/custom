@@ -229,9 +229,12 @@ def test_the_card_is_fed_the_claims_it_renders() -> None:
     import json
     root = Path(__file__).resolve().parent.parent
     card = (root / "renderers/web/js/popup.js").read_text()
-    sidecars = sorted((root / "data/sidecars/1835").glob("*.json"))
-    records = [json.loads(p.read_text()) for p in sidecars
-               if p.name not in ("index.json", "exclusions.json")]
+    # The structure sidecars are the ones the index lists — not "every file in
+    # the directory minus the ones I remembered", which stops being true as soon
+    # as another derived document is compiled beside them.
+    index = json.loads((root / "data/sidecars/1835/index.json").read_text())
+    records = [json.loads((root / "data" / e["sidecar"]).read_text())
+               for e in index.get("structures", [])]
     check("the 1835 scene has sidecars to check", bool(records), "no sidecars found")
 
     for field in ("documented_range", "change_note"):
@@ -1005,6 +1008,99 @@ def test_the_renderer_cannot_read_a_sidecar_field_the_compiler_never_writes() ->
     check("and no longer asks it whether the mesh is a placeholder",
           not any("placeholder" in p for _, p in found.get("popup.js", [])),
           found.get("popup.js"))
+
+
+def test_the_ground_is_held_to_the_rules_a_record_answers_to() -> None:
+    """The terrain spec grades itself as carefully as a structure record and was
+    checked by nothing, because until the ground claims reached the Evidence
+    panel the file was read only by the generator. A citation there could have
+    named a source that never existed — the second file after `exclusions.json`
+    where rule one went unenforced, and this one is quoted to a visitor."""
+    def run(spec: dict) -> tuple:
+        rep = V.Report()
+        V.check_terrain_claims({"s1"}, rep, {"e": spec})
+        return rep.errors, rep.warnings
+
+    good = {"water": {"surface_ft": 0.0, "confidence": "documented", "sources": ["s1"],
+                      "note": "flat"}}
+    check("a cited documented claim passes", not run(good)[0], run(good)[0])
+
+    bad_src = {"water": {**good["water"], "sources": ["nope"]}}
+    check("a citation that resolves in no source record is an error",
+          any("does not resolve" in e for e in run(bad_src)[0]), run(bad_src)[0])
+
+    uncited = {"water": {**good["water"], "sources": []}}
+    check("documented with no source is an error, as it is on a record",
+          any("documented with no source" in e for e in run(uncited)[0]), run(uncited)[0])
+
+    # The spec's own caveat, enforced: no land vertex may claim to be documented,
+    # because no contour survey of the 1835 town site exists. It was true because
+    # whoever wrote the spec kept it true, and the walkthrough now shows the
+    # sentence to visitors.
+    land = {"divisions": [{"id": "south_division", "near_ft": 2.4,
+                           "confidence": "documented", "sources": ["s1"], "note": "n"}]}
+    check("a land elevation claiming to be documented is an error",
+          any("land elevation marked documented" in e for e in run(land)[0]), run(land)[0])
+
+    # Inferred-with-no-reasoning is the rule the committed data fails, so it is a
+    # warning that stands until the notes are written — writing them edits the
+    # spec, which re-stales the ground and lands with a bake.
+    thin = {"surface_materials": [{"zone": "north_division", "material": "loam",
+                                   "confidence": "inferred"}]}
+    errs, warns = run(thin)
+    check("inferred with no reasoning warns rather than blocking the commit",
+          not errs and any("no reasoning recorded" in w for w in warns), f"{errs} / {warns}")
+
+    # The gate walks the same enumeration the panel does, so a zone added to the
+    # spec is inside the rule the day it appears — the alternative is a checked
+    # set that quietly stops being the displayed set.
+    grown = {"divisions": [{"id": "brand_new_zone", "near_ft": 1.0,
+                            "confidence": "documented", "sources": ["s1"], "note": "n"}]}
+    check("a zone nobody has heard of is checked the day it is added",
+          any("brand_new_zone" in e for e in run(grown)[0]), run(grown)[0])
+
+
+def test_the_panel_shows_what_the_spec_grades() -> None:
+    """The ground's claims are derived from the spec, not authored beside it.
+
+    The failure this forecloses is the one § 28 found on the provenance card: a
+    surface that reads a field the compiler never writes renders nothing, silently
+    and forever. Here the compiler and the gate share one enumeration, so the
+    assertion worth making is that the committed spec's graded blocks all arrive.
+    """
+    import json
+    root = Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(root / "tools"))
+    import compile_scene as C  # noqa: PLC0415
+
+    spec = json.loads((root / "data/terrain/epochs/e1834_harbor_cut"
+                       / "terrain_spec.json").read_text())
+    claims = C.ground_claims(spec, {})
+    by_id = {c["id"]: c for c in claims}
+    check("the committed spec yields claims", len(claims) >= 19, f"{len(claims)}")
+    check("the water plane is documented and the bank face is not",
+          by_id["water"]["confidence"] == "documented"
+          and by_id["bank"]["confidence"] == "conjectural",
+          f"{by_id['water']['confidence']} / {by_id['bank']['confidence']}")
+    # `channel_profile` grades itself under `bed_confidence`. A claim that names
+    # its grade differently is exactly the one an enumeration drops silently, and
+    # the spec cannot be tidied: its bytes are the terrain's staleness hash.
+    check("a block that grades itself under another key is not dropped",
+          by_id["channel_profile"]["confidence_key"] == "bed_confidence",
+          str(by_id.get("channel_profile")))
+    # A swale's `line` is eleven numbers describing the alignment its own entry
+    # admits is invented. Figures are the spec's; geometry is not a figure.
+    swale = by_id["swales.west_prairie_swale_a"]
+    check("a claim carries the spec's own figures and not its geometry",
+          {f["key"] for f in swale["fields"]} == {"half_width_m", "depth_ft", "dossier_zone"},
+          str([f["key"] for f in swale["fields"]]))
+
+    doc = json.loads((root / "data/sidecars/1835/terrain.json").read_text())
+    check("the compiled ground doc carries the spec's caveat verbatim",
+          doc["standard"] == spec["critical_caveat"])
+    check("and the relief a visitor is told about is measured, not asserted",
+          any("Measured from the committed heightfield" in c["text"]
+              for c in doc["context"]), str(doc["context"])[:200])
 
 
 def test_real_dataset_passes() -> None:

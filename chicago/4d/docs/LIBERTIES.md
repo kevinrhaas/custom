@@ -537,6 +537,43 @@ voucher or a council minute behind that payment is the most likely thing to desc
 structure member by member.
 **Recorded:** 2026-08-10.
 
+### L32 — Terrain: the bank face is a shape nobody recorded
+**Decision:** the ground rises from the traced waterline to its division's near-river level over
+a **6 m** horizontal face, on an ease-out quadratic that is steepest at the water. Tagged
+`conjectural` in `terrain_spec.json`, on every bank in the box.
+**Why:** no source gives a bank *profile* anywhere at the forks. 6 m is what a natural low bank
+in river alluvium looks like at a 2-4 ft rise, and the ease-out shape was chosen partly for a
+numerical reason rather than a historical one: a flat toe leaves the Z=0 contour — which IS the
+drawn waterline, the one line on the 1834 sheet this whole terrain is fitted to — ill-conditioned
+against a 2.5 m grid. It is the largest unsourced assumption in the build, and it is the piece of
+ground every visitor walks down to the water on.
+**Consequence:** the crest sits at each division's `near_ft`, which is what makes the bank a
+crest rather than a ramp; change the face and the apparent position of the shoreline moves by
+metres in a model whose whole horizontal claim is ±20 m. The confidence view dithers it, which
+says a grade exists and nothing about what was graded — the claim is legible in the Evidence
+panel's ground section as of 2026-08-10, and here.
+**Why it is recorded now:** the liberties coverage gate reads `data/structures/` and cannot see
+the terrain spec, so this entry is owed by a person rather than demanded by a check. It has been
+conjectural in the data since the terrain landed and admitted nowhere for that whole time.
+**How to resolve:** a 19th-century cross-section, a wharf-building account with dimensions, or
+the 1850s Chesbrough survey read backwards through the grade raising.
+**Recorded:** 2026-08-10.
+
+### L33 — Terrain: the channel cross-section carries no evidence at all
+**Decision:** below the waterline the bed falls away as `depth = bed_ft * (1 - exp(-d / 9 m))`,
+tagged `conjectural` in the spec's own words as carrying no evidence.
+**Why:** no cross-section of the Chicago River at the forks exists for any date before dredging,
+and the reach beds it approaches are themselves inferred off a range in the dossier. The shape is
+under water and invisible; it is in the model so that the ground surface reaches Z = 0 exactly at
+the traced bank line, and so that a question about a boat's draught has an answer rather than a
+shrug.
+**Consequence:** the one thing this invisible curve decides in plain sight is where the water
+meets the land, because the waterline is where it crosses zero. A slough overrides the 9 m
+e-folding distance with 1.2 m for the same reason — at 9 m a 1 ft channel would be four inches
+deep and would not read as water at all.
+**How to resolve:** an early sounding line, or the harbour engineers' pre-dredging sections.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved
