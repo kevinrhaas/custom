@@ -67,7 +67,9 @@ one. This is the single largest unknown about the structure and it is invisible 
 because a model shows one state.
 
 **The pier type — Cleaver's heavy logs against the table's "Bent".** Adopted: `crib`, tagged
-`inferred`. An eyewitness describing logs standing in shallow water is describing a crib; "Bent"
+`inferred` — **and overturned on 2026-08-10 by §6: "bents" is the settlers' own word and Cleaver
+signed it. The record is now `bent`, `documented`.** The reading below is left as written.
+Adopted at the time: `crib`, tagged `inferred`. An eyewitness describing logs standing in shallow water is describing a crib; "Bent"
 is a modern type-word applied down a column covering six bridges and a century. The inference
 that matters is not the choice of word, though — it is the step from *abutments*, which Cleaver
 describes, to *piers*, which nobody does. See §4.
@@ -107,6 +109,12 @@ began, not where the bridge did. That is a fact about two streets, not an error 
 ---
 
 ## 4. What is invented
+
+**SUPERSEDED 2026-08-10 BY §6 AND §6a, and kept because it is what the thinner evidence honestly
+looked like.** The middle of this bridge is described after all: two bents, not fifteen cribs.
+L29 is Resolved and the invention that remains — where along the span the two stand — is **L31**.
+Read this section as the state of play before the footnote at Andreas pp. 631-632 was read; the
+paragraphs below are unchanged.
 
 `docs/LIBERTIES.md` **L29**. Fifteen cribs stand in the river at the archetype's default 4.5 m
 spacing over a 71.83 m span, and **no source describes the middle of this bridge at all**.
@@ -211,6 +219,35 @@ sentence anywhere describes how a wagon got from the bank up onto a deck standin
 the water. The letter tightens the problem rather than solving it: these were **wagon** bridges,
 so an approach at each end is now attested by implication and is still undrawn and undescribed.
 
+### 6a. The repair, and what the archetype had to learn — 2026-08-10
+
+All four corrections landed the same day as the finding, record and mesh in one commit (the four
+values are mesh inputs, so neither half could travel alone). `clearance_m` is `documented`;
+`pier_kind` is `bent`; `deck_kind: puncheon` states the floor the archetype had been supplying
+silently; and `pier_spacing_m` is **gone**, replaced by `pier_count: 2`.
+
+**The last of those is the one worth carrying to other archetypes.** `bridge_timber` asked for a
+spacing and divided the span by it, so its output was a colonnade by construction — and a spacing
+is a builder's convenience that no witness would ever record. The evidence class available for a
+structure like this is a **count** and a **form**: how many stood in the water, and what they were
+made of. Editing 4.5 m to 23.94 m would have fixed this bridge and left the next one to be caught
+by the same accident, so the parameter changed rather than the number, and the spacing survives
+only as the fallback a crossing whose middle nobody described still needs.
+
+**Two things the repair could not do, both recorded in `docs/LIBERTIES.md` L31.** The letter
+locates the bents by depth — "resting on the bottom, in deeper water" — which is unusable here:
+no source gives the channel's bed profile at this station and nothing below the waterline is
+modelled, so "deeper water" cannot be converted into a station. They are built at the third points
+of the span, which is a builder's habit and not a finding. And three spans make each stringer run
+23.9 m, longer than any timber that was being moved; the runs were spliced somewhere, nothing says
+where, and the mesh shows one log per bay rather than inventing joints.
+
+**A note on what the model can carry from a source.** The most specific phrase in the whole
+paragraph — *resting on the bottom* — is precisely what distinguishes a bent from a driven pile
+bent, and it is invisible in a reconstruction that models neither the riverbed nor anything much
+below the waterline. Above water the two are the same picture. What the visitor gets is four heavy
+logs per support instead of three light ones; the rest of the sentence lives in the record.
+
 ## 7. Open threads, in the order worth pulling
 
 1. ~~**The 1834/1835 Wabansia and Kinzie's Addition plat**~~ — **pulled 2026-08-10, and it is a
@@ -230,12 +267,17 @@ so an approach at each end is now attested by implication and is still undrawn a
 2. ~~**Andreas vol. I at page-image level**~~ — **pulled 2026-08-10, and it paid**: see §6.
    Read the pages, not the index. The full-text index missed the single most informative
    paragraph in the volume about this structure.
-3. **What happened between 1833 and 1835.** Narrowed, not closed — §6 gives a repair committee
+3. **The Trustees' minutes, and they now answer two questions rather than one.** Besides what the
+   1833-35 repair money bought (below), they are the likeliest home of anything describing where
+   the two bents stood or how the approaches were made — the two things §6a could not settle. A
+   voucher or a specification would be worth more here than another narrative.
+4. **What happened between 1833 and 1835.** Narrowed, not closed — §6 gives a repair committee
    (December 1833) and a payment ($166.67, September 1834). The Trustees' own minutes are the
    likely home of what the money bought.
-4. ~~**The six-foot clearance**~~ — **found**, §6. It is Andreas p. 632, and the dossier's tag was
-   right.
-5. **New, and it is the last thing standing between this bridge and the ground:** the approach.
+5. ~~**The six-foot clearance**~~ — **found**, §6, and **promoted to `documented` on the record
+   2026-08-10** with the re-bake that had to travel with it. It is Andreas p. 632, and the
+   dossier's tag was right.
+6. **New, and it is the last thing standing between this bridge and the ground:** the approach.
    Nothing describes one. §6 makes it harder to leave out — a wagon bridge implies a way for a
    wagon to reach the deck — and no better candidate document than the Trustees' minutes has
    turned up.

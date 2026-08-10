@@ -129,20 +129,29 @@ unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L2
 | ~~`wolf_point_tavern`~~ | ~~`signage`~~ | `sign` | **DONE 2026-08-10** — the board hangs on the river front; the wolf is not drawn (L25) |
 | ~~`miller_house`~~ | ~~`chimneys: 2`~~ | `chimney` (a boolean) | **DONE 2026-08-10** — the count is a parameter of both archetypes; the second stack stands on the frame range |
 
-**Queued now, above the additions, and it is a repair again — found by reading rather than by a
-gate** (2026-08-10, STATUS § 23):
+**The one repair found by reading rather than by a gate is DONE** (2026-08-10, STATUS § 23 → § 24):
 
 | record | attribute | what the evidence says | effect |
 |---|---|---|---|
-| `north_branch_bridge` | `pier_spacing_m` (15 cribs at the archetype default) | **two "bents" of four heavy logs resting on the bottom** | the archetype needs a count-and-form, not a spacing; L29 resolves when the mesh does |
-| `north_branch_bridge` | `pier_kind: crib` | the settlers' own word is **bents** — and Cleaver signed it | a `bent` value beside `crib` in `bridge_timber` |
-| `north_branch_bridge` | `clearance_m` (`inferred`, page not found) | **"about six feet above the water, so that teams passed under them on the ice freely"** | promote to `documented` with `old_settlers_bridges_1883` |
-| `north_branch_bridge` | deck (archetype's, unstated) | **"puncheons or split logs were laid for a floor"** | state it on the record |
+| ~~`north_branch_bridge`~~ | ~~`pier_spacing_m`~~ (15 cribs at the archetype default) | **two "bents" of four heavy logs resting on the bottom** | **DONE** — `pier_count: 2` replaces the spacing in record and archetype; L29 resolved, L31 new |
+| ~~`north_branch_bridge`~~ | ~~`pier_kind: crib`~~ | the settlers' own word is **bents** — and Cleaver signed it | **DONE** — `bent` beside `crib` and `pile`; four heavy logs under a cap |
+| ~~`north_branch_bridge`~~ | ~~`clearance_m`~~ (`inferred`, page not found) | **"about six feet above the water, so that teams passed under them on the ice freely"** | **DONE** — `documented` on `old_settlers_bridges_1883`; the deck and stringers come out of dithering |
+| ~~`north_branch_bridge`~~ | ~~deck~~ (archetype's, unstated) | **"puncheons or split logs were laid for a floor"** | **DONE** — `deck_kind: puncheon`, a value the generator reads |
 
-All four are mesh inputs, so **the record, the archetype change and the bake are one slice** —
+All four were mesh inputs, so the record, the archetype change and the bake landed as one slice —
 the same coupling the note below describes, arriving from a new direction. The evidence is a
 signed 1883 statement by four men who used the bridge, printed as a footnote at Andreas
 pp. 631-632 and missed by the full-text index; see `docs/RESEARCH/north_branch_bridge.md` § 6.
+
+**The lesson is about the parameter, not the number.** `bridge_timber` divided a span by a
+spacing, so it could only ever produce a colonnade; no source will ever state a spacing, and what
+a witness remembers is a count and a form. Setting 4.5 m to 23.94 m would have fixed this bridge
+and left the next one to be found by the same accident. Worth asking of any archetype whose
+defaults are about to be overridden: is it asking for the kind of number a source could contain?
+What the repair could not settle is where along the span the two bents stood — the letter locates
+them by depth, in a river whose bed this project does not model — so they sit at the third points
+and **L31** admits it, together with the splices in three 23.9 m stringer runs that no source
+places.
 
 Each of the earlier repairs was a small data edit plus a re-bake, so **record and geometry landed in one slice** — the
 same coupling the note below describes. All three are done.
