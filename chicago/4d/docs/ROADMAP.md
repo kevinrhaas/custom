@@ -99,9 +99,18 @@ Two things the first pass settled, and one it did not:
 - **Wright labels the reservation, not the fort.** There is no palisade plan on this sheet,
   so the footprint has to come from elsewhere — Andreas, or the fort's own published plans.
   Do not trace an outline off the banner.
-- **The sand bar and the old southward channel still need a dedicated read.** They are the
-  fiddliest shapes on the sheet and were deliberately left out of the first pass rather
-  than guessed at speed.
+- **The sand bar and the old southward channel are now read** (second pass, same day). Three
+  ink lines, nested west to east: the mainland bank of the decaying old channel, the bar's
+  channel side, and the bar's lake-facing side. Checked for coherence rather than eyeballed
+  — at every sampled northing the three nest in order and the bar comes out 71–171 m wide,
+  narrowing to its southern hook, which is what a littoral spit should do. Uncertainty is
+  recorded at 30 m rather than the shore's 25: these are ink lines over a wash, and the
+  southern hook is the least certain shape in this quadrant.
+
+**The coastline gate is therefore cleared.** Shore, harbour piers, sand bar and old channel
+are all in `data/traces/vectors/wright_1834_east.json` in local ENU. What S2e still needs is
+the *heightfield* work — extending the zone table east over ~2.0 km × 0.7 km, with the bar
+as sand and the old channel as water — not more tracing.
 
 Unblocks the **Fort Dearborn** and **Harbor works** parcels in S5, which cannot be placed
 onto ground that does not exist. It also retires the aerial view's worst artefact: from
@@ -146,6 +155,56 @@ with a working confidence toggle.
 Success is not "a building appears". Success is that a viewer can toggle the confidence view
 and see exactly which parts of the Sauganash we can defend — the white two-story block and the
 blue shutters solid, the invented footprint and the disputed gallery dithered.
+
+## S9 — Streets, roads and paths · **queued next after S2e (Kevin, 2026-08-10)**
+
+Asked for as "streets, roads, paths in accurate surface and elevations". Both halves of
+that have a specific answer here, and the second one is a trap.
+
+**Geometry comes from the Thompson module, generated, not traced.** The 1830 plat gives
+80-ft streets and 18-ft alleys over the original 0.375 sq mi; Wright 1834 shows the same
+grid extended, and both sheets carry ±20 m of georeferencing slop that tracing would bake
+in as wobble. Generate the grid analytically from the module and snap it to control. A
+street that is straight because the surveyor made it straight should not arrive bent
+because we traced a folded sheet.
+
+**"Accurate surface" in 1835 means mud.** This is the trap: the instinct is to model a
+crowned, kerbed, gravelled roadway, and every part of that is wrong for the date. Chicago's
+streets were unpaved earth — notoriously, memorably so — with **plank sidewalks** where
+anyone had bothered to lay them. The first plank roadway is over a decade later. So the
+street surface is a material and a wear pattern on the prairie, not a built structure, and
+the plank walks are the only raised element. Both need their own sources before they are
+drawn; do not let the archetype supply them silently, which is the mistake the bridge
+already made once (see v21).
+
+**"Accurate elevations" means the streets follow the ground, because nothing had been
+graded yet.** The great raising of Chicago is 1855–58, twenty years later. So there is no
+cut, no fill, no crown and no camber: the roadway is the prairie surface with the sod worn
+off it. Drape the grid on the heightfield and resist the urge to smooth it — the existing
+gradient audit already puts the whole quadrant under 0.5 ft per 300 ft, so flat is the
+finding, not a shortcut. Where a street crosses the slough or the marshy shore strip, that
+is a real crossing problem the sources may describe; treat it as content, not as a
+rendering artefact to be flattened away.
+
+## S5a — Fort Dearborn · **the next building, now unblocked**
+
+Kevin's call, and the dependency he named is satisfied: the coastline, the sand bar and the
+harbour works are read, so there is ground to put it on once S2e builds the heightfield.
+
+- **Position is settled and cross-checked**: local E +1152, N +221, two independent methods
+  35 m apart (see S2e).
+- **The footprint is not.** Wright *labels* the reservation and draws no plan, so the
+  palisade, blockhouses, barracks, magazine and parade have to come from elsewhere —
+  Andreas 1884 carries fort plans, and the fort's own published drawings exist. Find and
+  record that source before modelling; do not infer a stockade outline from a banner.
+- It is a **complex, not a building**: S5's Fort Dearborn parcel already itemises palisade,
+  blockhouse, bastion, magazine, quarters, barracks, sutler, hospital, parade and gardens.
+  Expect several records and several bakes, not one.
+- **Settle what it *was* on 1835-07-01 before drawing it.** This is the second fort, rebuilt
+  1816. The garrison's comings and goings in the mid-1830s are exactly the kind of detail
+  this project gets wrong by assuming — an occupied fort and an empty one are different
+  scenes. Research it and cite it; `data/exclusions.json` is the place for whatever turns
+  out not to be there.
 
 ## S4 — Archetype generators
 

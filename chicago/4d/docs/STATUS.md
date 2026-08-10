@@ -635,6 +635,10 @@ half of a two-part building, which no spelling check would have caught. Nothing 
 behind it, so **S5 is additions again**: eight archetypes and about forty researched structures
 against the six that stand.
 
+**S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
+
+**S5a — Fort Dearborn**, the next building. Its position is settled (E +1152, N +221, cross-checked to 35 m) and the coastline gate Kevin named is cleared, but the FOOTPRINT has no source yet: Wright labels the reservation and draws no plan. Also unsettled, and needed before it is drawn: what the fort actually was on 1835-07-01.
+
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled
 box stops at local E +320, while the Fort Dearborn site is at E +1127 and the 1835 shore is
