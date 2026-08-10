@@ -106,12 +106,21 @@ between the attribute table and the citations. Panel and card share one entry re
 (`libertyEntryHtml`) so they cannot drift; the smoke asserts per-building filtering rather than
 a count, which is the assertion a popup dumping all eighteen would still have passed.
 
-Remaining in this line of work: **the completeness pass**. Both views report the liberties that
-were *recorded*, which is not the claim that everything taken was written down — the standard in
-`AGENTS.md` is that a visitor can tell you which parts we made up, and nothing yet audits the
-built scene against the document. A start would be the inverse check: every structure whose
-footprint or position is `conjectural` should have a liberty naming it, and `check.sh` can
-enforce that mechanically.
+**Done 2026-08-10 — the document is checked for gaps.** The inverse check runs in
+`validate.py` (`check_liberties_coverage`) and therefore in `check.sh`: every phase whose
+`footprint` or `position` is `conjectural` must be named by a liberty that is *about that
+aspect*, matched against the entry's own prose. Naming the building is deliberately not
+sufficient, and the self-test asserts exactly that case. Six inventions in the committed data,
+six covered. The Evidence panel states the guarantee, because a promise a visitor cannot read
+is not one.
+
+Remaining in this line of work: the check covers **drawn geometry only**. Omissions,
+simplifications and conjectural *form* attributes carry no equivalent requirement, and the
+aspect match is a keyword heuristic over prose rather than a structured claim — a liberty could
+satisfy it by mentioning a footprint while discussing something else. The next honest step is
+probably a `subjects`-style structured field in `LIBERTIES.md` (`covers: sauganash_hotel.footprint`)
+so coverage is asserted by the document rather than inferred from its wording. Note the standing
+limit: nothing can catch a liberty taken that nobody noticed taking.
 
 ## S8 — Milestone 1
 

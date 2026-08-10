@@ -41,6 +41,17 @@ SITE_BUDGET_MB = 25
 CONFIDENCE = ("documented", "inferred", "conjectural")
 SLUG = re.compile(r"^[a-z0-9_]+$")
 
+# What a liberty has to be ABOUT before it counts as disclosing an invented
+# footprint or an invented position. Naming the building is not enough: a
+# liberty about the Sauganash's gallery does not tell a visitor that its
+# footprint was drawn from nothing. Matched against the entry's title and its
+# field text, which is the prose the walkthrough actually shows.
+COVERAGE_WORDS = {
+    "footprint": r"footprints?|outlines?|plan shapes?",
+    "position": r"positions?|placed|placement|placing|located|locations?|sited|siting",
+}
+COVERAGE_RE = {k: re.compile(v, re.I) for k, v in COVERAGE_WORDS.items()}
+
 
 class Report:
     def __init__(self) -> None:
@@ -258,6 +269,71 @@ def validate_scene(scene: dict, structures: dict, epochs: dict, exclusions: dict
 
 
 # --------------------------------------------------------------------------
+# semantic: the liberties document is complete about what was invented
+# --------------------------------------------------------------------------
+
+def liberty_prose(entry: dict) -> str:
+    """The text a visitor reads for one liberty: its title and its fields."""
+    parts = [entry.get("title") or ""]
+    parts += [f.get("text") or "" for f in entry.get("fields") or []]
+    return " ".join(parts)
+
+
+def check_liberties_coverage(structures: dict, liberties: dict, rep: Report) -> None:
+    """Every conjectural footprint or position must be named in LIBERTIES.md.
+
+    This is the inverse of the check the walkthrough already makes. The panel and
+    the provenance card report the liberties that were *recorded* — which is not
+    the claim that everything taken was written down, and the project's standard
+    is that a visitor can tell you which parts we made up. A conjectural footprint
+    is not merely an unknown: the polygon gets drawn, the building stands on it,
+    and the visitor sees one specific shape. That is an invention, and an
+    invention nobody wrote down is exactly the gap the standard is about.
+
+    So the confidence value drives the requirement, mechanically: mark a footprint
+    or a position conjectural and the gate demands a liberty that names that
+    building AND is about that aspect. Naming the building is deliberately not
+    enough — the failure this exists to catch is a building carrying four
+    liberties about its walls and none about the footprint underneath them.
+    """
+    entries = liberties.get("liberties") if isinstance(liberties, dict) else None
+    if not entries:
+        rep.error("liberties", "data/liberties.json holds no entries, so conjectural "
+                               "footprints and positions cannot be checked against "
+                               "docs/LIBERTIES.md — run tools/compile_liberties.py")
+        return
+
+    by_subject: dict[str, list[dict]] = {}
+    for e in entries:
+        for sid in e.get("subjects") or []:
+            by_subject.setdefault(sid, []).append(e)
+
+    covered = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        mine = by_subject.get(sid, [])
+        for ph in st.get("phases", []):
+            pwhere = f"structure {sid}/{ph.get('id', '?')}"
+            for aspect, pattern in COVERAGE_RE.items():
+                block = ph.get(aspect) or {}
+                if not isinstance(block, dict) or block.get("confidence") != "conjectural":
+                    continue
+                if any(pattern.search(liberty_prose(e)) for e in mine):
+                    covered += 1
+                    continue
+                named = ", ".join(e.get("id", "?") for e in mine) or "none"
+                rep.error(pwhere,
+                          f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md is "
+                          f"about {sid}'s {aspect} — a drawn {aspect} nobody can defend is "
+                          f"something we made up, and the standard is that a visitor can tell "
+                          f"you which parts. Append the liberty and re-run "
+                          f"tools/compile_liberties.py (liberties naming {sid}: {named})")
+
+    rep.note(f"liberties coverage: {covered} conjectural footprint/position value(s) "
+             f"named in docs/LIBERTIES.md")
+
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -304,6 +380,7 @@ def main() -> int:
     epochs_doc = load_json(DATA / "terrain" / "epochs.json", rep) or {}
     epochs = {e["id"]: e for e in epochs_doc.get("epochs", []) if isinstance(e, dict)}
     exclusions = load_json(DATA / "exclusions.json", rep) or {}
+    liberties = load_json(DATA / "liberties.json", rep) or {}
 
     validate_schemas(sources, structures, scenes, rep)
 
@@ -363,6 +440,9 @@ def main() -> int:
     # scenes
     for name, sc in scenes.items():
         validate_scene(sc, structures, epochs, exclusions, rep)
+
+    # what we invented has to be written down, not merely tagged
+    check_liberties_coverage(structures, liberties, rep)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

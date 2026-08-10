@@ -147,6 +147,56 @@ def test_wide_range_rule_targets_guesses_not_facts() -> None:
           any("precedes" in e for e in rep.errors), rep.errors)
 
 
+def liberty(lid: str, title: str, subjects: list, text: str = "") -> dict:
+    return {"id": lid, "title": title, "section": "per_subject", "subjects": subjects,
+            "fields": [{"label": "Decision", "text": text}]}
+
+
+def test_liberties_cover_conjectural_inventions() -> None:
+    """A drawn shape nobody can defend has to be admitted somewhere a visitor reads.
+
+    The load-bearing case is the third one: a liberty that names the building but
+    is about something else. A coverage check that only asked "does this building
+    appear in the liberties at all" would pass it, and the building's invented
+    footprint would go unrecorded while looking covered.
+    """
+    structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L1", "No people, anywhere", []),
+    ]}, rep)
+    check("a conjectural footprint with no liberty at all is an error",
+          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+    check("a conjectural position with no liberty at all is an error",
+          any("position is conjectural" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L2", "x: both footprints are invented", ["x"]),
+        liberty("L3", "x: placed from the shape of the bank", ["x"]),
+    ]}, rep)
+    check("naming the footprint and the placement satisfies the check", not rep.errors, rep.errors)
+
+    rep = V.Report()
+    V.check_liberties_coverage(structures, {"liberties": [
+        liberty("L4", "x: the gallery is inferred from two derivative images", ["x"],
+                "The veranda was dropped after reading both retrospective views."),
+    ]}, rep)
+    check("a liberty naming the building but not the invention does not cover it",
+          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+    check("the error says which liberties do name the building",
+          any("L4" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    documented = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01")]}}
+    documented["x.json"]["phases"][0]["footprint"]["confidence"] = "inferred"
+    documented["x.json"]["phases"][0]["position"]["confidence"] = "inferred"
+    V.check_liberties_coverage(documented, {"liberties": []}, rep)
+    check("an empty liberties file is an error, not a silent pass",
+          any("data/liberties.json" in e for e in rep.errors), rep.errors)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess
