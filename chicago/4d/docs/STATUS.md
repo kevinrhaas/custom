@@ -10,7 +10,8 @@ georeference, real ground, a traced river, and the liberties now readable inside
 walkthrough rather than only in the repository. **Seven structures now, and the seventh is
 not a building**: the North Branch bridge is the first record built on the `bridge_timber`
 archetype and the first in this dataset whose dimensions come from evidence rather than from
-a placeholder.
+a placeholder. As of 2026-08-10 it stands on **two bents rather than fifteen invented cribs**
+(§ 24) — the first time a reading of an archive has taken something *out* of this model.
 
 ---
 
@@ -452,7 +453,7 @@ uncertainty of the 1834 sheets in its note.
     without the GLB moving with it, and this commit deliberately changes no value and no
     confidence tag: it lands the source, the memo, the liberties updates and the notes that say
     on each attribute's own face that it is behind its evidence. **The repair and its bake are
-    one slice and it is the next one.**
+    one slice and it is the next one.** (It was, and it landed the same day — § 24.)
     **The work order**, so the next slice does not have to re-derive it: `bridge_timber` builds
     intermediate supports from a spacing, and the evidence is a count and a form, not a spacing —
     two bents at the thirds of a 71.83 m span is a different parameterisation, not a different
@@ -473,6 +474,42 @@ uncertainty of the 1834 sheets in its note.
     the letter **H** of "BRANCH", lettered down the water. It is written down here so that it is
     found once rather than discovered twice.
 
+24. **FIXED — two bents, not fifteen cribs, and the repair changed a parameter rather than a
+    number.** § 23's work order landed the same day it was written, record and archetype and bake
+    in one commit. `pier_spacing_m` is gone from `bridge_timber` and from the record;
+    `pier_count: 2` (`documented`) replaces it, `pier_kind` is `bent`, `clearance_m` is promoted
+    to `documented` on the 1883 statement, and the floor the archetype had been supplying in
+    silence is stated as `deck_kind: puncheon`. The river carries three spans where it carried
+    sixteen.
+    **The parameter was the fault, not the value.** An archetype that divides a span by a spacing
+    can only ever produce a colonnade, and a spacing is a builder's convenience that no witness
+    would ever record. What a man who drove a team across a bridge remembers is *how many* stood
+    in the water and *what they were made of* — so the input is now a count and a form, and the
+    spacing survives only as `PIER_SPACING_FALLBACK_M`, the thing a bridge falls back to when
+    nobody described its middle. Changing 4.5 to 23.94 would have fixed this bridge and left the
+    next one to be found by the same accident.
+    **What the confidence view now says, and it says more than it did.** `clearance_m` is one of
+    the attributes that says what this structure WAS (a bridge's documented description *is*
+    dimensional — see `bridge_timber_params`), so promoting it takes the deck and the stringers
+    out of the half-dithered state the `inferred` tag put them in, and the bents come out solid
+    because both their count and their form are attested. That is the first time in this dataset
+    that evidence has made something *less* dithered.
+    **And what it still cannot say is where they stood.** The letter locates the bents by depth —
+    "resting on the bottom, in deeper water" — which is a locator this project cannot use: no
+    source gives the channel's bed profile and nothing below the waterline is modelled. They are
+    built at the third points because that is what a builder would do with three roughly equal
+    runs. So the chip on `pier_count` grades how many and a visitor sees exactly where, which is
+    the `chimneys` situation of § 19 arriving at a different structure. **L31** is where it is
+    admitted, and it carries a second omission the repair created: three spans make each stringer
+    run 23.9 m, longer than any timber anybody was moving, so those runs were spliced somewhere
+    and nothing says where. The mesh shows one log per bay. **L29 moves to Resolved** — and only
+    now, because the entry itself said it would stay until the mesh showed two supports.
+    **One limit of the mesh is worth stating on its own**, because it is the most specific phrase
+    in the source. *Resting on the bottom* is what distinguishes a bent from a driven pile bent,
+    and above the waterline the two are the same picture; `_log_bent` differs from `_pile_bent` by
+    four heavy logs against three light ones, which is what a visitor can actually see. The rest
+    of the distinction lives in the record and in this file.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -488,16 +525,14 @@ it. It was then exercised for real by the Wolf Point repair the same day — the
 tavern's asset stale on the spot and the branch could not go green until the bake landed on it,
 which is the whole point of writing the check, and again the same day by Miller's second chimney,
 and a third time by his frame range.
-**The repair list refilled itself from the archive rather than from the gates** (2026-08-10, § 23).
-Every previous entry on it was found by a check: a misspelled attribute, a name read as being
-about the wrong half of a building. This one was found by reading a page. The North Branch
-bridge's `pier_spacing_m`, `pier_kind` and `clearance_m` are all behind an 1883 statement by four
-men who used the thing, and the deck is too — **one record, one archetype change, one bake, and it
-is the next slice.** Nothing about it is speculative: the finding, the quoted text and the
-parameterisation it implies are written down in § 23 and in `docs/RESEARCH/north_branch_bridge.md`
-§ 6, and the commit that found them deliberately changed no value, because a value a generator
-reads cannot move without its mesh. The older account of the queue, still true of everything
-before this entry: The last entry —
+**The repair list refilled itself from the archive rather than from the gates, and emptied again
+the same day** (2026-08-10, § 23 → § 24). Every previous entry on it was found by a check: a
+misspelled attribute, a name read as being about the wrong half of a building. That one was found
+by reading a page, and it is now **DONE** — the record, the archetype and the bake landed
+together, `pier_count: 2` replaced `pier_spacing_m`, and the queue is empty again. What it leaves
+behind is a shape worth reusing rather than a task: when evidence and an archetype disagree, check
+whether the archetype is asking for the wrong *kind* of number before changing the number it has.
+The older account of the queue, still true of everything before this entry: The last entry —
 `miller_house` recording a `documented` frame range with no side, width, depth or storey count —
 landed 2026-08-10 with its bake (§ 20), and it was the fourth and last of the faults the omission
 gate opened. Three of the four were spelling; the fourth was a name read as being about the wrong

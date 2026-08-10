@@ -27,6 +27,37 @@ Two of the three 1835 crossings were log structures of the same crude specificat
   name overstates it and `data/structures/north_branch_bridge.json` records the value as
   `inferred`. Cleaver's sentence also earns the abutments their own `documented` tag,
   which is more than the dossier's summary carried.
+
+  **The correction is itself corrected, later the same day, and the constant's name was
+  right after all.** Andreas prints at the foot of pp. 631-632 a statement signed by
+  J. D. Caton, John Bates, Charles Cleaver and John Noble, agreed at a meeting of old
+  settlers in the fall of 1883 (source `old_settlers_bridges_1883`): the branch bridges
+  "were about six feet above the water, so that teams passed under them on the ice
+  freely". The clearance is documented, and its reason is better than the number — the
+  gap under the deck is the winter road. The dossier's `[DOC]` tag was correct and the
+  demotion was the right thing to have done in the meantime. The same paragraph is the
+  only description anybody wrote of how these crossings were put together, and three
+  more of this module's parameters answer to it; see the next section.
+
+## The middle of a bridge is a count and a form, not a spacing
+
+The same 1883 statement says the bridges were "built on abutments and two 'bents'", that
+"the bents were of four heavy logs, resting on the bottom, in deeper water", that
+stringers ran "from the abutments to the bents, and between the bents", and that on
+those stringers "puncheons or split logs were laid for a floor".
+
+This archetype originally took a `pier_spacing_m` and divided the span by it, which over
+the North Branch bridge's 71.83 m put **fifteen** supports in the river against the
+letter's **two**. The repair is not a different number in the same parameter — it is a
+different parameter. A spacing is a builder's convenience and no source will ever state
+one; what a witness remembers is *how many* stood in the water and *what they were*. So
+`pier_count` is the input, `PIER_SPACING_FALLBACK_M` is what a bridge whose middle nobody
+described falls back to, and `pier_kind` gains `bent` beside `crib` and `pile`.
+
+`deck_kind` exists for the same reason. The floor was the archetype's silently until the
+letter named it, and an attribute stated on a record has to be one the generator reads —
+otherwise the record owes `docs/LIBERTIES.md` an admission for a feature that is in fact
+built (see `tools/validate.py`'s geometry declarations).
 - **South Branch raft bridge**, winter 1832-33, near Lake Street: a floating log raft,
   same ~10 ft / ~6 ft figures. Floating is a genuinely different structure, and this
   archetype does NOT model it — a raft has no piers and no clearance in the sense used
@@ -45,8 +76,9 @@ are different kinds of not-knowing. A bridge inverts the premise. "About ten fee
 clearing the water by about six feet, of logs" is the *entire* documented description —
 the dimensions ARE the character. So `width_m` and `clearance_m` belong in the set that
 drives deck and stringer confidence, while `span_m` (nobody recorded the river's width
-at the crossing) and `pier_spacing_m` (nobody recorded anything about the piers) do not.
-The rule is unchanged; what changes is which attributes say what the thing was.
+at the crossing) does not. The rule is unchanged; what changes is which attributes say
+what the thing was — and `deck_kind` joined that set on 2026-08-10, when a source turned
+out to state the floor.
 """
 
 from __future__ import annotations
@@ -55,11 +87,26 @@ from dataclasses import dataclass, field
 
 CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
 
-PIER_KINDS = ("crib", "pile")
+# `bent` is the settlers' own word for what stood in the deeper water: four heavy
+# logs resting on the bottom under a cap. `crib` is a sunk and filled log box and
+# `pile` is a driven bent; neither is what the 1883 statement describes.
+PIER_KINDS = ("crib", "bent", "pile")
+
+# What the floor was made of. `puncheon` is the 1883 statement's "puncheons or split
+# logs"; `plank` is sawn stock, which no source puts on either branch bridge in this
+# decade and which a later phase of the same archetype could carry.
+DECK_KINDS = ("puncheon", "plank")
 
 # The documented specification, in metres, for both log bridges at the forks.
 DOC_WIDTH_M = 3.05        # "These bridges were ten feet wide" — Cleaver, documented
-DOC_CLEARANCE_M = 1.83    # "clearing the water by about 6 ft" — dossier only, INFERRED
+DOC_CLEARANCE_M = 1.83    # "about six feet above the water" — old settlers, DOCUMENTED
+
+# What a bridge falls back to when nobody described its middle: the supports are
+# spread evenly at this spacing and the count comes out of the span. Not a record's
+# attribute, and deliberately not one — see the module docstring. A record resolved
+# through this fallback is inventing every support it gets, and owes
+# docs/LIBERTIES.md an entry saying so.
+PIER_SPACING_FALLBACK_M = 4.5
 
 # Where a structure of this archetype is anchored vertically, read by
 # tools/compile_scene.py and written into the sidecar for the renderer.
@@ -102,12 +149,13 @@ def ground_contact_z(params: "BridgeTimberParams") -> float:
     return float(params.deck_height_m or 0.0)
 
 # The form attributes whose VALUE this archetype reads. See frame_tavern_params
-# for the argument. No bridge record is committed yet, so this set is a promise
-# made before it can be broken rather than one being repaired.
+# for the argument. `pier_spacing_m` was here until 2026-08-10 and is gone rather
+# than kept as an alias: a record still stating it would now be an attribute the
+# generator does not read, which is exactly what the omission gate is for.
 CONSUMED = frozenset({
-    "width_m", "clearance_m", "pier_spacing_m", "pier_kind", "stringer_count",
-    "stringer_d_m", "plank_t_m", "abutments", "construction", "railing",
-    "deck_height_m",
+    "width_m", "clearance_m", "pier_count", "pier_kind", "deck_kind",
+    "stringer_count", "stringer_d_m", "plank_t_m", "abutments", "construction",
+    "railing", "deck_height_m",
 })
 
 
@@ -136,8 +184,14 @@ class BridgeTimberParams:
     span_m: float
     width_m: float = DOC_WIDTH_M
     clearance_m: float = DOC_CLEARANCE_M
-    pier_spacing_m: float = 4.5
+
+    # How many intermediate supports stand between the abutments. None means
+    # nobody described the middle of this bridge, and the count is derived from
+    # PIER_SPACING_FALLBACK_M instead — the archetype's colonnade, which is an
+    # invention and owes an entry in docs/LIBERTIES.md.
+    pier_count: int | None = None
     pier_kind: str = "crib"
+    deck_kind: str = "puncheon"
     stringer_count: int = 4
     stringer_d_m: float = 0.30
     plank_t_m: float = 0.09
@@ -174,12 +228,26 @@ class BridgeTimberParams:
     @property
     def bays(self) -> int:
         """How many spans between supports. At least one — a short bridge is a single
-        stringer run from abutment to abutment with no pier in the water at all."""
-        return max(1, round(self.span_m / self.pier_spacing_m))
+        stringer run from abutment to abutment with no pier in the water at all.
+
+        A stated `pier_count` gives it directly; otherwise the span is divided by the
+        fallback spacing, which is a guess dressed as arithmetic and is treated as one.
+        """
+        if self.pier_count is not None:
+            return self.pier_count + 1
+        return max(1, round(self.span_m / PIER_SPACING_FALLBACK_M))
 
     @property
     def pier_x(self) -> list[float]:
-        """Centre-lines of the interior piers."""
+        """Centre-lines of the interior supports, evenly spaced along the span.
+
+        EVEN SPACING IS THE ARCHETYPE'S, always. Even where the count is attested it
+        is only a count: the 1883 statement puts two bents "in deeper water" between
+        log abutments "in the shallow water near the banks" and says nothing about
+        where along the span they stood. Thirds are what a builder would do and not
+        what anybody recorded, so a record whose count is documented still owes
+        docs/LIBERTIES.md an admission for the positions.
+        """
         n = self.bays
         return [self.span_m * i / n for i in range(1, n)]
 
@@ -202,8 +270,14 @@ class BridgeTimberParams:
             raise ParamError(f"clearance_m {self.clearance_m} outside 0.3-6 m")
         if self.pier_kind not in PIER_KINDS:
             raise ParamError(f"pier_kind '{self.pier_kind}' not in {PIER_KINDS}")
-        if not 2.0 <= self.pier_spacing_m <= 25.0:
-            raise ParamError(f"pier_spacing_m {self.pier_spacing_m} outside 2-25 m")
+        if self.deck_kind not in DECK_KINDS:
+            raise ParamError(f"deck_kind '{self.deck_kind}' not in {DECK_KINDS}")
+        if self.pier_count is not None and not 0 <= self.pier_count <= 24:
+            raise ParamError(f"pier_count {self.pier_count} outside 0-24. Zero is a "
+                             f"legitimate value — a short crossing lands abutment to "
+                             f"abutment with nothing in the water — and anything past "
+                             f"a couple of dozen is a spacing being smuggled in as a "
+                             f"count")
         if not 2 <= self.stringer_count <= 12:
             raise ParamError(f"stringer_count {self.stringer_count} outside 2-12")
         if not 0.12 <= self.stringer_d_m <= 0.6:
@@ -258,8 +332,9 @@ def from_phase(phase: dict) -> BridgeTimberParams:
         span_m=round(span, 3),
         width_m=round(float(val("width_m", width)), 3),
         clearance_m=float(val("clearance_m", DOC_CLEARANCE_M)),
-        pier_spacing_m=float(val("pier_spacing_m", 4.5)),
+        pier_count=(None if val("pier_count") is None else int(val("pier_count"))),
         pier_kind=str(val("pier_kind", "crib")),
+        deck_kind=str(val("deck_kind", "puncheon")),
         stringer_count=int(val("stringer_count", 4)),
         stringer_d_m=float(val("stringer_d_m", 0.30)),
         plank_t_m=float(val("plank_t_m", 0.09)),

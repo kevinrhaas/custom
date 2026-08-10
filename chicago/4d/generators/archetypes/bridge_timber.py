@@ -19,6 +19,14 @@ a walkway. Both of those are `inferred` at best and the records should say so.
 **Decision: no railing, and the parameter defaults to False.** The reasoning, recorded
 here because the absence is as much a claim as a presence would be:
 
+- **Updated 2026-08-10: the absence is now stated rather than merely unattested, and it
+  has an expiry date nobody wrote down.** The 1883 old-settlers statement (Andreas
+  pp. 631-632) has the branch bridges "about ten feet wide and without railings, for the
+  first few years, after which guards, or railings, were added". For a scene three years
+  after the build the natural reading of "the first few years" covers 1835 and the
+  default stands — but it is a reading of a sequence now, and a date for the guards
+  falling before July 1835 would flip it. The argument from silence below is what this
+  decision rested on until that page was read, and it is kept because it was right.
 - No source reached attests a railing on either log bridge. The dossier's crossing
   table gives width, clearance and construction and nothing else.
 - The one qualitative description we have runs the other way. "Formed of stringers and
@@ -64,6 +72,7 @@ from archetypes.bridge_timber_params import BridgeTimberParams  # noqa: E402
 M_LOG, M_DECK, M_FILL = 0, 1, 2
 
 PLANK_PITCH_M = 0.42      # a split puncheon, flat face up
+SAWN_PITCH_M = 0.26       # a sawn plank, narrower and regular
 # How far the cribs and piles run below the waterline before the mesh stops. They
 # actually reached the riverbed; there is no point modelling what the water hides, and
 # the renderer's water plane sits at z = 0 in this local frame.
@@ -90,14 +99,20 @@ def build(params: BridgeTimberParams, name: str):
     # is unchanged; the membership of that set is what differs. See
     # bridge_timber_params' module docstring and frame_tavern.build.
     c_struct = params.worst_conf("construction", "width_m", "clearance_m")
-    c_pier = params.worst_conf("pier_kind", "pier_spacing_m")
+    # The floor joined that set on 2026-08-10: "on these stringers puncheons or split
+    # logs were laid for a floor" says what the deck WAS, which is the membership test.
+    c_deck = params.worst_conf("construction", "width_m", "clearance_m", "deck_kind")
+    # WHAT THE SUPPORTS ARE AND HOW MANY, not where they stand. Even at a documented
+    # count the spacing along the span is the archetype's (see pier_x), and no tint
+    # can say so — docs/LIBERTIES.md carries that half.
+    c_pier = params.worst_conf("pier_kind", "pier_count")
 
     deck_z = params.deck_height_m
     stringer_top = deck_z - params.plank_t_m
     bearing_z = stringer_top - params.stringer_d_m      # underside = the clearance line
 
     _stringers(b, params, stringer_top, c_struct)
-    _deck(b, params, deck_z, c_struct)
+    _deck(b, params, deck_z, c_deck)
 
     for xp in params.pier_x:
         _pier(b, params, xp, bearing_z, c_pier)
@@ -134,9 +149,18 @@ def _stringers(b: MeshBuilder, p: BridgeTimberParams, top_z: float,
                conf: float) -> None:
     """Round log stringers, one run per bay.
 
-    Broken at every support rather than run continuously, because that is how a log
-    bridge is built — nobody had 15 m logs — and because the butt joints over each
-    bent are the detail that tells a viewer where the piers are from the bank.
+    Broken at every support rather than run continuously, which is what the 1883
+    old-settlers statement describes — "stringers of heavy logs stretched from the
+    abutments to the bents, and between the bents" — and the butt joints over each
+    support are also the detail that tells a viewer from the bank where they stand.
+
+    ONE RUN IS ONE LOG HERE, and over a long bay that is a simplification rather
+    than a reading. The North Branch bridge's three bays are 23.9 m each; nobody
+    was moving a 24 m timber, so those runs were spliced somewhere and no source
+    says where. Splices are omitted rather than invented, and admitted in
+    docs/LIBERTIES.md. The earlier version of this docstring said the breaks were
+    there because "nobody had 15 m logs", which stopped being a description of what
+    this function builds the moment the bay count came off a spacing.
     """
     r = p.stringer_d_m / 2.0
     zc = top_z - r
@@ -149,35 +173,51 @@ def _stringers(b: MeshBuilder, p: BridgeTimberParams, top_z: float,
 
 
 def _deck(b: MeshBuilder, p: BridgeTimberParams, deck_z: float, conf: float) -> None:
-    """A puncheon deck: split logs laid across the stringers, flat face up.
+    """The floor: puncheons — split logs laid across the stringers, flat face up —
+    or, where a record says so, sawn plank.
 
-    Every plank is its own box. The first version was one slab with a proud face per
+    "On these stringers puncheons or split logs were laid for a floor" is the 1883
+    old-settlers statement, and `deck_kind` is where a record says it. The two values
+    differ in the mesh and not only in the label: a puncheon floor is riven stock of
+    uneven width whose butts do not line up, and sawn plank is narrower, regular, and
+    laid to a straight edge. Nothing in this dataset carries `plank` today; it exists
+    so that the puncheons are a value the generator reads rather than a word in a note.
+
+    Every board is its own box. The first version was one slab with a proud face per
     plank stamped on top, which was cheaper and looked like a concrete slab scored
     with lines: the deck edge stayed dead straight, so from the bank — where anyone
     standing at the forks actually sees this bridge — there was nothing to say it was
-    made of logs. Individual planks give a ragged edge of plank butts, which is the
-    detail that carries the whole read. Roughly four hundred triangles on the one
-    surface a visitor walks across is a fair trade.
+    made of logs. Individual boards give a ragged edge of butts, which is the detail
+    that carries the whole read. Roughly four hundred triangles on the one surface a
+    visitor walks across is a fair trade.
     """
+    riven = p.deck_kind == "puncheon"
     t = p.plank_t_m
-    over = 0.06                      # plank ends overhanging the outer stringers
+    over = 0.06 if riven else 0.03   # board ends overhanging the outer stringers
     y0, y1 = -over, p.width_m + over
 
-    n = max(int(p.span_m / PLANK_PITCH_M), 2)
+    pitch_m = PLANK_PITCH_M if riven else SAWN_PITCH_M
+    n = max(int(p.span_m / pitch_m), 2)
     pitch = p.span_m / n
-    gap = 0.022
+    gap = 0.022 if riven else 0.008
     for i in range(n):
         xa, xb = i * pitch + gap / 2, (i + 1) * pitch - gap / 2
         # Split logs vary; nudging alternate ends stops the butts lining up into a
         # sawn edge. Deterministic, not random — the build has to be reproducible.
-        ja = 0.035 if i % 3 == 0 else (-0.02 if i % 3 == 1 else 0.0)
+        # Sawn stock is exactly the case where they SHOULD line up, so no jitter.
+        ja = 0.0
+        if riven:
+            ja = 0.035 if i % 3 == 0 else (-0.02 if i % 3 == 1 else 0.0)
         b.add_box(xa, y0 - ja, deck_z - t, xb, y1 + ja, deck_z, conf, M_DECK,
                   skip=("bottom",))
 
 
 def _pier(b: MeshBuilder, p: BridgeTimberParams, xp: float, bearing_z: float,
           conf: float) -> None:
-    """One intermediate support: a log crib, or a bent of driven piles."""
+    """One intermediate support: a bent of heavy logs, a log crib, or driven piles."""
+    if p.pier_kind == "bent":
+        _log_bent(b, p, xp, bearing_z, conf)
+        return
     if p.pier_kind == "pile":
         _pile_bent(b, p, xp, bearing_z, conf)
         return
@@ -211,11 +251,34 @@ def _cap(b: MeshBuilder, p: BridgeTimberParams, xp: float, bearing_z: float,
               r, conf, M_LOG)
 
 
+def _log_bent(b: MeshBuilder, p: BridgeTimberParams, xp: float, bearing_z: float,
+              conf: float) -> None:
+    """"The bents were of four heavy logs, resting on the bottom, in deeper water."
+
+    Four posts under a cap, and the count is the source's rather than a choice. Heavier
+    than the driven piles below — these are logs, not stakes — which is the one thing
+    besides the number that the sentence gives.
+
+    WHAT IS NOT MODELLED IS THE HALF THE SENTENCE IS ABOUT. "Resting on the bottom"
+    distinguishes a bent stood on the riverbed from one driven into it, and this
+    project models neither bed nor anything below `SUBMERGED_M`: above the waterline
+    the two are the same picture. So the difference between this function and
+    `_pile_bent` is four heavy logs against three light ones, which is what a visitor
+    can see, and the rest of the distinction lives in the record.
+    """
+    r = 0.21
+    for i in range(4):
+        y = p.width_m * (i + 0.5) / 4.0
+        log_prism(b, (xp, y, -SUBMERGED_M), (xp, y, bearing_z - 0.34), r, conf, M_LOG)
+    _cap(b, p, xp, bearing_z, conf)
+
+
 def _pile_bent(b: MeshBuilder, p: BridgeTimberParams, xp: float, bearing_z: float,
                conf: float) -> None:
     """Three driven piles and a cap log. Cheaper than a crib in triangles and in
-    1830s labour, and the alternative reading of "log construction" — which of the two
-    either bridge actually used is unattested, so `pier_kind` is a record's choice."""
+    1830s labour, and a third reading of "log construction" — `pier_kind` is the
+    record's choice among the three. For the North Branch bridge it is no longer a
+    choice: the men who used it wrote down that it stood on bents."""
     r = 0.15
     for i in range(3):
         y = p.width_m * (i + 0.5) / 3.0

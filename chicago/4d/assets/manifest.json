@@ -21,8 +21,8 @@
     "north_branch_bridge__log_1832.glb": {
       "archetype": "bridge_timber",
       "baked_ao": false,
-      "bytes": 527404,
-      "inputs_sha256": "74a84afd8e45a94cdae439a816c3f124ac4bd6d4749ae5f305fe057e64c840bc",
+      "bytes": 200972,
+      "inputs_sha256": "1641626aa6bfcd458ece38a52e3a49dddc30047416080d166478898bec4d67ac",
       "kind": "generated",
       "phase_id": "log_1832",
       "structure_id": "north_branch_bridge"
