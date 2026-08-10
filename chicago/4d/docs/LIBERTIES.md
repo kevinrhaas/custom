@@ -88,6 +88,99 @@ having fallen inside a platted street — not precisely enough to place. Splitti
 require inventing the first position.
 **Recorded:** 2026-08-09.
 
+### L7 — Wolf Point: three buildings placed from bank geometry, not from a corner
+**Decision:** `wolf_point_tavern`, `miller_house` and `walker_meeting_house` are positioned by
+deriving a coordinate from the datum origin at the forks and from **modern** riverbank geometry
+(OpenStreetMap water polygons), because **no surviving intersection locates any of them**. The
+Sauganash method — half an 80 ft platted street off a documented corner — does not apply.
+**Why:** the streets that once ran past them either never existed (the north-bank point was
+platted in Kinzie's Addition in 1833–35 and largely unbuilt) or have been rebuilt out of
+recognition. The relative positions *are* attested — the west-bank row runs James Kinzie's house,
+the tavern, the meeting house from south to north; Miller's house is on the point between the
+North Branch and the main stem — so the coordinates are constrained, not free.
+**Consequence:** these three carry a larger and *differently shaped* uncertainty than the corner
+buildings: roughly 40 m along the bank and 20 m across it, plus an unquantified allowance for the
+modern bank not being the 1835 bank. Each record states its own figure in its position note. The
+sidecar's flat `uncertainty_m: 20` understates them.
+**Recorded:** 2026-08-09.
+
+### L8 — Three footprints at Wolf Point are invented outright
+**Decision:** the footprints of `wolf_point_tavern` (12 × 7 m), `miller_house` (a 9 × 11 m L) and
+`walker_meeting_house` (7 × 7 m) are placeholders tagged `conjectural`, citing no sources.
+**Why:** no period map shows building footprints (verified for both 1834 sheets), and no text
+reached measures any of these three. What *is* attested in two cases is a **shape** rather than a
+size — Miller's house as a two-storey range fronting the river with a log cabin behind, Walker's
+as "a small square log building" — so the polygons carry an attested proportion at an invented
+scale. That distinction is stated in each footprint note.
+**How to resolve:** Andreas vol. 1, "Wharfs, Piers and Early Hotels", pp. 626–631, at page-image
+level.
+**Recorded:** 2026-08-09.
+
+### L9 — Green Tree Tavern: the footprint is derived from a room, and the side additions are left off
+**Decision:** the footprint (12.19 × 7.62 m ≈ 40 × 25 ft) is **derived** from the attested 12 ft
+room module, the ~8 ft central hall and the two-rank depth, tagged `inferred`; the low one-storey
+additions at each end are recorded on the record but **excluded from the geometry**.
+**Why:** it is the only footprint in the parcel with a textual basis, but what is attested is the
+module, not the count — a three-room side gives ~52 ft, so the length is good to about ±20%. The
+side additions are attested by John Gray, landlord 1838–41, which is *after* the scene date, and
+nothing dates them; modelling them would assert they existed in July 1835.
+**How to resolve:** the c. 1859 photograph (CHM ICHi-040230), which shows the building at its
+original corner and would settle dimensions, exterior finish and the gallery at once.
+**Recorded:** 2026-08-09.
+
+### L10 — Western Hotel: the stable and wagon yard are attested and not modelled
+**Decision:** only the hotel block is built. The "large stable and the yard into which the trains
+were driven", with entrances from both streets, are recorded as `stables: true` and left out of
+the geometry. The L's **arm widths** (7.0 m) are invented; only its 40 × 60 ft envelope is
+attested.
+**Why:** neither the stable nor the yard is dimensioned or located, and the `frame_tavern`
+archetype builds a building, not a parcel.
+**Consequence:** this understates the site more than any confidence tag can express — the yard
+*is* the west-side teamsters' house as a visitor experienced it, and the model shows a hotel
+standing in nothing. A parcel-level or yard archetype would fix it.
+**Recorded:** 2026-08-09.
+
+### L11 — Western Hotel: one completed phase on a disputed date, rather than a construction phase
+**Decision:** modelled as complete and in operation on 1835-07-01, on the 1834 build date, with
+no `construction_1835` phase.
+**Why:** the date is disputed 1834 (the builder W. H. Stow's own word, with corroborating detail)
+against 1835 (an undated line in a chronology that also mis-sizes the building). A construction
+phase would have to invent a start month, a duration and a degree of completeness that no source
+gives — and would silently adopt the weaker date in order to have something to model.
+**How to resolve:** any account of the Western independent of Stow. If 1835 is confirmed, split
+the phase then.
+**Recorded:** 2026-08-09.
+
+### L12 — Walker Meeting House: placed on one side of a disputed river
+**Decision:** placed on the **west** bank, north of the Wolf Point Tavern, position tagged
+`inferred`.
+**Why:** two near-primary witnesses (Wau-Bun 1831; chicagology's transcribed recollection) put a
+Walker-built log worship-and-school building on the west bank and give a *relative position* that
+can be placed. The competing reading — the successor congregation's own history, "in 1834 the
+growing congregation built a log cabin north of the Chicago River" — is modern, unfootnoted, and
+gives a division rather than a location.
+**Consequence:** **if the north-bank reading is right, this building is about 150 m from where it
+is drawn, on the far side of the North Branch.** The likeliest reconciliation is that both are
+true of *different* buildings — an 1831 school-house on the west bank and a purpose-built 1834
+cabin on the north — in which case the model has the wrong one. Note also that
+`data/exclusions.json` states in passing that the 1835 meeting house is on the north bank; that
+file and this record disagree and neither was edited to match the other.
+**How to resolve:** Andreas on the early Methodist society; the congregation's own archives; or
+the reported 1835 painting showing Wolf Tavern, Miller's House and Walker's cabin in one view.
+**Recorded:** 2026-08-09.
+
+### L13 — Composite log-and-frame buildings are extruded to a single wall height
+**Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,
+although both are attested as composites — Miller's as a two-storey frame range fronting the
+river with a one-storey log cabin behind, the Wolf Point Tavern as "partly log and partly frame".
+**Why:** the `log_dwelling` archetype does not yet build a mixed-height mass, and averaging the
+two heights would produce a building matching neither description. The records carry the taller
+element's height and flag the overstatement rather than hiding it.
+**Consequence:** a geometry requirement for `log_dwelling`, discovered from the evidence in the
+same way the Sauganash's attached log wing was (L4a). Until it lands, the log elements render
+taller than they were.
+**Recorded:** 2026-08-09.
+
 ---
 
 ## Resolved
