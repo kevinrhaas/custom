@@ -100,6 +100,25 @@
         "rotation_deg": 0.0,
         "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
         "confidence": "inferred",
+        "derivation": {
+          "method": "platted_corner",
+          "control": "lake_market",
+          "constraints": [
+            {
+              "face": "west",
+              "street": "market",
+              "kerb": "east",
+              "offset_m": 0
+            },
+            {
+              "face": "north",
+              "street": "lake",
+              "kerb": "south",
+              "offset_m": 0
+            }
+          ],
+          "note": "A south-east corner lot: the north face on Lake Street's south frontage, the west face on Market Street's east frontage. The 8 m the note describes as 'the footprint's own depth' is not a term here — the depth is in the polygon, so the constraint is on the face and the arithmetic is the checker's."
+        },
         "sources": [
           "chicagology_prefire273",
           "chicago_landmark_sauganash",

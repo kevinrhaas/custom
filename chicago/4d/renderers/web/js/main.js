@@ -27,6 +27,7 @@ import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
 import { mountExclusions } from './exclusions.js';
+import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
@@ -162,6 +163,7 @@ async function boot() {
   // panel and records a problem; it does not stop the walkthrough.
   api.liberties = await mountLiberties({
     mount: document.getElementById('liberties'),
+    noteMount: document.getElementById('liberties-note'),
     dataBase: bases.dataBase,
     registry: loaded.registry,
     problems,
@@ -172,14 +174,38 @@ async function boot() {
   // markdown they are both quoting.
   popup.setLiberties(api.liberties.liberties);
 
-  // And what was researched and left out, which no building can carry because
-  // the buildings that would carry it are the ones not standing here.
-  api.exclusions = await mountExclusions({
-    mount: document.getElementById('exclusions'),
+  // And what the GROUND claims, which no building can carry either: the surface
+  // every one of them stands on is graded as carefully as they are, and said so
+  // nowhere a visitor could read it.
+  api.ground = await mountGround({
+    mount: document.getElementById('ground'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,
   });
+
+  // And what was researched and left out, which no building can carry because
+  // the buildings that would carry it are the ones not standing here.
+  // …and the third category, which neither of those can hold: researched, and
+  // still open. One of the four is standing in the scene, so it cannot go on the
+  // not-here list without that list becoming false.
+  api.exclusions = await mountExclusions({
+    mount: document.getElementById('exclusions'),
+    uncertainMount: document.getElementById('uncertain'),
+    // …and what each of the two lists says it is, in the compiled document's own
+    // words rather than a paraphrase typed into the markup beside it.
+    standardMount: document.getElementById('exclusions-note'),
+    uncertainStandardMount: document.getElementById('uncertain-note'),
+    dataBase: bases.dataBase,
+    sceneId: loaded.scene.id ?? YEAR,
+    problems,
+  });
+  // And the open questions again, filtered to the building being inspected —
+  // exactly as the liberties are, and for the same reason. One of the four is
+  // standing in the scene, and the panel's entry for it promises that the
+  // provenance card shows the claim carrying the doubt; the card is where a
+  // visitor who walked up to that building would think to ask.
+  popup.setOpenQuestions(api.exclusions.uncertain);
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.

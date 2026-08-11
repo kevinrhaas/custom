@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 71,
+  "count": 83,
   "liberties": [
     {
       "id": "L1",
@@ -165,11 +165,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "frame_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "footprint"
@@ -267,16 +269,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "footprint"
@@ -316,6 +321,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.side_additions"
@@ -361,11 +367,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.stables"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel_stable",
           "phase": "stable_1834",
           "aspect": "form.wagon_yard"
@@ -443,6 +451,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": "log_1831",
           "aspect": "position"
@@ -602,11 +611,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.wall_height_m"
@@ -651,11 +662,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.gallery"
@@ -704,36 +717,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.paint"
@@ -779,16 +799,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.fenestration"
@@ -832,16 +855,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_side"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_width_m"
@@ -956,11 +982,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_width_m"
@@ -1004,6 +1032,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "ground_contact"
@@ -1070,6 +1099,347 @@
         {
           "label": "How to resolve",
           "text": "a survey, a section, or a repair account with dimensions. Andreas's main text records that a committee was appointed in December 1833 \"to see that they were properly repaired\" and that \"in September the corporation paid $166.67 on account of repairing\" — a voucher or a council minute behind that payment is the most likely thing to describe the structure member by member."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31a",
+      "title": "Terrain: the bank face is a shape nobody recorded",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "bank"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the ground rises from the waterline to the local bank crest on an eased quadratic over **6 m** by default, widening east where the south and north shores climb into the sand ridge. The profile string in `terrain_spec.json` is a description of the generator's ramp, not an input it reads."
+        },
+        {
+          "label": "Why",
+          "text": "no source gives a bank cross-section at any point in this scene. The bank has to meet two constraints at once — it must reach Z = 0 exactly at the traced waterline, and it must arrive at the crest heights the dossier argues for without producing a cliff. The ease-out ramp is therefore geometry chosen to satisfy the known endpoints, not evidence in itself."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees a shaped bank carrying the project's confidence tint, but the tint on the block says only how sure we are about the heights and zones around it. The actual curvature of the bank face is ours. The note is where that distinction is stated."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period section, profile, or measured description of a bank at the forks or harbour reach."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.bank`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31b",
+      "title": "Terrain: the channel cross-section carries no evidence at all",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "channel_profile"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "water depth approaches the stated bed with an exponential law, `depth = bed_ft * (1 - exp(-d_in / e_fold_m))`, where distance is measured in from the traced waterline."
+        },
+        {
+          "label": "Why",
+          "text": "the project has period statements about bed depths at a few places and none about cross-sections. A smooth curve is what lets the surface meet the bank at Z = 0 exactly on the traced line while still giving the river and cut a usable interior depth. That is a modelling convenience chosen under total evidential silence."
+        },
+        {
+          "label": "Consequence",
+          "text": "the geometry under the water is an answer to a renderer's question, not a historical finding. It affects boat draught and the hidden shape of the channel and nothing a visitor can see directly."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging cross-section or sounding transect of the Chicago River, the 1834 cut or the old southward channel."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.channel_profile`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31c",
+      "title": "Terrain: the north-side slough is one foot deep because a shallower one would not read",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "watercourses.north_side_slough"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the slough off the Main Branch is cut to a bed of **−1.0 ft** with a 1.2 m e-folding distance, and the whole block is tagged `conjectural` in `terrain_spec.json`."
+        },
+        {
+          "label": "Why",
+          "text": "its existence and its course are Wright 1834's, drawn on the sheet this terrain is fitted to, and its width is measured off the drafted band. Its **depth is invented outright** — no sounding, no description, nothing. One foot is the shallowest figure that still reads as water at the surface, which is a rendering argument and not a historical one, and the 1.2 m e-fold overrides the river's 9 m for the same reason: at 9 m a 1 ft channel would be four inches deep across a 7 m width and would look like damp grass."
+        },
+        {
+          "label": "Consequence",
+          "text": "the grade a visitor sees on this claim is the block's, so it says `conjectural` about a watercourse whose existence and course are the best-attested thing in this quadrant. The note is the only place that distinction is legible, which is a limit of block-level grading and not of the evidence — see `docs/STATUS.md`."
+        },
+        {
+          "label": "Why it is recorded now",
+          "text": "it is the one ground invention the terrain slice never wrote down. The coverage gate found it the first time it was allowed to look at the terrain spec."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging sounding of the north-side backwater, or a description of it as fordable or not."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.watercourses.north_side_slough`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31d",
+      "title": "Terrain: the ground says what it is made of and nothing is made of it",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.channel"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.north_division"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.north_division near the lake"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.open_lake_shelf"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.sand_bar_1834"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division east of State St"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division west of State St"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division_marsh"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.west_division"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the spec grades multiple surface materials — black loam over quicksand over blue clay, beach-and-dune sand, peat muck with sedge, reeds and rushes, Cahokia Alluvium silt — and **no surface in the model is made of any of them**. The ground mesh carries one earth treatment unless and until the surface parcel builds otherwise."
+        },
+        {
+          "label": "Why",
+          "text": "the material entries are the dossier's surface table, kept in the spec because they are what a terrain claim *is*, and `terrain_gen.py` builds elevation and water only. Colouring or texturing ground by zone is a later parcel, and doing it badly — inventing a palette for a soil nobody photographed — would be a larger invention than leaving it out."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor reading a strong confidence grade on one of these rows is reading how sure the project is about the site's stratigraphy, not a description of the literal surface underfoot. The row needs an explicit admission because the mesh does not embody it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a surface-treatment parcel driven from these entries, with the palette argued from the sources rather than picked."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.surface_materials.south_division west of State St`, `terrain.e1834_harbor_cut.surface_materials.south_division east of State St`, `terrain.e1834_harbor_cut.surface_materials.north_division`, `terrain.e1834_harbor_cut.surface_materials.north_division near the lake`, `terrain.e1834_harbor_cut.surface_materials.west_division`, `terrain.e1834_harbor_cut.surface_materials.south_division_marsh`, `terrain.e1834_harbor_cut.surface_materials.channel`, `terrain.e1834_harbor_cut.surface_materials.open_lake_shelf`, `terrain.e1834_harbor_cut.surface_materials.sand_bar_1834`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31e",
+      "title": "Terrain: two water bodies keep invented beds because the sources give only their existence",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "reaches.old_south_channel"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "reaches.open_lake_shelf"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the abandoned southward channel behind the bar is given a bed of **−2.5 ft**, and the open-lake shelf east of the traced water is given a bed of **−11.0 ft** with a long 130 m e-fold. Both are tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "Wright 1834 and later discussion tell this project that both water bodies existed; neither gives a sounding on the date this scene models. The old channel is therefore placed between the dossier's qualitative banks as a midpoint, and the open lake shelf exists to stop the harbour from ending in a wall where the traced window ends. Both figures are modelling choices under evidential silence."
+        },
+        {
+          "label": "Consequence",
+          "text": "the harbour opens into plausible water rather than into a box edge, and the abandoned channel remains a watercourse rather than collapsing flat. Neither depth is a measurement and neither should be read as one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging sounding or section of the old outlet channel or the nearshore lake bed east of the cut."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.reaches.old_south_channel`, `terrain.e1834_harbor_cut.reaches.open_lake_shelf`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31f",
+      "title": "Terrain: the west-prairie swales are invented alignments",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_a"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_b"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the two west-prairie swales are drawn on invented lines with shallow invented depths, tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the dossier says the wet prairie carried slough swales. It does not say where they ran in this box. A swale has to be somewhere to be visible at all, so two were drawn where they plausibly express the described relief without exceeding the project's flatness rule."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees channels in the prairie that stand for a real kind of landform and not for attested individual ones. Their existence is argued; their exact alignment is ours."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any map, survey or description locating specific swales in the west prairie."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.swales.west_prairie_swale_a`, `terrain.e1834_harbor_cut.swales.west_prairie_swale_b`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31g",
+      "title": "Terrain: the plain is roughened by synthetic micro-relief",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "micro_relief"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "land above the waterline carries two octaves of value noise at **±0.10 ft**, faded out across the bank face, and the whole block is tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the sources describe this ground as dead flat and a perfectly numerical plane reads as a rendering error when walked on. The noise is there for motion parallax and legibility, not because any source measured hummocks at these wavelengths."
+        },
+        {
+          "label": "Consequence",
+          "text": "the visitor sees a surface that reads as ground rather than as a spreadsheet, but the small undulations are not evidence. They are a rendering texture declared as such."
+        },
+        {
+          "label": "How to resolve",
+          "text": "it does not resolve into evidence; it would only go away if a different rendering strategy made a perfectly flat plain read correctly."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.micro_relief`."
         },
         {
           "label": "Recorded",
@@ -1221,106 +1591,127 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "bates_auction_room",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "carpenter_south_water_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "chicago_democrat_office",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "function"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "harmon_loomis_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "jb_beaubien_homestead",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "madore_beaubien_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "peck_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "position"
@@ -1397,6 +1788,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "south_branch_raft_bridge",
           "phase": "log_1833",
           "aspect": "ground_contact"
@@ -1440,41 +1832,49 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.draw_lifting_gear"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.gallows_height_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.overall_length_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.pier_count"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.pier_kind"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.width_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "ground_contact"
@@ -1524,11 +1924,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "thomas_church_store",
           "phase": "frame_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "thomas_church_store",
           "phase": "frame_1834",
           "aspect": "position"
@@ -1576,36 +1978,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.bastion_length_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.bastion_projection_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.gate_width_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_spacing_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_width_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.posterns"
@@ -1654,96 +2063,115 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_barracks",
           "phase": "log_1816",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_barracks",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.loopholes"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.upper_overhang_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_officers_quarters",
           "phase": "log_1816",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_officers_quarters",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "form.wall_height_m"
@@ -1789,26 +2217,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "position"
@@ -1852,21 +2285,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "position"
@@ -1910,26 +2347,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.fence_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.panel_length_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.panel_offset_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.planting"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.rail_courses"
@@ -1974,11 +2416,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_commandants_quarters",
           "phase": "brick_1816",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "ground_contact"
@@ -2027,21 +2471,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "form.width_m"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "form.width_m"
@@ -2095,41 +2543,49 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "blacksmith_shop_state_st",
           "phase": "log_1823",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "miller_tannery",
           "phase": "log_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "footprint"
@@ -2169,16 +2625,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.plan_composition"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.roof_type"
@@ -2222,31 +2681,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.wall_height_m"
@@ -2292,16 +2757,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "form.cabin_count"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "position"
@@ -2347,31 +2815,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "form.plan"
@@ -2421,21 +2895,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "form.interior_division"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.interior_finish"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.seating"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.seating"
@@ -2479,6 +2957,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "footprint"
@@ -2524,16 +3003,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "log_jail",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "footprint"
@@ -2578,11 +3060,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "position"
@@ -2630,31 +3114,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.door"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.wall_height_m"
@@ -2698,36 +3188,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.door"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "position"
@@ -2767,16 +3264,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.stories"
@@ -2822,11 +3322,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "james_kinzie_house",
           "phase": "dwelling_1830",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "robert_kinzie_store",
           "phase": "store_1830",
           "aspect": "footprint"
@@ -2871,31 +3373,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "form.cabin_count"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "position"
@@ -2943,46 +3451,55 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "brickyard_north_side",
           "phase": "yard_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "brickyard_north_side",
           "phase": "yard_1833",
           "aspect": "form.yard_works"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "form.plant"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "pierce_blacksmith_shop",
           "phase": "shop_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pierce_blacksmith_shop",
           "phase": "shop_1833",
           "aspect": "form.forge"
@@ -3027,36 +3544,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "documented_range"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "form.dock"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "form.dock"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "position"
@@ -3104,11 +3628,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "documented_range"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "position"
@@ -3152,11 +3678,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "form.clearance_m"
@@ -3201,6 +3729,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "ground_contact"
@@ -3314,36 +3843,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel_stable",
           "phase": "stable_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "position"
@@ -3410,6 +3946,355 @@
       ]
     },
     {
+      "id": "L74",
+      "title": "Tremont House I: a hotel built two storeys tall because three rests on one modern sentence",
+      "section": "per_subject",
+      "subjects": [
+        "tremont_house_1"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "form.gallery"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "tremont_house_1",
+          "phase": "frame_1833",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the first Tremont House is built at the north-west corner of Lake and Dearborn as a **two-storey** braced-frame block 50 × 30 ft, unpainted, gable-roofed and without a gallery. The storey count, the wall height, the roof, the paint, the gallery and the footprint are all tagged `conjectural`. **Why, and the storey count is the whole entry.** What is documented about this building is unusually good: the corner three times over, frame construction three times over, Alanson Sweet as builder, Ira Couch as proprietor from 1834, and destruction by fire on 27 October 1839. What is not documented is its height. `chicagology_prefire021` prints an uncredited modern \"Building Summary\" — \"a three-story wooden building\" — beside two period texts that count no storeys at all: the Chicago *Tribune* letter of 2 February 1874 (\"an unpretending frame structure\") and *Chicago Illustrated* of January 1866 (\"a wooden structure\"). Andreas, who gives the building a builder, a corner, a material, four proprietors and a death date, gives it no height. So the three-storey Tremont has exactly one witness and it is a modern editor; `docs/research/04-structures-south.md` line 155 weighs it twice by citing \"chicagology and Wikipedia\". **Two is adopted and is still a guess**, on three arguments that are not evidence: Chicago in 1833 held about 350 people and *Wau-Bun* found the Sauganash's TWO storeys remarkable two years earlier; the *Chicago American*'s \"Improvements in 1836\", quoted by Andreas, counts \"about twenty large two to three-story wooden buildings\" among that year's NEW work; and this project already excludes the Saloon Building of 1836 partly as the town's first three-storey structure."
+        },
+        {
+          "label": "Consequence",
+          "text": "if the three-storey reading is right the building stands about 2.6 m taller than the model shows, and it would be the tallest thing in the 1835 scene. Everything else here is the usual: no source measures the house, describes its roof, names its finish or mentions a porch, and the confidence view renders the whole block as massing. **One documented thing about this building IS carried and is not built**: Ira Couch's \"a mere shell, without any sidewalk around it\". This project builds no plank walks anywhere, so the record states `sidewalk: false` as `record_only` — a negative finding about the ground, not an omission."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the *Daily American*'s account of the 27 October 1839 fire, which Andreas quotes for the merchants' stock losses and which itemised insurance building by building; or any *Chicago American* or *Chicago Democrat* advertisement of the house, which in the period counted rooms."
+        },
+        {
+          "label": "Covers",
+          "text": "`tremont_house_1.frame_1833.footprint`, `tremont_house_1.frame_1833.form.stories`, `tremont_house_1.frame_1833.form.wall_height_m`, `tremont_house_1.frame_1833.form.roof_type`, `tremont_house_1.frame_1833.form.paint`, `tremont_house_1.frame_1833.form.gallery`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L75",
+      "title": "Mansion House: an attested frame front, built on invented arms",
+      "section": "per_subject",
+      "subjects": [
+        "mansion_house",
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "mansion_house",
+          "phase": "log_frame_1833",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "mansion_house",
+          "phase": "log_frame_1833",
+          "aspect": "form.frame_addition_depth_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "mansion_house",
+          "phase": "log_frame_1833",
+          "aspect": "form.frame_addition_stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "mansion_house",
+          "phase": "log_frame_1833",
+          "aspect": "form.frame_addition_width_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "mansion_house",
+          "phase": "log_frame_1833",
+          "aspect": "form.frame_paint"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Dexter Graves's log tavern on Lake Street near Dearborn is built as a 12 × 9 m one-storey log core with a one-storey frame block 12 m wide and 4 m deep across its front. The footprint, the wing's width, its depth, its storey count and its finish are all tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "Andreas describes this building's growth in a sentence that is worth more than anything else in the parcel — \"As originally built, the Mansion House was situated some little distance back from the street, but two years later Mr. Graves erected a frame addition in the front, which came out to a line with the street\" — and the sentence contains no numbers. So the *side* of the addition is documented (the only one in this dataset that is; the Wolf Point Tavern's is conjectural, L24), and its size is not. **The 4 m depth is the invention doing the most work: it stands in for \"some little distance back from the street\", which is an unmeasured setback**, and anything from a two-metre porch depth to a full second range is compatible with the sentence. The 12 m width is set to the full frontage so the new block presents one continuous face to Lake Street, which is what the RESULT implies and not what the width does; a narrower block would leave a notch at one end that no source describes and that would read as a modelled fact about the plan. One storey for the addition is an argument from silence — a two-storey front on a one-storey log tavern would have been the more remarkable thing and would probably have been said."
+        },
+        {
+          "label": "Consequence",
+          "text": "the building's south face stands exactly on the Lake Street building line, which IS attested, and every metre behind that line is chosen. The overall 12 × 9 m rests on two weak arguments — it later took two street numbers, 84 and 86 Lake Street, and it held a room the Circuit Court sat in — and neither is a measurement. The unfinished loft, which the court sat in, is `documented` and is built as a gable-end opening and nothing else, since a loft leaves no other external trace."
+        },
+        {
+          "label": "How to resolve",
+          "text": "*Chicago Democrat* or *Chicago American* advertisements of the house under Haddock or Markle, which in the period counted rooms; or a Cook County deed on the lots that became Nos. 84 and 86 Lake Street, which would give the frontage from a document rather than from a street-number inference."
+        },
+        {
+          "label": "Covers",
+          "text": "`mansion_house.log_frame_1833.footprint`, `mansion_house.log_frame_1833.form.frame_addition_width_m`, `mansion_house.log_frame_1833.form.frame_addition_depth_m`, `mansion_house.log_frame_1833.form.frame_addition_stories`, `mansion_house.log_frame_1833.form.frame_paint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L76",
+      "title": "The Exchange Coffee House: five documented facts, and not one of them about the building",
+      "section": "per_subject",
+      "subjects": [
+        "exchange_coffee_house",
+        "mansion_house"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.gallery"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "exchange_coffee_house",
+          "phase": "frame_1834",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Mark Beaubien's second hotel is built at the north-west corner of Lake and Wells as a two-storey braced-frame block 46 × 30 ft, unpainted, gable-roofed, without a gallery. The construction, the storey count, the wall height, the roof, the paint, the gallery and the footprint are all tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "two independent passages of Andreas — the hotel chapter and the life of Mark Beaubien — agree on the builder, the corner, the year, the keepers and the name, which is more agreement than any other building in this parcel gets. Neither says what it was made of, how big it was, how many storeys it had or what it looked like. **The consequential guess is `construction`, because it also chose the ARCHETYPE**: a frame reading makes this a `frame_tavern` and a log reading would make it a `log_dwelling`, so if it is wrong the building is wrong in kind and not merely in detail — the same admission L62 makes for Watkins' school house. The argument for frame is that every Chicago hotel this dataset can date to 1833 or later is frame while the log taverns belong to 1828-31; the argument against treating that as evidence is L18, that the ordinary reading of a TYPE is not evidence about a BUILDING — and the man who built this one had made his last hotel by adding a frame block onto a log cabin."
+        },
+        {
+          "label": "Consequence",
+          "text": "the confidence view renders the whole house as massing, correctly. The facade bearing is a second unclaimed choice of the same kind: no source says which street the house fronted, and a corner house called an *Exchange*, at which stage seats were later booked, could as easily have turned its front to Wells."
+        },
+        {
+          "label": "A correction this record carries rather than\ninherits",
+          "text": "`data/exclusions.json` and `docs/research/04-structures-south.md` both say stage seats were taken here \"in 1835-36\". Andreas dates that advertisement to the *Chicago American* of **6 August 1836**, thirteen months after the scene date, so the record does not claim a stage-office function for 1835. The exclusion of a separate stage-office BUILDING is unaffected."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the *Chicago Democrat* and the *Chicago American*, in both of which this house was a standing address; and the 1834-36 Cook County tavern licences, which would also settle whether Abram A. Markle held this house and the Mansion House at the same time."
+        },
+        {
+          "label": "Covers",
+          "text": "`exchange_coffee_house.frame_1834.footprint`, `exchange_coffee_house.frame_1834.form.construction`, `exchange_coffee_house.frame_1834.form.stories`, `exchange_coffee_house.frame_1834.form.wall_height_m`, `exchange_coffee_house.frame_1834.form.roof_type`, `exchange_coffee_house.frame_1834.form.paint`, `exchange_coffee_house.frame_1834.form.gallery`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L77",
+      "title": "The Lake House is a building site built with a fort's archetype, one storey up, on a corner nobody halved",
+      "section": "per_subject",
+      "subjects": [
+        "lake_house_construction"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "lake_house_construction",
+          "phase": "shell_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "lake_house_construction",
+          "phase": "shell_1835",
+          "aspect": "form.kind"
+        },
+        {
+          "domain": "structure",
+          "structure": "lake_house_construction",
+          "phase": "shell_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "lake_house_construction",
+          "phase": "shell_1835",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "lake_house_construction",
+          "phase": "shell_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Lake House is modelled as a **construction site**: a roofless brick shell one storey high on a 79 × 49 ft plan, at the corner of Rush and Michigan streets on the north bank, built with the `fort_structure` archetype under `kind: \"magazine\"`. The position, the footprint, the archetype `kind`, the storey count and the wall height are all tagged `conjectural`. **Why, and it is three admissions.** **(1) How far it had risen is unattested, and that is the interesting part.** Everything about the FINISHED hotel is documented — brick, three storeys and a basement, nearly $100,000, five named backers, opened in the autumn of 1836. Nothing says what stood on the ground on 1 July 1835; `chicagology_prefire112`'s own *what_it_does_not_supply* list says so in terms. One storey comes from a schedule argument — ground broken somewhere in 1835, open by autumn 1836, so about eighteen months for three storeys and a basement of brick, putting 1 July 1835 in the first quarter of the work — and the honest range is **zero to two**. At three storeys this structure would stand about 12 m and be the tallest thing in the scene, which is exactly what `data/exclusions.json`'s `lake_house_finished` entry exists to prevent. The best anchor found is J. D. Bonnell's letter to the *Chicago Times* of 15 March 1876, quoted by Andreas, seeing \"the Lake House in course of construction\" on a date the letter gives as 25 August 1835 — eight weeks after the scene date — though the same letter's \"forty years ago\" implies 1836 and Andreas's lead-in says 1837. The 1837 reading is impossible on the letter's own content. **(2) The archetype is off-label and `kind: \"magazine\"` is a selector, not a claim.** It does not say the Lake House was a powder magazine. `fort_structure` is the ONLY archetype in this project whose vocabulary admits `construction: brick` AND `roof_type: none`, and brick is the one documented fact about this structure's fabric while rooflessness is the one important fact about its state; `magazine` is the only one of its eleven builders that draws a plain masonry rectangle with a single opening and no windows, where every other kind would cut a regular window rhythm and render a building site as a finished hotel. `frame_tavern` would build a windowed, roofed, five-bay house; `outbuilding` can build neither brick nor a roofless structure — the same constraint L60 records for the estray pen, which had to take a roof it probably never had. The archetype's own docstring already extends it past the fort once, to the 1832 lighthouse. **(3) The corner is documented and the side of the street is not.** Andreas twice puts the house at Kinzie, Rush and Michigan streets, fronting Michigan. A block between Kinzie and Michigan has two faces on Rush about 110 m apart and nothing says which; the east side is adopted on a neighbourhood argument."
+        },
+        {
+          "label": "Guard travelling with it",
+          "text": "north-side Michigan Street is today's East Hubbard Street, one block north of Kinzie — NOT Michigan Avenue, which did not cross the river until 1920. The gloss \"near where the Wrigley Building stands today\", on `chicagology_prefire112` and repeated in `docs/research/03-structures-north.md` §3.8 (which also renders the street as \"Michigan (Water)\"), moves the site about 150 m and across Kinzie."
+        },
+        {
+          "label": "Consequence",
+          "text": "what a visitor sees is a low roofless brick rectangle, which is right in kind and invented in every dimension. **What the model still cannot show is the excavation** — a construction site is a hole in the ground before it is anything else, and nothing in this project cuts a cellar into the terrain, so the shell sits ON the surface rather than in it. The footprint also asserts a full rectangle walled to one height where a real site would be part cellar, part first-course brickwork, part mortar-bed, scaffold and stacked material."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the *Chicago American* (first issue 8 June 1835) and the *Chicago Democrat* for 1835-36 — a $100,000 hotel going up in a town of three thousand was news; and the Kinzie's Addition conveyances, which would give the lots, the plan and the side of Rush Street at once."
+        },
+        {
+          "label": "Covers",
+          "text": "`lake_house_construction.shell_1835.position`, `lake_house_construction.shell_1835.footprint`, `lake_house_construction.shell_1835.form.kind`, `lake_house_construction.shell_1835.form.stories`, `lake_house_construction.shell_1835.form.wall_height_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L78",
+      "title": "A saddler's corner survives nineteen months on nothing but a paid advertisement",
+      "section": "per_subject",
+      "subjects": [
+        "goss_cobb_saddlery",
+        "green_tree_tavern"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "goss_cobb_saddlery",
+          "phase": "shop_1833",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "goss_cobb_saddlery",
+          "phase": "shop_1833",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "goss_cobb_saddlery",
+          "phase": "shop_1833",
+          "aspect": "form.stories"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`goss_cobb_saddlery` is built at the crossing of Lake and Canal from one newspaper advertisement, with its `documented_range`, its `footprint` and its storey count tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the *Chicago Democrat* of 26 November 1833 carries the firm's own notice — \"they have opened a shop in this village, on the conner of Lake and Canal-streets\" — which is a **tier-1, self-reported address**, better positional evidence than most records in this dataset hold, because the advertiser's customers had to be able to find him. It fixes a trade and a junction in one week of November 1833 and does nothing else. **The scene date is nineteen months later**, in the town's fastest-changing period, and `data/sources/chicago_democrat_1833_11_26.json` states the limit in as many words: an advertisement is \"strong evidence of existence and address, weak evidence of survival, and no evidence at all of form\". Nothing reached follows this firm past November 1833. The building stands anyway, on the project owner's standing instruction that an absent building is invisible while a conjectural one is legible and correctable — the same reasoning L67 gives for Elston's soap works, from the same issue of the same paper."
+        },
+        {
+          "label": "Consequence",
+          "text": "a shop stands on Lake Street that may have been gone, moved or rebuilt by July 1835, at a size and a storey count nobody recorded. **Two positional admissions travel with it.** The advertisement names a *junction*, not a corner, exactly as the Democrat's own imprint says \"on the corner of South Water and Clark-streets\" and names none; the Green Tree Tavern holds the north-east quadrant of this crossing, three remain, and this record picks the south-east — a one-in-three choice worth about 40 m. And \"Canal\" at this crossing inherits the doubt already recorded on the Green Tree: modern Canal Street lies a full block back from the west bank, where the 1830s riverbank street was West Water, so if the advertisement means the bank street the shop belongs about **145 m east**. That is the larger of the two and it is the same open question the Green Tree's own record carries; settling one settles both. The `position` is nonetheless tagged `inferred` rather than `conjectural`, because the junction itself is documented and it is only the quadrant that is chosen — the doubt is written on the record rather than in the tag."
+        },
+        {
+          "label": "How to resolve",
+          "text": "further issues of the *Chicago Democrat* and the *Chicago American*, one line of which would settle survival and might name a side; and the lot geometry on Wright 1834 or Hathaway 1834, which would settle Canal against West Water for this record and for the Green Tree at once."
+        },
+        {
+          "label": "Covers",
+          "text": "`goss_cobb_saddlery.shop_1833.documented_range`, `goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
       "id": "L40",
       "title": "Two thirds of the town stands on ground that has not been built",
       "section": "resolved",
@@ -3445,166 +4330,199 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "bates_auction_room",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "blacksmith_shop_state_st",
           "phase": "log_1823",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "carpenter_south_water_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chicago_democrat_office",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": "frame_1832",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "harmon_loomis_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "jb_beaubien_homestead",
           "phase": "factory_1817",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "log_jail",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "madore_beaubien_house",
           "phase": "log_1831",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "peck_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": "frame_1830s",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "ground_contact"
@@ -3690,11 +4608,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_extension"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.signage"
@@ -3747,31 +4667,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.chimneys"
@@ -3819,6 +4745,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "form.pier_spacing_m"

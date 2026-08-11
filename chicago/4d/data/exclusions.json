@@ -214,14 +214,69 @@
       ]
     }
   ],
+  "watch_list_doc": "Structures whose 1835 status is genuinely uncertain rather than excluded — the third category, between a building that stands and one that was researched and left out. They belong in the dataset with honest confidence, and they are listed here so nobody promotes them to documented without new evidence. That last sentence was unenforced prose until 2026-08-10: `original` on each entry is the free-text line it was written as, kept verbatim because this file's rule is that a finding is added to and not rewritten.",
   "watch_list": [
     {
-      "note": "Structures whose 1835 status is genuinely uncertain rather than excluded. They belong in the dataset with honest confidence, but they are listed here so nobody promotes them to documented without new evidence.",
-      "items": [
-        "cook_county_courthouse — built 1835, but no source fixes a month; on 1835-07-01 it may be unbuilt, under construction, or just finished. Model as under construction and flagged.",
-        "cobweb_castle — the Indian Agency house; standing and in civilian occupation by 1833 (Col. R. J. Hamilton), but no source gives its fate. Low confidence for the scene date.",
-        "billy_caldwell_house — the 1828 government-built frame house at State and Chicago Ave is reported unverified even as a story; condition and occupancy in July 1835 unattested.",
-        "western_hotel — built 1834 by W. H. Stow per chicagology, 1835 per the hotel chronology. If the later date is right it is brand new or still going up on the scene date."
+      "id": "cook_county_courthouse",
+      "name": "First Cook County court-house",
+      "in_dataset": false,
+      "question": "Was it standing on 1 July 1835? The year is attested and no source reached fixes a month, so on the scene date it may be unbuilt, under construction, or just finished.",
+      "consequence": "Three different buildings on the public square, one of which is an empty lot. It cannot be placed until the month is fixed or a construction phase is argued from something better than a guess at a start date — and the well-known Doric-portico description is the 1837 building, not this one.",
+      "original": "cook_county_courthouse — built 1835, but no source fixes a month; on 1835-07-01 it may be unbuilt, under construction, or just finished. Model as under construction and flagged.",
+      "dossier": {
+        "file": "docs/research/04-structures-south.md",
+        "anchor": "First Cook County court-house"
+      },
+      "sources": [
+        "andreas_1884_v1"
+      ]
+    },
+    {
+      "id": "cobweb_castle",
+      "name": "The Indian Agency House (\"Cobweb Castle\")",
+      "in_dataset": true,
+      "question": "What became of it? Standing and in civilian occupation by 1833 under Col. R. J. Hamilton, and no source reached gives its fate after that.",
+      "consequence": "Wau-Bun describes the building itself in detail — hewed and squared logs, a centre, two wings and two rear tails — so this is a structure that could be modelled well and dated badly. Its survival to the scene date is the whole of the uncertainty.",
+      "original": "cobweb_castle — the Indian Agency house; standing and in civilian occupation by 1833 (Col. R. J. Hamilton), but no source gives its fate. Low confidence for the scene date.",
+      "dossier": {
+        "file": "docs/research/03-structures-north.md",
+        "anchor": "The Indian Agency House"
+      },
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "carried_by": "log_1820.documented_range"
+    },
+    {
+      "id": "billy_caldwell_house",
+      "name": "Billy Caldwell's house at State and Chicago Avenue",
+      "in_dataset": false,
+      "question": "Did it exist, and if it did, what state was it in? The 1828 government-built frame house is reported unverified even as a story, and its condition and occupancy in July 1835 are unattested.",
+      "consequence": "The one entry on this list whose uncertainty is about existence rather than survival. It also sits inside the standing constraint on 1835 and Indigenous history in AGENTS.md: Caldwell led his people west in the removal of August 1835, weeks after the scene date, and nothing about that is to be improvised here.",
+      "original": "billy_caldwell_house — the 1828 government-built frame house at State and Chicago Ave is reported unverified even as a story; condition and occupancy in July 1835 unattested.",
+      "dossier": {
+        "file": "docs/research/03-structures-north.md",
+        "anchor": "Billy Caldwell (Sauganash) — residence(s)"
+      },
+      "sources": [],
+      "no_source_record": "The dossier says at least one source notes the story is unverified and does not say which, so there is no page to cite and no source record to point at. Recording that as an uncited entry is the honest reading; naming a source here would be inventing one to satisfy a field."
+    },
+    {
+      "id": "western_hotel",
+      "name": "Western Hotel",
+      "in_dataset": true,
+      "carried_by": "frame_1834.documented_range",
+      "question": "Built 1834 by W. H. Stow per chicagology, 1835 per the hotel chronology. If the later date is right the house is brand new or still going up on the scene date.",
+      "consequence": "This is the one entry on the list that is STANDING in the scene, so the uncertainty is not about whether to build it but about what a visitor is being told. It reaches the card through the phase's own dated claim, which is `inferred` and argues the dispute out in its note.",
+      "original": "western_hotel — built 1834 by W. H. Stow per chicagology, 1835 per the hotel chronology. If the later date is right it is brand new or still going up on the scene date.",
+      "revised": "2026-08-10 — the record settled the dispute on 2026-08-09, adopting 1834 as the builder's own statement about his own building and deliberately declining the phase mechanism, and nothing carried that back here for a day. The line above still reads as though the question were open on the record; it is open in the evidence and closed in the dataset, which is a different thing. The entry stays on the list because the range remains `inferred` and this file's purpose is to stop that being promoted.",
+      "dossier": {
+        "file": "docs/RESEARCH/western_hotel.md",
+        "anchor": "Conflict: built 1834 or 1835?"
+      },
+      "sources": [
+        "chicagology_prefire278",
+        "drloih_hotels"
       ]
     }
   ],

@@ -27,6 +27,22 @@
         "rotation_deg": 0.0,
         "symbolic_location": "Across the North Branch on the Kinzie Street alignment, its west landing near the south-east corner of Kinzie and Canal Streets.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "traced_waterline",
+          "control": "kinzie_canal",
+          "centreline": {
+            "axis": "n",
+            "control_variance_m": 2.93
+          },
+          "ends": {
+            "epoch": "e1834_harbor_cut",
+            "faces": [
+              "west",
+              "east"
+            ]
+          },
+          "note": "A crossing is derived differently from a corner and this states both halves. ALONG the street: the deck's centreline northing comes from the Kinzie and Canal intersection. ACROSS the water: the deck's two ends stand where the traced 1834 waterline crosses that northing — not where the modern banks are — which is what makes this the one footprint in the dataset whose length is measured rather than assumed. THE VARIANCE IS DECLARED, NOT ABSORBED: the deck sits 2.93 m south of the control point recorded in data/traces/street_control.json, because the bridge was placed from a three-node average of the same crossing the georeference had averaged over five. Moving the deck onto the recorded control re-derives the span, and the span is a mesh parameter, so it is a re-bake rather than a bookkeeping edit. See docs/RESEARCH/street_module_1830.md § 3."
+        },
         "sources": [
           "chicagology_kinzie_bridge",
           "chicagology_lastwardance",

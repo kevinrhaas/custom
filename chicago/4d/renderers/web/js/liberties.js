@@ -42,6 +42,18 @@ function aspectLabel(aspect) {
   return String(aspect).replace(/^form\./, '').replace(/_/g, ' ').replace(/\bm\b/, '(m)');
 }
 
+/**
+ * A ground claim's id as a reader would say it.
+ *
+ * The id carries its group for uniqueness — `swales.west_prairie_swale_a` — and
+ * the group is already the sentence the visitor is reading, so the chip shows
+ * the last segment. `bank` and `micro_relief` have only that one.
+ */
+function groundClaimLabel(claim) {
+  const parts = String(claim).split('.');
+  return parts[parts.length - 1].replace(/_/g, ' ');
+}
+
 const SECTION_LABEL = {
   standing: 'whole scene',
   per_subject: 'one subject',
@@ -87,14 +99,24 @@ export function libertyEntryHtml(lib, { names = new Map(), showSubjects = true, 
   // The commit gate reads the same claims against the records in both directions,
   // so a chip here is not a description of the entry — it is the assertion the
   // build refuses to ship without.
+  //
+  // Two domains, and the chip says which. A building's admission is read against
+  // its record; the ground's is read against the epoch's terrain spec, and the
+  // terrain is not a structure — the `domain` on the claim is the document's own
+  // word for that rather than something inferred here from the token's shape.
+  // "the ground" is not suppressed with the subjects, because it names which
+  // half of the dataset the claim lands in and not which building.
   const seen = new Set();
   const covers = (lib.covers || []).map((c) => {
-    const who = showSubjects ? (names.get(c.structure) || c.structure) : '';
-    const what = aspectLabel(c.aspect);
+    const ground = c.domain === 'terrain';
+    const who = ground ? 'the ground' : (showSubjects ? (names.get(c.structure) || c.structure) : '');
+    const what = ground ? groundClaimLabel(c.claim) : aspectLabel(c.aspect);
     const label = `${who} ${what}`.trim();
     if (seen.has(label)) return '';
     seen.add(label);
-    const token = [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
+    const token = ground
+      ? ['terrain', c.epoch, c.claim].join('.')
+      : [c.structure, c.phase, c.aspect].filter(Boolean).join('.');
     return `<span class="lib-covers" title="admitted for ${escapeHtml(token)}">`
       + `${escapeHtml(who)}${who ? ' ' : ''}<em>${escapeHtml(what)}</em></span>`;
   }).join('');
@@ -136,13 +158,22 @@ export function libertiesFor(liberties, subjectId) {
  * the list could not be loaded and pushes the reason onto the loader's problem
  * list, the same one every other integration fault lands on.
  *
+ * `noteMount` takes the document's own account of what this list is. That
+ * sentence is compiled out of `docs/LIBERTIES.md` and was rendered nowhere,
+ * while the panel opened with a hand-written paraphrase of it — two statements
+ * of one thing with nothing holding them together, which is how the panel and
+ * the document start disagreeing about what a liberty is. The markdown's
+ * sentence is the one on screen now, and the paraphrase is gone.
+ *
  * @param {object} o
  * @param {HTMLElement|null} o.mount    where the list goes
+ * @param {HTMLElement|null} [o.noteMount] where the document's own note goes
  * @param {URL} o.dataBase              where data/ lives
  * @param {Map<string, object>} [o.registry]  loaded structures, for subject names
  * @param {string[]} [o.problems]       the shared collector
  */
-export async function mountLiberties({ mount, dataBase, registry = new Map(), problems = [] }) {
+export async function mountLiberties({ mount, noteMount = null, dataBase,
+                                       registry = new Map(), problems = [] }) {
   const names = new Map();
   for (const [id, record] of registry) names.set(id, record?.sidecar?.name || id);
 
@@ -159,7 +190,18 @@ export async function mountLiberties({ mount, dataBase, registry = new Map(), pr
         + 'It is committed at <code>docs/LIBERTIES.md</code>.</p>';
       mount.removeAttribute('aria-busy');
     }
+    if (noteMount) {
+      // Emptied rather than left saying "Loading…", which after a failed fetch
+      // is the panel telling a visitor to wait for something that is not coming.
+      noteMount.textContent = '';
+      noteMount.removeAttribute('aria-busy');
+    }
     return { count: 0, liberties: [], error: String(err.message || err) };
+  }
+
+  if (noteMount) {
+    noteMount.textContent = doc.note || '';
+    noteMount.removeAttribute('aria-busy');
   }
 
   const liberties = Array.isArray(doc.liberties) ? doc.liberties : [];
@@ -168,5 +210,6 @@ export async function mountLiberties({ mount, dataBase, registry = new Map(), pr
       || '<p class="legend-note">No liberties recorded.</p>';
     mount.removeAttribute('aria-busy');
   }
-  return { count: liberties.length, liberties, standard: doc.standard, error: null };
+  return { count: liberties.length, liberties, standard: doc.standard, note: doc.note,
+           error: null };
 }

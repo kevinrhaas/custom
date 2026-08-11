@@ -203,6 +203,83 @@ which are ID selectors — the mobile override that returns the panes to
 scrollport and the sticky CTA silently breaks. That is a real regression the
 suite caught; the comment is in the CSS.
 
+## Where you start and end
+
+The two endpoints were one `<select>` of 81 addresses each — 33 porches and 48
+corners buried in optgroups. They are now an A→B card that draws the trip it
+describes, backed by one picker overlay (`pickOpen(slot)`, `PICK.slot` says
+which endpoint it is writing to).
+
+The picker answers the daunting-list problem three ways: **search** matches the
+labels, which already ARE addresses — porches are house numbers, corners are
+cross streets; **two tabs** make the two kinds of standing-place explicit
+instead of hiding them in optgroups; and a **mini-map** shows where the
+highlighted place actually is, because a list of 48 corner names tells you
+nothing about which side of the park you'd be on.
+
+That map fits the full **east–west** extent and crops vertically around the
+highlighted place. Fitting the whole neighbourhood renders an unreadable blob —
+the festival is tall and narrow and the strip is wide and short. The avenues
+run north-south, so seeing the full width is the context that means something.
+
+Two traps, both of which bit during the build. The sheet is a flex column, so
+everything that is not the list needs `flex:none` or the map gets crushed to
+nothing. And there is no `--map-road` token — an undefined colour makes SVG
+`stroke` fall back to black, which is invisible on the map ground; the real
+tokens are `--map-major` / `--map-mid` / `--map-minor`.
+
+### Searching a real address
+
+Matching was `label.includes(query)`, which only ever finds a query SHORTER
+than the label. Pasting "2441 Lyndale Ave S, Minneapolis MN 55405" — what a
+phone's autofill hands you — matched nothing, including the porch it names.
+
+`addrTokens()` now tokenises both sides, drops what a festival label never
+carries (unit, city, state, ZIP) and normalises street-type words and ordinals
+(`26th` → `26`). Prefix matching runs in ONE direction and only for tokens of
+three characters or more: allowing the query to be a prefix of the label too
+made "2441" match the "24" in W 24th Street.
+
+### Home is a coordinate, not a place
+
+Home was a PLACES index, on the assumption nobody would need an address outside
+the festival's few blocks. **That was wrong** — people walk to a porchfest from
+home, and home is usually a few streets past the edge of it. The first real
+user's address was four avenues west of anything in the graph.
+
+It is now `{lat, lon, label}` at `pf.home`, and a stored bare integer migrates
+on load. `homeDists()` snaps it onto the street graph and runs one dijkstra,
+adding the straight-line offset at each end — the graph reaches further than
+the porches do, so an address just outside still measures honestly. Two
+corrections live in there: same-edge targets take the direct walk rather than
+routing out to a junction and back, and home-to-itself is pinned to zero
+(it came out as twice its own offset and sorted below its own neighbours).
+
+`isHomePlace(i)` must tolerate `i === -1`, which is a real argument meaning
+"nothing highlighted" — it happens whenever a search matches no festival place.
+
+### The one network call
+
+`geocodeHome()` hits Nominatim, the OpenStreetMap geocoder the map data is
+already credited to. It sends a **cleaned** query via `geocodeQuery()`:
+Nominatim returns *nothing at all* for an address carrying a unit number —
+"2911 James Ave S, Apt 404 Minneapolis MN 55408" finds nothing while the same
+address without the Apt resolves fine — so the unit and the ZIP are stripped
+and a city is appended only when absent.
+
+That one shipped broken and the suite passed, because the mock returned success
+for any query. The mock now mimics the real service and returns nothing for a
+query carrying a unit or a ZIP, so sending raw text again fails the run. **A
+stub that always succeeds tests nothing.** It fires ONLY from an explicit tap on "Set as home",
+exactly once, and the answer is stored as coordinates so it never runs again.
+The zero-network guarantee is about working out your afternoon on a dead tower,
+and it survives a one-off setup step you opt into — planning still never
+touches the network, and the suite counts geocoder hits to prove typing alone
+never causes one.
+
+Home also got its own line in the picker. It was a small house icon on each
+row and went unnoticed by the first person to use it.
+
 ## Units
 
 Distances read in **miles and feet**, pace in **mph** — this is a street

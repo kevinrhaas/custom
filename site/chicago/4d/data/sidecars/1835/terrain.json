@@ -1,0 +1,1009 @@
+{
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "epoch": "e1834_harbor_cut",
+  "scope": "The forks quadrant: the Chicago River main stem, North Branch and South Branch meeting at the datum origin at Wolf Point, and the three divisions of land they separate.",
+  "standard": "No contour survey of the 1835 town site exists. The earliest systematic levels are the 1850s street-grade and Chesbrough sewerage surveys. Every land elevation below is a period narrative statement in feet, back-calculated from grade-raising records, or inferred from geology — so NO land elevation in this spec is better than 'inferred', and the generator refuses to emit a 'documented' confidence for any land vertex. The one documented surface is the water: the pre-reversal river was sluggish and outward-flowing with a near-zero surface gradient, standing at lake level through the whole downtown reach.",
+  "context": [
+    {
+      "label": "Zero",
+      "text": "Z = 0.0 ft at the summer-1835 lake and river water surface"
+    },
+    {
+      "label": "Vertical exaggeration",
+      "text": "1.0 and it stays 1.0 in the data. Total natural relief inside this box is under 6 ft. A vertical-exaggeration control may exist in a renderer, labelled, defaulting off — see docs/LIBERTIES.md L3."
+    },
+    {
+      "label": "The modelled box",
+      "text": "641 m square centred on the datum origin, 2.5 m cells (8.2 ft — inside docs/PLAN.md's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler."
+    },
+    {
+      "label": "Measured relief",
+      "text": "Land in the modelled box runs 0.003 to 4.295 ft above the water surface, and the channel floor reaches -11.714 ft below it. Measured from the committed heightfield, not asserted."
+    }
+  ],
+  "claims": [
+    {
+      "id": "water",
+      "group": "the water surface",
+      "label": "water",
+      "confidence": "documented",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "surface_ft",
+          "value": 0.0,
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 1,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "wikipedia_chicago_river"
+      ],
+      "citations": [
+        {
+          "source_id": "wikipedia_chicago_river",
+          "citation": "\"Chicago River.\" Wikipedia. Paraphrasing Lt. James Strode Swearingen's 1803 description of the river at Fort Dearborn, footnoted to its reprinting in Quaife 1913, and the 1833-37 harbour works after Holland and Andreas.",
+          "url": "https://en.wikipedia.org/wiki/Chicago_River",
+          "archived_url": "https://web.archive.org/web/20260101000000*/https://en.wikipedia.org/wiki/Chicago_River",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "carries_no_document": "Opened and read in full 2026-08-11 (https://en.wikipedia.org/w/index.php?title=Chicago_River&action=raw, HTTP 200). Looked for a transcription of Swearingen's 1803 journal and there is none: the page paraphrases him in one sentence of its own prose and footnotes the reprinting, which is a citation and not a reprinting. Every other passage this project draws on here is the same shape. So this record's rung is a judgement about an encyclopedia article — later scholarship, tier 4 — and the documents behind it have to be fetched on their own terms. Where it sends you: Quaife 1913, pp. 373-377 for Swearingen; Holland, Chicago in Maps (2005), pp. 102-109 and Andreas vol. 1, pp. 234-235 for the harbour works.",
+          "what_it_supplies": [
+            "a finding aid to the 1833-1837 harbour works chronology, after Holland and Andreas",
+            "the footnote that located the primary printing of Swearingen — its most valuable contribution to this project, now discharged into quaife_1913_swearingen"
+          ],
+          "what_it_does_not_supply": [
+            "channel width or depth at the forks",
+            "bank heights at the forks",
+            "any 1835 measurement",
+            "one word of Swearingen's journal — the page paraphrases and footnotes it; the reprinting it names (Quaife 1913, pp. 373-377) was opened 2026-08-11 and is quaife_1913_swearingen, which supersedes this record on every 1803 river figure",
+            "the north bank's height: its '6 ft' is arithmetic on a bounded visual estimate and appears nowhere in the journal",
+            "the two sentences that matter most to this project — the river standing dead behind a sand-stopped mouth, and the banks above being quite low — both of which the paraphrase drops",
+            "any sourced statement of the river's surface gradient: the sluggish-flow sentence the flat water surface rests on carries no footnote of its own"
+          ]
+        }
+      ],
+      "notes": [
+        "The water surface is the plane Z = 0 by the definition of this project's vertical datum, and terrain_gen.py emits it at a literal zero rather than reading this figure. So the mesh says exactly what this value says and does not say it BECAUSE of this value: change the 0.0 here and nothing moves. It is recorded because the datum has to be stated somewhere a reader meets it. The agreement is checked rather than trusted: terrain_inputs.RESTATES holds this figure against water_surface_m in the heightfield the bake wrote, converted from feet, so editing it fails the gate instead of quietly telling a visitor the river stands somewhere the ground does not.",
+        "Flat: the water surface is treated as lake level throughout the downtown reach and the river gradient as zero. WHAT ACTUALLY HOLDS THIS UP IS WEAKER THAN THE GRADE SAYS, and the honest statement of it belongs where a visitor reads the claim. No source read by this project measures the river's surface gradient. The sentence this `documented` rests on is one line of unfootnoted encyclopedia prose about sluggish pre-reversal flow, written in a section about the 1900 reversal. The regrade to `inferred` is queued rather than taken because a confidence is a mesh input and it lands with a Blender bake — docs/ROADMAP.md § S5, docs/STATUS.md § 45. THE PERIOD WITNESS IS DELIBERATELY NOT CITED HERE. Swearingen stood on this bank in August 1803 and wrote that the river was 'dead water' — but in the same clause he gives the cause, 'owing to its being stopped up at the mouth, by the washing of sand, from the lakes', which is the closed-mouth regime this project models as the epoch e1830_natural. This scene is e1834_harbor_cut: the bar is cut and the mouth is open, so his observation describes the condition that was removed. Attaching a tier-1 source to a claim it does not make would be over-grading dressed as a citation. See docs/RESEARCH/swearingen_1803.md § 5."
+      ]
+    },
+    {
+      "id": "reaches.main_stem",
+      "group": "the channel beds",
+      "label": "main_stem",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "anchor_e",
+          "value": 348.7
+        },
+        {
+          "key": "anchor_n",
+          "value": 79.7
+        },
+        {
+          "key": "bed_ft",
+          "value": -12.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 20,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "quaife_1913_swearingen",
+        "wikipedia_chicago_river"
+      ],
+      "citations": [
+        {
+          "source_id": "quaife_1913_swearingen",
+          "citation": "\"Journal of Lieutenant James Strode Swearingen\", printed as Appendix I in Milo Milton Quaife, Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn (Chicago: University of Chicago Press, 1913), pp. 373-377. The Chicago entry, Wednesday 17 August 1803, runs across pp. 376-377.",
+          "url": "https://archive.org/details/chicagooldnorthw00quaiuoft",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "transcribes": [
+            {
+              "work": "Journal of Lieutenant James Strode Swearingen, kept on the march from Detroit to Chicago in temporary command of the company sent to establish the first Fort Dearborn; entry for Wednesday 17 August 1803, the day of arrival",
+              "date": "1803-08-17",
+              "tier": 1,
+              "note": "Carries the only period measurement of the Chicago river this project has: about 30 yards wide and upwards of 18 feet deep at the fort site, a south bank about 8 feet high half a mile above the mouth, the opposite bank lower by not more than two feet BY APPEARANCES, and the banks above quite low. The last of those is the only sentence in it that reaches the modelled quadrant, and it is the one the encyclopedia paraphrase dropped. Also the pre-cut hydraulic regime in the witness's own words — 'dead water, owing to its being stopped up at the mouth, by the washing of sand' — which is why it does not license the flat surface of the 1835 scene: see docs/RESEARCH/swearingen_1803.md."
+            }
+          ],
+          "what_it_supplies": [
+            "channel width and depth at the Fort Dearborn site in August 1803, from a witness standing there",
+            "the height of the south (fort) bank at that point, about 8 feet",
+            "that the north bank was lower, by an estimate made by eye and stated as a maximum of two feet",
+            "that the river above the fort had quite low banks — the only statement here about the reach this project models",
+            "that the pre-cut river was dead water, and the witness's reason for it: the mouth was stopped up by sand washing in from the lake",
+            "the distance from the fort site down to the natural mouth in 1803: half a mile"
+          ],
+          "what_it_does_not_supply": [
+            "any surface gradient, and therefore no evidence for or against a level water surface as a measurement",
+            "any measurement at the forks — every figure here is taken 1.2 miles downstream at the fort site",
+            "any measurement after 1803, and the 1833-34 harbour cut removed the condition the witness gives for the river standing dead",
+            "a bank height for the modelled quadrant: 'quite low' is qualitative and cannot promote a confidence",
+            "the north bank's height as a number — the 6 ft widely quoted from this passage is arithmetic performed on a hedged estimate by later writers, not a figure Swearingen wrote",
+            "any planform: the journal draws nothing and no geometry is traced from it"
+          ]
+        },
+        {
+          "source_id": "wikipedia_chicago_river",
+          "citation": "\"Chicago River.\" Wikipedia. Paraphrasing Lt. James Strode Swearingen's 1803 description of the river at Fort Dearborn, footnoted to its reprinting in Quaife 1913, and the 1833-37 harbour works after Holland and Andreas.",
+          "url": "https://en.wikipedia.org/wiki/Chicago_River",
+          "archived_url": "https://web.archive.org/web/20260101000000*/https://en.wikipedia.org/wiki/Chicago_River",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "carries_no_document": "Opened and read in full 2026-08-11 (https://en.wikipedia.org/w/index.php?title=Chicago_River&action=raw, HTTP 200). Looked for a transcription of Swearingen's 1803 journal and there is none: the page paraphrases him in one sentence of its own prose and footnotes the reprinting, which is a citation and not a reprinting. Every other passage this project draws on here is the same shape. So this record's rung is a judgement about an encyclopedia article — later scholarship, tier 4 — and the documents behind it have to be fetched on their own terms. Where it sends you: Quaife 1913, pp. 373-377 for Swearingen; Holland, Chicago in Maps (2005), pp. 102-109 and Andreas vol. 1, pp. 234-235 for the harbour works.",
+          "what_it_supplies": [
+            "a finding aid to the 1833-1837 harbour works chronology, after Holland and Andreas",
+            "the footnote that located the primary printing of Swearingen — its most valuable contribution to this project, now discharged into quaife_1913_swearingen"
+          ],
+          "what_it_does_not_supply": [
+            "channel width or depth at the forks",
+            "bank heights at the forks",
+            "any 1835 measurement",
+            "one word of Swearingen's journal — the page paraphrases and footnotes it; the reprinting it names (Quaife 1913, pp. 373-377) was opened 2026-08-11 and is quaife_1913_swearingen, which supersedes this record on every 1803 river figure",
+            "the north bank's height: its '6 ft' is arithmetic on a bounded visual estimate and appears nowhere in the journal",
+            "the two sentences that matter most to this project — the river standing dead behind a sand-stopped mouth, and the banks above being quite low — both of which the paraphrase drops",
+            "any sourced statement of the river's surface gradient: the sluggish-flow sentence the flat water surface rests on carries no footnote of its own"
+          ]
+        }
+      ],
+      "notes": [
+        "Dossier zone 20 gives the main-stem thalweg at -12 to -18 ft, with the -18 ft pool at the fort bend 1.2 miles downstream. The shallow end of that range is used here because the forks are the upstream end of the reach. Swearingen's 1803 sounding of 'upwards of 18 feet' is a measurement AT THE FORT and is not carried up to the forks. As of 2026-08-11 that sounding is cited from the journal itself rather than from a paraphrase of it: quaife_1913_swearingen, Appendix I, pp. 376-377. The note above described a source this block did not cite, which is the fault it was written to warn about, one level down."
+      ]
+    },
+    {
+      "id": "reaches.north_branch",
+      "group": "the channel beds",
+      "label": "north_branch",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "anchor_e",
+          "value": -85.3
+        },
+        {
+          "key": "anchor_n",
+          "value": 244.6
+        },
+        {
+          "key": "bed_ft",
+          "value": -8.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 21,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "Dossier zone 21 gives -6 to -10 ft for the branch beds above the forks, itself inferred. Midpoint taken. No sounding of either branch was located."
+      ]
+    },
+    {
+      "id": "reaches.south_branch",
+      "group": "the channel beds",
+      "label": "south_branch",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "anchor_e",
+          "value": 8.3
+        },
+        {
+          "key": "anchor_n",
+          "value": -217.2
+        },
+        {
+          "key": "bed_ft",
+          "value": -8.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 21,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "As north_branch."
+      ]
+    },
+    {
+      "id": "channel_profile",
+      "group": "the channel cross-section",
+      "label": "channel_profile",
+      "confidence": "conjectural",
+      "confidence_key": "bed_confidence",
+      "fields": [
+        {
+          "key": "shape",
+          "value": "depth = bed_ft * (1 - exp(-d_in / e_fold_m)), d_in = distance from the waterline into the channel",
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "e_fold_m",
+          "value": 9.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The e-folding distance is the river's. A watercourse may override it: the north-side slough is 7 m wide, and a 9 m e-fold would make a 1 ft channel 4 in deep and invisible.",
+        "The formula is written out here for a reader and implemented in terrain_gen.py, which does not read the string. The mesh does what this line says, and what holds the two together is one step weaker than a comparison: prose cannot be compared to Python, so terrain_inputs.RESTATES names the generator's own line and the gate requires it to still be there, exactly once, with comments stripped. A reformat fails it, which is the right way round — the sentence and the line are meant to move together.",
+        "The cross-section shape is a smooth approach to the reach bed and carries no evidence at all — no cross-section of the Chicago River at the forks exists for any date before dredging. It is under water and invisible; it is here so that the surface reaches Z=0 exactly at the traced bank line and so a boat draught question has an answer. Marked conjectural in the confidence channel."
+      ]
+    },
+    {
+      "id": "bank",
+      "group": "the bank",
+      "label": "bank",
+      "confidence": "conjectural",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "face_m",
+          "value": 6.0
+        },
+        {
+          "key": "profile",
+          "value": "ease_out_quadratic: h = level * (1 - (1 - d/face)^2), steepest at the waterline",
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 13,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "quaife_1913_swearingen"
+      ],
+      "citations": [
+        {
+          "source_id": "quaife_1913_swearingen",
+          "citation": "\"Journal of Lieutenant James Strode Swearingen\", printed as Appendix I in Milo Milton Quaife, Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn (Chicago: University of Chicago Press, 1913), pp. 373-377. The Chicago entry, Wednesday 17 August 1803, runs across pp. 376-377.",
+          "url": "https://archive.org/details/chicagooldnorthw00quaiuoft",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "transcribes": [
+            {
+              "work": "Journal of Lieutenant James Strode Swearingen, kept on the march from Detroit to Chicago in temporary command of the company sent to establish the first Fort Dearborn; entry for Wednesday 17 August 1803, the day of arrival",
+              "date": "1803-08-17",
+              "tier": 1,
+              "note": "Carries the only period measurement of the Chicago river this project has: about 30 yards wide and upwards of 18 feet deep at the fort site, a south bank about 8 feet high half a mile above the mouth, the opposite bank lower by not more than two feet BY APPEARANCES, and the banks above quite low. The last of those is the only sentence in it that reaches the modelled quadrant, and it is the one the encyclopedia paraphrase dropped. Also the pre-cut hydraulic regime in the witness's own words — 'dead water, owing to its being stopped up at the mouth, by the washing of sand' — which is why it does not license the flat surface of the 1835 scene: see docs/RESEARCH/swearingen_1803.md."
+            }
+          ],
+          "what_it_supplies": [
+            "channel width and depth at the Fort Dearborn site in August 1803, from a witness standing there",
+            "the height of the south (fort) bank at that point, about 8 feet",
+            "that the north bank was lower, by an estimate made by eye and stated as a maximum of two feet",
+            "that the river above the fort had quite low banks — the only statement here about the reach this project models",
+            "that the pre-cut river was dead water, and the witness's reason for it: the mouth was stopped up by sand washing in from the lake",
+            "the distance from the fort site down to the natural mouth in 1803: half a mile"
+          ],
+          "what_it_does_not_supply": [
+            "any surface gradient, and therefore no evidence for or against a level water surface as a measurement",
+            "any measurement at the forks — every figure here is taken 1.2 miles downstream at the fort site",
+            "any measurement after 1803, and the 1833-34 harbour cut removed the condition the witness gives for the river standing dead",
+            "a bank height for the modelled quadrant: 'quite low' is qualitative and cannot promote a confidence",
+            "the north bank's height as a number — the 6 ft widely quoted from this passage is arithmetic performed on a hedged estimate by later writers, not a figure Swearingen wrote",
+            "any planform: the journal draws nothing and no geometry is traced from it"
+          ]
+        }
+      ],
+      "notes": [
+        "Horizontal distance over which the ground rises from the waterline to the local near-river level. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise; no source gives a bank profile at the forks. The resulting crest sits at each division's near_ft below, which is what implements dossier zone 13 (+2 to +4 ft at the forks). ONE PERIOD WITNESS BEARS ON THIS AND HE IS CITED FOR EXACTLY WHAT HE SAYS. Swearingen, arriving 17 August 1803, measured the fort bank at about 8 ft and then wrote of the reach upstream — the reach this box models — that 'the banks above are quite low'. That is corroboration of a low bank from a man who was looking at it, and it is the only sentence in his Chicago passage that reaches this quadrant. It carries no number, so it cannot promote the grade and does not: this stays conjectural, because the 6 m profile and the 2-4 ft rise are still ours. Added 2026-08-11; before that this block cited nothing at all. See docs/RESEARCH/swearingen_1803.md § 5.",
+        "As with the channel section: the ease-out is implemented in terrain_gen.py rather than read from this string, and the ramp line it describes is named in terrain_inputs.RESTATES and required to still be in the generator. face_m is the figure that shapes the bank, and it is read."
+      ]
+    },
+    {
+      "id": "divisions.south_division",
+      "group": "the three divisions",
+      "label": "South Division — the plain west of State Street",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bank_run",
+          "value": "south_division_shore"
+        },
+        {
+          "key": "near_ft",
+          "value": 2.4
+        },
+        {
+          "key": "far_ft",
+          "value": 2.9
+        },
+        {
+          "key": "far_m",
+          "value": 300.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 9,
+          "mesh": "record_only"
+        },
+        {
+          "key": "range_ft",
+          "value": [
+            2.0,
+            3.0
+          ],
+          "mesh": "record_only"
+        },
+        {
+          "key": "bank_crest_ft",
+          "value": 2.4,
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "bank_crest_dossier_zone",
+          "value": 13,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "what_it_supplies": [
+            "ground elevation of the plain west of State Street relative to the river",
+            "ground elevation of the ridge belt east of State Street relative to the lake",
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
+          ],
+          "what_it_does_not_supply": [
+            "any contour or spot level",
+            "bank heights at the forks",
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
+          ]
+        }
+      ],
+      "notes": [
+        "The plain west of State Street 'sloped down to the river in a level plain elevated only two to three feet above the river'. State Street is roughly 840 m east of the origin, so the whole South Division inside this box is that plain. The rise from 2.4 ft at the bank to 2.9 ft at 300 m inland is 0.15 ft of fall across a 300 ft chord — inside the dossier's flatness rule of 0.5 ft per 300-ft block. Marked inferred, not documented: the source is a secondary synthesis that gives no citation for the figure and no survey underlies it.",
+        "range_ft is the dossier's stated span and near_ft/far_ft are the figures picked out of it, which are what the generator reads. bank_crest_ft restates the crest the bank ramp arrives at: the ramp multiplies the division level and reaches 1.0 at the top of the face, so the crest IS near_ft. The two carried the same number by hand and this note used to say that nothing checked they still would. Something does now — the figure is declared restated_in_code and terrain_inputs.RESTATES names near_ft as the half it has to match."
+      ]
+    },
+    {
+      "id": "divisions.north_division",
+      "group": "the three divisions",
+      "label": "North Division — timbered, better-drained sandy ground",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bank_run",
+          "value": "north_division_shore"
+        },
+        {
+          "key": "near_ft",
+          "value": 3.6
+        },
+        {
+          "key": "far_ft",
+          "value": 4.6
+        },
+        {
+          "key": "far_m",
+          "value": 300.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 19,
+          "mesh": "record_only"
+        },
+        {
+          "key": "range_ft",
+          "value": [
+            4.0,
+            7.0
+          ],
+          "mesh": "record_only"
+        },
+        {
+          "key": "bank_crest_ft",
+          "value": 3.6,
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "bank_crest_dossier_zone",
+          "value": 13,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Zone 19 gives the North Division +4 to +7 ft, rising toward the lake; zone 13 gives the bank crest at the forks +2 to +4 ft and says the ground rises slightly on the timbered north side. Reconciled as a 3.6 ft bank crest rising to 4.6 ft at 300 m inland — 0.31 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The North Side is documented as carrying a thrifty heavy growth of timber, which is consistent with better-drained sandy ground.",
+        "As south_division: the span is the dossier's, the two picked figures are the build instruction, and the crest restates near_ft — which is now a declaration the gate holds the pair to rather than a sentence."
+      ]
+    },
+    {
+      "id": "divisions.west_division",
+      "group": "the three divisions",
+      "label": "West Division — Wolf Point and the open wet prairie",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "bank_run",
+          "value": "west_division_shore"
+        },
+        {
+          "key": "near_ft",
+          "value": 3.2
+        },
+        {
+          "key": "far_ft",
+          "value": 4.3
+        },
+        {
+          "key": "far_m",
+          "value": 300.0
+        },
+        {
+          "key": "dossier_zone",
+          "value": 18,
+          "mesh": "record_only"
+        },
+        {
+          "key": "range_ft",
+          "value": [
+            3.0,
+            6.0
+          ],
+          "mesh": "record_only"
+        },
+        {
+          "key": "bank_crest_ft",
+          "value": 3.2,
+          "mesh": "restated_in_code"
+        },
+        {
+          "key": "bank_crest_dossier_zone",
+          "value": 13,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Zone 18 gives the West Division wet prairie +3 to +6 ft with 1-2 ft slough swales; zone 13 caps the bank at the point at +2 to +4 ft. Reconciled as 3.2 ft at the bank rising to 4.3 ft at 300 m — 0.34 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The West Side is documented as open prairie entirely free from timber.",
+        "As south_division."
+      ]
+    },
+    {
+      "id": "marsh_strips.south_division_marsh",
+      "group": "the marshy shore",
+      "label": "south_division_marsh",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "applies_to",
+          "value": "south_division"
+        },
+        {
+          "key": "width_m",
+          "value": 30.0
+        },
+        {
+          "key": "blend_m",
+          "value": 18.0
+        },
+        {
+          "key": "level_ft",
+          "value": 1.25
+        },
+        {
+          "key": "range_ft",
+          "value": [
+            0.5,
+            2.0
+          ],
+          "mesh": "record_only"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 11,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "The South Division was 'generally low and marshy ground', with 'a strip along the river shore that was still more marshy, where land and water mingled, covered with tall grass, reeds and rushes'. Dossier zone 11 puts that strip 40-120 ft back from the bank at +0.5 to +2.0 ft. 30 m (98 ft) at +1.25 ft is the middle of both ranges. Applied only to the South Division shore because that is the division the source names; the north and west shores get the plain bank profile instead. This is what makes the bank a crest rather than a ramp: the ground behind it is LOWER than the bank top, which is the natural-levee form a low alluvial bank takes."
+      ]
+    },
+    {
+      "id": "swales.west_prairie_swale_a",
+      "group": "the prairie swales",
+      "label": "west_prairie_swale_a",
+      "confidence": "conjectural",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 30.0
+        },
+        {
+          "key": "depth_ft",
+          "value": 0.75
+        },
+        {
+          "key": "dossier_zone",
+          "value": 18,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "Zone 18 says the West Division wet prairie carried 1-2 ft slough swales. That they existed is inferred from the dossier; WHERE they ran is not attested anywhere and this alignment is invented. Kept shallow (0.75 ft over a 30 m half-width, about 2.3 ft per 300 ft) and recorded as a liberty in docs/LIBERTIES.md."
+      ]
+    },
+    {
+      "id": "swales.west_prairie_swale_b",
+      "group": "the prairie swales",
+      "label": "west_prairie_swale_b",
+      "confidence": "conjectural",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "half_width_m",
+          "value": 26.0
+        },
+        {
+          "key": "depth_ft",
+          "value": 0.6
+        },
+        {
+          "key": "dossier_zone",
+          "value": 18,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "As west_prairie_swale_a."
+      ]
+    },
+    {
+      "id": "watercourses.north_side_slough",
+      "group": "the watercourses",
+      "label": "north_side_slough",
+      "confidence": "conjectural",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "from",
+          "value": "hydrology.geojson",
+          "mesh": "record_only"
+        },
+        {
+          "key": "bed_ft",
+          "value": -1.0
+        },
+        {
+          "key": "e_fold_m",
+          "value": 1.2
+        }
+      ],
+      "sources": [
+        "wright_1834"
+      ],
+      "citations": [
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ],
+      "notes": [
+        "Existence and course documented by Wright 1834; width measured off the drafted band; depth invented. A shallow, still, connected backwater is the form the sources describe for sloughs off the Main Branch: 'marshy, wet areas with little current'."
+      ]
+    },
+    {
+      "id": "micro_relief",
+      "group": "the surface texture",
+      "label": "micro_relief",
+      "confidence": "conjectural",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "amplitude_ft",
+          "value": 0.1
+        },
+        {
+          "key": "wavelengths_m",
+          "value": [
+            70.0,
+            38.0
+          ]
+        },
+        {
+          "key": "seed",
+          "value": 18350701
+        },
+        {
+          "key": "applies_to",
+          "value": "land above the waterline, faded out across the bank face",
+          "mesh": "restated_in_code"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "Where the noise applies is decided in terrain_gen.py — it multiplies the bank ramp, which is zero at the waterline — and this line describes that rather than driving it. terrain_inputs.RESTATES names the assembly line that does it, so moving the noise outside the ramp fails the gate rather than leaving this sentence describing ground the model no longer has.",
+        "Two octaves of value noise at +/- 0.10 ft (30 mm) — below the 0.25 ft the dossier asks the heightmap to be quantised at, and far below the resolution of any statement in the record. It exists so that a surface the sources describe as dead flat still reads as ground rather than as a rendering error, and so that walking gives motion parallax. It is a texture, not a claim. Set amplitude_ft to 0 for a perfectly flat plain."
+      ]
+    },
+    {
+      "id": "surface_materials.south_division",
+      "group": "what the ground is made of",
+      "label": "south_division",
+      "confidence": "documented",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "material",
+          "value": "black_loam_over_quicksand_over_blue_clay",
+          "mesh": "simplified"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 9,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "what_it_supplies": [
+            "ground elevation of the plain west of State Street relative to the river",
+            "ground elevation of the ridge belt east of State Street relative to the lake",
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
+          ],
+          "what_it_does_not_supply": [
+            "any contour or spot level",
+            "bank heights at the forks",
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
+          ]
+        }
+      ],
+      "notes": [
+        "Nothing in the model is made of this. The ground mesh carries one surface for the whole box — the renderer's earth colour — so the profile a visitor reads here, under the strongest confidence grade this project awards, is a statement about the site and not a description of the surface in front of them. What a soil section would change if it were built is the colour and texture of the ground, and neither is driven by this value.",
+        "The chip above this line is stronger than the evidence under it, and this sentence is the correction arriving ahead of the grade. The page was opened at its own locator on 2026-08-11 (docs/RESEARCH/surface_materials_south_division.md) and it prints no footnote, endnote or reference of any kind — its whole apparatus is a closing 'Further reading' line. Split by who says what: the ORDER — saturated sand lying on impervious clay, and a ground that will not drain in either direction — is attested by a named witness the page block-quotes, John Mills Van Osdel, Chicago's first architect, from having sunk building posts through the one to reach the other. The top layer of black loam and all three thicknesses, which are the only quantities here, are the 2022 author's own voice with nobody behind them. So a witness carries a third of this claim, the page will not say which document he is being reprinted from, and the rest rests on later scholarship alone. This is over-graded and the value is to become inferred; it did not move in the slice that found it because a confidence is an input to the ground mesh, which re-stales the committed GLB and needs a Blender bake — the same queue ground `water` is in, and the two land together. The two sibling entries carrying this profile north and west of the river are already inferred, on a weaker argument, which leaves the most scrutinised zone graded highest until the bake lands."
+      ]
+    },
+    {
+      "id": "surface_materials.north_division",
+      "group": "what the ground is made of",
+      "label": "north_division",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "material",
+          "value": "black_loam_over_quicksand_over_blue_clay",
+          "mesh": "simplified"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 19,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "what_it_supplies": [
+            "ground elevation of the plain west of State Street relative to the river",
+            "ground elevation of the ridge belt east of State Street relative to the lake",
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
+          ],
+          "what_it_does_not_supply": [
+            "any contour or spot level",
+            "bank heights at the forks",
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
+          ]
+        }
+      ],
+      "notes": [
+        "As south_division: one earth colour covers the whole box and no surface material is modelled.",
+        "The profile itself — about a foot of black loam over three to four feet of saturated fine sand over eight to twelve feet of impervious blue clay — is stated for the BUSINESS DISTRICT, which is the South Division plain south of the main stem. Carrying it across the river is the dossier's own grouping of zones 8, 9, 18 and 19 under one entry (docs/research/01-terrain-hydrology.md, surface-material table), not a second observation, so this is inferred where the south_division entry is documented. Against it: the same dossier describes the North Division (zone 19) as timbered, better-drained sandy ground, which is not what the loam-over-quicksand-over-clay section describes. Nothing reached measures a section here."
+      ]
+    },
+    {
+      "id": "surface_materials.west_division",
+      "group": "what the ground is made of",
+      "label": "west_division",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "material",
+          "value": "black_loam_over_quicksand_over_blue_clay",
+          "mesh": "simplified"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 18,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicago_architecture_history_115"
+      ],
+      "citations": [
+        {
+          "source_id": "chicago_architecture_history_115",
+          "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
+          "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "tier": 4,
+          "tier_label": "later scholarship",
+          "what_it_supplies": [
+            "ground elevation of the plain west of State Street relative to the river",
+            "ground elevation of the ridge belt east of State Street relative to the lake",
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
+          ],
+          "what_it_does_not_supply": [
+            "any contour or spot level",
+            "bank heights at the forks",
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
+          ]
+        }
+      ],
+      "notes": [
+        "As south_division: one earth colour covers the whole box and no surface material is modelled.",
+        "Inferred by the same extension as the north_division entry: the profile is stated for the business district and the dossier's surface-material table groups zones 8, 9, 18 and 19 under it. Two things weaken it here and are recorded rather than resolved. The dossier's own stratigraphic list maps the wet prairie west of the South Branch to the Equality Formation (lacustrine silt and clay), which is a different surface unit from the loam-over-sand-over-clay section; and the West Division is the one zone in this box whose ground is described as wet prairie carrying slough swales rather than as town ground. The grouping is followed because it is the statement that assigns zones, and the disagreement inside one report is the reason this is not documented."
+      ]
+    },
+    {
+      "id": "surface_materials.south_division_marsh",
+      "group": "what the ground is made of",
+      "label": "south_division_marsh",
+      "confidence": "documented",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "material",
+          "value": "peat_muck_with_sedge_reeds_rushes",
+          "mesh": "simplified"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 11,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "citations": [
+        {
+          "source_id": "chicagology_prefire273",
+          "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
+          "url": "https://chicagology.com/prefire/prefire273/",
+          "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+          "tier": 2,
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "The marsh strip IS in the ground — it is the dip behind the bank crest — but what it is made of is not: peat, sedge, reeds and rushes are the flora and surface parcel (S6), and the strip renders in the same earth as the plain behind it."
+      ]
+    },
+    {
+      "id": "surface_materials.channel",
+      "group": "what the ground is made of",
+      "label": "channel",
+      "confidence": "inferred",
+      "confidence_key": "confidence",
+      "fields": [
+        {
+          "key": "material",
+          "value": "cahokia_alluvium_silt",
+          "mesh": "simplified"
+        },
+        {
+          "key": "dossier_zone",
+          "value": 20,
+          "mesh": "record_only"
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "The note below has said since this entry was written that nothing in the renderer is coloured from it. That sentence is a declaration now, checked against what the generator reads, and it holds for the other four entries too — which no sentence said.",
+        "Nobody in this project has seen this bed and no source record here describes it. The Cahokia Alluvium is the unit modern geological mapping puts along the river margins of this region, and the dossier assigns it to the channel zones (20-21 and the abandoned southward channel) on that basis, tagging the assignment inferred itself (docs/research/01-terrain-hydrology.md, surface-material table; the mapping it rests on is a modern geology reference and is not among data/sources/). It is a formation name carried onto this reach by regional mapping, not an observation of the Chicago River bed in 1835 — which is why it is inferred and not documented, and why nothing in the renderer is coloured from it."
+      ]
+    },
+    {
+      "id": "datum.lake_stage",
+      "group": "the vertical datum",
+      "label": "How high the 1835 water surface stood",
+      "confidence": "conjectural",
+      "confidence_key": "lake_stage_confidence",
+      "fields": [
+        {
+          "key": "export_offset_ft_asl",
+          "value": 580.0
+        }
+      ],
+      "sources": [],
+      "citations": [],
+      "notes": [
+        "No 1835 Lake Michigan stage record located. The mid-1830s fall in a high-water phase; 580 +/- 1.5 ft ASL is the working assumption. Check NOAA/GLERL historical Michigan-Huron reconstructions to narrow it.",
+        "Z = 0.0 ft at the summer-1835 lake and river water surface"
+      ]
+    }
+  ],
+  "not_modelled": [
+    {
+      "dossier_zone": 3,
+      "why": "the lakeshore sand-ridge belt is on the Michigan Avenue line, about 1.4 km east of the origin"
+    },
+    {
+      "dossier_zone": 6,
+      "why": "the Fort Dearborn mound is about 1.2 km east"
+    },
+    {
+      "dossier_zone": 10,
+      "why": "the State Street break-of-slope is about 840 m east"
+    },
+    {
+      "dossier_zone": 14,
+      "why": "the slough from the public-square pond enters the river at the foot of State Street, about 840 m east"
+    },
+    {
+      "dossier_zone": 15,
+      "why": "the public-square pond is at Randolph/Washington and Clark/LaSalle, about 550 m east"
+    },
+    {
+      "dossier_zone": 16,
+      "why": "the Frog Pond at Lake and LaSalle is about 480 m east"
+    },
+    {
+      "dossier_zone": 17,
+      "why": "the Wells Street marsh is about 600 m east"
+    },
+    {
+      "dossier_zone": 23,
+      "why": "the 1834 cut through the bar is at the river mouth, about 1.6 km east"
+    }
+  ]
+}

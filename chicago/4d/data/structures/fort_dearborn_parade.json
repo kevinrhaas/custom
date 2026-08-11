@@ -29,7 +29,11 @@
           "harrison_1830_river_mouth",
           "wentworth_1881_fort_dearborn"
         ],
-        "note": "The rectangle the 1830 plan leaves between the four ranges, read at the scale derived on fort_dearborn_palisade and hung on the fort centre. Fergus's 1850 arrangement agrees with the plan on which side is which: 'The parade-ground was between the commandant's, officers', and sutler's quarters on the west, and the building where the artillery was housed, the soldier's barracks, and the storehouse on the east.' Rotation is the fort's."
+        "note": "The rectangle the 1830 plan leaves between the four ranges, read at the scale derived on fort_dearborn_palisade and hung on the fort centre. Fergus's 1850 arrangement agrees with the plan on which side is which: 'The parade-ground was between the commandant's, officers', and sutler's quarters on the west, and the building where the artillery was housed, the soldier's barracks, and the storehouse on the east.' Rotation is the fort's.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
       },
       "footprint": {
         "polygon": [

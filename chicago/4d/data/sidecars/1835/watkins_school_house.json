@@ -10,11 +10,23 @@
   "asset": "gltf/watkins_school_house__house_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-01-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "WHAT IS DATED IS A TEACHER'S MOVE, NOT A BUILDING. Andreas has John Watkins employed by Cols. Hamilton and Owen in the spring of 1833 to teach near the old Indian agency-house, and 'later in a house on Michigan Street between Cass and Rush' (docs/research/04-structures-south.md section 9 and docs/research/03-structures-north.md, from Andreas I scan p. 305). The house therefore stood in 1833; how much earlier it was built, and how long it stood, is unattested. 1833-01-01 is the first day of the attested year and is a bound. 1835-12-31 IS AN INFERENCE ABOUT PERSISTENCE, NOT AN ATTESTATION - a house two years old in a town whose population was doubling was not pulled down - and the project's brief for this record states plainly that the building's 1835 status is unattested. If it had gone by the scene date, nothing in the sources would show it."
+  },
+  "change_note": "The house on the north side of Michigan Street between Cass and Rush that John Watkins used as his second school in 1833. It is modelled as a house, because a house is what it was: nothing about it was built for teaching and no source describes a school-room, a bench or a desk in it. Whether it was still standing, and whether anyone was still teaching in it, on 1835-07-01 is unattested.",
   "placement": {
     "local_e": 997.89,
     "local_n": 386.71,
     "rotation_deg": 180.0,
     "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "INVENTED WITHIN AN ATTESTED BLOCK FACE. Andreas gives a street, two cross streets and, per this project's dossier, the north side - which is a block face about 110 m long and no more. NO SOURCE PLACES THIS HOUSE ON A LOT, so the coordinate is the middle of that face and the confidence says so. METHOD, and the street names have all changed: Michigan Street on the north side is today's Hubbard Street, Cass Street is today's North Wabash Avenue, and Rush Street is unchanged - the equivalences this project's own ground control uses in data/traces/gcp/wright_1834_gcps.json, where GCP G6 is 'Cass St & Illinois St ... Cass is today's North Wabash Avenue'. The modern Hubbard Street / North Rush Street intersection centre was read from OpenStreetMap at EPSG:26916 E 448121.71, N 4637764.21 (OSM node 261149251, fetched 2026-08-11), which fixes both Rush's line and Michigan Street's; Cass/Wabash's line comes from the committed GCP G6 at E 448010.33. The mid-point of the block is E 448066.02; the north frontage line is 12.2 m north of Michigan Street's centre, half of an 80 ft street per Hathaway 1834; the footprint is centred on the block face and its south face set on that frontage. UNCERTAINTY: about 20 m from the georeference, plus about 55 m either way ALONG the block from the mid-block choice, plus an unknown setback. Facade bearing 180, due south onto Michigan Street, inferred from the street rather than from any statement. THIS IS A NORTH-SIDE BUILDING and is well outside the modelled terrain box; it stands on ground this project has not built.",
     "symbolic_location": "North side of Michigan Street between Cass Street and Rush Street (today the north side of West Hubbard Street between North Wabash Avenue and North Rush Street), on the north bank in Kinzie's Addition; fronting south onto Michigan.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +51,9 @@
         6.096
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION, A MATERIAL OR A FORM - Andreas says 'a house' and nothing else. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule: an ordinary two-room house of the period, large enough that a schoolmaster could take a class in one room of it, which is the only functional constraint the evidence supplies. Everything about the shape is this record's."
   },
   "attributes": {
     "stories": {
@@ -105,7 +119,8 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     }
   ],
   "research_note": "THE THINNEST RECORD IN THIS PARCEL, AND IT IS THIN IN A SPECIFIC WAY: what is attested is a SENTENCE ABOUT A TEACHER'S MOVEMENTS - Watkins taught 'later in a house on Michigan Street between Cass and Rush' - and everything else, including whether the building existed two years later, is inference. It is built rather than omitted under the working policy for this parcel: the existence of the building in 1833 is documented, its street is documented, and an absent building is invisible while a conjectural one is legible and correctable. THE THREE THINGS A LATER SOURCE COULD LIFT INDEPENDENTLY are the material (see construction - a single word would move this record to a different archetype), the lot within the block face, and the 1835 status. THE STREET NAMES ARE ALL CHANGED and are worth restating because getting one wrong moves the building a block: Michigan Street on the north side is today's Hubbard Street - not Michigan Avenue, which is a different street on the other side of the river and was the reservation's lakeward frame; Cass Street is today's North Wabash Avenue; Rush Street is unchanged. This project's own ground control records the Cass/Wabash equivalence. DO NOT CONFLATE THIS BUILDING WITH THE OTHER TWO SCHOOLS ON THE NORTH BANK: Watkins' FIRST school, in the spring of 1833, was near the old Indian agency-house at the foot of State Street, which is Cobweb Castle's neighbourhood and about 300 m west of here; and the public school of 1833 stood on the river bank just east of Clark Street in the building erected by Cols. Hamilton and Owen. Both are separate structures and neither is this one. A NOTE ON SCOPE, as walker_meeting_house carries one: Watkins was employed by Col. Owen, the Indian agent, and his first school was beside the agency house in the year before the final removal; interpretive text about this building sits close to the project's standing constraint on Indigenous history even though the structure itself is a settler building. review_required is set false, consistent with walker_meeting_house, but the call is worth a second opinion. WHAT WOULD UPGRADE IT: Andreas vol. 1 at page-image level around scan p. 305; the 1833-35 Chicago Democrat, which carried school advertisements and would name the house or its owner; and the Kinzie's Addition plat and its early conveyances, which would give the lot.",

@@ -23,6 +23,14 @@ matches those claims against the records in both directions. The aspect may be a
 drawn one (`footprint`, `position`) or any attribute of the building's form
 (`form.roof_type`) — anything a record states without evidence.
 
+The ground admits to its inventions in a namespace of its own,
+`terrain.<epoch>.<claim>`, because the terrain is not a structure and squeezing
+it into the structures' grammar would misname it in the one file whose whole job
+is calling things what they are. Epoch is part of the token rather than dropped:
+`docs/EPOCHS.md` versions terrain per epoch, so a later year gets its own
+shoreline and its own inventions, and an admission about the 1834 bank must not
+silently discharge whatever an 1830 one makes up.
+
 Deliberately NOT a markdown renderer. It reads the one shape this document has —
 `### L<n> — <title>` followed by `**Label:** text` fields — and carries the field
 text through verbatim, markdown and all, for the renderer to display. Anything it
@@ -69,6 +77,22 @@ COVER_TOKEN = re.compile(
     r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.("
     + "|".join(COVER_ASPECTS) + r"|" + FORM_ASPECT + r")$")
 
+# "**Covers:** `terrain.e1834_harbor_cut.bank`" — the ground's own namespace.
+#
+# The terrain invents as freely as a record does — a bank profile nobody drew, a
+# channel section whose note says it carries no evidence at all — and until this
+# existed the coverage gate read `data/structures/` and could not see any of it,
+# so those admissions were owed by a person rather than demanded by a check.
+#
+# `terrain` is a reserved first segment rather than a structure id, and the claim
+# is the id `compile_scene.ground_claims` gives the block — one segment for a
+# whole block (`bank`, `micro_relief`) and two for a member of a list of them
+# (`swales.west_prairie_swale_a`). The epoch sits between the two because
+# `docs/EPOCHS.md` versions the ground: a second scene gets a second terrain with
+# its own inventions, and one admission must not discharge both.
+TERRAIN_NS = "terrain"
+TERRAIN_TOKEN = re.compile(r"^terrain\.([a-z0-9_]+)\.(.+)$")
+
 SECTION_KEY = {
     "standing liberties": "standing",
     "per-subject liberties": "per_subject",
@@ -81,32 +105,67 @@ def _clean(text: str) -> str:
     return re.sub(r"\s*\n\s*", " ", text).strip().rstrip()
 
 
-def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
-    """`structure_id[.phase_id].aspect` tokens -> the claims this entry makes.
+def claim_sort_key(c: dict) -> tuple:
+    """A total order over both domains, so the derived file is deterministic."""
+    if c.get("domain") == TERRAIN_NS:
+        return (TERRAIN_NS, c["epoch"], "", c["claim"])
+    return ("structure", c["structure"], c["phase"] or "", c["aspect"])
 
-    The aspect is the trailing segment (or `form.` plus one, for the open half of
-    the vocabulary), so a two-segment token and a three-segment one are told apart
+
+def claim_token(c: dict) -> str:
+    """A claim back in the text the document wrote it as.
+
+    One function, so an error message quoting a token and the markdown that has
+    to be edited to satisfy it cannot come to disagree about the grammar.
+    """
+    if c.get("domain") == TERRAIN_NS:
+        return f"{TERRAIN_NS}.{c['epoch']}.{c['claim']}"
+    return ".".join(t for t in (c["structure"], c["phase"], c["aspect"]) if t)
+
+
+def parse_covers(text: str, lid: str, problems: list[str]) -> list[dict]:
+    """`Covers:` tokens -> the claims this entry makes, in one of two domains.
+
+    For a structure the token is `structure_id[.phase_id].aspect`. The aspect is
+    the trailing segment (or `form.` plus one, for the open half of the
+    vocabulary), so a two-segment token and a three-segment one are told apart
     without guessing: `walker_meeting_house.position` covers whichever phases drew
     a position from nothing, `walker_meeting_house.log_1831.position` covers
     exactly one, and `sauganash_hotel.log_1829.form.roof_type` names the one
     attribute in the one phase.
+
+    For the ground it is `terrain.<epoch>.<claim>`, and the domain is carried on
+    the claim rather than guessed at from its shape by whoever reads it later.
+    Two vocabularies meeting in one field is exactly where a reader starts
+    inferring which one they are looking at, and this project has already paid
+    once for a name read as being about the wrong thing.
     """
     claims: list[dict] = []
     for raw in re.split(r"[,;]", text):
         token = raw.strip().strip(".").strip("`").strip()
         if not token:
             continue
+        if token.split(".")[0] == TERRAIN_NS:
+            m = TERRAIN_TOKEN.match(token)
+            if not m:
+                problems.append(f"{lid}: Covers entry '{token}' is not "
+                                f"terrain.<epoch>.<claim>, which is the shape an "
+                                f"admission about the ground takes")
+                continue
+            claims.append({"domain": TERRAIN_NS, "epoch": m.group(1), "claim": m.group(2)})
+            continue
         m = COVER_TOKEN.match(token)
         if not m:
             problems.append(f"{lid}: Covers entry '{token}' is not "
                             f"structure_id[.phase_id].<{'|'.join(COVER_ASPECTS)}"
-                            f"|form.attribute>")
+                            f"|form.attribute> or terrain.<epoch>.<claim>")
             continue
-        claims.append({"structure": m.group(1), "phase": m.group(2), "aspect": m.group(3)})
+        claims.append({"domain": "structure", "structure": m.group(1),
+                       "phase": m.group(2), "aspect": m.group(3)})
     if not claims:
         problems.append(f"{lid}: a Covers field that claims nothing — drop the field "
                         f"or name what it discharges")
-    return sorted(claims, key=lambda c: (c["structure"], c["phase"] or "", c["aspect"]))
+    return sorted(claims, key=claim_sort_key)
 
 
 def parse(markdown: str, known: dict[str, str]) -> tuple[list[dict], list[str]]:

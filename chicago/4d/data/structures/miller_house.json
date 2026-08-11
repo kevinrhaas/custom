@@ -27,6 +27,10 @@
         "rotation_deg": 180.0,
         "symbolic_location": "North bank at the forks, on the point of land between the North Branch and the main stem, directly opposite Wolf Point.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No street survives here to offset from. The streets platted across this ground in Kinzie's Addition were staked in 1833-35 and the point itself has been rebuilt, so the coordinate comes from the datum origin at the confluence and from modern bank geometry — neither of which this check can recompute, since the modern banks are not the 1835 banks and no line in the dataset stands for them. Recomputable the day the traced 1834 north bank is used to place it instead."
+        },
         "sources": [
           "chicagology_prefire273",
           "kinzie_waubun_1856",

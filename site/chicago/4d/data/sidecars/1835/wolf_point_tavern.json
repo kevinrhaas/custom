@@ -15,11 +15,30 @@
   "asset": "gltf/wolf_point_tavern__log_frame_1828.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1828-01-01",
+    "to": "1836-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "drloih_wolf_point",
+      "drloih_hotels",
+      "chicagology_prefire273"
+    ],
+    "note": "THE BUILD DATE IS DISPUTED AND IS NOT RESOLVED HERE. Two readings: 1828, James Kinzie, west bank at Wolf Point (drloih_wolf_point, and the same date in general circulation); and 1823, James Kinzie with David Hall (drloih_hotels' chronology, which gives the tavern as 'opened in 1823'). 1828 is adopted because it is the reading of the narrative account that also carries the operator succession and the wolf sign, and because the 1823 date sits oddly with the licensing record — Archibald Caldwell's liquor licence is 8 December 1829 and the first Peoria County tavern licence in the settlement went to Clybourn and Miller. The two sources are the SAME PUBLICATION disagreeing with itself, which is a reason to distrust both dates rather than to prefer one confidently, so this range is inferred, not documented. A five-year error in the start does not affect the 1835 scene: the building stood under either reading. The end of the range is set at the end of 1836, the last year of William Walters's attested tenancy — NOT a demolition date. No source reached gives the building's fate, so the phase is closed where the evidence stops rather than run on speculatively."
+  },
+  "change_note": "The tavern as it stood through the 1830s: a log building that had acquired a frame element by the early 1830s, with the painted wolf sign hung outside by about 1833. No documented change of fabric falls inside the phase, so the whole 1828-1836 span is modelled as one state — which is a limitation of the evidence, not a claim that nothing changed.",
   "placement": {
     "local_e": -77.3,
     "local_n": -45.1,
     "rotation_deg": 90.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire273",
+      "drloih_wolf_point",
+      "kinzie_waubun_1856",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-09. NO SURVIVING INTERSECTION LOCATES THIS BUILDING, so the method used for the Sauganash — half an 80 ft platted street off a documented corner — does not apply. The coordinate is derived from the datum origin at the forks confluence and from bank geometry instead, and it is the weakest placement in this parcel. What is attested: the tavern stood on the WEST BANK at the forks, north of the Lake Street crossing (chicagology, which puts it 'on the ground north of Lake Street Bridge'); James Kinzie's residence was next south of it and Father Walker's log meeting house north of it, so it sits in the middle of a three-building river-front row; and Wau-Bun's 1831 sequence reads 'Facing down the river from the west was, first a small tavern kept by Mr. Wentworth', which is why the facade is put on the river. Method: Lake Street's centreline northing at the west bank is 4637286.5, interpolated along Lake between the two OpenStreetMap control points (Lake and Canal, Lake and Market); its north kerb is 12.2 m beyond that at 4637298.7, half an 80 ft platted street. The footprint's south face is set 40 m north of that kerb, which places the building clearly north of the crossing while leaving room to the south for the Kinzie residence and about 50 m to the north for the meeting house, in the documented order. Across the bank, the footprint's east face is set back between about 11 m at its north end and 19 m at its south end from the MODERN west-bank line read from OpenStreetMap water polygons, the setback varying because the modern bank runs north-west across the building. WORKING UNCERTAINTY IS ABOUT 40 m ALONG THE BANK AND ABOUT 20 m ACROSS IT — the along-bank figure is this record's own, since nothing fixes how far north of the bridge the tavern stood; the across-bank figure is the georeference's, compounded by the modern bank not being the 1835 bank (this reach was wharfed and rebuilt, and the direction of that change is not established here). Facade bearing 90, due east onto the water; the bank runs north-west here, so anything from about 75 to 105 is equally defensible.",
     "symbolic_location": "West bank of the river at the forks, north of the Lake Street crossing; north of James Kinzie's residence and south of the Methodist log meeting house.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -44,7 +63,9 @@
         7
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED FOR THIS BUILDING IN ANY SOURCE REACHED. No period map shows building footprints (see data/sources/hathaway_1834.json and wright_1834.json), and the textual sources describe the tavern's materials, its sign, its rates and its landlords without ever measuring it. This 12 x 7 m rectangle is a plausible envelope for a log-and-frame tavern that lodged travellers at 12 1/2 cents a night and briefly housed Gen. Winfield Scott's Black Hawk War headquarters, and it carries no evidence whatsoever. The 12 m runs north-south along the river frontage and the 7 m is the depth. Sources are deliberately omitted from this attribute because none supports it. To resolve: Andreas vol. 1, 'Wharfs, Piers and Early Hotels' pp. 626-631, at page-image level."
   },
   "attributes": {
     "stories": {
@@ -144,38 +165,51 @@
   "citations": [
     {
       "source_id": "chicagology_prefire273",
-      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
       "url": "https://chicagology.com/prefire/prefire273/",
       "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+          "date": "1857-05-15",
+          "tier": 2,
+          "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "drloih_wolf_point",
       "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "kinzie_waubun_1856",
       "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
       "url": "https://www.authorama.com/wau-bun-19.html",
       "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "The building that named Wolf Point, and the least precisely placeable structure in this parcel. Its identity is vivid and its geometry is unknown: the painted wolf sign, the landlord succession, the 12 1/2-cent rate and the Black Hawk War headquarters are all attested, while not one source measures the building, counts its storeys or fixes it to an intersection. TWO DISPUTES ARE RECORDED RATHER THAN RESOLVED: the build date, 1823 versus 1828, where the same publication contradicts itself and 1828 is adopted for the reasons in the phase's date note; and whether it was still in innkeeping in July 1835, where the balance favours yes under a changed name. Neither dispute changes the scene — the building stood, on the west bank, north of the Lake Street crossing, with a wolf on a board outside it. What would change the record is a measured description in Andreas pp. 626-631, or the Braunhold retrospective view of Wolf Point examined at plate level for storey count and massing. See docs/RESEARCH/wolf_point_tavern.md.",

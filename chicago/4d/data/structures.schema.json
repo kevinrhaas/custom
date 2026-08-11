@@ -98,6 +98,53 @@
       }
     },
 
+    "derivation": {
+      "type": "object",
+      "required": ["method"],
+      "additionalProperties": false,
+      "description": "How this coordinate was arrived at, in a form tools/validate.py can recompute from data/traces/street_control.json. Every phase with coordinates carries one; a placement that no line in the dataset can check declares 'not_derivable' with a reason rather than going undeclared.",
+      "properties": {
+        "method": { "enum": ["platted_corner", "traced_waterline", "not_derivable"] },
+        "control": { "type": "string", "description": "Key in data/traces/street_control.json's `control` map." },
+        "constraints": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["face", "street", "kerb"],
+            "additionalProperties": false,
+            "properties": {
+              "face": { "enum": ["north", "south", "east", "west"] },
+              "street": { "type": "string" },
+              "kerb": { "enum": ["north", "south", "east", "west"] },
+              "offset_m": { "type": "number", "description": "Further from the street centre, positive outward from the named kerb." },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "centreline": {
+          "type": "object",
+          "required": ["axis"],
+          "additionalProperties": false,
+          "properties": {
+            "axis": { "enum": ["e", "n"] },
+            "control_variance_m": { "type": "number" }
+          }
+        },
+        "ends": {
+          "type": "object",
+          "required": ["epoch", "faces"],
+          "additionalProperties": false,
+          "properties": {
+            "epoch": { "type": "string" },
+            "faces": { "type": "array", "items": { "enum": ["north", "south", "east", "west"] } }
+          }
+        },
+        "reason": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+
     "date_range": {
       "type": "object",
       "required": ["from", "to"],
@@ -141,7 +188,8 @@
             },
             "confidence": { "$ref": "#/$defs/confidence" },
             "sources": { "type": "array", "items": { "type": "string" } },
-            "note": { "type": "string" }
+            "note": { "type": "string" },
+            "derivation": { "$ref": "#/$defs/derivation" }
           }
         },
 

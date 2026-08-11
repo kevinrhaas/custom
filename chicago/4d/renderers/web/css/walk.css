@@ -316,6 +316,15 @@ body.is-touch .gate-touch { display: block; }
    the evidence, because "we left this out" is a claim like any other here. */
 .excl-cites { padding: 2px 10px 10px 28px; font-size: 11.5px; gap: 7px; }
 
+/* A claim the ground makes about itself, in the same box for the same reason.
+   The confidence chip sits in the summary because the grade IS the headline
+   here: a visitor scanning the list should be able to see, without opening
+   anything, that the water is documented and the bank face is not. */
+.ground-cites { padding: 2px 10px 10px 28px; font-size: 11.5px; gap: 7px; }
+.ground summary .conf { flex: 0 0 auto; }
+.ground .lib-body dd.ground-note { color: var(--ink-dim); }
+.ground-standard { border-left: 2px solid var(--edge); padding-left: 9px; }
+
 .crosshair {
   position: absolute;
   left: 50%; top: 50%;
@@ -458,6 +467,17 @@ body.is-touch .crosshair { display: none; }
   color: var(--accent);
 }
 
+/* The phase's own account of itself, in the record's words. Prose rather than a
+   table row because it is an argument, not a value — it is where a record says a
+   building that held the post office for three years is not the post office on
+   the scene date, which no confidence chip can express. */
+.pop-account {
+  margin: 0 0 9px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
 table.attrs { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.attrs th, table.attrs td { text-align: left; vertical-align: top; padding: 6px 6px 6px 0; border-top: 1px solid var(--edge); }
 table.attrs tr:first-child th, table.attrs tr:first-child td { border-top: 0; }
@@ -523,6 +543,37 @@ ol.cites .cite-text { color: var(--ink); }
 ol.cites a { color: var(--accent); }
 .tier { font-size: 10.5px; opacity: .8; }
 
+/* What the page reprints, which is what the rung beside it is a judgement
+   about. One line, never collapsed: a visitor who cannot see it reads a modern
+   blog stamped "tier 2" and concludes the ladder is broken. The em rule marks
+   it as the citation's own account of itself rather than more citation. */
+.cite-reprints {
+  margin: 3px 0 0;
+  padding-left: 8px;
+  border-left: 2px solid var(--edge);
+  font-size: 11.5px; line-height: 1.45; color: var(--ink-dim);
+}
+.cite-reprints .reprints-work { color: var(--ink); }
+.cite-reprints .reprints-date { font-variant-numeric: tabular-nums; opacity: .85; }
+
+/* The limits collapse for the reason the record's own account does — several
+   of these run to four clauses each and five open citations would push the rest
+   of the card off a phone. */
+.cite-more { margin-top: 4px; }
+.cite-more > summary {
+  cursor: pointer; list-style: none;
+  font-size: 11px; color: var(--accent); text-decoration: underline;
+}
+.cite-more > summary::-webkit-details-marker { display: none; }
+.cite-lim-h {
+  margin: 6px 0 2px;
+  font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-dim);
+}
+ol.cites ul.cite-lim { margin: 0; padding-left: 15px; }
+ol.cites ul.cite-lim li { font-size: 11.5px; line-height: 1.45; }
+ol.cites ul.cite-lim-not li { opacity: .95; }
+.cite-reading { margin: 6px 0 0; font-size: 11.5px; line-height: 1.55; color: var(--ink-dim); }
+
 /* The liberties for the inspected building reuse the Evidence panel's `.lib`
    entry wholesale — same markup, same renderer — so only the deltas live here:
    a count beside the heading, and the honest note when nothing is recorded. */
@@ -537,6 +588,39 @@ ol.cites a { color: var(--accent); }
   font-size: 10px; letter-spacing: 0; font-variant-numeric: tabular-nums;
 }
 .pop-lib-none { margin: 0; font-size: 12px; line-height: 1.5; color: var(--ink-dim); }
+
+/* The open question about this building reuses the Evidence panel's entry the
+   same way, so the only delta is the sentence introducing it. It sits directly
+   under the two claims it qualifies and must not read as a fourth claim. */
+.pop-question .liberties { margin-top: 0; }
+.pop-question-lead {
+  margin: 0 0 8px;
+  font-size: 12px; line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* The record's own account: several hundred words of prose, folded away behind
+   the same disclosure the liberties use, because it is the same kind of thing —
+   an argument a visitor opens when they want it, not a value they skim. Shown
+   verbatim, so the only styling decisions here are measure and rhythm. */
+.research { border: 1px solid var(--edge); border-radius: 9px; background: rgb(255 255 255 / 3%); }
+.research > summary {
+  padding: 7px 9px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  color: var(--ink);
+}
+.research > summary::-webkit-details-marker { display: none; }
+.research > summary:hover { background: rgb(255 255 255 / 5%); border-radius: 8px; }
+.research[open] > summary { border-bottom: 1px solid var(--edge); border-radius: 8px 8px 0 0; }
+.research-body {
+  margin: 0;
+  padding: 9px 10px 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
 
 .pop-foot { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--edge); font-size: 12px; color: var(--ink-dim); }
 .pop-foot a { color: var(--accent); }

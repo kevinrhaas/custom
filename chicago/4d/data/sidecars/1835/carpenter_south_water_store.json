@@ -10,11 +10,26 @@
   "asset": "gltf/carpenter_south_water_store__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-08-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "Andreas: Carpenter 'purchased a lot on South Water Street, between LaSalle and Wells streets' and 'erected a small store' in the summer of 1833. The range opens at 1 August, the middle of that summer, because no month is given and a mid-season date claims less than either end of it. THE SURVIVAL TO THE SCENE DATE IS THE ORDINARY CONTINUITY ARGUMENT, and it is stronger here than on most records in this parcel: this is the building Carpenter MOVED INTO, two years old on the scene date, on the street he had just bought a lot on, and nothing suggests a man does that and then leaves. Carpenter's own advertisement in the Chicago Democrat of 26 November 1833 — drugs, medicines, oils, paints, dye-stuffs, and also dry groceries, glass and nails — shows him trading three months after building it, though it gives no address and so cannot say which of his two premises it was placed from. THE END IS A HOUSEKEEPING BOUND at the scene year, not a demolition date."
+  },
+  "change_note": "The small store Philo Carpenter erected in the summer of 1833 on a lot he had bought on South Water Street between LaSalle and Wells — the second premises of Chicago's first druggist, and the one that makes the survival of his 1832 log shop on Lake Street doubtful. On the scene date it is two years old.",
   "placement": {
     "local_e": 387.3,
     "local_n": -4.2,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE BLOCK IS DOCUMENTED AND THE LOT WITHIN IT IS NOT. Andreas names the block face exactly — South Water Street between LaSalle and Wells — which is a 123 m frontage, about seven of the street's documented 55 ft lots. This record sits at the middle of it, which is a convention and not evidence. THE UNCERTAINTY IS ANISOTROPIC AND THE ALONG-STREET HALF IS THE BIG ONE: about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS), and about 60 m along it, because the store could have stood at either end of the block face. THE SIDE OF THE STREET IS NOT ARBITRARY: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), and a purchased LOT with a store erected on it is a south-side lot. METHOD: the modern intersection centres either end of the block were read from OpenStreetMap at EPSG:26916 — West Upper Wacker Drive / North Wells E 447402.5, N 4637411.6 and West Upper Wacker Drive / North LaSalle E 447525.2, N 4637408.1, fetched 2026-08-11 — the street's centreline interpolated between them at the mid-block easting, the south kerb taken 12.2 m south of that as half an 80 ft platted street, and the footprint's north face set on it. South Water Street is today's Wacker Drive along the south bank, per this project's street-name key. A CHECK: the traced 1834 south bank of the main stem runs 41.7 m north of this record's north face at this easting, which is a plausible street plus wharf depth but is 23 m more than the same measurement at Dearborn — the difference is the georeference's local paper stretch and the uneven build-out of Wacker Drive over the old dock line, not a real widening of the river frontage. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
     "symbolic_location": "South side of South Water Street between Wells Street and LaSalle Street (today the south side of West Wacker Drive between North Wells and North LaSalle), placed at the middle of the block face.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +54,9 @@
         6.096
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED, INSIDE THE ONE ADJECTIVE THE SOURCE OFFERS. Andreas calls it 'a small store' and gives no dimension, so this is deliberately the second-smallest building in the parcel: 7.62 x 6.096 m is 25 x 20 ft. Both figures are borrowed rather than freshly guessed — 20 ft is the documented depth of Hogan's store, the one log footprint in this dataset that is evidence, and 25 ft is the depth derived from the Green Tree Tavern's attested room module, used here as a frontage. The documented South Water lot width of 55 ft is a cap and this sits at less than half of it, which is what 'small' should look like on a street of 40 ft frontages."
   },
   "attributes": {
     "stories": {
@@ -102,21 +119,59 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicago_democrat_1833_11_26",
       "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
       "url": "",
       "archived_url": "",
-      "tier": 1
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "that a named trade was being carried on in Chicago in November 1833",
+        "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+        "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833 — with NO address, so it cannot disambiguate his two shops",
+        "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833 — with NO address, so it does NOT corroborate the Clark/South Water corner Andreas gives them",
+        "W. Kimball's 'New Store' at the corner of South Water and Clark — a SECOND, independently attested occupant of that junction in the same issue, signed",
+        "Peter Cohen, clothier and grocer, self-reported at the EAST END OF SOUTH WATER-STREET, and trading in Chicago before Nov 1833 ('old customers ... past favors')",
+        "Goss & Cobb, saddle and harness makers, self-reported on the corner of Lake and Canal streets",
+        "Matthias Mason & Co., blacksmiths, on 'Main-street, nearly opposite Graves' Tavern' — a street name this project does not otherwise hold",
+        "B. Jones, grocery and provision store, and separately a storage/forwarding/commission business — both ads give NO street",
+        "Newberry & Dole, forwarding and commission merchants — no address",
+        "John Wright, cut nails and general merchandise; and TWO BUILDINGS TO LET until 1 June 1834",
+        "Daniel Elston & [illegible], soap and candle manufactory, paying cash for tallow and house ashes",
+        "a tavern stand kept by Chester Ingersoll, 'lately occupied by Mr. Wm. W. WATTLES', dated 4 October 1833",
+        "the house of Chester Ingersoll used as the district polling place, 9 December 1833",
+        "THE VILLAGE ORDINANCES of 7 November 1833, complete — the richest single item in the paper",
+        "Ordinance 1: the corporate limits surveyed ALONG the northern United States' Pier 'to the termination thereof' — the pier as an existing, walkable structure with a definite landward end",
+        "Ordinance 5: 'either of the bridges in said town' and their 'plank or any piece of timber' — EXACTLY TWO bridges on 7 Nov 1833, of plank-and-timber construction",
+        "Ordinance 6: wooden buildings with wooden and lath-and-plaster partitions, heated by STOVES not fireplaces, pipes passing through roof or side wall and carried 18 inches above the roof, guarded by stone-ware pipe, brick, tin or sheet iron",
+        "Ordinance 9: timber, stone, brick, boxes and barrels stacked in the streets",
+        "Ordinances 3, 7 and 8: hogs at large, horses run through the streets, stallions",
+        "the schooner Austerlitz, Capt. Smith, from Buffalo, arrived about the 1[9]th inst. with a full cargo of merchandise for citizens of this village and cleared on the 21st IN BALLAST",
+        "a school established in the village by Mr. Sproat of Boston, already running on 26 Nov 1833",
+        "a public auction of United States property held AT FORT DEARBORN, 2 December 1833",
+        "the village population passing 'more than eight hundred souls' in late 1833"
+      ],
+      "what_it_does_not_supply": [
+        "any building's dimensions",
+        "any building's form, material, storey count or fenestration",
+        "the specific corner of any junction it names — the imprint says 'on the corner of', and which of the four is not in the sentence",
+        "evidence that any building named here still stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period, and the population went from 800 to 3,265 in between",
+        "any building footprint or plan",
+        "any length or width for the piers",
+        "any corroboration of the estray pen — see the negative finding in the note"
+      ]
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE OTHER HALF OF THE CARPENTER PROBLEM, and the record that makes philo_carpenter_log_shop doubtful. Andreas gives the block face, the year, the buyer and one adjective — 'a small store' — and nothing else, so the position is placed at the middle of a 123 m frontage and the footprint is invented inside the word 'small'. The along-street uncertainty of about 60 m is larger than the georeference's own 20 m and is stated on the position rather than buried. WHAT IS DOCUMENTED: the purchase of a lot on South Water between LaSalle and Wells, the erection of a store there in the summer of 1833, and Carpenter's trade, the last of it now corroborated contemporaneously by his own advertisement in the Chicago Democrat of 26 November 1833. WHAT IS CONJECTURAL: the footprint, outright. WHAT WOULD UPGRADE IT: any 1834-35 advertisement of Carpenter's carrying an address, which would fix the lot and, if it named a cross street, would also settle whether the Lake Street log shop was still in use; or the 1834-35 town lot records for the South Water frontage between Wells and LaSalle. See docs/RESEARCH/carpenter_south_water_store.md.",

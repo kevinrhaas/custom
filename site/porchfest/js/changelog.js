@@ -1,4 +1,26 @@
 export const CHANGELOG = [ // newest first
+  { v: 11, title: 'Addresses with an apartment number work', kind: 'fix',
+    ts: '2026-08-10T16:04:11.500Z', date: 'Aug 10, 2026, 11:04 AM CT',
+    items: [
+      'Setting a home address failed for anything with an apartment or unit number on it — the lookup service returns nothing at all for those. The unit and the postcode are now trimmed before it asks, which is exactly the form that does resolve. Apt, Unit, Suite, Ste and a bare hash number are all handled.',
+    ] },
+  { v: 10, title: 'Your own address works now', kind: 'fix',
+    ts: '2026-08-10T15:36:24.215Z', date: 'Aug 10, 2026, 10:36 AM CT',
+    items: [
+      'Pasting a full address found nothing at all — not even the porch it named. The search only ever matched text shorter than the label it was looking through, so anything with a unit number, city, state or ZIP on the end fell straight through. It now reads an address the way you would write one.',
+      'Home can be your actual home. It had to be one of the festival spots, which assumed nobody would need an address outside the few blocks the festival covers — wrong, since walking there from home is the normal way to arrive. Type your address and set it, wherever it is; the streets in the map reach further than the porches do, so the distances stay real.',
+      'Setting a home address looks it up once and keeps the coordinates. That is the only time the planner uses the network — working out your afternoon still never does, which is the part that matters when the signal goes.',
+      'Home now has its own line in the picker instead of a small icon on every row that nobody noticed. It says what home currently is and is where you change or clear it.',
+      'Distances from home were slightly overstated for anything on your own stretch of street, and home to itself came out as a short walk rather than nothing at all.',
+    ] },
+  { v: 9, title: 'A proper way to say where you start and end', kind: 'feature',
+    ts: '2026-08-10T13:12:18.852Z', date: 'Aug 10, 2026, 8:12 AM CT',
+    items: [
+      'Where you start and where you finish are now one card that draws the trip, instead of two dropdowns holding eighty-one addresses each. A round trip says so rather than repeating your own address back at you, and there is a button to reverse the two.',
+      'Picking a spot opens a proper finder. Type a street or a house number and it finds it. Street corners and porches are two clear tabs rather than headings buried in a list. And a small map shows you where the place actually is, because forty-eight corner names tell you nothing about which side of the park you would be standing on.',
+      'You can set one spot as your home. Every option then shows how far it is to walk from there, nearest first, and you can start from it in one tap. Porches also show how many bands are playing there.',
+      'There is a use-my-location button that finds the nearest spot to you. Your home is remembered between visits.',
+    ] },
   { v: 8, title: 'Miles, and a swap button on every band', kind: 'feature',
     ts: '2026-08-10T05:05:30.690Z', date: 'Aug 10, 2026, 12:05 AM CT',
     items: [
