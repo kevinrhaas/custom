@@ -10,11 +10,24 @@
   "asset": "gltf/chicago_lighthouse_1832__tower_1832.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1832-12-31",
+    "to": "1859-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "lighthousefriends_chicago"
+    ],
+    "note": "THE SECOND TOWER, AND THE ONLY ONE STANDING ON THE SCENE DATE. Andreas: 'Another tower, forty feet high, was begun and completed by Mr. Jackson in 1832.' No month is given by any source reached, so the range opens at the last day of 1832 rather than at an invented date inside it - which is deliberately conservative and still leaves the tower two and a half years old on 1835-07-01. The end of the range is an upper bound rather than a terminus: the Government put a new light at the end of the North Pier and the old one was eventually given away with its ground by an act of 1 August 1854, with Mark Beaubien the last keeper. THE FIRST TOWER IS NOT THIS ONE and is excluded in data/exclusions.json: it fell on 30 October 1831, unfinished, and everything usually quoted about its fabric - three-foot walls, fifty feet of height - is about the tower that collapsed."
+  },
+  "change_note": "",
   "placement": {
     "local_e": 1105.2,
     "local_n": 229.2,
     "rotation_deg": 0.0,
     "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "ADJACENCY IS DOCUMENTED AND THE OFFSET IS INVENTED. Andreas puts the two together at the bend: 'Fort Dearborn and the light-house are placed at the angle thus formed'. Wentworth, disposing of the reservation in 1839, says the land left over 'upon which the old light-house was located' was lots near the Rush Street bridge, which is at the river north of the fort, and Fergus's 1850 note has River Street running between the block-house and the light-keeper's. All of that says close, and north or west, and near the water. This point is about 65 m north-west of the fort's centre on the river bank; the distance and the bearing are ours, and the uncertainty is nearer 60 m than the 20 m the rest of the complex carries. Rotation is zero and means nothing: a round tower has no facade. MOVED 2026-08-11, AND THE REASON IS THE GROUND RATHER THAN THE SOURCES. This point was first set about 65 m north-west of the fort centre while the terrain stopped 832 m short of here and nothing could check it. S2e parcel (b) landed the heightfield the same day, and that first point turned out to be below the top of the river bank - in the water. The tower is now at local E +1108, N +232, about 48 m west-north-west of the fort centre on the bank top, which satisfies every source statement as well as the first point did and satisfies the modelled ground too. The offset is still invention; it is now invention constrained by a surface.",
     "symbolic_location": "On the Fort Dearborn Reservation at the mouth of the river, close north-west of the fort, on the river bank.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +52,9 @@
         5.6
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. No source reached gives this tower a diameter, a plan or a wall thickness. 5.6 m - about eighteen feet - is the base a forty-foot masonry tower of the period needs, and the square polygon is the archetype's convention for a round shaft: the generator refuses a tower whose footprint is not square and builds a twelve-sided tapering shaft inside it. What a visitor sees of this outline is entirely ours."
   },
   "attributes": {
     "kind": {
@@ -102,14 +117,33 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "lighthousefriends_chicago",
       "citation": "Anderson, Kraig. \"Chicago Harbor Lighthouse, Illinois.\" Lighthousefriends.com. Citing A. T. Andreas, History of Chicago (1884); the Annual Report of the Light-House Board, various years; and Donald J. Terras, \"Lighthouses of Chicago Harbor,\" The Keeper's Log, Summer 2011.",
       "url": "https://www.lighthousefriends.com/light.asp?ID=234",
       "archived_url": "https://web.archive.org/web/20260308064820/https://www.lighthousefriends.com/light.asp?ID=234",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "the $5,000 appropriation of 3 March 1831",
+        "the first tower's collapse on 30 October 1831, unfinished, at fifty feet with three-foot walls",
+        "the contractor named as Samuel Jackson",
+        "the second tower completed the following year, forty feet high",
+        "four fourteen-inch reflectors in a bird-cage lantern room",
+        "Samuel Lasby as first keeper; the first light established on Lake Michigan",
+        "the quicksand-versus-workmanship dispute over the collapse"
+      ],
+      "what_it_does_not_supply": [
+        "any statement that the 1832 tower was conical",
+        "the 1832 tower's material",
+        "the 1832 tower's diameter, wall thickness, taper or plan",
+        "the tower's position relative to the fort or the river mouth",
+        "a month or day for the 1832 completion",
+        "the keeper's dwelling"
+      ]
     }
   ],
   "research_note": "BUILT BECAUSE IT IS THE OTHER THING ANYONE COULD SEE FROM THE RIVER MOUTH IN 1835, and graded almost entirely conjectural because two of the three things everybody repeats about it belong to a different tower. The height is documented and the lantern is documented. THE SHAPE IS NOT: 'conical' appears in this project's dossier and in data/exclusions.json and could not be traced to either source those entries cite, so the taper this archetype builds is the archetype's own and docs/LIBERTIES.md owns it. The material is an inference from the contractor and the site rather than a statement. And the position is adjacency turned into a coordinate. See docs/RESEARCH/chicago_lighthouse_1832.md.",
