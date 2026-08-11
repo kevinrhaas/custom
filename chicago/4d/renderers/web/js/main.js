@@ -146,6 +146,7 @@ async function boot() {
   // panel and records a problem; it does not stop the walkthrough.
   api.liberties = await mountLiberties({
     mount: document.getElementById('liberties'),
+    noteMount: document.getElementById('liberties-note'),
     dataBase: bases.dataBase,
     registry: loaded.registry,
     problems,

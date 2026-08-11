@@ -2402,6 +2402,98 @@ def test_a_field_written_for_a_reader_has_to_reach_one() -> None:
           any("what_it_does_not_supply" in e for e in rep.errors), rep.errors)
 
 
+def test_a_derived_document_is_an_interface_too() -> None:
+    """`sidecar_shape` says it does not cover these, and nothing else did either.
+
+    The three faults of STATUS § 28-30 all lived in the gap between what a
+    compiler writes and what a renderer reads, and all three were found in the
+    per-structure sidecar because that is the only document with a gate over it.
+    `exclusions.json`, `terrain.json` and `liberties.json` are the same
+    interface with the same two directions and, until this check, nobody's.
+
+    The binding is the interesting part. A sidecar names itself; these are
+    fetched into `doc` and handed entry by entry to a renderer, so the field
+    name is chosen against a function parameter with no anchor on it. The
+    declaration is therefore a claim about the module, and the discriminating
+    cases below are about holding it to that claim in both directions — a claim
+    naming a field the document does not have, and a partition that is wrong
+    about the visitor in either direction.
+    """
+    doc = {
+        "scene": "1835",
+        "standard": "what this list is",
+        "claims": [{"label": "water", "note": "why", "id": "water"}],
+    }
+    spec = {
+        "doc": "sidecars/*/thing.json",
+        "module": "renderers/web/js/thing.js",
+        "roots": {"doc": "", "claim": "claims"},
+        "internal": {"scene": "the id it was fetched by",
+                     "claims.id": "the spec key, a reviewer's join"},
+    }
+    js = ("const claims = doc.claims;\n"
+          "el.innerHTML = doc.standard + claim.label + claim.note;\n")
+
+    def run(**kw):
+        rep = V.Report()
+        s = {**spec, **kw.pop("spec", {})}
+        text = kw.pop("js_src", js)
+        docs = kw.pop("docs", [doc])
+        V.check_derived_contract(rep, specs=[s], load=lambda _s: (docs, text))
+        return rep
+
+    check("the well-formed case passes", not run().errors, run().errors)
+
+    # THE case, and the one that found `scope` and `note` on its first run: an
+    # authored sentence compiled into the document and rendered by nobody.
+    rep = run(docs=[{**doc, "scope": "the forks quadrant"}])
+    check("a field compiled and never read fails",
+          any("`scope`" in e and "never reads it" in e for e in rep.errors), rep.errors)
+
+    # The § 28 direction, one interface over: the renderer asks and nothing
+    # answers, on every entry, silently.
+    rep = run(js_src=js + "claim.asset_is_placeholder;\n")
+    check("a declared root reading a field the document lacks fails",
+          any("asset_is_placeholder" in e and "renders as nothing" in e
+              for e in rep.errors), rep.errors)
+
+    # The partition, wrong in each direction. An internal field the module reads
+    # means one of the two is lying about the visitor...
+    rep = run(js_src=js + "claim.id;\n")
+    check("a field declared internal that the module does read fails",
+          any("`claims.id`" in e and "wrong about the visitor" in e
+              for e in rep.errors), rep.errors)
+
+    # ...and a declaration outliving the field it describes is how a partition
+    # rots into a list nobody re-reads.
+    rep = run(spec={"internal": {**spec["internal"], "epoch": "which epoch"}})
+    check("a partition naming a field the compiler dropped fails",
+          any("`epoch`" in e and "stale partition" in e for e in rep.errors), rep.errors)
+
+    # A sentence about a field is not a read of it — third time this rule has
+    # had to be asserted, and the first two both found something.
+    rep = run(js_src="const claims = doc.claims;\n"
+                     "// claim.note is shown below\n"
+                     "el.innerHTML = doc.standard + claim.label;\n")
+    check("a field named only in a comment is not rendered",
+          any("`claims.note`" in e and "never reads it" in e for e in rep.errors),
+          rep.errors)
+
+    # And the declaration itself has to point at something. A root bound to a
+    # path no committed copy has is a claim about the module that cannot be
+    # checked, which is the state this whole family of gates exists to end.
+    rep = run(spec={"roots": {**spec["roots"], "z": "not_modelled"}})
+    check("a root bound where the document has nothing fails",
+          any("not_modelled" in e and "has anything there" in e for e in rep.errors),
+          rep.errors)
+
+    # The union is over every committed copy, not the first one: a field one
+    # scene emits is part of the interface even when another does not.
+    rep = run(docs=[doc, {**doc, "scope": "the forks quadrant"}])
+    check("the shape is unioned over every committed copy",
+          any("`scope`" in e for e in rep.errors), rep.errors)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

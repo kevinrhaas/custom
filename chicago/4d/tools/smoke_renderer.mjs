@@ -895,6 +895,32 @@ for (const [label, viewport, touch] of [
       lib.text.slice(0, 160));
     check(`${label}: the Evidence panel does not overflow`, lib.overflow);
 
+    // The document's own account of what this list is. It is compiled out of
+    // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
+    // hand-written paraphrase of it — a restatement with nothing holding it to
+    // the half it restates. Verbatim, and against the fetched document rather
+    // than a phrase copied in here, because the failure this pins is a sentence
+    // in the repository disagreeing with the sentence on the screen.
+    const libNote = await page.evaluate(() => {
+      const el = document.getElementById('liberties-note');
+      const panel = document.querySelector('[data-panel="evidence"]');
+      const recorded = window.__chicago4d.liberties?.note ?? '';
+      const text = (panel?.textContent ?? '').replace(/\s+/g, ' ');
+      return {
+        shown: el?.textContent ?? '',
+        recorded,
+        busy: el ? el.hasAttribute('aria-busy') : true,
+        // Once, not twice: the paraphrase is gone rather than joined.
+        occurrences: recorded
+          ? text.split(recorded.replace(/\s+/g, ' ')).length - 1 : 0,
+      };
+    });
+    check(`${label}: the liberties list says what it is, in the document's words`,
+      libNote.shown === libNote.recorded && libNote.recorded.length > 80 && !libNote.busy,
+      `shown "${libNote.shown.slice(0, 80)}" of ${libNote.recorded.length} recorded`);
+    check(`${label}: the panel states it once — the hand-written paraphrase is gone`,
+      libNote.occurrences === 1, `${libNote.occurrences} occurrence(s)`);
+
     // The admissions themselves, on the page. `Covers:` is what the commit gate
     // reads to decide whether every invented footprint has been owned up to, and
     // a guarantee enforced in the repository but invisible in the walkthrough is
@@ -1225,6 +1251,9 @@ for (const [label, viewport, touch] of [
         inferredWithoutReason: all.filter(
           (e) => e.conf === 'inferred' && /No reasoning is recorded/.test(e.body))
           .map((e) => `${e.group}/${e.label}`),
+        scopeShown: mount.querySelector('.ground-scope')?.textContent
+          .replace(/^\s*What these claims cover\s*—\s*/, '') ?? '',
+        scopeRecorded: window.__chicago4d.ground?.scope ?? '',
         text: mount.textContent.replace(/\s+/g, ' '),
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
@@ -1244,6 +1273,17 @@ for (const [label, viewport, touch] of [
     check(`${label}: no land elevation claims to be documented`,
       ground.landGrades.length >= 6 && !ground.landGrades.includes('documented'),
       `${ground.landGrades.length} land claim(s): ${[...new Set(ground.landGrades)].join(', ')}`);
+    // WHICH ground these twenty claims are about. The spec has stated its own
+    // extent since it was written, `compile_scene.py` has compiled it into every
+    // terrain sidecar, and no renderer ever asked for it — so a visitor who flew
+    // up, saw the ground end, and came to this section to find out what it covers
+    // was told everything except that. Verbatim against the compiled value, for
+    // the same reason as the record's own account above.
+    check(`${label}: the ground says which ground these claims are about`,
+      ground.scopeShown === ground.scopeRecorded && (ground.scopeRecorded ?? '').length > 40
+      && /forks quadrant/i.test(ground.scopeShown ?? ''),
+      `shown "${(ground.scopeShown ?? '').slice(0, 90)}" of `
+      + `${(ground.scopeRecorded ?? '').length} recorded`);
     check(`${label}: the panel quotes the spec's caveat that no survey exists`,
       /No contour survey of the 1835 town site exists/.test(ground.text)
       && /no land elevation in this spec is better than/i.test(ground.text),

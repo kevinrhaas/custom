@@ -158,13 +158,22 @@ export function libertiesFor(liberties, subjectId) {
  * the list could not be loaded and pushes the reason onto the loader's problem
  * list, the same one every other integration fault lands on.
  *
+ * `noteMount` takes the document's own account of what this list is. That
+ * sentence is compiled out of `docs/LIBERTIES.md` and was rendered nowhere,
+ * while the panel opened with a hand-written paraphrase of it — two statements
+ * of one thing with nothing holding them together, which is how the panel and
+ * the document start disagreeing about what a liberty is. The markdown's
+ * sentence is the one on screen now, and the paraphrase is gone.
+ *
  * @param {object} o
  * @param {HTMLElement|null} o.mount    where the list goes
+ * @param {HTMLElement|null} [o.noteMount] where the document's own note goes
  * @param {URL} o.dataBase              where data/ lives
  * @param {Map<string, object>} [o.registry]  loaded structures, for subject names
  * @param {string[]} [o.problems]       the shared collector
  */
-export async function mountLiberties({ mount, dataBase, registry = new Map(), problems = [] }) {
+export async function mountLiberties({ mount, noteMount = null, dataBase,
+                                       registry = new Map(), problems = [] }) {
   const names = new Map();
   for (const [id, record] of registry) names.set(id, record?.sidecar?.name || id);
 
@@ -181,7 +190,18 @@ export async function mountLiberties({ mount, dataBase, registry = new Map(), pr
         + 'It is committed at <code>docs/LIBERTIES.md</code>.</p>';
       mount.removeAttribute('aria-busy');
     }
+    if (noteMount) {
+      // Emptied rather than left saying "Loading…", which after a failed fetch
+      // is the panel telling a visitor to wait for something that is not coming.
+      noteMount.textContent = '';
+      noteMount.removeAttribute('aria-busy');
+    }
     return { count: 0, liberties: [], error: String(err.message || err) };
+  }
+
+  if (noteMount) {
+    noteMount.textContent = doc.note || '';
+    noteMount.removeAttribute('aria-busy');
   }
 
   const liberties = Array.isArray(doc.liberties) ? doc.liberties : [];
@@ -190,5 +210,6 @@ export async function mountLiberties({ mount, dataBase, registry = new Map(), pr
       || '<p class="legend-note">No liberties recorded.</p>';
     mount.removeAttribute('aria-busy');
   }
-  return { count: liberties.length, liberties, standard: doc.standard, error: null };
+  return { count: liberties.length, liberties, standard: doc.standard, note: doc.note,
+           error: null };
 }

@@ -138,6 +138,16 @@ export async function mountGround({ mount, dataBase, sceneId, problems = [] }) {
 
   const claims = Array.isArray(doc.claims) ? doc.claims : [];
   if (mount) {
+    // WHICH ground. The claims below are about a 640 m box at the forks and say
+    // nothing about the town east of it, which a visitor who has flown up and
+    // seen the ground end has every reason to ask about. The spec has stated
+    // its own extent since it was written and the sentence had never left the
+    // repository — compiled into this sidecar, read by nobody, for the life of
+    // the project. It comes first because it is the frame every claim under it
+    // is read inside.
+    const covers = doc.scope
+      ? `<p class="legend-note ground-scope"><b>What these claims cover</b> — ${
+        escapeHtml(doc.scope)}</p>` : '';
     // The caveat is the spec's, verbatim and first: it is the sentence that says
     // no land elevation here is better than inferred, and every claim below it
     // is read differently once you have it.
@@ -151,11 +161,15 @@ export async function mountGround({ mount, dataBase, sceneId, problems = [] }) {
       ? `<p class="legend-note"><b>Researched and outside this box</b> — ${
         doc.not_modelled.map((z) => escapeHtml(z.why)).join('; ')}.</p>`
       : '';
-    mount.innerHTML = caveat + context
+    mount.innerHTML = covers + caveat + context
       + (claims.map(groundClaimHtml).join('')
         || '<p class="legend-note">This scene\'s terrain records no graded claims.</p>')
       + outside;
     mount.removeAttribute('aria-busy');
   }
-  return { count: claims.length, claims, standard: doc.standard, error: null };
+  // `scope` rides the handle so the smoke can compare what a visitor reads
+  // against what the spec recorded, rather than against a phrase copied into the
+  // test — the comparison that would have caught this field being unread.
+  return { count: claims.length, claims, standard: doc.standard, scope: doc.scope,
+           error: null };
 }

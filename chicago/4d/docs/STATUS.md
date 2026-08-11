@@ -3,10 +3,11 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (ten rounds of grading a source, and the sentence that justifies the
-rung had never left the repository: what a page reprints, and what its own record says it cannot
-supply, are on the card — and every field of a source record now either reaches a visitor or
-states why it does not, § 48) ·
+**Last updated:** 2026-08-11 (the gate that found the last three faults says in its own docstring
+that it does not cover three documents, and both of the sentences it was not watching had never
+reached anybody: the ground says which ground its claims are about, the liberties list says what
+it is in the document's own words rather than a hand-typed paraphrase, and all three derived
+documents are inside the interface gate in both directions, § 49) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1744,6 +1745,63 @@ uncertainty of the 1834 sheets in its note.
     item has made a counting selector wrong; they are `.cites > li` now. And the honest limit of
     the third direction: it is a name scan of one module, not dataflow — which is why the smoke
     asserts the rendered card and not the scan.
+
+49. **The gate that found the last three faults says in its own docstring that it does not cover
+    three documents, and both of the sentences it was not watching had never reached anybody.**
+    `sidecar_shape` has read that way since § 29: the set is taken from each scene's `index.json`
+    "because the other derived documents — `exclusions.json`, `terrain.json` — have their own
+    readers and their own shapes". True, and for a fortnight it also meant that the interface
+    where § 28, § 29 and § 30 each found a fault was guarded for one document out of four.
+    `check_derived_contract` covers the other three — the per-scene `terrain.json` and
+    `exclusions.json` and the repository-level `liberties.json` — in both directions, and it
+    reported two on its first run. **Fifth check in this family to find something immediately.**
+    **`terrain.json` states its own extent and the panel never asked.** *"The forks quadrant: the
+    Chicago River main stem, North Branch and South Branch meeting at the datum origin at Wolf
+    Point, and the three divisions of land they separate."* The Evidence panel's twenty ground
+    claims describe a 640 m box and say nothing about the town east of it — which is precisely
+    the question a visitor has after § S7's free-fly, having watched the ground end from 150 m
+    up. Compiled into every terrain sidecar, read by no renderer, for the life of the project.
+    It is the first line of that section now, before the caveat, because it is the frame every
+    claim under it is read inside.
+    **`liberties.json` carries its own account of what a liberty is, and the panel typed a
+    paraphrase of it instead.** The derived `note` — *"The confidence model covers attributes.
+    These are the decisions that live above any single attribute: scope, omission,
+    simplification, and the choices a visitor would otherwise have to reverse-engineer"* — was
+    compiled and rendered nowhere, while `index.html` opened the section with *"The chips above
+    cover attributes. These are the decisions that belong to no single attribute…"*, hand-written
+    and held to the document by nothing. That is § 36's fault one surface over: a restatement
+    with no mechanism holding it to the half it restates, and the two are free to drift the day
+    `docs/LIBERTIES.md` is edited. The paraphrase is deleted and the document's sentence renders
+    in its place; the smoke pins it **verbatim against the fetched document** and asserts the
+    panel states it **once**, so the typed copy cannot come back beside it.
+    **The design decision worth carrying is that the binding is DECLARED.** A per-structure
+    sidecar names itself — `record.sidecar` is an anchor a regex can follow, which is what
+    § 29's scanner does. These three are fetched into a local `doc` and then handed entry by
+    entry to a renderer, so the field name is chosen against a function parameter with nothing
+    left to anchor on — the very limit § 29 stated and refused to widen. `DERIVED_DOCUMENTS`
+    therefore writes the binding down (`claim` is an element of `claims`, `ex` of `excluded`)
+    and the gate holds the module to it in both directions: a declared root reading a field no
+    committed copy carries fails, and a root bound where the document has nothing fails too,
+    because a claim about a module that cannot be checked is the state this family exists to end.
+    **The `internal` half is § 48's partition arriving at a second family.** The bounded set
+    there was the source schema; here it is what the compiler emits, which `--check` already
+    proves is what the dataset derives to. Twelve fields are declared internal with their
+    one-line reason — the scene id a file was fetched by, `claims.sources` before `cite()` joins
+    it, `not_modelled.dossier_zone`, the liberties file's do-not-hand-edit banner — and the
+    declaration is checked the other way as well: a field declared internal that the module does
+    read fails, and so does a declaration outliving the field it describes.
+    **Citation leaves are deliberately deferred to `check_source_surface`.** One compiled
+    citation shape reaches all three documents, and giving a field two owners is giving it two
+    answers the day they disagree.
+    **The honest limit, and it is the same one § 28 was written about: this proves a module
+    NAMES the field, not that the field reaches a pixel.** `exclusions.json`'s `standard` and
+    `uncertain_standard` are read into `mountExclusions`'s return value and rendered by nobody,
+    while `index.html` carries hand-written restatements of both — exactly the fault repaired
+    above for the liberties, still standing two sections down, and the scan is satisfied because
+    the name appears. That is why the smoke asserts the rendered text for the two claims this
+    slice ships, and it is queued rather than quietly left: the same repair, the same shape.
+    **Data and meshes untouched; nothing was re-baked.** No record value moved, no confidence
+    changed, no sidecar changed — `scope` and `note` were already being compiled.
 
 ## Next
 
