@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 67,
+  "count": 71,
   "liberties": [
     {
       "id": "L1",
@@ -39,19 +39,31 @@
       "subjects": [],
       "covers": [],
       "recorded": "2026-08-09",
-      "revised": null,
+      "revised": "2026-08-11",
       "fields": [
         {
           "label": "Decision",
-          "text": "ambient wildlife is rendered sparsely, with many species present as audio or as traces (tracks, feeding sign) rather than animated animals."
+          "text": "ambient wildlife is rendered sparsely, with many species present as audio, as traces, or as nothing at all rather than as animated animals."
         },
         {
           "label": "Why",
           "text": "two reasons, both evidential. July is the quietest wildlife date in the Chicago year — no migration, silent leks, moulting waterfowl — and a summer scene populated with the spectacle of *other* seasons would be wrong. And a boomtown of 3,265 people is not a wilderness; wild animal density inside the platted grid was low."
         },
         {
+          "label": "What the dataset now says (2026-08-11)",
+          "text": "`data/fauna/` holds **139 species records across 10 habitat zones**. **Forty of them are present and would not be seen** — 25 audible only, 9 present and imperceptible on this date, 6 as trace alone — and 15 more are recorded as absent or deliberately withheld. Only **10 of 61 bird records are in full song** on 1 July, and each of those carries a written argument for why that species is an exception; 42 are call-only or silent. Every duck is flightless in wing moult. The prairie-chicken's lek is silent, the spring frog chorus is over, and the passenger pigeon crosses in tens."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town reads quieter and emptier of animals than an eye would have found it, in one direction only — sound carries where sight does not, and the loudest things in the July scene are insects, frogs and livestock rather than birds. The validator enforces each of these as schema (`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not a hope about it."
+        },
+        {
           "label": "Recorded",
           "text": "2026-08-09."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-11."
         }
       ]
     },
@@ -343,13 +355,20 @@
       "title": "Western Hotel: the stable and wagon yard are attested and not modelled",
       "section": "per_subject",
       "subjects": [
-        "western_hotel"
+        "estray_pen",
+        "western_hotel",
+        "western_hotel_stable"
       ],
       "covers": [
         {
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.stables"
+        },
+        {
+          "structure": "western_hotel_stable",
+          "phase": "stable_1834",
+          "aspect": "form.wagon_yard"
         }
       ],
       "recorded": "2026-08-09",
@@ -369,7 +388,11 @@
         },
         {
           "label": "Covers",
-          "text": "`western_hotel.frame_1834.form.stables`."
+          "text": "`western_hotel.frame_1834.form.stables`, `western_hotel_stable.stable_1834.form.wagon_yard`."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-11 — **narrowed, not resolved: the stable is now built and the yard still is not.** `data/structures/western_hotel_stable.json` stands the large stable behind the hotel on the attested relation — \"In the rear was the large stable and the yard into which the trains were driven\" — so the half of this entry that said a hotel stands in nothing is no longer true of the stable. THE YARD REMAINS OUT OF THE MODEL AND CANNOT BE PUT IN IT BY THIS ARCHETYPE. A yard is an enclosure — a fence line, two gateways and the ground between them — and `outbuilding` builds a building; using it here would mean calling a fence a building, which is a worse claim than the omission. The two gateways, on Randolph and on Canal, are unbuilt for the same reason. The admission has therefore MOVED AS WELL AS SHRUNK: it now sits on the stable's own record as `form.wagon_yard: {value: true, confidence: \"documented\", geometry: \"absent\"}`, beside the building it belonged to, while `western_hotel.frame_1834.form.stables` keeps its own `geometry: \"absent\"` because the hotel's mesh still contains no stable. WHAT WOULD RESOLVE THIS ENTRY RATHER THAN NARROW IT AGAIN: an enclosure archetype. The same missing archetype is why `estray_pen` is drawn as a roofed shed, why Clybourn's stockyard is unmodelled, and why the pig pens the town code of November 1833 implies have nowhere to go."
         },
         {
           "label": "Recorded",
@@ -1495,6 +1518,8 @@
       "title": "Thomas Church's store: a building placed by a street and one sentence",
       "section": "per_subject",
       "subjects": [
+        "exchange_coffee_house",
+        "mansion_house",
         "thomas_church_store"
       ],
       "covers": [
@@ -3207,6 +3232,176 @@
         {
           "label": "Evidence since, 2026-08-11",
           "text": "the brickyard's token is withdrawn — S2e extended the heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still stands clear of it, but for the different reason recorded on that record: the South Division slough it crosses is still not cut into this terrain epoch, so it spans nothing."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L70",
+      "title": "The mosquitoes are rendered as nothing, and they were the defining July fact",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "mosquitoes, deer flies and horse flies are recorded as `abundant` and `not_perceptible` in four zones, and nothing is drawn for any of them."
+        },
+        {
+          "label": "Why",
+          "text": "the insects will not read at any render scale. Their visible signal is *human* — smudge fires, mosquito bars over beds, covered arms, hands moving at faces — and L1 puts human depiction out of scope for v1. So the single most intense sensory fact of a July Chicago, in a town \"situated in the midst of sloughs and marshes\" with endemic ague and no window screens, is rendered as absence."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walks a July wetland town that feels comfortable. It was not. The only sourced testimony for it sits on a page that returned HTTP 403 and has no source record, so even the quotation is unverified; Andreas is not and never will be a source for it — searches for *mosquito*, *mosquitoes* and *musquitoes* all return zero hits."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a retrievable period source, and either a smoke/smudge element in the structures dataset or the lifting of L1."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L71",
+      "title": "The horse herds at the town margin are attested and not depicted",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`f01_wet_prairie/equus_caballus_indigenous_herds` records the herds with `status: excluded_by_scope` and `presence: not_depicted`. Nothing is placed."
+        },
+        {
+          "label": "Why",
+          "text": "Shirreff described the prairies around Chicago in 1833 as studded with tents and numerous herds of horses browsing in all directions. Those herds are inseparable from the people who kept them, and AGENTS.md and L1 put human depiction out of scope for v1 uniformly. The great assembly at Chicago is 18 August 1835 — six and a half weeks *after* the scene date — so staging it would be wrong twice over."
+        },
+        {
+          "label": "Consequence",
+          "text": "the prairie margin is emptier than it was. This is a scope decision, not a finding of absence, and the dataset distinguishes the two: `not_depicted` is a different value from `absent` and the validator will not let one be written as the other."
+        },
+        {
+          "label": "Note",
+          "text": "the Shirreff 1833 account has no source record in `data/sources/`; only the August 1835 date is cited, from `chicagology_lastwardance`, and nothing beyond that date is drawn from it."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L72",
+      "title": "The town's outbuildings are placed and sized by eye, on the strength of the buildings in front of them",
+      "section": "per_subject",
+      "subjects": [
+        "beaubien_barn",
+        "western_hotel",
+        "western_hotel_stable",
+        "wolf_point_tavern",
+        "wolf_point_tavern_stable"
+      ],
+      "covers": [
+        {
+          "structure": "beaubien_barn",
+          "phase": "converted_1817",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "beaubien_barn",
+          "phase": "converted_1817",
+          "aspect": "form.door_side"
+        },
+        {
+          "structure": "beaubien_barn",
+          "phase": "converted_1817",
+          "aspect": "position"
+        },
+        {
+          "structure": "western_hotel_stable",
+          "phase": "stable_1834",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "wolf_point_tavern_stable",
+          "phase": "stable_1831",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "wolf_point_tavern_stable",
+          "phase": "stable_1831",
+          "aspect": "form.door_side"
+        },
+        {
+          "structure": "wolf_point_tavern_stable",
+          "phase": "stable_1831",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the three secondary buildings added behind the town's public houses — `western_hotel_stable` (13 x 7 m), `wolf_point_tavern_stable` (9 x 6 m) and `beaubien_barn` (6.10 x 4.88 m) — carry **invented footprints**, two carry **invented positions**, and two carry an **invented door elevation**, all tagged `conjectural`, citing no sources."
+        },
+        {
+          "label": "Why",
+          "text": "not one source reached by this project gives any outbuilding at the forks a dimension, a plan or a bearing. What the sources give is existence and relation: a stable \"in the rear\" of the Western Hotel, a county tariff that prices keeping a horse overnight at a house one of whose keepers held the county's first tavern licence, and a cabin that \"he used after this for a barn\". The sizes answer the attested TRADE rather than being chosen freely — the Western's stable is the largest outbuilding in the dataset because its source calls it large and its teams \"were as numerous as were the guests\"; the Wolf Point stable is smaller so the two are not one invented building at two addresses; and the Beaubien barn is drawn at single-pen CABIN scale, 20 x 16 ft, because the source describes a dwelling that stopped being one rather than a barn that was built."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees three buildings whose *presence* is evidenced and whose *shape and exact place* are ours. The Beaubien barn additionally inherits its parent record's two open questions — the corner Andreas contradicts himself about, some 45 m, and the fact that neither street existed on the unplatted reservation in 1835."
+        },
+        {
+          "label": "How to resolve",
+          "text": "Wright 1834 or Hathaway 1834 read at lot level for the Randolph-and-Canal block; Andreas \"Wharfs, Piers and Early Hotels\", scan pp. 626-631, at page-image level for the Wolf Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes."
+        },
+        {
+          "label": "Covers",
+          "text": "`western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L73",
+      "title": "Every outbuilding in the town is detailed by the archetype, not by a source",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the `outbuilding` archetype supplies, as fixed conventions applied to every record that uses it and stated by no source anywhere: the **single small unglazed vent** it cuts in a wall; the **post spacing** in an open bay; the **board rhythm** of a boarded wall; the **roof covering** (laid boards — not shingles, not shakes, not thatch); and the **direction a shed roof falls**, which the archetype derives from the open sides rather than reading from the record. The size-aware defaults for wall height, roof form and pitch are conventions in the same sense."
+        },
+        {
+          "label": "Why",
+          "text": "no source reached by this project describes the fabric, the covering, the openings or the framing of ANY outbuilding at the forks — not one. The archetype's own module says so at the top and grades an unstated attribute `conjectural` for exactly this reason, so the confidence channel already paints these buildings honestly; what it cannot say is that the *detail a visitor is looking at* was designed rather than found."
+        },
+        {
+          "label": "Consequence",
+          "text": "two outbuildings in this scene that carry different evidence still share a vent, a board rhythm and a roof texture, because those came from one Python module. Anyone reading a boarded wall as a finding about 1835 Chicago carpentry is reading the generator."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period description or depiction of a secondary building at Chicago before 1836 — none is currently known to this project. This entry has no `Covers:` field on purpose: it claims nothing about any single record, because the invention is in the archetype and lands on every one of them."
         },
         {
           "label": "Recorded",

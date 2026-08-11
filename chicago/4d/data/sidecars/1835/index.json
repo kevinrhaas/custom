@@ -111,6 +111,12 @@
       "asset": "gltf/estray_pen__pen_1833.glb"
     },
     {
+      "id": "exchange_coffee_house",
+      "name": "Exchange Coffee House",
+      "sidecar": "sidecars/1835/exchange_coffee_house.json",
+      "asset": "gltf/exchange_coffee_house__frame_1834.glb"
+    },
+    {
       "id": "first_presbyterian_church",
       "name": "First Presbyterian Church",
       "sidecar": "sidecars/1835/first_presbyterian_church.json",
@@ -249,6 +255,12 @@
       "asset": "gltf/kinzie_hunter_warehouse__warehouse_1834.glb"
     },
     {
+      "id": "lake_house_construction",
+      "name": "Lake House (under construction)",
+      "sidecar": "sidecars/1835/lake_house_construction.json",
+      "asset": "gltf/lake_house_construction__shell_1835.glb"
+    },
+    {
       "id": "log_jail",
       "name": "Log jail",
       "sidecar": "sidecars/1835/log_jail.json",
@@ -259,6 +271,12 @@
       "name": "Madore Beaubien's Log House",
       "sidecar": "sidecars/1835/madore_beaubien_house.json",
       "asset": "gltf/madore_beaubien_house__log_1831.glb"
+    },
+    {
+      "id": "mansion_house",
+      "name": "Mansion House",
+      "sidecar": "sidecars/1835/mansion_house.json",
+      "asset": "gltf/mansion_house__log_frame_1833.glb"
     },
     {
       "id": "miller_house",
@@ -391,6 +409,12 @@
       "name": "Thomas Church's Store",
       "sidecar": "sidecars/1835/thomas_church_store.json",
       "asset": "gltf/thomas_church_store__frame_1834.glb"
+    },
+    {
+      "id": "tremont_house_1",
+      "name": "Tremont House (the first)",
+      "sidecar": "sidecars/1835/tremont_house_1.json",
+      "asset": "gltf/tremont_house_1__frame_1833.glb"
     },
     {
       "id": "walker_meeting_house",

@@ -162,6 +162,15 @@
       "phase_id": "pen_1833",
       "structure_id": "estray_pen"
     },
+    "exchange_coffee_house__frame_1834.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 20568,
+      "inputs_sha256": "a995d05b1287fcd5629d00c04e6297f50a13aa85d2edadc1c3745f71027e2287",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "exchange_coffee_house"
+    },
     "first_presbyterian_church__frame_1834.glb": {
       "archetype": "frame_dwelling",
       "baked_ao": false,
@@ -369,6 +378,15 @@
       "phase_id": "warehouse_1834",
       "structure_id": "kinzie_hunter_warehouse"
     },
+    "lake_house_construction__shell_1835.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 5620,
+      "inputs_sha256": "7e0ac2df94b4670674bf6143ef8e64fcd88d6dc31589c6dd43c4fef9a994c5ee",
+      "kind": "generated",
+      "phase_id": "shell_1835",
+      "structure_id": "lake_house_construction"
+    },
     "log_jail__log_1833.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -386,6 +404,15 @@
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "madore_beaubien_house"
+    },
+    "mansion_house__log_frame_1833.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 39040,
+      "inputs_sha256": "4af9455839450e8988945db6bc77b577cf9c4c16930699d01c57864ecd9fb70a",
+      "kind": "generated",
+      "phase_id": "log_frame_1833",
+      "structure_id": "mansion_house"
     },
     "miller_house__log_frame_1827.glb": {
       "archetype": "log_dwelling",
@@ -600,6 +627,15 @@
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "thomas_church_store"
+    },
+    "tremont_house_1__frame_1833.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 20592,
+      "inputs_sha256": "35bb0062ed54bf878552c4b38580cd22eb238b8b881991b144718ae62bf66bb5",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "tremont_house_1"
     },
     "walker_meeting_house__log_1831.glb": {
       "archetype": "log_dwelling",
