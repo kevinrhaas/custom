@@ -10,11 +10,25 @@
   "asset": "gltf/western_hotel_stable__stable_1834.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1834-01-01",
+    "to": "1840-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire278"
+    ],
+    "note": "NO DATE IS GIVEN FOR THE STABLE ITSELF; the range is the hotel's, and it is the hotel's for a reason that is stated rather than assumed. chicagology describes the stable as part of the house — 'In the rear was the large stable and the yard into which the trains were driven' — inside the same passage that describes the building W. H. Stow says he put up in 1834, and a teamsters' house whose custom was 'farmers and teamsters' had no trade at all without somewhere to put their horses. So the stable is taken to be contemporary with the hotel and the range is copied from data/structures/western_hotel.json, including its adopted 1834 date and the dispute behind it (chicagology on Stow's own word against the hotel chronology's 1835). THE SURVIVAL EVIDENCE IS BETTER FOR THE STABLE THAN FOR THE HOTEL and is deliberately not used to widen the range: the same source records that in 1849 'the boys over at the engine house, which stood on the other side of Canal street, were having some sport and came very near burning the stables of the hotel', which puts stables on this site fourteen years after the scene date. The range stops at the end of 1840 anyway, where the hotel's does, because a fifteen-year range on a building nobody dates is the kind of widening this project's own gate warns about, and because nothing in this scene needs the later years."
+  },
+  "change_note": "The large stable behind W. H. Stow's Western Hotel at Randolph and Canal, standing across the wagon yard from the back of the house. Nothing about the building's own fabric is recorded anywhere; what is recorded is that it was large, that it was in the rear, and that the yard in front of it took wagon trains off two streets.",
   "placement": {
     "local_e": -140.9,
     "local_n": -305.0,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire278"
+    ],
+    "position_note": "PLACED 2026-08-11 AGAINST THE HOTEL, WHICH IS THE ONLY THING THE SOURCE PLACES IT AGAINST. What is attested is a RELATION and not a location: 'In the rear was the large stable and the yard into which the trains were driven. There were entrances to the yard from both streets.' The hotel's own facade bearing in this dataset is 0, due north onto Randolph, so 'the rear' is south, and this coordinate shares the hotel's easting exactly (UTM E 446931.8) and stands 27.2 m south of the hotel's origin — which is to say the stable's north face is about 20 m behind the hotel's south wall. THE 20 M IS DERIVED FROM THE YARD, NOT PICKED: the yard is what the two buildings enclose, and the attested thing that happened in it is that wagon trains were driven in off two streets and turned. Twenty metres is about the least depth in which a two-horse team and its wagon can be driven in, unhitched and turned; less and the source's sentence stops being true of the drawing. It is still a number nobody wrote down. WHAT THIS INHERITS: the hotel's coordinate is itself derived from a modern OpenStreetMap reading of the Randolph and Canal intersection with a working uncertainty of about 20 m, and its facade bearing is an argued reading rather than an attested one — chicagology does not say which street the 40 ft front faced. If the hotel is turned to face Canal, this stable turns with it and stands east of the block instead of south of it, at the same distance. WORKING UNCERTAINTY about 20 m from the georeference, plus the hotel's own bearing question, plus the invented yard depth. Facade bearing 0: the stable faces north across the yard at the back of the hotel, which is where the teams stood; nothing states it.",
     "symbolic_location": "In the rear of the Western Hotel at the south-east corner of Randolph and Canal Streets — that is, south of the hotel block, across the wagon yard, with the stable's long side parallel to Randolph.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +53,9 @@
         7.0
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. The only dimensional word in the record is 'large', and it is a comparison rather than a measurement. 13.0 x 7.0 m is about 43 x 23 ft: a single range of stalls down each side of a central drive, which is about eight horses, with the 13 m along Randolph and the 7 m as the depth. The size answers the documented TRADE rather than being chosen freely — this was the west-side wagon house, 'the stopping place for all the farmers town from the west', whose teams the source says 'were as numerous as were the guests' — so it is drawn as the largest outbuilding in this dataset and still smaller than the hotel it served. Every number is invented and this polygon cites no sources. It is also the footprint the outbuilding archetype's own golden 'hotel_stable' case uses (generators/preview.py), which is not evidence about this building; it is the same convention twice."
   },
   "attributes": {
     "construction": {
@@ -103,17 +119,27 @@
   "citations": [
     {
       "source_id": "chicagology_prefire278",
-      "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+      "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",
       "url": "https://chicagology.com/prefire/prefire278/",
       "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+          "date": "1883-07-22",
+          "tier": 2,
+          "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THIS RECORD EXISTS TO DISCHARGE HALF OF docs/LIBERTIES.md L10, AND ONLY HALF. L10 admits that 'the large stable and the yard into which the trains were driven', with entrances from both streets, are attested and not modelled, and that data/structures/western_hotel.json carries the admission as `stables: true` with `geometry: 'absent'`. The stable is now built. THE YARD IS NOT, AND CANNOT BE BY THIS ARCHETYPE — it is an enclosure, and this project has no enclosure archetype; the same gap keeps `estray_pen` and Clybourn's stockyard from being what they were. L10 should therefore be NARROWED rather than resolved, and the wording for that narrowing is written up with this parcel's report. The yard's admission now also sits on this record, at form.wagon_yard, so that the omission travels with the building that is nearest to it. WHAT IS INVENTED HERE AND WHAT WOULD FIX IT. The footprint is invented outright — 'large' is the only dimensional word anyone wrote — and the fabric, the wall height, the door class and the door's elevation are all reasoned from the hotel and from the trade rather than from any description of the stable. Two things would upgrade nearly all of it at once: the Wright 1834 or Hathaway 1834 sheets read at lot level for the Randolph and Canal block, which would give the yard's boundary and the stable's range if either sheet carries outbuildings; and any Chicago Democrat or Chicago American advertisement of Stow's, which for a wagon house would ordinarily name the stabling it offered. Failing both, an insurance or tax description of the premises from the 1840s, when the stables are still attested standing. SEE ALSO the correction recorded in this parcel's report to the tariff sentence quoted in generators/preview.py and generators/archetypes/outbuilding_params.py: the Wolf Point '13 cents to stable a horse' is not in the source it is attributed to, and the attested Cook County rate is different.",

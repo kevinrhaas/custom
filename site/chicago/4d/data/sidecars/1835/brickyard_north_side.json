@@ -10,11 +10,26 @@
   "asset": "gltf/brickyard_north_side__yard_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-03-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE SEASON IS DOCUMENTED AND NO EXACT DATE IS. Andreas: 'In the spring of 1833, Tyler K. Blodgett established a brick-yard, on the North Side, not far from the river bank, between Dearborn and Clark streets. He engaged Henry S. Lampman, then of Ann Arbor, as a workman. As Mr. Blodgett operated the first brick-yard in the city, so Mr. Lampman was undoubtedly the first brick-maker' (scan p. 1161). The range opens on 1 March 1833 as the conventional start of spring rather than as a stated date; brickmaking is a summer trade — clay is dug in autumn, weathered over winter, moulded and dried through the warm months — so the yard's first working season is 1833. SURVIVAL TO THE SCENE DATE IS INFERENCE, and it is better supported than most in this dataset: the Lake House, begun on the north bank in 1835, is three storeys and a basement of BRICK, and Andreas's own sentence traces the town's first brick building to this yard, so somebody was making brick in Chicago through the boom. Whether it was still Blodgett on this ground on 1835-07-01 is not attested. The range closes at the end of 1835 as the last date this record needs to claim."
+  },
+  "change_note": "The yard as established in the spring of 1833 and worked through the seasons of 1833, 1834 and 1835. Nothing describes any change to it, and nothing describes it at all after the sentence recording its establishment.",
   "placement": {
     "local_e": 620.3,
     "local_n": 109.2,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11 FROM A REAL LOCATING SENTENCE, WHICH THE DOSSIER SAID DID NOT EXIST. docs/research/03-structures-north.md section 3.12 records the brickyard's site as unattested and tags it [GAP]; a full-text search of Andreas vol. 1 closes that gap outright — 'on the North Side, not far from the river bank, between Dearborn and Clark streets' (scan p. 1161). That is a block of north-bank frontage about 120 m wide, which is a better fix than most buildings in this dataset have. METHOD: Clark Street's line at this latitude is taken from this project's own records on the same grid — the Chicago Democrat office at South Water and Clark sits at local E +551 to +564 — and Dearborn's from Madore Beaubien's house and Bates's auction room at South Water and Dearborn, local E +678 to +687, which puts the two streets about 120 m apart with the yard between them. The shed is set at local E +620 to +634, in the middle of that span, and at local N +109 to +114, about 17 m back from the traced north bank of the main stem, which is the reading of 'not far from the river bank' this record adopts. WHAT IS INFERRED RATHER THAN DOCUMENTED: the position WITHIN the two-street span and the exact setback from the water, both free within the sentence, and the fact that a yard is an area while this coordinate is a point — the working ground reached further in every direction than the shed this record draws. Working uncertainty about 60 m along the bank and 30 m across it, on top of the georeference's 20 m. Facade bearing 0, the open side of the drying shed facing north away from the river and into the yard, which is a working arrangement this record invents; see the form attributes.",
     "symbolic_location": "North Side, not far from the north bank of the main stem, between Dearborn Street and Clark Street — about 620 m east and 110 m north of the datum origin at the forks, and outside the modelled terrain box.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +54,9 @@
         5
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER, AND A PARTIAL ONE: THIS IS THE DRYING SHED, NOT THE YARD. No source gives this yard a dimension, a plan or a building. 14 x 5 m is about 46 x 16 ft — a long shallow open-sided shed of the kind green brick is stacked under to dry out of the rain, which is the one structure a brickyard cannot work without and the only part of a yard this dataset has an archetype for. Every number is invented and the polygon cites no sources. THE YARD ITSELF IS THE THING BEING MODELLED AND IT IS NOT DRAWN: the clamp or kiln where the brick was burned, the hacks and racks, the clay pit, the pug mill and the spoil are carried on the record as `yard_works` with a geometry declaration and stand nowhere in the mesh. A visitor will see one open shed where the sources describe an industry. To resolve the shed: nothing found describes it. To resolve the yard: it needs a works or parcel archetype, which this project does not have — the same limitation docs/LIBERTIES.md L10 records against the Western Hotel's wagon yard."
   },
   "attributes": {
     "roof_type": {
@@ -93,14 +110,16 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "WHY A YARD IS WORTH MODELLING AT ALL: it makes the town's brick local. The most ambitious building under way in Chicago on 1835-07-01 is the Lake House on the north bank at Rush and Kinzie — three storeys and a basement in BRICK, in a town otherwise built of logs and sawn boards — and the obvious question a visitor asks is where the brick came from. Andreas answers it: from this yard, on the same bank, half a mile west. WHAT THIS SLICE ADDED: the dossier recorded the site as unattested [GAP] (docs/research/03-structures-north.md section 3.12); Andreas's own sentence gives it to within a block, 'on the North Side, not far from the river bank, between Dearborn and Clark streets' (scan p. 1161), so the position moves from conjectural to inferred and the [GAP] tag can be retired. TWO THINGS THIS RECORD IS HONEST ABOUT AND A READER SHOULD NOT MISS. First, it stands outside the modelled terrain box and declares it. Second, and larger, IT IS A BUILDING STANDING IN FOR AN INDUSTRY: one drying shed is drawn and the clamp, the pit, the hacks and the spoil are recorded and unbuilt, because this project has no archetype for a works. Until it does, the brickyard in the scene will read as a shed in a field.",

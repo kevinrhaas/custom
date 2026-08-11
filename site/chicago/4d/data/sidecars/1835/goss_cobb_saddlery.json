@@ -9,11 +9,26 @@
   "asset": "gltf/goss_cobb_saddlery__shop_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-11-26",
+    "to": "1835-12-31",
+    "confidence": "conjectural",
+    "sources": [
+      "chicago_democrat_1833_11_26"
+    ],
+    "note": "A TRADE FIXED TO A WEEK AND A BUILDING FIXED TO NOTHING. The Chicago Democrat of 26 November 1833 carries, over the firm's own name, 'they have opened a shop in this village, on the conner of Lake and Canal-streets' (the 'conner' is the page's). That is the shop trading in the last week of November 1833 at a stated corner. THE SCENE DATE IS NINETEEN MONTHS LATER, in the town's fastest-changing period, and data/sources/chicago_democrat_1833_11_26.json states the limit in as many words: an advertisement is 'strong evidence of existence and address, weak evidence of survival, and no evidence at all of form'. Nothing reached follows this firm past November 1833 - Andreas's summary of the same columns names 'Goss & Cobb, saddle and harness making' and adds nothing. The from date is the issue date, which is the one day anybody can point at; the to date is the end of the scene year and is a housekeeping bound, not a closure. THE WHOLE RANGE IS THEREFORE CONJECTURAL, and the building is here on the project owner's standing instruction that an absent building is invisible while a conjectural one is legible and correctable - the same reasoning docs/LIBERTIES.md L67 gives for Elston's soap works, from the same newspaper. TO RESOLVE: further issues of the Chicago Democrat or the Chicago American. One line of an 1834 or 1835 advertisement would settle the survival and might settle the corner."
+  },
+  "change_note": "The shop as it stood when the firm advertised it in the town's first newspaper, and as this record carries it forward nineteen months to the scene date. Nothing dates a change and nothing dates an end; the range says so.",
   "placement": {
     "local_e": -138.33,
     "local_n": -120.58,
     "rotation_deg": 180.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicago_democrat_1833_11_26",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE JUNCTION IS SELF-REPORTED IN A CONTEMPORARY DOCUMENT, WHICH IS AS GOOD AS AN ADDRESS GETS IN THIS DATASET, AND THE QUADRANT IS THIS RECORD'S GUESS. The advertisement says 'on the conner of Lake and Canal-streets' and, exactly as with the Democrat's own imprint at South Water and Clark, that settles the JUNCTION and not which of the four corners. The north-east corner is taken by the Green Tree Tavern (data/structures/green_tree_tavern.json), which leaves three; the south-east is adopted, which is a one-in-three choice and a roughly 40 m error if it is wrong. METHOD: the modern West Lake Street / North Canal Street intersection centre is EPSG:26916 E 446913.03, N 4637287.42 - the same OpenStreetMap node this project uses as ground control point G5 on the Wright 1834 fit, and the best-fitting of the eight at 1.8 m residual. The building's north face is set on the Lake Street frontage 12.2 m south of that centre and its west face on the Canal frontage 12.2 m east of it, 12.2 m being half of an 80 ft street as annotated on Hathaway 1834; the stored coordinate is the polygon origin AFTER the 180 degree facade bearing, which under the renderer's convention (renderers/web/js/walker.js) puts it at the building's north-east corner. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus the quadrant. A LARGER AND ONE-DIRECTIONAL RESIDUAL IS INHERITED FROM THE GREEN TREE'S RECORD AND IS RESTATED HERE RATHER THAN HIDDEN: 'Canal Street' in 1833 may mean the street a block back from the river, where the modern node is, or the riverbank street then called West Water and now Canal. If the advertisement means the bank street, this shop belongs about 145 m east. The same doubt sits on the Green Tree at the same crossing, and settling one settles both. Facade bearing 180, north onto Lake Street, inferred from the street rather than from any statement.",
     "symbolic_location": "The corner of Lake Street and Canal Street (historically Lake and West Water), west bank; placed on the SOUTH-EAST quadrant of the crossing - south side of Lake, east side of Canal - fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -38,7 +53,9 @@
         6.096
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. The advertisement gives a trade, a corner and a stock list and no dimension. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule - the same size this project gives Frederick Thomas's shop on South Water Street, kept deliberately rather than replaced with a fresh guess, on the reasoning docs/LIBERTIES.md L29 states about the bridge's pier spacing: a new number would look like a finding and would not be one. WHAT THE ADVERTISEMENT DOES IMPLY, without measuring anything: the firm kept saddles, harness, bridles and trunks 'on hand', manufactured to order, and trimmed 'Coaches, Chaises and Waggons', which is a shop with a workroom behind it and enough door to get a waggon at least alongside. That argues for the larger end of a shop rather than a stall, and it is an argument, not a measurement."
   },
   "attributes": {
     "stories": {
@@ -95,21 +112,59 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicago_democrat_1833_11_26",
       "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
       "url": "",
       "archived_url": "",
-      "tier": 1
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "that a named trade was being carried on in Chicago in November 1833",
+        "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+        "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833 — with NO address, so it cannot disambiguate his two shops",
+        "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833 — with NO address, so it does NOT corroborate the Clark/South Water corner Andreas gives them",
+        "W. Kimball's 'New Store' at the corner of South Water and Clark — a SECOND, independently attested occupant of that junction in the same issue, signed",
+        "Peter Cohen, clothier and grocer, self-reported at the EAST END OF SOUTH WATER-STREET, and trading in Chicago before Nov 1833 ('old customers ... past favors')",
+        "Goss & Cobb, saddle and harness makers, self-reported on the corner of Lake and Canal streets",
+        "Matthias Mason & Co., blacksmiths, on 'Main-street, nearly opposite Graves' Tavern' — a street name this project does not otherwise hold",
+        "B. Jones, grocery and provision store, and separately a storage/forwarding/commission business — both ads give NO street",
+        "Newberry & Dole, forwarding and commission merchants — no address",
+        "John Wright, cut nails and general merchandise; and TWO BUILDINGS TO LET until 1 June 1834",
+        "Daniel Elston & [illegible], soap and candle manufactory, paying cash for tallow and house ashes",
+        "a tavern stand kept by Chester Ingersoll, 'lately occupied by Mr. Wm. W. WATTLES', dated 4 October 1833",
+        "the house of Chester Ingersoll used as the district polling place, 9 December 1833",
+        "THE VILLAGE ORDINANCES of 7 November 1833, complete — the richest single item in the paper",
+        "Ordinance 1: the corporate limits surveyed ALONG the northern United States' Pier 'to the termination thereof' — the pier as an existing, walkable structure with a definite landward end",
+        "Ordinance 5: 'either of the bridges in said town' and their 'plank or any piece of timber' — EXACTLY TWO bridges on 7 Nov 1833, of plank-and-timber construction",
+        "Ordinance 6: wooden buildings with wooden and lath-and-plaster partitions, heated by STOVES not fireplaces, pipes passing through roof or side wall and carried 18 inches above the roof, guarded by stone-ware pipe, brick, tin or sheet iron",
+        "Ordinance 9: timber, stone, brick, boxes and barrels stacked in the streets",
+        "Ordinances 3, 7 and 8: hogs at large, horses run through the streets, stallions",
+        "the schooner Austerlitz, Capt. Smith, from Buffalo, arrived about the 1[9]th inst. with a full cargo of merchandise for citizens of this village and cleared on the 21st IN BALLAST",
+        "a school established in the village by Mr. Sproat of Boston, already running on 26 Nov 1833",
+        "a public auction of United States property held AT FORT DEARBORN, 2 December 1833",
+        "the village population passing 'more than eight hundred souls' in late 1833"
+      ],
+      "what_it_does_not_supply": [
+        "any building's dimensions",
+        "any building's form, material, storey count or fenestration",
+        "the specific corner of any junction it names — the imprint says 'on the corner of', and which of the four is not in the sentence",
+        "evidence that any building named here still stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period, and the population went from 800 to 3,265 in between",
+        "any building footprint or plan",
+        "any length or width for the piers",
+        "any corroboration of the estray pen — see the negative finding in the note"
+      ]
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "A LAKE STREET BUILDING THAT EXISTS BECAUSE ITS OWNERS PAID TO SAY WHERE IT WAS. Of everything this parcel looked at, this is the only address that comes from the town describing itself in its own week rather than from a compilation written fifty years later - and it is a better positional statement than most records in this dataset hold, because an advertiser's customers had to be able to find him. What it cannot do is carry the building nineteen months forward to the scene date, or say anything at all about its size, its material or its shape. So the range is conjectural, the footprint is conjectural, the storey count is conjectural, and what survives of the evidence in the mesh is a small frame shop of about the right kind at about the right crossing. TWO GUARDS. (1) THE QUADRANT: the advertisement says 'the conner of Lake and Canal-streets' and names no side, exactly as the Democrat's own imprint says 'on the corner of South Water and Clark-streets' and names none. The Green Tree Tavern holds the north-east corner of this crossing, so three remain and this record picks the south-east. (2) THE STREET ITSELF: 'Canal' at this crossing carries the doubt already recorded on the Green Tree - modern Canal Street lies a full block back from the west bank, where the 1830s riverbank street was West Water, and if the advertisement means the bank street this shop belongs about 145 m east. That doubt is worth more here than the quadrant, and the check that would settle both is the lot geometry on Wright 1834 or Hathaway 1834. THE SADDLE ENGRAVING OVER THE ADVERTISEMENT IS A STOCK CUT and nothing may be read out of it.",
