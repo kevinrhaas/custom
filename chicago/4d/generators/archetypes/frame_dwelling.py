@@ -73,7 +73,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.mesh import (  # noqa: E402
     PAINT_RGBA, ROOF_RGBA, SHUTTER_RGBA, MeshBuilder, simple_material,
 )
-from archetypes.frame_dwelling_params import FrameDwellingParams  # noqa: E402
+from archetypes.frame_dwelling_params import (  # noqa: E402
+    HALL_FRACTION, FrameDwellingParams,
+)
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_WALL, M_ROOF, M_TRIM, M_DARK, M_SHUTTER = 0, 1, 2, 3, 4
@@ -91,6 +93,11 @@ WIN_W_M, WIN_H_M = 0.78, 1.25
 # The gable-end window of a half storey. "A small attic window in the gable end."
 GABLE_WIN_W_M, GABLE_WIN_H_M = 0.62, 0.70
 DOOR_W_M, DOOR_H_M = 0.92, 2.02
+# The threshold stands on the sill rather than on the ground. Small, and load-bearing
+# for the GROUND_CONTACT claim: the boarded surround around an opening reaches 75 mm
+# past it on every side, so a door drawn from z = 0.02 puts trim below the base of the
+# walls and the archetype stops being flat on its own footprint.
+DOOR_SILL_M = 0.10
 
 # Longest clapboard a mill of this period shipped, roughly; it is what sets how many
 # butt joints a wall of a given length carries. Lumber came from St Joseph, Michigan, by
@@ -132,7 +139,10 @@ def build(params: FrameDwellingParams, name: str):
     # main range — omit the bottom, it is never seen and costs two triangles per
     # building across the whole town
     b.add_box(0, y0, 0, w, d, wall_z, c_mass, M_WALL, skip=("bottom",))
-    _clapboard(b, params, 0, y0, w, d, 0.0, wall_z, c_clad, long_axis="x")
+    # the siding starts above the water table and stops under the frieze, because
+    # that is where the boards stop on a building and because a course hidden behind
+    # a trim board is triangles nobody sees
+    _clapboard(b, params, 0, y0, w, d, 0.20, wall_z - 0.20, c_clad, long_axis="x")
     _wall_trim(b, params, 0, y0, w, d, wall_z, c_trim)
 
     ridge_z = _roof(b, params, 0, y0, w, d, wall_z, c_roof)
@@ -142,7 +152,7 @@ def build(params: FrameDwellingParams, name: str):
     _gable_ends(b, params, w, y0, d, wall_z, ridge_z, c_fen, c_mass)
     _rear_windows(b, params, openings, w, y0, wall_z, c_fen)
 
-    ell_ridge_z = _ell(b, params, w, y0, c_mass, c_clad, c_trim, c_fen) if params.ell \
+    ell_ridge_z = _ell(b, params, w, y0, c_clad, c_trim, c_fen) if params.ell \
         else None
 
     _chimneys(b, params, w, y0, d, wall_z, ridge_z, ell_ridge_z,
@@ -223,21 +233,43 @@ def _opening(b: MeshBuilder, axis: str, plane: float, u0: float, u1: float,
            outward, conf, M_DARK)
 
 
+def _sash(sill: float, head_limit: float) -> float:
+    """How tall a window can be between this sill and the plate above it.
+
+    Not a nicety. The window is sized from an attested pane, the wall height is the
+    record's, and the two do not have to agree: a low one-storey house at the bottom of
+    the range this archetype accepts has less wall between its sill and its frieze board
+    than a full sash needs. Left unchecked the head pushes through the plate and out of
+    the top of the building — visible, wrong, and only in the combinations no golden case
+    happens to use. So the opening shortens instead, which is what a builder did.
+    """
+    return min(WIN_H_M, head_limit - sill)
+
+
 def _band(b: MeshBuilder, x0: float, y0: float, x1: float, y1: float,
           z0: float, z1: float, conf: float, mat: int,
-          relief: float = TRIM_RELIEF_M) -> None:
-    """A horizontal board running right round the four elevations of a block."""
-    _panel(b, "y", y1 + relief, x0, x1, z0, z1, 1, conf, mat)
-    _panel(b, "y", y0 - relief, x0, x1, z0, z1, -1, conf, mat)
-    _panel(b, "x", x0 - relief, y0, y1, z0, z1, -1, conf, mat)
-    _panel(b, "x", x1 + relief, y0, y1, z0, z1, 1, conf, mat)
+          relief: float = TRIM_RELIEF_M, skip: tuple = ()) -> None:
+    """A horizontal board running round the elevations of a block.
+
+    `skip` names faces the way `MeshBuilder.add_box` does — `front` is the -y face,
+    `back` the +y one — so a wing abutting a wall can leave out the elevation that is
+    not there.
+    """
+    if "front" not in skip:
+        _panel(b, "y", y0 - relief, x0, x1, z0, z1, -1, conf, mat)
+    if "back" not in skip:
+        _panel(b, "y", y1 + relief, x0, x1, z0, z1, 1, conf, mat)
+    if "left" not in skip:
+        _panel(b, "x", x0 - relief, y0, y1, z0, z1, -1, conf, mat)
+    if "right" not in skip:
+        _panel(b, "x", x1 + relief, y0, y1, z0, z1, 1, conf, mat)
 
 
 # ------------------------------------------------------------- walls and trim
 
 def _clapboard(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
                x1: float, y1: float, z_lo: float, z_hi: float, conf: float,
-               long_axis: str) -> None:
+               long_axis: str, skip: tuple = ()) -> None:
     """Horizontal lap courses on all four elevations, with butt joints on stud lines.
 
     The lap is the same treatment `frame_tavern` and `log_dwelling`'s frame addition
@@ -260,25 +292,31 @@ def _clapboard(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
     stud = p.stud_spacing_m
     n = int((z_hi - z_lo) / CLAPBOARD_COURSE_M)
     lip = CLAPBOARD_LIP_M
+    faces_y = [(y, ny, sgn, nm) for y, ny, sgn, nm in
+               ((y0, y0 - lip, -1.0, "front"), (y1, y1 + lip, 1.0, "back"))
+               if nm not in skip]
+    faces_x = [(x, nx, sgn, nm) for x, nx, sgn, nm in
+               ((x0, x0 - lip, -1.0, "left"), (x1, x1 + lip, 1.0, "right"))
+               if nm not in skip]
     for i in range(1, n):
         z = z_lo + i * CLAPBOARD_COURSE_M
         if z > z_hi - 0.02:
             break
-        for y, ny in ((y0, y0 - lip), (y1, y1 + lip)):
+        for y, ny, _sgn, _nm in faces_y:
             b.add_poly([(x0, y, z), (x1, y, z), (x1, ny, z - 0.02), (x0, ny, z - 0.02)],
                        conf, M_WALL)
-        for x, nx in ((x0, x0 - lip), (x1, x1 + lip)):
+        for x, nx, _sgn, _nm in faces_x:
             b.add_poly([(x, y0, z), (x, y1, z), (nx, y1, z - 0.02), (nx, y0, z - 0.02)],
                        conf, M_WALL)
         # butt joints, on the two elevations facing along the building's length
         if long_axis == "x":
             for jx in _joint_positions(x0, x1, stud, i):
-                for y, sgn in ((y0, -1.0), (y1, 1.0)):
+                for y, _ny, sgn, _nm in faces_y:
                     _panel(b, "y", y + sgn * (lip + 0.006), jx - 0.015, jx + 0.015,
                            z - CLAPBOARD_COURSE_M, z, int(sgn), conf, M_WALL)
         else:
             for jy in _joint_positions(y0, y1, stud, i):
-                for x, sgn in ((x0, -1.0), (x1, 1.0)):
+                for x, _nx, sgn, _nm in faces_x:
                     _panel(b, "x", x + sgn * (lip + 0.006), jy - 0.015, jy + 0.015,
                            z - CLAPBOARD_COURSE_M, z, int(sgn), conf, M_WALL)
 
@@ -330,9 +368,11 @@ def _wall_trim(b: MeshBuilder, p: FrameDwellingParams, x0: float, y0: float,
     # corner boards: one on each face of each corner, so a corner reads as boxed
     for x, sx in ((x0, -1.0), (x1, 1.0)):
         for y, sy in ((y0, -1.0), (y1, 1.0)):
-            _panel(b, "y", y + sy * TRIM_RELIEF_M, x, x + sx * -board, 0.20,
+            bx0, bx1 = sorted((x, x - sx * board))
+            by0, by1 = sorted((y, y - sy * board))
+            _panel(b, "y", y + sy * TRIM_RELIEF_M, bx0, bx1, 0.20,
                    wall_z - 0.20, int(sy), conf, M_TRIM)
-            _panel(b, "x", x + sx * TRIM_RELIEF_M, y, y + sy * -board, 0.20,
+            _panel(b, "x", x + sx * TRIM_RELIEF_M, by0, by1, 0.20,
                    wall_z - 0.20, int(sx), conf, M_TRIM)
 
 
@@ -413,7 +453,7 @@ def _facade_openings(p: FrameDwellingParams) -> list:
         out = [(x, "door" if i == door else "window") for i, x in enumerate(centres)]
         return [(_snap(x, p, w), k) for x, k in out]
 
-    hf = 0.5 if p.plan == "single_pen" else _hall_fraction()
+    hf = 0.5 if p.plan == "single_pen" else HALL_FRACTION
     xp = w * hf
     if p.plan == "single_pen":
         n_hall = 1
@@ -430,17 +470,12 @@ def _facade_openings(p: FrameDwellingParams) -> list:
     return [(_snap(x, p, w), k) for x, k in out]
 
 
-def _hall_fraction() -> float:
-    from archetypes.frame_dwelling_params import HALL_FRACTION
-    return HALL_FRACTION
-
-
 def _snap(x: float, p: FrameDwellingParams, w: float) -> float:
-    """Nearest stud-bay centre, kept clear of the corners."""
+    """Nearest stud-bay centre, kept clear of the corner boards."""
     stud = p.stud_spacing_m
     k = math.floor(x / stud)
     u = (k + 0.5) * stud
-    return min(max(u, 0.62), w - 0.62)
+    return min(max(u, 0.72), w - 0.72)
 
 
 def _facade(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: float,
@@ -455,24 +490,32 @@ def _facade(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: float,
     story_h = wall_z / 2.0 if p.stories >= 2.0 else wall_z
     sill = min(0.95, story_h * 0.36)
     c_shut = p.conf("shutters", "conjectural")
+    # everything on this wall stops under the frieze board
+    top_head = wall_z - 0.28
+    h = _sash(sill, story_h - 0.14 if p.stories >= 2.0 else top_head)
+    door_h = min(DOOR_H_M, top_head - DOOR_SILL_M)
 
     for cx, kind in openings:
         if kind == "door":
-            _opening(b, "y", d, cx - DOOR_W_M / 2, cx + DOOR_W_M / 2, 0.02,
-                     DOOR_H_M, 1, conf)
+            if door_h > 1.6:
+                _opening(b, "y", d, cx - DOOR_W_M / 2, cx + DOOR_W_M / 2, DOOR_SILL_M,
+                         DOOR_SILL_M + door_h, 1, conf)
             continue
-        _opening(b, "y", d, cx - WIN_W_M / 2, cx + WIN_W_M / 2, sill,
-                 sill + WIN_H_M, 1, conf)
+        if h < 0.5:
+            continue
+        _opening(b, "y", d, cx - WIN_W_M / 2, cx + WIN_W_M / 2, sill, sill + h, 1, conf)
         if p.shutters:
-            _shutters(b, d, cx, sill, sill + WIN_H_M, 1, c_shut)
+            _shutters(b, d, cx, sill, sill + h, 1, c_shut)
 
     if p.stories >= 2.0:
         z = story_h + sill
+        hu = _sash(z, top_head)
         for cx, _kind in openings:
-            _opening(b, "y", d, cx - WIN_W_M / 2, cx + WIN_W_M / 2, z,
-                     z + WIN_H_M, 1, conf)
+            if hu < 0.5:
+                continue
+            _opening(b, "y", d, cx - WIN_W_M / 2, cx + WIN_W_M / 2, z, z + hu, 1, conf)
             if p.shutters:
-                _shutters(b, d, cx, z, z + WIN_H_M, 1, c_shut)
+                _shutters(b, d, cx, z, z + hu, 1, c_shut)
 
 
 def _shutters(b: MeshBuilder, plane: float, cx: float, z0: float, z1: float,
@@ -503,6 +546,9 @@ def _rear_windows(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: flo
     else:
         ex0 = ex1 = -1.0
     sill = min(0.95, (wall_z / 2.0 if p.stories >= 2.0 else wall_z) * 0.36)
+    h = _sash(sill, (wall_z / 2.0 - 0.14) if p.stories >= 2.0 else wall_z - 0.28)
+    if h < 0.5:
+        return
     placed = 0
     for cx, kind in openings:
         if kind == "door" or placed >= 2:
@@ -510,7 +556,7 @@ def _rear_windows(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: flo
         if ex0 - 0.5 < cx < ex1 + 0.5:
             continue
         _opening(b, "y", y0, cx - WIN_W_M / 2, cx + WIN_W_M / 2, sill,
-                 sill + WIN_H_M, -1, conf)
+                 sill + h, -1, conf)
         placed += 1
 
 
@@ -545,11 +591,14 @@ def _gable_ends(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float,
 
     stack_x = _stack_positions(p, w)
     sill = min(0.95, (wall_z / 2.0 if p.stories >= 2.0 else wall_z) * 0.36)
+    h = _sash(sill, (wall_z / 2.0 - 0.14) if p.stories >= 2.0 else wall_z - 0.28)
+    if h < 0.5:
+        return
     for x, out in ((0.0, -1), (w, 1)):
         if any(abs(sx - x) < 1.0 for sx in stack_x):
             continue
         _opening(b, "x", x, yc - WIN_W_M / 2, yc + WIN_W_M / 2, sill,
-                 sill + WIN_H_M, out, c_fen)
+                 sill + h, out, c_fen)
 
 
 # -------------------------------------------------------------------- the ell
@@ -563,7 +612,7 @@ def _ell_extent(p: FrameDwellingParams, w: float) -> tuple:
 
 
 def _ell(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float,
-         c_mass: float, c_clad: float, c_trim: float, c_fen: float) -> float:
+         c_clad: float, c_trim: float, c_fen: float) -> float:
     """The rear kitchen wing. Returns its ridge height.
 
     Its arms come out of the footprint polygon, not out of invented parameters — see
@@ -590,21 +639,27 @@ def _ell(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float,
     # and two coincident surfaces are a z-fighting stripe down the most visible corner
     # of the building
     b.add_box(ex0, 0.0, 0.0, ex1, y0, ez, c, M_WALL, skip=("bottom", "back"))
-    _clapboard(b, p, ex0, 0.0, ex1, y0, 0.0, ez, c_clad, long_axis="y")
-    _band(b, ex0, 0.0, ex1, y0, 0.0, 0.18, c_trim, M_TRIM)
-    _band(b, ex0, 0.0, ex1, y0, ez - 0.18, ez, c_trim, M_TRIM)
+    _clapboard(b, p, ex0, 0.0, ex1, y0, 0.18, ez - 0.18, c_clad, long_axis="y",
+               skip=("back",))
+    _band(b, ex0, 0.0, ex1, y0, 0.0, 0.18, c_trim, M_TRIM, skip=("back",))
+    _band(b, ex0, 0.0, ex1, y0, ez - 0.18, ez, c_trim, M_TRIM, skip=("back",))
 
     ridge_z = b.add_gable_roof(ex0, EAVE_M, ex1, y0 - EAVE_M, ez, p.roof_pitch_deg,
                                c, M_ROOF, overhang=EAVE_M, ridge_along_x=False)
 
     # a door and a window on the wing: the kitchen's own way out to the yard
     xc = (ex0 + ex1) / 2.0
-    _opening(b, "y", 0.0, xc - DOOR_W_M / 2, xc + DOOR_W_M / 2, 0.02, DOOR_H_M,
-             -1, c_fen)
+    door_h = min(DOOR_H_M, ez - 0.26 - DOOR_SILL_M)
+    if door_h > 1.6:
+        _opening(b, "y", 0.0, xc - DOOR_W_M / 2, xc + DOOR_W_M / 2, DOOR_SILL_M,
+                 DOOR_SILL_M + door_h, -1, c_fen)
     side_x, out = (ex0, -1) if p.ell_side == "east" else (ex1, 1)
     yc = y0 / 2.0
-    _opening(b, "x", side_x, yc - WIN_W_M / 2, yc + WIN_W_M / 2, 0.85,
-             0.85 + WIN_H_M * 0.8, out, c_fen)
+    sill = 0.85
+    h = _sash(sill, ez - 0.26)
+    if h > 0.5:
+        _opening(b, "x", side_x, yc - WIN_W_M / 2, yc + WIN_W_M / 2, sill,
+                 sill + h, out, c_fen)
     return ridge_z
 
 
@@ -648,7 +703,9 @@ def _chimneys(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float, d: fl
         _stack(b, cx, yc, wall_z, ridge_z, conf)
     if p.ell and p.chimneys >= 2 and ell_ridge_z is not None:
         ex0, ex1 = _ell_extent(p, w)
-        _stack(b, (ex0 + ex1) / 2.0, 0.8, p.ell_height_m, ell_ridge_z, conf)
+        # near the wing's own outer gable, and kept inside it however short it is
+        cy = min(0.95, max(0.55, p.ell_depth_m * 0.3))
+        _stack(b, (ex0 + ex1) / 2.0, cy, p.ell_height_m, ell_ridge_z, conf)
 
 
 def _stack(b: MeshBuilder, cx: float, cy: float, base_z: float, ridge_z: float,

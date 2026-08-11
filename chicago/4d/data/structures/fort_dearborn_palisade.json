@@ -1,0 +1,172 @@
+{
+  "id": "fort_dearborn_palisade",
+  "name": "Fort Dearborn — the stockade",
+  "aka": [
+    "the pickets",
+    "the palisade",
+    "Fort Dearborn (second fort, 1816)"
+  ],
+  "archetype": "palisade",
+  "phases": [
+    {
+      "id": "picket_1816",
+      "documented_range": {
+        "from": "1816-07-01",
+        "to": "1849-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "kinzie_waubun_1856",
+          "wentworth_1881_fort_dearborn",
+          "harrison_1830_river_mouth",
+          "andreas_1884_v1"
+        ],
+        "note": "THE END OF THIS RANGE IS AN UPPER BOUND, NOT A DATE. The pickets are attested standing in 1831 by someone living inside them - Juliette Kinzie, 'The fort was inclosed by high pickets' - and drawn on the 1830 plan. Robert Fergus, describing the fort in 1850, says 'The whole Fort enclosure was surrounded by a rough-board fence, white-washed, about 6 feet high; the pickets having been removed at an earlier date'. NOTHING REACHED DATES THAT REMOVAL, so the range is closed at the last day before Fergus's view rather than at a real terminus, and the buildings inside carry a longer range than the wall round them for that reason. On 1835-07-01 the post is garrisoned and the pickets stand: the removal belongs to the years after the troops left in December 1836, and a stockade is not pulled down round an occupied garrison."
+      },
+      "position": {
+        "utm_e": 448194.77,
+        "utm_n": 4637594.25,
+        "rotation_deg": 8.0,
+        "symbolic_location": "The south bank of the Chicago River inside the bend, on the Fort Dearborn Reservation at the river mouth; the site of the modern Michigan Avenue bridge's south approach.",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth",
+          "wright_1834",
+          "andreas_1884_v1"
+        ],
+        "note": "PLACED FROM THE ONLY PLAN OF THIS FORT ANYONE HAS FOUND. F. Harrison Jr.'s 1830 survey of the mouth of the Chicago River, drawn for the harbour works and reproduced by Andreas at vol. 1 p. 113, draws Fort Dearborn IN PLAN: a quadrangular picket enclosure with a work at three of its four angles, four ranges set against the walls, two small buildings flanking a break in the south wall, and a larger block outside the south-west angle. Positions in this record were read off that plate in pixels, scaled at 1.10 ft per pixel of the archive.org page image, rotated to the sheet's own true-north arrow, and hung on the fort centre at local E +1152, N +221 - the Wright 1834 reading that docs/ROADMAP.md S5a records as cross-checked to 35 m against the modern successor landmark. THE SCALE IS THE WEAK LINK AND IT IS STATED RATHER THAN BURIED: the sheet carries no scale bar, so 1.10 ft/px comes from setting the north range equal to the commandant's quarters at 'about 25x50 ft' in the key to the 1855 photograph, and it is checked by the gap between the west and east ranges coming out 71 ft against that key's 80 ft parade width. Carry +/-20 percent on every dimension derived this way, on top of the +/-20 m the datum already carries. THE ARRANGEMENT IS BETTER EVIDENCE THAN THE SCALE, and it is corroborated: Gurdon S. Hubbard, describing the inside of this fort in 1827 (Andreas I, p. 264), names the same buildings on the same sides in the same relation to the same two gates. An 1830 engineer's plan and an 1827 eyewitness agreeing building by building is what licenses inferred here rather than conjectural. See docs/RESEARCH/fort_dearborn.md sections 3 and 4. THE ROTATION IS READ OFF THE SAME PLATE and is the least expected number in this record: the fort's walls are drawn about 8 degrees clockwise of true north, measured as the mean of all four walls against the sheet's own north arrow, which sits within 0.2 degrees of vertical once the leaf is rotated. Eight degrees is inside what a woodcut re-engraving can invent, so it is inferred and not documented - but the fort sat on a river bank inside a bend and had no grid to align to, and a square post whose walls all lean the same way by the same amount is more likely to be a fort that was not square with the meridian than an engraver who tilted four lines consistently."
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            53.0,
+            0
+          ],
+          [
+            53.0,
+            53.0
+          ],
+          [
+            0,
+            53.0
+          ]
+        ],
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth",
+          "andreas_1884_v1",
+          "wentworth_1881_fort_dearborn"
+        ],
+        "note": "A SQUARE OF ABOUT 53 m (174 ft), AND EVERY PART OF THAT SENTENCE HAS A DIFFERENT WARRANT. That it was SQUARE is Andreas in terms: 'The fort, as rebuilt, consisted of a square stockade inclosing barracks, quarters for the officers, magazine and provision-store' - and the 1830 plan agrees, drawing the two wall-to-wall distances within 3 percent of each other (161 and 157 pixels). THE SIZE IS DERIVED, NOT STATED. No source reached gives a dimension of this stockade; Quaife, who wrote the standing monograph on the fort and had the War Department files, prints Captain Whistler's measured 1808 draught of the FIRST fort and states no dimension of the second one anywhere. So 53 m is the 1830 plan measured at the scale that record's position note derives, and it carries +/-20 percent - the fort is somewhere between about 140 and 210 ft on a side. WHAT IS NOT CLAIMED: the polygon is a rectangle because the plan draws a quadrangle, and nothing attests the corners were true or the sides equal to the foot."
+      },
+      "form": {
+        "wall_kind": {
+          "value": "picket_stockade",
+          "confidence": "documented",
+          "sources": [
+            "kinzie_waubun_1856",
+            "andreas_1884_v1"
+          ],
+          "note": "Juliette Kinzie, inside it in 1831: 'The fort was inclosed by high pickets, with bastions at the alternate angles.' Andreas: 'a square stockade'. A picket line - upright posts set in the ground - is what both describe, and it is the one thing about this wall that two sources state rather than imply."
+        },
+        "construction": {
+          "value": "log",
+          "confidence": "inferred",
+          "note": "Not stated. 'Pickets' in this literature means split or roughly squared timber posts set upright, and the fort was built by soldiers out of local timber. The archetype builds squared posts, which is the commonest form and the one that matches the hewn work in the town across the river."
+        },
+        "picket_height_m": {
+          "value": 3.7,
+          "confidence": "conjectural",
+          "note": "THE SOURCE GIVES AN ADJECTIVE AND THIS RECORD NEEDS A NUMBER. Kinzie says 'high pickets' and nobody else says anything at all. 3.7 m is twelve feet, the common height for a frontier stockade of this class, and it is a guess dressed in a plausible number. A visitor looking at the height of this wall is looking at our arithmetic, not at evidence."
+        },
+        "picket_width_m": {
+          "value": 0.24,
+          "confidence": "conjectural",
+          "note": "Unattested. Roughly a ten-inch face, which is what a split oak or cedar picket of that height needs to stand without racking."
+        },
+        "picket_spacing_m": {
+          "value": 0.3,
+          "confidence": "conjectural",
+          "note": "Unattested. Set so the posts stand shoulder to shoulder with the narrow gap a hand-set picket line actually leaves, rather than touching perfectly, which reads as a fence panel."
+        },
+        "gate_sides": {
+          "value": [
+            "n",
+            "s"
+          ],
+          "confidence": "documented",
+          "sources": [
+            "kinzie_waubun_1856",
+            "andreas_1884_v1"
+          ],
+          "note": "Two independent statements. Kinzie: 'Large gates opened to the north and south.' Andreas: 'It had two gates, one on the north and the other on the south side.' The 1830 plan draws a break in each of those two walls and in neither of the others, and Hubbard's 1827 account places buildings by reference to both - 'the store-house and guard-house were on either side of the southern gate; the sutler's store was east of the north gate'. Three sources, one arrangement."
+        },
+        "gate_width_m": {
+          "value": 3.6,
+          "confidence": "conjectural",
+          "note": "'Large gates' is the whole attestation. 3.6 m is twelve feet, wide enough for a loaded team, which is what a fort gate has to pass. The leaves are built shut; nothing says how they hung or which way they swung."
+        },
+        "bastion_corners": {
+          "value": [
+            "nw",
+            "se"
+          ],
+          "confidence": "documented",
+          "sources": [
+            "andreas_1884_v1",
+            "kinzie_waubun_1856",
+            "harrison_1830_river_mouth"
+          ],
+          "note": "Andreas, of the rebuilt fort: 'was defended by bastions at the northwest and southeast angles. The block-house was in the southwest corner.' Kinzie, independently: 'bastions at the alternate angles'. Hubbard in 1827: 'the block-house was located at the southwest and the bastion at the northwest corners'. The 1830 plan draws a work at exactly three angles and leaves the north-east plain. GUARD: the widely repeated 'two blockhouses, one on the south-east corner, the other at the north-west' belongs to the FIRST fort - the passage it comes from ends 'Such was the old Fort previous to 1812' - and applying it here is the commonest error about this building."
+        },
+        "bastion_length_m": {
+          "value": 7.0,
+          "confidence": "conjectural",
+          "note": "Unattested. The 1830 plan draws the corner works as shallow rectangular projections; this is that shape at a size the plate supports to about +/-40 percent, which is worse than the enclosure's own error bar because the works are small on the plate."
+        },
+        "bastion_projection_m": {
+          "value": 3.2,
+          "confidence": "conjectural",
+          "note": "Unattested. How far the work stands proud of the curtain, read off the same small marks on the same plate."
+        },
+        "posterns": {
+          "value": true,
+          "confidence": "documented",
+          "sources": [
+            "kinzie_waubun_1856"
+          ],
+          "geometry": "absent",
+          "note": "Kinzie: 'there were small posterns here and there for the accommodation of the inmates'. NOTHING OF THEM IS BUILT, and the reason is in the sentence: 'here and there' is not a position, and putting a postern anywhere would invent the one thing the only witness declines to give. The wall is therefore continuous between its two documented gates, which is a picture of the evidence rather than of the fort."
+        }
+      },
+      "ground_contact": {
+        "state": "outside_modelled_ground",
+        "note": "THE FORT STANDS 832 m EAST OF THE MODELLED GROUND. The e1834_harbor_cut terrain box runs to local E +320 and this structure sits at about E +1130 to +1180, so there is no terrain under any part of its outline and the question whether it lands has no answer. It is recorded rather than hidden because tools/heightfield.py clamps at the box edge: before 2026-08-11 the ground-contact gate sampled the edge for the base AND for every contact point, the two agreed exactly, and a fort in the void reported a perfect landing. Heightfield.covers() and this state exist because of this structure. WHAT WOULD SETTLE IT: docs/ROADMAP.md S2e parcel (b), the heightfield extension east over the ~2.0 km x 0.7 km field the traced shoreline already scopes. The evidence for that ground is committed; the ground is not built. Until it is, the renderer places this structure at the clamped edge elevation, which is a number about a place 832 m away."
+      },
+      "change_note": "The stockade of the second Fort Dearborn: high pickets on a square, bastions at the north-west and south-east angles, a block-house at the south-west, and large gates north and south. Standing and garrisoned on 1835-07-01 under Maj. John Greene, 5th Infantry."
+    }
+  ],
+  "function": {
+    "value": "military post enclosure",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1",
+      "kinzie_waubun_1856"
+    ],
+    "note": "The enceinte of a garrisoned United States infantry post. Occupied on the scene date - see the structure-level occupants block and docs/RESEARCH/fort_dearborn.md section 2."
+  },
+  "occupants": {
+    "value": "United States 5th Infantry, Maj. John Greene commanding",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "drloih_fort_dearborn"
+    ],
+    "note": "THE FORT WAS OCCUPIED ON 1835-07-01 AND THIS PROJECT CHECKED RATHER THAN ASSUMED IT. Andreas gives the sequence: the garrison was withdrawn in 1823, the post was re-garrisoned in October 1828, the troops were removed to Green Bay in May 1831, and 'In June [1832] the fort was once more garrisoned. Major William Whistler being assigned to the command' - held continuously from then until 29 December 1836. For the scene date itself Andreas brackets the command rather than naming it: DeLafayette Wilcox 'commanded until December 18, 1833, and again from September 16, 1835', with 'Major John Bender, Major John Greene and Captain and Brevet-Major Joseph Plympton ... in command at various times' between. The drloihjournal chronology fills the bracket with Maj. John Greene, 5th Infantry, 18 December 1833 to 16 September 1835, which is unfootnoted but lands exactly inside Andreas's two dates. STRENGTH IS NOT ATTESTED for mid-1835; Andreas gives two companies of infantry in 1833 and nothing later, so no number is recorded here. The garrison is why the gates are built shut rather than open and why the fort is modelled maintained rather than decaying."
+  },
+  "research_note": "THE MOST RECOGNISABLE STRUCTURE IN 1835 CHICAGO, and the record whose footprint stopped being a placeholder because a plan turned up. What the plan is, how it was scaled and what that scale is worth are in the position and footprint notes and at length in docs/RESEARCH/fort_dearborn.md. THREE THINGS THIS RECORD EXISTS TO GET RIGHT. First, it is the SECOND fort: the sally-port, the two blockhouses at the south-east and north-west angles, the fifty invalids and the cultivated garden on the south side all come from a passage that ends 'Such was the old Fort previous to 1812', and every one of them is excluded here - see data/exclusions.json. Second, it was OCCUPIED, which is a different scene from an empty one; the occupants block sets out the chain. Third, the fort a visitor may have seen photographed is not this one: the whitewashed board fence, the turnstile from Michigan Avenue and the four-hundred-foot parade belong to the compound of the 1850s, after the pickets came down and the army left.",
+  "review_required": false
+}

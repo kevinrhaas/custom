@@ -1,0 +1,116 @@
+{
+  "id": "fort_dearborn_garrison_garden",
+  "phase": "fence_1816",
+  "name": "Fort Dearborn — the garrison garden",
+  "aka": [
+    "Garden for the Garrison",
+    "the company gardens"
+  ],
+  "archetype": "palisade",
+  "asset": "gltf/fort_dearborn_garrison_garden__fence_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1019.1,
+    "local_n": 106.56,
+    "rotation_deg": 53.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "On the reservation south-west of Fort Dearborn, between the fort and the bend of the river, west of the road.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        77.0,
+        0
+      ],
+      [
+        77.0,
+        77.0
+      ],
+      [
+        0,
+        77.0
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "wall_kind": {
+      "value": "worm_fence",
+      "confidence": "inferred",
+      "sources": [
+        "harrison_1830_river_mouth"
+      ],
+      "note": "READ FROM A DRAWING CONVENTION, NOT FROM A CAPTION. The 1830 plate draws two sides of this plot as a continuous zigzag line and the other two as plain lines. A zigzag boundary on a period American survey is the standard convention for a worm - snake - rail fence, which is the fence a garrison with axes and no post-hole digger builds. The reading is inferred from the convention; the sheet does not say 'fence'."
+    },
+    "construction": {
+      "value": "split_rail",
+      "confidence": "inferred",
+      "note": "Not stated. A worm fence is stacked split rails by construction - it has no posts and nothing is set in the ground, which is why it is drawn as a zigzag."
+    },
+    "fence_height_m": {
+      "value": 1.3,
+      "confidence": "conjectural",
+      "note": "Unattested. About four and a half feet, the ordinary height of a worm fence that has to keep stock out of a garden."
+    },
+    "rail_courses": {
+      "value": 3,
+      "confidence": "conjectural",
+      "note": "Unattested. Three courses is the light end of the type; a stock fence would carry more."
+    },
+    "panel_length_m": {
+      "value": 3.0,
+      "confidence": "conjectural",
+      "note": "Unattested. Ten feet, which is a split rail's length."
+    },
+    "panel_offset_m": {
+      "value": 0.9,
+      "confidence": "conjectural",
+      "note": "Unattested. How far each panel steps off the line, which is what makes the zigzag; three feet is the ordinary lay."
+    },
+    "planting": {
+      "value": "currant bushes and young fruit trees",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "geometry": "absent",
+      "note": "Juliette Kinzie, 1831: 'Beyond the parade-ground, which extended south of the pickets, were the company gardens, well filled with currant-bushes and young fruit-trees.' NOTHING OF THE PLANTING IS BUILT. The fence is modelled and the plot inside it is empty ground, because currant bushes and young fruit trees are flora and this project's flora layer is driven by data/flora/, which has no cultivated zone and no garden species. GUARD ON THE CITATION: the often-quoted 'The ground on the south side was enclosed and cultivated as a garden' is the FIRST fort - its passage ends 'Such was the old Fort previous to 1812' - and this record does not rest on it. Kinzie's sentence is about the fort she was living in, in 1831."
+    },
+    "function": {
+      "value": "company gardens",
+      "confidence": "documented",
+      "sources": [
+        "harrison_1830_river_mouth",
+        "kinzie_waubun_1856"
+      ],
+      "note": "The garrison's vegetable and fruit ground. Labelled 'Garden for the Garrison' on the 1830 survey and described in fruit by Juliette Kinzie in 1831. A separate 'Cultivated Field belonging to The Fort' is drawn further west on the same plate and is NOT modelled - it is a field, not a structure, and it belongs to the terrain and flora layers."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    }
+  ],
+  "research_note": "THE CHEAPEST HONEST WAY TO MAKE THE RESERVATION READ AS OCCUPIED GROUND rather than as a fort in a void: a fenced acre and a half of garden with a barn beyond it is what the only plan of this place actually draws. Two guards are worth carrying. The planting is documented and unbuilt, and the record says so on the attribute rather than in prose. And the garden that appears in most accounts of 'the fort's south-side garden' is the pre-1812 fort's; this one rests on the 1830 plan and on Kinzie's 1831 sentence, which are both about the second fort.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_garrison_garden.md",
+  "review_required": false
+}

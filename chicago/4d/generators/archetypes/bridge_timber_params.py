@@ -58,15 +58,42 @@ described falls back to, and `pier_kind` gains `bent` beside `crib` and `pile`.
 letter named it, and an attribute stated on a record has to be one the generator reads —
 otherwise the record owes `docs/LIBERTIES.md` an admission for a feature that is in fact
 built (see `tools/validate.py`'s geometry declarations).
-- **South Branch raft bridge**, winter 1832-33, near Lake Street: a floating log raft,
-  same ~10 ft / ~6 ft figures. Floating is a genuinely different structure, and this
-  archetype does NOT model it — a raft has no piers and no clearance in the sense used
-  here. It needs its own archetype, and a record that points a floating bridge at this
-  one will get a fixed-pier bridge and a false impression of solidity. Left explicit
-  rather than fudged.
+- **South Branch raft bridge**, winter 1832-33, between Lake and Randolph: the dossiers
+  call it a floating log raft, and **that reading did not survive the source that
+  describes how these crossings were built.** The paragraph above is why: the 1883
+  old-settlers statement is about BOTH branch bridges — "both bridges were built on
+  abutments and two 'bents'", "these bridges were about ten feet wide", "these were
+  BOTH wagon bridges, and were about six feet above the water, so that teams passed
+  under them on the ice freely" — and a floating raft has no abutments, no bents, no
+  six feet of air beneath it and no way for a team to pass under it. So the South
+  Branch crossing is this archetype after all, and
+  `data/structures/south_branch_raft_bridge.json` records the disagreement instead of
+  deleting it: the raft is the word every retelling uses, including the account of the
+  crossing in use six weeks after the scene date, and the fixed bridge is what four men
+  who drove teams over it set down over their signatures.
 
-The 1834 Dearborn Street drawbridge is a different animal again — 200 ft, a 60-ft
-double-leaf draw worked by chains — and is also out of scope here.
+  **This section said the opposite until 2026-08-11**, and the superseded text is kept
+  because its caution was right and only its conclusion was wrong: "Floating is a
+  genuinely different structure, and this archetype does NOT model it — a raft has no
+  piers and no clearance in the sense used here. It needs its own archetype, and a
+  record that points a floating bridge at this one will get a fixed-pier bridge and a
+  false impression of solidity." That danger is real, and it is exactly why the record
+  carries the conflict on its face rather than in a footnote. What changed is which
+  reading the best evidence supports, not the standard for pointing a structure at an
+  archetype. If a source ever puts a floating raft on the South Branch in 1835 against
+  the settlers' signatures, the answer is a `raft_timber` archetype, not a parameter
+  on this one.
+
+The 1834 Dearborn Street drawbridge is a different animal again — Andreas has it about
+three hundred feet long, with a sixty-foot draw hoisted between two "gallows" frames —
+and **the moving half of it is out of scope here.** This archetype builds the fixed
+timber crossing and nothing else, so a drawbridge record has to declare the draw, its
+frames and its overall length as things the mesh does not contain (the `geometry:`
+declarations `tools/validate.py` enforces) and owe docs/LIBERTIES.md an entry for each.
+That is the honest arrangement available today. Building a hoisted leaf and two frames
+whose height, section and mechanism no source gives would bolt four inventions onto the
+two dimensions anybody actually recorded — and one of those inventions would be the
+silhouette a visitor remembers.
 
 ## The dimensional confidences run the other way round from a building
 
@@ -156,6 +183,10 @@ CONSUMED = frozenset({
     "width_m", "clearance_m", "pier_count", "pier_kind", "deck_kind",
     "stringer_count", "stringer_d_m", "plank_t_m", "abutments", "construction",
     "railing", "deck_height_m",
+    # The draw, added 2026-08-11. All three reach vertices: the opening clears the
+    # supports out of itself and stations the frames, the count sets how many frames
+    # there are, and the height is the silhouette.
+    "draw_span_m", "gallows_frames", "gallows_height_m",
 })
 
 
@@ -206,6 +237,34 @@ class BridgeTimberParams:
     # inherits from it.
     railing: bool = False
 
+    # THE MOVING PART, added 2026-08-11 for the Dearborn Street drawbridge.
+    #
+    # `draw_span_m` is the clear opening left for craft, centred on the span. None
+    # means a fixed bridge, which is what both branch crossings were. What it changes
+    # in the mesh is two things and neither of them is a leaf: the intermediate
+    # supports are cleared out of the opening — a navigable draw with a pier standing
+    # in it is not a draw — and the gallows frames are stationed at its ends.
+    #
+    # THE DRAW IS BUILT CLOSED, AND THAT IS THE CHOICE THAT AVOIDS AN INVENTION.
+    # Andreas gives "gallows pattern", two frames "one at either end", a draw that was
+    # "hoisted", and the occasion the frames "held the draw suspended in mid-air". That
+    # establishes it lifted rather than swung, and it does NOT say whether the opening
+    # was closed by one leaf, by two, or by a section lifted bodily between the frames —
+    # all three fit every word of it. A raised leaf would have to pick one; a closed
+    # deck under two frames fits all three, so the deck runs continuously across the
+    # opening and the record carries the ambiguity instead of the mesh.
+    draw_span_m: float | None = None
+
+    # How many gallows frames stand over the draw. Two is the documented arrangement
+    # for the Dearborn bridge, one at either end of the opening.
+    gallows_frames: int = 0
+
+    # How tall a gallows frame stands above the deck. NO SOURCE GIVES IT, for the one
+    # structure in this dataset that had them, and the default below is this module's
+    # own. A record must state it `conjectural`, and the geometry it drives is the
+    # silhouette of the whole crossing — see bridge_timber._gallows.
+    gallows_height_m: float = 6.4
+
     # Derived in __post_init__ from clearance + structure depth unless a record
     # overrides it. Kept derived because clearance is the documented number and deck
     # height is not; storing both as independent inputs would let them disagree.
@@ -247,15 +306,45 @@ class BridgeTimberParams:
         where along the span they stood. Thirds are what a builder would do and not
         what anybody recorded, so a record whose count is documented still owes
         docs/LIBERTIES.md an admission for the positions.
+
+        ANYTHING THAT WOULD STAND INSIDE THE DRAW IS DROPPED, and that is not a
+        cosmetic filter: a sixty-foot opening for the passage of craft with a pier
+        standing in the middle of it is not an opening. The evenly spaced stations are
+        computed first and then cleared out of the gap, so the count a record states is
+        the count of supports it would have had WITHOUT a draw. A record with a draw
+        therefore builds fewer supports than its `pier_count` says, and that is the
+        arithmetic being honest rather than the record being wrong: nobody wrote down
+        either number, and inventing a redistribution of the survivors would be a third
+        guess on top of two.
         """
         n = self.bays
-        return [self.span_m * i / n for i in range(1, n)]
+        xs = [self.span_m * i / n for i in range(1, n)]
+        if not self.draw_span_m:
+            return xs
+        lo = self.span_m / 2.0 - self.draw_span_m / 2.0
+        hi = self.span_m / 2.0 + self.draw_span_m / 2.0
+        return [x for x in xs if not lo < x < hi]
+
+    @property
+    def gallows_x(self) -> list[float]:
+        """Where the gallows frames stand: at the ends of the draw opening.
+
+        "The frames, one at either end, stood like instruments of death to frighten
+        the timid stranger at night" — Andreas. "Either end" is either end of the
+        DRAW, not of the bridge: the same paragraph pairs the frames with the draw
+        being hoisted and held suspended between them. A single frame, if a record
+        ever states one, stands over the middle of the opening.
+        """
+        if not self.gallows_frames or not self.draw_span_m:
+            return []
+        mid = self.span_m / 2.0
+        if self.gallows_frames == 1:
+            return [mid]
+        return [mid - self.draw_span_m / 2.0, mid + self.draw_span_m / 2.0]
 
     def validate(self) -> None:
         if not 3.0 <= self.span_m <= 90.0:
-            raise ParamError(f"span_m {self.span_m} outside 3-90 m. The 1834 Dearborn "
-                             f"Street drawbridge was 200 ft and is a different "
-                             f"archetype")
+            raise ParamError(f"span_m {self.span_m} outside 3-90 m")
         # Before the width range check, so a transposed footprint gets told what is
         # actually wrong with it rather than "your bridge is 17 metres wide".
         if self.span_m <= self.width_m:
@@ -291,6 +380,23 @@ class BridgeTimberParams:
         if self.deck_height_m is None or self.deck_height_m <= self.clearance_m:
             raise ParamError("deck_height_m must sit above the clearance line; leave "
                              "it unset and it is derived from clearance + structure")
+        if self.draw_span_m is not None:
+            if not 3.0 <= self.draw_span_m < self.span_m:
+                raise ParamError(
+                    f"draw_span_m {self.draw_span_m} must be at least 3 m and shorter "
+                    f"than the span it opens ({self.span_m}); a draw as wide as the "
+                    f"bridge is not a draw, it is a ferry")
+        if not 0 <= self.gallows_frames <= 2:
+            raise ParamError(f"gallows_frames {self.gallows_frames} outside 0-2. The "
+                             f"one bridge in this dataset that had them had two, one "
+                             f"at either end of the draw")
+        if self.gallows_frames and not self.draw_span_m:
+            raise ParamError("gallows_frames without draw_span_m: a gallows frame is "
+                             "the thing that hoists a draw, so a bridge with frames "
+                             "and no opening is a record that lost half its evidence")
+        if not 2.0 <= self.gallows_height_m <= 14.0:
+            raise ParamError(f"gallows_height_m {self.gallows_height_m} outside 2-14 m "
+                             f"above the deck")
         for k, v in self.confidence.items():
             if v not in CONFIDENCE_VALUE:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
@@ -343,6 +449,10 @@ def from_phase(phase: dict) -> BridgeTimberParams:
         railing=bool(val("railing", False)),
         deck_height_m=(None if val("deck_height_m") is None
                        else float(val("deck_height_m"))),
+        draw_span_m=(None if val("draw_span_m") is None
+                     else float(val("draw_span_m"))),
+        gallows_frames=int(val("gallows_frames", 0)),
+        gallows_height_m=float(val("gallows_height_m", 6.4)),
         confidence=confidences,
     )
     p.validate()

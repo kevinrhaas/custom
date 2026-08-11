@@ -1,0 +1,125 @@
+{
+  "id": "carpenter_south_water_store",
+  "phase": "frame_1833",
+  "name": "Philo Carpenter's South Water Street Store",
+  "aka": [
+    "Carpenter's second store",
+    "the small store between LaSalle and Wells"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/carpenter_south_water_store__frame_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 387.3,
+    "local_n": -4.2,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South side of South Water Street between Wells Street and LaSalle Street (today the south side of West Wacker Drive between North Wells and North LaSalle), placed at the middle of the block face.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7.62,
+        0
+      ],
+      [
+        7.62,
+        6.096
+      ],
+      [
+        0,
+        6.096
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Andreas's word is 'small', and a two-storey building would be described by its storeys as Peck's is ('two-story frame') rather than by its size. Inference from the adjective the source chose and from the contrast with the buildings it does describe by height, not from a statement."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated, and this record has a reason to hesitate that the others do not: Carpenter's FIRST shop is documented as log, so he was a man who had built in log once. Frame is adopted because this is new work erected on a purchased lot on the town's business street in the summer of 1833, which is when frame was taking over there, and because the dossier records the 1833-35 commercial stock as frame. Braced rather than balloon frame follows the Sauganash record's argument. If this building was log it belongs on the log_dwelling archetype, and that is a bigger correction than a repaint."
+    },
+    "wall_height_m": {
+      "value": 3.0,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey with a little more head-room than a dwelling's. It inherits the storey count's uncertainty."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a store kept through Chicago winters, and a druggist compounding needs heat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "drug_store",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "note": "Andreas calls it 'a small store' without naming the trade; the trade is inferred from its owner, who was Chicago's first druggist and who advertised in the Chicago Democrat of 26 November 1833 — three months after building this store — offering drugs, medicines, oils, paints and dye-stuffs together with dry groceries, glass and nails. That advertisement carries no address, so it names the TRADE with certainty and the BUILDING not at all. A general store selling drugs among other things is the honest reading of what Carpenter was doing by 1833; 'drug_store' is the label this dataset has for it."
+    },
+    "occupants": {
+      "value": "Philo Carpenter, druggist",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Carpenter is documented as the man who bought the lot and erected the store in 1833. That he was still in it on 1835-07-01 is the continuity inference argued on documented_range. No partner, clerk or successor is attested."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicago_democrat_1833_11_26",
+      "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE OTHER HALF OF THE CARPENTER PROBLEM, and the record that makes philo_carpenter_log_shop doubtful. Andreas gives the block face, the year, the buyer and one adjective — 'a small store' — and nothing else, so the position is placed at the middle of a 123 m frontage and the footprint is invented inside the word 'small'. The along-street uncertainty of about 60 m is larger than the georeference's own 20 m and is stated on the position rather than buried. WHAT IS DOCUMENTED: the purchase of a lot on South Water between LaSalle and Wells, the erection of a store there in the summer of 1833, and Carpenter's trade, the last of it now corroborated contemporaneously by his own advertisement in the Chicago Democrat of 26 November 1833. WHAT IS CONJECTURAL: the footprint, outright. WHAT WOULD UPGRADE IT: any 1834-35 advertisement of Carpenter's carrying an address, which would fix the lot and, if it named a cross street, would also settle whether the Lake Street log shop was still in use; or the 1834-35 town lot records for the South Water frontage between Wells and LaSalle. See docs/RESEARCH/carpenter_south_water_store.md.",
+  "research_doc": "docs/RESEARCH/carpenter_south_water_store.md",
+  "review_required": false
+}

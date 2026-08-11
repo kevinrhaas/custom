@@ -1,0 +1,111 @@
+{
+  "id": "fort_dearborn_store_house",
+  "phase": "log_1816",
+  "name": "Fort Dearborn — store house",
+  "aka": [
+    "the store-house",
+    "the provision store"
+  ],
+  "archetype": "fort_structure",
+  "asset": "gltf/fort_dearborn_store_house__log_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1152.34,
+    "local_n": 199.09,
+    "rotation_deg": 8.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Inside the south wall of Fort Dearborn, immediately east of the south gate, fronting north onto the parade.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12.24,
+        0
+      ],
+      [
+        12.24,
+        4.37
+      ],
+      [
+        0,
+        4.37
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "kind": {
+      "value": "store",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Hubbard names a store-house beside the southern gate in 1827; Andreas's summary of the rebuilt fort lists a 'provision-store' among what the stockade enclosed. GUARD: Robert Fergus's 1850 account puts a storehouse on the EAST side of the parade with the barracks and the artillery house. That is the compound of the 1850s, twenty years after the pickets came down, and where the 1830 plan and an 1827 eyewitness agree with each other this project follows them."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "inferred",
+      "note": "Not stated. Log by the same argument as the barracks."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested; single storey is the type for a provision store of this footprint and it is how the 1830 plan draws it."
+    },
+    "wall_height_m": {
+      "value": 2.8,
+      "confidence": "inferred",
+      "note": "No height attested. About nine feet: one storey with the head-room a stacked provision store wants."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested; gable is the type."
+    },
+    "roof_pitch_deg": {
+      "value": 34.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
+    },
+    "chimneys": {
+      "value": 0,
+      "confidence": "inferred",
+      "note": "A COUNT OF ZERO IS A CLAIM, NOT AN ABSENCE. A provision store is the one building in a fort you do not want a fire in, and nothing describes a stack on this one. The record says none and the model builds none."
+    },
+    "function": {
+      "value": "provision store",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "The garrison's provision store. Destroyed with the barracks in the September 1827 lightning fire and standing again on the 1830 plan; see fort_dearborn_barracks for what that does and does not establish."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2
+    }
+  ],
+  "research_note": "The eastern building at the south gate. Nothing distinguishes it from its neighbour in the sources except its name and the side it stands on, and this project's reason for putting it east rather than west is written on fort_dearborn_guard_house.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_store_house.md",
+  "review_required": false
+}

@@ -3,10 +3,160 @@
   "target_date": "1835-07-01",
   "structures": [
     {
+      "id": "bates_auction_room",
+      "name": "John Bates Jr.'s Auction Room",
+      "sidecar": "sidecars/1835/bates_auction_room.json",
+      "asset": "gltf/bates_auction_room__frame_1834.glb"
+    },
+    {
+      "id": "blacksmith_shop_state_st",
+      "name": "Government Blacksmith Shop",
+      "sidecar": "sidecars/1835/blacksmith_shop_state_st.json",
+      "asset": "gltf/blacksmith_shop_state_st__log_1823.glb"
+    },
+    {
+      "id": "carpenter_south_water_store",
+      "name": "Philo Carpenter's South Water Street Store",
+      "sidecar": "sidecars/1835/carpenter_south_water_store.json",
+      "asset": "gltf/carpenter_south_water_store__frame_1833.glb"
+    },
+    {
+      "id": "chicago_american_office",
+      "name": "The Chicago American Office",
+      "sidecar": "sidecars/1835/chicago_american_office.json",
+      "asset": "gltf/chicago_american_office__frame_1835.glb"
+    },
+    {
+      "id": "chicago_democrat_office",
+      "name": "The Chicago Democrat Office",
+      "sidecar": "sidecars/1835/chicago_democrat_office.json",
+      "asset": "gltf/chicago_democrat_office__frame_1833.glb"
+    },
+    {
+      "id": "cobweb_castle",
+      "name": "Indian Agency House",
+      "sidecar": "sidecars/1835/cobweb_castle.json",
+      "asset": "gltf/cobweb_castle__log_1820.glb"
+    },
+    {
+      "id": "council_house",
+      "name": "Council House",
+      "sidecar": "sidecars/1835/council_house.json",
+      "asset": "gltf/council_house__log_1834.glb"
+    },
+    {
+      "id": "dearborn_street_drawbridge",
+      "name": "Dearborn Street Drawbridge",
+      "sidecar": "sidecars/1835/dearborn_street_drawbridge.json",
+      "asset": "gltf/dearborn_street_drawbridge__draw_1834.glb"
+    },
+    {
+      "id": "dole_warehouse_south",
+      "name": "George W. Dole's Warehouse",
+      "sidecar": "sidecars/1835/dole_warehouse_south.json",
+      "asset": "gltf/dole_warehouse_south__frame_1832.glb"
+    },
+    {
+      "id": "first_presbyterian_church",
+      "name": "First Presbyterian Church",
+      "sidecar": "sidecars/1835/first_presbyterian_church.json",
+      "asset": "gltf/first_presbyterian_church__frame_1834.glb"
+    },
+    {
+      "id": "fort_dearborn_artillery_house",
+      "name": "Fort Dearborn — artillery house",
+      "sidecar": "sidecars/1835/fort_dearborn_artillery_house.json",
+      "asset": "gltf/fort_dearborn_artillery_house__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_barracks",
+      "name": "Fort Dearborn — soldiers' barracks",
+      "sidecar": "sidecars/1835/fort_dearborn_barracks.json",
+      "asset": "gltf/fort_dearborn_barracks__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_blockhouse",
+      "name": "Fort Dearborn — block-house",
+      "sidecar": "sidecars/1835/fort_dearborn_blockhouse.json",
+      "asset": "gltf/fort_dearborn_blockhouse__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_commandants_quarters",
+      "name": "Fort Dearborn — commandant's quarters",
+      "sidecar": "sidecars/1835/fort_dearborn_commandants_quarters.json",
+      "asset": "gltf/fort_dearborn_commandants_quarters__brick_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_garrison_garden",
+      "name": "Fort Dearborn — the garrison garden",
+      "sidecar": "sidecars/1835/fort_dearborn_garrison_garden.json",
+      "asset": "gltf/fort_dearborn_garrison_garden__fence_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_guard_house",
+      "name": "Fort Dearborn — guard house",
+      "sidecar": "sidecars/1835/fort_dearborn_guard_house.json",
+      "asset": "gltf/fort_dearborn_guard_house__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_magazine",
+      "name": "Fort Dearborn — powder magazine",
+      "sidecar": "sidecars/1835/fort_dearborn_magazine.json",
+      "asset": "gltf/fort_dearborn_magazine__brick_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_officers_quarters",
+      "name": "Fort Dearborn — officers' quarters",
+      "sidecar": "sidecars/1835/fort_dearborn_officers_quarters.json",
+      "asset": "gltf/fort_dearborn_officers_quarters__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_palisade",
+      "name": "Fort Dearborn — the stockade",
+      "sidecar": "sidecars/1835/fort_dearborn_palisade.json",
+      "asset": "gltf/fort_dearborn_palisade__picket_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_parade",
+      "name": "Fort Dearborn — the parade ground",
+      "sidecar": "sidecars/1835/fort_dearborn_parade.json",
+      "asset": "gltf/fort_dearborn_parade__parade_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_store_house",
+      "name": "Fort Dearborn — store house",
+      "sidecar": "sidecars/1835/fort_dearborn_store_house.json",
+      "asset": "gltf/fort_dearborn_store_house__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_sutlers_store",
+      "name": "Fort Dearborn — sutler's store",
+      "sidecar": "sidecars/1835/fort_dearborn_sutlers_store.json",
+      "asset": "gltf/fort_dearborn_sutlers_store__log_1816.glb"
+    },
+    {
+      "id": "frederick_thomas_shop",
+      "name": "Frederick Thomas's Shop",
+      "sidecar": "sidecars/1835/frederick_thomas_shop.json",
+      "asset": "gltf/frederick_thomas_shop__frame_1835.glb"
+    },
+    {
       "id": "green_tree_tavern",
       "name": "Green Tree Tavern",
       "sidecar": "sidecars/1835/green_tree_tavern.json",
       "asset": "gltf/green_tree_tavern__frame_1833.glb"
+    },
+    {
+      "id": "h_jones_store",
+      "name": "Jones's Grocery and Provision Store",
+      "sidecar": "sidecars/1835/h_jones_store.json",
+      "asset": "gltf/h_jones_store__frame_1833.glb"
+    },
+    {
+      "id": "harmon_loomis_store",
+      "name": "Harmon & Loomis's Store",
+      "sidecar": "sidecars/1835/harmon_loomis_store.json",
+      "asset": "gltf/harmon_loomis_store__frame_1833.glb"
     },
     {
       "id": "hogan_store",
@@ -15,10 +165,34 @@
       "asset": "gltf/hogan_store__log_1831.glb"
     },
     {
+      "id": "jb_beaubien_homestead",
+      "name": "Col. Jean Baptiste Beaubien's Homestead",
+      "sidecar": "sidecars/1835/jb_beaubien_homestead.json",
+      "asset": "gltf/jb_beaubien_homestead__factory_1817.glb"
+    },
+    {
+      "id": "jh_kinzie_forwarding_store",
+      "name": "J. H. Kinzie's Store",
+      "sidecar": "sidecars/1835/jh_kinzie_forwarding_store.json",
+      "asset": "gltf/jh_kinzie_forwarding_store__frame_1830s.glb"
+    },
+    {
+      "id": "madore_beaubien_house",
+      "name": "Madore Beaubien's Log House",
+      "sidecar": "sidecars/1835/madore_beaubien_house.json",
+      "asset": "gltf/madore_beaubien_house__log_1831.glb"
+    },
+    {
       "id": "miller_house",
       "name": "Miller House",
       "sidecar": "sidecars/1835/miller_house.json",
       "asset": "gltf/miller_house__log_frame_1827.glb"
+    },
+    {
+      "id": "miller_tannery",
+      "name": "John Miller's Tannery",
+      "sidecar": "sidecars/1835/miller_tannery.json",
+      "asset": "gltf/miller_tannery__log_1831.glb"
     },
     {
       "id": "north_branch_bridge",
@@ -27,10 +201,76 @@
       "asset": "gltf/north_branch_bridge__log_1832.glb"
     },
     {
+      "id": "north_pier",
+      "name": "North Pier",
+      "sidecar": "sidecars/1835/north_pier.json",
+      "asset": "gltf/north_pier__crib_1835.glb"
+    },
+    {
+      "id": "north_side_school_1833",
+      "name": "North Side School House",
+      "sidecar": "sidecars/1835/north_side_school_1833.json",
+      "asset": "gltf/north_side_school_1833__log_1833.glb"
+    },
+    {
+      "id": "old_bank_building",
+      "name": "The Old Bank Building",
+      "sidecar": "sidecars/1835/old_bank_building.json",
+      "asset": "gltf/old_bank_building__frame_1834.glb"
+    },
+    {
+      "id": "peck_store",
+      "name": "P. F. W. Peck's Store",
+      "sidecar": "sidecars/1835/peck_store.json",
+      "asset": "gltf/peck_store__frame_1833.glb"
+    },
+    {
+      "id": "philo_carpenter_log_shop",
+      "name": "Philo Carpenter's Log Drug Store",
+      "sidecar": "sidecars/1835/philo_carpenter_log_shop.json",
+      "asset": "gltf/philo_carpenter_log_shop__log_1832.glb"
+    },
+    {
+      "id": "pruyne_kimball_drugstore",
+      "name": "Pruyne & Kimball's Drug Store",
+      "sidecar": "sidecars/1835/pruyne_kimball_drugstore.json",
+      "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
+    },
+    {
+      "id": "robinson_caldwell_cabins",
+      "name": "Log cabins at Wolf Point",
+      "sidecar": "sidecars/1835/robinson_caldwell_cabins.json",
+      "asset": "gltf/robinson_caldwell_cabins__log_1831.glb"
+    },
+    {
       "id": "sauganash_hotel",
       "name": "Sauganash Hotel",
       "sidecar": "sidecars/1835/sauganash_hotel.json",
       "asset": "gltf/sauganash_hotel__frame_1831.glb"
+    },
+    {
+      "id": "south_branch_raft_bridge",
+      "name": "South Branch Bridge",
+      "sidecar": "sidecars/1835/south_branch_raft_bridge.json",
+      "asset": "gltf/south_branch_raft_bridge__log_1833.glb"
+    },
+    {
+      "id": "south_pier",
+      "name": "South Pier",
+      "sidecar": "sidecars/1835/south_pier.json",
+      "asset": "gltf/south_pier__crib_1835.glb"
+    },
+    {
+      "id": "steamboat_hotel",
+      "name": "Steamboat Hotel",
+      "sidecar": "sidecars/1835/steamboat_hotel.json",
+      "asset": "gltf/steamboat_hotel__frame_1835.glb"
+    },
+    {
+      "id": "thomas_church_store",
+      "name": "Thomas Church's Store",
+      "sidecar": "sidecars/1835/thomas_church_store.json",
+      "asset": "gltf/thomas_church_store__frame_1834.glb"
     },
     {
       "id": "walker_meeting_house",

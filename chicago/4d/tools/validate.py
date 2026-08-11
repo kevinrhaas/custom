@@ -513,11 +513,19 @@ def check_geometry_declarations(structures: dict, consumed: dict[str, frozenset]
 # visitor could step onto has met the ground; anything they could not has not.
 GROUND_CONTACT_TOL_M = 0.35
 
-# What a phase may say when its structure does not reach the ground. One state
-# so far, and it is deliberately narrow: the model stops at the structure and
-# the ground it needed to arrive at is not built. A second state would need its
-# own argument.
-GROUND_CONTACT_STATES = ("approach_not_modelled",)
+# What a phase may say when its structure does not reach the ground. Two states,
+# and the second one earned its own argument on 2026-08-11 when Fort Dearborn
+# became the first structure in the dataset placed OUTSIDE the modelled terrain
+# box rather than merely above it.
+#
+#   approach_not_modelled   — the ground exists under the structure and the
+#                             structure does not reach it. The bridge's case.
+#   outside_modelled_ground — there is no ground under the structure at all. The
+#                             terrain epoch has not been extended that far yet,
+#                             so the question "does it land" has no answer, and
+#                             pretending it has one is the failure this state
+#                             exists to make visible.
+GROUND_CONTACT_STATES = ("approach_not_modelled", "outside_modelled_ground")
 
 
 def archetype_ground_contact(rep: Report | None = None) -> dict[str, dict]:
@@ -655,12 +663,23 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             contact_z = 0.0 if decl["mode"] == "perimeter" else float(decl["contact_z"](params))
             contact_y = base_y + contact_z
 
+            # Is there any ground here at all? `Heightfield.height` clamps outside
+            # the box, so a structure placed beyond the modelled terrain samples
+            # the edge for its base AND for every contact point, the two agree
+            # exactly, and the measurement below reports a perfect landing on
+            # ground that does not exist. Ask the prior question first.
+            outline = _contact_outline(poly, decl["mode"])
+            points = [pt for a, b in outline
+                      for pt in _resample(to_world(a), to_world(b))]
+            if not all(field.covers(e, n) for e, n in points) or not field.covers(e0, n0):
+                found.append((sid, pid, "ground_contact", f"structure {sid}/{pid}", None))
+                continue
+
             worst = 0.0
-            for a, b in _contact_outline(poly, decl["mode"]):
-                for e, n in _resample(to_world(a), to_world(b)):
-                    gap = contact_y - field.height(e, n)
-                    if abs(gap) > abs(worst):
-                        worst = gap
+            for e, n in points:
+                gap = contact_y - field.height(e, n)
+                if abs(gap) > abs(worst):
+                    worst = gap
             if abs(worst) > GROUND_CONTACT_TOL_M:
                 found.append((sid, pid, "ground_contact", f"structure {sid}/{pid}", worst))
     return found
@@ -687,13 +706,24 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
                 rep.error(where, "ground_contact must be an object with a state and a note")
                 continue
             state = (block or {}).get("state")
-            if gap is None:
+            found = (sid, pid) in gapped
+            want = "approach_not_modelled" if (found and gap is not None) \
+                else "outside_modelled_ground"
+            if not found:
                 if block is not None:
                     rep.error(where, f"declares ground_contact: '{state}', but its contact "
                                      f"outline sits within {GROUND_CONTACT_TOL_M} m of the "
                                      f"terrain under it — it lands. Drop the declaration, or "
                                      f"move the entry claiming it to the Resolved section of "
                                      f"docs/LIBERTIES.md if the ground caught up")
+                continue
+            if block is None and gap is None:
+                rep.error(where, "stands outside the modelled terrain box altogether — there "
+                                 "is no ground under any part of its contact outline, so "
+                                 "whether it lands has no answer. Declare ground_contact: "
+                                 "{state: 'outside_modelled_ground', note: ...} on the phase "
+                                 "and admit it in docs/LIBERTIES.md, or extend the terrain "
+                                 "epoch to reach it")
                 continue
             if block is None:
                 rep.error(where, f"its ground contact stands {gap:+.2f} m off the terrain "
@@ -702,6 +732,11 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
                                  f"Nothing in the record is wrong and nothing shows it: declare "
                                  f"ground_contact: {{state: 'approach_not_modelled', note: ...}} "
                                  f"on the phase and admit it in docs/LIBERTIES.md")
+                continue
+            if state in GROUND_CONTACT_STATES and state != want:
+                rep.error(where, f"declares ground_contact: '{state}', but the measurement says "
+                                 f"'{want}' — the two are different findings and a visitor "
+                                 f"reading the first would be told the ground is there")
                 continue
             if state not in GROUND_CONTACT_STATES:
                 rep.error(where, f"ground_contact state '{state}' is not one of "

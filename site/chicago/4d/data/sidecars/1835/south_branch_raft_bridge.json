@@ -1,0 +1,171 @@
+{
+  "id": "south_branch_raft_bridge",
+  "phase": "log_1833",
+  "name": "South Branch Bridge",
+  "aka": [
+    "the log raft bridge across the south branch",
+    "the first bridge over the South Branch",
+    "the Randolph Street crossing"
+  ],
+  "archetype": "bridge_timber",
+  "asset": "gltf/south_branch_raft_bridge__log_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 6.86,
+    "local_n": -178.07,
+    "rotation_deg": 0.292,
+    "position_confidence": "inferred",
+    "symbolic_location": "Across the South Branch between Lake and Randolph Streets, its west landing on West Water Street (now Canal Street) below Wolf Point.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "water"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        55.96,
+        0.0
+      ],
+      [
+        55.96,
+        3.048
+      ],
+      [
+        0.0,
+        3.048
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883",
+        "chicagology_prefire252"
+      ],
+      "note": "'The abutments were built of logs in the shallow water near the banks. The bents were of four heavy logs... Stringers of heavy logs stretched from the abutments to the bents.' Round or hewn timber throughout rather than framed carpentry, which is what this archetype's 'log' value means."
+    },
+    "width_m": {
+      "value": 3.048,
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883",
+        "chicagology_prefire252"
+      ],
+      "note": "TEN FEET, AND UNUSUALLY FOR THIS DATASET IT IS SAID TWICE. The 1883 old-settlers statement: 'These bridges were about ten feet wide and without railings, for the first few years.' Cleaver in the Tribune ten years later: 'These bridges were ten feet wide.' Both sentences are about BOTH branch bridges, which is what makes this crossing's width evidence rather than an analogy from its neighbour. Cleaver signed the first and gave the second, so the two are one man corroborated by three rather than two independent witnesses; the North Branch record makes the same reservation about the same sentence. Recorded as 3.048 m exactly, being the conversion and not a rounding. The same footnote adds, of the North Branch bridge alone, 'ten or twelve feet wide' — a spread this record does not inherit, because it is stated of the other crossing."
+    },
+    "clearance_m": {
+      "value": 1.83,
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "SIX FEET, AND THE REASON IS BETTER THAN THE NUMBER. Andreas prints at the foot of pp. 631-632 a statement signed by J. D. Caton, John Bates, Charles Cleaver and John Noble: 'These were both wagon bridges, and were about six feet above the water, so that teams passed under them on the ice freely.' The clearance is not a builder's convenience, it is the winter road under the deck, stated by four men who used the crossing. It is also the sentence that does the most damage to the raft reading recorded in this record's research note: a floating deck has no clearance at all, and nothing passes under it on the ice."
+    },
+    "abutments": {
+      "value": true,
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883",
+        "chicagology_prefire252"
+      ],
+      "note": "'Both bridges were built on abutments and two bents. The abutments were built of logs in the shallow water near the banks.' The ends were carried on log cribs standing OUT IN THE WATER rather than on dry-land bearings — which is also why the modelled span, measured waterline to waterline, is longer than the clear span between the abutments by an amount nobody recorded."
+    },
+    "pier_kind": {
+      "value": "bent",
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "'The bents were of four heavy logs, resting on the bottom, in deeper water.' The archetype builds four heavy logs under a cap at each support, which is the count and the heaviness the sentence gives. 'Resting on the bottom' is the other half of it and is invisible here: this project models neither the riverbed nor anything more than half a metre below the waterline, so a bent stood on the bed and a bent driven into it are the same picture above water. The distinction lives in this note, exactly as it does on the North Branch record."
+    },
+    "pier_count": {
+      "value": 2,
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "TWO, from 'both bridges were built on abutments and two bents', with 'stringers of heavy logs stretched from the abutments to the bents, and between the bents' — a three-span crossing, stated twice over in one sentence, and stated of BOTH branch bridges. WHERE THEY STAND IS STILL THE ARCHETYPE'S: the letter puts the bents 'in deeper water' between abutments 'in the shallow water near the banks' and gives no station for either, so the two are built at the third points of the span — 18.65 m and 37.31 m from the west landing — because that is what a builder would do and not because anybody wrote it down. The confidence chip on this row grades HOW MANY and nothing else; docs/LIBERTIES.md is where the positions are admitted, on the same terms as L31 for the North Branch."
+    },
+    "deck_kind": {
+      "value": "puncheon",
+      "confidence": "documented",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "'On these stringers puncheons or split logs were laid for a floor.' Riven stock of uneven width, laid across the stringers flat face up, which is what the archetype builds when this value is puncheon rather than sawn plank. Nothing in this dataset carries plank."
+    },
+    "stringer_count": {
+      "value": 4,
+      "confidence": "inferred",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "FOUR IS THE ARCHETYPE'S NUMBER; WHAT THE SOURCE GIVES IS THE LOAD. The 1883 statement calls both branch bridges WAGON bridges with stringers of heavy logs running abutment to bent and bent to bent, and the 18 August 1835 procession crossed this one. A deck carrying teams over three spans of 18.7 m needs more than the two stringers of a footway, so four under a full-width deck is the load-carrying reading — but the number itself is nobody's, and a source that said three or five would replace it without disturbing anything else on this record. The North Branch record reaches the same value by a harder route, because that crossing is described as a footway in 1833 and has to be argued forward to 1835; this one is described as a wagon bridge from the start."
+    },
+    "railing": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "old_settlers_bridges_1883"
+      ],
+      "note": "A STATED SEQUENCE WITHOUT A DATE IN IT. The 1883 statement says the branch bridges were 'about ten feet wide and without railings, for the first few years, after which guards, or railings, were added'. The scene date is two years and four months after this bridge was built, so 'the first few years' covers it on the most natural reading and the value is false — but it is a reading of a sequence rather than a measurement, and it is the kind of phrase that cannot settle a particular July on its own. If a date for the guards is ever found and it falls before July 1835, this attribute flips. What hangs on it is not decoration: a railed deck reads to a visitor as considered infrastructure and an unrailed one reads as a causeway of logs, so the difference is a claim about how developed the town was."
+    },
+    "function": {
+      "value": "river_crossing",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_lastwardance",
+        "chicagology_prefire252"
+      ],
+      "note": "A public crossing, the town's second bridge, and the link between the West Division's West Water Street frontage and the South Division's Lake and Randolph blocks. It superseded Beaubien's rope-worked canoe ferry from the Point, which docs/research/03-structures-north.md has running across the same water in 1831."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "chicagology_lastwardance",
+      "citation": "\"The Last War Dance.\" Chicagology, transcribing later published recollections of 18 August 1835 in Chicago.",
+      "url": "https://chicagology.com/fortdearborn/lastwardance/",
+      "archived_url": "https://web.archive.org/web/20260517215531/https://chicagology.com/fortdearborn/lastwardance/",
+      "tier": 4
+    },
+    {
+      "source_id": "chicagology_prefire252",
+      "citation": "\"Chicago Ale & Malt Company.\" Chicagology, transcribing the Chicago Tribune, 29 October 1893 — a retrospective of Charles Cleaver (1814-1893), who reached Chicago 23 October 1833.",
+      "url": "https://chicagology.com/prefire/prefire252/",
+      "archived_url": "https://web.archive.org/web/20260511030941/https://chicagology.com/prefire/prefire252/",
+      "tier": 2
+    },
+    {
+      "source_id": "old_settlers_bridges_1883",
+      "citation": "Statement on the first bridges over the branches of the Chicago River, agreed at a meeting of old settlers held late in the fall of 1883 and signed J. D. Caton, John Bates, Charles Cleaver and John Noble; presented to the editors by John Bates and printed as a footnote in Andreas, History of Chicago, vol. 1 (Chicago: A. T. Andreas, 1884), pp. 631-632.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 2
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    },
+    {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "THE SECOND BRIDGE IN CHICAGO, AND THE RECORD EXISTS TO HOLD ONE CONFLICT OPEN RATHER THAN TO CLOSE IT. Every retelling this project has reached calls this crossing a FLOATING LOG RAFT. docs/research/03-structures-north.md section 5 gives it as 'Log floating raft bridge'; the account of 18 August 1835 has the procession reach 'the log raft bridge across the south branch'; the archetype module that builds the branch bridges said in its own docstring, until this record was written, that a raft is a different structure needing its own archetype and that pointing one at bridge_timber would be a false claim of solidity. AND THE ONLY SOURCE THAT DESCRIBES HOW EITHER BRANCH BRIDGE WAS PUT TOGETHER SAYS IT WAS NOT A RAFT. The statement Andreas prints at the foot of pp. 631-632, agreed at a meeting of old settlers late in the fall of 1883 and signed J. D. Caton, John Bates, Charles Cleaver and John Noble, is about BOTH bridges in every sentence: 'both bridges were built on abutments and two bents'; 'the bents were of four heavy logs, resting on the bottom, in deeper water'; 'these bridges were about ten feet wide'; 'these were BOTH wagon bridges, and were about six feet above the water, so that teams passed under them on the ice freely'. A floating raft has no abutments, no bents resting on the bottom, no six feet of air under it, and nothing passes beneath it on the ice. HOW THE DISAGREEMENT IS SETTLED, AND IT IS THE SAME RULE THE NORTH BRANCH RECORD USED TWICE. That record chose an eyewitness over a modern chronology table's type-word, was wrong, and was corrected when the footnote under the prose turned out to be the settlers' own word: the test it settled on is not who is more famous but who was in a position to know the thing being claimed, and joinery is what a man who drove a team over a structure knows. Four men who used these bridges describe fixed carpentry in writing. 'Raft' is what a phrase becomes when it is retold for sixty years, and it is a very good description of what a low log bridge on two bents LOOKS like from the bank. So the fixed reading is adopted, the name is kept — the structure id and the aka list both keep the word, because that is what the sources call it and a record that renamed it would make its own evidence unfindable — and the conflict is recorded here rather than resolved away. WHAT WOULD REVERSE IT: any source that puts a floating deck on the South Branch in the 1830s against the settlers' signatures, or a reading of the 1883 footnote showing the South Branch sentences are a later interpolation. The right response would be a raft_timber archetype, not a parameter on this one. TWO THINGS THIS RECORD SHARES WITH THE FIRST BRIDGE AND ONE IT DOES NOT. Shared: a measured span, 55.96 m between the traced 1834 waterlines, agreeing with the reach's own drafted mean to 1.3 m; and a deck that arrives nowhere, because no source describes the approach at either end. Not shared: the 1883 statement calls both bridges wagon bridges from the start, so this record needs none of the argument the North Branch record has to make about a footway that somehow carried hundreds of people by 1835. WHAT IS STILL UNSETTLED IS WHERE ALONG THE RIVER IT STOOD. The sources give a band, not a point — 'between Lake and Randolph', 'just north of the present Randolph street bridge', 'near Lake Street' — and the South Branch narrows from 74 m to 47 m across that band, so the station is worth more to this record than another decimal place on the georeference. docs/ROADMAP.md names the Conley/Stelzer 1933 reconstruction as the sheet that draws the bridges in place, at tier 5 and therefore able to carry a position to inferred; it has not been read at this crossing's pixel by this parcel, and it is the first thing to try.",
+  "research_doc": "docs/RESEARCH/south_branch_raft_bridge.md",
+  "review_required": false
+}

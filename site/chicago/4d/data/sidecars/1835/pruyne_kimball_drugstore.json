@@ -1,0 +1,106 @@
+{
+  "id": "pruyne_kimball_drugstore",
+  "phase": "frame_1830s",
+  "name": "Pruyne & Kimball's Drug Store",
+  "aka": [
+    "the drug store on South Water Street"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 627.3,
+    "local_n": -4.7,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "South side of South Water Street between Clark Street and Dearborn Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7.62,
+        0
+      ],
+      [
+        7.62,
+        6.096
+      ],
+      [
+        0,
+        6.096
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "conjectural",
+      "note": "Nothing is attested. One is recorded because it is the smaller claim. Invention, tagged as such."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Frame rather than log because this project's dossier records the mid-1830s South Water commercial stock as frame, with log surviving mainly in older buildings, and this partnership is not attested before 1833. Braced rather than balloon frame follows the Sauganash record's argument; nothing decides between them."
+    },
+    "wall_height_m": {
+      "value": 3.0,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey. It inherits the storey count's uncertainty, which is conjectural."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a shop kept through Chicago winters, and compounding needs heat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "drug_store",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas names the trade explicitly: Kimball was 'a partner of Mr. Pruyne in a drug store on South Water Street'. The trade is the best-attested thing about this record, which is the opposite of the usual case in this parcel."
+    },
+    "occupants": {
+      "value": "Pruyne and Kimball, druggists",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "The partnership is documented; that it was trading on 1835-07-01 specifically is the inference, since Andreas dates it only to the 1830s. A NAME COLLISION WORTH KEEPING SEPARATE: a W. Kimball is named in the transcription of the Chicago Democrat of 26 November 1833 as advertising dry goods, crockery, hardware, cutlery, caps and cloth from a new store at the corner of South Water and Clark. Dry goods and drugs are different trades and there is no evidence the two Kimballs are one man; that advertisement is discussed on chicago_democrat_office and is deliberately not attached here."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    }
+  ],
+  "research_note": "A BUSINESS THIS DATASET KNOWS THE TRADE OF AND NOTHING ELSE. Andreas gives one clause — a drug store on South Water Street, Pruyne and Kimball — with no date, no block, no building and no description. The record is therefore graded as far down as this project's vocabulary goes: position conjectural, footprint conjectural, storeys conjectural, dates inferred from the street's own history rather than from any statement about this business. IT IS BUILT ANYWAY, and the reason is the project's current direction: a building held out of the model is invisible to a visitor, while a building in the model with every invented attribute marked as invented is legible and correctable. THE PLACEMENT IS THE PART TO CORRECT FIRST. It sits in the Clark-to-Dearborn block because that block had room, which is a rendering decision and not a finding; the along-street uncertainty is the whole 630 m of South Water Street. WHAT WOULD UPGRADE IT: any Chicago Democrat or Chicago American advertisement for Pruyne and Kimball, which would date the partnership and very likely give a block; or Andreas at page-image level around the drug-trade passages. A single dated advertisement would move three attributes at once. See docs/RESEARCH/pruyne_kimball_drugstore.md.",
+  "research_doc": "docs/RESEARCH/pruyne_kimball_drugstore.md",
+  "review_required": false
+}

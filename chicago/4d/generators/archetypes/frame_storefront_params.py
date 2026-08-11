@@ -67,10 +67,10 @@ What the two systems show on a finished elevation:
 
 | | balloon_frame | braced_frame |
 |---|---|---|
-| corner | a thin applied corner BOARD, ~4 in | a 6 in corner POST expressed in the wall |
-| second floor | nothing — the studs run sill to plate in one length | a girt line, because the frame is storeyed |
-| module | studs 2x4 at **16 in on centre** | posts at ~8 ft, studs between |
-| wall build-up | 4 in stud + 1 in sheathing + siding = the reveal depth |
+| corner | a thin applied BOARD, ~4 in | a 6 in POST standing in the wall |
+| 2nd floor | nothing: studs run sill to plate | a girt line — the frame is storeyed |
+| module | 2x4 studs at **16 in centres** | posts at ~8 ft, studs between |
+| wall | 4 in stud + 1 in sheathing + siding, which is every reveal's depth |
 
 The stud rhythm cannot be seen through finished siding, so it reaches the mesh two
 ways. Always: every opening on the elevation is set out on the 16 in module, which is
@@ -257,6 +257,29 @@ class FrameStorefrontParams:
         return self.wall_height_m / max(self.stories, 1)
 
     @property
+    def front_width_m(self) -> float:
+        """The frontage the shopfront actually has to sit in. An END ell takes a
+        slice of the footprint's width, and a shopfront checked against the
+        footprint rather than against the block it is built on is checked against
+        a wall that is not there."""
+        if self.ell and self.ell_side == "end":
+            return self.width_m - self.ell_width_m
+        return self.width_m
+
+    @property
+    def shopfront_head_z(self) -> float:
+        """Top of the shop opening, under its fascia.
+
+        Derived rather than fixed, and derived HERE rather than in the generator,
+        because `validate` has to know whether the opening clears a door before the
+        bake does, and two places computing it separately is how a gate and a mesh
+        drift apart. It has to duck under three things: the floor above, the frieze
+        board at the eave, and a plausible ceiling.
+        """
+        avail = self.wall_height_m if self.stories == 1 else self.story_height_m
+        return min(avail - 0.34, 3.05, self.wall_height_m - 0.26 - SHOP_FASCIA_M)
+
+    @property
     def ell_wall_height_m(self) -> float:
         """The ell's plate height. Defaulted from its storey count on the same
         constants log_dwelling uses for a frame addition, so an ell and a frame
@@ -322,7 +345,8 @@ class FrameStorefrontParams:
                              f"it should say where they stood")
 
         if self.sign is not None and not str(self.sign).strip():
-            raise ParamError("sign is present but empty — omit it or say what it carried")
+            raise ParamError("sign is present but empty — omit it, or say what it "
+                             "carried")
         if self.sign and not self.shopfront:
             raise ParamError("a sign board is carried on the shopfront fascia, and this "
                              "record has no shopfront — either the store had a street "
@@ -338,8 +362,9 @@ class FrameStorefrontParams:
             self._validate_ell()
 
     def _validate_shopfront(self) -> None:
-        if not isinstance(self.shopfront_bays, int) or isinstance(self.shopfront_bays, bool):
-            raise ParamError(f"shopfront_bays {self.shopfront_bays!r} is not a whole number")
+        bays = self.shopfront_bays
+        if not isinstance(bays, int) or isinstance(bays, bool):
+            raise ParamError(f"shopfront_bays {bays!r} is not a whole number")
         if not 1 <= self.shopfront_bays <= 4:
             raise ParamError(f"shopfront_bays {self.shopfront_bays} outside 1..4 — one "
                              f"door and four show windows is already a frontage no "
@@ -351,12 +376,19 @@ class FrameStorefrontParams:
         # frontage with wall left either side. Checked here rather than in the
         # generator so a record that cannot be built says so in the commit gate,
         # seconds after it is written, instead of minutes into a bake.
-        if shopfront_width_m(self.shopfront_bays) > self.width_m - 2 * PIER_MIN_M:
+        if shopfront_width_m(self.shopfront_bays) > self.front_width_m - 2 * PIER_MIN_M:
             raise ParamError(
                 f"a {self.shopfront_bays}-bay shopfront needs "
-                f"{shopfront_width_m(self.shopfront_bays):.2f} m and this frontage is "
-                f"{self.width_m} m, which leaves less than {PIER_MIN_M} m of wall at "
-                f"each end — reduce the bays or widen the footprint")
+                f"{shopfront_width_m(self.shopfront_bays):.2f} m and the block it sits "
+                f"on has {self.front_width_m:.2f} m of frontage, which leaves less than "
+                f"{PIER_MIN_M} m of wall at each end — reduce the bays, widen the "
+                f"footprint, or make the ell a rear ell")
+        if self.shopfront_head_z < 2.15:
+            raise ParamError(
+                f"a {self.wall_height_m} m wall over {self.stories} storey(s) leaves the "
+                f"shop opening a head height of {self.shopfront_head_z:.2f} m, which is "
+                f"under a door — raise the wall, drop a storey, or record the building "
+                f"as having no shopfront")
 
     def _validate_ell(self) -> None:
         if self.ell_side not in ELL_SIDES:
@@ -387,7 +419,7 @@ class FrameStorefrontParams:
             # A lean-to has to get under the main eave, or it is a second roof
             # crashing into the first.
             if self.ell_wall_height_m + _lean_to_rise(self.ell_depth_m) \
-                    > self.wall_height_m - 0.15:
+                    > self.wall_height_m - 0.30:
                 raise ParamError(
                     f"a {self.ell_wall_height_m} m rear ell {self.ell_depth_m} m deep "
                     f"carries its lean-to up to "
@@ -530,6 +562,13 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
     stories = int(val("stories", 2))
     sign = val("sign")
 
+    # The default bay count is measured against the frontage the shopfront will
+    # actually stand on, which an end ell shortens.
+    ell_w = float(val("ell_width_m", round(width * 0.45, 3)))
+    front_w = round(width, 3)
+    if bool(val("ell", False)) and str(val("ell_side", "rear")) == "end":
+        front_w -= ell_w
+
     p = FrameStorefrontParams(
         width_m=round(width, 3),
         depth_m=round(depth, 3),
@@ -545,14 +584,13 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
         loft=bool(val("loft", False)),
         chimneys=int(val("chimneys", 1)),
         shopfront=bool(val("shopfront", True)),
-        shopfront_bays=int(val("shopfront_bays",
-                               default_shopfront_bays(round(width, 3)))),
+        shopfront_bays=int(val("shopfront_bays", default_shopfront_bays(front_w))),
         shopfront_door_side=str(val("shopfront_door_side", "centre")),
         goods_door=bool(val("goods_door", True)),
         goods_door_side=str(val("goods_door_side", "end")),
         ell=bool(val("ell", False)),
         ell_side=str(val("ell_side", "rear")),
-        ell_width_m=float(val("ell_width_m", round(width * 0.45, 3))),
+        ell_width_m=ell_w,
         ell_depth_m=float(val("ell_depth_m", round(depth * 0.35, 3))),
         ell_stories=int(val("ell_stories", 1)),
         ell_height_m=(None if val("ell_height_m") is None

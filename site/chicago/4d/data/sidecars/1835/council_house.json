@@ -1,0 +1,107 @@
+{
+  "id": "council_house",
+  "phase": "log_1834",
+  "name": "Council House",
+  "aka": [
+    "Billy Caldwell's log council-house",
+    "the Indian agency council house"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/council_house__log_1834.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 937.0,
+    "local_n": 233.0,
+    "rotation_deg": 180.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "North side of the river, east of State Street and west of the Lake House site at the north-east corner of Rush and Water Streets.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        12,
+        7
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "'in Billy Caldwell's LOG council-house' — Andreas, and the only word anybody wrote about this building's fabric. It rides on the identification argued at documented_range: if Andreas's council house and the Tribune's are two buildings, this attribute describes the other one."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. A council house is a hall — one tall room — and every log building in this quarter is described as single-storey. Inference from the type and the use, not from a statement."
+    },
+    "wall_height_m": {
+      "value": 2.6,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.6 m is about 8 ft 6 in: a single-storey log wall at the course counts this project uses elsewhere on this bank. A room built for assemblies might have been raised higher, which nothing says."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a room used for winter services and the normal number for a single-pen log building. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "council_house",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_lastwardance",
+        "andreas_1884_v1"
+      ],
+      "note": "Both sources name the building by its function and neither describes what happened inside it in a way this record repeats. WHAT THIS RECORD DOES NOT DO, and the reason it is flagged review_required: the events the sources attach to this building — the treaty council of 1833 and the gathering of 18 August 1835 — are the removal of the Potawatomi from Chicago, which AGENTS.md places under a standing constraint. Nothing in this dataset depicts, stages or narrates them, and the scene date is six and a half weeks before the second. What is modelled is a log building on a bank."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicagology_lastwardance",
+      "citation": "\"The Last War Dance.\" Chicagology, transcribing later published recollections of 18 August 1835 in Chicago.",
+      "url": "https://chicagology.com/fortdearborn/lastwardance/",
+      "archived_url": "https://web.archive.org/web/20260517215531/https://chicagology.com/fortdearborn/lastwardance/",
+      "tier": 4
+    }
+  ],
+  "research_note": "BUILT ON A JOIN BETWEEN TWO SOURCES, AND THE JOIN IS THE RECORD'S WEAKEST POINT AFTER ITS POSITION. The project's dossier had only the Tribune's account of 18 August 1835 — an existence six weeks AFTER the scene date and no description of the building at all. Reading Andreas at full text turned up the other half: 'For a time services were held in various places — in Billy Caldwell's log council-house, in Chester Ingersoll's tavern, or in Watkins's school-house', which puts a log council house on the north side in 1834, a year BEFORE the scene date, and gives the only word anybody wrote about its fabric. Existence on 1835-07-01 is therefore bracketed rather than extrapolated. THE POSITION IS THE PROBLEM: 'east of the present State street and west of the \"Lake House\"' bounds it inside 215 m of riverbank and no source narrows it further, so the coordinate is a choice inside a band and is tagged conjectural. WHAT WOULD UPGRADE IT: any source naming a street, a corner or a lot — the Chicago Democrat's notices of agency business are the likeliest place, and the 1835 Wabansia and Kinzie's Addition plat would settle which lots were built on. See docs/RESEARCH/council_house.md.",
+  "research_doc": "docs/RESEARCH/council_house.md",
+  "review_required": true
+}

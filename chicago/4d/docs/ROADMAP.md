@@ -217,6 +217,46 @@ Balloon-frame logic (stud spacing, sheathing, proportions) is a first-class requ
 detail: 1833–35 Chicago is where balloon framing was invented, and it is the first thing a
 knowledgeable viewer checks.
 
+**`frame_dwelling` DONE 2026-08-11** — and it is the one that unblocks houses. Until it existed
+every frame record had to be a two-storey public house or a log cabin, so the dataset held
+taverns, stores and a bridge and not one dwelling. It takes `stories` 1, 1.5 or 2 (default the
+story-and-a-half, knee wall and gable-end attic window, which is the form of these years); reads
+the rear **ell off the footprint polygon** rather than off invented dimensions, so an L-shaped
+plan is built as an L and `GROUND_CONTACT: perimeter` is literally true of the mesh; builds a
+stoop or a small roofed porch, never the tavern's gallery; and makes `construction` the first
+attribute in this project that MOVES A VERTEX rather than sitting unread in the sidecar — the
+stud module (16 in balloon, 24 in braced) places every opening, the clapboard butt joints fall on
+stud lines, and a braced frame gets the girt band at its upper floor that a balloon frame has no
+line for. `plan` + `bays` are **L23's own stated resolution** — a bay count derived from frontage
+and a rhythm that comes from the room arrangement — so the default front is asymmetric and
+unevenly spaced rather than the Sauganash's five bays worn by every building.
+
+Still open on it, and worth a record's attention before the first house lands: no dormer (the
+half storey is lit only from the gable ends), no foundation or cellar, no muntins in the sash,
+and the stoop projects outside the recorded footprint. All four are in the report attached to
+the parcel and belong in docs/LIBERTIES.md the day a `frame_dwelling` record does.
+
+**`outbuilding` DONE 2026-08-11** — stables, sheds, cribs, smokehouses, privies. Built as a
+FAMILY rather than a shape, because a single set of proportions that flatters the middle of the
+range breaks both ends: five golden variants span a 1.25 m privy to a 13 m hotel stable, and
+`GROUND_CONTACT: perimeter` is verified on all five rather than on one. Deliberate absences carry
+as much of the design as the parameters — `stories` is NOT consumed, because two storeys of wall on
+a secondary building is a claim and `wall_height_m` is the honest way to make it; `construction`
+names log/plank/light_frame rather than balloon/braced, because nothing behind the boards of a shed
+is visible at this LOD and no source describes the framing of any outbuilding here, so the
+vocabulary names only what a viewer can see.
+
+Two things it hands upward. **L10 should be NARROWED, not resolved**: this archetype can build the
+Western Hotel's stable but not its wagon yard, and a yard is an enclosure — a fence line, two
+gateways, trodden ground — so building it out of an outbuilding would be calling a fence a
+building. The same gap swallows the estray pen and Clybourn's stockyard, and an `enclosure`
+archetype is now a named want. And **registering any archetype restales every committed GLB**:
+`mesh_inputs._code_shas` hashes `build.py`'s bytes for every archetype, and `build.py` carries the
+`ARCHETYPES` registration table, so adding a row to it changes the hash of buildings it never
+touched. Two parcels hit this independently and both verified the re-bake is byte-identical. The
+fix is to split the export path out of `build.py` so the registration table stops being a mesh
+input; until then one batched re-bake clears it.
+
 ## S5 — Structure records
 
 **Queued first, and it is a repair, not an addition: three attributes that are recorded and

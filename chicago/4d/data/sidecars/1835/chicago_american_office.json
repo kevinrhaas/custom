@@ -1,0 +1,114 @@
+{
+  "id": "chicago_american_office",
+  "phase": "frame_1835",
+  "name": "The Chicago American Office",
+  "aka": [
+    "T. O. Davis's printing office",
+    "the American office near the draw-bridge"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/chicago_american_office__frame_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 711.3,
+    "local_n": -6.6,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South side of South Water Street immediately east of Dearborn Street (today the south side of West Wacker Drive just east of North Dearborn), near the south landing of the Dearborn Street drawbridge.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12.192,
+        0
+      ],
+      [
+        12.192,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "conjectural",
+      "note": "NOTHING IS ATTESTED. A hand press, type cases and a compositor fit in one room, and a three-week-old weekly on a boom-town street is as likely to be in a single-storey shop as in a two-storey block. One is recorded because it is the smaller claim. Invention, tagged as such."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Frame rather than log because this is a premises taken on the town's business street in 1835, when new commercial work there was going up in frame; this project's dossier records the 1835 stock as overwhelmingly frame and log with no brick of consequence on the south side before 1837. Braced rather than balloon frame follows the Sauganash record's argument, though by 1835 balloon framing was the local method and this is the record in the parcel where that alternative is strongest."
+    },
+    "wall_height_m": {
+      "value": 3.2,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.2 m is about 10.5 ft, one commercial storey with a little more head-room than a dwelling's — a press is worked standing. It inherits the storey count's uncertainty, which is conjectural."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a printing office worked through Chicago winters — ink stiffens and paper has to be damped, so a press room is heated. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "printing_office",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas states the paper, its founder, its establishment date, its format and the location of its office. What is documented is that the office was there; that the office was a building of its own is not, and is argued on the footprint."
+    },
+    "occupants": {
+      "value": "T. O. Davis, publisher of the Chicago American",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Davis is documented as the paper's founder in June 1835. A second occupancy is attested in relation to this building and is NOT modelled here: Frederick Thomas advertised from 'two doors from the American office', which is a separate premises and has its own record, frederick_thomas_shop."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE YOUNGEST BUILDING-USE IN THE SCENE: on 1835-07-01 the Chicago American is twenty-three days old. That is the reason this record exists and it is a good one — a town of 3,265 people supporting two newspapers, one of them three weeks old, is the boom made legible. THE HONEST GRADE IS THAT ALMOST EVERYTHING ELSE IS INVENTED. Documented: the paper, the founder, the date to the day, the format, and that the office stood on South Water Street near the drawbridge. Inferred: the side of Dearborn, the construction, the wall height, the roof. Conjectural: the footprint, the storey count, and — the largest liberty in the record — the premise that the office occupied a building of its own at all. Andreas is explicit elsewhere when he means rooms in another man's building, and of the American he simply does not say. WHAT WOULD UPGRADE THIS RECORD, in order of value: any surviving number of the Chicago American itself, whose imprint would give its own address exactly as the Chicago Democrat's first issue gives the Democrat's; a Chicago Democrat advertisement of 1835 naming the American's location; or the 1835 town lot records for the South Water frontage between Dearborn and State. See docs/RESEARCH/chicago_american_office.md.",
+  "research_doc": "docs/RESEARCH/chicago_american_office.md",
+  "review_required": false
+}

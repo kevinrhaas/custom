@@ -79,3 +79,19 @@ class Heightfield:
         south = self._at(i, j) * (1 - fx) + self._at(i + 1, j) * fx
         north = self._at(i, j + 1) * (1 - fx) + self._at(i + 1, j + 1) * fx
         return south * (1 - fy) + north * fy
+
+    def covers(self, e: float, n: float) -> bool:
+        """Is (e, n) actually inside the modelled field?
+
+        `height()` clamps at the edges, which is the right behaviour for a walker
+        who cannot get there and the WRONG behaviour for a gate: a structure
+        placed beyond the modelled ground gets the edge sample, its base gets the
+        same edge sample, the two agree to the millimetre, and the ground-contact
+        check reports that it lands. Fort Dearborn stands 832 m east of this
+        field's edge and passed that check silently on 2026-08-11, which is what
+        this method exists to stop. Asking whether the ground EXISTS is a
+        different question from how high it is, so it gets its own method rather
+        than a sentinel return from that one.
+        """
+        return (self.origin_e <= e <= self.origin_e + (self.cols - 1) * self.cell_m
+                and self.origin_n <= n <= self.origin_n + (self.rows - 1) * self.cell_m)

@@ -64,7 +64,7 @@ from archetypes.outbuilding_params import (  # noqa: E402
 )
 
 # Materials are indices into the list passed to to_object(), in this order.
-M_LOG, M_CHINK, M_BOARD, M_ROOF, M_DARK = 0, 1, 2, 3, 4
+M_LOG, M_CHINK, M_BOARD, M_ROOF, M_DARK, M_TIMBER = 0, 1, 2, 3, 4, 5
 
 # Sawn boards left to weather. NOT the taverns' `unpainted` brown from
 # common/mesh.PAINT_RGBA: bare sawn softwood on a north-facing wall silvers off within a
@@ -74,17 +74,35 @@ M_LOG, M_CHINK, M_BOARD, M_ROOF, M_DARK = 0, 1, 2, 3, 4
 WEATHERED_BOARD_RGBA = (0.335, 0.310, 0.268, 1.0)
 # What you see through a gap between boards, through the vent, and inside an open bay.
 # Near-black rather than black: an interior in daylight is dark, not a hole in the world.
-INTERIOR_RGBA = (0.055, 0.052, 0.048, 1.0)
+INTERIOR_RGBA = (0.072, 0.068, 0.060, 1.0)
+# Heavy squared stock: posts, plates, jambs, headers, battens. A SIXTH material, added
+# after looking at a render in which the door frame was `HEWN_RGBA` and came out warmer
+# and no darker than the siding around it — so the one crude board building in the row
+# was wearing what read as new pine trim, which is the neat-cottage failure arriving by
+# the back door. Heavy timber holds moisture, weathers darker than thin sawn stock, and
+# a post darkens from the foot up; the value is chosen to separate the two by hue as
+# well as by value. log_dwelling already carries six materials, so this is not new
+# ground for the draw-call budget.
+TIMBER_RGBA = (0.208, 0.172, 0.128, 1.0)
 
 # --- board work -------------------------------------------------------------------
-# Riven and mill-sawn stock at the forks came in whatever widths the log gave. The range
-# is what makes a wall read as boards rather than as a striped texture; the JITTER is
-# what makes it read as boards nobody sorted.
-BOARD_W_M = (0.20, 0.34)
-BOARD_T_M = 0.028           # how far a board stands proud of the wall behind it
-BOARD_FOOT_JITTER_M = 0.055  # how far a board's bottom can stop short of the ground
-ROOF_BOARD_W_M = (0.30, 0.46)
-ROOF_BOARD_LIP_M = 0.022
+# Riven and mill-sawn stock at the forks came in whatever widths the log gave. The RANGE
+# is what makes a wall read as boards rather than as a striped texture, and the range is
+# wide on purpose: a first pass at 0.20-0.34 m came out looking like board-and-batten
+# siding somebody had ordered, which is the neat-little-cottage failure this archetype
+# exists to avoid. Three things are jittered per board and all three are visible at
+# fifty metres — its width, how far it stands proud, and where its foot stops.
+BOARD_W_M = (0.18, 0.40)
+BOARD_T_M = 0.030           # nominal; each board varies about this
+BOARD_T_JITTER = (0.65, 1.55)
+BOARD_FOOT_JITTER_M = 0.09  # how far a board's bottom can stop short of the ground
+# Roof boards are wider still, and each one's lip and its overshoot past the eave vary.
+# Regular boards at a regular lip read as corrugated sheet — which is what the first
+# version of this roof looked like, on a building that predates corrugated iron by two
+# decades.
+ROOF_BOARD_W_M = (0.34, 0.58)
+ROOF_BOARD_LIP_M = 0.024
+ROOF_BOARD_OVERSHOOT_M = 0.07
 
 # --- framing ----------------------------------------------------------------------
 POST_D_M = 0.17             # a squared post in an open bay
@@ -150,6 +168,7 @@ def build(params: OutbuildingParams, name: str):
         simple_material("board", board_rgba, roughness=0.94),
         simple_material("roof", ROOF_RGBA, roughness=0.93),
         simple_material("interior", INTERIOR_RGBA, roughness=0.6),
+        simple_material("timber", TIMBER_RGBA, roughness=0.9),
     ]
     return b.to_object(mats)
 
@@ -302,6 +321,45 @@ def _top_break(p: OutbuildingParams, side: str) -> float | None:
     return None
 
 
+def _top_profile(p: OutbuildingParams, side: str) -> list:
+    """The wall top as a polyline of (u, z) — two points, or three at a gable end.
+
+    Every top profile in this archetype is piecewise linear with at most one break, so
+    questions about it can be answered exactly instead of by sampling. That matters:
+    `_horizontal_boards` sampled the profile at 48 points to decide how far a course
+    could run, got the comparison backwards on a monotonic slope, and left the whole
+    upper triangle of every shed-roofed side unboarded — a hole you can see straight
+    through in a render and cannot see at all in the code.
+    """
+    run = p.side_run_m(side)
+    brk = _top_break(p, side)
+    us = [0.0] + ([brk] if brk is not None else []) + [run]
+    return [(u, _top_z(p, side, u)) for u in us]
+
+
+def _top_span(p: OutbuildingParams, side: str, z: float):
+    """The `u` range over which the wall top is at or above `z`, or None.
+
+    Which is where a horizontal course of boards can run, and it is the whole width of
+    the wall under an eave, a shrinking band under a rake, and nothing at all above the
+    ridge.
+    """
+    prof = _top_profile(p, side)
+    lo = hi = None
+    for i in range(len(prof) - 1):
+        (ua, za), (ub, zb) = prof[i], prof[i + 1]
+        if za >= z and zb >= z:
+            a, c = ua, ub
+        elif za < z and zb < z:
+            continue
+        else:
+            cut = ua + (ub - ua) * (z - za) / (zb - za)
+            a, c = (ua, cut) if za >= z else (cut, ub)
+        lo = a if lo is None else min(lo, a)
+        hi = c if hi is None else max(hi, c)
+    return None if lo is None or hi - lo < 0.02 else (lo, hi)
+
+
 def _top_points(p: OutbuildingParams, side: str, u0: float, u1: float) -> list:
     """The top edge of a wall or a board between u0 and u1, right to left, with the
     ridge point inserted if it falls inside."""
@@ -313,14 +371,31 @@ def _top_points(p: OutbuildingParams, side: str, u0: float, u1: float) -> list:
     return pts
 
 
+def _plate_z(p: OutbuildingParams, side: str) -> float:
+    """The height of the plate over an open bay: the LOWEST point of that elevation's
+    top profile.
+
+    Not `wall_height_m`, and the difference is the whole wagon shed. A shed roof's high
+    side has a top profile at `wall_height_m + rise`, so pinning the plate to the wall
+    height would hang a beam across the middle of the opening at exactly the height a
+    loaded wagon needs — the opening under a tall eave is meant to be the full height of
+    that eave. On a gable end the lowest point is the corner, at `wall_height_m`, which
+    puts the plate where it belongs and leaves the triangle above it to be boarded.
+    """
+    run = p.side_run_m(side)
+    brk = _top_break(p, side)
+    us = [0.0, run] + ([brk] if brk is not None else [])
+    return min(_top_z(p, side, u) for u in us)
+
+
 def _wall_base_z(p: OutbuildingParams, side: str) -> float:
     """Where this elevation's solid wall starts.
 
-    Zero for a closed side. For an OPEN side it starts at the eave: a post-and-plate bay
-    is open to the plate and boarded above it, which is what an open gable end on a
-    barn actually looks like and what carries the roof over an opening.
+    Zero for a closed side. For an OPEN side it starts at the plate: a post-and-plate
+    bay is open all the way up to the beam and boarded above it, which is what an open
+    gable end on a barn actually looks like and what carries the roof over an opening.
     """
-    return float(p.wall_height_m) if side in p.open_sides else 0.0
+    return _plate_z(p, side) if side in p.open_sides else 0.0
 
 
 def _wall_poly(p: OutbuildingParams, side: str) -> list | None:
@@ -433,8 +508,8 @@ def _u_cuts(u0: float, u1: float, holes) -> list:
 
 
 def _board_piece(b: MeshBuilder, p: OutbuildingParams, side: str, u0: float, u1: float,
-                 z0: float, z1_cap: float | None, conf: float) -> None:
-    """One board (or one surviving piece of one) standing proud of the wall."""
+                 z0: float, z1_cap: float | None, conf: float, t: float) -> None:
+    """One board (or one surviving piece of one) standing `t` proud of the wall."""
     if z1_cap is None:
         top = _top_points(p, side, u0, u1)
     else:
@@ -444,7 +519,7 @@ def _board_piece(b: MeshBuilder, p: OutbuildingParams, side: str, u0: float, u1:
     pts = [(u0, z0), (u1, z0)] + top
     # The top edge is under the roof or under a header; its return is never seen.
     skip = tuple(range(2, len(pts) - 1))
-    _prism(b, side, p, pts, 0.0, BOARD_T_M, conf, M_BOARD, skip=skip)
+    _prism(b, side, p, pts, 0.0, t, conf, M_BOARD, skip=skip)
 
 
 def _vertical_boards(b: MeshBuilder, p: OutbuildingParams, side: str, holes,
@@ -457,6 +532,7 @@ def _vertical_boards(b: MeshBuilder, p: OutbuildingParams, side: str, holes,
         s = _seed(p, side, i)
         w = min(_lerp_jit(s, *BOARD_W_M), run - u)
         gap = p.board_gap_m * _lerp_jit(s + 1, 0.6, 1.6)
+        t = BOARD_T_M * _lerp_jit(s + 3, *BOARD_T_JITTER)
         # A board's foot is where the sawyer left it. Only ever UPWARD from the base:
         # the perimeter has to keep meeting the terrain at z = 0, which is what this
         # archetype's GROUND_CONTACT declaration promises, and the dark core behind the
@@ -467,7 +543,7 @@ def _vertical_boards(b: MeshBuilder, p: OutbuildingParams, side: str, holes,
                       if hu0 - 1e-6 <= a and c <= hu1 + 1e-6]
             for z0, z1 in _free_spans(foot, _top_z(p, side, (a + c) / 2.0), blocks):
                 cap = None if z1 >= _top_z(p, side, (a + c) / 2.0) - 1e-6 else z1
-                _board_piece(b, p, side, a, c, z0, cap, conf)
+                _board_piece(b, p, side, a, c, z0, cap, conf, t)
         u += w + gap
         i += 1
 
@@ -479,39 +555,31 @@ def _horizontal_boards(b: MeshBuilder, p: OutbuildingParams, side: str, holes,
     Each course is clipped to the wall's top profile, so a course crossing a gable end
     stops at the rake instead of sailing past it into the sky.
     """
-    run = p.side_run_m(side)
     base = _wall_base_z(p, side)
-    top_max = max(_top_z(p, side, run * k / 8.0) for k in range(9))
+    top_max = max(z for _, z in _top_profile(p, side))
     z, i = base, 0
     while z < top_max - 0.03:
         s = _seed(p, side, i)
         h = _lerp_jit(s, *BOARD_W_M)
         gap = p.board_gap_m * _lerp_jit(s + 1, 0.6, 1.6)
+        t = BOARD_T_M * _lerp_jit(s + 3, *BOARD_T_JITTER)
         z1 = min(z + h, top_max)
-        # Where the top profile slopes, the course has to stop under it. Sampling the
-        # profile rather than solving it keeps one code path for gable, shed and eave.
-        u_hi = run
-        steps = 48
-        for k in range(steps + 1):
-            uu = run * k / steps
-            if _top_z(p, side, uu) < z1 and uu > 0:
-                u_hi = min(u_hi, uu)
-        u_lo = 0.0
-        for k in range(steps + 1):
-            uu = run * (steps - k) / steps
-            if _top_z(p, side, uu) < z1 and uu < run:
-                u_lo = max(u_lo, uu)
-        if u_lo >= u_hi:
+        # Where the top profile slopes, the course stops under the rake. Solved on the
+        # polyline rather than sampled, so the boarding meets the rake exactly and no
+        # sliver of the dark core is left showing along it.
+        span = _top_span(p, side, z1)
+        if span is None:
             z = z1 + gap
             i += 1
             continue
+        u_lo, u_hi = span
         for a, c in _u_cuts(u_lo, u_hi, holes):
             blocked = any(hu0 - 1e-6 <= a and c <= hu1 + 1e-6 and hz0 < z1 and z < hz1
                           for hu0, hu1, hz0, hz1 in holes)
             if blocked:
                 continue
             _prism(b, side, p, [(a, z), (c, z), (c, z1), (a, z1)],
-                   0.0, BOARD_T_M, conf, M_BOARD, skip=(2,))
+                   0.0, t, conf, M_BOARD, skip=(2,))
         z = z1 + gap
         i += 1
 
@@ -531,18 +599,17 @@ def _open_bays(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
     GROUND_CONTACT `perimeter`, and on an elevation with no wall the posts and the
     floor are the whole of what meets the ground.
     """
-    wall_z = float(p.wall_height_m)
-    plate_z0 = wall_z - PLATE_D_M
     for side in p.open_sides:
         run = p.side_run_m(side)
+        plate_z = _plate_z(p, side)
         n = max(1, int(math.ceil(run / POST_SPACING_MAX_M)))
         for k in range(n + 1):
             u = run * k / n
             u0 = min(max(u - POST_D_M / 2.0, 0.0), run - POST_D_M)
-            _box_on_side(b, p, side, u0, u0 + POST_D_M, 0.0, plate_z0,
-                         0.0, POST_D_M, conf, M_LOG)
-        _box_on_side(b, p, side, 0.0, run, plate_z0, wall_z,
-                     0.0, PLATE_D_M, conf, M_LOG)
+            _box_on_side(b, p, side, u0, u0 + POST_D_M, 0.0, plate_z - PLATE_D_M,
+                         0.0, POST_D_M, conf, M_TIMBER)
+        _box_on_side(b, p, side, 0.0, run, plate_z - PLATE_D_M, plate_z,
+                     0.0, PLATE_D_M, conf, M_TIMBER)
 
 
 def _box_on_side(b: MeshBuilder, p: OutbuildingParams, side: str, u0: float, u1: float,
@@ -560,11 +627,16 @@ def _interior(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
     Without them an open bay shows the BACK of the far wall's single-sided polygon —
     which renders today only because the exporter writes doubleSided by default, and
     renders lit from the wrong side even then.
+
+    The inside faces are BOARD, not the dark of the core plane: the core stands for what
+    shows through a gap from outside, and what you see from inside a wagon shed is the
+    backs of the same boards. It also keeps the bay from reading as a black rectangle
+    cut in the building, which is what it did when both faces were dark.
     """
     for side in ("front", "back", "left", "right"):
         poly = _wall_poly(p, side)
         if poly:
-            _face(b, side, p, 0.0, poly, conf, M_DARK, inward=True)
+            _face(b, side, p, 0.0, poly, conf, M_BOARD, inward=True)
     b.add_poly([(0.0, 0.0, 0.0), (p.width_m, 0.0, 0.0),
                 (p.width_m, p.depth_m, 0.0), (0.0, p.depth_m, 0.0)], conf, M_DARK)
 
@@ -611,47 +683,48 @@ def _roof(b: MeshBuilder, p: OutbuildingParams, conf: float) -> float:
     mushroom.
     """
     oh = min(0.35, max(0.10, 0.12 + 0.03 * min(p.width_m, p.depth_m)))
-    wall_z = float(p.wall_height_m)
-    t = math.tan(math.radians(float(p.roof_pitch_deg)))
     w, d = p.width_m, p.depth_m
 
+    # `along` is the axis the roof slopes down; `z_at` is the roof's top surface at a
+    # given coordinate on it, and it is the SAME line the wall tops follow, extended
+    # past the building by the overhang. Building the planes out of one function
+    # instead of a fistful of signed offsets is what makes that guarantee checkable —
+    # an earlier version juggled `copysign` per case and put one overhang on the
+    # wrong side of the building.
     if p.roof_type == "shed":
-        high = p.shed_high_side
-        if p.shed_axis == "y":
-            lo_y, hi_y = (d, 0.0) if high == "back" else (0.0, d)
-            a = (-oh, hi_y - math.copysign(oh, hi_y - lo_y),
-                 wall_z + p.roof_rise_m + oh * t)
-            c = (w + oh, lo_y + math.copysign(oh, hi_y - lo_y), wall_z - oh * t)
-            pts = [(a[0], a[1], a[2]), (c[0], a[1], a[2]),
-                   (c[0], c[1], c[2]), (a[0], c[1], c[2])]
-        else:
-            lo_x, hi_x = (w, 0.0) if high == "left" else (0.0, w)
-            a = (hi_x - math.copysign(oh, hi_x - lo_x), -oh,
-                 wall_z + p.roof_rise_m + oh * t)
-            c = (lo_x + math.copysign(oh, hi_x - lo_x), d + oh, wall_z - oh * t)
-            pts = [(a[0], a[1], a[2]), (a[0], c[1], a[2]),
-                   (c[0], c[1], c[2]), (c[0], a[1], c[2])]
-        _roof_plane(b, p, pts, conf, "s0")
-        return p.apex_z_m
+        along = "y" if p.shed_axis == "y" else "x"
+        far = d if along == "y" else w
+        side_lo, side_hi = (("back", "front") if along == "y" else ("left", "right"))
 
-    ridge_z = wall_z + p.roof_rise_m
-    if p.ridge_along_x:
-        ym = d / 2.0
-        for y_eave, tag in ((0.0, "g0"), (d, "g1")):
-            sgn = -1.0 if y_eave == 0.0 else 1.0
-            pts = [(-oh, y_eave + sgn * oh, wall_z - oh * t),
-                   (w + oh, y_eave + sgn * oh, wall_z - oh * t),
-                   (w + oh, ym, ridge_z), (-oh, ym, ridge_z)]
-            _roof_plane(b, p, pts, conf, tag, ridge_edge=True)
+        def z_at(c: float, _lo=side_lo, _hi=side_hi, _far=far) -> float:
+            a = _top_z(p, _lo, 0.0)
+            bz = _top_z(p, _hi, 0.0)
+            return a + (bz - a) * (c / _far)
+
+        spans = [(-oh, far + oh)]
     else:
-        xm = w / 2.0
-        for x_eave, tag in ((0.0, "g0"), (w, "g1")):
-            sgn = -1.0 if x_eave == 0.0 else 1.0
-            pts = [(x_eave + sgn * oh, -oh, wall_z - oh * t),
-                   (x_eave + sgn * oh, d + oh, wall_z - oh * t),
-                   (xm, d + oh, ridge_z), (xm, -oh, ridge_z)]
-            _roof_plane(b, p, pts, conf, tag, ridge_edge=True)
-    return ridge_z
+        along = "y" if p.ridge_along_x else "x"
+        far = d if along == "y" else w
+        mid = far / 2.0
+
+        def z_at(c: float, _far=far) -> float:
+            half = _far / 2.0
+            return float(p.wall_height_m) + p.roof_rise_m * (1.0 - abs(c - half) / half)
+
+        spans = [(-oh, mid), (mid, far + oh)]
+
+    cross = (-oh, (w if along == "y" else d) + oh)
+    for k, (c0, c1) in enumerate(spans):
+        corners = []
+        for c in (c0, c1):
+            for x_or_y in cross:
+                corners.append((x_or_y, c, z_at(c)) if along == "y"
+                               else (c, x_or_y, z_at(c)))
+        # corners currently pairs (c0,lo),(c0,hi),(c1,lo),(c1,hi); reorder to a ring
+        pts = [corners[0], corners[1], corners[3], corners[2]]
+        _roof_plane(b, p, pts, conf, f"{p.roof_type[0]}{k}",
+                    ridge_edge=(p.roof_type == "gable"))
+    return p.apex_z_m
 
 
 def _roof_plane(b: MeshBuilder, p: OutbuildingParams, quad: list, conf: float,
@@ -690,16 +763,28 @@ def _roof_plane(b: MeshBuilder, p: OutbuildingParams, quad: list, conf: float,
     while f < 1.0 - 1e-4:
         s = _seed(p, "back", i) + salt
         wfrac = min(_lerp_jit(s, *ROOF_BOARD_W_M) / span, 1.0 - f)
-        gapf = (0.010 + 0.010 * _jit(s + 1)) / span
+        gapf = (0.010 + 0.012 * _jit(s + 1)) / span
+        lip = ROOF_BOARD_LIP_M * _lerp_jit(s + 2, 0.6, 1.5)
         f1 = min(f + wfrac, 1.0)
-        board = []
-        for (e0, e1) in ((lo[0], lo[1]), (hi[0], hi[1])):
-            for ff in (f, f1):
-                board.append((e0[0] + (e1[0] - e0[0]) * ff,
-                              e0[1] + (e1[1] - e0[1]) * ff,
-                              e0[2] + (e1[2] - e0[2]) * ff + ROOF_BOARD_LIP_M))
-        board = [board[0], board[1], board[3], board[2]]
-        _slab(b, board, ROOF_BOARD_LIP_M, conf, M_ROOF)
+
+        def at(edge, ff):
+            e0, e1 = edge
+            return [e0[k] + (e1[k] - e0[k]) * ff for k in range(3)]
+
+        corners = [at((lo[0], lo[1]), f), at((lo[0], lo[1]), f1),
+                   at((hi[0], hi[1]), f1), at((hi[0], hi[1]), f)]
+        # Each board runs a little further past the eave than its neighbour. A board
+        # roof was cut to length with a saw and an opinion, and the ragged line at the
+        # eave is the single clearest signal in the silhouette that this is not a
+        # finished building — it is also the one thing a regular grid of boards, which
+        # is what this looked like first time, could never say.
+        ext = ROOF_BOARD_OVERSHOOT_M * _jit(s + 4)
+        for k in (0, 1):
+            dv = [corners[k][j] - corners[3 - k][j] for j in range(3)]
+            mag = math.sqrt(sum(c * c for c in dv)) or 1.0
+            corners[k] = [corners[k][j] + dv[j] / mag * ext for j in range(3)]
+        board = [(c[0], c[1], c[2] + lip) for c in corners]
+        _slab(b, board, lip, conf, M_ROOF)
         f = f1 + gapf
         i += 1
 
@@ -772,9 +857,9 @@ def _doorway(b: MeshBuilder, p: OutbuildingParams, side: str, size: tuple,
           conf, M_DARK)
     for a, c in ((u0 - j, u0), (u1, u1 + j)):
         _prism(b, side, p, [(a, 0.0), (c, 0.0), (c, dh + j), (a, dh + j)],
-               0.0, off["frame"], conf, M_LOG)
+               0.0, off["frame"], conf, M_TIMBER)
     _prism(b, side, p, [(u0, dh), (u1, dh), (u1, dh + j), (u0, dh + j)],
-           0.0, off["frame"], conf, M_LOG)
+           0.0, off["frame"], conf, M_TIMBER)
 
     leaves = [(u0, u1)] if dw < 1.9 else [(u0, um - 0.012), (um + 0.012, u1)]
     for la, lc in leaves:
@@ -801,7 +886,7 @@ def _leaf(b: MeshBuilder, p: OutbuildingParams, side: str, u0: float, u1: float,
         zc = z0 + (z1 - z0) * f
         _face(b, side, p, off["batten"],
               [(u0, zc - 0.055), (u1, zc - 0.055), (u1, zc + 0.055), (u0, zc + 0.055)],
-              conf, M_LOG)
+              conf, M_TIMBER)
 
 
 def _loft_rect(p: OutbuildingParams) -> tuple:
@@ -834,10 +919,10 @@ def _loft_door(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
     j = 0.11
     for a, c in ((u0 - j, u0), (u1, u1 + j)):
         _prism(b, side, p, [(a, z0 - j), (c, z0 - j), (c, z1 + j), (a, z1 + j)],
-               0.0, off["frame"], conf, M_LOG)
+               0.0, off["frame"], conf, M_TIMBER)
     for a, c in ((z0 - j, z0), (z1, z1 + j)):
         _prism(b, side, p, [(u0, a), (u1, a), (u1, c), (u0, c)],
-               0.0, off["frame"], conf, M_LOG)
+               0.0, off["frame"], conf, M_TIMBER)
     _leaf(b, p, side, u0 + 0.01, u1 - 0.01, z0 + 0.01, z1 - 0.01, off, conf)
 
 
@@ -881,4 +966,4 @@ def _vent(b: MeshBuilder, p: OutbuildingParams, vent: tuple, conf: float) -> Non
     j = 0.075
     _prism(b, side, p, [(u0 - j, z0 - j), (u1 + j, z0 - j),
                         (u1 + j, z1 + j), (u0 - j, z1 + j)],
-           0.0, off["frame"] * 0.8, conf, M_LOG)
+           0.0, off["frame"] * 0.8, conf, M_TIMBER)

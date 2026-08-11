@@ -159,8 +159,19 @@ HALL_FRACTION = 0.62
 # rather than a silently unbuilt attribute.
 CONSUMED = frozenset({
     "stories", "wall_height_m", "knee_wall_m", "roof_type", "roof_pitch_deg",
-    "construction", "plan", "bays", "porch", "ell", "chimneys", "paint", "shutters",
+    "construction", "plan", "bays", "porch", "ell", "ell_wall_height_m",
+    "chimneys", "paint", "shutters",
 })
+# NOT in the set, and each absence is a decision rather than an oversight:
+#   `cladding`      — this archetype always builds clapboard over sheathing, so a
+#                     record stating it declares `geometry: simplified`, exactly as
+#                     the three frame taverns already do;
+#   `fenestration`  — its CONFIDENCE tints the openings, but `plan` and `bays` are
+#                     what decide where they go. A glazing type is not a rhythm, which
+#                     is the finding docs/LIBERTIES.md L23 records;
+#   the ell's arms  — `ell_width_m` and `ell_depth_m` are not form attributes at all
+#                     here. They come from the footprint polygon, so there is nothing
+#                     for a record to state and nothing to leave unbuilt.
 
 # Where this archetype touches the ground, read by tools/validate.py's ground contact
 # check. `perimeter`: the whole footprint outline meets the terrain at local z = 0,
@@ -353,9 +364,12 @@ class FrameDwellingParams:
                 f"brick dwelling in Chicago is 1837 — so this is refused rather than "
                 f"quietly built as frame")
         # Storey heights are built up from the one attested ceiling in this dataset: the
-        # Green Tree's seven and a half feet, 2.29 m, which its own source calls low.
-        # Floor structure and a plate add roughly a third of a metre per storey.
-        lo, hi = {1.0: (2.1, 3.4), 1.5: (2.9, 4.6), 2.0: (4.0, 6.2)}[self.stories]
+        # Green Tree's seven and a half feet, 2.29 m, which its own source calls low for
+        # a hotel. Floor structure and a plate add roughly a third of a metre per storey,
+        # so a storey is about 2.6 m and the one-storey floor of 2.35 m is already under
+        # the lowest room anybody in this town wrote down sleeping in — and is the
+        # shortest wall that can still take the door this archetype hangs in it.
+        lo, hi = {1.0: (2.35, 3.4), 1.5: (2.9, 4.6), 2.0: (4.0, 6.2)}[self.stories]
         if not lo <= self.wall_height_m <= hi:
             raise ParamError(
                 f"wall_height_m {self.wall_height_m} outside {lo}-{hi} m for "
@@ -491,6 +505,12 @@ class FrameDwellingParams:
                 f"{self.width_m - self.ell_width_m:.2f} m of open ground beside it, "
                 f"which is not an L. A wing the full width of the house is a deeper "
                 f"house; record it as one")
+        # Shallower than this is not a wing but a porch or a shed, and the archetype
+        # has a parameter for the first and no business inventing the second.
+        if self.ell_depth_m < 2.0:
+            raise ParamError(
+                f"an ell {self.ell_depth_m} m deep is a porch or a lean-to, not a "
+                f"kitchen wing; record it as a porch or deepen the footprint")
         if self.main_depth_m < 3.5:
             raise ParamError(
                 f"an ell {self.ell_depth_m} m deep leaves {self.main_depth_m:.2f} m of "

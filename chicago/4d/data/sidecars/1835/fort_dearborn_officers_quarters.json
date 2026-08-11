@@ -1,0 +1,144 @@
+{
+  "id": "fort_dearborn_officers_quarters",
+  "phase": "log_1816",
+  "name": "Fort Dearborn — officers' quarters",
+  "aka": [
+    "the old officers' quarters",
+    "B on the 1855 key"
+  ],
+  "archetype": "fort_structure",
+  "asset": "gltf/fort_dearborn_officers_quarters__log_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1131.83,
+    "local_n": 232.2,
+    "rotation_deg": 98.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Inside the west wall of Fort Dearborn, fronting east onto the parade.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        18.29,
+        0
+      ],
+      [
+        18.29,
+        9.14
+      ],
+      [
+        0,
+        9.14
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "kind": {
+      "value": "quarters",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Named as the officers' quarters by Hubbard in 1827, by Andreas's summary of the rebuilt fort, and by the 1855 photograph key."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Hubbard, standing in the fort in 1827: 'The old officers' quarters built of logs on the west'. The 1855 key says 'wood', which is the same claim less precisely. A CORRECTION TO THIS PROJECT'S OWN DOSSIER: docs/research/04-structures-south.md section 1.2 reads Andreas as giving brick officers' quarters on the west and flags a conflict with the 1855 key. Andreas's page 84 states no material for them at all, and his page 264 - Hubbard's own words - says logs. The conflict was a misreading; the two sources agree."
+    },
+    "stories": {
+      "value": 2,
+      "confidence": "conjectural",
+      "note": "Not attested anywhere. Two is chosen because this range and the commandant's quarters are the two buildings the 1855 photograph shows as 'the principal buildings of the Fort', and a single-storey log range would not read as one of two principal buildings beside a two-storey brick one. That is an argument from a photograph nobody in this project has measured, so it is a guess and it is graded as one."
+    },
+    "wall_height_m": {
+      "value": 4.8,
+      "confidence": "inferred",
+      "note": "No height is attested. 4.8 m is two storeys of log wall at period course counts. The number inherits the storey count's weakness above it."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal form for a log range of this period and plan."
+    },
+    "roof_pitch_deg": {
+      "value": 34.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
+    },
+    "chimneys": {
+      "value": 2,
+      "confidence": "inferred",
+      "note": "Not attested. A 60 ft officers' range through Chicago winters needs a stack at each end by type. The COUNT is the inference; position, size and material are the archetype's, per docs/LIBERTIES.md."
+    },
+    "gallery": {
+      "value": false,
+      "confidence": "conjectural",
+      "note": "A NEGATIVE THAT IS ALSO A CHOICE. Captain Whistler's 1808 index to the FIRST fort says 'the Barracks are two storeys high with shingled Roofs and Galliaries fronting the parade' (Quaife), and galleries on the parade front are the type. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were 'differently constructed'. A plain front is rendered because nobody found evidence either way, which is itself a claim a visitor sees."
+    },
+    "function": {
+      "value": "officers' quarters",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Quarters for the post's subordinate officers. In 1827, with the fort ungarrisoned, Hubbard found them occupied by Russel E. Heacock 'and one other American family' - which is evidence about 1827, not about 1835."
+    },
+    "occupants": {
+      "value": "subordinate officers of the garrison",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not attested for 1835. Inferred from the building's function and from the post being garrisoned on the scene date; Hubbard's 1827 civilian tenants belong to the years when there were no troops."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2
+    },
+    {
+      "source_id": "wentworth_1881_fort_dearborn",
+      "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+      "url": "https://chicagology.com/prefire/prefire052/",
+      "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+      "tier": 2
+    },
+    {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "The west range. Its footprint note carries the one real dimensional disagreement in this complex and the reasoning that settled it; its construction note carries a correction to this project's own dossier, which had manufactured a brick-versus-wood conflict out of a page that says logs. See docs/RESEARCH/fort_dearborn.md sections 4 and 6.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_officers_quarters.md",
+  "review_required": false
+}

@@ -29,15 +29,30 @@ import bpy  # noqa: E402
 import mesh_inputs  # noqa: E402
 
 from common.mesh import reset_scene  # noqa: E402
-from archetypes import bridge_timber, frame_tavern, log_dwelling  # noqa: E402
+from archetypes import (  # noqa: E402
+    bridge_timber, fort_structure, frame_dwelling, frame_storefront, frame_tavern,
+    log_dwelling, outbuilding, palisade, pier_crib,
+)
 from archetypes.bridge_timber_params import from_phase as bridge_timber_params  # noqa: E402
+from archetypes.fort_structure_params import from_phase as fort_structure_params  # noqa: E402
+from archetypes.frame_dwelling_params import from_phase as frame_dwelling_params  # noqa: E402
+from archetypes.frame_storefront_params import from_phase as frame_storefront_params  # noqa: E402
 from archetypes.frame_tavern_params import from_phase as frame_tavern_params  # noqa: E402
 from archetypes.log_dwelling_params import from_phase as log_dwelling_params  # noqa: E402
+from archetypes.outbuilding_params import from_phase as outbuilding_params  # noqa: E402
+from archetypes.palisade_params import from_phase as palisade_params  # noqa: E402
+from archetypes.pier_crib_params import from_phase as pier_crib_params  # noqa: E402
 
 ARCHETYPES = {
     "frame_tavern": (frame_tavern_params, frame_tavern.build),
+    "frame_dwelling": (frame_dwelling_params, frame_dwelling.build),
     "log_dwelling": (log_dwelling_params, log_dwelling.build),
     "bridge_timber": (bridge_timber_params, bridge_timber.build),
+    "outbuilding": (outbuilding_params, outbuilding.build),
+    "frame_storefront": (frame_storefront_params, frame_storefront.build),
+    "pier_crib": (pier_crib_params, pier_crib.build),
+    "palisade": (palisade_params, palisade.build),
+    "fort_structure": (fort_structure_params, fort_structure.build),
 }
 
 

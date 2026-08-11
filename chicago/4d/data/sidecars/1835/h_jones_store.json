@@ -1,0 +1,116 @@
+{
+  "id": "h_jones_store",
+  "phase": "frame_1833",
+  "name": "Jones's Grocery and Provision Store",
+  "aka": [
+    "H. Jones's grocery and provision store",
+    "B. Jones, Chicago"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/h_jones_store__frame_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 347.3,
+    "local_n": -4.5,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "South side of South Water Street just east of Wells Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12.192,
+        0
+      ],
+      [
+        12.192,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "conjectural",
+      "note": "Nothing is attested. One is recorded because it is the smaller claim. Invention, tagged as such."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Frame rather than log because this project's dossier records the mid-1830s South Water commercial stock as frame and because a provision store wants clear floor and a wide door. Braced rather than balloon frame follows the Sauganash record's argument; nothing decides between them."
+    },
+    "wall_height_m": {
+      "value": 3.6,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.6 m is about 12 ft, one storey built taller than a dwelling's for stacked goods and a cart door. It inherits the storey count's uncertainty, which is conjectural."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a store kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "grocery_and_provision_store",
+      "confidence": "documented",
+      "sources": [
+        "chicago_democrat_1833_11_26",
+        "andreas_1884_v1"
+      ],
+      "note": "Documented twice and once contemporaneously: the advertisement in the Chicago Democrat of 26 November 1833 is headed 'Grocery & Provision Store', and Andreas records the same trade with forwarding and commission added by 1834. The trade is the best-evidenced thing about this record."
+    },
+    "occupants": {
+      "value": "Jones, grocer and provision merchant",
+      "confidence": "inferred",
+      "sources": [
+        "chicago_democrat_1833_11_26",
+        "andreas_1884_v1"
+      ],
+      "note": "THE INITIAL DISAGREES BETWEEN THE TWO SOURCES AND THE RECORD DOES NOT PICK ONE. Andreas writes 'H. Jones'. The advertisement in the Chicago Democrat of 26 November 1833 reads 'B. JONES'. A contemporary advertisement is the man's own word about his own name and would normally win outright, but the reading comes off a scan of a damaged sheet, the letters B and H are among the easiest to confuse in a display face of this period, and this project has been warned that the transcription accompanying the scan is imperfect elsewhere in the same issue. So the surname is carried, the initial is not, and the record id keeps the H that this project's dossier assigned it because renaming a record is worse than annotating one. Both readings are recorded in aka."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicago_democrat_1833_11_26",
+      "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "A CONTEMPORARY ADVERTISEMENT AND NO ADDRESS, which is the shape of most of the weak tier of this street. The Chicago Democrat of 26 November 1833 proves a Jones grocery and provision store was trading at Chicago on that day; Andreas puts the same trade among the 1834 South Water advertisers and adds forwarding and commission. Neither says where. Position and footprint are conjectural, storeys with them, and the record is a business placed on the right street. THE INITIAL IS AN OPEN QUESTION, recorded on occupants: Andreas says H. Jones, the scan says B. JONES, and this record carries both rather than choosing. That is the kind of disagreement the project's honesty rules exist for — a single letter, on a damaged sheet, between a contemporary document and a compilation fifty years later. WHAT WOULD UPGRADE THIS RECORD: any 1834-35 advertisement carrying Jones's address, which Andreas's own 1834 summary implies exists in the Democrat's files; or a clean reading of the 26 November 1833 sheet's advertisement block, which would at least settle the initial. See docs/RESEARCH/h_jones_store.md.",
+  "research_doc": "docs/RESEARCH/h_jones_store.md",
+  "review_required": false
+}

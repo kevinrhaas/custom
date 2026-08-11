@@ -1,0 +1,114 @@
+{
+  "id": "madore_beaubien_house",
+  "phase": "log_1831",
+  "name": "Madore Beaubien's Log House",
+  "aka": [
+    "the two-roomed log house on Lot 1",
+    "Madore Beaubien's store"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/madore_beaubien_house__log_1831.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 677.8,
+    "local_n": -4.5,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South-west corner of South Water Street and Dearborn Street (today the south side of West Wacker Drive at North Dearborn Street), on Lot 1; the Dearborn Street drawbridge landed at the foot of Dearborn a few paces north of it.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        9.144,
+        0
+      ],
+      [
+        9.144,
+        5.486
+      ],
+      [
+        0,
+        5.486
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas: 'a two roomed log house'. No source describes the corner treatment, the chinking, or whether any of it was sided; the archetype builds hewn log, which is the commonest construction at Chicago in 1831 and what the source names."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not stated. Andreas divides the building by ROOMS and not by floors — 'two roomed' — which is how a single-storey double pen is described, and a two-storey log house at Chicago in 1831 would be remarkable enough to say. Inference from the description and the type, not from a statement."
+    },
+    "wall_height_m": {
+      "value": 2.5,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the height falls in this range, not that it is exactly 2.5 m — the same reading and the same number this project gives Hogan's store and the Walker meeting house, its other single-storey log buildings."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and it is what a double pen of this plan is roofed with unless something says otherwise."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and nothing describes a stack on this building at all. One is the minimum for a two-room house lived in and traded from through Chicago winters. A double pen commonly carried a stack at each gable and the count could as easily be two; one is recorded because it is the smaller claim. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "dwelling_and_store",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas calls the building a house and separately records that Madore Beaubien was licensed as a merchant in 1831, the year it was built. The trading half is therefore an inference from the coincidence of dates and from the building's position on the town's business street, not a statement that goods were sold in this building. What it was doing on 1835-07-01 specifically is not attested at all."
+    },
+    "occupants": {
+      "value": "Madore Beaubien",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas attaches the building to Madore Beaubien as its builder, records him licensed as a merchant in 1831 and elected a town trustee in 1833. NO SOURCE REACHED PLACES HIM IN THIS BUILDING ON THE SCENE DATE, and the record claims occupancy in 1835 as an inference from continuity rather than as a fact. Nothing further about the household is stated here; see review_required and the research note."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE OLDEST BUILDING THIS PARCEL ADDS AND THE ONLY LOG ONE ON THE SOUTH WATER ROW, which is the point of including it: the 1835 business street was not uniformly new. Andreas gives three hard facts — 1831, two rooms, log, first building on Lot 1 at the south-west corner of South Water and Dearborn — and nothing else, so the size is invented inside the plan he describes and the survival to July 1835 is a continuity argument of the same kind that carries hogan_store. REVIEW IS FLAGGED ON THIS RECORD DELIBERATELY. AGENTS.md's standing constraint is that Native presence and representation are not a research gap to be filled by inference but a subject requiring consultation, and the final removal of the Potawatomi from Chicago falls in August 1835, weeks after the scene date. This record and jb_beaubien_homestead sit inside a family history that runs directly into that, and the right handling of any interpretive text about the Beaubiens belongs to a review this project has not yet sought. The record therefore states the built fabric and the two civic facts Andreas gives (merchant's licence 1831, town trustee 1833) and no more; review_required is true, which blocks the 1835 scene from being marked released until that consultation happens. See docs/RESEARCH/madore_beaubien_house.md.",
+  "research_doc": "docs/RESEARCH/madore_beaubien_house.md",
+  "review_required": true
+}

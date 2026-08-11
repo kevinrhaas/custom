@@ -1,0 +1,140 @@
+{
+  "id": "fort_dearborn_commandants_quarters",
+  "phase": "brick_1816",
+  "name": "Fort Dearborn — commandant's quarters",
+  "aka": [
+    "the brick building",
+    "commanding officer's quarters",
+    "A on the 1855 key"
+  ],
+  "archetype": "fort_structure",
+  "asset": "gltf/fort_dearborn_commandants_quarters__brick_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1149.02,
+    "local_n": 244.98,
+    "rotation_deg": 188.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Inside the north wall of Fort Dearborn, west of the north gate, fronting south onto the parade.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        15.24,
+        0
+      ],
+      [
+        15.24,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "documented"
+  },
+  "attributes": {
+    "kind": {
+      "value": "quarters",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Hubbard 1827 has the commanding officers living in it; the 1855 key names it the Commandant's Quarters. Andreas's summary of the rebuilt fort lists 'quarters for the officers' among what the stockade enclosed."
+    },
+    "construction": {
+      "value": "brick",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Two independent statements twenty-eight years apart. Hubbard, 1827: 'the brick building, just within the north stockade'. The 1855 key: '(brick, about 25x50 ft.)'. THIS MATTERS BEYOND THIS BUILDING: docs/research/04-structures-south.md section 11 says there was 'no brick building of consequence yet on the south side' in 1835 and excepts the fort - correctly, and this is the building it means."
+    },
+    "stories": {
+      "value": 2,
+      "confidence": "inferred",
+      "note": "Not stated. A 50 x 25 ft brick building housing the commanding officer of a two-company post, standing tall enough to be one of the 'two of the principal buildings of the Fort' identified in a photograph taken from across the river, is two storeys by type. The inference is from the building's size and its prominence, not from a statement."
+    },
+    "wall_height_m": {
+      "value": 5.4,
+      "confidence": "inferred",
+      "note": "No height is attested for any building in this fort. 5.4 m is two storeys at about nine feet of interior height each plus floor structure, which is the ordinary figure for officers' quarters of this class. What is inferred is that the wall falls in this range, not that it is exactly 5.4 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for a rectangular range of this period, and it is what the building silhouetted in the 1855 photograph reads as. Inferred from type."
+    },
+    "roof_pitch_deg": {
+      "value": 34.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
+    },
+    "chimneys": {
+      "value": 2,
+      "confidence": "inferred",
+      "sources": [
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "The 1855 caption mentions the building's chimneys in passing while locating the ferry landing - 'under the west chimney of the Commandant's quarters' - which attests at least two by implying a west one and an east one. Two is the ordinary number for a double-pile range of this size in any case. WHERE they stood, how big they were and what they were made of are the archetype's, which is the standing admission in docs/LIBERTIES.md."
+    },
+    "paint": {
+      "value": "brick",
+      "confidence": "inferred",
+      "note": "Bare brick. Nothing says this building was rendered, painted or whitewashed; the whitewash in the sources belongs to the board fence of the 1850s compound and to John H. Kinzie's boyhood memory of the FIRST fort's blockhouses."
+    },
+    "function": {
+      "value": "commanding officer's quarters",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1",
+        "wentworth_1881_fort_dearborn"
+      ],
+      "note": "Occupied by the commanding officer of the post; on 1835-07-01 that is Maj. John Greene, 5th Infantry (see fort_dearborn_palisade's occupants block). In 1827, with the post ungarrisoned, Dr. Alexander Wolcott the Indian Agent was living in it - which is Hubbard's reason for mentioning it at all."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2
+    },
+    {
+      "source_id": "wentworth_1881_fort_dearborn",
+      "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+      "url": "https://chicagology.com/prefire/prefire052/",
+      "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+      "tier": 2
+    },
+    {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "THE ONE BUILDING IN FORT DEARBORN WITH A STATED SIZE, and therefore the building the whole complex is measured against. Its footprint note explains why that is both the strength of this record and a risk running through every other record in the fort. Two guards. The '25 x 50 ft' is a caption to an 1855 photograph, not a survey. And the 1855 key's phrase 'occupying the north-west corner of the enclosure' covers this building and the officers' quarters together as a pair seen from across the river; it is not a statement that this range stood in the corner, and Hubbard puts it 'just within the north stockade', which is where the 1830 plan draws it. See docs/RESEARCH/fort_dearborn.md.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_commandants_quarters.md",
+  "review_required": false
+}

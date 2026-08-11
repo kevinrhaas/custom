@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 35,
+  "count": 40,
   "liberties": [
     {
       "id": "L1",
@@ -1171,6 +1171,460 @@
         {
           "label": "How to resolve",
           "text": "an atmosphere that is wavelength- and altitude-dependent rather than a single exponential would haze a six-mile treeline and a 1400 m skirt differently on physics instead of by exemption, and would let both L17 and § 1.6 hold at once. Failing that, replacing the skirt with real terrain to the east removes L17's need for a closed horizon, and the cap can then be argued on its own merits."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L36",
+      "title": "The business street is built at an invented size, on purpose",
+      "section": "per_subject",
+      "subjects": [
+        "bates_auction_room",
+        "carpenter_south_water_store",
+        "chicago_american_office",
+        "chicago_democrat_office",
+        "dole_warehouse_south",
+        "frederick_thomas_shop",
+        "harmon_loomis_store",
+        "jb_beaubien_homestead",
+        "madore_beaubien_house",
+        "old_bank_building",
+        "peck_store",
+        "pruyne_kimball_drugstore"
+      ],
+      "covers": [
+        {
+          "structure": "bates_auction_room",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "carpenter_south_water_store",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "chicago_american_office",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "chicago_american_office",
+          "phase": null,
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "chicago_democrat_office",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "dole_warehouse_south",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "dole_warehouse_south",
+          "phase": null,
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": null,
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": null,
+          "aspect": "position"
+        },
+        {
+          "structure": "harmon_loomis_store",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "jb_beaubien_homestead",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "madore_beaubien_house",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "old_bank_building",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "old_bank_building",
+          "phase": null,
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "old_bank_building",
+          "phase": null,
+          "aspect": "position"
+        },
+        {
+          "structure": "peck_store",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "pruyne_kimball_drugstore",
+          "phase": null,
+          "aspect": "footprint"
+        },
+        {
+          "structure": "pruyne_kimball_drugstore",
+          "phase": null,
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "pruyne_kimball_drugstore",
+          "phase": null,
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the footprints of the South Water Street and Lake Street commercial buildings — `peck_store`, `chicago_democrat_office`, `harmon_loomis_store`, `madore_beaubien_house`, `bates_auction_room`, `jb_beaubien_homestead`, `dole_warehouse_south`, `carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`, `old_bank_building` and `pruyne_kimball_drugstore` — are invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are invented too, and one of them, Frederick Thomas's shop, has an invented **position** and an invented **function** as well."
+        },
+        {
+          "label": "Why",
+          "text": "the honest alternative was to leave the business street empty, and that is the worse lie. This town's trade was its whole reason to exist — a county seat of some three thousand people, 250 vessel arrivals in 1835 — and until now the model held eight buildings of which not one was a store. What the sources give for these buildings is a name, a trade and usually a street corner: Andreas records that Peck kept a two-storey frame store at South Water and LaSalle, and the *Chicago Democrat* of 26 November 1833 states its own address in its own imprint. **None of them gives a dimension.** No period map in this project shows a building footprint, which is verified for both 1834 sheets. So a footprint here is a guess by construction, and the only question was whether to make it visibly or by omission. One real constraint does apply and is used: **South Water lots are 55 ft wide**, which caps the frontages rather than fixing them."
+        },
+        {
+          "label": "Consequence",
+          "text": "the visitor walks a street whose buildings are the right buildings, in the right places, at the wrong sizes. Turn the confidence view on and the whole row dithers, which is the correct answer and an unusually honest picture of what this project knows about commercial Chicago: **who** and **where**, almost never **how big**. Do not measure anything off this street. The distance between two of these buildings is the distance between two attested corners, which is real; the buildings spanning it are not."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a dimension for any single one of them upgrades that one and nothing else. The most likely source is the *Chicago Democrat* itself — an advertiser describing his own premises, or a to-let notice giving a size. The project holds one issue and more is expected."
+        },
+        {
+          "label": "Covers",
+          "text": "`peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`, `frederick_thomas_shop.function`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L37",
+      "title": "A shop placed by the phrase \"two doors from\"",
+      "section": "per_subject",
+      "subjects": [
+        "frederick_thomas_shop"
+      ],
+      "covers": [],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`frederick_thomas_shop` stands on South Water Street with its position, its function, its storey count and its footprint all tagged `conjectural`. It is the least-evidenced building in the model."
+        },
+        {
+          "label": "Why",
+          "text": "everything this project knows about it is an 1835 advertisement placing it \"two doors from the American office\" — and the American office is itself only located \"near the draw-bridge\". So the shop is positioned relative to a building that is positioned relative to a bridge. Each step is attested and the compounded result is a guess: \"two doors\" assumes a lot width and a continuous frontage, neither of which is recorded for that block. Its trade is not stated either, so even what the building was *for* is inferred from the fact that a man advertised from it."
+        },
+        {
+          "label": "Consequence",
+          "text": "this record exists to make a point the empty-lot alternative cannot. The business street was continuous — shops stood two doors from other shops — and a model that draws only the buildings whose corners are documented shows a row of isolated structures with gaps between them that never existed. That gap is a false statement too, and a less visible one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "an advertisement giving a block, or a lot number in a deed."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L38",
+      "title": "The South Branch bridge lands on ground that is not there",
+      "section": "per_subject",
+      "subjects": [
+        "south_branch_raft_bridge"
+      ],
+      "covers": [
+        {
+          "structure": "south_branch_raft_bridge",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`south_branch_raft_bridge` does not reach the terrain at either end."
+        },
+        {
+          "label": "Why",
+          "text": "the same admission L30 already makes for the North Branch bridge, for the same reason and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines, which is real evidence about where the water was; the ground it should land on is the terrain heightfield, which is modelled from a zone table and does not carry a graded approach. Neither is wrong on its own, and the model still shows a bridge arriving nowhere."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor who walks to either end steps off the deck. Because both branch bridges now do this, it reads as a characteristic of the model rather than a defect in one record, which is if anything worse — it makes the crossing look deliberate."
+        },
+        {
+          "label": "How to resolve",
+          "text": "approach embankments, which are terrain work rather than structure work, and which nothing in the sources describes for either bridge."
+        },
+        {
+          "label": "Covers",
+          "text": "`south_branch_raft_bridge.log_1833.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L39",
+      "title": "Chicago's first movable bridge, with the moving part left out",
+      "section": "per_subject",
+      "subjects": [
+        "dearborn_street_drawbridge"
+      ],
+      "covers": [
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.draw_span_m"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.gallows_frames"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.overall_length_m"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.pier_count"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.pier_kind"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "form.width_m"
+        },
+        {
+          "structure": "dearborn_street_drawbridge",
+          "phase": "draw_1834",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`dearborn_street_drawbridge` is built as a fixed timber crossing. Its **draw span** and its **gallows frames** are recorded on the record and declared `geometry: absent`; its overall length is declared `simplified`; its width, its pier count and its pier kind are `conjectural`; and like both branch bridges it does not reach the ground at either end."
+        },
+        {
+          "label": "Why",
+          "text": "the draw is the entire historical point of this structure — it is the first movable bridge in Chicago, built 1834, and what a contemporary would have told you about it is that it opened. What the sources give is that it was \"about 300 feet\" long with a \"**60 foot**\" opening, of \"gallows pattern\", with frames at either end, and hoisted. That is enough to know a draw existed and roughly how wide; it is not enough to build the mechanism. Nothing describes how the leaves were framed, what carried the hoist, where the windlass or capstan stood, or whether the opening was one leaf or two. Modelling it would mean designing a machine and attributing it to 1834 Chicago. **A correction is embedded here and worth stating**, because it is how the omission got its shape: this project briefly held that the bridge was double-leaf and chain-hoisted. Neither is attested. Both descriptions were lifted from the same web page's account of the **1890s–1963 bascule bridges** on the same street, sixty years later. The words \"double-leaf\" and \"leaves\" occur on that page only there. Had the mechanism been modelled from that reading, the model would have carried a late-Victorian bascule in an 1834 scene, which is exactly the failure mode this file exists to catch."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees a long low timber bridge and no reason to think it was ever anything else. The one fact that made this structure remarkable in its own town is the fact the model does not show. The 60-foot gap in the deck is not drawn either, so the crossing reads as continuous when it was not."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any description of the draw's framing or its hoist — a repair contract, a council order, an engraving. The bridge was repaired in 1835, so a repair record is the most likely thing to exist."
+        },
+        {
+          "label": "Covers",
+          "text": "`dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_span_m`, `dearborn_street_drawbridge.draw_1834.form.gallows_frames`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`, `dearborn_street_drawbridge.draw_1834.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L40",
+      "title": "Two thirds of the town stands on ground that has not been built",
+      "section": "per_subject",
+      "subjects": [
+        "bates_auction_room",
+        "carpenter_south_water_store",
+        "chicago_american_office",
+        "chicago_democrat_office",
+        "dole_warehouse_south",
+        "frederick_thomas_shop",
+        "h_jones_store",
+        "harmon_loomis_store",
+        "jb_beaubien_homestead",
+        "jh_kinzie_forwarding_store",
+        "madore_beaubien_house",
+        "old_bank_building",
+        "peck_store",
+        "pruyne_kimball_drugstore"
+      ],
+      "covers": [
+        {
+          "structure": "bates_auction_room",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "carpenter_south_water_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "chicago_american_office",
+          "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "chicago_democrat_office",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "dole_warehouse_south",
+          "phase": "frame_1832",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "position"
+        },
+        {
+          "structure": "harmon_loomis_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "jb_beaubien_homestead",
+          "phase": "factory_1817",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "position"
+        },
+        {
+          "structure": "madore_beaubien_house",
+          "phase": "log_1831",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "old_bank_building",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "peck_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "pruyne_kimball_drugstore",
+          "phase": "frame_1830s",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "twenty of the thirty-three structures now in the dataset stand **outside the modelled heightfield** and do not reach the terrain beneath them. Their records are correct and their positions are derived through the same fitted transform as everything else; there is simply no ground there yet."
+        },
+        {
+          "label": "Why",
+          "text": "the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the forks, built when the forks was the whole scene. The town is not that shape. South Water Street runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at **+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the town existed — sits east of the modelled world, along with the bridge that crossed to it. This was not discovered by inspection. It surfaced the moment the project stopped building only the best-evidenced structures and started building the town: the forks quadrant was sufficient for eight buildings and is nowhere near sufficient for thirty-three."
+        },
+        {
+          "label": "Consequence",
+          "text": "those twenty buildings currently float. A visitor who walks east finds the ground end and the town continue. **This is worse than the buildings being absent**, because an absent building makes no claim while a floating one makes a false one, and the confidence view cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate intermediate state: the records were built first on the argument that evidence is harder to come by than geometry, and the geometry is now the thing holding."
+        },
+        {
+          "label": "How to resolve",
+          "text": "ROADMAP § S2e — extend the heightfield east to about **E +1700**, a ~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward channel already traced in `data/traces/vectors/wright_1834_east.json` and `shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved** rather than being edited, and any structure still floating afterwards — the North Branch industry sits well north of even the extended box — gets an entry of its own naming it."
+        },
+        {
+          "label": "Covers",
+          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`."
         },
         {
           "label": "Recorded",

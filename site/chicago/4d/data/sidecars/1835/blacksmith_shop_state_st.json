@@ -1,0 +1,107 @@
+{
+  "id": "blacksmith_shop_state_st",
+  "phase": "log_1823",
+  "name": "Government Blacksmith Shop",
+  "aka": [
+    "David McKee's blacksmith shop",
+    "the agency smithy"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/blacksmith_shop_state_st__log_1823.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 769.0,
+    "local_n": 119.0,
+    "rotation_deg": 180.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "North side, near the Agency House at the foot of State Street, on the riverbank strip west of the agency house.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        4.5
+      ],
+      [
+        0,
+        4.5
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856",
+        "andreas_1884_v1"
+      ],
+      "note": "Wau-Bun describes the buildings round the agency house as 'a collection of log buildings, the residences of the different persons in the employ of Government ... blacksmith, striker, and laborers'; Andreas records the 1830 north bank as having 'small log buildings occupied by the blacksmith, Mr. McKee, and Billy Caldwell' in the agency house's vicinity, and McKee's own account of the houses he found and built there — 'All these houses were of logs'. Note that the first two describe the blacksmith's RESIDENCE among the group; that the shop was of the same fabric is the reading, and it is the only fabric anybody reports on this ground in these years."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and about as safe as an inference gets: a smithy is a single tall room with a forge in it, and every building in this group is described as small and log."
+    },
+    "wall_height_m": {
+      "value": 2.4,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.4 m is about 8 ft, a single-pen log wall — the same reading this project gives the Sauganash's 1829 cabin. A working smithy might well have been built taller to carry the heat and the smoke, which is an argument nobody's source makes and which would raise this number if it were ever attested."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and the reasoning here is a trade's rather than a household's: a forge has to vent, so a smithy carries a stack whatever else it lacks. WHAT THE MODEL SHOWS IS A DOMESTIC CHIMNEY. The archetype builds one 0.96 m square shaft with a corbelled head against the gable end — the same stack it builds on a dwelling — so nothing in the mesh distinguishes a forge flue from a cabin's fireplace, and nothing in the mesh says a smithy. That is admitted in docs/LIBERTIES.md rather than hidden."
+    },
+    "function": {
+      "value": "blacksmith_shop",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "'David McKee was appointed Government blacksmith, his shop being situated near the Agency House, at the foot of State Street' — Andreas, opening his chapter on the town's early manufactories with it, since a blacksmith is where the manufacturing history of the place starts. WHO WAS WORKING IT ON THE SCENE DATE IS UNATTESTED: McKee had been carrying the mail since 1827-28, the 1830-31 agency staffing lists him as blacksmith with Joseph Porthier as striker, and nothing reached names a smith here in 1835. The record therefore carries no occupants block."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    }
+  ],
+  "research_note": "A BUILDING KNOWN ONLY AS A CLAUSE IN OTHER PEOPLE'S SENTENCES, and one of the few in this dataset whose existence rests on four independent statements while nothing at all is known of its shape. It belongs to the agency establishment: the 1821 treaty obliged the Government to keep a blacksmith at Chicago for the Potawatomi, McKee was hired for that and arrived in 1823, and Wau-Bun's ring of log residences round Cobweb Castle is the same cluster seen from 1831. THE RECORD IS FLAGGED review_required for the reason AGENTS.md gives: the smithy exists because of a treaty obligation to the Potawatomi, and that is Indigenous history whatever the building looked like. Nothing here depicts or narrates it. WHAT WOULD UPGRADE THE RECORD: agency accounts or the Indian Office's returns, which paid for the shop and its iron and would describe both; failing that, any of the recollections that place the north-bank cluster building by building. See docs/RESEARCH/blacksmith_shop_state_st.md.",
+  "research_doc": "docs/RESEARCH/blacksmith_shop_state_st.md",
+  "review_required": true
+}

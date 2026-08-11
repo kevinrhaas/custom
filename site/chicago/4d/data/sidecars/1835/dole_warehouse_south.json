@@ -1,0 +1,118 @@
+{
+  "id": "dole_warehouse_south",
+  "phase": "frame_1832",
+  "name": "George W. Dole's Warehouse",
+  "aka": [
+    "Dole's 1832 warehouse and slaughter yard"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/dole_warehouse_south__frame_1832.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 712.2,
+    "local_n": -134.1,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Near the junction of Lake Street and Dearborn Street, at what Andreas calls the site of the Tremont House; placed on the south-east corner, which is a reading and not a statement.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12.192,
+        0
+      ],
+      [
+        12.192,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "conjectural",
+      "note": "NOTHING AT ALL IS ATTESTED ABOUT THIS BUILDING'S HEIGHT, and unlike most storey counts in this dataset there is not even a typological argument to make: warehouses of the period run from single-storey sheds to two-and-a-half-storey lofted stores, and the choice changes the silhouette by half. One is recorded because it is the smaller claim. This is invention and is tagged as such."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Frame rather than log because a warehouse wants clear floor and wide doors, and because this project's dossier records the 1832-35 south-side stock as frame and log with no brick of consequence before 1837. Braced rather than balloon frame for the reason the Sauganash record gives, and with more force here: balloon framing was only being developed in Chicago in 1832-33, which is exactly this building's date."
+    },
+    "wall_height_m": {
+      "value": 3.6,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.6 m is about 12 ft: a single storey built taller than a dwelling's, which is what stacked goods and a cart door need. It inherits the storey count's uncertainty, which is conjectural, so this number is only as good as that guess."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 0,
+      "confidence": "inferred",
+      "note": "A COUNT OF ZERO IS A CLAIM, NOT AN ABSENCE, and the archetypes treat it as one. Nothing is attested about heating here; zero is recorded because a store house for barrels and hides is the one building type in this parcel with no reason to have a hearth, and because the slaughtering that would have needed fire is attested as happening in a YARD rather than indoors. If the building doubled as an office it had a stove and this is wrong by one."
+    },
+    "shopfront": {
+      "value": false,
+      "confidence": "inferred",
+      "note": "A warehouse had no shop front. Andreas describes a warehouse and a slaughter yard, which is a building goods went into and out of by cart, not one customers were served over a counter in. Inferred from the attested use; the archetype's default is a composed shopfront and turning it off here is a claim this record makes deliberately."
+    },
+    "function": {
+      "value": "warehouse_and_slaughter_yard",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas names both uses in the same passage. The slaughter yard's status at the scene date is doubtful for the reason given on documented_range — Newberry and Dole built a South Branch slaughter-house in 1834 — and the yard is in any case not modelled."
+    },
+    "occupants": {
+      "value": "George W. Dole, forwarding and commission merchant and provision packer",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Dole is documented as the builder and proprietor. His partnership with Oliver Newberry is documented separately, but the north-side warehouse is the partnership's and this record does not attach Newberry to this building."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "A DOCUMENTED BUSINESS AT AN AMBIGUOUS ADDRESS. Andreas gives the date, the owner and both uses, and locates the building only as 'close to the present site of the Tremont House' — a landmark that post-dates the warehouse by a year and that moved corners between the first Tremont and its successors. The position note works through that; the short version is that the crossing is safe and the corner is a reading. TWO GUARDS TRAVEL WITH THIS RECORD. First, Newberry and Dole's forwarding warehouse and wharf were on the NORTH bank of the river, immediately east of the later Rush Street bridge, and must not be conflated with this one. Second, the 1834 South Branch slaughter-house means the yard half of this record had probably moved before the scene date. WHAT IS CONJECTURAL HERE: the footprint outright, and the storey count, which unusually has no typological argument behind it either way. WHAT WOULD UPGRADE THEM: any Chicago Democrat advertisement of Dole's giving his address relative to a cross street; the 1834-35 town lot records for the Lake and Dearborn block; or a description of the building in the packing literature Andreas draws on at scan p. 1151. See docs/RESEARCH/dole_warehouse_south.md.",
+  "research_doc": "docs/RESEARCH/dole_warehouse_south.md",
+  "review_required": false
+}

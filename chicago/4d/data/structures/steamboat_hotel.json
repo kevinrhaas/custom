@@ -1,0 +1,128 @@
+{
+  "id": "steamboat_hotel",
+  "name": "Steamboat Hotel",
+  "aka": [
+    "American Hotel",
+    "American Inn",
+    "the Steam Boat Hotel"
+  ],
+  "archetype": "frame_tavern",
+  "phases": [
+    {
+      "id": "frame_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1",
+          "drloih_hotels"
+        ],
+        "note": "THE DATE IS THE RISK IN THIS RECORD AND IT IS NOT RESOLVED. Two sources put the house in 1835 and neither gives a month: Andreas, 'The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis, and from 1836 to 1839 by William McCorrister, as the American Hotel'; DRLOIH, 'The Steamboat Hotel ... opened in 1835 on North Water Street, near Kinzie Street, and was operated by John Davis.' The range therefore opens on 1 January 1835 because that is the earliest day the attested year permits, NOT because anything says the house was open then. THE SCENE DATE IS SIX MONTHS INTO THAT WINDOW AND THE BUILDING COULD BE ON EITHER SIDE OF IT. What narrows it, a little: John Davis advertised the Steamboat Hotel in the Chicago American, whose first issue Andreas dates 8 June 1835 — so the house was trading under Davis inside the paper's 1835 run, which begins three weeks before the scene date; and DRLOIH has J. Dorsey and J. Force announcing on 9 November 1835 that they had taken over the management, which closes Davis's tenure at that end. Both anchors sit after 1 July and neither reaches back before it. THIS PROJECT EXCLUDES THE TOWN'S FIRST FIRE ENGINE ON EXACTLY THIS GROUND — right year, wrong month — and the difference here is that no source dates the opening at all, so the balance of evidence is that a house 'kept in 1835 by John Davis' and advertising in a paper that began in June was more likely than not in business by 1 July. Tagged inferred, argued rather than assumed, and if a dated advertisement or a licence puts the opening after 1 July this record leaves the scene for data/exclusions.json. NOTE ALSO that neither source says the BUILDING was new in 1835: 'opened in 1835' is a statement about a business. The fabric may be older, in which case the risk above disappears and only the record's silence about it remains."
+      },
+      "position": {
+        "utm_e": 448040.7,
+        "utm_n": 4637686.8,
+        "rotation_deg": 180.0,
+        "symbolic_location": "North Water Street near Kinzie Street, north bank, in the stretch east of Wolcott (N State) Street where the two streets converge.",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1",
+          "drloih_hotels",
+          "wright_1834",
+          "osm_streets_2026"
+        ],
+        "note": "PLACED 2026-08-11. THE STREET IS DOCUMENTED, THE CROSS-STREET IS A PROXIMITY, AND NO SOURCE GIVES A CORNER OR A SIDE. Both sources say the same thing in the same words — 'on North Water Street, near Kinzie' — which is one statement twice, since DRLOIH follows Andreas here as it does elsewhere. WHERE THAT IS: on the Wright 1834 sheet, read at this project's fitted affine, North Water Street runs along the north bank of the main stem and, east of Wolcott Street, swings north-east with the river; the Kinzie Street alignment runs due east at local N +276. The two converge about 165 m east of State Street, at roughly local E +990, and modern OpenStreetMap agrees — E North Water Street's west end joins E Kinzie Street about 70 m east of State today. 'Near Kinzie' is read as that convergence, because a house on North Water Street west of Wolcott would have been described against Kinzie Street's parallel line, which locates nothing. The building is set on the NORTH side of North Water Street just short of the convergence, its south face on the street frontage. UNCERTAINTY IS BIGGER HERE THAN ANYWHERE ELSE ON THIS BANK: about 20 m from the georeference, plus an unquantified allowance for 'near' — the stretch of North Water Street this reading admits is roughly 150 m long, so treat the along-street position as good to about ±80 m and the side of the street as a coin flip. The north side is chosen because on the 1834 plat the south side of North Water Street east of Wolcott is a single row of riverbank lots between the street and the water, and a hotel is more likely on the block side than on the wharf side; that is an argument, not evidence. Facade bearing 180, due south onto North Water Street and the river, follows from the side of the street and nothing else. This building stands about 650 m east of the modelled terrain box: there is no modelled ground under it."
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            15,
+            0
+          ],
+          [
+            15,
+            8
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "PLACEHOLDER — NOTHING ABOUT THIS BUILDING'S FABRIC OR SIZE IS ATTESTED. 15 x 8 m is about 50 x 26 ft: a plausible two-storey town hotel of 1835, sized between the Green Tree (40 x 25 ft, itself derived rather than measured) and the Western Hotel (40 x 60 ft in an L, which is attested). Every number is invented and the rectangle is a rectangle because no source describes a plan. To resolve: the Chicago American and Chicago Democrat advertisements — Davis was advertising this house, and hotel advertisements of the period routinely count rooms and describe the building."
+      },
+      "form": {
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED, AND THIS IS THE MOST CONSEQUENTIAL GUESS IN THE RECORD, because it also chose the archetype: a frame reading makes this a `frame_tavern` and a log reading would make it a `log_dwelling`, so if it is wrong the building is wrong in kind and not merely in detail. THE ARGUMENT FOR FRAME: every Chicago hotel this dataset can date to 1833 or later is frame — the Green Tree of 1833, the Western of 1834, the Tremont of 1833 — while the log taverns at the forks all belong to the 1828-31 generation; by 1835 the town had sawn lumber, carpenters and a building boom, and it was raising a three-storey brick hotel half a mile east on the same bank. THE ARGUMENT AGAINST TREATING THAT AS EVIDENCE is this project's own line, set in docs/LIBERTIES.md L18: the ordinary reading of a TYPE is not evidence about a BUILDING. Nobody described this house at all. So the value is chosen, declared and tagged conjectural, and the confidence view renders the whole building as massing rather than as a finding."
+        },
+        "stories": {
+          "value": 2,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED. Two storeys is what a town hotel of 1835 carried and no source says it of this one. Chosen rather than derived."
+        },
+        "wall_height_m": {
+          "value": 5.2,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED. 5.2 m is about 17 ft — two storeys at period floor heights plus structure and a sill, the same figure this project uses for the Miller house's two-storey range. It inherits the storey count above, which is itself a guess."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED. Gable is the ordinary roof for a frame block of this type and period and nothing says it of this building."
+        },
+        "roof_pitch_deg": {
+          "value": 38.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested. 38 degrees is this archetype's mid-range for period framing, inferred from construction practice rather than measured — the same value and the same reasoning as the other frame records here. It is an inference about how a roof of this kind was framed, sitting on a roof form the record has already tagged as a guess."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED EITHER WAY, and this attribute is read by the archetype, so leaving it out would have painted the building white by default — which is a claim, and one Wau-Bun's account of the Sauganash's white paint being 'the admiration of all the little circle at Wolf Point' shows was worth remarking on in 1831. Unpainted is the cheaper reading for a 1835 speculative-boom house and it is still a choice."
+        },
+        "gallery": {
+          "value": false,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED EITHER WAY. False is what the archetype falls back to, not a finding, and the consequence is the one docs/LIBERTIES.md L19 records for the Green Tree and the Western: a plain front reads as the answer while a drawn shape at least announces itself as a choice. A house taking steamboat passengers off the North Water Street frontage is precisely the type that often carried a porch."
+        },
+        "chimneys": {
+          "value": 2,
+          "confidence": "inferred",
+          "note": "Not attested. Two is the count a frame block of this frontage carries if it is heating public rooms and lodging rooms through a Chicago winter, and it is what this project's other two frame hotels record. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
+        }
+      },
+      "ground_contact": {
+        "state": "outside_modelled_ground",
+        "note": "STANDS OUTSIDE THE MODELLED TERRAIN BOX. The heightfield of terrain epoch e1834_harbor_cut covers a 640 m square around the forks, E -320..+320 and N -320..+320, and this structure is placed at local E +968, N +291 — 648 m east of its edge. So there is no ground under any part of its contact outline and the question whether the building lands has no answer: tools/heightfield.py clamps its sampler at the box edge, which would otherwise report a perfect landing on terrain that does not exist. WHAT THE VISITOR SEES is the renderer's radial skirt (docs/LIBERTIES.md L17), which carries the box's boundary heights outward for the horizon and claims nothing. Nothing in this record is wrong and nothing in the mesh is wrong; the ground is simply not built yet. WHAT WOULD SETTLE IT: the eastward extension of the terrain epoch already queued as ROADMAP S2e, which would put real modelled ground under the North Water Street frontage in Kinzie's Addition and turn this declaration into a measurement. Until then this is the same admission docs/LIBERTIES.md L40 makes for the business street."
+      },
+      "change_note": "The house standing on North Water Street in 1835 and kept as the Steamboat Hotel by John Davis. The change of management to J. Dorsey and J. Force in November 1835 and the renaming to the American Hotel under William McCorrister in 1836 are changes of USE and do not open new phases."
+    }
+  ],
+  "function": {
+    "value": "hotel",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1",
+      "drloih_hotels"
+    ],
+    "note": "'The Steamboat Hotel, on North Water Street, near Kinzie, was kept in 1835 by John Davis' (Andreas). The function is documented for the year; see documented_range for why the year is not the same as the day."
+  },
+  "occupants": {
+    "value": "John Davis, keeper",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1",
+      "drloih_hotels"
+    ],
+    "note": "Both sources name Davis as the keeper in 1835, and Andreas's list of the Chicago American's advertising patrons carries 'John Davis, Steamboat Hotel' in the paper's first year. THE GRAIN IS THE YEAR, NOT THE DAY: DRLOIH has J. Dorsey and J. Force taking over the management on 9 November 1835, so Davis's tenure covers the scene date if the house was open at all. Note the coincidence this project should not resolve by assumption: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is the same John Davis is unattested."
+  },
+  "research_note": "A HOTEL THAT IS ALL BUSINESS AND NO BUILDING: two sources give a street, a cross-street, a year and a keeper, and not one word about the fabric, the size, the plan, the storeys or the finish. So the archetype choice — `frame_tavern` rather than `log_dwelling` — IS the guess, and it is argued at form.construction rather than buried in the filename: every dateable Chicago hotel from 1833 on is frame, the log taverns belong to 1828-31, and the ordinary reading of a type is still not evidence about a building. Everything dimensional is tagged conjectural and the confidence view renders the whole house as massing. THE DATE IS THE OTHER RISK and it is set out in full on documented_range: 'opened in 1835' with no month, in a scene dated 1 July 1835, in a project that excludes the town's first fire engine for being five months late. WHAT WOULD SETTLE BOTH: the Chicago American, which Davis advertised in and whose first issue is dated 8 June 1835, and the Chicago Democrat. A dated advertisement would fix the opening; an advertisement of the ordinary period kind would also describe the house. See docs/RESEARCH/steamboat_hotel.md.",
+  "review_required": false
+}

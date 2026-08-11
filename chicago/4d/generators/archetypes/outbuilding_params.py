@@ -408,6 +408,30 @@ class OutbuildingParams:
                 return side
         return None
 
+    @property
+    def loft_door_size_m(self) -> tuple:
+        """(width, height) of the hay door, shrunk to what its wall can hold.
+
+        A gable narrows as it rises, so the door's own width is set by the wall it is
+        cut into rather than by a constant: at 74 per cent of the way up a gable there
+        is only a quarter of the half-span left, and a 0.95 m door on a 4 m gable end
+        would run out through the rake. Returns (0, 0) when there is no loft; `validate`
+        refuses anything under 0.55 m rather than build a hatch and call it a hay door.
+        """
+        side = self.loft_side
+        if side is None:
+            return (0.0, 0.0)
+        rise = self.roof_rise_m
+        if self.roof_type == "shed":
+            half_avail = self.side_run_m(side) / 2.0 - 0.35
+            height = min(1.05, (float(self.wall_height_m) + rise) * 0.35)
+        else:
+            # The gable's half-span at the DOOR HEAD, which is its narrowest point.
+            half_span = self.roof_run_m
+            half_avail = half_span * (1.0 - 0.74) - 0.10
+            height = min(1.05, max(0.55, rise * 0.62))
+        return (round(max(0.0, min(0.95, 2.0 * half_avail)), 4), round(height, 4))
+
     def side_run_m(self, side: str) -> float:
         """How long the wall on this side is, along the ground."""
         return self.width_m if side in ("front", "back") else self.depth_m
@@ -472,6 +496,13 @@ class OutbuildingParams:
                 "either open or already carries the main door. Close one, move the "
                 "door, or drop the loft — an archetype that quietly puts the hay door "
                 "somewhere else is inventing the building's working arrangement")
+        if self.loft and self.loft_door_size_m[0] < 0.55:
+            raise ParamError(
+                f"the loft door would be {self.loft_door_size_m[0]:.2f} m wide once it "
+                f"is fitted inside the '{self.loft_side}' elevation's top. Nothing is "
+                f"forked through a 0.55 m hole: this building is too small or too flat "
+                f"in the roof to have had a hay loft, and a hatch drawn where a hay "
+                f"door should be is a claim about how the building was worked")
         for k, v in self.confidence.items():
             if v not in CONFIDENCE_VALUE:
                 raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")

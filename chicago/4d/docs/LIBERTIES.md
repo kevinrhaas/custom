@@ -678,6 +678,166 @@ the skirt with real terrain to the east removes L17's need for a closed horizon,
 then be argued on its own merits.
 **Recorded:** 2026-08-10.
 
+### L36 — The business street is built at an invented size, on purpose
+**Decision:** the footprints of the South Water Street and Lake Street commercial buildings —
+`peck_store`, `chicago_democrat_office`, `harmon_loomis_store`, `madore_beaubien_house`,
+`bates_auction_room`, `jb_beaubien_homestead`, `dole_warehouse_south`,
+`carpenter_south_water_store`, `chicago_american_office`, `frederick_thomas_shop`,
+`old_bank_building` and `pruyne_kimball_drugstore` — are
+invented polygons tagged `conjectural`, citing no source. Several of their **storey counts** are
+invented too, and one of them, Frederick Thomas's shop, has an invented **position** and an
+invented **function** as well.
+**Why:** the honest alternative was to leave the business street empty, and that is the worse
+lie. This town's trade was its whole reason to exist — a county seat of some three thousand
+people, 250 vessel arrivals in 1835 — and until now the model held eight buildings of which not
+one was a store. What the sources give for these buildings is a name, a trade and usually a
+street corner: Andreas records that Peck kept a two-storey frame store at South Water and
+LaSalle, and the *Chicago Democrat* of 26 November 1833 states its own address in its own
+imprint. **None of them gives a dimension.** No period map in this project shows a building
+footprint, which is verified for both 1834 sheets. So a footprint here is a guess by
+construction, and the only question was whether to make it visibly or by omission.
+One real constraint does apply and is used: **South Water lots are 55 ft wide**, which caps the
+frontages rather than fixing them.
+**Consequence:** the visitor walks a street whose buildings are the right buildings, in the
+right places, at the wrong sizes. Turn the confidence view on and the whole row dithers, which
+is the correct answer and an unusually honest picture of what this project knows about
+commercial Chicago: **who** and **where**, almost never **how big**. Do not measure anything
+off this street. The distance between two of these buildings is the distance between two
+attested corners, which is real; the buildings spanning it are not.
+**How to resolve:** a dimension for any single one of them upgrades that one and nothing else.
+The most likely source is the *Chicago Democrat* itself — an advertiser describing his own
+premises, or a to-let notice giving a size. The project holds one issue and more is expected.
+**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`,
+`harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`,
+`bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`,
+`dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`,
+`chicago_american_office.footprint`, `frederick_thomas_shop.footprint`,
+`old_bank_building.footprint`, `old_bank_building.position`,
+`pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`,
+`pruyne_kimball_drugstore.form.stories`,
+`old_bank_building.form.stories`,
+`chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`,
+`frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`,
+`frederick_thomas_shop.function`.
+**Recorded:** 2026-08-10.
+
+### L37 — A shop placed by the phrase "two doors from"
+**Decision:** `frederick_thomas_shop` stands on South Water Street with its position, its
+function, its storey count and its footprint all tagged `conjectural`. It is the least-evidenced
+building in the model.
+**Why:** everything this project knows about it is an 1835 advertisement placing it "two doors
+from the American office" — and the American office is itself only located "near the
+draw-bridge". So the shop is positioned relative to a building that is positioned relative to a
+bridge. Each step is attested and the compounded result is a guess: "two doors" assumes a lot
+width and a continuous frontage, neither of which is recorded for that block. Its trade is not
+stated either, so even what the building was *for* is inferred from the fact that a man
+advertised from it.
+**Consequence:** this record exists to make a point the empty-lot alternative cannot. The
+business street was continuous — shops stood two doors from other shops — and a model that
+draws only the buildings whose corners are documented shows a row of isolated structures with
+gaps between them that never existed. That gap is a false statement too, and a less visible one.
+**How to resolve:** an advertisement giving a block, or a lot number in a deed.
+**Recorded:** 2026-08-10.
+
+### L38 — The South Branch bridge lands on ground that is not there
+**Decision:** `south_branch_raft_bridge` does not reach the terrain at either end.
+**Why:** the same admission L30 already makes for the North Branch bridge, for the same reason
+and with the same cause. The bridge is placed and dimensioned from the traced 1834 waterlines,
+which is real evidence about where the water was; the ground it should land on is the terrain
+heightfield, which is modelled from a zone table and does not carry a graded approach. Neither
+is wrong on its own, and the model still shows a bridge arriving nowhere.
+**Consequence:** a visitor who walks to either end steps off the deck. Because both branch
+bridges now do this, it reads as a characteristic of the model rather than a defect in one
+record, which is if anything worse — it makes the crossing look deliberate.
+**How to resolve:** approach embankments, which are terrain work rather than structure work,
+and which nothing in the sources describes for either bridge.
+**Covers:** `south_branch_raft_bridge.log_1833.ground_contact`.
+**Recorded:** 2026-08-10.
+
+### L39 — Chicago's first movable bridge, with the moving part left out
+**Decision:** `dearborn_street_drawbridge` is built as a fixed timber crossing. Its **draw span**
+and its **gallows frames** are recorded on the record and declared `geometry: absent`; its
+overall length is declared `simplified`; its width, its pier count and its pier kind are
+`conjectural`; and like both branch bridges it does not reach the ground at either end.
+**Why:** the draw is the entire historical point of this structure — it is the first movable
+bridge in Chicago, built 1834, and what a contemporary would have told you about it is that it
+opened. What the sources give is that it was "about 300 feet" long with a "**60 foot**" opening,
+of "gallows pattern", with frames at either end, and hoisted. That is enough to know a draw
+existed and roughly how wide; it is not enough to build the mechanism. Nothing describes how the
+leaves were framed, what carried the hoist, where the windlass or capstan stood, or whether the
+opening was one leaf or two. Modelling it would mean designing a machine and attributing it to
+1834 Chicago.
+**A correction is embedded here and worth stating**, because it is how the omission got its
+shape: this project briefly held that the bridge was double-leaf and chain-hoisted. Neither is
+attested. Both descriptions were lifted from the same web page's account of the **1890s–1963
+bascule bridges** on the same street, sixty years later. The words "double-leaf" and "leaves"
+occur on that page only there. Had the mechanism been modelled from that reading, the model
+would have carried a late-Victorian bascule in an 1834 scene, which is exactly the failure mode
+this file exists to catch.
+**Consequence:** a visitor sees a long low timber bridge and no reason to think it was ever
+anything else. The one fact that made this structure remarkable in its own town is the fact the
+model does not show. The 60-foot gap in the deck is not drawn either, so the crossing reads as
+continuous when it was not.
+**How to resolve:** any description of the draw's framing or its hoist — a repair contract, a
+council order, an engraving. The bridge was repaired in 1835, so a repair record is the most
+likely thing to exist.
+**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`,
+`dearborn_street_drawbridge.draw_1834.form.draw_span_m`,
+`dearborn_street_drawbridge.draw_1834.form.gallows_frames`,
+`dearborn_street_drawbridge.draw_1834.form.overall_length_m`,
+`dearborn_street_drawbridge.draw_1834.form.pier_count`,
+`dearborn_street_drawbridge.draw_1834.form.pier_kind`,
+`dearborn_street_drawbridge.draw_1834.form.width_m`,
+`dearborn_street_drawbridge.draw_1834.ground_contact`.
+**Recorded:** 2026-08-10.
+
+### L40 — Two thirds of the town stands on ground that has not been built
+**Decision:** twenty of the thirty-three structures now in the dataset stand **outside the
+modelled heightfield** and do not reach the terrain beneath them. Their records are correct and
+their positions are derived through the same fitted transform as everything else; there is
+simply no ground there yet.
+**Why:** the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the
+forks, built when the forks was the whole scene. The town is not that shape. South Water Street
+runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the
+Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at
+**+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the
+town existed — sits east of the modelled world, along with the bridge that crossed to it.
+This was not discovered by inspection. It surfaced the moment the project stopped building only
+the best-evidenced structures and started building the town: the forks quadrant was sufficient
+for eight buildings and is nowhere near sufficient for thirty-three.
+**Consequence:** those twenty buildings currently float. A visitor who walks east finds the
+ground end and the town continue. **This is worse than the buildings being absent**, because an
+absent building makes no claim while a floating one makes a false one, and the confidence view
+cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is
+recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate
+intermediate state: the records were built first on the argument that evidence is harder to come
+by than geometry, and the geometry is now the thing holding.
+**How to resolve:** ROADMAP § S2e — extend the heightfield east to about **E +1700**, a
+~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward
+channel already traced in `data/traces/vectors/wright_1834_east.json` and
+`shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
+rather than being edited, and any structure still floating afterwards — the North Branch
+industry sits well north of even the extended box — gets an entry of its own naming it.
+**Covers:** `bates_auction_room.frame_1834.ground_contact`,
+`carpenter_south_water_store.frame_1833.ground_contact`,
+`chicago_american_office.frame_1835.ground_contact`,
+`chicago_democrat_office.frame_1833.ground_contact`,
+`dole_warehouse_south.frame_1832.ground_contact`,
+`frederick_thomas_shop.frame_1835.ground_contact`,
+`h_jones_store.frame_1833.ground_contact`,
+`harmon_loomis_store.frame_1833.ground_contact`,
+`jb_beaubien_homestead.factory_1817.ground_contact`,
+`madore_beaubien_house.log_1831.ground_contact`,
+`old_bank_building.frame_1834.ground_contact`,
+`peck_store.frame_1833.ground_contact`,
+`pruyne_kimball_drugstore.frame_1830s.ground_contact`,
+`h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`,
+`h_jones_store.frame_1833.form.stories`,
+`jh_kinzie_forwarding_store.frame_1830s.footprint`,
+`jh_kinzie_forwarding_store.frame_1830s.position`,
+`jh_kinzie_forwarding_store.frame_1830s.form.stories`.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved

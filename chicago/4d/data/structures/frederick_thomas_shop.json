@@ -1,0 +1,107 @@
+{
+  "id": "frederick_thomas_shop",
+  "name": "Frederick Thomas's Shop",
+  "aka": [
+    "two doors from the American office"
+  ],
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "frame_1835",
+      "documented_range": {
+        "from": "1835-06-08",
+        "to": "1835-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1"
+        ],
+        "note": "THE RANGE IS BORROWED FROM ANOTHER BUILDING BECAUSE THE ONLY DATE THIS ONE HAS IS ANOTHER BUILDING'S. Andreas records that Frederick Thomas advertised from 'two doors from the American office'; an address expressed relative to the Chicago American can only have been used after the American existed, and the American was established on 8 June 1835. So the range opens there, and that is a floor on the ADVERTISEMENT, not on the building, which is necessarily older and undated. THE END IS THE ORDINARY CONTINUITY CUT AT THE SCENE YEAR. This is the thinnest documented_range in the parcel: what it really records is that a man was trading at a describable spot on South Water Street in the summer of 1835."
+      },
+      "position": {
+        "utm_e": 447817.5,
+        "utm_n": 4637389.2,
+        "rotation_deg": 0.0,
+        "symbolic_location": "South side of South Water Street, two lots east of the Chicago American's office and east of Dearborn Street (today the south side of West Wacker Drive between North Dearborn and North State).",
+        "confidence": "conjectural",
+        "note": "CONJECTURAL, AND THE TAG IS THE POINT: THIS POSITION IS AN OFFSET FROM A POSITION THAT IS ITSELF INFERRED. What Andreas gives is a relation and nothing else — Thomas advertised from 'two doors from the American office' — and the American office's own position is inferred from 'on Water Street, near the draw-bridge'. Stacking one on the other produces a point on the ground that no source can be said to support, whatever the arithmetic. THE ARITHMETIC, STATED SO IT CAN BE CORRECTED: Andreas states that South Water Street lots were 55 ft wide, so two doors along the street is about 110 ft = 33.5 m. This record sits 33.5 m east of chicago_american_office's footprint origin (E 447784.0), on the same frontage, at E 447817.5. THE DIRECTION IS THE ONE PIECE OF REAL REASONING HERE, and it is worth stating because it is not arbitrary: two lots WEST of the American office would cross Dearborn Street, since that record's west wall stands on the Dearborn frontage, and 'two doors' describes premises on one block face rather than across a crossing. East is therefore the only reading that keeps the phrase meaning what it means. THAT ARGUMENT INHERITS THE AMERICAN OFFICE'S OWN GUESS about which side of Dearborn it stood on; if the American was west of Dearborn, this record could be either side of it and the direction argument evaporates. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus about 30 m carried in from the American office's 'near the draw-bridge', plus the direction. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement."
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            9.144,
+            0
+          ],
+          [
+            9.144,
+            6.096
+          ],
+          [
+            0,
+            6.096
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "INVENTED. Nothing whatever is attested about this building. 9.144 x 6.096 m is 30 x 20 ft — deliberately the smallest of the parcel's South Water rectangles, because the only thing the source implies about the premises is that they were one of several 'doors' along a frontage, i.e. a single shop rather than a corner block. The 20 ft depth is Hogan's store's documented depth, the one period depth this dataset holds; the 30 ft frontage sits well inside the documented 55 ft South Water lot width. Both numbers are borrowed; neither is evidence about this building."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "conjectural",
+          "note": "Nothing is attested. One is recorded because it is the smaller claim for premises described only as a door along a street. Invention, tagged as such."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Not stated. Frame rather than log because this is a shop on the town's business street in 1835 and this project's dossier records the 1835 stock as overwhelmingly frame and log with new commercial work in frame. Braced rather than balloon frame follows the Sauganash record's argument; by 1835 balloon framing is the likelier of the two and nothing decides."
+        },
+        "wall_height_m": {
+          "value": 3.0,
+          "confidence": "inferred",
+          "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey. It inherits the storey count's uncertainty, which is conjectural."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "note": "Not attested. One is the minimum for premises kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+        }
+      },
+      "change_note": "The premises Frederick Thomas advertised from in the summer of 1835, described in the only way this dataset has ever had to place a building: not by a corner, not by a block, but by counting doors from the newspaper office next along the street.",
+      "ground_contact": {
+        "state": "outside_modelled_ground",
+        "note": "OUTSIDE THE MODELLED TERRAIN BOX ALTOGETHER — not standing above ground, but standing where no ground has been built. This phase sits at local ENU E +744.8 m, N -6.6 m from the datum origin, and the committed e1834_harbor_cut heightfield covers only 640 m square centred on the forks (257 samples at 2.5 m, local E and N from -320 to +320). No sample of that field lies under any part of this footprint, so the question the ground-contact gate asks — does the building meet the ground — HAS NO ANSWER HERE, and the renderer stands it on the radial skirt that continues the terrain past the modelled box (docs/LIBERTIES.md L17), which is a surface with no evidence behind it. WHAT IS MISSING IS TERRAIN, NOT STRUCTURE. The position is derived exactly as every other position in this parcel is, and nothing in the record is wrong; the model simply stops 320 m from the datum and the business street begins beyond it. WHAT WOULD SETTLE IT: regenerating the terrain epoch over a box large enough to hold the platted town — roughly 1,150 m east of the datum origin to reach the Beaubien homestead at Michigan Avenue, against the present 320 — which is ordinary terrain work on maps this project has already georeferenced, not new research. When that lands, drop this declaration and move the liberty claiming it to the Resolved section of docs/LIBERTIES.md."
+      }
+    }
+  ],
+  "function": {
+    "value": "shop",
+    "confidence": "conjectural",
+    "note": "NO SOURCE REACHED SAYS WHAT FREDERICK THOMAS SOLD. Andreas records only that he advertised, and gives the address he advertised from. 'Shop' is the weakest word that fits a street of stores and commission houses and it is a guess; the trade is genuinely unknown, and the Chicago Democrat and Chicago American files for 1835 would settle it in one line, because the advertisement Andreas is quoting from is in one of them."
+  },
+  "occupants": {
+    "value": "Frederick Thomas",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "The one thing about this record that is documented: a man of this name advertised from these premises in 1835. Everything else — his trade, his building, its size, its height and where exactly it stood — is inference or invention."
+  },
+  "research_note": "THE MOST INVENTED BUILDING IN THIS PARCEL, RECORDED RATHER THAN OMITTED, AND THE RECORD SAYS SO ON EVERY ATTRIBUTE. What is documented is an advertiser and a relative address: Frederick Thomas advertised from 'two doors from the American office'. What is drawn is a whole shop, at a point derived by offsetting 110 ft along a street from a building whose own position is inferred from the phrase 'near the draw-bridge'. Position, footprint, storey count and function are all tagged conjectural for that reason, which is the confidence model doing exactly what it is for: the visitor sees a building, and the model tells them it is a guess with a name attached. WHY IT IS WORTH HAVING ANYWAY: 'two doors from' is evidence about the STREET even when it is weak evidence about the building. It says South Water Street east of Dearborn had a continuous enough row of premises in 1835 for a man to give his address by counting them, and an empty stretch of ground there would misrepresent that more badly than a graded guess does. WHAT WOULD UPGRADE IT: the Chicago Democrat or Chicago American for 1835, which carry the advertisement Andreas is quoting and would give the trade at minimum, and possibly a fuller address. A single number of either paper would move function from conjectural to documented. See docs/RESEARCH/frederick_thomas_shop.md.",
+  "review_required": false
+}
