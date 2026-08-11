@@ -10,11 +10,26 @@
   "asset": "gltf/jb_beaubien_homestead__factory_1817.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1817-01-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE RANGE IS WIDE BECAUSE THE BUILDING IS OLD, NOT BECAUSE THE RESEARCH IS THIN, and the project's own gate warns about ranges this long so the reason is stated here. Andreas: the building was the American Fur Company's factory building, erected by Capt. Bradley, and Jean Baptiste Beaubien bought it in 1817. No month is given, so the range opens at the start of that year. THE SURVIVAL TO THE SCENE DATE IS BETTER ATTESTED THAN ON MOST RECORDS IN THIS DATASET: Beaubien was living on the reservation in 1835 and filed a pre-emption claim for the whole 75.69-acre fort reservation dated 28 May 1835 and recorded 26 June 1835 at $94.61 — five weeks old on the scene date — and the Chicago Historical Society's later plaque still placed the homestead on the block that became the Public Library. What is NOT attested is the date the building came down, so 1835-12-31 is a housekeeping bound at the end of the scene year and not a demolition date. The claim was voided by the Supreme Court in Wilcox v. Jackson in 1839, which is four years after this scene and outside it."
+  },
+  "change_note": "The American Fur Company's factory building, erected by Capt. Bradley and bought by Jean Baptiste Beaubien in 1817 — the oldest structure this dataset models. By the scene date it is the principal building of a homestead group on the Fort Dearborn reservation, and Beaubien's pre-emption claim to the whole reservation is five weeks old: dated 28 May 1835, recorded 26 June 1835.",
   "placement": {
     "local_e": 1090.5,
     "local_n": 144.3,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE CORNER IS CONTESTED INSIDE A SINGLE SOURCE AND THE CONTEST IS RECORDED RATHER THAN RESOLVED SILENTLY. Andreas, scan p. 185, describing the homestead itself: 'where now is the southwest corner of South Water Street and Michigan Avenue'. Andreas, scan p. 339, describing a walk along a land boundary in Block 5: 'go east upon South Water Street until you come to the northeast corner of South Water Street and Michigan Avenue'. THE SOUTH-WEST IS ADOPTED, and the reason is what each passage is FOR: p. 185 is about this building, and p. 339 is a boundary description of the land east of Michigan Avenue in Block 5 that uses the corner as a waypoint rather than as the homestead's address. A statement about the thing outranks a statement that passes the thing. The two corners are about 45 m apart, so the disagreement is roughly twice the georeference's own error and is the largest single uncertainty on this record. A SECOND CAVEAT THAT MATTERS MORE THAN THE FIRST: NEITHER STREET EXISTED HERE IN 1835. The reservation was unplatted, no streets crossed it, and South Water Street was ordered pitched only 'from the United States Reservation to Randolph Street'. Andreas is writing in 1884 and locating an 1817 building by the streets of his own day, so 'the corner of South Water and Michigan' is a retrospective locator and not an address the building ever had. METHOD: the modern East Upper Wacker Drive / North Michigan Avenue intersection centre was read from OpenStreetMap at EPSG:26916 E 448187.6, N 4637558.4 (four nodes averaged, spread 18.3 m, fetched 2026-08-11) and the origin offset 12.2 m west and 12.2 m south of it less the building's own width and depth. WORKING UNCERTAINTY ABOUT 20 M from the georeference, plus about 45 m for the corner, plus an unquantified allowance for the retrospective locator itself. This is the least precisely placed structure in this parcel and it sits 1,090 m east of the datum origin, well outside the modelled terrain box, so it stands on the renderer's radial skirt rather than on traced ground — docs/LIBERTIES.md L17. Facade bearing 0, north toward the river, and it has NO attested basis whatever: the streets it would face did not exist, and the bearing is a placeholder inherited from the retrospective grid.",
     "symbolic_location": "On the Fort Dearborn reservation at what Andreas calls the corner of South Water Street and Michigan Avenue (today East Wacker Drive at North Michigan Avenue) — the south-west corner on one Andreas passage and the north-east on another; this coordinate takes the south-west.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +54,9 @@
         6.096
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. No source reached gives the factory building a dimension. 12.192 x 6.096 m is 40 x 20 ft, and both numbers are borrowed from attested buildings in this dataset rather than freshly guessed: 20 ft is the depth of Hogan's store, the one log footprint here that is documented, and 40 ft is the frontage attested for the Green Tree Tavern. A fur company's factory building is a trade house — a store room and a counter — so a long shallow rectangle of that order is the right kind of shape for the type. THIS POLYGON IS ONE BUILDING AND THE HOMESTEAD WAS FOUR. Andreas describes the factory building bought in 1817, a new residence Beaubien built, a small trading post, and an earlier cabin he converted to a barn. Only the factory building is modelled; the other three are recorded in this record's research_note and in docs/RESEARCH/jb_beaubien_homestead.md and are not built."
   },
   "attributes": {
     "construction": {
@@ -98,14 +115,16 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE OLDEST BUILDING IN THIS DATASET AND THE LEAST PRECISELY PLACED. Three things are worth carrying out of this record. FIRST, THE CORNER IS CONTESTED WITHIN ANDREAS HIMSELF — south-west on scan p. 185, north-east on scan p. 339 — and the position note argues the south-west on the ground that p. 185 is about the homestead while p. 339 uses the corner as a waypoint in a boundary walk. The two readings are about 45 m apart. SECOND, NEITHER STREET EXISTED THERE IN 1835: the reservation was unplatted and no street crossed it, so Andreas's corner is a retrospective locator, and any future evidence should be read as fixing the building relative to the FORT, not to a grid that arrived later. THIRD, THE HOMESTEAD WAS A GROUP AND ONLY ONE BUILDING OF IT IS MODELLED. Andreas records four elements: the American Fur Company factory building bought in 1817 (this record), a new residence Beaubien built, a small trading post, and an earlier cabin converted to a barn. The other three are attested and unbuilt, and the reason is that nothing reached gives any of them a size, a material, a form or a position relative to the factory building — they would be three invented boxes placed by eye around a fourth. A LIVE FACT FOR THE SCENE: Beaubien's pre-emption certificate for the entire 75.69-acre fort reservation is dated 28 May 1835 and was recorded 26 June 1835 at $94.61, so on 1835-07-01 it is five weeks old and unchallenged. It was voided by Wilcox v. Jackson in 1839. REVIEW IS FLAGGED ON THIS RECORD DELIBERATELY, for the reason given in madore_beaubien_house: AGENTS.md's standing constraint holds that Native presence and representation require consultation rather than inference, the final removal of the Potawatomi from Chicago falls in August 1835 weeks after this scene, and the Beaubien family's history runs directly into both that and the reservation claim. This record states built fabric and the documented dates of the claim, and leaves interpretation to a review this project has not yet sought. See docs/RESEARCH/jb_beaubien_homestead.md.",

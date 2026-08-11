@@ -68,7 +68,7 @@ jobs:
             ./tools/bake.sh
           fi
 
-      - name: Open a PR if anything changed
+      - name: Push a bake branch and open a PR if permitted
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "bake produced no changes — nothing to do"
@@ -84,21 +84,15 @@ jobs:
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake." \
             --head "$BRANCH" 2>&1); then
-            echo "$pr_output"
-            if grep -Fq "not permitted to create or approve pull requests" <<<"$pr_output"; then
-              echo "::warning::Pushed $BRANCH but could not create a pull request with the current token. Enable 'Allow GitHub Actions to create and approve pull requests' or set secrets.GH_PAT."
-              {
-                echo "### Bake branch pushed without a PR"
-                echo
-                echo "- Branch: \`$BRANCH\`"
-                echo "- The bake succeeded and pushed its output."
-                echo "- GitHub Actions cannot open a PR with the current token."
-                echo "- To restore automatic PR creation, enable \"Allow GitHub Actions to create and approve pull requests\" or set \`GH_PAT\`."
-              } >> "$GITHUB_STEP_SUMMARY"
-              exit 0
+            # GitHub reports this org/repo policy failure as a GraphQL error string.
+            # Match it exactly so other gh failures still stop the workflow.
+            if printf '%s\n' "$pr_output" | grep -Fq "GitHub Actions is not permitted to create or approve pull requests"; then
+              echo "::warning::$pr_output"
+              echo "::notice::Baked changes were pushed to $BRANCH. Open a PR manually at https://github.com/${GITHUB_REPOSITORY}/compare/${BRANCH}?expand=1"
+            else
+              printf '%s\n' "$pr_output" >&2
+              exit 1
             fi
-            exit 1
           fi
-          echo "$pr_output"
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

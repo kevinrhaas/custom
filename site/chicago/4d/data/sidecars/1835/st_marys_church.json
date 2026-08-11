@@ -10,11 +10,28 @@
   "asset": "gltf/st_marys_church__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-10-01",
+    "to": "1836-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire216",
+      "andreas_1884_v1"
+    ],
+    "note": "THE START IS AN OCCUPANCY DATE WITH A MONTH BUT NO DAY. The frame was raised in August 1833 - Deacon John Wright 'had, in August, assisted in raising the frame of the building' - and the church 'was not completed sufficiently for occupancy and dedication until in October' (chicagology_prefire216). 1833-10-01 is the first day of the attested month, a bound rather than a date. THE END IS A MOVE, AND THE SOURCES DISAGREE ABOUT IT. The building was later removed to Michigan Avenue and Madison Street, enlarged, and given the low open belfry that is the tower trap on this record. The same page dates that move two ways: its uncredited building summary says 1836, its Andreas transcription attributes the removal to Father O'Meara, who succeeded St. Cyr, and St. Cyr did not leave until 1837. 1836-12-31 takes the EARLIER of the two, which is the conservative choice for a scene date of 1835-07-01 - it keeps the phase as short as the evidence allows rather than as long as it can be stretched. EITHER READING PUTS THE CHURCH AT LAKE AND STATE ON THE SCENE DATE, by at least fourteen months. DO NOT DATE THIS BUILDING FROM THE PAGE'S HEADER, which gives 'Life Span: 1835-1843' and contradicts the page's own body text."
+  },
+  "change_note": "The frame church raised in August 1833 and fit for occupancy and dedication in October: 25 x 35 ft, about $400, lumber shipped by scow from St Joseph and hauled to the site by Anson Taylor, Augustine D. Taylor architect and builder. Unplastered, unpainted, rough benches, no steeple and no tower. No change of fabric is attested inside the phase; the enlargement and the low open belfry belong to the later site at Michigan and Madison and are outside this phase in both time and place.",
   "placement": {
     "local_e": 807.23,
     "local_n": -133.11,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire216",
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE QUADRANT IS DOCUMENTED, THE CORNER LOT IS NOT, AND THE COORDINATE IS DERIVED. Both statements on the page agree and neither is a corner: the Andreas transcription has St. Cyr selecting 'a canal lot NEAR the southwest corner of Lake and State streets, near the military reservation', and the page's own building summary has the church 'on the south side of Lake Street, west of State Street'. Those describe the same quadrant, so this record does NOT carry a contested corner - an earlier brief for this parcel expected one and the page does not support it. What the hedge 'near' costs is the lot: the page attests the quadrant, not which lot in it, and Andreas fixes the spot only by an 1883 landmark, 'where now stands the printing establishment of Cameron, Amberg & Co.', which this project has not located. METHOD: the modern West Lake Street / North State Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447902.80, N 4637282.51 (OSM node 258957342, fetched 2026-08-11), and the footprint origin set 12.2 m west and 12.2 m south of it less the building's own width and depth, so that the church's north face sits on the Lake frontage and its east face on the State frontage of a south-west corner lot. 12.2 m is half of an 80 ft street per Hathaway 1834. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json: 17.5 m RMS, 3.7 per cent paper stretch), plus an unbounded WESTWARD component from the word 'near': if the canal lot was one or two lots back from the corner the building belongs 15 to 35 m further west along Lake. The error is directional, like the Presbyterian church's, and this record states the direction rather than averaging it away. Facade bearing 0, due north onto Lake, INFERRED FROM THE STREET AND FROM THE FOOTPRINT rather than from any statement: nothing says which way the church faced. State Street was the town's eastern boundary on the south side until February 1835, and the reservation began on the far side of it, which is what 'near the military reservation' means and is why the lot is west of State rather than east.",
     "symbolic_location": "The south-west quadrant of Lake Street and State Street - south side of Lake, west of State - on a canal lot beside the military reservation; fronting north onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +56,11 @@
         7.62
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire216"
+    ],
+    "note": "BOTH DIMENSIONS ARE ATTESTED AND THE SHAPE IS NOT. Verbatim: 'they erected thereon a church building, twenty-five by thirty-five feet in size' (chicagology_prefire216, transcribing Andreas). 10.668 x 7.62 m is 35 x 25 ft, recorded converted with the original figures stated here per data/datum.json's units rule. WHAT IS INFERRED: that the plan was a plain rectangle - no vestibule, no chancel, nothing projecting, which is consistent with a $400 building that was not plastered and had a table for an altar, but is not stated; and WHICH DIMENSION IS THE FRONTAGE. The 35 ft is put on Lake Street here, and that is the weakest link in the record. A church of these proportions would ordinarily have turned its 25 ft gable end to the street with the 35 ft running back, which is the opposite of what is modelled. The frame_dwelling archetype builds an eaves-front range only - the ridge always runs parallel to the facade - so a 25 ft frontage would produce a tall narrow roof over a deep range rather than the gable-front church that arrangement actually describes. The orientation is therefore the archetype's, and it is claimed in docs/LIBERTIES.md rather than dressed up as a finding."
   },
   "attributes": {
     "stories": {
@@ -156,21 +177,44 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicagology_prefire216",
       "citation": "\"St. Mary's Church.\" Chicagology. Transcribing A. T. Andreas, History of Chicago (1884), with an uncredited building summary, the 1833 petition to the Bishop of St. Louis and city-directory entries 1859-1870.",
       "url": "https://chicagology.com/prefire/prefire216/",
       "archived_url": "https://web.archive.org/web/20260421023911/https://chicagology.com/prefire/prefire216/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "twenty-five by thirty-five feet in size",
+        "total cost about $400",
+        "frame raised in August 1833; not fit for occupancy and dedication until October 1833",
+        "not plastered inside; outside not painted",
+        "rough benches for pews, simplest of tables for altar and pulpit",
+        "neither steeple nor tower when built",
+        "a low, open tower with a small bell added \"some time afterwards\" - undated",
+        "Augustine D. Taylor architect and builder; Anson Taylor hauled the lumber",
+        "lumber brought by scow from St. Joseph, Michigan, at $12 per thousand",
+        "site a canal lot near the south-west corner of Lake and State streets, by the military reservation",
+        "first mass 5 May 1833 in Mark Beaubien's log cabin, twelve feet square"
+      ],
+      "what_it_does_not_supply": [
+        "the building's height, roof pitch, fenestration or which way it faced",
+        "a date for the low open tower, so nothing licenses one in 1835",
+        "the lot or its dimensions, beyond \"near the southwest corner\"",
+        "an agreed date or corner for the removal to Michigan and Madison",
+        "anything usable in its header \"Life Span\" field"
+      ]
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE BEST-SPECIFIED SMALL BUILDING IN THE 1835 TOWN: two dimensions, a cost, a builder, a lumber price and shipping route, an exterior finish, an interior finish, a seating description and an explicit statement that it had no tower - all from one page (chicagology_prefire216), which transcribes Andreas. THREE THINGS TO CARRY FORWARD, IN ORDER OF HOW MUCH DAMAGE THEY COULD DO. (1) THE TOWER. See the `tower` attribute. The page attests a low open tower with the first bell in Chicago at 'some time afterwards' and gives no date, which is exactly how a building gets aged forward by a detail that arrives without one. No tower is built. (2) THE CORNER IS NOT CONTESTED, whatever an earlier reading of the dossier suggested. Both statements on the page put the church south of Lake and west of State; what they do not fix is the lot, because the wording is 'NEAR the southwest corner'. This record therefore carries a quadrant, an unbounded westward uncertainty, and no dispute. (3) THE PAGE IS TIER 4 AND THE MATERIAL IT REPRINTS IS OLDER THAN THAT. The transcription is unpaginated and uncredited editorial prose sits beside the quoted matter with no typographic break; its own header field gives a Life Span that contradicts its body. Every dimension in this record is load-bearing, so it should be collated against Andreas vol. 1 at page image level and re-cited to `andreas_1884_v1` when it is - the dossier points at scan pp. 281 and 601. THE ORIENTATION IS THE MODEL'S LARGEST DEPARTURE from what the building probably looked like: a 25 x 35 ft church almost certainly stood gable-end to Lake Street, and this archetype cannot build that. See the footprint note and docs/LIBERTIES.md. ARCHETYPE CHOICE, STATED BECAUSE IT IS ITSELF A LIBERTY. The schema offers an `institutional` archetype and there is no generator behind it, so a record using it would compile a sidecar pointing at a GLB that does not exist and the building would be invisible in the walkthrough. `frame_dwelling` is used instead because it is the only archetype in the project that builds a plain single-range frame box with a gable roof and nothing else: `frame_tavern` carries a public house's gallery and bar-room frontage, `frame_storefront` carries a shopfront, `outbuilding` carries a stable's door and refuses a storey count. WHAT THE SUBSTITUTION COSTS is the facade: frame_dwelling puts the door in the long eaves-front wall and sets the openings out on a house's bay module, where a meeting house of these years normally had its door in the gable end. This is recorded in docs/LIBERTIES.md and the affected attributes (`plan`, `bays`) are tagged conjectural.",
