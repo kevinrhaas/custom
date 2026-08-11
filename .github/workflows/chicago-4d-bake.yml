@@ -85,7 +85,7 @@ jobs:
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake." \
             --head "$BRANCH" 2>&1); then
             echo "$pr_output"
-            if grep -Eq "not permitted to create or approve pull requests|createPullRequest" <<<"$pr_output"; then
+            if grep -Fq "not permitted to create or approve pull requests" <<<"$pr_output"; then
               echo "::warning::Pushed $BRANCH but could not create a pull request with the current token. Enable 'Allow GitHub Actions to create and approve pull requests' or set secrets.GH_PAT."
               {
                 echo "### Bake branch pushed without a PR"
