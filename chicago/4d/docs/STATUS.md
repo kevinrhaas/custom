@@ -3,11 +3,10 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the gate that found the last three faults says in its own docstring
-that it does not cover three documents, and both of the sentences it was not watching had never
-reached anybody: the ground says which ground its claims are about, the liberties list says what
-it is in the document's own words rather than a hand-typed paraphrase, and all three derived
-documents are inside the interface gate in both directions, § 49) ·
+**Last updated:** 2026-08-11 (the two fields the interface gate named as its own standing limit
+are rendered rather than merely read — the not-here list and the open questions each say what
+they are in the compiled document's words, and the paraphrase that went was counting the entries
+by hand, § 50) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -90,7 +89,7 @@ the other surface is a gate now instead of a sentence.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 197 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | 233 checks green at 390×780 and 1280×800, zero page errors |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **What a source is, in the app** | **done** (2026-08-11, § 48) — every citation carries the document it reprints (`transcribes`) or the finding that it reprints none, and the source's own `what_it_supplies` / `what_it_does_not_supply` behind a `<details>`. `check_source_surface` partitions all 22 properties of `data/source.schema.json` into visitor-facing and internal and fails on a property in neither, on a visitor field no compiled citation carries, and on one `citations.js` never reads. Withheld in exactly one place — the not-here list, where a source's account of what it carries names a standing building — and the smoke pins that too |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
@@ -1802,6 +1801,48 @@ uncertainty of the 1834 sheets in its note.
     slice ships, and it is queued rather than quietly left: the same repair, the same shape.
     **Data and meshes untouched; nothing was re-baked.** No record value moved, no confidence
     changed, no sidecar changed — `scope` and `note` were already being compiled.
+
+50. **The two the gate above named as its own limit are repaired, and one of the paraphrases had
+    already started counting.** § 49 ends by naming `exclusions.json`'s `standard` and
+    `uncertain_standard` as the standing example of a read that is a name rather than a render —
+    compiled since those sections shipped, taken into `mountExclusions`'s return value, rendered
+    by nobody, and restated by hand in `index.html` two sections below the identical repair the
+    same slice had just made for the liberties. Both are mounted now: `standardMount` and
+    `uncertainStandardMount`, the compiled sentence verbatim and first, the typed paraphrases
+    deleted.
+    **The open-questions paraphrase is the one worth recording, because it was not merely a
+    restatement — it was arithmetic.** *"Three of these are empty ground … and the fourth is
+    standing in front of you"* is true of the four entries committed today and false the day a
+    fifth watch-list question is written, which is the same class of failure as any hand-typed
+    number in this project and has no gate that could hold it: `check_watch_list` enforces what
+    an entry must carry and nothing anywhere reads a sentence in `index.html` for a count. The
+    compiled sentence — *"They are the third category, and one of them is standing in front of
+    you"* — counts nothing, and the smoke now asserts that the phrase "Three of these" is not on
+    the panel, so the arithmetic cannot come back.
+    **What was kept beside each is only what the derived document does not say**, which is the
+    line this repair had to draw and did not have to draw for the liberties. The not-here
+    section keeps how to read its two kinds of entry — a *not until* chip is a building dated
+    after the scene, no chip at all is one already gone — because that is a fact about the
+    RENDERING (`exclusionEntryHtml` decides it) rather than about the dataset, and putting it in
+    the compiler would be authoring renderer prose into `compile_scene.py`. The open-questions
+    section keeps why a standing building is filed here rather than above. Everything that
+    restated the compiled claim is gone.
+    **Verbatim, once, and not busy — the same three assertions § 49 wrote for the liberties
+    note**, against `window.__chicago4d.exclusions.standard` / `.uncertainStandard` rather than
+    a phrase copied into the test, because the failure being pinned is the sentence in the
+    repository disagreeing with the sentence on the screen. The two older assertions on this
+    panel (*"not a list of everything missing"*, *"standing in front of you"*) kept passing
+    through the swap without being touched, which is worth stating: both phrases are in the
+    compiled sentences too, so they were never the thing holding the paraphrases in place.
+    **What did NOT change is the gate.** `check_derived_contract` still cannot tell a read from
+    a render and no widening was attempted — the scan cannot follow a value into a function, the
+    limit § 29 stated and refused to widen, and § 49 restated. Its comment in `validate.py` said
+    these two fields were the live example; it now says they were, and that the limit is
+    unmoved. The next such field will be found by a person reading a module, exactly as this one
+    was.
+    **Data and meshes untouched; nothing was re-baked.** No record, no confidence, no sidecar
+    and no GLB moved — both sentences were already being compiled. Smoke 233 checks green at
+    390×780 and 1280×800.
 
 ## Next
 

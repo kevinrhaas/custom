@@ -1042,6 +1042,12 @@ for (const [label, viewport, touch] of [
         // textContent match would be asserting the HTML's line breaks.
         heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
           .replace(/\s+/g, ' '),
+        // The list's own account of itself, compiled into the derived document
+        // and — until this landed — read into a return value and rendered by
+        // nobody, while the markup carried a paraphrase of it.
+        noteShown: document.getElementById('exclusions-note')?.textContent ?? '',
+        noteRecorded: window.__chicago4d.exclusions?.standard ?? '',
+        noteBusy: document.getElementById('exclusions-note')?.hasAttribute('aria-busy') ?? true,
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
@@ -1079,6 +1085,24 @@ for (const [label, viewport, touch] of [
       /What is not here/.test(excl.heading)
       && /not a list of everything missing/i.test(excl.heading),
       excl.heading.slice(-200));
+    // …and it says it in the DERIVED document's words. Asserted verbatim against
+    // the compiled value rather than a phrase copied in here, because the failure
+    // this pins is the sentence in the repository disagreeing with the sentence
+    // on the screen — the same assertion the liberties note and the ground's
+    // scope already carry.
+    check(`${label}: the not-here list says what it is, in the compiled document's words`,
+      excl.noteShown === excl.noteRecorded && excl.noteRecorded.length > 80
+      && !excl.noteBusy,
+      `shown "${excl.noteShown.slice(0, 80)}" of ${excl.noteRecorded.length} recorded`);
+    // Once, not twice: the hand-written paraphrase beside it is gone rather than
+    // joined by the compiled sentence.
+    check(`${label}: the panel states it once — the paraphrase is gone`,
+      excl.noteRecorded
+        ? excl.heading.split(excl.noteRecorded.replace(/\s+/g, ' ')).length - 1 === 1
+        : false,
+      `${excl.noteRecorded
+        ? excl.heading.split(excl.noteRecorded.replace(/\s+/g, ' ')).length - 1
+        : 'no'} occurrence(s)`);
     check(`${label}: the Evidence panel still does not overflow`, excl.overflow);
 
     // --- and the third category: researched, and still open -----------------
@@ -1105,6 +1129,13 @@ for (const [label, viewport, touch] of [
         caldwell: read(byName(/Caldwell/)),
         heading: (document.querySelector('[data-panel="evidence"]')?.textContent ?? '')
           .replace(/\s+/g, ' '),
+        // The same repair on the same fetch: this section's own account of the
+        // third category, compiled and until now rendered nowhere. Its paraphrase
+        // was the worse of the two — it had drifted into a hand-typed COUNT of
+        // the open questions, wrong the day a fifth is recorded.
+        noteShown: document.getElementById('uncertain-note')?.textContent ?? '',
+        noteRecorded: window.__chicago4d.exclusions?.uncertainStandard ?? '',
+        noteBusy: document.getElementById('uncertain-note')?.hasAttribute('aria-busy') ?? true,
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
@@ -1138,6 +1169,21 @@ for (const [label, viewport, touch] of [
       /still an open question/i.test(open.heading)
       && /standing in front of you/i.test(open.heading),
       open.heading.slice(-240));
+    // …in the compiled document's words, verbatim, and once. The paraphrase this
+    // replaces counted the entries — "three of these … and the fourth" — which no
+    // gate could have held to a list that grows.
+    check(`${label}: the open questions say what they are, in the compiled document's words`,
+      open.noteShown === open.noteRecorded && open.noteRecorded.length > 80
+      && !open.noteBusy,
+      `shown "${open.noteShown.slice(0, 80)}" of ${open.noteRecorded.length} recorded`);
+    check(`${label}: the panel states that once too — and counts nothing by hand`,
+      (open.noteRecorded
+        ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1 === 1
+        : false)
+      && !/Three of these/i.test(open.heading),
+      `${open.noteRecorded
+        ? open.heading.split(open.noteRecorded.replace(/\s+/g, ' ')).length - 1
+        : 'no'} occurrence(s)`);
     check(`${label}: the Evidence panel still does not overflow with it`, open.overflow);
 
     // …and the same entry on the building it is about. The section above tells a

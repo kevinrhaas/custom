@@ -175,6 +175,10 @@ async function boot() {
   api.exclusions = await mountExclusions({
     mount: document.getElementById('exclusions'),
     uncertainMount: document.getElementById('uncertain'),
+    // …and what each of the two lists says it is, in the compiled document's own
+    // words rather than a paraphrase typed into the markup beside it.
+    standardMount: document.getElementById('exclusions-note'),
+    uncertainStandardMount: document.getElementById('uncertain-note'),
     dataBase: bases.dataBase,
     sceneId: loaded.scene.id ?? YEAR,
     problems,
