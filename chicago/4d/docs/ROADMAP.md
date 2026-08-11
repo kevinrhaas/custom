@@ -182,6 +182,22 @@ depths are a platted street's width and whose lines run as far as a block face d
 here has to be identified by something other than its width. Lake, Randolph, South Water and
 Market are unmeasured until that exists.
 
+**SOLVED 2026-08-11** (STATUS § 52, memo § 10). The three tests that failed are all readings
+taken *across* a candidate at one place; the one that works turns ninety degrees and asks how far
+a candidate is open ground **down its own centreline**, which a street is for a whole block and a
+strip of lots never is. The threshold is derived from the module band (95 − 30 = 65 m) rather
+than tuned. **Lake reads 79.4 ft and Randolph 81.5 ft** on Wright — both named by their committed
+modern junctions to 0.9 m, not by counting — with one unnamed corridor a block further south at
+86.5 ft; ten lot strips were rejected and none of the eight already-committed corridors was.
+Three things this parcel inherits from it. **The E-W pitch is 134-136 m against 116.6-123.2 m the
+other way**, so the blocks are NOT square and the 300 ft block that fits the N-S streets does not
+describe them — that is the rest of the block dimensions this section asks for, and it comes off
+two spacings on one sheet, so measure more before generating a grid from it. **The E-W widths
+rest on one sheet**: Hathaway's N-S traverse commits nothing, so they have no cross-check. And
+**South Water and Market are still unmeasured** — Market falls outside both traverses, and every
+candidate north of Lake is bounded by a line that stops after 24-32 m. Both need a traverse
+placed for them, not a looser filter.
+
 **A caution for the generator, from the same slice.** The corridors drawn on these sheets run
 about 5 ft wider than 80 ft on both, and that is paper stretch plus pen placement, not evidence
 of a wider street. Generate the grid from the platted module (§ above) and snap it to control —

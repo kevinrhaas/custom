@@ -333,3 +333,91 @@ a separate reading and is untouched here. And three of the five Hathaway points 
 the eight Wright points have not been checked this way at all. HC (State & Madison) was
 looked at by eye and appears to be in its corridor; the rest are unexamined, and the same
 method would examine them.
+
+## 10. The E-W streets, and the test that could read them
+
+§ 8 ended by naming what the other half of this reading would need: *a method that identifies
+a corridor by something other than its width*. This is that method, and the three tests it
+replaces are worth restating, because all three are readings taken **across** a candidate at
+one place — its width, the length of the two lines bounding it, and whether its neighbours
+are a block pitch away. On the Wright sheet a strip of lots passes all three: the depths are
+20–26 m, which is a platted street's width; the bounding lines run as far as a block face
+does; and two spacings land inside the module band by arithmetic coincidence.
+
+**So the new test turns ninety degrees and asks what a candidate does along its own length.**
+A platted street corridor is open ground from one cross street to the next — the block faces
+bounding it stop at the kerb, so for a whole block nothing is drawn across it. A strip of lots
+is the opposite: the lots inside a block are divided from each other by lines that cross the
+strip every few metres, and the strip ends at the block face. `clear_run` follows a
+candidate's own centreline 350 m each way, over a band 35% of its width (inside both boundary
+lines), and reports the longest unbroken run of paper. **The threshold is derived, not
+chosen**: the shortest block face the module band allows is its loosest pitch less its widest
+street, 95 − 30 = **65 m**. Move the module band and the threshold moves with it. It is
+deliberately the loosest such figure, because the test is there to exclude what cannot be a
+street rather than to select what looks like one.
+
+**The separation is not marginal.** On the Wright N-S traverse:
+
+| | longest clear run |
+|---|---|
+| the three corridors kept | 213.5, 244.8, 287.4 m |
+| the ten candidates rejected | 42.3 – 60.5 m |
+
+No overlap, and a factor of 3.5 between the groups. The rejected ten break at about 45 m,
+which is half a block — the lot line the strips are chopped by. **And the test costs nothing
+on the readings already committed**: run against the four settled N-S corridors on each sheet
+it rejects none of them, with clear runs of 201–677 m. A filter that had quietly killed the
+existing measurement would have been the wrong filter.
+
+**What came out.** Three E-W corridors, all on Wright:
+
+| corridor | width | clear run | named by |
+|---|---|---|---|
+| **Lake Street** | 24.20 m = **79.4 ft** | 287.4 m | `lake_canal` + `lake_market`, 0.9 m away |
+| **Randolph Street** | 24.85 m = **81.5 ft** | 244.8 m | `randolph_canal`, 0.9 m away |
+| unnamed, one block further south | 26.37 m = **86.5 ft** | 213.5 m | — no committed junction |
+
+**The names are measured too, not counted.** A corridor takes a street's name only if that
+street's committed modern junction(s), projected onto the traverse through the sheet's own
+affine, land within half the module's loosest pitch (47.5 m) of its centreline — the distance
+at which the next corridor along would be the better match. Lake and Randolph come in at 0.9 m
+each. The third corridor is Washington Street by the plat's own order, and it stays **unnamed
+in the data** because this project has no committed junction for it: the inference is in this
+paragraph, where a reader can see it, and not in a file where it would read as a reading.
+`check_street_module` re-derives every identification offline on every commit from the
+corridor's committed centre pixel, the traverse's ground axis and `street_control.json`.
+
+**And it answers the question § 9 said it could not.** That section closed by recording a
+limit: the correction it priced is *across* Canal Street only, and whether G5 sits at the
+right northing — whether the row it is in is Lake Street — was untouched. The N-S traverse
+crosses Lake, so it can see exactly that, and its t is measured from the recorded pixel's own
+position along that axis. **G5 lies 3.4 m south of the Lake Street corridor's centreline.**
+So the 20.2 m correction the file prices really is one coordinate and not two, which was an
+assumption and is now a reading.
+
+**Four things this does not settle, stated because they are the interesting half.**
+
+1. **Hathaway reads nothing here.** Its N-S traverse finds two candidates and no two of them
+   are a block pitch apart, so the module test demonstrates nothing and the traverse commits
+   nothing. (Fixing this exposed a real fault in the tool: with a single candidate the chain
+   search kept it for having been found first. A chain of one is not a chain, and it is now
+   rejected like any other unsupported candidate.) **The E-W widths therefore rest on one
+   sheet** and are not cross-checked the way the N-S four are.
+2. **Hathaway's Canal corridor now fails to be named**, at 50.1 m against the 47.5 m
+   tolerance. This is not a second opinion about § 9 — it is the same 52 m seen from the other
+   side. The GCP and the modern junction agree with each other and disagree with the drawn
+   corridor, so no independent naming supports the corridor Hathaway letters `Canal.`; on that
+   sheet the four N-S corridors keep the names the *sheet* gives them and nothing more.
+3. **The blocks are not square, and the arithmetic that fits the N-S streets does not fit
+   these.** The two E-W spacings measure 134.4 and 135.6 m against 116.6–123.2 m between the
+   N-S streets; the modern junctions put Lake to Randolph at Canal 142.9 m apart, 5% more,
+   which is this sheet's stretch. A 300 ft block plus an 80 ft street is 116 m, so 135 m is a
+   block of about 363 ft in the N-S direction. That is a finding for S9's block dimensions and
+   it is **not** turned into a figure here: one traverse's two spacings on one sheet is not a
+   plat.
+4. **South Water and Market are still unmeasured.** Market's junction projects 227.7 m from
+   the nearest corridor either traverse measured on Wright and 192.0 m on Hathaway, so it
+   lies outside what these passes read. North of Lake, where South Water belongs, the
+   traverse crosses three candidates and all three are rejected for the same reason — one of
+   the two lines bounding them stops after 24–32 m, well short of a block face. Both streets
+   need a traverse placed for them, not a looser filter.
