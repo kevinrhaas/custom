@@ -7,9 +7,9 @@
       "from": "1780-01-01",
       "to": "1833-06-30",
       "title": "Natural mouth, before the cut",
-      "note": "The baymouth bar deflects the river south, parallel to the shore, for nearly half a mile before it loses itself in the lake; the natural outlet lies near present Madison Street. Lake vessels anchor half a mile offshore and lighter their cargo.",
+      "note": "The baymouth bar deflects the river south, parallel to the shore, for nearly half a mile before it loses itself in the lake; the natural outlet lies near present Madison Street. Lake vessels anchor half a mile offshore and lighter their cargo. The half mile has a period eyewitness behind it as of 2026-08-11: Swearingen, arriving 17 August 1803, puts the fort site 'a half mile above the mouth' and gives the reason the mouth was where it was — the river stood 'dead water, owing to its being stopped up at the mouth, by the washing of sand, from the lakes'. That is this epoch's defining condition stated by a man standing in it, and it is why it cannot be carried into e1834_harbor_cut, where the bar is cut. See docs/RESEARCH/swearingen_1803.md § 7.",
       "status": "planned",
-      "sources": ["chicagology_prefire274", "wikipedia_chicago_river"]
+      "sources": ["quaife_1913_swearingen", "chicagology_prefire274", "wikipedia_chicago_river"]
     },
     {
       "id": "e1834_harbor_cut",
