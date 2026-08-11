@@ -207,7 +207,23 @@ archetype builds a building, not a parcel.
 **Consequence:** this understates the site more than any confidence tag can express — the yard
 *is* the west-side teamsters' house as a visitor experienced it, and the model shows a hotel
 standing in nothing. A parcel-level or yard archetype would fix it.
-**Covers:** `western_hotel.frame_1834.form.stables`.
+**Covers:** `western_hotel.frame_1834.form.stables`,
+`western_hotel_stable.stable_1834.form.wagon_yard`.
+**Revised:** 2026-08-11 — **narrowed, not resolved: the stable is now built and the yard still is
+not.** `data/structures/western_hotel_stable.json` stands the large stable behind the hotel on the
+attested relation — "In the rear was the large stable and the yard into which the trains were
+driven" — so the half of this entry that said a hotel stands in nothing is no longer true of the
+stable. THE YARD REMAINS OUT OF THE MODEL AND CANNOT BE PUT IN IT BY THIS ARCHETYPE. A yard is an
+enclosure — a fence line, two gateways and the ground between them — and `outbuilding` builds a
+building; using it here would mean calling a fence a building, which is a worse claim than the
+omission. The two gateways, on Randolph and on Canal, are unbuilt for the same reason. The
+admission has therefore MOVED AS WELL AS SHRUNK: it now sits on the stable's own record as
+`form.wagon_yard: {value: true, confidence: "documented", geometry: "absent"}`, beside the building
+it belonged to, while `western_hotel.frame_1834.form.stables` keeps its own `geometry: "absent"`
+because the hotel's mesh still contains no stable. WHAT WOULD RESOLVE THIS ENTRY RATHER THAN
+NARROW IT AGAIN: an enclosure archetype. The same missing archetype is why `estray_pen` is drawn as
+a roofed shed, why Clybourn's stockyard is unmodelled, and why the pig pens the town code of
+November 1833 implies have nowhere to go.
 **Recorded:** 2026-08-09.
 **Revised:** 2026-08-10 — claimed rather than merely described. `stables` is `documented`, which
 is the strongest chip this project has, and it sits over a building with no stable within a
@@ -1676,6 +1692,56 @@ of absence, and the dataset distinguishes the two: `not_depicted` is a different
 `absent` and the validator will not let one be written as the other.
 **Note:** the Shirreff 1833 account has no source record in `data/sources/`; only the August 1835
 date is cited, from `chicagology_lastwardance`, and nothing beyond that date is drawn from it.
+**Recorded:** 2026-08-11.
+
+### L72 — The town's outbuildings are placed and sized by eye, on the strength of the buildings in front of them
+**Decision:** the three secondary buildings added behind the town's public houses —
+`western_hotel_stable` (13 x 7 m), `wolf_point_tavern_stable` (9 x 6 m) and `beaubien_barn`
+(6.10 x 4.88 m) — carry **invented footprints**, two carry **invented positions**, and two carry an
+**invented door elevation**, all tagged `conjectural`, citing no sources.
+**Why:** not one source reached by this project gives any outbuilding at the forks a dimension, a
+plan or a bearing. What the sources give is existence and relation: a stable "in the rear" of the
+Western Hotel, a county tariff that prices keeping a horse overnight at a house one of whose
+keepers held the county's first tavern licence, and a cabin that "he used after this for a barn".
+The sizes answer the attested TRADE rather than being chosen freely — the Western's stable is the
+largest outbuilding in the dataset because its source calls it large and its teams "were as
+numerous as were the guests"; the Wolf Point stable is smaller so the two are not one invented
+building at two addresses; and the Beaubien barn is drawn at single-pen CABIN scale, 20 x 16 ft,
+because the source describes a dwelling that stopped being one rather than a barn that was built.
+**Consequence:** a visitor sees three buildings whose *presence* is evidenced and whose *shape and
+exact place* are ours. The Beaubien barn additionally inherits its parent record's two open
+questions — the corner Andreas contradicts himself about, some 45 m, and the fact that neither
+street existed on the unplatted reservation in 1835.
+**How to resolve:** Wright 1834 or Hathaway 1834 read at lot level for the Randolph-and-Canal
+block; Andreas "Wharfs, Piers and Early Hotels", scan pp. 626-631, at page-image level for the Wolf
+Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes.
+**Covers:** `western_hotel_stable.stable_1834.footprint`,
+`wolf_point_tavern_stable.stable_1831.footprint`,
+`wolf_point_tavern_stable.stable_1831.position`,
+`wolf_point_tavern_stable.stable_1831.form.door_side`,
+`beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`,
+`beaubien_barn.converted_1817.form.door_side`.
+**Recorded:** 2026-08-11.
+
+### L73 — Every outbuilding in the town is detailed by the archetype, not by a source
+**Decision:** the `outbuilding` archetype supplies, as fixed conventions applied to every record
+that uses it and stated by no source anywhere: the **single small unglazed vent** it cuts in a
+wall; the **post spacing** in an open bay; the **board rhythm** of a boarded wall; the **roof
+covering** (laid boards — not shingles, not shakes, not thatch); and the **direction a shed roof
+falls**, which the archetype derives from the open sides rather than reading from the record. The
+size-aware defaults for wall height, roof form and pitch are conventions in the same sense.
+**Why:** no source reached by this project describes the fabric, the covering, the openings or the
+framing of ANY outbuilding at the forks — not one. The archetype's own module says so at the top
+and grades an unstated attribute `conjectural` for exactly this reason, so the confidence channel
+already paints these buildings honestly; what it cannot say is that the *detail a visitor is
+looking at* was designed rather than found.
+**Consequence:** two outbuildings in this scene that carry different evidence still share a vent, a
+board rhythm and a roof texture, because those came from one Python module. Anyone reading a
+boarded wall as a finding about 1835 Chicago carpentry is reading the generator.
+**How to resolve:** any period description or depiction of a secondary building at Chicago before
+1836 — none is currently known to this project. This entry has no `Covers:` field on purpose: it
+claims nothing about any single record, because the invention is in the archetype and lands on
+every one of them.
 **Recorded:** 2026-08-11.
 
 ---

@@ -109,7 +109,8 @@ GOLDEN = {
     # project describes the fabric, size, roof or material of ANY outbuilding at the
     # forks. What is documented is that these buildings existed — "the large stable and
     # the yard into which the trains were driven" behind the Western Hotel, a Wolf Point
-    # tariff of 13 cents to stable a horse — so the door is `inferred` where the traffic
+    # 1831 county schedule pricing a horse kept overnight at 50 cents (NOT the "13 cents"
+    # this comment used to quote, which was never in any source) — so the door is `inferred` where the traffic
     # through it is attested, and everything else is conjectural. A golden case that
     # marked any of this documented would be teaching the reference image to lie.
     "outbuilding": (outbuilding.build, [

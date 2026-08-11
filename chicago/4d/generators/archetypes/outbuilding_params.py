@@ -11,8 +11,11 @@ A frontier town is mostly outbuildings. The eight buildings currently in the 183
 scene are all public houses, stores and a bridge, and behind every one of them the
 sources put things this dataset has no archetype for: "the large stable and the yard
 into which the trains were driven" behind the Western Hotel (chicagology_prefire278,
-docs/research/03-structures-north.md §2.6); a Wolf Point tariff of "12 1/2 cents a
-night, 13 cents to stable a horse", which is a stable stated as a price
+docs/research/03-structures-north.md §2.6); the Cook County tavern schedule of 13 April
+1831 — "Keeping horse one night 50" — which is a stable stated as a price
+(NOTE: this file previously quoted a "13 cents to stable a horse" tariff. That
+sentence does not exist in any source this project holds; it was the MAN's 12 1/2
+cent lodging rate carried across to the horse. Corrected 2026-08-11.)
 (drloih_wolf_point, §2.1); du Sable's "numerous outbuildings" and the Kinzie group's
 "dairy, bakehouse, stables, and lodging rooms for the French engages"
 (kinzie_waubun_1856, §3.3 — that group is gone by 1835, but it is what the type looked
