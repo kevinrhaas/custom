@@ -143,7 +143,8 @@
     "appearance": "Small dull brown ducks; the drake's white facial crescent is lost in eclipse.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The commonest breeding duck of the Illinois wet prairie by every modern account, but no period record names it at Chicago. The July wing moult is general duck biology, not a local observation."
   },
   {
    "id": "podilymbus_podiceps",
@@ -178,7 +179,8 @@
     "appearance": "Small, brown, thick-billed, tail-less looking; the black bill ring shows in summer.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from the regional marsh assemblage; no Chicago record of any date reached."
   },
   {
    "id": "botaurus_lentiginosus",
@@ -213,7 +215,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference. The dossier lists bitterns in the cattails without a source that names them here."
   },
   {
    "id": "ixobrychus_exilis",
@@ -248,7 +251,44 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from dense cattail stands; no Chicago record."
+  },
+  {
+   "id": "agelaius_phoeniceus",
+   "binomial": "Agelaius phoeniceus",
+   "common": "red-winged blackbird",
+   "class": "bird",
+   "activity": "diurnal",
+   "active_periods": [
+    "dawn",
+    "day",
+    "dusk"
+   ],
+   "july": {
+    "status": {
+     "value": "breeding_resident",
+     "confidence": "inferred",
+     "note": "Named in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR wetlands publication; that source has no record in data/sources/."
+    },
+    "presence": {
+     "value": "visible_and_audible",
+     "confidence": "inferred",
+     "note": "The most conspicuous bird in any Illinois cattail marsh, and one of the few in this dataset that is genuinely easy to see."
+    },
+    "abundance": {
+     "value": "abundant",
+     "confidence": "inferred",
+     "note": "By July the territorial males are joined by fledged young; this is the one bird of the July list that is numerous."
+    },
+    "max_group": 30,
+    "vocalization": "song_reduced",
+    "behaviour": "Males on cattail stems spreading red epaulets, birds mobbing a passing crow or harrier, and family parties moving through the stand.",
+    "appearance": "Glossy black male with a red-and-buff shoulder; streaky brown female low in the reeds.",
+    "trace": null
+   },
+   "confidence": "inferred",
+   "note": "Song is falling away by 1 July as the second broods fledge \u2014 the konk-la-ree is still there and the wall of it is not."
   },
   {
    "id": "antigone_canadensis",
@@ -319,7 +359,8 @@
     "appearance": "Tall grey-blue heron; the neck is folded in flight, not extended.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Herons appear in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR publication, which has no source record. The species split between great blue and green heron is this record's."
   },
   {
    "id": "charadrius_vociferus",
@@ -442,7 +483,8 @@
    "confidence": "documented",
    "sources": [
     "chicagology_prefire062"
-   ]
+   ],
+   "note": "The Chicago American notice of 9 July 1836 says 'frogs' and no more; the split of that pond into bullfrog, green frog, gray treefrog, cricket frog and leopard frog is the dossier's regional reading, not the newspaper's. What is documented is a pond full of loud frogs at Lake and LaSalle in the first week of July."
   },
   {
    "id": "dryophytes_versicolor",
@@ -476,7 +518,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "One of the July callers in the dossier's frog list; the July chorus composition is regional herpetology, not a Chicago record."
   },
   {
    "id": "acris_blanchardi",
@@ -511,7 +554,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "As for the gray treefrog: a July caller in the dossier's list, placed on regional grounds."
   },
   {
    "id": "chrysemys_picta",
@@ -544,7 +588,8 @@
     "appearance": "Smooth dark shell with red edge markings and yellow head stripes.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The turtle assemblage comes from modern Chicago-river surveys with no source record. Basking and July nesting are general biology; the presence here in 1835 is inference."
   },
   {
    "id": "chelydra_serpentina",
@@ -579,7 +624,8 @@
     "appearance": "Massive rough-shelled turtle with a long saw-toothed tail.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Occurs throughout Illinois in every modern account; no period Chicago record reached."
   },
   {
    "id": "anax_junius",
@@ -612,7 +658,8 @@
     "appearance": "Green thorax, blue abdomen in the male; the size carries at distance.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The dossier lists dragonflies and damselflies over the sloughs with no source. The genus is chosen as the commonest large darner of Illinois still water and is not attested here."
   },
   {
    "id": "culicidae_spp",
@@ -681,7 +728,8 @@
     "appearance": "Pale yellow-green flash on a J-shaped upsweep, about every five or six seconds.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way \u2014 the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
   },
   {
    "id": "pseudacris_crucifer",

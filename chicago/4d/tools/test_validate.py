@@ -1233,6 +1233,380 @@ def test_the_scene_date_and_the_phenology_block_must_agree() -> None:
           any("is not in July" in e for e in errs), errs)
 
 
+# --------------------------------------------------------------------------
+# fauna: the July gate
+# --------------------------------------------------------------------------
+#
+# The flora tests above prove a September prairie cannot be recorded as a July
+# one. These prove the mirror-image error: a MAY Chicago recorded as a July one.
+# docs/research/08-fauna.md § 0.3 is blunt about it — every headline wildlife
+# event in the Chicago record is a spring, autumn or winter phenomenon, and
+# 1 July is the quietest wildlife date in the year. A scene full of birdsong is
+# the fauna equivalent of turkey-foot seed heads on July big bluestem.
+
+FAUNA_VOCAB = {
+    "classes": list(V.FAUNA_CLASSES),
+    "activity": list(V.FAUNA_ACTIVITY),
+    "active_periods": list(V.FAUNA_PERIODS),
+    "july_status": list(V.FAUNA_STATUS),
+    "presence_modes": list(V.FAUNA_PRESENCE),
+    "abundance": list(V.FAUNA_ABUNDANCE),
+    "vocalization": list(V.FAUNA_VOICE),
+    "habitats": ["marsh", "settled_town"],
+}
+
+
+def fauna_sp(**over) -> dict:
+    sp = {
+        "id": "x_y", "binomial": "Genus species", "common": "an animal",
+        "class": "mammal", "activity": "crepuscular", "active_periods": ["dawn", "dusk"],
+        "july": {
+            "status": {"value": "year_round_resident", "confidence": "conjectural"},
+            "presence": {"value": "visible", "confidence": "conjectural"},
+            "abundance": {"value": "uncommon", "confidence": "conjectural"},
+            "max_group": 2, "vocalization": "silent",
+            "behaviour": "One animal at distance.", "appearance": "Brown.", "trace": None,
+        },
+        "confidence": "conjectural",
+        "note": "a test record",
+    }
+    july = over.pop("july", None)
+    sp.update(over)
+    if july:
+        sp["july"] = {**sp["july"], **july}
+    return sp
+
+
+def fauna_errors(sp: dict) -> list:
+    rep = V.Report()
+    V.check_fauna_species("f01_test", sp, {"s1"}, FAUNA_VOCAB, rep, {})
+    return rep.errors
+
+
+def test_a_july_scene_is_not_full_of_birdsong() -> None:
+    """The dawn chorus is a spring phenomenon; by July most passerines have stopped."""
+    quiet = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["dawn", "day"],
+                        "binomial": "Icterus galbula",
+                        "july": {"vocalization": "song_full"}})
+    errs = fauna_errors(quiet)
+    check("an oriole in full song on 1 July is an error",
+          any("not in song on 1 July" in e for e in errs), errs)
+
+    booming = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["dawn", "day"],
+                          "binomial": "Tympanuchus cupido",
+                          "july": {"vocalization": "song_full"}})
+    check("a booming prairie-chicken in July is an error",
+          any("not in song on 1 July" in e for e in fauna_errors(booming)),
+          fauna_errors(booming))
+
+    # ...and the gate may not be satisfied by rendering July silent instead.
+    mute = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["dawn", "day"],
+                       "binomial": "Contopus virens", "july": {"vocalization": "silent"}})
+    check("a wood-pewee recorded silent in July is the opposite error",
+          any("IS still in song on 1 July" in e for e in fauna_errors(mute)),
+          fauna_errors(mute))
+
+    # An unnamed bird may claim full song, but only with the reason on the record.
+    bare = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["dawn", "day"],
+                       "binomial": "Melospiza melodia", "note": "a test record",
+                       "july": {"vocalization": "song_full", "presence":
+                                {"value": "audible", "confidence": "conjectural"}}})
+    check("full song with no July argument on the record is an error",
+          any("EXCEPTIONAL claim" in e for e in fauna_errors(bare)), fauna_errors(bare))
+    argued = fauna_sp(**{"class": "bird", "activity": "diurnal",
+                         "active_periods": ["dawn", "day"], "binomial": "Melospiza melodia",
+                         "note": "Song sparrows sing into late July.",
+                         "july": {"vocalization": "song_full", "presence":
+                                  {"value": "audible", "confidence": "conjectural"}}})
+    check("full song argued against the July date passes",
+          not fauna_errors(argued), fauna_errors(argued))
+
+
+def test_a_silent_animal_cannot_be_audible() -> None:
+    """Liberty L2 renders much of this fauna as sound. Sound needs a voice."""
+    errs = fauna_errors(fauna_sp(july={"presence": {"value": "audible",
+                                                    "confidence": "conjectural"},
+                                       "vocalization": "silent"}))
+    check("presence 'audible' over a silent animal is an error",
+          any("cannot be audible" in e for e in errs), errs)
+
+    lek = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["dawn", "day"],
+                      "binomial": "Tympanuchus cupido",
+                      "july": {"presence": {"value": "audible", "confidence": "conjectural"},
+                               "vocalization": "display_over"}})
+    check("a lek whose season is over cannot be heard",
+          any("cannot be audible" in e for e in fauna_errors(lek)), fauna_errors(lek))
+
+
+def test_present_and_not_seen_is_representable_and_must_be_stated() -> None:
+    """The whole point of L2: 'here, and you would not see it'."""
+    ok = fauna_sp(july={"presence": {"value": "trace_only", "confidence": "conjectural"},
+                        "trace": "Runways through the thatch."})
+    check("trace-only with a described trace passes", not fauna_errors(ok), fauna_errors(ok))
+
+    errs = fauna_errors(fauna_sp(july={"presence": {"value": "trace_only",
+                                                    "confidence": "conjectural"}}))
+    check("trace-only with no trace is an error",
+          any("requires july.trace" in e for e in errs), errs)
+
+    errs = fauna_errors(fauna_sp(july={"presence": {"value": "not_perceptible",
+                                                    "confidence": "conjectural"}}))
+    check("'here and imperceptible' with no note is an error",
+          any("strongest claim" in e for e in errs), errs)
+
+
+def test_absence_and_non_depiction_are_different_findings() -> None:
+    extirpated = fauna_sp(binomial="Bison bison",
+                          july={"status": {"value": "absent_extirpated",
+                                           "confidence": "conjectural"}})
+    errs = fauna_errors(extirpated)
+    check("an extirpated species left visible on the record is an error",
+          any("not in the scene" in e for e in errs), errs)
+
+    ponies = fauna_sp(july={"status": {"value": "excluded_by_scope", "confidence": "conjectural"},
+                            "presence": {"value": "absent", "confidence": "conjectural"}})
+    check("recording a withheld animal as absent is an error",
+          any("different claim from absence" in e for e in fauna_errors(ponies)),
+          fauna_errors(ponies))
+
+    ghost = fauna_sp(july={"presence": {"value": "absent", "confidence": "conjectural"}})
+    check("a present status with an absent presence is an error",
+          any("say which absence this is" in e for e in fauna_errors(ghost)),
+          fauna_errors(ghost))
+
+
+def test_doubt_is_recorded_rather_than_resolved() -> None:
+    """A species the dossier neither attests nor refutes must be able to say so."""
+    bare = fauna_sp(july={"status": {"value": "doubtful", "confidence": "conjectural"},
+                          "presence": {"value": "absent", "confidence": "conjectural"}})
+    check("doubt with no stated doubt is an error",
+          any("what the doubt is" in e for e in fauna_errors(bare)), fauna_errors(bare))
+
+    stated = fauna_sp(july={"status": {"value": "doubtful", "confidence": "conjectural"},
+                            "presence": {"value": "absent", "confidence": "conjectural",
+                                         "note": "Might have been here; nothing is placed."},
+                            "abundance": {"value": "absent", "confidence": "conjectural"}})
+    check("doubt, stated, with nothing placed, passes",
+          not fauna_errors(stated), fauna_errors(stated))
+
+    settled = fauna_sp(confidence="documented", sources=["s1"],
+                       july={"status": {"value": "doubtful", "confidence": "conjectural"},
+                             "presence": {"value": "visible", "confidence": "conjectural",
+                                          "note": "uncertain"}})
+    check("doubtful and documented at once is an error",
+          any("cannot also be documented" in e for e in fauna_errors(settled)),
+          fauna_errors(settled))
+
+
+def test_the_spring_frog_chorus_is_over_by_july() -> None:
+    """The same gate the birds get, one class down."""
+    peeper = fauna_sp(**{"class": "amphibian", "activity": "nocturnal",
+                         "active_periods": ["dusk", "night"],
+                         "binomial": "Pseudacris crucifer",
+                         "july": {"vocalization": "chorus",
+                                  "presence": {"value": "audible",
+                                               "confidence": "conjectural"}}})
+    errs = fauna_errors(peeper)
+    check("a spring peeper chorus over a July marsh is an error",
+          any("finished by 1 July" in e for e in errs), errs)
+
+
+def test_waterfowl_are_moulting_not_migrating() -> None:
+    flying = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["day"],
+                         "binomial": "Anas platyrhynchos",
+                         "july": {"vocalization": "call_only"}})
+    errs = fauna_errors(flying)
+    check("a mallard not in wing moult on 1 July is an error",
+          any("flightless_moult" in e for e in errs), errs)
+
+    raft = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["day"],
+                       "binomial": "Anas platyrhynchos",
+                       "july": {"status": {"value": "flightless_moult",
+                                           "confidence": "conjectural"},
+                                "vocalization": "call_only", "max_group": 200}})
+    check("a raft of 200 moulting ducks is an error",
+          any("not a raft" in e for e in fauna_errors(raft)), fauna_errors(raft))
+
+
+def test_the_passenger_pigeon_carries_its_numbers() -> None:
+    """A species whose real abundance sounds like exaggeration needs its citation."""
+    flight = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["day"],
+                         "binomial": "Ectopistes migratorius",
+                         "july": {"status": {"value": "post_breeding_dispersal",
+                                             "confidence": "conjectural"},
+                                  "vocalization": "call_only", "max_group": 400}})
+    errs = fauna_errors(flight)
+    check("a sky-darkening July pigeon flight is an error",
+          any("17 SEPTEMBER 1836" in e for e in errs), errs)
+
+    nesting = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["day"],
+                          "binomial": "Ectopistes migratorius",
+                          "july": {"vocalization": "call_only", "max_group": 20}})
+    check("a July pigeon that is not in post-breeding dispersal is an error",
+          any("post_breeding_dispersal" in e for e in fauna_errors(nesting)),
+          fauna_errors(nesting))
+
+    silent_record = fauna_sp(**{"class": "bird", "activity": "diurnal",
+                                "active_periods": ["day"],
+                                "binomial": "Ectopistes migratorius", "note": "",
+                                "july": {"status": {"value": "post_breeding_dispersal",
+                                                    "confidence": "conjectural"},
+                                         "vocalization": "call_only", "max_group": 20}})
+    check("a passenger pigeon with no note about its numbers is an error",
+          any("needs its numbers argued" in e for e in fauna_errors(silent_record)),
+          fauna_errors(silent_record))
+
+
+def test_an_extirpated_animal_cannot_be_put_back() -> None:
+    """The dossier's negative findings as schema, not as advice."""
+    for binomial, label in (("Bison bison", "a bison on the 1835 prairie"),
+                            ("Castor canadensis", "a beaver at the forks"),
+                            ("Passer domesticus", "a house sparrow in the street"),
+                            ("Cyprinus carpio", "a common carp in the river")):
+        errs = fauna_errors(fauna_sp(binomial=binomial))
+        check(f"{label} is an error",
+              any("not at the Chicago town site" in e for e in errs), errs)
+
+    # ...and the same species recorded as an ABSENCE is exactly what the
+    # dossier's § 6 table is for, so that must still pass.
+    ok = fauna_sp(binomial="Castor canadensis",
+                  july={"status": {"value": "absent_extirpated", "confidence": "conjectural"},
+                        "presence": {"value": "absent", "confidence": "conjectural"},
+                        "abundance": {"value": "absent", "confidence": "conjectural"},
+                        "max_group": 0, "behaviour": "Nothing is placed.",
+                        "appearance": "Not shown."})
+    check("the same species recorded as an absence passes", not fauna_errors(ok),
+          fauna_errors(ok))
+
+
+def test_a_modern_gull_flock_cannot_be_recorded() -> None:
+    flock = fauna_sp(**{"class": "bird", "activity": "diurnal", "active_periods": ["day"],
+                        "binomial": "Larus delawarensis",
+                        "july": {"abundance": {"value": "abundant", "confidence": "conjectural"},
+                                 "vocalization": "call_only", "max_group": 60}})
+    check("an abundant ring-billed gull in 1835 is an error",
+          any("after protection in 1916" in e for e in fauna_errors(flock)),
+          fauna_errors(flock))
+
+
+def test_a_render_instruction_cannot_name_another_season() -> None:
+    errs = fauna_errors(fauna_sp(july={"behaviour": "A skein of birds crossing on migration."}))
+    check("a migration instruction on a present species is an error",
+          any("annual minimum" in e for e in errs), errs)
+
+    ok = fauna_sp(binomial="Bison bison",
+                  july={"status": {"value": "absent_extirpated", "confidence": "conjectural"},
+                        "presence": {"value": "absent", "confidence": "conjectural"},
+                        "abundance": {"value": "absent", "confidence": "conjectural"},
+                        "max_group": 0,
+                        "behaviour": "Nothing is placed. The great migratory herds are gone."})
+    check("a negative record may name the season it is refusing",
+          not fauna_errors(ok), fauna_errors(ok))
+
+
+def test_an_animal_may_not_be_abroad_at_an_hour_it_does_not_keep() -> None:
+    errs = fauna_errors(fauna_sp(activity="nocturnal", active_periods=["day", "night"]))
+    check("a nocturnal animal with 'day' in its active periods is an error",
+          any("abroad at noon" in e or "at noon" in e for e in errs), errs)
+    ok = fauna_sp(activity="cathemeral", active_periods=["dawn", "day", "dusk", "night"],
+                  note="Andreas has one entering a meat-house in the day time.")
+    check("cathemeral, which is what the Chicago coyote record actually supports, passes",
+          not fauna_errors(ok), fauna_errors(ok))
+
+
+def _fauna_tree(mutate=None):
+    """A minimal, valid data/fauna tree plus the data/flora tree it references."""
+    import json as _json  # noqa: PLC0415
+    import tempfile  # noqa: PLC0415
+
+    root = Path(tempfile.mkdtemp())
+    fauna, flora = root / "fauna", root / "flora"
+    (fauna / "zones").mkdir(parents=True)
+    flora.mkdir(parents=True)
+    flora_index = {"version": 1, "scene_date": "1835-07-01",
+                   "zones": [{"id": "z04_marsh", "plantable_in_scene": True}]}
+    zone = {
+        "id": "f04_test", "zone": 4, "name": "test", "habitat": "marsh",
+        "dossier": "docs/research/08-fauna.md", "scene_date": "1835-07-01",
+        "reads_as": "a marsh", "in_modelled_extent": True,
+        "extent_from": {"flora_zone": "z04_marsh"},
+        "soundscape": {"dawn_chorus": "reduced", "hero": ["x_y"],
+                       "note": "July drops the bird voice out of this zone."},
+        "species": [fauna_sp()], "confidence": "conjectural", "note": "a test zone",
+    }
+    index = {
+        "version": 1, "scene_date": "1835-07-01",
+        "zones": [{"id": "f04_test", "zone": 4, "file": "zones/f04_test.json",
+                   "habitat": "marsh", "in_modelled_extent": True,
+                   "extent_from": {"flora_zone": "z04_marsh"}, "species_count": 1}],
+        "vocabulary": FAUNA_VOCAB,
+    }
+    if mutate:
+        mutate(index, zone, flora_index)
+    (fauna / "zones" / "f04_test.json").write_text(_json.dumps(zone))
+    (fauna / "index.json").write_text(_json.dumps(index))
+    (flora / "index.json").write_text(_json.dumps(flora_index))
+    return fauna, flora
+
+
+def _fauna_check(mutate=None) -> list:
+    fauna, flora = _fauna_tree(mutate)
+    old_fa, old_fl, rep = V.FAUNA, V.FLORA, V.Report()
+    try:
+        V.FAUNA, V.FLORA = fauna, flora
+        V.check_fauna({"s1"}, rep, {})
+    finally:
+        V.FAUNA, V.FLORA = old_fa, old_fl
+    return rep.errors
+
+
+def test_no_zone_may_declare_a_full_dawn_chorus() -> None:
+    """The one thing a July Chicago zone is not allowed to be."""
+    check("a clean fauna tree passes", not _fauna_check(), _fauna_check())
+
+    def spring(index, zone, flora):
+        zone["soundscape"]["dawn_chorus"] = "full"
+    errs = _fauna_check(spring)
+    check("a zone declaring a full dawn chorus is an error",
+          any("spring phenomenon" in e for e in errs), errs)
+
+    def unheroed(index, zone, flora):
+        zone["soundscape"]["hero"] = ["not_a_species"]
+    errs = _fauna_check(unheroed)
+    check("a hero sound that is not a species in the zone is an error",
+          any("not a species in this zone" in e for e in errs), errs)
+
+
+def test_the_fauna_scene_date_and_the_july_blocks_must_agree() -> None:
+    """The flora suite's October test, one trophic level up."""
+    def october(index, zone, flora):
+        index["scene_date"] = zone["scene_date"] = "1835-10-27"
+    errs = _fauna_check(october)
+    check("an October scene_date against a july block is an error",
+          any("is not in July" in e for e in errs), errs)
+
+
+def test_fauna_zones_may_not_disagree_with_the_flora_extents() -> None:
+    """The two datasets describe the same ground and must not drift apart."""
+    def drift(index, zone, flora):
+        flora["zones"][0]["plantable_in_scene"] = False
+    errs = _fauna_check(drift)
+    check("a zone inside the box whose flora zone is outside it is an error",
+          any("cannot be inside the modelled box" in e for e in errs), errs)
+
+    def dangling(index, zone, flora):
+        zone["extent_from"] = index["zones"][0]["extent_from"] = {"flora_zone": "z99_nope"}
+    errs = _fauna_check(dangling)
+    check("an extent_from naming no flora zone is an error",
+          any("does not resolve" in e for e in errs), errs)
+
+    def manifest_drift(index, zone, flora):
+        index["zones"][0]["species_count"] = 99
+    errs = _fauna_check(manifest_drift)
+    check("a manifest species_count that disagrees with the record is an error",
+          any("disagrees with the" in e for e in errs), errs)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

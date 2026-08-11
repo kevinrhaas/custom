@@ -1491,236 +1491,6 @@
       ]
     },
     {
-      "id": "L40",
-      "title": "Two thirds of the town stands on ground that has not been built",
-      "section": "per_subject",
-      "subjects": [
-        "bates_auction_room",
-        "blacksmith_shop_state_st",
-        "carpenter_south_water_store",
-        "chappel_infant_school",
-        "chicago_american_office",
-        "chicago_democrat_office",
-        "cobweb_castle",
-        "cook_county_courthouse_1835",
-        "council_house",
-        "dole_warehouse_south",
-        "estray_pen",
-        "first_presbyterian_church",
-        "frederick_thomas_shop",
-        "h_jones_store",
-        "harmon_loomis_store",
-        "jb_beaubien_homestead",
-        "jh_kinzie_forwarding_store",
-        "log_jail",
-        "madore_beaubien_house",
-        "north_pier",
-        "north_side_school_1833",
-        "old_bank_building",
-        "peck_store",
-        "pruyne_kimball_drugstore",
-        "south_pier",
-        "st_marys_church",
-        "steamboat_hotel",
-        "watkins_school_house"
-      ],
-      "covers": [
-        {
-          "structure": "bates_auction_room",
-          "phase": "frame_1834",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "blacksmith_shop_state_st",
-          "phase": "log_1823",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "carpenter_south_water_store",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "chappel_infant_school",
-          "phase": "log_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "chicago_american_office",
-          "phase": "frame_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "chicago_democrat_office",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "cobweb_castle",
-          "phase": "log_1820",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "cook_county_courthouse_1835",
-          "phase": "wood_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "council_house",
-          "phase": "log_1834",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "dole_warehouse_south",
-          "phase": "frame_1832",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "estray_pen",
-          "phase": "pen_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "first_presbyterian_church",
-          "phase": "frame_1834",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "frederick_thomas_shop",
-          "phase": "frame_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "h_jones_store",
-          "phase": "frame_1833",
-          "aspect": "footprint"
-        },
-        {
-          "structure": "h_jones_store",
-          "phase": "frame_1833",
-          "aspect": "form.stories"
-        },
-        {
-          "structure": "h_jones_store",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "h_jones_store",
-          "phase": "frame_1833",
-          "aspect": "position"
-        },
-        {
-          "structure": "harmon_loomis_store",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "jb_beaubien_homestead",
-          "phase": "factory_1817",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "jh_kinzie_forwarding_store",
-          "phase": "frame_1830s",
-          "aspect": "footprint"
-        },
-        {
-          "structure": "jh_kinzie_forwarding_store",
-          "phase": "frame_1830s",
-          "aspect": "form.stories"
-        },
-        {
-          "structure": "jh_kinzie_forwarding_store",
-          "phase": "frame_1830s",
-          "aspect": "position"
-        },
-        {
-          "structure": "log_jail",
-          "phase": "log_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "madore_beaubien_house",
-          "phase": "log_1831",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "north_pier",
-          "phase": "crib_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "north_side_school_1833",
-          "phase": "log_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "old_bank_building",
-          "phase": "frame_1834",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "peck_store",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "pruyne_kimball_drugstore",
-          "phase": "frame_1830s",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "south_pier",
-          "phase": "crib_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "st_marys_church",
-          "phase": "frame_1833",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "steamboat_hotel",
-          "phase": "frame_1835",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "watkins_school_house",
-          "phase": "house_1833",
-          "aspect": "ground_contact"
-        }
-      ],
-      "recorded": "2026-08-10",
-      "revised": null,
-      "fields": [
-        {
-          "label": "Decision",
-          "text": "twenty of the thirty-three structures now in the dataset stand **outside the modelled heightfield** and do not reach the terrain beneath them. Their records are correct and their positions are derived through the same fitted transform as everything else; there is simply no ground there yet."
-        },
-        {
-          "label": "Why",
-          "text": "the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the forks, built when the forks was the whole scene. The town is not that shape. South Water Street runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at **+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the town existed — sits east of the modelled world, along with the bridge that crossed to it. This was not discovered by inspection. It surfaced the moment the project stopped building only the best-evidenced structures and started building the town: the forks quadrant was sufficient for eight buildings and is nowhere near sufficient for thirty-three."
-        },
-        {
-          "label": "Consequence",
-          "text": "those twenty buildings currently float. A visitor who walks east finds the ground end and the town continue. **This is worse than the buildings being absent**, because an absent building makes no claim while a floating one makes a false one, and the confidence view cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate intermediate state: the records were built first on the argument that evidence is harder to come by than geometry, and the geometry is now the thing holding."
-        },
-        {
-          "label": "How to resolve",
-          "text": "ROADMAP § S2e — extend the heightfield east to about **E +1700**, a ~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward channel already traced in `data/traces/vectors/wright_1834_east.json` and `shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved** rather than being edited, and any structure still floating afterwards — the North Branch industry sits well north of even the extended box — gets an entry of its own naming it."
-        },
-        {
-          "label": "Covers",
-          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`."
-        },
-        {
-          "label": "Recorded",
-          "text": "2026-08-10."
-        }
-      ]
-    },
-    {
       "id": "L36a",
       "title": "Thomas Church's store: a building placed by a street and one sentence",
       "section": "per_subject",
@@ -1732,11 +1502,6 @@
           "structure": "thomas_church_store",
           "phase": "frame_1834",
           "aspect": "footprint"
-        },
-        {
-          "structure": "thomas_church_store",
-          "phase": "frame_1834",
-          "aspect": "ground_contact"
         },
         {
           "structure": "thomas_church_store",
@@ -1765,7 +1530,11 @@
         },
         {
           "label": "Covers",
-          "text": "`thomas_church_store.frame_1834.footprint`, `thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`."
+          "text": "`thomas_church_store.frame_1834.footprint`, `thomas_church_store.frame_1834.position`."
+        },
+        {
+          "label": "Evidence since, 2026-08-11",
+          "text": "the ground_contact token is withdrawn. This entry said the store stood beyond the modelled box on L17's radial skirt; S2e has since built the ground under it. The invented block, side of street and point along it are untouched."
         },
         {
           "label": "Recorded",
@@ -3407,11 +3176,6 @@
       ],
       "covers": [
         {
-          "structure": "brickyard_north_side",
-          "phase": "yard_1833",
-          "aspect": "ground_contact"
-        },
-        {
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "ground_contact"
@@ -3438,11 +3202,249 @@
         },
         {
           "label": "Covers",
-          "text": "`brickyard_north_side.yard_1833.ground_contact`, `slough_log_bridge.log_1833.ground_contact`."
+          "text": "`slough_log_bridge.log_1833.ground_contact`."
+        },
+        {
+          "label": "Evidence since, 2026-08-11",
+          "text": "the brickyard's token is withdrawn — S2e extended the heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still stands clear of it, but for the different reason recorded on that record: the South Division slough it crosses is still not cut into this terrain epoch, so it spans nothing."
         },
         {
           "label": "Recorded",
           "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L40",
+      "title": "Two thirds of the town stands on ground that has not been built",
+      "section": "resolved",
+      "subjects": [
+        "bates_auction_room",
+        "blacksmith_shop_state_st",
+        "carpenter_south_water_store",
+        "chappel_infant_school",
+        "chicago_american_office",
+        "chicago_democrat_office",
+        "cobweb_castle",
+        "cook_county_courthouse_1835",
+        "council_house",
+        "dole_warehouse_south",
+        "estray_pen",
+        "first_presbyterian_church",
+        "frederick_thomas_shop",
+        "h_jones_store",
+        "harmon_loomis_store",
+        "jb_beaubien_homestead",
+        "jh_kinzie_forwarding_store",
+        "log_jail",
+        "madore_beaubien_house",
+        "north_pier",
+        "north_side_school_1833",
+        "old_bank_building",
+        "peck_store",
+        "pruyne_kimball_drugstore",
+        "south_pier",
+        "st_marys_church",
+        "steamboat_hotel",
+        "watkins_school_house"
+      ],
+      "covers": [
+        {
+          "structure": "bates_auction_room",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "blacksmith_shop_state_st",
+          "phase": "log_1823",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "carpenter_south_water_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "chappel_infant_school",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "chicago_american_office",
+          "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "chicago_democrat_office",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "cobweb_castle",
+          "phase": "log_1820",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "council_house",
+          "phase": "log_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "dole_warehouse_south",
+          "phase": "frame_1832",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "frederick_thomas_shop",
+          "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "h_jones_store",
+          "phase": "frame_1833",
+          "aspect": "position"
+        },
+        {
+          "structure": "harmon_loomis_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "jb_beaubien_homestead",
+          "phase": "factory_1817",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "jh_kinzie_forwarding_store",
+          "phase": "frame_1830s",
+          "aspect": "position"
+        },
+        {
+          "structure": "log_jail",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "madore_beaubien_house",
+          "phase": "log_1831",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "north_pier",
+          "phase": "crib_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "north_side_school_1833",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "old_bank_building",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "peck_store",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "pruyne_kimball_drugstore",
+          "phase": "frame_1830s",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "south_pier",
+          "phase": "crib_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "st_marys_church",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "steamboat_hotel",
+          "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "twenty of the thirty-three structures now in the dataset stand **outside the modelled heightfield** and do not reach the terrain beneath them. Their records are correct and their positions are derived through the same fitted transform as everything else; there is simply no ground there yet."
+        },
+        {
+          "label": "Why",
+          "text": "the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the forks, built when the forks was the whole scene. The town is not that shape. South Water Street runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at **+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the town existed — sits east of the modelled world, along with the bridge that crossed to it. This was not discovered by inspection. It surfaced the moment the project stopped building only the best-evidenced structures and started building the town: the forks quadrant was sufficient for eight buildings and is nowhere near sufficient for thirty-three."
+        },
+        {
+          "label": "Consequence",
+          "text": "those twenty buildings currently float. A visitor who walks east finds the ground end and the town continue. **This is worse than the buildings being absent**, because an absent building makes no claim while a floating one makes a false one, and the confidence view cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate intermediate state: the records were built first on the argument that evidence is harder to come by than geometry, and the geometry is now the thing holding."
+        },
+        {
+          "label": "How to resolve",
+          "text": "ROADMAP § S2e — extend the heightfield east to about **E +1700**, a ~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward channel already traced in `data/traces/vectors/wright_1834_east.json` and `shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved** rather than being edited, and any structure still floating afterwards — the North Branch industry sits well north of even the extended box — gets an entry of its own naming it."
+        },
+        {
+          "label": "Covers",
+          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        },
+        {
+          "label": "Resolved",
+          "text": "2026-08-11. The ground was built. ROADMAP § S2e extended the heightfield east from a 640 m square to **E −320 … +1700, N −400 … +400** — 809 × 321 samples at 2.5 m — and twenty-seven of the structures this entry covers now land on real terrain. The declarations came off those records in the same pass that moved this entry here. Three things are worth keeping from it rather than deleting with it. **The finding was only visible because the town got built**: eight well-evidenced buildings at the forks all sat comfortably inside the old box, and it took building the business district to discover the business district had no ground under it. **The gate could not see it either** — `tools/heightfield.py` clamped outside the box, so a structure 832 m past the edge sampled the clamped edge for its base and for every contact point, agreed to the millimetre, and was reported as landing perfectly. Fort Dearborn is what exposed that, and the fix (`Heightfield.covers()`, plus a two-way check that a declaration matches the measurement) immediately flagged two more structures nothing had caught. And **not everything came back**: the Clybourne records still stand about three kilometres from their attested ground up the North Branch, and the stockade's north wall and the commandant's quarters now cross the top of the river bank because no cut, fill, revetment or foundation is modelled anywhere in this project. Those are L64 and L46's business, not this entry's."
         }
       ]
     },

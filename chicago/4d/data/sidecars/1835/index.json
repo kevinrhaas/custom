@@ -9,6 +9,12 @@
       "asset": "gltf/bates_auction_room__frame_1834.glb"
     },
     {
+      "id": "beaubien_barn",
+      "name": "Col. Jean Baptiste Beaubien's Barn",
+      "sidecar": "sidecars/1835/beaubien_barn.json",
+      "asset": "gltf/beaubien_barn__converted_1817.glb"
+    },
+    {
       "id": "blacksmith_shop_state_st",
       "name": "Government Blacksmith Shop",
       "sidecar": "sidecars/1835/blacksmith_shop_state_st.json",
@@ -405,10 +411,22 @@
       "asset": "gltf/western_hotel__frame_1834.glb"
     },
     {
+      "id": "western_hotel_stable",
+      "name": "The Western Hotel's Stable",
+      "sidecar": "sidecars/1835/western_hotel_stable.json",
+      "asset": "gltf/western_hotel_stable__stable_1834.glb"
+    },
+    {
       "id": "wolf_point_tavern",
       "name": "Wolf Point Tavern",
       "sidecar": "sidecars/1835/wolf_point_tavern.json",
       "asset": "gltf/wolf_point_tavern__log_frame_1828.glb"
+    },
+    {
+      "id": "wolf_point_tavern_stable",
+      "name": "The Wolf Point Tavern's Stable",
+      "sidecar": "sidecars/1835/wolf_point_tavern_stable.json",
+      "asset": "gltf/wolf_point_tavern_stable__stable_1831.glb"
     }
   ],
   "excluded_by_date": []

@@ -89,7 +89,8 @@
     "appearance": "Brown barred back, black bib, white rump.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from open oak ground; no Chicago bird record of this period exists."
   },
   {
    "id": "passerina_cyanea",
@@ -228,7 +229,8 @@
     "appearance": "Black above, white below, white tail band.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from open-grown trees over grass; no Chicago record."
   },
   {
    "id": "odocoileus_virginianus",
@@ -269,7 +271,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "See f06_north_timber. The Andreas deer-skin trade lines are undated in the dossier's extraction, so they document the animal and the trade, not the year; the July antler and fawn state is general biology."
   },
   {
    "id": "megatibicen_dorsatus",
@@ -338,9 +341,10 @@
     "appearance": "Large, rusty-bellied, heavy-tailed.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "'Western fox squirrel' is in the regional retrospective, which has no source record. Andreas full-text searches for 'squirrels' returned nothing, and the dossier warns that this scan's index is lossy enough that 'not found' is not 'not present'."
   }
  ],
  "confidence": "inferred",
- "note": "NOT INSIDE THE MODELLED BOX. This zone inherits flora zone z07_bur_oak_savanna, the grove up the South Branch at Hardscrabble, about 5.6 km SSW of the forks and far outside the 640 m heightfield \u2014 the flora record marks it not plantable for exactly this reason. Nothing here is placed in the 1835 scene; the record exists because the dataset, not the render, is the durable artifact."
+ "note": "This zone inherits flora zone z07_bur_oak_savanna, the grove up the South Branch at Hardscrabble, about 5.6 km SSW of the forks and far outside the modelled heightfield \u2014 the flora record marks it not plantable for exactly that reason, and this record reads that answer rather than restating it. Nothing here is placed in the 1835 scene; the record exists because the dataset, not the render, is the durable artifact."
 }

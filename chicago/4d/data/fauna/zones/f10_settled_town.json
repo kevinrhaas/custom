@@ -111,7 +111,8 @@
    "sources": [
     "andreas_1884_v1",
     "chicagology_prefire278"
-   ]
+   ],
+   "note": "Horses in the town are as well attested as anything in this dataset. What is NOT attested is how many: no 1835 Chicago teamster or stage census was found, so the number on screen is ours."
   },
   {
    "id": "bos_taurus",
@@ -194,7 +195,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Latrobe's 1833 inventory attests DEALERS IN POULTRY, which is a trade and not a yard. Free-ranging dooryard hens follow from ordinary frontier practice and are the inference; the birds themselves are near-certain and unattested."
   },
   {
    "id": "canis_familiaris",
@@ -396,7 +398,8 @@
    "confidence": "inferred",
    "sources": [
     "chicagology_prefire278"
-   ]
+   ],
+   "note": "Family-level. The carcasses are documented by the ordinance written against them; the flies are the inference, and no period source mentions them."
   },
   {
    "id": "tabanidae_spp",
@@ -429,7 +432,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Family-level and unattested at Chicago. Placed because the larval habitat is the wet prairie the town sits in and because the visible signal is livestock behaviour, not the insects."
   },
   {
    "id": "culicidae_spp",
@@ -464,7 +468,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The only Chicago-specific mosquito testimony the dossier found sits on a page that returned HTTP 403, so the wording is unverified and it has no source record. Andreas is not and never will be a source for it: full-text searches for mosquito, mosquitoes and musquitoes all return zero hits."
   },
   {
    "id": "photinus_pyralis",
@@ -497,7 +502,8 @@
     "appearance": "Pale yellow-green J-shaped upsweep about every five or six seconds.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way \u2014 the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
   },
   {
    "id": "passer_domesticus",
@@ -570,36 +576,38 @@
   {
    "id": "columba_livia",
    "binomial": "Columba livia",
-   "common": "feral rock pigeon",
+   "common": "feral or dovecote rock pigeon",
    "class": "bird",
    "activity": "diurnal",
    "active_periods": [
-    "day"
+    "dawn",
+    "day",
+    "dusk"
    ],
    "july": {
     "status": {
-     "value": "absent_anachronism",
+     "value": "doubtful",
      "confidence": "inferred",
-     "note": "No Chicago 1830s record of dovecote or feral pigeons was found in any source the project can reach. The modern city pigeon is the default wrong bird for any street scene, and its absence here is a stated finding rather than an oversight."
+     "note": "No Chicago 1830s record of dovecote or feral pigeons was found in any source the project can reach. Domestic pigeons had been kept in North America since the colonial period, so their absence from a boomtown of 3,265 people cannot be asserted the way a bison's can \u2014 but nothing attests them here either."
     },
     "presence": {
      "value": "absent",
      "confidence": "inferred",
-     "note": "No Chicago 1830s record of dovecote or feral pigeons was found in any source the project can reach. The modern city pigeon is the default wrong bird for any street scene, and its absence here is a stated finding rather than an oversight."
+     "note": "Nothing is placed. The modern city pigeon is the default wrong bird for any street scene and would read as certainty about something nobody has evidence for. Recorded as doubt with nothing rendered, exactly as the ring-billed gull is."
     },
     "abundance": {
      "value": "absent",
      "confidence": "inferred",
-     "note": "No Chicago 1830s record of dovecote or feral pigeons was found in any source the project can reach. The modern city pigeon is the default wrong bird for any street scene, and its absence here is a stated finding rather than an oversight."
+     "note": "If evidence of kept pigeons at Chicago in the 1830s ever turns up, this becomes a domestic record with a real number. Until then it has none."
     },
     "max_group": 0,
     "vocalization": "silent",
-    "behaviour": "Nothing is placed, drawn or sounded for this species.",
-    "appearance": "Recorded so the absence is a finding rather than an oversight.",
+    "behaviour": "Nothing is placed, drawn or sounded.",
+    "appearance": "Not shown.",
     "trace": null
    },
    "confidence": "inferred",
-   "note": "If evidence of kept pigeons at Chicago in the 1830s ever turns up, this becomes a domestic record. Until then nothing is placed."
+   "note": "Graded doubtful rather than anachronistic, because the two are different findings and this project's rule is to record the disagreement instead of choosing quietly. The house sparrow and the starling above ARE anachronisms \u2014 1851 and 1890 \u2014 and this bird is not one; it is simply unevidenced."
   }
  ],
  "confidence": "documented",

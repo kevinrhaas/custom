@@ -9,6 +9,15 @@
       "phase_id": "frame_1834",
       "structure_id": "bates_auction_room"
     },
+    "beaubien_barn__converted_1817.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 66324,
+      "inputs_sha256": "ba906fadf9e41518603794571b24753ee1409c680737787d4d4907a067daa793",
+      "kind": "generated",
+      "phase_id": "converted_1817",
+      "structure_id": "beaubien_barn"
+    },
     "blacksmith_shop_state_st__log_1823.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -646,6 +655,15 @@
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"
+    },
+    "wolf_point_tavern_stable__stable_1831.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 81656,
+      "inputs_sha256": "fc0d0793f0fa7a7a1066d81f6110484f1a653228c068d54b1ea34d0be64819f6",
+      "kind": "generated",
+      "phase_id": "stable_1831",
+      "structure_id": "wolf_point_tavern_stable"
     }
   },
   "blender": "4.5.3",

@@ -46,7 +46,7 @@
    "extent_from": {
     "flora_zone": "z04_marsh"
    },
-   "species_count": 20
+   "species_count": 21
   },
   {
    "id": "f05_gallery_timber",
@@ -68,7 +68,7 @@
    "extent_from": {
     "flora_zone": "z06_dense_forest"
    },
-   "species_count": 16
+   "species_count": 17
   },
   {
    "id": "f07_bur_oak_savanna",
@@ -86,7 +86,7 @@
    "zone": 8,
    "file": "zones/f08_lakeshore.json",
    "habitat": "lakeshore",
-   "in_modelled_extent": false,
+   "in_modelled_extent": true,
    "extent_from": {
     "flora_zone": "z08_lakeshore"
    },

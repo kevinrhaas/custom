@@ -6,7 +6,7 @@
  "dossier": "docs/research/08-fauna.md \u00a7 ZONE 6",
  "scene_date": "1835-07-01",
  "reads_as": "an almost empty beach at the annual shorebird minimum \u2014 a few gulls and terns, two breeding shorebirds, one eagle, and a landed fish or two",
- "in_modelled_extent": false,
+ "in_modelled_extent": true,
  "extent_from": {
   "flora_zone": "z08_lakeshore"
  },
@@ -51,7 +51,8 @@
     "appearance": "Large pale-grey-backed gull with pink legs; the immature birds are mottled brown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The choice of herring gull over ring-billed is the dossier's central gull argument and rests on a Waterbirds paper with no source record. No 1830s Chicago gull observation of any species was found."
   },
   {
    "id": "sterna_hirundo",
@@ -86,7 +87,8 @@
     "appearance": "Slim, pale, black-capped, with a red bill and long forked tail \u2014 not a gull's shape.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The historic Great Lakes breeding tern, on the same unresolved citation as the herring gull. No Chicago record."
   },
   {
    "id": "actitis_macularius",
@@ -121,7 +123,8 @@
     "appearance": "Brown above, white below with round black spots \u2014 the spots are a breeding-season plumage and are correct for July.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Placed because it BREEDS on shorelines, which is what makes it one of the two shorebirds correct for 1 July. No Chicago record of any date reached."
   },
   {
    "id": "charadrius_vociferus",
@@ -157,7 +160,8 @@
     "appearance": "Two black breast bands; rusty rump in flight.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "A local breeder rather than a migrant, which is the whole reason it survives the July gate; no Chicago record of this period."
   },
   {
    "id": "haliaeetus_leucocephalus",
@@ -192,7 +196,8 @@
     "appearance": "An adult with a white head and tail, or a wholly brown subadult \u2014 both are correct.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The dossier found NO specific 1830s Chicago eagle sighting. The regional inference rests on Cook County nesting records that run to 1896-97, from a source with no record here. One bird, high, is the whole of what this supports."
   },
   {
    "id": "coregonus_clupeaformis",
@@ -277,7 +282,8 @@
    "confidence": "documented",
    "sources": [
     "kinzie_waubun_1856"
-   ]
+   ],
+   "note": "Wau-Bun names trout and whitefish together as 'those treasures of the deep' at Chicago. That is a near-contemporary record of the fish; the landed-fish rendering and the small scale of the fishery are the inference."
   },
   {
    "id": "acipenser_fulvescens",
@@ -313,7 +319,8 @@
     "appearance": "Armoured scutes, a shark-like tail and a long snout with barbels; very large.",
     "trace": "One landed fish on the sand."
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Abundance in Lake Michigan at settlement is well attested in modern fisheries literature that has no source record here; the 1835 Chicago beach is the inference."
   },
   {
    "id": "larus_delawarensis",
@@ -335,7 +342,7 @@
     "presence": {
      "value": "absent",
      "confidence": "inferred",
-     "note": "Nothing is placed. A modern parking-lot gull flock over the 1835 river mouth would be the single most visible error available in this zone."
+     "note": "Nothing is placed. A modern parking-lot gull flock over the 1835 river mouth would be the single most visible error available in this zone. This is the one combination the schema allows only under a doubtful status: the animal MIGHT have been here and the scene shows none, which is neither an assertion of presence nor a finding of absence."
     },
     "abundance": {
      "value": "absent",
@@ -421,5 +428,5 @@
   }
  ],
  "confidence": "inferred",
- "note": "NOT INSIDE THE MODELLED BOX. This zone inherits flora zone z08_lakeshore; the 1835 shore is about 1.4 km east of the datum origin and the committed heightfield stops at +320 m, so nothing here has modelled ground and nothing is placed. It also carries the fauna of flora zone z09_sand_prairie, the relict beach-ridge belt, which is outside the box too and has no fauna record of its own. THE ZONE'S SINGLE LARGEST RISK IS THE GULLS: see the ring-billed gull record."
+ "note": "This zone inherits its extent from flora zone z08_lakeshore and carries the fauna of z09_sand_prairie, the relict beach-ridge belt, as well \u2014 that belt has no fauna record of its own. Whether either has modelled ground under it is NOT stated here: in_modelled_extent is read from the flora manifest at build time, because the terrain epoch has already been extended once and a hand-copied answer would now be wrong. THE ZONE'S SINGLE LARGEST RISK IS THE GULLS: see the ring-billed gull record."
 }

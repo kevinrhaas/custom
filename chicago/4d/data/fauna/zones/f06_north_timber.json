@@ -52,7 +52,8 @@
     "appearance": "Big, heavy, rusty-bellied grey squirrel \u2014 larger and redder than a gray squirrel.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "'Western fox squirrel' is in the regional retrospective, which has no source record. Andreas full-text searches for 'squirrels' returned nothing, and the dossier warns that this scan's index is lossy enough that 'not found' is not 'not present'."
   },
   {
    "id": "procyon_lotor",
@@ -67,11 +68,8 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "documented",
-     "sources": [
-      "kinzie_waubun_1856"
-     ],
-     "note": "Regional list plus the Wau-Bun fur trade; see the gallery-timber record for the same caveat about which of the two actually names the animal."
+     "confidence": "inferred",
+     "note": "Regional retrospective only; see f05_gallery_timber \u2014 the Wau-Bun fur list does NOT name raccoon, contrary to the dossier's tag."
     },
     "presence": {
      "value": "visible",
@@ -89,10 +87,8 @@
     "appearance": "Grey, masked, ringed tail.",
     "trace": null
    },
-   "confidence": "documented",
-   "sources": [
-    "kinzie_waubun_1856"
-   ]
+   "confidence": "inferred",
+   "note": "See f05_gallery_timber for the citation correction: the Wau-Bun fur list does not name raccoon, so nothing in data/sources/ supports this animal and it is graded inferred."
   },
   {
    "id": "odocoileus_virginianus",
@@ -246,6 +242,42 @@
    "note": "The long wick-wick-wick territorial call and the drumming are spring signals and are largely done by 1 July; single calls persist."
   },
   {
+   "id": "contopus_virens",
+   "binomial": "Contopus virens",
+   "common": "eastern wood-pewee",
+   "class": "bird",
+   "activity": "diurnal",
+   "active_periods": [
+    "dawn",
+    "day",
+    "dusk"
+   ],
+   "july": {
+    "status": {
+     "value": "breeding_resident",
+     "confidence": "inferred",
+     "note": "Habitat inference from oak timber; no 1830s Chicago bird list survives in anything the project can reach."
+    },
+    "presence": {
+     "value": "audible",
+     "confidence": "inferred",
+     "note": "Sings from mid-canopy and is rarely seen."
+    },
+    "abundance": {
+     "value": "common",
+     "confidence": "inferred",
+     "note": "Habitat reading."
+    },
+    "max_group": 2,
+    "vocalization": "song_full",
+    "behaviour": "Sound only in most conditions: a slow burry pee-a-wee from mid-canopy through the hottest and quietest part of the day.",
+    "appearance": "Plain grey-olive flycatcher on an exposed inner branch.",
+    "trace": null
+   },
+   "confidence": "inferred",
+   "note": "The pewee sings on through July and into August when almost everything else has stopped, which is why it carries this zone's July voice and most of the list does not."
+  },
+  {
    "id": "cyanocitta_cristata",
    "binomial": "Cyanocitta cristata",
    "common": "blue jay",
@@ -385,7 +417,8 @@
     "appearance": "Grizzled grey with rusty flanks and a black-tipped tail; climbs trees, unlike the red fox.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The regional list names 'red and grey fox' together and separates neither by place or date, so which fox was here is not recoverable and the record says so."
   },
   {
    "id": "neotibicen_spp",
@@ -419,7 +452,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Genus-level on purpose: which annual cicadas were at Chicago in 1835 is not recoverable, and naming a species would be a false precision. The July-to-September flight period is the whole of the claim."
   },
   {
    "id": "pterophylla_camellifolia",

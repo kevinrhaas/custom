@@ -110,7 +110,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "See f01_wet_prairie for the species-identity argument: 'prairie wolf' in 1830s Illinois usage means coyote. The bank-line scavenging is inference from the documented carcass load, not from a record of an animal doing it."
   },
   {
    "id": "neogale_vison",
@@ -151,7 +152,8 @@
    "confidence": "documented",
    "sources": [
     "kinzie_waubun_1856"
-   ]
+   ],
+   "note": "See f05_gallery_timber: the Wau-Bun fur list is the record, and it is a trade list of 1831, not an observation of a bank in July 1835."
   },
   {
    "id": "chrysemys_picta",
@@ -184,7 +186,8 @@
     "appearance": "Smooth dark shell with red edge markings.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The turtle assemblage comes from modern Chicago-river surveys with no source record. Basking and July nesting are general biology; the presence here in 1835 is inference."
   },
   {
    "id": "unionidae_spp",
@@ -301,7 +304,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Andreas p. 1219 gives the fullest list of 'the ichthyological specimens that are found in the waters adjacent to Chicago', by family and count. It was compiled in 1884, AFTER fifty years of degradation, so it is a conservative FLOOR for 1835 and not a ceiling. It names no species and no date, so the binomial here is this record's reading of a period family name."
   },
   {
    "id": "catostomidae_spp",
@@ -343,7 +347,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Andreas p. 1219 gives the fullest list of 'the ichthyological specimens that are found in the waters adjacent to Chicago', by family and count. It was compiled in 1884, AFTER fifty years of degradation, so it is a conservative FLOOR for 1835 and not a ceiling. It names no species and no date, so the binomial here is this record's reading of a period family name."
   },
   {
    "id": "ameiurus_spp",
@@ -383,7 +388,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Andreas p. 1219 gives the fullest list of 'the ichthyological specimens that are found in the waters adjacent to Chicago', by family and count. It was compiled in 1884, AFTER fifty years of degradation, so it is a conservative FLOOR for 1835 and not a ceiling. It names no species and no date, so the binomial here is this record's reading of a period family name. Recorded although nothing is rendered for it, because a fish list that only holds the fish you can see from a bank is not a fish list."
   },
   {
    "id": "aplodinotus_grunniens",
@@ -425,7 +431,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Andreas p. 1219 gives the fullest list of 'the ichthyological specimens that are found in the waters adjacent to Chicago', by family and count. It was compiled in 1884, AFTER fifty years of degradation, so it is a conservative FLOOR for 1835 and not a ceiling. It names no species and no date, so the binomial here is this record's reading of a period family name. 'Maigre' is the period name and the identification as freshwater drum is the dossier's."
   },
   {
    "id": "lota_lota",
@@ -464,7 +471,8 @@
    "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
-   ]
+   ],
+   "note": "Andreas p. 1219 gives the fullest list of 'the ichthyological specimens that are found in the waters adjacent to Chicago', by family and count. It was compiled in 1884, AFTER fifty years of degradation, so it is a conservative FLOOR for 1835 and not a ceiling. It names no species and no date, so the binomial here is this record's reading of a period family name. The burbot is the only freshwater cod, which is what makes 'one cod' identifiable at all."
   },
   {
    "id": "cyprinidae_spp",
@@ -541,7 +549,8 @@
     "appearance": "Tall grey-blue; neck folded in flight.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Herons appear in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR publication, which has no source record. The species split between great blue and green heron is this record's."
   },
   {
    "id": "corvus_brachyrhynchos",
@@ -681,7 +690,8 @@
     "appearance": "Green thorax, blue abdomen; the size is what carries.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The dossier lists dragonflies and damselflies over the sloughs with no source. The genus is chosen as the commonest large darner of Illinois still water and is not attested here."
   },
   {
    "id": "castor_canadensis",

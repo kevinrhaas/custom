@@ -77,13 +77,25 @@ population.
 **Recorded:** 2026-08-09.
 
 ### L2 — Fauna presented at low density, and often as sound only
-**Decision:** ambient wildlife is rendered sparsely, with many species present as audio or as
-traces (tracks, feeding sign) rather than animated animals.
-**Why:** two reasons, both evidential. July is the quietest wildlife date in the Chicago year —
-no migration, silent leks, moulting waterfowl — and a summer scene populated with the spectacle
-of *other* seasons would be wrong. And a boomtown of 3,265 people is not a wilderness; wild
-animal density inside the platted grid was low.
-**Recorded:** 2026-08-09.
+**Decision:** ambient wildlife is rendered sparsely, with many species present as audio, as traces,
+or as nothing at all rather than as animated animals.
+**Why:** two reasons, both evidential. July is the quietest wildlife date in the Chicago year — no
+migration, silent leks, moulting waterfowl — and a summer scene populated with the spectacle of
+*other* seasons would be wrong. And a boomtown of 3,265 people is not a wilderness; wild animal
+density inside the platted grid was low.
+**What the dataset now says (2026-08-11):** `data/fauna/` holds **139 species records across 10
+habitat zones**. **Forty of them are present and would not be seen** — 25 audible only, 9 present
+and imperceptible on this date, 6 as trace alone — and 15 more are recorded as absent or
+deliberately withheld. Only **10 of 61 bird records are in full song** on 1 July, and each of those
+carries a written argument for why that species is an exception; 42 are call-only or silent. Every
+duck is flightless in wing moult. The prairie-chicken's lek is silent, the spring frog chorus is
+over, and the passenger pigeon crosses in tens.
+**Consequence:** the town reads quieter and emptier of animals than an eye would have found it, in
+one direction only — sound carries where sight does not, and the loudest things in the July scene
+are insects, frogs and livestock rather than birds. The validator enforces each of these as schema
+(`tools/validate.py`, `check_fauna_species`), so this liberty is a description of the data and not
+a hope about it.
+**Recorded:** 2026-08-09. **Revised:** 2026-08-11.
 
 ### L3 — Vertical exaggeration available but off by default
 **Decision:** the renderer may offer a vertical-exaggeration toggle; it defaults to off.
@@ -1633,6 +1645,37 @@ entry moves to Resolved.
 heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
 stands clear of it, but for the different reason recorded on that record: the South Division
 slough it crosses is still not cut into this terrain epoch, so it spans nothing.
+**Recorded:** 2026-08-11.
+
+### L70 — The mosquitoes are rendered as nothing, and they were the defining July fact
+**Decision:** mosquitoes, deer flies and horse flies are recorded as `abundant` and
+`not_perceptible` in four zones, and nothing is drawn for any of them.
+**Why:** the insects will not read at any render scale. Their visible signal is *human* — smudge
+fires, mosquito bars over beds, covered arms, hands moving at faces — and L1 puts human depiction
+out of scope for v1. So the single most intense sensory fact of a July Chicago, in a town "situated
+in the midst of sloughs and marshes" with endemic ague and no window screens, is rendered as
+absence.
+**Consequence:** a visitor walks a July wetland town that feels comfortable. It was not. The only
+sourced testimony for it sits on a page that returned HTTP 403 and has no source record, so even
+the quotation is unverified; Andreas is not and never will be a source for it — searches for
+*mosquito*, *mosquitoes* and *musquitoes* all return zero hits.
+**How to resolve:** a retrievable period source, and either a smoke/smudge element in the
+structures dataset or the lifting of L1.
+**Recorded:** 2026-08-11.
+
+### L71 — The horse herds at the town margin are attested and not depicted
+**Decision:** `f01_wet_prairie/equus_caballus_indigenous_herds` records the herds with
+`status: excluded_by_scope` and `presence: not_depicted`. Nothing is placed.
+**Why:** Shirreff described the prairies around Chicago in 1833 as studded with tents and numerous
+herds of horses browsing in all directions. Those herds are inseparable from the people who kept
+them, and AGENTS.md and L1 put human depiction out of scope for v1 uniformly. The great assembly at
+Chicago is 18 August 1835 — six and a half weeks *after* the scene date — so staging it would be
+wrong twice over.
+**Consequence:** the prairie margin is emptier than it was. This is a scope decision, not a finding
+of absence, and the dataset distinguishes the two: `not_depicted` is a different value from
+`absent` and the validator will not let one be written as the other.
+**Note:** the Shirreff 1833 account has no source record in `data/sources/`; only the August 1835
+date is cited, from `chicagology_lastwardance`, and nothing beyond that date is drawn from it.
 **Recorded:** 2026-08-11.
 
 ---

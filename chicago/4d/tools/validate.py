@@ -1472,6 +1472,13 @@ JULY_QUIET_BIRDS = {
 JULY_STILL_SINGING = ("Contopus virens", "Passerina cyanea", "Hylocichla mustelina",
                       "Geothlypis trichas", "Spizella pusilla", "Colinus virginianus")
 
+# The same gate one class down. These frogs call from March to May and are done
+# by 1 July — the species is still in the landscape and its VOICE is not, which
+# for a frog is the whole of what a scene would carry. A peeper chorus is the
+# easiest wrong sound to lay over any Illinois marsh at any date.
+FAUNA_SPRING_CHORUS_OVER = ("Pseudacris crucifer", "Pseudacris maculata",
+                            "Pseudacris triseriata", "Lithobates sylvaticus")
+
 # Wing moult. Adult ducks enter simultaneous flight-feather moult in late June
 # and July and are flightless or nearly so: dull, skulking, and NOT flying.
 FAUNA_MOULTING_WATERFOWL = ("Anas platyrhynchos", "Spatula discors", "Aix sponsa",
@@ -1487,6 +1494,35 @@ PASSENGER_PIGEON_JULY_MAX = 60
 # Chicago gull is a post-1916 phenomenon and a flock of them is the single most
 # visible anachronism available at the river mouth.
 FAUNA_RARE_ONLY = {"Larus delawarensis": ("rare", "absent")}
+
+# NOT AT THIS PLACE ON THIS DATE, and the dataset may not say otherwise. These
+# are the dossier's § 6 negative findings turned into schema: a record may state
+# any of them as an ABSENCE — that is what the negative findings are for, and
+# recording why something is missing is the whole standard — but it may not put
+# the animal in the scene. Without this, a beaver lodge could be added at the
+# forks by editing one field, which is exactly the difference between a rule a
+# modeller should follow and a record that cannot be written.
+FAUNA_ABSENT_TAXA = {
+    "Bison bison": "no wild bison remained in Illinois by about 1830",
+    "Bos bison": "the period name for the bison; extirpated from Illinois by about 1830",
+    "Cervus canadensis": "elk were gone from Illinois by the early 1800s",
+    "Castor canadensis": "no Chicago-proper 1830s beaver record exists; the nearest attested "
+                         "population was the Calumet region, twelve or more miles south. No "
+                         "beaver, no lodges, and no beaver-cut stumps at the forks",
+    "Puma concolor": "probably exterminated in Illinois before 1870 and locally far earlier",
+    "Ursus americanus": "Chicago-area bear records end in the 1830s and are anecdotal; none is "
+                        "datable to 1835",
+    "Passer domesticus": "introduced to North America in 1851, sixteen years after this scene",
+    "Sturnus vulgaris": "introduced to North America in 1890",
+    "Cyprinus carpio": "the common carp was not stocked in North America in numbers until the "
+                       "1870s; Andreas's 'twelve carps' are native minnows in period usage",
+    "Magicicada septendecim": "northern Illinois is 17-year Brood XIII and its years are 1820, "
+                              "1837 and 1854 — not 1835 — and it emerges in late May and June "
+                              "in any case",
+    "Magicicada cassinii": "as Magicicada septendecim: Brood XIII, and 1835 is not a brood year",
+    "Magicicada septendecula": "as Magicicada septendecim: Brood XIII, and 1835 is not a brood "
+                               "year",
+}
 
 # Words that name a spring, autumn or winter spectacle. Forbidden in `behaviour`
 # — the render instruction — for any species the record says is present. A
@@ -1592,7 +1628,21 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
                          "matches the record; it may not be empty")
 
     # --- present, absent, and withheld are three different claims -----------
-    if status in FAUNA_ABSENT_STATUS:
+    #
+    # ...and `doubtful` is the fourth, which is why it is exempt from the
+    # coupling below. A species whose July presence is genuinely uncertain may
+    # be recorded with NOTHING placed for it without that being a finding of
+    # absence — the ring-billed gull is the case: rare and persecuted in the
+    # 19th century, tempting to a renderer, and neither attested nor refuted
+    # here. Forcing that record to choose between "present" and "absent" would
+    # make the dataset resolve a question the evidence does not.
+    if status == "doubtful":
+        pres = j.get("presence")
+        if not (isinstance(pres, dict) and (pres.get("note") or "").strip()):
+            rep.error(where, "july.status 'doubtful' requires a note on the presence block "
+                             "saying what the doubt is and what the scene does about it. "
+                             "Recording doubt is the point; recording it silently is not")
+    elif status in FAUNA_ABSENT_STATUS:
         if mode not in FAUNA_ABSENT_MODES:
             rep.error(where, f"july.status '{status}' says this animal is not in the scene, but "
                              f"july.presence is '{mode}'. A negative finding that leaves a "
@@ -1650,6 +1700,12 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
         rep.error(where, f"{binomial} IS still in song on 1 July — later than almost anything "
                          f"else — and recording it silent over-corrects the July gate into a "
                          f"different error")
+    if binomial in FAUNA_SPRING_CHORUS_OVER and voice not in ("silent", "non_vocal"):
+        rep.error(where, f"{binomial} calls from March to May and is finished by 1 July; this "
+                         f"record claims '{voice}'. The animal may still be recorded as "
+                         f"present — it is in the landscape — but its chorus is a spring "
+                         f"sound and putting it over a July marsh dates the scene by two "
+                         f"months")
     if binomial in FAUNA_MOULTING_WATERFOWL and status not in FAUNA_ABSENT_STATUS:
         if status != "flightless_moult":
             rep.error(where, f"{binomial} is in simultaneous wing moult in late June and July "
@@ -1677,6 +1733,11 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
                              "than any other species in this dataset, because its real "
                              "abundance sounds like exaggeration. State what the source "
                              "actually says, and when it says it")
+    if binomial in FAUNA_ABSENT_TAXA and status not in FAUNA_ABSENT_STATUS:
+        rep.error(where, f"{binomial} is not at the Chicago town site on 1 July 1835: "
+                         f"{FAUNA_ABSENT_TAXA[binomial]}. The record may state this species as "
+                         f"an absence — a negative finding is worth keeping — but it may not "
+                         f"put the animal in the scene")
     if binomial in FAUNA_RARE_ONLY and abundance not in FAUNA_RARE_ONLY[binomial]:
         rep.error(where, f"{binomial} may only be recorded as "
                          f"{' or '.join(FAUNA_RARE_ONLY[binomial])} in an 1835 scene — it was "

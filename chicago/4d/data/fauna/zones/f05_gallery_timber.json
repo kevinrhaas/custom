@@ -87,7 +87,8 @@
     "appearance": "Small, dark, chestnut-necked, with orange legs.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from the shaded river margin; the regional assemblage names herons without separating the species."
   },
   {
    "id": "procyon_lotor",
@@ -102,8 +103,8 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "documented",
-     "note": "Raccoon is in the Chicago Academy of Sciences regional list and in Wau-Bun's fur-trade species list; the regional list has no source record, so this record is graded on Wau-Bun alone at the record level."
+     "confidence": "inferred",
+     "note": "Raccoon is in the Chicago Academy of Sciences regional retrospective, which has no source record in data/sources/."
     },
     "presence": {
      "value": "visible",
@@ -121,11 +122,8 @@
     "appearance": "Grey, masked, ringed tail.",
     "trace": null
    },
-   "confidence": "documented",
-   "sources": [
-    "kinzie_waubun_1856"
-   ],
-   "note": "Wau-Bun's list of the Chicago fur trade names 'beaver, otter, marten, mink, silver-gray and red fox, wolf, bear, and wild-cat, musk-rat, and smoked deer-skins'. Raccoon rides on the regional retrospective rather than on that list, so the citation here is weaker than the confidence grade suggests and the presence is the safe part."
+   "confidence": "inferred",
+   "note": "A CORRECTION MADE WHILE WRITING THIS RECORD. Wau-Bun's list of the Chicago fur trade names 'beaver, otter, marten, mink, silver-gray and red fox, wolf, bear, and wild-cat, musk-rat, and smoked deer-skins' \u2014 and raccoon is NOT in it. The only support is the regional retrospective, which has no source record, so this animal is graded inferred and cites nothing, even though the dossier tags it [DOC, regional]."
   },
   {
    "id": "neogale_vison",
@@ -166,7 +164,8 @@
    "confidence": "documented",
    "sources": [
     "kinzie_waubun_1856"
-   ]
+   ],
+   "note": "Wau-Bun's fur list names 'brown and black mink' among the species taken at Chicago, which is a near-contemporary record of the animal at this place. It describes 1831, and it is a trade list rather than a field observation, so the animal is documented and its behaviour on 1 July 1835 is not."
   },
   {
    "id": "hylocichla_mustelina",
@@ -271,7 +270,8 @@
     "appearance": "Grey-throated, yellow-bellied, rufous in the tail.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Habitat inference from the timber. No 1830s Chicago bird list survives in anything the project can reach, so every passerine in this dataset rests on habitat reasoning rather than on a record."
   },
   {
    "id": "troglodytes_aedon",
@@ -413,7 +413,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The only Chicago-specific mosquito testimony the dossier found sits on a page that returned HTTP 403, so the wording is unverified and it has no source record. Andreas is not and never will be a source for it: full-text searches for mosquito, mosquitoes and musquitoes all return zero hits."
   }
  ],
  "confidence": "documented",
