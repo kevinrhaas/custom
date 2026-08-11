@@ -2331,6 +2331,77 @@ def test_a_record_that_dates_a_document_needs_no_declaration() -> None:
           not rep.errors, rep.errors)
 
 
+def test_a_field_written_for_a_reader_has_to_reach_one() -> None:
+    """The third direction of the sidecar contract, and the one that was open.
+
+    `check_sidecar_contract` catches a field READ and never emitted, and notes a
+    field EMITTED and never read. A field that never entered the interface at
+    all is invisible to both, because a shape unioned over what is emitted
+    cannot report what was never offered — which is how four source-record
+    fields whose own schema descriptions address a reader went to nobody for the
+    life of the project.
+
+    The candidate set is bounded (the schema's properties), so the fix is a
+    declared partition and these are its discriminating cases.
+    """
+    surface = {
+        "citation": "visitor: the citation itself",
+        "what_it_does_not_supply": "visitor: what it is assumed to give and does not",
+        "note": "internal: the working note",
+    }
+    props = {"citation", "what_it_does_not_supply", "note"}
+    emitted = {"source_id", "citation", "what_it_does_not_supply"}
+    js = "c.citation + c.what_it_does_not_supply.join()"
+    sources = {"s1": {"citation": "x", "what_it_does_not_supply": ["building footprints"],
+                      "note": "n"}}
+
+    def run(**kw):
+        rep = V.Report()
+        V.check_source_surface(kw.pop("sources", sources), rep, surface=kw.pop("surface", surface),
+                               properties=kw.pop("properties", props),
+                               emitted=kw.pop("emitted", emitted), js_src=kw.pop("js_src", js))
+        return rep
+
+    check("the well-formed case passes", not run().errors, run().errors)
+
+    rep = run(properties=props | {"transcribes"})
+    check("a schema field in neither half of the partition fails",
+          any("`transcribes`" in e and "SOURCE_FIELD_SURFACE" in e for e in rep.errors),
+          rep.errors)
+
+    rep = run(surface={**surface, "gone": "internal: was a property once"})
+    check("and a partition naming a field the schema dropped fails too",
+          any("not a property" in e for e in rep.errors), rep.errors)
+
+    # THE case. Everything is well formed, the field is declared visitor-facing,
+    # records carry it, and the compiler simply never carried it across.
+    rep = run(emitted={"source_id", "citation"})
+    check("a visitor-facing field no compiled citation carries fails",
+          any("what_it_does_not_supply" in e and "cannot reach it" in e for e in rep.errors),
+          rep.errors)
+
+    # ... but only when a record actually has one. An empty field is not an
+    # unshipped claim, and a gate that failed on the day a field was added would
+    # be a gate somebody switches off.
+    rep = run(sources={"s1": {"citation": "x"}}, emitted={"source_id", "citation"})
+    check("a visitor field no record carries yet is not an error", not rep.errors, rep.errors)
+
+    rep = run(emitted=emitted | {"note"})
+    check("a citation shipping a field declared internal fails",
+          any("`note`" in e and "internal" in e for e in rep.errors), rep.errors)
+
+    rep = run(js_src="c.citation")
+    check("a field compiled into the citation and never rendered fails",
+          any("what_it_does_not_supply" in e and "never reads it" in e for e in rep.errors),
+          rep.errors)
+
+    # A sentence about a field is not a read of it — the same rule the sidecar
+    # contract learned on its own first run, arriving one interface over.
+    rep = run(js_src="// c.what_it_does_not_supply used to be read here\nc.citation")
+    check("a field named only in a comment is not rendered",
+          any("what_it_does_not_supply" in e for e in rep.errors), rep.errors)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

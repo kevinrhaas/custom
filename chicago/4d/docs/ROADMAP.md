@@ -749,6 +749,41 @@ And `check_watch_list` now holds `carried_by` to a claim the card really renders
 out of `popup.js` by § 29's scanner — which is the third instance of a sentence in this project
 describing a surface it could not see. Data and meshes untouched; nothing was re-baked. STATUS § 41.
 
+**Done 2026-08-11 — a rung is a judgement about a document, and the document had never reached
+the card.** Four slices (§ 44-47) established which page carries which document and what each
+one cannot supply; all of it landed in `data/sources/*.json` and none of it left the repository.
+So a visitor following a citation reached a present-day blog stamped *tier 2 · near-primary
+recollection* with nothing saying it reprints the *Chicago Tribune* of 14 August 1910 carrying
+John Dean Caton's own account — the ladder made to look like an over-grade by the one field that
+would have explained it. Every citation now carries the document it reprints with that
+document's date, or the finding that the page reprints none, and the source's own
+`what_it_supplies` / `what_it_does_not_supply` behind a `<details>`.
+
+The fault is a third kind and it is why the gate is shaped the way it is. § 28 was a field read
+and never emitted; § 30 was a field emitted and never read. This one **never entered the
+interface**, which neither direction of `check_sidecar_contract` can see — a shape unioned over
+what is emitted cannot report what was never offered. The bounded set is the schema, so
+`compile_scene.SOURCE_FIELD_SURFACE` partitions all 22 properties and `check_source_surface`
+fails on a property in neither half, on a visitor-facing field no compiled citation carries, and
+on one `citations.js` never reads. Adding a field to a source record now costs one line saying
+whether a visitor sees it.
+
+Three things worth carrying:
+
+- **A partition inside a field is legitimate and has to be argued.** The card gets the document
+  and the limits; it does not get the `note` on a `transcribes` entry or the reading in
+  `carries_no_document`, because both quote rung numbers, name files in `data/` and record HTTP
+  statuses — they are addressed to whoever re-grades the source. Stated in `citations.js` and in
+  STATUS § 48 rather than left looking like an oversight.
+- **One renderer for every context stopped being right, and a test said so first.** The reprints
+  line arrived under "What is not here" and named *"The Old Western Hotel"* — a building standing
+  200 m away — failing § 26's assertion that a standing building may not appear on that list. The
+  section keeps the plain citation, `evidence: false` says so at the call site, and a new
+  assertion pins it so the option cannot flip back.
+- **Markup inside a list item makes counting selectors wrong.** A nested `<ul>` broke two
+  unrelated assertions enumerating `.cites li`; they are `.cites > li` now. Second occurrence of
+  this shape.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

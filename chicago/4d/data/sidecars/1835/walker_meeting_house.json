@@ -116,7 +116,8 @@
       "url": "https://chicagotemple.org/about/history/",
       "archived_url": "https://web.archive.org/web/20260605220459/https://chicagotemple.org/about/history/",
       "tier": 4,
-      "tier_label": "later scholarship"
+      "tier_label": "later scholarship",
+      "carries_no_document": "Looked for what the west-bank/north-bank disagreement actually needs: a period or near-primary account of the 1834 log meeting house — a trustees' minute, a circuit rider's journal, a conference record, or a dated quotation from one. The page reprints none of those and reprints nothing at all. Its 'HISTORY' section is 500 words of modern congregational narrative running 1831 to 1924, unfootnoted end to end, with no bibliography, no further-reading link and no archive named anywhere on the site's About tree. The only quoted document on the page is a sermon of 1922 by the Rev. John Thompson, about the decision to build the present skyscraper, which is ninety years after the cabin and not about it. So this record's rung is a judgement about the congregation's own modern prose and nothing else, and it cannot rise: there is no document here for a rung to be about. Where it sends you instead is nowhere, which is itself the finding — the institution nearest to the building keeps no citable account of it that this project has been able to reach."
     },
     {
       "source_id": "chicagology_prefire273",
@@ -124,7 +125,15 @@
       "url": "https://chicagology.com/prefire/prefire273/",
       "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
       "tier": 2,
-      "tier_label": "near-primary recollection"
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+          "date": "1857-05-15",
+          "tier": 2,
+          "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+        }
+      ]
     },
     {
       "source_id": "kinzie_waubun_1856",

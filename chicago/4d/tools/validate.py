@@ -2436,6 +2436,148 @@ def check_sidecar_contract(rep: Report) -> None:
                  f"unshipped claim, not an error either way")
 
 
+def citation_shape() -> set[str]:
+    """The keys a compiled citation actually carries, unioned over every one.
+
+    Same union argument as `sidecar_shape`: a key is part of the interface even
+    when one source in twenty-nine carries it. Taken from every derived document
+    that joins citations — the per-structure sidecars, the exclusions list and
+    the terrain claims — because `cite()` writes one shape into all three and a
+    check reading only the first would stop being right the day a field is
+    emitted for an exclusion alone.
+    """
+    keys: set[str] = set()
+    for path in sorted((DATA / "sidecars").rglob("*.json")):
+        def walk(node) -> None:
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    if k == "citations" and isinstance(v, list):
+                        for c in v:
+                            if isinstance(c, dict):
+                                keys.update(c)
+                    else:
+                        walk(v)
+            elif isinstance(node, list):
+                for v in node:
+                    walk(v)
+        walk(json.loads(path.read_text()))
+    return keys
+
+
+def check_source_surface(sources: dict, rep: Report, *,
+                         surface: dict[str, str] | None = None,
+                         properties: set[str] | None = None,
+                         emitted: set[str] | None = None,
+                         js_src: str | None = None) -> None:
+    """Every field of a source record either reaches a visitor or says why not.
+
+    The two directions of `check_sidecar_contract` are *read and never emitted*
+    (an error: the renderer reads undefined forever) and *emitted and never
+    read* (a note: an unshipped claim). Neither can see the third kind, and the
+    third kind is what happened here: `data/source.schema.json` grew
+    `transcribes`, `carries_no_document`, `what_it_supplies` and
+    `what_it_does_not_supply` — four fields whose own schema descriptions are
+    addressed to a reader — and `cite()` never carried one of them into a
+    sidecar. Nothing was broken. A shape unioned over what IS emitted cannot
+    report what was never offered, and the compiler was consistent with itself,
+    which is all `--check` proves.
+
+    What makes the fault checkable is that the candidate set is bounded: it is
+    the schema's own properties. So the partition is declared in
+    `compile_scene.SOURCE_FIELD_SURFACE` and this holds it three ways.
+
+    1. A schema property in neither half fails. That is the mechanism — a field
+       added to a source record costs one line saying whether a visitor sees it,
+       and the sentence has to be written by whoever knows the answer.
+    2. A `visitor` field that some record carries and no compiled citation does
+       fails. This is the check that was missing: it is exactly the state the
+       dataset was in until today, for four fields and the life of the project.
+    3. A `visitor` field never read by `renderers/web/js/citations.js` fails.
+       The card is where the promise is kept, and one module renders every
+       citation in this walkthrough — which is what makes the § 40 objection
+       ("the scan cannot follow a value into a function") not bite here: the
+       shape has one name and one renderer, so a member read is a real read.
+       It is still a name scan and not dataflow, and that limit is why the
+       smoke asserts the rendered card rather than trusting this.
+
+    The reverse of 3 — a key emitted and never read — stays a note, as it is at
+    the top level, because the honest response to it is a decision rather than
+    an error.
+
+    The four keyword arguments exist for the self-test and default to the
+    committed halves; nothing in the suite passes them.
+    """
+    if surface is None:
+        try:
+            sys.path.insert(0, str(ROOT / "tools"))
+            import compile_scene  # noqa: PLC0415
+            surface = compile_scene.SOURCE_FIELD_SURFACE
+        except Exception as exc:  # noqa: BLE001
+            rep.error("source surface", f"cannot read compile_scene.SOURCE_FIELD_SURFACE: {exc}")
+            return
+
+    if properties is None:
+        schema_path = DATA / "source.schema.json"
+        if not schema_path.is_file():
+            rep.note("source surface: skipped — no data/source.schema.json")
+            return
+        properties = set(json.loads(schema_path.read_text()).get("properties", {}))
+
+    for prop in sorted(properties - set(surface)):
+        rep.error("source surface",
+                  f"`{prop}` is in data/source.schema.json and not in "
+                  f"compile_scene.SOURCE_FIELD_SURFACE. Every field of a source record "
+                  f"either reaches the citation a visitor reads or says in one line why "
+                  f"it stays in the repository — undeclared is how four reader-facing "
+                  f"fields went to nobody for the life of the project")
+    for prop in sorted(set(surface) - properties):
+        rep.error("source surface",
+                  f"compile_scene.SOURCE_FIELD_SURFACE declares `{prop}`, which is not a "
+                  f"property of data/source.schema.json — a partition of a set that has "
+                  f"moved underneath it")
+
+    visitor = {k for k, why in surface.items() if why.startswith("visitor")}
+    if emitted is None:
+        emitted = citation_shape()
+    if not emitted:
+        rep.note("source surface: skipped the emitted half — no compiled citations to read")
+    else:
+        for prop in sorted(visitor):
+            carried = sorted(s for s, rec in sources.items() if rec.get(prop))
+            if carried and prop not in emitted:
+                rep.error("source surface",
+                          f"`{prop}` is declared visitor-facing, {len(carried)} source "
+                          f"record(s) carry it ({', '.join(carried[:3])}"
+                          f"{', …' if len(carried) > 3 else ''}) and no compiled citation "
+                          f"does — tools/compile_scene.cite() is not carrying it, so the "
+                          f"claim is written for a reader who cannot reach it")
+        for prop in sorted(emitted - visitor - {"source_id", "tier_label"}):
+            rep.error("source surface",
+                      f"a compiled citation carries `{prop}`, which "
+                      f"{'is declared internal' if prop in surface else 'is not in the partition'}"
+                      f" — the sidecar is shipping a field nobody said a visitor should see")
+
+    if js_src is None:
+        js = ROOT / "renderers" / "web" / "js" / "citations.js"
+        if not js.is_file():
+            rep.error("source surface", "renderers/web/js/citations.js is missing — the one "
+                                        "renderer every citation in this walkthrough goes "
+                                        "through")
+            return
+        js_src = js.read_text()
+    src = strip_js_comments(js_src)
+    unread = sorted(p for p in visitor
+                    if p in emitted and not re.search(rf"\.{re.escape(p)}\b", src))
+    for prop in unread:
+        rep.error("source surface",
+                  f"`{prop}` is compiled into the citations and "
+                  f"renderers/web/js/citations.js never reads it. A field declared "
+                  f"visitor-facing that no renderer touches is the same unshipped claim "
+                  f"in a new place")
+    rep.note(f"source surface: {len(properties)} schema field(s) partitioned, "
+             f"{len(visitor)} visitor-facing, {len(emitted)} key(s) on a compiled citation")
+
+
 # --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
@@ -2625,6 +2767,10 @@ def main() -> int:
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)
+
+    # and the third direction those two cannot see: a field of a source record
+    # that never entered the interface at all
+    check_source_surface(sources, rep)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

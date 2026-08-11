@@ -180,7 +180,34 @@
       "url": "https://chicagology.com/prefire/prefire127/",
       "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
       "tier": 2,
-      "tier_label": "near-primary recollection"
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago' — the early-hotels feature on the Green Tree: interviews with F. H. Taylor (in Chicago from 1834, lodged in the west one-storey addition), John Gray (landlord 1838-41) and Mrs. Murphy of the United States Hotel, each shown the S. W. Fallis sketch and asked to correct it",
+          "date": "1883-07-01",
+          "tier": 2,
+          "note": "Carries every Green Tree claim in this dataset: the function and occupants, the two-storey block with a divided hall and a stairway to the second floor, the gable with an attic window that fixes the roof form, and the dated span. Recollection by men who lived in the house, taken down in print — rung 2, not the reporter's rung."
+        },
+        {
+          "work": "Edwin O. Gale, Reminiscences of Early Chicago and Vicinity — the Green Tree bar-room chapter",
+          "date": "1902",
+          "tier": 2,
+          "note": "Gale reached Chicago in 1835 and describes the bar-room from inside: the room module ('about 12x12, with two windows 6x8'), the whitewashed walls, ceilings and board partitions, and the seven-and-a-half-foot ceiling the record's storey height is reasoned from. A participant writing his own recollection — rung 2."
+        }
+      ],
+      "what_it_supplies": [
+        "interior room module and ceiling height",
+        "plan and circulation",
+        "which street the front faced",
+        "roof form (gable end with attic window)",
+        "landlord chronology",
+        "the 1880 move and 1902 demolition"
+      ],
+      "what_it_does_not_supply": [
+        "overall building dimensions in feet",
+        "exterior finish or colour",
+        "the date the one-story side additions were built"
+      ]
     },
     {
       "source_id": "chicagology_prefire278",
@@ -188,7 +215,15 @@
       "url": "https://chicagology.com/prefire/prefire278/",
       "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
       "tier": 2,
-      "tier_label": "near-primary recollection"
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+          "date": "1883-07-22",
+          "tier": 2,
+          "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",

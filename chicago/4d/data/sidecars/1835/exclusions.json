@@ -202,7 +202,15 @@
           "url": "https://chicagology.com/prefire/prefire273/",
           "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
           "tier": 2,
-          "tier_label": "near-primary recollection"
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
         },
         {
           "source_id": "conley_stelzer_1933",
@@ -227,7 +235,15 @@
           "url": "https://chicagology.com/prefire/prefire273/",
           "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
           "tier": 2,
-          "tier_label": "near-primary recollection"
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+              "date": "1857-05-15",
+              "tier": 2,
+              "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+            }
+          ]
         }
       ]
     },
@@ -351,7 +367,15 @@
           "url": "https://chicagology.com/prefire/prefire278/",
           "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
           "tier": 2,
-          "tier_label": "near-primary recollection"
+          "tier_label": "near-primary recollection",
+          "transcribes": [
+            {
+              "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+              "date": "1883-07-22",
+              "tier": 2,
+              "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+            }
+          ]
         },
         {
           "source_id": "drloih_hotels",

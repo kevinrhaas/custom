@@ -193,11 +193,21 @@ GLB. The renderer reads placement, provenance and footprint from here.
   },
   "citations": [
     { "source_id": "kinzie_waubun_1856", "citation": "...", "url": "...", "archived_url": "...",
-      "tier": 2 }
+      "tier": 2, "tier_label": "near-primary recollection",
+      "transcribes": [ { "work": "...", "date": "1883-07-22" } ],
+      "what_it_supplies": ["..."], "what_it_does_not_supply": ["..."] }
   ],
   "research_doc": "docs/RESEARCH/sauganash_hotel.md"
 }
 ```
+
+The five keys after `tier` are additive and four of them are present only when the source
+record carries them. `tier_label` is the ladder in words; `transcribes` (or, for a page read
+and found to reprint nothing, `carries_no_document`) is what the rung is a judgement ABOUT,
+which matters because on ten of these records the document is not the page; and the two
+`what_it_…_supply` lists are the source's own stated limits. Which fields of a source record
+cross this boundary is not a matter of taste — `compile_scene.SOURCE_FIELD_SURFACE` partitions
+the schema and `validate.check_source_surface` fails on a property in neither half.
 
 `placement.local_e` / `local_n` are **metres east and north of the scene datum origin**
 (`data/datum.json`). While a structure's coordinates are still null, the compiler emits the
