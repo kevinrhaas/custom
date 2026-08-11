@@ -56,7 +56,7 @@
       ],
       "notes": [
         "The water surface is the plane Z = 0 by the definition of this project's vertical datum, and terrain_gen.py emits it at a literal zero rather than reading this figure. So the mesh says exactly what this value says and does not say it BECAUSE of this value: change the 0.0 here and nothing moves. It is recorded because the datum has to be stated somewhere a reader meets it. The agreement is checked rather than trusted: terrain_inputs.RESTATES holds this figure against water_surface_m in the heightfield the bake wrote, converted from feet, so editing it fails the gate instead of quietly telling a visitor the river stands somewhere the ground does not.",
-        "Flat. Pre-reversal flow was sluggish and outward into the lake with a near-zero surface gradient, so the water surface is effectively at lake level throughout the downtown reach; the river gradient is treated as zero."
+        "Flat: the water surface is treated as lake level throughout the downtown reach and the river gradient as zero. WHAT ACTUALLY HOLDS THIS UP IS WEAKER THAN THE GRADE SAYS, and the honest statement of it belongs where a visitor reads the claim. No source read by this project measures the river's surface gradient. The sentence this `documented` rests on is one line of unfootnoted encyclopedia prose about sluggish pre-reversal flow, written in a section about the 1900 reversal. The regrade to `inferred` is queued rather than taken because a confidence is a mesh input and it lands with a Blender bake — docs/ROADMAP.md § S5, docs/STATUS.md § 45. THE PERIOD WITNESS IS DELIBERATELY NOT CITED HERE. Swearingen stood on this bank in August 1803 and wrote that the river was 'dead water' — but in the same clause he gives the cause, 'owing to its being stopped up at the mouth, by the washing of sand, from the lakes', which is the closed-mouth regime this project models as the epoch e1830_natural. This scene is e1834_harbor_cut: the bar is cut and the mouth is open, so his observation describes the condition that was removed. Attaching a tier-1 source to a claim it does not make would be over-grading dressed as a citation. See docs/RESEARCH/swearingen_1803.md § 5."
       ]
     },
     {
@@ -85,9 +85,18 @@
         }
       ],
       "sources": [
+        "quaife_1913_swearingen",
         "wikipedia_chicago_river"
       ],
       "citations": [
+        {
+          "source_id": "quaife_1913_swearingen",
+          "citation": "\"Journal of Lieutenant James Strode Swearingen\", printed as Appendix I in Milo Milton Quaife, Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn (Chicago: University of Chicago Press, 1913), pp. 373-377. The Chicago entry, Wednesday 17 August 1803, runs across pp. 376-377.",
+          "url": "https://archive.org/details/chicagooldnorthw00quaiuoft",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
         {
           "source_id": "wikipedia_chicago_river",
           "citation": "\"Chicago River.\" Wikipedia. Paraphrasing Lt. James Strode Swearingen's 1803 description of the river at Fort Dearborn, footnoted to its reprinting in Quaife 1913, and the 1833-37 harbour works after Holland and Andreas.",
@@ -98,7 +107,7 @@
         }
       ],
       "notes": [
-        "Dossier zone 20 gives the main-stem thalweg at -12 to -18 ft, with the -18 ft pool at the fort bend 1.2 miles downstream. The shallow end of that range is used here because the forks are the upstream end of the reach. Swearingen's 1803 sounding of 'upwards of 18 feet' is a measurement AT THE FORT and is not carried up to the forks."
+        "Dossier zone 20 gives the main-stem thalweg at -12 to -18 ft, with the -18 ft pool at the fort bend 1.2 miles downstream. The shallow end of that range is used here because the forks are the upstream end of the reach. Swearingen's 1803 sounding of 'upwards of 18 feet' is a measurement AT THE FORT and is not carried up to the forks. As of 2026-08-11 that sounding is cited from the journal itself rather than from a paraphrase of it: quaife_1913_swearingen, Appendix I, pp. 376-377. The note above described a source this block did not cite, which is the fault it was written to warn about, one level down."
       ]
     },
     {
@@ -210,10 +219,21 @@
           "mesh": "record_only"
         }
       ],
-      "sources": [],
-      "citations": [],
+      "sources": [
+        "quaife_1913_swearingen"
+      ],
+      "citations": [
+        {
+          "source_id": "quaife_1913_swearingen",
+          "citation": "\"Journal of Lieutenant James Strode Swearingen\", printed as Appendix I in Milo Milton Quaife, Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn (Chicago: University of Chicago Press, 1913), pp. 373-377. The Chicago entry, Wednesday 17 August 1803, runs across pp. 376-377.",
+          "url": "https://archive.org/details/chicagooldnorthw00quaiuoft",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        }
+      ],
       "notes": [
-        "Horizontal distance over which the ground rises from the waterline to the local near-river level. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise; no source gives a bank profile at the forks. The resulting crest sits at each division's near_ft below, which is what implements dossier zone 13 (+2 to +4 ft at the forks).",
+        "Horizontal distance over which the ground rises from the waterline to the local near-river level. 6 m is what a natural low bank in river alluvium looks like at a 2-4 ft rise; no source gives a bank profile at the forks. The resulting crest sits at each division's near_ft below, which is what implements dossier zone 13 (+2 to +4 ft at the forks). ONE PERIOD WITNESS BEARS ON THIS AND HE IS CITED FOR EXACTLY WHAT HE SAYS. Swearingen, arriving 17 August 1803, measured the fort bank at about 8 ft and then wrote of the reach upstream — the reach this box models — that 'the banks above are quite low'. That is corroboration of a low bank from a man who was looking at it, and it is the only sentence in his Chicago passage that reaches this quadrant. It carries no number, so it cannot promote the grade and does not: this stays conjectural, because the 6 m profile and the 2-4 ft rise are still ours. Added 2026-08-11; before that this block cited nothing at all. See docs/RESEARCH/swearingen_1803.md § 5.",
         "As with the channel section: the ease-out is implemented in terrain_gen.py rather than read from this string, and the ramp line it describes is named in terrain_inputs.RESTATES and required to still be in the generator. face_m is the figure that shapes the bank, and it is read."
       ]
     },

@@ -313,11 +313,22 @@ written. Two things come off it:
 
 | queued | what it costs |
 |---|---|
-| Fetch Quaife 1913 pp. 373-377 and record Swearingen's 1803 soundings at their own rung | reading. Free of a bake unless it is then cited from `terrain_spec.json`, whose source ids are inside the terrain's staleness hash |
-| **ground `water`: `documented` → `inferred`** — the flat surface rests on an unfootnoted encyclopedia sentence about sluggish flow, not on Swearingen, who gives no gradient and measures 1.2 miles downstream | a confidence is a mesh input: it stales the ground and lands with its Blender bake, exactly like the four `drloih` values |
+| ~~Fetch Quaife 1913 pp. 373-377 and record Swearingen's 1803 soundings at their own rung~~ | **DONE 2026-08-11** — `quaife_1913_swearingen`, the dataset's first tier-1 written eyewitness document; memo `docs/RESEARCH/swearingen_1803.md`. And **the price above was wrong**: `generators/terrain_inputs.py` strips `sources` from the terrain hash along with the prose, so citing it from `terrain_spec.json` cost nothing and was done in the same slice. A `confidence` is the mesh input, not a citation |
+| **ground `water`: `documented` → `inferred`** — the flat surface rests on an unfootnoted encyclopedia sentence about sluggish flow, not on Swearingen, who gives no gradient and measures 1.2 miles downstream | a confidence is a mesh input: it stales the ground and lands with its Blender bake, exactly like the four `drloih` values. **Better argued as of 2026-08-11 and unchanged in direction**: reading Swearingen made the case stronger rather than rescuing it, because his 'dead water' is attributed in the same clause to a mouth stopped by sand — the `e1830_natural` condition the 1834 cut removed. He is deliberately NOT cited on the water plane; the block's note says so where a visitor reads it |
 
 That is the **first of the six warnings settled in the over-graded direction** — the source is
-correctly tiered and the value is not. Six pages at tier 4 or weaker still declare nothing
+correctly tiered and the value is not.
+
+**And the primary printing arrived 2026-08-11, which cost the encyclopedia one of its two bank
+figures** (STATUS § 46, `docs/RESEARCH/swearingen_1803.md`). Quaife's Appendix I is now
+`quaife_1913_swearingen` at tier 1, read from two Internet Archive scans that agree character
+for character. Wikipedia's *"6 ft on the north"* is nowhere in the journal: Swearingen gives no
+north-bank height, only a bounded difference flagged as made *by appearances*, and 6 is what a
+later writer got by subtracting the maximum from 8. What the paraphrase dropped matters more —
+*"the banks above are quite low"* is the only sentence in the passage about the reach this
+project models, and it is attached to the spec's `bank` block now, which cited nothing before.
+Fourth citation found misdescribing its own page, and the first found by opening the document
+rather than the host. Six pages at tier 4 or weaker still declare nothing
 (`chicago_temple_history`, `chicagology_first_post_office`, `chicagology_lastwardance`,
 `chicagology_prefire274`, `drloih_hotels`, `drloih_wolf_point`), counted by the validator every
 run, and the two `drloih` pages are not solvable this way.

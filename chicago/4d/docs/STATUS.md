@@ -3,9 +3,10 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the three pages § 44 said *looked like* the same case were opened;
-two were and one reprints nothing at all, which needed a third state in the vocabulary — and the
-page that reprints nothing is where the flat water surface's `documented` grade comes from, § 45) ·
+**Last updated:** 2026-08-11 (the footnote § 45 recovered was chased to the book it names:
+Swearingen's 1803 journal is a source record now, the dataset's first written eyewitness
+document, and reading it cost the encyclopedia one of its two bank figures and recovered the one
+sentence in the passage that reaches the modelled quadrant, § 46) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1555,6 +1556,63 @@ uncertainty of the 1834 sheets in its note.
     them. The mitigation is prose — the memo tabulates the undeclared documents beside the
     declared one, so the choice can be argued with rather than only trusted.
 
+46. **The footnote was chased, and the paraphrase lost a figure it never had.** § 45 ended by
+    saying that `wikipedia_chicago_river` reprints nothing but names something better: *Journal
+    of Lieutenant James Strode Swearingen reproduced in Quaife 1913, pp. 373-377*. Those pages
+    are fetched, read in full and recorded. Memo: `docs/RESEARCH/swearingen_1803.md`; source:
+    **`quaife_1913_swearingen`, tier 1** — the first written eyewitness document in this
+    dataset (the three tier-1 records before it are two survey sheets and a drawing).
+    **Read from two scans, which is the standard and not a formality.** Internet Archive items
+    `chicagooldnorthw00quaiuoft` and `chicagooldnorthw00quai` agree on the Chicago passage
+    character for character once whitespace is normalised — the same two-scan discipline
+    `old_settlers_bridges_1883` was read under. Two internal checks came free: the entry heads
+    itself Wednesday 17 August 1803 and that date **was** a Wednesday, and the volume's own
+    index points independently at p. 377.
+    **The '6 ft on the north' is not in Swearingen.** The encyclopedia prints *"the riverbanks
+    were 8 ft high on the south side and 6 ft on the north"*, two measurements side by side.
+    What the journal says is that the fort bank is about 8 feet and *"the opposite bank is not
+    so high, not being a difference, of more than two feet, by appearances"* — a **bounded**
+    difference, explicitly estimated **by eye**. Six is 8 minus the maximum, computed by a later
+    writer and then set beside a sounding as though it were one. The honest reading is 6-8 ft,
+    visually estimated. **Fourth citation in this dataset found misdescribing its own page**
+    (`prefire273`, `prefire278`, `prefire062` were the first three) and the first found by
+    opening the *document* rather than the host.
+    **What the paraphrase dropped is worth more than what it garbled.** Two sentences went
+    missing. *"Dead water, owing to its being stopped up at the mouth, by the washing of sand,
+    from the lakes"* — the pre-cut regime in the witness's own words. And *"The banks above are
+    quite low"*, which is **the only sentence in the whole passage about the reach this project
+    actually models**. Every figure the encyclopedia kept is taken at the fort, 1.2 miles
+    downstream, and this record's own note has warned since it was written not to carry them
+    upstream. So the paraphrase preserved the numbers that do not reach the forks and lost the
+    observation that does. It is attached now to the spec's `bank` block, which cited **nothing
+    at all** before today, and it does not move that block's `conjectural` grade: "quite low"
+    carries no number, and the 6 m profile and the 2-4 ft rise are still ours.
+    **It does not rescue the water plane, and the reason is in the witness's own clause.** The
+    obvious move on finding a tier-1 source saying the river stood dead is to cite it under the
+    flat surface and keep the `documented`. It is refused. Swearingen attributes the stillness,
+    in the same sentence, to the mouth being stopped up by sand — the `e1830_natural` condition
+    that the 1833-34 cut removed, and the 1835 scene is `e1834_harbor_cut` because of it. He
+    also gives no gradient at all. Citing him there would be a tier-1 source attached to a claim
+    it does not make, which is worse than the tier 4 it replaced because nobody would look at it
+    twice. The `documented` → `inferred` regrade stays queued at its stated price of one bake,
+    better argued than it was; the water block's note now says all of this where a visitor reads
+    it, and it is the block's note rather than a private file because that is what
+    `terrain_inputs.py` made affordable.
+    **A price the roadmap over-quoted, corrected in passing.** § S5 said citing this source from
+    `terrain_spec.json` would cost a bake because source ids are inside the terrain's staleness
+    hash. They are not — `resolved-spec-v2` strips `sources` with the prose, for the stated
+    reason that a citation cannot move a vertex. So the citation, the two corrected notes and
+    the new one were all free, and the slice that was priced as read-only shipped the attachment
+    too. A confidence is still an input, which is why the regrade is still queued.
+    **What this does not settle.** The manuscript itself: Quaife could not get at the original
+    either — it was privately held in Dallas in 1913 — so his text is a 1903 typescript made by
+    a descendant, a two-hop chain he states himself and this record repeats. Whether the 1834
+    trace agrees with the half mile is left as a consistency and not a measurement (§ 7 of the
+    memo): walking the traced south shore south from the fort gives at least 1 366 m against
+    Swearingen's 805, across thirty-one years of a spit that grows downdrift, and nothing in the
+    dataset was changed on it. And Hubbard's "not over eight feet above the River" beside
+    Swearingen's eight feet is one line of arithmetic left for the fort parcel.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -1584,6 +1642,15 @@ gate opened. Three of the four were spelling; the fourth was a name read as bein
 half of a two-part building, which no spelling check would have caught. Nothing new is queued
 behind it, so **S5 is additions again**: eight archetypes and about forty researched structures
 against the six that stand.
+
+**The evidence-ladder queue, as it stands after § 46.** Six `documented` values still rest on
+later scholarship alone and the validator counts them every run. One of the six —
+ground `water` — is settled as an over-graded VALUE and waits only on the Blender bake a
+confidence change costs; four are the `drloih` values that re-tiering cannot save and that land
+with the same bake; the sixth (`surface_materials.south_division`) has not been opened. Six
+pages at tier 4 or weaker still declare neither a document nor the reading that they carry
+none. None of this blocks S5 additions and none of it needs a runner with Blender except the
+regrades themselves.
 
 **S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
 
