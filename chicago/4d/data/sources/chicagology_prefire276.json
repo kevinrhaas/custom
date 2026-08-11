@@ -1,0 +1,33 @@
+{
+  "id": "chicagology_prefire276",
+  "type": "website",
+  "citation": "\"Fort Dearborn II.\" Chicagology. Reprinting Chicago Magazine, 15 May 1857 (the fort's re-occupation chronology) and Chicago Magazine, May 1857 (the Indian Agency), with the caption to the 1855 Alexander Hesler woodcut, a Chicago Tribune notice of 27 March 1856, and later map and photograph reproductions.",
+  "date": "accessed 2026-08-11",
+  "describes_date": "1816-1857",
+  "locator": "The \"Chicago Magazine, May 15, 1857\" section (rebuilding and garrison chronology, and the factory buildings bought by Beaubien); the \"Chicago Magazine, May, 1857\" section (the Indian Agency and Cob-Web Castle); and the 1855 Hesler woodcut caption lower down.",
+  "url": "https://chicagology.com/prefire/prefire276/",
+  "archived_url": "https://web.archive.org/web/20260410095255/https://chicagology.com/prefire/prefire276/",
+  "tier": 4,
+  "rights_status": "check_required",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "THE GARRISON CHRONOLOGY, which is what this page is actually good for. The fort was rebuilt from 1 July 1816 under Capt. Hezekiah Bradley and \"stood upon the same ground as the fort of 1804, which had been burnt by the Indians\". Then: occupation \"was continued until May 1823, when the troops left, and the fort was occupied by the Indian agent, and used for the temporary accommodation of families of residents recently arrived\"; \"On the 10th of August, 1828, the fort was again occupied by a company of volunteer troops\" after the Winnebago disturbances; \"The troops remained here till May 1831, when it was again evacuated by the removal of the troops to Green Bay, and left in possession of Geo. W. Dole, as agent for the government, who afterwards delegated his charge to John Kinzie, sub-agent\"; and \"Again on the breaking out of the Sauk, (Black Hawk) war, in 1832, it was re-occupied ... and its occupancy continued till the removal of the Indians in 1836\". The page's header field reads \"Life Span: 1816-1856 (Troops removed to Green Bay, May, 1831)\", which is a header, not a claim that the fort stood empty after 1831; its own body text says the opposite. On 1835-07-01 the fort is garrisoned.\n\nTHE BEAUBIEN HOUSE, AND A CANDIDATE RESOLUTION OF THE DOSSIER'S 'CONTESTED CORNER'. Verbatim: \"During the time of this first occupancy, Capt. Bradley caused some factory buildings to be erected outside of the palisades, near the lake shore on the south side of the fort. Soon after, one of these buildings came into the possession of Dear, an army contractor, who sold out in 1817, to the American Fur Company, of whom it was purchased by John Baptiste Beaubien, who continued from that time on, the occupant of the dwelling, and the premises, which comprised a garden and enclosure, till the year 1836, thus laying the basis for the pre-emption claim\". \"Dear\" is evidently the page's rendering of DEAN. That gives a THIRD location statement alongside Andreas's \"southwest corner of South Water Street and Michigan Avenue\" (scan p. 185) and \"north-east corner\" (scan p. 339) - and it is the one that makes the other two consistent, because Wentworth on chicagology_prefire052 says the north-east corner is where Beaubien lived \"after he moved from what was before known as the John-Dean house\". Two houses, not one contested corner. THIS IS NOT SETTLED BY THAT INFERENCE: nothing reached says when he moved, so which house he was living in on 1835-07-01 is open, and the position attribute should stay inferred at best with the reasoning written down.\n\nCOB-WEB CASTLE, confirming the dossier's placement guard: \"The agency was established in the log house, on the north side, near where now is the east end of the freight house of the Chicago and Galena Union Railroad Company, and was familiarly known as 'Cob-Web Castle.'\" North side. Do not put it beside the fort.\n\nTHE 1855 PHOTO KEY ON THIS PAGE IS THE SAME CAPTION AS ON chicagology_prefire052, reprinted word for word - commandant's quarters brick about 25x50 ft, officers' quarters wood about 30x60 ft, parade-ground 80x200 ft, (D) the sutler's, (E) the north gate. ONE caption on TWO pages. It is not a second witness and must not be cited as though the dimensions were independently attested.\n\nDEMOLITION, for the timeline and not for 1835: \"it was only as late as the summer of 1856, that the principal part of the buildings, including the quarters of the officers, and the barracks of the soldiers, were torn down; and the block house, the most attractive object of all, within a few weeks has been completely demolished.\"\n\nTIER 4 GRADES THIS WEB PAGE, NOT THE MATERIAL IT REPRINTS. A modern compilation quoting an older text is still a modern compilation: the transcription is unpaginated, uncredited editorial prose sits beside the quoted matter with no typographic break, and nothing here can be collated against a printed page. Where a claim taken from this page is load-bearing, re-read it in the underlying volume and cite that record instead.",
+  "access_notes": "Site carries no license statement. Treat as a transcription aid, not a rights source; nothing may be derived from it as an asset.",
+  "what_it_supplies": [
+    "the 1816 rebuild from 1 July 1816 under Capt. Hezekiah Bradley, on the ground of the 1804 fort",
+    "garrison chronology: troops left May 1823, returned 10 August 1828, removed to Green Bay May 1831, re-occupied 1832, occupancy continuing to 1836",
+    "the fort in the charge of Geo. W. Dole and then John Kinzie as sub-agent, 1831-32",
+    "factory buildings erected outside the palisades, near the lake shore, on the SOUTH side of the fort",
+    "Beaubien's purchase of one of them from the American Fur Company after 1817, with garden and enclosure, occupied to 1836",
+    "the Indian Agency in the log house on the NORTH side, \"Cob-Web Castle\"",
+    "the principal fort buildings torn down in the summer of 1856, the blockhouse shortly after",
+    "the 1855 Hesler photo key - a duplicate of the caption on chicagology_prefire052"
+  ],
+  "what_it_does_not_supply": [
+    "any dimension of the 1816 fort, its stockade or its enclosure",
+    "any independent version of the 1855 photo key",
+    "which corner of South Water Street and Michigan Avenue Beaubien's later house occupied",
+    "the date Beaubien moved from the John Dean house",
+    "anything specific to the fort's condition in 1835"
+  ]
+}
