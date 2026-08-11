@@ -10,11 +10,23 @@
   "asset": "gltf/chappel_infant_school__log_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-01-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "WHAT IS DATED IS A SCHOOL, NOT A BUILDING, AND THE DIFFERENCE IS THE POINT OF THIS RECORD. Andreas has Eliza Chappel's infant school in 1833-34 in 'a log house just outside the military reservation ... divided into school-room and lodging quarters' (docs/research/04-structures-south.md section 9, from Andreas I scan p. 431). During 1834 the school MOVED INTO THE FIRST PRESBYTERIAN CHURCH at Lake and Clark. Nothing reached says what became of the log house. 1833-01-01 is the first day of the year the school is attested in it and is a bound; the house itself is older than the school by an unknown amount. 1835-12-31 IS AN INFERENCE ABOUT PERSISTENCE, NOT AN ATTESTATION: a sound log house eighteen months old is not pulled down when its tenant leaves, and the town in 1835 was short of buildings and growing, so the structure very probably still stood. That is the reasoning, and it is the whole of it. IF THE HOUSE WAS DEMOLISHED, MOVED OR BURNT BETWEEN 1834 AND THE SCENE DATE, THIS RECORD IS WRONG AND NOTHING IN THE SOURCES WOULD SHOW IT."
+  },
+  "change_note": "The log house Eliza Chappel's infant school occupied in 1833-34, divided into a school-room and lodging quarters, standing just outside the western edge of the military reservation. THE SCHOOL LEFT IN 1834 for the First Presbyterian Church at Lake and Clark; this phase carries the BUILDING, which is inferred to have still stood on 1835-07-01, and makes no claim about what it was used for then.",
   "placement": {
     "local_e": 810.92,
     "local_n": -47.06,
     "rotation_deg": 90.0,
     "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "INVENTED WITHIN AN ATTESTED NEIGHBOURHOOD. What Andreas gives is 'a log house just outside the military reservation' and nothing more precise. The reservation's western boundary on the south side WAS State Street until the town's February 1835 extension, which is documented, so 'just outside' means immediately west of State; the block between South Water and Lake is this project's dossier's reading of where that puts the school, and the dossier tags the exact lot [CONJ] itself. NO SOURCE PLACES THIS BUILDING ON A LOT, A CORNER OR A BLOCK FACE, so the coordinate is a point chosen inside a two-block-long strip and the confidence says so. METHOD: State Street survives on its plat line; the modern West Lake Street / North State Street centre (EPSG:26916 E 447902.80, N 4637282.51, OSM node 258957342) and the West Wacker Drive / North State Street centre (E 447899.81, N 4637407.66, 4 nodes averaged, spread 21.4 m), both fetched 2026-08-11, give the street's line, and the mid-point between them, E 447901.30 / N 4637345.08, is the middle of the block face. The footprint's east face is set 12.2 m west of that centreline - half of an 80 ft street per Hathaway 1834 - and the building centred on the block face north to south. UNCERTAINTY: about 20 m from the georeference, plus about 60 m either way ALONG State Street from the mid-block choice, plus the possibility that 'just outside the reservation' was read too narrowly and the house stood a lot or two back from the street. Facade bearing 90, due east onto State, a convention rather than a finding. NOTE ALSO that South Water Street's modern successor, Wacker Drive, was built on the old right of way in 1924-26 and widened northward, so the northern of the two control points is the softer one; it is used here only to fix a direction, not a frontage.",
     "symbolic_location": "West side of State Street between South Water Street and Lake Street, just outside the western edge of the military reservation; fronting east onto State.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +51,9 @@
         5.486
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION. 7.315 x 5.486 m is 24 x 18 ft, recorded converted with the original figures stated per data/datum.json's units rule. The one constraint the evidence offers is the plan rather than the size: the house was 'divided into school-room and lodging quarters', so it held two rooms - a schoolroom big enough for an infant school and a teacher's lodging - which is bigger than a single-pen cabin and smaller than a public building. 24 x 18 ft is a two-room log house of the period at the small end. Everything else about the shape is this record's. Note the axis convention: with a bearing of 90 the polygon's first axis runs along State Street north to south and the second runs back from it, so the 24 ft dimension is the street frontage."
   },
   "attributes": {
     "stories": {
@@ -107,7 +121,8 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     }
   ],
   "research_note": "A BUILDING THAT IS ATTESTED THROUGH AN INSTITUTION THAT HAD LEFT IT. Everything documented here - the log house, the division into school-room and lodging quarters, the siting just outside the military reservation - comes from one sentence of Andreas about the school (docs/research/04-structures-south.md section 9, from Andreas I scan p. 431), and the school moved out in 1834. So the record makes two separable claims, and a later source can knock down either without touching the other: that a log house of this description stood west of State Street, and that it was still standing on 1835-07-01. The second is an inference about how long a log house lasts. THREE GUARDS. (1) DO NOT CONFLATE THIS WITH THE NORTH SIDE SCHOOLS. John Watkins taught near the old Indian agency-house on the north bank in the spring of 1833, and a public school stood on the north bank just east of Clark Street in the building erected by Cols. Hamilton and Owen; both are north-side buildings and neither is this one. The Watkins house on Michigan Street is a separate record here. (2) DO NOT PROMOTE THE POSITION. The dossier itself tags the exact lot conjectural and the placement here is a point inside a two-block strip. (3) THE LATER SCHOOL BUILDINGS ARE EXCLUDED BY DATE: the first public school building erected by private means is 1837 and the Miltimore and Dearborn schools are 1837 and 1844-45. WHAT WOULD UPGRADE IT: Andreas vol. 1 at page-image level around scan p. 431, read for a street or a lot rather than for the school; the 1834 or 1835 Chicago Democrat, which advertised schools and would date the move out of this house from the other side; and any of the Chappel biographical literature, which is extensive because she later founded the Chicago Orphan Asylum. A NOTE ON SCOPE, for the same reason walker_meeting_house carries one: an infant school in Chicago in 1833 taught the children of a town that was still a Potawatomi trading settlement in the year of the final removal, and interpretive text about this building sits close to the project's standing constraint on Indigenous history even though the structure itself is a settler building. review_required is set false, consistent with walker_meeting_house, but the call is worth a second opinion.",

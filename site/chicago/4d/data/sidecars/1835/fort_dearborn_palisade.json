@@ -11,11 +11,30 @@
   "asset": "gltf/fort_dearborn_palisade__picket_1816.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1816-07-01",
+    "to": "1849-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "kinzie_waubun_1856",
+      "wentworth_1881_fort_dearborn",
+      "harrison_1830_river_mouth",
+      "andreas_1884_v1"
+    ],
+    "note": "THE END OF THIS RANGE IS AN UPPER BOUND, NOT A DATE. The pickets are attested standing in 1831 by someone living inside them - Juliette Kinzie, 'The fort was inclosed by high pickets' - and drawn on the 1830 plan. Robert Fergus, describing the fort in 1850, says 'The whole Fort enclosure was surrounded by a rough-board fence, white-washed, about 6 feet high; the pickets having been removed at an earlier date'. NOTHING REACHED DATES THAT REMOVAL, so the range is closed at the last day before Fergus's view rather than at a real terminus, and the buildings inside carry a longer range than the wall round them for that reason. On 1835-07-01 the post is garrisoned and the pickets stand: the removal belongs to the years after the troops left in December 1836, and a stockade is not pulled down round an occupied garrison."
+  },
+  "change_note": "The stockade of the second Fort Dearborn: high pickets on a square, bastions at the north-west and south-east angles, a block-house at the south-west, and large gates north and south. Standing and garrisoned on 1835-07-01 under Maj. John Greene, 5th Infantry.",
   "placement": {
     "local_e": 1122.07,
     "local_n": 198.45,
     "rotation_deg": 8.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "harrison_1830_river_mouth",
+      "wright_1834",
+      "andreas_1884_v1"
+    ],
+    "position_note": "PLACED FROM THE ONLY PLAN OF THIS FORT ANYONE HAS FOUND. F. Harrison Jr.'s 1830 survey of the mouth of the Chicago River, drawn for the harbour works and reproduced by Andreas at vol. 1 p. 113, draws Fort Dearborn IN PLAN: a quadrangular picket enclosure with a work at three of its four angles, four ranges set against the walls, two small buildings flanking a break in the south wall, and a larger block outside the south-west angle. Positions in this record were read off that plate in pixels, scaled at 1.10 ft per pixel of the archive.org page image, rotated to the sheet's own true-north arrow, and hung on the fort centre at local E +1152, N +221 - the Wright 1834 reading that docs/ROADMAP.md S5a records as cross-checked to 35 m against the modern successor landmark. THE SCALE IS THE WEAK LINK AND IT IS STATED RATHER THAN BURIED: the sheet carries no scale bar, so 1.10 ft/px comes from setting the north range equal to the commandant's quarters at 'about 25x50 ft' in the key to the 1855 photograph, and it is checked by the gap between the west and east ranges coming out 71 ft against that key's 80 ft parade width. Carry +/-20 percent on every dimension derived this way, on top of the +/-20 m the datum already carries. THE ARRANGEMENT IS BETTER EVIDENCE THAN THE SCALE, and it is corroborated: Gurdon S. Hubbard, describing the inside of this fort in 1827 (Andreas I, p. 264), names the same buildings on the same sides in the same relation to the same two gates. An 1830 engineer's plan and an 1827 eyewitness agreeing building by building is what licenses inferred here rather than conjectural. See docs/RESEARCH/fort_dearborn.md sections 3 and 4. THE ROTATION IS READ OFF THE SAME PLATE and is the least expected number in this record: the fort's walls are drawn about 8 degrees clockwise of true north, measured as the mean of all four walls against the sheet's own north arrow, which sits within 0.2 degrees of vertical once the leaf is rotated. Eight degrees is inside what a woodcut re-engraving can invent, so it is inferred and not documented - but the fort sat on a river bank inside a bend and had no grid to align to, and a square post whose walls all lean the same way by the same amount is more likely to be a fort that was not square with the meridian than an engraver who tilted four lines consistently.",
     "symbolic_location": "The south bank of the Chicago River inside the bend, on the Fort Dearborn Reservation at the river mouth; the site of the modern Michigan Avenue bridge's south approach.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -40,7 +59,13 @@
         53.0
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "harrison_1830_river_mouth",
+      "andreas_1884_v1",
+      "wentworth_1881_fort_dearborn"
+    ],
+    "note": "A SQUARE OF ABOUT 53 m (174 ft), AND EVERY PART OF THAT SENTENCE HAS A DIFFERENT WARRANT. That it was SQUARE is Andreas in terms: 'The fort, as rebuilt, consisted of a square stockade inclosing barracks, quarters for the officers, magazine and provision-store' - and the 1830 plan agrees, drawing the two wall-to-wall distances within 3 percent of each other (161 and 157 pixels). THE SIZE IS DERIVED, NOT STATED. No source reached gives a dimension of this stockade; Quaife, who wrote the standing monograph on the fort and had the War Department files, prints Captain Whistler's measured 1808 draught of the FIRST fort and states no dimension of the second one anywhere. So 53 m is the 1830 plan measured at the scale that record's position note derives, and it carries +/-20 percent - the fort is somewhere between about 140 and 210 ft on a side. WHAT IS NOT CLAIMED: the polygon is a rectangle because the plan draws a quadrangle, and nothing attests the corners were true or the sides equal to the foot."
   },
   "attributes": {
     "wall_kind": {
@@ -146,42 +171,93 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "drloih_fort_dearborn",
       "citation": "\"The Complete History of the First and Second Fort Dearborn in Chicago.\" Digital Research Library of Illinois History Journal, June 2018.",
       "url": "https://drloihjournal.blogspot.com/2018/06/history-of-the-first-and-second-fort-dearborn-in-Chicago.html",
       "archived_url": "http://web.archive.org/web/20260801093006/https://drloihjournal.blogspot.com/2018/06/history-of-the-first-and-second-fort-dearborn-in-Chicago.html",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "the commandants of the second fort with dates, 1832-1836",
+        "the date of the final evacuation, 29 December 1836"
+      ],
+      "what_it_does_not_supply": [
+        "any independent architectural evidence for the second fort",
+        "footnotes"
+      ]
     },
     {
       "source_id": "harrison_1830_river_mouth",
       "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
       "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
       "archived_url": "",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the fort's plan arrangement: a quadrangular picket enclosure, corner works, four ranges, two gates",
+        "which building stood on which side of the parade",
+        "the relative proportions of the enclosure and the buildings in it",
+        "the fort's rotation relative to true north",
+        "the named ground around the fort: garrison garden, cultivated field, barn, wash house, well, shop, cemetery, ferry"
+      ],
+      "what_it_does_not_supply": [
+        "any dimension in feet - there is no scale bar",
+        "elevations, heights, roof forms or materials",
+        "the state of the fort in 1835 - it is five years earlier",
+        "a separation between the 1830 survey and the settler-memory additions the plate admits to"
+      ]
     },
     {
       "source_id": "kinzie_waubun_1856",
       "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
       "url": "https://www.authorama.com/wau-bun-19.html",
       "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     {
       "source_id": "wentworth_1881_fort_dearborn",
       "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
       "url": "https://chicagology.com/prefire/prefire052/",
       "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the commandant's quarters at about 25 x 50 ft, brick",
+        "the officers' quarters at about 30 x 60 ft, wood, at the north-west corner",
+        "a parade ground 80 ft wide",
+        "which buildings stood on which side of the parade",
+        "the commandants of the second fort by date",
+        "the date the pickets came down is NOT given - only that it was 'at an earlier date' than 1850"
+      ],
+      "what_it_does_not_supply": [
+        "the stockade's dimensions",
+        "anything about the fort in 1835 that is not inferred backwards from an 1850 or 1855 image",
+        "a reliable division between first-fort and second-fort description - the pamphlet reprints both and readers routinely mix them"
+      ]
     },
     {
       "source_id": "wright_1834",
       "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
       "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
       "archived_url": "",
-      "tier": 1
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "shoreline",
+        "river channel and the 1834 cut",
+        "survey-date colouring"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
     }
   ],
   "research_note": "THE MOST RECOGNISABLE STRUCTURE IN 1835 CHICAGO, and the record whose footprint stopped being a placeholder because a plan turned up. What the plan is, how it was scaled and what that scale is worth are in the position and footprint notes and at length in docs/RESEARCH/fort_dearborn.md. THREE THINGS THIS RECORD EXISTS TO GET RIGHT. First, it is the SECOND fort: the sally-port, the two blockhouses at the south-east and north-west angles, the fifty invalids and the cultivated garden on the south side all come from a passage that ends 'Such was the old Fort previous to 1812', and every one of them is excluded here - see data/exclusions.json. Second, it was OCCUPIED, which is a different scene from an empty one; the occupants block sets out the chain. Third, the fort a visitor may have seen photographed is not this one: the whitewashed board fence, the turnstile from Michigan Avenue and the four-hundred-foot parade belong to the compound of the 1850s, after the pickets came down and the army left.",
