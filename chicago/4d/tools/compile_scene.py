@@ -516,9 +516,39 @@ def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> i
     return len(claims)
 
 
+def compile_intersections(datum: dict) -> list[dict]:
+    """Every verified street-control junction, flattened for navigation.
+
+    The renderer reads sidecars, never the raw research dataset.  Street
+    intersections therefore belong in the scene index beside the structures:
+    one derived list, re-derived by ``--check``, rather than a second set of
+    coordinates typed into the interface.  The names come from the same street
+    dictionary the placement checks use, and local ENU is derived from the
+    committed datum exactly as structure placement is below.
+    """
+    doc = load(DATA / "traces" / "street_control.json")
+    streets = doc.get("streets", {})
+    out = []
+    for iid, control in sorted((doc.get("control") or {}).items()):
+        street_ids = control.get("streets", []) or []
+        names = [streets.get(s, {}).get("name", s.replace("_", " ").title())
+                 for s in street_ids]
+        modern = [streets.get(s, {}).get("modern", "") for s in street_ids]
+        out.append({
+            "id": iid,
+            "label": " & ".join(names),
+            "streets": street_ids,
+            "search_terms": [x for x in [*names, *modern] if x],
+            "local_e": round(control["utm_e"] - datum["origin_utm_e"], 3),
+            "local_n": round(control["utm_n"] - datum["origin_utm_n"], 3),
+        })
+    return out
+
+
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     scene = load(DATA / "scenes" / f"{scene_id}.json")
     target = dt.date.fromisoformat(scene["target_date"])
+    datum = load(DATA / "datum.json")
     outdir = DATA / "sidecars" / scene_id
     outdir.mkdir(parents=True, exist_ok=True)
 
@@ -581,7 +611,6 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
         rng = phase.get("documented_range", {})
         pos = phase.get("position", {})
         provisional = pos.get("utm_e") is None
-        datum = load(DATA / "datum.json")
         if provisional:
             local_e = local_n = 0.0
         else:
@@ -666,6 +695,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     emit(outdir / "index.json", {
         "scene": scene_id,
         "target_date": scene["target_date"],
+        "intersections": compile_intersections(datum),
         "structures": index,
         "excluded_by_date": skipped,
     })

@@ -15,7 +15,9 @@ const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
 const SET_KEY = 'chicago4d.settings';
 
-const DEFAULT_SETTINGS = { speed: 1.45, fov: 72, quality: 1.5 };
+const DEFAULT_SETTINGS = {
+  speed: 1.45, fov: 72, quality: 1.5, compass: true, overviewMap: true,
+};
 
 function readSettings() {
   try {
@@ -31,7 +33,10 @@ function store(key, value) {
   try { window.localStorage.setItem(key, value); } catch { /* private mode */ }
 }
 
-export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting, onGoTo, isTouch }) {
+export function createHud({
+  root, scene, registry, intersections = [], onConfidence, onFly, onHelp,
+  onSetting, onGoTo, isTouch,
+}) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
   const badgeSub = root.querySelector('.badge-sub');
@@ -130,6 +135,7 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
   function setPanel(open) {
     if (!panel) return;
     panel.toggleAttribute('hidden', !open);
+    root.classList.toggle('panel-open', !!open);
     btnHelp?.setAttribute('aria-pressed', String(!!open));
     // Release the pointer lock on open. While the cursor is captured for
     // looking around, every click goes to the canvas and none of these controls
@@ -213,6 +219,95 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
     });
   }
 
+  function wireToggle(id, key) {
+    const el = $(id);
+    if (!el) return;
+    el.checked = settings[key] !== false;
+    el.addEventListener('change', () => {
+      settings[key] = el.checked;
+      onSetting?.(key, settings[key]);
+      store(SET_KEY, JSON.stringify(settings));
+    });
+  }
+  wireToggle('s-compass', 'compass');
+  wireToggle('s-overview-map', 'overviewMap');
+
+  // Every structure in the compiled scene and every verified street-control
+  // intersection.  The list is complete by construction: the registry and the
+  // scene index are the same two collections the renderer loaded, rather than a
+  // hand-maintained menu that becomes stale when the town grows.
+  const jumpTargets = [];
+  for (const i of intersections) {
+    jumpTargets.push({
+      kind: 'intersection', id: i.id, label: i.label || i.id,
+      local_e: i.local_e, local_n: i.local_n,
+      search: [i.id, i.label, ...(i.search_terms ?? [])].filter(Boolean).join(' '),
+    });
+  }
+  for (const [id, record] of registry?.entries?.() ?? []) {
+    const structureSidecar = record.sidecar ?? {};
+    jumpTargets.push({
+      kind: 'structure', id, label: structureSidecar.name || id,
+      search: [id, structureSidecar.name, ...(structureSidecar.aka ?? []),
+        structureSidecar.placement?.symbolic_location]
+        .filter(Boolean).join(' '),
+    });
+  }
+  jumpTargets.sort((a, b) => a.kind.localeCompare(b.kind) || a.label.localeCompare(b.label));
+
+  const jumpSearch = $('jump-search');
+  const jumpResults = $('jump-results');
+  const jumpCount = $('jump-count');
+  const normal = (value) => String(value ?? '').toLocaleLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  function paintJumpResults(query = '') {
+    if (!jumpResults) return;
+    const terms = normal(query).trim().split(/\s+/).filter(Boolean);
+    const matched = jumpTargets.filter((t) => terms.every((word) => normal(t.search).includes(word)));
+    jumpResults.replaceChildren();
+    if (jumpCount) jumpCount.textContent = terms.length
+      ? `${matched.length} of ${jumpTargets.length}` : `${jumpTargets.length} places`;
+    if (!matched.length) {
+      const empty = document.createElement('p');
+      empty.className = 'jump-empty';
+      empty.textContent = 'No matching structure or intersection.';
+      jumpResults.appendChild(empty);
+      return;
+    }
+    let lastKind = '';
+    for (const target of matched) {
+      if (target.kind !== lastKind) {
+        const heading = document.createElement('p');
+        heading.className = 'jump-group';
+        heading.textContent = target.kind === 'intersection' ? 'Intersections' : 'Structures';
+        jumpResults.appendChild(heading);
+        lastKind = target.kind;
+      }
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'jump-result';
+      button.dataset.jumpKind = target.kind;
+      button.dataset.jumpId = target.id;
+      button.setAttribute('role', 'option');
+      const name = document.createElement('span');
+      name.textContent = target.label;
+      const kind = document.createElement('small');
+      kind.textContent = target.kind;
+      button.append(name, kind);
+      button.addEventListener('click', () => { onGoTo?.(target); setPanel(false); });
+      jumpResults.appendChild(button);
+    }
+  }
+  jumpSearch?.addEventListener('input', () => paintJumpResults(jumpSearch.value));
+  jumpSearch?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const first = jumpResults?.querySelector('.jump-result');
+      if (first) { e.preventDefault(); first.click(); }
+    }
+  });
+  paintJumpResults();
+
   // Anchor jumps: the scene already names viewpoints for the smoke harness, so
   // the visitor may as well have them too.
   const anchors = $('anchors');
@@ -221,13 +316,16 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
       const b = document.createElement('button');
       b.className = 'anchor-btn';
       b.textContent = a.label || a.id;
-      b.addEventListener('click', () => { onGoTo?.(a.id); setPanel(false); });
+      b.addEventListener('click', () => { onGoTo?.({ kind: 'anchor', id: a.id }); setPanel(false); });
       anchors.appendChild(b);
     }
   }
 
   window.addEventListener('keydown', (e) => {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) {
+      if (e.key === 'Escape' && panelOpen()) setPanel(false);
+      return;
+    }
     const k = e.key.toLowerCase();
     if (k === 'h' || k === '?') { e.preventDefault(); setPanel(!panelOpen()); }
     else if (k === 'c') { e.preventDefault(); setConfidence(!confidenceOn); }

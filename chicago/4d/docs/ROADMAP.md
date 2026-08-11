@@ -763,6 +763,15 @@ first puts a dark skirt under a pile of slate.
 Performance against the budgets, licensed ambience audio, provenance-popup UX, `LIBERTIES.md`
 completeness pass, mobile release gate.
 
+**Done 2026-08-11 — navigation that grows with the dataset.** A live compass shows the
+walker's sixteen-point heading and numeric bearing. A north-up overview draws land and water
+from the loaded heightfield, every structure from its compiled footprint, and the moving visitor
+marker from the walker state; both overlays are independently persistent settings. The old
+anchor buttons remain as authored viewpoints, while the searchable jump index now enumerates
+all 76 loaded structures and all four verified street-control intersections. Intersections are
+compiled into `sidecars/<scene>/index.json` from `street_control.json` and the datum, so the
+renderer still consumes derived scene data and no control coordinate is copied into the UI.
+
 **Done 2026-08-10 — free-fly, and the town seen whole.** `F` (or the ▲ chip) lifts the visitor
 off the prairie; `Space`/`Q` and a touch pad rise and descend; the `from_above` anchor arrives
 already in the air. Forward follows the look direction and strafe stays level; horizontal speed

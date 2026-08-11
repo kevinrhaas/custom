@@ -26,6 +26,7 @@ import { createFlora } from './flora.js';
 import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
+import { createNavigation } from './navigation.js';
 import { mountExclusions } from './exclusions.js';
 import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
@@ -135,13 +136,16 @@ async function boot() {
   scene3d.add(trees.group);
 
   const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
+  const navigation = createNavigation({ root: hudRoot, terrain, registry: loaded.registry });
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
+    registry: loaded.registry,
+    intersections: loaded.index?.intersections ?? [],
     isTouch: prefersTouch(),
     onConfidence: (on) => confidence.set(on),
     onFly: (on) => { intent.flying = !!on; },
-    onGoTo: (id) => api.goTo?.(id),
+    onGoTo: (target) => goToTarget(target),
     onSetting: (key, value) => {
       if (key === 'speed') {
         // Keep the run multiplier the walker was tuned with rather than pinning
@@ -153,6 +157,10 @@ async function boot() {
         camera.updateProjectionMatrix();
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
+      } else if (key === 'compass') {
+        navigation.setCompassVisible(value);
+      } else if (key === 'overviewMap') {
+        navigation.setMapVisible(value);
       }
     },
   });
@@ -214,6 +222,8 @@ async function boot() {
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
+  navigation.setCompassVisible(hud.settings.compass);
+  navigation.setMapVisible(hud.settings.overviewMap);
 
   // ---- input ------------------------------------------------------------ //
 
@@ -312,6 +322,24 @@ async function boot() {
     return enuToWorld(e, n, terrain.height(e, n) + wallH * 0.55);
   }
 
+  /** One route for the complete search: frame a structure, stand at a verified
+   * intersection, or use one of the authored scene viewpoints. */
+  function goToTarget(target) {
+    if (!target?.kind) return false;
+    if (target.kind === 'anchor') return api.goTo?.(target.id) ?? false;
+    hud.setFly(false, { announce: false });
+    walker.setFlying(false);
+    if (target.kind === 'structure') return frame(target.id);
+    if (target.kind === 'intersection'
+        && Number.isFinite(target.local_e) && Number.isFinite(target.local_n)) {
+      walker.teleport({
+        local_e: target.local_e, local_n: target.local_n, yaw_deg: 0,
+      });
+      return true;
+    }
+    return false;
+  }
+
   // ---- gate ------------------------------------------------------------- //
 
   function openWorld() {
@@ -398,6 +426,7 @@ async function boot() {
     api.player.altitude = st.altitude;
     api.player.flying = st.flying;
     hud.setAltitude(st.altitude);
+    navigation.update({ e: st.e, n: st.n, bearingDeg: walker.bearingDeg });
 
     // Wall-clock, not the clamped dt: a clamped dt reports a healthy 20 fps on
     // a machine that is actually drawing three frames a second.
@@ -415,13 +444,14 @@ async function boot() {
 
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
-    backends, flora, trees,
+    backends, flora, trees, navigation,
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
     pick,
     frame,
+    goToTarget,
     goTo(anchorId) {
       const a = anchorFor(loaded.scene, anchorId);
       if (!a) return false;
