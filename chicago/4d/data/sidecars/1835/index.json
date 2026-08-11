@@ -33,6 +33,12 @@
       "asset": "gltf/chicago_democrat_office__frame_1833.glb"
     },
     {
+      "id": "chicago_lighthouse_1832",
+      "name": "Chicago Lighthouse (1832 tower)",
+      "sidecar": "sidecars/1835/chicago_lighthouse_1832.json",
+      "asset": "gltf/chicago_lighthouse_1832__tower_1832.glb"
+    },
+    {
       "id": "cobweb_castle",
       "name": "Indian Agency House",
       "sidecar": "sidecars/1835/cobweb_castle.json",
@@ -123,6 +129,12 @@
       "asset": "gltf/fort_dearborn_parade__parade_1816.glb"
     },
     {
+      "id": "fort_dearborn_root_house",
+      "name": "Fort Dearborn — root house",
+      "sidecar": "sidecars/1835/fort_dearborn_root_house.json",
+      "asset": "gltf/fort_dearborn_root_house__cellar_1816.glb"
+    },
+    {
       "id": "fort_dearborn_store_house",
       "name": "Fort Dearborn — store house",
       "sidecar": "sidecars/1835/fort_dearborn_store_house.json",
@@ -163,6 +175,12 @@
       "name": "Hogan's Store",
       "sidecar": "sidecars/1835/hogan_store.json",
       "asset": "gltf/hogan_store__log_1831.glb"
+    },
+    {
+      "id": "james_kinzie_house",
+      "name": "James Kinzie's Residence",
+      "sidecar": "sidecars/1835/james_kinzie_house.json",
+      "asset": "gltf/james_kinzie_house__dwelling_1830.glb"
     },
     {
       "id": "jb_beaubien_homestead",

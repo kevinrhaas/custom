@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 40,
+  "count": 41,
   "liberties": [
     {
       "id": "L1",
@@ -1629,6 +1629,59 @@
         {
           "label": "Recorded",
           "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L36a",
+      "title": "Thomas Church's store: a building placed by a street and one sentence",
+      "section": "per_subject",
+      "subjects": [
+        "thomas_church_store"
+      ],
+      "covers": [
+        {
+          "structure": "thomas_church_store",
+          "phase": "frame_1834",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "thomas_church_store",
+          "phase": "frame_1834",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "thomas_church_store",
+          "phase": "frame_1834",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`thomas_church_store` stands on Lake Street with its **position** and its **footprint** tagged `conjectural`, and it is declared `outside_modelled_ground`."
+        },
+        {
+          "label": "Why",
+          "text": "the entire evidence is one sentence in an uncredited editorial addendum on a chicagology map-gallery page — *\"The first store building on Lake Street, a two-story frame structure, was built by Thomas Church.\"* That gives a **form** and a **street**, and no year, block, lot, corner or dimension. The page's surrounding sentences run 1833, 1835, 1837, which invites a date the sentence does not give; the project's own source record for that page grades the addendum the weakest text in its set and says it must never outrank Andreas. So the storey count and the material are documented and everything spatial is invention: the block, the side of the street and the point along it were chosen to avoid the Lake Street buildings this dataset knows the corners of and has not yet modelled — the Tremont House, the Mansion House, the Exchange Coffee House, First Presbyterian, St Mary's. **Placing a record where there is room is a rendering decision, not a finding**, and it is written on the record so a visitor can recover it. The 55 ft lot cap that constrains the South Water frontages is a South Water figure and is not evidence about Lake Street, so no cap is claimed here."
+        },
+        {
+          "label": "Consequence",
+          "text": "the along-street uncertainty is the whole of Lake Street inside the town, roughly 700 m, and the side of the street is a coin toss. The building is right; the lot is ours. It also stands beyond the modelled terrain box, on the radial skirt of L17, for the same reason as every record L40 covers."
+        },
+        {
+          "label": "How to resolve",
+          "text": "Andreas at page-image level for any mention of Thomas Church, which would outrank the addendum on this project's own grading; or a *Chicago Democrat* advertisement giving Church's address. A date is the more urgent half — **if the store is 1835 work it may not have stood on 1835-07-01, and the record then belongs in `data/exclusions.json` rather than in the scene.**"
+        },
+        {
+          "label": "Covers",
+          "text": "`thomas_church_store.frame_1834.footprint`, `thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
         }
       ]
     },

@@ -9,6 +9,15 @@
       "phase_id": "frame_1834",
       "structure_id": "bates_auction_room"
     },
+    "blacksmith_shop_state_st__log_1823.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 30088,
+      "inputs_sha256": "ae370bd6892cfc1ade9febf1f650e1539aabd3da4727c0b7e966a5a51b651896",
+      "kind": "generated",
+      "phase_id": "log_1823",
+      "structure_id": "blacksmith_shop_state_st"
+    },
     "carpenter_south_water_store__frame_1833.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
@@ -44,6 +53,15 @@
       "kind": "generated",
       "phase_id": "log_1820",
       "structure_id": "cobweb_castle"
+    },
+    "council_house__log_1834.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31308,
+      "inputs_sha256": "76c89741aba4d3e34a9f42a76a1cc371a2e61f7e6a3399a6a812ca08da5bbdaa",
+      "kind": "generated",
+      "phase_id": "log_1834",
+      "structure_id": "council_house"
     },
     "dearborn_street_drawbridge__draw_1834.glb": {
       "archetype": "bridge_timber",
@@ -215,6 +233,15 @@
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
+    },
+    "robinson_caldwell_cabins__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 30088,
+      "inputs_sha256": "9b21c2191a763a20e0617c8b918c6ef126ee299c1275eff7f865505deeebd8b2",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "robinson_caldwell_cabins"
     },
     "sauganash_hotel__frame_1831.glb": {
       "archetype": "frame_tavern",

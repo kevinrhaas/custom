@@ -13,7 +13,7 @@
     "local_e": 1131.73,
     "local_n": 207.28,
     "rotation_deg": 8.0,
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "symbolic_location": "Inside the south-west of Fort Dearborn, between the west end of the guard house and the block-house at the south-west angle.",
     "uncertainty_m": 20,
     "placement_provisional": false,

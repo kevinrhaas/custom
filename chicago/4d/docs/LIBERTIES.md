@@ -838,6 +838,35 @@ industry sits well north of even the extended box — gets an entry of its own n
 `jh_kinzie_forwarding_store.frame_1830s.form.stories`.
 **Recorded:** 2026-08-10.
 
+### L36a — Thomas Church's store: a building placed by a street and one sentence
+**Decision:** `thomas_church_store` stands on Lake Street with its **position** and its
+**footprint** tagged `conjectural`, and it is declared `outside_modelled_ground`.
+**Why:** the entire evidence is one sentence in an uncredited editorial addendum on a
+chicagology map-gallery page — *"The first store building on Lake Street, a two-story frame
+structure, was built by Thomas Church."* That gives a **form** and a **street**, and no year,
+block, lot, corner or dimension. The page's surrounding sentences run 1833, 1835, 1837, which
+invites a date the sentence does not give; the project's own source record for that page grades
+the addendum the weakest text in its set and says it must never outrank Andreas. So the storey
+count and the material are documented and everything spatial is invention: the block, the side
+of the street and the point along it were chosen to avoid the Lake Street buildings this dataset
+knows the corners of and has not yet modelled — the Tremont House, the Mansion House, the
+Exchange Coffee House, First Presbyterian, St Mary's. **Placing a record where there is room is
+a rendering decision, not a finding**, and it is written on the record so a visitor can recover
+it. The 55 ft lot cap that constrains the South Water frontages is a South Water figure and is
+not evidence about Lake Street, so no cap is claimed here.
+**Consequence:** the along-street uncertainty is the whole of Lake Street inside the town,
+roughly 700 m, and the side of the street is a coin toss. The building is right; the lot is
+ours. It also stands beyond the modelled terrain box, on the radial skirt of L17, for the same
+reason as every record L40 covers.
+**How to resolve:** Andreas at page-image level for any mention of Thomas Church, which would
+outrank the addendum on this project's own grading; or a *Chicago Democrat* advertisement giving
+Church's address. A date is the more urgent half — **if the store is 1835 work it may not have
+stood on 1835-07-01, and the record then belongs in `data/exclusions.json` rather than in the
+scene.**
+**Covers:** `thomas_church_store.frame_1834.footprint`,
+`thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`.
+**Recorded:** 2026-08-11.
+
 ---
 
 ## Resolved
