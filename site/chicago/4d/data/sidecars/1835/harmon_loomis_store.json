@@ -11,11 +11,27 @@
   "asset": "gltf/harmon_loomis_store__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-11-26",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicago_democrat_1833_11_26",
+      "andreas_1884_v1"
+    ],
+    "note": "THE START IS THE FIRST DATE A SOURCE PUTS THE FIRM IN BUSINESS, WHICH IS NOT THE SAME AS PUTTING THE BUILDING IN EXISTENCE, and this range does not pretend otherwise. The Chicago Democrat of 26 November 1833 carries a display advertisement headed 'C. & I. HARMON', dated 18 November 1833, offering dry goods, crockery, hardware, wet and dry groceries and 'on commission, a large lot of Leather, Saddlery, &c.' — contemporary proof that a Harmon store was trading at Chicago three weeks before the town was a month into having a newspaper. Andreas independently lists 'Jim Kinzie's store, P. F. W. Peck's store, Harmon's and Loomis's' as all being on South Water Street by 1833. NEITHER STATEMENT DATES THE BUILDING. The corner attribution comes from a later Andreas passage describing the three-storey building at Clark and South Water that housed the Daily Chicago American on its third floor in 1839, and whether the 1835 building was that building, or its predecessor on the same lot, is unattested. THE END IS THE ORDINARY CONTINUITY CUT AT THE SCENE YEAR, not a demolition date."
+  },
+  "change_note": "The store building of Harmon and Loomis at the corner of Clark and South Water, trading through the mid-1830s: dry goods, crockery, hardware, wet and dry groceries, and leather and saddlery taken on commission. In 1839 a three-storey building on this corner carried the Daily Chicago American on its top floor; whether that was this building grown or a replacement is unattested, and the 1835 record deliberately takes none of its height.",
   "placement": {
     "local_e": 588.0,
     "local_n": -5.9,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE JUNCTION IS ATTESTED AND THE CORNER IS THIS RECORD'S CHOICE, ARGUED HERE RATHER THAN ASSUMED. Andreas gives 'corner of Clark and South Water' and never a side. Two of the four corners fall away on the dossier's own evidence: the north side of South Water was the river frontage, wharves and landings (docs/research/04-structures-south.md § 12), so the building is south of the street. That leaves south-west and south-east. THE SOUTH-WEST IS SEPARATELY AND EXPLICITLY CLAIMED: Andreas puts the Chicago Democrat's building on the south-west corner of the same junction, and the Democrat's own first issue confirms the junction from a contemporary imprint. This record therefore takes the south-east, and the reasoning is that two attested premises on one crossing are better modelled as two buildings on two corners than as one building asserted twice — but that is a modelling choice, not evidence, AND THE HONEST ALTERNATIVE IS THAT THEY WERE ONE BUILDING. Andreas says Calhoun 'secured an office IN a building' at this junction, i.e. he rented; Harmon & Loomis owned a building at this junction; a newspaper renting an office in a merchant's corner store is the ordinary arrangement of the period. IF THAT IS RIGHT, THIS RECORD STANDS ABOUT 37 M EAST OF WHERE IT BELONGS AND DUPLICATES chicago_democrat_office. That is recorded here, in that record, and in both research docs rather than being resolved by preference. METHOD: the modern West Upper Wacker Drive / North Clark Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447648.5, N 4637409.7 (two nodes averaged, spread 14.3 m, fetched 2026-08-11); the origin sits 12.2 m east and 12.2 m south of it less the depth, so the north face is on the South Water frontage and the west face on the Clark frontage of a south-east corner lot. WORKING UNCERTAINTY ABOUT 20 M from the georeference, plus the 37 m the corner question is worth. The traced 1834 south bank runs 79.6 m north of this north face at this easting, which is 60 m more than the same measurement at Dearborn — local paper stretch and Wacker Drive's uneven build-out over the old dock line, not wharf depth. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
     "symbolic_location": "The corner of Clark Street and South Water Street (today North Clark Street at West Wacker Drive); the south-east corner, which is this record's reading and not a statement in any source.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -40,7 +56,9 @@
         7.62
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, taken from the Green Tree Tavern's attested frontage and room module because no source gives this building a dimension. The documented cap applies: South Water lots were 55 ft wide, so the frontage cannot have exceeded that. THE ONE FIGURE THAT MUST NOT BE USED IS THE ONE THE SOURCES DO OFFER. Andreas describes a THREE-STOREY building on this corner housing the Daily Chicago American on its third floor — in 1839, four years after the scene date, in a town whose first three-storey structure (the Saloon Building) is 1836 and is already in data/exclusions.json. Sizing or massing this 1835 record from the 1839 building would import the boom that had not happened yet."
   },
   "attributes": {
     "stories": {
@@ -104,21 +122,59 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicago_democrat_1833_11_26",
       "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
       "url": "",
       "archived_url": "",
-      "tier": 1
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "that a named trade was being carried on in Chicago in November 1833",
+        "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+        "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833 — with NO address, so it cannot disambiguate his two shops",
+        "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833 — with NO address, so it does NOT corroborate the Clark/South Water corner Andreas gives them",
+        "W. Kimball's 'New Store' at the corner of South Water and Clark — a SECOND, independently attested occupant of that junction in the same issue, signed",
+        "Peter Cohen, clothier and grocer, self-reported at the EAST END OF SOUTH WATER-STREET, and trading in Chicago before Nov 1833 ('old customers ... past favors')",
+        "Goss & Cobb, saddle and harness makers, self-reported on the corner of Lake and Canal streets",
+        "Matthias Mason & Co., blacksmiths, on 'Main-street, nearly opposite Graves' Tavern' — a street name this project does not otherwise hold",
+        "B. Jones, grocery and provision store, and separately a storage/forwarding/commission business — both ads give NO street",
+        "Newberry & Dole, forwarding and commission merchants — no address",
+        "John Wright, cut nails and general merchandise; and TWO BUILDINGS TO LET until 1 June 1834",
+        "Daniel Elston & [illegible], soap and candle manufactory, paying cash for tallow and house ashes",
+        "a tavern stand kept by Chester Ingersoll, 'lately occupied by Mr. Wm. W. WATTLES', dated 4 October 1833",
+        "the house of Chester Ingersoll used as the district polling place, 9 December 1833",
+        "THE VILLAGE ORDINANCES of 7 November 1833, complete — the richest single item in the paper",
+        "Ordinance 1: the corporate limits surveyed ALONG the northern United States' Pier 'to the termination thereof' — the pier as an existing, walkable structure with a definite landward end",
+        "Ordinance 5: 'either of the bridges in said town' and their 'plank or any piece of timber' — EXACTLY TWO bridges on 7 Nov 1833, of plank-and-timber construction",
+        "Ordinance 6: wooden buildings with wooden and lath-and-plaster partitions, heated by STOVES not fireplaces, pipes passing through roof or side wall and carried 18 inches above the roof, guarded by stone-ware pipe, brick, tin or sheet iron",
+        "Ordinance 9: timber, stone, brick, boxes and barrels stacked in the streets",
+        "Ordinances 3, 7 and 8: hogs at large, horses run through the streets, stallions",
+        "the schooner Austerlitz, Capt. Smith, from Buffalo, arrived about the 1[9]th inst. with a full cargo of merchandise for citizens of this village and cleared on the 21st IN BALLAST",
+        "a school established in the village by Mr. Sproat of Boston, already running on 26 Nov 1833",
+        "a public auction of United States property held AT FORT DEARBORN, 2 December 1833",
+        "the village population passing 'more than eight hundred souls' in late 1833"
+      ],
+      "what_it_does_not_supply": [
+        "any building's dimensions",
+        "any building's form, material, storey count or fenestration",
+        "the specific corner of any junction it names — the imprint says 'on the corner of', and which of the four is not in the sentence",
+        "evidence that any building named here still stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period, and the population went from 800 to 3,265 in between",
+        "any building footprint or plan",
+        "any length or width for the piers",
+        "any corroboration of the estray pen — see the negative finding in the note"
+      ]
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "A STORE THIS DATASET KNOWS THE TRADE OF AND NOT THE BUILDING. The contemporary advertisement of 18 November 1833 tells us what Harmon sold; Andreas tells us the firm was on South Water Street by 1833 and that a Harmon & Loomis building stood at the corner of Clark and South Water. Every visible property of the structure — its side of the crossing, its size, its height, its material, its roof — is inference or invention, and the two that matter most are argued in full on the position and on stories. THE HEIGHT TRAP IS THE ONE TO WATCH: the vivid description available for this corner is the three-storey building of 1839 with the Daily Chicago American on its top floor, and 1839 Chicago is a different town. Chicago's first three-storey building was the Saloon Building of 1836, which this project already excludes by date. The 1835 height is unverified and this record says so rather than borrowing. THE CORNER TRAP IS THE OTHER: if Harmon & Loomis's building is the same building the Chicago Democrat rented an office in, this record is a duplicate standing 37 m east of chicago_democrat_office. That possibility is set out on both records and in docs/RESEARCH/harmon_loomis_store.md, and it is the single most likely way this parcel is wrong.",

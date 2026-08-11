@@ -10,11 +10,28 @@
   "asset": "gltf/exchange_coffee_house__frame_1834.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1834-01-01",
+    "to": "1836-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "drloih_hotels"
+    ],
+    "note": "THE YEAR IS DOCUMENTED TWICE IN ANDREAS AND THE MONTH IS NOT. In his hotel chapter: 'Mr. Beaubien had meanwhile built a new house on the northwest corner of Wells and Lake streets. In August of 1834, Mr. and Mrs. Murphy took charge of this new hotel, which they christened the Exchange Coffee House.' In his life of Mark Beaubien: 'In the latter year [1834] he completed another house on the northwest corner of Wells and Lake streets, which was called the Exchange Coffee House, and first kept by Mr. and Mrs. John Murphy.' So the house was finished and trading by August 1834, eleven months before the scene date, and 1834-01-01 is the first day the attested year permits rather than a date anybody gives - which is why this range is inferred and not documented. THE SCENE DATE IS NOT AT RISK: whatever month in 1834 the building went up, it was open under the Murphys from August 1834 and they 'remained there until 1836'. THE END IS A BOUND WHERE THE EVIDENCE STOPS, NOT A DEMOLITION: the Murphys left for the old Sauganash in 1836 and this project has nothing dating the building's fate. Andreas's list of minor houses in 1845 includes 'the Illinois Exchange, corner Wells and Lake streets', which may be the same fabric under a later sign or may not; the phase is closed at the end of the attested tenancy rather than run on speculatively."
+  },
+  "change_note": "The house Mark Beaubien built at Lake and Wells in 1834 after leaving the Sauganash, in the state it stood on the scene date and under the keepers it had then. Nothing in the phase is a change of fabric: the christening as the Exchange Coffee House in August 1834, the arrival of Abram A. Markle's name on it by 1836 and the later sign 'Illinois Exchange' are changes of use and of sign.",
   "placement": {
     "local_e": 319.12,
     "local_n": -90.66,
     "rotation_deg": 180.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "drloih_hotels",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE CORNER IS DOCUMENTED TWICE IN ANDREAS, IN TWO DIFFERENT CHAPTERS, AND THE COORDINATE IS DERIVED - so the tag follows the weaker half. 'a new house on the northwest corner of Wells and Lake streets' (hotel chapter) and 'another house on the northwest corner of Wells and Lake streets' (life of Mark Beaubien). drloih_hotels agrees. METHOD, the project's standard one: Lake Street and Wells Street both survive on their 1830 plat lines, and the modern West Lake Street / North Wells Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447404.02, N 4637283.94 (OSM node 258957316, fetched 2026-08-11). The building's south face is set on the Lake Street frontage 12.2 m north of that centre and its east face on the Wells frontage 12.2 m west of it, 12.2 m being half of an 80 ft street as annotated on Hathaway 1834; the stored coordinate is the polygon origin AFTER the 180 degree facade bearing, which under the renderer's convention (renderers/web/js/walker.js) puts it at the building's north-east corner. Currey has the 1830 Thompson plat laying streets 'uniformly 66 feet wide', which would move each offset 2.1 m - the discrepancy recorded in docs/RESEARCH/hogan_store.md section 5. WORKING UNCERTAINTY ABOUT 20 M, which is the georeference's residual (data/datum.json: 17.5 m RMS on Wright 1834), not an additional guess. Facade bearing 180, due south onto Lake Street. THAT BEARING IS THE WEAKEST THING HERE: no source says which street the house fronted, and a corner house whose name is an EXCHANGE and whose office booked stage seats could as well have turned its front to Wells. Lake is chosen because it was one of the town's two principal thoroughfares and because the building's neighbours on this record's own street line - the Green Tree three blocks west, the Sauganash two blocks west - front their long side to Lake. THE GROUND UNDER IT IS MODELLED and the building lands on it within the walker's 0.35 m step-up rule, so the phase carries no ground_contact declaration. Note that this footprint would have sat exactly on the OLD box edge - local E +305.1 to +319.1 against an edge at +320 - and that the e1834_harbor_cut heightfield has since been extended to E +1700, which is what puts real terrain under the rest of this parcel too.",
     "symbolic_location": "North-west corner of Lake Street and Wells Street (today West Lake Street at North Wells Street), fronting south onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +56,9 @@
         9.0
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING ANY DIMENSION, a plan, or a room count. 14 x 9 m is about 46 x 30 ft, sized between the Green Tree's 40 x 25 ft - itself derived from a room module rather than measured - and the Western Hotel's attested 40 ft front, on the reasoning that this was Mark Beaubien's second and later house, built in the boom rather than at the forks in 1831, and that it was carrying a hotel and a public room. None of that is evidence about this building. The rectangle is a rectangle because no source describes a plan, and no sources are cited on this attribute because none supports it. TO RESOLVE: the Chicago Democrat and the Chicago American, in both of which this house was a standing address - Dr. Temple's stage line advertised that seats could be taken here - and where a hotel advertisement of the ordinary period kind would count its rooms."
   },
   "attributes": {
     "construction": {
@@ -106,21 +125,24 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "MARK BEAUBIEN'S SECOND HOTEL, DOCUMENTED IN EVERYTHING EXCEPT ITS FABRIC. Two independent passages of Andreas - the hotel chapter and the life of Beaubien - agree on the builder, the corner, the year, the keepers and the name, which is more agreement than any other building in this parcel gets. Not one of them says what it was made of, how big it was, how many storeys it had or what it looked like, so every attribute of the form below is conjectural and the confidence view renders the whole house as massing. THE ARCHETYPE CHOICE IS THEREFORE THE GUESS, and it is argued at form.construction rather than buried in the filename. WHY THERE IS NO SEPARATE STAGE OFFICE IN THIS SCENE: data/exclusions.json already excludes one, and this record deliberately does not replace it with a stage-office function here - the only dated evidence for seats being taken at this house is a Chicago American advertisement of 6 August 1836, and the project's own summary of it as '1835-36' is a year generous. See the function note. TWO NAMES IN THE aka LIST POST-DATE THE SCENE and are carried only so the record can be found under them: 'Markle's Exchange Coffee House' is the 1836 advertisement's form, and 'Illinois Exchange' is how Andreas lists a house at this corner among the minor houses of 1845. A SCENE-LEVEL CHECK ON THE PARCEL AS A WHOLE: the Chicago American of 15 August 1835, quoted by Andreas, counted 'eight taverns' in the town six weeks after the scene date. With this record, the Tremont and the Mansion House added, the dataset holds exactly eight public houses for 1835. See docs/RESEARCH/exchange_coffee_house.md.",
