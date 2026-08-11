@@ -97,6 +97,57 @@ def resolve_phase(structure: dict, target: dt.date):
     return hits[0] if hits else None
 
 
+#: Which fields of a source record a visitor is shown, and which stay in the
+#: repository — declared, because the alternative is what happened for the life
+#: of this project. `data/source.schema.json` grew four fields whose own
+#: descriptions say they are written for a reader ("so an agent reaching for it
+#: sees the limit before the citation"), and `cite()` never carried one of them,
+#: so nothing anywhere read them. That fault is a third kind, after the two
+#: STATUS § 28-30 found: not a field read and never emitted, and not a field
+#: emitted and never read, but a field that never entered the interface at all.
+#: Neither direction of `check_sidecar_contract` can see it, because a shape
+#: unioned over what is emitted cannot report what was never offered.
+#:
+#: The set that CAN be enumerated is the schema, so the partition is over the
+#: schema's own properties and `check_source_surface` fails on a property in
+#: neither half. Adding a field to a source record now costs one line saying
+#: whether a visitor sees it — which is the whole mechanism, and the reason this
+#: lives beside `cite()` rather than in a document.
+SOURCE_FIELD_SURFACE: dict[str, str] = {
+    # --- shown on the citation line -----------------------------------------
+    "citation": "visitor: the citation itself",
+    "url": "visitor: where to read it",
+    "archived_url": "visitor: whether it can be re-read at all",
+    "tier": "visitor: the rung, with tier_label supplying the words",
+    "transcribes": "visitor: WHY the rung is what it is when the URL is a modern page",
+    "carries_no_document": "visitor: the reading that established the page reprints nothing",
+    "what_it_supplies": "visitor: what this source can legitimately be used for",
+    "what_it_does_not_supply": "visitor: what it is assumed to give and does not",
+    # --- kept in the repository ---------------------------------------------
+    "id": "internal: the join key; the citation text is what a person reads",
+    "type": "internal: machinery, and the tier label says the same thing in words",
+    "author": "internal: already inside the citation string",
+    "date": "internal: already inside the citation string",
+    "describes_date": "internal: the phase's documented_range is the visitor's form of this",
+    "repository": "internal: already inside the citation string",
+    "locator": "internal: already inside the citation string",
+    "rights_status": "internal: governs asset derivation, not the reading of a claim",
+    "rights_note": "internal: same",
+    "rights_checked": "internal: same",
+    "asset_use": "internal: same",
+    "verified": "internal: a workflow flag; an unverified source may not be cited anyway",
+    "access_notes": "internal: fetch problems, addressed to whoever fetches next",
+    "note": "internal: the working note; its reader-facing halves are the four fields above",
+}
+
+#: The keys `cite()` may take from a source record, derived from the partition
+#: rather than typed twice. `tier_label` is computed here and is not a schema
+#: property, so it is named on its own.
+VISITOR_SOURCE_FIELDS: tuple[str, ...] = tuple(
+    k for k, why in SOURCE_FIELD_SURFACE.items() if why.startswith("visitor")
+)
+
+
 def cite(source_ids, sources: dict) -> list[dict]:
     """Join source ids to the citation the visitor reads. One shape, one place:
     the popup and the exclusions list quote the same record the same way.
@@ -108,19 +159,46 @@ def cite(source_ids, sources: dict) -> list[dict]:
     themselves. The words come out of `data/source.schema.json` through
     `tools/tiers.py`, the same ladder `check_evidence_ladder` enforces, so the
     rung a value is held to and the rung a visitor is shown cannot come apart.
+
+    And the rung's REASON travels with it, which it did not. A rung is a
+    judgement about a document, and on ten of these records the document is not
+    the page: `chicagology_lastwardance` is rung 2 because it reprints the
+    *Chicago Tribune* of 14 August 1910 printing John Dean Caton's own
+    recollection, and a visitor following that citation arrived at a modern
+    blog stamped "tier 2 · near-primary recollection" with nothing on the card
+    saying why. That is the ladder made to look like an over-grade by the one
+    field that would have explained it. `transcribes` and its opposite number
+    `carries_no_document` are the reading that fixed the rung, and they are on
+    the line now.
+
+    So are the source's own stated limits. `hathaway_1834` says in its record
+    that it does NOT supply building footprints — a claim that reached this
+    project's brief before anyone opened the scan, and the correction stayed in
+    the repository. A source shown without its limits is the one thing this
+    panel is not for.
+
+    The four new fields are omitted when a record does not carry them, rather
+    than emitted empty: a source with no stated limit should render nothing on
+    the card, not an empty heading, and thirteen of twenty-nine records carry
+    them. The four that every citation has kept their unconditional shape, so a
+    renderer reading `c.tier` still reads a key that is always there.
     """
     ladder = tier_ladder()
-    return [
-        {
-            "source_id": s,
-            "citation": sources[s].get("citation", ""),
-            "url": sources[s].get("url", ""),
-            "archived_url": sources[s].get("archived_url", ""),
-            "tier": sources[s].get("tier"),
-            "tier_label": tier_label(sources[s].get("tier"), ladder),
-        }
-        for s in sorted(source_ids) if s in sources
-    ]
+    always = ("citation", "url", "archived_url", "tier")
+    out = []
+    for s in sorted(source_ids):
+        if s not in sources:
+            continue
+        rec = sources[s]
+        c: dict = {"source_id": s}
+        for key in always:
+            c[key] = rec.get(key, "") if key != "tier" else rec.get("tier")
+        c["tier_label"] = tier_label(rec.get("tier"), ladder)
+        for key in VISITOR_SOURCE_FIELDS:
+            if key not in always and rec.get(key):
+                c[key] = rec[key]
+        out.append(c)
+    return out
 
 
 def compile_exclusions(scene_id: str, scene: dict, target: dt.date,

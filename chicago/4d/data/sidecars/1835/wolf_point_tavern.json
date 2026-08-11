@@ -169,7 +169,15 @@
       "url": "https://chicagology.com/prefire/prefire273/",
       "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
       "tier": 2,
-      "tier_label": "near-primary recollection"
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+          "date": "1857-05-15",
+          "tier": 2,
+          "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",

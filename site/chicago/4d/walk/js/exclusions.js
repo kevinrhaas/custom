@@ -55,6 +55,13 @@ export function exclusionEntryHtml(ex) {
     </dl>
     <ol class="cites excl-cites">${citationItems(ex.citations, {
       empty: 'No citation recorded for this exclusion.',
+      // The one place the citation's own account of itself is withheld. A
+      // source describing what it carries names buildings, and one of them —
+      // the Western Hotel, in the Inter Ocean piece behind two entries here —
+      // is standing in this scene. Under a heading that means "not here", that
+      // is a claim about the town rather than about the source, and the smoke
+      // asserts it cannot happen. See citations.js.
+      evidence: false,
     })}</ol>
   </details>`;
 }
@@ -113,6 +120,9 @@ export function uncertaintyEntryHtml(u, { onCard = false } = {}) {
        <dd>${escapeHtml(u.no_source_record)}</dd></dl>`
     : `<ol class="cites excl-cites">${citationItems(u.citations, {
         empty: 'No citation recorded for this question.',
+        // Same reason as the exclusions above, and the same section of the
+        // panel: what a source carries is not what this list is about.
+        evidence: false,
       })}</ol>`;
 
   const dossier = u.dossier && u.dossier.file

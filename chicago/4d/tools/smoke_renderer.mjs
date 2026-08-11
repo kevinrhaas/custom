@@ -13,6 +13,8 @@
  *   canvas renders non-black .... WebGL produced an image, not a cleared buffer
  *   confidence toggle ........... the deliverable measurably changes the render
  *   pick -> citation ............ the visual claim and the citable claim connect
+ *   citation -> its document .... why a modern page is on the rung it is on, and
+ *                                 what the source itself says it cannot supply
  *   pick -> liberties ........... and what we made up about THAT building
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
@@ -269,9 +271,12 @@ for (const [label, viewport, touch] of [
     // Sauganash cites a period survey, a near-primary recollection and a modern
     // retrospective, so a card stamping one rung on every line — or the right
     // words on the wrong citation — fails where a presence check would pass.
+    // `.cites > li` and not `.cites li`: a citation's stated limits are a nested
+    // list, and counting their items as citations is how this assertion first
+    // reported a card with no rung on it.
     const rungs = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
-      return [...document.querySelectorAll('#popup .cites li')].map((li) => ({
+      return [...document.querySelectorAll('#popup .cites > li')].map((li) => ({
         cite: li.querySelector('.cite-text')?.textContent.trim() ?? '',
         tier: li.querySelector('.tier')?.textContent.trim() ?? '',
       }));
@@ -285,6 +290,43 @@ for (const [label, viewport, touch] of [
       && /^tier 1 · period\/eyewitness$/.test(rungOf(/Wright/))
       && /^tier 5 · modern retrospective/.test(rungOf(/Kurz/)),
       `Wau-Bun "${rungOf(/Wau-Bun/)}" · Wright "${rungOf(/Wright/)}" · Kurz "${rungOf(/Kurz/)}"`);
+    // --- and WHY a citation is on that rung, and what it cannot be used for --
+    // A rung is a judgement about a document, and on ten of these records the
+    // document is not the page: a visitor following `chicagology_prefire273`
+    // arrived at a modern blog stamped "tier 2 · near-primary recollection"
+    // with nothing saying it reprints the Chicago Magazine of 15 May 1857. The
+    // Sauganash's card carries the discriminating triple, which is why it is
+    // asserted here rather than by presence: one citation that reprints a
+    // document, one that IS one and reprints nothing (Wright's survey sheet,
+    // which instead states what it does not supply), and one that has neither.
+    // A card stamping the line on every citation fails on the second; a card
+    // showing none fails on the first.
+    const evidence = await page.evaluate(() => {
+      window.__chicago4d.pick('sauganash_hotel');
+      return [...document.querySelectorAll('#popup .cites > li')].map((li) => ({
+        cite: li.querySelector('.cite-text')?.textContent.trim() ?? '',
+        reprints: [...li.querySelectorAll('.cite-reprints')].map((p) => p.textContent.trim()),
+        limits: [...li.querySelectorAll('.cite-lim li')].map((x) => x.textContent.trim()),
+      }));
+    });
+    const ev = (re) => evidence.find((r) => re.test(r.cite)) ?? { reprints: [], limits: [] };
+    check(`${label}: a citation says what document it reprints`,
+      ev(/Chicagology/).reprints.length === 1
+      && /reprints\s+Chicago Magazine/.test(ev(/Chicagology/).reprints[0])
+      && /1857-05-15/.test(ev(/Chicagology/).reprints[0]),
+      JSON.stringify(ev(/Chicagology/).reprints));
+    check(`${label}: a source that IS its document reprints nothing`,
+      ev(/Wright/).reprints.length === 0 && ev(/Wau-Bun/).reprints.length === 0,
+      `Wright ${JSON.stringify(ev(/Wright/).reprints)} · `
+      + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).reprints)}`);
+    // The limit that reached this project's own brief before anyone opened the
+    // scan, and then stayed in the repository: a survey of streets and blocks
+    // does not give you a building.
+    check(`${label}: a source states what it does not supply`,
+      ev(/Wright/).limits.includes('building footprints')
+      && ev(/Wau-Bun/).limits.length === 0,
+      `Wright ${JSON.stringify(ev(/Wright/).limits)} · `
+      + `Wau-Bun ${JSON.stringify(ev(/Wau-Bun/).limits)}`);
     check(`${label}: popup links the research dossier`,
       /docs\/RESEARCH\/sauganash_hotel\.md/.test(picked.text), picked.text.slice(-200));
 
@@ -967,6 +1009,7 @@ for (const [label, viewport, touch] of [
         saloonReason: saloon?.querySelector('.lib-body dd')?.textContent.trim() ?? '',
         saloonCite: saloon?.querySelector('.cites .cite-text')?.textContent.trim() ?? '',
         saloonLinks: [...(saloon?.querySelectorAll('.cites a') ?? [])].map((a) => a.href),
+        reprints: mount.querySelectorAll('.cite-reprints').length,
         kinzieWhen: kinzie?.querySelector('.lib-scope')?.textContent.trim() ?? '',
         kinzieReason: kinzie?.querySelector('.lib-body dd')?.textContent.trim() ?? '',
         // Collapsed: the standing note wraps across source lines, so a raw
@@ -996,6 +1039,13 @@ for (const [label, viewport, touch] of [
     check(`${label}: a building standing in the scene is not on the not-here list`,
       !/Sauganash|Green Tree|Wolf Point Tavern|Western Hotel/.test(excl.text),
       excl.text.slice(0, 160));
+    // Which is WHY this section withholds what a citation reprints, and the
+    // rule above is the reason rather than a preference: the Inter Ocean piece
+    // behind two of these entries is headed "The Old Western Hotel", and the
+    // Western Hotel is standing 200 m away. Pinned so the option cannot quietly
+    // flip back on — the card carries the line and this list does not.
+    check(`${label}: the not-here list withholds what its sources reprint`,
+      excl.reprints === 0, `${excl.reprints} reprints line(s) under the exclusions`);
     // …and it says so itself. A list of fourteen absences with no such sentence
     // reads as "this is what is missing", which would be the largest false claim
     // the panel could make — the town is short about thirty more buildings.
@@ -1147,7 +1197,7 @@ for (const [label, viewport, touch] of [
         group: d.querySelector('.lib-scope')?.textContent.trim() ?? '',
         conf: d.querySelector('summary .conf')?.textContent.trim() ?? '',
         body: d.querySelector('.lib-body')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-        cites: [...d.querySelectorAll('.cites li')].map((li) => li.textContent.trim()),
+        cites: [...d.querySelectorAll('.cites > li')].map((li) => li.textContent.trim()),
         // Which of this claim's figures say they are not in front of you, by the
         // figure's own name — a count would pass against a panel that marked the
         // wrong row.

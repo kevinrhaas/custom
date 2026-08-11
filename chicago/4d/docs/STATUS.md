@@ -3,10 +3,10 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the last four pages that could be opened were opened: two rungs
-moved on the document, one was confirmed where it stood, one page reprints nothing at all, and
-the 66 ft street module turns out to be a paragraph that is not in the article it was credited
-to, § 47) ·
+**Last updated:** 2026-08-11 (ten rounds of grading a source, and the sentence that justifies the
+rung had never left the repository: what a page reprints, and what its own record says it cannot
+supply, are on the card — and every field of a source record now either reaches a visitor or
+states why it does not, § 48) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -91,6 +91,7 @@ the other surface is a gate now instead of a sentence.
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
 | **Smoke** | 197 checks green at 390×780 and 1280×800, zero page errors |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
+| **What a source is, in the app** | **done** (2026-08-11, § 48) — every citation carries the document it reprints (`transcribes`) or the finding that it reprints none, and the source's own `what_it_supplies` / `what_it_does_not_supply` behind a `<details>`. `check_source_surface` partitions all 22 properties of `data/source.schema.json` into visitor-facing and internal and fails on a property in neither, on a visitor field no compiled citation carries, and on one `citations.js` never reads. Withheld in exactly one place — the not-here list, where a source's account of what it carries names a standing building — and the smoke pins that too |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -1690,6 +1691,59 @@ uncertainty of the 1834 sheets in its note.
     found describing their own page wrongly, four over-reading and two under-reading. And a page
     is not one document: five of the ten carry a transcription plus apparatus, and on three of
     those the apparatus is the more tempting half.
+
+48. **Ten rounds of grading a source, and the sentence that justifies the rung had never left the
+    repository — a third kind of unshipped claim, and the first one no existing gate could have
+    seen.** The four slices above (§ 44-47) spent themselves establishing WHY a page sits on the
+    rung it sits on. All of that work landed in `data/sources/*.json`, and the card printed the
+    number with none of it: a visitor following `chicagology_lastwardance` reached a present-day
+    blog stamped **tier 2 · near-primary recollection** with nothing saying it reprints the
+    *Chicago Tribune* of 14 August 1910 carrying John Dean Caton's own recollection. That reads
+    as an over-grade — the exact failure the ladder was built to prevent, produced by the one
+    field that would have explained it. **Thirteen of twenty-nine source records carry at least
+    one of four such fields**, and nine of the ten committed sidecars cite at least one of the
+    thirteen, so this was on nearly every card in the walkthrough.
+    **The fault is a new one and that is the point.** § 28 was a field READ and never emitted;
+    § 30 was a field EMITTED and never read. This is a field that **never entered the interface
+    at all** — `transcribes`, `carries_no_document`, `what_it_supplies` and
+    `what_it_does_not_supply` are in `data/source.schema.json`, three of them with descriptions
+    that address a reader in as many words ("so an agent reaching for it sees the limit before
+    the citation"), and `cite()` never carried one of them into a sidecar. Neither direction of
+    `check_sidecar_contract` can see it: its shape is unioned over what IS emitted, and a shape
+    built from what was offered cannot report what was never offered. Nothing was broken. Every
+    half was right about its own side, again.
+    **So the gate is over the schema, because the schema is the one bounded set here.**
+    `compile_scene.SOURCE_FIELD_SURFACE` partitions all 22 properties into visitor-facing and
+    internal, each with the one-line reason, and `check_source_surface` holds it three ways: a
+    property in neither half fails; a visitor-facing field that some record carries and no
+    compiled citation does fails (which is exactly the state the dataset was in this morning);
+    and a visitor-facing field `renderers/web/js/citations.js` never reads fails. Adding a field
+    to a source record now costs one sentence saying whether a visitor sees it, written by
+    whoever knows the answer. Switching it on reported the four immediately, which is the fifth
+    check in this family to find something on its first run.
+    **What is shown and what is not, and the line is argued rather than convenient.** The card
+    gets the document (`reprints <work> <date>`, never collapsed — it is one line and it is what
+    makes the rung beside it legible), the finding that a page reprints none, and the two limit
+    lists behind a `<details>`. It does NOT get the prose inside those fields: the `note` on a
+    `transcribes` entry and the reading in `carries_no_document` quote rung numbers, name files
+    in `data/` and record HTTP statuses and fetch dates — they are addressed to whoever
+    re-grades the source, and the source record is one click from the card for anyone who wants
+    them. That is a partition inside a field and it is stated here rather than left looking like
+    an oversight.
+    **The smoke found the one place this must not appear, and it found it as a failure rather
+    than as a reviewer's opinion.** `citations.js` is deliberately one renderer for every context
+    that shows a source, so the reprints line arrived under "What is not here" too — and
+    `chicagology_prefire278`, behind two of those entries, is headed *"The Old Western Hotel:
+    First Frame House on the West Side"*. The Western Hotel is standing in this scene 200 m away.
+    The assertion that a building a visitor can walk up to may not appear on the not-here list
+    (§ 26) failed on the spot. Under that heading a source's account of what it carries reads as
+    a claim about the town, so the list keeps the plain citation and `evidence: false` says so
+    at the call site — pinned by its own assertion, so the option cannot quietly flip back.
+    **Two smaller things worth carrying.** A nested `<ul>` inside a citation broke two unrelated
+    assertions that enumerate `.cites li`, which is the second time markup added inside a list
+    item has made a counting selector wrong; they are `.cites > li` now. And the honest limit of
+    the third direction: it is a name scan of one module, not dataflow — which is why the smoke
+    asserts the rendered card and not the scan.
 
 ## Next
 

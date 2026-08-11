@@ -186,7 +186,15 @@
       "url": "https://chicagology.com/prefire/prefire273/",
       "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
       "tier": 2,
-      "tier_label": "near-primary recollection"
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+          "date": "1857-05-15",
+          "tier": 2,
+          "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
@@ -218,7 +226,18 @@
       "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
       "archived_url": "",
       "tier": 1,
-      "tier_label": "period/eyewitness"
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "shoreline",
+        "river channel and the 1834 cut",
+        "survey-date colouring"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
     }
   ],
   "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",
