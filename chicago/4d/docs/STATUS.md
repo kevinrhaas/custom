@@ -3,10 +3,10 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the two fields the interface gate named as its own standing limit
-are rendered rather than merely read — the not-here list and the open questions each say what
-they are in the compiled document's words, and the paraphrase that went was counting the entries
-by hand, § 50) ·
+**Last updated:** 2026-08-11 (the last of the six over-graded values had never had its page
+opened; the page turns out to carry no citation of any kind, and the one witness on it — quoted
+without attribution, and absent from this project's own dossier — settles a third of the claim
+and none of its numbers, § 51) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -136,7 +136,9 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
   because a flat toe leaves the Z=0 contour — which IS the drawn waterline — ill-conditioned
   against the grid.
 - **`chicagoarchitecturehistory.com` cites nothing** for the two best elevation figures in the
-  dossier, which is why no land elevation in this build is tagged `documented`.
+  dossier, which is why no land elevation in this build is tagged `documented`. **Established
+  from the page rather than inferred from a quotation, 2026-08-11** (§ 51): the article cites
+  nothing for anything — no footnote, no endnote, no reference anywhere in it.
 - **Placement is real but coarse.** All eight structures now carry surveyed coordinates rather
   than nulls, at about ±20 m — the georeference's error, not an additional guess. Three of them
   (Wolf Point Tavern, Miller House, Walker's meeting house) have no surviving intersection and
@@ -1844,6 +1846,70 @@ uncertainty of the 1834 sheets in its note.
     and no GLB moved — both sentences were already being compiled. Smoke 233 checks green at
     390×780 and 1280×800.
 
+51. **The sixth warning's page had never been opened, and the page has no citations in it at
+    all.** The evidence ladder has counted six `documented` values resting on later scholarship
+    alone since 2026-08-10. Five were read across § 43-47. The sixth — ground
+    `surface_materials.south_division`, the soil profile of the South Division, `documented` on
+    `chicago_architecture_history_115` alone — was the one `docs/ROADMAP.md` § S5 kept saying
+    *has not been opened*, and the record itself said so in as many words: *"Not re-fetched at
+    its locator by this parcel."* Everything this project knew about that page came from a
+    quotation inside its own dossier. Memo: `docs/RESEARCH/surface_materials_south_division.md`.
+    **The page is correctly tiered and the VALUE is over-graded** — the same verdict § 46
+    reached on ground `water`, and now the verdict on all six. It is a 2022 essay by an
+    architect-historian, so it IS its own document and the transcription rule does not reach it
+    (`date` is the article's publication date, not a retrieval); tier 4 is right and nothing
+    lifts it. What the reading adds is a limit that had been an inference: the old note said the
+    page *"gives no citation for the two-to-three-feet figure"*, read off the dossier and true of
+    one figure. **The article carries no footnote, endnote or numbered reference anywhere** —
+    zero `<sup>`, one outbound link in the body and it is the author's own email — and its entire
+    apparatus is a closing *Further reading* line naming Andreas. Established from the page, in
+    two copies: the live URL and the Internet Archive capture of 2025-12-06, agreeing on every
+    quoted passage and on the same absent apparatus.
+    **The one document on the page is quoted and not named, and it settles a third of the
+    claim.** Three paragraphs on, the author stops summarising and block-quotes **John Mills Van
+    Osdel**, named there as Chicago's first architect, on the ground he built in: sand that
+    *"could not pass downward into the clay, nor laterally"*, and *"a majority of the earlier
+    frame buildings rested on posts sunk through the quicksand to the clay"*. That is a witness,
+    and the dossier does not mention him — the one document on the page is the one thing the
+    research did not carry off it. He attests the ORDER of the strata and the drainage failure.
+    **He gives no black loam and not one thickness**, so the three figures in
+    `black_loam_over_quicksand_over_blue_clay` — a foot, three to four feet, eight to twelve feet
+    — are the 2022 author's alone. And the quotation carries no publication, no date and no page,
+    which is exactly why the record declares no `transcribes`: that field's rung is a judgement
+    about a named, dated document, and the page names none. Running the Van Osdel original down
+    would buy a rung; the memo says where to start and admits the starting point is a guess.
+    **The regrade is queued, not taken, and the reason is mechanical.** `documented` → `inferred`
+    is right and cannot land here: `generators/terrain_inputs.py` deliberately does not strip
+    `confidence`, so the word re-stales the committed ground GLB and `check.sh` fails until a
+    Blender bake lands with it — and there is no Blender on the improve runner. It joins ground
+    `water` and the four `drloih` values in the one bake slice. The validator still counts six,
+    which is the enforcement; nothing in this slice can satisfy it.
+    **What ships instead is the finding where the grade is read.** `note` IS stripped from the
+    terrain hash — the whole point of § 34 — so the block now carries the partition above in the
+    Evidence panel's *The ground you are standing on*, under a chip that is still stronger than
+    the sentence beneath it. That is uncomfortable and it is the honest intermediate state; the
+    alternative is a visitor reading `documented` with nothing beside it until the bake. The
+    smoke pins it verbatim against the compiled claim rather than a phrase copied into the test,
+    and pins the discriminating pair: the OTHER `documented` soil claim — the marsh, on
+    `chicagology_prefire273` — is correctly graded and carries no such correction, so a panel
+    stamping this disclosure on every documented claim fails.
+    **Two smaller repairs, and the first is a hole in this project's own standard.**
+    `archived_url` was a Wayback **wildcard search URL** (`/web/20240416000000*/`), which resolves
+    to a calendar of captures rather than to a capture — not a citation that can be re-read,
+    which is the standard the field exists to enforce. Nothing checks what an `archived_url`
+    resolves TO, so it passed every run since it was written; it was the only one of its kind in
+    `data/sources/`, and it is a dated capture now. And `verified` was `false` and is `true`.
+    **Third dossier correction found by opening a page rather than by a check.**
+    `docs/research/01-terrain-hydrology.md`'s surface-material table tags the profile
+    **documented (§1.15)**, and that row is the direct ancestor of the grade in the spec — made
+    without opening the page. `north_branch_bridge` § 6 and `hogan_store` § 3 were the first two,
+    and the lesson has been the same each time: a table row is a finding aid and a finding aid is
+    not the page. The dossiers are committed verbatim and are not edited, so the correction lives
+    in the memo and the operative half of it in the spec's own note.
+    **Data untouched below the prose, and no mesh is stale.** No confidence moved, no figure
+    moved, no GLB was re-baked; the terrain sidecar changed because a note and a source record
+    changed. Smoke green at 390×780 and 1280×800.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -1874,12 +1940,15 @@ half of a two-part building, which no spelling check would have caught. Nothing 
 behind it, so **S5 is additions again**: eight archetypes and about forty researched structures
 against the six that stand.
 
-**The evidence-ladder queue, as it stands after § 47, and the reading half of it is DONE.** Six
-`documented` values still rest on later scholarship alone and the validator counts them every
-run. One of the six — ground `water` — is settled as an over-graded VALUE and waits only on the
-Blender bake a confidence change costs; four are the `drloih` values that re-tiering cannot save
-and that land with the same bake; the sixth (`surface_materials.south_division`) has not been
-opened. **The undeclared-page queue is down to those same two `drloih` pages** (§ 47): every
+**The evidence-ladder queue, as it stands after § 51, and the READING half of it is finished.**
+Six `documented` values still rest on later scholarship alone and the validator counts them every
+run — but every one of the six has now been read, and the verdict on all six is the same: the
+sources are tiered correctly and the values are graded too high. Ground `water` (§ 46) and ground
+`surface_materials.south_division` (§ 51) are both settled as over-graded VALUES waiting only on
+the Blender bake a confidence change costs; the other four are the `drloih` values that
+re-tiering cannot save and that land with the same bake. **All six are one slice on a runner with
+Blender**, and none of it is research any more.
+**The undeclared-page queue is down to those same two `drloih` pages** (§ 47): every
 other page that dates its own retrieval now declares either the document it carries or the
 reading that established it carries none. So what is left of this thread is not research any
 more — it is one regrade slice on a runner that has Blender, taking five values down together

@@ -294,7 +294,15 @@ into errors — stays deliberately behind the regrade, because a gate that fails
 dataset on the day it lands is a gate that gets switched off.
 
 **The other two are outside the buildings**: ground `surface_materials.south_division`
-(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`).
+(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`). ~~The first
+of those has not been opened.~~ **Both are read and both are over-graded VALUES** — `water` on
+2026-08-11 (§ 46, `docs/RESEARCH/swearingen_1803.md`) and the soil profile the same day
+(STATUS § 51, `docs/RESEARCH/surface_materials_south_division.md`). The soil page is a 2022 essay
+that is its own document, correctly at rung 4, and it prints **no footnote, endnote or reference
+anywhere in it**; the one witness on it — John Mills Van Osdel, block-quoted with no publication,
+date or page, and unmentioned by this project's own dossier — attests the ORDER of the strata and
+the drainage failure and gives **no black loam and not one thickness**, so the three figures in
+the claim have nobody behind them. `documented` → `inferred`, and it lands with the bake.
 
 **The three pages that looked like the same case were opened 2026-08-11** (STATUS § 45,
 `docs/RESEARCH/evidence_tiers_round_two.md`), and two of them were. `prefire062` reprints
@@ -355,10 +363,13 @@ No number moves — the figure was already excluded by measurement — but the d
 sourceless website sentence rather than a named historian, which is a different thing for the
 streets parcel to weigh.
 
-**What is left of this thread is not research.** Only `drloih_hotels` and `drloih_wolf_point`
-still declare nothing, and this method does not reach them: the pages are unfootnoted, mutually
-contradictory and unarchived, and their four values need the VALUE regraded, which is a mesh
-input. That slice and ground `water` are one bake — take them together on a runner with Blender.
+**What is left of this thread is not research, and as of 2026-08-11 that is true of all six.**
+Only `drloih_hotels` and `drloih_wolf_point` still declare nothing, and this method does not reach
+them: the pages are unfootnoted, mutually contradictory and unarchived, and their four values need
+the VALUE regraded, which is a mesh input. **That slice, ground `water` and ground
+`surface_materials.south_division` are one bake** — five values, six warnings, take them together
+on a runner with Blender. Every page behind the six has now been opened and the verdict on every
+one of them is the same: the source is tiered correctly and the value is graded too high.
 
 
 **The repair queue that came before it, all of it DONE — three attributes that were recorded
