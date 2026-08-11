@@ -809,11 +809,17 @@ Three things worth carrying:
 - **`internal` is § 48's partition on a second family**, over what the compiler emits rather than
   over a schema, checked in both directions so a declaration cannot outlive its field or be wrong
   about the visitor. Citation leaves stay with `check_source_surface`: one field, one owner.
-- **A read is a name, not a render — and one is still outstanding.** `exclusions.json`'s
-  `standard` and `uncertain_standard` are read into a return value, rendered by nobody, and
-  restated by hand in `index.html`. That is the repair just made for the liberties, still
-  standing two sections down; the gate passes it because the name appears. **Queued**, and small:
-  it is a `standardMount` on `mountExclusions` and two deleted paragraphs.
+- ~~**A read is a name, not a render — and one is still outstanding.**~~ **DONE 2026-08-11**
+  (STATUS § 50). `exclusions.json`'s `standard` and `uncertain_standard` were read into
+  `mountExclusions`'s return value, rendered by nobody, and restated by hand in `index.html`;
+  both are mounted verbatim now and the paraphrases are deleted. It was the estimated size — a
+  `standardMount` and two paragraphs — and it found one thing the estimate did not: the
+  open-questions paraphrase had drifted into a **hand-typed count** of the watch list ("three of
+  these … and the fourth"), which goes wrong the day a fifth question is recorded and which no
+  gate in this project could have held. The smoke asserts the compiled sentence verbatim, once,
+  and that the count is gone. **The gate's limit is unchanged and was not widened**: a read is
+  still a name, the scan still cannot follow a value into a function, and the next such field
+  will be found by a person reading a module.
 
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the

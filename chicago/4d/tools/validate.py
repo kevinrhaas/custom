@@ -2680,10 +2680,13 @@ def check_derived_contract(rep: Report, *, specs: list[dict] | None = None,
 
     # The honest limit, and it is the same one § 28 was written about: this
     # proves a module NAMES the field, not that the field reaches a pixel.
-    # `exclusions.json`'s `standard` is read into a return value and rendered by
-    # nobody, and the scan is satisfied. That is why the smoke asserts the
-    # rendered text for the claims this gate has just shipped, and why a read is
-    # never the last word here.
+    # `exclusions.json`'s `standard` and `uncertain_standard` were the standing
+    # example — read into a return value, rendered by nobody, and the scan
+    # satisfied — until 2026-08-11, when both were mounted and the smoke was given
+    # a verbatim assertion against the compiled value. The limit itself has not
+    # moved: nothing here can distinguish the next such read from a render, which
+    # is why the smoke pins rendered text for every claim that carries one, and
+    # why a read is never the last word.
     rep.note("derived contract: a read is a name, not a render — the smoke pins the "
              "rendered text for the claims that carry one")
 

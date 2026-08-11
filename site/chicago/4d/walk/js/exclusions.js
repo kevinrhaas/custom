@@ -174,15 +174,30 @@ export function openQuestionsFor(uncertain, structureId) {
  * are the same document's other half: what was researched and ruled out, and what
  * was researched and could not be. One request, two mounts.
  *
+ * `standardMount` and `uncertainStandardMount` take each list's own account of
+ * what it is. `compile_scene.py` has written both sentences into this file since
+ * the sections shipped and nothing rendered either: they were read into a return
+ * value, which is enough for the derived-contract gate — that scan sees a NAME,
+ * not a pixel — and the panel opened instead with a hand-written paraphrase of
+ * each. Two statements of one thing with nothing holding them together is how a
+ * panel and the document it quotes start disagreeing, and one of the paraphrases
+ * had already drifted into a HAND-TYPED COUNT of the open questions, which goes
+ * wrong the day a fifth is recorded. The compiled sentences are the ones on
+ * screen now and the paraphrases are gone.
+ *
  * @param {object} o
  * @param {HTMLElement|null} o.mount
  * @param {HTMLElement|null} [o.uncertainMount] where the open questions render
+ * @param {HTMLElement|null} [o.standardMount] where the not-here list's own account goes
+ * @param {HTMLElement|null} [o.uncertainStandardMount] the same, for the open questions
  * @param {URL} o.dataBase        where data/ lives
  * @param {string} o.sceneId      the scene whose sidecars to read
  * @param {string[]} [o.problems] the shared collector
  */
-export async function mountExclusions({ mount, uncertainMount = null, dataBase, sceneId,
-                                        problems = [] }) {
+export async function mountExclusions({ mount, uncertainMount = null,
+                                        standardMount = null,
+                                        uncertainStandardMount = null,
+                                        dataBase, sceneId, problems = [] }) {
   let doc = null;
   try {
     const url = new URL(`sidecars/${sceneId}/exclusions.json`, dataBase);
@@ -197,8 +212,28 @@ export async function mountExclusions({ mount, uncertainMount = null, dataBase, 
         + 'be loaded. It is committed at <code>data/exclusions.json</code>.</p>';
       el.removeAttribute('aria-busy');
     }
+    // Emptied rather than left saying "Loading…", which after a failed fetch is
+    // the panel telling a visitor to wait for something that is not coming —
+    // the same degradation the liberties note takes.
+    for (const el of [standardMount, uncertainStandardMount]) {
+      if (!el) continue;
+      el.textContent = '';
+      el.removeAttribute('aria-busy');
+    }
     return { count: 0, excluded: [], uncertainCount: 0, uncertain: [],
              error: String(err.message || err) };
+  }
+
+  // Verbatim, and before the entries: each sentence is the frame the list under
+  // it is read inside, and a claim about the dataset's completeness is the last
+  // text on this panel that should be restated in somebody else's words.
+  if (standardMount) {
+    standardMount.textContent = doc.standard || '';
+    standardMount.removeAttribute('aria-busy');
+  }
+  if (uncertainStandardMount) {
+    uncertainStandardMount.textContent = doc.uncertain_standard || '';
+    uncertainStandardMount.removeAttribute('aria-busy');
   }
 
   const excluded = Array.isArray(doc.excluded) ? doc.excluded : [];
