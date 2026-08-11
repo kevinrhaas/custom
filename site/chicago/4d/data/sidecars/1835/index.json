@@ -27,6 +27,12 @@
       "asset": "gltf/carpenter_south_water_store__frame_1833.glb"
     },
     {
+      "id": "chappel_infant_school",
+      "name": "Eliza Chappel's infant school",
+      "sidecar": "sidecars/1835/chappel_infant_school.json",
+      "asset": "gltf/chappel_infant_school__log_1833.glb"
+    },
+    {
       "id": "chicago_american_office",
       "name": "The Chicago American Office",
       "sidecar": "sidecars/1835/chicago_american_office.json",
@@ -63,6 +69,12 @@
       "asset": "gltf/cobweb_castle__log_1820.glb"
     },
     {
+      "id": "cook_county_courthouse_1835",
+      "name": "First Cook County court-house",
+      "sidecar": "sidecars/1835/cook_county_courthouse_1835.json",
+      "asset": "gltf/cook_county_courthouse_1835__wood_1835.glb"
+    },
+    {
       "id": "council_house",
       "name": "Council House",
       "sidecar": "sidecars/1835/council_house.json",
@@ -79,6 +91,12 @@
       "name": "George W. Dole's Warehouse",
       "sidecar": "sidecars/1835/dole_warehouse_south.json",
       "asset": "gltf/dole_warehouse_south__frame_1832.glb"
+    },
+    {
+      "id": "elston_soap_candle_manufactory",
+      "name": "Daniel Elston & Co.'s Soap and Candle Manufactory",
+      "sidecar": "sidecars/1835/elston_soap_candle_manufactory.json",
+      "asset": "gltf/elston_soap_candle_manufactory__works_1833.glb"
     },
     {
       "id": "estray_pen",
@@ -219,6 +237,12 @@
       "asset": "gltf/jh_kinzie_forwarding_store__frame_1830s.glb"
     },
     {
+      "id": "kinzie_hunter_warehouse",
+      "name": "Kinzie & Hunter's Warehouse",
+      "sidecar": "sidecars/1835/kinzie_hunter_warehouse.json",
+      "asset": "gltf/kinzie_hunter_warehouse__warehouse_1834.glb"
+    },
+    {
       "id": "log_jail",
       "name": "Log jail",
       "sidecar": "sidecars/1835/log_jail.json",
@@ -247,6 +271,12 @@
       "name": "Newberry & Dole's Slaughter-House, South Branch",
       "sidecar": "sidecars/1835/newberry_dole_slaughterhouse_south_branch.json",
       "asset": "gltf/newberry_dole_slaughterhouse_south_branch__works_1834.glb"
+    },
+    {
+      "id": "newberry_dole_warehouse",
+      "name": "Newberry & Dole's Forwarding and Commission Warehouse",
+      "sidecar": "sidecars/1835/newberry_dole_warehouse.json",
+      "asset": "gltf/newberry_dole_warehouse__frame_1833.glb"
     },
     {
       "id": "north_branch_bridge",
@@ -285,6 +315,12 @@
       "asset": "gltf/philo_carpenter_log_shop__log_1832.glb"
     },
     {
+      "id": "pierce_blacksmith_shop",
+      "name": "Asahel Pierce's Blacksmith Shop",
+      "sidecar": "sidecars/1835/pierce_blacksmith_shop.json",
+      "asset": "gltf/pierce_blacksmith_shop__shop_1833.glb"
+    },
+    {
       "id": "pruyne_kimball_drugstore",
       "name": "Pruyne & Kimball's Drug Store",
       "sidecar": "sidecars/1835/pruyne_kimball_drugstore.json",
@@ -307,6 +343,12 @@
       "name": "Sauganash Hotel",
       "sidecar": "sidecars/1835/sauganash_hotel.json",
       "asset": "gltf/sauganash_hotel__frame_1831.glb"
+    },
+    {
+      "id": "slough_log_bridge",
+      "name": "The Slough Log Bridge, Water Street",
+      "sidecar": "sidecars/1835/slough_log_bridge.json",
+      "asset": "gltf/slough_log_bridge__log_1833.glb"
     },
     {
       "id": "south_branch_raft_bridge",
@@ -349,6 +391,12 @@
       "name": "Walker Meeting House",
       "sidecar": "sidecars/1835/walker_meeting_house.json",
       "asset": "gltf/walker_meeting_house__log_1831.glb"
+    },
+    {
+      "id": "watkins_school_house",
+      "name": "Watkins school house",
+      "sidecar": "sidecars/1835/watkins_school_house.json",
+      "asset": "gltf/watkins_school_house__house_1833.glb"
     },
     {
       "id": "western_hotel",

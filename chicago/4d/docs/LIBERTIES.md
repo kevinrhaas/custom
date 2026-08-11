@@ -845,7 +845,12 @@ industry sits well north of even the extended box — gets an entry of its own n
 `jh_kinzie_forwarding_store.frame_1830s.footprint`,
 `jh_kinzie_forwarding_store.frame_1830s.position`,
 `jh_kinzie_forwarding_store.frame_1830s.form.stories`,
-`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`.
+`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`,
+`cobweb_castle.log_1820.ground_contact`,
+`blacksmith_shop_state_st.log_1823.ground_contact`,
+`north_side_school_1833.log_1833.ground_contact`,
+`steamboat_hotel.frame_1835.ground_contact`,
+`council_house.log_1834.ground_contact`.
 **Recorded:** 2026-08-10.
 
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
@@ -877,7 +882,7 @@ scene.**
 `thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`.
 **Recorded:** 2026-08-11.
 
-### L41 — Fort Dearborn's stockade: the plan is evidence and the wall is not
+### L47 — Fort Dearborn's stockade: the plan is evidence and the wall is not
 **Decision:** the fort's picket line is built at an invented height, out of invented posts, with
 an invented gate opening and invented corner works. Its **plan** — a square, two gates north and
 south, bastions at the north-west and south-east angles, a block-house at the south-west — is
@@ -1117,6 +1122,146 @@ hydrographic surveys of the Chicago bar draw the piers in plan at a usable scale
 specification or voucher for the crib work.
 **Covers:** `north_pier.crib_1835.footprint`, `north_pier.crib_1835.form.width_m`,
 `south_pier.crib_1835.footprint`, `south_pier.crib_1835.form.width_m`.
+**Recorded:** 2026-08-11.
+
+### L51 — The north bank is drawn at invented sizes, and the confidence view cannot say so
+**Decision:** the footprints of the seven north-bank and Wolf Point structures added on
+2026-08-11 — `cobweb_castle`, `blacksmith_shop_state_st`, `miller_tannery`,
+`north_side_school_1833`, `steamboat_hotel`, `council_house` and `robinson_caldwell_cabins` —
+are invented polygons tagged `conjectural`, citing no source. The North Side school house's
+**construction** is invented too.
+**Why:** the same argument L36 makes for the business street, one bank north. What these sources
+give is a name, a use, a year and usually a street: *Wau-Bun* describes Cobweb Castle's
+composition and never its size; Andreas gives the tannery a direction, the school a side of
+Clark Street, the smithy a proximity and the hotel a street, and **not one of them gives a
+dimension**. No period map in this project draws a building footprint, which is verified for
+both 1834 sheets. So a footprint here is a guess by construction and the only question was
+whether to make it visibly or by omission. One polygon carries real evidence in its **shape**
+and none in its size — Cobweb Castle's centre, two wings and two tails is *Wau-Bun*'s sentence
+drawn — and that distinction is stated in its own footprint note.
+The school's `construction` is a preference between two readings rather than a derivation: log
+keeps it with the older north-bank fabric, and the nearest building anybody dated is frame — the
+Methodist meeting house contracted for "a frame building twenty-six by thirty-eight feet" at
+North Water and Clark on 30 June 1834, one block away and a year later. Choosing log also chose
+the archetype, so if it is wrong the building is wrong in kind.
+**Consequence, and it is worse here than on the business street.** `log_dwelling` computes its
+wall massing's `_CONFIDENCE` from `stories` and `construction` only — **not from `footprint`** —
+so a building whose every dimension is invented renders at the confidence of its storey count.
+`miller_tannery` is the clean case: its footprint is a placeholder and the whole building shows
+`0.5`, inferred. **Turning the confidence view on does not reveal an invented footprint on any
+log building in this dataset.** The `_CONFIDENCE` worked example in docs/GLB-CONTRACT.md says
+the footprint should drive it; the archetype does not. Until that is fixed and the town re-baked,
+this entry is the only place a visitor can learn it.
+**How to resolve:** a dimension for any one of them upgrades that one and nothing else. The
+likeliest source is the *Chicago Democrat* and the *Chicago American* — Davis advertised the
+Steamboat Hotel in the latter, and hotel advertisements of the period describe premises. The
+archetype half is a one-line change plus a re-bake of every log building.
+**Covers:** `cobweb_castle.log_1820.footprint`,
+`blacksmith_shop_state_st.log_1823.footprint`,
+`miller_tannery.log_1831.footprint`,
+`north_side_school_1833.log_1833.footprint`,
+`north_side_school_1833.log_1833.form.construction`,
+`steamboat_hotel.frame_1835.footprint`,
+`council_house.log_1834.footprint`,
+`robinson_caldwell_cabins.log_1831.footprint`.
+**Recorded:** 2026-08-11.
+
+### L54 — Cobweb Castle: the one building anybody described, built as a box
+**Decision:** the Indian Agency house is modelled as a plain rectangular log mass under a gable
+roof. Its attested **plan** — "a centre, two wings, and, strictly speaking, two tails" — is
+recorded as `plan_composition`, drawn in the footprint polygon, and declared
+`geometry: "absent"`. Its attested **cladding**, "clapboarded part way up", is declared
+`geometry: "simplified"`. Its `roof_type` is tagged `conjectural` although a gable is built.
+**Why:** this is the best-described building on the north bank and the archetype can express
+almost none of it. `log_dwelling` masses the footprint polygon's **bounding box**, so the cross
+this record draws — a centre projecting one metre forward of two flanking wings, with two tails
+running back from the rear — comes out as a 13 × 9 m rectangle with the re-entrant corners filled
+in. The same limitation L27 records for Miller's L-shaped plan, on the building where it costs
+most. The roof follows from it: *Wau-Bun* says the hours were passed "under its **odd-shaped
+roof**", which is what a centre with two wings and two tails produces, and one gable is the
+opposite of that — so the value is a substitution and is graded as one rather than passed off as
+a reading. The clapboarding is a documented finish on a log wall that the archetype paints as
+bare hewn log (L22's finding, on a record L22 does not name).
+**Consequence:** the visitor walks past a box. Everything a reader would recognise this building
+by — the wings, the tails, the comical adjuncts a platted street exposed, the boards taken part
+way up the wall — is in the record and not in the model. The confidence view marks the mass
+`1.0` because the roof is conjectural, which is right by accident: it is the plan that is
+missing, and the tint cannot say which.
+**How to resolve:** an archetype that extrudes the polygon rather than its bounding box would
+build the plan this record already draws, from data already committed. That is a geometry change
+and a re-bake, not a research problem.
+**Covers:** `cobweb_castle.log_1820.form.plan_composition`,
+`cobweb_castle.log_1820.form.cladding`,
+`cobweb_castle.log_1820.form.roof_type`.
+**Recorded:** 2026-08-11.
+
+### L53 — The Steamboat Hotel: a documented hotel with an entirely invented fabric
+**Decision:** `steamboat_hotel` is built as a two-storey braced-frame block, 15 × 8 m, unpainted,
+gable-roofed, with no gallery — and **every one of those values is tagged `conjectural`**,
+including the construction, which is also what chose the archetype.
+**Why:** two sources give this house a street, a cross-street, a year and a keeper, and not one
+word about its fabric, size, plan, storeys or finish. Andreas: "The Steamboat Hotel, on North
+Water Street, near Kinzie, was kept in 1835 by John Davis." That is the whole of it. Frame was
+chosen because every Chicago hotel this dataset can date to 1833 or later is frame — the Green
+Tree of 1833, the Western of 1834, the Tremont of 1833 — while the log taverns at the forks all
+belong to the 1828-31 generation. But this project's own line, set in L18, is that **the ordinary
+reading of a type is not evidence about a building**, and nobody described this one. `paint` and
+`gallery` are recorded rather than omitted for a reason worth keeping: the archetype's defaults
+are white paint and no gallery, so leaving them out would have made both claims silently, and
+white paint on an 1835 house is a claim *Wau-Bun* shows was worth remarking on in 1831.
+**Consequence:** the whole building renders as dithered massing in the confidence view, which is
+the correct answer and an unusually honest one — this is what the project knows about a hotel it
+can name, date and staff. **Do not read anything off its elevation.** And note the compounding
+risk: if the frame reading is wrong the building is wrong in kind, not in detail, because a log
+reading would move it to a different archetype.
+**A second admission belongs with it.** The date is inferred, not documented. Both sources say
+1835 and neither gives a month; every dated anchor — the 8 June 1835 first issue of the paper
+Davis advertised in, the 9 November 1835 change of management — falls **after** the scene date.
+The record argues the case on `documented_range` and says that a dated advertisement putting the
+opening after 1 July sends it to `data/exclusions.json`.
+**How to resolve:** the *Chicago American* and the *Chicago Democrat*. An advertisement would
+plausibly settle the fabric, the size and the opening date in one document.
+**Covers:** `steamboat_hotel.frame_1835.form.construction`,
+`steamboat_hotel.frame_1835.form.stories`,
+`steamboat_hotel.frame_1835.form.wall_height_m`,
+`steamboat_hotel.frame_1835.form.roof_type`,
+`steamboat_hotel.frame_1835.form.paint`,
+`steamboat_hotel.frame_1835.form.gallery`.
+**Recorded:** 2026-08-11.
+
+### L52 — Two buildings placed inside bands, and two or three cabins built as one
+**Decision:** `council_house` and `robinson_caldwell_cabins` carry `conjectural` positions —
+points chosen inside stretches a source bounds but does not narrow — and the cabins are built as
+**one** cabin where the source counts "two or three".
+**Why:** the council house is located by a single sentence in a 1910 newspaper recollection: "on
+the north side of the river, **east of the present State street and west of the 'Lake House'**".
+That is a 215 m stretch of riverbank, and no other source narrows it, so the along-bank position
+is good to about **±110 m** — five times the georeference's own uncertainty and the largest
+positional error in this dataset. The cabins are located by *Wau-Bun*'s row order alone — the
+tavern, then "near him" the cabins, then "a little remote" the log meeting house — between two
+neighbours that are themselves placed from bank geometry, one of which (`walker_meeting_house`)
+may be on the wrong bank entirely. The count is the source's own hedge: "two or three log cabins
+occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions". Building two
+or three would mean inventing the number *Wau-Bun* declined to give, plus their spacing and
+arrangement, so the record keeps the words as the value, declares `geometry: "simplified"`, and
+builds one.
+**Consequence:** for both, the sidecar's flat `uncertainty_m: 20` is wrong by a large factor —
+the same understatement L7 records for the Wolf Point three, worse. A visitor sees a council
+house standing on a specific spot that no source puts it on, and sees one cabin where at least
+two stood. Neither is visible in the confidence view: the tint grades a value, not a place, and
+it cannot render a building that should have been two.
+**Both records are flagged `review_required: true`** and that is not a liberty, it is the
+standing constraint in `AGENTS.md`. The council house is where the assembly of 18 August 1835
+formed; the cabins were the homes of Potawatomi people in the year of the removal. This project
+models the built environment and asserts nothing about presence, occupancy or events, and the
+flag holds the scene short of `released` until someone qualified has read the records.
+**How to resolve:** for the council house, any source naming a street, a corner or a lot — the
+*Chicago Democrat*'s notices of agency business, or the corrected 1835 Wabansia and Kinzie's
+Addition plat. For the cabins, any source that follows them past 1831: the 1833 treaty's
+schedules of improvements and claims are the likeliest.
+**Covers:** `council_house.log_1834.position`,
+`robinson_caldwell_cabins.log_1831.position`,
+`robinson_caldwell_cabins.log_1831.form.cabin_count`.
 **Recorded:** 2026-08-11.
 
 ---

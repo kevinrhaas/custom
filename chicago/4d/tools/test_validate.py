@@ -715,11 +715,21 @@ class _Ramp:
     happens to be placed on, and a step makes the difference unmissable.
     """
 
-    def __init__(self, west: float, east: float, at_e: float = 5.0) -> None:
+    def __init__(self, west: float, east: float, at_e: float = 5.0,
+                 extent_e: float = 1e9) -> None:
         self.west, self.east, self.at_e = west, east, at_e
+        self.extent_e = extent_e
 
     def height(self, e: float, n: float) -> float:  # noqa: ARG002 — n is flat
         return self.west if e < self.at_e else self.east
+
+    def covers(self, e: float, n: float) -> bool:  # noqa: ARG002 — n is unbounded
+        """Whether the field HAS ground at (e, n), which is a different question
+        from how high it is. `Heightfield.height` clamps outside the box, so
+        without this a structure placed past the edge samples the same clamped
+        value for its base and for every contact point and reports a perfect
+        landing. Fort Dearborn did exactly that on 2026-08-11."""
+        return e <= self.extent_e
 
 
 def _landing(structures, contacts, field, resolvers):
@@ -756,6 +766,43 @@ def test_ground_contact_measures_the_whole_outline() -> None:
           [f[0] for f in stepped] == ["x"], stepped)
 
 
+def test_ground_outside_the_box_is_a_different_finding_from_a_gap() -> None:
+    """No ground at all is not the same claim as ground the structure misses.
+
+    The discriminating case is a building standing on PERFECTLY FLAT ground that
+    the field does not reach. Measured against the clamped edge it lands to the
+    millimetre — which is what Fort Dearborn did, 832 m past the box — so a check
+    that only measured heights would report it as fine. The finding is reported
+    with a gap of None, and check_ground_contact requires the record to declare
+    `outside_modelled_ground` rather than `approach_not_modelled`.
+    """
+    st = {"x.json": {"id": "x", "archetype": "a", "phases": [_box()]}}
+    contacts = {"a": {"mode": "perimeter", "anchor": None, "contact_z": None}}
+    resolvers = {"a": lambda ph: object()}
+
+    inside = _landing(st, contacts, _Ramp(0.0, 0.0), resolvers)
+    check("flat ground inside the field is not a finding", not inside, inside)
+
+    outside = _landing(st, contacts, _Ramp(0.0, 0.0, extent_e=3.0), resolvers)
+    check("flat ground the field does not reach IS a finding",
+          [f[0] for f in outside] == ["x"], outside)
+    check("and it is reported as absent ground, not as a measured gap",
+          outside and outside[0][4] is None, outside)
+
+    rep = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [dict(
+        _box(), ground_contact={"state": "approach_not_modelled", "note": "n"})]}},
+        outside, rep)
+    check("declaring a gap over ground that does not exist is rejected",
+          any("outside_modelled_ground" in m for m in rep.errors), rep.errors)
+
+    ok = V.Report()
+    V.check_ground_contact({"x.json": {"id": "x", "phases": [dict(
+        _box(), ground_contact={"state": "outside_modelled_ground", "note": "n"})]}},
+        outside, ok)
+    check("declaring the right state passes", not ok.errors, ok.errors)
+
+
 def test_ground_contact_tolerance_is_the_step_up_rule() -> None:
     """0.35 m, and it is the walker's number rather than a fresh one."""
     st = {"x.json": {"id": "x", "archetype": "a", "phases": [_box()]}}
@@ -782,6 +829,9 @@ def test_ground_contact_of_a_crossing_is_its_deck() -> None:
 
         def height(self, e, n):  # noqa: ARG002
             return -3.0 if 4.0 < e < 16.0 else 1.0
+
+        def covers(self, e, n):  # noqa: ARG002 — the whole channel is modelled
+            return True
 
     resolvers = {"c": lambda ph: object()}
     high = {"c": {"mode": "ends", "anchor": "water", "contact_z": lambda p: 2.22}}

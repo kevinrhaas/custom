@@ -186,7 +186,7 @@ finding, not a shortcut. Where a street crosses the slough or the marshy shore s
 is a real crossing problem the sources may describe; treat it as content, not as a
 rendering artefact to be flattened away.
 
-## S5a — Fort Dearborn · **the next building, now unblocked**
+## S5a — Fort Dearborn · **DONE 2026-08-11**
 
 Kevin's call, and the dependency he named is satisfied: the coastline, the sand bar and the
 harbour works are read, so there is ground to put it on once S2e builds the heightfield.
@@ -205,6 +205,55 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   this project gets wrong by assuming — an occupied fort and an empty one are different
   scenes. Research it and cite it; `data/exclusions.json` is the place for whatever turns
   out not to be there.
+
+**How both gates were cleared, and what it cost.**
+
+- **The plan source exists and it is a survey.** *Map of the Mouth of Chicago River*, F. Harrison
+  Jr., Ass't U.S. Civil Engineer, for the proposed harbour improvements, approved by William
+  Howard 24 February 1830 — reproduced in **Andreas vol. 1 p. 113** and listed in that volume's
+  own table of maps as "Fort Dearborn in 1830-32". It draws the fort in plan and names the ground
+  round it (Garden for the Garrison, Cultivated Field, Big Barn with Cupola, Wash house, Well,
+  Shop, Fort Cemetery, the Ferry). Recorded as `harrison_1830_river_mouth`, `asset_use: geometry`,
+  tier 2 — because the plate says on its face that it carries "additions and changes … suggested
+  by the Memory of Early Settlers", so it is a period survey plus fifty-year-old recollection
+  mixed on one plate. **Nothing taken from it is graded `documented`.**
+- **The plate has no scale bar, and that is the whole difficulty.** The scale is derived by
+  setting the drawn north range equal to the commandant's quarters at "about 25 x 50 ft" from the
+  1855 photograph key — 1.10 ft/px — and checked twice on the same plate (drawn aspect 1.9:1
+  against a stated 2.0:1; parade width 71 ft against a stated 80 ft). **±20 %** on every derived
+  dimension, on top of the datum's ±20 m. The stockade comes out about **53 m (174 ft) square**.
+  **No dimension of the 1816 fort exists in the literature**: Quaife's monograph prints
+  Whistler's measured 1808 draught of the FIRST fort and states none for the second anywhere.
+- **The arrangement is much better evidence than the scale**, and it is what licenses `inferred`
+  rather than `conjectural` for the positions: an 1830 engineer's plan and Gurdon Hubbard's 1827
+  walk round the inside agree building by building, on the same sides of the same two gates.
+- **The garrison is settled.** Held continuously **June 1832 → 29 December 1836**; Andreas
+  brackets the scene date and the drloihjournal chronology fills the bracket with **Maj. John
+  Greene, 5th Infantry**. Two companies in 1833; **no strength figure for mid-1835 was found and
+  none is claimed**. The fort is modelled maintained, with its gates shut.
+- **Fourteen records, two new archetypes, fourteen bakes, ~17,000 triangles.** `palisade`
+  (picket stockade with named gates and corner works; worm rail fence for the garden) and
+  `fort_structure` (eleven kinds — quarters, barracks, blockhouse, magazine, store, guard,
+  sutler, artillery, parade, root house, tower). The lighthouse of 1832 came with them.
+- **Five exclusions, four of them wrong-fort findings**: the first fort itself, the sally-port,
+  the three artillery pieces and the fifty invalids, the 1850s board fence and turnstile — plus
+  **there is no hospital building**, only the fort *becoming* a general hospital in the 1832
+  cholera. Three corrections to `docs/research/04-structures-south.md` are recorded in
+  `docs/RESEARCH/fort_dearborn.md` § 6, and one to § 2 in
+  `docs/RESEARCH/chicago_lighthouse_1832.md`.
+- **It stands on nothing.** The complex is 832 m east of the modelled heightfield. It is declared
+  `outside_modelled_ground` on all fourteen records and admitted in **L46**, and it exposed a
+  real blind spot in the ground-contact gate — see STATUS § "Known weaknesses" 0a. **S2e parcel
+  (b) is now the binding constraint on this parcel and on twenty others.**
+
+**Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
+plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,
+Well, Shop, Out Buildings, U.S. Factor's House, Cultivated Field, the Ferry — the Fort Cemetery
+deliberately left alone); the drill ground south of the pickets, which Kinzie attests and does not
+measure; the garden's planting, which is documented and needs a **cultivated flora zone** rather
+than a structure; and a keeper's dwelling beside the lighthouse, which is plausible and
+unattested.
+
 
 ## S4 — Archetype generators
 

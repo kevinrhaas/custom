@@ -1,0 +1,101 @@
+{
+  "id": "elston_soap_candle_manufactory",
+  "phase": "works_1833",
+  "name": "Daniel Elston & Co.'s Soap and Candle Manufactory",
+  "aka": [
+    "the Chicago Soap and Candle Manufactory",
+    "Elston's soap and candle works"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/elston_soap_candle_manufactory__works_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -12.7,
+    "local_n": 184.2,
+    "rotation_deg": 270.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "East bank of the North Branch above the forks, outside the built-up streets. NO LOCATION IS ATTESTED — the advertisement gives no address.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        10,
+        0
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "wall_height_m": {
+      "value": 2.8,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.8 m is about 9 ft at the eave: headroom over a kettle set on a fire, with air above it, which is more than a store needs and less than a warehouse. Stated rather than left to the archetype's size-aware default of 3.18 m for this footprint. What is inferred is the range and the reason, not the number."
+    },
+    "door": {
+      "value": "stable",
+      "confidence": "inferred",
+      "note": "No source describes an opening. The documented business took delivery of tallow and house ashes and sent out soap and candles, so the doorway has to pass barrels and a handcart at least; 'stable' is the archetype's 1.35 m clear opening, the middle of its three sizes. A man-door would say the trade was carried on out of a room."
+    },
+    "plant": {
+      "value": "rendering kettle, ash leach and moulding floor",
+      "confidence": "inferred",
+      "geometry": "absent",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "note": "STATED AND NOT BUILT. What the advertisement documents is the PROCESS, not the plant: Elston & Co. paid cash for tallow and for house ashes, which are the two inputs of soap making — tallow rendered, ashes leached for lye, the two boiled together — and candles are the same tallow moulded or dipped. So a kettle, a leach and a moulding floor are inferred from the raw materials the firm advertised for, which is a good inference and still an inference. None of it reaches the mesh: the outbuilding archetype builds a shed, and this record shows an empty one. The chimney or flue that a rendering fire needs is not modelled either — outbuilding has no chimney parameter — so the works have no smoke, which is the one thing a neighbour would have noticed about them. Owed an admission in docs/LIBERTIES.md."
+    },
+    "function": {
+      "value": "soap_candle_manufactory",
+      "confidence": "documented",
+      "sources": [
+        "chicago_democrat_1833_11_26",
+        "andreas_1884_v1"
+      ],
+      "note": "'soap and candle manufactory, by Daniel Elston & Co.' — Andreas's summary of the Chicago Democrat's early advertising columns (scan p. 755), and the advertisement itself in the issue of 26 November 1833, which offers cash for tallow and for house ashes. THE TALLOW IS THE INTERESTING PART: it is the by-product of the slaughtering trade this parcel also models, so Clybourne's plant on the North Branch and Newberry & Dole's on the South Branch are this manufactory's suppliers, and a town that kills 250 cattle and 2,000 hogs in a season has the raw material for a candle works whether or not these particular firms dealt with each other. That connection is the reason this record was judged placeable at all, and it is a connection between TRADES, not a documented business relationship."
+    },
+    "occupants": {
+      "value": "Daniel Elston & Co.",
+      "confidence": "documented",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "note": "The firm names itself in its own advertisement, which is the strongest form this evidence takes. Who else was in the partnership, and whether anyone was working the premises on 1835-07-01, is not attested."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicago_democrat_1833_11_26",
+      "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1
+    }
+  ],
+  "research_note": "THE FIRST STRUCTURE IN THIS DATASET BUILT FROM A CONTEMPORARY NEWSPAPER RATHER THAN A RETROSPECTIVE HISTORY, AND ITS POSITION IS THE PRICE. The Chicago Democrat of 26 November 1833 is the earliest Chicago document this project holds and the only tier-1 textual source in it; what it gives is a town describing itself in its own week. What it does not give is an address, and this record's placement is therefore an argument rather than a derivation — Elston's later association with the North Branch and the ordinary siting of a nuisance trade, against the fact that every locatable advertiser in the same issue was on South Water Street. Both readings are written into the position note so the next agent can overturn this one on evidence. WHY IT WAS BUILT AT ALL, under the project owner's instruction of 2026-08-11: a manufactory is what makes a town look like it works, and an absent building is invisible to a visitor while a conjectural one is legible and correctable. THREE OTHER TRADES IN THE SAME ISSUE WERE JUDGED NOT PLACEABLE AND ARE NOT MODELLED HERE — Goss & Cobb, saddle and harness makers; Matthias Mason & Co., blacksmiths; and Peter Cohen, winter clothing, groceries, table salt and tin ware. All three are retail or shop trades with no attested location, whose natural ground is the South Water Street frontage that another parcel is building; putting them at invented points on that street would collide with better-evidenced work. Note also that this dataset already carries a documented blacksmith shop near the Agency House at the foot of State Street, so the town does not lack a smithy for want of Mason's. WHAT WOULD UPGRADE THIS RECORD: more of the Chicago Democrat. Its advertising columns are where a manufactory says where to find it, and further issues are the single highest-value next source for this record, for both warehouses, and for the three trades left unbuilt.",
+  "research_doc": "docs/RESEARCH/elston_soap_candle_manufactory.md",
+  "review_required": false
+}

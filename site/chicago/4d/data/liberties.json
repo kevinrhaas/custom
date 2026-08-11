@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 47,
+  "count": 48,
   "liberties": [
     {
       "id": "L1",
@@ -1424,12 +1424,12 @@
         {
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
-          "aspect": "form.draw_span_m"
+          "aspect": "form.draw_lifting_gear"
         },
         {
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
-          "aspect": "form.gallows_frames"
+          "aspect": "form.gallows_height_m"
         },
         {
           "structure": "dearborn_street_drawbridge",
@@ -1473,12 +1473,16 @@
           "text": "a visitor sees a long low timber bridge and no reason to think it was ever anything else. The one fact that made this structure remarkable in its own town is the fact the model does not show. The 60-foot gap in the deck is not drawn either, so the crossing reads as continuous when it was not."
         },
         {
+          "label": "Evidence since, 2026-08-11",
+          "text": "the frames are **built**. `bridge_timber` grew a draw — the sixty-foot opening now clears four invented supports out of itself and stations two gallows frames at its ends — on the argument that a dithered translucent frame says \"this shape is ours\" in a way no footnote can, while an absent one tells a visitor the town's one piece of engineering was a plain causeway. What is still missing is the *mechanism*: no leaf, no hinge, no tackle. The draw is built **closed**, which is the only state agnostic between the three arrangements the sources permit. `gallows_height_m` is conjectural and carries the whole frame's confidence, so the most conspicuous object on the crossing is the one the confidence view dithers hardest."
+        },
+        {
           "label": "How to resolve",
           "text": "any description of the draw's framing or its hoist — a repair contract, a council order, an engraving. The bridge was repaired in 1835, so a repair record is the most likely thing to exist."
         },
         {
           "label": "Covers",
-          "text": "`dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_span_m`, `dearborn_street_drawbridge.draw_1834.form.gallows_frames`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`, `dearborn_street_drawbridge.draw_1834.ground_contact`."
+          "text": "`dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`, `dearborn_street_drawbridge.draw_1834.ground_contact`."
         },
         {
           "label": "Recorded",
@@ -1502,9 +1506,11 @@
         "jb_beaubien_homestead",
         "jh_kinzie_forwarding_store",
         "madore_beaubien_house",
+        "north_pier",
         "old_bank_building",
         "peck_store",
-        "pruyne_kimball_drugstore"
+        "pruyne_kimball_drugstore",
+        "south_pier"
       ],
       "covers": [
         {
@@ -1588,6 +1594,11 @@
           "aspect": "ground_contact"
         },
         {
+          "structure": "north_pier",
+          "phase": "crib_1835",
+          "aspect": "ground_contact"
+        },
+        {
           "structure": "old_bank_building",
           "phase": "frame_1834",
           "aspect": "ground_contact"
@@ -1600,6 +1611,11 @@
         {
           "structure": "pruyne_kimball_drugstore",
           "phase": "frame_1830s",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "south_pier",
+          "phase": "crib_1835",
           "aspect": "ground_contact"
         }
       ],
@@ -1624,7 +1640,7 @@
         },
         {
           "label": "Covers",
-          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`."
+          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`."
         },
         {
           "label": "Recorded",
@@ -2196,6 +2212,69 @@
         {
           "label": "Covers",
           "text": "`fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`, `fort_dearborn_officers_quarters.log_1816.ground_contact`, `fort_dearborn_barracks.log_1816.ground_contact`, `fort_dearborn_sutlers_store.log_1816.ground_contact`, `fort_dearborn_guard_house.log_1816.ground_contact`, `fort_dearborn_store_house.log_1816.ground_contact`, `fort_dearborn_magazine.brick_1816.ground_contact`, `fort_dearborn_blockhouse.log_1816.ground_contact`, `fort_dearborn_artillery_house.log_1816.ground_contact`, `fort_dearborn_parade.parade_1816.ground_contact`, `fort_dearborn_root_house.cellar_1816.ground_contact`, `fort_dearborn_garrison_garden.fence_1816.ground_contact`, `chicago_lighthouse_1832.tower_1832.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L41",
+      "title": "The harbour piers are a measured line, an interpolated length and an invented width",
+      "section": "per_subject",
+      "subjects": [
+        "north_pier",
+        "south_pier"
+      ],
+      "covers": [
+        {
+          "structure": "north_pier",
+          "phase": "crib_1835",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "north_pier",
+          "phase": "crib_1835",
+          "aspect": "form.width_m"
+        },
+        {
+          "structure": "south_pier",
+          "phase": "crib_1835",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "south_pier",
+          "phase": "crib_1835",
+          "aspect": "form.width_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`north_pier` and `south_pier` are drawn as timber crib lines 900 ft and 400 ft long and **25 ft wide**. The bearing and the landward root of both are measured off Wright 1834; the length of both is an **interpolation between two year-end figures**, recorded `inferred` on `form.length_m`; the width of both is **the archetype's own constant**, recorded `conjectural`, and it carries the footprint down with it."
+        },
+        {
+          "label": "Why",
+          "text": "the sheet that gives the line cannot give the width. Wright 1834 draws the harbour as two red pier lines with HARBOR lettered between them, and read through this project's own fitted affine the two run at 103.4 and 103.5 degrees from grid north and stand 64.2 m apart — against a documented 200 ft entrance, which is 61.0 m, a four-per-cent agreement from evidence that shares no input. That is a good measurement of a **line**. But the sheet is drawn at about 1:7,200, where a 25-ft crib is 0.13 mm of paper and about a fifth of the width of the pen that drew the pier: the red bands are line weight and carry no thickness at all, so measuring one would be measuring the draughtsman's nib. No text reached states a width either. 25 ft is this archetype's number, kept as a single constant in `pier_crib_params.DEFAULT_WIDTH_M` so that both piers inherit **one** invention a reader can find in one place rather than two that could drift apart. **The length is a different kind of not-knowing and is graded differently.** No source gives a length for any date inside the 1835 season; what exist are year-end figures — north 700 ft (end 1834) to 1,260 ft (end 1835), south 200 ft to 700 ft — and 1 July is placed between them on a season-weighted rather than a calendar reading, at 900 ft and 400 ft, inside the bands `docs/research/04-structures-south.md` §3 reaches independently. That is `inferred` with the arithmetic written out, not `conjectural`, and it is not claimed here. What is claimed is the **drawn shape**, which is graded by its weaker axis."
+        },
+        {
+          "label": "A third invention rides along and is claimed here too",
+          "text": "the cribs are drawn as equal 30-ft modules (`pier_crib_params.CRIB_MODULE_FALLBACK_M`). Nobody recorded a crib length, and a pier built out over several seasons in fact ends where a season ended, not on an even module."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees two piers of a definite length and a definite width, and only their direction and their starting point are evidence. The confidence view renders both as massing, which is right, and cannot say that one of the two axes is much better known than the other — only this entry can. Nothing should be read off how far out they run."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Chief Engineer's annual report for 1835 or the House Document series would replace the interpolated length with a figure (`docs/research/01-terrain-hydrology.md` already names them as the thing to find). For the width, J. D. Graham's 1857 and 1858 hydrographic surveys of the Chicago bar draw the piers in plan at a usable scale, or any specification or voucher for the crib work."
+        },
+        {
+          "label": "Covers",
+          "text": "`north_pier.crib_1835.footprint`, `north_pier.crib_1835.form.width_m`, `south_pier.crib_1835.footprint`, `south_pier.crib_1835.form.width_m`."
         },
         {
           "label": "Recorded",

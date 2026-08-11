@@ -93,6 +93,12 @@
       "asset": "gltf/dole_warehouse_south__frame_1832.glb"
     },
     {
+      "id": "elston_soap_candle_manufactory",
+      "name": "Daniel Elston & Co.'s Soap and Candle Manufactory",
+      "sidecar": "sidecars/1835/elston_soap_candle_manufactory.json",
+      "asset": "gltf/elston_soap_candle_manufactory__works_1833.glb"
+    },
+    {
       "id": "estray_pen",
       "name": "Estray pen",
       "sidecar": "sidecars/1835/estray_pen.json",
@@ -307,6 +313,12 @@
       "name": "Philo Carpenter's Log Drug Store",
       "sidecar": "sidecars/1835/philo_carpenter_log_shop.json",
       "asset": "gltf/philo_carpenter_log_shop__log_1832.glb"
+    },
+    {
+      "id": "pierce_blacksmith_shop",
+      "name": "Asahel Pierce's Blacksmith Shop",
+      "sidecar": "sidecars/1835/pierce_blacksmith_shop.json",
+      "asset": "gltf/pierce_blacksmith_shop__shop_1833.glb"
     },
     {
       "id": "pruyne_kimball_drugstore",

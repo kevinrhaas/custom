@@ -163,33 +163,84 @@ def value_noise(E, N, wavelength, seed):
 # the field
 # ---------------------------------------------------------------------------
 
-def build_field(spec, river, hydro, origin):
-    """Returns (h_m, conf, water_mask, meta) on the spec's grid.
+def profile(E, knots):
+    """A quantity that varies west-to-east, read off a piecewise-linear table.
+
+    The town's terrain varies along E and not along distance from the river:
+    the plain west of State Street stands two to three feet over the water and
+    the ground east of it nine to ten, and the break between them is a line
+    running north-south. So every level the spec states — bank crest, plain,
+    bank face width — is a table of (local E, value) knots rather than a scalar.
+    Constant outside the first and last knot, which is what `np.interp` does and
+    what "no evidence past here" should do.
+    """
+    xs = [float(k[0]) for k in knots]
+    ys = [float(k[1]) for k in knots]
+    return np.interp(E, xs, ys)
+
+
+def build_field(spec, feats, origin):
+    """Returns (h_m, conf, water_mask, meta, geom) on the spec's grid.
 
     h_m[row][col], row 0 = SOUTH edge, col 0 = WEST edge — the layout
     renderers/web/js/terrain.js's Heightfield sampler requires.
+
+    `feats` is every traced feature the epoch owns, by id, across river.geojson,
+    hydrology.geojson and shoreline.geojson.
     """
     o_e, o_n = origin
     g = spec["grid"]
-    half, cell = float(g["half_extent_m"]), float(g["cell_m"])
-    n = int(round(2 * half / cell)) + 1
-    axis = -half + cell * np.arange(n)
-    E, N = np.meshgrid(axis, axis)                    # E varies along columns
+    cell = float(g["cell_m"])
+    e0, e1 = float(g["e_min_m"]), float(g["e_max_m"])
+    n0, n1 = float(g["n_min_m"]), float(g["n_max_m"])
+    cols = int(round((e1 - e0) / cell)) + 1
+    rows = int(round((n1 - n0) / cell)) + 1
+    E, N = np.meshgrid(e0 + cell * np.arange(cols), n0 + cell * np.arange(rows))
 
     def to_local(coords):
         return [(c[0] - o_e, c[1] - o_n) for c in coords]
 
-    feats = {f["id"]: f for f in river["features"]}
-    ring = to_local(feats["chicago_river_forks"]["geometry"]["coordinates"][0])[:-1]
-    runs = {d["bank_run"]: to_local(feats[d["bank_run"]]["geometry"]["coordinates"])
-            for d in spec["divisions"]}
+    def ring_of(spec_ref):
+        f = feats[spec_ref["feature"]]
+        return to_local(f["geometry"]["coordinates"][int(spec_ref.get("ring", 0))])[:-1]
 
-    # ---- distance to the waterline, signed -------------------------------
-    d_ring = seg_distance(E, N, ring + [ring[0]])
-    in_ring = point_in_ring(E, N, ring)
+    # ---- what is water ----------------------------------------------------
+    # Union of the traced water polygons, minus their islands. The sand bar is
+    # LAND inside water — the interior ring of the harbour-reach polygon — so
+    # membership has to understand islands and not only banks.
+    in_water = np.zeros(E.shape, bool)
+    islands = np.zeros(E.shape, bool)
+    for wp in spec["water_polygons"]:
+        body = point_in_ring(E, N, ring_of({"feature": wp["feature"], "ring": 0}))
+        for r in wp.get("island_rings", []):
+            hole = point_in_ring(E, N, ring_of({"feature": wp["feature"], "ring": r}))
+            body &= ~hole
+            islands |= hole
+        in_water |= body
+    # The traced polygons stop at the edge of the traced window, which is not a
+    # shore. Beyond it the sheet is still lake, and calling it land would be the
+    # largest false claim available here.
+    lake_rule = spec.get("open_lake")
+    if lake_rule:
+        in_water |= point_in_ring(E, N, [tuple(p) for p in lake_rule["polygon"]])
+    in_water &= ~islands
+
+    # ---- the waterline ----------------------------------------------------
+    # Distance is taken to the traced SHORE RUNS and the island rings, never to
+    # the water polygons' own boundaries: those boundaries close across the
+    # traced window (the forks polygon at E +390, the harbour polygon at E +314
+    # and again out in the lake), and a window edge is a place the tracing
+    # stopped, not a bank. Measuring to it would raise a bank across open water.
+    shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
+                  for s in spec["shore_runs"]}
+    waterlines = [seg_distance(E, N, pts) for pts in shore_runs.values()]
+    for isl in spec.get("islands", []):
+        r = ring_of(isl["ring"])
+        waterlines.append(seg_distance(E, N, r + [r[0]]))
+    d_shore = np.minimum.reduce(waterlines)
 
     # ---- the north-side slough, buffered off its traced centreline -------
-    slough_feat = next((f for f in hydro["features"] if f["id"] == "north_side_slough"), None)
+    slough_feat = feats.get("north_side_slough")
     wc = {w["id"]: w for w in spec.get("watercourses", [])}
     if slough_feat is not None:
         line = to_local(slough_feat["geometry"]["coordinates"])
@@ -203,54 +254,100 @@ def build_field(spec, river, hydro, origin):
         in_slough = np.zeros(E.shape, bool)
         s_half, slough_bed, slough_efold = 0.0, 0.0, 9.0
 
-    water = in_ring | in_slough
+    water = in_water | in_slough
     # distance INTO the water from the nearest waterline, and distance INLAND
-    d_in = np.where(in_ring, d_ring, 0.0)
+    d_in = np.where(in_water, d_shore, 0.0)
     d_in = np.maximum(d_in, np.where(in_slough, s_half - d_slough, 0.0))
-    d_land = np.minimum(np.where(in_ring, 1e9, d_ring),
+    d_land = np.minimum(np.where(in_water, 1e9, d_shore),
                         np.where(in_slough, 1e9, d_slough - s_half))
     d_land = np.maximum(d_land, 0.0)
 
     # ---- channel bed: inverse-distance blend of the reach beds -----------
     wsum = np.zeros(E.shape)
     bsum = np.zeros(E.shape)
+    fsum = np.zeros(E.shape)
+    default_efold = float(spec["channel_profile"]["e_fold_m"])
     for r in spec["reaches"]:
-        dd = np.maximum(np.hypot(E - r["anchor_e"], N - r["anchor_n"]), 1.0)
-        w = 1.0 / (dd * dd)
-        wsum += w
-        bsum += w * float(r["bed_ft"])
+        anchors = r.get("anchors") or [[r["anchor_e"], r["anchor_n"]]]
+        rf = float(r.get("e_fold_m", default_efold))
+        for a_e, a_n in anchors:
+            dd = np.maximum(np.hypot(E - float(a_e), N - float(a_n)), 1.0)
+            w = 1.0 / (dd * dd)
+            wsum += w
+            bsum += w * float(r["bed_ft"])
+            fsum += w * rf
     bed_ft = bsum / wsum
-    bed_ft = np.where(in_slough & ~in_ring, slough_bed, bed_ft)
-    efold = np.where(in_slough & ~in_ring, slough_efold,
-                     float(spec["channel_profile"]["e_fold_m"]))
+    efold = fsum / wsum
+    bed_ft = np.where(in_slough & ~in_water, slough_bed, bed_ft)
+    efold = np.where(in_slough & ~in_water, slough_efold, efold)
     depth_ft = bed_ft * (1.0 - np.exp(-d_in / efold))
 
     # ---- which division is this land in ----------------------------------
-    run_ids = list(runs)
-    dists = np.stack([seg_distance(E, N, runs[k]) for k in run_ids])
+    # By which traced shore it is nearest to, still: the divisions were DEFINED
+    # by the river. A division may own more than one run now, because the forks
+    # trace and the harbour-reach trace are two windows onto one bank.
+    divisions = spec["divisions"]
+    dists = np.stack([
+        np.minimum.reduce([seg_distance(E, N, shore_runs[s["id"]])
+                           for s in spec["shore_runs"] if s["division"] == div["id"]])
+        for div in divisions])
     nearest = np.argmin(dists, axis=0)
 
     level_ft = np.zeros(E.shape)
-    for i, run_id in enumerate(run_ids):
-        div = next(d for d in spec["divisions"] if d["bank_run"] == run_id)
-        near, far = float(div["near_ft"]), float(div["far_ft"])
-        lv = near + (far - near) * np.clip(d_land / float(div["far_m"]), 0.0, 1.0)
+    face = np.full(E.shape, float(spec["bank"]["face_m"]))
+    band = {}
+    for i, div in enumerate(divisions):
+        mine = nearest == i
+        crest = profile(E, div["crest_profile"])
+        plain = profile(E, div["plain_profile"])
+        lv = crest + (plain - crest) * np.clip(d_land / float(div["far_m"]), 0.0, 1.0)
         for m in spec.get("marsh_strips", []):
             if m["applies_to"] != div["id"]:
                 continue
             w_m, b_m = float(m["width_m"]), float(m["blend_m"])
             wgt = 1.0 - smoothstep((d_land - (w_m - b_m)) / b_m)
+            if m.get("e_taper"):
+                wgt = wgt * profile(E, m["e_taper"])
             lv = lv * (1.0 - wgt) + float(m["level_ft"]) * wgt
-        level_ft = np.where(nearest == i, lv, level_ft)
+            band.setdefault("marsh_strip", np.zeros(E.shape, bool))
+            band["marsh_strip"] |= mine & (wgt > 0.01)
+        level_ft = np.where(mine, lv, level_ft)
+        face = np.where(mine, profile(E, div["face_profile"]), face)
+        for rb in spec.get("relief_bands", []):
+            if rb["applies_to"] != div["id"]:
+                continue
+            lo, hi = rb["e_range"]
+            band.setdefault(rb["id"], np.zeros(E.shape, bool))
+            band[rb["id"]] |= mine & (E >= float(lo)) & (E <= float(hi))
+
+    # ---- islands: land the water goes round ------------------------------
+    conj_land = np.zeros(E.shape, bool)
+    for isl in spec.get("islands", []):
+        m = islands & point_in_ring(E, N, ring_of(isl["ring"]))
+        level_ft = np.where(m, float(isl["crest_ft"]), level_ft)
+        face = np.where(m, float(isl["face_m"]), face)
+        band.setdefault(isl["id"], np.zeros(E.shape, bool))
+        band[isl["id"]] |= m
+        if isl.get("confidence") == "conjectural":
+            conj_land |= m
+
+    # ---- mounds: the one piece of high ground the record names ------------
+    for md in spec.get("mounds", []):
+        rr = np.hypot(E - float(md["centre_e"]), N - float(md["centre_n"]))
+        flat, out = float(md["flat_radius_m"]), float(md["outer_radius_m"])
+        w = 1.0 - smoothstep((rr - flat) / max(1e-9, out - flat))
+        level_ft = level_ft + float(md["rise_ft"]) * w
+        band.setdefault(md["id"], np.zeros(E.shape, bool))
+        band[md["id"]] |= rr <= out
 
     # ---- swales in the west prairie --------------------------------------
-    conj_land = np.zeros(E.shape, bool)
     for s in spec.get("swales", []):
         dd = seg_distance(E, N, [tuple(p) for p in s["line"]])
         hw = float(s["half_width_m"])
         prof = np.clip(1.0 - (dd / hw) ** 2, 0.0, 1.0)
         level_ft = level_ft - float(s["depth_ft"]) * prof
         conj_land |= prof > 0.01
+    band["swales"] = conj_land.copy()
 
     # ---- micro-relief -----------------------------------------------------
     mr = spec.get("micro_relief", {})
@@ -272,7 +369,6 @@ def build_field(spec, river, hydro, origin):
     # contour — which IS the drawn waterline, since the water is the plane Z = 0 —
     # is badly conditioned and snaps to cell boundaries. An ease-out crosses zero
     # with a definite slope and the shoreline comes out crisp.
-    face = float(spec["bank"]["face_m"])
     t_bank = np.clip(d_land / face, 0.0, 1.0)
     ramp = 1.0 - (1.0 - t_bank) ** 2
     h_ft = np.where(water, depth_ft, (level_ft + micro) * ramp)
@@ -281,14 +377,16 @@ def build_field(spec, river, hydro, origin):
     conf = np.where(conj_land & ~water, CONF_CONJECTURAL, conf)
 
     meta = {
-        "cols": n, "rows": n, "cell_m": cell,
-        "origin_e": -half, "origin_n": -half,
+        "cols": cols, "rows": rows, "cell_m": cell,
+        "origin_e": e0, "origin_n": n0,
+        "box": {"e": [e0, e1], "n": [n0, n1]},
         "min_m": float((h_ft * FT).min()), "max_m": float((h_ft * FT).max()),
         "water_fraction": float(water.mean()),
         "land_min_ft": float(h_ft[~water].min()), "land_max_ft": float(h_ft[~water].max()),
     }
-    return h_ft * FT, conf, water, meta, {"E": E, "N": N, "d_land": d_land,
-                                          "swale": conj_land, "cell": cell}
+    geom = {"E": E, "N": N, "d_land": d_land, "face": face,
+            "swale": conj_land, "bands": band, "cell": cell}
+    return h_ft * FT, conf, water, meta, geom
 
 
 # ---------------------------------------------------------------------------
@@ -299,9 +397,13 @@ def gradient_audit(h_m, water, geom, spec):
     """Check, rather than claim, the dossier's own flatness rule: outside the
     zones that earn relief, hold local gradients under 0.5 ft per 300 ft.
 
-    The zones that DO earn relief here — and are therefore reported separately
-    rather than excused — are the bank faces, the marshy shore strip and its
-    blend into the plain, and the west-prairie swales.
+    The zones that DO earn relief are named ONE BY ONE, each with the dossier
+    zone that licenses it, and each is reported with its own worst gradient
+    rather than swept into a single excused remainder. The dossier's modelling
+    rule 1 exempts zones 3-7 and the fort mound by name; the State Street
+    break-of-slope is exempted here as well, because zone 10 states its own fall
+    as "~5-6 ft over 300 ft" and cannot obey a 0.5 ft rule while doing that. The
+    exemption is written down in the spec's `relief_bands`, not decided here.
     """
     cell = geom["cell"]
     # The rule is about the FALL ACROSS A 300-FT BLOCK — the drainage grade of
@@ -310,10 +412,19 @@ def gradient_audit(h_m, water, geom, spec):
     # (91.44 m) chord, and the sub-block roughness is reported separately
     # instead of being smuggled into the same number.
     k = max(1, int(round(300.0 * FT / cell)))
-    shore_m = max(2.5 * float(spec["bank"]["face_m"]),
-                  max((float(m["width_m"]) + float(m["blend_m"])
-                       for m in spec.get("marsh_strips", [])), default=0.0))
-    ok = (~water) & (geom["d_land"] >= shore_m) & (~geom["swale"])
+    # The shore exclusion is per cell, because the bank face is: 6 m where the
+    # crest is a 2 ft alluvial bank at the forks and 25 m where it is a 9 ft
+    # sand ridge falling to the lake.
+    shore = geom["d_land"] < 2.5 * geom["face"]
+    marsh_m = max((float(m["width_m"]) + float(m["blend_m"])
+                   for m in spec.get("marsh_strips", [])), default=0.0)
+
+    bands = dict(geom["bands"])
+    bands["bank_face"] = shore
+    relief_any = np.zeros(h_m.shape, bool)
+    for m in bands.values():
+        relief_any |= m
+    ok = (~water) & (~relief_any) & (geom["d_land"] >= marsh_m)
 
     de = (h_m[:, k:] - h_m[:, :-k]) / FT
     dn = (h_m[k:, :] - h_m[:-k, :]) / FT
@@ -323,18 +434,31 @@ def gradient_audit(h_m, water, geom, spec):
         else np.zeros(1)
 
     gy, gx = np.gradient(h_m, cell)
-    rough = (np.hypot(gx, gy) * 300.0)[ok] if ok.any() else np.zeros(1)
+    slope = np.hypot(gx, gy) * 300.0
+    rough = slope[ok] if ok.any() else np.zeros(1)
     relief = (~water) & ~ok
-    rel = (np.hypot(gx, gy) * 300.0)[relief] if relief.any() else np.zeros(1)
+    rel = slope[relief] if relief.any() else np.zeros(1)
+
+    per_zone = {}
+    for name, m in sorted(bands.items()):
+        mm = m & (~water)
+        per_zone[name] = {
+            "cells": int(mm.sum()),
+            "cell_max": round(float(slope[mm].max()), 3) if mm.any() else 0.0,
+        }
 
     return {
         "baseline_ft": 300.0,
-        "shore_and_swale_exclusion_m": round(shore_m, 1),
+        "shore_exclusion_m": [round(float((2.5 * geom["face"]).min()), 1),
+                              round(float((2.5 * geom["face"]).max()), 1)],
+        "marsh_exclusion_m": round(marsh_m, 1),
+        "plain_cells_audited": int(ok.sum()),
         "plain_block_max": round(float(block.max()), 3),
         "plain_block_mean": round(float(block.mean()), 4),
         "passes": bool(block.max() <= 0.5),
         "plain_cell_roughness_max": round(float(rough.max()), 3),
         "shore_and_swale_cell_max": round(float(rel.max()), 3),
+        "relief_zones_ft_per_300ft": per_zone,
     }
 
 

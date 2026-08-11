@@ -17,7 +17,7 @@
 
 The size (about 53 m square, ±20 %, derived — see the main memo § 3), the 8° rotation, and
 every dimension of the fabric: picket height, width and spacing, gate width, bastion length and
-projection. **L41** owns all of it. The posterns are documented and unbuilt.
+projection. **L47** owns all of it. The posterns are documented and unbuilt.
 
 ## Range
 

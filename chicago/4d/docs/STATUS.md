@@ -109,6 +109,23 @@ uncertainty of the 1834 sheets in its note.
 
 ## Known weaknesses, stated plainly
 
+0a. **Fort Dearborn floats 832 m past the edge of the world, and the gate that exists to
+    catch exactly that reported a perfect landing.** Fourteen structures went in on 2026-08-11 at
+    local E +1130…+1180; the `e1834_harbor_cut` heightfield stops at E +320. That much is L40's
+    problem at four times the distance and it is honestly declared on every record. **The part
+    that is a defect in the machinery rather than in the data**: `tools/heightfield.py` clamps
+    outside the box, so the ground-contact check sampled the clamped edge for the structure's
+    base AND for every point of its outline, got the same number twice, and concluded that the
+    fort meets the ground. Every structure L40 covers was caught only because the clamped edge
+    varies along a wall and produced a gap; the fort was far enough out and square enough on to
+    produce none. The gate could see buildings that were nearly right and was blind to one that
+    was completely wrong. `Heightfield.covers()` now asks whether there is any ground there at
+    all before asking how high it is, the schema carries an `outside_modelled_ground` state
+    beside `approach_not_modelled`, and the declaration is checked against the measurement in
+    both directions. Turning it on immediately flagged two structures in other parcels that
+    nothing had caught. **The fix for the underlying problem is S2e parcel (b) and nothing
+    else**, and the fort is the largest thing waiting on it.
+
 00. **The prairie loses a blind side-by-side against a July photograph, in under a second,
     and we now know exactly why.** A four-parcel sweep on 2026-08-10 put each piece of the
     vegetation through its own builder-and-critic loop against verified photographs of
@@ -754,7 +771,22 @@ against the six that stand.
 
 **S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
 
-**S5a — Fort Dearborn**, the next building. Its position is settled (E +1152, N +221, cross-checked to 35 m) and the coastline gate Kevin named is cleared, but the FOOTPRINT has no source yet: Wright labels the reservation and draws no plan. Also unsettled, and needed before it is drawn: what the fort actually was on 1835-07-01.
+**S5a — Fort Dearborn** — **DONE 2026-08-11**, both gates cleared before any geometry.
+**The footprint has a source.** F. Harrison Jr.'s survey of the mouth of the Chicago River for
+the harbour works, 24 February 1830, approved by William Howard, U.S. Civil Engineer, reproduced
+in Andreas vol. 1 p. 113 and listed in that volume's own table of maps as "Fort Dearborn in
+1830-32". It draws the fort IN PLAN — square enclosure, works at three angles, four ranges, two
+gates, two buildings flanking the south gate — and its arrangement is corroborated building by
+building by Gurdon Hubbard's 1827 walk round the inside (Andreas p. 264). Recorded as
+`harrison_1830_river_mouth`. **The plate has no scale bar**, so the scale is derived from the one
+stated dimension in the whole complex — the commandant's quarters at "about 25 x 50 ft" in the
+1855 photograph key — giving 1.10 ft/px and a stockade about 53 m (174 ft) square at **±20 %**.
+Two checks on the same plate agree to 5 % and 11 %. **The garrison is settled**: held
+continuously from June 1832 to 29 December 1836, Maj. John Greene 5th Infantry most likely
+commanding on the scene date, strength after 1833 unattested. Fourteen records, two new
+archetypes (`palisade`, `fort_structure`), fourteen bakes, ~17,000 triangles. Five exclusions
+went in with it, four of them wrong-fort findings. See `docs/RESEARCH/fort_dearborn.md`.
+**What it did NOT settle and what is now the binding constraint: there is no ground under it.**
 
 **S2e — extend the ground east to the lake.** Raised to the top of the terrain work on
 2026-08-10 at Kevin's direction, after free-fly made it visible from the air: the modelled

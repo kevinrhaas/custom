@@ -260,7 +260,7 @@ Recorded here rather than silently omitted, and where a record states it the rec
 carries the `geometry:` declaration and a liberty:
 
 - **Posterns.** "Small posterns here and there" (Kinzie). "Here and there" is not a
-  position. `fort_dearborn_palisade.form.posterns`, `geometry: absent`, **L41**.
+  position. `fort_dearborn_palisade.form.posterns`, `geometry: absent`, **L47**.
 - **The garden's planting.** "Currant-bushes and young fruit-trees" (Kinzie).
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
@@ -281,7 +281,7 @@ source lifts one value without a rewrite. The three that would move most:
 
 1. **Any quartermaster return, repair estimate or engineer's report for the post,
    1816–1836.** A picket count or a quantity of timber settles the stockade's height and
-   spacing together (L41); a building return settles the storey counts and roofs (L42).
+   spacing together (L47); a building return settles the storey counts and roofs (L42).
 2. **A plan or measured view of the fort later than 1830** — the 1850 daguerreotype and
    the 1855 photograph both exist. A measured reading of either settles the lighthouse's
    shape at once (L44) and probably the barracks' storey count.
