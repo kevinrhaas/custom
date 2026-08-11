@@ -36,7 +36,8 @@ this building by twenty months.
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
 | **Renderer** | **WALKABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup |
-| **Smoke** | 129 checks green at 390×780 and 1280×800, zero page errors |
+| **Smoke** | **128 of 129 green** at 390×780 and 1280×800, zero page errors. The one failure is `desktop 1280x800: walk intent moves the camera`, a frame-rate regression rather than a behaviour regression — mobile passes. See § Known weaknesses 0. |
+| **Flora** | **the sward is in** (2026-08-10) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`, at 8 draw calls and ~90 k triangles. July phenology is enforced in the renderer as well as in the data: no flowering culm is drawn for any species the record calls vegetative |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 26, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
@@ -104,6 +105,119 @@ footprints are traced through the fitted transforms in S2+, each carrying the ±
 uncertainty of the 1834 sheets in its note.
 
 ## Known weaknesses, stated plainly
+
+00. **The prairie loses a blind side-by-side against a July photograph, in under a second,
+    and we now know exactly why.** A four-parcel sweep on 2026-08-10 put each piece of the
+    vegetation through its own builder-and-critic loop against verified photographs of
+    surviving Illinois tallgrass, with a blind A/B as the judgement. Three critics ran on one
+    identical shot set. All three lost. Two of them, on different references and different
+    framings, lost on the **same** feature. What follows is the measured state, recorded
+    because it is more useful than the summary "needs work":
+
+    - **The mid-field sheet is discarded at ~455 m.** Canopy rings from 2.5 m to 453 m sit at
+      the sward top; from 511.8 m outward every ring drops to `y = 0.05` with `aMask = 0` and
+      the shader discards it. The vegetated surface therefore ends where the fog is only
+      27 %, and the 93 % haze `world.js` designs for at 1290 m is never rendered onto any
+      vegetated pixel. **All three parcels have been converging on a colour no visible
+      surface in the scene reaches.** This one fact produces the blind tell in both pairs,
+      the missing aerial recession, the collapsed grain and the ring seam below.
+    - **There is no aerial recession on flat ground and there structurally cannot be.** At a
+      1.68 m eye with a 55° vertical field over 800 rows, a ground point at distance *d*
+      lands `1290.9/d` px below the horizon — so the entire fog ramp from 10 % to 93 % lives
+      between rows 402 and 406. Six pixels of atmosphere in an 800-pixel frame. Only vertical
+      structure carried into the distance can buy recession here; exponential distance fog
+      cannot.
+    - **A ring seam draws a straight line across the frame.** `TUNE.mid.radius = 27.0 m`, and
+      on flat ground a constant radius maps to a constant screen row — predicted 448.8,
+      measured at row 450 in `prairie_south`, razor-straight across all 1280 columns.
+    - **Grain collapses with depth where the photographs' is flat.** 5×5 high-pass RMS in
+      bands down from the land/sky boundary: ours 13.8 / 14.6 / 21.2, both references
+      18.8 / 31.4 / 39.3 and 39.3 / 41.7 / 41.3.
+    - **The horizon timber is nearly absent.** Timber is detected in **31 %** of horizon
+      columns overall and 3.6 % across the central two-thirds, against **100 %** of columns in
+      every band of the reference including its faintest. The 2–4 px band *height* is honest
+      arithmetic; the emptiness is not. A round that reported re-toning this band had in fact
+      reduced its detection cover from 21.1 % to 0.9 %, and the target it was given
+      (Weber 0.036–0.067) does not exist in the reference at any threshold — that error was
+      the brief's, not the builder's.
+    - **Crowns read as boulders.** Fine-detail ratio 0.23–0.34 against the photograph's
+      0.61–0.64 — our crowns at 20–60 m carry the fine-scale texture of a photograph's
+      kilometre-distant treeline. Shadows clip to literal `(0,0,0)` where the photograph's
+      darkest decile is L 14–27, and sunlit crown tops are **blue** (G−B −19 to −26) where
+      the photograph's are warm green (+13 to +24).
+    - **The shot set has only one open-prairie view.** `prairie_south` stands 3.46 m from a
+      trunk with 23.4 % open sky against `prairie_west`'s 95.4 %. That second angle exists
+      precisely as the control that separates a tuned view from a fixed one, so
+      `prairie_west` has been tuned against itself with no control.
+    - **`river_bank` fails its own brief and the fault is the renderer, not the data.** Zone 1
+      specifies cordgrass at 1.2–2.0 m and 40–55 % cover with `bare_soil_fraction: 0.0`; the
+      frame shows ~25 cm sprigs on visible bare soil in near-rows.
+
+    Two things came out of the sweep clean and should be said as plainly as the failures. The
+    **July phenology is correct at source** — every warm-season grass vegetative with a null
+    inflorescence, cattail fruiting and brown, ramp leafless, and a live guard that suppresses
+    and reports any record that contradicts itself. And the **flora dataset is the one parcel
+    a critic passed without reservation**. The renderer is what is failing it.
+
+    Two methodological corrections worth keeping, both of which invalidate numbers this
+    project has quoted:
+
+    - **The primary reference was the wrong photograph.** `dupage_tallgrass_2018-07-24.jpg` is
+      titled "*Restored* tallgrass prairie" and described as a "Prairie planting" on a former
+      agricultural field — a seed mix on plowed ground, and restorations are bought for being
+      forb-rich. The never-plowed Woodworth stand is the better analogue for unmanaged 1835
+      prairie. Measured flower load: planting 12.91 %, virgin remnant 1.79–5.54 %. The honest
+      target is **4–6 %, not 13.89 %**.
+    - **Two rounds were judged at the wrong look-angle.** The shot harness set no pitch while
+      the reference photographer had tilted down ~12°, so every "nearest quarter" number
+      compared the photograph at 2 m against our render at 4 m — and near-field vegetation was
+      exactly what those rounds were tuning. The harness is now pitch-matched and prints its
+      pitch. Correcting it makes the gap *worse*: 0.07 % against a virgin remnant's 2.97 %.
+    - A hue/saturation test cannot separate July from October here — the October negative
+      control lands *between* the two July photographs. That metric should not be quoted by
+      anyone, including this file.
+
+0. **The walk assertion fails on the test machine, by one frame, and it is a shared cost.**
+   `tools/smoke_renderer.mjs` holds W down for 2.2 seconds of wall clock and requires the
+   walker to cover more than 0.30 m. The walker moves `dt × 1.45 m/s` with `dt` clamped at
+   0.05 s, so the assertion is really "render at least five frames in 2.2 seconds" — a
+   frame-rate assertion, measured on a machine with no GPU at all, where the whole scene is
+   rasterised in software. Measured at the viewpoint the assertion runs from, on 2026-08-10:
+
+   | tree state | ms/frame | frames in 2.2 s | walked |
+   |---|---|---|---|
+   | HEAD, before this round | 417 | 5.3 | 0.38 m — passes |
+   | + terrain and sky work, no vegetation data | 520 | 4.2 | 0.30 m — on the line |
+   | + flora and trees | ~610 | 3.6 | 0.29 m — fails |
+   | + the vegetation sweep (2026-08-10, measured) | ~730 | 3.0 | **0.22 m — fails** |
+
+   The last row is a **regression inside an already-failing assertion**, and it is recorded
+   rather than absorbed: the sweep put 339 stemmed willow thickets where there had been 202
+   unstemmed ones, drew limbs on every tree form instead of one, and gave the sward's flower
+   heads real geometry per recorded shape. That is more triangles for a reason, but it is
+   still 0.07 m further from the bar. Triangles are 494,667 against a 600 k budget and draw
+   calls 21 against 80, so the budget gates do not catch it — this is fill and shading cost on
+   a software rasteriser, not geometry count. **Mobile at 390×780 still passes.** Item 10 in
+   ROADMAP § S6a next (adaptive budget) is the standing answer and has not been done.
+
+   The **mobile** pass at 390×780 passes: the sward's low-spec field is a
+   genuinely shallower one (a 4.6 m near ring against 7.6, the canopy taking
+   over at 4.6 m instead of 10) rather than the desktop field scaled down, and
+   at 124 k triangles the phone-sized viewport clears the bar. It is the
+   1280×800 pass that misses.
+
+   Three parcels landed in one round and together they crossed it. **No one of them can
+   recover it**: deleting the vegetation entirely still leaves 520 ms, which is not five
+   frames. Cutting the sward's density by a third moved the frame by 12 ms and visibly
+   un-hid the ground, so that trade was taken back — the sward's own bar is that the ground
+   is invisible at eye height, and it was not worth failing that to not-quite-pass this.
+   **The assertion has not been weakened and must not be.** What it is telling us is true: the
+   scene got a third slower this round. The choices are to make the frame cheaper (the ground
+   shader is the largest single cost and it is now drawn behind a sward that hides most of it),
+   or to decide deliberately that a wall-clock walk test cannot live on a software rasteriser
+   and give it a frame-count form instead — a decision for a human, not for a parcel that
+   would benefit from it.
+
 
 1. **One structure record does not prove the schema.** The Sauganash exercises phases, a
    building move, and the full confidence range, but the model has not met a fort, a bridge, or

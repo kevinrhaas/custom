@@ -853,6 +853,336 @@ def test_ground_contact_owes_the_liberties_document_an_entry() -> None:
           any("standing off the ground" in e for e in rep.errors), rep.errors)
 
 
+# --------------------------------------------------------------------------
+# flora: the July phenology traps
+# --------------------------------------------------------------------------
+#
+# docs/research/02-flora.md states these as rules a modeller should follow. A
+# rule a modeller should follow is a rule a modeller will one day not follow, so
+# the validator makes each of them unrepresentable and these tests prove it does.
+# The dossier's own words: rendering 2 m turkey-foot seed heads on big bluestem
+# in July is "the single most common historical-reconstruction error".
+
+FLORA_VOCAB = {
+    "roles": list(V.FLORA_ROLES),
+    "forms_flora": ["grass_clump", "grass_arching", "sedge_tussock", "cattail", "forb_spike",
+                    "forb_umbel", "scape_leafless", "mat_prostrate"],
+    "forms_trees": ["tree_gallery"],
+    "forms_unimplemented": ["vine_drape"],
+    "phenology": list(V.FLORA_PHENOLOGY),
+}
+
+
+def flora_sp(**over) -> dict:
+    sp = {
+        "id": "x_y", "binomial": "Genus species", "common": "a plant",
+        "role": "matrix", "form": "grass_clump",
+        "abundance": {"cover_fraction": [0.1, 0.2]},
+        "height_m": [0.5, 1.0],
+        "july": {"phenology": "vegetative", "foliage_rgb": [90, 118, 60],
+                 "inflorescence": None, "appearance": "leafy"},
+        "confidence": "conjectural",
+    }
+    july = over.pop("july", None)
+    sp.update(over)
+    if july:
+        sp["july"] = {**sp["july"], **july}
+    return sp
+
+
+def flora_errors(sp: dict) -> list:
+    rep = V.Report()
+    V.check_flora_species("z01_test", sp, {"s1"}, FLORA_VOCAB, rep, {})
+    return rep.errors
+
+
+def test_the_three_warm_season_grasses_cannot_have_july_seed_heads() -> None:
+    """The single most common historical-reconstruction error, made unrepresentable."""
+    for binomial in ("Andropogon gerardii", "Sorghastrum nutans", "Panicum virgatum"):
+        errs = flora_errors(flora_sp(binomial=binomial, july={
+            "phenology": "flowering",
+            "inflorescence": {"shape": "spike", "rgb": [190, 170, 120],
+                              "height_frac": 0.9, "size_m": [0.1, 0.2]}}))
+        check(f"a flowering culm on {binomial} in July is an error",
+              any("VEGETATIVE in mid-July" in e for e in errs), errs)
+
+    errs = flora_errors(flora_sp(binomial="Andropogon gerardii", height_m=[1.6, 2.0]))
+    check("big bluestem at its September height in a July record is an error",
+          any("September height" in e for e in errs), errs)
+
+    check("the same grass, vegetative and half height, is fine",
+          not flora_errors(flora_sp(binomial="Andropogon gerardii", height_m=[0.8, 1.2])))
+
+
+def test_cordgrass_and_bluejoint_must_be_in_flower() -> None:
+    """The positive half of the same rule: cordgrass IS the tall element in July."""
+    for binomial in ("Sporobolus michauxianus", "Calamagrostis canadensis"):
+        errs = flora_errors(flora_sp(binomial=binomial))
+        check(f"{binomial} recorded vegetative in July is an error",
+              any("IS in flower in mid-July" in e for e in errs), errs)
+
+
+def test_the_july_cattail_is_brown_and_fruiting() -> None:
+    green = flora_sp(binomial="Typha latifolia", role="emergent", form="cattail",
+                     abundance={"stems_per_m2": [30, 60]}, height_m=[1.5, 2.4],
+                     july={"phenology": "fruiting", "foliage_rgb": [110, 132, 96],
+                           "inflorescence": {"shape": "spadix", "rgb": [120, 160, 70],
+                                             "height_frac": 0.8, "size_m": [0.15, 0.25],
+                                             "fruit": True}})
+    check("a green cattail spike in July is an error",
+          any("BROWN" in e for e in flora_errors(green)), flora_errors(green))
+
+    spring = flora_sp(binomial="Typha latifolia", role="emergent", form="cattail",
+                      abundance={"stems_per_m2": [30, 60]}, height_m=[1.5, 2.4],
+                      july={"phenology": "flowering", "foliage_rgb": [110, 132, 96],
+                            "inflorescence": {"shape": "spadix", "rgb": [92, 62, 40],
+                                              "height_frac": 0.8, "size_m": [0.15, 0.25]}})
+    check("a cattail still flowering in July is an error",
+          any("FRUITING in July" in e for e in flora_errors(spring)), flora_errors(spring))
+
+    ok = flora_sp(binomial="Typha latifolia", role="emergent", form="cattail",
+                  abundance={"stems_per_m2": [30, 60]}, height_m=[1.5, 2.4],
+                  july={"phenology": "fruiting", "foliage_rgb": [110, 132, 96],
+                        "inflorescence": {"shape": "spadix", "rgb": [92, 62, 40],
+                                          "height_frac": 0.8, "size_m": [0.15, 0.25],
+                                          "fruit": True}})
+    check("a brown mature cattail passes", not flora_errors(ok), flora_errors(ok))
+
+    banned = flora_sp(binomial="Typha angustifolia", role="emergent", form="cattail",
+                      abundance={"stems_per_m2": [10, 20]}, height_m=[1.5, 2.4])
+    check("a post-settlement cattail cannot be recorded at all",
+          any("post-settlement arrival" in e for e in flora_errors(banned)),
+          flora_errors(banned))
+
+
+def test_ramps_have_no_leaves_in_july() -> None:
+    """The plant the city is named for, and the trap it sets for a summer scene."""
+    leafy = flora_sp(id="allium_tricoccum", binomial="Allium tricoccum", role="forb",
+                     form="forb_umbel",
+                     july={"phenology": "flowering", "foliage_rgb": [90, 150, 70],
+                           "inflorescence": {"shape": "umbel_domed", "rgb": [236, 236, 228],
+                                             "height_frac": 0.95, "size_m": [0.03, 0.05]}})
+    check("green ramp foliage in a July record is an error",
+          any("LEAFLESS" in e for e in flora_errors(leafy)), flora_errors(leafy))
+
+    bare = flora_sp(id="allium_tricoccum", binomial="Allium tricoccum", role="forb",
+                    form="scape_leafless", abundance={"stems_per_m2": [20, 60]},
+                    height_m=[0.2, 0.4],
+                    july={"phenology": "leafless", "foliage_rgb": None,
+                          "inflorescence": {"shape": "umbel_domed", "rgb": [236, 236, 228],
+                                            "height_frac": 0.95, "size_m": [0.03, 0.05]}})
+    check("leafless scapes with a white umbel pass", not flora_errors(bare), flora_errors(bare))
+
+
+def test_vegetative_and_budding_carry_nothing_in_flower() -> None:
+    for ph in ("vegetative", "budding"):
+        errs = flora_errors(flora_sp(july={
+            "phenology": ph,
+            "inflorescence": {"shape": "spike", "rgb": [230, 200, 60],
+                              "height_frac": 0.9, "size_m": [0.05, 0.1]}}))
+        check(f"'{ph}' with an inflorescence is an error",
+              any("requires inflorescence null" in e for e in errs), errs)
+
+
+def test_a_tawny_sward_is_not_july() -> None:
+    """The October negative control, refused at the record rather than by eye."""
+    errs = flora_errors(flora_sp(july={"foliage_rgb": [176, 158, 96]}))
+    check("straw-coloured foliage in a July record is an error",
+          any("not a July green" in e for e in errs), errs)
+    check("a July green passes", not flora_errors(flora_sp(july={"foliage_rgb": [86, 104, 62]})))
+
+
+def test_past_bloom_shows_a_fruit_not_a_flower() -> None:
+    """Zizia is yellow in May and green in July; blue flag is blue in June."""
+    yellow = flora_sp(binomial="Zizia aurea", role="forb", form="forb_umbel", july={
+        "phenology": "past_bloom",
+        "inflorescence": {"shape": "umbel_compound", "rgb": [230, 200, 60],
+                          "height_frac": 0.9, "size_m": [0.05, 0.09]}})
+    check("a past-bloom record still carrying the flower colour is an error",
+          any("shows a fruit, not its flower colour" in e for e in flora_errors(yellow)),
+          flora_errors(yellow))
+
+    blue = flora_sp(binomial="Iris virginica", role="forb", form="forb_umbel", july={
+        "phenology": "past_bloom",
+        "inflorescence": {"shape": "capsule", "rgb": [96, 96, 190],
+                          "height_frac": 0.7, "size_m": [0.05, 0.09]}})
+    check("a blue flag still in flower in July is an error",
+          any("shows a fruit, not its flower colour" in e for e in flora_errors(blue)),
+          flora_errors(blue))
+
+    green = flora_sp(binomial="Zizia aurea", role="forb", form="forb_umbel", july={
+        "phenology": "past_bloom",
+        "inflorescence": {"shape": "umbel_compound", "rgb": [140, 152, 86],
+                          "height_frac": 0.9, "size_m": [0.05, 0.09], "fruit": True}})
+    check("a green schizocarp passes", not flora_errors(green), flora_errors(green))
+
+
+def test_abundance_takes_exactly_one_unit() -> None:
+    both = flora_sp(abundance={"cover_fraction": [0.1, 0.2], "density_per_ha": [10, 20]})
+    check("two abundance units in one entry is an error",
+          any("EXACTLY ONE" in e for e in flora_errors(both)), flora_errors(both))
+    over = flora_sp(abundance={"cover_fraction": [0.2, 1.4]})
+    check("a cover fraction above 1 is an error",
+          any("cover_fraction" in e for e in flora_errors(over)), flora_errors(over))
+
+
+def test_a_form_the_vocabulary_does_not_declare_is_an_error() -> None:
+    errs = flora_errors(flora_sp(form="grass_swirly"))
+    check("an undeclared draw archetype is an error",
+          any("not declared in index.json's vocabulary" in e for e in errs), errs)
+    check("a form declared as unimplemented is allowed through",
+          not flora_errors(flora_sp(form="vine_drape", role="thicket")))
+
+
+class _FlatField:
+    """A tiny all-land heightfield for the extent evaluator."""
+
+    cols = rows = 5
+    cell_m = 10.0
+    origin_e = origin_n = 0.0
+
+    def _at(self, i: int, j: int) -> float:  # noqa: ARG002 — flat on purpose
+        return 1.0
+
+
+def _zone(zid: str, extent: dict, plantable: bool = True) -> dict:
+    return {"id": zid, "extent": extent, "plantable_in_scene": plantable}
+
+
+def test_two_zones_may_not_tie_on_priority() -> None:
+    rep = V.Report()
+    zones = {"z01_a": _zone("z01_a", {"kind": "everywhere", "priority": 20}),
+             "z02_b": _zone("z02_b", {"kind": "everywhere", "priority": 20})}
+    V.check_flora_extents(zones, _FlatField(), rep)
+    check("overlapping zones at equal priority are a data error",
+          any("share priority" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    zones["z02_b"]["extent"]["priority"] = 21
+    V.check_flora_extents(zones, _FlatField(), rep)
+    check("distinct priorities resolve the overlap",
+          not any("share priority" in e for e in rep.errors), rep.errors)
+
+
+def test_a_zone_off_the_modelled_ground_has_to_say_so() -> None:
+    """Zones 8 and 9 have no ground in this scene. The record must not pretend."""
+    rep = V.Report()
+    far = {"kind": "everywhere", "box": {"e": [1400, 1680], "n": [-320, 320]}, "priority": 12}
+    V.check_flora_extents({"z08_lakeshore": _zone("z08_lakeshore", far, plantable=True)},
+                          _FlatField(), rep)
+    check("claiming a zone is plantable when nothing matches it is an error",
+          any("plantable_in_scene is True" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_flora_extents({"z08_lakeshore": _zone("z08_lakeshore", far, plantable=False)},
+                          _FlatField(), rep)
+    check("recorded honestly as not plantable, it passes",
+          not rep.errors, rep.errors)
+
+    rep = V.Report()
+    here = {"kind": "everywhere", "priority": 20}
+    V.check_flora_extents({"z01_a": _zone("z01_a", here, plantable=False)}, _FlatField(), rep)
+    check("a zone that does cover ground may not claim it does not",
+          any("plantable_in_scene is False" in e for e in rep.errors), rep.errors)
+
+
+def _flora_tree(mutate=None) -> Path:
+    """A minimal, valid data/flora tree in a temp dir, optionally broken first.
+
+    Built rather than copied so the test never writes inside data/ — other agents
+    work this repo at the same time, and a test that edits a committed record is
+    a test that can lose somebody's work.
+    """
+    import json as _json  # noqa: PLC0415
+    import tempfile  # noqa: PLC0415
+
+    root = Path(tempfile.mkdtemp()) / "flora"
+    (root / "zones").mkdir(parents=True)
+    (root / "palettes").mkdir(parents=True)
+    pal = {"id": "p1", "name": "test", "greens": [[46, 60, 32], [68, 84, 44], [92, 110, 58]],
+           "ground": {"rgb": [72, 84, 48], "wet_rgb": [58, 60, 40]}}
+    zone = {
+        "id": "z01_test", "zone": 1, "name": "test", "dossier": "docs/research/02-flora.md",
+        "scene_date": "1835-07-01", "palette": "p1", "plantable_in_scene": True,
+        "cover": {"matrix_fraction": 1.0, "bare_soil_fraction": 0.0,
+                  "standing_water_fraction": 0.0},
+        "ground": {"rgb": [72, 84, 48], "wet_rgb": [58, 60, 40]},
+        "extent": {"kind": "everywhere", "priority": 20, "confidence": "conjectural"},
+        "species": [flora_sp()], "confidence": "conjectural",
+    }
+    index = {
+        "version": 1, "scene_date": "1835-07-01",
+        "zones": [{"id": "z01_test", "zone": 1, "file": "zones/z01_test.json",
+                   "palette": "p1", "priority": 20, "plantable_in_scene": True,
+                   "extent": zone["extent"], "ground_rgb": [72, 84, 48],
+                   "ground_wet_rgb": [58, 60, 40], "bare_soil_fraction": 0.0}],
+        "palettes": [{"id": "p1", "file": "palettes/p1.json"}],
+        "vocabulary": FLORA_VOCAB,
+    }
+    if mutate:
+        mutate(index, zone, pal)
+    (root / "zones" / "z01_test.json").write_text(_json.dumps(zone))
+    (root / "palettes" / "p1.json").write_text(_json.dumps(pal))
+    (root / "index.json").write_text(_json.dumps(index))
+    return root
+
+
+def _flora_check(mutate=None) -> list:
+    root = _flora_tree(mutate)
+    old, rep = V.FLORA, V.Report()
+    try:
+        V.FLORA = root
+        V.check_flora({"s1"}, None, rep, {})
+    finally:
+        V.FLORA = old
+    return rep.errors
+
+
+def test_the_flora_manifest_must_agree_with_its_zone_records() -> None:
+    """A denormalised copy that has drifted is worse than no copy at all."""
+    check("a clean flora tree passes", not _flora_check(), _flora_check())
+
+    def drift(index, zone, pal):
+        index["zones"][0]["ground_rgb"] = [1, 2, 3]
+    errs = _flora_check(drift)
+    check("a manifest colour that disagrees with its zone record is an error",
+          any("disagrees with the zone record" in e for e in errs), errs)
+
+    def drift_priority(index, zone, pal):
+        index["zones"][0]["priority"] = 99
+    errs = _flora_check(drift_priority)
+    check("a manifest priority that disagrees with the extent is an error",
+          any("priority in the manifest disagrees" in e for e in errs), errs)
+
+    def missing_file(index, zone, pal):
+        index["zones"][0]["file"] = "zones/nope.json"
+    errs = _flora_check(missing_file)
+    check("a manifest entry naming a file that does not exist is an error",
+          any("which does not exist" in e for e in errs), errs)
+
+
+def test_a_palette_is_tuning_and_may_not_cite_a_source() -> None:
+    def cited(index, zone, pal):
+        pal["sources"] = ["s1"]
+    errs = _flora_check(cited)
+    check("a palette carrying a source_id is an error",
+          any("must not carry a source_id" in e for e in errs), errs)
+
+    def october(index, zone, pal):
+        pal["greens"] = [[150, 148, 104], [176, 168, 120], [196, 190, 140]]
+    errs = _flora_check(october)
+    check("a straw foliage ramp is an error",
+          any("not all July greens" in e for e in errs), errs)
+
+
+def test_the_scene_date_and_the_phenology_block_must_agree() -> None:
+    def october(index, zone, pal):
+        index["scene_date"] = zone["scene_date"] = "1835-10-27"
+    errs = _flora_check(october)
+    check("an October scene_date against a july phenology block is an error",
+          any("is not in July" in e for e in errs), errs)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

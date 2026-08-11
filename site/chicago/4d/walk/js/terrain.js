@@ -48,6 +48,7 @@
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { HORIZON_HAZE } from './world.js';
 
 export const DEG = Math.PI / 180;
 
@@ -219,7 +220,10 @@ export async function createTerrain({
   // ---- the ground -------------------------------------------------------- //
 
   const groundMat = groundMaterial();
-  disposables.push(groundMat, groundMat.map);
+  // `.map` is null here — the prairie tile is bound as a shader uniform, not as
+  // the standard material map, so disposing `.map` disposed nothing and leaked
+  // the canvas texture on every epoch change.
+  disposables.push(groundMat, groundMat.userData.groundTex);
   confidence?.patch(groundMat);
 
   let ground = null;
@@ -418,6 +422,22 @@ const WORLD_POS_VERT = /* glsl */`
  * +1.25 ft. Keying the mud on elevation therefore paints exactly the zone the
  * source describes, and paints it narrow on the higher north and west banks —
  * which is also what the sources say.
+ *
+ * WHAT THE DRY BAND MAY AND MAY NOT DO. It used to multiply the high ground by
+ * (1.12, 1.06, 0.85) across `smoothstep(0.55, 1.25)`. The committed heightfield
+ * puts the whole west-side plain between 0.87 and 1.24 m — its own gradient audit
+ * reports under 0.5 ft of relief per 300 ft — so that band was not selecting
+ * anything: it applied at 77–92 % strength over the entire open prairie and
+ * turned it straw. Straw is the October negative control, not July. The
+ * replacement is a narrow, gentle mesic tint over the top of the actual
+ * elevation range: enough that the driest ground is a lighter, yellower green
+ * than the swales, nowhere near enough to senesce it.
+ *
+ * So what this paints is WETNESS, from the heightfield, and nothing else. It is
+ * not a community map: there is no plant-community record in `data/` for it to
+ * read yet, and a renderer that invented the boundary between wet and mesic
+ * prairie would be filling a gap silently. When those records land, the zone a
+ * point falls in belongs here — and the ground stops being one green.
  */
 function groundMaterial() {
   const mat = new THREE.MeshStandardMaterial({
@@ -441,25 +461,42 @@ uniform sampler2D uGround;
   // ONE texture fetch, deliberately. The ground covers most of the screen, so
   // every instruction here is paid a million times a frame; a second octave
   // fetched from the same texture at a different scale looked slightly better
-  // and halved the frame rate under software rasterisation. The large-scale
-  // variation that stops the 11 m tile from reading as a tile is two sines
-  // instead, which cost a fraction of a filtered fetch.
+  // and halved the frame rate under software rasterisation. The finer octaves
+  // are therefore baked INTO that one texture (see prairieTexture) and the
+  // patch-scale variation above the tile is arithmetic, which costs a fraction
+  // of a filtered fetch.
   vec3 chiTex = texture2D(uGround, vChiWorld.xz * 0.0909).rgb;
-  float chiBroad = sin(vChiWorld.x * 0.031) * sin(vChiWorld.z * 0.0271) * 0.5 + 0.5;
-  diffuseColor.rgb *= chiTex * (0.86 + 0.28 * chiBroad);
+
+  // Community mosaic — 42 m by 48 m, broken by a 15 m diagonal. The two sines
+  // this replaces beat at ~200 m, a soft blur the size of a city block that read
+  // as cloud shadow rather than as ground; prairie patchiness is a
+  // swale-and-rise business at tens of metres, which is the scale the
+  // heightfield's own relief works at. THREE sines total, one more than before
+  // and no more: this runs once per ground fragment and the ground is most of
+  // the screen, so the count is a budget, not a taste (the same reason there is
+  // exactly one texture fetch above). Amplitude is held near +/-14 % — past that
+  // the pattern competes with the sward instead of sitting under it.
+  float chiPatch = sin(vChiWorld.x * 0.1496 + 1.7) * sin(vChiWorld.z * 0.1309)
+                 + 0.6 * sin(vChiWorld.x * 0.3307 - vChiWorld.z * 0.2712 + 4.1);
+  diffuseColor.rgb *= chiTex * (1.0 + 0.088 * chiPatch);
 
   // Wet ground: the marshy shore strip, keyed on height above the datum.
   // Dossier zone 11 puts that strip at +0.5 to +2.0 ft and the heightfield puts
   // it at +1.25 ft, so elevation is the honest driver — it paints the mud wide
   // on the low South Division shore and narrow on the higher north and west
-  // banks, which is what the sources say.
-  float chiWet = 1.0 - smoothstep(0.05, 0.78, vChiWorld.y);
+  // banks, which is what the sources say. The top of the band is pulled in to
+  // 0.70 m so it stops at the foot of the plain (p25 of the land is 0.83 m)
+  // instead of tinting it.
+  float chiWet = 1.0 - smoothstep(0.05, 0.70, vChiWorld.y);
   diffuseColor.rgb = mix(diffuseColor.rgb,
                          diffuseColor.rgb * vec3(0.46, 0.42, 0.30) + vec3(0.042, 0.034, 0.020),
                          chiWet);
-  // Drier, tawnier prairie on the higher ground away from the river.
-  diffuseColor.rgb *= mix(vec3(1.0), vec3(1.12, 1.06, 0.85),
-                          smoothstep(0.55, 1.25, vChiWorld.y));
+
+  // Drier mesic prairie on the rises. A July shift, not a September one: a few
+  // per cent lighter and a few per cent less blue, so the crown of the plain
+  // reads finer and yellower than the swale beside it and still reads green.
+  diffuseColor.rgb *= mix(vec3(1.0), vec3(1.05, 1.03, 0.92),
+                          smoothstep(0.95, 1.28, vChiWorld.y));
 `);
   };
   mat.needsUpdate = true;
@@ -495,7 +532,22 @@ function waterMaterial() {
   const prior = mat.onBeforeCompile;
   mat.onBeforeCompile = (shader, renderer) => {
     if (typeof prior === 'function') prior(shader, renderer);
-    shader.uniforms.uSky = { value: new THREE.Color(0x93a2a4).convertSRGBToLinear() };
+    // The same colour the far ground goes to (world.js HORIZON_HAZE), so the
+    // river and the plain agree about what distance looks like — a hand-picked
+    // grey-green here used to leave the water reading a season cooler than the
+    // air above it.
+    //
+    // ONE conversion, not two. `new THREE.Color(hex)` already reads the hex as
+    // sRGB and stores it in the renderer's linear working space
+    // (ColorManagement.enabled is true by default since three r152), so the
+    // `.convertSRGBToLinear()` that used to follow it applied the transfer
+    // function a second time: the old 0x98a69d reached the shader as linear
+    // (0.080,0.120,0.093) instead of (0.314,0.381,0.337) — 31 % of its intended
+    // radiance. `outgoingLight` is linear at this point in the fragment, so what
+    // the grazing angle mixed toward was not distance at all, it was a dark
+    // olive: the far water read as a stain on the plain rather than as sky lying
+    // on it, and the comment above it claimed the opposite in good faith.
+    shader.uniforms.uSky = { value: new THREE.Color(HORIZON_HAZE) };
     shader.vertexShader = 'varying vec3 vChiWorld;\n' + shader.vertexShader.replace(
       '#include <begin_vertex>', '#include <begin_vertex>' + WORLD_POS_VERT,
     );
@@ -522,9 +574,40 @@ uniform vec3 uSky;
 }
 
 /**
- * A cheap procedural prairie: value noise at two scales, drawn once into a
- * canvas. July 1835 grass, not a golf course — the point is legible motion, and
- * it costs one 256px texture instead of an asset with a license row.
+ * The July ground: one 256 px tile of procedural prairie, drawn once into a
+ * canvas. It is the ALBEDO of what lies under the sward — visible as itself
+ * between the clumps, and standing in for the sward wholesale past the range
+ * where flora.js still plants instances.
+ *
+ * The colour is a measurement, not a taste. In the two verified July
+ * photographs, Illinois tallgrass in the last week of July sits around sRGB
+ * (122,139,74) in the middle distance and (109,128,78) at the far edge of the
+ * field — a yellow-green whose green channel leads its red by about fifteen.
+ * Working that target back through this scene's light (measured off the render
+ * itself: the sky fill plus sun multiply albedo by ×1.42 red, ×1.42 green,
+ * ×1.63 blue) and its ACES + sRGB output chain asks for a mean albedo near sRGB
+ * (95,107,62), which is what this tile averages. It lands at (119,134,75) in the
+ * middle distance of `prairie_west` — within three or four units of the
+ * photograph on every channel.
+ *
+ * What it replaces averaged (139,139,91) — red and green level, a khaki closer
+ * in hue to `bar/mesic_remnant_2016-10-27.jpg`, the OCTOBER negative control,
+ * than to either July photograph. That is the failure this ramp exists to fix,
+ * so the numbers are written down rather than left as three literals.
+ *
+ * Four octaves, not two, and all four baked into the same tile so the shader
+ * still costs exactly one fetch: 0.7 m clumps, 0.35 m tussocks, 0.17 m leaf
+ * mass and a per-texel grain that mipmaps away into tone by twenty metres out.
+ * A minority of dry thatch is mixed in — last season's litter is present under a
+ * July sward, and the palette record keeps it to a minority, which is where it
+ * stays: it tints about a quarter of the tile and reaches half strength nowhere,
+ * moving the mean by roughly two units.
+ *
+ * The tile stays 256 px, i.e. 4 cm per texel over its 11 m footprint. Doubling
+ * it bought nothing the eye can find past the first few metres — the octave
+ * sizes are fractions of the tile and so do not change with resolution — and
+ * cost the software rasteriser measurably, this being the one texture that
+ * covers the screen. Detail here is bought in octaves, not in pixels.
  */
 function prairieTexture() {
   const S = 256;
@@ -535,23 +618,44 @@ function prairieTexture() {
   let seed = 20260809;
   const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
 
-  const coarse = new Float32Array(32 * 32);
-  for (let i = 0; i < coarse.length; i++) coarse[i] = rnd();
-  const at = (x, y) => coarse[((y & 31) * 32) + (x & 31)];
-
-  for (let y = 0; y < S; y++) {
-    for (let x = 0; x < S; x++) {
-      const gx = x / 8, gy = y / 8;
+  /** A tiling value-noise octave: `n` cells across the tile, smoothstepped. */
+  const octave = (n) => {
+    const g = new Float32Array(n * n);
+    for (let i = 0; i < g.length; i++) g[i] = rnd();
+    const at = (x, y) => g[(((y % n) + n) % n) * n + (((x % n) + n) % n)];
+    return (x, y) => {
+      const gx = x * n / S, gy = y * n / S;
       const x0 = Math.floor(gx), y0 = Math.floor(gy);
       const fx = gx - x0, fy = gy - y0;
       const sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
-      const n = (at(x0, y0) * (1 - sx) + at(x0 + 1, y0) * sx) * (1 - sy)
-              + (at(x0, y0 + 1) * (1 - sx) + at(x0 + 1, y0 + 1) * sx) * sy;
-      const v = n * 0.55 + rnd() * 0.45;
+      return (at(x0, y0) * (1 - sx) + at(x0 + 1, y0) * sx) * (1 - sy)
+           + (at(x0, y0 + 1) * (1 - sx) + at(x0 + 1, y0 + 1) * sx) * sy;
+    };
+  };
+  const o16 = octave(16);   // ~0.7 m — clump scale
+  const o32 = octave(32);   // ~0.35 m — tussock
+  const o64 = octave(64);   // ~0.17 m — leaf mass
+  const oThatch = octave(48);
+
+  // The July ramp. Dark = shaded green between the clumps; light = sunlit blade,
+  // which is also the yellower of the two. Their midpoint plus the thatch below
+  // is the (95,107,62) mean quoted above.
+  const DARK = [68, 87, 49];
+  const LIGHT = [118, 125, 72];
+  // Last year's litter. Kept to a minority on purpose — this is the one colour
+  // in the tile that, given its head, would turn the render into October.
+  const THATCH = [138, 134, 94];
+
+  for (let y = 0; y < S; y++) {
+    for (let x = 0; x < S; x++) {
+      const v = 0.42 * o16(x, y) + 0.26 * o32(x, y) + 0.18 * o64(x, y) + 0.14 * rnd();
+      // Thatch shows only where the litter octave peaks and the sward is thin.
+      const t = Math.max(0, oThatch(x, y) - 0.62) * (1.6 - v) * 0.9;
       const i = (y * S + x) * 4;
-      img.data[i]     = 116 + v * 46;
-      img.data[i + 1] = 118 + v * 42;
-      img.data[i + 2] = 74 + v * 34;
+      for (let ch = 0; ch < 3; ch++) {
+        const green = DARK[ch] + (LIGHT[ch] - DARK[ch]) * v;
+        img.data[i + ch] = green + (THATCH[ch] - green) * Math.min(0.5, t);
+      }
       img.data[i + 3] = 255;
     }
   }
@@ -559,6 +663,14 @@ function prairieTexture() {
 
   const tex = new THREE.CanvasTexture(c);
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  // Anisotropy stays at 4. Eight taps on a 512 px tile looked slightly cleaner
+  // on the grazing mid-field and cost the software rasteriser half its frame
+  // rate — the ground is most of the screen, so doubling its filter taps doubles
+  // the most expensive fetch in the frame. Measured against this file's previous
+  // revision on the `prairie_west` pose: 2.0 fps before, 1.0 with the eight taps,
+  // 2.2 back at four on a 256 tile. One fps is enough to fail the smoke's "walk
+  // intent moves the camera" check, which is wall-clock. Same lesson as the
+  // one-fetch rule above; do not raise it without re-running that check.
   tex.anisotropy = 4;
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;

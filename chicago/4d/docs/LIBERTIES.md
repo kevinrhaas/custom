@@ -537,6 +537,147 @@ voucher or a council minute behind that payment is the most likely thing to desc
 structure member by member.
 **Recorded:** 2026-08-10.
 
+### L32 — The sward is drawn at a density that hides the ground, not at a stem count
+**Decision:** the near field plants roughly **7.3 tufts per square metre**, each tuft a dozen
+blades, and that number is a rendering constant in `renderers/web/js/flora.js` (`TUNE.near`).
+It is not derived from any record.
+**Why:** the flora records give **cover fractions** for the matrix grasses — cordgrass 40-55 %
+of the ground in wet prairie, bluejoint 15-25 % — and no source anywhere gives shoots per
+square metre for the 1835 lake plain. A real tallgrass sward carries hundreds of shoots to the
+square metre; drawing that is not affordable in a browser, so a tuft instance stands for a
+*bundle* of shoots rather than for a plant. The records therefore set the MIX — which species,
+in what proportion, at what July height, in what greens, in flower or not — and this constant
+sets how much geometry is spent realising it. It was tuned against the one thing a photograph
+can settle: at standing eye height, in the reference images of surviving Illinois tallgrass in
+mid-July, the ground is not visible at all.
+**Consequence:** the count of plants on screen is not a measurement and must never be read as
+one. A reader counting cordgrass clumps per square metre in this walkthrough is counting a
+rendering budget. Cover fractions, heights and phenology *are* the record and can be read.
+Two smaller companions to the same admission: only about one tuft in six of a flowering matrix
+grass carries a spike, because a bundle of shoots is not a plant and a culm on every bundle
+gave the wet prairie the look of a wheat field; and the dead-thatch tint is applied to 7 % of
+tufts, a proportion nobody recorded, kept small because a straw-coloured sward is the October
+negative control rather than July.
+**How to resolve:** it does not resolve into evidence. It could be replaced by a stem-density
+model if a modern remnant survey of a comparable community is adopted as a proxy and recorded
+as such.
+**Recorded:** 2026-08-10.
+
+### L33 — Beyond about ten metres the prairie is a canopy surface, not plants
+**Decision:** vegetation is drawn as individual geometry only within about 27 m of the
+visitor. Beyond that the sward is a single sheet at the height of the community's own canopy —
+coloured by the zone under it, holed where the records say water — carried out to the edge of
+the modelled ground.
+**Why:** from an eye height of 1.68 m, a sight line that reaches the soil 60 m away is 1.6
+degrees below the horizon; everything from 45 m to the horizon occupies about two degrees of a
+fifty-degree frame. Nothing drawn out there can be resolved as a plant, and everything drawn
+out there is paid for across the whole plain. The sheet is not a claim that the far prairie is
+smooth: it is the top of the sward, which is what a standing observer can actually see of it.
+**Consequence:** the far field carries no species. It is coloured from the mean July foliage of
+the zone's graminoids and stands at their mean height, so a community change shows as a change
+of green and of level and never as a change of plant. The confidence view marks the whole sheet
+`inferred`, which is the honest grade for a surface nobody surveyed, but it cannot grade the
+species mix underneath it because it is not drawing one. There is also a visible seam in
+principle where the sheet begins; it is ragged and it sits behind the drawn plants, but a
+visitor who looks for it on flat ground will find it.
+**How to resolve:** more geometry, or an impostor scheme that carries species identity into
+the far field.
+**Recorded:** 2026-08-10.
+
+### L34 — The sky is corrected toward one photograph, and only near the horizon
+**Decision:** the sky is Preetham's model as the vendored `Sky.js` implements it, with one
+fitted correction applied inside its fragment shader (`HORIZON_RESTORE` in
+`renderers/web/js/world.js`): red and green are attenuated as the sight line approaches the
+horizon, blue is untouched, and the effect dies out above about 25°. The three constants that
+shape it were solved by least squares against **one photograph** — the July reference in
+`bar/`, sampled at ten elevations from 16° down to 0.5°.
+**Why:** the model has a genuine defect at the horizon and it is not a matter of taste.
+`Sky.js` builds its in-scatter with a `(1 - Fex)` extinction term, and along a horizon ray the
+model's own optical path runs ~26× the zenith path at 1° up. `Fex` has gone to zero in all
+three channels there, so `1 - Fex` is (1,1,1) and the only wavelength-dependent factor in the
+in-scatter is gone. What remains is the ratio of the two phase functions, which is nearly
+achromatic — 0.816 : 0.919 : 1.000 for this scene at 1°. The model therefore renders a **white**
+horizon: sRGB (181,191,195) at saturation 0.072, where the photograph reads (136,163,192) at
+0.288. The error is not a shortage of blue — our blue was 195 against its 191 — it is red +45
+and green +28 that a real horizon does not carry. So the correction restores channel dependence
+the saturated term threw away, rather than adding a colour the sky did not have.
+**Consequence:** the sky above the horizon is no longer purely a physical model's output. It is
+a physical model plus an empirical fit, and the fit's authority is the authority of a single
+photograph taken on one afternoon at one place. Two specific limits follow. First, it is
+**azimuth-blind**: the defect is the same in every direction but the model's horizon
+*brightness* is not, and the reference photograph looks within 19° of the sun. Subtracting the
+same fraction of red and green from the anti-sun sky leaves it bluer and darker than a
+photograph would be — measured at 1° above the north horizon, (104,132,166): the hue is right
+(B−R +62 against the bar's +55, where before the correction it was +17) but the luminance is
+128 against 160. The render brackets the photograph rather than sitting on it, and it now
+brackets from the blue side instead of the grey side. Second, between about 8° and 12° of
+elevation the sky is still 15–20 units short of the reference in B−R; that residual is tone-map
+compression in the blue channel and was deliberately left alone.
+**How to resolve:** an azimuth term, which needs a second **verified** July photograph shot away
+from the sun to fit against. There is not one in `bar/`, and deriving the anti-sun sky from the
+solar one would be invention of exactly the kind this project refuses. Until then the honest
+statement is the one above: correct toward the sun, bracketing away from it.
+**Recorded:** 2026-08-10.
+
+### L35 — The far timber is exempted from the air that hides everything else
+**Decision:** the horizon timber band runs the scene's own haze law by hand against each
+body's real distance, but caps it: `HAZE_MAX = 0.82` in `renderers/web/js/trees.js`. Every
+other distant thing in the scene is hazed by the shared fog, which is deliberately total by
+1500 m. The timber alone is not allowed to disappear.
+**Why:** two commitments in this repo point opposite ways and one of them had to give. **L17**
+leans on total extinction at 1500 m to hide a radial ground skirt that nothing is claimed
+about — if the air did not close, the skirt's edge would be visible and would look like
+landform. But the timber dossier § 1.6 is a table of real timber bodies at **three, four and
+six miles**, explicitly headed "for distant LOD / horizon silhouettes", and total extinction at
+1500 m erases every one of them. Deleting them to satisfy the fog would be erasing evidence to
+protect a convenience. The cap keeps them visible at a contrast that never exceeds what the
+scene's air already allows anything else at about 1.2 km, so it buys the dossier's timber back
+without letting the band claim more clarity than the atmosphere elsewhere permits.
+**Consequence:** distance in this scene is not governed by one law. Ground, water and sward
+obey the fog; the timber band obeys the fog up to 82 % and then stops. A visitor cannot see
+this. Three things follow, and the third is this entry correcting itself.
+
+First, the further bodies are **compressed**: `hazeAt` reaches the cap at about 1.15 km, so
+everything from there out to the furthest body at 9.7 km renders at one identical value. Their
+relative distance is not readable, and the band is *evidence that timber stood out there*, not
+a measurement of how far.
+
+Second — **and this entry got this wrong once already, so the retraction is worth keeping.** An
+earlier revision said the cap had become load-bearing tonally: that since the haze colour was
+retargeted, a fully-hazed surface displayed *brighter* than the sky behind it (L 170.1 against
+L 161.7), leaving this cap as the only thing keeping the band dark. That was a real measurement
+of an unreal thing. In the vendored three r185 the fragment order is `opaque → tonemapping →
+colorspace → fog`, and the fog colour is uploaded through `getUnlitUniformColorSpace()`, so the
+scene's fog is a straight lerp toward the literal hex **in display space, after the tone
+curve**. A fully-fogged surface therefore renders sRGB (136, 163, 192) — L **159.4**, four
+levels *below* the horizon sky, which is exactly what airlight should do. The L 170.1 figure
+came from `trees.js` running the haze colour through ACES a second time to derive its band
+colour, which is the answer to a question the renderer never asks. There was no atmospheric
+inconsistency. There was a colour-management error in one file, and this register briefly wrote
+it up as physics.
+
+What survives is smaller and still true: because `trees.js` aims its band at (152, 175, 195)
+while the ground it stands on converges to (136, 163, 192), the two are **16 red and 12 green
+apart** with the band `toneMapped: false, fog: false` so nothing downstream reconciles them.
+The far timber and the far ground are lit by two different laws and meet at the horizon.
+
+Third — **this entry asserted a visual outcome and the assertion was false.** It first said a
+visitor "would have no reason to suspect it — the band simply reads as far-off woods." Measured
+in the delivered frame, the band covers **0.9 %** of its own detection window at Weber **0.026**,
+and only **31 % of horizon columns carry any timber at all** — 3.6 % across the central
+two-thirds — against 100 % of columns in the reference photograph. It does not read as far-off
+woods, and it does not read as a pale ridge either. It mostly does not read. Both sides of the
+capping choice sit below the visibility threshold, so the liberty this entry exists to confess
+is currently invisible, while the *absence* it was meant to prevent is what a viewer actually
+sees. A liberties register that asserts what a visitor perceives must be checked against a
+render, or it becomes a record of intent rather than of effect.
+**How to resolve:** an atmosphere that is wavelength- and altitude-dependent rather than a
+single exponential would haze a six-mile treeline and a 1400 m skirt differently on physics
+instead of by exemption, and would let both L17 and § 1.6 hold at once. Failing that, replacing
+the skirt with real terrain to the east removes L17's need for a closed horizon, and the cap can
+then be argued on its own merits.
+**Recorded:** 2026-08-10.
+
 ---
 
 ## Resolved

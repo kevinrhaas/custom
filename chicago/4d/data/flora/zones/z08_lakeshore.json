@@ -1,0 +1,367 @@
+{
+ "id": "z08_lakeshore",
+ "zone": 8,
+ "name": "Lakeshore: beach, foredune and the 1834 accretion",
+ "dossier": "docs/research/02-flora.md § ZONE 8",
+ "scene_date": "1835-07-01",
+ "palette": "july_lake_sand",
+ "reads_as": "pale wave-rippled bare sand with wrack lines, rising to marram clumps in their own sand shadows and a scrub of sand cherry and leaning cottonwood",
+ "plantable_in_scene": false,
+ "cover": {"matrix_fraction":0.35,"bare_soil_fraction":0.55,"standing_water_fraction":0.0},
+ "ground": {"rgb":[198,190,166],"wet_rgb":[156,148,130]},
+ "extent": {
+  "kind": "everywhere",
+  "box": {"e":[1400,1680],"n":[-320,320]},
+  "priority": 12,
+  "confidence": "inferred",
+  "sources": [],
+  "note": "NOT PLANTABLE IN THIS SCENE. The 1835 shore is about 1.4 km east of the datum origin and the committed heightfield stops at +320 m, so this community has no modelled ground to stand on and the renderer will place nothing. The box records roughly where the belt is, bounded north and south only to the scene's own span; the beach continues well beyond it. The record exists because the dataset, not the render, is the durable artifact."
+ },
+ "species": [
+  {
+   "id": "cakile_edentula",
+   "binomial": "Cakile edentula",
+   "common": "American sea rocket",
+   "role": "forb",
+   "form": "mat_prostrate",
+   "abundance": {"stems_per_m2":[0.02,0.1]},
+   "height_m": [0.15,0.3],
+   "width_m": [0.3,0.7],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [136,158,120],
+    "inflorescence": {"shape":"raceme","rgb":[216,200,224],"height_frac":0.85,"size_m":[0.02,0.04]},
+    "appearance": "Succulent grey-green sprawling rosettes on the strandline with tiny pale-lilac flowers. Almost the only thing growing on the beach."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","cowles_1901"]
+  },
+  {
+   "id": "euphorbia_polygonifolia",
+   "binomial": "Euphorbia polygonifolia",
+   "common": "seaside spurge",
+   "role": "ground",
+   "form": "mat_prostrate",
+   "abundance": {"stems_per_m2":[0.02,0.1]},
+   "height_m": [0.03,0.06],
+   "width_m": [0.15,0.4],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [122,138,96],
+    "inflorescence": {"shape":"cluster_terminal","rgb":[206,190,176],"height_frac":0.6,"size_m":[0.005,0.01]},
+    "appearance": "Flat reddish mats pressed to the sand."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","cowles_1901"]
+  },
+  {
+   "id": "ammophila_breviligulata",
+   "binomial": "Ammophila breviligulata",
+   "common": "American marram grass",
+   "role": "matrix",
+   "form": "grass_clump",
+   "abundance": {"cover_fraction":[0.3,0.6]},
+   "height_m": [0.6,1.0],
+   "width_m": [0.3,0.6],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [122,148,108],
+    "inflorescence": {"shape":"panicle_dense","rgb":[206,200,158],"height_frac":0.88,"size_m":[0.15,0.25]},
+    "appearance": "Blue-green rolled blades in clumps 0.3-0.8 m apart with sand showing between; stiff pale spike-like panicles ARE present in July. Each clump sits in its own sand shadow."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","cowles_1901"],
+   "note": "Marram is the exception to the July no-seedhead rule: it heads in mid-summer. The rule the dossier states is about big bluestem, Indian grass and switchgrass."
+  },
+  {
+   "id": "calamovilfa_longifolia",
+   "binomial": "Calamovilfa longifolia",
+   "common": "sand reed",
+   "role": "matrix",
+   "form": "grass_clump",
+   "abundance": {"cover_fraction":[0.1,0.2]},
+   "height_m": [0.8,1.2],
+   "width_m": [0.3,0.6],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [124,144,96],
+    "inflorescence": null,
+    "appearance": "Coarser and more upright than marram; the panicle comes in August."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "schizachyrium_scoparium",
+   "binomial": "Schizachyrium scoparium",
+   "common": "little bluestem",
+   "role": "matrix",
+   "form": "grass_clump",
+   "abundance": {"cover_fraction":[0.05,0.15]},
+   "height_m": [0.3,0.5],
+   "width_m": [0.2,0.35],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [112,132,104],
+    "inflorescence": null,
+    "appearance": "Blue-green bunches on the back slope."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "artemisia_campestris",
+   "binomial": "Artemisia campestris",
+   "common": "field wormwood",
+   "role": "forb",
+   "form": "forb_spike",
+   "abundance": {"stems_per_m2":[0.05,0.2]},
+   "height_m": [0.3,0.6],
+   "width_m": [0.2,0.4],
+   "july": {
+    "phenology": "budding",
+    "foliage_rgb": [150,156,132],
+    "inflorescence": null,
+    "appearance": "Finely dissected silver-green foliage; the flower spike is inconspicuous and not yet open."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "lathyrus_japonicus",
+   "binomial": "Lathyrus japonicus",
+   "common": "beach pea",
+   "role": "forb",
+   "form": "mat_prostrate",
+   "abundance": {"cover_fraction":[0.02,0.06]},
+   "height_m": [0.2,0.4],
+   "width_m": [1.0,3.0],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [116,142,108],
+    "inflorescence": {"shape":"raceme","rgb":[128,108,176],"height_frac":0.8,"size_m":[0.04,0.08]},
+    "appearance": "Sprawling glaucous leaflets in patches 1-3 m across with purple-blue pea flowers."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","dollard_2018_beach_pea"]
+  },
+  {
+   "id": "campanula_rotundifolia",
+   "binomial": "Campanula rotundifolia",
+   "common": "harebell",
+   "role": "forb",
+   "form": "forb_basal_scape",
+   "abundance": {"stems_per_m2":[0.05,0.2]},
+   "height_m": [0.2,0.3],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [110,136,88],
+    "inflorescence": {"shape":"umbel_nodding","rgb":[126,142,198],"height_frac":0.85,"size_m":[0.02,0.03]},
+    "appearance": "Thread stems with nodding blue bells, in bloom now."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "cirsium_pitcheri",
+   "binomial": "Cirsium pitcheri",
+   "common": "Pitcher's thistle",
+   "role": "forb",
+   "form": "forb_globe",
+   "abundance": {"stems_per_m2":[0.01,0.05]},
+   "height_m": [0.4,0.8],
+   "width_m": [0.4,0.8],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [176,182,158],
+    "inflorescence": {"shape":"head_globe","rgb":[226,220,190],"height_frac":0.9,"size_m":[0.04,0.06]},
+    "appearance": "Silver-white deeply cut leaves and cream-coloured heads."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","dollard_2018_beach_pea"]
+  },
+  {
+   "id": "lithospermum_caroliniense",
+   "binomial": "Lithospermum caroliniense",
+   "common": "hairy puccoon",
+   "role": "forb",
+   "form": "forb_umbel",
+   "abundance": {"stems_per_m2":[0.02,0.08]},
+   "height_m": [0.3,0.4],
+   "july": {
+    "phenology": "past_bloom",
+    "foliage_rgb": [138,148,112],
+    "inflorescence": {"shape":"cluster_terminal","rgb":[214,176,96],"height_frac":0.85,"size_m":[0.02,0.04]},
+    "appearance": "Past peak: the orange-yellow is fading out on hairy grey foliage."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "asclepias_syriaca",
+   "binomial": "Asclepias syriaca",
+   "common": "common milkweed",
+   "role": "forb",
+   "form": "forb_umbel",
+   "abundance": {"stems_per_m2":[0.03,0.1]},
+   "height_m": [0.8,1.2],
+   "july": {
+    "phenology": "flowering",
+    "foliage_rgb": [120,138,92],
+    "inflorescence": {"shape":"umbel_domed","rgb":[196,152,158],"height_frac":0.75,"size_m":[0.06,0.1]},
+    "appearance": "Broad grey-green leaves and dusty-mauve globes."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "prunus_pumila",
+   "binomial": "Prunus pumila",
+   "common": "sand cherry",
+   "role": "shrub_low",
+   "form": "shrub_low",
+   "abundance": {"density_per_ha":[20,80]},
+   "height_m": [0.4,1.0],
+   "width_m": [1.0,3.0],
+   "july": {
+    "phenology": "fruiting",
+    "foliage_rgb": [116,138,92],
+    "inflorescence": {"shape":"cherry","rgb":[122,56,62],"height_frac":0.7,"size_m":[0.012,0.018],"fruit":true},
+    "appearance": "Low sprawling mats 1-3 m across; fruit turning green to dark purple-red on grey-green narrow leaves."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "salix_cordata",
+   "binomial": "Salix cordata",
+   "common": "sand dune willow",
+   "role": "shrub_low",
+   "form": "shrub_low",
+   "abundance": {"density_per_ha":[15,50]},
+   "height_m": [1.0,2.5],
+   "width_m": [1.0,2.5],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [138,152,116],
+    "inflorescence": null,
+    "appearance": "Silvery low willow scrub holding the back slope."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "salix_interior",
+   "binomial": "Salix interior",
+   "common": "sandbar willow",
+   "role": "thicket",
+   "form": "thicket_clonal",
+   "abundance": {"stems_per_m2":[1,3]},
+   "height_m": [1.5,3.0],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [132,150,116],
+    "inflorescence": null,
+    "appearance": "Clonal silvery screens in the damp dune hollows."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "cornus_sericea",
+   "binomial": "Cornus sericea",
+   "common": "red-osier dogwood",
+   "role": "shrub_low",
+   "form": "shrub_low",
+   "abundance": {"density_per_ha":[10,40]},
+   "height_m": [1.5,2.5],
+   "width_m": [1.2,2.4],
+   "july": {
+    "phenology": "fruiting",
+    "foliage_rgb": [88,116,66],
+    "inflorescence": {"shape":"berry_cluster","rgb":[214,216,206],"height_frac":0.85,"size_m":[0.05,0.09],"fruit":true},
+    "appearance": "Red stems and whitening berry clusters."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "juniperus_communis",
+   "binomial": "Juniperus communis",
+   "common": "common juniper",
+   "role": "shrub_low",
+   "form": "shrub_low",
+   "abundance": {"density_per_ha":[5,25]},
+   "height_m": [0.5,1.5],
+   "width_m": [1.0,2.5],
+   "july": {
+    "phenology": "fruiting",
+    "foliage_rgb": [78,104,76],
+    "inflorescence": {"shape":"berry_cluster","rgb":[122,138,148],"height_frac":0.6,"size_m":[0.006,0.01],"fruit":true},
+    "appearance": "Dark prickly sprawling mats with glaucous berries."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "populus_deltoides",
+   "binomial": "Populus deltoides",
+   "common": "eastern cottonwood (dune form)",
+   "role": "tree",
+   "form": "tree_leaning",
+   "abundance": {"density_per_ha":[3,15]},
+   "height_m": [5,15],
+   "width_m": [6,14],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [78,106,56],
+    "foliage_rgb_alt": [126,148,92],
+    "inflorescence": null,
+    "appearance": "Isolated, half-buried and leaning, with a sand mound at the base and adventitious sprouts up the buried trunk — the classic Lake Michigan dune pioneer."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes","cowles_1901"]
+  },
+  {
+   "id": "populus_tremuloides",
+   "binomial": "Populus tremuloides",
+   "common": "quaking aspen",
+   "role": "tree",
+   "form": "tree_columnar",
+   "abundance": {"density_per_ha":[2,8]},
+   "height_m": [6,12],
+   "width_m": [3,6],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [110,134,78],
+    "foliage_rgb_alt": [152,168,118],
+    "inflorescence": null,
+    "appearance": "Clonal patches of fluttering pale foliage."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  },
+  {
+   "id": "populus_balsamifera",
+   "binomial": "Populus balsamifera",
+   "common": "balsam poplar",
+   "role": "tree",
+   "form": "tree_columnar",
+   "abundance": {"density_per_ha":[2,8]},
+   "height_m": [6,12],
+   "width_m": [3,6],
+   "july": {
+    "phenology": "vegetative",
+    "foliage_rgb": [88,116,62],
+    "inflorescence": null,
+    "appearance": "Narrow crowns in the damper back-dune hollows."
+   },
+   "confidence": "documented",
+   "sources": ["mnfi_open_dunes"]
+  }
+ ],
+ "confidence": "documented",
+ "sources": ["chicagology_prefire273"],
+ "note": "1835-specific and easy to get wrong: the harbour cut and piers were finished in 1834 and sand was accreting north of the north pier, so the lakefront just north of the river mouth is RAW BARE SAND, at most colonised by annual pioneers, not established marram turf. Bare sand is 85-98 per cent of the active beach surface (8a); the 55 per cent here is the average across beach, foredune and back-dune.",
+ "review_required": false
+}

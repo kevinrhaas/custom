@@ -853,6 +853,510 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
 
 
 # --------------------------------------------------------------------------
+# flora: zone records, palettes, and the July phenology traps
+# --------------------------------------------------------------------------
+#
+# docs/research/02-flora.md carries a block of "Global phenology rules" whose
+# whole point is that a mid-July prairie is easy to render as a September one.
+# Those rules are enforced HERE, as schema, rather than left as prose: the
+# dossier calls 2 m turkey-foot seed heads on big bluestem in July "the single
+# most common historical-reconstruction error", and an error you can only catch
+# by eye is one you will ship. Everything below makes a wrong record
+# unrepresentable rather than merely discouraged.
+
+FLORA = DATA / "flora"
+
+FLORA_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground", "tree", "thicket")
+FLORA_PHENOLOGY = ("flowering", "vegetative", "budding", "past_bloom", "fruiting",
+                   "leafless", "senescent")
+EXTENT_KINDS = ("elevation_band", "polygon", "buffer", "everywhere")
+ABUNDANCE_LIMITS = {"cover_fraction": 1.0, "density_per_ha": 5000.0, "stems_per_m2": 200.0}
+
+# The three warm-season grasses that are LEAFY AND VEGETATIVE in mid-July, at
+# roughly half their September height. Naming them here is the point: this is the
+# error the dossier singles out.
+JULY_VEGETATIVE_GRASSES = {
+    "Andropogon gerardii": 1.5,
+    "Sorghastrum nutans": 1.5,
+    "Panicum virgatum": 1.6,
+}
+# ...and the two that DO flower now. Cordgrass is the tall element in July.
+JULY_FLOWERING_GRASSES = ("Sporobolus michauxianus", "Calamagrostis canadensis")
+# Later arrivals: a cattail that did not reach Illinois until long after 1835.
+BANNED_TAXA = ("Typha angustifolia", "Typha x glauca", "Typha × glauca",
+               "Lythrum salicaria", "Phalaris arundinacea", "Rhamnus cathartica",
+               "Phragmites australis subsp. australis")
+
+
+def _rgb_ok(v) -> bool:
+    return (isinstance(v, list) and len(v) == 3
+            and all(isinstance(c, int) and 0 <= c <= 255 for c in v))
+
+
+def _is_july_green(rgb) -> bool:
+    """A July foliage colour: green-dominant and not straw.
+
+    A tawny sward is the October negative control the reference set carries on
+    purpose; the check is deliberately crude and deliberately absolute.
+    """
+    r, g, b = rgb
+    return g >= r and g > b
+
+
+def _carries_flower_colour(rgb) -> bool:
+    """True for a saturated bloom colour — what a past-bloom fruit must not be."""
+    r, g, b = rgb
+    return b >= max(r, g) or (min(r, g) - b) > 100 or (r - max(g, b)) > 90
+
+
+def _num_range(v, lo=0.0, hi=1e9) -> bool:
+    return (isinstance(v, list) and len(v) == 2
+            and all(isinstance(x, (int, float)) for x in v)
+            and lo <= v[0] <= v[1] <= hi)
+
+
+def _point_in_polygon(e: float, n: float, poly: list) -> bool:
+    inside = False
+    j = len(poly) - 1
+    for i, (xi, yi) in enumerate(poly):
+        xj, yj = poly[j]
+        if (yi > n) != (yj > n):
+            x = xi + (n - yi) * (xj - xi) / ((yj - yi) or 1e-12)
+            if e < x:
+                inside = not inside
+        j = i
+    return inside
+
+
+def _water_distance(field) -> list:
+    """Chamfer distance in metres from every cell to the nearest water cell.
+
+    Two passes over the grid with a (1, sqrt2) kernel. Approximate by about two
+    per cent, which is far inside the tolerance of a question like "is this cell
+    within eight metres of the river".
+    """
+    cols, rows, cell = field.cols, field.rows, field.cell_m
+    big = 1e9
+    d = [0.0 if field._at(i, j) <= 0.0 else big
+         for j in range(rows) for i in range(cols)]
+    diag = 2 ** 0.5
+    for j in range(rows):
+        base = j * cols
+        prev = base - cols
+        for i in range(cols):
+            k = base + i
+            if d[k] == 0.0:
+                continue
+            best = d[k]
+            if i > 0:
+                best = min(best, d[k - 1] + 1.0)
+            if j > 0:
+                best = min(best, d[prev + i] + 1.0)
+                if i > 0:
+                    best = min(best, d[prev + i - 1] + diag)
+                if i < cols - 1:
+                    best = min(best, d[prev + i + 1] + diag)
+            d[k] = best
+    for j in range(rows - 1, -1, -1):
+        base = j * cols
+        nxt = base + cols
+        for i in range(cols - 1, -1, -1):
+            k = base + i
+            if d[k] == 0.0:
+                continue
+            best = d[k]
+            if i < cols - 1:
+                best = min(best, d[k + 1] + 1.0)
+            if j < rows - 1:
+                best = min(best, d[nxt + i] + 1.0)
+                if i < cols - 1:
+                    best = min(best, d[nxt + i + 1] + diag)
+                if i > 0:
+                    best = min(best, d[nxt + i - 1] + diag)
+            d[k] = best
+    return [x * cell for x in d]
+
+
+def _extent_matches(ext: dict, e: float, n: float, h: float, dwater: float) -> bool:
+    box = ext.get("box")
+    if box:
+        be, bn = box.get("e"), box.get("n")
+        if be and not (be[0] <= e <= be[1]):
+            return False
+        if bn and not (bn[0] <= n <= bn[1]):
+            return False
+    kind = ext.get("kind")
+    if kind == "elevation_band":
+        lo, hi = ext.get("elev_m", [0, 0])
+        if not (lo <= h <= hi):
+            return False
+    elif kind == "polygon":
+        if not _point_in_polygon(e, n, ext.get("polygon") or []):
+            return False
+    elif kind == "buffer":
+        lo, hi = ext.get("distance_m", [0, 0])
+        if not (lo <= dwater <= hi):
+            return False
+    elif kind != "everywhere":
+        return False
+    for hole in ext.get("exclude_polygons") or []:
+        if _point_in_polygon(e, n, hole):
+            return False
+    return True
+
+
+def check_flora_extents(zones: dict, field, rep: Report) -> None:
+    """Evaluate every zone's extent against the committed heightfield.
+
+    Answers three questions no eye can answer reliably: does a zone that claims
+    to be plantable actually match any ground; do two zones tie on priority
+    anywhere (the contract calls a tie a data error); and how much land ends up
+    unzoned, which the renderer must leave EMPTY rather than fill with a default
+    community.
+    """
+    if field is None:
+        rep.note("flora extents: skipped — needs the committed heightfield")
+        return
+    dwater = _water_distance(field)
+    cols, rows, cell = field.cols, field.rows, field.cell_m
+    step = 2  # every second cell: 5 m spacing over a 640 m box
+    matched = {zid: 0 for zid in zones}
+    land = water = unzoned = 0
+    ties: set = set()
+    for j in range(0, rows, step):
+        n = field.origin_n + j * cell
+        for i in range(0, cols, step):
+            e = field.origin_e + i * cell
+            h = field._at(i, j)
+            d = dwater[j * cols + i]
+            hits = [(z.get("extent", {}).get("priority", 0), zid)
+                    for zid, z in zones.items()
+                    if _extent_matches(z.get("extent", {}), e, n, h, d)]
+            for _, zid in hits:
+                matched[zid] += 1
+            if h <= 0.0:
+                water += 1
+                continue
+            land += 1
+            if not hits:
+                unzoned += 1
+                continue
+            top = max(p for p, _ in hits)
+            winners = sorted(zid for p, zid in hits if p == top)
+            if len(winners) > 1:
+                ties.add(tuple(winners))
+    for w in sorted(ties):
+        rep.error("flora extents", f"zones {' and '.join(w)} share priority where their "
+                                   f"extents overlap — the contract makes a tie a data error, "
+                                   f"because it leaves the community at that point undecided")
+    for zid, z in zones.items():
+        declared = z.get("plantable_in_scene")
+        actual = matched[zid] > 0
+        if declared is None:
+            rep.error(f"flora zone {zid}", "plantable_in_scene is missing — a zone must say "
+                                           "whether it has modelled ground in this scene "
+                                           "rather than leave the renderer to discover it")
+        elif bool(declared) != actual:
+            rep.error(f"flora zone {zid}",
+                      f"plantable_in_scene is {declared} but its extent matches "
+                      f"{matched[zid]} sample(s) of the committed heightfield. A zone off the "
+                      f"modelled ground must say so; one on it must not claim otherwise")
+    pct = 100.0 * unzoned / land if land else 0.0
+    rep.note(f"flora extents: {land} land sample(s), {water} water, {unzoned} unzoned "
+             f"({pct:.1f}%) — unzoned ground is planted with NOTHING, never a default "
+             f"community")
+    if pct > 10.0:
+        rep.warn("flora extents", f"{pct:.1f}% of the modelled land matches no zone; that is "
+                                  f"bare ground in the walkthrough, so either a zone's extent "
+                                  f"is wrong or the gap needs stating")
+
+
+def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
+                        rep: Report, tally: dict) -> None:
+    where = f"flora zone {zid}/{sp.get('id', '?')}"
+    binomial = (sp.get("binomial") or "").strip()
+    for key in ("id", "binomial", "common", "role", "form", "abundance", "height_m",
+                "july", "confidence"):
+        if key not in sp:
+            rep.error(where, f"missing required key '{key}'")
+            return
+    if not SLUG.match(sp["id"] or ""):
+        rep.error(where, f"id '{sp['id']}' is not a lowercase slug")
+    if sp["role"] not in FLORA_ROLES:
+        rep.error(where, f"role '{sp['role']}' is not one of {FLORA_ROLES}")
+    forms = set(vocab.get("forms_flora", [])) | set(vocab.get("forms_trees", [])) \
+        | set(vocab.get("forms_unimplemented", []))
+    if sp["form"] not in forms:
+        rep.error(where, f"form '{sp['form']}' is not declared in index.json's vocabulary — "
+                         f"a renderer reads that block to know what it may be asked to draw")
+    for banned in BANNED_TAXA:
+        if binomial.lower() == banned.lower():
+            rep.error(where, f"{banned} is a post-settlement arrival and must not appear in "
+                             f"an 1835 record")
+
+    ab = sp["abundance"]
+    keys = [k for k in ABUNDANCE_LIMITS if k in ab]
+    if len(keys) != 1 or len(ab) != 1:
+        rep.error(where, f"abundance must carry EXACTLY ONE of {tuple(ABUNDANCE_LIMITS)}, "
+                         f"got {sorted(ab)}")
+    elif not _num_range(ab[keys[0]], 0.0, ABUNDANCE_LIMITS[keys[0]]):
+        rep.error(where, f"abundance.{keys[0]} must be [min,max] ascending within "
+                         f"0..{ABUNDANCE_LIMITS[keys[0]]}, got {ab[keys[0]]}")
+    if not _num_range(sp["height_m"], 0.01, 45.0):
+        rep.error(where, f"height_m must be [min,max] ascending in metres, got {sp['height_m']}")
+    if "width_m" in sp and not _num_range(sp["width_m"], 0.01, 45.0):
+        rep.error(where, f"width_m must be [min,max] ascending, got {sp['width_m']}")
+
+    j = sp.get("july")
+    if not isinstance(j, dict):
+        rep.error(where, "july must be the phenology block for the scene date")
+        return
+    ph = j.get("phenology")
+    if ph not in FLORA_PHENOLOGY:
+        rep.error(where, f"july.phenology '{ph}' is not one of {FLORA_PHENOLOGY}")
+    infl = j.get("inflorescence")
+    if "inflorescence" not in j:
+        rep.error(where, "july.inflorescence must be present, null when there is nothing "
+                         "in flower or fruit — an absent key hides the claim")
+    if not (j.get("appearance") or "").strip():
+        rep.error(where, "july.appearance is what a critic reads to decide whether the render "
+                         "matches the record; it may not be empty")
+
+    fol = j.get("foliage_rgb")
+    if ph == "leafless":
+        if fol is not None:
+            rep.error(where, "phenology 'leafless' requires foliage_rgb null — leafless means "
+                             "no leaves, and a green in this field puts them back")
+    elif not _rgb_ok(fol):
+        rep.error(where, f"july.foliage_rgb must be [r,g,b] 0-255, got {fol}")
+    elif not _is_july_green(fol):
+        rep.error(where, f"july.foliage_rgb {fol} is not a July green (green must be the "
+                         f"dominant channel). A tawny or straw sward is the October scene, "
+                         f"which fails the reference bar")
+    alt = j.get("foliage_rgb_alt")
+    if alt is not None and (not _rgb_ok(alt) or not _is_july_green(alt)):
+        rep.error(where, f"july.foliage_rgb_alt {alt} must be a second July green")
+
+    if infl is not None:
+        if not isinstance(infl, dict) or not _rgb_ok(infl.get("rgb")):
+            rep.error(where, "july.inflorescence needs a shape and an [r,g,b]")
+        else:
+            if not (0.0 <= (infl.get("height_frac") or -1) <= 1.0):
+                rep.error(where, "july.inflorescence.height_frac must be 0..1 (0 base, 1 tip)")
+            if not _num_range(infl.get("size_m"), 0.001, 3.0):
+                rep.error(where, "july.inflorescence.size_m must be [min,max] in metres")
+
+    # --- the traps ---------------------------------------------------------
+    if ph in ("vegetative", "budding") and infl is not None:
+        rep.error(where, f"phenology '{ph}' requires inflorescence null — a plant that is "
+                         f"vegetative or in bud has nothing open to draw")
+    if binomial in JULY_VEGETATIVE_GRASSES:
+        limit = JULY_VEGETATIVE_GRASSES[binomial]
+        if ph != "vegetative" or infl is not None:
+            rep.error(where, f"{binomial} is VEGETATIVE in mid-July with no inflorescence. "
+                             f"The dossier names July seed heads on this grass the single "
+                             f"most common historical-reconstruction error")
+        if isinstance(sp.get("height_m"), list) and len(sp["height_m"]) == 2 \
+                and sp["height_m"][1] > limit:
+            rep.error(where, f"{binomial} at {sp['height_m'][1]} m is its September height; in "
+                             f"mid-July it stands at 50-60 per cent of that, under {limit} m")
+    if binomial in JULY_FLOWERING_GRASSES and (ph != "flowering" or infl is None):
+        rep.error(where, f"{binomial} IS in flower in mid-July and must carry an "
+                         f"inflorescence — cordgrass is the tall flowering element of the "
+                         f"July prairie")
+    if binomial == "Typha latifolia":
+        if ph != "fruiting":
+            rep.error(where, "Typha latifolia is FRUITING in July — the spike is mature")
+        if isinstance(infl, dict) and _rgb_ok(infl.get("rgb")):
+            r, g, b = infl["rgb"]
+            if not (r > g > b):
+                rep.error(where, f"the July cattail spike is BROWN; {infl['rgb']} is not "
+                                 f"(needs red > green > blue). Green or yellow spikes date "
+                                 f"the scene to spring")
+    if binomial == "Allium tricoccum":
+        if ph != "leafless" or sp.get("form") != "scape_leafless" or fol is not None:
+            rep.error(where, "Allium tricoccum in July is LEAFLESS: phenology 'leafless', "
+                             "form 'scape_leafless', foliage_rgb null. Its leaves wither "
+                             "before the scape rises, so green onion foliage in a July scene "
+                             "is wrong")
+    if ph == "past_bloom" and isinstance(infl, dict) and _rgb_ok(infl.get("rgb")) \
+            and _carries_flower_colour(infl["rgb"]):
+        rep.error(where, f"phenology 'past_bloom' with inflorescence {infl['rgb']} — a plant "
+                         f"past bloom shows a fruit, not its flower colour")
+    if ph == "fruiting" and isinstance(infl, dict) and not infl.get("fruit"):
+        rep.error(where, "phenology 'fruiting' requires inflorescence.fruit true, so a reader "
+                         "cannot mistake the colour for a flower")
+
+    conf = check_attested(where, "species", sp, source_ids, rep)
+    if conf:
+        tally[conf] = tally.get(conf, 0) + 1
+
+
+def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
+    """Schema, provenance and phenology gate for data/flora/**."""
+    index_path = FLORA / "index.json"
+    if not index_path.exists():
+        rep.note("flora: no data/flora/index.json — the walkthrough plants nothing")
+        return {}
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return {}
+
+    scene_date = index.get("scene_date") or ""
+    d = parse_date(scene_date)
+    if d is None:
+        rep.error("flora index", "scene_date must be an ISO date")
+    elif d.month != 7:
+        rep.error("flora index", f"scene_date {scene_date} is not in July, but every zone "
+                                 f"record carries a 'july' phenology block. Move the "
+                                 f"phenology, do not move the month")
+
+    vocab = index.get("vocabulary") or {}
+    for key in ("roles", "forms_flora", "forms_trees", "phenology"):
+        if not vocab.get(key):
+            rep.error("flora index", f"vocabulary.{key} is missing — the renderer reads this "
+                                     f"block to know the closed sets it must implement")
+
+    palettes = {}
+    for entry in index.get("palettes", []):
+        pid, pfile = entry.get("id"), entry.get("file")
+        path = FLORA / (pfile or "")
+        if not pfile or not path.exists():
+            rep.error("flora index", f"palette '{pid}' names {pfile}, which does not exist")
+            continue
+        pal = load_json(path, rep)
+        if not isinstance(pal, dict):
+            continue
+        if pal.get("id") != pid or path.stem != pid:
+            rep.error(f"flora palette {pid}", "id must match both the manifest and the filename")
+        if pal.get("sources"):
+            rep.error(f"flora palette {pid}", "a palette is render tuning, not evidence, and "
+                                              "must not carry a source_id")
+        greens = pal.get("greens") or []
+        if len(greens) < 3 or not all(_rgb_ok(g) for g in greens):
+            rep.error(f"flora palette {pid}", "greens must be a ramp of at least three "
+                                              "[r,g,b] values")
+        elif not all(_is_july_green(g) for g in greens):
+            rep.error(f"flora palette {pid}", f"the foliage ramp {greens} is not all July "
+                                              f"greens — a straw ramp is the October scene")
+        palettes[pid] = pal
+
+    zones = {}
+    for entry in index.get("zones", []):
+        zid, zfile = entry.get("id"), entry.get("file")
+        path = FLORA / (zfile or "")
+        if not zfile or not path.exists():
+            rep.error("flora index", f"zone '{zid}' names {zfile}, which does not exist — a "
+                                     f"static host cannot be globbed, so a manifest entry "
+                                     f"without a file is a 404 on the deployed site")
+            continue
+        z = load_json(path, rep)
+        if not isinstance(z, dict):
+            continue
+        where = f"flora zone {zid}"
+        if z.get("id") != zid or path.stem != zid:
+            rep.error(where, "id must match both the manifest entry and the filename stem")
+        for key in ("zone", "name", "dossier", "scene_date", "palette", "cover", "ground",
+                    "extent", "species", "confidence", "plantable_in_scene"):
+            if key not in z:
+                rep.error(where, f"missing required key '{key}'")
+        if z.get("scene_date") != scene_date:
+            rep.error(where, f"scene_date {z.get('scene_date')} disagrees with the manifest's "
+                             f"{scene_date}; the phenology is stated FOR a date")
+        if z.get("palette") not in palettes:
+            rep.error(where, f"palette '{z.get('palette')}' does not resolve in the manifest")
+
+        # the manifest carries denormalised copies so terrain.js needs one fetch;
+        # a copy that has drifted is worse than no copy at all
+        for key, actual in (("extent", z.get("extent")),
+                            ("plantable_in_scene", z.get("plantable_in_scene")),
+                            ("ground_rgb", (z.get("ground") or {}).get("rgb")),
+                            ("ground_wet_rgb", (z.get("ground") or {}).get("wet_rgb")),
+                            ("bare_soil_fraction",
+                             (z.get("cover") or {}).get("bare_soil_fraction"))):
+            if entry.get(key) != actual:
+                rep.error("flora index", f"zone '{zid}' {key} in the manifest "
+                                         f"({entry.get(key)!r}) disagrees with the zone record "
+                                         f"({actual!r}); the zone record is authoritative")
+        if entry.get("priority") != (z.get("extent") or {}).get("priority"):
+            rep.error("flora index", f"zone '{zid}' priority in the manifest disagrees with "
+                                     f"its extent")
+
+        cover = z.get("cover") or {}
+        for key in ("matrix_fraction", "bare_soil_fraction", "standing_water_fraction"):
+            v = cover.get(key)
+            if not isinstance(v, (int, float)) or not 0.0 <= v <= 1.0:
+                rep.error(where, f"cover.{key} must be a fraction 0..1, got {v!r}")
+        for key in ("rgb", "wet_rgb"):
+            if not _rgb_ok((z.get("ground") or {}).get(key)):
+                rep.error(where, f"ground.{key} must be [r,g,b] 0-255")
+
+        ext = z.get("extent") or {}
+        kind = ext.get("kind")
+        if kind not in EXTENT_KINDS:
+            rep.error(where, f"extent.kind '{kind}' is not one of {EXTENT_KINDS}")
+        if kind == "elevation_band" and not _num_range(ext.get("elev_m"), -50.0, 400.0):
+            rep.error(where, "extent.elev_m must be [low,high] metres above the datum water")
+        if kind == "polygon" and len(ext.get("polygon") or []) < 3:
+            rep.error(where, "extent.polygon needs at least three vertices")
+        if kind == "buffer":
+            if ext.get("of") != "water":
+                rep.error(where, "extent.of only takes 'water' — the renderer implements one "
+                                 "buffer, and an unimplemented one silently plants nothing")
+            if not _num_range(ext.get("distance_m"), 0.0, 2000.0):
+                rep.error(where, "extent.distance_m must be [min,max] metres from the water")
+        if not isinstance(ext.get("priority"), int):
+            rep.error(where, "extent.priority must be an integer; higher wins on overlap")
+        check_attested(where, "extent", ext, source_ids, rep)
+
+        seen: set = set()
+        matrix_max = 0.0
+        for sp in z.get("species") or []:
+            if sp.get("id") in seen:
+                rep.error(where, f"duplicate species id '{sp.get('id')}' in this zone")
+            seen.add(sp.get("id"))
+            check_flora_species(zid, sp, source_ids, vocab, rep, tally)
+            if sp.get("role") in ("matrix", "ground"):
+                cf = (sp.get("abundance") or {}).get("cover_fraction")
+                if isinstance(cf, list) and len(cf) == 2:
+                    matrix_max += cf[1]
+        if not seen:
+            rep.error(where, "a zone with no species is not a community record")
+        if matrix_max > 1.8:
+            rep.warn(where, f"matrix and ground cover fractions sum to {matrix_max:.2f} at "
+                            f"their maxima; some overlap is real, this much is a bookkeeping "
+                            f"error")
+        if cover.get("matrix_fraction", 0) >= 0.5 and not any(
+                sp.get("role") in ("matrix", "emergent") for sp in z.get("species") or []):
+            rep.error(where, "the zone claims a graminoid matrix but lists no matrix or "
+                             "emergent species to build it from")
+        check_attested(where, "zone", z, source_ids, rep)
+        zones[zid] = z
+
+    check_flora_extents(zones, field, rep)
+
+    # Honesty ledger: how much of the species record rests on a source nobody in
+    # this project has actually opened. Not an error — a bibliographic record for
+    # a work the dossier cites is legitimate — but it is the number a reader
+    # should see rather than have to compute.
+    unverified = {sid for sid, s in ((Path(p).stem, json.loads(Path(p).read_text()))
+                                     for p in sorted((DATA / "sources").glob("*.json")))
+                  if not s.get("verified")}
+    resting = 0
+    for z in zones.values():
+        for sp in z.get("species") or []:
+            srcs = sp.get("sources") or []
+            if sp.get("confidence") == "documented" and srcs and set(srcs) <= unverified:
+                resting += 1
+    total_sp = sum(len(z.get("species") or []) for z in zones.values())
+    if total_sp:
+        rep.note(f"flora: {len(zones)} zone(s), {total_sp} species record(s); {resting} "
+                 f"documented claim(s) rest only on sources no agent has retrieved "
+                 f"(verified false) — real citations, unread")
+    return zones
+
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -995,6 +1499,9 @@ def main() -> int:
         check_ground_contact(structures, unlanded, rep)
 
     check_liberties_coverage(structures, liberties, rep, consumed, unlanded)
+
+    # the vegetation records, and the July phenology rules they have to obey
+    check_flora(source_ids, field, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):
@@ -1241,6 +1748,26 @@ def run_site_check(rep: Report) -> None:
         if is_page_dir(d) and not (d / "index.html").exists():
             rep.warn("site", f"{d.relative_to(site.parent.parent)} is a page directory with "
                              f"no index.html — the bare URL will 404 on Pages")
+
+    # The flora manifest names its own files, and the renderer fetches exactly
+    # what it names — no probing — so a zone file that never reached site/ is a
+    # 404 on the deployed walkthrough while the dev tree renders perfectly. This
+    # is the failure mode publish.sh exists to prevent, checked rather than hoped.
+    index_path = FLORA / "index.json"
+    if index_path.exists():
+        try:
+            index = json.loads(index_path.read_text())
+        except json.JSONDecodeError:
+            return
+        wanted = ["index.json"] + [e.get("file") for e in index.get("zones", [])] \
+            + [e.get("file") for e in index.get("palettes", [])]
+        missing = [w for w in wanted if w and not (site / "data" / "flora" / w).exists()]
+        if missing:
+            rep.error("site", f"data/flora/ is not fully published: {len(missing)} file(s) "
+                              f"the manifest names are absent from site/, starting with "
+                              f"{missing[0]} — run tools/publish.sh")
+        else:
+            rep.note(f"site check: {len(wanted)} flora file(s) published")
 
 
 if __name__ == "__main__":

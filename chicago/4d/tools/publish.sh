@@ -71,6 +71,16 @@ if [ -d data/sidecars ]; then
   cp -a data/sidecars "$SITE/data/sidecars"
 fi
 
+# Vegetation: the flora manifest plus every zone and palette file it names. The
+# renderer fetches exactly what index.json names and never probes, so a zone file
+# left behind here is an HTTP 404 on the deployed walkthrough while the dev tree
+# renders perfectly — the same failure the scenes/ subdirectory once caused.
+# tools/validate.py --site checks the manifest against what actually landed here.
+if [ -d data/flora ]; then
+  rm -rf "$SITE/data/flora"
+  cp -a data/flora "$SITE/data/flora"
+fi
+
 # every URL-targeted directory needs an index.html or Pages 404s the bare path
 [ -f "$SITE/index.html" ] || cat > "$SITE/index.html" <<'HTML'
 <!doctype html>

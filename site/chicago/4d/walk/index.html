@@ -6,6 +6,21 @@
 <title>4D Chicago — walk 1835</title>
 <meta name="description" content="A walkable reconstruction of downtown Chicago in the summer of 1835, rendered from a research dataset with per-attribute source provenance.">
 <meta name="color-scheme" content="dark light">
+
+<!--
+  An inline icon, so no file is fetched and nothing new ships. Without a
+  rel="icon" every browser silently requests /favicon.ico, and on Pages that is
+  a 404 on every visit — which also meant a permanent "404 (Not Found)" in the
+  console error list that the render harness and the smoke gate both collect.
+  A gate that is never clean teaches you to ignore it, and that unexplained 404
+  rode along through several rounds of vegetation work before anyone chased it.
+
+  The mark is the forks: the main stem running east, the two branches opening
+  north-west and south-west. Data URI rather than a file because this renderer
+  has no build step and site/ is a straight copy.
+-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316150f'/%3E%3Cpath d='M30 16H17M17 16L7 6M17 16L7 26' stroke='%23d8a24a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
 <link rel="stylesheet" href="./css/walk.css">
 
 <!--

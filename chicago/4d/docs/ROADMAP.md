@@ -371,6 +371,95 @@ rules — big bluestem is vegetative in July, cordgrass is the tall flowering el
 leafless scapes. Negative findings (no ring-billed gulls, no beaver, no periodical cicadas) go
 into the data as `absent` entries with citations, so nobody re-adds them later.
 
+### S6a — the eye-height sward · **ROUND 1 IN 2026-08-10**
+
+`renderers/web/js/flora.js` draws the graminoid matrix, the forb layer, the emergents and the
+low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Three layers: blade
+geometry within about 7.6 m, camera-facing clump cards to 27 m, and one canopy surface at the
+sward's own height from 10 m to the edge of the modelled ground. Placement is a deterministic
+world lattice re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and
+nothing is paid for behind your head. Heights, greens, cover, phenology and per-plant confidence
+all come from the records; the tuft density and the far-field surface are liberties (L32, L33).
+
+**Judged against `WORK/bar`** — two verified photographs of surviving Illinois tallgrass in
+mid-July (a Chicago-region remnant, 29 July 2021; a DuPage restoration, 24 July 2018) and an
+October negative control. Where round 1 stands, measured on the primary shot rather than
+asserted:
+
+| tell | reference | round 1 |
+|---|---|---|
+| the ground is hidden at eye height | invisible | hidden past ~3 m, patchy in the nearest 2 m |
+| several heights, several greens | 4-5 layers | 5 species heights, two greens each, per record |
+| July hue (green, not tawny) | R/G 0.76-0.93 | **0.73-0.80** |
+| local contrast (p90 − p10 luminance) | **141-212** | **101 near, 83 mid, 46 far** |
+| no flowering bluestem/Indian grass/switchgrass | none | none, structurally |
+
+### S6a next — the open work, in the order it is worth doing
+
+**Reordered 2026-08-10 after a three-critic blind round on one identical shot set.** Every item
+below carries a measured target and the definition it is measured with, because two rounds of
+this work were spent chasing numbers that either did not reproduce or did not exist in the
+reference. See STATUS.md § "Known weaknesses" 00 for the full measurements. The old list's
+items 1–3 were not wrong; they were aimed at the near field, and the blind test is being lost
+in the **mid** field.
+
+1. **Draw vegetation past 455 m.** *The single biggest gap, and it is one bug behind four
+   symptoms.* Canopy rings from 511.8 m outward drop to `y = 0.05` with `aMask = 0` and are
+   discarded, so the vegetated surface ends where fog is 27 % and no visible surface ever
+   reaches the haze all three parcels converge on. Fixing this alone should move the blind
+   tell, the aerial recession, the grain collapse and the horizon step. Whatever stands beyond
+   the modelled zone polygons has to be *drawn* — even a nominal community, graded honestly.
+2. **Give the far sheet grain at fragment scale.** Its noise is two octaves over 88 × 36
+   vertices, so its finest feature is metres across near and ~100 m across far. Target:
+   5×5 high-pass RMS in the +30..70 band from **14.6 → ≥ 30** (references 31.4 and 41.7).
+3. **Kill the ring seam.** `TUNE.mid.radius = 27.0` maps to a constant screen row on flat
+   ground — measured as a razor edge at row 450 across all 1280 columns. Widen `ringFade`
+   substantially or make the boundary irregular in world space.
+4. **Crown surface.** Fine-detail ratio **0.23–0.34 → ≥ 0.55** (references 0.61–0.64); crown
+   total sd **46–55 → ≤ 36** scale-matched; darkest decile **L ≥ 12, never (0,0,0)**;
+   brightest decile **G−B ≥ +10** (currently −19 to −26 — sunlit crown tops are blue where the
+   photograph's are warm green). Cheapest route: high-frequency shading at leaf-clump scale
+   plus stochastic alpha cutout at the silhouette, a bounded indirect floor, and rebalancing
+   sun against hemisphere on upward-facing normals.
+5. **Horizon continuity.** Columns carrying timber **31 % → ≥ 90 %** (reference 100 % in every
+   band). Band *height* stays 1–4 px — that arithmetic is honest. Two mechanisms: drop
+   `hazeDisplayLinear()`'s ACES step so the band stops being aimed 16 R / 12 G past the ground
+   it touches, and suppress the crown/gap modulation `k` whenever a crown subtends under ~2 px,
+   where it deletes the silhouette rather than texturing it.
+6. **Close the near field.** Detail-free area (5×5 luminance sigma < 2/255, below-horizon,
+   resampled to 1280 wide) **13.7 % → < 2.0 %** in the nearest quarter (references 0.3–1.5 %).
+   `TUNE.mat.inner = 10.0` leaves only ~66 blades/m² between the eye and raw terrain where a
+   closed sward needs 270–400. Headroom is already paid for: 456 tufts placed against a 2,400
+   cap. Add a **broad-leaf** element — in both references the visual mass at every distance is
+   dicot leaf, not grass blade — and deepen the shade without dimming the flecks (near-band
+   green p50 **121 → 75–95**).
+7. **Flower load, against the corrected bar.** Whole-sward chroma flower **1.49 % → 4–6 %**
+   (*not* 13.89 %: that figure came from a restoration planting on a former cornfield, not from
+   prairie). Nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a never-plowed
+   remnant shows at a matched look-angle. Colour variety: effN-after-median at equal N
+   **144 → ≥ 300**, green hue IQR **5.6° → ≥ 8.5°**, green chroma p25 **32.3 → ≤ 26** (what is
+   missing is the grey-green and glaucous foliage, not the saturated flowers).
+8. **Fix the shot set before trusting any of the above.** `prairie_south` sits inside the
+   gallery timber (23.4 % open sky), so there is exactly one open-prairie view and
+   `prairie_west` has been tuned against itself with no control. Move it, and add a shot
+   standing in **z02 mesic prairie** — the camera at `prairie_west` stands 5 cm below the z02
+   elevation threshold, which is why wild bergamot, yellow coneflower, rattlesnake master and
+   pale purple coneflower render zero pixels in every frame. That threshold is admittedly ours
+   (the zone's own note: "a reading of the terrain, not evidence"). **Do not move species
+   between zones to satisfy a camera.**
+9. **`river_bank` is not honouring its own dataset.** Zone 1 specifies cordgrass at 1.2–2.0 m
+   and 40–55 % cover with `bare_soil_fraction: 0.0`; the frame shows ~25 cm sprigs on bare
+   soil in near-rows. The data is right; the renderer is not reading it.
+10. **Adaptive budget.** Thin the sward automatically when measured frame time exceeds a
+    threshold, so a slow device degrades instead of stuttering. Mobile is a release gate and
+    the low-spec field is currently a fixed, hand-tuned reduction.
+11. **Wind.** One travelling wave and a gust; the references show combing at several scales.
+
+Deferred, with the reason: an **understory below 3 m** would fix a real and measured inversion
+(our treeline base is *brighter* than its crowns — base/crown 1.84 against the photograph's
+0.74, worth ~60 L) but it is invisible until the crowns stop reading as boulders. Fixing it
+first puts a dark skirt under a pile of slate.
+
 ## S7 — Polish
 
 Performance against the budgets, licensed ambience audio, provenance-popup UX, `LIBERTIES.md`
