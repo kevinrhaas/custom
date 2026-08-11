@@ -18,6 +18,15 @@
       "phase_id": "log_1823",
       "structure_id": "blacksmith_shop_state_st"
     },
+    "brickyard_north_side__yard_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 90364,
+      "inputs_sha256": "c156221da1e13fe06f73870a7f28d54bb1b8bf2d5b9b213e6c2a7db90ba938b5",
+      "kind": "generated",
+      "phase_id": "yard_1833",
+      "structure_id": "brickyard_north_side"
+    },
     "carpenter_south_water_store__frame_1833.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
@@ -63,6 +72,24 @@
       "phase_id": "tower_1832",
       "structure_id": "chicago_lighthouse_1832"
     },
+    "clybourn_cabins__log_1824.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31296,
+      "inputs_sha256": "b70edd3d0a0b7f1664e257c99e79a30bd57a2beb8ac156527a04a3ac55d9880e",
+      "kind": "generated",
+      "phase_id": "log_1824",
+      "structure_id": "clybourn_cabins"
+    },
+    "clybourn_slaughterhouse__log_1827.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 105360,
+      "inputs_sha256": "106775cce7393df55783f2b470cc4b000e98914141fb44596aa856d78f15c544",
+      "kind": "generated",
+      "phase_id": "log_1827",
+      "structure_id": "clybourn_slaughterhouse"
+    },
     "cobweb_castle__log_1820.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -107,6 +134,15 @@
       "kind": "generated",
       "phase_id": "frame_1832",
       "structure_id": "dole_warehouse_south"
+    },
+    "elston_soap_candle_manufactory__works_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 130476,
+      "inputs_sha256": "699493c5449df55af05144ef0b74690e9cb6805524b1c852877423b561f594cd",
+      "kind": "generated",
+      "phase_id": "works_1833",
+      "structure_id": "elston_soap_candle_manufactory"
     },
     "estray_pen__pen_1833.glb": {
       "archetype": "outbuilding",
@@ -256,7 +292,7 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19928,
-      "inputs_sha256": "ac4977daad9fd5bd4c575a2eb16c914351afbd495a6e44a32f838f4a8aa4bc96",
+      "inputs_sha256": "d6699da9ab1a2eed8843b3442646c9dec89806957812bf738ee3c1c328da37e3",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
@@ -283,10 +319,19 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31312,
-      "inputs_sha256": "4faaadc9c625185ad2100522a7a5846b3ac56ec2297e306bb45a007b0826a64c",
+      "inputs_sha256": "ec18ff862e2773b13ca5757a4a28f8c64ca28f1df33cbd7265bf9ecdd292a01f",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "hogan_store"
+    },
+    "james_kinzie_house__dwelling_1830.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31320,
+      "inputs_sha256": "522ddd911d55fd0d43a57b9242fc4eb8a691c84b1aed65060369bcb1e42b18c4",
+      "kind": "generated",
+      "phase_id": "dwelling_1830",
+      "structure_id": "james_kinzie_house"
     },
     "jb_beaubien_homestead__factory_1817.glb": {
       "archetype": "log_dwelling",
@@ -305,6 +350,15 @@
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "jh_kinzie_forwarding_store"
+    },
+    "kinzie_hunter_warehouse__warehouse_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 162792,
+      "inputs_sha256": "4826c594106a8daf446c09e34470f84e78d160443c925cfd4bed821c12d67ebe",
+      "kind": "generated",
+      "phase_id": "warehouse_1834",
+      "structure_id": "kinzie_hunter_warehouse"
     },
     "log_jail__log_1833.glb": {
       "archetype": "outbuilding",
@@ -328,7 +382,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 47008,
-      "inputs_sha256": "31e24a29b76093e2184d0761d1c08586209fe9f1933569a081a24d6386204200",
+      "inputs_sha256": "a410a3c9adc0703a96bb8d54747c49b42ffc02415b00cbe899e3d6c1c30f68e7",
       "kind": "generated",
       "phase_id": "log_frame_1827",
       "structure_id": "miller_house"
@@ -341,6 +395,24 @@
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "miller_tannery"
+    },
+    "newberry_dole_slaughterhouse_south_branch__works_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 154228,
+      "inputs_sha256": "951de9c4ffe50ed84508ff28cf49b667b4e230e54baffe910b23d0c226492b19",
+      "kind": "generated",
+      "phase_id": "works_1834",
+      "structure_id": "newberry_dole_slaughterhouse_south_branch"
+    },
+    "newberry_dole_warehouse__frame_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 153928,
+      "inputs_sha256": "54e383fc01c45d6754b41fa6a4d86ed457ce8a05dd908c38a7836ad23d913846",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "newberry_dole_warehouse"
     },
     "north_branch_bridge__log_1832.glb": {
       "archetype": "bridge_timber",
@@ -396,6 +468,15 @@
       "phase_id": "log_1832",
       "structure_id": "philo_carpenter_log_shop"
     },
+    "pierce_blacksmith_shop__shop_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 103188,
+      "inputs_sha256": "3390e446979169cc18b79b2321192e739b8240f08289e905903e9403f8ec7322",
+      "kind": "generated",
+      "phase_id": "shop_1833",
+      "structure_id": "pierce_blacksmith_shop"
+    },
     "pruyne_kimball_drugstore__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
@@ -404,6 +485,15 @@
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
+    },
+    "robert_kinzie_store__store_1830.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31312,
+      "inputs_sha256": "02610c197491336a3b36e800590400fee3767433c4c6947f354dd0020b5fbc91",
+      "kind": "generated",
+      "phase_id": "store_1830",
+      "structure_id": "robert_kinzie_store"
     },
     "robinson_caldwell_cabins__log_1831.glb": {
       "archetype": "log_dwelling",
@@ -418,10 +508,19 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 44352,
-      "inputs_sha256": "21ef91317148f50ed9a789fa6cc6e384038d7c63914f3233415545216f5c82d0",
+      "inputs_sha256": "09ec5af5bc8b6e9b892d0ce7bf9eca21771a1bf8858bf37483150432e2fa7291",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
+    },
+    "slough_log_bridge__log_1833.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 38144,
+      "inputs_sha256": "6eb1af4387acf5fe735d07b5842f567ddcfc785e751998a46ab836c740df648e",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "slough_log_bridge"
     },
     "south_branch_raft_bridge__log_1833.glb": {
       "archetype": "bridge_timber",
@@ -470,19 +569,19 @@
     },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
-      "bytes": 890696,
+      "bytes": 3522360,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "151c51db4d4c6e7d02858ac66d2370e4e517f26419baaad8d13dd719b110de92",
+      "inputs_sha256": "f4c3bbd5f72f9bf3d745a6c1b7a8337745a2266a3e84352281eb6a99c4746025",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
-        "max_m": 0.0178,
+        "max_m": 0.0262,
         "misses": 0,
-        "rms_m": 0.00334,
-        "samples": 7396
+        "rms_m": 0.00398,
+        "samples": 28890
       },
       "terrain_epoch": "e1834_harbor_cut",
-      "triangles": 44347
+      "triangles": 135249
     },
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
@@ -497,7 +596,7 @@
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31308,
-      "inputs_sha256": "9b3a4fd0431cb8107f9403dacf4379b00ac47ba80d632b23049abf2596641a43",
+      "inputs_sha256": "9364277309c77fed1838a7396b9de55d6b4f48e7ec26d0dbfa196ee027be731a",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "walker_meeting_house"
@@ -506,7 +605,7 @@
       "baked_ao": false,
       "bytes": 1352,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "151c51db4d4c6e7d02858ac66d2370e4e517f26419baaad8d13dd719b110de92",
+      "inputs_sha256": "f4c3bbd5f72f9bf3d745a6c1b7a8337745a2266a3e84352281eb6a99c4746025",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
@@ -525,16 +624,25 @@
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 21184,
-      "inputs_sha256": "7c2fde4dd7fa2a1b739ce3f1933a616ceb853f195b4d0d5591c82b2788c19068",
+      "inputs_sha256": "27149e1474d9e8d049455c766104a309d32d06ca0ecda44a2748eb5c65bf6230",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "western_hotel"
+    },
+    "western_hotel_stable__stable_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 155100,
+      "inputs_sha256": "f04d6c5230995bf99dbe266f6459d8480a636107d0be93f9810d39b889085a6c",
+      "kind": "generated",
+      "phase_id": "stable_1834",
+      "structure_id": "western_hotel_stable"
     },
     "wolf_point_tavern__log_frame_1828.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 43640,
-      "inputs_sha256": "50bfa1b0de14ab3d43a5a21faddfbcacfb9f1bc0c63459afa64d5b0fca867e1e",
+      "inputs_sha256": "f90d907370b369cd188b59fde5d138e3cfbae51d4c971bdf0a063e71d580fad1",
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"

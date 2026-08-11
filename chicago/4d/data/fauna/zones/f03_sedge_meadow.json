@@ -160,7 +160,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Rails are named only at the level of the regional wet-prairie assemblage, from a source with no record in data/sources/. Nothing puts this species at Chicago in 1835; the habitat does."
   },
   {
    "id": "microtus_pennsylvanicus",
@@ -196,7 +197,8 @@
     "appearance": "Not shown.",
     "trace": "Runways through the sedge thatch and clipped stem piles at the tussock bases."
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "'Meadow/prairie mouse' in the regional retrospective is as close as the record gets. The species reading and the density are both this project's."
   },
   {
    "id": "thamnophis_sirtalis",
@@ -230,7 +232,8 @@
     "appearance": "Dark with three yellow stripes.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The regional herp list names garter snakes without a date or a place; the dossier calls garter and water snakes the plausible town-edge species and tags that inference, as this record does."
   },
   {
    "id": "photinus_pyralis",
@@ -263,7 +266,8 @@
     "appearance": "Pale yellow-green flash.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way \u2014 the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
   },
   {
    "id": "orchelimum_spp",
@@ -298,7 +302,8 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred"
+   "confidence": "inferred",
+   "note": "Genus-level: the dossier names meadow katydids as a group and no species-level Chicago record exists for any date."
   },
   {
    "id": "culicidae_spp",
