@@ -1,0 +1,88 @@
+{
+  "id": "newberry_dole_slaughterhouse_south_branch",
+  "phase": "works_1834",
+  "name": "Newberry & Dole's Slaughter-House, South Branch",
+  "aka": [
+    "Oliver Newberry and George W. Dole's slaughter-house"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/newberry_dole_slaughterhouse_south_branch__works_1834.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 74.3,
+    "local_n": -265.8,
+    "rotation_deg": 270.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "On the South Branch of the Chicago River below the town, on the east bank, about 270 m south of the datum origin at the forks. The reach and the side of the branch are not attested.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        12,
+        10
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "wall_height_m": {
+      "value": 3.2,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.2 m is about 10 1/2 ft, a working height for a killing floor where beasts are hoisted and dressed hanging — higher than a dwelling's wall and lower than the archetype's size-aware default of 3.69 m for a footprint this size, which would read as a building with a room over it. What is inferred is the range, not the number."
+    },
+    "door": {
+      "value": "stable",
+      "confidence": "inferred",
+      "note": "No source describes an opening. 'stable' is the archetype's term for a doorway wide enough to lead a beast through in hand, and the documented throughput — 300 cattle in a season — requires one. Anything narrower would assert that the killing was done in a yard, which nothing says."
+    },
+    "door_side": {
+      "value": "front",
+      "confidence": "conjectural",
+      "note": "NOT ATTESTED. Placed on the elevation facing the branch, matching the facade bearing, for the same unevidenced reason: the water is where the landing and the offal went. If the stock came overland off the prairie the door belongs on the other side. Recorded conjectural rather than allowed to arrive as a default."
+    },
+    "function": {
+      "value": "slaughterhouse_packing",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "'a slaughter-house erected on the South Branch of the river, where some three hundred head of cattle and fourteen hundred hogs were packed during the year' (scan p. 1151). The building and its first season's throughput are the whole of what is recorded. Note that July is between packing seasons — the trade is winter work — so the honest reading of the scene date is a standing plant not in operation."
+    },
+    "occupants": {
+      "value": "Oliver Newberry and George W. Dole",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas names both partners for this building (scan p. 1151). The value records who had it erected and worked it, not who was on the premises on any given day."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    }
+  ],
+  "research_note": "PART OF A THREE-BUILDING TANGLE THAT THIS DATASET MUST KEEP APART, and the tangle is the reason this record's name carries its river in it. Andreas's packing chapter describes, within a few sentences: George W. Dole's 1832 warehouse and slaughter yard on the SOUTH SIDE near the later Tremont House site at Lake and Dearborn, which is this dataset's dole_warehouse_south; this 1834 Newberry and Dole slaughter-house on the SOUTH BRANCH, which is this record; and Newberry & Dole's forwarding warehouse, whose bank is disputed and which is this dataset's newberry_dole_warehouse. Three different buildings, two of them sharing a firm and a partner, all of them called some combination of the same words in the literature. Merging any two of them would put a packing plant in the middle of the town's mercantile street or a commission house on an empty branch bank. THE READING THAT THIS RECORD ADDS TO THE OTHERS: the 1834 South Branch plant is very likely why the slaughtering half of Dole's 1832 south-side yard stopped — a killing yard behind a warehouse two blocks from the river is what a firm builds before it can afford a plant, and the plant arrives in 1834. That is inference and it belongs in the reading of the scene, not in either record's date range. See docs/research/04-structures-south.md, 'Date/location guards for South Water'.",
+  "research_doc": "docs/RESEARCH/newberry_dole_slaughterhouse_south_branch.md",
+  "review_required": false
+}

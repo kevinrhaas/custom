@@ -1,0 +1,99 @@
+{
+  "id": "estray_pen",
+  "phase": "pen_1833",
+  "name": "Estray pen",
+  "aka": [
+    "the estray-pen",
+    "the town pound",
+    "Chicago's first public building"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/estray_pen__pen_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 468.5,
+    "local_n": -377.31,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South-west corner of the public square (the block bounded by Randolph, Clark, Washington and LaSalle), at the Washington and LaSalle end.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        9.144,
+        0
+      ],
+      [
+        9.144,
+        6.096
+      ],
+      [
+        0,
+        6.096
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "conjectural",
+      "note": "INVENTED. Nothing says what the pen was made of. Log is chosen because it is the material every other 1833 structure in this dataset is built of, because a notched log pen is stock-proof and prisoner-proof in a way a nailed fence is not, and because it is the value this archetype offers that is closest to a heavy enclosure. THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely different - open, horizontal, see-through - from what this record builds. That reading is recorded here rather than lost."
+    },
+    "roof_type": {
+      "value": "shed",
+      "confidence": "conjectural",
+      "note": "THE LARGEST SINGLE INVENTION ON THIS RECORD, AND IT IS THE MODEL'S RATHER THAN THE RECORD'S. A pound is an enclosure and there is no reason to think this one was roofed at all; nothing in any source mentions a roof. The outbuilding archetype - the only one in the project that will build a low walled enclosure - cannot build a roofless structure, so a roof is unavoidable if the pen is to appear in the scene at all. shed at the shallowest pitch the archetype accepts is the nearest thing to no roof that can be built here. THIS IS A CONSTRAINT OF THE TOOL, NOT A CLAIM ABOUT THE BUILDING, and it is claimed in docs/LIBERTIES.md. What the town actually had at this corner is, on the balance of type, a stout open pen."
+    },
+    "roof_pitch_deg": {
+      "value": 6.0,
+      "confidence": "conjectural",
+      "note": "INVENTED, and deliberately at the floor of what the archetype accepts. 6 degrees over the pen's 6.096 m run rises 0.64 m, which is as close to flat as this generator will go. See roof_type: the number exists to minimise a feature that probably was not there, not to describe one that was."
+    },
+    "wall_height_m": {
+      "value": 2.4,
+      "confidence": "conjectural",
+      "note": "INVENTED. 2.4 m is about 8 ft - high enough that a horse will not clear it and a man will not climb out easily, which is what the pen's two attested uses require between them. Nothing attests a height. It is also the minimum this archetype will accept with a gate a beast can be led through, so the two numbers are coupled: a lower pen forces a smaller opening."
+    },
+    "door": {
+      "value": "stable",
+      "confidence": "conjectural",
+      "note": "INVENTED. door in this archetype names what has to get through the opening. A pound gate has to pass a horse or a cow led in hand, which is the stable class; a wagon-width gate would need a 3 m wall to carry it and is not what a pound needs. Nothing attests a gate, its width, its position or its fastening. What this builds is a doorway in a wall, where the real thing was probably a hung rail gate."
+    },
+    "function": {
+      "value": "livestock pound",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "An estray is a stray beast, and an estray pen is the pound it is impounded in until its owner claims it - a municipal function, which is why Andreas's chronology can call this the town's FIRST PUBLIC BUILDING. Its secondary use is separately attested and is the reason the log jail exists: for the first months of its life the pen held prisoners as well, faute de mieux."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "CHICAGO'S FIRST PUBLIC BUILDING, AND IT IS A FENCE. That is the whole difficulty of this record and it is worth stating plainly: what the sources attest is a municipal FUNCTION and a corner, and this project has no generator that builds an enclosure. Everything this record contributes to the scene - four walls, a roof, a gate, a height, a size - is invention, and only the corner, the month and the use are not. The roof is the specific thing to be sorry about: see the roof_type note, and docs/LIBERTIES.md, which claims it. THE HONEST FIX IS A GENERATOR, NOT A BETTER GUESS. An enclosure archetype - post-and-rail or notched log, roofless, gated, taking a perimeter rather than a footprint - would let this record say what it means, and would also serve the fenced or unfenced state of the public square itself, the garrison gardens and any yard in the town. The palisade archetype named in data/structures.schema.json is the obvious place for it and has no module behind it. Until then this record builds a low walled box with a nearly flat roof, which is the least wrong thing the existing tools can make. WHAT WOULD UPGRADE IT: any town or county order establishing the pound, since a pound-keeper's fee schedule, an order to build, a size or a materials specification are all the kind of thing such an order carries; the Cook County Sheriff's published jail history, cited in this project's dossier and not yet held as a source record; and Andreas vol. 1 at page-image level around scan pp. 33, 365 and 1315, where the chronology entry and the narrative sentence sit. Note also the unresolved year: some accounts date the pen 1832 rather than 1833, which changes nothing for this scene.",
+  "research_doc": "docs/RESEARCH/estray_pen.md",
+  "review_required": false
+}

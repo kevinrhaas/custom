@@ -1,0 +1,109 @@
+{
+  "id": "brickyard_north_side",
+  "phase": "yard_1833",
+  "name": "Blodgett's Brickyard",
+  "aka": [
+    "Tyler K. Blodgett's brick-yard",
+    "Chicago's first brickyard"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/brickyard_north_side__yard_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 620.3,
+    "local_n": 109.2,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "North Side, not far from the north bank of the main stem, between Dearborn Street and Clark Street — about 620 m east and 110 m north of the datum origin at the forks, and outside the modelled terrain box.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        14,
+        0
+      ],
+      [
+        14,
+        5
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "roof_type": {
+      "value": "shed",
+      "confidence": "inferred",
+      "note": "Not attested for this structure. A single slope is the cheapest roof there is and is the ordinary covering for a drying shed, whose whole job is to keep rain off stacked green brick while air moves through underneath. The archetype treats `shed` as a first-class form rather than a fallback for exactly this class of building."
+    },
+    "wall_height_m": {
+      "value": 2.4,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.4 m is about 8 ft at the eave: enough to stand and barrow under and to stack green brick several hacks high, and no more. Stated rather than left to the archetype's size-aware default, which would put 3.08 m on a footprint this long and make a low working shed read as a building."
+    },
+    "open_sides": {
+      "value": [
+        "front"
+      ],
+      "confidence": "inferred",
+      "note": "Not attested. Green brick has to dry in moving air and out of the rain, so a drying shed is a roof on posts open along its length rather than a closed building; one open side is the conservative reading of that, against two, which would make it a drive-through. The inference is about how the trade works, not about this shed."
+    },
+    "door": {
+      "value": "none",
+      "confidence": "inferred",
+      "note": "A consequence of the open side rather than a finding: an elevation you can walk a barrow straight through does not need a doorway, and cutting one would assert a wall that this record does not model."
+    },
+    "yard_works": {
+      "value": "clamp or kiln, drying hacks, clay pit, pug mill and spoil",
+      "confidence": "inferred",
+      "geometry": "absent",
+      "note": "STATED AND NOT BUILT — the largest omission in this record and the reason it should not be read as a building. No source describes this yard's plant; what is inferred is only that a brickyard which supplied the town's first brick building had the ordinary apparatus of the trade in the 1830s: a clay pit, a pug mill or tempering pit, hacks and racks for drying, and a CLAMP — brick stacked into its own kiln and burned in place with the fuel built into the stack — rather than a permanent kiln, which is what a two-season frontier yard would have used. None of it reaches the mesh: the outbuilding archetype builds a building, so this record shows one drying shed standing on empty ground where the sources describe a works. Owed an admission in docs/LIBERTIES.md."
+    },
+    "function": {
+      "value": "brickyard",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Chicago's first brickyard, established spring 1833 by Tyler K. Blodgett with Henry S. Lampman of Ann Arbor as workman and, in Andreas's words, 'undoubtedly the first brick-maker' (scan p. 1161). Andreas adds that the yard supplied the brick for the first building in Chicago constructed of the material — Blodgett's own dwelling house, one and a half storeys and twenty feet square, which stood ACROSS THE RIVER opposite this yard. That dwelling is a separate structure and is not modelled by this record or by any other in this dataset yet; it is a strong candidate for the south-side parcel."
+    },
+    "occupants": {
+      "value": "Tyler K. Blodgett, with Henry S. Lampman as brickmaker",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Both men are named for the yard's establishment in the spring of 1833 (scan p. 1161). Whether either was still working this ground on 1835-07-01 is not attested; Andreas later has Daniel Elston running the largest of the city's five brickyards by 1854 (scan p. 1169), which is two decades past the scene and says nothing about 1835."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "WHY A YARD IS WORTH MODELLING AT ALL: it makes the town's brick local. The most ambitious building under way in Chicago on 1835-07-01 is the Lake House on the north bank at Rush and Kinzie — three storeys and a basement in BRICK, in a town otherwise built of logs and sawn boards — and the obvious question a visitor asks is where the brick came from. Andreas answers it: from this yard, on the same bank, half a mile west. WHAT THIS SLICE ADDED: the dossier recorded the site as unattested [GAP] (docs/research/03-structures-north.md section 3.12); Andreas's own sentence gives it to within a block, 'on the North Side, not far from the river bank, between Dearborn and Clark streets' (scan p. 1161), so the position moves from conjectural to inferred and the [GAP] tag can be retired. TWO THINGS THIS RECORD IS HONEST ABOUT AND A READER SHOULD NOT MISS. First, it stands outside the modelled terrain box and declares it. Second, and larger, IT IS A BUILDING STANDING IN FOR AN INDUSTRY: one drying shed is drawn and the clamp, the pit, the hacks and the spoil are recorded and unbuilt, because this project has no archetype for a works. Until it does, the brickyard in the scene will read as a shed in a field.",
+  "research_doc": "docs/RESEARCH/brickyard_north_side.md",
+  "review_required": false
+}

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 41,
+  "count": 47,
   "liberties": [
     {
       "id": "L1",
@@ -1678,6 +1678,524 @@
         {
           "label": "Covers",
           "text": "`thomas_church_store.frame_1834.footprint`, `thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L41",
+      "title": "Fort Dearborn's stockade: the plan is evidence and the wall is not",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_palisade"
+      ],
+      "covers": [
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.bastion_length_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.bastion_projection_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.gate_width_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.picket_height_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.picket_spacing_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.picket_width_m"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "form.posterns"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the fort's picket line is built at an invented height, out of invented posts, with an invented gate opening and invented corner works. Its **plan** — a square, two gates north and south, bastions at the north-west and south-east angles, a block-house at the south-west — is `documented` or `inferred` from three sources that agree; its **fabric** is entirely ours."
+        },
+        {
+          "label": "Why",
+          "text": "the whole of the physical description this project could find is one adjective. Juliette Kinzie, living inside it in 1831: *\"The fort was inclosed by high pickets, with bastions at the alternate angles. Large gates opened to the north and south.\"* Andreas adds \"a square stockade\" and the two gates. The 1830 Harrison plan draws the outline. **Nobody wrote down how high the pickets were, how wide they were, how close they stood, how wide the gates opened or how far the bastions projected**, and Quaife — who wrote the standing monograph on this fort and had the War Department files — gives no dimension of the 1816 work anywhere. So twelve feet, a ten-inch face, a hand's gap, a twelve-foot gate and a seven-metre bastion are all this project's arithmetic wearing plausible numbers. **The one that matters most is the height.** A stockade's height is what a visitor reads the building by: at three metres it is a compound, at four it is a fort. The confidence view dithers it, which is exactly right and is the only thing standing between a viewer and a number we invented from an adjective."
+        },
+        {
+          "label": "Consequence",
+          "text": "the fort's silhouette — the thing anyone would photograph — is ours. So is the gap between the posts, which decides whether you can see through the wall."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any quartermaster return, repair estimate or engineer's report for the post between 1816 and 1836. A picket count or a quantity of timber would settle the height and the spacing together."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_palisade.picket_1816.form.picket_height_m`, `fort_dearborn_palisade.picket_1816.form.picket_width_m`, `fort_dearborn_palisade.picket_1816.form.picket_spacing_m`, `fort_dearborn_palisade.picket_1816.form.gate_width_m`, `fort_dearborn_palisade.picket_1816.form.bastion_length_m`, `fort_dearborn_palisade.picket_1816.form.bastion_projection_m`, `fort_dearborn_palisade.picket_1816.form.posterns`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L42",
+      "title": "The fort's buildings stand at heights, under roofs and behind stacks nobody recorded",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_artillery_house",
+        "fort_dearborn_barracks",
+        "fort_dearborn_blockhouse",
+        "fort_dearborn_magazine",
+        "fort_dearborn_officers_quarters",
+        "fort_dearborn_root_house"
+      ],
+      "covers": [
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "form.construction"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "structure": "fort_dearborn_barracks",
+          "phase": "log_1816",
+          "aspect": "form.gallery"
+        },
+        {
+          "structure": "fort_dearborn_barracks",
+          "phase": "log_1816",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.chimneys"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.loopholes"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.upper_overhang_m"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "structure": "fort_dearborn_magazine",
+          "phase": "brick_1816",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "fort_dearborn_magazine",
+          "phase": "brick_1816",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "structure": "fort_dearborn_officers_quarters",
+          "phase": "log_1816",
+          "aspect": "form.gallery"
+        },
+        {
+          "structure": "fort_dearborn_officers_quarters",
+          "phase": "log_1816",
+          "aspect": "form.stories"
+        },
+        {
+          "structure": "fort_dearborn_root_house",
+          "phase": "cellar_1816",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "fort_dearborn_root_house",
+          "phase": "cellar_1816",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "across the six modelled buildings inside Fort Dearborn, the **storey counts** of the officers' quarters and the barracks, the **wall heights** of the block-house, the magazine, the artillery house and the root house, every **roof form and pitch** that is not a plain gable by type, the block-house's **jetty**, its **loopholes** and its **stack**, and the deliberate **absence of galleries** on the two long ranges are all invention."
+        },
+        {
+          "label": "Why",
+          "text": "two witnesses walked round the inside of this fort and wrote down what stood where — Gurdon Hubbard in 1827 and the key to the 1855 photograph — and between them they give one building's dimensions, one building's material twice, and nothing at all about height, roof or chimney for anything. The 1830 plan is a plan: it has no third dimension. What fills the gap here is building type, which is a real argument and not evidence: a magazine has no windows, a block-house has a jettied upper storey and loopholes because that is what the word means, and a barracks for two companies does not fit on one floor of a ninety-foot range. **The galleries are the subtlest of these and they are a decision, not an omission.** Captain Whistler's 1808 index for the FIRST fort says its barracks were *\"two storeys high with shingled Roofs and Galliaries fronting the parade\"*. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were \"differently constructed\". So the ranges are built with plain fronts, which renders as a claim — a visitor sees flat elevations facing the parade — made because the evidence for the alternative belongs to a building that burned in 1812."
+        },
+        {
+          "label": "Consequence",
+          "text": "the fort's massing is ours. Roof heights set the skyline of the whole complex, and a two-storey barracks against a one-storey one changes the scene from across the river."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the same records that would settle the stockade — returns, repair estimates, the Chicago Democrat's building notices — or any measured elevation of the fort before 1856."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_officers_quarters.log_1816.form.stories`, `fort_dearborn_officers_quarters.log_1816.form.gallery`, `fort_dearborn_barracks.log_1816.form.stories`, `fort_dearborn_barracks.log_1816.form.gallery`, `fort_dearborn_blockhouse.log_1816.form.wall_height_m`, `fort_dearborn_blockhouse.log_1816.form.upper_overhang_m`, `fort_dearborn_blockhouse.log_1816.form.loopholes`, `fort_dearborn_blockhouse.log_1816.form.roof_type`, `fort_dearborn_blockhouse.log_1816.form.roof_pitch_deg`, `fort_dearborn_blockhouse.log_1816.form.chimneys`, `fort_dearborn_magazine.brick_1816.form.wall_height_m`, `fort_dearborn_magazine.brick_1816.form.roof_type`, `fort_dearborn_artillery_house.log_1816.form.construction`, `fort_dearborn_artillery_house.log_1816.form.stories`, `fort_dearborn_artillery_house.log_1816.form.wall_height_m`, `fort_dearborn_artillery_house.log_1816.form.roof_type`, `fort_dearborn_artillery_house.log_1816.form.roof_pitch_deg`, `fort_dearborn_root_house.cellar_1816.form.wall_height_m`, `fort_dearborn_root_house.cellar_1816.form.roof_type`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L43",
+      "title": "Three things inside and beside the fort are placed by a sentence, a side, or nothing",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_artillery_house",
+        "fort_dearborn_magazine",
+        "fort_dearborn_root_house"
+      ],
+      "covers": [
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "position"
+        },
+        {
+          "structure": "fort_dearborn_magazine",
+          "phase": "brick_1816",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "fort_dearborn_root_house",
+          "phase": "cellar_1816",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "fort_dearborn_root_house",
+          "phase": "cellar_1816",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the **magazine's outline**, the **artillery house's outline and position**, and the **root house's outline and position** are invented. All three are built anyway."
+        },
+        {
+          "label": "Why",
+          "text": "they are three different grades of thin and it is worth separating them, because the model shows all three the same way. The **magazine** has the best-attested position in the fort — Hubbard, 1827: *\"the magazine, of brick, was situated about half way between the west end of the guard and block-houses\"* — and the 1830 plan does not draw it, so its size is a powder magazine for a two-company post and nothing more. The **artillery house** is named once, by Robert Fergus, describing the fort in **1850**, on a side of the parade the 1830 plan has already filled with the barracks; its position is the one part of that side the plan leaves empty and its size fits the gap. The **root house** rests on one sentence of Juliette Kinzie's putting the garrison's root-houses on the river bank west of the fort in 1831, with no number, no size and no point on that bank — and her plural is not modelled either, because a count invented on top of a position invented is two inventions."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walking the fort sees three structures whose outlines are ours. The artillery house is the one to distrust most: it is placed inside a documented enclosure on the authority of a description written fifteen years after the army left."
+        },
+        {
+          "label": "How to resolve",
+          "text": "an inventory, a plan of the fort later than 1830, or the Chicago Democrat's notices. Any of the three would move at least one of these to `inferred`."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_magazine.brick_1816.footprint`, `fort_dearborn_artillery_house.log_1816.footprint`, `fort_dearborn_artillery_house.log_1816.position`, `fort_dearborn_root_house.cellar_1816.footprint`, `fort_dearborn_root_house.cellar_1816.position`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L44",
+      "title": "The 1832 lighthouse: one documented number and an invented tower",
+      "section": "per_subject",
+      "subjects": [
+        "chicago_lighthouse_1832"
+      ],
+      "covers": [
+        {
+          "structure": "chicago_lighthouse_1832",
+          "phase": "tower_1832",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "chicago_lighthouse_1832",
+          "phase": "tower_1832",
+          "aspect": "form.paint"
+        },
+        {
+          "structure": "chicago_lighthouse_1832",
+          "phase": "tower_1832",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "chicago_lighthouse_1832",
+          "phase": "tower_1832",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`chicago_lighthouse_1832` is built as a tapering twelve-sided masonry shaft with a gallery and a lantern, standing about 65 m north-west of the fort. Its **height** is documented and its **lantern** is documented; its **footprint**, its **position**, its **taper**, its cap and its finish are ours."
+        },
+        {
+          "label": "Why",
+          "text": "Andreas gives the whole of it in one sentence — *\"Another tower, forty feet high, was begun and completed by Mr. Jackson in 1832. It boasted of a fourteen-inch reflector.\"* — and the lighthousefriends page adds four fourteen-inch reflectors in a bird-cage lantern room. **That is all.** No diameter, no wall thickness, no plan, no material and no distance from the fort. **A correction is embedded here, and it is the reason this entry exists.** This project's own dossier reads the 1832 tower as *\"forty feet high; conical stone/masonry\"* and tags it `[DOC]`, and `data/exclusions.json` calls it \"the 1832 conical masonry tower\" on Andreas's authority. Neither \"conical\" nor \"masonry\" is in Andreas's sentence or on the lighthousefriends page. The only fabric detail either source carries — *\"The walls were three feet thick\"* and a height of fifty feet — belongs to the **first** tower, the one that collapsed unfinished on 30 October 1831. So the shape everybody repeats about this lighthouse is a description of a building that fell down. The record grades the material `inferred` on a real argument (Samuel Jackson built both towers under the same appropriation on the same site, and the first was masonry) and the shape `conjectural`, and the taper this archetype builds is admitted here."
+        },
+        {
+          "label": "Consequence",
+          "text": "the most distinctive small object at the river mouth is a shape we chose. Its position is worse: adjacency to the fort is documented three ways and the offset is a bearing and a distance we picked."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Light-House Board's annual reports, a keeper's return, or any of the several 1840s and 1850s views of the fort — the tower stands in the 1850 daguerreotype and the 1855 photograph, and a measured reading of either would settle the shape at once."
+        },
+        {
+          "label": "Covers",
+          "text": "`chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.position`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L45",
+      "title": "The garrison garden: a fence read from a drawing convention, and a planting not drawn",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_garrison_garden"
+      ],
+      "covers": [
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "form.fence_height_m"
+        },
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "form.panel_length_m"
+        },
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "form.panel_offset_m"
+        },
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "form.planting"
+        },
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "form.rail_courses"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`fort_dearborn_garrison_garden` is built as a worm rail fence round a square of about 77 m. The fence's **height, its courses, its panel length and its zigzag** are invented, and the **planting inside it is documented and not built at all**."
+        },
+        {
+          "label": "Why",
+          "text": "the 1830 Harrison plan draws this plot and labels it \"Garden for the Garrison\", and it draws two of its sides as a continuous zigzag. A zigzag boundary on a period American survey is the convention for a worm — snake — rail fence, so that is what is built; but the convention is the reading and the sheet never says \"fence\", which is why `wall_kind` is `inferred` and every dimension of the fence is `conjectural`. The planting is the opposite case and the sharper one: Juliette Kinzie says the company gardens were *\"well filled with currant-bushes and young fruit-trees\"*, which is `documented`, and **nothing of it is modelled**, because currant bushes and fruit trees are flora and `data/flora/` has no cultivated zone and no garden species. So the record carries a documented chip over an empty rectangle of ground. **A guard belongs here too.** The garden usually quoted in accounts of this fort — *\"The ground on the south side was enclosed and cultivated as a garden\"* — is from a passage that ends *\"Such was the old Fort previous to 1812\"*. It is the FIRST fort's garden and this record does not rest on it."
+        },
+        {
+          "label": "Consequence",
+          "text": "the reservation reads as fenced, empty ground. The single most evocative detail anyone recorded about this place — fruit trees in a garrison garden on the Chicago prairie — is in the data and invisible in the model."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a cultivated-ground zone in `data/flora/`, which is a flora parcel rather than a structure one; the species are already named by the source."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_garrison_garden.fence_1816.form.fence_height_m`, `fort_dearborn_garrison_garden.fence_1816.form.rail_courses`, `fort_dearborn_garrison_garden.fence_1816.form.panel_length_m`, `fort_dearborn_garrison_garden.fence_1816.form.panel_offset_m`, `fort_dearborn_garrison_garden.fence_1816.form.planting`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L46",
+      "title": "The fort stands 832 m beyond the modelled ground, and nothing could see it",
+      "section": "per_subject",
+      "subjects": [
+        "chicago_lighthouse_1832",
+        "fort_dearborn_artillery_house",
+        "fort_dearborn_barracks",
+        "fort_dearborn_blockhouse",
+        "fort_dearborn_commandants_quarters",
+        "fort_dearborn_garrison_garden",
+        "fort_dearborn_guard_house",
+        "fort_dearborn_magazine",
+        "fort_dearborn_officers_quarters",
+        "fort_dearborn_palisade",
+        "fort_dearborn_parade",
+        "fort_dearborn_root_house",
+        "fort_dearborn_store_house",
+        "fort_dearborn_sutlers_store"
+      ],
+      "covers": [
+        {
+          "structure": "chicago_lighthouse_1832",
+          "phase": "tower_1832",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_artillery_house",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_barracks",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_blockhouse",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_commandants_quarters",
+          "phase": "brick_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_garrison_garden",
+          "phase": "fence_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_guard_house",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_magazine",
+          "phase": "brick_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_officers_quarters",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_palisade",
+          "phase": "picket_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_parade",
+          "phase": "parade_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_root_house",
+          "phase": "cellar_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_store_house",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "fort_dearborn_sutlers_store",
+          "phase": "log_1816",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "all twelve Fort Dearborn structures, the garrison garden and the 1832 lighthouse stand outside the `e1834_harbor_cut` heightfield and are declared `outside_modelled_ground`."
+        },
+        {
+          "label": "Why",
+          "text": "the same cause as L40 — the terrain box is a 640 m square round the forks and the town is not that shape — but at four times the distance and with an extra failure attached to it. The fort is at local **E +1152**, and the modelled ground stops at **E +320**. **The extra failure is the interesting half.** `tools/heightfield.py` clamps outside the box, so a structure placed 832 m past the edge sampled the edge for its base AND for every point of its outline, the two agreed to the millimetre, and the ground-contact gate — the gate this project wrote specifically to catch a building standing on nothing — reported a **perfect landing**. Every structure L40 covers was caught because the clamped edge varies along a wall and produced a gap; the fort was far enough out and square enough on to produce none. The gate could see buildings that were nearly right and was blind to the one that was completely wrong. `Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a declaration matches the measurement all exist because of this parcel, and turning them on immediately found two more structures in other parcels that nothing had flagged."
+        },
+        {
+          "label": "Consequence",
+          "text": "the fort floats. From the air a visitor sees the modelled ground end at the edge of the town and, 832 m further east over nothing, a fort, a lighthouse and an acre and a half of fenced garden. That is worse-looking than L40's floating shops and it is the same statement: the records were built before the ground because evidence is harder to come by than geometry."
+        },
+        {
+          "label": "How to resolve",
+          "text": "ROADMAP § S2e parcel (b), the heightfield east to about E +1700. The shore, the 1834 cut, the sand bar and the old southward channel are all traced and committed; the ground is the only missing piece, and this complex is the largest thing waiting on it. **When it lands this entry moves to Resolved** rather than being edited."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`, `fort_dearborn_officers_quarters.log_1816.ground_contact`, `fort_dearborn_barracks.log_1816.ground_contact`, `fort_dearborn_sutlers_store.log_1816.ground_contact`, `fort_dearborn_guard_house.log_1816.ground_contact`, `fort_dearborn_store_house.log_1816.ground_contact`, `fort_dearborn_magazine.brick_1816.ground_contact`, `fort_dearborn_blockhouse.log_1816.ground_contact`, `fort_dearborn_artillery_house.log_1816.ground_contact`, `fort_dearborn_parade.parade_1816.ground_contact`, `fort_dearborn_root_house.cellar_1816.ground_contact`, `fort_dearborn_garrison_garden.fence_1816.ground_contact`, `chicago_lighthouse_1832.tower_1832.ground_contact`."
         },
         {
           "label": "Recorded",

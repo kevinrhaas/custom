@@ -15,6 +15,12 @@
       "asset": "gltf/blacksmith_shop_state_st__log_1823.glb"
     },
     {
+      "id": "brickyard_north_side",
+      "name": "Blodgett's Brickyard",
+      "sidecar": "sidecars/1835/brickyard_north_side.json",
+      "asset": "gltf/brickyard_north_side__yard_1833.glb"
+    },
+    {
       "id": "carpenter_south_water_store",
       "name": "Philo Carpenter's South Water Street Store",
       "sidecar": "sidecars/1835/carpenter_south_water_store.json",
@@ -37,6 +43,12 @@
       "name": "Chicago Lighthouse (1832 tower)",
       "sidecar": "sidecars/1835/chicago_lighthouse_1832.json",
       "asset": "gltf/chicago_lighthouse_1832__tower_1832.glb"
+    },
+    {
+      "id": "clybourn_cabins",
+      "name": "The Clybourne Cabins on the North Branch",
+      "sidecar": "sidecars/1835/clybourn_cabins.json",
+      "asset": "gltf/clybourn_cabins__log_1824.glb"
     },
     {
       "id": "clybourn_slaughterhouse",
@@ -67,6 +79,12 @@
       "name": "George W. Dole's Warehouse",
       "sidecar": "sidecars/1835/dole_warehouse_south.json",
       "asset": "gltf/dole_warehouse_south__frame_1832.glb"
+    },
+    {
+      "id": "estray_pen",
+      "name": "Estray pen",
+      "sidecar": "sidecars/1835/estray_pen.json",
+      "asset": "gltf/estray_pen__pen_1833.glb"
     },
     {
       "id": "first_presbyterian_church",
@@ -201,6 +219,12 @@
       "asset": "gltf/jh_kinzie_forwarding_store__frame_1830s.glb"
     },
     {
+      "id": "log_jail",
+      "name": "Log jail",
+      "sidecar": "sidecars/1835/log_jail.json",
+      "asset": "gltf/log_jail__log_1833.glb"
+    },
+    {
       "id": "madore_beaubien_house",
       "name": "Madore Beaubien's Log House",
       "sidecar": "sidecars/1835/madore_beaubien_house.json",
@@ -217,6 +241,12 @@
       "name": "John Miller's Tannery",
       "sidecar": "sidecars/1835/miller_tannery.json",
       "asset": "gltf/miller_tannery__log_1831.glb"
+    },
+    {
+      "id": "newberry_dole_slaughterhouse_south_branch",
+      "name": "Newberry & Dole's Slaughter-House, South Branch",
+      "sidecar": "sidecars/1835/newberry_dole_slaughterhouse_south_branch.json",
+      "asset": "gltf/newberry_dole_slaughterhouse_south_branch__works_1834.glb"
     },
     {
       "id": "north_branch_bridge",

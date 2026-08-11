@@ -165,7 +165,7 @@
       "id": "north_pier_lighthouse",
       "name": "Pier-head light at the end of the North Pier",
       "reason": "A later structure; the skeletal iron pier light dates to 1859.",
-      "detail": "The light standing in 1835 is the 1832 conical masonry tower beside the fort. Do not put a light on the pier.",
+      "detail": "The light standing in 1835 is the second tower, forty feet high, begun and completed by Samuel Jackson in 1832 and modelled as data/structures/chicago_lighthouse_1832.json. Do not put a light on the pier. AMENDED 2026-08-11: this entry previously called that tower 'the 1832 conical masonry tower' on Andreas's authority. Andreas's sentence gives the 1832 tower a height, a builder and a reflector and no shape and no material; 'The walls were three feet thick' and the fifty-foot height in the same paragraph belong to the FIRST tower, which fell unfinished on 30 October 1831. An exclusion should guard a boundary, not carry an attribution its sources do not support on the way past.",
       "earliest_scene": "1860",
       "citations": [
         {
@@ -174,6 +174,13 @@
           "url": "https://archive.org/details/historyofchicago01andr",
           "archived_url": "",
           "tier": 3
+        },
+        {
+          "source_id": "lighthousefriends_chicago",
+          "citation": "Anderson, Kraig. \"Chicago Harbor Lighthouse, Illinois.\" Lighthousefriends.com. Citing A. T. Andreas, History of Chicago (1884); the Annual Report of the Light-House Board, various years; and Donald J. Terras, \"Lighthouses of Chicago Harbor,\" The Keeper's Log, Summer 2011.",
+          "url": "https://www.lighthousefriends.com/light.asp?ID=234",
+          "archived_url": "https://web.archive.org/web/20260308064820/https://www.lighthousefriends.com/light.asp?ID=234",
+          "tier": 4
         }
       ]
     },
@@ -252,6 +259,142 @@
           "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
           "archived_url": "",
           "tier": 4
+        }
+      ]
+    },
+    {
+      "id": "fort_dearborn_first_1803",
+      "name": "The first Fort Dearborn (1803–1812)",
+      "reason": "Burned by the Pottawatomie on 16 August 1812, the day after the evacuation and the massacre. It is not a date guard so much as a SOURCE guard: most of what is published about 'Fort Dearborn's' plan describes this fort and gets applied to the one standing in 1835.",
+      "detail": "Captain John Whistler built it in 1803 and drew a measured plan of it in 1808 which survives in the War Department files and is printed with its index by Quaife. That fort had TWO BLOCKHOUSES at the south-east and north-west angles, a DOUBLE ROW OF PICKETS with the blockhouses commanding the space between them, a COVERED WAY or SALLY-PORT to the river, a FLAGSTAFF in the parade, barracks two storeys high with GALLERIES fronting the parade, and THREE PIECES OF LIGHT ARTILLERY. The second fort, rebuilt on the same ground in 1816, had ONE blockhouse at the south-west and bastions at the north-west and south-east, and John H. Kinzie says in terms that the two were 'differently constructed'. The passage that carries most of the first fort's description in the popular literature closes with the sentence 'Such was the old Fort previous to 1812'. Everything in this entry is excluded from 1835 and none of it may be borrowed for the second fort's records.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        },
+        {
+          "source_id": "quaife_1913",
+          "citation": "Quaife, Milo Milton. Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn. Chicago: University of Chicago Press, 1913.",
+          "url": "https://www.gutenberg.org/ebooks/69274",
+          "archived_url": "https://www.gutenberg.org/files/69274/69274-h/69274-h.htm",
+          "tier": 4
+        },
+        {
+          "source_id": "wentworth_1881_fort_dearborn",
+          "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "fort_dearborn_sally_port",
+      "name": "Fort Dearborn's sally-port (subterranean passage to the river)",
+      "reason": "A FIRST-FORT feature, wrongly carried into this project's own dossier as attested for the 1816 fort.",
+      "detail": "'On the north side a subterranean passage, leading from the parade ground to the river, designed as a place of escape in an emergency, or for supplying the garrison with water in time of a siege' - Andreas, in his description of the fort built in 1803, and repeated in the Chicago Magazine of March 1857 in a passage that ends 'Such was the old Fort previous to 1812'. Whistler's own 1808 index lists it as 'N. 33 Covered Way to procure Water'. John H. Kinzie names it as one of the ways the first fort DIFFERED from the second. docs/research/04-structures-south.md section 1.2 tags it [DOC] 'attested for the 1816 fort's north side'; that reading is not supported by the page it cites, and no source reached attests a sally-port at the second fort. Not modelled.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "andreas_1884_v1",
+          "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+          "url": "https://archive.org/details/historyofchicago01andr",
+          "archived_url": "",
+          "tier": 3
+        },
+        {
+          "source_id": "quaife_1913",
+          "citation": "Quaife, Milo Milton. Chicago and the Old Northwest, 1673-1835: A Study of the Evolution of the Northwestern Frontier, together with a History of Fort Dearborn. Chicago: University of Chicago Press, 1913.",
+          "url": "https://www.gutenberg.org/ebooks/69274",
+          "archived_url": "https://www.gutenberg.org/files/69274/69274-h/69274-h.htm",
+          "tier": 4
+        },
+        {
+          "source_id": "wentworth_1881_fort_dearborn",
+          "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "fort_dearborn_hospital",
+      "name": "A hospital building inside Fort Dearborn",
+      "reason": "NO SUCH BUILDING IS ATTESTED. The hospital in the sources is a USE of the fort during the 1832 cholera, not a structure in it.",
+      "detail": "The War Department return quoted in Wentworth's address reads 'Fort Dearborn having become a general hospital on July 11th [1832], no returns were received until its reoccupation' - the whole post was given over to sick troops off General Scott's steamers, and the officers and their families 'took shelter wherever they could'. That is an emergency use in July 1832 and by 1835 it has lapsed. docs/research/04-structures-south.md section 1.2 lists a 'hospital' among the fort's buildings tagged [DOC] from that page; there is no hospital building on it. The U.S. Marine Hospital that appears in the 1855 photograph caption is the vantage point of the photograph, built on the reservation after an appropriation of 1848, and is neither a fort building nor within twenty years of the scene date.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "chicagology_prefire052",
+          "citation": "\"Fort Dearborn History.\" Chicagology. Reprinting the address delivered by Hon. John Wentworth at the Fort Dearborn Memorial Tablet ceremonies, 21 May 1881, as printed in the Chicago Tribune, 22 May 1881; with the caption to a woodcut of Alexander Hesler's 1855 photograph, an addendum on the fort in 1850 signed Robert Fergus, and an extract from Chicago Magazine, Vol. 1, No. 1, March 1857.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "https://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 4
+        },
+        {
+          "source_id": "wentworth_1881_fort_dearborn",
+          "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "fort_dearborn_board_fence_compound",
+      "name": "Fort Dearborn's whitewashed board fence, turnstile and 400-foot parade",
+      "reason": "The compound of the 1850s, after the pickets came down and the army left. A LATER-STATE guard rather than a date guard on a building.",
+      "detail": "Robert Fergus, describing the fort in 1850: 'The whole Fort enclosure was surrounded by a rough-board fence, white-washed, about 6 feet high; the pickets having been removed at an earlier date', with a turnstile entering from the centre of Michigan Avenue about 100 ft south of the sun-dial knoll, and a parade ground 'about 80 feet wide' running 'from the river bank south, the full length of the enclosure - say 400 feet'. NONE of that describes 1835: the pickets are attested standing by Juliette Kinzie in 1831 and drawn on the 1830 plan, the post was garrisoned until 29 December 1836, and the reservation was unplatted in 1835 so Michigan Avenue did not commence at that point. The fort is modelled stockaded. The sun-dial itself is carried back into the scene on the record data/structures/fort_dearborn_parade.json, which says so on the attribute; the fence, the turnstile and the 400 ft parade are not.",
+      "earliest_scene": "1845",
+      "citations": [
+        {
+          "source_id": "harrison_1830_river_mouth",
+          "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+          "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+          "archived_url": "",
+          "tier": 2
+        },
+        {
+          "source_id": "kinzie_waubun_1856",
+          "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+          "url": "https://www.authorama.com/wau-bun-19.html",
+          "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+          "tier": 2
+        },
+        {
+          "source_id": "wentworth_1881_fort_dearborn",
+          "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "id": "fort_dearborn_artillery_pieces_1812",
+      "name": "The fort's three pieces of light artillery",
+      "reason": "Attested for the FIRST fort and for no other date. A guard on fort furniture, which the dossiers carry as though it were 1835-relevant.",
+      "detail": "'The Fort was furnished with three pieces of light-artillery' and 'A company of United-States troops, about fifty in number, many of whom were invalids, constituted the garrison' both stand in the Chicago Magazine passage that ends 'Such was the old Fort previous to 1812'. docs/research/08-fauna.md takes the fifty invalids from that page as 1835-relevant. Nothing reached says what ordnance stood at the second fort at any date; an artillery HOUSE is named once, in a description of the fort in 1850, and is modelled as data/structures/fort_dearborn_artillery_house.json with the guns left out. No gun is drawn anywhere in this scene.",
+      "earliest_scene": null,
+      "citations": [
+        {
+          "source_id": "chicagology_prefire052",
+          "citation": "\"Fort Dearborn History.\" Chicagology. Reprinting the address delivered by Hon. John Wentworth at the Fort Dearborn Memorial Tablet ceremonies, 21 May 1881, as printed in the Chicago Tribune, 22 May 1881; with the caption to a woodcut of Alexander Hesler's 1855 photograph, an addendum on the fort in 1850 signed Robert Fergus, and an extract from Chicago Magazine, Vol. 1, No. 1, March 1857.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "https://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 4
+        },
+        {
+          "source_id": "wentworth_1881_fort_dearborn",
+          "citation": "Wentworth, John. \"Fort Dearborn: An Address delivered at the unveiling of the memorial tablet to mark the site of the Fort, Saturday afternoon, May 21, 1881.\" Fergus' Historical Series No. 16. Chicago: Fergus Printing Company, 1881. With the key to Alexander Hesler's 1855 photograph and Robert Fergus's signed addendum to the 1850 von Schneidau daguerreotype.",
+          "url": "https://chicagology.com/prefire/prefire052/",
+          "archived_url": "http://web.archive.org/web/20260209092824/https://chicagology.com/prefire/prefire052/",
+          "tier": 2
         }
       ]
     }
