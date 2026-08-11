@@ -1,0 +1,89 @@
+{
+  "id": "robert_kinzie_store",
+  "phase": "store_1830",
+  "name": "Robert A. Kinzie's Store",
+  "aka": [
+    "Robert Kinzie's storehouse",
+    "R. A. Kinzie, Indian trader"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/robert_kinzie_store__store_1830.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -68.7,
+    "local_n": -62.8,
+    "rotation_deg": 90.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "West bank of the river at Wolf Point, immediately south of Wentworth's tavern (the Wolf Point Tavern) and north of James Kinzie's residence.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        0,
+        6
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire273"
+      ],
+      "note": "NOT ATTESTED FOR THIS BUILDING and inferred from the row, on the same terms as james_kinzie_house: every building described in the west-bank row at Wolf Point in these years is log or log-and-frame, and the frame buildings in the sources are singled out as exceptional. The archetype choice follows the inference and is no stronger than it."
+    },
+    "function": {
+      "value": "store",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire273",
+        "andreas_1884_v1"
+      ],
+      "note": "A storehouse dealing in groceries and Indian goods (chicagology), its keeper listed by Andreas among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan p. 249). WHAT THE TRADE WAS ON 1835-07-01 IS NOT ATTESTED and there is a specific reason to doubt continuity: the 1833 Treaty of Chicago ceded the land and the removal was under way through the summer of 1835, so the 'Indian goods' half of this business was ending as the scene opens. The record models a standing store and makes no claim about what was on its shelves."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "The second of the two Kinzie buildings this parcel adds to the west-bank row, and the better attested of them: Andreas gives it a neighbour where the dossier had only 'at Wolf Point'. THE ARRANGEMENT OF THE ROW IS NOW THE RECORD'S LARGEST UNCERTAINTY, not the building. Five structures in this dataset — james_kinzie_house, this store, wolf_point_tavern, robinson_caldwell_cabins and walker_meeting_house — sit on about 130 m of west-bank frontage on the strength of four ordering statements and no measured distances, and every one of them hangs off the tavern's own position, which is the weakest placement in the parcel. If the tavern moves, the whole row moves with it; if a source ever gives one of the five a distance or a lot, the row can be re-derived from that instead. NOTE ALSO THE IDENTIFICATION RISK: John H. Kinzie, James Kinzie and Robert A. Kinzie are three different men who all traded at Chicago in this decade, and this dataset carries premises for all three (jh_kinzie_forwarding_store on South Water Street, james_kinzie_house here, this store). Andreas's 'Robert A. Kinzie, near Wentworth's tavern' is the sentence that keeps them apart at Wolf Point; do not merge them. See docs/research/03-structures-north.md section 2.4.",
+  "research_doc": "docs/RESEARCH/robert_kinzie_store.md",
+  "review_required": true
+}

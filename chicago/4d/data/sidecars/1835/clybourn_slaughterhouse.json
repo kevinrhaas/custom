@@ -1,0 +1,97 @@
+{
+  "id": "clybourn_slaughterhouse",
+  "phase": "log_1827",
+  "name": "Archibald Clybourne's Log Slaughter-House",
+  "aka": [
+    "the first slaughter-house",
+    "Clybourn's slaughter house on the North Branch"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/clybourn_slaughterhouse__log_1827.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": -30.7,
+    "local_n": 294.2,
+    "rotation_deg": 270.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "DISPLACED. The attested site is the east (south) bank of the North Branch, south of the Bloomingdale Road and opposite the later North Chicago Rolling Mills — roughly 3 km north-north-west of the forks and far outside the modelled terrain. This coordinate stands at the northern edge of modelled ground on the east bank of the North Branch instead.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        12,
+        9
+      ],
+      [
+        0,
+        9
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "'the original log slaughter-house, built by Archibald Clybourne in 1827' (scan p. 1149) and 'his log slaughter-house on the east side of the North Branch' (scan p. 1151). Two independent sentences in the same chapter, and the word is the same in both. This is the single best-attested attribute of the building."
+    },
+    "wall_height_m": {
+      "value": 2.8,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.8 m is about 9 ft: a hewn log wall a course or two higher than a dwelling's, which is what a killing floor needs if a beast is to be hoisted and dressed hanging. Stated rather than left to the archetype's size-aware default, which would put 3.55 m of wall on a footprint this size and read as a two-storey building. What is inferred is that the wall falls in this range, not that it is exactly 2.8 m."
+    },
+    "door": {
+      "value": "stable",
+      "confidence": "inferred",
+      "note": "No source describes an opening. 'stable' is the archetype's term for a doorway a horse or a beast can be led through in hand — 1.35 m clear — and it is the smallest opening consistent with the documented trade: cattle came in on the hoof and 250 of them came in during 1833 alone. A man-door would be a claim that the killing was done outside, which nothing says."
+    },
+    "door_side": {
+      "value": "front",
+      "confidence": "conjectural",
+      "note": "NOT ATTESTED. The door is put on the elevation facing the branch, which is the same face the facade bearing points at, because that is where the landing and the water were. Nothing says the beasts came from the water rather than overland from the prairie, and if they came overland the door belongs on the far side. Recorded conjectural rather than allowed to arrive as an archetype default."
+    },
+    "function": {
+      "value": "slaughterhouse_packing",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Built 'for the killing of such cattle as were required by the garrison at Fort Dearborn' (scan p. 1149) and working as a commercial packing house from 1833, when Clybourne 'packed some two hundred and fifty head of cattle and about two thousand hogs' and George W. Dole packed a further 250 cattle and 1,000 hogs at the same place; Andreas gives the prices, $2.80 a head average for the cattle and $3 per hundred pounds net for the hogs (scan p. 1151). THIS IS THE FIRST SLAUGHTER-HOUSE IN CHICAGO and the head of the trade that the city was later built on. Andreas elsewhere calls Archibald Clybourne 'the Government butcher for the Pottawatomies' (scan p. 253), a treaty-provision post — recorded here because it is what the man was, and flagged for review with the rest of this record's Indigenous content rather than paraphrased away."
+    },
+    "occupants": {
+      "value": "Archibald Clybourne",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas names Clybourne as the builder in 1827 and as the operator in the 1833 packing season, with George W. Dole packing at the same premises that year. Whether anyone was working the plant on 1835-07-01 specifically is not attested; July is the wrong end of the year for packing, which is winter work, so the honest reading of the scene date is a standing building between seasons."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    }
+  ],
+  "research_note": "PLACED OUTSIDE ITS OWN SITE, ON PURPOSE, AND THE POSITION NOTE IS THE MOST IMPORTANT FIELD IN THIS RECORD. The attested site — the east or south bank of the North Branch, south of the Bloomingdale Road, opposite the later North Chicago Rolling Mills — is roughly 3 km north-north-west of the forks and about 2.8 km beyond the northern edge of the 640 m terrain box this scene models, so the building stands at the edge of modelled ground with an error of kilometres and says so. RESEARCH GAINED IN THIS SLICE, and it is more than the dossier had: docs/research/03-structures-north.md section 3.6 records the slaughterhouse as 1827, log, on the north branch, with locations 'not pinned down in reachable sources [GAP]'. A full-text search of Andreas vol. 1 closes that gap — scan p. 1149 gives the reach and the bank, scan p. 1151 gives the bank again and the 1833 throughput, and scan p. 215 puts the family several miles up the branch at the rolling-mill ground. The dossier's [GAP] tag can be retired. WHAT THIS RECORD STILL CANNOT SAY: how big the building was, how it was arranged, where the pens and the stock yard stood, or what the plant looked like in a July between packing seasons. The associated stock yard, later called Bull's Head, is not modelled at all — this archetype builds a building and the yard is an enclosure, which is the same limitation docs/LIBERTIES.md L10 records against the Western Hotel's wagon yard.",
+  "research_doc": "docs/RESEARCH/clybourn_slaughterhouse.md",
+  "review_required": true
+}

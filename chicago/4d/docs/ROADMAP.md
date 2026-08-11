@@ -257,6 +257,34 @@ touched. Two parcels hit this independently and both verified the re-bake is byt
 fix is to split the export path out of `build.py` so the registration table stops being a mesh
 input; until then one batched re-bake clears it.
 
+**`frame_storefront` DONE 2026-08-11** — 23 consumed attributes, all 13 live storefront records
+resolving with no `geometry:` declaration owed. It is the archetype where `construction` finally
+separates from `frame_tavern`: balloon frame gets a thin 4 in corner board, no girt and a 16 in
+module; braced frame gets a 6 in corner post and a girt line at the second floor. `cladding` is
+read rather than ignored, which is the L22 defect not repeated. And the unfinished state is
+buildable — open studwork over 9 in board sheathing on the loading gable, attested in kind by
+Andreas for the *Chicago Democrat*'s own building at South Water and Clark, "unfinished at the
+time" in November 1833. Never a default.
+
+### Three bugs it found in neighbouring code — NOT fixed, and the third is a gate hole
+
+1. **`MeshBuilder.add_gable_roof` fills each gable end with a solid triangle 0.25 m OUTBOARD of
+   the wall.** So anything drawn on a gable at the wall plane is *inside* the roof and invisible.
+   `log_dwelling._loft_opening` does exactly this: its loft openings are not in the committed
+   reference image and never were. A generator that silently swallows its own output is the worst
+   kind of bug here, because the reference render is what a reviewer checks.
+2. **`log_dwelling`'s baked GLB has `y_min = -0.065`** while declaring `GROUND_CONTACT:
+   perimeter` — an opening surround below grade. The same bug was found and clamped inside
+   `frame_storefront`; this one is live in the committed asset, so a record is making a false
+   ground-contact claim right now.
+3. **`frame_tavern` declares `construction` and `gallery` in CONSUMED and builds neither** —
+   and `test_consumed_attributes_actually_reach_the_parameters` PASSES, because it only requires
+   the resolved *parameters* to move, not the geometry. Today every record says `gallery: false`,
+   so the falsy rule hides it; **the first record that says `true` gets excused from a
+   `geometry:` declaration for a gallery that is never built.** That is the exact failure the
+   CONSUMED contract exists to prevent, sitting inside the test that is supposed to enforce it.
+   Fixing it means the test has to compare vertices, not parameters.
+
 ## S5 — Structure records
 
 **Queued first, and it is a repair, not an addition: three attributes that are recorded and

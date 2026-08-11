@@ -1,0 +1,96 @@
+{
+  "id": "estray_pen",
+  "name": "Estray pen",
+  "aka": [
+    "the estray-pen",
+    "the town pound",
+    "Chicago's first public building"
+  ],
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "pen_1833",
+      "documented_range": {
+        "from": "1833-03-01",
+        "to": "1835-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1"
+        ],
+        "note": "MARCH 1833 IS ATTESTED AS A MONTH AND CONTESTED AS A YEAR. Andreas's chronology carries an entry reading, for March, 'First public building (the Estray-pen)', and the narrative has it that 'there arose upon the southwest corner of the square, the so-called estray-pen' (docs/research/04-structures-south.md section 7, from Andreas I scan pp. 33, 365 and 1315). The dossier notes that some accounts give 1832 instead. 1833-03-01 takes the first day of the attested month in the attested year; if the earlier year is right the pen is a year older and nothing about the scene date changes. THE END IS A HOUSEKEEPING BOUND, NOT A REMOVAL DATE. Nothing reached says when the pen came down. What IS attested is that its role as a place of confinement ended in the fall of 1833 when the log jail went up at the other corner of the same block - which is a change of use, not of fabric, and does not close the phase."
+      },
+      "position": {
+        "utm_e": 447541.2,
+        "utm_n": 4637018.49,
+        "rotation_deg": 0.0,
+        "symbolic_location": "South-west corner of the public square (the block bounded by Randolph, Clark, Washington and LaSalle), at the Washington and LaSalle end.",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1",
+          "osm_streets_2026"
+        ],
+        "note": "PLACED 2026-08-11. THE CORNER IS DOCUMENTED AND THE COORDINATE IS DERIVED, so the tag follows the weaker half. Andreas: 'there arose upon the southwest corner of the square, the so-called estray-pen'. The public square is the block bounded by Randolph Street on the north, Washington Street on the south, Clark Street on the east and LaSalle Street on the west - the block this project's own ground control identifies as such in data/traces/gcp/wright_1834_gcps.json, where LaSalle and Randolph is labelled 'NW corner of the Public Square block' and Clark and Washington 'SE corner of the Public Square block'. Its four inside corners were computed for this parcel from modern OpenStreetMap intersection centres fetched 2026-08-11, offset 12.2 m into the block on each axis, half of an 80 ft street per Hathaway 1834: NW 447538.25 / 4637130.78, NE 447639.27 / 4637130.25, SW 447541.20 / 4637018.49, SE 447639.80 / 4637018.05, which makes the block about 101 x 112 m. The pen's own south-west corner is set on the square's south-west corner, so the footprint origin - the pen's south-west corner - IS that point. THIS IS A CORNER OF A BLOCK, NOT A LOT: nothing says how far into the block the pen stood or whether it was set back from either street line. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json: 17.5 m RMS on Wright 1834), plus an unquantified setback. Bearing 0 is a CONVENTION AND NOT A FINDING: a pound's gate has to be somewhere, nothing attests which way it opened, and for a low rectangular enclosure the bearing barely changes the mesh. The square itself in 1835 was otherwise an open, unimproved prairie block; no fence, path or improvement of the block is modelled."
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            9.144,
+            0
+          ],
+          [
+            9.144,
+            6.096
+          ],
+          [
+            0,
+            6.096
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "INVENTED. NO SOURCE REACHED GIVES THIS ENCLOSURE A DIMENSION. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule. The reasoning behind the scale is a use rather than a measurement: a town pound had to hold several head of stray cattle or horses at once and, for the first months of its life, prisoners as well, which puts it well above a shed and well below a stock yard. Everything about the shape - the rectangle, the proportion, the size - is this record's."
+      },
+      "form": {
+        "construction": {
+          "value": "log",
+          "confidence": "conjectural",
+          "note": "INVENTED. Nothing says what the pen was made of. Log is chosen because it is the material every other 1833 structure in this dataset is built of, because a notched log pen is stock-proof and prisoner-proof in a way a nailed fence is not, and because it is the value this archetype offers that is closest to a heavy enclosure. THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely different - open, horizontal, see-through - from what this record builds. That reading is recorded here rather than lost."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "conjectural",
+          "note": "THE LARGEST SINGLE INVENTION ON THIS RECORD, AND IT IS THE MODEL'S RATHER THAN THE RECORD'S. A pound is an enclosure and there is no reason to think this one was roofed at all; nothing in any source mentions a roof. The outbuilding archetype - the only one in the project that will build a low walled enclosure - cannot build a roofless structure, so a roof is unavoidable if the pen is to appear in the scene at all. shed at the shallowest pitch the archetype accepts is the nearest thing to no roof that can be built here. THIS IS A CONSTRAINT OF THE TOOL, NOT A CLAIM ABOUT THE BUILDING, and it is claimed in docs/LIBERTIES.md. What the town actually had at this corner is, on the balance of type, a stout open pen."
+        },
+        "roof_pitch_deg": {
+          "value": 6.0,
+          "confidence": "conjectural",
+          "note": "INVENTED, and deliberately at the floor of what the archetype accepts. 6 degrees over the pen's 6.096 m run rises 0.64 m, which is as close to flat as this generator will go. See roof_type: the number exists to minimise a feature that probably was not there, not to describe one that was."
+        },
+        "wall_height_m": {
+          "value": 2.4,
+          "confidence": "conjectural",
+          "note": "INVENTED. 2.4 m is about 8 ft - high enough that a horse will not clear it and a man will not climb out easily, which is what the pen's two attested uses require between them. Nothing attests a height. It is also the minimum this archetype will accept with a gate a beast can be led through, so the two numbers are coupled: a lower pen forces a smaller opening."
+        },
+        "door": {
+          "value": "stable",
+          "confidence": "conjectural",
+          "note": "INVENTED. door in this archetype names what has to get through the opening. A pound gate has to pass a horse or a cow led in hand, which is the stable class; a wagon-width gate would need a 3 m wall to carry it and is not what a pound needs. Nothing attests a gate, its width, its position or its fastening. What this builds is a doorway in a wall, where the real thing was probably a hung rail gate."
+        }
+      },
+      "change_note": "The estray pen erected on the south-west corner of the public square in March 1833 - Chicago's first public building, put up to hold stray livestock and, for want of anywhere else, prisoners. That second use ended when the log jail went up at the north-west corner of the same block in the fall of 1833; the pen itself is not recorded as having gone anywhere, and stands on 1835-07-01."
+    }
+  ],
+  "function": {
+    "value": "livestock pound",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "An estray is a stray beast, and an estray pen is the pound it is impounded in until its owner claims it - a municipal function, which is why Andreas's chronology can call this the town's FIRST PUBLIC BUILDING. Its secondary use is separately attested and is the reason the log jail exists: for the first months of its life the pen held prisoners as well, faute de mieux."
+  },
+  "research_note": "CHICAGO'S FIRST PUBLIC BUILDING, AND IT IS A FENCE. That is the whole difficulty of this record and it is worth stating plainly: what the sources attest is a municipal FUNCTION and a corner, and this project has no generator that builds an enclosure. Everything this record contributes to the scene - four walls, a roof, a gate, a height, a size - is invention, and only the corner, the month and the use are not. The roof is the specific thing to be sorry about: see the roof_type note, and docs/LIBERTIES.md, which claims it. THE HONEST FIX IS A GENERATOR, NOT A BETTER GUESS. An enclosure archetype - post-and-rail or notched log, roofless, gated, taking a perimeter rather than a footprint - would let this record say what it means, and would also serve the fenced or unfenced state of the public square itself, the garrison gardens and any yard in the town. The palisade archetype named in data/structures.schema.json is the obvious place for it and has no module behind it. Until then this record builds a low walled box with a nearly flat roof, which is the least wrong thing the existing tools can make. WHAT WOULD UPGRADE IT: any town or county order establishing the pound, since a pound-keeper's fee schedule, an order to build, a size or a materials specification are all the kind of thing such an order carries; the Cook County Sheriff's published jail history, cited in this project's dossier and not yet held as a source record; and Andreas vol. 1 at page-image level around scan pp. 33, 365 and 1315, where the chronology entry and the narrative sentence sit. Note also the unresolved year: some accounts date the pen 1832 rather than 1833, which changes nothing for this scene.",
+  "review_required": false
+}

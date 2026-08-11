@@ -1,0 +1,179 @@
+{
+  "id": "st_marys_church",
+  "phase": "frame_1833",
+  "name": "St. Mary's Catholic Church",
+  "aka": [
+    "the first St. Mary's",
+    "the Catholic church at Lake and State"
+  ],
+  "archetype": "frame_dwelling",
+  "asset": "gltf/st_marys_church__frame_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 807.23,
+    "local_n": -133.11,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "The south-west quadrant of Lake Street and State Street - south side of Lake, west of State - on a canal lot beside the military reservation; fronting north onto Lake.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        10.668,
+        0
+      ],
+      [
+        10.668,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "note": "Not stated as a number. Everything the page describes is at one level - rough benches for pews, the simplest of tables for altar and pulpit, no plaster - and a 25 x 35 ft building costing about $400 is a single-storey box. Nothing implies a gallery, a stair or an upper room. Inference from the description."
+    },
+    "construction": {
+      "value": "balloon_frame",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "note": "THE MOST CONSEQUENTIAL INFERENCE IN THIS RECORD, AND THE PAGE DOES NOT USE THE WORD. What is documented is that 'Augustine D. Taylor was the architect and builder', that the lumber came by scow from St Joseph, Michigan at $12 per thousand, and that the frame was raised in August 1833. Taylor is the man to whom the invention of balloon framing is credited, and this building is the one most often named as the first balloon frame - docs/research/04-structures-south.md section 6 calls it 'an early balloon frame' and the frame_storefront and frame_dwelling archetype modules both cite it as the reason balloon framing is a first-class parameter in this project. Balloon frame is adopted on that identification. It is an identification, not a quotation, and if it is wrong the wall gets a heavier corner post and a wider stud module. The choice moves geometry here rather than sitting in the sidecar: studs at 16 in on centre set the rhythm the openings are laid out on, and a balloon frame shows no girt line."
+    },
+    "wall_height_m": {
+      "value": 3.2,
+      "confidence": "inferred",
+      "note": "No figure is attested. 3.2 m is about 10 1/2 ft to the plate - a little under the Presbyterian church's, because this building is smaller, cheaper by a third per square foot, and was described as rough. The one attested ceiling in this dataset is the Green Tree Tavern's 7 1/2 ft; a room of 875 sq ft holding a congregation needed more than that. What is inferred is that the height falls in this range, not that it is exactly 3.2 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for a frame building of this type, period and region. Typological derivation, not a measurement. Note that the absence of a steeple IS attested (see `tower`), so the roof is a plain one with nothing on it."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 38 degrees is the mid-range this project uses for period gable framing across the dataset. Inferred from construction practice, not measured."
+    },
+    "plan": {
+      "value": "centre_passage",
+      "confidence": "conjectural",
+      "note": "INVENTED, AND IT IS THE ARCHETYPE'S VOCABULARY RATHER THAN THE BUILDING'S - the same admission the Presbyterian record makes, for the same reason. `plan` names the room arrangement behind a HOUSE'S facade; this building had one room. centre_passage is chosen only because it is the value that produces a symmetrical front with a centred door. Nothing about the real door position is attested."
+    },
+    "bays": {
+      "value": 3,
+      "confidence": "conjectural",
+      "note": "INVENTED. No source describes an opening on this building. Three - a centred door with one window either side - is the plainest front the archetype will build with a centred door, and plainness is the one thing the sources do support: not plastered, rough benches, a table for an altar, no steeple, unpainted outside. The archetype would derive four from the 35 ft frontage, and four is refused with a centred door. So the number follows from the grammar and from `plan`, not from evidence."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "note": "DOCUMENTED, WHICH IS RARE HERE: 'The outside of the building was not painted and it had neither steeple nor tower.' This is the only exterior finish directly attested on any building in this parcel, and it is worth noting that it CORROBORATES the reading the Green Tree and the Presbyterian church records adopt by inference - unpainted weathered boarding was the norm and the Sauganash's white paint was the exception worth recording."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and nothing on the page describes heating. One is the minimum for a room used through Chicago winters and is the number this project's other worship buildings carry on the same reasoning. THE RESIDUAL UNCERTAINTY IS THE KIND OF HEATING, NOT THE FACT OF IT: a box stove with a sheet-iron pipe is as likely as a masonry stack in a building this rough, and this archetype builds only the stack. The COUNT is the inference; the stack's position, size and material are the archetype's - docs/LIBERTIES.md L26."
+    },
+    "tower": {
+      "value": false,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "geometry": "record_only",
+      "note": "THE DATE TRAP ON THIS BUILDING, AND THE REASON THIS ATTRIBUTE EXISTS AT ALL. Documented for 1835: 'it had neither steeple nor tower'. The trap is the sentence that follows it on the same page: 'Some time afterwards, it was surmounted by a low, open tower, in which a small bell was hung, being the first bell used in Chicago to call the pious together for religious worship.' 'Some time afterwards' is the whole of its dating. A tower and the first bell in Chicago are exactly the sort of detail that gets attached to a church because it makes the model better, and nothing licenses one before 1835-07-01. NO TOWER, NO BELFRY AND NO BELL IS BUILT ON THIS RECORD, and this negative finding is stated so that the omission reads as a decision rather than as an oversight."
+    },
+    "interior_plaster": {
+      "value": false,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "geometry": "record_only",
+      "note": "A negative finding: 'The church itself was not plastered.' It separates this building from the Presbyterian church, whose walls were plastered, and it is the clearest single measure of how rough St Mary's was in 1835. No interior is modelled in this project in any case."
+    },
+    "seating": {
+      "value": "rough benches for pews and the simplest of tables for altar and pulpit",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "geometry": "absent",
+      "note": "Documented and not built. This is the most vivid documented fact about the inside of the building. No interior is modelled, so nothing of it is shown."
+    },
+    "cost_usd": {
+      "value": 400,
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "geometry": "record_only",
+      "note": "Not a build instruction; a scale check. 'The total cost of the edifice was about $400' for 875 sq ft is $0.46 per square foot, against the Presbyterian church's $0.60. The two figures together are what the Temple Building's invented footprint is derived from."
+    },
+    "function": {
+      "value": "church",
+      "confidence": "documented",
+      "sources": [
+        "chicagology_prefire216",
+        "andreas_1884_v1"
+      ],
+      "note": "The first Catholic church building in Chicago, in use from October 1833. The first mass, on 5 May 1833, was said elsewhere - 'in a little log cabin, twelve feet square, belonging to Mark Beaubien' - which is a different building and is not modelled by this record."
+    },
+    "occupants": {
+      "value": "Rev. John Mary Irenaeus St. Cyr, pastor, and the Catholic congregation of Chicago",
+      "confidence": "inferred",
+      "sources": [
+        "chicagology_prefire216"
+      ],
+      "note": "St. Cyr selected the lot in 1833 and, per the same page's account of the removal, was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window. Tagged inferred rather than documented because the page states his arrival and his succession and does not state who was in charge on any particular day in 1835."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicagology_prefire216",
+      "citation": "\"St. Mary's Church.\" Chicagology. Transcribing A. T. Andreas, History of Chicago (1884), with an uncredited building summary, the 1833 petition to the Bishop of St. Louis and city-directory entries 1859-1870.",
+      "url": "https://chicagology.com/prefire/prefire216/",
+      "archived_url": "https://web.archive.org/web/20260421023911/https://chicagology.com/prefire/prefire216/",
+      "tier": 4
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE BEST-SPECIFIED SMALL BUILDING IN THE 1835 TOWN: two dimensions, a cost, a builder, a lumber price and shipping route, an exterior finish, an interior finish, a seating description and an explicit statement that it had no tower - all from one page (chicagology_prefire216), which transcribes Andreas. THREE THINGS TO CARRY FORWARD, IN ORDER OF HOW MUCH DAMAGE THEY COULD DO. (1) THE TOWER. See the `tower` attribute. The page attests a low open tower with the first bell in Chicago at 'some time afterwards' and gives no date, which is exactly how a building gets aged forward by a detail that arrives without one. No tower is built. (2) THE CORNER IS NOT CONTESTED, whatever an earlier reading of the dossier suggested. Both statements on the page put the church south of Lake and west of State; what they do not fix is the lot, because the wording is 'NEAR the southwest corner'. This record therefore carries a quadrant, an unbounded westward uncertainty, and no dispute. (3) THE PAGE IS TIER 4 AND THE MATERIAL IT REPRINTS IS OLDER THAN THAT. The transcription is unpaginated and uncredited editorial prose sits beside the quoted matter with no typographic break; its own header field gives a Life Span that contradicts its body. Every dimension in this record is load-bearing, so it should be collated against Andreas vol. 1 at page image level and re-cited to `andreas_1884_v1` when it is - the dossier points at scan pp. 281 and 601. THE ORIENTATION IS THE MODEL'S LARGEST DEPARTURE from what the building probably looked like: a 25 x 35 ft church almost certainly stood gable-end to Lake Street, and this archetype cannot build that. See the footprint note and docs/LIBERTIES.md. ARCHETYPE CHOICE, STATED BECAUSE IT IS ITSELF A LIBERTY. The schema offers an `institutional` archetype and there is no generator behind it, so a record using it would compile a sidecar pointing at a GLB that does not exist and the building would be invisible in the walkthrough. `frame_dwelling` is used instead because it is the only archetype in the project that builds a plain single-range frame box with a gable roof and nothing else: `frame_tavern` carries a public house's gallery and bar-room frontage, `frame_storefront` carries a shopfront, `outbuilding` carries a stable's door and refuses a storey count. WHAT THE SUBSTITUTION COSTS is the facade: frame_dwelling puts the door in the long eaves-front wall and sets the openings out on a house's bay module, where a meeting house of these years normally had its door in the gable end. This is recorded in docs/LIBERTIES.md and the affected attributes (`plan`, `bays`) are tagged conjectural.",
+  "research_doc": "docs/RESEARCH/st_marys_church.md",
+  "review_required": false
+}

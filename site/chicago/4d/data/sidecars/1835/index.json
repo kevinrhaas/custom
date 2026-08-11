@@ -39,6 +39,12 @@
       "asset": "gltf/chicago_lighthouse_1832__tower_1832.glb"
     },
     {
+      "id": "clybourn_slaughterhouse",
+      "name": "Archibald Clybourne's Log Slaughter-House",
+      "sidecar": "sidecars/1835/clybourn_slaughterhouse.json",
+      "asset": "gltf/clybourn_slaughterhouse__log_1827.glb"
+    },
+    {
       "id": "cobweb_castle",
       "name": "Indian Agency House",
       "sidecar": "sidecars/1835/cobweb_castle.json",
@@ -255,6 +261,12 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "robert_kinzie_store",
+      "name": "Robert A. Kinzie's Store",
+      "sidecar": "sidecars/1835/robert_kinzie_store.json",
+      "asset": "gltf/robert_kinzie_store__store_1830.glb"
+    },
+    {
       "id": "robinson_caldwell_cabins",
       "name": "Log cabins at Wolf Point",
       "sidecar": "sidecars/1835/robinson_caldwell_cabins.json",
@@ -279,10 +291,22 @@
       "asset": "gltf/south_pier__crib_1835.glb"
     },
     {
+      "id": "st_marys_church",
+      "name": "St. Mary's Catholic Church",
+      "sidecar": "sidecars/1835/st_marys_church.json",
+      "asset": "gltf/st_marys_church__frame_1833.glb"
+    },
+    {
       "id": "steamboat_hotel",
       "name": "Steamboat Hotel",
       "sidecar": "sidecars/1835/steamboat_hotel.json",
       "asset": "gltf/steamboat_hotel__frame_1835.glb"
+    },
+    {
+      "id": "temple_building",
+      "name": "Temple Building",
+      "sidecar": "sidecars/1835/temple_building.json",
+      "asset": "gltf/temple_building__frame_1833.glb"
     },
     {
       "id": "thomas_church_store",
