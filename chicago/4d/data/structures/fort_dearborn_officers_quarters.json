@@ -108,10 +108,6 @@
           "confidence": "conjectural",
           "note": "A NEGATIVE THAT IS ALSO A CHOICE. Captain Whistler's 1808 index to the FIRST fort says 'the Barracks are two storeys high with shingled Roofs and Galliaries fronting the parade' (Quaife), and galleries on the parade front are the type. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were 'differently constructed'. A plain front is rendered because nobody found evidence either way, which is itself a claim a visitor sees."
         }
-      },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "THE FORT STANDS 832 m EAST OF THE MODELLED GROUND. The e1834_harbor_cut terrain box runs to local E +320 and this structure sits beyond E +1100, so there is no terrain under any part of its outline and the question whether it lands has no answer. tools/heightfield.py clamps at the box edge, so before 2026-08-11 this passed the ground-contact gate silently; Heightfield.covers() and this state exist because of it. docs/ROADMAP.md S2e parcel (b) - the heightfield extension east - is what would settle it."
       }
     }
   ],

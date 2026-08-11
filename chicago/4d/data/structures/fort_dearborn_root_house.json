@@ -19,12 +19,12 @@
         "note": "Attested standing in 1831 by Juliette Kinzie and by nobody else at any date. The range opens with the fort and closes at the final evacuation, because a root house is kept by a garrison; nothing reached follows it further."
       },
       "position": {
-        "utm_e": 448197.43,
-        "utm_n": 4637655.24,
+        "utm_e": 448190.43,
+        "utm_n": 4637631.24,
         "rotation_deg": 188.0,
         "symbolic_location": "On the south bank of the Chicago River west of Fort Dearborn, between the fort and the bend.",
         "confidence": "conjectural",
-        "note": "A BANK, NOT A POINT. Kinzie, of 1831: 'The bank of the river which stretches to the west, now covered by the light-house buildings, and inclosed by docks, was then occupied by the root-houses of the garrison.' That names a stretch of riverbank and gives no position on it, and the 1830 plan - which labels the wash house, the well, the shop and the barn - does not draw them. This point is on that bank about 45 m north-west of the fort's centre and it is ours. THE PLURAL IS NOT MODELLED EITHER: Kinzie says root-houses and this record builds one, because a count invented would be a second invention on top of a position invented."
+        "note": "A BANK, NOT A POINT. Kinzie, of 1831: 'The bank of the river which stretches to the west, now covered by the light-house buildings, and inclosed by docks, was then occupied by the root-houses of the garrison.' That names a stretch of riverbank and gives no position on it, and the 1830 plan - which labels the wash house, the well, the shop and the barn - does not draw them. This point is on that bank about 45 m north-west of the fort's centre and it is ours. THE PLURAL IS NOT MODELLED EITHER: Kinzie says root-houses and this record builds one, because a count invented would be a second invention on top of a position invented. MOVED 2026-08-11 FOR THE SAME REASON AS THE LIGHTHOUSE. The first point sat on the face of the river bank the newly extended heightfield draws, so the mound straddled a 0.85 m fall. It now stands at local E +1115, N +234, on the bank top west-north-west of the fort. Kinzie's 'bank of the river which stretches to the west' is satisfied either way; a cellar dug INTO the face of a bank is what she is describing and what this project cannot model, since the archetype banks earth over a level floor."
       },
       "footprint": {
         "polygon": [
@@ -86,10 +86,6 @@
           "confidence": "inferred",
           "note": "The colour of turf and soil. No source describes it."
         }
-      },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "STANDS BEYOND THE MODELLED GROUND. The e1834_harbor_cut terrain box runs to local E +320 and this structure sits east of E +1000, so there is no terrain under any part of its outline and the question whether it lands has no answer. tools/heightfield.py clamps at the box edge, which is why nothing caught this before 2026-08-11; Heightfield.covers() and this state exist because of the Fort Dearborn parcel. docs/ROADMAP.md S2e parcel (b) - the heightfield extension east - is what would settle it."
       }
     }
   ],

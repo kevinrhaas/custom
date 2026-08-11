@@ -109,8 +109,8 @@ uncertainty of the 1834 sheets in its note.
 
 ## Known weaknesses, stated plainly
 
-0a. **Fort Dearborn floats 832 m past the edge of the world, and the gate that exists to
-    catch exactly that reported a perfect landing.** Fourteen structures went in on 2026-08-11 at
+0a. **The gate that exists to catch a building standing on nothing reported a perfect
+    landing for a fort 832 m past the edge of the world.** Fourteen structures went in on 2026-08-11 at
     local E +1130…+1180; the `e1834_harbor_cut` heightfield stops at E +320. That much is L40's
     problem at four times the distance and it is honestly declared on every record. **The part
     that is a defect in the machinery rather than in the data**: `tools/heightfield.py` clamps
@@ -123,8 +123,14 @@ uncertainty of the 1834 sheets in its note.
     all before asking how high it is, the schema carries an `outside_modelled_ground` state
     beside `approach_not_modelled`, and the declaration is checked against the measurement in
     both directions. Turning it on immediately flagged two structures in other parcels that
-    nothing had caught. **The fix for the underlying problem is S2e parcel (b) and nothing
-    else**, and the fort is the largest thing waiting on it.
+    nothing had caught. **S2e parcel (b) then landed the same day** and the field now reaches E +1700, so twelve of
+    the fourteen fort structures land and their declarations are gone. Two do not, for a
+    different and better reason: the fort sits on a plateau that falls to the river between
+    N +245 and N +270, and the stockade's north wall and the commandant's quarters cross the
+    top of that fall by 1.40 m and 0.46 m. **No cut, fill, revetment or foundation is modelled
+    anywhere in this project**, and the real work plainly had one. L46 was rewritten the same
+    day to say so. The blindness the fort exposed is fixed regardless of whether anything
+    currently needs the new state.
 
 00. **The prairie loses a blind side-by-side against a July photograph, in under a second,
     and we now know exactly why.** A four-parcel sweep on 2026-08-10 put each piece of the

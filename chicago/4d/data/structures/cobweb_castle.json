@@ -174,10 +174,6 @@
           "note": "Not attested. Two is inferred from the plan the sources give rather than from the building: a centre with two wings, holding the agent's office and household — in 1831 that household was J. H. Kinzie's mother, two sisters and brother as well — is more rooms than one hearth heats through a Chicago winter. The COUNT is the inference; where the stacks stand, how big they are and what they are made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
         }
       },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "STANDS OUTSIDE THE MODELLED TERRAIN BOX. The heightfield of terrain epoch e1834_harbor_cut covers a 640 m square around the forks, E -320..+320 and N -320..+320, and this structure is placed at local E +814, N +122 — 494 m east of its edge. So there is no ground under any part of its contact outline and the question whether the building lands has no answer: tools/heightfield.py clamps its sampler at the box edge, which would otherwise report a perfect landing on terrain that does not exist. WHAT THE VISITOR SEES is the renderer's radial skirt (docs/LIBERTIES.md L17), which carries the box's boundary heights outward for the horizon and claims nothing. Nothing in this record is wrong and nothing in the mesh is wrong; the ground is simply not built yet. WHAT WOULD SETTLE IT: the eastward extension of the terrain epoch already queued as ROADMAP S2e, which would put real modelled ground under the north-bank agency cluster and turn this declaration into a measurement. Until then this is the same admission docs/LIBERTIES.md L40 makes for the business street."
-      },
       "change_note": "The United States Indian Agency house on the north bank as Wau-Bun describes it in 1831: hewn squared log, a centre with two wings and two rear tails, clapboarded part way up at some point after 1823, standing at the foot of State Street with its front to the river and — by 1831 — a platted street opened across its back. The changes of occupancy after Wolcott's death in 1830 are changes of USE and do not open new phases."
     }
   ],

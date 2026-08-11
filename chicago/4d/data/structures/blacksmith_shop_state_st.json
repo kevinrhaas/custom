@@ -89,10 +89,6 @@
           "note": "Not attested, and the reasoning here is a trade's rather than a household's: a forge has to vent, so a smithy carries a stack whatever else it lacks. WHAT THE MODEL SHOWS IS A DOMESTIC CHIMNEY. The archetype builds one 0.96 m square shaft with a corbelled head against the gable end — the same stack it builds on a dwelling — so nothing in the mesh distinguishes a forge flue from a cabin's fireplace, and nothing in the mesh says a smithy. That is admitted in docs/LIBERTIES.md rather than hidden."
         }
       },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "STANDS OUTSIDE THE MODELLED TERRAIN BOX. The heightfield of terrain epoch e1834_harbor_cut covers a 640 m square around the forks, E -320..+320 and N -320..+320, and this structure is placed at local E +769, N +119 — 449 m east of its edge. So there is no ground under any part of its contact outline and the question whether the building lands has no answer: tools/heightfield.py clamps its sampler at the box edge, which would otherwise report a perfect landing on terrain that does not exist. WHAT THE VISITOR SEES is the renderer's radial skirt (docs/LIBERTIES.md L17), which carries the box's boundary heights outward for the horizon and claims nothing. Nothing in this record is wrong and nothing in the mesh is wrong; the ground is simply not built yet. WHAT WOULD SETTLE IT: the eastward extension of the terrain epoch already queued as ROADMAP S2e, which would put real modelled ground under the north-bank agency cluster and turn this declaration into a measurement. Until then this is the same admission docs/LIBERTIES.md L40 makes for the business street."
-      },
       "change_note": "The Government blacksmith's shop of the Chicago agency, standing near the agency house at the foot of State Street from about 1823, when David McKee arrived to fill the post the 1821 treaty required. McKee's later work as mail-carrier and his removal to the Des Plaines are changes of occupation and do not open new phases."
     }
   ],

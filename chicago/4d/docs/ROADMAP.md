@@ -241,10 +241,15 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   cholera. Three corrections to `docs/research/04-structures-south.md` are recorded in
   `docs/RESEARCH/fort_dearborn.md` § 6, and one to § 2 in
   `docs/RESEARCH/chicago_lighthouse_1832.md`.
-- **It stands on nothing.** The complex is 832 m east of the modelled heightfield. It is declared
-  `outside_modelled_ground` on all fourteen records and admitted in **L46**, and it exposed a
-  real blind spot in the ground-contact gate — see STATUS § "Known weaknesses" 0a. **S2e parcel
-  (b) is now the binding constraint on this parcel and on twenty others.**
+- **It stood on nothing for about four hours.** The complex is 832 m east of where the
+  heightfield used to stop, and while it was there it exposed a real blind spot in the
+  ground-contact gate — the clamped edge made a fort in the void report a perfect landing. See
+  STATUS § "Known weaknesses" 0a. **S2e parcel (b) then landed the same day**: the field reaches
+  E +1700, twelve of the fourteen structures land, and the lighthouse and the root house — both
+  `conjectural` in position — moved off the channel and onto the bank top now that there is a
+  surface to be wrong about. The two that remain off the ground are the stockade and the
+  commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
+  because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
 
 **Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
 plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,

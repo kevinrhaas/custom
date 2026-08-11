@@ -56,12 +56,12 @@
   ],
 
   "open_lake": {
-    "polygon": [[1520.0, -460.0], [1760.0, -460.0], [1760.0, 460.0],
-                [1430.0, 460.0], [1430.0, 260.0], [1520.0, 260.0]],
+    "rule": "east of the easternmost traced water in each row, water continues",
+    "east_of_m": 1400.0,
     "dossier_zone": 30,
     "confidence": "conjectural",
     "sources": ["wright_1834"],
-    "note": "The harbour-reach polygon's EASTERN boundary is the tracing window, not a shore (its own provenance says so). Beyond it Wright's sheet is still lake wash. Treating that ground as LAND would invent a headland out in the lake, so it is declared water instead. The polygon's west edge stands 23 m east of the sand bar's easternmost traced point (E +1497.5) below N +260 and 20 m east of the mainland's easternmost traced point (E +1410) above it, so it can drown no traced land. Its boundary is a RULE and not a waterline: generators/terrain_gen.py never measures shore distance to it. The bed under it is dossier zone 30, which the dossier itself tags conjectural."
+    "note": "The harbour-reach polygon's EASTERN boundary is the tracing window, not a shore (its own provenance says so). Beyond it Wright's sheet is still lake wash. Treating that ground as LAND would invent a headland out in the lake — a false coast is the single largest claim available in this quadrant — so it is declared water instead. Stated as a rule against the trace rather than as a hand-drawn polygon, so it cannot drift if the trace is ever refit: in each row, everything east of the easternmost traced water cell is lake. The E +1400 guard keeps the rule where the argument for it holds — the easternmost traced LAND in the box is the sand bar at E +1497.5, and every row's traced water reaches further east than that. This boundary is a RULE and not a waterline: generators/terrain_gen.py never measures shore distance to it, so no bank is raised along it. The bed under it is dossier zone 30, which the dossier itself tags conjectural."
   },
 
   "shore_runs": [
@@ -177,9 +177,9 @@
     {
       "id": "north_division",
       "label": "North Division — timbered, better-drained sandy ground rising toward the lake",
-      "crest_profile": [[-320.0, 3.6], [390.0, 3.6], [880.0, 5.0], [1210.0, 6.0], [1330.0, 9.0], [1700.0, 9.0]],
-      "plain_profile": [[-320.0, 4.6], [390.0, 4.6], [880.0, 6.0], [1210.0, 7.0], [1330.0, 9.5], [1700.0, 9.5]],
-      "face_profile":  [[-320.0, 6.0], [390.0, 6.0], [880.0, 9.0], [1210.0, 11.0], [1330.0, 25.0], [1700.0, 25.0]],
+      "crest_profile": [[-320.0, 3.6], [390.0, 3.6], [1210.0, 5.0], [1330.0, 9.0], [1700.0, 9.0]],
+      "plain_profile": [[-320.0, 4.6], [390.0, 4.6], [1210.0, 6.0], [1330.0, 9.5], [1700.0, 9.5]],
+      "face_profile":  [[-320.0, 6.0], [390.0, 6.0], [1210.0, 11.0], [1330.0, 25.0], [1700.0, 25.0]],
       "far_m": 300.0,
       "dossier_zones": [19, 13, 12, 3],
       "confidence": "inferred",

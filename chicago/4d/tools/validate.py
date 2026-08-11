@@ -1392,6 +1392,489 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
 
 
 # --------------------------------------------------------------------------
+# fauna: zone records, presence modes, and the July gate
+# --------------------------------------------------------------------------
+#
+# The flora section above exists because a mid-July prairie is easy to render as
+# a September one. This one exists for the mirror-image reason: a mid-July
+# Chicago is easy to render as a May one. Every headline wildlife event in the
+# record — passenger-pigeon flights, prairie-chicken booming, waterfowl clouds,
+# the spring dawn chorus — is a spring, autumn or winter phenomenon, and 1 July
+# is the QUIETEST wildlife date in the Chicago year. docs/research/08-fauna.md
+# § 0.3 states that as guidance; the rules below make the wrong record
+# unrepresentable rather than merely discouraged, exactly as the phenology gate
+# does for the flora.
+#
+# The second thing this section enforces is that "present" and "visible" are
+# different claims. Liberty L2 licenses fauna at low density and often as sound
+# only, and that liberty is worth nothing unless the data can SAY "here, and not
+# seen" — which is what `presence.mode` is for.
+
+FAUNA = DATA / "fauna"
+
+FAUNA_CLASSES = ("mammal", "bird", "fish", "amphibian", "reptile", "insect", "mollusc")
+FAUNA_ACTIVITY = ("diurnal", "crepuscular", "nocturnal", "cathemeral")
+FAUNA_PERIODS = ("dawn", "day", "dusk", "night")
+FAUNA_STATUS = ("breeding_resident", "year_round_resident", "post_breeding_dispersal",
+                "flightless_moult", "domestic", "feral_or_commensal", "doubtful",
+                "absent_seasonal", "absent_extirpated", "absent_anachronism",
+                "excluded_by_scope")
+FAUNA_PRESENCE = ("visible", "audible", "visible_and_audible", "trace_only",
+                  "not_perceptible", "absent", "not_depicted")
+FAUNA_ABUNDANCE = ("abundant", "common", "frequent", "uncommon", "sparse", "rare", "absent")
+FAUNA_VOICE = ("song_full", "song_reduced", "call_only", "chorus", "display_over",
+               "silent", "non_vocal")
+FAUNA_DAWN_CHORUS = ("none", "reduced")
+
+# A status that says the animal is not in the scene, and the presence mode each
+# of those two families must carry. Kept as two sets because they are different
+# findings: `absent` is "not here", `not_depicted` is "here and we chose not to
+# show it", and collapsing them would lose the distinction liberty L1 rests on.
+FAUNA_ABSENT_STATUS = ("absent_seasonal", "absent_extirpated", "absent_anachronism")
+FAUNA_ABSENT_MODES = ("absent",)
+FAUNA_WITHHELD_STATUS = ("excluded_by_scope",)
+FAUNA_WITHHELD_MODES = ("not_depicted",)
+
+# A voice that does not reach a listener. A species recorded as audible must not
+# have one of these, or the record claims a sound nobody could hear.
+FAUNA_INAUDIBLE = ("silent", "display_over", "non_vocal")
+
+# THE BIRD-SONG GATE. Named species whose song or display is over, or sharply
+# reduced, by 1 July — the direct analogue of JULY_VEGETATIVE_GRASSES. Value is
+# the set of voices the record is allowed to claim. Getting this wrong does not
+# look wrong: a scene full of birdsong reads as "summer" to every viewer and is
+# a May scene.
+JULY_QUIET_BIRDS = {
+    # The lek is silent from June. This is the fauna dossier's headline trap.
+    "Tympanuchus cupido": {"display_over", "silent"},
+    # Song stops as the young fledge in early July; the chatter carries on.
+    "Icterus galbula": {"call_only", "silent"},
+    # An April-to-June performance, finished before this date.
+    "Toxostoma rufum": {"call_only", "song_reduced", "silent"},
+    # Collapses through July as the birds move to moult.
+    "Dolichonyx oryzivorus": {"song_reduced", "call_only", "silent"},
+    # No song to lose in any month — calls are the whole vocabulary.
+    "Cyanocitta cristata": {"call_only", "silent"},
+    "Poecile atricapillus": {"call_only", "silent"},
+    "Tyrannus tyrannus": {"call_only", "silent"},
+    # Drumming and the long territorial call are spring signals.
+    "Melanerpes erythrocephalus": {"call_only", "silent"},
+    "Colaptes auratus": {"call_only", "silent"},
+    # Vultures are effectively voiceless.
+    "Cathartes aura": {"silent", "non_vocal"},
+    # Not a songbird at all, whatever the flights looked like.
+    "Ectopistes migratorius": {"call_only", "silent"},
+}
+
+# ...and the positive half, which is what stops a gate like this being satisfied
+# by rendering July silent. These species ARE in full song on 1 July — later
+# than almost anything else — and recording them mute is the opposite error.
+JULY_STILL_SINGING = ("Contopus virens", "Passerina cyanea", "Hylocichla mustelina",
+                      "Geothlypis trichas", "Spizella pusilla", "Colinus virginianus")
+
+# Wing moult. Adult ducks enter simultaneous flight-feather moult in late June
+# and July and are flightless or nearly so: dull, skulking, and NOT flying.
+FAUNA_MOULTING_WATERFOWL = ("Anas platyrhynchos", "Spatula discors", "Aix sponsa",
+                            "Mareca strepera", "Anas acuta", "Aythya americana")
+FAUNA_MOULT_MAX_GROUP = 12
+
+# The species whose real abundance sounds like an exaggeration, which is exactly
+# why the July number has to be held down by the schema rather than by taste.
+PASSENGER_PIGEON = "Ectopistes migratorius"
+PASSENGER_PIGEON_JULY_MAX = 60
+
+# Present in the period but nothing like its modern numbers. The default modern
+# Chicago gull is a post-1916 phenomenon and a flock of them is the single most
+# visible anachronism available at the river mouth.
+FAUNA_RARE_ONLY = {"Larus delawarensis": ("rare", "absent")}
+
+# Words that name a spring, autumn or winter spectacle. Forbidden in `behaviour`
+# — the render instruction — for any species the record says is present. A
+# negative record may say them freely, because saying what is NOT here is the
+# whole job of a negative record.
+FAUNA_WRONG_SEASON_WORDS = ("migrat", "skein", "v-formation", "sky-darken",
+                            "booming", "lek", "raft of", "dawn chorus", "rut")
+
+
+def _fauna_val(node, key: str):
+    """The value of an attested block, or of a bare value."""
+    v = node.get(key)
+    if isinstance(v, dict) and "value" in v:
+        return v["value"]
+    return v
+
+
+def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
+                        rep: Report, tally: dict) -> None:
+    where = f"fauna zone {zid}/{sp.get('id', '?')}"
+    binomial = (sp.get("binomial") or "").strip()
+    for key in ("id", "binomial", "common", "class", "activity", "active_periods",
+                "july", "confidence"):
+        if key not in sp:
+            rep.error(where, f"missing required key '{key}'")
+            return
+    if not SLUG.match(sp["id"] or ""):
+        rep.error(where, f"id '{sp['id']}' is not a lowercase slug")
+    if sp["class"] not in (vocab.get("classes") or FAUNA_CLASSES):
+        rep.error(where, f"class '{sp['class']}' is not declared in index.json's vocabulary")
+    if sp["activity"] not in (vocab.get("activity") or FAUNA_ACTIVITY):
+        rep.error(where, f"activity '{sp['activity']}' is not one of {FAUNA_ACTIVITY}")
+
+    periods = sp.get("active_periods")
+    if not isinstance(periods, list) or not periods \
+            or any(p not in FAUNA_PERIODS for p in periods):
+        rep.error(where, f"active_periods must be a non-empty subset of {FAUNA_PERIODS}, "
+                         f"got {periods!r}")
+        periods = []
+    # An animal on screen at an hour its own activity pattern excludes is the
+    # commonest way a reconstruction quietly invents behaviour. Say cathemeral
+    # and mean it — the Chicago coyotes are documented abroad in daylight, and
+    # that is a finding, not a default.
+    act = sp["activity"]
+    if act == "diurnal" and "night" in periods:
+        rep.error(where, "activity 'diurnal' with 'night' in active_periods — use 'cathemeral' "
+                         "and say on the record why this animal is abroad after dark")
+    if act == "nocturnal" and "day" in periods:
+        rep.error(where, "activity 'nocturnal' with 'day' in active_periods — use 'cathemeral'. "
+                         "A nocturnal animal on screen at noon is a claim, and it needs to be "
+                         "made explicitly (the Chicago coyote is exactly that case: Andreas has "
+                         "one entering a meat-house IN THE DAY TIME)")
+    if act == "crepuscular":
+        if "day" in periods:
+            rep.error(where, "activity 'crepuscular' with 'day' in active_periods — use "
+                             "'cathemeral'; crepuscular means the light margins, not midday")
+        if not ({"dawn", "dusk"} & set(periods)):
+            rep.error(where, "activity 'crepuscular' but neither dawn nor dusk is in "
+                             "active_periods")
+    if act == "diurnal" and "day" not in periods:
+        rep.error(where, "activity 'diurnal' without 'day' in active_periods")
+
+    j = sp.get("july")
+    if not isinstance(j, dict):
+        rep.error(where, "july must be the block stating this animal's state on the scene date")
+        return
+    for key in ("status", "presence", "abundance", "max_group", "vocalization",
+                "behaviour", "appearance"):
+        if key not in j:
+            rep.error(where, f"july.{key} is required — the whole point of this dataset is "
+                             f"that the July state is stated rather than assumed")
+            return
+    if "trace" not in j:
+        rep.error(where, "july.trace must be present, null when the animal leaves no rendered "
+                         "sign — an absent key hides the claim, exactly as it does for flora "
+                         "inflorescence")
+
+    status = _fauna_val(j, "status")
+    mode = _fauna_val(j, "presence")
+    abundance = _fauna_val(j, "abundance")
+    voice = j.get("vocalization")
+    group = j.get("max_group")
+    behaviour = (j.get("behaviour") or "").strip()
+    appearance = (j.get("appearance") or "").strip()
+
+    if status not in FAUNA_STATUS:
+        rep.error(where, f"july.status '{status}' is not one of {FAUNA_STATUS}")
+    if mode not in FAUNA_PRESENCE:
+        rep.error(where, f"july.presence '{mode}' is not one of {FAUNA_PRESENCE}")
+    if abundance not in FAUNA_ABUNDANCE:
+        rep.error(where, f"july.abundance '{abundance}' is not one of {FAUNA_ABUNDANCE}")
+    if voice not in FAUNA_VOICE:
+        rep.error(where, f"july.vocalization '{voice}' is not one of {FAUNA_VOICE}")
+    if not isinstance(group, int) or isinstance(group, bool) or not 0 <= group <= 500:
+        rep.error(where, f"july.max_group must be an integer 0..500 (0 = nothing is placed), "
+                         f"got {group!r}")
+        group = 0
+    if not behaviour:
+        rep.error(where, "july.behaviour is the render instruction and may not be empty; write "
+                         "'Nothing is drawn.' when that is the answer")
+    if not appearance:
+        rep.error(where, "july.appearance is what a critic reads to decide whether the render "
+                         "matches the record; it may not be empty")
+
+    # --- present, absent, and withheld are three different claims -----------
+    if status in FAUNA_ABSENT_STATUS:
+        if mode not in FAUNA_ABSENT_MODES:
+            rep.error(where, f"july.status '{status}' says this animal is not in the scene, but "
+                             f"july.presence is '{mode}'. A negative finding that leaves a "
+                             f"visible animal on the record is worse than no finding")
+        if abundance != "absent":
+            rep.error(where, f"july.status '{status}' with abundance '{abundance}' — an animal "
+                             f"that is not here has no abundance")
+        if group:
+            rep.error(where, f"july.status '{status}' with max_group {group} — nothing may be "
+                             f"placed for a species recorded as absent")
+    elif status in FAUNA_WITHHELD_STATUS:
+        if mode not in FAUNA_WITHHELD_MODES:
+            rep.error(where, f"july.status 'excluded_by_scope' requires presence 'not_depicted' "
+                             f"— the animal IS here and is deliberately not shown, which is a "
+                             f"different claim from absence and must not be recorded as one")
+        if group:
+            rep.error(where, "an excluded_by_scope record may not place anything (max_group 0)")
+    else:
+        if mode in ("absent", "not_depicted"):
+            rep.error(where, f"july.presence '{mode}' with a present status '{status}' — say "
+                             f"which absence this is: absent_seasonal, absent_extirpated, "
+                             f"absent_anachronism, or excluded_by_scope")
+        if abundance == "absent":
+            rep.error(where, f"abundance 'absent' with a present status '{status}'")
+
+    # --- present, and not seen ---------------------------------------------
+    if mode in ("audible", "visible_and_audible") and voice in FAUNA_INAUDIBLE:
+        rep.error(where, f"july.presence '{mode}' claims this animal is HEARD, but its "
+                         f"vocalization is '{voice}'. A silent bird cannot be audible, and a "
+                         f"lek whose season is over is silent by definition")
+    if mode == "trace_only" and not (j.get("trace") or "").strip():
+        rep.error(where, "july.presence 'trace_only' requires july.trace to describe the sign "
+                         "that IS rendered — runways, burrows, shell scatter, a landed fish. "
+                         "Trace-only with no trace renders nothing and claims something")
+    if mode == "not_perceptible" and not (
+            (j.get("presence") or {}).get("note") if isinstance(j.get("presence"), dict) else None):
+        rep.error(where, "july.presence 'not_perceptible' says the animal is here and neither "
+                         "seen nor heard, which is the strongest claim in this vocabulary and "
+                         "needs a note on the presence block saying why")
+
+    # --- the July gate ------------------------------------------------------
+    if sp["class"] == "bird" and voice == "song_full":
+        note = (sp.get("note") or "")
+        if "July" not in note:
+            rep.error(where, "vocalization 'song_full' on a bird is the EXCEPTIONAL claim for "
+                             "1 July — the dawn chorus is a spring phenomenon and most "
+                             "passerines have stopped or sharply reduced singing by now. The "
+                             "record must argue it: put the reason, mentioning July, in the "
+                             "species note")
+    if binomial in JULY_QUIET_BIRDS and voice not in JULY_QUIET_BIRDS[binomial]:
+        rep.error(where, f"{binomial} is not in song on 1 July; this record claims '{voice}'. "
+                         f"Allowed: {sorted(JULY_QUIET_BIRDS[binomial])}. A July scene full of "
+                         f"birdsong is the fauna equivalent of seed heads on July big bluestem")
+    if binomial in JULY_STILL_SINGING and voice in ("silent", "display_over"):
+        rep.error(where, f"{binomial} IS still in song on 1 July — later than almost anything "
+                         f"else — and recording it silent over-corrects the July gate into a "
+                         f"different error")
+    if binomial in FAUNA_MOULTING_WATERFOWL and status not in FAUNA_ABSENT_STATUS:
+        if status != "flightless_moult":
+            rep.error(where, f"{binomial} is in simultaneous wing moult in late June and July "
+                             f"and is flightless or nearly so; july.status must be "
+                             f"'flightless_moult', not '{status}'. There are no migrating "
+                             f"flocks on 1 July and the adults are dull, skulking and not "
+                             f"flying")
+        if group > FAUNA_MOULT_MAX_GROUP:
+            rep.error(where, f"{binomial} with max_group {group} — a moulting July duck is a "
+                             f"hen with a brood, not a raft. Ceiling is "
+                             f"{FAUNA_MOULT_MAX_GROUP}")
+    if binomial == PASSENGER_PIGEON and status not in FAUNA_ABSENT_STATUS:
+        if status != "post_breeding_dispersal":
+            rep.error(where, "the passenger pigeon on 1 July is in small wandering "
+                             "post-breeding flocks, not nesting and not on passage; "
+                             "july.status must be 'post_breeding_dispersal'")
+        if group > PASSENGER_PIGEON_JULY_MAX:
+            rep.error(where, f"max_group {group} for the passenger pigeon. The Chicago record "
+                             f"of a sky full of them — 'the horizon in almost every direction "
+                             f"was black with them' — is dated 17 SEPTEMBER 1836, a fall "
+                             f"movement. On 1 July the number is tens, not millions; the "
+                             f"ceiling here is {PASSENGER_PIGEON_JULY_MAX}")
+        if not (sp.get("note") or "").strip():
+            rep.error(where, "the passenger pigeon needs its numbers argued on the record more "
+                             "than any other species in this dataset, because its real "
+                             "abundance sounds like exaggeration. State what the source "
+                             "actually says, and when it says it")
+    if binomial in FAUNA_RARE_ONLY and abundance not in FAUNA_RARE_ONLY[binomial]:
+        rep.error(where, f"{binomial} may only be recorded as "
+                         f"{' or '.join(FAUNA_RARE_ONLY[binomial])} in an 1835 scene — it was "
+                         f"rare and persecuted in the 19th century and became the abundant "
+                         f"Great Lakes gull only after protection in 1916")
+    if status not in FAUNA_ABSENT_STATUS and status not in FAUNA_WITHHELD_STATUS:
+        low = behaviour.lower()
+        for word in FAUNA_WRONG_SEASON_WORDS:
+            if word in low:
+                rep.error(where, f"july.behaviour names '{word}', which is a spring, autumn or "
+                                 f"winter phenomenon. 1 July is the annual minimum for all of "
+                                 f"them: no migration, silent leks, moulting waterfowl. Say it "
+                                 f"in the note if it needs saying; it may not be a render "
+                                 f"instruction")
+    if status == "doubtful" and sp.get("confidence") == "documented":
+        rep.error(where, "july.status 'doubtful' with confidence 'documented' — if the July "
+                         "presence is in doubt the record cannot also be documented. Record the "
+                         "doubt rather than resolving it by preference")
+
+    # --- provenance ---------------------------------------------------------
+    walk_attested(where, j, source_ids, rep, tally, "july")
+    conf = check_attested(where, "species", sp, source_ids, rep)
+    if conf:
+        tally[conf] = tally.get(conf, 0) + 1
+    if conf == "conjectural" and not (sp.get("note") or "").strip():
+        rep.error(where, "conjectural requires a note saying what the belief rests on and that "
+                         "it is not evidence. Unknown is recorded as unknown, never left blank")
+
+
+def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
+    """Schema, provenance and the July gate for data/fauna/**."""
+    index_path = FAUNA / "index.json"
+    if not index_path.exists():
+        rep.note("fauna: no data/fauna/index.json — the scene carries no animals")
+        return {}
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return {}
+
+    scene_date = index.get("scene_date") or ""
+    d = parse_date(scene_date)
+    if d is None:
+        rep.error("fauna index", "scene_date must be an ISO date")
+    elif d.month != 7:
+        rep.error("fauna index", f"scene_date {scene_date} is not in July, but every zone "
+                                 f"record carries a 'july' block stating what each animal is "
+                                 f"doing on the scene date. Move the seasonal states, do not "
+                                 f"move the month")
+
+    vocab = index.get("vocabulary") or {}
+    for key in ("classes", "activity", "active_periods", "july_status", "presence_modes",
+                "abundance", "vocalization", "habitats"):
+        if not vocab.get(key):
+            rep.error("fauna index", f"vocabulary.{key} is missing — a renderer reads this "
+                                     f"block to know the closed sets it must implement")
+
+    # The fauna zones borrow their geometry from the flora zones rather than
+    # restating it, so the two datasets cannot drift into describing different
+    # ground. That only holds if the reference is checked.
+    flora_index = load_json(FLORA / "index.json", rep, required=False)
+    flora_zones = {z.get("id"): z for z in (flora_index or {}).get("zones", [])} \
+        if isinstance(flora_index, dict) else {}
+
+    zones = {}
+    for entry in index.get("zones", []):
+        zid, zfile = entry.get("id"), entry.get("file")
+        path = FAUNA / (zfile or "")
+        if not zfile or not path.exists():
+            rep.error("fauna index", f"zone '{zid}' names {zfile}, which does not exist — a "
+                                     f"static host cannot be globbed, so a manifest entry "
+                                     f"without a file is a 404 on the deployed site")
+            continue
+        z = load_json(path, rep)
+        if not isinstance(z, dict):
+            continue
+        where = f"fauna zone {zid}"
+        if z.get("id") != zid or path.stem != zid:
+            rep.error(where, "id must match both the manifest entry and the filename stem")
+        for key in ("zone", "name", "habitat", "dossier", "scene_date", "reads_as",
+                    "in_modelled_extent", "extent_from", "soundscape", "species",
+                    "confidence", "note"):
+            if key not in z:
+                rep.error(where, f"missing required key '{key}'")
+        if z.get("scene_date") != scene_date:
+            rep.error(where, f"scene_date {z.get('scene_date')} disagrees with the manifest's "
+                             f"{scene_date}; every july block is stated FOR a date")
+        if z.get("habitat") not in (vocab.get("habitats") or []):
+            rep.error(where, f"habitat '{z.get('habitat')}' is not declared in the manifest "
+                             f"vocabulary")
+
+        # denormalised copies, checked the way the flora manifest's are
+        for key, actual in (("habitat", z.get("habitat")),
+                            ("in_modelled_extent", z.get("in_modelled_extent")),
+                            ("extent_from", z.get("extent_from"))):
+            if entry.get(key) != actual:
+                rep.error("fauna index", f"zone '{zid}' {key} in the manifest "
+                                         f"({entry.get(key)!r}) disagrees with the zone record "
+                                         f"({actual!r}); the zone record is authoritative")
+        if entry.get("species_count") != len(z.get("species") or []):
+            rep.error("fauna index", f"zone '{zid}' species_count {entry.get('species_count')!r} "
+                                     f"disagrees with the {len(z.get('species') or [])} species "
+                                     f"in the record")
+
+        ext = z.get("extent_from") or {}
+        fz = ext.get("flora_zone")
+        if fz is None:
+            if ext.get("kind") != "water":
+                rep.error(where, "extent_from must name a flora_zone whose extent this zone "
+                                 "shares, or declare kind 'water'. A fauna zone does not "
+                                 "restate a polygon: two datasets describing the same ground in "
+                                 "two places drift, and then nobody knows which is the town")
+        elif flora_zones and fz not in flora_zones:
+            rep.error(where, f"extent_from.flora_zone '{fz}' does not resolve in "
+                             f"data/flora/index.json")
+        elif fz in flora_zones:
+            plantable = flora_zones[fz].get("plantable_in_scene")
+            if z.get("in_modelled_extent") != plantable:
+                rep.error(where, f"in_modelled_extent is {z.get('in_modelled_extent')!r} but "
+                                 f"flora zone '{fz}', whose extent this zone shares, is "
+                                 f"plantable_in_scene {plantable!r}. The same ground cannot be "
+                                 f"inside the modelled box for one dataset and outside it for "
+                                 f"the other")
+
+        # --- the soundscape gate -------------------------------------------
+        snd = z.get("soundscape")
+        if not isinstance(snd, dict):
+            rep.error(where, "soundscape is required: a July zone has to state what it SOUNDS "
+                             "like, because most of its animals are audible and not visible")
+        else:
+            dc = snd.get("dawn_chorus")
+            if dc not in FAUNA_DAWN_CHORUS:
+                rep.error(where, f"soundscape.dawn_chorus '{dc}' is not one of "
+                                 f"{FAUNA_DAWN_CHORUS}. There is no third option: the full dawn "
+                                 f"chorus is a spring phenomenon and by 1 July most breeding "
+                                 f"passerines have stopped or sharply reduced singing. A zone "
+                                 f"cannot declare one")
+            if not (snd.get("note") or "").strip():
+                rep.error(where, "soundscape needs a note saying what July does to this zone's "
+                                 "sound — the reduction is the finding")
+            heroes = snd.get("hero") or []
+            ids = {s.get("id") for s in z.get("species") or []}
+            for h in heroes:
+                if h not in ids:
+                    rep.error(where, f"soundscape.hero names '{h}', which is not a species in "
+                                     f"this zone")
+
+        seen: set = set()
+        n_birds = n_full = 0
+        for sp in z.get("species") or []:
+            if sp.get("id") in seen:
+                rep.error(where, f"duplicate species id '{sp.get('id')}' in this zone")
+            seen.add(sp.get("id"))
+            check_fauna_species(zid, sp, source_ids, vocab, rep, tally)
+            if sp.get("class") == "bird":
+                n_birds += 1
+                if (sp.get("july") or {}).get("vocalization") == "song_full":
+                    n_full += 1
+        if not seen:
+            rep.error(where, "a zone with no species is not a fauna record")
+        if n_birds and n_full * 2 > n_birds:
+            rep.warn(where, f"{n_full} of {n_birds} birds in this zone are in full song on "
+                            f"1 July. That is most of them, and by July most breeding birds "
+                            f"have stopped — check each one against its own July biology "
+                            f"rather than against the habitat")
+        check_attested(where, "zone", z, source_ids, rep)
+        zones[zid] = z
+
+    # A species is one animal wherever it appears; a binomial that changes
+    # between zones means two records that look like one to any renderer that
+    # keys on the id.
+    binomials: dict = {}
+    for zid, z in zones.items():
+        for sp in z.get("species") or []:
+            sid, b = sp.get("id"), sp.get("binomial")
+            if sid in binomials and binomials[sid][0] != b:
+                rep.error(f"fauna zone {zid}/{sid}",
+                          f"binomial '{b}' disagrees with '{binomials[sid][0]}' for the same "
+                          f"species id in {binomials[sid][1]}")
+            binomials.setdefault(sid, (b, zid))
+
+    total = sum(len(z.get("species") or []) for z in zones.values())
+    if total:
+        heard = sum(1 for z in zones.values() for s in z.get("species") or []
+                    if (s.get("july") or {}).get("presence", {}).get("value")
+                    if isinstance((s.get("july") or {}).get("presence"), dict))
+        unseen = sum(1 for z in zones.values() for s in z.get("species") or []
+                     if _fauna_val(s.get("july") or {}, "presence")
+                     in ("audible", "trace_only", "not_perceptible"))
+        gone = sum(1 for z in zones.values() for s in z.get("species") or []
+                   if str(_fauna_val(s.get("july") or {}, "status")).startswith("absent")
+                   or _fauna_val(s.get("july") or {}, "status") == "excluded_by_scope")
+        rep.note(f"fauna: {len(zones)} zone(s), {total} species record(s); {unseen} present and "
+                 f"NOT SEEN (audible, trace or imperceptible), {gone} recorded as absent or "
+                 f"withheld — liberty L2 in the data (of {heard} with an attested presence)")
+    return zones
+
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -1537,6 +2020,10 @@ def main() -> int:
 
     # the vegetation records, and the July phenology rules they have to obey
     check_flora(source_ids, field, rep, tally)
+
+    # the animal records, and the July gate they have to obey — the same
+    # argument as the flora phenology, one trophic level up
+    check_fauna(source_ids, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

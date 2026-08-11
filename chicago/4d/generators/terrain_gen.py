@@ -227,10 +227,15 @@ def build_field(spec, feats, origin):
         in_water |= body
     # The traced polygons stop at the edge of the traced window, which is not a
     # shore. Beyond it the sheet is still lake, and calling it land would be the
-    # largest false claim available here.
+    # largest false claim available here. The rule is stated per ROW rather than
+    # as a hand-drawn line, so it cannot drift away from the trace it extends:
+    # east of the easternmost traced water in a row there is nothing else.
     lake_rule = spec.get("open_lake")
     if lake_rule:
-        in_water |= point_in_ring(E, N, [tuple(p) for p in lake_rule["polygon"]])
+        guard = float(lake_rule["east_of_m"])
+        idx = np.arange(E.shape[1])[None, :]
+        east = np.where(in_water & (E > guard), idx, -1).max(axis=1)
+        in_water |= (idx > east[:, None]) & (east >= 0)[:, None] & (E > guard)
     in_water &= ~islands
 
     # ---- the waterline ----------------------------------------------------

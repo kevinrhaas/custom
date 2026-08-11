@@ -800,66 +800,6 @@ likely thing to exist.
 `dearborn_street_drawbridge.draw_1834.ground_contact`.
 **Recorded:** 2026-08-10.
 
-### L40 — Two thirds of the town stands on ground that has not been built
-**Decision:** twenty of the thirty-three structures now in the dataset stand **outside the
-modelled heightfield** and do not reach the terrain beneath them. Their records are correct and
-their positions are derived through the same fitted transform as everything else; there is
-simply no ground there yet.
-**Why:** the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the
-forks, built when the forks was the whole scene. The town is not that shape. South Water Street
-runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the
-Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at
-**+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the
-town existed — sits east of the modelled world, along with the bridge that crossed to it.
-This was not discovered by inspection. It surfaced the moment the project stopped building only
-the best-evidenced structures and started building the town: the forks quadrant was sufficient
-for eight buildings and is nowhere near sufficient for thirty-three.
-**Consequence:** those twenty buildings currently float. A visitor who walks east finds the
-ground end and the town continue. **This is worse than the buildings being absent**, because an
-absent building makes no claim while a floating one makes a false one, and the confidence view
-cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is
-recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate
-intermediate state: the records were built first on the argument that evidence is harder to come
-by than geometry, and the geometry is now the thing holding.
-**How to resolve:** ROADMAP § S2e — extend the heightfield east to about **E +1700**, a
-~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward
-channel already traced in `data/traces/vectors/wright_1834_east.json` and
-`shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
-rather than being edited, and any structure still floating afterwards — the North Branch
-industry sits well north of even the extended box — gets an entry of its own naming it.
-**Covers:** `bates_auction_room.frame_1834.ground_contact`,
-`carpenter_south_water_store.frame_1833.ground_contact`,
-`chicago_american_office.frame_1835.ground_contact`,
-`chicago_democrat_office.frame_1833.ground_contact`,
-`dole_warehouse_south.frame_1832.ground_contact`,
-`frederick_thomas_shop.frame_1835.ground_contact`,
-`h_jones_store.frame_1833.ground_contact`,
-`harmon_loomis_store.frame_1833.ground_contact`,
-`jb_beaubien_homestead.factory_1817.ground_contact`,
-`madore_beaubien_house.log_1831.ground_contact`,
-`old_bank_building.frame_1834.ground_contact`,
-`peck_store.frame_1833.ground_contact`,
-`pruyne_kimball_drugstore.frame_1830s.ground_contact`,
-`h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`,
-`h_jones_store.frame_1833.form.stories`,
-`jh_kinzie_forwarding_store.frame_1830s.footprint`,
-`jh_kinzie_forwarding_store.frame_1830s.position`,
-`jh_kinzie_forwarding_store.frame_1830s.form.stories`,
-`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`,
-`cobweb_castle.log_1820.ground_contact`,
-`blacksmith_shop_state_st.log_1823.ground_contact`,
-`north_side_school_1833.log_1833.ground_contact`,
-`steamboat_hotel.frame_1835.ground_contact`,
-`council_house.log_1834.ground_contact`,
-`first_presbyterian_church.frame_1834.ground_contact`,
-`st_marys_church.frame_1833.ground_contact`,
-`log_jail.log_1833.ground_contact`,
-`estray_pen.pen_1833.ground_contact`,
-`cook_county_courthouse_1835.wood_1835.ground_contact`,
-`chappel_infant_school.log_1833.ground_contact`,
-`watkins_school_house.house_1833.ground_contact`.
-**Recorded:** 2026-08-10.
-
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
 **Decision:** `thomas_church_store` stands on Lake Street with its **position** and its
 **footprint** tagged `conjectural`, and it is declared `outside_modelled_ground`.
@@ -886,7 +826,10 @@ Church's address. A date is the more urgent half — **if the store is 1835 work
 stood on 1835-07-01, and the record then belongs in `data/exclusions.json` rather than in the
 scene.**
 **Covers:** `thomas_church_store.frame_1834.footprint`,
-`thomas_church_store.frame_1834.position`, `thomas_church_store.frame_1834.ground_contact`.
+`thomas_church_store.frame_1834.position`.
+**Evidence since, 2026-08-11:** the ground_contact token is withdrawn. This entry said the
+store stood beyond the modelled box on L17's radial skirt; S2e has since built the ground
+under it. The invented block, side of street and point along it are untouched.
 **Recorded:** 2026-08-11.
 
 ### L47 — Fort Dearborn's stockade: the plan is evidence and the wall is not
@@ -1051,45 +994,48 @@ than a structure one; the species are already named by the source.
 `fort_dearborn_garrison_garden.fence_1816.form.planting`.
 **Recorded:** 2026-08-11.
 
-### L46 — The fort stands 832 m beyond the modelled ground, and nothing could see it
-**Decision:** all twelve Fort Dearborn structures, the garrison garden and the 1832 lighthouse
-stand outside the `e1834_harbor_cut` heightfield and are declared `outside_modelled_ground`.
-**Why:** the same cause as L40 — the terrain box is a 640 m square round the forks and the town
-is not that shape — but at four times the distance and with an extra failure attached to it.
-The fort is at local **E +1152**, and the modelled ground stops at **E +320**.
-**The extra failure is the interesting half.** `tools/heightfield.py` clamps outside the box, so
-a structure placed 832 m past the edge sampled the edge for its base AND for every point of its
-outline, the two agreed to the millimetre, and the ground-contact gate — the gate this project
-wrote specifically to catch a building standing on nothing — reported a **perfect landing**.
-Every structure L40 covers was caught because the clamped edge varies along a wall and produced a
+### L46 — The fort stands on a bank the model has no cut or fill for
+**Decision:** the **stockade** and the **commandant's quarters** stand clear of the terrain on
+their north sides — 1.40 m and 0.46 m at the worst point — and are declared
+`approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in
+the complex.
+**Why:** the fort sits on a plateau at about 3.33 m that falls away to the river between local
+N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall
+of the stockade and the north face of the brick range cross the top of that fall, and the
+archetypes build a level base at one elevation. The real work plainly had something under it —
+a picket line is set in a trench and a brick range needs footings — and no source reached
+describes either.
+**Consequence:** walk round to the river side of the fort and the pickets stand up out of the
+slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a
+bank, and a model with no earthworks in it.
+**How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
+models the platform the fort stood on, which is a terrain parcel rather than a structure one.
+**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`,
+`fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
+**Recorded:** 2026-08-11.
+**Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
+entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
+could see it"* and covered the **ground contact of all fourteen** structures in this complex,
+because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152.
+**S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 —
+so twelve of the fourteen simply land, their declarations are gone from the records, and the two
+that remain fail for a completely different and much more interesting reason, which is what the
+entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and
+the **root house**, whose positions were always `conjectural`, had been put where no ground
+existed to contradict them and turned out to be standing in the channel; both moved onto the
+bank top and both notes say so.
+**The half of the original entry that is NOT superseded, because it is about the machinery and
+not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832
+m past the edge it sampled the clamped edge for its base AND for every point of its outline, the
+two agreed to the millimetre, and the ground-contact gate — the gate this project wrote
+specifically to catch a building standing on nothing — reported a **perfect landing**. Every
+structure L40 covers was caught only because the clamped edge varies along a wall and produced a
 gap; the fort was far enough out and square enough on to produce none. The gate could see
 buildings that were nearly right and was blind to the one that was completely wrong.
 `Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a
-declaration matches the measurement all exist because of this parcel, and turning them on
-immediately found two more structures in other parcels that nothing had flagged.
-**Consequence:** the fort floats. From the air a visitor sees the modelled ground end at the edge
-of the town and, 832 m further east over nothing, a fort, a lighthouse and an acre and a half of
-fenced garden. That is worse-looking than L40's floating shops and it is the same statement:
-the records were built before the ground because evidence is harder to come by than geometry.
-**How to resolve:** ROADMAP § S2e parcel (b), the heightfield east to about E +1700. The shore,
-the 1834 cut, the sand bar and the old southward channel are all traced and committed; the
-ground is the only missing piece, and this complex is the largest thing waiting on it. **When it
-lands this entry moves to Resolved** rather than being edited.
-**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`,
-`fort_dearborn_commandants_quarters.brick_1816.ground_contact`,
-`fort_dearborn_officers_quarters.log_1816.ground_contact`,
-`fort_dearborn_barracks.log_1816.ground_contact`,
-`fort_dearborn_sutlers_store.log_1816.ground_contact`,
-`fort_dearborn_guard_house.log_1816.ground_contact`,
-`fort_dearborn_store_house.log_1816.ground_contact`,
-`fort_dearborn_magazine.brick_1816.ground_contact`,
-`fort_dearborn_blockhouse.log_1816.ground_contact`,
-`fort_dearborn_artillery_house.log_1816.ground_contact`,
-`fort_dearborn_parade.parade_1816.ground_contact`,
-`fort_dearborn_root_house.cellar_1816.ground_contact`,
-`fort_dearborn_garrison_garden.fence_1816.ground_contact`,
-`chicago_lighthouse_1832.tower_1832.ground_contact`.
-**Recorded:** 2026-08-11.
+declaration matches the measurement were written for that and stay whether or not any structure
+currently needs them — and turning them on immediately flagged two structures in other parcels
+that nothing had caught. See `docs/STATUS.md` § "Known weaknesses" 0a.
 
 ### L41 — The harbour piers are a measured line, an interpolated length and an invented width
 **Decision:** `north_pier` and `south_pier` are drawn as timber crib lines 900 ft and 400 ft
@@ -1682,7 +1628,11 @@ the slough's own.
 **How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
 Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
 entry moves to Resolved.
-**Covers:** `brickyard_north_side.yard_1833.ground_contact`, `slough_log_bridge.log_1833.ground_contact`.
+**Covers:** `slough_log_bridge.log_1833.ground_contact`.
+**Evidence since, 2026-08-11:** the brickyard's token is withdrawn — S2e extended the
+heightfield east and Blodgett's yard now lands on modelled ground. The slough crossing still
+stands clear of it, but for the different reason recorded on that record: the South Division
+slough it crosses is still not cut into this terrain epoch, so it spans nothing.
 **Recorded:** 2026-08-11.
 
 ---
@@ -1693,6 +1643,85 @@ Entries here were true when they were written and are kept verbatim, with a **Re
 line saying what settled them. The gate exempts this section from the check that a claimed
 value is still an invention, which is what lets an append-only document survive its own data
 being corrected.
+
+
+### L40 — Two thirds of the town stands on ground that has not been built
+**Decision:** twenty of the thirty-three structures now in the dataset stand **outside the
+modelled heightfield** and do not reach the terrain beneath them. Their records are correct and
+their positions are derived through the same fitted transform as everything else; there is
+simply no ground there yet.
+**Why:** the heightfield covers **E −320 … +320, N −320 … +320** — a 640 m square around the
+forks, built when the forks was the whole scene. The town is not that shape. South Water Street
+runs from about **E +347** (`h_jones_store`) to **E +745** (`frederick_thomas_shop`); the
+Dearborn Street bridge is at **+699**; Cobweb Castle, the north-bank agency house, is at
+**+814**; the Beaubien homestead is at **+1090**. The entire business district — the reason the
+town existed — sits east of the modelled world, along with the bridge that crossed to it.
+This was not discovered by inspection. It surfaced the moment the project stopped building only
+the best-evidenced structures and started building the town: the forks quadrant was sufficient
+for eight buildings and is nowhere near sufficient for thirty-three.
+**Consequence:** those twenty buildings currently float. A visitor who walks east finds the
+ground end and the town continue. **This is worse than the buildings being absent**, because an
+absent building makes no claim while a floating one makes a false one, and the confidence view
+cannot mark it — the tint grades what a building WAS, not whether it stands anywhere. It is
+recorded here as a liberty rather than left as a bug because it is a known, measured, deliberate
+intermediate state: the records were built first on the argument that evidence is harder to come
+by than geometry, and the geometry is now the thing holding.
+**How to resolve:** ROADMAP § S2e — extend the heightfield east to about **E +1700**, a
+~2.0 km × 0.7 km field, using the shore, the 1834 cut, the sand bar and the old southward
+channel already traced in `data/traces/vectors/wright_1834_east.json` and
+`shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
+rather than being edited, and any structure still floating afterwards — the North Branch
+industry sits well north of even the extended box — gets an entry of its own naming it.
+**Covers:** `bates_auction_room.frame_1834.ground_contact`,
+`carpenter_south_water_store.frame_1833.ground_contact`,
+`chicago_american_office.frame_1835.ground_contact`,
+`chicago_democrat_office.frame_1833.ground_contact`,
+`dole_warehouse_south.frame_1832.ground_contact`,
+`frederick_thomas_shop.frame_1835.ground_contact`,
+`h_jones_store.frame_1833.ground_contact`,
+`harmon_loomis_store.frame_1833.ground_contact`,
+`jb_beaubien_homestead.factory_1817.ground_contact`,
+`madore_beaubien_house.log_1831.ground_contact`,
+`old_bank_building.frame_1834.ground_contact`,
+`peck_store.frame_1833.ground_contact`,
+`pruyne_kimball_drugstore.frame_1830s.ground_contact`,
+`h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`,
+`h_jones_store.frame_1833.form.stories`,
+`jh_kinzie_forwarding_store.frame_1830s.footprint`,
+`jh_kinzie_forwarding_store.frame_1830s.position`,
+`jh_kinzie_forwarding_store.frame_1830s.form.stories`,
+`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`,
+`cobweb_castle.log_1820.ground_contact`,
+`blacksmith_shop_state_st.log_1823.ground_contact`,
+`north_side_school_1833.log_1833.ground_contact`,
+`steamboat_hotel.frame_1835.ground_contact`,
+`council_house.log_1834.ground_contact`,
+`first_presbyterian_church.frame_1834.ground_contact`,
+`st_marys_church.frame_1833.ground_contact`,
+`log_jail.log_1833.ground_contact`,
+`estray_pen.pen_1833.ground_contact`,
+`cook_county_courthouse_1835.wood_1835.ground_contact`,
+`chappel_infant_school.log_1833.ground_contact`,
+`watkins_school_house.house_1833.ground_contact`.
+**Recorded:** 2026-08-10.
+
+**Resolved:** 2026-08-11. The ground was built. ROADMAP § S2e extended the heightfield east from a
+640 m square to **E −320 … +1700, N −400 … +400** — 809 × 321 samples at 2.5 m — and twenty-seven of
+the structures this entry covers now land on real terrain. The declarations came off those records in
+the same pass that moved this entry here.
+
+Three things are worth keeping from it rather than deleting with it. **The finding was only visible
+because the town got built**: eight well-evidenced buildings at the forks all sat comfortably inside
+the old box, and it took building the business district to discover the business district had no
+ground under it. **The gate could not see it either** — `tools/heightfield.py` clamped outside the
+box, so a structure 832 m past the edge sampled the clamped edge for its base and for every contact
+point, agreed to the millimetre, and was reported as landing perfectly. Fort Dearborn is what exposed
+that, and the fix (`Heightfield.covers()`, plus a two-way check that a declaration matches the
+measurement) immediately flagged two more structures nothing had caught. And **not everything came
+back**: the Clybourne records still stand about three kilometres from their attested ground up the
+North Branch, and the stockade's north wall and the commandant's quarters now cross the top of the
+river bank because no cut, fill, revetment or foundation is modelled anywhere in this project. Those
+are L64 and L46's business, not this entry's.
 
 ### L13 — Composite log-and-frame buildings are extruded to a single wall height
 **Decision:** `miller_house` and `wolf_point_tavern` are each modelled at one wall height,

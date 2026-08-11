@@ -87,11 +87,7 @@
           "note": "Not attested. One is the minimum for a printing office worked through Chicago winters — ink stiffens and paper has to be damped, so a press room is heated. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
-      "change_note": "The office of the Chicago American, established by T. O. Davis on 8 June 1835 — twenty-three days old on the scene date. A weekly on a sheet 15.5 by 21.5 inches, six columns, out on Saturday mornings, printed on South Water Street near the south landing of the Dearborn Street drawbridge, three blocks east of the Chicago Democrat's twenty-month-old office at Clark.",
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "OUTSIDE THE MODELLED TERRAIN BOX ALTOGETHER — not standing above ground, but standing where no ground has been built. This phase sits at local ENU E +711.3 m, N -6.6 m from the datum origin, and the committed e1834_harbor_cut heightfield covers only 640 m square centred on the forks (257 samples at 2.5 m, local E and N from -320 to +320). No sample of that field lies under any part of this footprint, so the question the ground-contact gate asks — does the building meet the ground — HAS NO ANSWER HERE, and the renderer stands it on the radial skirt that continues the terrain past the modelled box (docs/LIBERTIES.md L17), which is a surface with no evidence behind it. WHAT IS MISSING IS TERRAIN, NOT STRUCTURE. The position is derived exactly as every other position in this parcel is, and nothing in the record is wrong; the model simply stops 320 m from the datum and the business street begins beyond it. WHAT WOULD SETTLE IT: regenerating the terrain epoch over a box large enough to hold the platted town — roughly 1,150 m east of the datum origin to reach the Beaubien homestead at Michigan Avenue, against the present 320 — which is ordinary terrain work on maps this project has already georeferenced, not new research. When that lands, drop this declaration and move the liberty claiming it to the Resolved section of docs/LIBERTIES.md."
-      }
+      "change_note": "The office of the Chicago American, established by T. O. Davis on 8 June 1835 — twenty-three days old on the scene date. A weekly on a sheet 15.5 by 21.5 inches, six columns, out on Saturday mornings, printed on South Water Street near the south landing of the Dearborn Street drawbridge, three blocks east of the Chicago Democrat's twenty-month-old office at Clark."
     }
   ],
   "function": {

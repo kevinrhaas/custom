@@ -94,10 +94,6 @@
           "confidence": "inferred",
           "note": "Not attested. A room occupied by a guard through the night in winter has a stack. The COUNT is the inference."
         }
-      },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "THE FORT STANDS 832 m EAST OF THE MODELLED GROUND. The e1834_harbor_cut terrain box runs to local E +320 and this structure sits beyond E +1100, so there is no terrain under any part of its outline and the question whether it lands has no answer. tools/heightfield.py clamps at the box edge, so before 2026-08-11 this passed the ground-contact gate silently; Heightfield.covers() and this state exist because of it. docs/ROADMAP.md S2e parcel (b) - the heightfield extension east - is what would settle it."
       }
     }
   ],

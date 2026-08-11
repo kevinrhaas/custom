@@ -20,12 +20,12 @@
         "note": "THE SECOND TOWER, AND THE ONLY ONE STANDING ON THE SCENE DATE. Andreas: 'Another tower, forty feet high, was begun and completed by Mr. Jackson in 1832.' No month is given by any source reached, so the range opens at the last day of 1832 rather than at an invented date inside it - which is deliberately conservative and still leaves the tower two and a half years old on 1835-07-01. The end of the range is an upper bound rather than a terminus: the Government put a new light at the end of the North Pier and the old one was eventually given away with its ground by an act of 1 August 1854, with Mark Beaubien the last keeper. THE FIRST TOWER IS NOT THIS ONE and is excluded in data/exclusions.json: it fell on 30 October 1831, unfinished, and everything usually quoted about its fabric - three-foot walls, fifty feet of height - is about the tower that collapsed."
       },
       "position": {
-        "utm_e": 448161.9,
-        "utm_n": 4637643.0,
+        "utm_e": 448177.9,
+        "utm_n": 4637625.0,
         "rotation_deg": 0.0,
         "symbolic_location": "On the Fort Dearborn Reservation at the mouth of the river, close north-west of the fort, on the river bank.",
         "confidence": "conjectural",
-        "note": "ADJACENCY IS DOCUMENTED AND THE OFFSET IS INVENTED. Andreas puts the two together at the bend: 'Fort Dearborn and the light-house are placed at the angle thus formed'. Wentworth, disposing of the reservation in 1839, says the land left over 'upon which the old light-house was located' was lots near the Rush Street bridge, which is at the river north of the fort, and Fergus's 1850 note has River Street running between the block-house and the light-keeper's. All of that says close, and north or west, and near the water. This point is about 65 m north-west of the fort's centre on the river bank; the distance and the bearing are ours, and the uncertainty is nearer 60 m than the 20 m the rest of the complex carries. Rotation is zero and means nothing: a round tower has no facade."
+        "note": "ADJACENCY IS DOCUMENTED AND THE OFFSET IS INVENTED. Andreas puts the two together at the bend: 'Fort Dearborn and the light-house are placed at the angle thus formed'. Wentworth, disposing of the reservation in 1839, says the land left over 'upon which the old light-house was located' was lots near the Rush Street bridge, which is at the river north of the fort, and Fergus's 1850 note has River Street running between the block-house and the light-keeper's. All of that says close, and north or west, and near the water. This point is about 65 m north-west of the fort's centre on the river bank; the distance and the bearing are ours, and the uncertainty is nearer 60 m than the 20 m the rest of the complex carries. Rotation is zero and means nothing: a round tower has no facade. MOVED 2026-08-11, AND THE REASON IS THE GROUND RATHER THAN THE SOURCES. This point was first set about 65 m north-west of the fort centre while the terrain stopped 832 m short of here and nothing could check it. S2e parcel (b) landed the heightfield the same day, and that first point turned out to be below the top of the river bank - in the water. The tower is now at local E +1108, N +232, about 48 m west-north-west of the fort centre on the bank top, which satisfies every source statement as well as the first point did and satisfies the modelled ground too. The offset is still invention; it is now invention constrained by a surface."
       },
       "footprint": {
         "polygon": [
@@ -95,10 +95,6 @@
           "confidence": "conjectural",
           "note": "Unattested. Bare masonry rather than whitewash, which is the commoner finish for an early Great Lakes tower - but nothing says which this was, and a whitewashed tower would read very differently across the river."
         }
-      },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "STANDS BEYOND THE MODELLED GROUND. The e1834_harbor_cut terrain box runs to local E +320 and this structure sits east of E +1000, so there is no terrain under any part of its outline and the question whether it lands has no answer. tools/heightfield.py clamps at the box edge, which is why nothing caught this before 2026-08-11; Heightfield.covers() and this state exist because of the Fort Dearborn parcel. docs/ROADMAP.md S2e parcel (b) - the heightfield extension east - is what would settle it."
       }
     }
   ],

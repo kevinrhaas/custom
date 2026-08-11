@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 52,
+  "count": 67,
   "liberties": [
     {
       "id": "L1",
@@ -1498,16 +1498,21 @@
         "bates_auction_room",
         "blacksmith_shop_state_st",
         "carpenter_south_water_store",
+        "chappel_infant_school",
         "chicago_american_office",
         "chicago_democrat_office",
         "cobweb_castle",
+        "cook_county_courthouse_1835",
         "council_house",
         "dole_warehouse_south",
+        "estray_pen",
+        "first_presbyterian_church",
         "frederick_thomas_shop",
         "h_jones_store",
         "harmon_loomis_store",
         "jb_beaubien_homestead",
         "jh_kinzie_forwarding_store",
+        "log_jail",
         "madore_beaubien_house",
         "north_pier",
         "north_side_school_1833",
@@ -1515,7 +1520,9 @@
         "peck_store",
         "pruyne_kimball_drugstore",
         "south_pier",
-        "steamboat_hotel"
+        "st_marys_church",
+        "steamboat_hotel",
+        "watkins_school_house"
       ],
       "covers": [
         {
@@ -1534,6 +1541,11 @@
           "aspect": "ground_contact"
         },
         {
+          "structure": "chappel_infant_school",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        },
+        {
           "structure": "chicago_american_office",
           "phase": "frame_1835",
           "aspect": "ground_contact"
@@ -1549,6 +1561,11 @@
           "aspect": "ground_contact"
         },
         {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "ground_contact"
+        },
+        {
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "ground_contact"
@@ -1556,6 +1573,16 @@
         {
           "structure": "dole_warehouse_south",
           "phase": "frame_1832",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
@@ -1609,6 +1636,11 @@
           "aspect": "position"
         },
         {
+          "structure": "log_jail",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        },
+        {
           "structure": "madore_beaubien_house",
           "phase": "log_1831",
           "aspect": "ground_contact"
@@ -1644,8 +1676,18 @@
           "aspect": "ground_contact"
         },
         {
+          "structure": "st_marys_church",
+          "phase": "frame_1833",
+          "aspect": "ground_contact"
+        },
+        {
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
           "aspect": "ground_contact"
         }
       ],
@@ -1670,7 +1712,7 @@
         },
         {
           "label": "Covers",
-          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`."
+          "text": "`bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`."
         },
         {
           "label": "Recorded",
@@ -2130,122 +2172,54 @@
     },
     {
       "id": "L46",
-      "title": "The fort stands 832 m beyond the modelled ground, and nothing could see it",
+      "title": "The fort stands on a bank the model has no cut or fill for",
       "section": "per_subject",
       "subjects": [
-        "chicago_lighthouse_1832",
-        "fort_dearborn_artillery_house",
-        "fort_dearborn_barracks",
-        "fort_dearborn_blockhouse",
         "fort_dearborn_commandants_quarters",
-        "fort_dearborn_garrison_garden",
-        "fort_dearborn_guard_house",
-        "fort_dearborn_magazine",
-        "fort_dearborn_officers_quarters",
-        "fort_dearborn_palisade",
-        "fort_dearborn_parade",
-        "fort_dearborn_root_house",
-        "fort_dearborn_store_house",
-        "fort_dearborn_sutlers_store"
+        "fort_dearborn_palisade"
       ],
       "covers": [
-        {
-          "structure": "chicago_lighthouse_1832",
-          "phase": "tower_1832",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_artillery_house",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_barracks",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_blockhouse",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
         {
           "structure": "fort_dearborn_commandants_quarters",
           "phase": "brick_1816",
           "aspect": "ground_contact"
         },
         {
-          "structure": "fort_dearborn_garrison_garden",
-          "phase": "fence_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_guard_house",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_magazine",
-          "phase": "brick_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_officers_quarters",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
-        {
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_parade",
-          "phase": "parade_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_root_house",
-          "phase": "cellar_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_store_house",
-          "phase": "log_1816",
-          "aspect": "ground_contact"
-        },
-        {
-          "structure": "fort_dearborn_sutlers_store",
-          "phase": "log_1816",
           "aspect": "ground_contact"
         }
       ],
       "recorded": "2026-08-11",
-      "revised": null,
+      "revised": "2026-08-11",
       "fields": [
         {
           "label": "Decision",
-          "text": "all twelve Fort Dearborn structures, the garrison garden and the 1832 lighthouse stand outside the `e1834_harbor_cut` heightfield and are declared `outside_modelled_ground`."
+          "text": "the **stockade** and the **commandant's quarters** stand clear of the terrain on their north sides — 1.40 m and 0.46 m at the worst point — and are declared `approach_not_modelled`. No cut, fill, revetment, platform or foundation is modelled anywhere in the complex."
         },
         {
           "label": "Why",
-          "text": "the same cause as L40 — the terrain box is a 640 m square round the forks and the town is not that shape — but at four times the distance and with an extra failure attached to it. The fort is at local **E +1152**, and the modelled ground stops at **E +320**. **The extra failure is the interesting half.** `tools/heightfield.py` clamps outside the box, so a structure placed 832 m past the edge sampled the edge for its base AND for every point of its outline, the two agreed to the millimetre, and the ground-contact gate — the gate this project wrote specifically to catch a building standing on nothing — reported a **perfect landing**. Every structure L40 covers was caught because the clamped edge varies along a wall and produced a gap; the fort was far enough out and square enough on to produce none. The gate could see buildings that were nearly right and was blind to the one that was completely wrong. `Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a declaration matches the measurement all exist because of this parcel, and turning them on immediately found two more structures in other parcels that nothing had flagged."
+          "text": "the fort sits on a plateau at about 3.33 m that falls away to the river between local N +245 and N +270, which is what a fort on a river bank inside a bend should do. The north wall of the stockade and the north face of the brick range cross the top of that fall, and the archetypes build a level base at one elevation. The real work plainly had something under it — a picket line is set in a trench and a brick range needs footings — and no source reached describes either."
         },
         {
           "label": "Consequence",
-          "text": "the fort floats. From the air a visitor sees the modelled ground end at the edge of the town and, 832 m further east over nothing, a fort, a lighthouse and an acre and a half of fenced garden. That is worse-looking than L40's floating shops and it is the same statement: the records were built before the ground because evidence is harder to come by than geometry."
+          "text": "walk round to the river side of the fort and the pickets stand up out of the slope on nothing. It is the honest picture of two things at once: a fort correctly placed on a bank, and a model with no earthworks in it."
         },
         {
           "label": "How to resolve",
-          "text": "ROADMAP § S2e parcel (b), the heightfield east to about E +1700. The shore, the 1834 cut, the sand bar and the old southward channel are all traced and committed; the ground is the only missing piece, and this complex is the largest thing waiting on it. **When it lands this entry moves to Resolved** rather than being edited."
+          "text": "a levelled section of the bank, which no source gives; or terrain work that models the platform the fort stood on, which is a terrain parcel rather than a structure one."
         },
         {
           "label": "Covers",
-          "text": "`fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`, `fort_dearborn_officers_quarters.log_1816.ground_contact`, `fort_dearborn_barracks.log_1816.ground_contact`, `fort_dearborn_sutlers_store.log_1816.ground_contact`, `fort_dearborn_guard_house.log_1816.ground_contact`, `fort_dearborn_store_house.log_1816.ground_contact`, `fort_dearborn_magazine.brick_1816.ground_contact`, `fort_dearborn_blockhouse.log_1816.ground_contact`, `fort_dearborn_artillery_house.log_1816.ground_contact`, `fort_dearborn_parade.parade_1816.ground_contact`, `fort_dearborn_root_house.cellar_1816.ground_contact`, `fort_dearborn_garrison_garden.fence_1816.ground_contact`, `chicago_lighthouse_1832.tower_1832.ground_contact`."
+          "text": "`fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`."
         },
         {
           "label": "Recorded",
           "text": "2026-08-11."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-08-11, hours after it was written, and the revision is the good kind. This entry was originally titled *\"The fort stands 832 m beyond the modelled ground, and nothing could see it\"* and covered the **ground contact of all fourteen** structures in this complex, because the `e1834_harbor_cut` heightfield stopped at local E +320 and the fort is at E +1152. **S2e parcel (b) landed while this parcel was being written** — the field now reaches E +1700 — so twelve of the fourteen simply land, their declarations are gone from the records, and the two that remain fail for a completely different and much more interesting reason, which is what the entry above now describes. Two of the twelve had to move to get there: the **lighthouse** and the **root house**, whose positions were always `conjectural`, had been put where no ground existed to contradict them and turned out to be standing in the channel; both moved onto the bank top and both notes say so. **The half of the original entry that is NOT superseded, because it is about the machinery and not about the ground.** `tools/heightfield.py` clamps outside the box, so while the fort was 832 m past the edge it sampled the clamped edge for its base AND for every point of its outline, the two agreed to the millimetre, and the ground-contact gate — the gate this project wrote specifically to catch a building standing on nothing — reported a **perfect landing**. Every structure L40 covers was caught only because the clamped edge varies along a wall and produced a gap; the fort was far enough out and square enough on to produce none. The gate could see buildings that were nearly right and was blind to the one that was completely wrong. `Heightfield.covers()`, the `outside_modelled_ground` state and the two-way check that a declaration matches the measurement were written for that and stay whether or not any structure currently needs them — and turning them on immediately flagged two structures in other parcels that nothing had caught. See `docs/STATUS.md` § \"Known weaknesses\" 0a."
         }
       ]
     },
@@ -2561,6 +2535,910 @@
         {
           "label": "Covers",
           "text": "`council_house.log_1834.position`, `robinson_caldwell_cabins.log_1831.position`, `robinson_caldwell_cabins.log_1831.form.cabin_count`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L55",
+      "title": "The town's three worship buildings wear a dwelling's facade",
+      "section": "per_subject",
+      "subjects": [
+        "first_presbyterian_church",
+        "st_marys_church",
+        "temple_building"
+      ],
+      "covers": [
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
+          "aspect": "form.bays"
+        },
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
+          "aspect": "form.plan"
+        },
+        {
+          "structure": "st_marys_church",
+          "phase": "frame_1833",
+          "aspect": "form.bays"
+        },
+        {
+          "structure": "st_marys_church",
+          "phase": "frame_1833",
+          "aspect": "form.plan"
+        },
+        {
+          "structure": "temple_building",
+          "phase": "frame_1833",
+          "aspect": "form.bays"
+        },
+        {
+          "structure": "temple_building",
+          "phase": "frame_1833",
+          "aspect": "form.plan"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the First Presbyterian Church, St. Mary's and the Temple Building are all built with the `frame_dwelling` archetype, which puts the door in the long eaves-front wall and sets the openings out on a house's bay module. `plan` and `bays` are tagged `conjectural` on all three."
+        },
+        {
+          "label": "Why",
+          "text": "the schema offers an `institutional` archetype and there is no generator behind it, so a record using it compiles a sidecar pointing at a GLB that does not exist and the building is invisible. Of the archetypes that do build, `frame_tavern` carries a public house's gallery, `frame_storefront` carries a shopfront, and `outbuilding` refuses a storey count — leaving `frame_dwelling`, which is the only one that builds a plain single-range frame box with a gable roof and nothing else. That is the right MASSING for all three buildings and the wrong FACADE for all three."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees three plain frame boxes with a domestic front. `plan: centre_passage` was chosen on each to force a centred door and a symmetrical elevation, which is the nearest a house's grammar comes to a meeting house's; the archetype's own default, `hall_parlour`, would have put the church door two thirds of the way along the wall. The bay counts — five on the Presbyterian church, three on St. Mary's and the Temple Building — are consequences of that choice and of the frontage, not findings. Nothing describes a window, a door or an elevation on any of the three."
+        },
+        {
+          "label": "A second cost, on St. Mary's only",
+          "text": "a 25 × 35 ft church almost certainly stood **gable-end to the street**, and this archetype builds an eaves-front range only — the ridge always runs parallel to the facade — so the 35 ft dimension becomes the Lake Street frontage by construction. The building is turned ninety degrees from what its proportions imply. The footprint note says so; the attribute is `inferred` rather than `conjectural` because both dimensions are attested and only their assignment is not, so this entry claims the facade and the footprint note carries the orientation."
+        },
+        {
+          "label": "How to resolve",
+          "text": "an `institutional` (or `meeting_house`) archetype — a single-cell plan, a gable-front option, a door in the gable end, a plain bench-lit side elevation — which would serve all three buildings and any later church. Failing that, any depiction or description of one of these elevations."
+        },
+        {
+          "label": "Covers",
+          "text": "`first_presbyterian_church.frame_1834.form.plan`, `first_presbyterian_church.frame_1834.form.bays`, `st_marys_church.frame_1833.form.plan`, `st_marys_church.frame_1833.form.bays`, `temple_building.frame_1833.form.plan`, `temple_building.frame_1833.form.bays`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L56",
+      "title": "Four documented interiors, and no interior is modelled",
+      "section": "per_subject",
+      "subjects": [
+        "chappel_infant_school",
+        "first_presbyterian_church",
+        "st_marys_church"
+      ],
+      "covers": [
+        {
+          "structure": "chappel_infant_school",
+          "phase": "log_1833",
+          "aspect": "form.interior_division"
+        },
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
+          "aspect": "form.interior_finish"
+        },
+        {
+          "structure": "first_presbyterian_church",
+          "phase": "frame_1834",
+          "aspect": "form.seating"
+        },
+        {
+          "structure": "st_marys_church",
+          "phase": "frame_1833",
+          "aspect": "form.seating"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the pine-board benches seating about 200 and the plastered walls over bare puncheon floors in the First Presbyterian Church, the rough benches and the table for an altar in St. Mary's, and the division of Eliza Chappel's log house into a school-room and lodging quarters are all recorded as `documented` and all declared `geometry: absent`."
+        },
+        {
+          "label": "Why",
+          "text": "this project models exteriors. No structure in the dataset has an interior, and these four are the first records whose best-attested facts are inside the building — which is the situation the `geometry:` declaration exists for: without it the popup would show the strongest confidence chip the project has over something a visitor cannot see."
+        },
+        {
+          "label": "Consequence",
+          "text": "the three best sentences anybody wrote about these buildings are in the record and not in the model. It matters more here than for a stable or a sign, because for a meeting house the interior IS the building: what distinguishes the Presbyterian church from St. Mary's is not their massing, which is within a few feet of identical, but that one was plastered with benches for two hundred and the other was unplastered with rough benches and a table. **One of the four does reach the mesh, indirectly, and that is worth saying:** the Chappel house's attested division into two rooms is the reason its invented footprint is a two-room size rather than a single pen. A number a human chose from a sentence is not the sentence being built."
+        },
+        {
+          "label": "How to resolve",
+          "text": "interiors, or a popup that renders the interior description alongside the elevation. The second is much cheaper and would discharge most of what this entry admits."
+        },
+        {
+          "label": "Covers",
+          "text": "`first_presbyterian_church.frame_1834.form.seating`, `first_presbyterian_church.frame_1834.form.interior_finish`, `st_marys_church.frame_1833.form.seating`, `chappel_infant_school.log_1833.form.interior_division`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L57",
+      "title": "The Temple Building is sized by arithmetic on its own cost",
+      "section": "per_subject",
+      "subjects": [
+        "temple_building"
+      ],
+      "covers": [
+        {
+          "structure": "temple_building",
+          "phase": "frame_1833",
+          "aspect": "footprint"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Temple Building's footprint is drawn at 30 × 25 ft, tagged `conjectural`, and derived from the one quantitative fact anybody recorded about it — that it cost about $900."
+        },
+        {
+          "label": "Why",
+          "text": "no source gives this building a dimension. It does give a cost, and this dataset now holds two contemporary buildings whose cost AND area are both attested: the First Presbyterian Church at $600 for 1,000 sq ft and St. Mary's at $400 for 875 sq ft, i.e. $0.60 and $0.46 per square foot. Two storeys at the midpoint of that range buys about 1,600 sq ft of floor, so about 800 per storey; 30 × 25 ft is 750, which at $0.55 gives $825 against the attested $900."
+        },
+        {
+          "label": "Consequence",
+          "text": "a derivation with three numbers in it reads as a finding and is not one. Two things are wrong with it in known directions and neither is corrected, because correcting a guess with another guess is worse: the cost per square foot of a two-storey building is lower than a single-storey one's — a second floor is cheap against a roof and a foundation — so the real building was probably BIGGER than this; and both reference figures rest on the citation problem set out in the Presbyterian church's research note, where the dossier's row cites Wikipedia and Andreas together without saying which supplied the dimensions. The 25 ft depth is additionally borrowed rather than derived: it is the depth of both churches and of the rectangle four other records in this dataset already use."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any dimension at all, from a deed, an insurance entry, a subscription list or Andreas at page-image level."
+        },
+        {
+          "label": "Covers",
+          "text": "`temple_building.frame_1833.footprint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L58",
+      "title": "Three buildings sized by what they were for",
+      "section": "per_subject",
+      "subjects": [
+        "chappel_infant_school",
+        "log_jail",
+        "watkins_school_house"
+      ],
+      "covers": [
+        {
+          "structure": "chappel_infant_school",
+          "phase": "log_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "log_jail",
+          "phase": "log_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "footprint"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the log jail (20 × 15 ft), Eliza Chappel's log school house (24 × 18 ft) and the Watkins house on Michigan Street (30 × 20 ft) are drawn at invented footprints, tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "no source reached gives any of the three a dimension, a plan or a room count. What each does supply is a USE, and the sizes are read off that and nothing else: a jail described as \"something more metropolitan ... than the estray pen\" and superseded within a few years is a two-cell log lock-up; a log house \"divided into school-room and lodging quarters\" holds two rooms, so it is bigger than a single pen and smaller than a public building; a house a schoolmaster could take a class in one room of is an ordinary two-room dwelling."
+        },
+        {
+          "label": "Consequence",
+          "text": "three buildings stand at three specific sizes that nobody recorded, and the proportions are as invented as the areas. The repetition across the dataset is deliberate and is the honest form of the admission — 24 × 18 and 30 × 20 recur here and elsewhere because they are type sizes, not measurements, and a set of unrelated-looking numbers would hide that."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a county order or contract for the jail (which would carry a specification as well as a size); the Kinzie's Addition plat and its early conveyances for the Watkins house; Andreas at page-image level around scan pp. 305, 367 and 431 for all three."
+        },
+        {
+          "label": "Covers",
+          "text": "`log_jail.log_1833.footprint`, `chappel_infant_school.log_1833.footprint`, `watkins_school_house.house_1833.footprint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L59",
+      "title": "Two buildings placed in the middle of a block face",
+      "section": "per_subject",
+      "subjects": [
+        "chappel_infant_school",
+        "watkins_school_house"
+      ],
+      "covers": [
+        {
+          "structure": "chappel_infant_school",
+          "phase": "log_1833",
+          "aspect": "position"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Eliza Chappel's log school house and the Watkins house on Michigan Street are placed at the mid-point of the block face each is attested on, and their positions are tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the evidence is a stretch of street and no more. Andreas puts the school house in \"a log house just outside the military reservation\", which fixes it immediately west of State Street — the reservation's western boundary on the south side until February 1835 — and this project's dossier reads that as the two-block strip between South Water and Lake, tagging the exact lot conjectural itself. Andreas puts the Watkins school \"in a house on Michigan Street between Cass and Rush\", which is a block face about 110 m long. Neither source names a lot, a corner or a side of a corner."
+        },
+        {
+          "label": "Consequence",
+          "text": "each building stands at one specific point inside a run of frontage it could have stood anywhere along. The error is not the georeference's ±20 m but the length of the block: about ±60 m along State Street for the school house and about ±55 m along Michigan Street for the Watkins house, and that is on top of the ±20 m and of an unknown setback from the street line. A visitor sees two buildings sitting on specific lots. There are no lots."
+        },
+        {
+          "label": "Why the midpoint rather than a corner",
+          "text": "a corner is a claim and the midpoint is the centre of the distribution the evidence describes. It is still a point where the record has an interval."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Kinzie's Addition plat and its conveyances for the Watkins house; any 1834–35 newspaper advertisement naming either address; Andreas at page-image level around scan pp. 305 and 431, read for a street number or a neighbour rather than for the school."
+        },
+        {
+          "label": "Covers",
+          "text": "`chappel_infant_school.log_1833.position`, `watkins_school_house.house_1833.position`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L60",
+      "title": "The estray pen is a fence, and the model gives it a roof",
+      "section": "per_subject",
+      "subjects": [
+        "estray_pen"
+      ],
+      "covers": [
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "form.construction"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "form.door"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "estray_pen",
+          "phase": "pen_1833",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "Chicago's first public building — the estray pen on the south-west corner of the public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and 8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**. Every one of those values is tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This project has no generator that builds an enclosure — `palisade` is named in the schema and has no module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle, cannot build a roofless structure. So the choice was a roofed box or no building at all, and the working policy for this parcel is that an absent building is invisible while a conjectural one is legible and correctable."
+        },
+        {
+          "label": "Consequence",
+          "text": "the roof is the model's, not the record's, and it is the most conspicuous thing about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as close to flat as the generator goes — which is a deliberate attempt to minimise a feature that probably was not there rather than a finding about a roof that was. The material is invented too, and the live alternative would look completely different: most frontier pounds were split-rail or post-and-rail, which is open and horizontal and see-through, where this is a closed notched log wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What survives of the evidence in the mesh is a rectangle of about the right size in about the right place."
+        },
+        {
+          "label": "How to resolve",
+          "text": "an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated, taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced state of the public square itself, the garrison gardens and every yard in the town, and it is the honest fix. A town or county order establishing the pound would settle the size and the material at the same time."
+        },
+        {
+          "label": "Covers",
+          "text": "`estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L61",
+      "title": "The first court-house is built finished, on a date that may predate it",
+      "section": "per_subject",
+      "subjects": [
+        "cook_county_courthouse_1835"
+      ],
+      "covers": [
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "form.door"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "structure": "cook_county_courthouse_1835",
+          "phase": "wood_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the first Cook County court-house is built on the public square as a completed one-room wooden building 24 × 18 ft. Its position within the square and every attribute of its form are tagged `conjectural`; only its existence, its year and its function are not. **Why, and this is two admissions rather than one.** **(1) The date.** `illinoiscourthistory` gives one sentence — \"Cook County built their first courthouse in 1835\" — and a caption, \"The first Cook County Courthouse, 1835–1853\". **No source fixes a month.** On 1835-07-01 the building may have been unbuilt, under construction, or newly finished, which is exactly what `data/exclusions.json`'s watch_list already says about it. This record models the third of those, which on a flat prior is about half likely. **Under construction is a phase, not an omission**, and the honest alternative would be a second phase carrying a frame-and-no-cladding state; it is not written because nothing dates the transition and a construction phase with invented start and end dates would be two inventions where there is now one. **(2) The form, and the two descriptions that must never reach it.** The famous \"about thirty by sixty feet ... front ornamented with a four-column Doric portico of wood work\" is Andreas on the **1837** court-house. And in `illinoiscourthistory` itself, two lines under the 1835 sentence, sits \"constructed in the Greek Revival style, and built with stone ... designed by ... John M. Van Osdel\" — that is the **1853** building, and it is the easier of the two to lift by mistake; Van Osdel did not reach Chicago until 1837. This project's own dossier compounds the problem at `docs/research/04-structures-south.md` line 178, where the corner and the phrase \"a small wooden stockade-type building\" are tagged `[DOC]` to a document that contains neither. Nothing in the record cites them, so the size, the material, the wall height, the roof and the door are all this project's invention."
+        },
+        {
+          "label": "A sting in the tail worth recording",
+          "text": "the corner adopted — the north-east of the square — is reasoned from the two documented structures occupying the west corners and from the reading in circulation (\"the southwest corner of Clark & Randolph\", which is the block's north-east corner). It is ALSO the siting Andreas documents for the 1837 building, so the one placement claim this record makes is the one an 1837 description would have contaminated it with. It is adopted anyway, with that stated, because the alternative is a placement with no argument at all."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Cook County commissioners' records for 1834–35. A single dated order would carry a contract, a cost, a specification and a completion date, and would move four attributes and the date from conjectural to documented at once."
+        },
+        {
+          "label": "Covers",
+          "text": "`cook_county_courthouse_1835.wood_1835.footprint`, `cook_county_courthouse_1835.wood_1835.position`, `cook_county_courthouse_1835.wood_1835.form.construction`, `cook_county_courthouse_1835.wood_1835.form.wall_height_m`, `cook_county_courthouse_1835.wood_1835.form.roof_type`, `cook_county_courthouse_1835.wood_1835.form.roof_pitch_deg`, `cook_county_courthouse_1835.wood_1835.form.door`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L62",
+      "title": "Watkins' school house: one unrecorded word decides the whole building",
+      "section": "per_subject",
+      "subjects": [
+        "watkins_school_house"
+      ],
+      "covers": [
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "form.construction"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "form.plan"
+        },
+        {
+          "structure": "watkins_school_house",
+          "phase": "house_1833",
+          "aspect": "form.stories"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the house on Michigan Street that John Watkins used as his second school is built as a story-and-a-half braced-frame dwelling on a hall-and-parlour plan. `stories`, `construction` and `plan` are all tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "Andreas says \"a house\". That is the entire description. Frame is adopted because the building stood in Kinzie's Addition, platted and selling in 1833, where what was going up was new building rather than the older log stock at the forks — which is an argument about a neighbourhood, not evidence about a house. The storey count and the plan are the `frame_dwelling` archetype's own defaults, kept deliberately rather than replaced with fresh numbers, on the reasoning L29 states about the bridge's pier spacing: a new figure would look like a finding and would not be one."
+        },
+        {
+          "label": "Consequence, and it is larger than an attribute",
+          "text": "the material decides the ARCHETYPE, and the archetype is not a graded value. If a source says log, this record moves to `log_dwelling` and the walls, the corners, the openings and the roof all change — a different building, not a different attribute. The confidence view cannot show that, because it grades values and this is a choice made one level above them. This entry is where it is recorded."
+        },
+        {
+          "label": "How to resolve",
+          "text": "the Kinzie's Addition plat and its early conveyances; the 1833–35 *Chicago Democrat*, which carried school advertisements and would name the house or its owner; Andreas at page-image level around scan p. 305."
+        },
+        {
+          "label": "Covers",
+          "text": "`watkins_school_house.house_1833.form.stories`, `watkins_school_house.house_1833.form.construction`, `watkins_school_house.house_1833.form.plan`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L63",
+      "title": "The Wolf Point row gains two buildings whose footprints are invented outright",
+      "section": "per_subject",
+      "subjects": [
+        "james_kinzie_house",
+        "robert_kinzie_store",
+        "wolf_point_tavern"
+      ],
+      "covers": [
+        {
+          "structure": "james_kinzie_house",
+          "phase": "dwelling_1830",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "robert_kinzie_store",
+          "phase": "store_1830",
+          "aspect": "footprint"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`james_kinzie_house` (8 × 6.5 m) and `robert_kinzie_store` (7 × 6 m) are added to the west-bank row on the strength of one clause each, with footprints tagged `conjectural` that cite no sources."
+        },
+        {
+          "label": "Why",
+          "text": "the sources give these two an ORDER and a NEIGHBOUR and nothing else. chicagology puts James Kinzie's residence south of Wentworth's tavern; Andreas's list of the town's Indian traders gives \"Robert A. Kinzie, near Wentworth's tavern\" (scan p. 235). Neither is described, measured, dated or given a material. Unlike Miller's house, where an attested composition carries the SHAPE while only the size is invented, here neither shape nor size carries anything: the polygons are ordinary single-pen plans at ordinary sizes, chosen to sit in a river-front row."
+        },
+        {
+          "label": "Consequence",
+          "text": "the west bank at Wolf Point now carries five structures — James Kinzie's house, Robert Kinzie's store, the tavern, the Robinson cabins and Walker's meeting house — across about 130 m of frontage, on four ordering statements and no measured distances. Every one of them hangs off `wolf_point_tavern`, which is itself the weakest placement in the parcel (L7). If the tavern moves, the row moves with it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "Andreas vol. 1 at page-image level around the Wolf Point material (index: pp. 111, 114, 174, 629–631); or the retrospective Wolf Point views — Blanchard & Shober 1867, and the \"Wolf Point in 1830\" plate Andreas reproduces — examined at plate level for the row's massing."
+        },
+        {
+          "label": "Covers",
+          "text": "`james_kinzie_house.dwelling_1830.footprint`, `robert_kinzie_store.store_1830.footprint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L64",
+      "title": "Two Clybourne records stand about three kilometres from their own ground, and one cabin stands for two",
+      "section": "per_subject",
+      "subjects": [
+        "clybourn_cabins",
+        "clybourn_slaughterhouse"
+      ],
+      "covers": [
+        {
+          "structure": "clybourn_cabins",
+          "phase": "log_1824",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "clybourn_cabins",
+          "phase": "log_1824",
+          "aspect": "form.cabin_count"
+        },
+        {
+          "structure": "clybourn_cabins",
+          "phase": "log_1824",
+          "aspect": "position"
+        },
+        {
+          "structure": "clybourn_slaughterhouse",
+          "phase": "log_1827",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "clybourn_slaughterhouse",
+          "phase": "log_1827",
+          "aspect": "form.door_side"
+        },
+        {
+          "structure": "clybourn_slaughterhouse",
+          "phase": "log_1827",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`clybourn_slaughterhouse` and `clybourn_cabins` are placed at the northern edge of the modelled terrain on the east bank of the North Branch, with `position` tagged `conjectural`. Their attested ground is the Clybourne place several miles up the branch — \"south of the Bloomingdale Road and opposite the North Chicago Rolling Mills\" (Andreas scan p. 1149), \"several miles up the North Branch, where now are the North Chicago rolling-mills\" (scan p. 215) — roughly 3 km north-north-west of the forks and some 2.8 km beyond the box's northern edge. `clybourn_cabins` draws ONE cabin where the dossier says the family built two, and states the count as `cabin_count` with `geometry: \"simplified\"`."
+        },
+        {
+          "label": "Why",
+          "text": "the terrain epoch models 640 m square. Dropping the buildings would have made the town's first industry invisible; placing them at their true coordinates would have put them on the radial skirt outside every view. The project owner's instruction of 2026-08-11 was to place at the edge of modelled ground and say so. The BANK is preserved in both cases and is the only part of the coordinate that carries evidence. The second cabin is not drawn because a second polygon would need an invented spacing, an invented orientation and an invented relation to the first — three inventions to express one number that is itself second-hand."
+        },
+        {
+          "label": "Consequence",
+          "text": "two buildings appear at the head of the modelled North Branch that in life stood three kilometres further up it, and a visitor who paces the distance from Wolf Point to the slaughter-house will get an answer that is wrong by kilometres rather than by metres. The 60 m between the cabins and the slaughter-house is invented entirely. The stock yard later called Bull's Head is not modelled at all, and the door side of the slaughter-house — river or landward — is a coin flip."
+        },
+        {
+          "label": "How to resolve",
+          "text": "extend the terrain epoch north up the North Branch, at which point both records move to their attested reach and this entry moves to Resolved."
+        },
+        {
+          "label": "Covers",
+          "text": "`clybourn_slaughterhouse.log_1827.position`, `clybourn_slaughterhouse.log_1827.footprint`, `clybourn_slaughterhouse.log_1827.form.door_side`, `clybourn_cabins.log_1824.position`, `clybourn_cabins.log_1824.footprint`, `clybourn_cabins.log_1824.form.cabin_count`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L65",
+      "title": "The town's industry is modelled as sheds, and the works inside them are not built",
+      "section": "per_subject",
+      "subjects": [
+        "brickyard_north_side",
+        "elston_soap_candle_manufactory",
+        "newberry_dole_slaughterhouse_south_branch",
+        "pierce_blacksmith_shop",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "structure": "brickyard_north_side",
+          "phase": "yard_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "brickyard_north_side",
+          "phase": "yard_1833",
+          "aspect": "form.yard_works"
+        },
+        {
+          "structure": "elston_soap_candle_manufactory",
+          "phase": "works_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "elston_soap_candle_manufactory",
+          "phase": "works_1833",
+          "aspect": "form.plant"
+        },
+        {
+          "structure": "newberry_dole_slaughterhouse_south_branch",
+          "phase": "works_1834",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "newberry_dole_slaughterhouse_south_branch",
+          "phase": "works_1834",
+          "aspect": "form.door_side"
+        },
+        {
+          "structure": "newberry_dole_slaughterhouse_south_branch",
+          "phase": "works_1834",
+          "aspect": "position"
+        },
+        {
+          "structure": "pierce_blacksmith_shop",
+          "phase": "shop_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "pierce_blacksmith_shop",
+          "phase": "shop_1833",
+          "aspect": "form.forge"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "four industrial records — `brickyard_north_side`, `elston_soap_candle_manufactory`, `pierce_blacksmith_shop` and `newberry_dole_slaughterhouse_south_branch` — are each built as a single `outbuilding` at an invented size, with their plant recorded on the record and absent from the mesh: the brickyard's clamp, hacks, clay pit and spoil (`yard_works`), Elston's rendering kettle, ash leach and moulding floor (`plant`), and Pierce's forge, bellows and chimney (`forge`)."
+        },
+        {
+          "label": "Why",
+          "text": "this project has archetypes for buildings and none for a WORKS. A brickyard is an area of ground with a burning clamp on it; a soap manufactory is a fire under a kettle; a smithy is a hearth and a stack. The outbuilding archetype builds walls and a roof and has no chimney parameter at all, so the one visible sign of every one of these trades — smoke — cannot be built. Rather than leave the trades out of the town, each is modelled as the shed the trade worked under and the plant is declared."
+        },
+        {
+          "label": "Consequence",
+          "text": "the most legible failure in this parcel. Blodgett's brickyard, which supplied the brick for the Lake House going up on the same bank, reads as one open shed in a field. Elston's manufactory has no fire. Pierce's smithy has no smoke. The confidence chips over these attributes say \"we are fairly sure this existed\" and the visitor sees nothing. This is the same shortfall L10 records against the Western Hotel's wagon yard, now repeated four times, and it is the strongest argument in the dataset for a works or parcel archetype. Newberry & Dole's slaughter-house is additionally placed on a reach and a bank of the South Branch that no source gives — Andreas says only \"on the South Branch of the river\" (scan p. 1151), a corridor kilometres long — and its door side is a coin flip."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a `works` or `yard` archetype that can carry an enclosure, a fire and a stack. Any description of any of these four premises would help the footprints; nothing found describes one."
+        },
+        {
+          "label": "Covers",
+          "text": "`brickyard_north_side.yard_1833.footprint`, `brickyard_north_side.yard_1833.form.yard_works`, `elston_soap_candle_manufactory.works_1833.footprint`, `elston_soap_candle_manufactory.works_1833.form.plant`, `pierce_blacksmith_shop.shop_1833.footprint`, `pierce_blacksmith_shop.shop_1833.form.forge`, `newberry_dole_slaughterhouse_south_branch.works_1834.footprint`, `newberry_dole_slaughterhouse_south_branch.works_1834.position`, `newberry_dole_slaughterhouse_south_branch.works_1834.form.door_side`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L66",
+      "title": "Two river warehouses stand on banks that are disputed or unattested, and neither has its dock",
+      "section": "per_subject",
+      "subjects": [
+        "kinzie_hunter_warehouse",
+        "newberry_dole_warehouse"
+      ],
+      "covers": [
+        {
+          "structure": "kinzie_hunter_warehouse",
+          "phase": "warehouse_1834",
+          "aspect": "documented_range"
+        },
+        {
+          "structure": "kinzie_hunter_warehouse",
+          "phase": "warehouse_1834",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "kinzie_hunter_warehouse",
+          "phase": "warehouse_1834",
+          "aspect": "form.dock"
+        },
+        {
+          "structure": "kinzie_hunter_warehouse",
+          "phase": "warehouse_1834",
+          "aspect": "position"
+        },
+        {
+          "structure": "newberry_dole_warehouse",
+          "phase": "frame_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "newberry_dole_warehouse",
+          "phase": "frame_1833",
+          "aspect": "form.dock"
+        },
+        {
+          "structure": "newberry_dole_warehouse",
+          "phase": "frame_1833",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`newberry_dole_warehouse` is placed on the SOUTH bank of the main stem with its position tagged `conjectural`, against an Andreas sentence that puts the firm's warehouse on the north side; `kinzie_hunter_warehouse` is placed on the NORTH bank with its position AND its date range tagged `conjectural`, on a plausibility the dossier itself tags `[CONJ]`. Both records state `dock: true` with `geometry: \"absent\"`, and neither dock is built."
+        },
+        {
+          "label": "Why (the bank)",
+          "text": "this project's own dossiers disagree. docs/research/03-structures-north.md §3.10 reports a square frame \"Newberry and Dole's Forwarding and Commission House\" on South Water Street in views of c. 1835; docs/research/04-structures-south.md quotes Andreas — \"whose warehouse was on the North Side, immediately east of where Rush-street bridge now stands\" (scan p. 1139) — and instructs \"Do not put it on South Water Street.\" The south bank is adopted because Andreas's sentence sits inside an account of a grain shipment made on the brig *Osceola* in **1839**, so the building it locates is the firm's warehouse four years after the scene date. That is reasoning, not proof, and the disagreement is recorded rather than resolved. Kinzie & Hunter's bank is not disputed but simply absent: the dossier lists it as an open gap, \"bank, date, size\"."
+        },
+        {
+          "label": "Why (the dock)",
+          "text": "\"each had a warehouse with its dock along the river front\" is the clause that attests these buildings at all, and Andreas independently names \"Newberry & Dole's wharf\" as the place the schooner *Illinois* was cheered on 12 July 1834 (scan p. 503). The project has a `pier_crib` archetype for the harbour piers and nothing for a river wharf; a dock of invented length, height and construction sitting in the water would be a larger invention than the buildings it served."
+        },
+        {
+          "label": "Consequence",
+          "text": "the river trade — the reason the town existed in 1835 — is represented by two sheds standing back from an empty bank. On `kinzie_hunter_warehouse` the `dock` attribute carries a `documented` chip over nothing at all, which is precisely the failure the geometry declarations exist to surface. And one of the two warehouses is probably on the wrong side of the river."
+        },
+        {
+          "label": "How to resolve",
+          "text": "identify the c. 1835 view the north-side dossier describes and give it a source record; or read further issues of the *Chicago Democrat*, whose advertising columns are where a forwarding house states its street."
+        },
+        {
+          "label": "Covers",
+          "text": "`newberry_dole_warehouse.frame_1833.position`, `newberry_dole_warehouse.frame_1833.footprint`, `newberry_dole_warehouse.frame_1833.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.position`, `kinzie_hunter_warehouse.warehouse_1834.footprint`, `kinzie_hunter_warehouse.warehouse_1834.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.documented_range`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L67",
+      "title": "A trade advertised in November 1833 becomes a building standing in July 1835",
+      "section": "per_subject",
+      "subjects": [
+        "elston_soap_candle_manufactory"
+      ],
+      "covers": [
+        {
+          "structure": "elston_soap_candle_manufactory",
+          "phase": "works_1833",
+          "aspect": "documented_range"
+        },
+        {
+          "structure": "elston_soap_candle_manufactory",
+          "phase": "works_1833",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`elston_soap_candle_manufactory` is built from a newspaper advertisement, with both its `documented_range` and its `position` tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the *Chicago Democrat* of 26 November 1833 carries Daniel Elston & Co.'s soap and candle manufactory, paying cash for tallow and house ashes, and Andreas's summary of the same columns repeats it (scan p. 755). That fixes a TRADE in a month — and the source record for the paper states the limit in as many words: an advertisement is \"strong evidence of existence and address, weak evidence of survival, and no evidence at all of form.\" The scene date is nineteen months later, in the town's fastest-changing period. No address is given anywhere. The works are placed on the east bank of the North Branch on two unevidenced arguments: that Elston is a North Branch figure (the road named for him, and his later brickyard on that side — Andreas scan pp. 409, 1169, both decades after the scene), and that rendering is a nuisance trade that sits at the edge of a town near its slaughtering. Every other locatable advertiser in the same issue was on or near South Water Street, which is at least as good an argument the other way and is written into the record's position note."
+        },
+        {
+          "label": "Consequence",
+          "text": "a manufactory appears on the North Branch that may have stood on South Water Street, or may not have been standing at all by July 1835. It is built because an absent building is invisible to a visitor while a conjectural one is legible and correctable — the project owner's standing instruction of 2026-08-11 — and because the tallow trade belongs beside the slaughtering this parcel also models."
+        },
+        {
+          "label": "How to resolve",
+          "text": "further issues of the *Chicago Democrat*. One line of an 1834 or 1835 advertisement carrying a street would settle the position and narrow the range at once."
+        },
+        {
+          "label": "Covers",
+          "text": "`elston_soap_candle_manufactory.works_1833.documented_range`, `elston_soap_candle_manufactory.works_1833.position`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L68",
+      "title": "The slough crossing is invented at every dimension except its material",
+      "section": "per_subject",
+      "subjects": [
+        "slough_log_bridge"
+      ],
+      "covers": [
+        {
+          "structure": "slough_log_bridge",
+          "phase": "log_1833",
+          "aspect": "footprint"
+        },
+        {
+          "structure": "slough_log_bridge",
+          "phase": "log_1833",
+          "aspect": "form.clearance_m"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`slough_log_bridge` is built at an invented 8 × 3 m deck with `clearance_m` 0.5 m tagged `conjectural`, and it deliberately does NOT borrow the branch bridges' documented figures."
+        },
+        {
+          "label": "Why",
+          "text": "the source gives one sentence — where Water Street crossed the slough, a log bridge was needed until after 1840 — and one adjective, *log*. The span is sized off the STREAM rather than the bridge: the hydrology dossier gives the slough a width of 15–40 ft (zone 14) and tags width and depth conjectural while calling the route documented, so 8 m of deck crosses the narrow end of that range. The clearance is the number that mattered most to get wrong quietly: the two branch bridges stood \"about six feet above the water, so that teams passed under them on the ice freely\", which is documented for THEM and absurd here — nothing passed under a slough crossing. 0.5 m is a reading of a conjectural stream depth, not a measurement."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees a small timber deck whose every proportion is this project's. If the slough ran 40 ft wide at the crossing, the span is half what it should be."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period description of the crossing, or a surveyed width for the slough at the foot of State Street."
+        },
+        {
+          "label": "Covers",
+          "text": "`slough_log_bridge.log_1833.footprint`, `slough_log_bridge.log_1833.form.clearance_m`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L69",
+      "title": "Two structures stand at their documented sites beyond the modelled ground",
+      "section": "per_subject",
+      "subjects": [
+        "brickyard_north_side",
+        "slough_log_bridge"
+      ],
+      "covers": [
+        {
+          "structure": "brickyard_north_side",
+          "phase": "yard_1833",
+          "aspect": "ground_contact"
+        },
+        {
+          "structure": "slough_log_bridge",
+          "phase": "log_1833",
+          "aspect": "ground_contact"
+        }
+      ],
+      "recorded": "2026-08-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare `ground_contact: {state: \"outside_modelled_ground\"}`."
+        },
+        {
+          "label": "Why",
+          "text": "the opposite choice was available and was taken for the Clybourne records (L64), which were pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing them would throw away the best evidence either record holds. What is missing here is terrain, not evidence."
+        },
+        {
+          "label": "Consequence",
+          "text": "neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so without the declaration the gate would have reported both as landing perfectly on terrain that does not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber` archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below the slough's own."
+        },
+        {
+          "label": "How to resolve",
+          "text": "extend the terrain epoch east over the South Division and the north bank as far as Dearborn, and cut the slough's documented route into it. Then both declarations come off and this entry moves to Resolved."
+        },
+        {
+          "label": "Covers",
+          "text": "`brickyard_north_side.yard_1833.ground_contact`, `slough_log_bridge.log_1833.ground_contact`."
         },
         {
           "label": "Recorded",

@@ -85,10 +85,6 @@
           "note": "Not attested. One is the minimum for a schoolroom kept through Chicago winters and the normal number for a single-pen building. The COUNT is the inference; where the stack stands and what it is made of are the archetype's — docs/LIBERTIES.md L26."
         }
       },
-      "ground_contact": {
-        "state": "outside_modelled_ground",
-        "note": "STANDS OUTSIDE THE MODELLED TERRAIN BOX. The heightfield of terrain epoch e1834_harbor_cut covers a 640 m square around the forks, E -320..+320 and N -320..+320, and this structure is placed at local E +600, N +116 — 280 m east of its edge. So there is no ground under any part of its contact outline and the question whether the building lands has no answer: tools/heightfield.py clamps its sampler at the box edge, which would otherwise report a perfect landing on terrain that does not exist. WHAT THE VISITOR SEES is the renderer's radial skirt (docs/LIBERTIES.md L17), which carries the box's boundary heights outward for the horizon and claims nothing. Nothing in this record is wrong and nothing in the mesh is wrong; the ground is simply not built yet. WHAT WOULD SETTLE IT: the eastward extension of the terrain epoch already queued as ROADMAP S2e, which would put real modelled ground under the North Water Street frontage east of Clark and turn this declaration into a measurement. Until then this is the same admission docs/LIBERTIES.md L40 makes for the business street."
-      },
       "change_note": "The house Colonels Hamilton and Owen are said to have built for a school in 1833 on the north bank just east of Clark Street, in which John Watkins carried on the school he had begun in 1832 in Hamilton's twelve-foot horse stable. Its passage from subscription school to public school is a change of USE and does not open a new phase."
     }
   ],
