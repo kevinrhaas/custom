@@ -27,6 +27,15 @@
       "phase_id": "frame_1833",
       "structure_id": "carpenter_south_water_store"
     },
+    "chappel_infant_school__log_1833.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31336,
+      "inputs_sha256": "0ef01df3192391f72eb5adb9801930f344b07b9a46962ab2141bd94354cbcec9",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "chappel_infant_school"
+    },
     "chicago_american_office__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
@@ -45,6 +54,15 @@
       "phase_id": "frame_1833",
       "structure_id": "chicago_democrat_office"
     },
+    "chicago_lighthouse_1832__tower_1832.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 15100,
+      "inputs_sha256": "ef6881b256878c1acdbe58fe97b76f19fca72fe1fc9e5d58a628f4605e7495f4",
+      "kind": "generated",
+      "phase_id": "tower_1832",
+      "structure_id": "chicago_lighthouse_1832"
+    },
     "cobweb_castle__log_1820.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
@@ -53,6 +71,15 @@
       "kind": "generated",
       "phase_id": "log_1820",
       "structure_id": "cobweb_castle"
+    },
+    "cook_county_courthouse_1835__wood_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 100196,
+      "inputs_sha256": "481dfc5ec15f050b77c438c76ecf9c076d251cb60147c0de6bc1fbca92e3f384",
+      "kind": "generated",
+      "phase_id": "wood_1835",
+      "structure_id": "cook_county_courthouse_1835"
     },
     "council_house__log_1834.glb": {
       "archetype": "log_dwelling",
@@ -80,6 +107,141 @@
       "kind": "generated",
       "phase_id": "frame_1832",
       "structure_id": "dole_warehouse_south"
+    },
+    "estray_pen__pen_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 59204,
+      "inputs_sha256": "36f9d82675fa7e16852d340a8a2baeceed2b933b86a08dc9874eae5cd7d0ea6b",
+      "kind": "generated",
+      "phase_id": "pen_1833",
+      "structure_id": "estray_pen"
+    },
+    "first_presbyterian_church__frame_1834.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 36868,
+      "inputs_sha256": "f61a5d352ff54ad9faba99742b798dc18e4739a3433f271dce9252761c01f93b",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "first_presbyterian_church"
+    },
+    "fort_dearborn_artillery_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 34920,
+      "inputs_sha256": "46a4596370d3b9e800c7c30ce280cda26a1c96e690c668e064268061ddabdc94",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_artillery_house"
+    },
+    "fort_dearborn_barracks__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 63852,
+      "inputs_sha256": "e6b05940132f35402ae26a4212990e72cc8e5601083349c0bfe19872431419e7",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_barracks"
+    },
+    "fort_dearborn_blockhouse__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 59592,
+      "inputs_sha256": "280f6f7042b4ad5c0ebeac0dea920761caaf4ae2b36bc1ef8398d231f7e88efd",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_blockhouse"
+    },
+    "fort_dearborn_commandants_quarters__brick_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 13616,
+      "inputs_sha256": "47749258a6f540e4a5330f5c228e6bc6b5ac4b58180e26e282683d4d42dc6be5",
+      "kind": "generated",
+      "phase_id": "brick_1816",
+      "structure_id": "fort_dearborn_commandants_quarters"
+    },
+    "fort_dearborn_garrison_garden__fence_1816.glb": {
+      "archetype": "palisade",
+      "baked_ao": false,
+      "bytes": 294664,
+      "inputs_sha256": "b4cd16c291a97872bbfebe1e4d1ee67c48fcc636cfe027d2af41ee3b7497083d",
+      "kind": "generated",
+      "phase_id": "fence_1816",
+      "structure_id": "fort_dearborn_garrison_garden"
+    },
+    "fort_dearborn_guard_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 30796,
+      "inputs_sha256": "e008fca38aeb6ee36af9dbf2fd587dbbcc8e449a4c704655f80adc9d4cfcd6e4",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_guard_house"
+    },
+    "fort_dearborn_magazine__brick_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 6236,
+      "inputs_sha256": "124ee94fe21896d0b2af8abbadf99042f5b248d890e5bc35db53d0dc7d9d0ebc",
+      "kind": "generated",
+      "phase_id": "brick_1816",
+      "structure_id": "fort_dearborn_magazine"
+    },
+    "fort_dearborn_officers_quarters__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 58280,
+      "inputs_sha256": "4705ea1c4e91e3ac5f25bd887cba4694ea133f479597523d220fb56b2b5c62d3",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_officers_quarters"
+    },
+    "fort_dearborn_palisade__picket_1816.glb": {
+      "archetype": "palisade",
+      "baked_ao": false,
+      "bytes": 841836,
+      "inputs_sha256": "a6a51b4638f908fabe05c82221fb8f3aa8398391f78d6001bcc63614a6606aeb",
+      "kind": "generated",
+      "phase_id": "picket_1816",
+      "structure_id": "fort_dearborn_palisade"
+    },
+    "fort_dearborn_parade__parade_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 5504,
+      "inputs_sha256": "e3cd536219a8045029c6a25d8d75f25809594b69e23ad8a2375b4a1929f9cd1a",
+      "kind": "generated",
+      "phase_id": "parade_1816",
+      "structure_id": "fort_dearborn_parade"
+    },
+    "fort_dearborn_root_house__cellar_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 4488,
+      "inputs_sha256": "8bdeee1fb1c07294d449471fe5670ed2b0f59fe2db3d45e14dcd62119a65d7e5",
+      "kind": "generated",
+      "phase_id": "cellar_1816",
+      "structure_id": "fort_dearborn_root_house"
+    },
+    "fort_dearborn_store_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 33312,
+      "inputs_sha256": "01b43be658e30d87e058fb7305cde99fdeaa6b113116d11ebf57aa2972015e22",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_store_house"
+    },
+    "fort_dearborn_sutlers_store__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 34224,
+      "inputs_sha256": "1d1b9adb84d6a28cd09e533d3cb3d1febc756450cc65f9e14880ab726c96c7ba",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_sutlers_store"
     },
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",
@@ -143,6 +305,15 @@
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "jh_kinzie_forwarding_store"
+    },
+    "log_jail__log_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 79412,
+      "inputs_sha256": "5fbf18e9365deb4c647fc532b42f582b8ca6aaa559ebc7480159eb990a34010b",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "log_jail"
     },
     "madore_beaubien_house__log_1831.glb": {
       "archetype": "log_dwelling",
@@ -270,6 +441,15 @@
       "phase_id": "crib_1835",
       "structure_id": "south_pier"
     },
+    "st_marys_church__frame_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 34024,
+      "inputs_sha256": "15b299c98029f8f4f22677dc2186e6f9a427d1a56c6d42d224b9ef757a3a95fe",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "st_marys_church"
+    },
     "steamboat_hotel__frame_1835.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
@@ -278,6 +458,15 @@
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "steamboat_hotel"
+    },
+    "temple_building__frame_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 50868,
+      "inputs_sha256": "4b1c5c9ca98b82a572bd296d38c8f51764eea2ece4a99b2a38a475a5a04cd228",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "temple_building"
     },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
@@ -322,6 +511,15 @@
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
       "triangles": 2
+    },
+    "watkins_school_house__house_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 38100,
+      "inputs_sha256": "1d6b42988b89b1de31e866ae0ab2db5c456d5dd23b3abc8ad6e588ab400f5957",
+      "kind": "generated",
+      "phase_id": "house_1833",
+      "structure_id": "watkins_school_house"
     },
     "western_hotel__frame_1834.glb": {
       "archetype": "frame_tavern",

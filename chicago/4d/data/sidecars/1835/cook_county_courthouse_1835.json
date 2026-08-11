@@ -1,0 +1,98 @@
+{
+  "id": "cook_county_courthouse_1835",
+  "phase": "wood_1835",
+  "name": "First Cook County court-house",
+  "aka": [
+    "the first court-house",
+    "the 1835 court-house"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/cook_county_courthouse_1835__wood_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 559.25,
+    "local_n": -271.04,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "On the public square (the block bounded by Randolph, Clark, Washington and LaSalle), modelled at its north-east corner; no source reached fixes the corner.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7.315,
+        0
+      ],
+      [
+        7.315,
+        5.486
+      ],
+      [
+        0,
+        5.486
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "plank",
+      "confidence": "conjectural",
+      "note": "INVENTED. The phrase 'a small wooden stockade-type building' circulates in this project's dossier tagged to a document that does not contain it (see the position note), so even 'wooden' is carried here without a citation. Plank - sawn boards on a light frame - is the value in this archetype's vocabulary that claims the least: it says only what a viewer would see, which is a boarded wall. Log is the live alternative and would be the reading if 'stockade-type' turns out to be sourceable, since a stockade is uprights set in the ground. Brick and stone are excluded by date rather than by taste: the first brick building in Chicago is 1837."
+    },
+    "wall_height_m": {
+      "value": 3.0,
+      "confidence": "conjectural",
+      "note": "INVENTED. 3.0 m is about 10 ft to the plate - enough for a court room with a bench and a jury in it, and a little more than the 8 ft 9 in this record's neighbour the log jail carries. Nothing attests a height, a storey count or a ceiling. The archetype refuses a storey count outright for this family of buildings, which is the right refusal here: two storeys of court-house is a claim, and nobody has made it for 1835."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "conjectural",
+      "note": "INVENTED. Nothing attests a roof of any kind. Gable is what a small wooden public building of the period and region carried, and it is what the archetype would default to at this depth in any case; it is stated rather than defaulted so that the confidence view can show it as the invention it is."
+    },
+    "roof_pitch_deg": {
+      "value": 32.0,
+      "confidence": "conjectural",
+      "note": "INVENTED. 32 degrees is this archetype's own default for a gable, kept deliberately rather than replaced with a fresh guess, on the reasoning docs/LIBERTIES.md L29 states about the bridge's pier spacing: a new number would look like a finding and would not be one."
+    },
+    "door": {
+      "value": "man",
+      "confidence": "conjectural",
+      "note": "INVENTED. door in this archetype names what has to get through the opening. People went into a court-house and nothing else did, so the man-door class is the reading; nothing attests a door, its position or its size. A public building might well have had a double leaf, which this class does not build."
+    },
+    "function": {
+      "value": "county court-house",
+      "confidence": "documented",
+      "sources": [
+        "illinoiscourthistory"
+      ],
+      "note": "'Cook County built their first courthouse in 1835', and the caption 'The first Cook County Courthouse, 1835-1853'. That is the entire documentary basis for this structure's existence and function in the sources this project holds, and it is enough for both. THE SAME PAGE SUPPLIES NOTHING ELSE - no dimension, no material, no storey count, no roof, no portico, no location, no month - and the two descriptions sitting near it belong to the 1837 and 1853 buildings; see the footprint note."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "illinoiscourthistory",
+      "citation": "\"History of the Cook County Courthouses.\" Illinois Court History (illinoiscourthistory.org). PDF, 8 pages, unsigned and undated; its own Sources page lists Goodspeed, History of Cook County (1909); Andreas, History of Cook County (1884); Currey, Chicago: Its History and its Builders vol. 3 (1912); Carter, The Early Courts of Chicago and Cook County (1914); and Goeldner, Temples of Justice (1970).",
+      "url": "https://www.illinoiscourthistory.org/resources/858a0c70-b542-438b-88d3-087d86e131dd/Cookcountyhistory.pdf",
+      "archived_url": "https://web.archive.org/web/20250420091727/https://www.illinoiscourthistory.org/resources/858a0c70-b542-438b-88d3-087d86e131dd/Cookcountyhistory.pdf",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE MOST UNCERTAIN RECORD IN THIS PARCEL, AND IT IS ON THE PROJECT'S WATCH LIST FOR A REASON. data/exclusions.json's watch_list already states the problem exactly: the year is documented, no source fixes a month, so on 1835-07-01 the building may be unbuilt, under construction, or just finished. This record builds it complete and tags everything about it conjectural except its existence, its year and its function. THREE GUARDS TRAVEL WITH IT AND ALL THREE ARE ABOUT DESCRIPTIONS OF OTHER BUILDINGS. (1) THE 1837 BUILDING: Andreas's 'court-house on the northeast corner of the public square, basement and principal story, about thirty by sixty feet, court-room and jury rooms on the principal floor, clerk's and recorder's offices and vaults in the basement, front ornamented with a four-column Doric portico of wood work' is 1837. Do not attach it. Note the sting in the tail - this record adopts the north-east corner of the square on independent reasoning, which means the ONE siting detail it does assert is also the one the 1837 description would contaminate it with. (2) THE 1853 BUILDING: in illinoiscourthistory the sentences run 'Cook County built their first courthouse in 1835. The county's second courthouse (and city hall) was built in 1853. It was constructed in the Greek Revival style, and built with stone ... designed by ... John M. Van Osdel.' The 'It' is the 1853 building. A reader skimming for the first court-house finds a Greek Revival stone building two lines under it, and Van Osdel did not reach Chicago until 1837. (3) THE DOSSIER'S OWN OVER-TAGGING: docs/research/04-structures-south.md line 178 tags the corner and the phrase 'a small wooden stockade-type building' as [DOC] from the Illinois Court History PDF, and that document contains neither. Nothing in this record cites them. WHAT WOULD UPGRADE THIS RECORD, in order of value: the Cook County commissioners' records for 1834-35, which would carry a contract, a cost, a specification and a completion date and would settle the month, the material and the size in one document; Andreas vol. 1 at page-image level around scan p. 373, under the heading 'THE FIRST COURT-HOUSE.', which this session has not read; and any of the five works illinoiscourthistory lists in its own bibliography without citing to a page - Goodspeed 1909, Andreas 1884, Currey 1912, Carter 1914, Goeldner 1970. A single dated county order would move this record from conjectural to documented across four attributes at once.",
+  "research_doc": "docs/RESEARCH/cook_county_courthouse_1835.md",
+  "review_required": false
+}

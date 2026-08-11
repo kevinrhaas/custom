@@ -778,12 +778,21 @@ this file exists to catch.
 anything else. The one fact that made this structure remarkable in its own town is the fact the
 model does not show. The 60-foot gap in the deck is not drawn either, so the crossing reads as
 continuous when it was not.
+**Evidence since, 2026-08-11:** the frames are **built**. `bridge_timber` grew a draw — the
+sixty-foot opening now clears four invented supports out of itself and stations two gallows
+frames at its ends — on the argument that a dithered translucent frame says "this shape is ours"
+in a way no footnote can, while an absent one tells a visitor the town's one piece of
+engineering was a plain causeway. What is still missing is the *mechanism*: no leaf, no hinge,
+no tackle. The draw is built **closed**, which is the only state agnostic between the three
+arrangements the sources permit. `gallows_height_m` is conjectural and carries the whole frame's
+confidence, so the most conspicuous object on the crossing is the one the confidence view
+dithers hardest.
 **How to resolve:** any description of the draw's framing or its hoist — a repair contract, a
 council order, an engraving. The bridge was repaired in 1835, so a repair record is the most
 likely thing to exist.
 **Covers:** `dearborn_street_drawbridge.draw_1834.footprint`,
-`dearborn_street_drawbridge.draw_1834.form.draw_span_m`,
-`dearborn_street_drawbridge.draw_1834.form.gallows_frames`,
+`dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`,
+`dearborn_street_drawbridge.draw_1834.form.gallows_height_m`,
 `dearborn_street_drawbridge.draw_1834.form.overall_length_m`,
 `dearborn_street_drawbridge.draw_1834.form.pier_count`,
 `dearborn_street_drawbridge.draw_1834.form.pier_kind`,
@@ -835,7 +844,8 @@ industry sits well north of even the extended box — gets an entry of its own n
 `h_jones_store.frame_1833.form.stories`,
 `jh_kinzie_forwarding_store.frame_1830s.footprint`,
 `jh_kinzie_forwarding_store.frame_1830s.position`,
-`jh_kinzie_forwarding_store.frame_1830s.form.stories`.
+`jh_kinzie_forwarding_store.frame_1830s.form.stories`,
+`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`.
 **Recorded:** 2026-08-10.
 
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
@@ -1067,6 +1077,46 @@ lands this entry moves to Resolved** rather than being edited.
 `fort_dearborn_root_house.cellar_1816.ground_contact`,
 `fort_dearborn_garrison_garden.fence_1816.ground_contact`,
 `chicago_lighthouse_1832.tower_1832.ground_contact`.
+**Recorded:** 2026-08-11.
+
+### L41 — The harbour piers are a measured line, an interpolated length and an invented width
+**Decision:** `north_pier` and `south_pier` are drawn as timber crib lines 900 ft and 400 ft
+long and **25 ft wide**. The bearing and the landward root of both are measured off Wright
+1834; the length of both is an **interpolation between two year-end figures**, recorded
+`inferred` on `form.length_m`; the width of both is **the archetype's own constant**, recorded
+`conjectural`, and it carries the footprint down with it.
+**Why:** the sheet that gives the line cannot give the width. Wright 1834 draws the harbour as
+two red pier lines with HARBOR lettered between them, and read through this project's own
+fitted affine the two run at 103.4 and 103.5 degrees from grid north and stand 64.2 m apart —
+against a documented 200 ft entrance, which is 61.0 m, a four-per-cent agreement from evidence
+that shares no input. That is a good measurement of a **line**. But the sheet is drawn at about
+1:7,200, where a 25-ft crib is 0.13 mm of paper and about a fifth of the width of the pen that
+drew the pier: the red bands are line weight and carry no thickness at all, so measuring one
+would be measuring the draughtsman's nib. No text reached states a width either. 25 ft is this
+archetype's number, kept as a single constant in `pier_crib_params.DEFAULT_WIDTH_M` so that
+both piers inherit **one** invention a reader can find in one place rather than two that could
+drift apart.
+**The length is a different kind of not-knowing and is graded differently.** No source gives a
+length for any date inside the 1835 season; what exist are year-end figures — north 700 ft
+(end 1834) to 1,260 ft (end 1835), south 200 ft to 700 ft — and 1 July is placed between them
+on a season-weighted rather than a calendar reading, at 900 ft and 400 ft, inside the bands
+`docs/research/04-structures-south.md` §3 reaches independently. That is `inferred` with the
+arithmetic written out, not `conjectural`, and it is not claimed here. What is claimed is the
+**drawn shape**, which is graded by its weaker axis.
+**A third invention rides along and is claimed here too:** the cribs are drawn as equal
+30-ft modules (`pier_crib_params.CRIB_MODULE_FALLBACK_M`). Nobody recorded a crib length, and a
+pier built out over several seasons in fact ends where a season ended, not on an even module.
+**Consequence:** a visitor sees two piers of a definite length and a definite width, and only
+their direction and their starting point are evidence. The confidence view renders both as
+massing, which is right, and cannot say that one of the two axes is much better known than the
+other — only this entry can. Nothing should be read off how far out they run.
+**How to resolve:** the Chief Engineer's annual report for 1835 or the House Document series
+would replace the interpolated length with a figure (`docs/research/01-terrain-hydrology.md`
+already names them as the thing to find). For the width, J. D. Graham's 1857 and 1858
+hydrographic surveys of the Chicago bar draw the piers in plan at a usable scale, or any
+specification or voucher for the crib work.
+**Covers:** `north_pier.crib_1835.footprint`, `north_pier.crib_1835.form.width_m`,
+`south_pier.crib_1835.footprint`, `south_pier.crib_1835.form.width_m`.
 **Recorded:** 2026-08-11.
 
 ---
