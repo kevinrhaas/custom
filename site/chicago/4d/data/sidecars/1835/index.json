@@ -1,6 +1,72 @@
 {
   "scene": "1835",
   "target_date": "1835-07-01",
+  "intersections": [
+    {
+      "id": "kinzie_canal",
+      "label": "Kinzie Street & Canal Street",
+      "streets": [
+        "kinzie",
+        "canal"
+      ],
+      "search_terms": [
+        "Kinzie Street",
+        "Canal Street",
+        "W Kinzie Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -183.41,
+      "local_n": 264.93
+    },
+    {
+      "id": "lake_canal",
+      "label": "Lake Street & Canal Street",
+      "streets": [
+        "lake",
+        "canal"
+      ],
+      "search_terms": [
+        "Lake Street",
+        "Canal Street",
+        "W Lake Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -159.67,
+      "local_n": -108.38
+    },
+    {
+      "id": "lake_market",
+      "label": "Lake Street & Market Street",
+      "streets": [
+        "lake",
+        "market"
+      ],
+      "search_terms": [
+        "Lake Street",
+        "Market Street",
+        "W Lake Street, unchanged alignment",
+        "N Wacker Drive"
+      ],
+      "local_e": 89.2,
+      "local_n": -110.4
+    },
+    {
+      "id": "randolph_canal",
+      "label": "Randolph Street & Canal Street",
+      "streets": [
+        "randolph",
+        "canal"
+      ],
+      "search_terms": [
+        "Randolph Street",
+        "Canal Street",
+        "W Randolph Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -155.24,
+      "local_n": -251.19
+    }
+  ],
   "structures": [
     {
       "id": "bates_auction_room",

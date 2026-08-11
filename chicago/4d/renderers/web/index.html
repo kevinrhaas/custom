@@ -80,6 +80,22 @@
     </div>
   </div>
 
+  <div class="navigation-stack" aria-label="Navigation aids">
+    <div id="compass" class="compass" aria-label="Heading north, 0 degrees">
+      <span class="compass-dial" aria-hidden="true">
+        <span class="compass-n">N</span><span class="compass-e">E</span>
+        <span class="compass-s">S</span><span class="compass-w">W</span>
+        <span class="compass-needle" id="compass-needle">↑</span>
+      </span>
+      <strong id="compass-direction">N</strong><span id="compass-bearing">000°</span>
+    </div>
+    <div id="overview-map" class="overview-map" aria-label="Overview map">
+      <canvas id="overview-map-canvas" aria-hidden="true"></canvas>
+      <span class="overview-north" aria-hidden="true">N</span>
+      <span class="overview-caption" aria-hidden="true">whole model</span>
+    </div>
+  </div>
+
   <div class="hud-panel" id="panel" hidden>
     <div class="panel-tabs" role="tablist">
       <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
@@ -123,7 +139,17 @@
           <option value="1.5">Medium</option>
           <option value="2">High — sharper</option>
         </select></label>
-      <div class="field"><span>Go to</span><div class="anchors" id="anchors"></div></div>
+      <label class="field row check-field"><span>Show compass</span>
+        <input type="checkbox" id="s-compass"></label>
+      <label class="field row check-field"><span>Show overview map</span>
+        <input type="checkbox" id="s-overview-map"></label>
+      <div class="field jump-field">
+        <span>Jump to a structure or intersection <b id="jump-count"></b></span>
+        <input type="search" id="jump-search" placeholder="Search every place…"
+          autocomplete="off" spellcheck="false" aria-controls="jump-results">
+        <div class="jump-results" id="jump-results" role="listbox"></div>
+      </div>
+      <div class="field"><span>Named viewpoints</span><div class="anchors" id="anchors"></div></div>
     </section>
 
     <section class="panel-body" data-panel="evidence" hidden>

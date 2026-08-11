@@ -19,6 +19,8 @@
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
+ *   navigation aids ............. compass, moving overview marker, settings toggles
+ *   complete jump search ........ every loaded structure + verified intersection
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
  *   draw calls under budget ..... the batch strategy is doing its job
  *   zero page errors ............ everywhere, both widths
@@ -792,6 +794,106 @@ for (const [label, viewport, touch] of [
       chrome.gateHidden && chrome.hudShown,
       `gate hidden ${chrome.gateHidden}, hud shown ${chrome.hudShown}`);
     check(`${label}: no horizontal overflow`, chrome.overflow);
+
+    // --- navigation --------------------------------------------------------
+    // Both readouts are derived from the live walker.  The overview's signature
+    // is sampled from its own 2D canvas before and after a teleport so this
+    // checks the visible marker, not merely an object property updated beside it.
+    const nav = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const mapCanvas = document.getElementById('overview-map-canvas');
+      const signature = () => {
+        const p = mapCanvas.getContext('2d').getImageData(0, 0, mapCanvas.width, mapCanvas.height).data;
+        let hash = 2166136261;
+        for (let i = 0; i < p.length; i += 37) hash = Math.imul(hash ^ p[i], 16777619) >>> 0;
+        return hash;
+      };
+      api.walker.teleport({ local_e: 20, local_n: -40, yaw_deg: 90 });
+      api.step();
+      const first = signature();
+      const east = {
+        direction: document.getElementById('compass-direction')?.textContent,
+        bearing: document.getElementById('compass-bearing')?.textContent,
+        snapshot: api.navigation.snapshot(),
+      };
+      api.walker.teleport({ local_e: 180, local_n: 90, yaw_deg: 225 });
+      api.step();
+      return {
+        compassShown: !document.getElementById('compass')?.hasAttribute('hidden'),
+        mapShown: !document.getElementById('overview-map')?.hasAttribute('hidden'),
+        mapSize: [mapCanvas.width, mapCanvas.height],
+        east,
+        first,
+        second: signature(),
+        moved: api.navigation.snapshot(),
+      };
+    });
+    check(`${label}: compass shows the live heading`,
+      nav.compassShown && nav.east.direction === 'E' && nav.east.bearing === '090°',
+      `${nav.east.direction} ${nav.east.bearing}`);
+    check(`${label}: overview map renders the whole heightfield`,
+      nav.mapShown && nav.mapSize[0] >= 188 && nav.mapSize[1] >= 76
+      && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900,
+      `${nav.mapSize.join('x')}, E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
+    check(`${label}: overview marker follows position and bearing`,
+      nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
+      && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
+      `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
+
+    // The menu is built from the two runtime collections, not from a sampled
+    // shortlist.  With an empty query every loaded structure and every compiled
+    // control junction must have a button; a real search must narrow both kinds.
+    await page.click('#btn-help');
+    await page.click('.panel-tab[data-tab="settings"]');
+    const jumps = await page.evaluate(() => {
+      const input = document.getElementById('jump-search');
+      const all = {
+        structures: document.querySelectorAll('[data-jump-kind="structure"]').length,
+        intersections: document.querySelectorAll('[data-jump-kind="intersection"]').length,
+        loaded: window.__chicago4d.registry.size,
+      };
+      input.value = 'Randolph Canal';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      const filtered = [...document.querySelectorAll('#jump-results .jump-result')]
+        .map((b) => ({ id: b.dataset.jumpId, kind: b.dataset.jumpKind, text: b.textContent }));
+      return { all, filtered };
+    });
+    check(`${label}: jump menu includes every loaded structure`,
+      jumps.all.structures === jumps.all.loaded && jumps.all.loaded > 70,
+      `${jumps.all.structures} listed of ${jumps.all.loaded} loaded`);
+    check(`${label}: jump menu includes every verified intersection`,
+      jumps.all.intersections === 4, `${jumps.all.intersections} listed`);
+    check(`${label}: jump search finds an intersection by both street names`,
+      jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
+      JSON.stringify(jumps.filtered));
+    await page.click('[data-jump-id="randolph_canal"]');
+    await page.waitForTimeout(80);
+    const arrived = await page.evaluate(() => ({ ...window.__chicago4d.player }));
+    check(`${label}: an intersection result moves the visitor there`,
+      Math.abs(arrived.e + 155.24) < 0.2 && Math.abs(arrived.n + 251.19) < 0.2,
+      `arrived (${arrived.e?.toFixed(2)}, ${arrived.n?.toFixed(2)})`);
+
+    await page.click('#btn-help');
+    await page.click('.panel-tab[data-tab="settings"]');
+    const toggles = await page.evaluate(() => {
+      const compass = document.getElementById('s-compass');
+      const map = document.getElementById('s-overview-map');
+      compass.click(); map.click();
+      const hidden = {
+        compass: document.getElementById('compass').hasAttribute('hidden'),
+        map: document.getElementById('overview-map').hasAttribute('hidden'),
+      };
+      compass.click(); map.click();
+      return {
+        hidden,
+        restored: !document.getElementById('compass').hasAttribute('hidden')
+          && !document.getElementById('overview-map').hasAttribute('hidden'),
+      };
+    });
+    check(`${label}: settings toggle both navigation aids`,
+      toggles.hidden.compass && toggles.hidden.map && toggles.restored,
+      JSON.stringify(toggles));
+    await page.click('#panel-close');
 
     // The HUD toggle must drive the same view the harness does.
     await page.click('#btn-confidence');
