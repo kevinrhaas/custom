@@ -1504,6 +1504,187 @@ page-image level around scan p. 305.
 `watkins_school_house.house_1833.form.plan`.
 **Recorded:** 2026-08-11.
 
+### L63 — The Wolf Point row gains two buildings whose footprints are invented outright
+**Decision:** `james_kinzie_house` (8 × 6.5 m) and `robert_kinzie_store` (7 × 6 m) are added to the
+west-bank row on the strength of one clause each, with footprints tagged `conjectural` that cite no
+sources.
+**Why:** the sources give these two an ORDER and a NEIGHBOUR and nothing else. chicagology puts James
+Kinzie's residence south of Wentworth's tavern; Andreas's list of the town's Indian traders gives
+"Robert A. Kinzie, near Wentworth's tavern" (scan p. 235). Neither is described, measured, dated or
+given a material. Unlike Miller's house, where an attested composition carries the SHAPE while only
+the size is invented, here neither shape nor size carries anything: the polygons are ordinary
+single-pen plans at ordinary sizes, chosen to sit in a river-front row.
+**Consequence:** the west bank at Wolf Point now carries five structures — James Kinzie's house,
+Robert Kinzie's store, the tavern, the Robinson cabins and Walker's meeting house — across about
+130 m of frontage, on four ordering statements and no measured distances. Every one of them hangs off
+`wolf_point_tavern`, which is itself the weakest placement in the parcel (L7). If the tavern moves,
+the row moves with it.
+**How to resolve:** Andreas vol. 1 at page-image level around the Wolf Point material (index: pp. 111,
+114, 174, 629–631); or the retrospective Wolf Point views — Blanchard & Shober 1867, and the
+"Wolf Point in 1830" plate Andreas reproduces — examined at plate level for the row's massing.
+**Covers:** `james_kinzie_house.dwelling_1830.footprint`, `robert_kinzie_store.store_1830.footprint`.
+**Recorded:** 2026-08-11.
+
+### L64 — Two Clybourne records stand about three kilometres from their own ground, and one cabin stands for two
+**Decision:** `clybourn_slaughterhouse` and `clybourn_cabins` are placed at the northern edge of the
+modelled terrain on the east bank of the North Branch, with `position` tagged `conjectural`. Their
+attested ground is the Clybourne place several miles up the branch — "south of the Bloomingdale Road
+and opposite the North Chicago Rolling Mills" (Andreas scan p. 1149), "several miles up the North
+Branch, where now are the North Chicago rolling-mills" (scan p. 215) — roughly 3 km north-north-west
+of the forks and some 2.8 km beyond the box's northern edge. `clybourn_cabins` draws ONE cabin where
+the dossier says the family built two, and states the count as `cabin_count` with `geometry:
+"simplified"`.
+**Why:** the terrain epoch models 640 m square. Dropping the buildings would have made the town's
+first industry invisible; placing them at their true coordinates would have put them on the radial
+skirt outside every view. The project owner's instruction of 2026-08-11 was to place at the edge of
+modelled ground and say so. The BANK is preserved in both cases and is the only part of the
+coordinate that carries evidence. The second cabin is not drawn because a second polygon would need
+an invented spacing, an invented orientation and an invented relation to the first — three inventions
+to express one number that is itself second-hand.
+**Consequence:** two buildings appear at the head of the modelled North Branch that in life stood
+three kilometres further up it, and a visitor who paces the distance from Wolf Point to the
+slaughter-house will get an answer that is wrong by kilometres rather than by metres. The 60 m
+between the cabins and the slaughter-house is invented entirely. The stock yard later called Bull's
+Head is not modelled at all, and the door side of the slaughter-house — river or landward — is a coin
+flip.
+**How to resolve:** extend the terrain epoch north up the North Branch, at which point both records
+move to their attested reach and this entry moves to Resolved.
+**Covers:** `clybourn_slaughterhouse.log_1827.position`, `clybourn_slaughterhouse.log_1827.footprint`,
+`clybourn_slaughterhouse.log_1827.form.door_side`, `clybourn_cabins.log_1824.position`,
+`clybourn_cabins.log_1824.footprint`, `clybourn_cabins.log_1824.form.cabin_count`.
+**Recorded:** 2026-08-11.
+
+### L65 — The town's industry is modelled as sheds, and the works inside them are not built
+**Decision:** four industrial records — `brickyard_north_side`, `elston_soap_candle_manufactory`,
+`pierce_blacksmith_shop` and `newberry_dole_slaughterhouse_south_branch` — are each built as a single
+`outbuilding` at an invented size, with their plant recorded on the record and absent from the mesh:
+the brickyard's clamp, hacks, clay pit and spoil (`yard_works`), Elston's rendering kettle, ash leach
+and moulding floor (`plant`), and Pierce's forge, bellows and chimney (`forge`).
+**Why:** this project has archetypes for buildings and none for a WORKS. A brickyard is an area of
+ground with a burning clamp on it; a soap manufactory is a fire under a kettle; a smithy is a hearth
+and a stack. The outbuilding archetype builds walls and a roof and has no chimney parameter at all,
+so the one visible sign of every one of these trades — smoke — cannot be built. Rather than leave the
+trades out of the town, each is modelled as the shed the trade worked under and the plant is declared.
+**Consequence:** the most legible failure in this parcel. Blodgett's brickyard, which supplied the
+brick for the Lake House going up on the same bank, reads as one open shed in a field. Elston's
+manufactory has no fire. Pierce's smithy has no smoke. The confidence chips over these attributes say
+"we are fairly sure this existed" and the visitor sees nothing. This is the same shortfall L10 records
+against the Western Hotel's wagon yard, now repeated four times, and it is the strongest argument in
+the dataset for a works or parcel archetype. Newberry & Dole's slaughter-house is additionally placed
+on a reach and a bank of the South Branch that no source gives — Andreas says only "on the South
+Branch of the river" (scan p. 1151), a corridor kilometres long — and its door side is a coin flip.
+**How to resolve:** a `works` or `yard` archetype that can carry an enclosure, a fire and a stack. Any
+description of any of these four premises would help the footprints; nothing found describes one.
+**Covers:** `brickyard_north_side.yard_1833.footprint`,
+`brickyard_north_side.yard_1833.form.yard_works`,
+`elston_soap_candle_manufactory.works_1833.footprint`,
+`elston_soap_candle_manufactory.works_1833.form.plant`,
+`pierce_blacksmith_shop.shop_1833.footprint`, `pierce_blacksmith_shop.shop_1833.form.forge`,
+`newberry_dole_slaughterhouse_south_branch.works_1834.footprint`,
+`newberry_dole_slaughterhouse_south_branch.works_1834.position`,
+`newberry_dole_slaughterhouse_south_branch.works_1834.form.door_side`.
+**Recorded:** 2026-08-11.
+
+### L66 — Two river warehouses stand on banks that are disputed or unattested, and neither has its dock
+**Decision:** `newberry_dole_warehouse` is placed on the SOUTH bank of the main stem with its position
+tagged `conjectural`, against an Andreas sentence that puts the firm's warehouse on the north side;
+`kinzie_hunter_warehouse` is placed on the NORTH bank with its position AND its date range tagged
+`conjectural`, on a plausibility the dossier itself tags `[CONJ]`. Both records state `dock: true`
+with `geometry: "absent"`, and neither dock is built.
+**Why (the bank):** this project's own dossiers disagree. docs/research/03-structures-north.md §3.10
+reports a square frame "Newberry and Dole's Forwarding and Commission House" on South Water Street in
+views of c. 1835; docs/research/04-structures-south.md quotes Andreas — "whose warehouse was on the
+North Side, immediately east of where Rush-street bridge now stands" (scan p. 1139) — and instructs
+"Do not put it on South Water Street." The south bank is adopted because Andreas's sentence sits
+inside an account of a grain shipment made on the brig *Osceola* in **1839**, so the building it
+locates is the firm's warehouse four years after the scene date. That is reasoning, not proof, and the
+disagreement is recorded rather than resolved. Kinzie & Hunter's bank is not disputed but simply
+absent: the dossier lists it as an open gap, "bank, date, size".
+**Why (the dock):** "each had a warehouse with its dock along the river front" is the clause that
+attests these buildings at all, and Andreas independently names "Newberry & Dole's wharf" as the place
+the schooner *Illinois* was cheered on 12 July 1834 (scan p. 503). The project has a `pier_crib`
+archetype for the harbour piers and nothing for a river wharf; a dock of invented length, height and
+construction sitting in the water would be a larger invention than the buildings it served.
+**Consequence:** the river trade — the reason the town existed in 1835 — is represented by two sheds
+standing back from an empty bank. On `kinzie_hunter_warehouse` the `dock` attribute carries a
+`documented` chip over nothing at all, which is precisely the failure the geometry declarations exist
+to surface. And one of the two warehouses is probably on the wrong side of the river.
+**How to resolve:** identify the c. 1835 view the north-side dossier describes and give it a source
+record; or read further issues of the *Chicago Democrat*, whose advertising columns are where a
+forwarding house states its street.
+**Covers:** `newberry_dole_warehouse.frame_1833.position`, `newberry_dole_warehouse.frame_1833.footprint`,
+`newberry_dole_warehouse.frame_1833.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.position`,
+`kinzie_hunter_warehouse.warehouse_1834.footprint`, `kinzie_hunter_warehouse.warehouse_1834.form.dock`,
+`kinzie_hunter_warehouse.warehouse_1834.documented_range`.
+**Recorded:** 2026-08-11.
+
+### L67 — A trade advertised in November 1833 becomes a building standing in July 1835
+**Decision:** `elston_soap_candle_manufactory` is built from a newspaper advertisement, with both its
+`documented_range` and its `position` tagged `conjectural`.
+**Why:** the *Chicago Democrat* of 26 November 1833 carries Daniel Elston & Co.'s soap and candle
+manufactory, paying cash for tallow and house ashes, and Andreas's summary of the same columns repeats
+it (scan p. 755). That fixes a TRADE in a month — and the source record for the paper states the limit
+in as many words: an advertisement is "strong evidence of existence and address, weak evidence of
+survival, and no evidence at all of form." The scene date is nineteen months later, in the town's
+fastest-changing period. No address is given anywhere. The works are placed on the east bank of the
+North Branch on two unevidenced arguments: that Elston is a North Branch figure (the road named for
+him, and his later brickyard on that side — Andreas scan pp. 409, 1169, both decades after the scene),
+and that rendering is a nuisance trade that sits at the edge of a town near its slaughtering. Every
+other locatable advertiser in the same issue was on or near South Water Street, which is at least as
+good an argument the other way and is written into the record's position note.
+**Consequence:** a manufactory appears on the North Branch that may have stood on South Water Street,
+or may not have been standing at all by July 1835. It is built because an absent building is invisible
+to a visitor while a conjectural one is legible and correctable — the project owner's standing
+instruction of 2026-08-11 — and because the tallow trade belongs beside the slaughtering this parcel
+also models.
+**How to resolve:** further issues of the *Chicago Democrat*. One line of an 1834 or 1835
+advertisement carrying a street would settle the position and narrow the range at once.
+**Covers:** `elston_soap_candle_manufactory.works_1833.documented_range`,
+`elston_soap_candle_manufactory.works_1833.position`.
+**Recorded:** 2026-08-11.
+
+### L68 — The slough crossing is invented at every dimension except its material
+**Decision:** `slough_log_bridge` is built at an invented 8 × 3 m deck with `clearance_m` 0.5 m tagged
+`conjectural`, and it deliberately does NOT borrow the branch bridges' documented figures.
+**Why:** the source gives one sentence — where Water Street crossed the slough, a log bridge was
+needed until after 1840 — and one adjective, *log*. The span is sized off the STREAM rather than the
+bridge: the hydrology dossier gives the slough a width of 15–40 ft (zone 14) and tags width and depth
+conjectural while calling the route documented, so 8 m of deck crosses the narrow end of that range.
+The clearance is the number that mattered most to get wrong quietly: the two branch bridges stood
+"about six feet above the water, so that teams passed under them on the ice freely", which is
+documented for THEM and absurd here — nothing passed under a slough crossing. 0.5 m is a reading of a
+conjectural stream depth, not a measurement.
+**Consequence:** a visitor sees a small timber deck whose every proportion is this project's. If the
+slough ran 40 ft wide at the crossing, the span is half what it should be.
+**How to resolve:** any period description of the crossing, or a surveyed width for the slough at the
+foot of State Street.
+**Covers:** `slough_log_bridge.log_1833.footprint`, `slough_log_bridge.log_1833.form.clearance_m`.
+**Recorded:** 2026-08-11.
+
+### L69 — Two structures stand at their documented sites beyond the modelled ground
+**Decision:** `brickyard_north_side` and `slough_log_bridge` are placed at the sites their sources
+give — the north bank between Clark and Dearborn, and the Water Street crossing at the foot of State
+Street — which lie 300 m and 490 m east of the modelled terrain box. Both phases declare
+`ground_contact: {state: "outside_modelled_ground"}`.
+**Why:** the opposite choice was available and was taken for the Clybourne records (L64), which were
+pulled to the modelled edge because their sites are kilometres away and only loosely fixed. These two
+are different: the brickyard's site is attested to a 120 m span of street frontage (Andreas scan
+p. 1161) and the bridge's to the meeting of a named street and a named stream mouth, so displacing
+them would throw away the best evidence either record holds. What is missing here is terrain, not
+evidence.
+**Consequence:** neither structure meets any ground. `tools/heightfield.py` clamps at the box edge, so
+without the declaration the gate would have reported both as landing perfectly on terrain that does
+not exist. The slough bridge is worse off again: the South Division slough it crosses is not cut into
+this terrain epoch at all — the only modelled watercourse besides the river is an unnamed slough on
+the north side — so it stands over flat ground with no stream beneath it, and the `bridge_timber`
+archetype anchors it to the river's water surface, which the hydrology dossier puts 0.15–0.45 m below
+the slough's own.
+**How to resolve:** extend the terrain epoch east over the South Division and the north bank as far as
+Dearborn, and cut the slough's documented route into it. Then both declarations come off and this
+entry moves to Resolved.
+**Covers:** `brickyard_north_side.yard_1833.ground_contact`, `slough_log_bridge.log_1833.ground_contact`.
+**Recorded:** 2026-08-11.
+
 ---
 
 ## Resolved

@@ -6,34 +6,83 @@
  "encoding": "int16",
  "scale": 0.005,
  "offset": 0.0,
- "cols": 257,
- "rows": 257,
+ "cols": 809,
+ "rows": 321,
  "cell_m": 2.5,
  "origin_e": -320.0,
- "origin_n": -320.0,
- "min_m": -3.5705,
- "max_m": 1.3092,
+ "origin_n": -400.0,
+ "box_local_enu_m": {
+  "e": [
+   -320.0,
+   1700.0
+  ],
+  "n": [
+   -400.0,
+   400.0
+  ]
+ },
+ "min_m": -5.3049,
+ "max_m": 3.44,
  "quantisation_error_m": 0.0025,
  "water_surface_m": 0.0,
- "water_fraction": 0.1769,
+ "water_fraction": 0.2508,
  "relief_ft": {
-  "land_min": 0.003,
-  "land_max": 4.295,
-  "channel_min": -11.714
+  "land_min": 0.0,
+  "land_max": 11.286,
+  "channel_min": -17.405
  },
  "gradient_audit_ft_per_300ft": {
   "baseline_ft": 300.0,
-  "shore_and_swale_exclusion_m": 48.0,
-  "plain_block_max": 0.468,
-  "plain_block_mean": 0.1486,
-  "passes": true,
+  "shore_exclusion_m": [
+   15.0,
+   62.5
+  ],
+  "marsh_exclusion_m": 48.0,
+  "plain_cells_audited": 119470,
+  "plain_block_max": 0.532,
+  "plain_block_mean": 0.1392,
+  "passes": false,
   "plain_cell_roughness_max": 2.794,
-  "shore_and_swale_cell_max": 95.429,
+  "shore_and_swale_cell_max": 593.263,
+  "relief_zones_ft_per_300ft": {
+   "bank_face": {
+    "cells": 29594,
+    "cell_max": 119.309
+   },
+   "fort_dearborn_mound": {
+    "cells": 2251,
+    "cell_max": 87.198
+   },
+   "marsh_strip": {
+    "cells": 5669,
+    "cell_max": 64.492
+   },
+   "north_sand_ridge": {
+    "cells": 5151,
+    "cell_max": 76.295
+   },
+   "sand_bar_1834": {
+    "cells": 15252,
+    "cell_max": 51.64
+   },
+   "south_sand_ridge": {
+    "cells": 21417,
+    "cell_max": 593.263
+   },
+   "state_street_break": {
+    "cells": 8401,
+    "cell_max": 65.027
+   },
+   "swales": {
+    "cells": 20536,
+    "cell_max": 75.555
+   }
+  },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
  },
  "glb": {
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "151c51db4d4c6e7d02858ac66d2370e4e517f26419baaad8d13dd719b110de92"
+ "inputs_sha256": "1a30a33b9699cee4ff6d64e1c44c3c9b84de72e4a86f61acf93e9494e54a0ff4"
 }
