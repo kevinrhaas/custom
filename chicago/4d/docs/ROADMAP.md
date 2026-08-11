@@ -294,11 +294,33 @@ into errors — stays deliberately behind the regrade, because a gate that fails
 dataset on the day it lands is a gate that gets switched off.
 
 **The other two are outside the buildings**: ground `surface_materials.south_division`
-(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`). The second
-is the same shape as the three just cleared — the page quotes Lt. James Strode Swearingen's 1803
-account — and has not been opened. So are `prefire062` (quoting the *Chicago American* of
-9 July 1835) and `prefire276` (the same 1857 magazine as `prefire273`, cited by nothing today).
-Nine pages at tier 4 or weaker declare nothing, counted by the validator every run.
+(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`).
+
+**The three pages that looked like the same case were opened 2026-08-11** (STATUS § 45,
+`docs/RESEARCH/evidence_tiers_round_two.md`), and two of them were. `prefire062` reprints
+**Andreas**, who quotes the *Chicago American* of 9 July **1836** (not 1835) for the Lake and
+La Salle frog pond — tier 3, on Andreas and deliberately not on the newspaper nobody here has
+opened. `prefire276` reprints the *Chicago Magazine* of 15 May 1857, the same document and the
+same reading as `prefire273` — tier 2, with the 1856 *Tribune* notice beside it left undeclared
+because no claim here rests on it. Neither page is cited by anything today, so the ladder count
+stays at six; both are queued research (S2 parcel (c)'s pond, and the fort) that can now be
+graded honestly when it is written.
+
+**`wikipedia_chicago_river` was NOT the case, and that is the finding with a consequence.** It
+reprints nothing — one sentence of encyclopedia prose paraphrasing Swearingen with a footnote to
+**Quaife 1913, pp. 373-377**, which is the primary printing the record has asked for since it was
+written. Two things come off it:
+
+| queued | what it costs |
+|---|---|
+| Fetch Quaife 1913 pp. 373-377 and record Swearingen's 1803 soundings at their own rung | reading. Free of a bake unless it is then cited from `terrain_spec.json`, whose source ids are inside the terrain's staleness hash |
+| **ground `water`: `documented` → `inferred`** — the flat surface rests on an unfootnoted encyclopedia sentence about sluggish flow, not on Swearingen, who gives no gradient and measures 1.2 miles downstream | a confidence is a mesh input: it stales the ground and lands with its Blender bake, exactly like the four `drloih` values |
+
+That is the **first of the six warnings settled in the over-graded direction** — the source is
+correctly tiered and the value is not. Six pages at tier 4 or weaker still declare nothing
+(`chicago_temple_history`, `chicagology_first_post_office`, `chicagology_lastwardance`,
+`chicagology_prefire274`, `drloih_hotels`, `drloih_wolf_point`), counted by the validator every
+run, and the two `drloih` pages are not solvable this way.
 
 
 **The repair queue that came before it, all of it DONE — three attributes that were recorded

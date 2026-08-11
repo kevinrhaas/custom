@@ -179,5 +179,11 @@ is a mesh input, so it lands with a bake, and it stays queued in `docs/ROADMAP.m
   `chicagology_prefire276` (Chicago Magazine 1857) and `wikipedia_chicago_river` (quoting
   Swearingen's 1803 account) all *look* like the same case, and none of them was opened here.
   Looking like the case is what this memo exists to stop being sufficient.
+  **Opened 2026-08-11 — `docs/RESEARCH/evidence_tiers_round_two.md`.** Two were the case and
+  one was not: `prefire062` reprints Andreas (who quotes the newspaper) and is tier 3,
+  `prefire276` reprints the 1857 *Chicago Magazine* and is tier 2, and Wikipedia reprints
+  nothing at all — it paraphrases Swearingen and footnotes Quaife 1913, pp. 373-377, which
+  needed a third state in the schema to record. Six pages left, and the date above is wrong:
+  the American item is 9 July **1836**.
 - **No value moved and no mesh is stale.** A confidence is a mesh input and a source tier is
   not; the whole of this slice is sources, sidecars and prose.

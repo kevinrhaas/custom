@@ -2282,6 +2282,45 @@ def test_a_declaration_says_what_the_document_carries() -> None:
           any("dates a retrieval" in e for e in rep.errors), rep.errors)
 
 
+def test_a_page_that_was_read_and_reprints_nothing_says_so() -> None:
+    """Silence means two different things and the count could not tell them apart.
+
+    A page nobody has opened and a page opened and found to carry no document
+    both declare nothing, so the validator's note went on calling a read page
+    unread — a true sentence describing something no check could see, which is
+    the fault this family of gates exists to end. `wikipedia_chicago_river` is
+    the case: it paraphrases Swearingen's 1803 soundings and footnotes them to a
+    named reprinting, which is a citation and not a transcription.
+    """
+    reason = "paraphrases Swearingen and footnotes a reprinting; reprints nothing"
+
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(4, carries_no_document=reason)}, rep)
+    check("a page read and found to carry nothing is not an error", not rep.errors, rep.errors)
+    check("and it is counted apart from the unread ones",
+          any("were read and reprint none" in n for n in rep.notes), rep.notes)
+
+    # The discriminating case: every field well formed, the reading honestly
+    # recorded, and the number claims a judgement about a document the page does
+    # not contain.
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(2, carries_no_document=reason)}, rep)
+    check("a testimony rung over a page that reprints nothing is an error",
+          any("reprints no document" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(4, carries_no_document=reason, transcribes=[_carries(4)])}, rep)
+    check("and a page cannot both reprint a document and reprint none",
+          any("either reprints a document or it does not" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(4, date="1893-10-29", carries_no_document=reason)}, rep)
+    check("a record that IS its document is describing the wrong page",
+          any("describes the wrong page" in e for e in rep.errors), rep.errors)
+
+
 def test_a_record_that_dates_a_document_needs_no_declaration() -> None:
     """`chicagology_prefire252` dates itself 1893-10-29 — it IS the newspaper as
     far as this dataset is concerned, and asking it to transcribe itself would be
