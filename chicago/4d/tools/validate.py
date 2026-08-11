@@ -1089,6 +1089,113 @@ def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
              f"outline; {len(thin)} documented on later scholarship alone")
 
 
+# A record that dates its own retrieval is describing a web page, not a document:
+# `date` reads "accessed 2026-08-10" rather than "1884" or "1893-10-29". That
+# string is the dataset's own signal and not a new convention — see the check.
+_ACCESSED = re.compile(r"^\s*accessed\b", re.I)
+
+
+def dates_its_own_retrieval(source: dict) -> bool:
+    """True when the record dates the fetch rather than the document it carries."""
+    return bool(_ACCESSED.match(str(source.get("date") or "")))
+
+
+def check_transcription_declarations(sources: dict, rep: Report) -> None:
+    """A rung is a judgement about a document; this holds it to one.
+
+    `check_evidence_ladder` asks what rung a claim rests on and takes the rung
+    from the source record, where somebody typed it. Nothing ever asked what the
+    number was a judgement ABOUT — which matters most for the modern pages that
+    carry old documents, because there the number is not a judgement about the
+    page at all. `chicagology_prefire252` is tier 2 because it prints an 1893
+    Tribune retrospective; `chicagology_kinzie_bridge` is tier 3 because it
+    prints Andreas, and its `note` said so in as many words — "Tier 3 for the
+    Andreas transcription; the surrounding apparatus is a finding aid" — in a
+    sentence no check could read. That is the shape of every fault this family of
+    gates has found: a true sentence in a file, describing something nothing
+    verified.
+
+    So a record that dates its own RETRIEVAL rather than a document — `date`
+    reading "accessed 2026-08-10" — and that claims a rung at or above
+    `TESTIMONY_MAX_TIER` must declare `transcribes`: the documents it carries,
+    each with its own date and its own rung, and each saying which of this
+    project's claims it carries. The record's tier is then the best rung
+    declared, derived rather than asserted, exactly as a changelog version is.
+
+    Declare the documents the dataset DRAWS ON. A page also carrying a period
+    city directory that no value here rests on is carrying apparatus, and
+    apparatus goes in `note`; declaring it would claim, falsely, that a rung this
+    dataset does not use is a rung it stands on.
+
+    Two limits, both real and neither closable here. The check cannot read a
+    transcription, so it cannot tell whether the document named actually says
+    what the note claims — a human read is what put the entry there and a human
+    read is what would overturn it. And it is per-record, while
+    `check_evidence_ladder` is per-value: a source cited for corroboration on one
+    attribute lends its rung to every attribute that lists it, so clearing a
+    warning is not the same as improving the evidence for the value that carried
+    it. `docs/RESEARCH/evidence_tiers_chicagology.md` walks the committed cases
+    one at a time for exactly that reason.
+    """
+    ladder = tier_ladder()
+    undeclared: list[str] = []
+
+    for name, s in sorted(sources.items()):
+        if not isinstance(s, dict):
+            continue
+        tier, declared = s.get("tier"), s.get("transcribes")
+        if not isinstance(tier, int):
+            continue
+        retrieval = dates_its_own_retrieval(s)
+
+        if declared is None:
+            if retrieval and tier <= TESTIMONY_MAX_TIER:
+                rep.error(f"source {name}",
+                          f"graded tier {tier} ({ladder.get(tier, '?')}) while dating its own "
+                          f"retrieval ('{s.get('date')}') — a rung at or above "
+                          f"{TESTIMONY_MAX_TIER} belongs to a document, not to a page that "
+                          f"reprints one, so declare the document in `transcribes`")
+            elif retrieval:
+                undeclared.append(name)
+            continue
+
+        rungs = [e.get("tier") for e in declared if isinstance(e, dict)]
+        rungs = [t for t in rungs if isinstance(t, int)]
+        if not rungs:
+            rep.error(f"source {name}", "`transcribes` declares no rung to read the record's own "
+                                        "tier from")
+            continue
+        best = min(rungs)
+        if tier != best:
+            rep.error(f"source {name}",
+                      f"graded tier {tier} ({ladder.get(tier, '?')}) while the best document it "
+                      f"declares carrying is tier {best} ({ladder.get(best, '?')}) — the record's "
+                      f"rung is the best rung it transcribes, derived and not typed; move the "
+                      f"apparatus out of `transcribes` or correct the tier")
+        for i, entry in enumerate(declared):
+            if not isinstance(entry, dict):
+                continue
+            if not str(entry.get("note") or "").strip():
+                rep.error(f"source {name}",
+                          f"transcribes[{i}] names a document and not what it carries — say which "
+                          f"claims in this dataset rest on it, or it is apparatus and does not "
+                          f"belong here")
+            if _ACCESSED.match(str(entry.get("date") or "")):
+                rep.error(f"source {name}",
+                          f"transcribes[{i}] dates a retrieval — the document's own date is what "
+                          f"places it on the ladder")
+
+    declared_records = sum(1 for s in sources.values()
+                           if isinstance(s, dict) and s.get("transcribes"))
+    rep.note(f"transcription declarations: {declared_records} source(s) derive their rung from the "
+             f"document they carry; {len(undeclared)} page(s) at tier "
+             f"{TESTIMONY_MAX_TIER + 1} or weaker date their own retrieval and declare nothing — "
+             f"unread rather than wrong, and the queue in docs/ROADMAP.md § S5"
+             + (f" ({', '.join(undeclared[:4])}"
+                + (f" and {len(undeclared) - 4} more)" if len(undeclared) > 4 else ")")
+                if undeclared else ""))
+
+
 def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
     """archetype name -> the form attributes whose value its generator reads.
 
@@ -2428,6 +2535,11 @@ def main() -> int:
     # now the ranking was enforced nowhere — a `documented` value owed a source
     # that resolved and nothing asked what kind of source it was.
     check_evidence_ladder(structures, sources, rep, ground_index)
+
+    # and what each rung is a judgement ABOUT. A modern page that reprints an
+    # 1883 interview is worth what the interview is worth; until this ran, that
+    # reasoning lived in a `note` no check could read.
+    check_transcription_declarations(sources, rep)
 
     # scenes
     for name, sc in scenes.items():

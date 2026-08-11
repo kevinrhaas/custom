@@ -176,19 +176,19 @@
   "citations": [
     {
       "source_id": "chicagology_prefire127",
-      "citation": "\"Green Tree Tavern.\" Chicagology. Compiling first-hand recollections by John Gray (landlord 1838-41), Edwin O. Gale and F. H. Taylor, with an editor's commentary.",
+      "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",
       "url": "https://chicagology.com/prefire/prefire127/",
       "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
-      "tier": 4,
-      "tier_label": "later scholarship"
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     {
       "source_id": "chicagology_prefire278",
-      "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+      "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",
       "url": "https://chicagology.com/prefire/prefire278/",
       "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
-      "tier": 4,
-      "tier_label": "later scholarship"
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     {
       "source_id": "drloih_hotels",

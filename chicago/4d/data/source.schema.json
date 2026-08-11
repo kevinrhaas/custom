@@ -135,6 +135,36 @@
         "type": "string"
       },
       "description": "What this source is often assumed to give but does NOT. Hathaway 1834 is the motivating case: it is widely described as showing individual buildings and it does not, a claim that reached this project's own brief before anyone opened the scan at full resolution."
+    },
+    "transcribes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["work", "date", "tier"],
+        "properties": {
+          "work": {
+            "type": "string",
+            "description": "The document this page carries, named as it is printed on the page — publication, date and, where the page gives them, the witnesses speaking."
+          },
+          "date": {
+            "type": "string",
+            "description": "The document's own date, as written on the page. Not the date the page was fetched."
+          },
+          "tier": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6,
+            "description": "The rung THIS document sits on. The record's own tier is the best rung declared here — a modern site hosting an 1883 interview is worth what the interview is worth, and nothing about the hosting improves or spoils it."
+          },
+          "note": {
+            "type": "string",
+            "description": "Which of this project's claims the document carries, or why it is here at a rung it does not lift the page to."
+          }
+        }
+      },
+      "description": "What a modern page transcribes, when the record dates its own retrieval rather than a document. A tier is a judgement made once, and until this field existed the judgement lived in a sentence in `note` that no check could read: `chicagology_kinzie_bridge` said 'Tier 3 for the Andreas transcription; the surrounding apparatus is a finding aid' and nothing held the 3 to the Andreas. Required for such a record graded at tier 3 or better (`tools/validate.py` § check_transcription_declarations); optional and still checked above it."
     }
   }
 }

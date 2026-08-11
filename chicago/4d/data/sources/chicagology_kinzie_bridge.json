@@ -7,6 +7,14 @@
   "url": "https://chicagology.com/harbor/riverbridges/kinziestreetbridge/",
   "archived_url": "https://web.archive.org/web/20260308041238/https://chicagology.com/harbor/riverbridges/kinziestreetbridge/",
   "tier": 3,
+  "transcribes": [
+    {
+      "work": "A. T. Andreas, History of Chicago, Volume I — the passage on Samuel Miller's 1832 bridge over the North Branch",
+      "date": "1884",
+      "tier": 3,
+      "note": "Carries the location near the south-east corner of Kinzie and Canal, the stringer construction, and the 1833 reading that the structure was 'useless for teams'. A compilation from pioneer testimony — rung 3, and the rung this record claims. The tabulated bridge chronology beside it is the page's own editorial apparatus, not Andreas, and is not declared here."
+    }
+  ],
   "rights_status": "check_required",
   "asset_use": "cross_check",
   "verified": true,

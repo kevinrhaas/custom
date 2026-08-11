@@ -272,22 +272,33 @@ later scholarship alone** (2026-08-10, STATUS § 43). The evidence ladder has a 
 fourth rule is a counted warning rather than an error: a `documented` value with no source at
 tier 3 or better — no period document, no eyewitness recollection, no compilation from pioneer
 testimony — is either an over-graded value or an under-tiered source, and only reading the page
-settles which. Five on the Green Tree, four on Miller House, four on the Western, three on the
-Wolf Point Tavern, two on the Sauganash, three ground claims.
+settles which.
 
-**Four of them are the sharp ones and they come first**: `sauganash_hotel` `form.stories` and
-`form.construction`, `miller_house` `form.frame_addition_stories` and `wolf_point_tavern`
-`form.sign` are supported by nothing but the two `drloih` blog compilations, whose own source
-records say *never as sole evidence*. Do those four first, and note what they cost: a confidence
-is a mesh input, so a regrade stales the building's GLB and the slice lands with a bake. Behind
-the regrade, the machine-readable half — a `never_sole_evidence` flag on a source record, which
-turns those four into errors — deliberately not added first, because a gate that fails the
-committed dataset on the day it lands is a gate that gets switched off.
+**The source half is DONE 2026-08-10 and it was fifteen of the twenty-one** (STATUS § 44,
+`docs/RESEARCH/evidence_tiers_chicagology.md`). `prefire127`, `prefire273` and `prefire278` were
+fetched and read in full; all three transcribe near-primary recollection — the *Inter Ocean*
+old-settler interviews of 1 and 22 July 1883, and the *Chicago Magazine* of 15 May 1857 built on
+Hubbard's own account — and all three were graded 4. They are 2, no value moved, no mesh went
+stale, and the count reads **six**. The judgement is also a declaration now rather than a typed
+number: a record dating its own retrieval and claiming a testimony rung must declare
+`transcribes`, and its tier is the best rung it declares.
 
-The shape of the work is a source at a time rather than a value at a time: `chicagology` pages
-are already graded per page (`chicagology_prefire252` is tier 2 because it transcribes a
-newspaper), so re-reading `prefire127`, `prefire273` and `prefire278` may clear eleven of the
-twenty-one without touching a record.
+**The four sharp ones are what is left, and they are the expensive half**: `sauganash_hotel`
+`form.stories` and `form.construction`, `miller_house` `form.frame_addition_stories` and
+`wolf_point_tavern` `form.sign` are supported by nothing but the two `drloih` blog compilations,
+whose own source records say *never as sole evidence*. Re-tiering cannot touch them — the pages
+are unfootnoted, mutually contradictory and unarchived — so this is a regrade of the VALUE, and
+a confidence is a mesh input: the slice stales those GLBs and lands with a bake. Behind it, the
+machine-readable half — a `never_sole_evidence` flag on a source record, which turns those four
+into errors — stays deliberately behind the regrade, because a gate that fails the committed
+dataset on the day it lands is a gate that gets switched off.
+
+**The other two are outside the buildings**: ground `surface_materials.south_division`
+(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`). The second
+is the same shape as the three just cleared — the page quotes Lt. James Strode Swearingen's 1803
+account — and has not been opened. So are `prefire062` (quoting the *Chicago American* of
+9 July 1835) and `prefire276` (the same 1857 magazine as `prefire273`, cited by nothing today).
+Nine pages at tier 4 or weaker declare nothing, counted by the validator every run.
 
 
 **The repair queue that came before it, all of it DONE — three attributes that were recorded
