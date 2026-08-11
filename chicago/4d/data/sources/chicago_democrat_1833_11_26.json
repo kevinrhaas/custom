@@ -1,0 +1,39 @@
+{
+  "id": "chicago_democrat_1833_11_26",
+  "type": "newspaper",
+  "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+  "author": "John Calhoun, editor and publisher",
+  "date": "1833-11-26",
+  "describes_date": "1833-11",
+  "repository": "Supplied to this project by the project owner as page scans of a bound volume, 2026-08-10, together with a modern transcription. The originating repository is not stated on the scans.",
+  "locator": "Three photographed pages of a bound volume. Cite the page image and the advertisement heading for every claim; the advertisement columns carry their own dates (Nov. 12, 18, 22 and 26, 1833), which are the dates of the copy, not of the issue.",
+  "url": "",
+  "tier": 1,
+  "rights_status": "public_domain",
+  "asset_use": "text_only",
+  "verified": true,
+  "note": "THE FIRST CONTEMPORARY CHICAGO DOCUMENT IN THIS DATASET, and the first tier-1 textual source it holds. Everything else describing the town's buildings is retrospective: Andreas 1884 is tier 3 and fifty years after the fact, the chicagology pages are compilations, and Kinzie's Wau-Bun is a memoir of 1856. This is the town describing itself, in its own week, to its own readers — and an advertisement is a peculiarly good witness because the advertiser was paying for it and his customers had to be able to find him.\n\nWHAT MAKES IT EVIDENCE ABOUT BUILDINGS AT ALL: a business advertisement fixes that a trade was being carried on in Chicago in November 1833, and sometimes fixes where. It does not establish what the building looked like, and it does not establish that the same building stood on 1835-07-01 — this issue is NINETEEN MONTHS before the scene date, in the town's fastest-changing period. Treat it as strong evidence of existence and address, weak evidence of survival, and no evidence at all of form.\n\nVERIFIED BY READING THE SCAN DIRECTLY, 2026-08-10, not from the accompanying transcription. That distinction earned itself immediately: the transcription renders the dry-goods firm as 'C. & L. Harmon' where the scan plainly reads 'C. & I. HARMON'. The transcription is a useful finding aid and is NOT the source; every claim must be taken from the page image.\n\nTHE STRONGEST SINGLE ITEM is the paper's own imprint, which is self-reported and therefore about as good as an address gets: 'THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.' Note precisely what that settles — the JUNCTION, not the corner. It says 'on the corner of', and which of the four corners is not in the sentence. Andreas's 'SW corner' remains a separate, later, weaker claim.\n\nA TRAP THIS SOURCE CONTAINS: the 'Two Buildings to Let' advertisement carries an engraving of a three-storey building with regular fenestration. Nineteenth-century jobbing printers kept generic stock cuts for exactly these categories, and the same block would be struck for any property advertisement. It is NOT a picture of a Chicago building and no elevation, storey count or window arrangement may be taken from it. The same applies to the ox and the strayed-cattle cuts.",
+  "access_notes": "Scans held outside the published payload. Page 1 is 2984 x 3776 px greyscale; pages 2 and 3 are 2744 x 3672. The advertisement columns are legible at native resolution; the news columns are legible in part. A modern transcription of the issue accompanies the scans and is a finding aid only.",
+  "what_it_supplies": [
+    "that a named trade was being carried on in Chicago in November 1833",
+    "the Chicago Democrat's own address, self-reported: the corner of South Water and Clark streets",
+    "Philo Carpenter advertising drugs, medicines, oils, paints and dye-stuffs, dated Nov. 22, 1833",
+    "C. & I. Harmon advertising dry goods, crockery, hardware and wet and dry groceries, dated Nov. 18, 1833",
+    "B. Jones, grocery and provision store",
+    "Newberry & Dole, forwarding and commission merchants",
+    "a store 'Just Opened' at the corner of South Water and Clark streets",
+    "Daniel Elston & Co.'s soap and candle manufactory, paying cash for tallow and house ashes",
+    "John Wright, cut nails, leather, saddlery; and two buildings to let until 1 June 1834",
+    "Goss & Cobb, saddle and harness making; Matthias Mason & Co., blacksmithing",
+    "Peter Cohen, winter clothing, groceries, table salt, tin ware",
+    "a tavern stand kept by Chester Ingersoll, lately occupied by Wm. W. Barlow",
+    "livestock at large: strayed oxen, taken-up notices, and village ordinances against them"
+  ],
+  "what_it_does_not_supply": [
+    "any building's dimensions",
+    "any building's form, material, storey count or fenestration",
+    "the specific corner of any junction it names",
+    "evidence that any building named here still stood on 1835-07-01",
+    "any building footprint or plan"
+  ]
+}
