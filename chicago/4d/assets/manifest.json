@@ -306,6 +306,15 @@
       "phase_id": "frame_1835",
       "structure_id": "frederick_thomas_shop"
     },
+    "goss_cobb_saddlery__shop_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42884,
+      "inputs_sha256": "3e202090708df99e87b9ba47391446404bfb283b5f13d7be8846793910ab08e2",
+      "kind": "generated",
+      "phase_id": "shop_1833",
+      "structure_id": "goss_cobb_saddlery"
+    },
     "green_tree_tavern__frame_1833.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,

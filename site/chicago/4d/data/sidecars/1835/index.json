@@ -207,6 +207,12 @@
       "asset": "gltf/frederick_thomas_shop__frame_1835.glb"
     },
     {
+      "id": "goss_cobb_saddlery",
+      "name": "Goss & Cobb, saddle and harness makers",
+      "sidecar": "sidecars/1835/goss_cobb_saddlery.json",
+      "asset": "gltf/goss_cobb_saddlery__shop_1833.glb"
+    },
+    {
       "id": "green_tree_tavern",
       "name": "Green Tree Tavern",
       "sidecar": "sidecars/1835/green_tree_tavern.json",
