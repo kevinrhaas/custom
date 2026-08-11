@@ -1127,6 +1127,17 @@ def check_transcription_declarations(sources: dict, rep: Report) -> None:
     apparatus goes in `note`; declaring it would claim, falsely, that a rung this
     dataset does not use is a rung it stands on.
 
+    A page that has been READ and reprints nothing is the third state, and it
+    needs a word of its own because it is indistinguishable here from a page
+    nobody has opened — both declare nothing, and the count below would go on
+    calling a read page unread, which is the sentence-nothing-can-see fault this
+    whole family of gates exists to end. `wikipedia_chicago_river` is the case:
+    it PARAPHRASES Swearingen's 1803 river soundings and footnotes them to a
+    named reprinting, which is a citation and not a transcription. Such a record
+    says so in `carries_no_document` — the reading, not a flag — and may not be
+    graded at or above `TESTIMONY_MAX_TIER`, because there is no document on the
+    page for the rung to be a judgement about.
+
     Two limits, both real and neither closable here. The check cannot read a
     transcription, so it cannot tell whether the document named actually says
     what the note claims — a human read is what put the entry there and a human
@@ -1139,6 +1150,7 @@ def check_transcription_declarations(sources: dict, rep: Report) -> None:
     """
     ladder = tier_ladder()
     undeclared: list[str] = []
+    read_and_empty: list[str] = []
 
     for name, s in sorted(sources.items()):
         if not isinstance(s, dict):
@@ -1147,6 +1159,29 @@ def check_transcription_declarations(sources: dict, rep: Report) -> None:
         if not isinstance(tier, int):
             continue
         retrieval = dates_its_own_retrieval(s)
+        empty = str(s.get("carries_no_document") or "").strip()
+
+        if empty:
+            if declared is not None:
+                rep.error(f"source {name}",
+                          "declares `transcribes` and `carries_no_document` — a page either "
+                          "reprints a document or it does not, and both fields are readings of "
+                          "the same page")
+                continue
+            if not retrieval:
+                rep.error(f"source {name}",
+                          f"dates a document ('{s.get('date')}') and declares "
+                          f"`carries_no_document` — a record that IS its document is outside this "
+                          f"rule, and saying it reprints nothing describes the wrong page")
+                continue
+            if tier <= TESTIMONY_MAX_TIER:
+                rep.error(f"source {name}",
+                          f"graded tier {tier} ({ladder.get(tier, '?')}) while declaring that it "
+                          f"reprints no document — a rung at or above {TESTIMONY_MAX_TIER} is a "
+                          f"judgement about a document, so a page carrying none is later "
+                          f"scholarship at best")
+            read_and_empty.append(name)
+            continue
 
         if declared is None:
             if retrieval and tier <= TESTIMONY_MAX_TIER:
@@ -1188,7 +1223,8 @@ def check_transcription_declarations(sources: dict, rep: Report) -> None:
     declared_records = sum(1 for s in sources.values()
                            if isinstance(s, dict) and s.get("transcribes"))
     rep.note(f"transcription declarations: {declared_records} source(s) derive their rung from the "
-             f"document they carry; {len(undeclared)} page(s) at tier "
+             f"document they carry and {len(read_and_empty)} page(s) were read and reprint none; "
+             f"{len(undeclared)} page(s) at tier "
              f"{TESTIMONY_MAX_TIER + 1} or weaker date their own retrieval and declare nothing — "
              f"unread rather than wrong, and the queue in docs/ROADMAP.md § S5"
              + (f" ({', '.join(undeclared[:4])}"

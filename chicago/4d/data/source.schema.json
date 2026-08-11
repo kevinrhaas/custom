@@ -165,6 +165,11 @@
         }
       },
       "description": "What a modern page transcribes, when the record dates its own retrieval rather than a document. A tier is a judgement made once, and until this field existed the judgement lived in a sentence in `note` that no check could read: `chicagology_kinzie_bridge` said 'Tier 3 for the Andreas transcription; the surrounding apparatus is a finding aid' and nothing held the 3 to the Andreas. Required for such a record graded at tier 3 or better (`tools/validate.py` § check_transcription_declarations); optional and still checked above it."
+    },
+    "carries_no_document": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The reading — not a flag — that established that this page was opened and reprints no document: what was looked for, what is actually printed there, and where the page sends you instead. The third state beside `transcribes` and silence, and it exists because the first two cannot tell a page that was read from a page nobody has opened. A record declaring this may not be graded at or above the testimony rung: there is no document on the page for the rung to be a judgement about. Mutually exclusive with `transcribes`, and only meaningful on a record that dates its own retrieval."
     }
   }
 }

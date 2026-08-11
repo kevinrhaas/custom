@@ -3,9 +3,9 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (three chicagology pages were opened and read, and fifteen of the
-ladder's twenty-one findings turn out to have been about the SOURCE rather than the value — a
-rung is a judgement about a document now, declared and derived rather than typed, § 44) ·
+**Last updated:** 2026-08-11 (the three pages § 44 said *looked like* the same case were opened;
+two were and one reprints nothing at all, which needed a third state in the vocabulary — and the
+page that reprints nothing is where the flat water surface's `documented` grade comes from, § 45) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -82,7 +82,7 @@ the other surface is a gate now instead of a sentence.
 | `tools/test_validate.py` | **done** — 205 checks, all green, including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes, and that a ground figure declaring the mesh agrees with it is held to the half it restates — the heightfield the bake wrote, the build instruction it duplicates, or the generator line it describes — with a phrase that exists only inside a comment satisfying nothing, and that a watch-list entry naming a committed record fails the moment that record's claim is promoted to `documented` |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page. **Four now derive their rung from the document they transcribe** rather than asserting it (§ 44): three chicagology pages read in full on 2026-08-10 and regraded 4 → 2 on the 1883 *Inter Ocean* interviews and the 1857 *Chicago Magazine* they carry, plus the Kinzie bridge page's long-standing Andreas sentence made checkable. Nine pages at tier 4 or weaker still date their own retrieval and declare nothing; the validator counts them every run |
+| Source records | **28**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page. **Four now derive their rung from the document they transcribe** rather than asserting it (§ 44): three chicagology pages read in full on 2026-08-10 and regraded 4 → 2 on the 1883 *Inter Ocean* interviews and the 1857 *Chicago Magazine* they carry, plus the Kinzie bridge page's long-standing Andreas sentence made checkable. **Six do now, after the three § 44 flagged were opened on 2026-08-11** (§ 45): `prefire062` reprints Andreas rather than the newspaper it named (4 → 3), `prefire276` reprints the 1857 *Chicago Magazine* (4 → 2), and `wikipedia_chicago_river` reprints nothing at all — the first record to declare `carries_no_document`. Six pages at tier 4 or weaker still date their own retrieval and declare nothing; the validator counts all three states every run |
 | Structure records | **8** — six buildings at the forks, the North Branch bridge, and Hogan's store on Lake Street |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
@@ -1496,6 +1496,64 @@ uncertainty of the 1834 sheets in its note.
     same 1857 magazine as `prefire273`, `wikipedia_chicago_river` quoting Swearingen's 1803
     account) look like exactly this case, and none was opened. Looking like the case is what
     this slice exists to stop being sufficient. The validator counts them every run.
+
+45. **Two of the three pages were the case, the third reprints nothing, and the third is where
+    the water surface's strongest chip comes from.** § 44 ends by naming three pages that *look*
+    like modern hosts carrying old documents — `chicagology_prefire062`, `chicagology_prefire276`
+    and `wikipedia_chicago_river` — and by saying that looking like the case is what that slice
+    exists to stop being sufficient. All three are opened now. Memo:
+    `docs/RESEARCH/evidence_tiers_round_two.md`.
+    **`prefire062` is Andreas, not the newspaper, and the rung follows the document that is
+    actually there.** The record said *"Quoting the Chicago American, 9 July 1836"*; the page's
+    body is set under its own heading, *History of Chicago, Volume I, A. T. Andreas, 1884*, and
+    it is Andreas who quotes the American mid-paragraph in a chapter on street grading. **Third
+    source record in this dataset found wrong about its own page** (`prefire273` and `prefire278`
+    were the first two), and the same class of fault: a citation nobody can check passing every
+    gate, because every gate asks whether a `source_id` resolves and none asks what is inside it.
+    Tier 4 → **3**, on Andreas — deliberately not the 1 the newspaper would carry, because the
+    *Chicago American* of 9 July 1836 has never been opened here and promoting the page to 1
+    would let a future value stand on a period document laundered through a compilation. § 44's
+    own account of this page is also wrong by a year: the item is **1836**, not 1835.
+    **`prefire276` is the 1857 magazine, tier 4 → 2 — and what is NOT declared is the more useful
+    half.** It carries the same *Chicago Magazine* of 15 May 1857 that took `prefire273` to rung
+    2, written from what the oldest residents told the writer, and it is the independent
+    corroboration that the fort was occupied "till the removal of the Indians in 1836". A
+    *Chicago Tribune* notice of 27 March 1856 is printed below it and would derive this record to
+    rung **1**; nothing here rests on it and nothing will, so it stays apparatus under the rule
+    § 44 wrote. The same goes for the dimensioned Hesler woodcut caption — and **that undeclared
+    caption is now a mechanism rather than a warning in capitals**: the record has said since it
+    was written that its three fort dimensions are unattributed and must not promote anything,
+    and leaving the caption out of the declaration is what enforces it.
+    **`wikipedia_chicago_river` was not the case at all, and saying so needed a word that did not
+    exist.** It reprints nothing: the Swearingen material is one sentence of encyclopedia prose
+    with a footnote — *Journal of Lieutenant James Strode Swearingen reproduced in Quaife 1913,
+    pp. 373-377* — and **a citation is not a transcription**. A page nobody has opened and a page
+    opened and found to carry no document declare exactly the same thing, so the validator's note
+    would have gone on calling this one unread: a true sentence describing something no check can
+    see, arriving inside the gate written to end that. `carries_no_document` is the third state —
+    the reading itself, not a flag — mutually exclusive with `transcribes`, and a record
+    declaring it may not be graded at or above the testimony rung, because there is no document
+    on the page for the rung to be a judgement about. The counter reads three states now: **6
+    declare their document, 1 was read and reprints none, 6 remain undeclared** (from nine).
+    **And the footnote is worth more than the regrade would have been.** This record has asked
+    since it was written that somebody *chase Swearingen to a primary printing*. It is named,
+    dated and paginated now — Quaife, *Chicago and the Old Northwest, 1673-1835* (1913),
+    pp. 373-377 — five pages, and the 1803 soundings stop resting on an encyclopedia.
+    **The consequence, and it is the first of the six warnings to be settled the other way.**
+    `terrain_spec.json` grades ground `water` **`documented`** on this record alone. Swearingen
+    gives a width, a depth and two bank heights, no gradient, all measured at the fort 1.2 miles
+    downstream — so the flat surface does not rest on him. What supports it is Wikipedia's own
+    unfootnoted sentence that the river "flowed sluggishly into Lake Michigan from Chicago's flat
+    plain", in a section about the 1900 reversal. § 43 asked whether each warning is an
+    over-graded value or an under-tiered source; five are still open and **this one is the
+    value**. `documented` → `inferred` is queued rather than taken, at the stated price: a
+    confidence is a mesh input, so it stales the ground and lands with a Blender bake this runner
+    does not have. `docs/ROADMAP.md` § S5.
+    **What this does not settle.** Whether a rung is the right rung — unchanged. And
+    **under-declaration is still invisible**: both chicagology pages here carry documents
+    deliberately left out on the apparatus rule, and no check can tell that from having missed
+    them. The mitigation is prose — the memo tabulates the undeclared documents beside the
+    declared one, so the choice can be argued with rather than only trusted.
 
 ## Next
 
