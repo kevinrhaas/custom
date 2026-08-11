@@ -1,0 +1,564 @@
+"""Parameters for the frame_storefront archetype — pure Python, NO bpy import.
+
+Same split, and for the same reason, as frame_tavern_params and log_dwelling_params:
+tools/check.sh imports this module on every commit to prove that every scene-included
+record still resolves into buildable parameters, and it has to do that in a bare
+Python 3.11 with no Blender in the sandbox.
+
+## What this archetype has to cover
+
+The 1835 town was a boom town of **stores**, and until this module existed every
+mercantile record in the dataset had to be a log cabin, a frame tavern or a bridge.
+The buildings it was written for are the ones the dossiers actually describe — see
+docs/research/04-structures-south.md §5, §6 and §12, and §2.4 and §3.10 of
+docs/research/03-structures-north.md:
+
+- **P. F. W. Peck's store**, SW corner South Water & LaSalle, 1832-33 — "two-story
+  frame", with an "unfinished loft" a visiting minister lodged in. Dry goods,
+  hardware and groceries, so goods arrived by wagon and left over a counter. This
+  is the type specimen: two storeys, a loft, a shopfront and a way in for freight.
+- **Philo Carpenter's store**, South Water between LaSalle and Wells, summer 1833 —
+  he "erected a small store". His earlier shop was a 16 x 20 ft log building, so
+  "small" here means small. The degenerate case: one room, one shop opening, no ell,
+  no loading door, and the archetype has to reduce to it without looking unfinished.
+- **Thomas Church's store**, Lake Street — "the first store building on Lake Street,
+  a two-story frame structure". Corroborates two-storey frame as the type.
+- **Brewster, Hogan & Co.'s store** at Franklin & South Water, and the log store at
+  Lake & South Water that this project already models as `log_dwelling` — the only
+  attested STORE FOOTPRINT in the dataset is that log one, 20 x 45 ft, which is what
+  the plan ranges below are shaped against: a long frontage on a shallow plan.
+- **Robert A. Kinzie's storehouse** at Wolf Point, "dealing in groceries and Indian
+  goods" — construction unattested, and the reason `shopfront` is a parameter that
+  can be turned off rather than something the archetype always builds.
+
+South Water lots were **55 ft wide** (Andreas), which is the frontage this archetype
+is proportioned for; a store filled its lot side to side and was shallow.
+
+## What is different about a store, and where each difference comes from
+
+1. **A shopfront** — one composed ground-floor opening much wider than a dwelling's
+   door: a door plus display/counter windows behind a continuous sill, framed by
+   pilaster boards and capped by a fascia. THE COMPOSITION IS THE ARCHETYPE'S. No
+   source reached describes a Chicago shop window in 1835. What is attested is the
+   trade, the counter and the street frontage; the rest is type, and it is the
+   liberty this archetype is most exposed on.
+2. **A goods entrance** on a loading side — a store that advertises "dry goods,
+   groceries and hardware" and calls itself a forwarding and commission house takes
+   freight off a wagon, and not through the shop door. Unattested per building, so
+   it defaults to `conjectural` and dithers unless a record says otherwise.
+3. **A rear or side ell** — the working half: storeroom, counting room, kitchen.
+   Carved OUT of the footprint, never bolted onto the outside of it, so the building
+   stays inside the polygon the record attests (log_dwelling's rule, and the better
+   one — frame_tavern's log wing projects past its own footprint).
+4. **Balloon framing.** See below; it is the reason this archetype exists in the
+   form it does rather than being frame_tavern with a wider door.
+
+## Balloon framing is a first-class parameter, not a label
+
+1833-35 Chicago is where balloon framing was invented, and docs/ROADMAP.md S4 names
+it as the first thing a knowledgeable viewer checks. St. Mary's church, built at Lake
+& State in October 1833 by Augustine D. Taylor, is the early example the dossier
+records (docs/research/04-structures-south.md §6).
+
+`construction` therefore **moves geometry here**, which is the difference between
+this archetype and its siblings: in `frame_tavern` the same attribute is declared
+CONSUMED, resolves into a parameter, and then changes nothing a visitor can see.
+What the two systems show on a finished elevation:
+
+| | balloon_frame | braced_frame |
+|---|---|---|
+| corner | a thin applied corner BOARD, ~4 in | a 6 in corner POST expressed in the wall |
+| second floor | nothing — the studs run sill to plate in one length | a girt line, because the frame is storeyed |
+| module | studs 2x4 at **16 in on centre** | posts at ~8 ft, studs between |
+| wall build-up | 4 in stud + 1 in sheathing + siding = the reveal depth |
+
+The stud rhythm cannot be seen through finished siding, so it reaches the mesh two
+ways. Always: every opening on the elevation is set out on the 16 in module, which is
+what "proportions" means in the ROADMAP line and is visible whether or not anyone can
+count studs. And, when a record says the building was unfinished, `framing_exposed`
+leaves the loading gable open — studs at their true centres over horizontal board
+sheathing, which is the one place the rhythm can literally be counted. That state is
+attested in kind rather than invented: Andreas has John Calhoun taking a building at
+South Water & Clark for the *Chicago Democrat* in November 1833 "which was unfinished
+at the time", and Peck's loft was unfinished in 1833 as well.
+
+## What it deliberately does not cover
+
+A store built of logs is a `log_dwelling` — Hogan's store is recorded that way, and
+which side of that line a building falls on is a research judgement that belongs in
+the record's `archetype`, not in a parameter. Brick is excluded from 1835 by date on
+the south side (the first brick house is 1837), so this archetype refuses it rather
+than quietly substituting a wall.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+# Confidence values as they are written into the _CONFIDENCE glTF attribute. See
+# docs/GLB-CONTRACT.md. Duplicated from the sibling params modules rather than
+# imported so that neither can break the other's import in the commit gate.
+CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+
+# Gable is the type. Shed is allowed for a one-storey shop and refused above that,
+# because a two-storey shed-roofed store in 1835 Chicago would be a claim rather
+# than a default. Hip and gambrel are not offered at all: no source describes one
+# on a Chicago store at this date, and substituting one silently is how an
+# archetype invents a building.
+ROOF_TYPES = ("gable", "shed")
+
+# The two framing systems this archetype builds, and the only two that can be
+# meant here. `log` and `brick` are refused with an argument in validate().
+CONSTRUCTIONS = ("balloon_frame", "braced_frame")
+
+# The exterior skin. Unlike frame_tavern (see docs/LIBERTIES.md L22, where
+# `cladding` is recorded on four records and read by none), the VALUE reaches the
+# mesh: clapboard is horizontal lap courses, the other two are vertical.
+CLADDINGS = ("clapboard", "vertical_board", "board_and_batten")
+
+ELL_SIDES = ("rear", "end")
+DOOR_SIDES = ("left", "centre", "right")
+GOODS_DOOR_SIDES = ("end", "rear")
+
+# The form attributes whose VALUE this archetype reads — the ones `from_phase`
+# below turns into a parameter, and therefore the only ones a vertex position can
+# depend on. The argument for the set is written out in frame_tavern_params; the
+# short version is that an attribute outside it cannot move a vertex, so the record
+# would be stating something the mesh does not contain, and tools/validate.py holds
+# every such attribute to a `geometry:` declaration on the record.
+#
+# Reading an attribute's CONFIDENCE is deliberately not membership. `fenestration`
+# tints the upper-storey windows with the record's confidence while their number
+# comes from the frontage and their rhythm from the framing module, and a tint is
+# not a building. `gallery` is not here at all, and that is a claim rather than an
+# oversight: this archetype builds no awning or porch over the walk, so a record
+# that states one has to say `geometry: 'absent'` and admit it.
+#
+# Adding a parameter without adding its name here is a gate failure rather than a
+# silently unbuilt attribute — which is the whole point of the set.
+CONSUMED = frozenset({
+    "stories", "wall_height_m", "roof_type", "roof_pitch_deg", "gable_front",
+    "construction", "cladding", "paint", "loft", "chimneys", "framing_exposed",
+    "shopfront", "shopfront_bays", "shopfront_door_side",
+    "goods_door", "goods_door_side",
+    "ell", "ell_side", "ell_width_m", "ell_depth_m", "ell_stories", "ell_height_m",
+    "sign",
+})
+
+# Where this archetype touches the ground, read by tools/validate.py's ground
+# contact check. `perimeter`: the whole footprint outline meets the terrain at
+# local z = 0, which is what "y = 0 at the base of the walls" means in
+# docs/GLB-CONTRACT.md. It is true of the mesh by construction — the main block,
+# the ell and the shopfront's stall riser all start at z = 0, nothing is raised on
+# piers, and no part of the building leaves the footprint bounding box. Notably
+# there is no step, stoop or plank walk in front of the shop door; a store door
+# stood above the mud and this archetype does not model that, which is exactly the
+# kind of thing GROUND_CONTACT exists to keep honest.
+GROUND_CONTACT = "perimeter"
+
+
+class ParamError(ValueError):
+    """A structure record cannot be resolved into valid archetype parameters."""
+
+
+@dataclass
+class FrameStorefrontParams:
+    """A frame store: a shopfront on the street, a loading side, an optional ell.
+
+    Dimensions are metres and describe the WHOLE building including any ell,
+    because that is what a footprint polygon means. Confidence keys mirror the
+    record's attribute confidences and are what the generator paints into
+    _CONFIDENCE.
+    """
+
+    # massing
+    width_m: float
+    depth_m: float
+    stories: int = 2
+    wall_height_m: float = 5.4
+    roof_type: str = "gable"
+    # 33, against frame_tavern's 38 and log_dwelling's 35. A store's frontage is
+    # long and its plan shallow — the one attested store footprint in the dataset
+    # is 45 ft by 20 ft — so a tavern's pitch over a store's frontage puts more
+    # roof above the eave than there is wall below it, and the building stops
+    # reading as a shop and starts reading as a barn.
+    roof_pitch_deg: float = 33.0
+    # False is "eaves to the street", which is the phrase Andreas uses of a frame
+    # building on Lake Street and the normal set-out for a store filling its lot
+    # frontage. True turns the gable to the street for a narrow, deep lot. This is
+    # the kind of thing a source CAN contain, which is why it is a parameter.
+    gable_front: bool = False
+
+    # framing and skin
+    construction: str = "balloon_frame"
+    cladding: str = "clapboard"
+    paint: str = "unpainted"
+
+    # The loading gable left open: studs at their true centres over horizontal
+    # board sheathing. Only ever reached when a record describes the building as
+    # unfinished — see the module docstring for the two period cases that are.
+    framing_exposed: bool = False
+
+    # A loft over the shop. From outside this is one opening in a gable and nothing
+    # else, exactly as in log_dwelling: a loft leaves no other external trace, and
+    # inventing a dormer or a hoist beam would be adding evidence.
+    loft: bool = False
+
+    # How many stacks stand on the block. The COUNT comes from the record; where
+    # they stand does not. One is the default because a store was one heated room
+    # over a counting room, not a tavern with a hearth in every public room.
+    chimneys: int = 1
+
+    # ---- the shopfront: the thing that makes this archetype a storefront -------
+    # A composed opening — pilaster boards, a continuous counter sill, a door and
+    # `shopfront_bays` display windows, a fascia over the whole. Off gives a plain
+    # storehouse elevation, which is what Robert Kinzie's Wolf Point "storehouse"
+    # would be until something describes its street face.
+    shopfront: bool = True
+    shopfront_bays: int = 2
+    shopfront_door_side: str = "centre"
+
+    # ---- the goods entrance ---------------------------------------------------
+    goods_door: bool = True
+    goods_door_side: str = "end"
+
+    # ---- the ell --------------------------------------------------------------
+    ell: bool = False
+    ell_side: str = "rear"
+    ell_width_m: float = 5.0
+    ell_depth_m: float = 4.0
+    ell_stories: int = 1
+    ell_height_m: float | None = None
+
+    # A signboard, as a string naming what it carried. The geometry is a plain
+    # board on the fascia over the shopfront; NO LETTERING AND NO IMAGE is drawn,
+    # for the reason docs/LIBERTIES.md L25 gives about the wolf at Wolf Point. No
+    # source reached records the wording, the lettering or the device on any
+    # Chicago store sign in 1835 — the firm names survive from newspaper
+    # advertisements, which are not sign boards — so painting one would be
+    # manufacturing the most-photographed piece of evidence in the scene.
+    sign: str | None = None
+
+    # per-attribute confidence, keyed by the attribute name in the record
+    confidence: dict = field(default_factory=dict)
+
+    def conf(self, attr: str, default: str = "conjectural") -> float:
+        """The _CONFIDENCE float for one attribute."""
+        return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
+
+    def worst_conf(self, *attrs: str) -> float:
+        """Least-confident wins — the contract's rule for geometry driven by
+        several attributes. A wall whose height is a guess is a guessed wall,
+        even if we know what it was clad in."""
+        return max((self.conf(a) for a in attrs), default=1.0)
+
+    @property
+    def story_height_m(self) -> float:
+        return self.wall_height_m / max(self.stories, 1)
+
+    @property
+    def ell_wall_height_m(self) -> float:
+        """The ell's plate height. Defaulted from its storey count on the same
+        constants log_dwelling uses for a frame addition, so an ell and a frame
+        addition of the same storey count stand at the same height."""
+        if self.ell_height_m is not None:
+            return self.ell_height_m
+        return 2.55 if self.ell_stories == 1 else 4.7
+
+    def validate(self) -> None:
+        if not 3.0 <= self.width_m <= 40.0:
+            raise ParamError(f"width_m {self.width_m} outside plausible range 3-40 m "
+                             f"for a store; South Water lots were 55 ft wide and a "
+                             f"store filled its frontage, so anything past a couple "
+                             f"of lots is a block and not a building")
+        if not 3.0 <= self.depth_m <= 30.0:
+            raise ParamError(f"depth_m {self.depth_m} outside plausible range 3-30 m")
+        if self.stories not in (1, 2):
+            raise ParamError(
+                f"stories {self.stories} not in 1..2. Chicago's first three-storey "
+                f"structure is the Saloon Building of 1836 and its first brick house "
+                f"is 1837 (docs/research/04-structures-south.md §6, §13) — a "
+                f"three-storey store on 1835-07-01 is excluded by date, not merely "
+                f"unlikely, so it is refused rather than built")
+        if not 2.2 <= self.wall_height_m <= 9.0:
+            raise ParamError(f"wall_height_m {self.wall_height_m} outside 2.2-9 m")
+        if self.stories == 1 and self.wall_height_m > 4.2:
+            raise ParamError(f"wall_height_m {self.wall_height_m} is two storeys' worth "
+                             f"of wall on a one-storey record; set stories or the height")
+        if self.roof_type not in ROOF_TYPES:
+            raise ParamError(
+                f"roof_type '{self.roof_type}' not in {ROOF_TYPES}. frame_storefront "
+                f"builds gable and shed only; a hip or gambrel on a Chicago store at "
+                f"this date would be an invention, so it is refused rather than "
+                f"substituted")
+        if self.roof_type == "shed" and self.stories != 1:
+            raise ParamError(f"a shed roof over {self.stories} storeys is a claim, not a "
+                             f"default — record the roof as gable or the building as "
+                             f"one storey")
+        if not 15.0 <= self.roof_pitch_deg <= 55.0:
+            raise ParamError(f"roof_pitch_deg {self.roof_pitch_deg} outside 15-55 deg")
+        if self.construction not in CONSTRUCTIONS:
+            raise ParamError(
+                f"construction '{self.construction}' not in {CONSTRUCTIONS}. A store "
+                f"built of logs is a log_dwelling — Hogan's store is recorded that way "
+                f"— and brick is excluded from the 1835 south side by date. Which "
+                f"system a building was framed in is a research judgement, not a "
+                f"default this archetype may pick")
+        if self.cladding not in CLADDINGS:
+            raise ParamError(f"cladding '{self.cladding}' not in {CLADDINGS}")
+        for k, v in self.confidence.items():
+            if v not in CONFIDENCE_VALUE:
+                raise ParamError(f"confidence['{k}'] = '{v}' is not a confidence level")
+
+        # 0 is allowed and is a claim, not an absence: a record saying a store had
+        # no stack gets a store with no stack. The ceiling is what the frontage can
+        # space without the stacks touching.
+        if not isinstance(self.chimneys, int) or isinstance(self.chimneys, bool):
+            raise ParamError(f"chimneys {self.chimneys!r} is not a whole number — the "
+                             f"record states a count, not whether there was one")
+        if not 0 <= self.chimneys <= 3:
+            raise ParamError(f"chimneys {self.chimneys} outside 0..3; a store of these "
+                             f"proportions cannot carry more, and a record that means "
+                             f"it should say where they stood")
+
+        if self.sign is not None and not str(self.sign).strip():
+            raise ParamError("sign is present but empty — omit it or say what it carried")
+        if self.sign and not self.shopfront:
+            raise ParamError("a sign board is carried on the shopfront fascia, and this "
+                             "record has no shopfront — either the store had a street "
+                             "face or the board hung somewhere this archetype does not "
+                             "model")
+
+        if self.shopfront:
+            self._validate_shopfront()
+        if self.goods_door and self.goods_door_side not in GOODS_DOOR_SIDES:
+            raise ParamError(f"goods_door_side '{self.goods_door_side}' not in "
+                             f"{GOODS_DOOR_SIDES}")
+        if self.ell:
+            self._validate_ell()
+
+    def _validate_shopfront(self) -> None:
+        if not isinstance(self.shopfront_bays, int) or isinstance(self.shopfront_bays, bool):
+            raise ParamError(f"shopfront_bays {self.shopfront_bays!r} is not a whole number")
+        if not 1 <= self.shopfront_bays <= 4:
+            raise ParamError(f"shopfront_bays {self.shopfront_bays} outside 1..4 — one "
+                             f"door and four show windows is already a frontage no "
+                             f"store in this town had")
+        if self.shopfront_door_side not in DOOR_SIDES:
+            raise ParamError(f"shopfront_door_side '{self.shopfront_door_side}' not in "
+                             f"{DOOR_SIDES}")
+        # The shopfront is sized by its parts and then has to fit inside the
+        # frontage with wall left either side. Checked here rather than in the
+        # generator so a record that cannot be built says so in the commit gate,
+        # seconds after it is written, instead of minutes into a bake.
+        if shopfront_width_m(self.shopfront_bays) > self.width_m - 2 * PIER_MIN_M:
+            raise ParamError(
+                f"a {self.shopfront_bays}-bay shopfront needs "
+                f"{shopfront_width_m(self.shopfront_bays):.2f} m and this frontage is "
+                f"{self.width_m} m, which leaves less than {PIER_MIN_M} m of wall at "
+                f"each end — reduce the bays or widen the footprint")
+
+    def _validate_ell(self) -> None:
+        if self.ell_side not in ELL_SIDES:
+            raise ParamError(f"ell_side '{self.ell_side}' not in {ELL_SIDES}")
+        if self.ell_stories not in (1, 2):
+            raise ParamError(f"ell_stories {self.ell_stories} not in 1..2")
+        if not 1.8 <= self.ell_wall_height_m <= 7.0:
+            raise ParamError(f"ell height {self.ell_wall_height_m} outside 1.8-7 m")
+        if self.ell_wall_height_m > self.wall_height_m:
+            raise ParamError(f"the ell stands {self.ell_wall_height_m} m against a "
+                             f"{self.wall_height_m} m block — an ell is subordinate to "
+                             f"the store it hangs off, and one that overtops it is a "
+                             f"second building")
+        if self.ell_width_m > self.width_m:
+            raise ParamError("ell is wider than the footprint it sits in")
+        if self.ell_depth_m > self.depth_m:
+            raise ParamError("ell is deeper than the footprint it sits in")
+        # The ell is carved out of the footprint, so what is left has to still be a
+        # store: a shop needs enough depth for a counter and a customer, and enough
+        # frontage to put a shopfront on.
+        if self.ell_side == "rear":
+            if self.depth_m - self.ell_depth_m < 3.0:
+                raise ParamError(
+                    f"a rear ell {self.ell_depth_m} m deep leaves only "
+                    f"{self.depth_m - self.ell_depth_m:.2f} m of shop inside a "
+                    f"{self.depth_m} m footprint; deepen the footprint or make the "
+                    f"ell an end ell")
+            # A lean-to has to get under the main eave, or it is a second roof
+            # crashing into the first.
+            if self.ell_wall_height_m + _lean_to_rise(self.ell_depth_m) \
+                    > self.wall_height_m - 0.15:
+                raise ParamError(
+                    f"a {self.ell_wall_height_m} m rear ell {self.ell_depth_m} m deep "
+                    f"carries its lean-to up to "
+                    f"{self.ell_wall_height_m + _lean_to_rise(self.ell_depth_m):.2f} m, "
+                    f"which does not tuck under a {self.wall_height_m} m eave. Lower "
+                    f"the ell, shorten it, or record it as an end ell with a roof of "
+                    f"its own")
+        elif self.width_m - self.ell_width_m < 4.0:
+            raise ParamError(
+                f"an end ell {self.ell_width_m} m wide leaves only "
+                f"{self.width_m - self.ell_width_m:.2f} m of frontage inside a "
+                f"{self.width_m} m footprint, which is not a store front; widen the "
+                f"footprint or record the building as a dwelling")
+
+
+# ---------------------------------------------------------------------------
+# The shopfront's set-out, and the framing module it is set out on.
+#
+# These live here rather than in the generator because they are what `validate`
+# has to know to refuse a shopfront that cannot fit, and the commit gate has no
+# Blender. The generator imports them so the two cannot drift.
+# ---------------------------------------------------------------------------
+
+# Balloon framing, in the dimensions the system is actually described in. A 2x4
+# stud at 16 in on centre, 1 in board sheathing, a clapboard over it: the wall is
+# about 5 1/2 inches thick, which is why a balloon-framed store looks thin at every
+# opening and a braced-framed one does not.
+STUD_SPACING_M = 0.4064          # 16 in on centre
+STUD_FACE_M = 0.051              # 2 in of face
+STUD_DEPTH_M = 0.102             # 4 in of depth
+SHEATHING_M = 0.019              # nominal 1 in board sheathing, dressed
+SIDING_M = 0.014                 # the clapboard butt
+
+# A braced frame is a storeyed frame of heavy posts, so its module is the bay and
+# not the stud, and it shows a corner post and a girt where a balloon frame shows
+# neither.
+POST_SPACING_M = 2.44            # 8 ft between principal posts
+POST_FACE_M = 0.152              # 6 in of corner post standing in the wall
+CORNER_BOARD_M = 0.102           # a 1 x 4 corner board over the siding
+
+# The shopfront's parts, in inches translated once. A 40 in door, 5 ft show
+# windows, a counter sill at 29 in, pilaster boards at the ends and mullions
+# between: the set-out of a plain country store front, and every one of these
+# numbers is the archetype's rather than any record's.
+SHOP_DOOR_W_M = 1.016
+SHOP_BAY_W_M = 1.524
+SHOP_MULLION_M = 0.102
+SHOP_PILASTER_M = 0.140
+SHOP_SILL_Z_M = 0.737
+SHOP_FASCIA_M = 0.280
+# How much plain wall has to be left at each end of the frontage. Less than this
+# and the shopfront is not a shopfront in a wall, it is a wall around a shopfront.
+PIER_MIN_M = 0.60
+
+
+def shopfront_width_m(bays: int) -> float:
+    """Overall width of a shopfront of `bays` display windows plus its door.
+
+    Snapped UP to the framing module: a shopfront is an opening cut in a framed
+    wall, and its trimmer studs stand on stud centres like everything else. This is
+    where the 16 in module becomes a proportion a viewer can see without being able
+    to count a single stud.
+    """
+    raw = (2 * SHOP_PILASTER_M + SHOP_DOOR_W_M + bays * SHOP_BAY_W_M
+           + (bays + 1) * SHOP_MULLION_M)
+    n = int(raw / STUD_SPACING_M) + 1
+    return round(n * STUD_SPACING_M, 4)
+
+
+def _lean_to_rise(depth_m: float) -> float:
+    """How far a rear ell's lean-to climbs over its own depth.
+
+    A shallow pitch, because the roof has to arrive under the main block's eave and
+    because a lean-to over a storeroom was covered in whatever shed water. Shared
+    with the generator so the validator's refusal and the built roof agree.
+    """
+    return depth_m * 0.2679          # tan 15 degrees
+
+
+# The most of its own frontage a store front takes when the record does not say.
+# Not "as many bays as will fit": glass came in small panes and cost money in 1835,
+# the wall between the openings is what the shelves stand against, and a front that
+# is nearly all opening is a plate-glass idea from fifty years later.
+SHOPFRONT_MAX_FRACTION = 0.45
+
+
+def default_shopfront_bays(width_m: float) -> int:
+    """How many show windows a frontage of this width carries, when the record
+    does not say. Derived rather than fixed at one number, because a fixed
+    fenestration is exactly the defect docs/LIBERTIES.md L23 records against the
+    frame taverns: one five-bay rhythm spread across three buildings of different
+    sizes, which reads as a finding about how the town was built and is an artefact
+    of one archetype."""
+    for bays in (3, 2):
+        if shopfront_width_m(bays) <= width_m * SHOPFRONT_MAX_FRACTION:
+            return bays
+    return 1
+
+
+def from_phase(phase: dict) -> FrameStorefrontParams:
+    """Resolve one structure phase into generator parameters.
+
+    Reads only the attested `value` of each form attribute plus its confidence.
+    Footprint dimensions come from the phase footprint polygon's bounding box —
+    the polygon is authoritative, the width and depth are derived.
+    """
+    form = phase.get("form", {})
+
+    def val(attr, default=None):
+        a = form.get(attr)
+        return default if a is None else a.get("value", default)
+
+    def conf(attr, default="conjectural"):
+        a = form.get(attr)
+        return default if a is None else a.get("confidence", default)
+
+    poly = phase.get("footprint", {}).get("polygon") or []
+    if len(poly) < 3:
+        raise ParamError("footprint polygon needs at least 3 points")
+    xs = [p[0] for p in poly]
+    ys = [p[1] for p in poly]
+    width, depth = max(xs) - min(xs), max(ys) - min(ys)
+
+    # The contract pins the mesh origin to polygon coordinate (0, 0). Deriving only
+    # a bounding-box SIZE and then building from the origin silently translates any
+    # polygon not anchored there, so the building would stand somewhere its own
+    # footprint does not describe. Refuse instead — the same refusal frame_tavern
+    # makes, and for the same reason.
+    if abs(min(xs)) > 1e-6 or abs(min(ys)) > 1e-6:
+        raise ParamError(
+            f"footprint polygon starts at ({min(xs)}, {min(ys)}), not the origin. "
+            f"docs/GLB-CONTRACT.md pins the mesh origin to polygon coordinate (0, 0); "
+            f"building from a bounding box would silently move the structure "
+            f"{max(abs(min(xs)), abs(min(ys))):.2f} m from where its footprint puts it. "
+            f"Re-anchor the polygon at the origin and put the offset in position.")
+
+    confidences = {a: conf(a) for a in form}
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+
+    stories = int(val("stories", 2))
+    sign = val("sign")
+
+    p = FrameStorefrontParams(
+        width_m=round(width, 3),
+        depth_m=round(depth, 3),
+        stories=stories,
+        wall_height_m=float(val("wall_height_m", 3.1 if stories == 1 else 5.4)),
+        roof_type=str(val("roof_type", "gable")),
+        roof_pitch_deg=float(val("roof_pitch_deg", 33.0)),
+        gable_front=bool(val("gable_front", False)),
+        construction=str(val("construction", "balloon_frame")),
+        cladding=str(val("cladding", "clapboard")),
+        paint=str(val("paint", "unpainted")),
+        framing_exposed=bool(val("framing_exposed", False)),
+        loft=bool(val("loft", False)),
+        chimneys=int(val("chimneys", 1)),
+        shopfront=bool(val("shopfront", True)),
+        shopfront_bays=int(val("shopfront_bays",
+                               default_shopfront_bays(round(width, 3)))),
+        shopfront_door_side=str(val("shopfront_door_side", "centre")),
+        goods_door=bool(val("goods_door", True)),
+        goods_door_side=str(val("goods_door_side", "end")),
+        ell=bool(val("ell", False)),
+        ell_side=str(val("ell_side", "rear")),
+        ell_width_m=float(val("ell_width_m", round(width * 0.45, 3))),
+        ell_depth_m=float(val("ell_depth_m", round(depth * 0.35, 3))),
+        ell_stories=int(val("ell_stories", 1)),
+        ell_height_m=(None if val("ell_height_m") is None
+                      else float(val("ell_height_m"))),
+        sign=(None if sign is None else str(sign)),
+        confidence=confidences,
+    )
+    p.validate()
+    return p
