@@ -627,8 +627,9 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
 
     # ---- water ------------------------------------------------------------
     reset_scene()
-    w = WATER_HALF_M
-    wv = [(-w, -w, 0.0), (w, -w, 0.0), (w, w, 0.0), (-w, w, 0.0)]
+    w = WATER_MARGIN_M
+    wv = [(e0 - w, n0 - w, 0.0), (e1 + w, n0 - w, 0.0),
+          (e1 + w, n1 + w, 0.0), (e0 - w, n1 + w, 0.0)]
     water = _emit(f"water__{epoch}", wv, [(0, 1, 2, 3)], [CONF_DOCUMENTED] * 4,
                   simple_material("terrain_water", (0.18, 0.24, 0.24, 1.0), 0.15),
                   {"terrain_epoch": epoch, "layer": "water"}, 0.0)
@@ -684,14 +685,15 @@ def mesh_vs_field(ob, h_m, spec, stride=3):
 
     bvh = BVHTree.FromObject(ob, bpy.context.evaluated_depsgraph_get())
     g = spec["grid"]
-    half, cell = float(g["half_extent_m"]), float(g["cell_m"])
+    cell = float(g["cell_m"])
+    e0, n0 = float(g["e_min_m"]), float(g["n_min_m"])
     rows, cols = h_m.shape
     down = Vector((0, 0, -1))
     worst, sq, n_hit, n_miss = 0.0, 0.0, 0, 0
     for r in range(0, rows, stride):
-        n = -half + r * cell
+        n = n0 + r * cell
         for c in range(0, cols, stride):
-            e = -half + c * cell
+            e = e0 + c * cell
             hit = bvh.ray_cast(Vector((e, n, 60.0)), down)
             if hit[0] is None:
                 n_miss += 1
@@ -753,11 +755,13 @@ def main() -> int:
 
     ep_dir = ROOT / "data" / "terrain" / "epochs" / args.epoch
     spec = load(ep_dir / "terrain_spec.json")
-    river = load(ep_dir / "river.geojson")
-    hydro = load(ep_dir / "hydrology.geojson")
+    feats = {}
+    for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson"):
+        for f in load(ep_dir / name)["features"]:
+            feats[f["id"]] = f
     origin = (datum["origin_utm_e"], datum["origin_utm_n"])
 
-    h_m, conf, water, meta, geom = build_field(spec, river, hydro, origin)
+    h_m, conf, water, meta, geom = build_field(spec, feats, origin)
     audit = gradient_audit(h_m, water, geom, spec)
     audit["rule"] = ("docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones "
                      "that earn relief, hold local gradients under 0.5 ft per 300 ft")
@@ -766,8 +770,10 @@ def main() -> int:
     sha = terrain_inputs_sha(ep_dir)
     doc = write_heightfield(ep_dir, h_m, meta, spec, sha)
 
+    bx, bn = meta["box"]["e"], meta["box"]["n"]
     print(f"grid {doc['cols']}x{doc['rows']} @ {doc['cell_m']} m  "
-          f"({2 * float(spec['grid']['half_extent_m']):.0f} m square)")
+          f"(E {bx[0]:+.0f}..{bx[1]:+.0f}, N {bn[0]:+.0f}..{bn[1]:+.0f} — "
+          f"{bx[1] - bx[0]:.0f} x {bn[1] - bn[0]:.0f} m)")
     print(f"relief: land {meta['land_min_ft']:+.2f} .. {meta['land_max_ft']:+.2f} ft, "
           f"channel floor {meta['min_m'] / FT:+.2f} ft; water covers "
           f"{100 * meta['water_fraction']:.1f}% of the box")

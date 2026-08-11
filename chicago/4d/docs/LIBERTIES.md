@@ -850,7 +850,14 @@ industry sits well north of even the extended box — gets an entry of its own n
 `blacksmith_shop_state_st.log_1823.ground_contact`,
 `north_side_school_1833.log_1833.ground_contact`,
 `steamboat_hotel.frame_1835.ground_contact`,
-`council_house.log_1834.ground_contact`.
+`council_house.log_1834.ground_contact`,
+`first_presbyterian_church.frame_1834.ground_contact`,
+`st_marys_church.frame_1833.ground_contact`,
+`log_jail.log_1833.ground_contact`,
+`estray_pen.pen_1833.ground_contact`,
+`cook_county_courthouse_1835.wood_1835.ground_contact`,
+`chappel_infant_school.log_1833.ground_contact`,
+`watkins_school_house.house_1833.ground_contact`.
 **Recorded:** 2026-08-10.
 
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
@@ -1262,6 +1269,239 @@ schedules of improvements and claims are the likeliest.
 **Covers:** `council_house.log_1834.position`,
 `robinson_caldwell_cabins.log_1831.position`,
 `robinson_caldwell_cabins.log_1831.form.cabin_count`.
+**Recorded:** 2026-08-11.
+
+### L55 — The town's three worship buildings wear a dwelling's facade
+**Decision:** the First Presbyterian Church, St. Mary's and the Temple Building are all built
+with the `frame_dwelling` archetype, which puts the door in the long eaves-front wall and sets
+the openings out on a house's bay module. `plan` and `bays` are tagged `conjectural` on all
+three.
+**Why:** the schema offers an `institutional` archetype and there is no generator behind it, so
+a record using it compiles a sidecar pointing at a GLB that does not exist and the building is
+invisible. Of the archetypes that do build, `frame_tavern` carries a public house's gallery,
+`frame_storefront` carries a shopfront, and `outbuilding` refuses a storey count — leaving
+`frame_dwelling`, which is the only one that builds a plain single-range frame box with a gable
+roof and nothing else. That is the right MASSING for all three buildings and the wrong FACADE
+for all three.
+**Consequence:** a visitor sees three plain frame boxes with a domestic front. `plan:
+centre_passage` was chosen on each to force a centred door and a symmetrical elevation, which
+is the nearest a house's grammar comes to a meeting house's; the archetype's own default,
+`hall_parlour`, would have put the church door two thirds of the way along the wall. The bay
+counts — five on the Presbyterian church, three on St. Mary's and the Temple Building — are
+consequences of that choice and of the frontage, not findings. Nothing describes a window,
+a door or an elevation on any of the three.
+**A second cost, on St. Mary's only:** a 25 × 35 ft church almost certainly stood **gable-end
+to the street**, and this archetype builds an eaves-front range only — the ridge always runs
+parallel to the facade — so the 35 ft dimension becomes the Lake Street frontage by
+construction. The building is turned ninety degrees from what its proportions imply. The
+footprint note says so; the attribute is `inferred` rather than `conjectural` because both
+dimensions are attested and only their assignment is not, so this entry claims the facade and
+the footprint note carries the orientation.
+**How to resolve:** an `institutional` (or `meeting_house`) archetype — a single-cell plan, a
+gable-front option, a door in the gable end, a plain bench-lit side elevation — which would
+serve all three buildings and any later church. Failing that, any depiction or description of
+one of these elevations.
+**Covers:** `first_presbyterian_church.frame_1834.form.plan`,
+`first_presbyterian_church.frame_1834.form.bays`,
+`st_marys_church.frame_1833.form.plan`,
+`st_marys_church.frame_1833.form.bays`,
+`temple_building.frame_1833.form.plan`,
+`temple_building.frame_1833.form.bays`.
+**Recorded:** 2026-08-11.
+
+### L56 — Four documented interiors, and no interior is modelled
+**Decision:** the pine-board benches seating about 200 and the plastered walls over bare
+puncheon floors in the First Presbyterian Church, the rough benches and the table for an altar
+in St. Mary's, and the division of Eliza Chappel's log house into a school-room and lodging
+quarters are all recorded as `documented` and all declared `geometry: absent`.
+**Why:** this project models exteriors. No structure in the dataset has an interior, and these
+four are the first records whose best-attested facts are inside the building — which is the
+situation the `geometry:` declaration exists for: without it the popup would show the strongest
+confidence chip the project has over something a visitor cannot see.
+**Consequence:** the three best sentences anybody wrote about these buildings are in the record
+and not in the model. It matters more here than for a stable or a sign, because for a meeting
+house the interior IS the building: what distinguishes the Presbyterian church from St. Mary's
+is not their massing, which is within a few feet of identical, but that one was plastered with
+benches for two hundred and the other was unplastered with rough benches and a table.
+**One of the four does reach the mesh, indirectly, and that is worth saying:** the Chappel
+house's attested division into two rooms is the reason its invented footprint is a two-room
+size rather than a single pen. A number a human chose from a sentence is not the sentence
+being built.
+**How to resolve:** interiors, or a popup that renders the interior description alongside the
+elevation. The second is much cheaper and would discharge most of what this entry admits.
+**Covers:** `first_presbyterian_church.frame_1834.form.seating`,
+`first_presbyterian_church.frame_1834.form.interior_finish`,
+`st_marys_church.frame_1833.form.seating`,
+`chappel_infant_school.log_1833.form.interior_division`.
+**Recorded:** 2026-08-11.
+
+### L57 — The Temple Building is sized by arithmetic on its own cost
+**Decision:** the Temple Building's footprint is drawn at 30 × 25 ft, tagged `conjectural`,
+and derived from the one quantitative fact anybody recorded about it — that it cost about $900.
+**Why:** no source gives this building a dimension. It does give a cost, and this dataset now
+holds two contemporary buildings whose cost AND area are both attested: the First Presbyterian
+Church at $600 for 1,000 sq ft and St. Mary's at $400 for 875 sq ft, i.e. $0.60 and $0.46 per
+square foot. Two storeys at the midpoint of that range buys about 1,600 sq ft of floor, so
+about 800 per storey; 30 × 25 ft is 750, which at $0.55 gives $825 against the attested $900.
+**Consequence:** a derivation with three numbers in it reads as a finding and is not one. Two
+things are wrong with it in known directions and neither is corrected, because correcting a
+guess with another guess is worse: the cost per square foot of a two-storey building is lower
+than a single-storey one's — a second floor is cheap against a roof and a foundation — so the
+real building was probably BIGGER than this; and both reference figures rest on the citation
+problem set out in the Presbyterian church's research note, where the dossier's row cites
+Wikipedia and Andreas together without saying which supplied the dimensions. The 25 ft depth is
+additionally borrowed rather than derived: it is the depth of both churches and of the
+rectangle four other records in this dataset already use.
+**How to resolve:** any dimension at all, from a deed, an insurance entry, a subscription list
+or Andreas at page-image level.
+**Covers:** `temple_building.frame_1833.footprint`.
+**Recorded:** 2026-08-11.
+
+### L58 — Three buildings sized by what they were for
+**Decision:** the log jail (20 × 15 ft), Eliza Chappel's log school house (24 × 18 ft) and the
+Watkins house on Michigan Street (30 × 20 ft) are drawn at invented footprints, tagged
+`conjectural`.
+**Why:** no source reached gives any of the three a dimension, a plan or a room count. What
+each does supply is a USE, and the sizes are read off that and nothing else: a jail described as
+"something more metropolitan ... than the estray pen" and superseded within a few years is a
+two-cell log lock-up; a log house "divided into school-room and lodging quarters" holds two
+rooms, so it is bigger than a single pen and smaller than a public building; a house a
+schoolmaster could take a class in one room of is an ordinary two-room dwelling.
+**Consequence:** three buildings stand at three specific sizes that nobody recorded, and the
+proportions are as invented as the areas. The repetition across the dataset is deliberate and is
+the honest form of the admission — 24 × 18 and 30 × 20 recur here and elsewhere because they are
+type sizes, not measurements, and a set of unrelated-looking numbers would hide that.
+**How to resolve:** a county order or contract for the jail (which would carry a specification
+as well as a size); the Kinzie's Addition plat and its early conveyances for the Watkins house;
+Andreas at page-image level around scan pp. 305, 367 and 431 for all three.
+**Covers:** `log_jail.log_1833.footprint`,
+`chappel_infant_school.log_1833.footprint`,
+`watkins_school_house.house_1833.footprint`.
+**Recorded:** 2026-08-11.
+
+### L59 — Two buildings placed in the middle of a block face
+**Decision:** Eliza Chappel's log school house and the Watkins house on Michigan Street are
+placed at the mid-point of the block face each is attested on, and their positions are tagged
+`conjectural`.
+**Why:** the evidence is a stretch of street and no more. Andreas puts the school house in "a
+log house just outside the military reservation", which fixes it immediately west of State
+Street — the reservation's western boundary on the south side until February 1835 — and this
+project's dossier reads that as the two-block strip between South Water and Lake, tagging the
+exact lot conjectural itself. Andreas puts the Watkins school "in a house on Michigan Street
+between Cass and Rush", which is a block face about 110 m long. Neither source names a lot, a
+corner or a side of a corner.
+**Consequence:** each building stands at one specific point inside a run of frontage it could
+have stood anywhere along. The error is not the georeference's ±20 m but the length of the
+block: about ±60 m along State Street for the school house and about ±55 m along Michigan
+Street for the Watkins house, and that is on top of the ±20 m and of an unknown setback from
+the street line. A visitor sees two buildings sitting on specific lots. There are no lots.
+**Why the midpoint rather than a corner:** a corner is a claim and the midpoint is the centre of
+the distribution the evidence describes. It is still a point where the record has an interval.
+**How to resolve:** the Kinzie's Addition plat and its conveyances for the Watkins house; any
+1834–35 newspaper advertisement naming either address; Andreas at page-image level around scan
+pp. 305 and 431, read for a street number or a neighbour rather than for the school.
+**Covers:** `chappel_infant_school.log_1833.position`,
+`watkins_school_house.house_1833.position`.
+**Recorded:** 2026-08-11.
+
+### L60 — The estray pen is a fence, and the model gives it a roof
+**Decision:** Chicago's first public building — the estray pen on the south-west corner of the
+public square — is built with the `outbuilding` archetype as a log-walled box 30 × 20 ft and
+8 ft high, with a gate and **a shed roof at the shallowest pitch the generator will accept**.
+Every one of those values is tagged `conjectural`.
+**Why:** what the sources attest is a municipal FUNCTION, a corner and a month. A pound is an
+enclosure; there is no reason to think this one was roofed and nothing mentions a roof. This
+project has no generator that builds an enclosure — `palisade` is named in the schema and has no
+module behind it — and `outbuilding`, the only archetype that will build a low walled rectangle,
+cannot build a roofless structure. So the choice was a roofed box or no building at all, and the
+working policy for this parcel is that an absent building is invisible while a conjectural one is
+legible and correctable.
+**Consequence:** the roof is the model's, not the record's, and it is the most conspicuous thing
+about the structure. It is set to `shed` at 6 degrees — a 0.64 m rise over the pen's 6 m run, as
+close to flat as the generator goes — which is a deliberate attempt to minimise a feature that
+probably was not there rather than a finding about a roof that was. The material is invented too,
+and the live alternative would look completely different: most frontier pounds were split-rail or
+post-and-rail, which is open and horizontal and see-through, where this is a closed notched log
+wall. The gate is a doorway in a wall where the real thing was probably a hung rail gate. What
+survives of the evidence in the mesh is a rectangle of about the right size in about the right
+place.
+**How to resolve:** an enclosure archetype — post-and-rail or notched log, ROOFLESS, gated,
+taking a perimeter rather than a footprint. It would serve this record, the fenced-or-unfenced
+state of the public square itself, the garrison gardens and every yard in the town, and it is
+the honest fix. A town or county order establishing the pound would settle the size and the
+material at the same time.
+**Covers:** `estray_pen.pen_1833.footprint`,
+`estray_pen.pen_1833.form.construction`,
+`estray_pen.pen_1833.form.roof_type`,
+`estray_pen.pen_1833.form.roof_pitch_deg`,
+`estray_pen.pen_1833.form.wall_height_m`,
+`estray_pen.pen_1833.form.door`.
+**Recorded:** 2026-08-11.
+
+### L61 — The first court-house is built finished, on a date that may predate it
+**Decision:** the first Cook County court-house is built on the public square as a completed
+one-room wooden building 24 × 18 ft. Its position within the square and every attribute of its
+form are tagged `conjectural`; only its existence, its year and its function are not.
+**Why, and this is two admissions rather than one.**
+**(1) The date.** `illinoiscourthistory` gives one sentence — "Cook County built their first
+courthouse in 1835" — and a caption, "The first Cook County Courthouse, 1835–1853". **No source
+fixes a month.** On 1835-07-01 the building may have been unbuilt, under construction, or newly
+finished, which is exactly what `data/exclusions.json`'s watch_list already says about it. This
+record models the third of those, which on a flat prior is about half likely. **Under
+construction is a phase, not an omission**, and the honest alternative would be a second phase
+carrying a frame-and-no-cladding state; it is not written because nothing dates the transition
+and a construction phase with invented start and end dates would be two inventions where there
+is now one.
+**(2) The form, and the two descriptions that must never reach it.** The famous "about thirty by
+sixty feet ... front ornamented with a four-column Doric portico of wood work" is Andreas on the
+**1837** court-house. And in `illinoiscourthistory` itself, two lines under the 1835 sentence,
+sits "constructed in the Greek Revival style, and built with stone ... designed by ... John M.
+Van Osdel" — that is the **1853** building, and it is the easier of the two to lift by mistake;
+Van Osdel did not reach Chicago until 1837. This project's own dossier compounds the problem at
+`docs/research/04-structures-south.md` line 178, where the corner and the phrase "a small wooden
+stockade-type building" are tagged `[DOC]` to a document that contains neither. Nothing in the
+record cites them, so the size, the material, the wall height, the roof and the door are all
+this project's invention.
+**A sting in the tail worth recording:** the corner adopted — the north-east of the square — is
+reasoned from the two documented structures occupying the west corners and from the reading in
+circulation ("the southwest corner of Clark & Randolph", which is the block's north-east
+corner). It is ALSO the siting Andreas documents for the 1837 building, so the one placement
+claim this record makes is the one an 1837 description would have contaminated it with. It is
+adopted anyway, with that stated, because the alternative is a placement with no argument at all.
+**How to resolve:** the Cook County commissioners' records for 1834–35. A single dated order
+would carry a contract, a cost, a specification and a completion date, and would move four
+attributes and the date from conjectural to documented at once.
+**Covers:** `cook_county_courthouse_1835.wood_1835.footprint`,
+`cook_county_courthouse_1835.wood_1835.position`,
+`cook_county_courthouse_1835.wood_1835.form.construction`,
+`cook_county_courthouse_1835.wood_1835.form.wall_height_m`,
+`cook_county_courthouse_1835.wood_1835.form.roof_type`,
+`cook_county_courthouse_1835.wood_1835.form.roof_pitch_deg`,
+`cook_county_courthouse_1835.wood_1835.form.door`.
+**Recorded:** 2026-08-11.
+
+### L62 — Watkins' school house: one unrecorded word decides the whole building
+**Decision:** the house on Michigan Street that John Watkins used as his second school is built
+as a story-and-a-half braced-frame dwelling on a hall-and-parlour plan. `stories`,
+`construction` and `plan` are all tagged `conjectural`.
+**Why:** Andreas says "a house". That is the entire description. Frame is adopted because the
+building stood in Kinzie's Addition, platted and selling in 1833, where what was going up was
+new building rather than the older log stock at the forks — which is an argument about a
+neighbourhood, not evidence about a house. The storey count and the plan are the
+`frame_dwelling` archetype's own defaults, kept deliberately rather than replaced with fresh
+numbers, on the reasoning L29 states about the bridge's pier spacing: a new figure would look
+like a finding and would not be one.
+**Consequence, and it is larger than an attribute:** the material decides the ARCHETYPE, and the
+archetype is not a graded value. If a source says log, this record moves to `log_dwelling` and
+the walls, the corners, the openings and the roof all change — a different building, not a
+different attribute. The confidence view cannot show that, because it grades values and this is
+a choice made one level above them. This entry is where it is recorded.
+**How to resolve:** the Kinzie's Addition plat and its early conveyances; the 1833–35 *Chicago
+Democrat*, which carried school advertisements and would name the house or its owner; Andreas at
+page-image level around scan p. 305.
+**Covers:** `watkins_school_house.house_1833.form.stories`,
+`watkins_school_house.house_1833.form.construction`,
+`watkins_school_house.house_1833.form.plan`.
 **Recorded:** 2026-08-11.
 
 ---
