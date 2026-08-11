@@ -2155,9 +2155,11 @@ def test_a_source_may_not_declare_a_use_its_rung_does_not_support() -> None:
 def test_documented_on_later_scholarship_alone_is_counted_not_failed() -> None:
     """The exposure this check found, kept visible without being decided by fiat.
 
-    Twenty-one committed values are here today. Failing them would force a
-    regrade — a mesh input, so a bake — on a question that is research: a page
-    transcribing a period newspaper is tier 2 whatever site hosts it.
+    Twenty-one committed values were here when this check landed and six are
+    today: reading the three chicagology pages settled fifteen of them by moving
+    the SOURCE, not the value. Failing the rest would force a regrade — a mesh
+    input, so a bake — on a question that is still research: a page transcribing
+    a period newspaper is tier 2 whatever site hosts it.
     """
     srcs = _sources(andreas=3, later=4)
     rep = V.Report()
@@ -2201,6 +2203,93 @@ def test_the_card_says_what_a_tier_is() -> None:
     check("the committed sidecar ships the label the card renders",
           len(labelled) == len(shipped.get("citations", [])) and labelled,
           [c.get("tier_label") for c in shipped.get("citations", [])])
+
+
+def _page(tier: int, date: str = "accessed 2026-08-10", **extra) -> dict:
+    """A record that dates its own retrieval — the shape the declaration is for."""
+    return {"id": "page", "type": "website", "citation": "a citation of some length",
+            "date": date, "tier": tier, "rights_status": "check_required",
+            "verified": True, "asset_use": "cross_check", **extra}
+
+
+def _carries(tier: int, note: str = "carries the storey count this dataset uses") -> dict:
+    return {"work": "Some Newspaper, an interview with a man who lived there", "date": "1883-07-01",
+            "tier": tier, "note": note}
+
+
+def test_a_rung_belongs_to_a_document_not_to_the_page_that_reprints_it() -> None:
+    """The judgement `chicagology_kinzie_bridge` wrote in prose, as a check.
+
+    Its `note` has always said "Tier 3 for the Andreas transcription; the
+    surrounding apparatus is a finding aid" — a true sentence describing
+    something nothing verified, which is the shape of every fault this family of
+    gates has found.
+    """
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(2)}, rep)
+    check("a page claiming a testimony rung and declaring nothing is an error",
+          any("declare the document in `transcribes`" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(4)}, rep)
+    check("the same page at tier 4 is unread rather than wrong", not rep.errors, rep.errors)
+    check("and it is counted rather than ignored",
+          any("declare nothing" in n for n in rep.notes), rep.notes)
+
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(2, transcribes=[_carries(2)])}, rep)
+    check("declaring the document it carries clears it", not rep.errors, rep.errors)
+
+
+def test_the_tier_is_derived_from_the_declaration_and_not_typed_beside_it() -> None:
+    """The discriminating case: every field well-formed, and the number is the
+    one its own declarations exclude. Same shape as `check_street_module`'s."""
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(2, transcribes=[_carries(3), _carries(4)])}, rep)
+    check("a rung better than anything it transcribes is an error",
+          any("the best document it declares carrying is tier 3" in e for e in rep.errors),
+          rep.errors)
+
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(3, transcribes=[_carries(2), _carries(3)])}, rep)
+    check("and so is a rung worse than one, because apparatus does not go here",
+          any("rung is the best rung it transcribes" in e for e in rep.errors), rep.errors)
+
+    rep = V.Report()
+    V.check_transcription_declarations(
+        {"page.json": _page(2, transcribes=[_carries(2), _carries(3)])}, rep)
+    check("the best rung is what the record claims", not rep.errors, rep.errors)
+
+
+def test_a_declaration_says_what_the_document_carries() -> None:
+    """A named document with no claim behind it is apparatus, and apparatus in
+    this field would drag the record's rung onto evidence nobody uses."""
+    entry = _carries(2)
+    entry["note"] = "   "
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(2, transcribes=[entry])}, rep)
+    check("a declaration naming no claim is an error",
+          any("names a document and not what it carries" in e for e in rep.errors), rep.errors)
+
+    entry = _carries(2)
+    entry["date"] = "accessed 2026-08-10"
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(2, transcribes=[entry])}, rep)
+    check("and a document dated by when we fetched it is not placed on the ladder at all",
+          any("dates a retrieval" in e for e in rep.errors), rep.errors)
+
+
+def test_a_record_that_dates_a_document_needs_no_declaration() -> None:
+    """`chicagology_prefire252` dates itself 1893-10-29 — it IS the newspaper as
+    far as this dataset is concerned, and asking it to transcribe itself would be
+    bookkeeping rather than a check."""
+    rep = V.Report()
+    V.check_transcription_declarations({"page.json": _page(2, date="1893-10-29")}, rep)
+    check("a record dating its document rather than its fetch is outside the rule",
+          not rep.errors, rep.errors)
 
 
 def test_real_dataset_passes() -> None:

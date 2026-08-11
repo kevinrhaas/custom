@@ -3,9 +3,9 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-10 (the evidence ladder is enforced for the first time and printed at
-a visitor in words — and switching it on found four `documented` values resting on nothing but a
-source whose own record says never as sole evidence, § 43) ·
+**Last updated:** 2026-08-10 (three chicagology pages were opened and read, and fifteen of the
+ladder's twenty-one findings turn out to have been about the SOURCE rather than the value — a
+rung is a judgement about a document now, declared and derived rather than typed, § 44) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -82,7 +82,7 @@ the other surface is a gate now instead of a sentence.
 | `tools/test_validate.py` | **done** — 205 checks, all green, including a proof that rewriting every note, caveat and citation in the terrain spec leaves the ground's staleness hash where it was while moving the bank face by a metre does not, and that no generator reads a key that hash strips, and a proof that a liberty admitting to an invention in one epoch's ground does not discharge the same invention in another's, that a ground admission and a building's are separate obligations neither of which covers the other, and that an 1836 building is excluded from the 1835 scene, that a liberty naming a building does not cover an invention it never mentions, that an attribute the archetype never reads cannot pass without saying what the mesh does instead, and that rewriting a record's prose does not report its mesh as stale while changing a value the generator reads does, and that an attribute an archetype declares it consumes actually moves the parameters when its value changes, and that an exclusion carries a reason and a citation that resolves and stops being an exclusion at its own earliest scene, and that a field the provenance card reads off a sidecar is actually in the sidecar, and that every field any renderer module reads off a sidecar is one the compiler writes, and that a ground figure declaring the mesh agrees with it is held to the half it restates — the heightfield the bake wrote, the build instruction it duplicates, or the generator line it describes — with a phrase that exists only inside a comment satisfying nothing, and that a watch-list entry naming a committed record fails the moment that record's claim is promoted to `documented` |
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
-| Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page |
+| Source records | **27**, of which **15** carry a Wayback snapshot — the three added with the bridge all do, and so do the post-office page and the Fort Dearborn page. **Four now derive their rung from the document they transcribe** rather than asserting it (§ 44): three chicagology pages read in full on 2026-08-10 and regraded 4 → 2 on the 1883 *Inter Ocean* interviews and the 1857 *Chicago Magazine* they carry, plus the Kinzie bridge page's long-standing Andreas sentence made checkable. Nine pages at tier 4 or weaker still date their own retrieval and declare nothing; the validator counts them every run |
 | Structure records | **8** — six buildings at the forks, the North Branch bridge, and Hogan's store on Lake Street |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
@@ -1427,6 +1427,75 @@ uncertainty of the 1834 sheets in its note.
     schema's default and 22 of 28 sources wear it, including both tier-1 survey sheets, so it
     means "nobody set it" and not "corroboration only". Do not build a gate on that field
     without setting it deliberately first.
+
+44. **The rung was a judgement about a website, and reading three of them moved fifteen values
+    without touching one.** § 43 ends with an ambiguity it could not resolve: 21 `documented`
+    values rest on later scholarship alone, and *either the values are over-graded or the
+    sources are under-tiered*. The two halves cost very different things — regrading a value is
+    a mesh input and arrives with a Blender bake, regrading a source is reading — so the cheap
+    half went first. The three chicagology pages carrying fifteen of the twenty-one were
+    fetched, read in full and identified from their own printed attributions. **All three are
+    transcriptions of near-primary recollection and all three were graded 4.** They are 2 now,
+    and the count in `check.sh` reads **six**. Memo:
+    `docs/RESEARCH/evidence_tiers_chicagology.md`.
+    **What each one turned out to be.** `prefire127` is the *Inter Ocean* of 1 July 1883 — a
+    sketch of the Green Tree carried to people who had slept in it, printing their corrections
+    in their own words, with Edwin Gale's 1902 *Reminiscences* under it and nine city
+    directories 1839-1885 around it. `prefire273` is the *Chicago Magazine* of 15 May 1857,
+    written from George Davis's 1832 drawing and from Gurdon S. Hubbard's account given to the
+    writer directly. `prefire278` is the *Inter Ocean* of 22 July 1883, the same series a
+    fortnight later.
+    **Two of the three source records were wrong about their own page, and the second one is
+    the finding.** `prefire273`'s citation said the page compiles Andreas and the Fergus
+    series; the body is the 1857 magazine, and Andreas is a separate section nothing here reads
+    through this page. Worse: **every value citing `prefire278` is about the Western Hotel, and
+    the record described only the town code of 7 November 1833.** The material four claims rest
+    on — "The Old Western Hotel: First Frame House on the West Side", the interviews giving the
+    farmers' house, Stow, the two storeys and the stable yard — was not mentioned in the record
+    at all. A source record that does not name the half the dataset uses is a citation nobody
+    can check, and it passed every gate this project has, because every one of them asks whether
+    a `source_id` resolves and none asked what is inside it.
+    **So the judgement is a declaration now.** A record that dates its own RETRIEVAL rather
+    than a document — `date` reading "accessed 2026-08-10" — and claims a rung at or above
+    testimony must declare `transcribes`: the documents it carries, each with its date, its own
+    rung, and a note saying which of this project's claims it carries. **The record's tier is
+    then the best rung declared** — derived, not typed beside it, the same argument as a
+    changelog version. `check_transcription_declarations` holds it in both directions, and the
+    discriminating self-test is a record in which every field is well formed and the number is
+    the one its own declarations exclude.
+    **It has one finding on the committed data and it is a sentence being made checkable.**
+    `chicagology_kinzie_bridge` has said since it was written *"Tier 3 for the Andreas
+    transcription; the surrounding apparatus is a finding aid"* — true, and readable by nobody.
+    Fourth instance in this project of a true sentence describing something no check could see;
+    the Andreas passage is declared and the tabulated bridge chronology is explicitly not.
+    **Apparatus is deliberately excluded from the declaration, and that is a rule with a
+    reason.** `prefire127` carries nine period city directories, which are rung-1 documents; no
+    claim here rests on them, and declaring them would drag the record's rung onto evidence this
+    dataset does not stand on. They stay in the note. The cost is that under-declaration is
+    possible and no check can see it — stated rather than papered over.
+    **What did NOT clear, which is the part worth keeping in view.** Six remain and four of
+    them are § 43's sharp ones, unchanged and unclearable this way: `sauganash_hotel`
+    `form.stories` and `form.construction`, `miller_house` `form.frame_addition_stories` and
+    `wolf_point_tavern` `form.sign` still rest on the two `drloih` blog compilations alone, and
+    those pages' own records say *never as sole evidence*. That is a regrade of a value, so it
+    is a bake, and it stays queued.
+    **And one cleared warning is thinner than the others, said here rather than left to be
+    found.** `miller_house.form.frame_addition` is `documented`, and what the 1857 magazine
+    attests is *"a log structure partly sided"* — that a frame element existed. The words the
+    record quotes, *"a two-story house added to the cabin, fronting the river"*, are drloih's.
+    The record's split turns out to be exactly right, because the storey count is carried
+    separately and is one of the four that did not clear — but the general point is a limit of
+    the gate: **the ladder check is per-value and a source lends its rung to every attribute
+    that lists it**, so a cleared warning is not by itself better evidence. The memo walks all
+    fifteen one at a time for that reason.
+    **What it still cannot see.** Whether a rung is the right rung: the declaration makes the
+    judgement re-derivable, not correct. Whether a declared document says what its note claims —
+    a human read put it there and a human read is what would overturn it. And nine pages at
+    tier 4 or weaker date their own retrieval and declare nothing; three of them
+    (`prefire062` quoting the *Chicago American* of 9 July 1835, `prefire276` transcribing the
+    same 1857 magazine as `prefire273`, `wikipedia_chicago_river` quoting Swearingen's 1803
+    account) look like exactly this case, and none was opened. Looking like the case is what
+    this slice exists to stop being sufficient. The validator counts them every run.
 
 ## Next
 
