@@ -784,6 +784,37 @@ Three things worth carrying:
   unrelated assertions enumerating `.cites li`; they are `.cites > li` now. Second occurrence of
   this shape.
 
+**Done 2026-08-11 — the other three derived documents are an interface too, and both sentences
+they were hiding were written for a visitor.** The entry above closes the source-record
+direction. What it does not close is the *document*: `sidecar_shape` says in its own docstring
+that it covers the per-structure sidecar and not `exclusions.json` or `terrain.json`, because
+those "have their own readers and their own shapes" — so the interface where § 28, § 29 and § 30
+each found a fault was guarded for one document out of four. `check_derived_contract` covers the
+other three, both directions, and found two on its first run.
+
+The ground now says **which ground** its twenty claims are about — the spec's own sentence about
+the forks quadrant, compiled into every terrain sidecar since the terrain landed and asked for by
+nobody, which is the first question a visitor has after watching the ground end from the air. And
+the liberties list says what a liberty is **in the document's words**: `liberties.json` carries
+that sentence, `index.html` carried a hand-typed paraphrase of it with nothing holding the two
+together, and the paraphrase is gone.
+
+Three things worth carrying:
+
+- **The binding is declared, not inferred, and that is the design.** A sidecar names itself;
+  these are fetched into `doc` and handed entry by entry to a renderer, so the field name is
+  chosen against a function parameter — § 29's stated limit. `DERIVED_DOCUMENTS` writes the
+  binding down and the gate holds the module to it both ways, including a root bound where the
+  document has nothing.
+- **`internal` is § 48's partition on a second family**, over what the compiler emits rather than
+  over a schema, checked in both directions so a declaration cannot outlive its field or be wrong
+  about the visitor. Citation leaves stay with `check_source_surface`: one field, one owner.
+- **A read is a name, not a render — and one is still outstanding.** `exclusions.json`'s
+  `standard` and `uncertain_standard` are read into a return value, rendered by nobody, and
+  restated by hand in `index.html`. That is the repair just made for the liberties, still
+  standing two sections down; the gate passes it because the name appears. **Queued**, and small:
+  it is a `standardMount` on `mountExclusions` and two deleted paragraphs.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever

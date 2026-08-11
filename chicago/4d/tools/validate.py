@@ -2158,7 +2158,9 @@ def strip_js_comments(text: str) -> str:
     return re.sub(r"""(?<![:'"\\\w])//[^\n]*""", "", text)
 
 
-def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int, str]]:
+def sidecar_field_reads(text: str, shape: dict | None = None,
+                        roots: list[tuple[str, list[str]]] | None = None,
+                        ) -> list[tuple[int, str]]:
     """Every sidecar field one renderer module reads, as (line, dotted path).
 
     A regex over JavaScript is a blunt instrument and this one is deliberately
@@ -2167,6 +2169,16 @@ def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int,
     else. A name is only followed when its path lands on a dict, so `const e =
     p.local_e` binds nothing further and a later unrelated `e` in the same file
     cannot be mistaken for it.
+
+    `roots` is how a caller states a binding this scanner cannot infer. The
+    per-structure sidecar needs none — `record.sidecar` names itself — but the
+    derived documents are read as `doc` and then handed entry by entry to a
+    renderer, where the name arrives as a function parameter and the anchor is
+    gone. `check_derived_contract` declares those bindings rather than guessing
+    them: `("doc", [])` for the document itself, `("claim", ["claims"])` for the
+    parameter that holds one of its claims. Each is (identifier, path prefix),
+    and it is a claim about the module that the gate's other direction then
+    holds to the document.
 
     What it cannot see is stated rather than implied: a sidecar value handed to a
     function is read through that function's parameter, so `claimRow(label, span,
@@ -2183,6 +2195,9 @@ def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int,
     """
     shape = sidecar_shape() if shape is None else shape
     text = strip_js_comments(text)
+    seeds: list[tuple[str, list[str]]] = ([(SIDECAR_ROOT, [])] if roots is None
+                                          else [(r"\b%s\b" % re.escape(n), list(p))
+                                                for n, p in roots])
 
     def resolve(path: list[str]):
         """(node, ok, missing_segment) — resolution stops at the first leaf."""
@@ -2200,8 +2215,8 @@ def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int,
 
     bound: dict[str, list[str]] = {}
     for _ in range(3):          # `s` binds before `p = s.placement` resolves
-        anchors = [(SIDECAR_ROOT, [])] + [(r"\b%s\b" % re.escape(n), p)
-                                          for n, p in bound.items()]
+        anchors = seeds + [(r"\b%s\b" % re.escape(n), p)
+                           for n, p in bound.items()]
         for anchor, prefix in anchors:
             pat = r"\b(?:const|let|var)\s+(%s)\s*=\s*%s%s" % (JS_IDENT, anchor, JS_CHAIN)
             for m in re.finditer(pat, text):
@@ -2211,8 +2226,8 @@ def sidecar_field_reads(text: str, shape: dict | None = None) -> list[tuple[int,
                     bound[name] = path
 
     reads: dict[str, int] = {}
-    anchors = [(SIDECAR_ROOT, [])] + [(r"\b%s\b" % re.escape(n), p)
-                                      for n, p in bound.items()]
+    anchors = seeds + [(r"\b%s\b" % re.escape(n), p)
+                       for n, p in bound.items()]
     for anchor, prefix in anchors:
         for m in re.finditer(anchor + JS_CHAIN, text):
             path = prefix + segments(m.group(1))
@@ -2434,6 +2449,243 @@ def check_sidecar_contract(rep: Report) -> None:
         rep.note(f"sidecar contract: {len(unread)} top-level field(s) compiled and never "
                  f"read by the renderer ({', '.join(unread)}) — dead weight or an "
                  f"unshipped claim, not an error either way")
+
+
+# --- the OTHER derived documents ------------------------------------------
+#
+# `sidecar_shape` says in as many words that it covers the per-structure sidecar
+# and not `exclusions.json` or `terrain.json`, because those "have their own
+# readers and their own shapes". That sentence has been true and unenforced
+# since it was written, and it names precisely the interface the three faults of
+# STATUS § 28-30 lived in: a field read and never emitted, a field emitted and
+# never read, and a field that never entered the interface at all. Three
+# documents were outside every one of those gates.
+#
+# The binding is DECLARED rather than inferred, and that is the whole design.
+# A per-structure sidecar names itself — `record.sidecar` is an anchor a regex
+# can follow. These are fetched into a local `doc` and then handed entry by
+# entry to a renderer, so the field names are chosen inside a function whose
+# parameter is `claim` or `ex` or `u`, with nothing left to anchor on. Writing
+# the binding down is a claim about the module, and the gate then holds the
+# module to it in both directions: a declared root that reads a field the
+# document does not carry fails, and a field the compiler writes that no root
+# reads must be declared internal with the reason.
+#
+# `internal` is § 48's partition arriving at a second family of documents. The
+# bounded set there was the source schema; here it is what the compiler emits,
+# which `compile_scene.py --check` and `compile_liberties.py --check` already
+# prove is exactly what the dataset derives to.
+DERIVED_DOCUMENTS = [
+    {
+        "doc": "sidecars/*/terrain.json",
+        "module": "renderers/web/js/ground.js",
+        # identifier in that module -> the path inside the document it holds
+        "roots": {"doc": "", "claim": "claims", "f": "claims.fields",
+                  "c": "context", "z": "not_modelled"},
+        "internal": {
+            "scene": "the sidecar is fetched by scene id; naming it back is machinery",
+            "target_date": "the scene's date, shown by the HUD from the scene record",
+            "epoch": "which terrain epoch compiled these claims — a reviewer's join, "
+                     "and the claims themselves carry no epoch-specific wording",
+            "claims.id": "the spec key the claim was derived from; `label` is what a "
+                         "visitor reads and `Covers:` tokens are the gate's business",
+            "claims.confidence_key": "which key of the block held the grade, so the "
+                                     "gate can find it again; the grade itself is shown",
+            "claims.sources": "the raw source ids, joined into `citations` by cite() "
+                              "and shown from there",
+            "not_modelled.dossier_zone": "the terrain dossier's zone number, a pointer "
+                                         "into a file no visitor has; `why` says it in "
+                                         "words",
+        },
+    },
+    {
+        "doc": "sidecars/*/exclusions.json",
+        "module": "renderers/web/js/exclusions.js",
+        "roots": {"doc": "", "ex": "excluded", "u": "uncertain"},
+        "internal": {
+            "scene": "as above — the id this file was fetched by",
+            "target_date": "as above",
+        },
+    },
+    {
+        "doc": "liberties.json",
+        "module": "renderers/web/js/liberties.js",
+        "roots": {"doc": "", "lib": "liberties", "f": "liberties.fields",
+                  "c": "liberties.covers"},
+        "internal": {
+            "_doc": "the do-not-hand-edit banner, addressed to whoever opens the file",
+            "source": "docs/LIBERTIES.md, the path the list was derived from",
+            "count": "the length of the list the visitor is already scrolling",
+        },
+    },
+]
+
+# Citation leaves are deferred to `check_source_surface`, which partitions all
+# 22 properties of the source schema and holds `citations.js` to them (§ 48).
+# One compiled citation shape reaches all three of these documents, so checking
+# it here as well would give one field two owners and, the day they disagree,
+# two answers.
+CITATION_SEGMENT = "citations"
+
+
+def node_shape(docs: list, path: list[str]) -> dict:
+    """Union shape of the node at `path`, with lists left as leaves.
+
+    Descending THROUGH a list means "each element of it", which is what makes a
+    declared root like `claims.fields` name the thing a renderer's parameter
+    actually holds. Stopping AT one keeps `(claim.fields || []).map` from being
+    read as a field named `map` — the same reason `sidecar_shape` stops at a
+    leaf, arriving where the interface is a list of entries rather than one
+    record.
+    """
+    nodes: list = list(docs)
+    for seg in path:
+        nxt: list = []
+        for n in nodes:
+            if isinstance(n, list):
+                nxt.extend(e.get(seg) for e in n if isinstance(e, dict))
+            elif isinstance(n, dict) and seg in n:
+                nxt.append(n[seg])
+        nodes = nxt
+    def merge(shape: dict, doc: dict) -> dict:
+        for k, v in doc.items():
+            if isinstance(v, dict):
+                prev = shape.get(k)
+                shape[k] = merge(prev if isinstance(prev, dict) else {}, v)
+            else:
+                shape.setdefault(k, None)
+        return shape
+
+    shape: dict = {}
+    for n in nodes:
+        for e in (n if isinstance(n, list) else [n]):
+            if isinstance(e, dict):
+                merge(shape, e)
+    return shape
+
+
+def emitted_leaves(docs: list, prefix: str = "") -> dict[str, None]:
+    """Every field a derived document states, as dotted paths to its leaves.
+
+    A list of dicts is not a leaf — its entries' fields are — because that is
+    the level a visitor meets: `excluded` is a section and `excluded.reason` is
+    a sentence somebody wrote. A list of scalars IS one: `subjects` is a set of
+    ids rendered as a row of chips, not a nested claim.
+    """
+    out: dict[str, None] = {}
+
+    def walk(nodes: list, path: str) -> None:
+        keys: dict[str, list] = {}
+        for n in nodes:
+            if not isinstance(n, dict):
+                continue
+            for k, v in n.items():
+                keys.setdefault(k, []).append(v)
+        for k, vals in keys.items():
+            here = f"{path}.{k}" if path else k
+            nested = [v for v in vals if isinstance(v, dict)]
+            entries = [e for v in vals if isinstance(v, list) for e in v
+                       if isinstance(e, dict)]
+            if nested or entries:
+                walk(nested + entries, here)
+            else:
+                out[here] = None
+
+    walk(docs, prefix)
+    return out
+
+
+def load_derived(spec: dict) -> tuple[list, str | None]:
+    """The committed copies of a derived document and its declared reader."""
+    pattern = spec["doc"]
+    paths = sorted(DATA.glob(pattern)) if "*" in pattern else [DATA / pattern]
+    docs = [json.loads(p.read_text()) for p in paths if p.is_file()]
+    src = ROOT / spec["module"]
+    return docs, (src.read_text() if src.is_file() else None)
+
+
+def check_derived_contract(rep: Report, *, specs: list[dict] | None = None,
+                           load=load_derived) -> None:
+    """The derived documents outside the sidecar gate, held from both sides."""
+    for spec in (DERIVED_DOCUMENTS if specs is None else specs):
+        pattern, module = spec["doc"], spec["module"]
+        docs, text = load(spec)
+        if not docs:
+            rep.error("derived contract",
+                      f"{pattern} is declared as a derived document and nothing "
+                      f"matching it is committed — either the compiler stopped "
+                      f"writing it or this declaration is stale")
+            continue
+        if text is None:
+            rep.error("derived contract", f"{module} is declared as the reader of "
+                                          f"{pattern} and does not exist")
+            continue
+
+        read: dict[str, int] = {}
+        for ident, prefix in spec["roots"].items():
+            segs = [s for s in prefix.split(".") if s]
+            shape = node_shape(docs, segs)
+            if not shape:
+                rep.error("derived contract",
+                          f"{module} binds `{ident}` to `{prefix or '(the document)'}` "
+                          f"of {pattern}, and no committed copy has anything there")
+                continue
+            for line, dotted in sidecar_field_reads(text, shape, roots=[(ident, [])]):
+                full = ".".join(segs + dotted.split("."))
+                if CITATION_SEGMENT in full.split("."):
+                    continue
+                node, ok = shape, True
+                for seg in dotted.split("."):
+                    if not isinstance(node, dict):
+                        break
+                    if seg not in node:
+                        ok = False
+                        break
+                    node = node[seg]
+                if not ok:
+                    rep.error("derived contract",
+                              f"{module}:{line} reads `{ident}.{dotted}` and no "
+                              f"committed {pattern} carries `{full}` — it renders as "
+                              f"nothing, on every entry, silently. Either the compiler "
+                              f"emits the field or the renderer stops asking for it")
+                    continue
+                read.setdefault(full, line)
+
+        leaves = [p for p in emitted_leaves(docs)
+                  if CITATION_SEGMENT not in p.split(".")]
+        internal = spec["internal"]
+        for path in sorted(leaves):
+            if path in read:
+                if path in internal:
+                    rep.error("derived contract",
+                              f"{pattern}: `{path}` is declared internal — "
+                              f"\"{internal[path]}\" — and {module} reads it at line "
+                              f"{read[path]}. One of the two is wrong about the visitor")
+                continue
+            if path not in internal:
+                rep.error("derived contract",
+                          f"{pattern}: `{path}` is compiled and {module} never reads "
+                          f"it. Either it reaches a visitor or DERIVED_DOCUMENTS says "
+                          f"in one line why it does not — an authored sentence that "
+                          f"renders nowhere is an unshipped claim, not dead weight")
+        for path in sorted(internal):
+            if path not in leaves:
+                rep.error("derived contract",
+                          f"{pattern}: `{path}` is declared internal and the compiler "
+                          f"does not emit it — a stale partition")
+
+        rep.note(f"derived contract: {pattern} — {len(read)} field(s) read by "
+                 f"{Path(module).name}, {len(internal)} declared internal, "
+                 f"{len(leaves)} emitted")
+
+    # The honest limit, and it is the same one § 28 was written about: this
+    # proves a module NAMES the field, not that the field reaches a pixel.
+    # `exclusions.json`'s `standard` is read into a return value and rendered by
+    # nobody, and the scan is satisfied. That is why the smoke asserts the
+    # rendered text for the claims this gate has just shipped, and why a read is
+    # never the last word here.
+    rep.note("derived contract: a read is a name, not a render — the smoke pins the "
+             "rendered text for the claims that carry one")
 
 
 def citation_shape() -> set[str]:
@@ -2767,6 +3019,10 @@ def main() -> int:
 
     # what passes between the compiler and the renderer, checked from both sides
     check_sidecar_contract(rep)
+
+    # and the same interface for the three derived documents that gate says, in
+    # its own docstring, that it does not cover
+    check_derived_contract(rep)
 
     # and the third direction those two cannot see: a field of a source record
     # that never entered the interface at all
