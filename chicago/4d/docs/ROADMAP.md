@@ -328,10 +328,37 @@ later writer got by subtracting the maximum from 8. What the paraphrase dropped 
 *"the banks above are quite low"* is the only sentence in the passage about the reach this
 project models, and it is attached to the spec's `bank` block now, which cited nothing before.
 Fourth citation found misdescribing its own page, and the first found by opening the document
-rather than the host. Six pages at tier 4 or weaker still declare nothing
+rather than the host. ~~Six pages at tier 4 or weaker still declare nothing
 (`chicago_temple_history`, `chicagology_first_post_office`, `chicagology_lastwardance`,
 `chicagology_prefire274`, `drloih_hotels`, `drloih_wolf_point`), counted by the validator every
-run, and the two `drloih` pages are not solvable this way.
+run, and the two `drloih` pages are not solvable this way.~~
+
+**The four that could be opened were opened 2026-08-11, and the count reads two** (STATUS § 47,
+`docs/RESEARCH/evidence_tiers_round_three.md`). `chicagology_lastwardance` is the *Chicago
+Tribune* of 14 August 1910 printing **John Dean Caton's own written recollection** — an
+identified eyewitness, not the "later compilation of recollections" the record claimed — and is
+rung 2. `chicagology_prefire274` is *Chicago Magazine*, March 1857, the installment before
+`prefire276`, and is the first source here graded **by which part of it you stand on**: rung 2
+for the landform this project cites, no better than 3 for its 1803-1812 fort narrative, which
+nothing cites. `chicagology_first_post_office` was read and **left at 4** — Currey 1922 naming
+no authority for the post-office facts — which is what this section meant by *unread rather than
+wrong*. `chicago_temple_history` reprints nothing and says so in `carries_no_document`; its
+missing `archived_url` is filled from a 2026-06-05 snapshot verified against both quotations,
+one standing warning gone.
+
+**The finding is on the post-office page and it touches S9.** The 66 ft street module — the
+dissent against the 80 ft every platted placement is offset from — is *not part of Currey's
+article*: it interrupts his chronology, its subject is a survey in an article about buildings,
+and it is the one paragraph naming no authority while writing "downstate Randolph County". It is
+undeclared, off the ladder, and `data/traces/street_control.json` no longer says "Currey states".
+No number moves — the figure was already excluded by measurement — but the dissent is now a
+sourceless website sentence rather than a named historian, which is a different thing for the
+streets parcel to weigh.
+
+**What is left of this thread is not research.** Only `drloih_hotels` and `drloih_wolf_point`
+still declare nothing, and this method does not reach them: the pages are unfootnoted, mutually
+contradictory and unarchived, and their four values need the VALUE regraded, which is a mesh
+input. That slice and ground `water` are one bake — take them together on a runner with Blender.
 
 
 **The repair queue that came before it, all of it DONE — three attributes that were recorded

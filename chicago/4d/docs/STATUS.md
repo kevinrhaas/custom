@@ -3,10 +3,10 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the footnote § 45 recovered was chased to the book it names:
-Swearingen's 1803 journal is a source record now, the dataset's first written eyewitness
-document, and reading it cost the encyclopedia one of its two bank figures and recovered the one
-sentence in the passage that reaches the modelled quadrant, § 46) ·
+**Last updated:** 2026-08-11 (the last four pages that could be opened were opened: two rungs
+moved on the document, one was confirmed where it stood, one page reprints nothing at all, and
+the 66 ft street module turns out to be a paragraph that is not in the article it was credited
+to, § 47) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -1613,6 +1613,84 @@ uncertainty of the 1834 sheets in its note.
     dataset was changed on it. And Hubbard's "not over eight feet above the River" beside
     Swearingen's eight feet is one line of arithmetic left for the fort parcel.
 
+47. **The four pages that could still be opened were opened, and one of them had a paragraph
+    that is not in the article it was credited to.** The validator has counted the same sentence
+    every run since 2026-08-10 — *six pages at tier 4 or weaker date their own retrieval and
+    declare nothing*. Four of the six could be read; the two `drloih` blog compilations cannot be
+    saved this way and stay behind the bake their four values need. All four were fetched on
+    2026-08-11 — three from their committed Wayback snapshots, the church page live — and read
+    end to end. Memo: `docs/RESEARCH/evidence_tiers_round_three.md`. **The count reads two, no
+    value moved, and no mesh went stale.**
+    **`chicagology_lastwardance`: 4 → 2, and the record was under-reading its own page.** It said
+    *"a later compilation of recollections, unfootnoted"*. The page prints one attribution line —
+    **Chicago Tribune, 14 August 1910** — and the article names its witness in its own last
+    paragraph: the description *"was left for coming generations by one who saw it in his youth
+    and who in old age wrote it out"*, by **Judge John Dean Caton**, who reached Chicago in 1833.
+    So the bridge route this dataset stands on is one identified eyewitness's own words, not a
+    digest of other people's. **Rung 2 and deliberately not rung 1**: the Tribune neither dates
+    nor documents the writing, and *"(which stood where the railroad bridge stands now)"* is the
+    1910 newspaper locating the crossing, not Caton — a gloss no placement here uses, now written
+    into `what_it_does_not_supply`. **Fifth source record found wrong about its own page**, and
+    the second wrong in the under-reading direction.
+    **`chicagology_prefire274`: 4 → 2, on the topography and on nothing else.** It is *"Fort
+    Dearborn I"*, transcribing **Chicago Magazine, March 1857** — the installment before the one
+    `prefire276` carries, in the serial that took `prefire273` to rung 2. This is **the first
+    source here that had to be graded by which part of it you are standing on**: rung 2 for the
+    flattened mound, the sand hills and the old southward channel, which is ground the writer
+    could still walk and a channel filled inside his readers' memory, and no better than rung 3
+    for its declared subject, the fort of 1803-1812, which nobody in 1857 remembered and which
+    nothing here cites. One inference is declared rather than hidden — the serial's
+    oldest-inhabitants method is printed in the May issue and not in this one, so March is graded
+    by continuity of the serial.
+    **And that page disagrees with an epoch boundary, which is recorded rather than smoothed.**
+    It dates the cut through the bar to *"the Engineers of the government in 1838"*;
+    `data/terrain/epochs.json` opens `e1834_harbor_cut` on 1833-07-01 with the February 1834
+    storm scouring it, on Andreas. **Andreas is followed** — nearer the works, and the pier
+    chronology is already his — with 1838 read as most plausibly the harbour's completion rather
+    than the cut. The magazine is not made to agree. Neither date is cited by anything and the
+    boundary was set before the page was read.
+    **`chicagology_first_post_office`: rung CONFIRMED at 4, and it is the first of these read and
+    left where it stood.** Currey's 1922 article names its authorities inline wherever it has
+    them and names none for the post-office facts: later scholarship, outranked by Andreas at 3
+    exactly as the record already said. `docs/ROADMAP.md` § S5 called these six *"unread rather
+    than wrong"*; one of them was simply unread.
+    **The finding on that page is a paragraph that is not Currey's.** The 66 ft street module —
+    the rival to the 80 ft every platted placement here is offset from — is printed between his
+    1832 and 1837 sentences, and it cannot be read off the page as his: it interrupts a
+    chronology that is otherwise strict, its subject is a survey in an article about buildings,
+    and it is the one paragraph naming no authority while writing *"downstate Randolph County"*
+    and glossing a surveyor's chain for a modern reader. It is left **undeclared** — unattributed
+    website prose is off the ladder altogether rather than at the rung of the article it was set
+    beside, the apparatus rule running in the opposite direction from `prefire276`, where it
+    withheld a rung the project had not earned. **No number moves**: the figure was excluded by
+    measurement on 2026-08-10, eight corridors at 75.7-92.8 ft, none within 9 ft of 66. What
+    moves is what is being disagreed with. `data/traces/street_control.json` said *"Currey
+    states"*, which reads as a named historian against a survey annotation and invites reopening;
+    it is a sourceless website sentence against a survey annotation and a measurement. Corrected
+    there, and the 66 ft stays recorded in all three files — a dissent that vanishes is a dissent
+    that gets rediscovered.
+    **`chicago_temple_history`: read, and it reprints nothing.** Looked for what the
+    west-bank/north-bank disagreement actually needs — a trustees' minute, a circuit rider's
+    journal, a conference record, any dated quotation from one. The page is 500 words of modern
+    congregational narrative, unfootnoted end to end, no bibliography, no archive named on the
+    site; its one quoted document is a 1922 sermon about building the skyscraper. `carries_no_document`
+    declared, and the rung cannot rise because there is no document for a rung to be about. The
+    full read also shows the paragraph inconsistent with itself before it ever meets this
+    project's witnesses — founded 1831, cabin 1834, floated across *"four years later"*, brick
+    church on the same corner 1845 — with nothing tied to a document, which is why the west-bank
+    reading rests on the two near-primary witnesses instead.
+    **And that citation is re-readable now.** On 2026-08-09 no snapshot existed and Save Page Now
+    produced none, so `archived_url` was deliberately left absent rather than fabricated. A
+    snapshot dated **2026-06-05** was found on 2026-08-11 and verified to carry both quotations
+    the record depends on, character for character. One standing validator warning gone; the
+    verbatim quotations stay in the note, because an archive is a second copy and not a reason to
+    stop keeping the first.
+    **The pattern across three rounds and ten pages, worth stating as a rule.** The error is
+    almost never the tier — it is the sentence naming what the page carries: six records now
+    found describing their own page wrongly, four over-reading and two under-reading. And a page
+    is not one document: five of the ten carry a transcription plus apparatus, and on three of
+    those the apparatus is the more tempting half.
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -1643,14 +1721,16 @@ half of a two-part building, which no spelling check would have caught. Nothing 
 behind it, so **S5 is additions again**: eight archetypes and about forty researched structures
 against the six that stand.
 
-**The evidence-ladder queue, as it stands after § 46.** Six `documented` values still rest on
-later scholarship alone and the validator counts them every run. One of the six —
-ground `water` — is settled as an over-graded VALUE and waits only on the Blender bake a
-confidence change costs; four are the `drloih` values that re-tiering cannot save and that land
-with the same bake; the sixth (`surface_materials.south_division`) has not been opened. Six
-pages at tier 4 or weaker still declare neither a document nor the reading that they carry
-none. None of this blocks S5 additions and none of it needs a runner with Blender except the
-regrades themselves.
+**The evidence-ladder queue, as it stands after § 47, and the reading half of it is DONE.** Six
+`documented` values still rest on later scholarship alone and the validator counts them every
+run. One of the six — ground `water` — is settled as an over-graded VALUE and waits only on the
+Blender bake a confidence change costs; four are the `drloih` values that re-tiering cannot save
+and that land with the same bake; the sixth (`surface_materials.south_division`) has not been
+opened. **The undeclared-page queue is down to those same two `drloih` pages** (§ 47): every
+other page that dates its own retrieval now declares either the document it carries or the
+reading that established it carries none. So what is left of this thread is not research any
+more — it is one regrade slice on a runner that has Blender, taking five values down together
+with the bake they stale. None of it blocks S5 additions.
 
 **S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
 
