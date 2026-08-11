@@ -2,6 +2,17 @@
   "_doc": "Structures that were researched and deliberately LEFT OUT, with the date evidence and citation. This file exists so the next agent — or the next you — does not helpfully re-add the Saloon Building. An entry here is a finding, not a deletion: add to this list rather than removing from it. The validator errors if anything named here also resolves into a scene.",
   "excluded": [
     {
+      "id": "travellers_home",
+      "name": "The Traveller's Home (Chester Ingersoll's house)",
+      "reason": "NOT A SEPARATE BUILDING — it is the Wolf Point Tavern under a new landlord's sign. An identity guard, not a date guard.",
+      "detail": "The Chicago Democrat of 26 November 1833 carries, dated Oct. 4, 1833: 'TRAVELLER'S HOME. KEPT BY CHESTER INGERSOLL, Chicago--Illinois. The subscriber has taken that noted Tavern Stand in Chicago, lately occupied by Mr. Wm. W. Wattles...' Andreas names the same house three times: 'In 1833, the house again changed hands, William W. Wattles becoming its proprietor and landlord. In November, he sold out to Chester Ingersoll, who ran it an uncertain length of time, first as the \"Traveller's Home,\" and afterward as the Western Stage House. It went out of sight as a hotel in 1834' (p. 632, of the old Wolf Hotel); 'The old Wolf Point Tavern, formerly kept by Caldwell & Wentworth, then by Chester Ingersoll, who had re-christened it \"The Travelers' Home\"' — the fall-1833 inventory of the town's four hotels, which names the Green Tree SEPARATELY in the same sentence, ruling it out; and 'the Travelers' Home, a hotel kept by Chester Ingersoll, on Wolf Point, during June, 1834'. data/structures/wolf_point_tavern.json already carries 'Travelers' Home' in its aka list. TWO DOSSIER CLAIMS MOVE A YEAR: the renaming is 1833, not post-1834, and 'William Walters, landlord 1833-1836' is William W. WATTLES, who sold out in November 1833. See docs/RESEARCH/travellers_home.md.",
+      "earliest_scene": null,
+      "sources": [
+        "chicago_democrat_1833_11_26",
+        "andreas_1884_v1"
+      ]
+    },
+    {
       "id": "saloon_building",
       "name": "Saloon Building",
       "reason": "Built 1836 — after the 1835 scene date.",
@@ -35,9 +46,9 @@
     {
       "id": "new_york_house",
       "name": "New York House",
-      "reason": "Dated 1836 by the hotel chronology; build date not attested in Andreas.",
+      "reason": "EXCLUSION FALSIFIED 2026-08-11 — kept visible rather than deleted, because a wrong exclusion is a claim this project made and should be seen retracting. The reason recorded here was 'dated 1836; build date unattested in Andreas'. Andreas p. 635 states it plainly: 'The New York House was built in 1834 and opened to the public the following year by Lathrop Johnson and George Stevens, who conducted it until the fall of 1839.' So the BUILDING stood on 1835-07-01 and this entry is wrong. It stays here only until a structure record replaces it: frame, north side of Lake near Wells, two storeys with eaves to the street, with the OPENING MONTH in 1835 as the open question rather than the build date.",
       "detail": "Frame building on the north side of Lake Street near Wells, two stories with eaves to the street. High uncertainty — excluded on the balance of evidence rather than a firm date.",
-      "earliest_scene": "1837",
+      "earliest_scene": null,
       "sources": [
         "andreas_1884_v1",
         "drloih_hotels"
@@ -75,7 +86,7 @@
     {
       "id": "frink_walker_stage_office",
       "name": "Frink & Walker stage office",
-      "reason": "Appears only in later material. In 1835-36 stage seats were taken at Markle's Exchange Coffee House at Lake and Wells — there is no separate stage-office building yet.",
+      "reason": "By August 1836 stage seats were taken at Markle's Exchange Coffee House at Lake and Wells — Andreas dates that advertisement to the Chicago American of 6 August 1836, THIRTEEN MONTHS after the scene date. Where seats were taken in 1835 is unattested; this file and docs/research/04-structures-south.md both said '1835-36' and neither should have. The guard holds on its own ground: no separate stage-office BUILDING is attested before the 1840s.",
       "earliest_scene": "1840",
       "sources": [
         "andreas_1884_v1"
@@ -95,10 +106,11 @@
       "id": "north_pier_lighthouse",
       "name": "Pier-head light at the end of the North Pier",
       "reason": "A later structure; the skeletal iron pier light dates to 1859.",
-      "detail": "The light standing in 1835 is the 1832 conical masonry tower beside the fort. Do not put a light on the pier.",
+      "detail": "The light standing in 1835 is the second tower, forty feet high, begun and completed by Samuel Jackson in 1832 and modelled as data/structures/chicago_lighthouse_1832.json. Do not put a light on the pier. AMENDED 2026-08-11: this entry previously called that tower 'the 1832 conical masonry tower' on Andreas's authority. Andreas's sentence gives the 1832 tower a height, a builder and a reflector and no shape and no material; 'The walls were three feet thick' and the fifty-foot height in the same paragraph belong to the FIRST tower, which fell unfinished on 30 October 1831. An exclusion should guard a boundary, not carry an attribution its sources do not support on the way past.",
       "earliest_scene": "1860",
       "sources": [
-        "andreas_1884_v1"
+        "andreas_1884_v1",
+        "lighthousefriends_chicago"
       ]
     },
     {
@@ -142,6 +154,64 @@
       "sources": [
         "drloih_hotels"
       ]
+    },
+    {
+      "id": "fort_dearborn_first_1803",
+      "name": "The first Fort Dearborn (1803–1812)",
+      "reason": "Burned by the Pottawatomie on 16 August 1812, the day after the evacuation and the massacre. It is not a date guard so much as a SOURCE guard: most of what is published about 'Fort Dearborn's' plan describes this fort and gets applied to the one standing in 1835.",
+      "detail": "Captain John Whistler built it in 1803 and drew a measured plan of it in 1808 which survives in the War Department files and is printed with its index by Quaife. That fort had TWO BLOCKHOUSES at the south-east and north-west angles, a DOUBLE ROW OF PICKETS with the blockhouses commanding the space between them, a COVERED WAY or SALLY-PORT to the river, a FLAGSTAFF in the parade, barracks two storeys high with GALLERIES fronting the parade, and THREE PIECES OF LIGHT ARTILLERY. The second fort, rebuilt on the same ground in 1816, had ONE blockhouse at the south-west and bastions at the north-west and south-east, and John H. Kinzie says in terms that the two were 'differently constructed'. The passage that carries most of the first fort's description in the popular literature closes with the sentence 'Such was the old Fort previous to 1812'. Everything in this entry is excluded from 1835 and none of it may be borrowed for the second fort's records.",
+      "earliest_scene": null,
+      "sources": [
+        "andreas_1884_v1",
+        "quaife_1913",
+        "wentworth_1881_fort_dearborn"
+      ]
+    },
+    {
+      "id": "fort_dearborn_sally_port",
+      "name": "Fort Dearborn's sally-port (subterranean passage to the river)",
+      "reason": "A FIRST-FORT feature, wrongly carried into this project's own dossier as attested for the 1816 fort.",
+      "detail": "'On the north side a subterranean passage, leading from the parade ground to the river, designed as a place of escape in an emergency, or for supplying the garrison with water in time of a siege' - Andreas, in his description of the fort built in 1803, and repeated in the Chicago Magazine of March 1857 in a passage that ends 'Such was the old Fort previous to 1812'. Whistler's own 1808 index lists it as 'N. 33 Covered Way to procure Water'. John H. Kinzie names it as one of the ways the first fort DIFFERED from the second. docs/research/04-structures-south.md section 1.2 tags it [DOC] 'attested for the 1816 fort's north side'; that reading is not supported by the page it cites, and no source reached attests a sally-port at the second fort. Not modelled.",
+      "earliest_scene": null,
+      "sources": [
+        "andreas_1884_v1",
+        "quaife_1913",
+        "wentworth_1881_fort_dearborn"
+      ]
+    },
+    {
+      "id": "fort_dearborn_hospital",
+      "name": "A hospital building inside Fort Dearborn",
+      "reason": "NO SUCH BUILDING IS ATTESTED. The hospital in the sources is a USE of the fort during the 1832 cholera, not a structure in it.",
+      "detail": "The War Department return quoted in Wentworth's address reads 'Fort Dearborn having become a general hospital on July 11th [1832], no returns were received until its reoccupation' - the whole post was given over to sick troops off General Scott's steamers, and the officers and their families 'took shelter wherever they could'. That is an emergency use in July 1832 and by 1835 it has lapsed. docs/research/04-structures-south.md section 1.2 lists a 'hospital' among the fort's buildings tagged [DOC] from that page; there is no hospital building on it. The U.S. Marine Hospital that appears in the 1855 photograph caption is the vantage point of the photograph, built on the reservation after an appropriation of 1848, and is neither a fort building nor within twenty years of the scene date.",
+      "earliest_scene": null,
+      "sources": [
+        "wentworth_1881_fort_dearborn",
+        "chicagology_prefire052"
+      ]
+    },
+    {
+      "id": "fort_dearborn_board_fence_compound",
+      "name": "Fort Dearborn's whitewashed board fence, turnstile and 400-foot parade",
+      "reason": "The compound of the 1850s, after the pickets came down and the army left. A LATER-STATE guard rather than a date guard on a building.",
+      "detail": "Robert Fergus, describing the fort in 1850: 'The whole Fort enclosure was surrounded by a rough-board fence, white-washed, about 6 feet high; the pickets having been removed at an earlier date', with a turnstile entering from the centre of Michigan Avenue about 100 ft south of the sun-dial knoll, and a parade ground 'about 80 feet wide' running 'from the river bank south, the full length of the enclosure - say 400 feet'. NONE of that describes 1835: the pickets are attested standing by Juliette Kinzie in 1831 and drawn on the 1830 plan, the post was garrisoned until 29 December 1836, and the reservation was unplatted in 1835 so Michigan Avenue did not commence at that point. The fort is modelled stockaded. The sun-dial itself is carried back into the scene on the record data/structures/fort_dearborn_parade.json, which says so on the attribute; the fence, the turnstile and the 400 ft parade are not.",
+      "earliest_scene": "1845",
+      "sources": [
+        "wentworth_1881_fort_dearborn",
+        "kinzie_waubun_1856",
+        "harrison_1830_river_mouth"
+      ]
+    },
+    {
+      "id": "fort_dearborn_artillery_pieces_1812",
+      "name": "The fort's three pieces of light artillery",
+      "reason": "Attested for the FIRST fort and for no other date. A guard on fort furniture, which the dossiers carry as though it were 1835-relevant.",
+      "detail": "'The Fort was furnished with three pieces of light-artillery' and 'A company of United-States troops, about fifty in number, many of whom were invalids, constituted the garrison' both stand in the Chicago Magazine passage that ends 'Such was the old Fort previous to 1812'. docs/research/08-fauna.md takes the fifty invalids from that page as 1835-relevant. Nothing reached says what ordnance stood at the second fort at any date; an artillery HOUSE is named once, in a description of the fort in 1850, and is modelled as data/structures/fort_dearborn_artillery_house.json with the guns left out. No gun is drawn anywhere in this scene.",
+      "earliest_scene": null,
+      "sources": [
+        "wentworth_1881_fort_dearborn",
+        "chicagology_prefire052"
+      ]
     }
   ],
   "watch_list_doc": "Structures whose 1835 status is genuinely uncertain rather than excluded — the third category, between a building that stands and one that was researched and left out. They belong in the dataset with honest confidence, and they are listed here so nobody promotes them to documented without new evidence. That last sentence was unenforced prose until 2026-08-10: `original` on each entry is the free-text line it was written as, kept verbatim because this file's rule is that a finding is added to and not rewritten.",
@@ -164,7 +234,7 @@
     {
       "id": "cobweb_castle",
       "name": "The Indian Agency House (\"Cobweb Castle\")",
-      "in_dataset": false,
+      "in_dataset": true,
       "question": "What became of it? Standing and in civilian occupation by 1833 under Col. R. J. Hamilton, and no source reached gives its fate after that.",
       "consequence": "Wau-Bun describes the building itself in detail — hewed and squared logs, a centre, two wings and two rear tails — so this is a structure that could be modelled well and dated badly. Its survival to the scene date is the whole of the uncertainty.",
       "original": "cobweb_castle — the Indian Agency house; standing and in civilian occupation by 1833 (Col. R. J. Hamilton), but no source gives its fate. Low confidence for the scene date.",
@@ -174,7 +244,8 @@
       },
       "sources": [
         "kinzie_waubun_1856"
-      ]
+      ],
+      "carried_by": "log_1820.documented_range"
     },
     {
       "id": "billy_caldwell_house",
@@ -208,5 +279,6 @@
         "drloih_hotels"
       ]
     }
-  ]
+  ],
+  "count": null
 }

@@ -22,6 +22,8 @@ import { createIntent, createBackendSwitch } from './controls/intent.js';
 import { createPointerLockBackend } from './controls/pointerlock.js';
 import { createTouchBackend, prefersTouch } from './controls/touch.js';
 import { createWalker, footprintsFrom, WALK } from './walker.js';
+import { createFlora } from './flora.js';
+import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
 import { mountExclusions } from './exclusions.js';
@@ -116,6 +118,21 @@ async function boot() {
   const spawn = anchorFor(loaded.scene, params.get('anchor')) ?? loaded.scene.spawn ?? {};
   const walker = createWalker({ camera, terrain, footprints, spawn });
   walker.apply();
+
+  // ---- vegetation ------------------------------------------------------- //
+  // Awaited, like the terrain and for the same reason: the sward is what the
+  // ground looks like from standing height, and a walkthrough that opened its
+  // gate onto a bare plane and grew a prairie a second later would be showing
+  // the visitor a loading state and calling it 1835. Missing records degrade to
+  // NOTHING planted plus a recorded problem — never to an invented community.
+  const flora = await createFlora({
+    dataBase: bases.dataBase, terrain, footprints, confidence, problems, lowSpec: coarse,
+  });
+  scene3d.add(flora.group);
+  const trees = await createTrees({
+    dataBase: bases.dataBase, terrain, footprints, confidence, problems, lowSpec: coarse,
+  });
+  scene3d.add(trees.group);
 
   const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
   const hud = createHud({
@@ -355,6 +372,8 @@ async function boot() {
     if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
     walker.update(dt, intent);
     world.follow(camera.position);
+    flora.update(dt, camera);
+    trees.update(dt, camera);
 
     renderer.render(scene3d, camera);
 
@@ -396,7 +415,7 @@ async function boot() {
 
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
-    backends,
+    backends, flora, trees,
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },

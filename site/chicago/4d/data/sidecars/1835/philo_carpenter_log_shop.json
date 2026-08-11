@@ -1,0 +1,129 @@
+{
+  "id": "philo_carpenter_log_shop",
+  "phase": "log_1832",
+  "name": "Philo Carpenter's Log Drug Store",
+  "aka": [
+    "Chicago's first drug store",
+    "the log shop beside the Sauganash"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/philo_carpenter_log_shop__log_1832.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 113.4,
+    "local_n": -127.5,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Lake Street near the river, on the south side, immediately east of and against the Sauganash Hotel — the source says immediately adjacent to the Sauganash's public bar.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6.096,
+        0
+      ],
+      [
+        6.096,
+        4.877
+      ],
+      [
+        0,
+        4.877
+      ]
+    ],
+    "confidence": "documented"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Andreas: a log building. No source describes the corner treatment, the chinking or whether any of it was sided; the archetype builds hewn log, which is the commonest construction at the forks in 1832 and what the source names."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not stated. A 16 x 20 ft single-pen log building is single-storey by type, and a two-storey building on that plan would be a tower. Inference from the documented dimensions, which is as close to derivation from evidence as this dataset's storey counts get."
+    },
+    "wall_height_m": {
+      "value": 2.5,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. The same reading and the same number this project gives Hogan's store and the Walker meeting house."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region. A shed roof leaning on the Sauganash's east wall is the one plausible alternative — 'immediately adjacent' could describe a lean-to — and it is recorded here rather than built, because nothing in the sources describes the junction between the two buildings."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and nothing describes a stack on this building. One is the minimum for a shop kept through Chicago winters, and a druggist compounding in an unheated room in January is not a thing. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "drug_store",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "note": "THE FUNCTION IS DOCUMENTED FOR 1832 AND INFERRED FOR 1835, and the tag follows the weaker half. Andreas has this as Chicago's first drug store from 1832. Carpenter's own advertisement in the Chicago Democrat of 26 November 1833 — 'WILL keep constantly on hand a general assortment of DRUGS, MEDICINES, Oils, Paints, Dye-Stuffs &c. &c. ALSO Dry Groceries, Glass, Nails, &c.' — proves the trade was still his in November 1833 but gives no address and therefore cannot say which of his two buildings held it. Since he had built the South Water store by then, the likelier reading is that the drug trade had already moved and this shop was doing something else, or nothing, on 1835-07-01."
+    },
+    "occupants": {
+      "value": "unattested at the scene date; Philo Carpenter from 1832",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Carpenter is documented as the proprietor from 1832 and as the owner of a different store on South Water from the summer of 1833. NO SOURCE REACHED NAMES ANYONE IN THIS BUILDING IN 1835. The record says so rather than carrying Carpenter forward into a building he had demonstrably moved out of."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "chicago_democrat_1833_11_26",
+      "citation": "The Chicago Democrat. Vol. I, No. 1. Chicago, Ill.: John Calhoun, Tuesday, November 26, 1833.",
+      "url": "",
+      "archived_url": "",
+      "tier": 1
+    },
+    {
+      "source_id": "chicagology_prefire273",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "url": "https://chicagology.com/prefire/prefire273/",
+      "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
+      "tier": 4
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "A RARE COMBINATION AND THE REASON THIS RECORD IS WORTH HAVING: THE FOOTPRINT IS EVIDENCE AND THE EXISTENCE IS NOT. Andreas gives the dimensions — 16 x 20 ft, log, Lake Street near the river — which makes this only the second footprint in the dataset that is not a placeholder, after Hogan's store. Everything about whether it was still there on 1835-07-01 is argued on documented_range and it is argued against: Carpenter built himself a store on South Water in the summer of 1833 and nothing follows the log shop after that. THE CONTEMPORARY ADVERTISEMENT DOES NOT RESCUE IT. The Chicago Democrat of 26 November 1833 carries Carpenter's own notice, dated 22 November 1833, and it is genuine primary evidence that he was trading — but it carries no address, it is nineteen months before the scene date, and by then he already had two premises. Treating it as evidence that the log shop stood would be exactly the move this project's confidence model exists to prevent. THE POSITION IS DERIVED FROM ANOTHER RECORD, which is a first here: the source gives a relation ('immediately adjacent to the Sauganash's public bar') and not an address, so this shop is set hard against the Sauganash's east wall and inherits that building's placement and its uncertainty. The two footprints touch, deliberately. WHAT WOULD SETTLE ANY OF IT: the individual building rectangles on Hathaway 1834 or Wright 1834 at the Lake and Market corner, which would show whether one building or two stood on that frontage; the Chicago Democrat for 1834-35, where an address in one of Carpenter's later advertisements would place his trade; or the DRLOIH treatment of Carpenter, cited in this project's north dossier and not yet held as a source record. See docs/RESEARCH/philo_carpenter_log_shop.md.",
+  "research_doc": "docs/RESEARCH/philo_carpenter_log_shop.md",
+  "review_required": false
+}

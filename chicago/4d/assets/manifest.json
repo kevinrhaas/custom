@@ -1,71 +1,656 @@
 {
   "assets": {
+    "bates_auction_room__frame_1834.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 33564,
+      "inputs_sha256": "23622fa4090723ea33859d85ecdfbbb0f0268c26f3fa16eb22919243d50fa12f",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "bates_auction_room"
+    },
+    "beaubien_barn__converted_1817.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 66324,
+      "inputs_sha256": "ba906fadf9e41518603794571b24753ee1409c680737787d4d4907a067daa793",
+      "kind": "generated",
+      "phase_id": "converted_1817",
+      "structure_id": "beaubien_barn"
+    },
+    "blacksmith_shop_state_st__log_1823.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 30088,
+      "inputs_sha256": "ae370bd6892cfc1ade9febf1f650e1539aabd3da4727c0b7e966a5a51b651896",
+      "kind": "generated",
+      "phase_id": "log_1823",
+      "structure_id": "blacksmith_shop_state_st"
+    },
+    "brickyard_north_side__yard_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 90364,
+      "inputs_sha256": "c156221da1e13fe06f73870a7f28d54bb1b8bf2d5b9b213e6c2a7db90ba938b5",
+      "kind": "generated",
+      "phase_id": "yard_1833",
+      "structure_id": "brickyard_north_side"
+    },
+    "carpenter_south_water_store__frame_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42912,
+      "inputs_sha256": "8e966958454bcf237ec1cc261471f5af1cc13c95c688018b2a99aeae190a6c95",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "carpenter_south_water_store"
+    },
+    "chappel_infant_school__log_1833.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31336,
+      "inputs_sha256": "0ef01df3192391f72eb5adb9801930f344b07b9a46962ab2141bd94354cbcec9",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "chappel_infant_school"
+    },
+    "chicago_american_office__frame_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 48396,
+      "inputs_sha256": "e056795422eefd02e33406101e4d7ee230f005fb4e35d6e18ed36c3ae03c13a6",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "chicago_american_office"
+    },
+    "chicago_democrat_office__frame_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 62396,
+      "inputs_sha256": "76026490ac47c2ae50a95d24ec3b2296981a95ec1658463c4f694d9ac6390881",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "chicago_democrat_office"
+    },
+    "chicago_lighthouse_1832__tower_1832.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 15100,
+      "inputs_sha256": "ef6881b256878c1acdbe58fe97b76f19fca72fe1fc9e5d58a628f4605e7495f4",
+      "kind": "generated",
+      "phase_id": "tower_1832",
+      "structure_id": "chicago_lighthouse_1832"
+    },
+    "clybourn_cabins__log_1824.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31296,
+      "inputs_sha256": "b70edd3d0a0b7f1664e257c99e79a30bd57a2beb8ac156527a04a3ac55d9880e",
+      "kind": "generated",
+      "phase_id": "log_1824",
+      "structure_id": "clybourn_cabins"
+    },
+    "clybourn_slaughterhouse__log_1827.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 105360,
+      "inputs_sha256": "106775cce7393df55783f2b470cc4b000e98914141fb44596aa856d78f15c544",
+      "kind": "generated",
+      "phase_id": "log_1827",
+      "structure_id": "clybourn_slaughterhouse"
+    },
+    "cobweb_castle__log_1820.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 32884,
+      "inputs_sha256": "359c11a4c5822105caf6d87e2449c6107ef4747e8fb65cad9792de201c01ab1a",
+      "kind": "generated",
+      "phase_id": "log_1820",
+      "structure_id": "cobweb_castle"
+    },
+    "cook_county_courthouse_1835__wood_1835.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 100196,
+      "inputs_sha256": "481dfc5ec15f050b77c438c76ecf9c076d251cb60147c0de6bc1fbca92e3f384",
+      "kind": "generated",
+      "phase_id": "wood_1835",
+      "structure_id": "cook_county_courthouse_1835"
+    },
+    "council_house__log_1834.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31308,
+      "inputs_sha256": "76c89741aba4d3e34a9f42a76a1cc371a2e61f7e6a3399a6a812ca08da5bbdaa",
+      "kind": "generated",
+      "phase_id": "log_1834",
+      "structure_id": "council_house"
+    },
+    "dearborn_street_drawbridge__draw_1834.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 557196,
+      "inputs_sha256": "b0b5731cc3b56626f0026c01e10a1245359cbe415f3039bc3de37cc43d0e2ceb",
+      "kind": "generated",
+      "phase_id": "draw_1834",
+      "structure_id": "dearborn_street_drawbridge"
+    },
+    "dole_warehouse_south__frame_1832.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 32028,
+      "inputs_sha256": "edebd1e6fa5c2228a40f5a632ec68c187f2a0d7f658efe581fdd5ff9c0aa7e2e",
+      "kind": "generated",
+      "phase_id": "frame_1832",
+      "structure_id": "dole_warehouse_south"
+    },
+    "elston_soap_candle_manufactory__works_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 130476,
+      "inputs_sha256": "699493c5449df55af05144ef0b74690e9cb6805524b1c852877423b561f594cd",
+      "kind": "generated",
+      "phase_id": "works_1833",
+      "structure_id": "elston_soap_candle_manufactory"
+    },
+    "estray_pen__pen_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 59204,
+      "inputs_sha256": "36f9d82675fa7e16852d340a8a2baeceed2b933b86a08dc9874eae5cd7d0ea6b",
+      "kind": "generated",
+      "phase_id": "pen_1833",
+      "structure_id": "estray_pen"
+    },
+    "exchange_coffee_house__frame_1834.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 20568,
+      "inputs_sha256": "a995d05b1287fcd5629d00c04e6297f50a13aa85d2edadc1c3745f71027e2287",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "exchange_coffee_house"
+    },
+    "first_presbyterian_church__frame_1834.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 36868,
+      "inputs_sha256": "f61a5d352ff54ad9faba99742b798dc18e4739a3433f271dce9252761c01f93b",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "first_presbyterian_church"
+    },
+    "fort_dearborn_artillery_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 34920,
+      "inputs_sha256": "46a4596370d3b9e800c7c30ce280cda26a1c96e690c668e064268061ddabdc94",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_artillery_house"
+    },
+    "fort_dearborn_barracks__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 63852,
+      "inputs_sha256": "e6b05940132f35402ae26a4212990e72cc8e5601083349c0bfe19872431419e7",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_barracks"
+    },
+    "fort_dearborn_blockhouse__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 59592,
+      "inputs_sha256": "280f6f7042b4ad5c0ebeac0dea920761caaf4ae2b36bc1ef8398d231f7e88efd",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_blockhouse"
+    },
+    "fort_dearborn_commandants_quarters__brick_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 13616,
+      "inputs_sha256": "47749258a6f540e4a5330f5c228e6bc6b5ac4b58180e26e282683d4d42dc6be5",
+      "kind": "generated",
+      "phase_id": "brick_1816",
+      "structure_id": "fort_dearborn_commandants_quarters"
+    },
+    "fort_dearborn_garrison_garden__fence_1816.glb": {
+      "archetype": "palisade",
+      "baked_ao": false,
+      "bytes": 294664,
+      "inputs_sha256": "b4cd16c291a97872bbfebe1e4d1ee67c48fcc636cfe027d2af41ee3b7497083d",
+      "kind": "generated",
+      "phase_id": "fence_1816",
+      "structure_id": "fort_dearborn_garrison_garden"
+    },
+    "fort_dearborn_guard_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 30796,
+      "inputs_sha256": "e008fca38aeb6ee36af9dbf2fd587dbbcc8e449a4c704655f80adc9d4cfcd6e4",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_guard_house"
+    },
+    "fort_dearborn_magazine__brick_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 6236,
+      "inputs_sha256": "124ee94fe21896d0b2af8abbadf99042f5b248d890e5bc35db53d0dc7d9d0ebc",
+      "kind": "generated",
+      "phase_id": "brick_1816",
+      "structure_id": "fort_dearborn_magazine"
+    },
+    "fort_dearborn_officers_quarters__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 58280,
+      "inputs_sha256": "4705ea1c4e91e3ac5f25bd887cba4694ea133f479597523d220fb56b2b5c62d3",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_officers_quarters"
+    },
+    "fort_dearborn_palisade__picket_1816.glb": {
+      "archetype": "palisade",
+      "baked_ao": false,
+      "bytes": 841836,
+      "inputs_sha256": "a6a51b4638f908fabe05c82221fb8f3aa8398391f78d6001bcc63614a6606aeb",
+      "kind": "generated",
+      "phase_id": "picket_1816",
+      "structure_id": "fort_dearborn_palisade"
+    },
+    "fort_dearborn_parade__parade_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 5504,
+      "inputs_sha256": "e3cd536219a8045029c6a25d8d75f25809594b69e23ad8a2375b4a1929f9cd1a",
+      "kind": "generated",
+      "phase_id": "parade_1816",
+      "structure_id": "fort_dearborn_parade"
+    },
+    "fort_dearborn_root_house__cellar_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 4488,
+      "inputs_sha256": "8bdeee1fb1c07294d449471fe5670ed2b0f59fe2db3d45e14dcd62119a65d7e5",
+      "kind": "generated",
+      "phase_id": "cellar_1816",
+      "structure_id": "fort_dearborn_root_house"
+    },
+    "fort_dearborn_store_house__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 33312,
+      "inputs_sha256": "01b43be658e30d87e058fb7305cde99fdeaa6b113116d11ebf57aa2972015e22",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_store_house"
+    },
+    "fort_dearborn_sutlers_store__log_1816.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 34224,
+      "inputs_sha256": "1d1b9adb84d6a28cd09e533d3cb3d1febc756450cc65f9e14880ab726c96c7ba",
+      "kind": "generated",
+      "phase_id": "log_1816",
+      "structure_id": "fort_dearborn_sutlers_store"
+    },
+    "frederick_thomas_shop__frame_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42896,
+      "inputs_sha256": "6a92cdb4a62c30e18a5e676962285b5463340d8339af3a509f2c26a042565ea5",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "frederick_thomas_shop"
+    },
+    "goss_cobb_saddlery__shop_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42884,
+      "inputs_sha256": "3e202090708df99e87b9ba47391446404bfb283b5f13d7be8846793910ab08e2",
+      "kind": "generated",
+      "phase_id": "shop_1833",
+      "structure_id": "goss_cobb_saddlery"
+    },
     "green_tree_tavern__frame_1833.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 19928,
-      "inputs_sha256": "65480804df43a71fb4d5816aecdc9857d18d3e17ed981e6fdccf5bebb6f940c1",
+      "inputs_sha256": "d6699da9ab1a2eed8843b3442646c9dec89806957812bf738ee3c1c328da37e3",
       "kind": "generated",
       "phase_id": "frame_1833",
       "structure_id": "green_tree_tavern"
+    },
+    "h_jones_store__frame_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 50536,
+      "inputs_sha256": "daeb3a6d0b139ed09862c8fb65f5043a15441f2852033327a0f6124d4de66b96",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "h_jones_store"
+    },
+    "harmon_loomis_store__frame_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 62384,
+      "inputs_sha256": "f325dc4435c551bc8eab13eb9b56ae822ecbb87ad5626c122aab2c41e863eabc",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "harmon_loomis_store"
     },
     "hogan_store__log_1831.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31312,
-      "inputs_sha256": "de90f13058ab5c5ce8c41b98a1b772306911696073e1c391e69d0b562dddc62b",
+      "inputs_sha256": "ec18ff862e2773b13ca5757a4a28f8c64ca28f1df33cbd7265bf9ecdd292a01f",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "hogan_store"
+    },
+    "james_kinzie_house__dwelling_1830.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31320,
+      "inputs_sha256": "522ddd911d55fd0d43a57b9242fc4eb8a691c84b1aed65060369bcb1e42b18c4",
+      "kind": "generated",
+      "phase_id": "dwelling_1830",
+      "structure_id": "james_kinzie_house"
+    },
+    "jb_beaubien_homestead__factory_1817.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31352,
+      "inputs_sha256": "e13e846fe242ab5300af9cac9077b8b268221e52a83caf6bbc044fa382bf80e1",
+      "kind": "generated",
+      "phase_id": "factory_1817",
+      "structure_id": "jb_beaubien_homestead"
+    },
+    "jh_kinzie_forwarding_store__frame_1830s.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 50576,
+      "inputs_sha256": "43d9082318547ac56f5fd0543584f18b3819cc642d8eea53ed21e874199834f9",
+      "kind": "generated",
+      "phase_id": "frame_1830s",
+      "structure_id": "jh_kinzie_forwarding_store"
+    },
+    "kinzie_hunter_warehouse__warehouse_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 162792,
+      "inputs_sha256": "4826c594106a8daf446c09e34470f84e78d160443c925cfd4bed821c12d67ebe",
+      "kind": "generated",
+      "phase_id": "warehouse_1834",
+      "structure_id": "kinzie_hunter_warehouse"
+    },
+    "lake_house_construction__shell_1835.glb": {
+      "archetype": "fort_structure",
+      "baked_ao": false,
+      "bytes": 5620,
+      "inputs_sha256": "7e0ac2df94b4670674bf6143ef8e64fcd88d6dc31589c6dd43c4fef9a994c5ee",
+      "kind": "generated",
+      "phase_id": "shell_1835",
+      "structure_id": "lake_house_construction"
+    },
+    "log_jail__log_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 79412,
+      "inputs_sha256": "5fbf18e9365deb4c647fc532b42f582b8ca6aaa559ebc7480159eb990a34010b",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "log_jail"
+    },
+    "madore_beaubien_house__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31332,
+      "inputs_sha256": "d2bb34fae0b8f0486e38a90f052edd99cec4a98fe9f8d6e298263f901cbe0bb7",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "madore_beaubien_house"
+    },
+    "mansion_house__log_frame_1833.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 39040,
+      "inputs_sha256": "4af9455839450e8988945db6bc77b577cf9c4c16930699d01c57864ecd9fb70a",
+      "kind": "generated",
+      "phase_id": "log_frame_1833",
+      "structure_id": "mansion_house"
     },
     "miller_house__log_frame_1827.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 47008,
-      "inputs_sha256": "77874d96be87da612aac923eb2e016f87ed803a11db30b675a773b62765f986f",
+      "inputs_sha256": "a410a3c9adc0703a96bb8d54747c49b42ffc02415b00cbe899e3d6c1c30f68e7",
       "kind": "generated",
       "phase_id": "log_frame_1827",
       "structure_id": "miller_house"
+    },
+    "miller_tannery__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31292,
+      "inputs_sha256": "f4880d3b872733443bbee4e246d1b2f2d89cc3d7d61135dd20b1726d1d715eb9",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "miller_tannery"
+    },
+    "newberry_dole_slaughterhouse_south_branch__works_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 154228,
+      "inputs_sha256": "951de9c4ffe50ed84508ff28cf49b667b4e230e54baffe910b23d0c226492b19",
+      "kind": "generated",
+      "phase_id": "works_1834",
+      "structure_id": "newberry_dole_slaughterhouse_south_branch"
+    },
+    "newberry_dole_warehouse__frame_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 153928,
+      "inputs_sha256": "54e383fc01c45d6754b41fa6a4d86ed457ce8a05dd908c38a7836ad23d913846",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "newberry_dole_warehouse"
     },
     "north_branch_bridge__log_1832.glb": {
       "archetype": "bridge_timber",
       "baked_ao": false,
       "bytes": 200972,
-      "inputs_sha256": "1641626aa6bfcd458ece38a52e3a49dddc30047416080d166478898bec4d67ac",
+      "inputs_sha256": "d214b4a1812d438f32298a185c2b9f76ed70d43010a73d8791d52c1899535f0a",
       "kind": "generated",
       "phase_id": "log_1832",
       "structure_id": "north_branch_bridge"
+    },
+    "north_pier__crib_1835.glb": {
+      "archetype": "pier_crib",
+      "baked_ao": false,
+      "bytes": 400384,
+      "inputs_sha256": "83f642a12ae23a3bcdffa8a994c031f0faa5e152b9566272e9828a21a848c1f1",
+      "kind": "generated",
+      "phase_id": "crib_1835",
+      "structure_id": "north_pier"
+    },
+    "north_side_school_1833__log_1833.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31328,
+      "inputs_sha256": "a68ce9a81c9d66f4d86ef19984aadbb4ee26b92bdca5697f27269e673efb9093",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "north_side_school_1833"
+    },
+    "old_bank_building__frame_1834.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 35716,
+      "inputs_sha256": "07c3b87a1ad8e27a9ea48ee862e40a46d99dac993343fe19b2489d95baeb12fc",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "old_bank_building"
+    },
+    "peck_store__frame_1833.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 62696,
+      "inputs_sha256": "8182bdbc87ec89b1586d2dca70ecbae8dd7c12fe3b787bd4ee31a18bd6fe04a0",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "peck_store"
+    },
+    "philo_carpenter_log_shop__log_1832.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31344,
+      "inputs_sha256": "2ae66b9dacf675d45ba4cf087142470c40db77fe736dd0d75f3d3f7601d1572e",
+      "kind": "generated",
+      "phase_id": "log_1832",
+      "structure_id": "philo_carpenter_log_shop"
+    },
+    "pierce_blacksmith_shop__shop_1833.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 103188,
+      "inputs_sha256": "3390e446979169cc18b79b2321192e739b8240f08289e905903e9403f8ec7322",
+      "kind": "generated",
+      "phase_id": "shop_1833",
+      "structure_id": "pierce_blacksmith_shop"
+    },
+    "pruyne_kimball_drugstore__frame_1830s.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 42908,
+      "inputs_sha256": "9bce5249674b7a82d49084bc38643914d4db5907e82d2015ccf52fb29f3e688b",
+      "kind": "generated",
+      "phase_id": "frame_1830s",
+      "structure_id": "pruyne_kimball_drugstore"
+    },
+    "robert_kinzie_store__store_1830.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 31312,
+      "inputs_sha256": "02610c197491336a3b36e800590400fee3767433c4c6947f354dd0020b5fbc91",
+      "kind": "generated",
+      "phase_id": "store_1830",
+      "structure_id": "robert_kinzie_store"
+    },
+    "robinson_caldwell_cabins__log_1831.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 30088,
+      "inputs_sha256": "9b21c2191a763a20e0617c8b918c6ef126ee299c1275eff7f865505deeebd8b2",
+      "kind": "generated",
+      "phase_id": "log_1831",
+      "structure_id": "robinson_caldwell_cabins"
     },
     "sauganash_hotel__frame_1831.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 44352,
-      "inputs_sha256": "ef0dfec646ae0ccd202069a067380f72348c818641bf15b516b9dcfb0ca8c1b5",
+      "inputs_sha256": "09ec5af5bc8b6e9b892d0ce7bf9eca21771a1bf8858bf37483150432e2fa7291",
       "kind": "generated",
       "phase_id": "frame_1831",
       "structure_id": "sauganash_hotel"
     },
+    "slough_log_bridge__log_1833.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 38144,
+      "inputs_sha256": "6eb1af4387acf5fe735d07b5842f567ddcfc785e751998a46ab836c740df648e",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "slough_log_bridge"
+    },
+    "south_branch_raft_bridge__log_1833.glb": {
+      "archetype": "bridge_timber",
+      "baked_ao": false,
+      "bytes": 171344,
+      "inputs_sha256": "e4a9ff4dacbb9477b43f6282f804626ba41e3426fa921bc3b9878b635e9cf23a",
+      "kind": "generated",
+      "phase_id": "log_1833",
+      "structure_id": "south_branch_raft_bridge"
+    },
+    "south_pier__crib_1835.glb": {
+      "archetype": "pier_crib",
+      "baked_ao": false,
+      "bytes": 174956,
+      "inputs_sha256": "ffcd61c7ffb325558daa7149fec7c4fae0dd3908c16eff5b06be9ae4524a8bcf",
+      "kind": "generated",
+      "phase_id": "crib_1835",
+      "structure_id": "south_pier"
+    },
+    "st_marys_church__frame_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 34024,
+      "inputs_sha256": "15b299c98029f8f4f22677dc2186e6f9a427d1a56c6d42d224b9ef757a3a95fe",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "st_marys_church"
+    },
+    "steamboat_hotel__frame_1835.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 20548,
+      "inputs_sha256": "255a755e4687d1494b5c323ba8531a3506bcfc09a394f4609e7c304fd20a7d5e",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "steamboat_hotel"
+    },
+    "temple_building__frame_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 50868,
+      "inputs_sha256": "4b1c5c9ca98b82a572bd296d38c8f51764eea2ece4a99b2a38a475a5a04cd228",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "temple_building"
+    },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
-      "bytes": 890696,
+      "bytes": 3522360,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "d817cf9c0d2103834c4e6cc0364a2a3f5859d0341cac45fe896bbe53231eec4b",
+      "inputs_sha256": "e23cd1dedf5f6b0a8250186a2efdc817682dbd7079fb7603f72ffcc5c3c666c1",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
-        "max_m": 0.0178,
+        "max_m": 0.0262,
         "misses": 0,
-        "rms_m": 0.00334,
-        "samples": 7396
+        "rms_m": 0.00398,
+        "samples": 28890
       },
       "terrain_epoch": "e1834_harbor_cut",
-      "triangles": 44347
+      "triangles": 135249
+    },
+    "thomas_church_store__frame_1834.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 62384,
+      "inputs_sha256": "7d8858ac5b5eb373351ab4b323c58ea619142c94c9e8c5b1ef97de27f7689103",
+      "kind": "generated",
+      "phase_id": "frame_1834",
+      "structure_id": "thomas_church_store"
+    },
+    "tremont_house_1__frame_1833.glb": {
+      "archetype": "frame_tavern",
+      "baked_ao": false,
+      "bytes": 20592,
+      "inputs_sha256": "35bb0062ed54bf878552c4b38580cd22eb238b8b881991b144718ae62bf66bb5",
+      "kind": "generated",
+      "phase_id": "frame_1833",
+      "structure_id": "tremont_house_1"
     },
     "walker_meeting_house__log_1831.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 31308,
-      "inputs_sha256": "7f96e432f6a25b589f2eff2a4b245aa2b35a709f717ab46ff5984a85bd54a3eb",
+      "inputs_sha256": "9364277309c77fed1838a7396b9de55d6b4f48e7ec26d0dbfa196ee027be731a",
       "kind": "generated",
       "phase_id": "log_1831",
       "structure_id": "walker_meeting_house"
@@ -74,29 +659,56 @@
       "baked_ao": false,
       "bytes": 1352,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "d817cf9c0d2103834c4e6cc0364a2a3f5859d0341cac45fe896bbe53231eec4b",
+      "inputs_sha256": "e23cd1dedf5f6b0a8250186a2efdc817682dbd7079fb7603f72ffcc5c3c666c1",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
       "triangles": 2
     },
+    "watkins_school_house__house_1833.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 38100,
+      "inputs_sha256": "1d6b42988b89b1de31e866ae0ab2db5c456d5dd23b3abc8ad6e588ab400f5957",
+      "kind": "generated",
+      "phase_id": "house_1833",
+      "structure_id": "watkins_school_house"
+    },
     "western_hotel__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
       "bytes": 21184,
-      "inputs_sha256": "a5d9f01fc718fe3d8fe241aaaa882c6df3851535c9284a363b620d31297dd11f",
+      "inputs_sha256": "27149e1474d9e8d049455c766104a309d32d06ca0ecda44a2748eb5c65bf6230",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "western_hotel"
+    },
+    "western_hotel_stable__stable_1834.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 155100,
+      "inputs_sha256": "f04d6c5230995bf99dbe266f6459d8480a636107d0be93f9810d39b889085a6c",
+      "kind": "generated",
+      "phase_id": "stable_1834",
+      "structure_id": "western_hotel_stable"
     },
     "wolf_point_tavern__log_frame_1828.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
       "bytes": 43640,
-      "inputs_sha256": "6212b7232947d1dd153d384820d34b8b56e9cd4e0bb4ccfd135d1e781b6cfdd5",
+      "inputs_sha256": "f90d907370b369cd188b59fde5d138e3cfbae51d4c971bdf0a063e71d580fad1",
       "kind": "generated",
       "phase_id": "log_frame_1828",
       "structure_id": "wolf_point_tavern"
+    },
+    "wolf_point_tavern_stable__stable_1831.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 81656,
+      "inputs_sha256": "fc0d0793f0fa7a7a1066d81f6110484f1a653228c068d54b1ea34d0be64819f6",
+      "kind": "generated",
+      "phase_id": "stable_1831",
+      "structure_id": "wolf_point_tavern_stable"
     }
   },
   "blender": "4.5.3",

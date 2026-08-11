@@ -1111,6 +1111,9 @@ class _Ramp:
     def height(self, e: float, n: float) -> float:  # noqa: ARG002 — n is flat
         return self.west if e < self.at_e else self.east
 
+    def covers(self, e: float, n: float) -> bool:  # noqa: ARG002 — covers all test points
+        return True
+
 
 def _landing(structures, contacts, field, resolvers):
     return V.unlanded_values(structures, {"s.json": scene()}, V.Report(),
@@ -1172,6 +1175,9 @@ def test_ground_contact_of_a_crossing_is_its_deck() -> None:
 
         def height(self, e, n):  # noqa: ARG002
             return -3.0 if 4.0 < e < 16.0 else 1.0
+
+        def covers(self, e, n):  # noqa: ARG002
+            return True
 
     resolvers = {"c": lambda ph: object()}
     high = {"c": {"mode": "ends", "anchor": "water", "contact_z": lambda p: 2.22}}

@@ -1,0 +1,110 @@
+{
+  "id": "fort_dearborn_guard_house",
+  "phase": "log_1816",
+  "name": "Fort Dearborn — guard house",
+  "aka": [
+    "the guard-house"
+  ],
+  "archetype": "fort_structure",
+  "asset": "gltf/fort_dearborn_guard_house__log_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1138.27,
+    "local_n": 200.91,
+    "rotation_deg": 8.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "Inside the south wall of Fort Dearborn, immediately west of the south gate, fronting north onto the parade.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        10.91,
+        0
+      ],
+      [
+        10.91,
+        4.22
+      ],
+      [
+        0,
+        4.22
+      ]
+    ],
+    "confidence": "inferred"
+  },
+  "attributes": {
+    "kind": {
+      "value": "guard",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Hubbard names a guard-house beside the southern gate in 1827, which is where a guard-house belongs: the gate it watches is the one it sits on."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "inferred",
+      "note": "Not stated. Log by the same argument as the barracks."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. A guard-house is a guard room and a cell; single storey is the type and the 1830 plan draws it small."
+    },
+    "wall_height_m": {
+      "value": 2.6,
+      "confidence": "inferred",
+      "note": "No height attested. About eight and a half feet, one storey of log wall at period course counts."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested; gable is the type."
+    },
+    "roof_pitch_deg": {
+      "value": 34.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. A room occupied by a guard through the night in winter has a stack. The COUNT is the inference."
+    },
+    "function": {
+      "value": "guard house",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "The post guard's room, at the south gate. Part of it burned in the September 1827 fire that destroyed the barracks and the store-house - 'the east end of which was on fire' - and was saved by John Kinzie's son on the roof with a wet blanket, which is the most vivid thing anyone wrote about the inside of this fort."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2
+    }
+  ],
+  "research_note": "One of the two buildings flanking the south gate. Its position note carries the small piece of reasoning that decides which of the two it is, and that reasoning also places the magazine - see fort_dearborn_magazine.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_guard_house.md",
+  "review_required": false
+}

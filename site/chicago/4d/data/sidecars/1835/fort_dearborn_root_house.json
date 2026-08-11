@@ -1,0 +1,102 @@
+{
+  "id": "fort_dearborn_root_house",
+  "phase": "cellar_1816",
+  "name": "Fort Dearborn — root house",
+  "aka": [
+    "the root-houses of the garrison",
+    "the garrison cellars"
+  ],
+  "archetype": "fort_structure",
+  "asset": "gltf/fort_dearborn_root_house__cellar_1816.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 1117.73,
+    "local_n": 235.44,
+    "rotation_deg": 188.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "On the south bank of the Chicago River west of Fort Dearborn, between the fort and the bend.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        5.0,
+        0
+      ],
+      [
+        5.0,
+        3.6
+      ],
+      [
+        0,
+        3.6
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "kind": {
+      "value": "root_house",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "Kinzie names them. A root house is a cellar banked over with earth, which is why it reads as a mound rather than as a building."
+    },
+    "construction": {
+      "value": "earth",
+      "confidence": "inferred",
+      "note": "Not stated. Earth banked over a timber-framed cellar is what the type is; what is inferred is the type, not this example."
+    },
+    "wall_height_m": {
+      "value": 1.9,
+      "confidence": "conjectural",
+      "note": "Unattested. The height of the bank above the surrounding ground."
+    },
+    "roof_type": {
+      "value": "flat",
+      "confidence": "conjectural",
+      "note": "Unattested. The archetype builds the mound as a banked truncated pyramid with a plank door in one end; 'flat' names the top of the bank rather than a roof."
+    },
+    "chimneys": {
+      "value": 0,
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "A root house is unheated by definition of the type."
+    },
+    "paint": {
+      "value": "earth",
+      "confidence": "inferred",
+      "note": "The colour of turf and soil. No source describes it."
+    },
+    "function": {
+      "value": "root cellar",
+      "confidence": "documented",
+      "sources": [
+        "kinzie_waubun_1856"
+      ],
+      "note": "Winter storage for the garrison's roots and vegetables, dug into the river bank."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "kinzie_waubun_1856",
+      "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
+      "url": "https://www.authorama.com/wau-bun-19.html",
+      "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
+      "tier": 2
+    }
+  ],
+  "research_note": "ONE SENTENCE OF EVIDENCE AND EVERYTHING ELSE OURS. Kinzie puts the root-houses on the river bank west of the fort in 1831; nothing says how many, how big, what shape or exactly where. It is built because it is the kind of structure that makes a military post read as a place people lived rather than a parade of buildings, and it is graded conjectural in position, footprint and every dimension so that a visitor can see that the mound is our idea of a root house standing at our idea of a spot.",
+  "research_doc": "docs/RESEARCH/fort_dearborn_root_house.md",
+  "review_required": false
+}

@@ -1,0 +1,108 @@
+{
+  "id": "miller_tannery",
+  "phase": "log_1831",
+  "name": "John Miller's Tannery",
+  "aka": [
+    "John Miller's log house",
+    "Chicago's first recorded factory"
+  ],
+  "archetype": "log_dwelling",
+  "asset": "gltf/miller_tannery__log_1831.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 14.0,
+    "local_n": 78.0,
+    "rotation_deg": 180.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "North bank at the forks, just north of Samuel Miller's house and tavern, on the point of land between the North Branch and the main stem.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        5.5
+      ],
+      [
+        0,
+        5.5
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "documented",
+      "sources": [
+        "drloih_wolf_point",
+        "andreas_1884_v1"
+      ],
+      "note": "'built a log house near his brother's tavern that he used as a tannery' (DRLOIH). Andreas calls it a tannery and does not describe the fabric, so the log statement rests on the one source; it is consistent with everything else standing at the forks in 1831."
+    },
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. A single-pen log house is the near-universal form at the forks in 1831, and a building put to a trade is the last one anybody would raise a second storey on. Inference from the type, not from a statement about this building."
+    },
+    "wall_height_m": {
+      "value": 2.5,
+      "confidence": "inferred",
+      "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn-log wall plus a sill, the same reading and the same number this project gives Hogan's store and the Walker meeting house."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested, and nothing describes a stack on this building. One is the normal number for a single-pen log house and the minimum for a building worked through Chicago winters. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
+    },
+    "function": {
+      "value": "tannery",
+      "confidence": "documented",
+      "sources": [
+        "drloih_wolf_point",
+        "andreas_1884_v1"
+      ],
+      "note": "'a log house ... that he used as a tannery, Chicago's first recorded factory' (DRLOIH); 'run a tannery just north of Miller's tavern' (Andreas). The function is the best-attested thing about this building and the model cannot show it: what stands is a log house, because a log house is what was built and because the yard that made it a tannery is not modelled. WHETHER IT WAS STILL TANNING ON 1835-07-01 IS UNATTESTED — Andreas's tanner partner arrives in 1832 and the trade then disappears from the record — so this value states what the building was for, not what it was doing on the scene date."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "drloih_wolf_point",
+      "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
+      "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
+      "archived_url": "",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE SETTLEMENT'S FIRST FACTORY, AND A ONE-SENTENCE BUILDING: two sources, one sentence each, and between them a year, a builder, a fabric, a use and a direction. The direction is the find that placed it — Andreas's 'just north of Miller's tavern', which the project's dossier did not carry; docs/research/03-structures-north.md § 3.1 had only DRLOIH's 'near his brother's tavern'. Andreas also names the partner, Benjamin Hall, tanner, who came in 1832. EVERYTHING DIMENSIONAL IS INVENTED and the record says so attribute by attribute. The building is placed against another record rather than against the ground, so it moves if the Miller house moves. See docs/RESEARCH/miller_tannery.md.",
+  "research_doc": "docs/RESEARCH/miller_tannery.md",
+  "review_required": false
+}

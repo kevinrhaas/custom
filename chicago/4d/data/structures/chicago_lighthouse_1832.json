@@ -1,0 +1,116 @@
+{
+  "id": "chicago_lighthouse_1832",
+  "name": "Chicago Lighthouse (1832 tower)",
+  "aka": [
+    "the old light-house",
+    "Chicago Harbor Light"
+  ],
+  "archetype": "fort_structure",
+  "phases": [
+    {
+      "id": "tower_1832",
+      "documented_range": {
+        "from": "1832-12-31",
+        "to": "1859-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1",
+          "lighthousefriends_chicago"
+        ],
+        "note": "THE SECOND TOWER, AND THE ONLY ONE STANDING ON THE SCENE DATE. Andreas: 'Another tower, forty feet high, was begun and completed by Mr. Jackson in 1832.' No month is given by any source reached, so the range opens at the last day of 1832 rather than at an invented date inside it - which is deliberately conservative and still leaves the tower two and a half years old on 1835-07-01. The end of the range is an upper bound rather than a terminus: the Government put a new light at the end of the North Pier and the old one was eventually given away with its ground by an act of 1 August 1854, with Mark Beaubien the last keeper. THE FIRST TOWER IS NOT THIS ONE and is excluded in data/exclusions.json: it fell on 30 October 1831, unfinished, and everything usually quoted about its fabric - three-foot walls, fifty feet of height - is about the tower that collapsed."
+      },
+      "position": {
+        "utm_e": 448177.9,
+        "utm_n": 4637625.0,
+        "rotation_deg": 0.0,
+        "symbolic_location": "On the Fort Dearborn Reservation at the mouth of the river, close north-west of the fort, on the river bank.",
+        "confidence": "conjectural",
+        "note": "ADJACENCY IS DOCUMENTED AND THE OFFSET IS INVENTED. Andreas puts the two together at the bend: 'Fort Dearborn and the light-house are placed at the angle thus formed'. Wentworth, disposing of the reservation in 1839, says the land left over 'upon which the old light-house was located' was lots near the Rush Street bridge, which is at the river north of the fort, and Fergus's 1850 note has River Street running between the block-house and the light-keeper's. All of that says close, and north or west, and near the water. This point is about 65 m north-west of the fort's centre on the river bank; the distance and the bearing are ours, and the uncertainty is nearer 60 m than the 20 m the rest of the complex carries. Rotation is zero and means nothing: a round tower has no facade. MOVED 2026-08-11, AND THE REASON IS THE GROUND RATHER THAN THE SOURCES. This point was first set about 65 m north-west of the fort centre while the terrain stopped 832 m short of here and nothing could check it. S2e parcel (b) landed the heightfield the same day, and that first point turned out to be below the top of the river bank - in the water. The tower is now at local E +1108, N +232, about 48 m west-north-west of the fort centre on the bank top, which satisfies every source statement as well as the first point did and satisfies the modelled ground too. The offset is still invention; it is now invention constrained by a surface.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            5.6,
+            0
+          ],
+          [
+            5.6,
+            5.6
+          ],
+          [
+            0,
+            5.6
+          ]
+        ],
+        "confidence": "conjectural",
+        "sources": [],
+        "note": "INVENTED. No source reached gives this tower a diameter, a plan or a wall thickness. 5.6 m - about eighteen feet - is the base a forty-foot masonry tower of the period needs, and the square polygon is the archetype's convention for a round shaft: the generator refuses a tower whose footprint is not square and builds a twelve-sided tapering shaft inside it. What a visitor sees of this outline is entirely ours."
+      },
+      "form": {
+        "kind": {
+          "value": "tower",
+          "confidence": "documented",
+          "sources": [
+            "andreas_1884_v1",
+            "lighthousefriends_chicago"
+          ],
+          "note": "A lighthouse tower, the first established on Lake Michigan."
+        },
+        "wall_height_m": {
+          "value": 12.19,
+          "confidence": "documented",
+          "sources": [
+            "andreas_1884_v1",
+            "lighthousefriends_chicago"
+          ],
+          "note": "THE ONE DOCUMENTED DIMENSION. Andreas: 'Another tower, forty feet high, was begun and completed by Mr. Jackson in 1832.' 40 ft is 12.192 m, recorded converted with the original figure stated, per data/datum.json's units rule. GUARD: the fifty feet in the same paragraph is the height the FIRST tower had reached when it fell."
+        },
+        "construction": {
+          "value": "stone",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "NOT STATED FOR THIS TOWER, AND THE PROJECT'S OWN DOSSIER SAYS OTHERWISE. docs/research/04-structures-south.md reads 'forty feet high; conical stone/masonry' as documented; Andreas's page gives the 1832 tower a height, a builder and a reflector and no material at all, and the lighthousefriends page adds only the reflectors and the lantern. The only fabric detail in either source - 'The walls were three feet thick' - belongs to the tower that collapsed. What is inferred here, and it is a real inference rather than a guess: the same contractor, Samuel Jackson, built both towers under the same appropriation on the same site, and the first had three-foot walls, which is masonry. That the second was masonry too is likely; that it was any particular stone is not claimed."
+        },
+        "roof_type": {
+          "value": "none",
+          "confidence": "conjectural",
+          "note": "Unattested. The shaft carries a gallery and a lantern rather than a roof; the cap over the lantern is the archetype's."
+        },
+        "lantern": {
+          "value": true,
+          "confidence": "documented",
+          "sources": [
+            "lighthousefriends_chicago"
+          ],
+          "note": "'This lighthouse stood forty feet high and employed four, fourteen-inch reflectors in its bird-cage lantern room.' Andreas, more cautiously, says it 'boasted of a fourteen-inch reflector', singular. THE REFLECTORS ARE NOT MODELLED - a bird-cage lantern is glazed and this archetype builds a glazed drum, not an optic - so what the mesh claims is that a lantern stood on the tower, which both sources support."
+        },
+        "paint": {
+          "value": "stone",
+          "confidence": "conjectural",
+          "note": "Unattested. Bare masonry rather than whitewash, which is the commoner finish for an early Great Lakes tower - but nothing says which this was, and a whitewashed tower would read very differently across the river."
+        }
+      }
+    }
+  ],
+  "function": {
+    "value": "harbour light",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1",
+      "lighthousefriends_chicago"
+    ],
+    "note": "The light at the mouth of the Chicago River, the first established on Lake Michigan. Samuel Lasby was the first keeper; who kept it on 1835-07-01 was not established - Wentworth names William M. Stevens as keeper when he arrived in October 1836, and no source reached covers the gap."
+  },
+  "research_note": "BUILT BECAUSE IT IS THE OTHER THING ANYONE COULD SEE FROM THE RIVER MOUTH IN 1835, and graded almost entirely conjectural because two of the three things everybody repeats about it belong to a different tower. The height is documented and the lantern is documented. THE SHAPE IS NOT: 'conical' appears in this project's dossier and in data/exclusions.json and could not be traced to either source those entries cite, so the taper this archetype builds is the archetype's own and docs/LIBERTIES.md owns it. The material is an inference from the contractor and the site rather than a statement. And the position is adjacency turned into a coordinate. See docs/RESEARCH/chicago_lighthouse_1832.md.",
+  "review_required": false
+}

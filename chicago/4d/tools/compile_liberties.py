@@ -91,7 +91,7 @@ COVER_TOKEN = re.compile(
 # `docs/EPOCHS.md` versions the ground: a second scene gets a second terrain with
 # its own inventions, and one admission must not discharge both.
 TERRAIN_NS = "terrain"
-TERRAIN_TOKEN = re.compile(r"^terrain\.([a-z0-9_]+)\.([a-z0-9_]+(?:\.[a-z0-9_]+)?)$")
+TERRAIN_TOKEN = re.compile(r"^terrain\.([a-z0-9_]+)\.(.+)$")
 
 SECTION_KEY = {
     "standing liberties": "standing",

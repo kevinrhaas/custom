@@ -1,0 +1,111 @@
+{
+  "id": "old_bank_building",
+  "phase": "frame_1834",
+  "name": "The Old Bank Building",
+  "aka": [
+    "the building Hubbard packed in, Lake and LaSalle"
+  ],
+  "archetype": "frame_storefront",
+  "asset": "gltf/old_bank_building__frame_1834.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 465.8,
+    "local_n": -133.3,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "symbolic_location": "At the corner of Lake Street and LaSalle Street (today West Lake Street at North LaSalle); the south-east corner, which is this record's guess — the source names no side.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        15.24,
+        0
+      ],
+      [
+        15.24,
+        9.144
+      ],
+      [
+        0,
+        9.144
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "conjectural",
+      "note": "Nothing is attested and there is no typological argument either way — a packing house is a tall single-storey space, a bank building is a two-storey block with offices over, and the name says one thing while the use says the other. One is recorded because it is the smaller claim. Invention, tagged as such."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Not stated. Frame is inferred from date and place alone: this project's dossier records the 1834-35 south-side stock as overwhelmingly frame and log with no brick building of consequence before 1837, and a building large enough to pack in wants clear floor, which frame gives and log does not. Braced rather than balloon frame follows the Sauganash record's argument. THE NAME IS NOT USED AS EVIDENCE: a building called a bank might be expected to be masonry, and in Chicago in 1834 it cannot have been."
+    },
+    "wall_height_m": {
+      "value": 4.0,
+      "confidence": "inferred",
+      "note": "No figure is attested. 4.0 m is about 13 ft: a single storey taller than a shop's, which is what hanging and dressing carcasses needs. It inherits the storey count's uncertainty, which is conjectural, so this number is only as good as that guess."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a working building used through a Chicago winter, and packing is winter work — the season ran when it was cold enough to keep meat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+    },
+    "shopfront": {
+      "value": false,
+      "confidence": "inferred",
+      "note": "Nothing is attested about this building's street face, and the two uses the sources associate with it — a bank and a hog-packing floor — are both buildings without display windows. Inferred from the attested use rather than from any description; the archetype's default is a composed shopfront and turning it off is a claim this record makes."
+    },
+    "function": {
+      "value": "packing_house",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "The only use any source gives this building is Hubbard's 1834 packing, and that is a use for one season, not a purpose. The building's name implies a different function entirely and the name is anachronistic for 1835. What it held on 1835-07-01 is genuinely unknown; 'packing_house' records the one attested use rather than claiming it continued."
+    },
+    "occupants": {
+      "value": "unattested at the scene date; Gurdon S. Hubbard packed here in the 1834 season",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Hubbard is documented in the building for one season. He is NOT carried forward: his packing operation moved to Kinzie Street in 1837-38 and to South Water Street in 1840, and this project's data/exclusions.json already keeps both of those out of the 1835 scene. Nobody is attested here in 1835."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    }
+  ],
+  "research_note": "THE THINNEST BUILDING IN THIS PARCEL THAT IS STILL A BUILDING, AND THE RECORD IS GRADED ACCORDINGLY: position conjectural, footprint conjectural, storeys conjectural, function inferred from a single season's use. It was very nearly left out, and the argument for building it is the project's current one — an absent building is invisible to a visitor while a conjectural one is legible, and the confidence view is what makes that safe. THREE CAUTIONS TRAVEL WITH IT. FIRST, THE NAME IS AN ANACHRONISM: Chicago's first bank, the Illinois State Bank branch, opened in December 1835, five months after the scene date, so nobody in July 1835 called anything 'the old bank building'. The id and name are kept because renaming a record is worse than annotating it, but no interface should present that name as period usage. SECOND, THE CORNER IS A ONE-IN-FOUR GUESS with no argument behind it, which is why the position is conjectural where the otherwise identical harmon_loomis_store is inferred — there, two corners fall away on evidence and a third is separately claimed. THIRD, THE SIZE RESTS ON A VOLUME ARGUMENT that is weaker than it sounds: five thousand hogs is a season, not a building. WHAT WOULD UPGRADE IT: any statement naming the corner; any description of the building at all; Andreas at page-image level around scan p. 1151, where the packing narrative sits; or the 1834-35 town lot records for the Lake and LaSalle block. See docs/RESEARCH/old_bank_building.md.",
+  "research_doc": "docs/RESEARCH/old_bank_building.md",
+  "review_required": false
+}

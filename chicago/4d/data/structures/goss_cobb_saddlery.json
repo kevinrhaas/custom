@@ -1,0 +1,112 @@
+{
+  "id": "goss_cobb_saddlery",
+  "name": "Goss & Cobb, saddle and harness makers",
+  "aka": [
+    "Goss & Cobb's shop"
+  ],
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "shop_1833",
+      "documented_range": {
+        "from": "1833-11-26",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "sources": [
+          "chicago_democrat_1833_11_26"
+        ],
+        "note": "A TRADE FIXED TO A WEEK AND A BUILDING FIXED TO NOTHING. The Chicago Democrat of 26 November 1833 carries, over the firm's own name, 'they have opened a shop in this village, on the conner of Lake and Canal-streets' (the 'conner' is the page's). That is the shop trading in the last week of November 1833 at a stated corner. THE SCENE DATE IS NINETEEN MONTHS LATER, in the town's fastest-changing period, and data/sources/chicago_democrat_1833_11_26.json states the limit in as many words: an advertisement is 'strong evidence of existence and address, weak evidence of survival, and no evidence at all of form'. Nothing reached follows this firm past November 1833 - Andreas's summary of the same columns names 'Goss & Cobb, saddle and harness making' and adds nothing. The from date is the issue date, which is the one day anybody can point at; the to date is the end of the scene year and is a housekeeping bound, not a closure. THE WHOLE RANGE IS THEREFORE CONJECTURAL, and the building is here on the project owner's standing instruction that an absent building is invisible while a conjectural one is legible and correctable - the same reasoning docs/LIBERTIES.md L67 gives for Elston's soap works, from the same newspaper. TO RESOLVE: further issues of the Chicago Democrat or the Chicago American. One line of an 1834 or 1835 advertisement would settle the survival and might settle the corner."
+      },
+      "position": {
+        "utm_e": 446934.37,
+        "utm_n": 4637275.22,
+        "rotation_deg": 180.0,
+        "symbolic_location": "The corner of Lake Street and Canal Street (historically Lake and West Water), west bank; placed on the SOUTH-EAST quadrant of the crossing - south side of Lake, east side of Canal - fronting north onto Lake.",
+        "confidence": "inferred",
+        "sources": [
+          "chicago_democrat_1833_11_26",
+          "osm_streets_2026"
+        ],
+        "note": "PLACED 2026-08-11. THE JUNCTION IS SELF-REPORTED IN A CONTEMPORARY DOCUMENT, WHICH IS AS GOOD AS AN ADDRESS GETS IN THIS DATASET, AND THE QUADRANT IS THIS RECORD'S GUESS. The advertisement says 'on the conner of Lake and Canal-streets' and, exactly as with the Democrat's own imprint at South Water and Clark, that settles the JUNCTION and not which of the four corners. The north-east corner is taken by the Green Tree Tavern (data/structures/green_tree_tavern.json), which leaves three; the south-east is adopted, which is a one-in-three choice and a roughly 40 m error if it is wrong. METHOD: the modern West Lake Street / North Canal Street intersection centre is EPSG:26916 E 446913.03, N 4637287.42 - the same OpenStreetMap node this project uses as ground control point G5 on the Wright 1834 fit, and the best-fitting of the eight at 1.8 m residual. The building's north face is set on the Lake Street frontage 12.2 m south of that centre and its west face on the Canal frontage 12.2 m east of it, 12.2 m being half of an 80 ft street as annotated on Hathaway 1834; the stored coordinate is the polygon origin AFTER the 180 degree facade bearing, which under the renderer's convention (renderers/web/js/walker.js) puts it at the building's north-east corner. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus the quadrant. A LARGER AND ONE-DIRECTIONAL RESIDUAL IS INHERITED FROM THE GREEN TREE'S RECORD AND IS RESTATED HERE RATHER THAN HIDDEN: 'Canal Street' in 1833 may mean the street a block back from the river, where the modern node is, or the riverbank street then called West Water and now Canal. If the advertisement means the bank street, this shop belongs about 145 m east. The same doubt sits on the Green Tree at the same crossing, and settling one settles both. Facade bearing 180, north onto Lake Street, inferred from the street rather than from any statement.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            9.144,
+            0
+          ],
+          [
+            9.144,
+            6.096
+          ],
+          [
+            0,
+            6.096
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "INVENTED. The advertisement gives a trade, a corner and a stock list and no dimension. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule - the same size this project gives Frederick Thomas's shop on South Water Street, kept deliberately rather than replaced with a fresh guess, on the reasoning docs/LIBERTIES.md L29 states about the bridge's pier spacing: a new number would look like a finding and would not be one. WHAT THE ADVERTISEMENT DOES IMPLY, without measuring anything: the firm kept saddles, harness, bridles and trunks 'on hand', manufactured to order, and trimmed 'Coaches, Chaises and Waggons', which is a shop with a workroom behind it and enough door to get a waggon at least alongside. That argues for the larger end of a shop rather than a stall, and it is an argument, not a measurement."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "conjectural",
+          "note": "NOT ATTESTED. One storey is the ordinary form for a village shop opened in 1833 and it is what this project gives the other trades advertised in the same issue. Chosen rather than derived."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "note": "Not attested for this building. Frame is the reading for a shop 'opened' in the village in the autumn of 1833: the town had sawn lumber and carpenters by then, and Silas B. Cobb - who is almost certainly the Cobb of this firm - is named by DRLOIH as the carpenter who built the Green Tree Tavern at this very corner earlier the same year. Braced rather than balloon is the conservative reading for 1833, when balloon framing in Chicago was one or two years old. The distinction changes stud rhythm behind the sheathing and is not visible at this level of detail."
+        },
+        "wall_height_m": {
+          "value": 3.0,
+          "confidence": "inferred",
+          "note": "No figure is attested. 3.0 m is about 10 ft to the plate - a single storey of shop with headroom over a counter, and a little more than the 8 1/2 ft this project gives a log dwelling of the same date. What is inferred is that the wall height falls in this range, not that it is exactly 3.0 m."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "note": "Not attested for this building. Gable is the near-universal roof form for a small frame building of this type, period and region."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested. 33 degrees is this archetype's mid-range for a small frame shop, inferred from construction practice rather than measured - the same value this project uses for the other Democrat-advertised shops."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "note": "Not attested. One stack is the minimum a workroom heated through a Chicago winter needed, and a saddler works with wax, thread and hot irons. The COUNT is the inference; position, size and material are the archetype's - docs/LIBERTIES.md L26."
+        }
+      },
+      "change_note": "The shop as it stood when the firm advertised it in the town's first newspaper, and as this record carries it forward nineteen months to the scene date. Nothing dates a change and nothing dates an end; the range says so."
+    }
+  ],
+  "function": {
+    "value": "saddlery_and_harness_shop",
+    "confidence": "documented",
+    "sources": [
+      "chicago_democrat_1833_11_26",
+      "andreas_1884_v1"
+    ],
+    "note": "Verbatim from the page, read from the scan on 2026-08-11: '[Saddle & H]arness Making. GOSS & COBB, respectfully inform the inhabitants of Chicago and the neighboring settlements, that they have opened a shop in this village, on the conner of Lake and Canal-streets, where they have on hand and will manufacture to order, Ladies' and Gentlemens SADDLES, Brass, Silver and Common Mounted HARNESS, Bridles; Martingales, &c. &c. Hard leather and common TRUNKS. Coaches, Chaises and Waggons Trimmed in [best] style. Repairing immediately attended to when brought to their shop. N.B. By strict attention to business, they hope for a share of patronage.' Andreas's summary of the same advertising columns carries 'Goss & Cobb, saddle and harness making' and adds nothing. THE ENGRAVING OF A SADDLE ABOVE THE ADVERTISEMENT IS A PRINTER'S STOCK CUT and no fact about this shop or its goods may be read out of it - the same rule data/sources/chicago_democrat_1833_11_26.json sets for the building cut over 'Two Buildings to Let'."
+  },
+  "occupants": {
+    "value": "Goss & Cobb, saddlers and harness makers",
+    "confidence": "documented",
+    "sources": [
+      "chicago_democrat_1833_11_26"
+    ],
+    "note": "The firm names itself in the advertisement. WHO THEY WERE IS NOT ESTABLISHED HERE AND ONE HALF OF IT IS WORTH A LOOK: 'Cobb' at Lake and Canal in 1833 is very probably Silas B. Cobb, whom DRLOIH names as the carpenter who built the Green Tree Tavern on the opposite corner of the same crossing that year and who became one of the town's substantial citizens. Andreas separately lists 'Goss & Cobb' among the early advertisers. Neither source connects the saddler to the carpenter in terms, so the identification is not made on this record."
+  },
+  "research_note": "A LAKE STREET BUILDING THAT EXISTS BECAUSE ITS OWNERS PAID TO SAY WHERE IT WAS. Of everything this parcel looked at, this is the only address that comes from the town describing itself in its own week rather than from a compilation written fifty years later - and it is a better positional statement than most records in this dataset hold, because an advertiser's customers had to be able to find him. What it cannot do is carry the building nineteen months forward to the scene date, or say anything at all about its size, its material or its shape. So the range is conjectural, the footprint is conjectural, the storey count is conjectural, and what survives of the evidence in the mesh is a small frame shop of about the right kind at about the right crossing. TWO GUARDS. (1) THE QUADRANT: the advertisement says 'the conner of Lake and Canal-streets' and names no side, exactly as the Democrat's own imprint says 'on the corner of South Water and Clark-streets' and names none. The Green Tree Tavern holds the north-east corner of this crossing, so three remain and this record picks the south-east. (2) THE STREET ITSELF: 'Canal' at this crossing carries the doubt already recorded on the Green Tree - modern Canal Street lies a full block back from the west bank, where the 1830s riverbank street was West Water, and if the advertisement means the bank street this shop belongs about 145 m east. That doubt is worth more here than the quadrant, and the check that would settle both is the lot geometry on Wright 1834 or Hathaway 1834. THE SADDLE ENGRAVING OVER THE ADVERTISEMENT IS A STOCK CUT and nothing may be read out of it.",
+  "review_required": false
+}

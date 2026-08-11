@@ -1,0 +1,119 @@
+{
+  "id": "carpenter_south_water_store",
+  "name": "Philo Carpenter's South Water Street Store",
+  "aka": [
+    "Carpenter's second store",
+    "the small store between LaSalle and Wells"
+  ],
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "frame_1833",
+      "documented_range": {
+        "from": "1833-08-01",
+        "to": "1835-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1"
+        ],
+        "note": "Andreas: Carpenter 'purchased a lot on South Water Street, between LaSalle and Wells streets' and 'erected a small store' in the summer of 1833. The range opens at 1 August, the middle of that summer, because no month is given and a mid-season date claims less than either end of it. THE SURVIVAL TO THE SCENE DATE IS THE ORDINARY CONTINUITY ARGUMENT, and it is stronger here than on most records in this parcel: this is the building Carpenter MOVED INTO, two years old on the scene date, on the street he had just bought a lot on, and nothing suggests a man does that and then leaves. Carpenter's own advertisement in the Chicago Democrat of 26 November 1833 — drugs, medicines, oils, paints, dye-stuffs, and also dry groceries, glass and nails — shows him trading three months after building it, though it gives no address and so cannot say which of his two premises it was placed from. THE END IS A HOUSEKEEPING BOUND at the scene year, not a demolition date."
+      },
+      "position": {
+        "utm_e": 447460.0,
+        "utm_n": 4637391.6,
+        "rotation_deg": 0.0,
+        "symbolic_location": "South side of South Water Street between Wells Street and LaSalle Street (today the south side of West Wacker Drive between North Wells and North LaSalle), placed at the middle of the block face.",
+        "confidence": "inferred",
+        "sources": [
+          "andreas_1884_v1",
+          "osm_streets_2026"
+        ],
+        "note": "PLACED 2026-08-11. THE BLOCK IS DOCUMENTED AND THE LOT WITHIN IT IS NOT. Andreas names the block face exactly — South Water Street between LaSalle and Wells — which is a 123 m frontage, about seven of the street's documented 55 ft lots. This record sits at the middle of it, which is a convention and not evidence. THE UNCERTAINTY IS ANISOTROPIC AND THE ALONG-STREET HALF IS THE BIG ONE: about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS), and about 60 m along it, because the store could have stood at either end of the block face. THE SIDE OF THE STREET IS NOT ARBITRARY: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), and a purchased LOT with a store erected on it is a south-side lot. METHOD: the modern intersection centres either end of the block were read from OpenStreetMap at EPSG:26916 — West Upper Wacker Drive / North Wells E 447402.5, N 4637411.6 and West Upper Wacker Drive / North LaSalle E 447525.2, N 4637408.1, fetched 2026-08-11 — the street's centreline interpolated between them at the mid-block easting, the south kerb taken 12.2 m south of that as half an 80 ft platted street, and the footprint's north face set on it. South Water Street is today's Wacker Drive along the south bank, per this project's street-name key. A CHECK: the traced 1834 south bank of the main stem runs 41.7 m north of this record's north face at this easting, which is a plausible street plus wharf depth but is 23 m more than the same measurement at Dearborn — the difference is the georeference's local paper stretch and the uneven build-out of Wacker Drive over the old dock line, not a real widening of the river frontage. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            7.62,
+            0
+          ],
+          [
+            7.62,
+            6.096
+          ],
+          [
+            0,
+            6.096
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "INVENTED, INSIDE THE ONE ADJECTIVE THE SOURCE OFFERS. Andreas calls it 'a small store' and gives no dimension, so this is deliberately the second-smallest building in the parcel: 7.62 x 6.096 m is 25 x 20 ft. Both figures are borrowed rather than freshly guessed — 20 ft is the documented depth of Hogan's store, the one log footprint in this dataset that is evidence, and 25 ft is the depth derived from the Green Tree Tavern's attested room module, used here as a frontage. The documented South Water lot width of 55 ft is a cap and this sits at less than half of it, which is what 'small' should look like on a street of 40 ft frontages."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Not stated. Andreas's word is 'small', and a two-storey building would be described by its storeys as Peck's is ('two-story frame') rather than by its size. Inference from the adjective the source chose and from the contrast with the buildings it does describe by height, not from a statement."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Not stated, and this record has a reason to hesitate that the others do not: Carpenter's FIRST shop is documented as log, so he was a man who had built in log once. Frame is adopted because this is new work erected on a purchased lot on the town's business street in the summer of 1833, which is when frame was taking over there, and because the dossier records the 1833-35 commercial stock as frame. Braced rather than balloon frame follows the Sauganash record's argument. If this building was log it belongs on the log_dwelling archetype, and that is a bigger correction than a repaint."
+        },
+        "wall_height_m": {
+          "value": 3.0,
+          "confidence": "inferred",
+          "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey with a little more head-room than a dwelling's. It inherits the storey count's uncertainty."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "note": "Not attested. One is the minimum for a store kept through Chicago winters, and a druggist compounding needs heat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+        }
+      },
+      "change_note": "The small store Philo Carpenter erected in the summer of 1833 on a lot he had bought on South Water Street between LaSalle and Wells — the second premises of Chicago's first druggist, and the one that makes the survival of his 1832 log shop on Lake Street doubtful. On the scene date it is two years old."
+    }
+  ],
+  "function": {
+    "value": "drug_store",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+    ],
+    "note": "Andreas calls it 'a small store' without naming the trade; the trade is inferred from its owner, who was Chicago's first druggist and who advertised in the Chicago Democrat of 26 November 1833 — three months after building this store — offering drugs, medicines, oils, paints and dye-stuffs together with dry groceries, glass and nails. That advertisement carries no address, so it names the TRADE with certainty and the BUILDING not at all. A general store selling drugs among other things is the honest reading of what Carpenter was doing by 1833; 'drug_store' is the label this dataset has for it."
+  },
+  "occupants": {
+    "value": "Philo Carpenter, druggist",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "Carpenter is documented as the man who bought the lot and erected the store in 1833. That he was still in it on 1835-07-01 is the continuity inference argued on documented_range. No partner, clerk or successor is attested."
+  },
+  "research_note": "THE OTHER HALF OF THE CARPENTER PROBLEM, and the record that makes philo_carpenter_log_shop doubtful. Andreas gives the block face, the year, the buyer and one adjective — 'a small store' — and nothing else, so the position is placed at the middle of a 123 m frontage and the footprint is invented inside the word 'small'. The along-street uncertainty of about 60 m is larger than the georeference's own 20 m and is stated on the position rather than buried. WHAT IS DOCUMENTED: the purchase of a lot on South Water between LaSalle and Wells, the erection of a store there in the summer of 1833, and Carpenter's trade, the last of it now corroborated contemporaneously by his own advertisement in the Chicago Democrat of 26 November 1833. WHAT IS CONJECTURAL: the footprint, outright. WHAT WOULD UPGRADE IT: any 1834-35 advertisement of Carpenter's carrying an address, which would fix the lot and, if it named a cross street, would also settle whether the Lake Street log shop was still in use; or the 1834-35 town lot records for the South Water frontage between Wells and LaSalle. See docs/RESEARCH/carpenter_south_water_store.md.",
+  "review_required": false
+}

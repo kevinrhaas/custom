@@ -13,12 +13,181 @@
  * datum longitude is 5h 50m west of Greenwich, nearly ten minutes off the
  * Central Standard meridian, and reading 10:00 as CST would put the sun in the
  * wrong place by about two and a half degrees.
+ *
+ * The sky's ABSOLUTE brightness, on the other hand, is not physics and has to be
+ * calibrated — see SKY_EXPOSURE below.
  */
 
 import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 
 const DEG = Math.PI / 180;
+
+/**
+ * The one free constant in the sky, and why it has a number rather than a
+ * default.
+ *
+ * Preetham's model — which `Sky.js` implements — produces radiance in arbitrary
+ * units: its `EE = 1000.0` "sun intensity" is a convention, not a measurement,
+ * so the model fixes the sky's COLOUR but says nothing about where that colour
+ * should sit on the exposure scale. three's own example papers over this by
+ * running the whole scene at `toneMappingExposure = 0.5`, which is not available
+ * here: the same exposure lights the buildings, and their albedo is evidence.
+ *
+ * So the sky gets its own exposure, and the number is measured rather than
+ * dialled by eye. Against `dupage_tallgrass_2018-07-24.jpg` — a verified 24 July
+ * photograph of Illinois tallgrass at this latitude, framed the way the standard
+ * `prairie_west` shot is framed — the sky reads sRGB (101,153,209) about 15°
+ * above the horizon, (125,165,205) at 8°, (137,166,200) at 4°. Running this
+ * shader through the same ACES + sRGB chain the renderer uses, 0.045 lands the
+ * 1835 sky within a few units of all three at the shot's own view azimuth. The
+ * scene default of 1.0 rendered (245,252,255) — a white wash at every elevation,
+ * which is what the baseline showed.
+ *
+ * It is applied to the sky ALONE. It is deliberately NOT a change to
+ * `toneMappingExposure`, which would move the ground, the water and every
+ * documented wall colour with it.
+ *
+ * What it does NOT fix, because a single scalar cannot: the SHAPE of the sky
+ * with elevation. Exposure moves all three channels at every elevation together;
+ * the error against the photograph was concentrated in red and green, and only
+ * near the horizon. That is HORIZON_RESTORE below.
+ */
+const SKY_EXPOSURE = 0.045;
+
+/**
+ * Putting the colour back into Preetham's horizon.
+ *
+ * THE DEFECT. Follow the model down to the horizon and watch the wavelength
+ * dependence leave it. `Sky.js` builds in-scatter as
+ *
+ *     Lin = ( sunE * (betaR*rPhase + betaM*mPhase) / (betaR + betaM) * (1 - Fex) ) ^ 1.5
+ *
+ * and `Fex`, the extinction, is by far the strongest wavelength-dependent factor
+ * in it. Along a horizon ray the model's own optical-length term runs to ~26×
+ * the zenith path at 1° up and ~37× at the horizontal, so `Fex` has gone to
+ * zero in all three channels and `1 - Fex` is 1, 1, 1. What is left is the
+ * ratio of the two phase functions, and those are almost achromatic:
+ * evaluated for this scene at 1° up, the red:green:blue in-scatter comes out
+ * 0.816 : 0.919 : 1.000. The model therefore renders a WHITE horizon and hands
+ * the whitening job to a neutral, so the band above the skyline arrived as
+ * sRGB (181,191,195) at saturation 0.072.
+ *
+ * The photograph disagrees, and not by a little. `bar/dupage_tallgrass_
+ * 2018-07-24.jpg` reads (136,163,192) at saturation 0.288 immediately above its
+ * own sky/land step — B-R +55 against our +14. Note WHERE the error is: our
+ * blue is essentially right (195 against 191). The whole of it is red +45 and
+ * green +28. The horizon was not short of blue, it was carrying red and green
+ * that a real horizon does not carry.
+ *
+ * THE CORRECTION. So this restores the channel dependence the saturated `1-Fex`
+ * threw away, and does it the only way that leaves everything else alone: red
+ * and green are attenuated toward the horizon, blue is not touched at all, and
+ * the attenuation dies out with height fast enough that the upper sky renders as
+ * the model built it — 0.3 % of the green at 30°, 0.03 % at 40°, nothing that
+ * survives rounding to 8 bits anywhere above that.
+ *
+ *     scale(channel) = 1 - A * exp( -( sin(elevation) / E ) ^ P )
+ *
+ * A, E and P are FITTED — to the photograph, not by eye. The bar's sky was
+ * sampled at ten elevations from 16° down to 0.5°, and A and E were solved by
+ * running each candidate back through this scene's own shader, exposure, ACES
+ * curve and sRGB encode and least-squaring against those samples
+ * (`gaa_fit4.mjs` in the working directory). Residuals: 1.6 units RMS in red,
+ * 1.0 in green, worst case 4, and the last degree — the elevation the
+ * verification actually reads — lands within one unit on both.
+ *
+ * Red and green have to be solved TOGETHER, which is easy to get wrong: ACES is
+ * not a per-channel curve. Its input matrix row for red is
+ * (0.597, 0.355, 0.048), so taking green out takes red with it, and fitting the
+ * two channels separately produced a pair that each looked right alone and
+ * overshot red by 10 units together. The exponent is shared and lands at 1.6; a
+ * plain exponential (P = 1) fits the middle of the band and then overshoots the
+ * last degree, which is exactly where the check is.
+ *
+ * WHAT IT IS NOT. It is not exposure and it is not a tone curve: the ground
+ * matches the bar to a few counts already and nothing here can move it — the
+ * patch multiplies `texColor` inside the SKY shader, which nothing else in the
+ * scene samples (the PMREM environment built from it is disposed unused, see
+ * below). It is not "add blue": blue is untouched, and every unit of the change
+ * is red and green coming off.
+ *
+ * ITS ONE HONEST COST, so nobody has to rediscover it. The fit is azimuth-blind,
+ * because the model's horizon goes achromatic in every direction and the defect
+ * is therefore the same in every direction — but the model's horizon BRIGHTNESS
+ * is not the same in every direction. `prairie_west` looks south, within 19° of
+ * the sun's azimuth and into the forward-scattering lobe, and the bar photograph
+ * is framed the same way. The anti-sun views (`river_bank`, looking north) start
+ * darker, so subtracting the same fraction of red and green leaves them bluer
+ * and DARKER than the photograph: measured at 1° above the north horizon,
+ * (104,132,166) — hue improved (B-R +62 against the bar's +55, where before it
+ * was +17) but luminance down to 128 against the bar's 160, because red and
+ * green are most of what luminance is. So the render brackets the photograph
+ * rather than sitting on it, and it now brackets from the blue side instead of
+ * the grey side.
+ *
+ * A floor keyed on the horizon's own chromaticity was tried and thrown away: it
+ * scales with the blue channel, and the anti-sun blue is low too, so it moved
+ * B-R by three units and earned nothing. Fixing this properly means an azimuth
+ * term, and an azimuth term needs a second VERIFIED July photograph shot away
+ * from the sun to fit against. `bar/REFERENCES.md` does not have one, and
+ * guessing the anti-sun sky from the solar one is exactly the kind of invention
+ * this project does not do.
+ */
+const HORIZON_RESTORE = {
+  /** red: how much comes off at the horizon, and the scale in sin(elevation) */
+  redAmount: 0.495, redScale: 0.130,
+  /** green: two thirds as much to remove, and it reaches a little higher */
+  greenAmount: 0.330, greenScale: 0.190,
+  /** shared falloff exponent */
+  power: 1.6,
+};
+
+/**
+ * The colour the air itself is, and therefore the colour distance goes to.
+ *
+ * This is the MEASURED horizon sky of `bar/dupage_tallgrass_2018-07-24.jpg`:
+ * sRGB (136,163,192), taken from the twelve pixels immediately above the
+ * sky/land step, which is a reading that does not depend on knowing the
+ * photograph's field of view.
+ *
+ * It replaces a hand-picked grey-green (0x98a69d), and the reason is worth
+ * keeping. That value was reasoned from "a hazed plain keeps some of its own
+ * green", and it does — but it was set so far toward the sward that a
+ * fully-hazed surface rendered at sRGB (143,157,130): GREENER than the sky it
+ * was supposed to converge on, and REDDER than it was blue (B-R -13). Real
+ * aerial perspective pushes distance toward the sky, i.e. BLUE — the bar's own
+ * most distant land reads (118,146,145), B-R +27. With a haze that goes the
+ * other way, no amount of distance can make ground and air meet: the horizon
+ * stayed a step rather than a convergence (63 luminance across four pixels,
+ * where the note below this one had designed for 15).
+ *
+ * The green does not disappear, it just stops being IN the air: the ground
+ * keeps its own colour and the haze mixes it toward the sky, which is the
+ * order the physics happens in. A fully-hazed surface now renders sRGB
+ * (152,175,195) — B-R +43, and 12 luminance off this scene's own horizon sky.
+ *
+ * Shared with the water's grazing-angle term in terrain.js, and with the
+ * horizon-timber band in trees.js, so the river, the far ground and the far
+ * timber all agree about what distance looks like. Changing it here without
+ * changing it there splits the scene's idea of distance in three.
+ */
+export const HORIZON_HAZE = 0x88a3c0;
+
+/**
+ * Exponential-squared haze, tuned so it is nothing at conversational range,
+ * a readable recession across the middle distance, and total at the edge of what
+ * is modelled: ~1.7 % at 100 m, 13 % at 300 m, 46 % at 700 m, 98 % at 1500 m.
+ *
+ * That last figure is the point, and it is a HONESTY constraint rather than a
+ * look: docs/LIBERTIES.md L17 records that the ground beyond the 640 m
+ * heightfield is a radial skirt carried out to 1400 m — geometry for the horizon
+ * only, nothing modelled, sampled or claimed — on the standing condition that
+ * "the scene's fog is total by 1500 m". Fog here hides ground we have not built.
+ * It must never be turned down far enough to display it, and it is not doing any
+ * work the other way either: no distant landform is drawn INTO the haze.
+ */
+const HAZE_DENSITY = 0.00125;
 
 /**
  * Solar azimuth and elevation, NOAA's algorithm.
@@ -127,8 +296,11 @@ function mod360(a) { return mod(a, 360); }
  * @param {object} o.sceneJson   data/scenes/<year>.json
  * @param {object} o.datum       data/datum.json
  * @param {boolean} o.lowSpec    smaller shadow map, cheaper env
+ * @param {string[]} [o.problems] collector, same list the scene loader writes to
  */
-export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false }) {
+export function createWorld({
+  renderer, scene, sceneJson, datum, lowSpec = false, problems = [],
+}) {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
@@ -144,7 +316,10 @@ export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false
   const dir = sunDirection(sun.azimuthDeg, sun.elevationDeg);
 
   // Prairie haze and woodsmoke, per the scene's own lighting note. Turbidity 6
-  // is hazier than a clear modern day and cheaper than any volumetric.
+  // is hazier than a clear modern day and cheaper than any volumetric. It is the
+  // aerosol term: it whitens the horizon and leaves the zenith alone, which is
+  // the right shape — at 24° up it moves the sky by three or four units out of
+  // 255, and at 3° up by fourteen.
   const sky = new Sky();
   sky.name = 'sky';
   sky.scale.setScalar(45000);
@@ -153,6 +328,66 @@ export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false
   sky.material.uniforms.mieCoefficient.value = 0.006;
   sky.material.uniforms.mieDirectionalG.value = 0.82;
   sky.material.uniforms.sunPosition.value.copy(dir).multiplyScalar(45000 * 0.9);
+
+  // No clouds. The vendored Sky ships an fbm cloud layer on by default
+  // (coverage 0.4) whose `time` uniform nothing in this renderer drives, so what
+  // it actually produces is one frozen noise field — an invented cloudscape over
+  // a specific hour of a specific day, held still. There is no weather record
+  // for 1 July 1835; drawing no clouds claims less than drawing those, so the
+  // layer is switched off rather than animated.
+  sky.material.uniforms.cloudCoverage.value = 0.0;
+  sky.material.uniforms.cloudDensity.value = 0.0;
+
+  // The sky's own exposure (see SKY_EXPOSURE). Patched into the vendored shader
+  // rather than forked: vendor/ is read-only and pinned by sha256 in
+  // vendor/MANIFEST, so this marker cannot move underneath us without a
+  // deliberate three bump — and if a bump ever does move it, say so out loud
+  // instead of silently rendering the white sky again.
+  sky.material.uniforms.skyExposure = { value: SKY_EXPOSURE };
+  sky.material.uniforms.horizonAmount = {
+    value: new THREE.Vector2(HORIZON_RESTORE.redAmount, HORIZON_RESTORE.greenAmount),
+  };
+  sky.material.uniforms.horizonScale = {
+    value: new THREE.Vector2(HORIZON_RESTORE.redScale, HORIZON_RESTORE.greenScale),
+  };
+  sky.material.uniforms.horizonPower = { value: HORIZON_RESTORE.power };
+
+  const skyFrag = sky.material.fragmentShader;
+  const declared = skyFrag.replace('uniform float time;', /* glsl */`uniform float time;
+		uniform float skyExposure;
+		uniform vec2 horizonAmount;
+		uniform vec2 horizonScale;
+		uniform float horizonPower;`);
+  // `direction` is the vendored shader's own view ray, already normalised, so
+  // direction.y IS sin(elevation) and no trig is needed. Clamped at 0 because
+  // the box is drawn below the horizon too and a negative elevation would run
+  // the exponential the wrong way; the sliver of sky under the horizontal is
+  // a tenth of a degree at eye height and the ground covers it.
+  const patched = declared.replace('gl_FragColor = vec4( texColor, 1.0 );', /* glsl */`
+			// Restore the wavelength dependence Preetham's saturated (1 - Fex)
+			// term loses at the horizon. See HORIZON_RESTORE. Red and green only:
+			// the blue channel already matches the reference photograph.
+			vec2 chiFade = exp( -pow( max( direction.y, 0.0 ) / horizonScale, vec2( horizonPower ) ) );
+			texColor.rg *= max( vec2( 0.0 ), vec2( 1.0 ) - horizonAmount * chiFade );
+
+			gl_FragColor = vec4( texColor * skyExposure, 1.0 );`);
+  sky.material.fragmentShader = patched;
+  // Both markers are load-bearing and they fail differently: without the first
+  // the sky renders at the model's arbitrary scale (a white wash at every
+  // elevation), without the second it renders Preetham's white horizon under a
+  // correctly exposed zenith. Check them separately so the message names the
+  // one that actually broke rather than guessing.
+  const lost = [];
+  if (declared === skyFrag) lost.push('the exposure uniform (the sky will read as a white wash)');
+  if (patched === declared) lost.push('the horizon restore (the skyline will read grey, not blue)');
+  if (lost.length) {
+    const said = `world: the vendored Sky shader no longer carries ${lost.join(' or ')}`;
+    problems.push(said);
+    // Also to the console, because the caller is not obliged to pass a collector
+    // and a silent fallback to the white sky is exactly the failure this guards.
+    console.warn(`[4D Chicago] ${said}`);
+  }
+  sky.material.needsUpdate = true;
   scene.add(sky);
 
   // The sky IS the environment. One PMREM pass at boot; nothing animates it.
@@ -228,7 +463,19 @@ export function createWorld({ renderer, scene, sceneJson, datum, lowSpec = false
   const bounce = new THREE.HemisphereLight(0xbfd4ea, 0x6d6b45, 0.20);
   scene.add(bounce);
 
-  scene.fog = new THREE.Fog(0xc9cdbe, 340, 1500);
+  // Aerial perspective. Exponential-squared rather than the linear ramp it
+  // replaces, because linear fog starts at nothing and then turns on: with
+  // near 340 / far 1500 the whole walkable town sat at exactly zero haze and the
+  // ground at 400 m was the same colour as the ground at 3 m, which is what the
+  // baseline showed. Exp2 has no near plane — it is small everywhere and never
+  // zero, so distance reads continuously.
+  //
+  // The colour is HORIZON_HAZE — the photograph's own horizon sky. Distance
+  // goes toward the AIR, and the air over a July plain is blue; the prairie's
+  // green survives in the mix because the fog only reaches 95 % at the far edge
+  // of what is drawn, not because the fog itself is green. See the constant for
+  // what the green-tinted haze it replaces did to the horizon.
+  scene.fog = new THREE.FogExp2(HORIZON_HAZE, HAZE_DENSITY);
 
   const offset = new THREE.Vector3();
   return {

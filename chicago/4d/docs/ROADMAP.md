@@ -229,7 +229,7 @@ finding, not a shortcut. Where a street crosses the slough or the marshy shore s
 is a real crossing problem the sources may describe; treat it as content, not as a
 rendering artefact to be flattened away.
 
-## S5a — Fort Dearborn · **the next building, now unblocked**
+## S5a — Fort Dearborn · **DONE 2026-08-11**
 
 Kevin's call, and the dependency he named is satisfied: the coastline, the sand bar and the
 harbour works are read, so there is ground to put it on once S2e builds the heightfield.
@@ -270,6 +270,60 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
   whitewashed board fence, "say 400 feet"), and the 53¼-acre reservation. The 400 ft figure
   is the middle one and must not be read as a palisade.
 
+**How both gates were cleared, and what it cost.**
+
+- **The plan source exists and it is a survey.** *Map of the Mouth of Chicago River*, F. Harrison
+  Jr., Ass't U.S. Civil Engineer, for the proposed harbour improvements, approved by William
+  Howard 24 February 1830 — reproduced in **Andreas vol. 1 p. 113** and listed in that volume's
+  own table of maps as "Fort Dearborn in 1830-32". It draws the fort in plan and names the ground
+  round it (Garden for the Garrison, Cultivated Field, Big Barn with Cupola, Wash house, Well,
+  Shop, Fort Cemetery, the Ferry). Recorded as `harrison_1830_river_mouth`, `asset_use: geometry`,
+  tier 2 — because the plate says on its face that it carries "additions and changes … suggested
+  by the Memory of Early Settlers", so it is a period survey plus fifty-year-old recollection
+  mixed on one plate. **Nothing taken from it is graded `documented`.**
+- **The plate has no scale bar, and that is the whole difficulty.** The scale is derived by
+  setting the drawn north range equal to the commandant's quarters at "about 25 x 50 ft" from the
+  1855 photograph key — 1.10 ft/px — and checked twice on the same plate (drawn aspect 1.9:1
+  against a stated 2.0:1; parade width 71 ft against a stated 80 ft). **±20 %** on every derived
+  dimension, on top of the datum's ±20 m. The stockade comes out about **53 m (174 ft) square**.
+  **No dimension of the 1816 fort exists in the literature**: Quaife's monograph prints
+  Whistler's measured 1808 draught of the FIRST fort and states none for the second anywhere.
+- **The arrangement is much better evidence than the scale**, and it is what licenses `inferred`
+  rather than `conjectural` for the positions: an 1830 engineer's plan and Gurdon Hubbard's 1827
+  walk round the inside agree building by building, on the same sides of the same two gates.
+- **The garrison is settled.** Held continuously **June 1832 → 29 December 1836**; Andreas
+  brackets the scene date and the drloihjournal chronology fills the bracket with **Maj. John
+  Greene, 5th Infantry**. Two companies in 1833; **no strength figure for mid-1835 was found and
+  none is claimed**. The fort is modelled maintained, with its gates shut.
+- **Fourteen records, two new archetypes, fourteen bakes, ~17,000 triangles.** `palisade`
+  (picket stockade with named gates and corner works; worm rail fence for the garden) and
+  `fort_structure` (eleven kinds — quarters, barracks, blockhouse, magazine, store, guard,
+  sutler, artillery, parade, root house, tower). The lighthouse of 1832 came with them.
+- **Five exclusions, four of them wrong-fort findings**: the first fort itself, the sally-port,
+  the three artillery pieces and the fifty invalids, the 1850s board fence and turnstile — plus
+  **there is no hospital building**, only the fort *becoming* a general hospital in the 1832
+  cholera. Three corrections to `docs/research/04-structures-south.md` are recorded in
+  `docs/RESEARCH/fort_dearborn.md` § 6, and one to § 2 in
+  `docs/RESEARCH/chicago_lighthouse_1832.md`.
+- **It stood on nothing for about four hours.** The complex is 832 m east of where the
+  heightfield used to stop, and while it was there it exposed a real blind spot in the
+  ground-contact gate — the clamped edge made a fort in the void report a perfect landing. See
+  STATUS § "Known weaknesses" 0a. **S2e parcel (b) then landed the same day**: the field reaches
+  E +1700, twelve of the fourteen structures land, and the lighthouse and the root house — both
+  `conjectural` in position — moved off the channel and onto the bank top now that there is a
+  surface to be wrong about. The two that remain off the ground are the stockade and the
+  commandant's quarters, whose north sides cross the top of the river bank by 1.40 m and 0.46 m,
+  because **no cut, fill, revetment or foundation is modelled anywhere in this project**. L46.
+
+**Still open in this quadrant, in the order the evidence supports:** the named ground on the 1830
+plan that is drawn as a symbol and a label and nothing else (Big Barn with Cupola, Wash house,
+Well, Shop, Out Buildings, U.S. Factor's House, Cultivated Field, the Ferry — the Fort Cemetery
+deliberately left alone); the drill ground south of the pickets, which Kinzie attests and does not
+measure; the garden's planting, which is documented and needs a **cultivated flora zone** rather
+than a structure; and a keeper's dwelling beside the lighthouse, which is plausible and
+unattested.
+
+
 ## S4 — Archetype generators
 
 One parcel per archetype, each with a golden-parameter GLB and a reference shot:
@@ -280,6 +334,74 @@ One parcel per archetype, each with a golden-parameter GLB and a reference shot:
 Balloon-frame logic (stud spacing, sheathing, proportions) is a first-class requirement, not a
 detail: 1833–35 Chicago is where balloon framing was invented, and it is the first thing a
 knowledgeable viewer checks.
+
+**`frame_dwelling` DONE 2026-08-11** — and it is the one that unblocks houses. Until it existed
+every frame record had to be a two-storey public house or a log cabin, so the dataset held
+taverns, stores and a bridge and not one dwelling. It takes `stories` 1, 1.5 or 2 (default the
+story-and-a-half, knee wall and gable-end attic window, which is the form of these years); reads
+the rear **ell off the footprint polygon** rather than off invented dimensions, so an L-shaped
+plan is built as an L and `GROUND_CONTACT: perimeter` is literally true of the mesh; builds a
+stoop or a small roofed porch, never the tavern's gallery; and makes `construction` the first
+attribute in this project that MOVES A VERTEX rather than sitting unread in the sidecar — the
+stud module (16 in balloon, 24 in braced) places every opening, the clapboard butt joints fall on
+stud lines, and a braced frame gets the girt band at its upper floor that a balloon frame has no
+line for. `plan` + `bays` are **L23's own stated resolution** — a bay count derived from frontage
+and a rhythm that comes from the room arrangement — so the default front is asymmetric and
+unevenly spaced rather than the Sauganash's five bays worn by every building.
+
+Still open on it, and worth a record's attention before the first house lands: no dormer (the
+half storey is lit only from the gable ends), no foundation or cellar, no muntins in the sash,
+and the stoop projects outside the recorded footprint. All four are in the report attached to
+the parcel and belong in docs/LIBERTIES.md the day a `frame_dwelling` record does.
+
+**`outbuilding` DONE 2026-08-11** — stables, sheds, cribs, smokehouses, privies. Built as a
+FAMILY rather than a shape, because a single set of proportions that flatters the middle of the
+range breaks both ends: five golden variants span a 1.25 m privy to a 13 m hotel stable, and
+`GROUND_CONTACT: perimeter` is verified on all five rather than on one. Deliberate absences carry
+as much of the design as the parameters — `stories` is NOT consumed, because two storeys of wall on
+a secondary building is a claim and `wall_height_m` is the honest way to make it; `construction`
+names log/plank/light_frame rather than balloon/braced, because nothing behind the boards of a shed
+is visible at this LOD and no source describes the framing of any outbuilding here, so the
+vocabulary names only what a viewer can see.
+
+Two things it hands upward. **L10 should be NARROWED, not resolved**: this archetype can build the
+Western Hotel's stable but not its wagon yard, and a yard is an enclosure — a fence line, two
+gateways, trodden ground — so building it out of an outbuilding would be calling a fence a
+building. The same gap swallows the estray pen and Clybourn's stockyard, and an `enclosure`
+archetype is now a named want. And **registering any archetype restales every committed GLB**:
+`mesh_inputs._code_shas` hashes `build.py`'s bytes for every archetype, and `build.py` carries the
+`ARCHETYPES` registration table, so adding a row to it changes the hash of buildings it never
+touched. Two parcels hit this independently and both verified the re-bake is byte-identical. The
+fix is to split the export path out of `build.py` so the registration table stops being a mesh
+input; until then one batched re-bake clears it.
+
+**`frame_storefront` DONE 2026-08-11** — 23 consumed attributes, all 13 live storefront records
+resolving with no `geometry:` declaration owed. It is the archetype where `construction` finally
+separates from `frame_tavern`: balloon frame gets a thin 4 in corner board, no girt and a 16 in
+module; braced frame gets a 6 in corner post and a girt line at the second floor. `cladding` is
+read rather than ignored, which is the L22 defect not repeated. And the unfinished state is
+buildable — open studwork over 9 in board sheathing on the loading gable, attested in kind by
+Andreas for the *Chicago Democrat*'s own building at South Water and Clark, "unfinished at the
+time" in November 1833. Never a default.
+
+### Three bugs it found in neighbouring code — NOT fixed, and the third is a gate hole
+
+1. **`MeshBuilder.add_gable_roof` fills each gable end with a solid triangle 0.25 m OUTBOARD of
+   the wall.** So anything drawn on a gable at the wall plane is *inside* the roof and invisible.
+   `log_dwelling._loft_opening` does exactly this: its loft openings are not in the committed
+   reference image and never were. A generator that silently swallows its own output is the worst
+   kind of bug here, because the reference render is what a reviewer checks.
+2. **`log_dwelling`'s baked GLB has `y_min = -0.065`** while declaring `GROUND_CONTACT:
+   perimeter` — an opening surround below grade. The same bug was found and clamped inside
+   `frame_storefront`; this one is live in the committed asset, so a record is making a false
+   ground-contact claim right now.
+3. **`frame_tavern` declares `construction` and `gallery` in CONSUMED and builds neither** —
+   and `test_consumed_attributes_actually_reach_the_parameters` PASSES, because it only requires
+   the resolved *parameters* to move, not the geometry. Today every record says `gallery: false`,
+   so the falsy rule hides it; **the first record that says `true` gets excused from a
+   `geometry:` declaration for a gallery that is never built.** That is the exact failure the
+   CONSUMED contract exists to prevent, sitting inside the test that is supposed to enforce it.
+   Fixing it means the test has to compare vertices, not parameters.
 
 ## S5 — Structure records
 
@@ -546,6 +668,95 @@ Per-zone parcels from the dossiers: 10 flora zones, 7 fauna zones. Honor the Jul
 rules — big bluestem is vegetative in July, cordgrass is the tall flowering element, ramps are
 leafless scapes. Negative findings (no ring-billed gulls, no beaver, no periodical cicadas) go
 into the data as `absent` entries with citations, so nobody re-adds them later.
+
+### S6a — the eye-height sward · **ROUND 1 IN 2026-08-10**
+
+`renderers/web/js/flora.js` draws the graminoid matrix, the forb layer, the emergents and the
+low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Three layers: blade
+geometry within about 7.6 m, camera-facing clump cards to 27 m, and one canopy surface at the
+sward's own height from 10 m to the edge of the modelled ground. Placement is a deterministic
+world lattice re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and
+nothing is paid for behind your head. Heights, greens, cover, phenology and per-plant confidence
+all come from the records; the tuft density and the far-field surface are liberties (L32, L33).
+
+**Judged against `WORK/bar`** — two verified photographs of surviving Illinois tallgrass in
+mid-July (a Chicago-region remnant, 29 July 2021; a DuPage restoration, 24 July 2018) and an
+October negative control. Where round 1 stands, measured on the primary shot rather than
+asserted:
+
+| tell | reference | round 1 |
+|---|---|---|
+| the ground is hidden at eye height | invisible | hidden past ~3 m, patchy in the nearest 2 m |
+| several heights, several greens | 4-5 layers | 5 species heights, two greens each, per record |
+| July hue (green, not tawny) | R/G 0.76-0.93 | **0.73-0.80** |
+| local contrast (p90 − p10 luminance) | **141-212** | **101 near, 83 mid, 46 far** |
+| no flowering bluestem/Indian grass/switchgrass | none | none, structurally |
+
+### S6a next — the open work, in the order it is worth doing
+
+**Reordered 2026-08-10 after a three-critic blind round on one identical shot set.** Every item
+below carries a measured target and the definition it is measured with, because two rounds of
+this work were spent chasing numbers that either did not reproduce or did not exist in the
+reference. See STATUS.md § "Known weaknesses" 00 for the full measurements. The old list's
+items 1–3 were not wrong; they were aimed at the near field, and the blind test is being lost
+in the **mid** field.
+
+1. **Draw vegetation past 455 m.** *The single biggest gap, and it is one bug behind four
+   symptoms.* Canopy rings from 511.8 m outward drop to `y = 0.05` with `aMask = 0` and are
+   discarded, so the vegetated surface ends where fog is 27 % and no visible surface ever
+   reaches the haze all three parcels converge on. Fixing this alone should move the blind
+   tell, the aerial recession, the grain collapse and the horizon step. Whatever stands beyond
+   the modelled zone polygons has to be *drawn* — even a nominal community, graded honestly.
+2. **Give the far sheet grain at fragment scale.** Its noise is two octaves over 88 × 36
+   vertices, so its finest feature is metres across near and ~100 m across far. Target:
+   5×5 high-pass RMS in the +30..70 band from **14.6 → ≥ 30** (references 31.4 and 41.7).
+3. **Kill the ring seam.** `TUNE.mid.radius = 27.0` maps to a constant screen row on flat
+   ground — measured as a razor edge at row 450 across all 1280 columns. Widen `ringFade`
+   substantially or make the boundary irregular in world space.
+4. **Crown surface.** Fine-detail ratio **0.23–0.34 → ≥ 0.55** (references 0.61–0.64); crown
+   total sd **46–55 → ≤ 36** scale-matched; darkest decile **L ≥ 12, never (0,0,0)**;
+   brightest decile **G−B ≥ +10** (currently −19 to −26 — sunlit crown tops are blue where the
+   photograph's are warm green). Cheapest route: high-frequency shading at leaf-clump scale
+   plus stochastic alpha cutout at the silhouette, a bounded indirect floor, and rebalancing
+   sun against hemisphere on upward-facing normals.
+5. **Horizon continuity.** Columns carrying timber **31 % → ≥ 90 %** (reference 100 % in every
+   band). Band *height* stays 1–4 px — that arithmetic is honest. Two mechanisms: drop
+   `hazeDisplayLinear()`'s ACES step so the band stops being aimed 16 R / 12 G past the ground
+   it touches, and suppress the crown/gap modulation `k` whenever a crown subtends under ~2 px,
+   where it deletes the silhouette rather than texturing it.
+6. **Close the near field.** Detail-free area (5×5 luminance sigma < 2/255, below-horizon,
+   resampled to 1280 wide) **13.7 % → < 2.0 %** in the nearest quarter (references 0.3–1.5 %).
+   `TUNE.mat.inner = 10.0` leaves only ~66 blades/m² between the eye and raw terrain where a
+   closed sward needs 270–400. Headroom is already paid for: 456 tufts placed against a 2,400
+   cap. Add a **broad-leaf** element — in both references the visual mass at every distance is
+   dicot leaf, not grass blade — and deepen the shade without dimming the flecks (near-band
+   green p50 **121 → 75–95**).
+7. **Flower load, against the corrected bar.** Whole-sward chroma flower **1.49 % → 4–6 %**
+   (*not* 13.89 %: that figure came from a restoration planting on a former cornfield, not from
+   prairie). Nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a never-plowed
+   remnant shows at a matched look-angle. Colour variety: effN-after-median at equal N
+   **144 → ≥ 300**, green hue IQR **5.6° → ≥ 8.5°**, green chroma p25 **32.3 → ≤ 26** (what is
+   missing is the grey-green and glaucous foliage, not the saturated flowers).
+8. **Fix the shot set before trusting any of the above.** `prairie_south` sits inside the
+   gallery timber (23.4 % open sky), so there is exactly one open-prairie view and
+   `prairie_west` has been tuned against itself with no control. Move it, and add a shot
+   standing in **z02 mesic prairie** — the camera at `prairie_west` stands 5 cm below the z02
+   elevation threshold, which is why wild bergamot, yellow coneflower, rattlesnake master and
+   pale purple coneflower render zero pixels in every frame. That threshold is admittedly ours
+   (the zone's own note: "a reading of the terrain, not evidence"). **Do not move species
+   between zones to satisfy a camera.**
+9. **`river_bank` is not honouring its own dataset.** Zone 1 specifies cordgrass at 1.2–2.0 m
+   and 40–55 % cover with `bare_soil_fraction: 0.0`; the frame shows ~25 cm sprigs on bare
+   soil in near-rows. The data is right; the renderer is not reading it.
+10. **Adaptive budget.** Thin the sward automatically when measured frame time exceeds a
+    threshold, so a slow device degrades instead of stuttering. Mobile is a release gate and
+    the low-spec field is currently a fixed, hand-tuned reduction.
+11. **Wind.** One travelling wave and a gust; the references show combing at several scales.
+
+Deferred, with the reason: an **understory below 3 m** would fix a real and measured inversion
+(our treeline base is *brighter* than its crowns — base/crown 1.84 against the photograph's
+0.74, worth ~60 L) but it is invisible until the crowns stop reading as boulders. Fixing it
+first puts a dark skirt under a pile of slate.
 
 ## S7 — Polish
 

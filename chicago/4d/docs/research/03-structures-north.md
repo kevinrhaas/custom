@@ -78,7 +78,17 @@ Secondary/derived: "Greek Revival trim," "symmetry of its facade…typical to co
 - **Appearance:** a **painted sign of a wolf** hung outside by approximately 1833 — the single most distinctive visual feature. `[DOC]`
 - **Operators:** Archibald Caldwell (liquor license 8 Dec 1829) → Elijah "Old Geese" Wentworth (1830–31/32) → Charles (and Mary) Taylor (1831/32–1833) → **William Walters (1833–1836)**. `[DOC]`
 - **1832:** headquarters of Gen. Winfield Scott during the Black Hawk War. `[DOC]`
-- **Rates:** 12½¢/night, 13¢ to stable a horse. `[DOC]`
+- **Rates:** **CORRECTED 2026-08-11 — the sentence this line reported does not exist.** It was
+  tagged `[DOC]` to `drloih_wolf_point`; that page carries no prices of any kind, and Andreas
+  returns zero matches for "stable a horse", "12 1/2 cents", "twelve and a half cents" or
+  "horse-keeping". The 12½¢ is the rate for a MAN and was carried across to the horse; the
+  "13¢" appears to have been invented in the crossing. What IS attested is better and tighter:
+  Andreas scan p. 249, the Cook County Court of County Commissioners at Chicago, **13 April
+  1831**, sets the tavern rates — **"For each horse fed 25 / Keeping horse one night 50 /
+  Lodging for each man per night 12½"** — at the same term that granted the county's first two
+  tavern licences, to Elijah Wentworth for $7 and Samuel Miller for $5. Wentworth kept the Wolf
+  Point Tavern from early 1830, so this house is one of exactly two in the county licensed
+  under that schedule. `[DOC]` for the 1831 schedule; the old figures are withdrawn.
 - **Status 1835‑07‑01: STANDING.** `[DOC]` **`[DISPUTED]` on function:** Wikipedia/DRLOIH have Walters operating it 1833–1836; DRLOIH's hotels chronology says it "ceased operations as a public house in 1834"; another account says that after Miller retired in 1834 the Wolf Point name "changed successively to the Travelers' Home and the Western Stage House." **Best reading:** building standing, still in innkeeping use under a changed name in mid‑1835. `[INF]`
 
 ### 2.2 Rev. Jesse Walker's cabin / first Methodist meeting house

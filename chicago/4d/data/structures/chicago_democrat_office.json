@@ -1,0 +1,123 @@
+{
+  "id": "chicago_democrat_office",
+  "name": "The Chicago Democrat Office",
+  "aka": [
+    "John Calhoun's printing office",
+    "the building on the corner of South Water and Clark",
+    "the New Store at South Water and Clark"
+  ],
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "frame_1833",
+      "documented_range": {
+        "from": "1833-11-26",
+        "to": "1835-12-31",
+        "confidence": "inferred",
+        "sources": [
+          "chicago_democrat_1833_11_26",
+          "andreas_1884_v1"
+        ],
+        "note": "THE START IS THE FIRST DATE A CONTEMPORARY DOCUMENT PUTS THIS BUILDING IN EXISTENCE, AND IT IS THE BUILDING'S OWN TENANT SAYING SO. The Chicago Democrat's first issue, Tuesday 26 November 1833, carries an imprint that gives its own address: 'THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.' A newspaper stating where it is printed on the day it is printed is as good as evidence at this date gets. The building is OLDER than that: Andreas says the office was secured in November 1833 in a building 'which was unfinished at the time', so it was under construction earlier in that year and the range's start is a floor, not a build date. THE END IS THE ORDINARY CONTINUITY CUT AT THE SCENE YEAR. The Democrat was published continuously through 1835 — Andreas quotes its columns for 1834 and 1835 repeatedly, including Hogan's mail notice of 19 September 1835 — but no source reached follows the BUILDING past its tenancy, and 1835-12-31 is a housekeeping bound rather than a demolition date."
+      },
+      "position": {
+        "utm_e": 447624.1,
+        "utm_n": 4637389.9,
+        "rotation_deg": 0.0,
+        "symbolic_location": "The corner of South Water Street and Clark Street (today West Wacker Drive at North Clark Street); the south-west corner on Andreas's reading, which is the reading this coordinate takes.",
+        "confidence": "inferred",
+        "sources": [
+          "chicago_democrat_1833_11_26",
+          "andreas_1884_v1",
+          "osm_streets_2026"
+        ],
+        "note": "PLACED 2026-08-11. THE JUNCTION AND THE CORNER ARE NOT THE SAME CLAIM HERE AND THEY DO NOT REST ON THE SAME EVIDENCE, WHICH IS THE WHOLE POINT OF THIS NOTE. The JUNCTION is documented by the paper itself: the imprint of the first issue, 26 November 1833, reads 'in the building on the corner of South Water and Clark-streets'. That is a contemporary self-reported address, and it is the strongest positional evidence any structure record in this dataset carries. The CORNER — which of the four — is NOT in the imprint, which says only 'on the corner of'. It comes from Andreas, writing fifty years later: 'An office was secured in a building on the southwest corner of South Water and Clark streets, which was unfinished at the time.' This project grades Andreas tier 3, a pioneer recollection compiled half a century after the fact, and the corner therefore stays INFERRED while the junction would stand on its own. Two of the four corners can be set aside independently: the north side of South Water at Clark was the river frontage, wharves and landings (docs/research/04-structures-south.md § 12), so the choice is between the south-west and the south-east, and Andreas's south-west is the only statement either way. METHOD: the modern West Upper Wacker Drive / North Clark Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447648.5, N 4637409.7 (two nodes averaged, spread 14.3 m, fetched 2026-08-11); the footprint origin sits 12.2 m west and 12.2 m south of it less the building's own width and depth, so the north face is on the South Water frontage and the east face on the Clark frontage of a south-west corner lot. South Water Street is today's Wacker Drive along the south bank, per this project's street-name key (docs/research/03-structures-north.md). WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus about 37 m if the corner is wrong — that is the distance from here to the south-east corner, where harmon_loomis_store is recorded. LOCAL WARP WORTH RECORDING: this project's traced 1834 south bank runs 77.5 m north of this record's north face at this easting, against 41.6 m at LaSalle and 18.7 m at Dearborn. A 60 m swing across four blocks is not a real riverbank shape; it is the georeference's local paper stretch plus Wacker Drive having been built out over the old dock line by different amounts along its length. Do not read the gap as wharf depth. Facade bearing 0, due north onto South Water, inferred from the street rather than from any statement.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            12.192,
+            0
+          ],
+          [
+            12.192,
+            7.62
+          ],
+          [
+            0,
+            7.62
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "INVENTED, and the same borrowed rectangle this parcel uses on every South Water store whose size nobody recorded: 12.192 x 7.62 m is 40 x 25 ft, the frontage attested for the Green Tree Tavern and the Western Hotel's front, and the depth derived from the Green Tree's attested room module. Andreas gives this building no dimension; the 26 November 1833 issue gives none either. The one documented constraint is the street's: South Water lots were 55 ft wide (Andreas), so a single-lot building here cannot have fronted more than 55 ft, and 40 ft sits inside that. IT IS SIZED AS A WHOLE BUILDING, NOT AS AN OFFICE, and that is a decision the evidence supports rather than a default: Andreas says Calhoun 'secured an office IN a building', so the press occupied part of a larger structure, and the same first issue advertises 'the New Store on the corner of South Water and Clark-streets' — see this record's occupants block. A building holding a store and a printing office is not a shed."
+      },
+      "form": {
+        "stories": {
+          "value": 2,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "NOT ATTESTED FOR THIS BUILDING BY ANY SOURCE REACHED, and the number is inference from use rather than from description. Calhoun secured an OFFICE in the building while a store traded from the same corner, so the building held at least two tenancies; a two-storey block is how that is normally arranged on a corner lot on this street, and Peck's store one block west is documented two-storey frame. A single storey is possible and would make the building a third smaller in elevation. DO NOT READ THE WOODCUT IN THE 26 NOVEMBER 1833 ISSUE AS EVIDENCE: the 'Two Buildings to Let' advertisement carries an engraving of a three-storey building with regular fenestration, and it is a printer's generic stock cut, not a picture of a Chicago building. Nothing in this record derives from it."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Not stated by any source reached. Frame is the reading, not log: this was a new building going up on the town's principal commercial corner in 1833, unfinished in November of that year, and this project's own dossier records the 1835 building stock as overwhelmingly frame and log with no brick of consequence on the south side before 1837. Braced frame rather than balloon frame for the same reason the Sauganash record gives — balloon framing was developed in Chicago in 1832-33 and the two are not distinguishable from the word 'building'. Either reading is a frame building of the same massing."
+        },
+        "wall_height_m": {
+          "value": 5.5,
+          "confidence": "inferred",
+          "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course, the number this project uses for its other two-storey frame buildings. It inherits the storey count's uncertainty — if the building was single-storey this is nearly twice too tall — and that is why the confidence view should be trusted over the silhouette here."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region. Typological derivation, not a measurement."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "inferred",
+          "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "note": "Not attested. One is the minimum for a building holding a store and a printing office through a Chicago winter — a press room needs heat as much as a shop does, because ink stiffens and paper has to be damped. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
+        }
+      },
+      "change_note": "The building at the corner of South Water and Clark in which John Calhoun set up the hand press that printed the Chicago Democrat, Chicago's first newspaper, from 26 November 1833. Andreas records it as unfinished when Calhoun took his office in it; the first issue's own imprint records the address. On 1835-07-01 the paper is twenty months old and is one of two on the street — the Chicago American, four weeks old, is three blocks east near the drawbridge."
+    }
+  ],
+  "function": {
+    "value": "printing_office_and_store",
+    "confidence": "inferred",
+    "sources": [
+      "chicago_democrat_1833_11_26",
+      "andreas_1884_v1"
+    ],
+    "note": "The printing office is documented twice over — Andreas, and the paper's own imprint. The store half is the inference, and it is argued in the occupants block: the same first issue advertises 'the New Store on the corner of South Water and Clark-streets', and Andreas's phrase is that Calhoun secured an office IN a building, not that he took a building. A building holding one tenancy and a building holding two are different buildings to look at, and the record says which reading it drew."
+  },
+  "occupants": {
+    "value": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
+    "confidence": "inferred",
+    "sources": [
+      "chicago_democrat_1833_11_26",
+      "andreas_1884_v1"
+    ],
+    "note": "THE KIMBALL READING, STATED AS A READING AND NOT AS A FACT. The first issue of 26 November 1833 carries an advertisement beginning 'Just Opened and for sale AT the New Store on the corner of South Water and Clark-streets' — dry goods, crockery and glass ware, hardware, cutlery, caps, cotton batting, yarn, sheeting, blankets — which the transcription supplied with the scan attributes to W. Kimball. Three things line up and none of them is proof. The paper's own imprint places it 'in THE building on the corner of South Water and Clark-streets', definite and singular. Andreas says the building Calhoun took his office in was UNFINISHED in November 1833, and a store advertising itself as 'Just Opened' at 'the New Store' on that corner in that month is what an unfinished building looks like a few weeks later. And the two notices sit in the same four pages. THE ALTERNATIVE IS THAT THE JUNCTION HELD TWO OR MORE BUILDINGS and the store was in another of them, which is perfectly possible on a four-cornered crossing — see harmon_loomis_store, recorded at the south-east corner of this same junction. NO SEPARATE STRUCTURE RECORD WAS CREATED FOR KIMBALL'S STORE, deliberately: building one would assert a second building at a junction where the only contemporary document says 'the building', and would put an invented footprint on top of this one. Note also that the attribution of the advertisement to W. Kimball rests on the supplied transcription rather than on the scan, and that transcription is demonstrably imperfect elsewhere in the same issue (it reads 'C. & L. HARMON' where the scan reads 'C. & I. HARMON'). See docs/RESEARCH/chicago_democrat_office.md."
+  },
+  "research_note": "THE FIRST RECORD IN THIS DATASET WHOSE ADDRESS COMES FROM A CONTEMPORARY DOCUMENT RATHER THAN FROM A RECOLLECTION. The Chicago Democrat of 26 November 1833 states in its own imprint that it is published 'in the building on the corner of South Water and Clark-streets', which makes the JUNCTION documented on tier-1 evidence. It does not say which corner; Andreas, fifty years later, says south-west, and that half stays inferred. Keeping those two apart in one position note is the reason this project exists, and it is done explicitly above. WHAT THE NEW SOURCE DID NOT DO IS ALSO WORTH RECORDING. It did not give the building a size, a height, a storey count, a material or a roof — everything visible about this structure except where it stands is still inference or invention. And it must not be allowed to give one: the 'Two Buildings to Let' advertisement in the same issue carries a woodcut of a three-storey building with regular fenestration, which is a printer's generic stock cut and not a picture of anything in Chicago. No attribute of this record derives from it, and the caution is filed here so the next reader does not have the idea afresh. THE KIMBALL QUESTION — whether the store advertising itself as newly opened at this corner in the same issue was in this building — is argued in the occupants block and in docs/RESEARCH/chicago_democrat_office.md, and it is the reason no separate kimball_store record exists. Calhoun's own dwelling is NOT modelled: no source reached attests a separate residence, and rooms over the printing office is a guess this record does not make.",
+  "review_required": false
+}

@@ -128,8 +128,26 @@ export function createConfidenceView({
   const uniforms = {
     uConfMode: { value: 0 },
     uConjecturalAlpha: { value: conjecturalAlpha },
-    uInferredTint: { value: new THREE.Color(inferred).convertSRGBToLinear() },
-    uConjecturalTint: { value: new THREE.Color(conjectural).convertSRGBToLinear() },
+    // ONE conversion, not two — and here it matters more than anywhere else in
+    // the renderer, because these two colours are the confidence view itself.
+    //
+    // `new THREE.Color(hex)` already reads the hex as sRGB and stores it in the
+    // renderer's linear working space (ColorManagement.enabled is true by
+    // default since three r152). The `.convertSRGBToLinear()` that used to
+    // follow applied the transfer function a second time, and the error is not
+    // a uniform darkening: squaring the transfer scales the three channels by
+    // DIFFERENT factors, so 0x93a6bb reached the shader at 0.237 / 0.315 /
+    // 0.425 of its intended radiance — a quarter as bright in red, nearly half
+    // in blue. The tint was both far too dark and visibly skewed toward blue.
+    //
+    // What makes that a provenance bug rather than a cosmetic one: `inferred`
+    // is the SAME hex as `--inf` in css/walk.css, which paints the legend
+    // swatch (`.sw-inf`) and the three-part gradient in the confidence key. The
+    // tint on the wall is supposed to be the colour of the chip the visitor is
+    // reading it against. Double-converted, it could not be, so the one view
+    // that exists to say which parts we made up disagreed with its own legend.
+    uInferredTint: { value: new THREE.Color(inferred) },
+    uConjecturalTint: { value: new THREE.Color(conjectural) },
   };
 
   const patched = new Set();

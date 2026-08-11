@@ -244,8 +244,8 @@
           "required": ["state", "note"],
           "properties": {
             "state": {
-              "enum": ["approach_not_modelled"],
-              "description": "approach_not_modelled: the structure is built and the ground it needed to arrive at is not."
+              "enum": ["approach_not_modelled", "outside_modelled_ground"],
+              "description": "approach_not_modelled: the ground exists under the structure and the structure does not reach it. outside_modelled_ground: there is no ground under it at all, because the terrain epoch has not been extended that far — the question whether it lands has no answer, and tools/heightfield.py clamps at the box edge, so nothing else in the pipeline can see it."
             },
             "note": {
               "type": "string",

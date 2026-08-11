@@ -1394,11 +1394,19 @@ def check_geometry_declarations(structures: dict, consumed: dict[str, frozenset]
 # visitor could step onto has met the ground; anything they could not has not.
 GROUND_CONTACT_TOL_M = 0.35
 
-# What a phase may say when its structure does not reach the ground. One state
-# so far, and it is deliberately narrow: the model stops at the structure and
-# the ground it needed to arrive at is not built. A second state would need its
-# own argument.
-GROUND_CONTACT_STATES = ("approach_not_modelled",)
+# What a phase may say when its structure does not reach the ground. Two states,
+# and the second one earned its own argument on 2026-08-11 when Fort Dearborn
+# became the first structure in the dataset placed OUTSIDE the modelled terrain
+# box rather than merely above it.
+#
+#   approach_not_modelled   — the ground exists under the structure and the
+#                             structure does not reach it. The bridge's case.
+#   outside_modelled_ground — there is no ground under the structure at all. The
+#                             terrain epoch has not been extended that far yet,
+#                             so the question "does it land" has no answer, and
+#                             pretending it has one is the failure this state
+#                             exists to make visible.
+GROUND_CONTACT_STATES = ("approach_not_modelled", "outside_modelled_ground")
 
 
 def archetype_ground_contact(rep: Report | None = None) -> dict[str, dict]:
@@ -1536,12 +1544,23 @@ def unlanded_values(structures: dict, scenes: dict, rep: Report,
             contact_z = 0.0 if decl["mode"] == "perimeter" else float(decl["contact_z"](params))
             contact_y = base_y + contact_z
 
+            # Is there any ground here at all? `Heightfield.height` clamps outside
+            # the box, so a structure placed beyond the modelled terrain samples
+            # the edge for its base AND for every contact point, the two agree
+            # exactly, and the measurement below reports a perfect landing on
+            # ground that does not exist. Ask the prior question first.
+            outline = _contact_outline(poly, decl["mode"])
+            points = [pt for a, b in outline
+                      for pt in _resample(to_world(a), to_world(b))]
+            if not all(field.covers(e, n) for e, n in points) or not field.covers(e0, n0):
+                found.append((sid, pid, "ground_contact", f"structure {sid}/{pid}", None))
+                continue
+
             worst = 0.0
-            for a, b in _contact_outline(poly, decl["mode"]):
-                for e, n in _resample(to_world(a), to_world(b)):
-                    gap = contact_y - field.height(e, n)
-                    if abs(gap) > abs(worst):
-                        worst = gap
+            for e, n in points:
+                gap = contact_y - field.height(e, n)
+                if abs(gap) > abs(worst):
+                    worst = gap
             if abs(worst) > GROUND_CONTACT_TOL_M:
                 found.append((sid, pid, "ground_contact", f"structure {sid}/{pid}", worst))
     return found
@@ -1568,13 +1587,24 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
                 rep.error(where, "ground_contact must be an object with a state and a note")
                 continue
             state = (block or {}).get("state")
-            if gap is None:
+            found = (sid, pid) in gapped
+            want = "approach_not_modelled" if (found and gap is not None) \
+                else "outside_modelled_ground"
+            if not found:
                 if block is not None:
                     rep.error(where, f"declares ground_contact: '{state}', but its contact "
                                      f"outline sits within {GROUND_CONTACT_TOL_M} m of the "
                                      f"terrain under it — it lands. Drop the declaration, or "
                                      f"move the entry claiming it to the Resolved section of "
                                      f"docs/LIBERTIES.md if the ground caught up")
+                continue
+            if block is None and gap is None:
+                rep.error(where, "stands outside the modelled terrain box altogether — there "
+                                 "is no ground under any part of its contact outline, so "
+                                 "whether it lands has no answer. Declare ground_contact: "
+                                 "{state: 'outside_modelled_ground', note: ...} on the phase "
+                                 "and admit it in docs/LIBERTIES.md, or extend the terrain "
+                                 "epoch to reach it")
                 continue
             if block is None:
                 rep.error(where, f"its ground contact stands {gap:+.2f} m off the terrain "
@@ -1583,6 +1613,11 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
                                  f"Nothing in the record is wrong and nothing shows it: declare "
                                  f"ground_contact: {{state: 'approach_not_modelled', note: ...}} "
                                  f"on the phase and admit it in docs/LIBERTIES.md")
+                continue
+            if state in GROUND_CONTACT_STATES and state != want:
+                rep.error(where, f"declares ground_contact: '{state}', but the measurement says "
+                                 f"'{want}' — the two are different findings and a visitor "
+                                 f"reading the first would be told the ground is there")
                 continue
             if state not in GROUND_CONTACT_STATES:
                 rep.error(where, f"ground_contact state '{state}' is not one of "
@@ -2938,6 +2973,1054 @@ def check_source_surface(sources: dict, rep: Report, *,
 
 
 # --------------------------------------------------------------------------
+# flora: zone records, palettes, and the July phenology traps
+# --------------------------------------------------------------------------
+#
+# docs/research/02-flora.md carries a block of "Global phenology rules" whose
+# whole point is that a mid-July prairie is easy to render as a September one.
+# Those rules are enforced HERE, as schema, rather than left as prose: the
+# dossier calls 2 m turkey-foot seed heads on big bluestem in July "the single
+# most common historical-reconstruction error", and an error you can only catch
+# by eye is one you will ship. Everything below makes a wrong record
+# unrepresentable rather than merely discouraged.
+
+FLORA = DATA / "flora"
+
+FLORA_ROLES = ("matrix", "forb", "emergent", "shrub_low", "ground", "tree", "thicket")
+FLORA_PHENOLOGY = ("flowering", "vegetative", "budding", "past_bloom", "fruiting",
+                   "leafless", "senescent")
+EXTENT_KINDS = ("elevation_band", "polygon", "buffer", "everywhere")
+ABUNDANCE_LIMITS = {"cover_fraction": 1.0, "density_per_ha": 5000.0, "stems_per_m2": 200.0}
+
+# The three warm-season grasses that are LEAFY AND VEGETATIVE in mid-July, at
+# roughly half their September height. Naming them here is the point: this is the
+# error the dossier singles out.
+JULY_VEGETATIVE_GRASSES = {
+    "Andropogon gerardii": 1.5,
+    "Sorghastrum nutans": 1.5,
+    "Panicum virgatum": 1.6,
+}
+# ...and the two that DO flower now. Cordgrass is the tall element in July.
+JULY_FLOWERING_GRASSES = ("Sporobolus michauxianus", "Calamagrostis canadensis")
+# Later arrivals: a cattail that did not reach Illinois until long after 1835.
+BANNED_TAXA = ("Typha angustifolia", "Typha x glauca", "Typha × glauca",
+               "Lythrum salicaria", "Phalaris arundinacea", "Rhamnus cathartica",
+               "Phragmites australis subsp. australis")
+
+
+def _rgb_ok(v) -> bool:
+    return (isinstance(v, list) and len(v) == 3
+            and all(isinstance(c, int) and 0 <= c <= 255 for c in v))
+
+
+def _is_july_green(rgb) -> bool:
+    """A July foliage colour: green-dominant and not straw.
+
+    A tawny sward is the October negative control the reference set carries on
+    purpose; the check is deliberately crude and deliberately absolute.
+    """
+    r, g, b = rgb
+    return g >= r and g > b
+
+
+def _carries_flower_colour(rgb) -> bool:
+    """True for a saturated bloom colour — what a past-bloom fruit must not be."""
+    r, g, b = rgb
+    return b >= max(r, g) or (min(r, g) - b) > 100 or (r - max(g, b)) > 90
+
+
+def _num_range(v, lo=0.0, hi=1e9) -> bool:
+    return (isinstance(v, list) and len(v) == 2
+            and all(isinstance(x, (int, float)) for x in v)
+            and lo <= v[0] <= v[1] <= hi)
+
+
+def _point_in_polygon(e: float, n: float, poly: list) -> bool:
+    inside = False
+    j = len(poly) - 1
+    for i, (xi, yi) in enumerate(poly):
+        xj, yj = poly[j]
+        if (yi > n) != (yj > n):
+            x = xi + (n - yi) * (xj - xi) / ((yj - yi) or 1e-12)
+            if e < x:
+                inside = not inside
+        j = i
+    return inside
+
+
+def _water_distance(field) -> list:
+    """Chamfer distance in metres from every cell to the nearest water cell.
+
+    Two passes over the grid with a (1, sqrt2) kernel. Approximate by about two
+    per cent, which is far inside the tolerance of a question like "is this cell
+    within eight metres of the river".
+    """
+    cols, rows, cell = field.cols, field.rows, field.cell_m
+    big = 1e9
+    d = [0.0 if field._at(i, j) <= 0.0 else big
+         for j in range(rows) for i in range(cols)]
+    diag = 2 ** 0.5
+    for j in range(rows):
+        base = j * cols
+        prev = base - cols
+        for i in range(cols):
+            k = base + i
+            if d[k] == 0.0:
+                continue
+            best = d[k]
+            if i > 0:
+                best = min(best, d[k - 1] + 1.0)
+            if j > 0:
+                best = min(best, d[prev + i] + 1.0)
+                if i > 0:
+                    best = min(best, d[prev + i - 1] + diag)
+                if i < cols - 1:
+                    best = min(best, d[prev + i + 1] + diag)
+            d[k] = best
+    for j in range(rows - 1, -1, -1):
+        base = j * cols
+        nxt = base + cols
+        for i in range(cols - 1, -1, -1):
+            k = base + i
+            if d[k] == 0.0:
+                continue
+            best = d[k]
+            if i < cols - 1:
+                best = min(best, d[k + 1] + 1.0)
+            if j < rows - 1:
+                best = min(best, d[nxt + i] + 1.0)
+                if i < cols - 1:
+                    best = min(best, d[nxt + i + 1] + diag)
+                if i > 0:
+                    best = min(best, d[nxt + i - 1] + diag)
+            d[k] = best
+    return [x * cell for x in d]
+
+
+def _extent_matches(ext: dict, e: float, n: float, h: float, dwater: float) -> bool:
+    box = ext.get("box")
+    if box:
+        be, bn = box.get("e"), box.get("n")
+        if be and not (be[0] <= e <= be[1]):
+            return False
+        if bn and not (bn[0] <= n <= bn[1]):
+            return False
+    kind = ext.get("kind")
+    if kind == "elevation_band":
+        lo, hi = ext.get("elev_m", [0, 0])
+        if not (lo <= h <= hi):
+            return False
+    elif kind == "polygon":
+        if not _point_in_polygon(e, n, ext.get("polygon") or []):
+            return False
+    elif kind == "buffer":
+        lo, hi = ext.get("distance_m", [0, 0])
+        if not (lo <= dwater <= hi):
+            return False
+    elif kind != "everywhere":
+        return False
+    for hole in ext.get("exclude_polygons") or []:
+        if _point_in_polygon(e, n, hole):
+            return False
+    return True
+
+
+def check_flora_extents(zones: dict, field, rep: Report) -> None:
+    """Evaluate every zone's extent against the committed heightfield.
+
+    Answers three questions no eye can answer reliably: does a zone that claims
+    to be plantable actually match any ground; do two zones tie on priority
+    anywhere (the contract calls a tie a data error); and how much land ends up
+    unzoned, which the renderer must leave EMPTY rather than fill with a default
+    community.
+    """
+    if field is None:
+        rep.note("flora extents: skipped — needs the committed heightfield")
+        return
+    dwater = _water_distance(field)
+    cols, rows, cell = field.cols, field.rows, field.cell_m
+    step = 2  # every second cell: 5 m spacing over a 640 m box
+    matched = {zid: 0 for zid in zones}
+    land = water = unzoned = 0
+    ties: set = set()
+    for j in range(0, rows, step):
+        n = field.origin_n + j * cell
+        for i in range(0, cols, step):
+            e = field.origin_e + i * cell
+            h = field._at(i, j)
+            d = dwater[j * cols + i]
+            hits = [(z.get("extent", {}).get("priority", 0), zid)
+                    for zid, z in zones.items()
+                    if _extent_matches(z.get("extent", {}), e, n, h, d)]
+            for _, zid in hits:
+                matched[zid] += 1
+            if h <= 0.0:
+                water += 1
+                continue
+            land += 1
+            if not hits:
+                unzoned += 1
+                continue
+            top = max(p for p, _ in hits)
+            winners = sorted(zid for p, zid in hits if p == top)
+            if len(winners) > 1:
+                ties.add(tuple(winners))
+    for w in sorted(ties):
+        rep.error("flora extents", f"zones {' and '.join(w)} share priority where their "
+                                   f"extents overlap — the contract makes a tie a data error, "
+                                   f"because it leaves the community at that point undecided")
+    for zid, z in zones.items():
+        declared = z.get("plantable_in_scene")
+        actual = matched[zid] > 0
+        if declared is None:
+            rep.error(f"flora zone {zid}", "plantable_in_scene is missing — a zone must say "
+                                           "whether it has modelled ground in this scene "
+                                           "rather than leave the renderer to discover it")
+        elif bool(declared) != actual:
+            rep.error(f"flora zone {zid}",
+                      f"plantable_in_scene is {declared} but its extent matches "
+                      f"{matched[zid]} sample(s) of the committed heightfield. A zone off the "
+                      f"modelled ground must say so; one on it must not claim otherwise")
+    pct = 100.0 * unzoned / land if land else 0.0
+    rep.note(f"flora extents: {land} land sample(s), {water} water, {unzoned} unzoned "
+             f"({pct:.1f}%) — unzoned ground is planted with NOTHING, never a default "
+             f"community")
+    if pct > 10.0:
+        rep.warn("flora extents", f"{pct:.1f}% of the modelled land matches no zone; that is "
+                                  f"bare ground in the walkthrough, so either a zone's extent "
+                                  f"is wrong or the gap needs stating")
+
+
+def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
+                        rep: Report, tally: dict) -> None:
+    where = f"flora zone {zid}/{sp.get('id', '?')}"
+    binomial = (sp.get("binomial") or "").strip()
+    for key in ("id", "binomial", "common", "role", "form", "abundance", "height_m",
+                "july", "confidence"):
+        if key not in sp:
+            rep.error(where, f"missing required key '{key}'")
+            return
+    if not SLUG.match(sp["id"] or ""):
+        rep.error(where, f"id '{sp['id']}' is not a lowercase slug")
+    if sp["role"] not in FLORA_ROLES:
+        rep.error(where, f"role '{sp['role']}' is not one of {FLORA_ROLES}")
+    forms = set(vocab.get("forms_flora", [])) | set(vocab.get("forms_trees", [])) \
+        | set(vocab.get("forms_unimplemented", []))
+    if sp["form"] not in forms:
+        rep.error(where, f"form '{sp['form']}' is not declared in index.json's vocabulary — "
+                         f"a renderer reads that block to know what it may be asked to draw")
+    for banned in BANNED_TAXA:
+        if binomial.lower() == banned.lower():
+            rep.error(where, f"{banned} is a post-settlement arrival and must not appear in "
+                             f"an 1835 record")
+
+    ab = sp["abundance"]
+    keys = [k for k in ABUNDANCE_LIMITS if k in ab]
+    if len(keys) != 1 or len(ab) != 1:
+        rep.error(where, f"abundance must carry EXACTLY ONE of {tuple(ABUNDANCE_LIMITS)}, "
+                         f"got {sorted(ab)}")
+    elif not _num_range(ab[keys[0]], 0.0, ABUNDANCE_LIMITS[keys[0]]):
+        rep.error(where, f"abundance.{keys[0]} must be [min,max] ascending within "
+                         f"0..{ABUNDANCE_LIMITS[keys[0]]}, got {ab[keys[0]]}")
+    if not _num_range(sp["height_m"], 0.01, 45.0):
+        rep.error(where, f"height_m must be [min,max] ascending in metres, got {sp['height_m']}")
+    if "width_m" in sp and not _num_range(sp["width_m"], 0.01, 45.0):
+        rep.error(where, f"width_m must be [min,max] ascending, got {sp['width_m']}")
+
+    j = sp.get("july")
+    if not isinstance(j, dict):
+        rep.error(where, "july must be the phenology block for the scene date")
+        return
+    ph = j.get("phenology")
+    if ph not in FLORA_PHENOLOGY:
+        rep.error(where, f"july.phenology '{ph}' is not one of {FLORA_PHENOLOGY}")
+    infl = j.get("inflorescence")
+    if "inflorescence" not in j:
+        rep.error(where, "july.inflorescence must be present, null when there is nothing "
+                         "in flower or fruit — an absent key hides the claim")
+    if not (j.get("appearance") or "").strip():
+        rep.error(where, "july.appearance is what a critic reads to decide whether the render "
+                         "matches the record; it may not be empty")
+
+    fol = j.get("foliage_rgb")
+    if ph == "leafless":
+        if fol is not None:
+            rep.error(where, "phenology 'leafless' requires foliage_rgb null — leafless means "
+                             "no leaves, and a green in this field puts them back")
+    elif not _rgb_ok(fol):
+        rep.error(where, f"july.foliage_rgb must be [r,g,b] 0-255, got {fol}")
+    elif not _is_july_green(fol):
+        rep.error(where, f"july.foliage_rgb {fol} is not a July green (green must be the "
+                         f"dominant channel). A tawny or straw sward is the October scene, "
+                         f"which fails the reference bar")
+    alt = j.get("foliage_rgb_alt")
+    if alt is not None and (not _rgb_ok(alt) or not _is_july_green(alt)):
+        rep.error(where, f"july.foliage_rgb_alt {alt} must be a second July green")
+
+    if infl is not None:
+        if not isinstance(infl, dict) or not _rgb_ok(infl.get("rgb")):
+            rep.error(where, "july.inflorescence needs a shape and an [r,g,b]")
+        else:
+            if not (0.0 <= (infl.get("height_frac") or -1) <= 1.0):
+                rep.error(where, "july.inflorescence.height_frac must be 0..1 (0 base, 1 tip)")
+            if not _num_range(infl.get("size_m"), 0.001, 3.0):
+                rep.error(where, "july.inflorescence.size_m must be [min,max] in metres")
+
+    # --- the traps ---------------------------------------------------------
+    if ph in ("vegetative", "budding") and infl is not None:
+        rep.error(where, f"phenology '{ph}' requires inflorescence null — a plant that is "
+                         f"vegetative or in bud has nothing open to draw")
+    if binomial in JULY_VEGETATIVE_GRASSES:
+        limit = JULY_VEGETATIVE_GRASSES[binomial]
+        if ph != "vegetative" or infl is not None:
+            rep.error(where, f"{binomial} is VEGETATIVE in mid-July with no inflorescence. "
+                             f"The dossier names July seed heads on this grass the single "
+                             f"most common historical-reconstruction error")
+        if isinstance(sp.get("height_m"), list) and len(sp["height_m"]) == 2 \
+                and sp["height_m"][1] > limit:
+            rep.error(where, f"{binomial} at {sp['height_m'][1]} m is its September height; in "
+                             f"mid-July it stands at 50-60 per cent of that, under {limit} m")
+    if binomial in JULY_FLOWERING_GRASSES and (ph != "flowering" or infl is None):
+        rep.error(where, f"{binomial} IS in flower in mid-July and must carry an "
+                         f"inflorescence — cordgrass is the tall flowering element of the "
+                         f"July prairie")
+    if binomial == "Typha latifolia":
+        if ph != "fruiting":
+            rep.error(where, "Typha latifolia is FRUITING in July — the spike is mature")
+        if isinstance(infl, dict) and _rgb_ok(infl.get("rgb")):
+            r, g, b = infl["rgb"]
+            if not (r > g > b):
+                rep.error(where, f"the July cattail spike is BROWN; {infl['rgb']} is not "
+                                 f"(needs red > green > blue). Green or yellow spikes date "
+                                 f"the scene to spring")
+    if binomial == "Allium tricoccum":
+        if ph != "leafless" or sp.get("form") != "scape_leafless" or fol is not None:
+            rep.error(where, "Allium tricoccum in July is LEAFLESS: phenology 'leafless', "
+                             "form 'scape_leafless', foliage_rgb null. Its leaves wither "
+                             "before the scape rises, so green onion foliage in a July scene "
+                             "is wrong")
+    if ph == "past_bloom" and isinstance(infl, dict) and _rgb_ok(infl.get("rgb")) \
+            and _carries_flower_colour(infl["rgb"]):
+        rep.error(where, f"phenology 'past_bloom' with inflorescence {infl['rgb']} — a plant "
+                         f"past bloom shows a fruit, not its flower colour")
+    if ph == "fruiting" and isinstance(infl, dict) and not infl.get("fruit"):
+        rep.error(where, "phenology 'fruiting' requires inflorescence.fruit true, so a reader "
+                         "cannot mistake the colour for a flower")
+
+    conf = check_attested(where, "species", sp, source_ids, rep)
+    if conf:
+        tally[conf] = tally.get(conf, 0) + 1
+
+
+def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
+    """Schema, provenance and phenology gate for data/flora/**."""
+    index_path = FLORA / "index.json"
+    if not index_path.exists():
+        rep.note("flora: no data/flora/index.json — the walkthrough plants nothing")
+        return {}
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return {}
+
+    scene_date = index.get("scene_date") or ""
+    d = parse_date(scene_date)
+    if d is None:
+        rep.error("flora index", "scene_date must be an ISO date")
+    elif d.month != 7:
+        rep.error("flora index", f"scene_date {scene_date} is not in July, but every zone "
+                                 f"record carries a 'july' phenology block. Move the "
+                                 f"phenology, do not move the month")
+
+    vocab = index.get("vocabulary") or {}
+    for key in ("roles", "forms_flora", "forms_trees", "phenology"):
+        if not vocab.get(key):
+            rep.error("flora index", f"vocabulary.{key} is missing — the renderer reads this "
+                                     f"block to know the closed sets it must implement")
+
+    palettes = {}
+    for entry in index.get("palettes", []):
+        pid, pfile = entry.get("id"), entry.get("file")
+        path = FLORA / (pfile or "")
+        if not pfile or not path.exists():
+            rep.error("flora index", f"palette '{pid}' names {pfile}, which does not exist")
+            continue
+        pal = load_json(path, rep)
+        if not isinstance(pal, dict):
+            continue
+        if pal.get("id") != pid or path.stem != pid:
+            rep.error(f"flora palette {pid}", "id must match both the manifest and the filename")
+        if pal.get("sources"):
+            rep.error(f"flora palette {pid}", "a palette is render tuning, not evidence, and "
+                                              "must not carry a source_id")
+        greens = pal.get("greens") or []
+        if len(greens) < 3 or not all(_rgb_ok(g) for g in greens):
+            rep.error(f"flora palette {pid}", "greens must be a ramp of at least three "
+                                              "[r,g,b] values")
+        elif not all(_is_july_green(g) for g in greens):
+            rep.error(f"flora palette {pid}", f"the foliage ramp {greens} is not all July "
+                                              f"greens — a straw ramp is the October scene")
+        palettes[pid] = pal
+
+    zones = {}
+    for entry in index.get("zones", []):
+        zid, zfile = entry.get("id"), entry.get("file")
+        path = FLORA / (zfile or "")
+        if not zfile or not path.exists():
+            rep.error("flora index", f"zone '{zid}' names {zfile}, which does not exist — a "
+                                     f"static host cannot be globbed, so a manifest entry "
+                                     f"without a file is a 404 on the deployed site")
+            continue
+        z = load_json(path, rep)
+        if not isinstance(z, dict):
+            continue
+        where = f"flora zone {zid}"
+        if z.get("id") != zid or path.stem != zid:
+            rep.error(where, "id must match both the manifest entry and the filename stem")
+        for key in ("zone", "name", "dossier", "scene_date", "palette", "cover", "ground",
+                    "extent", "species", "confidence", "plantable_in_scene"):
+            if key not in z:
+                rep.error(where, f"missing required key '{key}'")
+        if z.get("scene_date") != scene_date:
+            rep.error(where, f"scene_date {z.get('scene_date')} disagrees with the manifest's "
+                             f"{scene_date}; the phenology is stated FOR a date")
+        if z.get("palette") not in palettes:
+            rep.error(where, f"palette '{z.get('palette')}' does not resolve in the manifest")
+
+        # the manifest carries denormalised copies so terrain.js needs one fetch;
+        # a copy that has drifted is worse than no copy at all
+        for key, actual in (("extent", z.get("extent")),
+                            ("plantable_in_scene", z.get("plantable_in_scene")),
+                            ("ground_rgb", (z.get("ground") or {}).get("rgb")),
+                            ("ground_wet_rgb", (z.get("ground") or {}).get("wet_rgb")),
+                            ("bare_soil_fraction",
+                             (z.get("cover") or {}).get("bare_soil_fraction"))):
+            if entry.get(key) != actual:
+                rep.error("flora index", f"zone '{zid}' {key} in the manifest "
+                                         f"({entry.get(key)!r}) disagrees with the zone record "
+                                         f"({actual!r}); the zone record is authoritative")
+        if entry.get("priority") != (z.get("extent") or {}).get("priority"):
+            rep.error("flora index", f"zone '{zid}' priority in the manifest disagrees with "
+                                     f"its extent")
+
+        cover = z.get("cover") or {}
+        for key in ("matrix_fraction", "bare_soil_fraction", "standing_water_fraction"):
+            v = cover.get(key)
+            if not isinstance(v, (int, float)) or not 0.0 <= v <= 1.0:
+                rep.error(where, f"cover.{key} must be a fraction 0..1, got {v!r}")
+        for key in ("rgb", "wet_rgb"):
+            if not _rgb_ok((z.get("ground") or {}).get(key)):
+                rep.error(where, f"ground.{key} must be [r,g,b] 0-255")
+
+        ext = z.get("extent") or {}
+        kind = ext.get("kind")
+        if kind not in EXTENT_KINDS:
+            rep.error(where, f"extent.kind '{kind}' is not one of {EXTENT_KINDS}")
+        if kind == "elevation_band" and not _num_range(ext.get("elev_m"), -50.0, 400.0):
+            rep.error(where, "extent.elev_m must be [low,high] metres above the datum water")
+        if kind == "polygon" and len(ext.get("polygon") or []) < 3:
+            rep.error(where, "extent.polygon needs at least three vertices")
+        if kind == "buffer":
+            if ext.get("of") != "water":
+                rep.error(where, "extent.of only takes 'water' — the renderer implements one "
+                                 "buffer, and an unimplemented one silently plants nothing")
+            if not _num_range(ext.get("distance_m"), 0.0, 2000.0):
+                rep.error(where, "extent.distance_m must be [min,max] metres from the water")
+        if not isinstance(ext.get("priority"), int):
+            rep.error(where, "extent.priority must be an integer; higher wins on overlap")
+        check_attested(where, "extent", ext, source_ids, rep)
+
+        seen: set = set()
+        matrix_max = 0.0
+        for sp in z.get("species") or []:
+            if sp.get("id") in seen:
+                rep.error(where, f"duplicate species id '{sp.get('id')}' in this zone")
+            seen.add(sp.get("id"))
+            check_flora_species(zid, sp, source_ids, vocab, rep, tally)
+            if sp.get("role") in ("matrix", "ground"):
+                cf = (sp.get("abundance") or {}).get("cover_fraction")
+                if isinstance(cf, list) and len(cf) == 2:
+                    matrix_max += cf[1]
+        if not seen:
+            rep.error(where, "a zone with no species is not a community record")
+        if matrix_max > 1.8:
+            rep.warn(where, f"matrix and ground cover fractions sum to {matrix_max:.2f} at "
+                            f"their maxima; some overlap is real, this much is a bookkeeping "
+                            f"error")
+        if cover.get("matrix_fraction", 0) >= 0.5 and not any(
+                sp.get("role") in ("matrix", "emergent") for sp in z.get("species") or []):
+            rep.error(where, "the zone claims a graminoid matrix but lists no matrix or "
+                             "emergent species to build it from")
+        check_attested(where, "zone", z, source_ids, rep)
+        zones[zid] = z
+
+    check_flora_extents(zones, field, rep)
+
+    # Honesty ledger: how much of the species record rests on a source nobody in
+    # this project has actually opened. Not an error — a bibliographic record for
+    # a work the dossier cites is legitimate — but it is the number a reader
+    # should see rather than have to compute.
+    unverified = {sid for sid, s in ((Path(p).stem, json.loads(Path(p).read_text()))
+                                     for p in sorted((DATA / "sources").glob("*.json")))
+                  if not s.get("verified")}
+    resting = 0
+    for z in zones.values():
+        for sp in z.get("species") or []:
+            srcs = sp.get("sources") or []
+            if sp.get("confidence") == "documented" and srcs and set(srcs) <= unverified:
+                resting += 1
+    total_sp = sum(len(z.get("species") or []) for z in zones.values())
+    if total_sp:
+        rep.note(f"flora: {len(zones)} zone(s), {total_sp} species record(s); {resting} "
+                 f"documented claim(s) rest only on sources no agent has retrieved "
+                 f"(verified false) — real citations, unread")
+    return zones
+
+
+# --------------------------------------------------------------------------
+# fauna: zone records, presence modes, and the July gate
+# --------------------------------------------------------------------------
+#
+# The flora section above exists because a mid-July prairie is easy to render as
+# a September one. This one exists for the mirror-image reason: a mid-July
+# Chicago is easy to render as a May one. Every headline wildlife event in the
+# record — passenger-pigeon flights, prairie-chicken booming, waterfowl clouds,
+# the spring dawn chorus — is a spring, autumn or winter phenomenon, and 1 July
+# is the QUIETEST wildlife date in the Chicago year. docs/research/08-fauna.md
+# § 0.3 states that as guidance; the rules below make the wrong record
+# unrepresentable rather than merely discouraged, exactly as the phenology gate
+# does for the flora.
+#
+# The second thing this section enforces is that "present" and "visible" are
+# different claims. Liberty L2 licenses fauna at low density and often as sound
+# only, and that liberty is worth nothing unless the data can SAY "here, and not
+# seen" — which is what `presence.mode` is for.
+
+FAUNA = DATA / "fauna"
+
+FAUNA_CLASSES = ("mammal", "bird", "fish", "amphibian", "reptile", "insect", "mollusc")
+FAUNA_ACTIVITY = ("diurnal", "crepuscular", "nocturnal", "cathemeral")
+FAUNA_PERIODS = ("dawn", "day", "dusk", "night")
+FAUNA_STATUS = ("breeding_resident", "year_round_resident", "post_breeding_dispersal",
+                "flightless_moult", "domestic", "feral_or_commensal", "doubtful",
+                "absent_seasonal", "absent_extirpated", "absent_anachronism",
+                "excluded_by_scope")
+FAUNA_PRESENCE = ("visible", "audible", "visible_and_audible", "trace_only",
+                  "not_perceptible", "absent", "not_depicted")
+FAUNA_ABUNDANCE = ("abundant", "common", "frequent", "uncommon", "sparse", "rare", "absent")
+FAUNA_VOICE = ("song_full", "song_reduced", "call_only", "chorus", "display_over",
+               "silent", "non_vocal")
+FAUNA_DAWN_CHORUS = ("none", "reduced")
+
+# A status that says the animal is not in the scene, and the presence mode each
+# of those two families must carry. Kept as two sets because they are different
+# findings: `absent` is "not here", `not_depicted` is "here and we chose not to
+# show it", and collapsing them would lose the distinction liberty L1 rests on.
+FAUNA_ABSENT_STATUS = ("absent_seasonal", "absent_extirpated", "absent_anachronism")
+FAUNA_ABSENT_MODES = ("absent",)
+FAUNA_WITHHELD_STATUS = ("excluded_by_scope",)
+FAUNA_WITHHELD_MODES = ("not_depicted",)
+
+# A voice that does not reach a listener. A species recorded as audible must not
+# have one of these, or the record claims a sound nobody could hear.
+FAUNA_INAUDIBLE = ("silent", "display_over", "non_vocal")
+
+# THE BIRD-SONG GATE. Named species whose song or display is over, or sharply
+# reduced, by 1 July — the direct analogue of JULY_VEGETATIVE_GRASSES. Value is
+# the set of voices the record is allowed to claim. Getting this wrong does not
+# look wrong: a scene full of birdsong reads as "summer" to every viewer and is
+# a May scene.
+JULY_QUIET_BIRDS = {
+    # The lek is silent from June. This is the fauna dossier's headline trap.
+    "Tympanuchus cupido": {"display_over", "silent"},
+    # Song stops as the young fledge in early July; the chatter carries on.
+    "Icterus galbula": {"call_only", "silent"},
+    # An April-to-June performance, finished before this date.
+    "Toxostoma rufum": {"call_only", "song_reduced", "silent"},
+    # Collapses through July as the birds move to moult.
+    "Dolichonyx oryzivorus": {"song_reduced", "call_only", "silent"},
+    # No song to lose in any month — calls are the whole vocabulary.
+    "Cyanocitta cristata": {"call_only", "silent"},
+    "Poecile atricapillus": {"call_only", "silent"},
+    "Tyrannus tyrannus": {"call_only", "silent"},
+    # Drumming and the long territorial call are spring signals.
+    "Melanerpes erythrocephalus": {"call_only", "silent"},
+    "Colaptes auratus": {"call_only", "silent"},
+    # Vultures are effectively voiceless.
+    "Cathartes aura": {"silent", "non_vocal"},
+    # Not a songbird at all, whatever the flights looked like.
+    "Ectopistes migratorius": {"call_only", "silent"},
+}
+
+# ...and the positive half, which is what stops a gate like this being satisfied
+# by rendering July silent. These species ARE in full song on 1 July — later
+# than almost anything else — and recording them mute is the opposite error.
+JULY_STILL_SINGING = ("Contopus virens", "Passerina cyanea", "Hylocichla mustelina",
+                      "Geothlypis trichas", "Spizella pusilla", "Colinus virginianus")
+
+# The same gate one class down. These frogs call from March to May and are done
+# by 1 July — the species is still in the landscape and its VOICE is not, which
+# for a frog is the whole of what a scene would carry. A peeper chorus is the
+# easiest wrong sound to lay over any Illinois marsh at any date.
+FAUNA_SPRING_CHORUS_OVER = ("Pseudacris crucifer", "Pseudacris maculata",
+                            "Pseudacris triseriata", "Lithobates sylvaticus")
+
+# Wing moult. Adult ducks enter simultaneous flight-feather moult in late June
+# and July and are flightless or nearly so: dull, skulking, and NOT flying.
+FAUNA_MOULTING_WATERFOWL = ("Anas platyrhynchos", "Spatula discors", "Aix sponsa",
+                            "Mareca strepera", "Anas acuta", "Aythya americana")
+FAUNA_MOULT_MAX_GROUP = 12
+
+# The species whose real abundance sounds like an exaggeration, which is exactly
+# why the July number has to be held down by the schema rather than by taste.
+PASSENGER_PIGEON = "Ectopistes migratorius"
+PASSENGER_PIGEON_JULY_MAX = 60
+
+# Present in the period but nothing like its modern numbers. The default modern
+# Chicago gull is a post-1916 phenomenon and a flock of them is the single most
+# visible anachronism available at the river mouth.
+FAUNA_RARE_ONLY = {"Larus delawarensis": ("rare", "absent")}
+
+# NOT AT THIS PLACE ON THIS DATE, and the dataset may not say otherwise. These
+# are the dossier's § 6 negative findings turned into schema: a record may state
+# any of them as an ABSENCE — that is what the negative findings are for, and
+# recording why something is missing is the whole standard — but it may not put
+# the animal in the scene. Without this, a beaver lodge could be added at the
+# forks by editing one field, which is exactly the difference between a rule a
+# modeller should follow and a record that cannot be written.
+FAUNA_ABSENT_TAXA = {
+    "Bison bison": "no wild bison remained in Illinois by about 1830",
+    "Bos bison": "the period name for the bison; extirpated from Illinois by about 1830",
+    "Cervus canadensis": "elk were gone from Illinois by the early 1800s",
+    "Castor canadensis": "no Chicago-proper 1830s beaver record exists; the nearest attested "
+                         "population was the Calumet region, twelve or more miles south. No "
+                         "beaver, no lodges, and no beaver-cut stumps at the forks",
+    "Puma concolor": "probably exterminated in Illinois before 1870 and locally far earlier",
+    "Ursus americanus": "Chicago-area bear records end in the 1830s and are anecdotal; none is "
+                        "datable to 1835",
+    "Passer domesticus": "introduced to North America in 1851, sixteen years after this scene",
+    "Sturnus vulgaris": "introduced to North America in 1890",
+    "Cyprinus carpio": "the common carp was not stocked in North America in numbers until the "
+                       "1870s; Andreas's 'twelve carps' are native minnows in period usage",
+    "Magicicada septendecim": "northern Illinois is 17-year Brood XIII and its years are 1820, "
+                              "1837 and 1854 — not 1835 — and it emerges in late May and June "
+                              "in any case",
+    "Magicicada cassinii": "as Magicicada septendecim: Brood XIII, and 1835 is not a brood year",
+    "Magicicada septendecula": "as Magicicada septendecim: Brood XIII, and 1835 is not a brood "
+                               "year",
+}
+
+# Words that name a spring, autumn or winter spectacle. Forbidden in `behaviour`
+# — the render instruction — for any species the record says is present. A
+# negative record may say them freely, because saying what is NOT here is the
+# whole job of a negative record.
+FAUNA_WRONG_SEASON_WORDS = ("migrat", "skein", "v-formation", "sky-darken",
+                            "booming", "lek", "raft of", "dawn chorus", "rut")
+
+
+def _fauna_val(node, key: str):
+    """The value of an attested block, or of a bare value."""
+    v = node.get(key)
+    if isinstance(v, dict) and "value" in v:
+        return v["value"]
+    return v
+
+
+def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
+                        rep: Report, tally: dict) -> None:
+    where = f"fauna zone {zid}/{sp.get('id', '?')}"
+    binomial = (sp.get("binomial") or "").strip()
+    for key in ("id", "binomial", "common", "class", "activity", "active_periods",
+                "july", "confidence"):
+        if key not in sp:
+            rep.error(where, f"missing required key '{key}'")
+            return
+    if not SLUG.match(sp["id"] or ""):
+        rep.error(where, f"id '{sp['id']}' is not a lowercase slug")
+    if sp["class"] not in (vocab.get("classes") or FAUNA_CLASSES):
+        rep.error(where, f"class '{sp['class']}' is not declared in index.json's vocabulary")
+    if sp["activity"] not in (vocab.get("activity") or FAUNA_ACTIVITY):
+        rep.error(where, f"activity '{sp['activity']}' is not one of {FAUNA_ACTIVITY}")
+
+    periods = sp.get("active_periods")
+    if not isinstance(periods, list) or not periods \
+            or any(p not in FAUNA_PERIODS for p in periods):
+        rep.error(where, f"active_periods must be a non-empty subset of {FAUNA_PERIODS}, "
+                         f"got {periods!r}")
+        periods = []
+    # An animal on screen at an hour its own activity pattern excludes is the
+    # commonest way a reconstruction quietly invents behaviour. Say cathemeral
+    # and mean it — the Chicago coyotes are documented abroad in daylight, and
+    # that is a finding, not a default.
+    act = sp["activity"]
+    if act == "diurnal" and "night" in periods:
+        rep.error(where, "activity 'diurnal' with 'night' in active_periods — use 'cathemeral' "
+                         "and say on the record why this animal is abroad after dark")
+    if act == "nocturnal" and "day" in periods:
+        rep.error(where, "activity 'nocturnal' with 'day' in active_periods — use 'cathemeral'. "
+                         "A nocturnal animal on screen at noon is a claim, and it needs to be "
+                         "made explicitly (the Chicago coyote is exactly that case: Andreas has "
+                         "one entering a meat-house IN THE DAY TIME)")
+    if act == "crepuscular":
+        if "day" in periods:
+            rep.error(where, "activity 'crepuscular' with 'day' in active_periods — use "
+                             "'cathemeral'; crepuscular means the light margins, not midday")
+        if not ({"dawn", "dusk"} & set(periods)):
+            rep.error(where, "activity 'crepuscular' but neither dawn nor dusk is in "
+                             "active_periods")
+    if act == "diurnal" and "day" not in periods:
+        rep.error(where, "activity 'diurnal' without 'day' in active_periods")
+
+    j = sp.get("july")
+    if not isinstance(j, dict):
+        rep.error(where, "july must be the block stating this animal's state on the scene date")
+        return
+    for key in ("status", "presence", "abundance", "max_group", "vocalization",
+                "behaviour", "appearance"):
+        if key not in j:
+            rep.error(where, f"july.{key} is required — the whole point of this dataset is "
+                             f"that the July state is stated rather than assumed")
+            return
+    if "trace" not in j:
+        rep.error(where, "july.trace must be present, null when the animal leaves no rendered "
+                         "sign — an absent key hides the claim, exactly as it does for flora "
+                         "inflorescence")
+
+    status = _fauna_val(j, "status")
+    mode = _fauna_val(j, "presence")
+    abundance = _fauna_val(j, "abundance")
+    voice = j.get("vocalization")
+    group = j.get("max_group")
+    behaviour = (j.get("behaviour") or "").strip()
+    appearance = (j.get("appearance") or "").strip()
+
+    if status not in FAUNA_STATUS:
+        rep.error(where, f"july.status '{status}' is not one of {FAUNA_STATUS}")
+    if mode not in FAUNA_PRESENCE:
+        rep.error(where, f"july.presence '{mode}' is not one of {FAUNA_PRESENCE}")
+    if abundance not in FAUNA_ABUNDANCE:
+        rep.error(where, f"july.abundance '{abundance}' is not one of {FAUNA_ABUNDANCE}")
+    if voice not in FAUNA_VOICE:
+        rep.error(where, f"july.vocalization '{voice}' is not one of {FAUNA_VOICE}")
+    if not isinstance(group, int) or isinstance(group, bool) or not 0 <= group <= 500:
+        rep.error(where, f"july.max_group must be an integer 0..500 (0 = nothing is placed), "
+                         f"got {group!r}")
+        group = 0
+    if not behaviour:
+        rep.error(where, "july.behaviour is the render instruction and may not be empty; write "
+                         "'Nothing is drawn.' when that is the answer")
+    if not appearance:
+        rep.error(where, "july.appearance is what a critic reads to decide whether the render "
+                         "matches the record; it may not be empty")
+
+    # --- present, absent, and withheld are three different claims -----------
+    #
+    # ...and `doubtful` is the fourth, which is why it is exempt from the
+    # coupling below. A species whose July presence is genuinely uncertain may
+    # be recorded with NOTHING placed for it without that being a finding of
+    # absence — the ring-billed gull is the case: rare and persecuted in the
+    # 19th century, tempting to a renderer, and neither attested nor refuted
+    # here. Forcing that record to choose between "present" and "absent" would
+    # make the dataset resolve a question the evidence does not.
+    if status == "doubtful":
+        pres = j.get("presence")
+        if not (isinstance(pres, dict) and (pres.get("note") or "").strip()):
+            rep.error(where, "july.status 'doubtful' requires a note on the presence block "
+                             "saying what the doubt is and what the scene does about it. "
+                             "Recording doubt is the point; recording it silently is not")
+    elif status in FAUNA_ABSENT_STATUS:
+        if mode not in FAUNA_ABSENT_MODES:
+            rep.error(where, f"july.status '{status}' says this animal is not in the scene, but "
+                             f"july.presence is '{mode}'. A negative finding that leaves a "
+                             f"visible animal on the record is worse than no finding")
+        if abundance != "absent":
+            rep.error(where, f"july.status '{status}' with abundance '{abundance}' — an animal "
+                             f"that is not here has no abundance")
+        if group:
+            rep.error(where, f"july.status '{status}' with max_group {group} — nothing may be "
+                             f"placed for a species recorded as absent")
+    elif status in FAUNA_WITHHELD_STATUS:
+        if mode not in FAUNA_WITHHELD_MODES:
+            rep.error(where, f"july.status 'excluded_by_scope' requires presence 'not_depicted' "
+                             f"— the animal IS here and is deliberately not shown, which is a "
+                             f"different claim from absence and must not be recorded as one")
+        if group:
+            rep.error(where, "an excluded_by_scope record may not place anything (max_group 0)")
+    else:
+        if mode in ("absent", "not_depicted"):
+            rep.error(where, f"july.presence '{mode}' with a present status '{status}' — say "
+                             f"which absence this is: absent_seasonal, absent_extirpated, "
+                             f"absent_anachronism, or excluded_by_scope")
+        if abundance == "absent":
+            rep.error(where, f"abundance 'absent' with a present status '{status}'")
+
+    # --- present, and not seen ---------------------------------------------
+    if mode in ("audible", "visible_and_audible") and voice in FAUNA_INAUDIBLE:
+        rep.error(where, f"july.presence '{mode}' claims this animal is HEARD, but its "
+                         f"vocalization is '{voice}'. A silent bird cannot be audible, and a "
+                         f"lek whose season is over is silent by definition")
+    if mode == "trace_only" and not (j.get("trace") or "").strip():
+        rep.error(where, "july.presence 'trace_only' requires july.trace to describe the sign "
+                         "that IS rendered — runways, burrows, shell scatter, a landed fish. "
+                         "Trace-only with no trace renders nothing and claims something")
+    if mode == "not_perceptible" and not (
+            (j.get("presence") or {}).get("note") if isinstance(j.get("presence"), dict) else None):
+        rep.error(where, "july.presence 'not_perceptible' says the animal is here and neither "
+                         "seen nor heard, which is the strongest claim in this vocabulary and "
+                         "needs a note on the presence block saying why")
+
+    # --- the July gate ------------------------------------------------------
+    if sp["class"] == "bird" and voice == "song_full":
+        note = (sp.get("note") or "")
+        if "July" not in note:
+            rep.error(where, "vocalization 'song_full' on a bird is the EXCEPTIONAL claim for "
+                             "1 July — the dawn chorus is a spring phenomenon and most "
+                             "passerines have stopped or sharply reduced singing by now. The "
+                             "record must argue it: put the reason, mentioning July, in the "
+                             "species note")
+    if binomial in JULY_QUIET_BIRDS and voice not in JULY_QUIET_BIRDS[binomial]:
+        rep.error(where, f"{binomial} is not in song on 1 July; this record claims '{voice}'. "
+                         f"Allowed: {sorted(JULY_QUIET_BIRDS[binomial])}. A July scene full of "
+                         f"birdsong is the fauna equivalent of seed heads on July big bluestem")
+    if binomial in JULY_STILL_SINGING and voice in ("silent", "display_over"):
+        rep.error(where, f"{binomial} IS still in song on 1 July — later than almost anything "
+                         f"else — and recording it silent over-corrects the July gate into a "
+                         f"different error")
+    if binomial in FAUNA_SPRING_CHORUS_OVER and voice not in ("silent", "non_vocal"):
+        rep.error(where, f"{binomial} calls from March to May and is finished by 1 July; this "
+                         f"record claims '{voice}'. The animal may still be recorded as "
+                         f"present — it is in the landscape — but its chorus is a spring "
+                         f"sound and putting it over a July marsh dates the scene by two "
+                         f"months")
+    if binomial in FAUNA_MOULTING_WATERFOWL and status not in FAUNA_ABSENT_STATUS:
+        if status != "flightless_moult":
+            rep.error(where, f"{binomial} is in simultaneous wing moult in late June and July "
+                             f"and is flightless or nearly so; july.status must be "
+                             f"'flightless_moult', not '{status}'. There are no migrating "
+                             f"flocks on 1 July and the adults are dull, skulking and not "
+                             f"flying")
+        if group > FAUNA_MOULT_MAX_GROUP:
+            rep.error(where, f"{binomial} with max_group {group} — a moulting July duck is a "
+                             f"hen with a brood, not a raft. Ceiling is "
+                             f"{FAUNA_MOULT_MAX_GROUP}")
+    if binomial == PASSENGER_PIGEON and status not in FAUNA_ABSENT_STATUS:
+        if status != "post_breeding_dispersal":
+            rep.error(where, "the passenger pigeon on 1 July is in small wandering "
+                             "post-breeding flocks, not nesting and not on passage; "
+                             "july.status must be 'post_breeding_dispersal'")
+        if group > PASSENGER_PIGEON_JULY_MAX:
+            rep.error(where, f"max_group {group} for the passenger pigeon. The Chicago record "
+                             f"of a sky full of them — 'the horizon in almost every direction "
+                             f"was black with them' — is dated 17 SEPTEMBER 1836, a fall "
+                             f"movement. On 1 July the number is tens, not millions; the "
+                             f"ceiling here is {PASSENGER_PIGEON_JULY_MAX}")
+        if not (sp.get("note") or "").strip():
+            rep.error(where, "the passenger pigeon needs its numbers argued on the record more "
+                             "than any other species in this dataset, because its real "
+                             "abundance sounds like exaggeration. State what the source "
+                             "actually says, and when it says it")
+    if binomial in FAUNA_ABSENT_TAXA and status not in FAUNA_ABSENT_STATUS:
+        rep.error(where, f"{binomial} is not at the Chicago town site on 1 July 1835: "
+                         f"{FAUNA_ABSENT_TAXA[binomial]}. The record may state this species as "
+                         f"an absence — a negative finding is worth keeping — but it may not "
+                         f"put the animal in the scene")
+    if binomial in FAUNA_RARE_ONLY and abundance not in FAUNA_RARE_ONLY[binomial]:
+        rep.error(where, f"{binomial} may only be recorded as "
+                         f"{' or '.join(FAUNA_RARE_ONLY[binomial])} in an 1835 scene — it was "
+                         f"rare and persecuted in the 19th century and became the abundant "
+                         f"Great Lakes gull only after protection in 1916")
+    if status not in FAUNA_ABSENT_STATUS and status not in FAUNA_WITHHELD_STATUS:
+        low = behaviour.lower()
+        for word in FAUNA_WRONG_SEASON_WORDS:
+            if word in low:
+                rep.error(where, f"july.behaviour names '{word}', which is a spring, autumn or "
+                                 f"winter phenomenon. 1 July is the annual minimum for all of "
+                                 f"them: no migration, silent leks, moulting waterfowl. Say it "
+                                 f"in the note if it needs saying; it may not be a render "
+                                 f"instruction")
+    if status == "doubtful" and sp.get("confidence") == "documented":
+        rep.error(where, "july.status 'doubtful' with confidence 'documented' — if the July "
+                         "presence is in doubt the record cannot also be documented. Record the "
+                         "doubt rather than resolving it by preference")
+
+    # --- provenance ---------------------------------------------------------
+    walk_attested(where, j, source_ids, rep, tally, "july")
+    conf = check_attested(where, "species", sp, source_ids, rep)
+    if conf:
+        tally[conf] = tally.get(conf, 0) + 1
+    if conf == "conjectural" and not (sp.get("note") or "").strip():
+        rep.error(where, "conjectural requires a note saying what the belief rests on and that "
+                         "it is not evidence. Unknown is recorded as unknown, never left blank")
+
+
+def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
+    """Schema, provenance and the July gate for data/fauna/**."""
+    index_path = FAUNA / "index.json"
+    if not index_path.exists():
+        rep.note("fauna: no data/fauna/index.json — the scene carries no animals")
+        return {}
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return {}
+
+    scene_date = index.get("scene_date") or ""
+    d = parse_date(scene_date)
+    if d is None:
+        rep.error("fauna index", "scene_date must be an ISO date")
+    elif d.month != 7:
+        rep.error("fauna index", f"scene_date {scene_date} is not in July, but every zone "
+                                 f"record carries a 'july' block stating what each animal is "
+                                 f"doing on the scene date. Move the seasonal states, do not "
+                                 f"move the month")
+
+    vocab = index.get("vocabulary") or {}
+    for key in ("classes", "activity", "active_periods", "july_status", "presence_modes",
+                "abundance", "vocalization", "habitats"):
+        if not vocab.get(key):
+            rep.error("fauna index", f"vocabulary.{key} is missing — a renderer reads this "
+                                     f"block to know the closed sets it must implement")
+
+    # The fauna zones borrow their geometry from the flora zones rather than
+    # restating it, so the two datasets cannot drift into describing different
+    # ground. That only holds if the reference is checked.
+    flora_index = load_json(FLORA / "index.json", rep, required=False)
+    flora_zones = {z.get("id"): z for z in (flora_index or {}).get("zones", [])} \
+        if isinstance(flora_index, dict) else {}
+
+    zones = {}
+    for entry in index.get("zones", []):
+        zid, zfile = entry.get("id"), entry.get("file")
+        path = FAUNA / (zfile or "")
+        if not zfile or not path.exists():
+            rep.error("fauna index", f"zone '{zid}' names {zfile}, which does not exist — a "
+                                     f"static host cannot be globbed, so a manifest entry "
+                                     f"without a file is a 404 on the deployed site")
+            continue
+        z = load_json(path, rep)
+        if not isinstance(z, dict):
+            continue
+        where = f"fauna zone {zid}"
+        if z.get("id") != zid or path.stem != zid:
+            rep.error(where, "id must match both the manifest entry and the filename stem")
+        for key in ("zone", "name", "habitat", "dossier", "scene_date", "reads_as",
+                    "in_modelled_extent", "extent_from", "soundscape", "species",
+                    "confidence", "note"):
+            if key not in z:
+                rep.error(where, f"missing required key '{key}'")
+        if z.get("scene_date") != scene_date:
+            rep.error(where, f"scene_date {z.get('scene_date')} disagrees with the manifest's "
+                             f"{scene_date}; every july block is stated FOR a date")
+        if z.get("habitat") not in (vocab.get("habitats") or []):
+            rep.error(where, f"habitat '{z.get('habitat')}' is not declared in the manifest "
+                             f"vocabulary")
+
+        # denormalised copies, checked the way the flora manifest's are
+        for key, actual in (("habitat", z.get("habitat")),
+                            ("in_modelled_extent", z.get("in_modelled_extent")),
+                            ("extent_from", z.get("extent_from"))):
+            if entry.get(key) != actual:
+                rep.error("fauna index", f"zone '{zid}' {key} in the manifest "
+                                         f"({entry.get(key)!r}) disagrees with the zone record "
+                                         f"({actual!r}); the zone record is authoritative")
+        if entry.get("species_count") != len(z.get("species") or []):
+            rep.error("fauna index", f"zone '{zid}' species_count {entry.get('species_count')!r} "
+                                     f"disagrees with the {len(z.get('species') or [])} species "
+                                     f"in the record")
+
+        ext = z.get("extent_from") or {}
+        fz = ext.get("flora_zone")
+        if fz is None:
+            if ext.get("kind") != "water":
+                rep.error(where, "extent_from must name a flora_zone whose extent this zone "
+                                 "shares, or declare kind 'water'. A fauna zone does not "
+                                 "restate a polygon: two datasets describing the same ground in "
+                                 "two places drift, and then nobody knows which is the town")
+        elif flora_zones and fz not in flora_zones:
+            rep.error(where, f"extent_from.flora_zone '{fz}' does not resolve in "
+                             f"data/flora/index.json")
+        elif fz in flora_zones:
+            plantable = flora_zones[fz].get("plantable_in_scene")
+            if z.get("in_modelled_extent") != plantable:
+                rep.error(where, f"in_modelled_extent is {z.get('in_modelled_extent')!r} but "
+                                 f"flora zone '{fz}', whose extent this zone shares, is "
+                                 f"plantable_in_scene {plantable!r}. The same ground cannot be "
+                                 f"inside the modelled box for one dataset and outside it for "
+                                 f"the other")
+
+        # --- the soundscape gate -------------------------------------------
+        snd = z.get("soundscape")
+        if not isinstance(snd, dict):
+            rep.error(where, "soundscape is required: a July zone has to state what it SOUNDS "
+                             "like, because most of its animals are audible and not visible")
+        else:
+            dc = snd.get("dawn_chorus")
+            if dc not in FAUNA_DAWN_CHORUS:
+                rep.error(where, f"soundscape.dawn_chorus '{dc}' is not one of "
+                                 f"{FAUNA_DAWN_CHORUS}. There is no third option: the full dawn "
+                                 f"chorus is a spring phenomenon and by 1 July most breeding "
+                                 f"passerines have stopped or sharply reduced singing. A zone "
+                                 f"cannot declare one")
+            if not (snd.get("note") or "").strip():
+                rep.error(where, "soundscape needs a note saying what July does to this zone's "
+                                 "sound — the reduction is the finding")
+            heroes = snd.get("hero") or []
+            ids = {s.get("id") for s in z.get("species") or []}
+            for h in heroes:
+                if h not in ids:
+                    rep.error(where, f"soundscape.hero names '{h}', which is not a species in "
+                                     f"this zone")
+
+        seen: set = set()
+        n_birds = n_full = 0
+        for sp in z.get("species") or []:
+            if sp.get("id") in seen:
+                rep.error(where, f"duplicate species id '{sp.get('id')}' in this zone")
+            seen.add(sp.get("id"))
+            check_fauna_species(zid, sp, source_ids, vocab, rep, tally)
+            if sp.get("class") == "bird":
+                n_birds += 1
+                if (sp.get("july") or {}).get("vocalization") == "song_full":
+                    n_full += 1
+        if not seen:
+            rep.error(where, "a zone with no species is not a fauna record")
+        if n_birds and n_full * 2 > n_birds:
+            rep.warn(where, f"{n_full} of {n_birds} birds in this zone are in full song on "
+                            f"1 July. That is most of them, and by July most breeding birds "
+                            f"have stopped — check each one against its own July biology "
+                            f"rather than against the habitat")
+        check_attested(where, "zone", z, source_ids, rep)
+        zones[zid] = z
+
+    # A species is one animal wherever it appears; a binomial that changes
+    # between zones means two records that look like one to any renderer that
+    # keys on the id.
+    binomials: dict = {}
+    for zid, z in zones.items():
+        for sp in z.get("species") or []:
+            sid, b = sp.get("id"), sp.get("binomial")
+            if sid in binomials and binomials[sid][0] != b:
+                rep.error(f"fauna zone {zid}/{sid}",
+                          f"binomial '{b}' disagrees with '{binomials[sid][0]}' for the same "
+                          f"species id in {binomials[sid][1]}")
+            binomials.setdefault(sid, (b, zid))
+
+    total = sum(len(z.get("species") or []) for z in zones.values())
+    if total:
+        heard = sum(1 for z in zones.values() for s in z.get("species") or []
+                    if (s.get("july") or {}).get("presence", {}).get("value")
+                    if isinstance((s.get("july") or {}).get("presence"), dict))
+        unseen = sum(1 for z in zones.values() for s in z.get("species") or []
+                     if _fauna_val(s.get("july") or {}, "presence")
+                     in ("audible", "trace_only", "not_perceptible"))
+        gone = sum(1 for z in zones.values() for s in z.get("species") or []
+                   if str(_fauna_val(s.get("july") or {}, "status")).startswith("absent")
+                   or _fauna_val(s.get("july") or {}, "status") == "excluded_by_scope")
+        rep.note(f"fauna: {len(zones)} zone(s), {total} species record(s); {unseen} present and "
+                 f"NOT SEEN (audible, trace or imperceptible), {gone} recorded as absent or "
+                 f"withheld — liberty L2 in the data (of {heard} with an attested presence)")
+    return zones
+
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -3134,6 +4217,13 @@ def main() -> int:
     # and the third direction those two cannot see: a field of a source record
     # that never entered the interface at all
     check_source_surface(sources, rep)
+
+    # the vegetation records, and the July phenology rules they have to obey
+    check_flora(source_ids, field, rep, tally)
+
+    # the animal records, and the July gate they have to obey — the same
+    # argument as the flora phenology, one trophic level up
+    check_fauna(source_ids, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):
@@ -3390,6 +4480,26 @@ def run_site_check(rep: Report) -> None:
         if is_page_dir(d) and not (d / "index.html").exists():
             rep.warn("site", f"{d.relative_to(site.parent.parent)} is a page directory with "
                              f"no index.html — the bare URL will 404 on Pages")
+
+    # The flora manifest names its own files, and the renderer fetches exactly
+    # what it names — no probing — so a zone file that never reached site/ is a
+    # 404 on the deployed walkthrough while the dev tree renders perfectly. This
+    # is the failure mode publish.sh exists to prevent, checked rather than hoped.
+    index_path = FLORA / "index.json"
+    if index_path.exists():
+        try:
+            index = json.loads(index_path.read_text())
+        except json.JSONDecodeError:
+            return
+        wanted = ["index.json"] + [e.get("file") for e in index.get("zones", [])] \
+            + [e.get("file") for e in index.get("palettes", [])]
+        missing = [w for w in wanted if w and not (site / "data" / "flora" / w).exists()]
+        if missing:
+            rep.error("site", f"data/flora/ is not fully published: {len(missing)} file(s) "
+                              f"the manifest names are absent from site/, starting with "
+                              f"{missing[0]} — run tools/publish.sh")
+        else:
+            rep.note(f"site check: {len(wanted)} flora file(s) published")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,160 @@
+{
+  "id": "temple_building",
+  "phase": "frame_1833",
+  "name": "Temple Building",
+  "aka": [
+    "the First Baptist meeting house",
+    "Dr. Temple's building",
+    "Sproat's English and Classical School for Boys"
+  ],
+  "archetype": "frame_dwelling",
+  "asset": "gltf/temple_building__frame_1833.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "placement": {
+    "local_e": 220.66,
+    "local_n": -8.41,
+    "rotation_deg": 0.0,
+    "position_confidence": "inferred",
+    "symbolic_location": "South side of South Water Street near Franklin Street (today the south side of West Wacker Drive near North Franklin Street), in the Franklin-to-Wells block; fronting north onto South Water.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        9.144,
+        0
+      ],
+      [
+        9.144,
+        7.62
+      ],
+      [
+        0,
+        7.62
+      ]
+    ],
+    "confidence": "conjectural"
+  },
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "documented",
+      "sources": [
+        "baptisthistoryhomepage"
+      ],
+      "note": "'It was a two-story frame structure, the upper story for school, the lower for religious purposes, and cost about nine hundred dollars.' One of the very few storey counts in this dataset that is stated outright in a transcribed period text rather than inferred from a description or asserted by a modern summary."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "baptisthistoryhomepage"
+      ],
+      "note": "The source says 'frame' and no more. Both systems were available at Chicago in the summer of 1833 and the alternative is live enough to state: the building went up 'in a few weeks', and speed of erection is precisely what balloon framing was for - Augustine D. Taylor was raising St Mary's frame in the same weeks, a few blocks east. Braced frame is adopted as the conservative reading for a building whose framer is unnamed, the same argument peck_store and the Presbyterian church record make. In this archetype the choice is not cosmetic: a braced frame shows a girt line at the upper floor, which on a two-storey building is the single most legible exterior difference between the two systems."
+    },
+    "wall_height_m": {
+      "value": 4.9,
+      "confidence": "inferred",
+      "note": "No figure is attested. 4.9 m is about 16 ft: two storeys built up from the Green Tree Tavern's attested 7 1/2 ft ceiling plus floor structure and a sill course, which is the reading and very nearly the number this project gives its other two-storey frame buildings. What is inferred is that the height falls in this range, not that it is exactly 4.9 m."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "note": "Not attested. Gable is the near-universal roof form for a two-storey frame building of this period and region, and this archetype refuses a shed roof over a range this deep. Typological derivation."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "note": "No pitch is attested. 38 degrees is the mid-range this project uses for period gable framing across the dataset. Inferred from construction practice, not measured."
+    },
+    "plan": {
+      "value": "centre_passage",
+      "confidence": "conjectural",
+      "note": "INVENTED, and it is the archetype's vocabulary rather than the building's - the same admission the two church records make. A building with a worship room below and a school room above has no hall-and-parlour behind its front wall. centre_passage is chosen because it produces a symmetrical front with a centred door, which is what a plain public building looked like and what a stair to a separate upper storey implies. Nothing about the real door position, or about whether the school had its own outside stair, is attested."
+    },
+    "bays": {
+      "value": 3,
+      "confidence": "conjectural",
+      "note": "INVENTED. No source describes an opening on this building. Three - a centred door with one window either side, repeated above - is the plainest symmetrical front the archetype will build, and the archetype would otherwise derive three from the 30 ft frontage anyway, so the number is at least not inflated. It is still a guess about a facade nobody described."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "note": "Not attested. Unpainted weathered clapboard is the reading this project adopts for frame buildings whose finish is unrecorded, and it is positively supported nearby: the one 1833 Chicago church whose exterior finish IS attested, St Mary's, was expressly not painted, and the Sauganash's white paint was remarkable enough to be worth recording. Not attested either way."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "note": "Not attested. One is the minimum for a building holding a school through Chicago winters, which this one demonstrably did - Grenville T. Sproat opened his boys' school in the upper storey on 17 December 1833. THE RESIDUAL UNCERTAINTY IS THE KIND OF HEATING, NOT THE FACT OF IT: a box stove with a sheet-iron pipe is as likely as a masonry stack, and this archetype builds only the stack. The COUNT is the inference; the stack's position, size and material are the archetype's - docs/LIBERTIES.md L26."
+    },
+    "storey_uses": {
+      "value": "upper storey for school, lower storey for religious worship",
+      "confidence": "documented",
+      "sources": [
+        "baptisthistoryhomepage"
+      ],
+      "geometry": "record_only",
+      "note": "Documented and not a build instruction: no interior is modelled in this project, and the division leaves no external trace this archetype builds - not a separate outside stair, not a differently fenestrated upper storey. It is recorded because it is the whole point of the building and because it is what ties Sproat's school to this address."
+    },
+    "cost_usd": {
+      "value": 900,
+      "confidence": "documented",
+      "sources": [
+        "baptisthistoryhomepage"
+      ],
+      "geometry": "record_only",
+      "note": "'cost about nine hundred dollars'. Not a build instruction, but the ONLY quantitative fact this record has about the building's size, and the footprint above is derived from it against the two churches' attested cost-per-square-foot. If the footprint is ever corrected from a real dimension, this figure is what will have been wrong about the derivation, not the other way round."
+    },
+    "function": {
+      "value": "meeting_house_and_school",
+      "confidence": "documented",
+      "sources": [
+        "baptisthistoryhomepage",
+        "andreas_1884_v1"
+      ],
+      "note": "Both halves are documented in the same sentence - 'the upper story for school, the lower for religious purposes' - and both are corroborated from the other direction. Worship: 'With the exception of Rev. Jesse Walker's log house at the Point, this was the first house built for religious worship in Chicago', which also cross-checks this project's walker_meeting_house record. School: Andreas has Grenville T. Sproat opening his English and Classical School for Boys here on 17 December 1833 and it is operating in 1835 (docs/research/04-structures-south.md sections 5 and 9). Sproat is NOT on the Baptist transcription, which is why both sources are cited and neither is stretched."
+    },
+    "occupants": {
+      "value": "First Baptist Church Society; Grenville T. Sproat's English and Classical School for Boys in the upper storey",
+      "confidence": "documented",
+      "sources": [
+        "baptisthistoryhomepage",
+        "andreas_1884_v1"
+      ],
+      "note": "The First Baptist Church was organised on 19 October 1833 with nineteen members and Rev. Allen B. Freeman; Andreas calls this structure 'a small house of worship belonging to the First Baptist Church Society' by December 1833. Sproat's school is Andreas's. THE SHARED USE BY METHODISTS AND PRESBYTERIANS ENDED IN JANUARY 1834 and is not carried forward to the scene date: by 1835 the Presbyterians had their own building at Lake and Clark, which is a separate record here, and the Methodist meeting house is a north- or west-bank building (see walker_meeting_house and data/exclusions.json)."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3
+    },
+    {
+      "source_id": "baptisthistoryhomepage",
+      "citation": "\"Early Chicago Baptist Churches and Ministers.\" Baptist History Homepage. A verbatim transcription of A. T. Andreas, History of Chicago, Volume 1 (1884), pp. 315-325, from the Google Books scan, scanned and formatted by Jim Duvall.",
+      "url": "https://baptisthistoryhomepage.com/illinois.chicg.bp.chs.mns.html",
+      "archived_url": "https://web.archive.org/web/20240526195448/http://baptisthistoryhomepage.com/illinois.chicg.bp.chs.mns.html",
+      "tier": 4
+    },
+    {
+      "source_id": "osm_streets_2026",
+      "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+      "url": "https://www.openstreetmap.org/",
+      "archived_url": "https://overpass-api.de/",
+      "tier": 4
+    }
+  ],
+  "research_note": "THE THIRD OF THE TOWN'S THREE WORSHIP BUILDINGS AND THE ONLY ONE THAT WAS ALSO A SCHOOL, which is why it belongs in this parcel twice over. WHAT IS DOCUMENTED IS UNUSUALLY GOOD FOR ITS TYPE - two storeys, frame, the use of each storey, a cost, and a standing-by date fixed by a third party's arrival - and comes through a transcription (baptisthistoryhomepage) that states its source exactly, 'Andreas, History of Chicago, Volume 1, 1884, pp. 315-325', and keeps the print page numbers inline. That checkability is why this record cites that page rather than paraphrasing it, and it is also why any load-bearing claim here is cheap to collate against the volume and should be. WHAT IS NOT DOCUMENTED IS EVERY DIMENSION, so the footprint is derived from the cost against the two churches - the arithmetic is written out in the footprint note precisely so a later source can knock it down in one line. THE PRECISION THE DOSSIER SOFTENED IN THE WRONG DIRECTION IS THE POSITION. The page says 'NEAR the corner of Franklin and South Water streets'; docs/research/04-structures-south.md renders that as 'corner of Franklin and South Water' at lines 130 and 220. This record does not follow it: the position is inferred, the quadrant is argued rather than asserted, and the direction of the likely error is stated. THE BAPTIST BUILDING CAMPAIGN GUARD STILL HOLDS: Andreas records 'a severe windstorm on November 4 demolished one of the walls of the First Baptist church, then being erected' with an unresolved year, and the congregation's own purpose-built church at Washington and LaSalle is 1844-45. Neither belongs in July 1835 and no Baptist construction site is modelled. ARCHETYPE CHOICE, STATED BECAUSE IT IS ITSELF A LIBERTY. The schema offers an `institutional` archetype and there is no generator behind it, so a record using it would compile a sidecar pointing at a GLB that does not exist and the building would be invisible in the walkthrough. `frame_dwelling` is used instead because it is the only archetype in the project that builds a plain single-range frame box with a gable roof and nothing else: `frame_tavern` carries a public house's gallery and bar-room frontage, `frame_storefront` carries a shopfront, `outbuilding` carries a stable's door and refuses a storey count. WHAT THE SUBSTITUTION COSTS is the facade: frame_dwelling puts the door in the long eaves-front wall and sets the openings out on a house's bay module, where a meeting house of these years normally had its door in the gable end. This is recorded in docs/LIBERTIES.md and the affected attributes (`plan`, `bays`) are tagged conjectural.",
+  "research_doc": "docs/RESEARCH/temple_building.md",
+  "review_required": false
+}

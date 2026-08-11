@@ -1,304 +1,305 @@
-# Fort Dearborn — research dossier
+# Fort Dearborn on 1835-07-01
 
-**Record:** none yet · **Scene status:** standing and **garrisoned** on 1835-07-01 · **S5a, the
-next building — and it is a complex, not a building**
-
-`docs/ROADMAP.md` § S5a blocked this parcel on two questions and said to answer them before
-anything is drawn: **what the fort actually was on 1835-07-01**, and **where a footprint could
-possibly come from**, given that Wright 1834 labels the reservation and draws no plan. This memo
-answers the first and reports honestly on the second, which is not answered — it is narrowed from
-"nothing" to three named candidates with a work order against each. No record is written here and
-no geometry is proposed; see § 8 for why that is the right stopping point.
+Research memo for the `fort_dearborn_*` records and `chicago_lighthouse_1832`.
+Written 2026-08-11. Where sources disagree the disagreement is set out and the reading
+is chosen with reasoning, per `AGENTS.md`.
 
 ---
 
-## 1. The two answers, up front
+## 1. The question this memo had to answer first
 
-**On 1 July 1835 Fort Dearborn was an occupied United States Army post, commanded by Major John
-Greene.** Not a ruin, not a caretaker's compound, not empty. Greene took command on 18 December
-1833 and held it until 16 September 1835, when Brevet-Major De Lafayette Wilcox resumed for the
-second of his two periods. Three independently written accounts agree the fort was occupied
-through 1835, and one piece of paper proves it: the post surgeon's prescription book has an entry
-for Sergeant Joseph Adams dated **15 March 1835**.
+`docs/ROADMAP.md` § S5a set two gates before any geometry:
 
-**The footprint is still unsourced, and the best candidate is not a picture — it is a plat.** In a
-report dated 21 November 1840 the War Department's agent names the platted lots that were held
-back from the sale of the reservation because they covered "the fortress of Fort Dearborn *within
-the pickets*". Those lots are in the Fort-Dearborn Addition, surveyed and recorded in 1839. A
-surveyed lot boundary is a different kind of evidence from a drawn banner, and it is the only
-route to an outline found so far. § 7 sets out what it would and would not settle.
+1. **Find a plan source.** Wright 1834 labels the reservation and draws no fort, so the
+   palisade, blockhouses, barracks, magazine and parade had to come from somewhere else.
+2. **Settle what the fort WAS on the scene date**, because an occupied fort and an empty
+   one are different scenes.
 
-## 2. Sequence
+Both are answered below. The first is answered better than expected — a plan exists and
+it is a U.S. engineer's survey. The second is answered completely.
 
-| date | event | source |
-|---|---|---|
-| July 1816 | Capt. **Hezekiah Bradley**, two companies of infantry, builds the second fort on the site of the first, "somewhat larger and on a different plan" | Andreas 83 |
-| May 1823 | troops withdrawn; the Indian agent takes charge of the fort | Andreas 83; Chicago Magazine 1857 |
-| early July 1827 | Winnebago scare — the fort is **without military occupation**, occupied by the agent and by civilian families | Hubbard, in Andreas 263-264 |
-| Sept 1827 | lightning burns **the soldiers' barracks, the store-house and part of the guard-house** during a dance | Hubbard, in Andreas 264 |
-| Oct 1828 | garrisoned again under Major John Fowle | Andreas 84; Chicago Magazine 1857 (10 Aug 1828, volunteers first) |
-| **May 1831** | **troops withdrawn to Green Bay**; the fort left with an agent | Andreas 84; Chicago Magazine 1857 |
-| June 1832 | re-garrisoned for the Black Hawk war, **Major William Whistler** commanding | Andreas 84 |
-| 8 July 1832 | Gen. Scott arrives off the fort by steamer | Andreas 84 |
-| May 1833 | Capt. **John Fowle** succeeds Whistler, about one month | Andreas 84; Wentworth 33 |
-| 19 June 1833 | **Major George Bender** commandant; begins the harbour work | Wentworth 34 |
-| 31 Oct 1833 | Bender resigns from the army | Wentworth 34 |
-| **18 Dec 1833** | **Major John Greene** takes command | Wentworth 35; Andreas 84 |
-| 28 May 1835 | J. B. Beaubien's pre-emption claim to the **Fort Dearborn Reservation** is allowed at the Chicago land office — while the troops are still in the fort | Andreas 85; Wentworth 39-40 |
-| **1835-07-01** | **scene date — occupied post, Greene commanding** | — |
-| 16 Sept 1835 | Brevet-Major **De Lafayette Wilcox** resumes command, to 1 Aug 1836 | Wentworth 35; Andreas 84 |
-| 1 Aug 1836 | Brevet-Major **Joseph Plympton**, the last commandant, arrives | Wentworth 35 |
-| **29 Dec 1836** | **the soldiers are withdrawn** to Fort Howard, under Macomb's order of 30 Nov 1836 | Wentworth 35; Andreas 84 |
-| June or July 1837 | Plympton leaves; the post is finally given up | Wentworth 35 |
-| summer 1856 | officers' quarters and soldiers' barracks pulled down; the block-house weeks later | Chicago Magazine 1857 |
+---
 
-## 3. The load-bearing passages
+## 2. What the fort was on 1835-07-01
 
-Andreas, *History of Chicago* vol. 1, pp. 83-84, on the fort as Bradley rebuilt it:
+**Occupied, garrisoned, and maintained.** The chain, from Andreas vol. 1 p. 84 unless
+noted:
 
-> "The fort, as rebuilt, consisted of **a square stockade** inclosing barracks, quarters for the
-> officers, magazine and provision-store, and was defended by **bastions at the northwest and
-> south-east angles**. The **block-house was in the southwest corner**. The officers' quarters were
-> on the west side and the soldiers' barracks on the east side. It had **two gates, one on the north
-> and the other on the south side**."
-
-Gurdon S. Hubbard, describing the fort as he found it in July 1827, in Andreas vol. 1 pp. 263-264:
-
-> "Dr. Alexander Wolcott, Indian Agent, had charge of the fort, living in **the brick building, just
-> within the north stockade**, previously occupied by the commanding officers. The **old officers'
-> quarters built of logs on the west**, and within the pickets, were occupied by Russel E. Heacock,
-> and one other American family, while a number of *voyageurs* with their families were living in
-> **the soldiers' quarters, on the east side of the inclosure**. **The store-house and guard-house
-> were on either side of the southern gate**; the **sutler's store was east of the north gate**, and
-> north of the soldiers' barracks; the **block-house was located at the southwest and the bastion at
-> the northwest corners** of the fort, and **the magazine, of brick**, was situated about half way
-> between the west end of the guard and block-houses."
-
-Wentworth, *Early Chicago. Fort Dearborn*, p. 35 — the sentence that answers the scene-date question:
-
-> "December 18th, 1833, Major John Greene, heretofore alluded to, was sent back as successor of
-> Major George Bender, in command of the post, **who continued here until September 16, 1835**."
-
-Wentworth, p. 35, on the end, which is not one date but two:
-
-> "The last commandant of the post was Brevet-Major Joseph Plympton, from Massachusetts, arriving on
-> August 1st, 1836. **He remained at the Fort until June or July, 1837, although the soldiers were
-> withdrawn on December 29th, 1836**, in accordance with the following order of Major-General
-> Alexander Macomb, dated November 30th, 1836: 'The troops stationed at Fort Dearborn, Chicago, will
-> immediately proceed to Fort Howard and join the garrison at that post. Such public property as may
-> be left at Fort Dearborn will remain in charge of Brevet-Major Plympton, of the 5th Infantry, who
-> will continue in command of the post until otherwise instructed.'"
-
-Wentworth, pp. 31-32 footnote, on the surgeon's prescription book, now with the Chicago Historical
-Society:
-
-> "It is entitled 'Medical Prescription Book of U. S. Army used at Fort Dearborn.' … it is in good
-> condition **from November, 1832, until the evacuation of the Fort, December 29, 1836**. Dr. Philip
-> Maxwell came to the Fort as surgeon, February 3, 1833, and left at the evacuation. … Sergeant
-> Joseph Adams … **was prescribed for on the 15th of March, 1835**."
-
-**Gurdon S. Hubbard to John Wentworth, Chicago, 20 July 1881** (Wentworth pp. 86-87), criticising
-the cut "Fort Dearborn and Chicago in 1831" printed in *Wau-Bun*. This is the single most useful
-document found for this parcel, and every clause of it is a constraint:
-
-> "The view appears to be from the north-east, as **the enclosure of the Fort was nearly north and
-> south, east and west**. …
-> Fort Dearborn is represented as located on a high elevation, much above the Kinzie House. This is
-> incorrect, as **the ground at the Fort was not over eight feet above the River at its lowest
-> stage**, while the Kinzie House was two or three feet higher than the Fort.
-> There was no sharp point in front of the Fort, north, as shown in the cut. The slope to the River
-> was gradual. **At no place fronting the north line of pickets was there over 80 feet to the water's
-> edge; and at the narrowest point, opposite the north gate, from 50 to 60 feet.** …
-> The cut shows the Block-House to be the highest building. **It was considerably lower than the
-> officers' or soldiers' quarters.** The brick building, erected in about 1824 or '25, not shown in
-> this cut, was the most prominent structure. **It was located about 10 feet south of and parallel
-> with the north picket, and about 10 or 15 feet west of the north gate.** It was within the Fort
-> enclosure … **There was no fence along the River edge, east of the stockade.** …
-> From the piazza, **the inside of the Fort was visible through to the south gate**."
-
-Matthew Burchard, agent of the War Department, report of 21 November 1840, quoted at Wentworth p. 42:
-
-> "By the official plat herewith enclosed, it will be seen that **block 1, and lots 8, 9, and 10 in
-> block 2, lots 1, 2, 3, 4, 5, and 6 in block 4, and lots 1, 2, 3, 4, and 5 in block 5**, are colored
-> blue. These were reserved from sale, and **embrace all the grounds occupied by the light-house,
-> keeper's dwelling, and fortress of Fort Dearborn within the pickets, including the officers'
-> quarters and barracks**."
-
-## 4. The evacuation date: three statements, one reconciliation
-
-This project's rule is to record a disagreement rather than pick quietly. Andreas contradicts
-himself twice inside one volume:
-
-| where | what it says |
+| | |
 |---|---|
-| Andreas 84 | the troops "were permanently withdrawn" **29 December 1836**, with Macomb's order printed |
-| Andreas 162-163 ("Late Threads of Fort Dearborn History") | "the evacuation of Fort Dearborn as a military post, **in 1836**" |
-| Andreas 264 (military chapter) | garrisoned from October 1828, but for May and part of June 1832, "until its final evacuation, **May 10, 1837**" |
+| garrison withdrawn | 1823 |
+| re-garrisoned | October 1828 |
+| troops removed to Green Bay | May 1831 |
+| **re-garrisoned, Black Hawk War** | **June 1832** — "In June the fort was once more garrisoned. Major William Whistler being assigned to the command" |
+| held continuously | to **29 December 1836**, when the troops were permanently withdrawn under a printed order |
 
-Wentworth p. 35 dissolves it, and the reconciliation is worth more than either date: **the soldiers
-went on 29 December 1836 and the post was not given up with them.** Plympton stayed in command of
-the property "until June or July, 1837". A writer describing the garrison gives the December date;
-a writer describing the post gives a date in 1837. Andreas' military chapter also flattens the
-1831-1832 gap that his own page 84 states in detail, which is the ordinary hazard of a summary
-sentence written in a different chapter from the evidence.
+So the common belief that the fort stood empty in the mid-1830s is wrong, and this
+project's brief carried a version of it. **On 1835-07-01 the post is held.**
 
-**None of this touches the scene.** Every account has the fort occupied on 1 July 1835, and the two
-that give a month-by-month roll agree on who was commanding.
+**Who commanded.** Andreas brackets rather than states: DeLafayette Wilcox "commanded
+until December 18, 1833, and again from September 16, 1835", with "Major John Bender,
+Major John Greene and Captain and Brevet-Major Joseph Plympton … in command at various
+times" in between. The drloihjournal chronology fills the bracket with **Maj. John
+Greene, 5th Infantry, 18 December 1833 – 16 September 1835**, which lands exactly inside
+Andreas's two dates. That is the reading the records carry, graded `inferred`, with both
+sources cited and the unfootnoted one named as such.
 
-## 5. What is known about the plan
+**How many men is not attested.** Andreas gives two companies of U.S. infantry in 1833
+and nothing later. No strength figure for mid-1835 was found, so none is recorded. The
+often-quoted "about fifty in number, many of whom were invalids" is the **first** fort —
+see § 6.
 
-Three descriptions, none of them a plan, and they agree on more than they disagree:
+**Condition.** No source reports dilapidation before the late 1830s. "In decay" language
+belongs to the years after the army left. The fort is modelled serviceable, with its
+gates shut, because a shut gate is a claim about a garrison being present and an open one
+is a claim about the hour of the day.
 
-| element | Andreas 83-84 (as rebuilt, 1816) | Hubbard (as found, July 1827) | 1855 woodcut key (chicagology) |
+**One live event, five weeks old on the scene date.** Jean Baptiste Beaubien bought the
+entire Fort Dearborn Reservation at the land office on **28 May 1835** for $94.61,
+recorded 26 June. The purchase was voided years later by *Wilcox v. Jackson*. It changes
+nothing about the buildings and everything about the mood of the place; it is context,
+not geometry.
+
+---
+
+## 3. The plan source, and what it is worth
+
+**Found.** *Map of the Mouth of Chicago River, drawn by F. Harrison Jr., Ass't U.S. Civil
+Engineer, for the Purpose of showing the proposed Harbor Improvements … The original
+received and approved by William Howard, U.S. Civil Engineer, February 24, 1830*,
+reproduced in **Andreas, History of Chicago, vol. 1, p. 113** — listed in that volume's
+own table of maps as "Fort Dearborn in 1830-32". Recorded as
+`data/sources/harrison_1830_river_mouth.json`; the page image is Internet Archive leaf
+`n242` of `historyofchicago01andr`.
+
+It draws the fort **in plan**: a quadrangular picket enclosure, a work at three of its
+four angles, four ranges of buildings set against the walls, two small buildings flanking
+a break in the south wall, and a heavier block outside the south-west angle. It also names
+the ground around it — *Garden for the Garrison*, *Cultivated Field belonging to The
+Fort*, *Big Barn with Cupola*, *Wash house*, *Well*, *Shop*, *Gate*, *Out Buildings*,
+*U.S. Factor's House*, *Fort Cemetery*, the *Ferry*, and the Kinzie house opposite.
+
+**Three limits, all of them stated on the source record.**
+
+- The plate says on its own face that it carries "**additions and changes … suggested by
+  the Memory of Early Settlers**". Period survey plus fifty-year-old recollection, mixed
+  on the plate with no way to separate them. Nothing taken from it is graded `documented`.
+- **There is no scale bar.**
+- It is 1830, five years before the scene date.
+
+**The scale.** Derived, not read: set the north range equal to the commandant's quarters
+at "about 25 × 50 ft" from the 1855 photograph key, giving **1.10 ft per pixel** of the
+archive.org page image (0.335 m/px). Two independent checks on the same plate:
+
+| check | plate | source | agreement |
 |---|---|---|---|
-| enclosure | "a square stockade" | pickets; "inclosure" | — |
-| orientation | — | **"nearly north and south, east and west"** (1881 letter) | — |
-| block-house | southwest corner | southwest corner | present, undimensioned |
-| bastions | **northwest and south-east angles** | "the bastion at the northwest" — **one, not two** | — |
-| officers' quarters | west side | log, on the west, within the pickets | wood, about 30 × 60 ft, at the **north-west corner** |
-| commandant's | — | **brick, just within the north stockade** | brick, about 25 × 50 ft |
-| soldiers' barracks | east side | east side of the inclosure | — |
-| gates | north and south | north and south | north gate lettered |
-| store-house, guard-house | — | either side of the southern gate | — |
-| sutler's | — | east of the north gate | present |
-| magazine | inside | brick, midway between the west end of the guard- and block-houses | — |
-| parade | — | — | 80 × 200 ft |
+| commandant's quarters, length : depth | 1.9 : 1 | 2.0 : 1 (25 × 50 ft) | 5 % |
+| gap between the west and east ranges | 71 ft | 80 ft parade width (1855 key) | 11 % |
 
-**The one disagreement is the south-east bastion.** Andreas gives two bastions, Hubbard names one.
-Hubbard was inside the fort and Andreas was compiling fifty years later, but Hubbard is being
-narrative rather than exhaustive — he is explaining where a fire started — so this is not a
-contradiction that can be settled by weighing witnesses. It is settled by a plan, if one is found.
-Until then a record would have to tag the south-east bastion `inferred` at best, with both readings
-in the note.
+So **±20 %** on every dimension derived this way, on top of the ±20 m the datum carries.
+The fort's stockade comes out **about 53 m (174 ft) square** — somewhere between 140 and
+210 ft on a side.
 
-**Do not confuse three different enclosures.** This is the trap this parcel most obviously offers:
+**Rotation.** The fort's four walls are drawn a mean **8° clockwise of true north**,
+measured against the sheet's own north arrow, which sits within 0.2° of vertical once the
+leaf is rotated 90°. Eight degrees is inside what a woodcut can invent, so it is
+`inferred` — but a square post whose four walls all lean the same way by the same amount
+is more likely to be a fort that was not square with the meridian than an engraver who
+tilted four lines consistently. The fort sat on a river bank inside a bend and had no
+grid to align to.
 
-1. **The 1816 stockade** — pickets, bastions, the thing an 1835 visitor walked into. No dimension
-   survives in anything read here.
-2. **The 1850 compound** — Wentworth's footnote at pp. 43-44 describes a parade "about 80 feet wide,
-   and extended from the river bank south, the full length of the enclosure — say 400 feet", and in
-   the same breath says "**the whole Fort enclosure was surrounded by a rough-board fence,
-   white-washed, about 6 feet high; the pickets having been removed at an earlier date**". That is
-   the post-army compound of a demolished fort. Its 400 ft is not the palisade.
-3. **The reservation** — the military tract, 53¼ acres by Burchard's 1839 survey, against about 84¾
-   on the original official plat, the difference put down to the lake eating the shore (Wentworth
-   39-40). This is what Wright 1834 labels, and it is roughly two orders of magnitude larger in area
-   than the fort. `docs/ROADMAP.md` § S2e already warns against inferring a stockade outline from
-   that banner; the numbers say how far wrong it would be.
+**No dimension of the second fort exists in the literature.** Quaife's *Chicago and the
+Old Northwest* (1913) is the standing monograph — its title page says "together with a
+History of Fort Dearborn" — and he had the War Department files. He prints Captain
+Whistler's measured 1808 draught of the **first** fort in full, with its scale ("twenty
+feet to the Inch") and its distances ("From the northwest corner of the stockade to the
+river was a distance of eighty feet"), and states **no dimension of the 1816 fort
+anywhere**. Searched on `stockade`, `palisade`, `blockhouse`, `parade`, `second fort`.
+The absence is in the literature, not in the searching.
 
-## 6. What Hubbard's letter fixes that no picture does
+---
 
-Read as a specification rather than as a correction, the 1881 letter carries four constraints, and
-between them they do most of what a footprint would do:
+## 4. The arrangement, and why it is the strongest thing here
 
-- **Orientation.** The enclosure ran with the cardinal directions. Every other structure in this
-  dataset carries a facade bearing argued from a street line; this one is stated.
-- **Position, against a line this project has already traced.** The north picket line stood **no
-  more than 80 ft from the water's edge, and 50-60 ft opposite the north gate**. The 1834 south
-  bank at the bend is in `data/traces/vectors/wright_1834_east.json` and
-  `data/terrain/epochs/e1834_harbor_cut/shoreline.geojson`. An offset from a traced line is a far
-  better placement than a label's centroid — but note the shape of the claim: it fixes the fort's
-  NORTH edge and says nothing about how far south the stockade ran.
-- **Height.** "Not over eight feet above the River at its lowest stage." The whole vertical datum
-  here hangs off a conjectural 1835 lake stage (STATUS § 7), and the modelled land relief across the
-  entire 640 m box is 4.30 ft. A fort platform up to 8 ft above low water is **taller than every
-  landform in the current terrain**, which is a finding about the terrain as much as about the fort,
-  and it belongs to whoever takes S2e parcel (b).
-- **A sight line.** North and south gates were on one line through the enclosure, seen from the
-  Kinzie house piazza across the river. That constrains the gates to the same axis and, weakly, the
-  parade to the middle.
+Two witnesses, twenty-eight and three years apart, describe the same fort building by
+building. The 1830 plan satisfies every clause of the earlier one.
 
-And one negative: **the *Wau-Bun* cut of "Fort Dearborn and Chicago in 1831" is wrong** in the
-elevation of the ground, the sharp point of land, the relative height of the block-house, and the
-absence of the brick building — corrected by a man who had walked through both gates.
-`kinzie_waubun_1856` is a source of this project. Nothing has been traced from that illustration and
-nothing may be.
+**Gurdon S. Hubbard, of the fort in July 1827** (Andreas vol. 1, p. 264, quoting Fergus'
+Historical Series No. 10):
 
-## 7. The footprint: three candidates, ranked
+> the brick building, just within the north stockade previously occupied by the
+> commanding officers. The old officers' quarters built of logs on the west, and within
+> the pickets, were occupied by Russel E. Heacock … while a number of voyageurs with
+> their families were living in the soldiers' quarters, on the east side of the
+> inclosure. The store-house and guard-house were on either side of the southern gate;
+> the sutler's store was east of the north gate, and north of the soldiers' barracks; the
+> block-house was located at the southwest and the bastion at the northwest corners of
+> the fort, and the magazine, of brick, was situated about half way between the west end
+> of the guard and block-houses.
 
-Nothing found gives the stockade's dimensions. What was found is where to look, and the ranking is
-by what each could actually license.
+**Andreas, of the rebuilt fort** (vol. 1, p. 84):
 
-1. **The Fort-Dearborn Addition plat, 1839** (surveyed by Burchard's order, recorded 17 June 1839,
-   Book H of Maps p. 120 — Andreas 162-163). **Best candidate.** Burchard's own report names the lots
-   covering "the fortress of Fort Dearborn within the pickets", so the union of block 1, lots 8-10
-   in block 2, lots 1-6 in block 4 and lots 1-5 in block 5 is a *surveyed* envelope around the
-   stockade, three years after the troops left and while the buildings still stood. What it gives is
-   an **upper bound with a legal boundary**, not the picket line: the same reservation covers the
-   light-house and the keeper's dwelling, and the lots were drawn for a land sale rather than around
-   a palisade. The work is to find the plat, georeference it against the datum (the Addition's
-   streets survive in the modern grid, which is what makes it fittable), and read the blue lots.
-2. **Henry Hart, "Fort Dearborn, City of Chicago", surveyed and published 1853.** Named on
-   `chicagology_prefire276` and not yet located. A survey of the fort by a civil engineer, seventeen
-   years after the army left and three years before demolition, would carry the compound of § 5's
-   case 2 — the board fence, not the pickets — but a surveyor measuring standing buildings would
-   give the buildings' own plan, which no other source does.
-3. **A War Department plan.** The first fort has one (Whistler's 1808 plan, National Archives); the
-   rebuilt fort has not been looked for in the same series. Post returns and quartermaster records
-   for 1816-1836 are the place to ask.
+> The fort, as rebuilt, consisted of a square stockade inclosing barracks, quarters for
+> the officers, magazine and provision-store, and was defended by bastions at the
+> northwest and southeast angles. The block-house was in the southwest corner. The
+> officers' quarters were on the west side and the soldiers' barracks on the east side.
+> It had two gates, one on the north and the other on the south side.
 
-**Ruled out, with reasons, so nobody re-runs them.** Wright 1834 and Hathaway 1834 label the
-reservation and draw no plan (already established in ROADMAP § S2e, and re-confirmed here by the
-absence of any dimension in the sheets' own annotations). *Wau-Bun*'s cut is a picture, and a
-demonstrably wrong one (§ 6). Currey's *The Story of Old Fort Dearborn* (1912) is about the FIRST
-fort and the massacre; it disposes of the second in one preface sentence and gives no dimension, no
-plan and no garrison detail — read in full and returned nothing.
+**Juliette Kinzie, living in it in 1831** (Wau-Bun ch. XVII):
 
-## 8. Why no record is written in this slice
+> The fort was inclosed by high pickets, with bastions at the alternate angles. Large
+> gates opened to the north and south, and there were small posterns here and there for
+> the accommodation of the inmates. … Beyond the parade-ground, which extended south of
+> the pickets, were the company gardens, well filled with currant-bushes and young
+> fruit-trees. … The bank of the river which stretches to the west … was then occupied by
+> the root-houses of the garrison.
 
-Three reasons, in the order they bite:
+An 1830 engineer's plan and an 1827 eyewitness agreeing building by building on the same
+sides of the same two gates is what licenses `inferred` rather than `conjectural` for
+every position in the complex.
 
-1. **There is no ground to put it on.** The modelled terrain box stops at local E +320 and the fort
-   site is at E +1152 (ROADMAP § S2e). A structure record compiles an `asset` path into the scene,
-   so a record without its bake is a 404 the smoke correctly fails on — and a bake needs Blender,
-   which the improve runner does not have.
-2. **A footprint would be an invention of the worst kind here.** Every placeholder outline in this
-   dataset is a small building's; this one would be a stockade, a parade and up to nine elements,
-   all of it conjectural, all of it the most conspicuous object in the scene. `docs/ROADMAP.md`
-   § S5a says find the source first, and the source is identified but not yet read.
-3. **It is a complex.** Palisade, bastions, block-house, magazine, commandant's brick house,
-   officers' quarters, soldiers' barracks, store-house, guard-house, sutler's store, gates, parade.
-   Several records and several bakes, per ROADMAP § S5. The evidence in § 3 is enough to *populate*
-   most of those and not enough to *place* any of them relative to each other beyond a compass
-   quarter.
+**One piece of reasoning decided two records.** Hubbard says the store-house and the
+guard-house flank the south gate and does not say which is which; the plan draws two
+buildings there and does not letter them. His next clause puts the magazine "about half
+way between the west end of the guard and block-houses", and the block-house is at the
+south-west angle. **That sentence only describes a real gap if the guard-house is the
+western of the two.** So the guard-house takes the west building, the store-house the
+east, and the magazine goes in the gap between the guard-house and the block-house. If
+the assignment is wrong the two small buildings swap and nothing else moves.
 
-What this slice therefore lands is the evidence, in the shape the next slice needs it: the sources,
-this memo, and the corrections to the roadmap's own statement of the parcel.
+**Buildings modelled** (14 records; sizes as built):
 
-## 9. Consequences for the scene, if and when it is built
+| record | side | size | footprint grade |
+|---|---|---|---|
+| `fort_dearborn_palisade` | the enceinte | 53 × 53 m | inferred |
+| `fort_dearborn_commandants_quarters` | north, west of the gate | 15.24 × 7.62 m | **documented** |
+| `fort_dearborn_sutlers_store` | north-east | 15.0 × 6.4 m | inferred |
+| `fort_dearborn_officers_quarters` | west | 18.29 × 9.14 m | inferred |
+| `fort_dearborn_barracks` | east | 27.6 × 11.0 m | inferred |
+| `fort_dearborn_guard_house` | south, west of the gate | 10.9 × 4.2 m | inferred |
+| `fort_dearborn_store_house` | south, east of the gate | 12.2 × 4.4 m | inferred |
+| `fort_dearborn_magazine` | south-west, inside | 4.6 × 3.7 m | conjectural |
+| `fort_dearborn_blockhouse` | south-west angle | 14.5 × 9.8 m | inferred |
+| `fort_dearborn_artillery_house` | east, south end | 8.0 × 5.0 m | conjectural |
+| `fort_dearborn_parade` | the court | 21.8 × 33.2 m | inferred |
+| `fort_dearborn_root_house` | river bank, west | 5.0 × 3.6 m | conjectural |
+| `fort_dearborn_garrison_garden` | south-west, outside | 77 × 77 m | inferred |
+| `chicago_lighthouse_1832` | north-west, outside | 5.6 m dia. | conjectural |
 
-- **The fort is inhabited on 1 July 1835.** Whatever v1's standing rule about human figures
-  (AGENTS.md), the *built* state is an active post: gates, a flag, a garrison's outbuildings, and —
-  by the 1857 account — a kitchen garden and stables inside or against the enclosure. An empty
-  stockade would be as much a claim as a populated one.
-- **The reservation had just been sold out from under it.** Beaubien's pre-emption claim to the
-  whole tract was allowed on 28 May 1835, five weeks before the scene date, and was litigated to the
-  U.S. Supreme Court and lost. On the scene date the land under the fort is contested, which is a
-  fact about the place rather than about the geometry, and belongs in the record's research note.
-- **The 1827 fire matters for what stood in 1835.** The soldiers' barracks and the store-house burned
-  in September 1827 and the fort was regarrisoned in October 1828; both are present again in the 1850
-  view and in the 1856 demolition notice, so they were rebuilt between those dates. **Nothing read
-  says when or to what plan.** A record must not carry the 1816 arrangement forward through that
-  fire without saying so.
-- **The harbour cut of 1833-34 is between the fort and the lake.** The fort's relationship to the
-  water on the scene date is to the *new* channel, not the old southward one — which is already
-  traced (`shoreline.geojson`) and is what makes Hubbard's 50-80 ft offset usable.
+---
 
-## 10. Open threads, in priority order
+## 5. The parade ground: two sources on one page, differing by a factor of two
 
-1. **Find the Fort-Dearborn Addition plat of 1839** and read Burchard's blue lots (§ 7.1). This is
-   the footprint thread and everything else is behind it.
-2. **Trace the dimensioned woodcut caption** ("the parade-ground, 80 × 200 ft.") to its original
-   publication. It is not in Andreas vol. 1 and chicagology does not attribute it. Until it is
-   traced, those three dimensions cannot be cited.
-3. **Settle the south-east bastion** (§ 5). Two bastions or one.
-4. **When were the pickets removed?** Wentworth's footnote says only "at an earlier date" than 1850.
-   If it was before 1836 it changes nothing for this scene, but the sentence is the only evidence
-   that the palisade had a life shorter than the fort's.
-5. **What was rebuilt after the 1827 fire, and when.** Post returns or the quartermaster series.
-6. **The garrison's size in 1835.** Wentworth prints the pre-massacre muster rolls in full and
-   nothing comparable for the 1830s; the returns exist in the War Department series.
+- **1855 photograph key**: "C is the parade-ground (**80 × 200 ft**)."
+- **Robert Fergus, of the fort in 1850**: "about **80 feet wide**, and extended from the
+  river bank south, the full length of the enclosure — say **400 feet**."
+- **The 1830 plan**: the court between the four ranges measures about **71 × 109 ft**.
 
-**Two things NOT to spend time on again.** Currey 1912 (§ 7) and the modern encyclopaedia entries,
-which repeat "evacuated 1836" without the December date, without Plympton's residual command, and
-without anything about the plan.
+`docs/research/04-structures-south.md` records only the first, as `[DOC]`. It is graded
+**`inferred`** on the record, with the disagreement written on the footprint.
+
+The reconciliation this project adopts, stated as an argument and not a finding: the
+**width** agrees across all three (71, 80, 80), which is the check that the derived scale
+is reading the plate. The **length** does not, and the likeliest reason is that both
+later figures describe the compound **after the stockade came down** — Fergus says in
+terms that his 400 ft runs "from the river bank south, the full length of the enclosure",
+and by 1850 the "enclosure" was a whitewashed board fence, not the pickets. A third
+witness supports the split: Kinzie, inside the stockaded fort in 1831, says the parade
+"extended south of the pickets", so there was drill ground outside the south gate as well
+as court inside. **That outside ground is not modelled** — nothing gives its extent.
+
+---
+
+## 6. The wrong-fort trap, and two corrections to this project's own dossier
+
+The single largest hazard in this subject is that the most detailed published description
+of "Fort Dearborn" is of the fort that burned in 1812. The passage — two blockhouses at
+the south-east and north-west corners, a sally-port to the river, a strong palisade of
+wooden pickets, the two-storey log U.S. factory west of the fort, the root-houses between
+fort and factory, the garden on the south side, three pieces of light artillery, and "A
+company of United-States troops, about fifty in number, many of whom were invalids" —
+closes with the sentence **"Such was the old Fort previous to 1812."** John H. Kinzie
+says the same thing from the other direction: the first fort, "although it stood upon the
+same ground as the last Fort, … was differently constructed."
+
+**What that excludes**, all now in `data/exclusions.json`: the first fort itself
+(`fort_dearborn_first_1803`), the sally-port (`fort_dearborn_sally_port`), the three
+artillery pieces and the fifty invalids (`fort_dearborn_artillery_pieces_1812`).
+
+**Correction 1 — the sally-port.** `docs/research/04-structures-south.md` § 1.2 tags it
+`[DOC]` as "attested for the 1816 fort's north side". The page it cites is describing the
+pre-1812 fort, and Whistler's own 1808 index lists the feature as "N. 33 Covered Way to
+procure Water". No source reached attests a sally-port at the second fort.
+
+**Correction 2 — the officers' quarters were not brick.** The same dossier section reads
+Andreas as giving "Officers' quarters — brick buildings on the west" and flags a conflict
+with the 1855 key's "wood". Andreas p. 84 states **no material** for them; Andreas p. 264
+— Hubbard's own words — says **logs**. The conflict was a misreading of a page, and the
+two sources agree. What is genuinely brick is the **commandant's quarters** (Hubbard and
+the 1855 key, independently) and the **magazine** (Hubbard).
+
+**Correction 3 — there is no hospital building.** § 1.2 lists a hospital among the fort's
+structures. The only hospital in the sources is the fort *becoming* a general hospital on
+11 July 1832 during the cholera — a use of the existing buildings while the officers
+camped outside — and the U.S. Marine Hospital of 1848+, which is the vantage point of the
+1855 photograph. Excluded as `fort_dearborn_hospital`; **no hospital is modelled**.
+
+**And a fourth thing, which is not a correction but is worth knowing.** The barracks and
+the store-house **burned in September 1827**: after the annuity payment, "these quarters
+were struck by lightning and totally consumed, together with the store-house and a portion
+of the guard-house". The 1830 plan, three years later, draws a range on the east side and
+two small buildings at the south gate. So they were rebuilt or replaced between 1827 and
+1830, and the fabric standing in 1835 is partly newer than 1816. Nothing reached describes
+the rebuilding.
+
+---
+
+## 7. What is attested and not built
+
+Recorded here rather than silently omitted, and where a record states it the record
+carries the `geometry:` declaration and a liberty:
+
+- **Posterns.** "Small posterns here and there" (Kinzie). "Here and there" is not a
+  position. `fort_dearborn_palisade.form.posterns`, `geometry: absent`, **L47**.
+- **The garden's planting.** "Currant-bushes and young fruit-trees" (Kinzie).
+  `data/flora/` has no cultivated zone and no garden species.
+  `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
+- **The drill ground south of the pickets** (Kinzie). No extent given.
+- **Named ground on the 1830 plan and not modelled**: the Big Barn with Cupola, the Wash
+  house, the Well, the Shop, the Out Buildings, the U.S. Factor's House, the Cultivated
+  Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and each
+  would be almost entirely invention today — the plan gives a symbol and a label and no
+  form. The **Fort Cemetery** in particular is left alone deliberately.
+- **The ordnance.** No gun is drawn. See § 6.
+
+---
+
+## 8. Where this can be upgraded cleanly
+
+Every attribute in these records carries its own confidence and its own note, so a new
+source lifts one value without a rewrite. The three that would move most:
+
+1. **Any quartermaster return, repair estimate or engineer's report for the post,
+   1816–1836.** A picket count or a quantity of timber settles the stockade's height and
+   spacing together (L47); a building return settles the storey counts and roofs (L42).
+2. **A plan or measured view of the fort later than 1830** — the 1850 daguerreotype and
+   the 1855 photograph both exist. A measured reading of either settles the lighthouse's
+   shape at once (L44) and probably the barracks' storey count.
+3. **The Chicago Democrat**, 1833 onward. It is the town's own paper through the scene
+   date, it is where building notices and the fort's comings and goings would appear, and
+   this project has not yet read it.
+
+---
+
+## 9. Sources used
+
+| id | what it gave |
+|---|---|
+| `harrison_1830_river_mouth` | **the plan** — arrangement, proportions, rotation, the named ground |
+| `andreas_1884_v1` | the square stockade, the two gates, the corner works, Hubbard's 1827 interior, the garrison chronology, the lighthouse sentence, the 1827 fire |
+| `wentworth_1881_fort_dearborn` | the 1855 photograph key (the only stated dimensions), Fergus's 1850 addendum, the commandants, Beaubien's purchase |
+| `kinzie_waubun_1856` | high pickets, bastions at alternate angles, gates north and south, posterns, the company gardens, the root-houses, the parade south of the pickets |
+| `quaife_1913` | Whistler's 1808 draught and index (used only as a **guard**), Long's 1816 report, and the scholarly negative on the second fort's dimensions |
+| `drloih_fort_dearborn` | the dated commandants table that brackets the scene date |
+| `lighthousefriends_chicago` | the 1832 tower's height, builder, reflectors and lantern |
+| `chicagology_prefire052` | the same text as `wentworth_1881_fort_dearborn`, at a URL; cite that one |

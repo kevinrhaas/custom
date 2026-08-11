@@ -1,11 +1,26 @@
 """bridge_timber — the log bridges over the branches of the Chicago River.
 
-The North Branch bridge (winter 1831-32) and the Lake Street raft bridge over the South
-Branch (winter 1832-33) are described in the same two numbers: **about 10 ft wide,
+The North Branch bridge (winter 1831-32) and the South Branch bridge between Lake and
+Randolph (winter 1832-33) are described in the same two numbers: **about 10 ft wide,
 clearing the water by about 6 ft**, of logs. This archetype builds the fixed, piered
-form — stringers on cribs or piles, carrying a puncheon deck. The floating raft is a
-different structure and gets its own archetype; see bridge_timber_params for why
-pointing a raft at this one would be a false claim of solidity.
+form — stringers on abutments and bents, carrying a puncheon deck — and **both branch
+crossings are built through it.**
+
+That was not true until 2026-08-11: this docstring used to send the South Branch
+crossing away to a raft archetype that was never written, on the strength of the word
+every retelling uses for it. The 1883 old-settlers statement describes BOTH bridges as
+abutments, two bents, log stringers and a puncheon floor about six feet above the
+water, and a floating raft is none of those things. See bridge_timber_params for the
+argument and for what would have to turn up to reverse it; the record itself carries
+the conflict rather than resolving it away.
+
+The 1834 Dearborn Street drawbridge is built through this archetype too, and it brought
+the draw with it: `draw_span_m` clears the intermediate supports out of the opening and
+stations `gallows_frames` at its ends, `gallows_height_m` sets how far they stand over
+the deck. What is NOT built is the leaf and the tackle — see `_gallows`, where the
+reasoning belongs, because the sources describe a silhouette and not a mechanism. The
+approaches at either end of that bridge are not built either, and its record declares
+them.
 
 The north-branch bridge is documented in 1832-33 as "formed of stringers and only
 fitted for foot passengers" and "useless for teams", yet on 18 Aug 1835 it carried the
@@ -120,6 +135,14 @@ def build(params: BridgeTimberParams, name: str):
         _abutments(b, params, bearing_z, params.conf("abutments"))
     if params.railing:
         _railing(b, params, deck_z, params.conf("railing"))
+    # The gallows frames over a draw. Their POSITIONS are documented (either end of a
+    # documented opening) and their SIZE is not, so the whole frame takes the height's
+    # confidence: a frame whose height is a guess is a guessed frame, even though we
+    # know exactly where it stood and how many there were.
+    for xg in params.gallows_x:
+        _gallows(b, params, xg, deck_z, bearing_z,
+                 params.worst_conf("gallows_height_m", "gallows_frames",
+                                   "draw_span_m"))
 
     mats = [
         simple_material("log", HEWN_RGBA, roughness=0.93),
@@ -300,6 +323,49 @@ def _abutments(b: MeshBuilder, p: BridgeTimberParams, bearing_z: float,
     d = 0.62
     for x0, x1 in ((-d, 0.16), (p.span_m - 0.16, p.span_m + d)):
         _crib(b, x0, 0.22, x1, p.width_m - 0.22, bearing_z, conf)
+
+
+def _gallows(b: MeshBuilder, p: BridgeTimberParams, xc: float, deck_z: float,
+             bearing_z: float, conf: float) -> None:
+    """One gallows frame: two heavy posts straddling the deck under a head timber.
+
+    "It was of the 'gallows pattern,' and for five years, the frames, one at either
+    end, stood like instruments of death to frighten the timid stranger at night."
+    That sentence is the whole of the evidence, and it is a description of a
+    SILHOUETTE — which is why this function exists at all and why everything it
+    builds is tagged with the height's confidence rather than the count's. What a
+    gallows is, structurally, is in the name: two uprights and a cross-head, with the
+    tackle hung from the head.
+
+    WHAT IS DELIBERATELY NOT BUILT, and each omission is a fork in the evidence that
+    the mesh refuses to take:
+
+    - **No tackle.** Chain, rope, windlass, counterweight — no source names any of
+      them. The dossiers say "opened manually with chains"; neither underlying text
+      contains the word.
+    - **No leaf, raised or lowered.** The deck runs continuously across the opening,
+      which is the state that fits every reading of the source at once: one leaf, two
+      leaves, or a section lifted bodily between the frames. A raised leaf would have
+      to pick one, and picking would be an invention wearing the most conspicuous
+      position on the bridge.
+    - **No bracing.** A frame this tall was certainly braced, and no source says how.
+
+    The posts run from the bearing line rather than from the deck, because a frame
+    hoisting a sixty-foot draw is framed down into the substructure and not stood on
+    the planking; that much is carpentry rather than evidence, and it is the one
+    inference here that no reading of the source disturbs.
+    """
+    h = p.gallows_height_m
+    s = 0.17                       # half-section of a post
+    out = 0.26                     # how far outside the deck edge the posts stand
+    top = deck_z + h
+    for y in (-out, p.width_m + out):
+        b.add_box(xc - s, y - s, bearing_z, xc + s, y + s, top, conf, M_LOG,
+                  skip=("bottom",))
+    # The head timber across the two posts, overhanging each by its own section so the
+    # joint reads as a lapped cross-head rather than a butt.
+    b.add_box(xc - s * 0.85, -out - 2 * s, top - 0.36,
+              xc + s * 0.85, p.width_m + out + 2 * s, top, conf, M_LOG)
 
 
 def _railing(b: MeshBuilder, p: BridgeTimberParams, deck_z: float,
