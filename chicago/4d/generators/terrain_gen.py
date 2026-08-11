@@ -68,8 +68,16 @@ CONF_DOCUMENTED, CONF_INFERRED, CONF_CONJECTURAL = 0.0, 0.5, 1.0
 
 # The skirt carries the terrain's own edge heights outward so the river does not
 # end in mid-air at the box boundary and the horizon is ground rather than void.
-SKIRT_HALF_M = 1400.0
-WATER_HALF_M = 1200.0
+# It is an apron on the box's four sides rather than a radial scaling, because
+# the box stopped being square when the ground was extended east: scaling a
+# 2020 x 800 m rectangle radially would push the east edge out by a quarter of
+# what it pushes the north edge, which is backwards. The margin is the distance
+# at which renderers/web/js/world.js's haze is total, so the skirt's own outer
+# edge can never be seen from anywhere inside the box.
+SKIRT_MARGIN_M = 1500.0
+# The water plane has to reach past the skirt or the ground would run out over
+# open water at the horizon.
+WATER_MARGIN_M = SKIRT_MARGIN_M + 200.0
 
 # How far the decimated ground mesh may depart from the heightfield the walker
 # samples. 30 mm is well under the resolution of anything a person notices on
@@ -487,6 +495,7 @@ def write_heightfield(out_dir: Path, h_m, meta, spec, inputs_sha: str):
         "cols": meta["cols"], "rows": meta["rows"],
         "cell_m": meta["cell_m"],
         "origin_e": meta["origin_e"], "origin_n": meta["origin_n"],
+        "box_local_enu_m": meta["box"],
         "min_m": round(meta["min_m"], 4), "max_m": round(meta["max_m"], 4),
         "quantisation_error_m": round(err, 5),
         "water_surface_m": 0.0,
@@ -522,16 +531,16 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
     decide whether the committed GLB still matches its inputs. Two copies of this
     list would agree until the day one of them mattered.
 
-    `shoreline.geojson` is deliberately absent: it is traced evidence that
-    `build_field` does not yet read, so including it would report the ground as
-    stale for a file that cannot change it. It joins the list the moment the
-    heightfield consumes it (ROADMAP § S2e parcel b).
+    `shoreline.geojson` joined the list on 2026-08-11, when S2e parcel (b)
+    extended the box east and `build_field` started reading it: the lake shore,
+    the 1834 cut, the old southward channel and the sand bar now move vertices,
+    so a change to that file has to report the ground stale.
 
     Nothing here imports bpy — the meshing does, this does not.
     """
     return inputs_hash([ep_dir / "terrain_spec.json", ep_dir / "river.geojson",
-                        ep_dir / "hydrology.geojson", ROOT / "data" / "datum.json",
-                        Path(__file__)])
+                        ep_dir / "hydrology.geojson", ep_dir / "shoreline.geojson",
+                        ROOT / "data" / "datum.json", Path(__file__)])
 
 
 # ---------------------------------------------------------------------------
@@ -544,7 +553,9 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
     from common.mesh import reset_scene, simple_material  # noqa: PLC0415
 
     g = spec["grid"]
-    half, cell = float(g["half_extent_m"]), float(g["cell_m"])
+    cell = float(g["cell_m"])
+    e0, n0 = float(g["e_min_m"]), float(g["n_min_m"])
+    e1, n1 = float(g["e_max_m"]), float(g["n_max_m"])
     rows, cols = h_m.shape
 
     def enu_to_blender(e, n, y):
@@ -560,9 +571,9 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
     reset_scene()
     verts, confs = [], []
     for r in range(rows):
-        n = -half + r * cell
+        n = n0 + r * cell
         for c in range(cols):
-            verts.append(enu_to_blender(-half + c * cell, n, float(h_m[r, c])))
+            verts.append(enu_to_blender(e0 + c * cell, n, float(h_m[r, c])))
             confs.append(float(conf[r, c]))
     faces = []
     for r in range(rows - 1):
@@ -571,9 +582,9 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
             i = base + c
             faces.append((i, i + 1, i + 1 + cols, i + cols))
 
-    # skirt: carry each boundary vertex outward to a larger square, keeping its
-    # own height, so the channel continues past the box instead of stopping
-    k = SKIRT_HALF_M / half
+    # skirt: carry each boundary vertex outward to a larger rectangle, keeping
+    # its own height, so the channel continues past the box instead of stopping
+    m = SKIRT_MARGIN_M
     # Clockwise seen from above, each corner listed exactly once — a repeated
     # index here produces a degenerate quad, which from_pydata accepts and the
     # decimate modifier then segfaults on.
@@ -583,10 +594,13 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
                 + [c for c in range(cols - 2, 0, -1)])                       # south, E->W
     assert len(set(ring_idx)) == len(ring_idx), "skirt ring visits a vertex twice"
     outer = {}
+    eps = 0.5 * cell
     for i in ring_idx:
         e, n, y = verts[i]
+        oe = e0 - m if e <= e0 + eps else (e1 + m if e >= e1 - eps else e)
+        on = n0 - m if n <= n0 + eps else (n1 + m if n >= n1 - eps else n)
         outer[i] = len(verts)
-        verts.append((e * k, n * k, y))
+        verts.append((oe, on, y))
         confs.append(confs[i])
     # Wound so the skirt's normal points up, matching the grid above it: the
     # boundary runs clockwise from above, so the quad is a -> b -> outer_b ->
