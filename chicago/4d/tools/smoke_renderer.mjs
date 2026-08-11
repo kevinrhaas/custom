@@ -1290,6 +1290,13 @@ for (const [label, viewport, touch] of [
         bank: find(/^bank$/, /the bank/),
         south: find(/South Division/, /divisions/),
         material: find(/^north division$/, /made of/),
+        southMaterial: find(/^south division$/, /made of/),
+        marshMaterial: find(/^south division marsh$/, /made of/),
+        // The compiled claim, so the assertion below compares the panel with the
+        // repository rather than with a phrase typed into this file.
+        recordedNotes: Object.fromEntries(
+          (window.__chicago4d.ground?.claims ?? []).map(
+            (c) => [c.id, (c.notes ?? []).map((n) => n.replace(/\s+/g, ' ').trim())])),
         // Land vertices: the divisions, the bank, the marsh, the swales and the
         // micro-relief. Their grades are what the caveat is about.
         landGrades: all.filter((e) => /divisions|the bank|marshy|swales|texture/.test(e.group))
@@ -1345,15 +1352,42 @@ for (const [label, viewport, touch] of [
     // held them back was the staleness hash, not the research — so what is worth
     // pinning is the gate's rule (`check_terrain_claims`) asserted where a
     // visitor reads it: nothing that calls itself an INFERENCE may show the
-    // disclaimer. Scoped to inferred on purpose. Two documented soil claims carry
-    // a citation and no note, which is not a gap — a documented claim owes
-    // evidence, not an argument — and an assertion over the whole panel would
-    // have made those two look like one.
+    // disclaimer. Scoped to inferred on purpose — a documented claim owes
+    // evidence, not an argument, so an assertion over the whole panel would have
+    // read the two documented soil claims as gaps. One of those two has since
+    // grown a note for a different reason; see the next assertion.
     check(`${label}: every claim that calls itself an inference records its reasoning`,
       !ground.inferredWithoutReason.length
       && /business district/i.test(ground.material?.body ?? ''),
       `${ground.inferredWithoutReason.join(', ') || 'none'} | material `
       + `"${(ground.material?.body ?? '').slice(0, 80)}"`);
+    // A grade this project has decided is too high, said where the grade is read.
+    // `surface_materials.south_division` is `documented` on a 2022 essay that was
+    // opened on 2026-08-11 and prints no citation for anything; the value is to
+    // become `inferred` and cannot move until a Blender bake lands, because a
+    // confidence is an input to the ground mesh. So the correction ships as prose
+    // — which the terrain hash strips — and a visitor reads it under a chip that
+    // is still the old one.
+    //
+    // Verbatim against the compiled claim rather than a phrase copied here: the
+    // failure being pinned is the sentence in the repository disagreeing with the
+    // sentence on the screen. And the pair is discriminating rather than a
+    // presence check — the OTHER documented soil claim (the marsh, on
+    // `chicagology_prefire273`) is correctly graded and carries no such
+    // correction, so a panel that stamped this disclosure on every documented
+    // claim would fail here.
+    const southNotes = ground.recordedNotes?.['surface_materials.south_division'] ?? [];
+    const marshNotes = ground.recordedNotes?.['surface_materials.south_division_marsh'] ?? [];
+    const overGraded = southNotes.find((n) => /over-graded/.test(n)) ?? '';
+    check(`${label}: the soil claim that is graded too high says so where it is graded`,
+      ground.southMaterial?.conf === 'documented'
+      && overGraded.length > 200
+      && (ground.southMaterial?.body ?? '').replace(/\s+/g, ' ').includes(overGraded)
+      && ground.marshMaterial?.conf === 'documented'
+      && !marshNotes.some((n) => /over-graded/.test(n))
+      && !/over-graded/.test(ground.marshMaterial?.body ?? ''),
+      `south "${ground.southMaterial?.conf}" carries ${overGraded.length} chars · `
+      + `marsh "${ground.marshMaterial?.conf}" carries ${marshNotes.length} note(s)`);
     // The empty state stays: it is a guard now rather than a finding, and the
     // committed data no longer exercises the half that matters — a claim that
     // OWES a reason and gives none. That is exercised directly: the renderer must

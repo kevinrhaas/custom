@@ -368,18 +368,21 @@
           "source_id": "chicago_architecture_history_115",
           "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
           "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
-          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
           "tier": 4,
           "tier_label": "later scholarship",
           "what_it_supplies": [
             "ground elevation of the plain west of State Street relative to the river",
             "ground elevation of the ridge belt east of State Street relative to the lake",
-            "original soil profile of the business district"
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
           ],
           "what_it_does_not_supply": [
             "any contour or spot level",
             "bank heights at the forks",
-            "a citation trail for its own elevation figures"
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
           ]
         }
       ],
@@ -760,23 +763,27 @@
           "source_id": "chicago_architecture_history_115",
           "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
           "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
-          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
           "tier": 4,
           "tier_label": "later scholarship",
           "what_it_supplies": [
             "ground elevation of the plain west of State Street relative to the river",
             "ground elevation of the ridge belt east of State Street relative to the lake",
-            "original soil profile of the business district"
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
           ],
           "what_it_does_not_supply": [
             "any contour or spot level",
             "bank heights at the forks",
-            "a citation trail for its own elevation figures"
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
           ]
         }
       ],
       "notes": [
-        "Nothing in the model is made of this. The ground mesh carries one surface for the whole box — the renderer's earth colour — so the profile a visitor reads here, under the strongest confidence grade this project awards, is a statement about the site and not a description of the surface in front of them. What a soil section would change if it were built is the colour and texture of the ground, and neither is driven by this value."
+        "Nothing in the model is made of this. The ground mesh carries one surface for the whole box — the renderer's earth colour — so the profile a visitor reads here, under the strongest confidence grade this project awards, is a statement about the site and not a description of the surface in front of them. What a soil section would change if it were built is the colour and texture of the ground, and neither is driven by this value.",
+        "The chip above this line is stronger than the evidence under it, and this sentence is the correction arriving ahead of the grade. The page was opened at its own locator on 2026-08-11 (docs/RESEARCH/surface_materials_south_division.md) and it prints no footnote, endnote or reference of any kind — its whole apparatus is a closing 'Further reading' line. Split by who says what: the ORDER — saturated sand lying on impervious clay, and a ground that will not drain in either direction — is attested by a named witness the page block-quotes, John Mills Van Osdel, Chicago's first architect, from having sunk building posts through the one to reach the other. The top layer of black loam and all three thicknesses, which are the only quantities here, are the 2022 author's own voice with nobody behind them. So a witness carries a third of this claim, the page will not say which document he is being reprinted from, and the rest rests on later scholarship alone. This is over-graded and the value is to become inferred; it did not move in the slice that found it because a confidence is an input to the ground mesh, which re-stales the committed GLB and needs a Blender bake — the same queue ground `water` is in, and the two land together. The two sibling entries carrying this profile north and west of the river are already inferred, on a weaker argument, which leaves the most scrutinised zone graded highest until the bake lands."
       ]
     },
     {
@@ -805,18 +812,21 @@
           "source_id": "chicago_architecture_history_115",
           "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
           "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
-          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
           "tier": 4,
           "tier_label": "later scholarship",
           "what_it_supplies": [
             "ground elevation of the plain west of State Street relative to the river",
             "ground elevation of the ridge belt east of State Street relative to the lake",
-            "original soil profile of the business district"
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
           ],
           "what_it_does_not_supply": [
             "any contour or spot level",
             "bank heights at the forks",
-            "a citation trail for its own elevation figures"
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
           ]
         }
       ],
@@ -851,18 +861,21 @@
           "source_id": "chicago_architecture_history_115",
           "citation": "Schroeder, Ken. \"1.15 Improving the Mouth of the River.\" Chicago Architecture History, 9 February 2022.",
           "url": "https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
-          "archived_url": "https://web.archive.org/web/20240416000000*/chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
+          "archived_url": "https://web.archive.org/web/20251206131901/https://chicagoarchitecturehistory.com/2022/02/09/1-15-improving-the-mouth-of-the-river/",
           "tier": 4,
           "tier_label": "later scholarship",
           "what_it_supplies": [
             "ground elevation of the plain west of State Street relative to the river",
             "ground elevation of the ridge belt east of State Street relative to the lake",
-            "original soil profile of the business district"
+            "original soil profile of the business district",
+            "a verbatim quotation of John Mills Van Osdel, named on the page as Chicago's first architect, on the ground he built in: saturated sand that 'could not pass downward into the clay, nor laterally', and 'a majority of the earlier frame buildings rested on posts sunk through the quicksand to the clay'. He attests the ORDER of the strata and the failure of the ground to drain"
           ],
           "what_it_does_not_supply": [
             "any contour or spot level",
             "bank heights at the forks",
-            "a citation trail for its own elevation figures"
+            "a citation trail for its own elevation figures — nor for anything else on the page, which carries no references at all",
+            "an attribution for the Van Osdel quotation: no publication, no date, no page, which is why this record can declare no `transcribes` — that field's rung is a judgement about a named, dated document and the page names none",
+            "any witness for the three thicknesses in the soil profile — the foot of black loam, the three to four feet of quicksand and the eight to twelve feet of blue clay are the 2022 author's alone; Van Osdel gives no loam and no dimension"
           ]
         }
       ],
