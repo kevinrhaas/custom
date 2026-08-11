@@ -2241,6 +2241,103 @@ def sidecar_field_reads(text: str, shape: dict | None = None,
     return sorted((line, path) for path, line in reads.items())
 
 
+def _corridor_passes_its_method(sheet: str, tv: dict, c_: dict, params: dict,
+                                rep: Report) -> None:
+    """A committed corridor has to pass the tests the file says it passed.
+
+    The measurement runs on a network fetch and cannot be re-run here, so what this holds
+    is the readings against the thresholds the file itself declares. It is not a formality:
+    the E-W streets exist in this file because one new test — `clear_run`, how far a
+    candidate is open ground down its own middle — threw out ten strips of Wright lots that
+    the width test could not tell from a street. A corridor added by hand without that
+    reading, or with one below the threshold, is a corridor the method would have rejected.
+    """
+    where = f"{sheet}/{tv.get('id')}"
+    reach = params.get("corridor_reach_m")
+    for key, floor, what in (
+        ("clear_run_m", params.get("clear_run_min_m"),
+         "open ground down its own middle, which is what tells a street from a strip of lots"),
+        ("boundary_run_m", params.get("face_min_m"),
+         "boundary lines that run a block face"),
+    ):
+        if floor is None:
+            continue
+        got = c_.get(key)
+        if got is None:
+            rep.error("street module", f"{where}: a committed corridor records no {key}, so "
+                                       f"nothing says it was held to the method's own test for "
+                                       f"{what}")
+            continue
+        low = min(got) if isinstance(got, list) else got
+        if low < float(floor) - 0.05:
+            rep.error("street module", f"{where}: a committed corridor records {key} {got}, "
+                                       f"below the {floor} m the method requires — this "
+                                       f"reading did not pass the test the file says it did")
+        if key == "clear_run_m" and reach and got > 2 * float(reach) + 0.05:
+            rep.error("street module", f"{where}: a corridor is open for {got} m along a "
+                                       f"centreline the method only follows "
+                                       f"{2 * float(reach):g} m of")
+    share, ceiling = c_.get("interior_ink_share"), params.get("ink_share")
+    if share is not None and ceiling is not None and share > float(ceiling) + 1e-9:
+        rep.error("street module", f"{where}: a committed corridor's interior is inked over "
+                                   f"{share} of its length, above the {ceiling} the method "
+                                   f"allows a corridor")
+
+
+def _identification_rederives(sheet: str, tv: dict, c_: dict, coef, k: float,
+                              ctl: dict, rep: Report) -> None:
+    """A corridor's street name is re-derived from the control it was named by.
+
+    The names in this file are not counted off from Canal — each one is the corridor that
+    the street's committed modern junction(s) land on, projected onto the traverse through
+    the sheet's own affine. All three inputs are committed, so the naming re-derives
+    offline here: move a junction in `street_control.json`, or edit the offset, and the
+    identification stops being true and this fails. A name nothing can re-derive is the
+    kind of claim this project does not keep.
+    """
+    ident = c_.get("identified_as")
+    if not ident:
+        return
+    where = f"{sheet}/{tv.get('id')}"
+    sid = ident.get("street")
+    street = ((ctl.get("streets") or {}).get(sid) or {})
+    if not street:
+        rep.error("street module", f"{where}: a corridor is identified as '{sid}', which is "
+                                   f"not a street in data/traces/street_control.json")
+        return
+    if street.get("axis") == tv.get("axis"):
+        rep.error("street module", f"{where}: a corridor is identified as {street.get('name')}, "
+                                   f"which runs along this traverse rather than across it — a "
+                                   f"traverse cannot measure the width of a street it rides")
+        return
+    across = tv.get("across_utm") or []
+    if len(across) != 2:
+        rep.error("street module", f"{where}: the traverse records no across_utm axis, so an "
+                                   f"identification on it cannot be re-derived")
+        return
+    junctions = [(ctl.get("control") or {}).get(j) for j in (ident.get("control") or [])]
+    if not junctions or not all(junctions):
+        rep.error("street module", f"{where}: {street.get('name')} is identified from control "
+                                   f"{ident.get('control')}, which does not resolve in "
+                                   f"data/traces/street_control.json")
+        return
+    a, b, c, d, e, f = coef
+    cx, cy = (c_.get("centre_px") or [0, 0])
+    cE, cN = a * (cx / k) + b * (cy / k) + c, d * (cx / k) + e * (cy / k) + f
+    jE = sum(float(j["utm_e"]) for j in junctions) / len(junctions)
+    jN = sum(float(j["utm_n"]) for j in junctions) / len(junctions)
+    off = abs((cE - jE) * float(across[0]) + (cN - jN) * float(across[1]))
+    if abs(off - float(ident.get("offset_m", -1))) > 0.5:
+        rep.error("street module", f"{where}: {street.get('name')} is recorded "
+                                   f"{ident.get('offset_m')} m from its control and the "
+                                   f"committed pixels re-derive to {off:.1f} m")
+    tol = ident.get("tolerance_m")
+    if tol is not None and off > float(tol) + 0.05:
+        rep.error("street module", f"{where}: {street.get('name')} names a corridor {off:.1f} m "
+                                   f"from where its control puts it, beyond the {tol} m the "
+                                   f"method allows an identification")
+
+
 def check_street_module(source_ids: set, rep: Report, data_root: Path | None = None) -> None:
     """The module every placement stands on is held to the sheets it was measured off.
 
@@ -2284,6 +2381,12 @@ def check_street_module(source_ids: set, rep: Report, data_root: Path | None = N
             rep.error("street module", f"the corridor measurement cites '{s}', which does not "
                                        f"resolve in data/sources/")
 
+    params = (doc.get("method") or {}).get("params") or {}
+    if not params:
+        rep.error("street module", "the file states no method parameters, so nothing can hold "
+                                   "a committed corridor to the method that produced it")
+    ctl = load_json(base / "traces" / "street_control.json", rep, required=False) or {}
+
     ft = 0.3048
     all_ft: list[float] = []
     for sheet, sh in (doc.get("sheets") or {}).items():
@@ -2322,6 +2425,8 @@ def check_street_module(source_ids: set, rep: Report, data_root: Path | None = N
                               f"{sheet}/{tv.get('id')}: {c_.get('width_m')} m is not "
                               f"{c_.get('width_ft')} ft")
                 all_ft.append(round(w / ft, 1))
+                _corridor_passes_its_method(sheet, tv, c_, params, rep)
+                _identification_rederives(sheet, tv, c_, (a, b, c, d, e, f), k, ctl, rep)
 
     summary = doc.get("summary") or {}
     if not all_ft:
@@ -2348,8 +2453,7 @@ def check_street_module(source_ids: set, rep: Report, data_root: Path | None = N
         if sorted(cand.get("excluded_ft") or []) != sorted(excluded):
             rep.error("street module", f"candidates.excluded_ft says {cand.get('excluded_ft')} "
                                        f"and the readings exclude {excluded}")
-        module = ((load_json(base / "traces" / "street_control.json", rep,
-                            required=False) or {}).get("platted_street") or {})
+        module = ctl.get("platted_street") or {}
         adopted = module.get("width_ft")
         if adopted is not None:
             if adopted in excluded:

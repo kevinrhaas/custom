@@ -3,10 +3,11 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 (the last of the six over-graded values had never had its page
-opened; the page turns out to carry no citation of any kind, and the one witness on it — quoted
-without attribution, and absent from this project's own dossier — settles a third of the claim
-and none of its numbers, § 51) ·
+**Last updated:** 2026-08-11 (the half of the street reading that was measured and thrown away
+a fortnight ago is committed, because a candidate is now asked what it does along its own
+length rather than a fourth thing about its width: Lake and Randolph are measured, ten strips
+of Wright lots are not, and the control point's untested coordinate turns out to be right to
+3.4 m, § 52) ·
 **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber) and R1 (renderer) complete.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
@@ -93,6 +94,7 @@ the other surface is a gate now instead of a sentence.
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on*: 20 graded claims off `terrain_spec.json` with their figures, reasoning and citations, derived per scene by `compile_scene.py` and re-derived by `check.sh`; `check_terrain_claims` holds the same claims to the record's citation rule (§ 32) and, since § 34, to its reasoning rule — every `inferred` ground claim states why, and none of them is a warning any more |
 | **What a source is, in the app** | **done** (2026-08-11, § 48) — every citation carries the document it reprints (`transcribes`) or the finding that it reprints none, and the source's own `what_it_supplies` / `what_it_does_not_supply` behind a `<details>`. `check_source_surface` partitions all 22 properties of `data/source.schema.json` into visitor-facing and internal and fails on a property in neither, on a visitor field no compiled citation carries, and on one `citations.js` never reads. Withheld in exactly one place — the not-here list, where a source's account of what it carries names a standing building — and the smoke pins that too |
 | **Liberties, in the app** | **done** — the Evidence panel lists all 34, derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype never reads and no liberty owns up to leaving out. **The ground is inside the same rule since 2026-08-10** (§ 33) via a `terrain.<epoch>.<claim>` namespace, matched against the claims the Evidence panel renders |
+| **The platted street module** | **MEASURED on both sheets** — 11 corridors in `data/traces/vectors/street_corridors_1834.json`, median 83.7 ft, 66 ft excluded; 8 N-S streets (§ 42) and, since § 52, three E-W ones on Wright, of which Lake (79.4 ft) and Randolph (81.5 ft) are named by their committed modern junctions to 0.9 m. `check_street_module` re-derives every metre and every name offline on every commit. Evidence only: no street geometry is generated yet (S9) |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
 | **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | **What the ground does NOT build** | **done** (2026-08-10) — `terrain_inputs.CONSUMED` declares the spec figures `terrain_gen.build_field` reads; `check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:` declaration (`absent` / `simplified` / `record_only` / `restated_in_code`), both directions, and the first two owe `docs/LIBERTIES.md` a `Covers:` token. 36 figures declared, 5 owed an admission (§ 35). **The fourth state is checked as well as declared since § 36**: `terrain_inputs.RESTATES` names the half each restatement agrees with — the heightfield the bake wrote, another figure in the block, or a named line of the generator — and 7 figures are held to it |
@@ -1910,6 +1912,58 @@ uncertainty of the 1834 sheets in its note.
     moved, no GLB was re-baked; the terrain sidecar changed because a note and a source record
     changed. Smoke green at 390×780 and 1280×800.
 
+52. **The E-W streets are measured, and the thing that could read them is a test the tool did
+    not have.** § 42 measured eight platted corridors off the two 1834 sheets and settled the
+    module, and it threw half of the reading away: a N-S traverse along Canal reads *lot lines*
+    on the Wright sheet, and every test that separates a lot line from a street on Hathaway
+    passes them there. Lot depths are 20-26 m, which is a platted street's width; the bounding
+    lines run as far as a block face does; two spacings land in the module band by coincidence.
+    The memo said what the next attempt would need — a method that identifies a corridor by
+    something other than its width — and this is it. **All three failed tests are readings taken
+    ACROSS a candidate at one place.** The new one turns ninety degrees: a street corridor is
+    open ground from one cross street to the next, because the block faces bounding it stop at
+    the kerb, and a strip of lots is crossed by a lot line every few metres and ends at the
+    block face. `clear_run` follows a candidate's own centreline 350 m each way and reports the
+    longest unbroken run of paper.
+    **The threshold is derived rather than chosen**, which is the whole difference between this
+    and tuning a filter until the answer looks right: the shortest block face the module band
+    allows is its loosest pitch less its widest street, 95 − 30 = 65 m. Move the band and it
+    moves. **The separation is not marginal** — the three corridors kept run 213-287 m clear,
+    the ten rejected 42-61 m, no overlap and a factor of 3.5 — **and it costs nothing on the
+    readings already committed**, rejecting none of the eight N-S corridors, which run 201-677 m.
+    **Three E-W corridors, all on Wright: Lake at 79.4 ft, Randolph at 81.5 ft, and one a block
+    further south at 86.5 ft.** Eleven corridors now, median 83.7 ft, and the module no longer
+    rests on one axis of the grid.
+    **The names are measured too.** A corridor takes a street's name only when that street's
+    committed modern junction(s), projected onto the traverse through the sheet's own affine,
+    land within half the module's loosest pitch of its centreline. Lake and Randolph come in at
+    0.9 m each. The third corridor is Washington Street by the plat's order and stays UNNAMED in
+    the data, because no junction for it is committed — the inference is in the memo where a
+    reader can see it. `check_street_module` re-derives every identification offline on every
+    commit, and the first thing that gate did was catch this tool projecting offsets in pixels
+    scaled by an average on sheets that are anisotropically stretched; the ground figure and the
+    pixel figure disagreed by 1-2 m and the tool was wrong, not the gate.
+    **And it answers the question § 42's control-point finding said it could not.** That finding
+    priced a correction *across* Canal Street and recorded, as a limit, that whether G5 sits at
+    the right northing was untouched. The traverse that crosses Lake can see exactly that:
+    **G5 lies 3.4 m south of the Lake Street corridor's centreline**, so the 20.2 m correction
+    really is one coordinate and not two. That was an assumption and is now a reading.
+    **What it does not settle, which is the interesting half.** Hathaway's N-S traverse commits
+    nothing — no two of its candidates are a block pitch apart — so the E-W widths rest on ONE
+    sheet and are not cross-checked. Fixing that exposed a real fault: with a single surviving
+    candidate the chain search used to keep it for having been found first, and a chain of one
+    is not a chain. Hathaway's Canal corridor also stops being nameable, at 50.1 m against a
+    47.5 m tolerance — not a second opinion about the control point but the same 52 m from the
+    other side. The E-W spacings are 134-136 m against 117-123 m between the N-S streets, so the
+    blocks are not square and a 300 ft block plus a street does not describe them; that is a
+    finding for S9's block dimensions and is deliberately not turned into a figure off two
+    spacings on one sheet. South Water and Market are still unmeasured.
+    **Data and meshes untouched; nothing was re-baked.** No structure record, no confidence, no
+    sidecar and no GLB moved — the corridors are traced evidence, like the shoreline, and the
+    ground does not read them. Six new checks in `tools/test_validate.py`. Smoke green at
+    390×780 and 1280×800.
+
+
 ## Next
 
 **S5 — more structure records**, which is now the binding constraint: seven structures stand
@@ -1954,7 +2008,7 @@ reading that established it carries none. So what is left of this thread is not 
 more — it is one regrade slice on a runner that has Blender, taking five values down together
 with the bake they stale. None of it blocks S5 additions.
 
-**S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap.
+**S9 — streets, roads and paths**, queued behind S2e at Kevin's direction. Geometry generated from the Thompson module rather than traced; surface is unpaved earth with plank walks, NOT a graded roadway; elevations drape on the heightfield because nothing was graded until 1855-58. See ROADMAP § S9 for why each of those is a trap. **The method problem it named is solved** (§ 52): the E-W streets can be read now, and Lake and Randolph are. What that parcel still wants from the sheets is the plat's **block dimensions and extent** — and the first measurement of the N-S spacing, 134-136 m against 117-123 m the other way, says the blocks are not square and that the 300 ft block the N-S streets fit does not describe them.
 
 **S5a — Fort Dearborn**, the next building. Its position is settled (E +1152, N +221, cross-checked to 35 m) and the coastline gate Kevin named is cleared. **What the fort was on 1835-07-01 is settled too, 2026-08-10** — an occupied Army post under Major John Greene (§ 31, `docs/RESEARCH/fort_dearborn.md`). **The FOOTPRINT still has no source**: neither 1834 sheet draws a plan, and no dimension of the 1816 stockade survives in anything read. The next move on this parcel is not modelling and not more reading around it — it is one document, the **Fort-Dearborn Addition plat of 1839**, whose withheld lots are the surveyed envelope of the ground "within the pickets". Behind that, the ground itself: the fort site is 800 m beyond the modelled terrain box, so S2e comes first either way.
 

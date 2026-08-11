@@ -1964,10 +1964,19 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
     # One metre per pixel, axis aligned, so the arithmetic is readable by eye.
     AFF = {"a": 1.0, "b": 0.0, "c": 0.0, "d": 0.0, "e": -1.0, "f": 0.0}
 
-    def corridor(x1: float, x2: float) -> dict:
+    # The thresholds the file declares and every committed corridor is held to.
+    PARAMS = {"clear_run_min_m": 65.0, "face_min_m": 60.0, "ink_share": 0.35,
+              "corridor_reach_m": 350.0}
+
+    def corridor(x1: float, x2: float, **over) -> dict:
         w = abs(x2 - x1)
-        return {"px": [[x1, 100.0], [x2, 100.0]], "width_m": round(w, 2),
-                "width_ft": round(w / 0.3048, 1)}
+        c = {"px": [[x1, 100.0], [x2, 100.0]],
+             "centre_px": [round(0.5 * (x1 + x2), 1), 100.0],
+             "width_m": round(w, 2), "width_ft": round(w / 0.3048, 1),
+             "clear_run_m": 240.0, "boundary_run_m": [100.0, 100.0],
+             "interior_ink_share": 0.05}
+        c.update(over)
+        return c
 
     def sheet(widths=(24.4, 24.6, 25.0, 24.2)) -> dict:
         xs, out = 0.0, []
@@ -1976,7 +1985,8 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
             xs += 117.0
         return {"raster": {"gcp_px_to_native": 1.0},
                 "affine": {"source": "data/traces/gcp/s1_gcps.json", "coefficients": AFF},
-                "traverses": [{"id": "t", "corridors": out}],
+                "traverses": [{"id": "t", "axis": "ew", "across_utm": [1.0, 0.0],
+                               "corridors": out}],
                 "control_point_check": {"gcp": "A", "recorded_px": [10, 20]}}
 
     def doc(width_ft=80, **over) -> dict:
@@ -1984,6 +1994,7 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
         ft = sorted(c["width_ft"] for c in sh["traverses"][0]["corridors"])
         d = {
             "sources": ["s1"],
+            "method": {"params": dict(PARAMS)},
             "sheets": {"s1": sh},
             "candidates": {"adopted": {"width_ft": width_ft}, "dissent": {"width_ft": 66},
                            "tolerance_ft": 4.0,
@@ -2000,11 +2011,17 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
             d[k] = v
         return d
 
-    def run(d: dict, module_ft=80, gcp_px=(10, 20), g5_px=(1197, 1955)) -> list:
+    def run(d: dict, module_ft=80, gcp_px=(10, 20), g5_px=(1197, 1955),
+            junction_e=12.2) -> list:
         (tmp / "traces" / "vectors" / "street_corridors_1834.json").write_text(
             _json.dumps(d), encoding="utf-8")
         (tmp / "traces" / "street_control.json").write_text(_json.dumps(
-            {"platted_street": {"width_ft": module_ft}}), encoding="utf-8")
+            {"platted_street": {"width_ft": module_ft},
+             # One street across the traverse and one along it, and a junction of the two.
+             "streets": {"cross": {"name": "Cross Street", "axis": "ns"},
+                         "ridden": {"name": "Ridden Street", "axis": "ew"}},
+             "control": {"j": {"streets": ["cross", "ridden"],
+                               "utm_e": junction_e, "utm_n": -100.0}}}), encoding="utf-8")
         (tmp / "traces" / "gcp" / "s1_gcps.json").write_text(_json.dumps(
             {"gcps": [{"id": "A", "pixel": list(gcp_px)}]}), encoding="utf-8")
         (tmp / "traces" / "gcp" / "wright_1834_gcps.json").write_text(_json.dumps(
@@ -2029,6 +2046,52 @@ def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
           any("does not resolve" in e for e in run(doc(), module_ft=80)
               ) is False and any("does not resolve" in e
                                  for e in run({**doc(), "sources": ["nope"]})))
+
+    # THE TEST THAT LET THE E-W STREETS BE READ AT ALL. Width cannot tell a Wright lot
+    # strip from a street, and `clear_run` — how far a candidate is open ground down its
+    # own middle — is what threw ten of them out. A committed corridor that never had that
+    # reading, or has one below the floor, is one the method would have rejected.
+    closed = doc()
+    closed["sheets"]["s1"]["traverses"][0]["corridors"][0]["clear_run_m"] = 40.0
+    check("a corridor with less open ground in it than a block face is an error",
+          any("below the 65.0 m" in e for e in run(closed)), run(closed))
+
+    silent = doc()
+    silent["sheets"]["s1"]["traverses"][0]["corridors"][0].pop("clear_run_m")
+    check("a corridor committed without the reading that classified it is an error",
+          any("records no clear_run_m" in e for e in run(silent)))
+
+    stopped = doc()
+    stopped["sheets"]["s1"]["traverses"][0]["corridors"][0]["boundary_run_m"] = [100.0, 12.0]
+    check("a corridor whose shorter boundary stops before a block face is an error",
+          any("boundary_run_m" in e for e in run(stopped)))
+
+    unmethodical = doc()
+    unmethodical.pop("method")
+    check("a file that states no method cannot hold its corridors to one",
+          any("states no method parameters" in e for e in run(unmethodical)))
+
+    # AND THE NAMES ARE RE-DERIVED, because a street name is a claim like any other.
+    def named(**over) -> dict:
+        d = doc()
+        ident = {"street": "cross", "name": "Cross Street", "control": ["j"],
+                 "offset_m": 0.0, "tolerance_m": 47.5}
+        ident.update(over)
+        d["sheets"]["s1"]["traverses"][0]["corridors"][0]["identified_as"] = ident
+        return d
+
+    check("a corridor named after the street its control lands on passes", not run(named()),
+          run(named()))
+    check("a name whose offset does not come back out of the pixels is an error",
+          any("re-derive" in e for e in run(named(), junction_e=42.2)))
+    check("a name given to a corridor further off than the method allows is an error",
+          any("beyond the 47.5 m" in e
+              for e in run(named(offset_m=60.0), junction_e=72.2)))
+    check("a corridor named after a street that runs ALONG the traverse is an error",
+          any("rather than across" in e
+              for e in run(named(street="ridden", name="Ridden Street"))))
+    check("a name resting on control the repository does not have is an error",
+          any("does not resolve in" in e for e in run(named(control=["nope"]))))
 
     # The finding cannot outlive its inputs, in either direction.
     check("a control point moved since it was measured is an error",
