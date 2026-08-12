@@ -5,7 +5,27 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 
 **Last updated:** 2026-08-11 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
-street layer) and R1 (renderer) complete.
+street layer), S10-partial (665-roof ledger + first 48 anonymous roofs) and R1 (renderer)
+complete.
+
+**Current expansion:** the 1835 scene now resolves **124 structure records**. The 76 pre-existing
+records are preserved; 48 new South Division records are explicitly tagged
+`recommended_anonymous` and display as flagged review massings. They begin—rather than complete—
+the owner specification's 665-roof target. Exact anonymous presence, footprint and lot position
+remain conjectural. A physical-roof reconciliation is required because existing records include
+bridges, yards, stockade parts and multi-roof compounds.
+
+**Water vegetation correction:** emergent plants now use true distance to shoreline and are
+limited to the shallow eight-metre marsh edge. Non-emergent flora and every woody placement are
+rejected over the traced water mask. A first-run navigation guide can be dismissed and reopened
+from Settings.
+
+**Parallel phase-two planning:** three non-rendered parcel recipes now cover 84 additional South
+Division roofs (66 principal, 18 ancillary), 55 West Division roofs (44 principal, 11 ancillary)
+and 60 North Division roofs (45 principal, 15 ancillary). Together with the implemented 48 they
+reserve 247 slots without exceeding any 665-roof family cap. They remain plans, not scene claims:
+the South set waits for physical-roof reconciliation; 35 West roofs also wait for a unified
+westward map/terrain extension to E -700 m, and the outer North pass waits for N +760 m coverage.
 **Milestone 0 shipped; Milestone 1 (the forks) is in** — six structures placed from the
 georeference, real ground, a traced river, and the liberties now readable inside the
 walkthrough rather than only in the repository. **Seven structures now, and the seventh is
@@ -32,7 +52,7 @@ this building by twenty months.
 | `tools/check.sh` | **done** — full gate runs in **0.4 s**, no Blender |
 | Research dossiers | **done** — 8 reports, ~360 KB, committed verbatim in `docs/research/` |
 | Source records | **25**, of which **14** carry a Wayback snapshot — the three added with the bridge all do, and so does the post-office page |
-| Structure records | **8** — six buildings at the forks, the North Branch bridge, and Hogan's store on Lake Street |
+| Structure records | **124 in the 1835 scene** — 76 pre-existing evidence records plus 48 visibly tagged anonymous recommended infill records; record count is not yet reconciled physical-roof count |
 | Terrain epochs | registry written; `e1834_harbor_cut` active, geometry layers **not yet built** |
 | **Datum** | **VERIFIED** — Wright-derived, Hathaway- and OSM-checked, RMS 17.5 m, re-derivable from traces |
 | **Generator pipeline** | **WORKS** — pinned Blender 4.5.3, `frame_tavern`, 496-tri Sauganash from the record alone |
@@ -82,7 +102,7 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
 
 ## What does not exist yet
 
-- **Seven buildings** — six at the forks and Hogan's store a block east on Lake Street. Eight archetypes and ~40 researched structures are still unbuilt.
+- **The full 665-roof inventory is not built.** Phase 1 adds 48 anonymous South Division slots; west/north extent verification, existing-record roof reconciliation, remaining parcels and the 35-family canonical archetype library are still open.
 - **No terrain.** The scene stands on a flat plane; the 30-zone heightfield spec exists in the
   research dossier but has not been turned into data. This is the next stage.
 - **No flora or fauna records.** The palettes and the placement table exist in the dossiers only.

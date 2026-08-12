@@ -651,6 +651,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
         collect(phase)
         for key in ("function", "occupants"):
             collect(st.get(key, {}))
+        if st.get("reconstruction", {}).get("source_id"):
+            cited.add(st["reconstruction"]["source_id"])
 
         # `geometry` travels with the attribute because it qualifies the chip next
         # to it: a documented value the mesh does not contain is a true statement
@@ -752,9 +754,13 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "attributes": attributes,
             "citations": cite(cited, sources),
             "research_note": st.get("research_note", ""),
-            "research_doc": f"docs/RESEARCH/{st['id']}.md",
+            "research_doc": ("docs/RESEARCH/recommended_infill_1835.md"
+                             if st.get("reconstruction")
+                             else f"docs/RESEARCH/{st['id']}.md"),
             "review_required": st.get("review_required", False),
         }
+        if st.get("reconstruction"):
+            sidecar["reconstruction"] = st["reconstruction"]
         emit(outdir / f"{st['id']}.json", sidecar)
         resolved[st["id"]] = phase
         index.append({"id": st["id"], "name": st["name"],

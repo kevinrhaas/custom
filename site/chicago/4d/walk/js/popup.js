@@ -416,6 +416,11 @@ export function createPopup(root, { docBase = '../../' } = {}) {
       const placeholderAsset = record.assetIsPlaceholder
         ? '<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>'
         : '';
+      const reconstruction = s.reconstruction?.status === 'recommended_anonymous'
+        ? `<span class="pop-flag"><strong>Recommended reconstruction — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
+             Its family and district come from the modern production specification;
+             this is not a documented named building or recovered parcel.</span>`
+        : '';
 
       // The position's own reasoning, on the line that shows the position. Every
       // placement here is an argument — three of the eight are derived from bank
@@ -448,6 +453,7 @@ export function createPopup(root, { docBase = '../../' } = {}) {
           <div><strong>${escapeHtml(p.symbolic_location ?? 'Location not recorded')}</strong>
             ${evidence(place)}</div>
           ${provisional}
+          ${reconstruction}
           ${placeholderAsset}
         </div>
 

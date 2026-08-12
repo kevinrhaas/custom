@@ -366,12 +366,15 @@ export async function createFlora({
   const waterY = terrain.heightfield?.meta?.water_surface_m ?? 0;
 
   /** Ground the plant stands on, or null if it may not stand here. */
-  function station(e, n, zone) {
+  function station(e, n, zone, species) {
     if (growthBlocked(e, n)) return null;
     if (water.isWater(e, n)) {
-      // CONTRACT.md §4 rule 4: only a water-buffer community stands in water,
-      // and it stands ON the water surface, not on the channel bed.
-      return zone.standsInWater ? waterY : null;
+      // A water BUFFER is not permission for every member of that community to
+      // stand in the channel. Only records whose role is explicitly `emergent`
+      // may root in water, and the corrected signed shore-distance field below
+      // keeps even those inside the eight-metre marsh edge rather than assigning
+      // distance zero to the entire river.
+      return zone.standsInWater && species?.role === 'emergent' ? waterY : null;
     }
     for (const b of blocks) {
       const dx = e - b.e;
@@ -393,9 +396,9 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
-        const y = station(e, n, zone);
-        if (y === null) return;
         const sp = pick(zone.graminoids, rng());
+        const y = station(e, n, zone, sp);
+        if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         const fade = ringFade(r, near.radius, 2.2);
         // The head is placed off the height the PLANT was actually given, and
@@ -413,9 +416,9 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
-        const y = station(e, n, zone);
-        if (y === null) return;
         const sp = pick(zone.graminoids, rng());
+        const y = station(e, n, zone, sp);
+        if (y === null) return;
         const fade = ringFade(r, mid.radius, 7.0) * innerFade(r, mid.inner, 3.0);
         placeCard(midSet, sp, zone, e, y, n, rng, fade);
       });
@@ -433,9 +436,9 @@ export async function createFlora({
       // sparse community stays sparse. `share` is the chance this lattice slot
       // is used at all.
       if (rng() > zone.forbShare) return;
-      const y = station(e, n, zone);
-      if (y === null) return;
       const sp = pick(zone.forbs, rng());
+      const y = station(e, n, zone, sp);
+      if (y === null) return;
       if (crowdsTheWalker(sp, r)) return;
       const fade = ringFade(r, f.radius, 5.0);
       const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
@@ -464,6 +467,7 @@ export async function createFlora({
     group,
     stats,
     zoneAt(e, n) { return finder(e, n)?.id ?? null; },
+    shoreDistance(e, n) { return water.distance(e, n); },
 
     update(dt, camera) {
       uniforms.uChiTime.value += dt * TUNE.wind.speedNear;
@@ -700,7 +704,8 @@ function compileZones({ index, files }, terrain, problems, stats) {
       zone: entry.zone,
       extent: rec.extent ?? entry.extent ?? null,
       priority: rec.extent?.priority ?? entry.priority ?? 0,
-      standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water',
+      standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water'
+        && rec.species.some((sp) => sp.role === 'emergent'),
       graminoids,
       forbs,
       /** Chance a forb lattice slot is used, from the record's own densities. */
@@ -836,29 +841,43 @@ function waterField(terrain) {
   const cols = Math.max(2, Math.ceil(hf.widthM / cell) + 1);
   const rows = Math.max(2, Math.ceil(hf.depthM / cell) + 1);
   const BIG = 1e6;
-  const d = new Float32Array(cols * rows).fill(BIG);
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      if (terrain.isWater(e0 + c * cell, n0 + r * cell)) d[r * cols + c] = 0;
-    }
-  }
-  const put = (i, v) => { if (v < d[i]) d[i] = v; };
+  // Two fields make this a distance to the SHORE, not merely a distance to
+  // water. The old one seeded every water cell with zero, so a `0–8 m from
+  // water` marsh extent matched the middle of the river just as strongly as
+  // the bank. On land we ask for the nearest water cell; in water we ask for
+  // the nearest land cell.
+  const toWater = new Float32Array(cols * rows).fill(BIG);
+  const toLand = new Float32Array(cols * rows).fill(BIG);
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const i = r * cols + c;
-      if (c > 0) put(i, d[i - 1] + cell);
-      if (r > 0) put(i, d[i - cols] + cell);
-      if (c > 0 && r > 0) put(i, d[i - cols - 1] + cell * 1.4142);
+      if (terrain.isWater(e0 + c * cell, n0 + r * cell)) toWater[i] = 0;
+      else toLand[i] = 0;
     }
   }
-  for (let r = rows - 1; r >= 0; r--) {
-    for (let c = cols - 1; c >= 0; c--) {
-      const i = r * cols + c;
-      if (c < cols - 1) put(i, d[i + 1] + cell);
-      if (r < rows - 1) put(i, d[i + cols] + cell);
-      if (c < cols - 1 && r < rows - 1) put(i, d[i + cols + 1] + cell * 1.4142);
+  const solve = (d) => {
+    const put = (i, v) => { if (v < d[i]) d[i] = v; };
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const i = r * cols + c;
+        if (c > 0) put(i, d[i - 1] + cell);
+        if (r > 0) put(i, d[i - cols] + cell);
+        if (c > 0 && r > 0) put(i, d[i - cols - 1] + cell * 1.4142);
+        if (c < cols - 1 && r > 0) put(i, d[i - cols + 1] + cell * 1.4142);
+      }
     }
-  }
+    for (let r = rows - 1; r >= 0; r--) {
+      for (let c = cols - 1; c >= 0; c--) {
+        const i = r * cols + c;
+        if (c < cols - 1) put(i, d[i + 1] + cell);
+        if (r < rows - 1) put(i, d[i + cols] + cell);
+        if (c < cols - 1 && r < rows - 1) put(i, d[i + cols + 1] + cell * 1.4142);
+        if (c > 0 && r < rows - 1) put(i, d[i + cols - 1] + cell * 1.4142);
+      }
+    }
+  };
+  solve(toWater);
+  solve(toLand);
   return {
     surfaceY,
     isWater: (e, n) => terrain.isWater(e, n),
@@ -866,7 +885,8 @@ function waterField(terrain) {
       const c = Math.round((e - e0) / cell);
       const r = Math.round((n - n0) / cell);
       if (c < 0 || r < 0 || c >= cols || r >= rows) return Infinity;
-      return d[r * cols + c];
+      const i = r * cols + c;
+      return terrain.isWater(e, n) ? toLand[i] : toWater[i];
     },
   };
 }

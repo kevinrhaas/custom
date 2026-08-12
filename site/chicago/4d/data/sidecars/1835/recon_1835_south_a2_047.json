@@ -1,0 +1,172 @@
+{
+  "id": "recon_1835_south_a2_047",
+  "phase": "recommended_1835",
+  "name": "Recommended A2 barn or carriage shed #047",
+  "aka": [],
+  "archetype": "outbuilding",
+  "asset": "gltf/recon_1835_south_a2_047__recommended_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-01-01",
+    "to": "1835-12-31",
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
+  },
+  "change_note": "Recommended anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution.",
+  "placement": {
+    "local_e": 558.572,
+    "local_n": -215.567,
+    "rotation_deg": 0.7,
+    "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+    "symbolic_location": "Anonymous recommended roof in the South Division block between LaSalle and Clark, south of Lake Street",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6.582,
+        0
+      ],
+      [
+        6.582,
+        9.973
+      ],
+      [
+        0,
+        9.973
+      ]
+    ],
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "A 6.58 × 9.97 m rectangle sampled deterministically inside the A2 family band; no individual dimensions are documented."
+  },
+  "attributes": {
+    "wall_height_m": {
+      "value": 3.42,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "roof_pitch_deg": {
+      "value": 32.0,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "construction": {
+      "value": "light_frame",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "door": {
+      "value": "wagon",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "door_side": {
+      "value": "front",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "loft": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "board_gap_m": {
+      "value": 0.012,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "paint": {
+      "value": "whitewash",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the A2 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+    },
+    "function": {
+      "value": "barn or carriage shed",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Assigned from the A2 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+    }
+  },
+  "citations": [
+    {
+      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
+      "url": "",
+      "archived_url": "",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
+        "Thirty-five architectural family definitions with dimensional and massing bands.",
+        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
+        "A required distinction between named documentary landmarks and anonymous recommended infill."
+      ],
+      "what_it_does_not_supply": [
+        "A surviving July 1835 building census or parcel-by-parcel roof register.",
+        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
+        "Authority to replace stronger building-specific evidence already represented in the dataset."
+      ]
+    }
+  ],
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "research_doc": "docs/RESEARCH/recommended_infill_1835.md",
+  "review_required": false,
+  "reconstruction": {
+    "status": "recommended_anonymous",
+    "family": "A2",
+    "district": "south",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase1_south_mixed_blocks",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 47,
+    "finish_key": "whitewash",
+    "roof_condition": "weathered",
+    "age_state": "older_frontier",
+    "yard_group": "block_interior_service_yards"
+  }
+}

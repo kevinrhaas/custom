@@ -260,8 +260,13 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.setConfidenceView(false));
     const back = await page.evaluate(() => window.__chicago4d.capture());
     const dBack = signatureDistance(off, back);
-    check(`${label}: turning it off restores the render`, dBack.worst <= 3,
-      `residual worst-cell delta ${dBack.worst}`);
+    // Flora continues to sway between these asynchronous captures.  Judge the
+    // restored frame by its tiny overall residual while allowing a few isolated
+    // plant-edge cells to move; a confidence tint left enabled changes the mean
+    // broadly (the assertion immediately above pins that at >= 0.6).
+    check(`${label}: turning it off restores the render`,
+      dBack.mean <= 0.5 && dBack.worst <= 8,
+      `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
 
     // --- pick -> provenance ----------------------------------------------
     const picked = await page.evaluate(() => {
@@ -608,30 +613,33 @@ for (const [label, viewport, touch] of [
         ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
         : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
 
-    // Is the shape a bake from the record, or a stand-in? The card asked the
-    // SIDECAR that until 2026-08-10 — a field `compile_scene.py` has never
-    // written and, compiling from data/ alone, cannot — so the flag never once
-    // rendered. The fact belongs to the mesh (`asset.extras.placeholder`), the
-    // loader reads it, and it now reaches the card on the registry entry.
-    // What this can assert is the wiring, and it says so: every committed asset
-    // is a real bake, so `false` is the only value in the dataset. `false` and
-    // `undefined` render identically and mean completely different things —
-    // "we checked, it is a bake" against "nobody ever answered" — so the check
-    // is for the value and not for its truthiness, which is exactly the
-    // distinction the old field failed silently.
+    // Is the shape a bake from the record, or a stand-in?  The established
+    // Sauganash asset must remain a real bake while the anonymous phase-one
+    // roofs must say both that their mesh is provisional and that their
+    // per-parcel placement is a recommended reconstruction.
     const placeholder = await page.evaluate(() => {
       window.__chicago4d.pick('sauganash_hotel');
-      const flags = [...document.querySelectorAll('#popup .pop-flag')]
+      const realFlags = [...document.querySelectorAll('#popup .pop-flag')]
+        .map((f) => f.textContent);
+      window.__chicago4d.pick('recon_1835_south_d3_001');
+      const recommendedFlags = [...document.querySelectorAll('#popup .pop-flag')]
         .map((f) => f.textContent);
       return {
-        onRecord: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
-        shown: flags.some((t) => /placeholder massing/i.test(t)),
+        real: window.__chicago4d.registry.get('sauganash_hotel')?.assetIsPlaceholder,
+        realFlag: realFlags.some((t) => /placeholder massing/i.test(t)),
+        recommended: window.__chicago4d.registry.get('recon_1835_south_d3_001')
+          ?.assetIsPlaceholder,
+        placeholderFlag: recommendedFlags.some((t) => /placeholder massing/i.test(t)),
+        reconstructionFlag: recommendedFlags.some((t) => /recommended reconstruction/i.test(t)),
       };
     });
-    check(`${label}: the card is told whether the mesh is a bake or a stand-in`,
-      placeholder.onRecord === false, `assetIsPlaceholder is ${placeholder.onRecord}`);
-    check(`${label}: and says nothing of the kind over a real bake`,
-      placeholder.shown === false, `flag shown: ${placeholder.shown}`);
+    check(`${label}: established assets remain identified as real bakes`,
+      placeholder.real === false && placeholder.realFlag === false,
+      JSON.stringify(placeholder));
+    check(`${label}: anonymous infill is visibly flagged as placeholder reconstruction`,
+      placeholder.recommended === true && placeholder.placeholderFlag
+      && placeholder.reconstructionFlag,
+      JSON.stringify(placeholder));
 
     // --- the record's own account -----------------------------------------
     // `research_note` is on every record and in every compiled sidecar, and the
@@ -838,12 +846,28 @@ for (const [label, viewport, touch] of [
     const chrome = await page.evaluate(() => ({
       gateHidden: document.getElementById('gate').hasAttribute('hidden'),
       hudShown: !document.getElementById('hud').hasAttribute('hidden'),
+      controlHelpShown: !document.getElementById('control-help').hasAttribute('hidden'),
+      desktopHelpShown: getComputedStyle(document.getElementById('control-help-desktop')).display !== 'none',
+      touchHelpShown: getComputedStyle(document.getElementById('control-help-touch')).display !== 'none',
       overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
     }));
     check(`${label}: tap-to-start reveals the walkthrough`,
       chrome.gateHidden && chrome.hudShown,
       `gate hidden ${chrome.gateHidden}, hud shown ${chrome.hudShown}`);
+    check(`${label}: first entry shows the navigation guide for the active input mode`,
+      chrome.controlHelpShown
+      && (touch ? chrome.touchHelpShown && !chrome.desktopHelpShown
+        : chrome.desktopHelpShown && !chrome.touchHelpShown),
+      JSON.stringify(chrome));
     check(`${label}: no horizontal overflow`, chrome.overflow);
+    await page.click('#control-help-gotit');
+    const controlHelpDismissed = await page.evaluate(() => ({
+      hidden: document.getElementById('control-help').hasAttribute('hidden'),
+      stored: localStorage.getItem('chicago4d.controlHelpDismissed'),
+    }));
+    check(`${label}: the navigation guide dismisses and remembers the choice`,
+      controlHelpDismissed.hidden && controlHelpDismissed.stored === '1',
+      JSON.stringify(controlHelpDismissed));
 
     // --- navigation --------------------------------------------------------
     // Both readouts are derived from the live walker.  The overview's signature
@@ -902,6 +926,11 @@ for (const [label, viewport, touch] of [
 
     const streetLayer = await page.evaluate(() => {
       const a = window.__chicago4d;
+      // Sample the dynamic flora from a known dry South Division viewpoint.
+      // The preceding overview check deliberately teleports over the river;
+      // after the deep-channel vegetation fix an empty sward there is correct.
+      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+      a.step();
       let vertices = 0;
       let worstDrape = 0;
       let wetVertices = 0;
@@ -929,6 +958,8 @@ for (const [label, viewport, touch] of [
       const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
       let rootedPlants = 0;
       let worstPlantRoot = 0;
+      let waterPlants = 0;
+      let deepWaterPlants = 0;
       for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette']) {
         const mesh = a.flora.group.getObjectByName(name);
         const matrix = mesh?.instanceMatrix?.array;
@@ -941,9 +972,15 @@ for (const [label, viewport, touch] of [
           const expected = a.terrain.isWater(e, n)
             ? waterY : a.terrain.surfaceHeight(e, n);
           worstPlantRoot = Math.max(worstPlantRoot, Math.abs(y - expected));
+          if (a.terrain.isWater(e, n)) {
+            waterPlants++;
+            if (a.flora.shoreDistance(e, n) > 8.01) deepWaterPlants++;
+          }
           rootedPlants++;
         }
       }
+      const treeStations = a.trees.group.userData.stations ?? [];
+      const wetTreeStations = treeStations.filter(({ e, n }) => a.terrain.isWater(e, n));
 
       let anchoredBuildings = 0;
       let worstBuildingAnchor = 0;
@@ -990,7 +1027,8 @@ for (const [label, viewport, touch] of [
       };
       return {
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
-        canopyPresent, rootedPlants, worstPlantRoot,
+        canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
+        treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
         anchoredBuildings, worstBuildingAnchor, exchangeAnchor, worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
         keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
@@ -1008,6 +1046,12 @@ for (const [label, viewport, touch] of [
     check(`${label}: detailed flora roots share the terrain and water surfaces`,
       streetLayer.rootedPlants > 100 && streetLayer.worstPlantRoot < 1e-5,
       `${streetLayer.rootedPlants} roots, worst error ${streetLayer.worstPlantRoot}`);
+    check(`${label}: emergent flora stays within eight metres of a riverbank`,
+      streetLayer.deepWaterPlants === 0,
+      `${streetLayer.waterPlants} water plants, ${streetLayer.deepWaterPlants} in deep water`);
+    check(`${label}: woody vegetation never occupies the river mask`,
+      streetLayer.treeStations > 10 && streetLayer.wetTreeStations === 0,
+      `${streetLayer.treeStations} trees, ${streetLayer.wetTreeStations} wet stations`);
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       && streetLayer.worstBuildingAnchor < 1e-6
@@ -1038,6 +1082,17 @@ for (const [label, viewport, touch] of [
     // The menu is built from the two runtime collections, not from a sampled
     // shortlist.  With an empty query every loaded structure and every compiled
     // control junction must have a button; a real search must narrow both kinds.
+    await page.click('#btn-help');
+    await page.click('.panel-tab[data-tab="settings"]');
+    await page.click('#s-show-control-help');
+    const reopenedGuide = await page.evaluate(() => ({
+      shown: !document.getElementById('control-help').hasAttribute('hidden'),
+      panelHidden: document.getElementById('panel').hasAttribute('hidden'),
+    }));
+    check(`${label}: Settings can reopen the dismissed navigation guide`,
+      reopenedGuide.shown && reopenedGuide.panelHidden,
+      JSON.stringify(reopenedGuide));
+    await page.click('#control-help-close');
     await page.click('#btn-help');
     await page.click('.panel-tab[data-tab="settings"]');
     const unitChoice = await page.evaluate(async () => {

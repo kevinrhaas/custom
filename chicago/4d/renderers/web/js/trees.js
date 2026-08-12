@@ -1125,6 +1125,10 @@ export async function createTrees({
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
+  // Placement stations are lightweight test observability: the release smoke
+  // checks each against the authoritative water mask, which is stronger than a
+  // screenshot and cheaper than reverse-engineering roots out of merged meshes.
+  group.userData.stations = [];
 
   const hf = terrain?.heightfield;
   const stats = {
@@ -1188,7 +1192,12 @@ export async function createTrees({
   const dw = new Float32Array(cells);
   const D1 = cellM;
   const D2 = cellM * Math.SQRT2;
-  for (let i = 0; i < cells; i++) dw[i] = data[i] < SHORE_Y ? 0 : 1e9;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      dw[i] = terrain.isWater(originE + c * cellM, originN + r * cellM) ? 0 : 1e9;
+    }
+  }
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const i = r * cols + c;
@@ -1295,7 +1304,7 @@ export async function createTrees({
     const i = cellAt(e, n);
     if (i < 0) return null;
     const y = data[i];
-    if (y < SHORE_Y) return null;               // in the water
+    if (terrain.isWater(e, n)) return null;      // authoritative traced water mask
     const d = div[i];
     if (d === WEST) return null;                // Andreas: open prairie, entirely
     const bank = dw[i];
@@ -1354,6 +1363,7 @@ export async function createTrees({
     for (let e = -half; e <= half; e += step) {
       const px = e + (rnd() - 0.5) * step * 0.92;
       const pz = n + (rnd() - 0.5) * step * 0.92;
+      if (terrain.isWater(px, pz)) continue;
       const comm = communityAt(px, pz);
       if (!comm) continue;
 
@@ -1374,6 +1384,7 @@ export async function createTrees({
         const gy = terrain.surfaceHeight(px, pz);
         addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, pz, rnd,
           0.8 + rnd() * 0.5);
+        group.userData.stations.push({ e: px, n: pz });
         stats.thickets++;
         bump(stats.species, 'salix_interior');
         continue;
@@ -1407,6 +1418,7 @@ export async function createTrees({
       if (!spec) continue;
       const gy = terrain.surfaceHeight(px, pz);
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
+      group.userData.stations.push({ e: px, n: pz });
       stats.trees++;
       bump(stats.communities, key);
       bump(stats.species, id);
