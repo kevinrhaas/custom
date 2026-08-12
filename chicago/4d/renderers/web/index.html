@@ -92,7 +92,7 @@
     <div id="overview-map" class="overview-map" aria-label="Overview map">
       <canvas id="overview-map-canvas" aria-hidden="true"></canvas>
       <span class="overview-north" aria-hidden="true">N</span>
-      <span class="overview-caption" aria-hidden="true">whole model</span>
+      <span class="overview-caption" aria-hidden="true">map</span>
     </div>
     <div id="street-readout" class="street-readout" aria-live="polite" hidden>
       <span class="street-mode" id="street-mode">On street</span>
@@ -135,6 +135,11 @@
     </section>
 
     <section class="panel-body" data-panel="settings" hidden>
+      <label class="field row"><span>Measurement units</span>
+        <select id="s-units">
+          <option value="imperial">Imperial — ft, mi, mph</option>
+          <option value="metric">Metric — m, km, km/h</option>
+        </select></label>
       <label class="field"><span>Walking speed <b id="v-speed"></b></span>
         <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
       <label class="field"><span>Field of view <b id="v-fov"></b></span>

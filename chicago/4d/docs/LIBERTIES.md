@@ -2052,6 +2052,27 @@ one appears, the data keeps geometry, surface and wear confidence separate and c
 `conjectural`.
 **Recorded:** 2026-08-11.
 
+### L80 — The unresolved far prairie is terrain colour, not a second plant-height surface
+**Decision:** beyond the detailed near- and middle-distance plants, the prairie is represented
+by the procedural colour and grain already painted on the terrain. There is no horizontal mesh
+at the top of the sward. This supersedes L33's implementation of the far prairie as a solid
+plant-height sheet; L33 stays above as the append-only record of the decision that was tried.
+**Why:** real-device views showed that the sheet read as a second elevated ground layer. It hid
+the bases of buildings — conspicuously the Exchange Coffee House — and the lower portions of
+plants while the walker remained on the actual heightfield below it. Moving the walker,
+buildings or roots up to that sheet would have promoted a rendering approximation into false
+topography. Removing it leaves one shared physical and visible surface.
+**Consequence:** the far prairie preserves its broad July-green colour but no longer claims a
+separate plant-top silhouette or species-resolved height. Detailed geometry still represents
+the recorded plants near and in the middle distance, rooted exactly on land or at the water
+surface; the far texture is an unresolved visual compression, not something a visitor can stand
+on. Distant vegetation may consequently look smoother until a terrain-rooted replacement is
+built.
+**How to resolve:** terrain-rooted impostors or sparse geometry whose base follows the
+heightfield and whose alpha silhouette never closes into a walk-through horizontal sheet. Any
+replacement must retain the one-surface root and building-anchor regression checks.
+**Recorded:** 2026-08-11.
+
 ---
 
 ## Resolved

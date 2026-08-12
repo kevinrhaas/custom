@@ -8,6 +8,8 @@
  * follows their bearing.
  */
 
+import { formatDistance, normalUnitSystem } from './units.js';
+
 const DEG = Math.PI / 180;
 const CARDINALS = [
   'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE',
@@ -73,6 +75,7 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
   let compassVisible = true;
   let mapVisible = true;
   let streetVisible = true;
+  let units = 'imperial';
   let player = { e: 0, n: 0, bearingDeg: 0 };
   let lastPaint = { e: Infinity, n: Infinity, bearingDeg: Infinity };
   let lastStreet = { e: Infinity, n: Infinity, bearingDeg: Infinity };
@@ -194,7 +197,7 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
     if (bearingLabel) bearingLabel.textContent = `${String(Math.round(b) % 360).padStart(3, '0')}°`;
     if (compass) compass.setAttribute('aria-label', `Heading ${cardinal(b)}, ${Math.round(b)} degrees`);
     if (overview) overview.setAttribute('aria-label',
-      `Overview map. Position east ${Math.round(e)} metres, north ${Math.round(n)} metres; heading ${cardinal(b)}.`);
+      `Overview map. Position east ${formatDistance(e, units)}, north ${formatDistance(n, units)}; heading ${cardinal(b)}.`);
 
     if (Math.hypot(e - lastStreet.e, n - lastStreet.n) > 0.35
         || Math.abs(b - lastStreet.bearingDeg) > 2) {
@@ -223,7 +226,9 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
     const modern = joined(records, 'name_2026');
     let mode = 'On street';
     if (streetState.mode === 'intersection') mode = 'At intersection';
-    if (streetState.mode === 'ahead') mode = `Ahead · ${Math.round(streetState.distance_m)} m`;
+    if (streetState.mode === 'ahead') {
+      mode = `Ahead · ${formatDistance(streetState.distance_m, units)}`;
+    }
     if (streetMode) streetMode.textContent = mode;
     if (streetHistoric) streetHistoric.textContent = historic;
     if (streetModern) streetModern.textContent = `Today: ${modern}`;
@@ -231,13 +236,13 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
     const upcoming = streetState.upcoming;
     if (streetApproach) {
       const text = upcoming
-        ? `Approaching ${upcoming.street.name_1835} · ${Math.round(upcoming.ahead_m)} m`
+        ? `Approaching ${upcoming.street.name_1835} · ${formatDistance(upcoming.ahead_m, units)}`
         : '';
       streetApproach.textContent = text;
       streetApproach.toggleAttribute('hidden', !text);
     }
     const approachLabel = upcoming
-      ? `. Approaching ${upcoming.street.name_1835}, today ${upcoming.street.name_2026}, in ${Math.round(upcoming.ahead_m)} metres.`
+      ? `. Approaching ${upcoming.street.name_1835}, today ${upcoming.street.name_2026}, in ${formatDistance(upcoming.ahead_m, units)}.`
       : '';
     streetReadout?.setAttribute('aria-label',
       `${mode}. In 1835: ${historic}. Today: ${modern}${approachLabel}`);
@@ -265,6 +270,15 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
     return streetVisible;
   }
 
+  function setUnits(value) {
+    units = normalUnitSystem(value);
+    // Repaint text and accessibility labels immediately; the player may be
+    // standing still, so the normal movement threshold would not do it for us.
+    lastStreet = { e: Infinity, n: Infinity, bearingDeg: Infinity };
+    update(player);
+    return units;
+  }
+
   window.addEventListener('resize', resize);
   resize();
 
@@ -274,13 +288,15 @@ export function createNavigation({ root, terrain, registry, streets } = {}) {
     setCompassVisible,
     setMapVisible,
     setStreetVisible,
+    setUnits,
     get compassVisible() { return compassVisible; },
     get mapVisible() { return mapVisible; },
     get streetVisible() { return streetVisible; },
+    get units() { return units; },
     get streetState() { return streetState; },
     snapshot() {
       return {
-        ...player, compassVisible, mapVisible, streetVisible, streetState,
+        ...player, compassVisible, mapVisible, streetVisible, streetState, units,
         bounds: { ...bounds },
       };
     },

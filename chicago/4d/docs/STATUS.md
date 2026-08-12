@@ -40,15 +40,15 @@ this building by twenty months.
 | **`outbuilding`** | **BUILT 2026-08-11, NO RECORD USES IT YET** — the highest-count-per-effort archetype in the plan, and the one that gives the town yards instead of eight isolated public houses. A FAMILY, not a shape: `construction` log/plank/light_frame drives three different wall routines, shed roofs are first-class rather than a fallback, `open_sides` turns any subset of elevations into posts-and-plate, and `door` is none/man/stable/wagon — a boolean is refused with a message saying why. `board_gap_m` alone is the whole difference between a stable and a corn crib. Five golden variants from a 1.25 m privy to a 13 m hotel stable, 272-2008 tris; `GROUND_CONTACT: perimeter` verified on ALL FIVE against ground-plane EDGES rather than vertices (the first check compared vertices and produced false failures on a 13 m wall that is one quad). Discharges the stable half of L10; **the yard half stays open** — a fence line with two gateways is an enclosure, and building it out of an outbuilding would be calling a fence a building, so L10 needs NARROWING rather than resolving |
 | **South Water Street** | **BUILT 2026-08-11** — sixteen commercial records land the town's business street, which the model held none of: Peck's store, both newspaper offices, Harmon & Loomis, Madore Beaubien's log house, Bates's auction room, the Beaubien homestead, Dole's warehouse, both Carpenter shops, Frederick Thomas, the old bank building, Pruyne & Kimball, J. H. Kinzie, Jones, and Thomas Church on Lake. One footprint is evidence (Carpenter's 16 x 20 ft log shop — the dataset's SECOND real footprint); fifteen are invented inside the documented 55 ft South Water lot cap. **What this street knows is *who* and *where*, and almost never *how big*.** Two records carry `review_required` (the Beaubiens, whose history runs straight into the August 1835 removal and the reservation pre-emption) — which blocks the 1835 scene from `released` until consultation happens. Two unresolved reads are flagged on the records themselves: whether Harmon & Loomis's building IS the *Chicago Democrat*'s building (they sit 37 m apart and Andreas gives no side), and whether Philo Carpenter's Lake Street log shop still stood after he built on South Water in 1833 |
 | **Renderer** | **WALKABLE AND NAVIGABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup, live compass and a north-up overview derived from the loaded heightfield and structure footprints |
-| **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m ahead. |
-| **Smoke** | **PASS 2026-08-11.** `tools/check.sh` passed with `jsonschema` and `pyproj` enabled, including schema validation, datum re-derivation, JS parse, derived sidecars and every validator self-test. `node tools/smoke_renderer.mjs` passed all 265 assertions in foreground Chromium at both release viewports (390×780 and 1280×800), with zero page errors. The suite now pins exact eye-to-ground clearance uphill and downhill, slow-frame walking distance, water-surface wetland canopy, street drape and water clipping, travel-track-only flora clearing, 1835/current names, next-cross-street text and all three navigation settings toggles. Each viewport gets a fresh browser process so a software-only renderer does not inherit the previous viewport's GPU state. |
-| **Flora** | **the sward is in** (2026-08-10) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`, at 8 draw calls and ~90 k triangles. July phenology is enforced in the renderer as well as in the data: no flowering culm is drawn for any species the record calls vegetative. The distant canopy for water-standing emergents now uses the water surface as its visible base, matching the near reeds and removing the former channel-bed shelf at the shoreline. |
+| **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. A fourth persistent setting switches every visitor-facing navigation measurement between Imperial (the default: ft, mi, mph) and Metric (m, km, km/h) without changing the metric scene data. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m / 230 ft ahead. |
+| **Smoke** | **PASS 2026-08-11.** `tools/check.sh` and changelog checks pass. `node tools/smoke_renderer.mjs` passed all **273 assertions** in foreground Chromium at both release viewports (390×780 and 1280×800), with zero page errors. The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, and exercises both unit systems. Mobile: 49 draw calls / 378,647 triangles / 5 fps; desktop: 53 / 499,343 / 2 fps, both under the 80 / 600,000 release budgets. |
+| **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on* reads graded claims off `terrain_spec.json`, derived per scene by `compile_scene.py` and re-derived by `check.sh`; the same slice added reasoning and geometry-state checks so those rows are no longer silent promises. |
 | **What a source is, in the app** | **done** (2026-08-11) — citations now carry the document a modern page reprints (`transcribes`) or the reading that it reprints none, plus each source's own `what_it_supplies` / `what_it_does_not_supply`, so the ladder a visitor sees includes the reason it is the ladder. |
 | **Liberties, in the app** | **done** — the Evidence panel lists the liberties derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, a terrain claim, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype or terrain generator never reads and no liberty owns up to leaving out |
 | **The platted street module** | **MEASURED AND VISIBLE** — street corridors and widths remain committed in `data/traces/vectors/street_corridors_1834.json`, with Lake and Randolph named from committed control and re-derived offline by `check_street_module`. `data/streets/1835.json` now adds seventeen dated paths and keeps the 80 ft legal corridor separate from L79's 5.8-10.5 m visible travelled strips. `compile_scene.py` joins their citations into the sidecar index; the renderer drapes them on the ground, clips them at water and clears vegetation only from the track. South Water and Lake read as principal graded earth, ordinary streets as worn native earth, and no gravel, plank roadway or hard paving is shown. North Water's curve and every rut/track width remain explicitly conjectural. |
 | **The lake shore** | **TRACED, NOT BUILT** — `shoreline.geojson`: the harbour reach, the 1834 cut, the old southward channel, the sand bar as an island and the mainland shore, E +314…+1570 off Wright 1834. Vectors only; no elevation, no mesh, nothing east of the box renders yet |
-| **Published** | `site/chicago/4d/` (4.08 MB of a 25 MB budget) + a tile on the Chicago landing page |
+| **Published** | `site/chicago/4d/` (14.31 MB of a 25 MB budget) + a tile on the Chicago landing page |
 | Exclusions | 14 date-guarded structures + a 4-item watch list — **in the walkthrough** since 2026-08-10 (Evidence panel, "What is not here"), citations joined, and now held to the same citation rule as a structure record (§ 26) |
 
 ## Corrections made after the first live look
@@ -72,6 +72,13 @@ missed. Both are fixed; both are the kind of thing only a real viewer catches.
   and no source gives a dimension. The massing now follows the attributes that say what the
   building was; dimensional uncertainty is carried in the sidecar, where the popup shows it.
   Understating what we know is as much a misrepresentation as overstating it.
+- **The prairie appeared to be a second terrain layer.** The far vegetation simplification was
+  a solid horizontal sheet at plant-top height. On real hardware it hid building foundations
+  and plant roots while the walker remained correctly on the actual heightfield below — most
+  clearly at the river bank and Exchange Coffee House. The sheet is removed, not promoted to
+  terrain. Walker, buildings, streets, trees and detailed flora now share one explicit surface
+  sampler; emergent roots use the water surface. The far field is terrain texture until a
+  porous, terrain-rooted replacement can be built (L80).
 
 ## What does not exist yet
 
@@ -208,46 +215,14 @@ uncertainty of the 1834 sheets in its note.
       control lands *between* the two July photographs. That metric should not be quoted by
       anyone, including this file.
 
-0. **The walk assertion fails on the test machine, by one frame, and it is a shared cost.**
-   `tools/smoke_renderer.mjs` holds W down for 2.2 seconds of wall clock and requires the
-   walker to cover more than 0.30 m. The walker moves `dt × 1.45 m/s` with `dt` clamped at
-   0.05 s, so the assertion is really "render at least five frames in 2.2 seconds" — a
-   frame-rate assertion, measured on a machine with no GPU at all, where the whole scene is
-   rasterised in software. Measured at the viewpoint the assertion runs from, on 2026-08-10:
-
-   | tree state | ms/frame | frames in 2.2 s | walked |
-   |---|---|---|---|
-   | HEAD, before this round | 417 | 5.3 | 0.38 m — passes |
-   | + terrain and sky work, no vegetation data | 520 | 4.2 | 0.30 m — on the line |
-   | + flora and trees | ~610 | 3.6 | 0.29 m — fails |
-   | + the vegetation sweep (2026-08-10, measured) | ~730 | 3.0 | **0.22 m — fails** |
-
-   The last row is a **regression inside an already-failing assertion**, and it is recorded
-   rather than absorbed: the sweep put 339 stemmed willow thickets where there had been 202
-   unstemmed ones, drew limbs on every tree form instead of one, and gave the sward's flower
-   heads real geometry per recorded shape. That is more triangles for a reason, but it is
-   still 0.07 m further from the bar. Triangles are 494,667 against a 600 k budget and draw
-   calls 21 against 80, so the budget gates do not catch it — this is fill and shading cost on
-   a software rasteriser, not geometry count. **Mobile at 390×780 still passes.** Item 10 in
-   ROADMAP § S6a next (adaptive budget) is the standing answer and has not been done.
-
-   The **mobile** pass at 390×780 passes: the sward's low-spec field is a
-   genuinely shallower one (a 4.6 m near ring against 7.6, the canopy taking
-   over at 4.6 m instead of 10) rather than the desktop field scaled down, and
-   at 124 k triangles the phone-sized viewport clears the bar. It is the
-   1280×800 pass that misses.
-
-   Three parcels landed in one round and together they crossed it. **No one of them can
-   recover it**: deleting the vegetation entirely still leaves 520 ms, which is not five
-   frames. Cutting the sward's density by a third moved the frame by 12 ms and visibly
-   un-hid the ground, so that trade was taken back — the sward's own bar is that the ground
-   is invisible at eye height, and it was not worth failing that to not-quite-pass this.
-   **The assertion has not been weakened and must not be.** What it is telling us is true: the
-   scene got a third slower this round. The choices are to make the frame cheaper (the ground
-   shader is the largest single cost and it is now drawn behind a sward that hides most of it),
-   or to decide deliberately that a wall-clock walk test cannot live on a software rasteriser
-   and give it a frame-count form instead — a decision for a human, not for a parcel that
-   would benefit from it.
+0. **The former slow-renderer walking failure is resolved without weakening its distance bar.**
+   Movement now consumes up to a quarter-second of real frame time in terrain-and-collision
+   substeps no larger than 0.05 s. A software renderer drawing only two frames per second no
+   longer turns a 1.45 m/s walk into a crawl, while the short substeps retain bank and building
+   collision accuracy. The foreground smoke run passes the same walk-distance assertion at
+   both 390×780 and 1280×800. Current full-scene budgets are 49 / 53 draw calls and 378,647 /
+   499,343 triangles respectively; the desktop renderer remains slow at 2 fps under SwiftShader,
+   but elapsed-time walking is no longer coupled to that frame count.
 
 
 1. **One structure record does not prove the schema.** The Sauganash exercises phases, a

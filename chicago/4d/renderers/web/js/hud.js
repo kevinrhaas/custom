@@ -10,6 +10,7 @@
  */
 
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
+import { formatHeight, formatSpeed, normalUnitSystem } from './units.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
@@ -17,7 +18,7 @@ const SET_KEY = 'chicago4d.settings';
 
 const DEFAULT_SETTINGS = {
   speed: 1.45, fov: 72, quality: 1.5,
-  compass: true, overviewMap: true, streetNames: true,
+  compass: true, overviewMap: true, streetNames: true, units: 'imperial',
 };
 
 function readSettings() {
@@ -50,6 +51,7 @@ export function createHud({
   const panel = $('panel');
   const hint = $('hint');
   const settings = readSettings();
+  settings.units = normalUnitSystem(settings.units);
 
   if (badgeYear) badgeYear.textContent = scene?.id ?? '';
   if (badgeSub) badgeSub.textContent = formatSceneDate(scene?.target_date);
@@ -110,13 +112,15 @@ export function createHud({
 
   btnFly?.addEventListener('click', () => setFly(!flying));
 
-  /** Altitude readout, driven from the frame loop. Metres above local ground. */
+  /** Altitude readout, driven from the frame loop. Stored internally in metres. */
+  let lastAltitudeM = 0;
   function setAltitude(m) {
+    lastAltitudeM = m;
     if (!badgeAlt) return;
     const show = flying && m > 1;
     badgeAlt.toggleAttribute('hidden', !show);
     badgeAlt.parentElement?.classList.toggle('has-alt', show);
-    if (show) badgeAlt.textContent = `${Math.round(m)} m up`;
+    if (show) badgeAlt.textContent = `${formatHeight(m, settings.units)} up`;
   }
 
   btnTheme?.addEventListener('click', () => {
@@ -206,9 +210,24 @@ export function createHud({
       onSetting?.(key, settings[key]);
       store(SET_KEY, JSON.stringify(settings));
     });
+    return paint;
   }
-  wireRange('s-speed', 'v-speed', 'speed', (v) => `${v.toFixed(1)} m/s`);
+  const paintSpeed = wireRange('s-speed', 'v-speed', 'speed',
+    (v) => formatSpeed(v, settings.units));
   wireRange('s-fov', 'v-fov', 'fov', (v) => `${Math.round(v)}°`);
+
+  const units = $('s-units');
+  if (units) {
+    units.value = settings.units;
+    units.addEventListener('change', () => {
+      settings.units = normalUnitSystem(units.value);
+      units.value = settings.units;
+      paintSpeed?.();
+      setAltitude(lastAltitudeM);
+      onSetting?.('units', settings.units);
+      store(SET_KEY, JSON.stringify(settings));
+    });
+  }
 
   const qual = $('s-quality');
   if (qual) {
