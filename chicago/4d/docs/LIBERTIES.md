@@ -2024,6 +2024,34 @@ at once.
 `goss_cobb_saddlery.shop_1833.form.stories`.
 **Recorded:** 2026-08-11.
 
+### L79 — The street corridors are measured; the travelled earth inside them is drawn by eye
+**Decision:** every visible street is an earth ribbon draped on the terrain, but the widths of
+those ribbons — 10.5 m on South Water and Lake, 8 m on Market, 7 m on ordinary streets and
+5.8-6 m on lightly travelled streets — are not measurements. Neither are the paired wagon ruts,
+the thin grassy crown between them, their colour, or the relative amount of bare soil assigned
+to the three traffic classes. The 80 ft legal corridor is evidence and stays separate from this
+narrower travelled strip.
+**Why:** the 1834 plats and the measured street module supply the rights-of-way, not a road-bed
+inside them. The Department of Public Works chronology supplies a sequence and a distinction:
+South Water and Lake were the two principal early turnpiked and graded routes; Canal, western
+Lake and Randolph received named work in fall 1836; planking and hard paving belong much later.
+It supplies no cross-section, rut spacing, soil colour, carriageway width or block-by-block wear.
+Those values are visual interpretation chosen to make the documented distinction visible without
+putting a modern road inside an 1835 plat.
+**Consequence:** a visitor can correctly read principal graded earth against a lesser worn-earth
+street and can see grass survive across most of an 80 ft corridor, but cannot treat any rut or
+edge as survey geometry. Several path extents are analytic extensions from the platted module;
+North Water's bank-following curve is explicitly conjectural. South Water's travelled strip is
+shifted into the dry half of its riverfront corridor so it does not paint the river, a conclusion
+from this model's heightfield rather than a measured 1835 carriageway alignment. Wherever the
+heightfield says water, the ribbon is cut away; that is a rendering guard, not evidence that no
+temporary crossing existed.
+**How to resolve:** a dated street-improvement specification, town-surveyor section, assessment
+record, or close contemporary street depiction giving a cross-section or travelled width. Until
+one appears, the data keeps geometry, surface and wear confidence separate and calls the wear
+`conjectural`.
+**Recorded:** 2026-08-11.
+
 ---
 
 ## Resolved

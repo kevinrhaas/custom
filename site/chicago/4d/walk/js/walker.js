@@ -25,7 +25,6 @@ export const WALK = {
   sprintSpeed: 3.3,     // m/s — a jog, not a sprint
   stepUp: 0.35,         // m — the plank-walk rule
   pitchLimit: 85 * DEG,
-  groundSmoothing: 14,  // 1/s — how fast the eye settles to a new ground height
 };
 
 /**
@@ -368,17 +367,15 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       state.e = clear.e;
       state.n = clear.n;
 
-      // Settle the eye onto the ground rather than snapping — a hard snap over a
-      // plank edge reads as a stumble.
+      // Walking is a constraint, not a camera animation: the eye stays exactly
+      // WALK.eyeHeight above the SAME bilinear heightfield that built the mesh.
+      // The old exponential easing lagged behind on every rise and fall, so the
+      // visitor visibly entered a bank while climbing and floated while coming
+      // down.  Bilinear sampling already makes ordinary terrain continuous;
+      // the 0.35 m step rule above is the only place an actual step may occur.
       state.groundY = terrain.height(state.e, state.n);
-      const targetEye = state.groundY + WALK.eyeHeight;
-      const k = 1 - Math.exp(-WALK.groundSmoothing * dt);
-      state.eyeY += (targetEye - state.eyeY) * k;
-      // Snap the last centimetre. The exponential never quite arrives, and a
-      // descent from 300 m would otherwise leave a visible fraction of a metre
-      // of drift for several seconds after it looks finished.
-      if (Math.abs(targetEye - state.eyeY) < 0.01) state.eyeY = targetEye;
-      state.altitude = state.eyeY - state.groundY - WALK.eyeHeight;
+      state.eyeY = state.groundY + WALK.eyeHeight;
+      state.altitude = 0;
 
       this.apply();
     },

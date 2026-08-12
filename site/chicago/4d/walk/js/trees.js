@@ -1120,7 +1120,8 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
  * @param {boolean} [o.lowSpec]     true on touch/mobile: fewer stems, coarser band
  */
 export async function createTrees({
-  dataBase, terrain, footprints = [], confidence = null, problems = [], lowSpec = false,
+  dataBase, terrain, footprints = [], growthBlocked = () => false,
+  confidence = null, problems = [], lowSpec = false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1262,6 +1263,7 @@ export async function createTrees({
   });
   const CLEAR_MARGIN = 4.5;
   function blocked(e, n) {
+    if (growthBlocked(e, n)) return true;
     for (const f of fps) {
       if (Math.abs(e - f.e) > 60 || Math.abs(n - f.n) > 60) continue;
       const pts = f.pts;

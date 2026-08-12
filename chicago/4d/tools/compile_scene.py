@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -545,6 +546,75 @@ def compile_intersections(datum: dict) -> list[dict]:
     return out
 
 
+def compile_streets(scene_id: str, target_date: str,
+                    sources: dict) -> tuple[str, list[dict]]:
+    """The dated street surface and name layer consumed by the renderer.
+
+    Street research is authored under ``data/streets`` and flattened into the
+    same scene index that already carries structures and verified junctions.
+    That keeps raw research out of the browser, joins citations once, and makes
+    ``compile_scene --check`` the drift gate for the visible roads too.
+
+    The rendered strip is deliberately NOT the whole platted corridor: an
+    80-foot legal right-of-way and the wagon-worn earth inside it are different
+    claims.  Both widths travel so the readout can identify the street across
+    the corridor while flora is cleared only from the narrower travelled part.
+    """
+    path = DATA / "streets" / f"{scene_id}.json"
+    if not path.exists():
+        return "No dated street layer is committed for this scene.", []
+    doc = load(path)
+    if doc.get("scene") != scene_id:
+        raise SystemExit(f"{path.relative_to(ROOT)}: scene must be {scene_id!r}")
+    if doc.get("target_date") != target_date:
+        raise SystemExit(f"{path.relative_to(ROOT)}: target_date must be {target_date!r}")
+
+    common_sources = doc.get("sources", []) or []
+    default_corridor = doc.get("corridor_width_m", 24.384)
+    out = []
+    seen: set[str] = set()
+    for raw in doc.get("streets", []) or []:
+        sid = raw.get("id", "")
+        if not sid or sid in seen:
+            raise SystemExit(f"{path.relative_to(ROOT)}: missing or duplicate street id {sid!r}")
+        seen.add(sid)
+        points = raw.get("path_local_enu_m")
+        if (not isinstance(points, list) or len(points) < 2
+                or any(not isinstance(p, list) or len(p) != 2
+                       or any(not isinstance(v, (int, float)) or not math.isfinite(v) for v in p)
+                       for p in points)):
+            raise SystemExit(f"{path.relative_to(ROOT)}: {sid} needs two or more finite [e,n] points")
+        corridor = raw.get("corridor_width_m", default_corridor)
+        track = raw.get("track_width_m")
+        if not isinstance(corridor, (int, float)) or not isinstance(track, (int, float)) \
+                or not 0 < track < corridor:
+            raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
+        for key in ("geometry_confidence", "surface_confidence", "wear_confidence"):
+            if raw.get(key, "conjectural") not in ("documented", "inferred", "conjectural"):
+                raise SystemExit(f"{path.relative_to(ROOT)}: {sid}.{key} is not a confidence grade")
+        street_sources = sorted(set([*common_sources, *(raw.get("sources", []) or [])]))
+        missing = [s for s in street_sources if s not in sources]
+        if missing:
+            raise SystemExit(f"{path.relative_to(ROOT)}: {sid} cites missing source(s): {', '.join(missing)}")
+        out.append({
+            "id": sid,
+            "name_1835": raw["name_1835"],
+            "name_2026": raw["name_2026"],
+            "name_changed": bool(raw.get("name_changed", False)),
+            "path_local_enu_m": points,
+            "corridor_width_m": corridor,
+            "track_width_m": track,
+            "surface": raw["surface"],
+            "traffic": raw["traffic"],
+            "geometry_confidence": raw.get("geometry_confidence", "conjectural"),
+            "surface_confidence": raw.get("surface_confidence", "conjectural"),
+            "wear_confidence": raw.get("wear_confidence", "conjectural"),
+            "note": raw.get("note", ""),
+            "citations": cite(street_sources, sources),
+        })
+    return doc.get("surface_standard", ""), out
+
+
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     scene = load(DATA / "scenes" / f"{scene_id}.json")
     target = dt.date.fromisoformat(scene["target_date"])
@@ -692,10 +762,13 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                       "asset": sidecar["asset"]})
         written += 1
 
+    street_standard, streets = compile_streets(scene_id, scene["target_date"], sources)
     emit(outdir / "index.json", {
         "scene": scene_id,
         "target_date": scene["target_date"],
         "intersections": compile_intersections(datum),
+        "street_standard": street_standard,
+        "streets": streets,
         "structures": index,
         "excluded_by_date": skipped,
     })

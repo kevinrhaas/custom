@@ -156,10 +156,15 @@ Success is not "a building appears". Success is that a viewer can toggle the con
 and see exactly which parts of the Sauganash we can defend — the white two-story block and the
 blue shutters solid, the invented footprint and the disputed gallery dithered.
 
-## S9 — Streets, roads and paths · **queued next after S2e (Kevin, 2026-08-10)**
+## S9 — Streets, roads and paths · **VISIBLE EARTH LAYER + LIVE NAMES DONE 2026-08-11**
 
-Asked for as "streets, roads, paths in accurate surface and elevations". Both halves of
-that have a specific answer here, and the second one is a trap.
+Asked for as "streets, roads, paths in accurate surface and elevations", then expanded to a
+toggleable 1835/current-name readout. The first dated visible layer is now in: seventeen earth
+travelways compiled into the scene index, draped on the heightfield, cut at water, cleared only
+through the narrow travelled strip, drawn on the overview map and queried live for the street
+underfoot or the next cross street ahead. The remaining work is to extend control on North Water
+and the north-side grid, research any dated plank footwalks separately, and replace L79's visual
+wear widths wherever a specification or depiction survives.
 
 **Half of that sentence is committed data as of 2026-08-10.** `data/traces/street_control.json`
 holds the module (80 ft streets, `inferred`, with the 66 ft dissent recorded beside it) and the
@@ -211,23 +216,24 @@ in as wobble. Generate the grid analytically from the module and snap it to cont
 street that is straight because the surveyor made it straight should not arrive bent
 because we traced a folded sheet.
 
-**"Accurate surface" in 1835 means mud.** This is the trap: the instinct is to model a
-crowned, kerbed, gravelled roadway, and every part of that is wrong for the date. Chicago's
-streets were unpaved earth — notoriously, memorably so — with **plank sidewalks** where
-anyone had bothered to lay them. The first plank roadway is over a decade later. So the
-street surface is a material and a wear pattern on the prairie, not a built structure, and
-the plank walks are the only raised element. Both need their own sources before they are
-drawn; do not let the archetype supply them silently, which is the mistake the bridge
-already made once (see v21).
+**"Accurate surface" in 1835 means earth, not gravel.** The first instinct — a crowned,
+kerbed, gravelled or paved roadway — is wrong for the date, but the earlier wording here was
+too broad in the opposite direction. The official 1891 municipal chronology records South
+Water ordered pitched by April 1834 and graded for drainage that July, and calls South Water
+and Lake the two principal early turnpiked and graded streets. It separately dates Canal,
+Lake west to Desplaines and Randolph turnpiking to fall 1836; street planking begins in 1844,
+general planking in 1849, limestone block in 1855, and macadam/cobble in 1856. On 1 July 1835
+the defensible visual vocabulary is therefore **graded or thrown-up earth on the principal
+routes, worn native soil on lesser streets, grassy margins, no gravel or hard paving**. Dated
+plank footwalks remain a separate research parcel and are not silently supplied by the road.
 
-**"Accurate elevations" means the streets follow the ground, because nothing had been
-graded yet.** The great raising of Chicago is 1855–58, twenty years later. So there is no
-cut, no fill, no crown and no camber: the roadway is the prairie surface with the sod worn
-off it. Drape the grid on the heightfield and resist the urge to smooth it — the existing
-gradient audit already puts the whole quadrant under 0.5 ft per 300 ft, so flat is the
-finding, not a shortcut. Where a street crosses the slough or the marshy shore strip, that
-is a real crossing problem the sources may describe; treat it as content, not as a
-rendering artefact to be flattened away.
+**"Accurate elevations" means modest early grading is not the later Raising of Chicago.**
+South Water's documented drainage order means "nothing had been graded" was false. What no
+source supplies is the amount, cross-section, crown or fill profile, so this first layer does
+not edit the heightfield or invent one: its vertices sample the existing ground exactly and sit
+22 mm above it only to avoid depth fighting. The walk camera now locks to that same bilinear
+surface each frame instead of easing behind it on rises and falls. Where a street reaches water,
+the ribbon stops; a crossing is content to research, not a rendering artefact to flatten away.
 
 ## S5a — Fort Dearborn · **DONE 2026-08-11**
 
