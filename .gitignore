@@ -2,3 +2,6 @@
 .gitignore
 __pycache__/
 *.pyc
+
+# Large reference PDF (exceeds GitHub 100MB limit) - keep local only
+chicago/reference/Andreas-History_of_Chicago.pdf
