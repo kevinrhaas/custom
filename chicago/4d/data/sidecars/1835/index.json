@@ -2053,6 +2053,366 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_north_a1_008",
+      "name": "Recommended A1 stable #008",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_008.json",
+      "asset": "gltf/recon_1835_north_a1_008__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_032",
+      "name": "Recommended A1 stable #032",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_032.json",
+      "asset": "gltf/recon_1835_north_a1_032__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_036",
+      "name": "Recommended A1 stable #036",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_036.json",
+      "asset": "gltf/recon_1835_north_a1_036__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_050",
+      "name": "Recommended A1 stable #050",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_050.json",
+      "asset": "gltf/recon_1835_north_a1_050__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_033",
+      "name": "Recommended A2 barn or carriage shed #033",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_033.json",
+      "asset": "gltf/recon_1835_north_a2_033__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_048",
+      "name": "Recommended A2 barn or carriage shed #048",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_048.json",
+      "asset": "gltf/recon_1835_north_a2_048__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_059",
+      "name": "Recommended A2 barn or carriage shed #059",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_059.json",
+      "asset": "gltf/recon_1835_north_a2_059__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_009",
+      "name": "Recommended A3 privy #009",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_009.json",
+      "asset": "gltf/recon_1835_north_a3_009__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_034",
+      "name": "Recommended A3 privy #034",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_034.json",
+      "asset": "gltf/recon_1835_north_a3_034__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_051",
+      "name": "Recommended A3 privy #051",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_051.json",
+      "asset": "gltf/recon_1835_north_a3_051__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_010",
+      "name": "Recommended A4 woodshed or storage shed #010",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_010.json",
+      "asset": "gltf/recon_1835_north_a4_010__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_035",
+      "name": "Recommended A4 woodshed or storage shed #035",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_035.json",
+      "asset": "gltf/recon_1835_north_a4_035__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_052",
+      "name": "Recommended A4 woodshed or storage shed #052",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_052.json",
+      "asset": "gltf/recon_1835_north_a4_052__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a5_011",
+      "name": "Recommended A5 small utility building #011",
+      "sidecar": "sidecars/1835/recon_1835_north_a5_011.json",
+      "asset": "gltf/recon_1835_north_a5_011__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a5_049",
+      "name": "Recommended A5 small utility building #049",
+      "sidecar": "sidecars/1835/recon_1835_north_a5_049.json",
+      "asset": "gltf/recon_1835_north_a5_049__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c1_020",
+      "name": "Recommended C1 small shop or office #020",
+      "sidecar": "sidecars/1835/recon_1835_north_c1_020.json",
+      "asset": "gltf/recon_1835_north_c1_020__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c1_047",
+      "name": "Recommended C1 small shop or office #047",
+      "sidecar": "sidecars/1835/recon_1835_north_c1_047.json",
+      "asset": "gltf/recon_1835_north_c1_047__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c2_027",
+      "name": "Recommended C2 store-residence #027",
+      "sidecar": "sidecars/1835/recon_1835_north_c2_027.json",
+      "asset": "gltf/recon_1835_north_c2_027__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_001",
+      "name": "Recommended D1 older log dwelling #001",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_001.json",
+      "asset": "gltf/recon_1835_north_d1_001__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_013",
+      "name": "Recommended D1 older log dwelling #013",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_013.json",
+      "asset": "gltf/recon_1835_north_d1_013__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_023",
+      "name": "Recommended D1 older log dwelling #023",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_023.json",
+      "asset": "gltf/recon_1835_north_d1_023__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_053",
+      "name": "Recommended D1 older log dwelling #053",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_053.json",
+      "asset": "gltf/recon_1835_north_d1_053__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_054",
+      "name": "Recommended D1 older log dwelling #054",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_054.json",
+      "asset": "gltf/recon_1835_north_d1_054__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_060",
+      "name": "Recommended D1 older log dwelling #060",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_060.json",
+      "asset": "gltf/recon_1835_north_d1_060__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_003",
+      "name": "Recommended D2 rough plank dwelling or shanty #003",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_003.json",
+      "asset": "gltf/recon_1835_north_d2_003__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_014",
+      "name": "Recommended D2 rough plank dwelling or shanty #014",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_014.json",
+      "asset": "gltf/recon_1835_north_d2_014__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_029",
+      "name": "Recommended D2 rough plank dwelling or shanty #029",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_029.json",
+      "asset": "gltf/recon_1835_north_d2_029__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_046",
+      "name": "Recommended D2 rough plank dwelling or shanty #046",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_046.json",
+      "asset": "gltf/recon_1835_north_d2_046__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_002",
+      "name": "Recommended D3 one-room frame cottage #002",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_002.json",
+      "asset": "gltf/recon_1835_north_d3_002__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_006",
+      "name": "Recommended D3 one-room frame cottage #006",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_006.json",
+      "asset": "gltf/recon_1835_north_d3_006__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_016",
+      "name": "Recommended D3 one-room frame cottage #016",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_016.json",
+      "asset": "gltf/recon_1835_north_d3_016__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_024",
+      "name": "Recommended D3 one-room frame cottage #024",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_024.json",
+      "asset": "gltf/recon_1835_north_d3_024__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_038",
+      "name": "Recommended D3 one-room frame cottage #038",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_038.json",
+      "asset": "gltf/recon_1835_north_d3_038__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_042",
+      "name": "Recommended D3 one-room frame cottage #042",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_042.json",
+      "asset": "gltf/recon_1835_north_d3_042__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_055",
+      "name": "Recommended D3 one-room frame cottage #055",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_055.json",
+      "asset": "gltf/recon_1835_north_d3_055__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_004",
+      "name": "Recommended D4 two-room frame cottage #004",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_004.json",
+      "asset": "gltf/recon_1835_north_d4_004__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_012",
+      "name": "Recommended D4 two-room frame cottage #012",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_012.json",
+      "asset": "gltf/recon_1835_north_d4_012__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_017",
+      "name": "Recommended D4 two-room frame cottage #017",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_017.json",
+      "asset": "gltf/recon_1835_north_d4_017__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_025",
+      "name": "Recommended D4 two-room frame cottage #025",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_025.json",
+      "asset": "gltf/recon_1835_north_d4_025__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_039",
+      "name": "Recommended D4 two-room frame cottage #039",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_039.json",
+      "asset": "gltf/recon_1835_north_d4_039__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_043",
+      "name": "Recommended D4 two-room frame cottage #043",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_043.json",
+      "asset": "gltf/recon_1835_north_d4_043__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_056",
+      "name": "Recommended D4 two-room frame cottage #056",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_056.json",
+      "asset": "gltf/recon_1835_north_d4_056__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_019",
+      "name": "Recommended D5 deep-plan frame cottage #019",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_019.json",
+      "asset": "gltf/recon_1835_north_d5_019__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_026",
+      "name": "Recommended D5 deep-plan frame cottage #026",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_026.json",
+      "asset": "gltf/recon_1835_north_d5_026__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_037",
+      "name": "Recommended D5 deep-plan frame cottage #037",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_037.json",
+      "asset": "gltf/recon_1835_north_d5_037__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_041",
+      "name": "Recommended D5 deep-plan frame cottage #041",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_041.json",
+      "asset": "gltf/recon_1835_north_d5_041__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_057",
+      "name": "Recommended D5 deep-plan frame cottage #057",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_057.json",
+      "asset": "gltf/recon_1835_north_d5_057__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_021",
+      "name": "Recommended D6 one-and-a-half-story frame cottage #021",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_021.json",
+      "asset": "gltf/recon_1835_north_d6_021__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_044",
+      "name": "Recommended D6 one-and-a-half-story frame cottage #044",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_044.json",
+      "asset": "gltf/recon_1835_north_d6_044__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_058",
+      "name": "Recommended D6 one-and-a-half-story frame cottage #058",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_058.json",
+      "asset": "gltf/recon_1835_north_d6_058__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d7_031",
+      "name": "Recommended D7 small two-story frame house #031",
+      "sidecar": "sidecars/1835/recon_1835_north_d7_031.json",
+      "asset": "gltf/recon_1835_north_d7_031__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_f1_022",
+      "name": "Recommended F1 freight or storage shed #022",
+      "sidecar": "sidecars/1835/recon_1835_north_f1_022.json",
+      "asset": "gltf/recon_1835_north_f1_022__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h1_007",
+      "name": "Recommended H1 small boarding house #007",
+      "sidecar": "sidecars/1835/recon_1835_north_h1_007.json",
+      "asset": "gltf/recon_1835_north_h1_007__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h2_030",
+      "name": "Recommended H2 medium boarding house #030",
+      "sidecar": "sidecars/1835/recon_1835_north_h2_030.json",
+      "asset": "gltf/recon_1835_north_h2_030__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h3_045",
+      "name": "Recommended H3 large boarding house #045",
+      "sidecar": "sidecars/1835/recon_1835_north_h3_045.json",
+      "asset": "gltf/recon_1835_north_h3_045__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_i2_015",
+      "name": "Recommended I2 schoolhouse or meeting hall #015",
+      "sidecar": "sidecars/1835/recon_1835_north_i2_015.json",
+      "asset": "gltf/recon_1835_north_i2_015__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_t1_028",
+      "name": "Recommended T1 small inn or tavern #028",
+      "sidecar": "sidecars/1835/recon_1835_north_t1_028.json",
+      "asset": "gltf/recon_1835_north_t1_028__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w1_018",
+      "name": "Recommended W1 blacksmith shop #018",
+      "sidecar": "sidecars/1835/recon_1835_north_w1_018.json",
+      "asset": "gltf/recon_1835_north_w1_018__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w2_005",
+      "name": "Recommended W2 carpenter or joiner shop #005",
+      "sidecar": "sidecars/1835/recon_1835_north_w2_005.json",
+      "asset": "gltf/recon_1835_north_w2_005__recommended_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w5_040",
+      "name": "Recommended W5 large workshop #040",
+      "sidecar": "sidecars/1835/recon_1835_north_w5_040.json",
+      "asset": "gltf/recon_1835_north_w5_040__recommended_1835.glb"
+    },
+    {
       "id": "recon_1835_south_a1_046",
       "name": "Recommended A1 stable #046",
       "sidecar": "sidecars/1835/recon_1835_south_a1_046.json",

@@ -37,6 +37,9 @@ step "validator self-tests" \
 step "recommended infill records match the 665-roof programme" \
   python3 tools/generate_recommended_infill.py --check
 
+step "North Division initial parcel matches its reviewed recipe" \
+  python3 tools/generate_north_infill.py --check
+
 step "recommended placeholder GLBs match their records" \
   python3 generators/recommended_placeholder.py --check
 

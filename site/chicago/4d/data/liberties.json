@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 85,
+  "count": 86,
   "liberties": [
     {
       "id": "L1",
@@ -5292,6 +5292,1183 @@
         {
           "label": "Recorded",
           "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L82",
+      "title": "Sixty North Division roofs are count-units, not recovered buildings",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_north_a1_008",
+        "recon_1835_north_a1_032",
+        "recon_1835_north_a1_036",
+        "recon_1835_north_a1_050",
+        "recon_1835_north_a2_033",
+        "recon_1835_north_a2_048",
+        "recon_1835_north_a2_059",
+        "recon_1835_north_a3_009",
+        "recon_1835_north_a3_034",
+        "recon_1835_north_a3_051",
+        "recon_1835_north_a4_010",
+        "recon_1835_north_a4_035",
+        "recon_1835_north_a4_052",
+        "recon_1835_north_a5_011",
+        "recon_1835_north_a5_049",
+        "recon_1835_north_c1_020",
+        "recon_1835_north_c1_047",
+        "recon_1835_north_c2_027",
+        "recon_1835_north_d1_001",
+        "recon_1835_north_d1_013",
+        "recon_1835_north_d1_023",
+        "recon_1835_north_d1_053",
+        "recon_1835_north_d1_054",
+        "recon_1835_north_d1_060",
+        "recon_1835_north_d2_003",
+        "recon_1835_north_d2_014",
+        "recon_1835_north_d2_029",
+        "recon_1835_north_d2_046",
+        "recon_1835_north_d3_002",
+        "recon_1835_north_d3_006",
+        "recon_1835_north_d3_016",
+        "recon_1835_north_d3_024",
+        "recon_1835_north_d3_038",
+        "recon_1835_north_d3_042",
+        "recon_1835_north_d3_055",
+        "recon_1835_north_d4_004",
+        "recon_1835_north_d4_012",
+        "recon_1835_north_d4_017",
+        "recon_1835_north_d4_025",
+        "recon_1835_north_d4_039",
+        "recon_1835_north_d4_043",
+        "recon_1835_north_d4_056",
+        "recon_1835_north_d5_019",
+        "recon_1835_north_d5_026",
+        "recon_1835_north_d5_037",
+        "recon_1835_north_d5_041",
+        "recon_1835_north_d5_057",
+        "recon_1835_north_d6_021",
+        "recon_1835_north_d6_044",
+        "recon_1835_north_d6_058",
+        "recon_1835_north_d7_031",
+        "recon_1835_north_f1_022",
+        "recon_1835_north_h1_007",
+        "recon_1835_north_h2_030",
+        "recon_1835_north_h3_045",
+        "recon_1835_north_i2_015",
+        "recon_1835_north_t1_028",
+        "recon_1835_north_w1_018",
+        "recon_1835_north_w2_005",
+        "recon_1835_north_w5_040"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_008",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_008",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_008",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_032",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_032",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_032",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_036",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_036",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_036",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_050",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_050",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a1_050",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_033",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_033",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_033",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_048",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_048",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_048",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_059",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_059",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a2_059",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_009",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_009",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_009",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_034",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_034",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_034",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_051",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_051",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a3_051",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_010",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_010",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_010",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_035",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_035",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_035",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_052",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_052",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a4_052",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_011",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_011",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_011",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_049",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_049",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_a5_049",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_020",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c1_047",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_c2_027",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_001",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_001",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_001",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_013",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_013",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_013",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_023",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_023",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_023",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_053",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_053",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_053",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_054",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_054",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_054",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_060",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_060",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d1_060",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_003",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_003",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_003",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_014",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_014",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_014",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_029",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_029",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_029",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_046",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_046",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d2_046",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_002",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_002",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_002",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_006",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_006",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_006",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_016",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_016",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_016",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_024",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_024",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_024",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_038",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_038",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_038",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_042",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_042",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_042",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_055",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_055",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d3_055",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_004",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_004",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_004",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_012",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_012",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_012",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_017",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_017",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_017",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_025",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_025",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_025",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_039",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_039",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_039",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_043",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_043",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_043",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_056",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_056",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d4_056",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_019",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_019",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_019",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_026",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_026",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_026",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_037",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_037",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_037",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_041",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_041",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_041",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_057",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_057",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d5_057",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_021",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_021",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_021",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_044",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_044",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_044",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_058",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_058",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d6_058",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d7_031",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d7_031",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_d7_031",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_f1_022",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_f1_022",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_f1_022",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h1_007",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h1_007",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h1_007",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_030",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_030",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h2_030",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h3_045",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h3_045",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_h3_045",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_i2_015",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_t1_028",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w1_018",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w2_005",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w5_040",
+          "phase": "recommended_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w5_040",
+          "phase": "recommended_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_north_w5_040",
+          "phase": "recommended_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-12",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "add 45 principal or functional and 15 ancillary anonymous roofs inside the already modelled North Division terrain. Their aggregate mix follows the reconstruction specification; every individual presence, position, footprint, finish and detail remains conjectural. Slot 41 moves 7.1 m within its stated 25 m review radius because its draft footprint crossed 1.43 m of terrain relief. H2, H3 and I2 use flagged generic block massings pending canonical archetypes."
+        },
+        {
+          "label": "Why",
+          "text": "the reviewed parcel satisfies the North district programme without requiring the risky outer terrain extension. Automated checks reject water, uncovered terrain, overlapping footprints and perimeter relief above the walker's 0.35 m contract."
+        },
+        {
+          "label": "Consequence",
+          "text": "the north bank reads as inhabited while remaining inspectably interpretive. No numbered roof identifies an owner, address, use or observed building. A later named discovery substitutes for a compatible anonymous slot rather than increasing the 665-roof programme."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-specific tax, deed, assessment, construction or surveyed building evidence; canonical H and I family archetypes replace the temporary massing without changing count."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_north_a1_008.recommended_1835.documented_range`, `recon_1835_north_a1_008.recommended_1835.position`, `recon_1835_north_a1_008.recommended_1835.footprint`, `recon_1835_north_a1_032.recommended_1835.documented_range`, `recon_1835_north_a1_032.recommended_1835.position`, `recon_1835_north_a1_032.recommended_1835.footprint`, `recon_1835_north_a1_036.recommended_1835.documented_range`, `recon_1835_north_a1_036.recommended_1835.position`, `recon_1835_north_a1_036.recommended_1835.footprint`, `recon_1835_north_a1_050.recommended_1835.documented_range`, `recon_1835_north_a1_050.recommended_1835.position`, `recon_1835_north_a1_050.recommended_1835.footprint`, `recon_1835_north_a2_033.recommended_1835.documented_range`, `recon_1835_north_a2_033.recommended_1835.position`, `recon_1835_north_a2_033.recommended_1835.footprint`, `recon_1835_north_a2_048.recommended_1835.documented_range`, `recon_1835_north_a2_048.recommended_1835.position`, `recon_1835_north_a2_048.recommended_1835.footprint`, `recon_1835_north_a2_059.recommended_1835.documented_range`, `recon_1835_north_a2_059.recommended_1835.position`, `recon_1835_north_a2_059.recommended_1835.footprint`, `recon_1835_north_a3_009.recommended_1835.documented_range`, `recon_1835_north_a3_009.recommended_1835.position`, `recon_1835_north_a3_009.recommended_1835.footprint`, `recon_1835_north_a3_034.recommended_1835.documented_range`, `recon_1835_north_a3_034.recommended_1835.position`, `recon_1835_north_a3_034.recommended_1835.footprint`, `recon_1835_north_a3_051.recommended_1835.documented_range`, `recon_1835_north_a3_051.recommended_1835.position`, `recon_1835_north_a3_051.recommended_1835.footprint`, `recon_1835_north_a4_010.recommended_1835.documented_range`, `recon_1835_north_a4_010.recommended_1835.position`, `recon_1835_north_a4_010.recommended_1835.footprint`, `recon_1835_north_a4_035.recommended_1835.documented_range`, `recon_1835_north_a4_035.recommended_1835.position`, `recon_1835_north_a4_035.recommended_1835.footprint`, `recon_1835_north_a4_052.recommended_1835.documented_range`, `recon_1835_north_a4_052.recommended_1835.position`, `recon_1835_north_a4_052.recommended_1835.footprint`, `recon_1835_north_a5_011.recommended_1835.documented_range`, `recon_1835_north_a5_011.recommended_1835.position`, `recon_1835_north_a5_011.recommended_1835.footprint`, `recon_1835_north_a5_049.recommended_1835.documented_range`, `recon_1835_north_a5_049.recommended_1835.position`, `recon_1835_north_a5_049.recommended_1835.footprint`, `recon_1835_north_c1_020.recommended_1835.documented_range`, `recon_1835_north_c1_020.recommended_1835.position`, `recon_1835_north_c1_020.recommended_1835.footprint`, `recon_1835_north_c1_047.recommended_1835.documented_range`, `recon_1835_north_c1_047.recommended_1835.position`, `recon_1835_north_c1_047.recommended_1835.footprint`, `recon_1835_north_c2_027.recommended_1835.documented_range`, `recon_1835_north_c2_027.recommended_1835.position`, `recon_1835_north_c2_027.recommended_1835.footprint`, `recon_1835_north_d1_001.recommended_1835.documented_range`, `recon_1835_north_d1_001.recommended_1835.position`, `recon_1835_north_d1_001.recommended_1835.footprint`, `recon_1835_north_d1_013.recommended_1835.documented_range`, `recon_1835_north_d1_013.recommended_1835.position`, `recon_1835_north_d1_013.recommended_1835.footprint`, `recon_1835_north_d1_023.recommended_1835.documented_range`, `recon_1835_north_d1_023.recommended_1835.position`, `recon_1835_north_d1_023.recommended_1835.footprint`, `recon_1835_north_d1_053.recommended_1835.documented_range`, `recon_1835_north_d1_053.recommended_1835.position`, `recon_1835_north_d1_053.recommended_1835.footprint`, `recon_1835_north_d1_054.recommended_1835.documented_range`, `recon_1835_north_d1_054.recommended_1835.position`, `recon_1835_north_d1_054.recommended_1835.footprint`, `recon_1835_north_d1_060.recommended_1835.documented_range`, `recon_1835_north_d1_060.recommended_1835.position`, `recon_1835_north_d1_060.recommended_1835.footprint`, `recon_1835_north_d2_003.recommended_1835.documented_range`, `recon_1835_north_d2_003.recommended_1835.position`, `recon_1835_north_d2_003.recommended_1835.footprint`, `recon_1835_north_d2_014.recommended_1835.documented_range`, `recon_1835_north_d2_014.recommended_1835.position`, `recon_1835_north_d2_014.recommended_1835.footprint`, `recon_1835_north_d2_029.recommended_1835.documented_range`, `recon_1835_north_d2_029.recommended_1835.position`, `recon_1835_north_d2_029.recommended_1835.footprint`, `recon_1835_north_d2_046.recommended_1835.documented_range`, `recon_1835_north_d2_046.recommended_1835.position`, `recon_1835_north_d2_046.recommended_1835.footprint`, `recon_1835_north_d3_002.recommended_1835.documented_range`, `recon_1835_north_d3_002.recommended_1835.position`, `recon_1835_north_d3_002.recommended_1835.footprint`, `recon_1835_north_d3_006.recommended_1835.documented_range`, `recon_1835_north_d3_006.recommended_1835.position`, `recon_1835_north_d3_006.recommended_1835.footprint`, `recon_1835_north_d3_016.recommended_1835.documented_range`, `recon_1835_north_d3_016.recommended_1835.position`, `recon_1835_north_d3_016.recommended_1835.footprint`, `recon_1835_north_d3_024.recommended_1835.documented_range`, `recon_1835_north_d3_024.recommended_1835.position`, `recon_1835_north_d3_024.recommended_1835.footprint`, `recon_1835_north_d3_038.recommended_1835.documented_range`, `recon_1835_north_d3_038.recommended_1835.position`, `recon_1835_north_d3_038.recommended_1835.footprint`, `recon_1835_north_d3_042.recommended_1835.documented_range`, `recon_1835_north_d3_042.recommended_1835.position`, `recon_1835_north_d3_042.recommended_1835.footprint`, `recon_1835_north_d3_055.recommended_1835.documented_range`, `recon_1835_north_d3_055.recommended_1835.position`, `recon_1835_north_d3_055.recommended_1835.footprint`, `recon_1835_north_d4_004.recommended_1835.documented_range`, `recon_1835_north_d4_004.recommended_1835.position`, `recon_1835_north_d4_004.recommended_1835.footprint`, `recon_1835_north_d4_012.recommended_1835.documented_range`, `recon_1835_north_d4_012.recommended_1835.position`, `recon_1835_north_d4_012.recommended_1835.footprint`, `recon_1835_north_d4_017.recommended_1835.documented_range`, `recon_1835_north_d4_017.recommended_1835.position`, `recon_1835_north_d4_017.recommended_1835.footprint`, `recon_1835_north_d4_025.recommended_1835.documented_range`, `recon_1835_north_d4_025.recommended_1835.position`, `recon_1835_north_d4_025.recommended_1835.footprint`, `recon_1835_north_d4_039.recommended_1835.documented_range`, `recon_1835_north_d4_039.recommended_1835.position`, `recon_1835_north_d4_039.recommended_1835.footprint`, `recon_1835_north_d4_043.recommended_1835.documented_range`, `recon_1835_north_d4_043.recommended_1835.position`, `recon_1835_north_d4_043.recommended_1835.footprint`, `recon_1835_north_d4_056.recommended_1835.documented_range`, `recon_1835_north_d4_056.recommended_1835.position`, `recon_1835_north_d4_056.recommended_1835.footprint`, `recon_1835_north_d5_019.recommended_1835.documented_range`, `recon_1835_north_d5_019.recommended_1835.position`, `recon_1835_north_d5_019.recommended_1835.footprint`, `recon_1835_north_d5_026.recommended_1835.documented_range`, `recon_1835_north_d5_026.recommended_1835.position`, `recon_1835_north_d5_026.recommended_1835.footprint`, `recon_1835_north_d5_037.recommended_1835.documented_range`, `recon_1835_north_d5_037.recommended_1835.position`, `recon_1835_north_d5_037.recommended_1835.footprint`, `recon_1835_north_d5_041.recommended_1835.documented_range`, `recon_1835_north_d5_041.recommended_1835.position`, `recon_1835_north_d5_041.recommended_1835.footprint`, `recon_1835_north_d5_057.recommended_1835.documented_range`, `recon_1835_north_d5_057.recommended_1835.position`, `recon_1835_north_d5_057.recommended_1835.footprint`, `recon_1835_north_d6_021.recommended_1835.documented_range`, `recon_1835_north_d6_021.recommended_1835.position`, `recon_1835_north_d6_021.recommended_1835.footprint`, `recon_1835_north_d6_044.recommended_1835.documented_range`, `recon_1835_north_d6_044.recommended_1835.position`, `recon_1835_north_d6_044.recommended_1835.footprint`, `recon_1835_north_d6_058.recommended_1835.documented_range`, `recon_1835_north_d6_058.recommended_1835.position`, `recon_1835_north_d6_058.recommended_1835.footprint`, `recon_1835_north_d7_031.recommended_1835.documented_range`, `recon_1835_north_d7_031.recommended_1835.position`, `recon_1835_north_d7_031.recommended_1835.footprint`, `recon_1835_north_f1_022.recommended_1835.documented_range`, `recon_1835_north_f1_022.recommended_1835.position`, `recon_1835_north_f1_022.recommended_1835.footprint`, `recon_1835_north_h1_007.recommended_1835.documented_range`, `recon_1835_north_h1_007.recommended_1835.position`, `recon_1835_north_h1_007.recommended_1835.footprint`, `recon_1835_north_h2_030.recommended_1835.documented_range`, `recon_1835_north_h2_030.recommended_1835.position`, `recon_1835_north_h2_030.recommended_1835.footprint`, `recon_1835_north_h3_045.recommended_1835.documented_range`, `recon_1835_north_h3_045.recommended_1835.position`, `recon_1835_north_h3_045.recommended_1835.footprint`, `recon_1835_north_i2_015.recommended_1835.documented_range`, `recon_1835_north_i2_015.recommended_1835.position`, `recon_1835_north_i2_015.recommended_1835.footprint`, `recon_1835_north_t1_028.recommended_1835.documented_range`, `recon_1835_north_t1_028.recommended_1835.position`, `recon_1835_north_t1_028.recommended_1835.footprint`, `recon_1835_north_w1_018.recommended_1835.documented_range`, `recon_1835_north_w1_018.recommended_1835.position`, `recon_1835_north_w1_018.recommended_1835.footprint`, `recon_1835_north_w2_005.recommended_1835.documented_range`, `recon_1835_north_w2_005.recommended_1835.position`, `recon_1835_north_w2_005.recommended_1835.footprint`, `recon_1835_north_w5_040.recommended_1835.documented_range`, `recon_1835_north_w5_040.recommended_1835.position`, `recon_1835_north_w5_040.recommended_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-12."
         }
       ]
     },

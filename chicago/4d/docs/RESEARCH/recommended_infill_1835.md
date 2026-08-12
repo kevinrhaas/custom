@@ -86,6 +86,16 @@ recorded in Liberty L81 and must disappear as the 35-family library is implement
 5. Add terrain-sampled foundations, rear yards and use-specific props without creating a hidden
    collision floor.
 
+## Phase 2: North Division initial parcel
+
+Sixty additional anonymous slots—45 principal or functional roofs and 15 ancillary roofs—are
+now generated from `1835_north_division_initial_parcel.json`. Every footprint is checked against
+the committed walking heightfield for coverage, dry land, collision and no more than 0.35 m of
+perimeter relief. Slot 41 moved 7.1 m within its declared 25 m control radius because the authored
+centre crossed 1.43 m of ridge relief. H2, H3 and I2 remain visibly flagged generic block massings
+until their canonical boarding-house and institutional archetypes exist. The other 90 North
+Division target roofs remain gated behind a single coordinated extension to local N +760 m.
+
 ## What could settle individual roofs
 
 Parcel-specific evidence would require contemporary tax or assessment lists, deeds with

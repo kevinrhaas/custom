@@ -1260,8 +1260,9 @@ moderate confidence from interpretive per-instance placement.
   extends to local E -700 m, and the remaining 90-roof North pass waits for unified terrain,
   hydrology, collision, flora, streets and map coverage to N +760 m. These are production plans,
   not added scene count; existing-roof reconciliation comes first.
-- **Next:** reconcile all pre-existing records to physical roofs. Bridges, yards, palisades and
-  compounds make record count an invalid proxy.
+- **Done 2026-08-12:** all 76 pre-existing records are reconciled to physical roof units; bridges,
+  yards, palisades, construction sites and compounds no longer make record count a proxy.
+- **Done 2026-08-12:** the terrain-safe 60-roof North initial parcel is visible and checked.
 - Verify the occupied west/north settlement extent before extending terrain. The enlarged plat
   is not the same thing as built footprint, and at least 45% of it remains sparse/open.
 - Implement the 35 family archetypes and 250+ visible combinations, replacing—not silently
@@ -1270,6 +1271,8 @@ moderate confidence from interpretive per-instance placement.
   foundations, yards and props. No separate collision plane.
 
 See `docs/RESEARCH/recommended_infill_1835.md`,
+`docs/RESEARCH/1835_existing_roof_reconciliation.md`,
+`docs/RESEARCH/1835_family_archetype_crosswalk.md`,
 `docs/RESEARCH/phase2_south_core_and_mixed.md`,
 `docs/RESEARCH/west_division_infill_1835.md`, and Liberty L81.
 The North analysis is `docs/RESEARCH/1835_north_division_extent_and_infill.md`.

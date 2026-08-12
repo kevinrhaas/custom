@@ -1,0 +1,148 @@
+{
+  "id": "recon_1835_north_a1_008",
+  "name": "Recommended A1 stable #008",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "recommended_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447565.139,
+        "utm_n": 4637609.457,
+        "rotation_deg": 180.0,
+        "symbolic_location": "Anonymous recommended roof in North Division cluster north_water_west; between the north bank and Michigan Street",
+        "confidence": "conjectural",
+        "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 North Division roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            4.877,
+            0
+          ],
+          [
+            4.877,
+            7.315
+          ],
+          [
+            0,
+            7.315
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 16 × 24 ft rectangle assigned by the reconstruction recipe within the A1 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 2.75,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "roof_pitch_deg": {
+          "value": 32.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "construction": {
+          "value": "light_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "door": {
+          "value": "stable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "loft": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A1 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        }
+      },
+      "change_note": "Recommended anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+    }
+  ],
+  "function": {
+    "value": "stable",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the A1 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "recommended_anonymous",
+    "family": "A1",
+    "district": "north",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase2_north_division_initial",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 8,
+    "finish_key": "fresh_timber",
+    "roof_condition": "fresh",
+    "age_state": "new",
+    "yard_group": "nw_d1_001_yard"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

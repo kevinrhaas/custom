@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build honest, pure-Python placeholder GLBs for recommended anonymous infill.
+"""Build honest, pure-Python placeholder GLBs for all recommended anonymous infill.
 
 These are review massings, not substitutes for the repository's Blender archetype
 bakes.  The glTF asset declares ``asset.extras.placeholder = true`` so the loader and
@@ -22,7 +22,7 @@ STRUCTURES = ROOT / "data" / "structures"
 MASTER = ROOT / "assets" / "gltf"
 WEB = ROOT / "assets" / "web"
 MANIFEST = ROOT / "assets" / "manifest.json"
-PREFIX = "recon_1835_south_"
+PREFIX = "recon_1835_"
 
 WALL_COLOURS = {
     "fresh_timber": "#C3A478", "weathered_timber": "#817D72",

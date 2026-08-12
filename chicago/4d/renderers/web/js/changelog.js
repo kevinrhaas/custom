@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 58, title: 'Sixty North Division roofs join an audited town', kind: 'feature', ts: '2026-08-12T05:15:32.432Z', date: 'Aug 12, 2026, 12:15 AM CT',
+    items: [
+      'Sixty terrain-safe anonymous roofs now fill the first North Division parcel: 45 principal or functional buildings and 15 ancillary buildings. Every footprint is checked against the walking heightfield for dry land, coverage, collision and manageable perimeter relief, and every instance remains clearly labelled as recommended reconstruction rather than a recovered building.',
+      'All 76 earlier scene records now have a physical-roof reconciliation. Bridges, yards, palisades, open fort features and construction sites count as zero; compounds and grouped cabins can count as more than one. The audit yields 66–67 programme roofs and preserves exactly ten Fort roofs, preventing record count from silently distorting the 665-roof target.',
+      'A complete 35-family production crosswalk now ties all 665 target roofs to current fallback geometry, required canonical variants, remaining counts and build priority. It documents exactly where generic massing remains, including the temporary boarding-house and institutional blocks in this North parcel.',
+      'The outer 90 North roofs remain deliberately gated until terrain, hydrology, flora, collision, streets and map coverage extend together to N +760 m. No separate placement floor or second terrain layer has been introduced.',
+    ] },
   { v: 57, title: 'The town begins to fill in—and the river is water again', kind: 'feature', ts: '2026-08-12T04:12:24.330Z', date: 'Aug 11, 2026, 11:12 PM CT',
     items: [
       'A quantitative July 1835 building programme now anchors the expansion: 665 roofs in all, split into 511 principal or functional roofs and 154 ancillary roofs, with independently reconcilable targets by district, use group and thirty-five architectural families. The source is a modern owner-supplied reconstruction specification, so the aggregate is treated as a production constraint rather than a surviving census.',
