@@ -167,7 +167,7 @@ body.is-touch .gate-touch { display: block; }
 .badge-year { font-size: 17px; font-weight: 640; letter-spacing: 0.01em; }
 .badge-sub { font-size: 11px; color: var(--ink-dim); }
 /* The altitude readout rides in the year badge. Without nowrap it wraps the
-   badge to three stacked lines at 390 px — "1835 / 1 July / 22 m up" — which
+   badge to three stacked lines at 390 px — "1835 / 1 July / 72 ft up" — which
    is how it first shipped to a screenshot. */
 .badge { flex-wrap: nowrap; white-space: nowrap; }
 .badge-alt {

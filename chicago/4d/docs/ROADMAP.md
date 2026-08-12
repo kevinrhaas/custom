@@ -678,12 +678,18 @@ into the data as `absent` entries with citations, so nobody re-adds them later.
 ### S6a — the eye-height sward · **ROUND 1 IN 2026-08-10**
 
 `renderers/web/js/flora.js` draws the graminoid matrix, the forb layer, the emergents and the
-low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Three layers: blade
-geometry within about 7.6 m, camera-facing clump cards to 27 m, and one canopy surface at the
-sward's own height from 10 m to the edge of the modelled ground. Placement is a deterministic
-world lattice re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and
-nothing is paid for behind your head. Heights, greens, cover, phenology and per-plant confidence
-all come from the records; the tuft density and the far-field surface are liberties (L32, L33).
+low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Blade geometry runs within
+about 7.6 m and camera-facing clump cards to 27 m; beyond them the actual terrain's procedural
+prairie texture carries unresolved colour. Placement is a deterministic world lattice
+re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and nothing is
+paid for behind your head. Heights, greens, cover, phenology and per-plant confidence all come
+from the records; the tuft density and far-texture compression are liberties (L32, L80).
+
+**Corrected after the 2026-08-11 real-device review:** the former L33 far-field canopy was a
+solid surface at plant-top height. It looked like a second terrain layer, hid foundations and
+roots, and could be walked underneath. It was removed rather than making the walker and every
+building stand on false plant-top topography. Terrain is now the sole physical and visible
+surface; all detailed flora and structures share its sampler. L80 records the replacement.
 
 **Judged against `WORK/bar`** — two verified photographs of surviving Illinois tallgrass in
 mid-July (a Chicago-region remnant, 29 July 2021; a DuPage restoration, 24 July 2018) and an
@@ -707,36 +713,31 @@ reference. See STATUS.md § "Known weaknesses" 00 for the full measurements. The
 items 1–3 were not wrong; they were aimed at the near field, and the blind test is being lost
 in the **mid** field.
 
-1. **Draw vegetation past 455 m.** *The single biggest gap, and it is one bug behind four
-   symptoms.* Canopy rings from 511.8 m outward drop to `y = 0.05` with `aMask = 0` and are
-   discarded, so the vegetated surface ends where fog is 27 % and no visible surface ever
-   reaches the haze all three parcels converge on. Fixing this alone should move the blind
-   tell, the aerial recession, the grain collapse and the horizon step. Whatever stands beyond
-   the modelled zone polygons has to be *drawn* — even a nominal community, graded honestly.
-2. **Give the far sheet grain at fragment scale.** Its noise is two octaves over 88 × 36
-   vertices, so its finest feature is metres across near and ~100 m across far. Target:
-   5×5 high-pass RMS in the +30..70 band from **14.6 → ≥ 30** (references 31.4 and 41.7).
-3. **Kill the ring seam.** `TUNE.mid.radius = 27.0` maps to a constant screen row on flat
-   ground — measured as a razor edge at row 450 across all 1280 columns. Widen `ringFade`
-   substantially or make the boundary irregular in world space.
-4. **Crown surface.** Fine-detail ratio **0.23–0.34 → ≥ 0.55** (references 0.61–0.64); crown
-   total sd **46–55 → ≤ 36** scale-matched; darkest decile **L ≥ 12, never (0,0,0)**;
-   brightest decile **G−B ≥ +10** (currently −19 to −26 — sunlit crown tops are blue where the
-   photograph's are warm green). Cheapest route: high-frequency shading at leaf-clump scale
-   plus stochastic alpha cutout at the silhouette, a bounded indirect floor, and rebalancing
-   sun against hemisphere on upward-facing normals.
+1. **Restore distant vegetation without restoring a second surface.** The removed L33 sheet
+   cannot return: any impostor or sparse far geometry must be rooted on the heightfield, remain
+   visibly porous, and pass the same root/building/walker surface checks as the detailed field.
+   The terrain texture is the honest current fallback beyond 27 m.
+2. **Give the far terrain texture grain at fragment scale.** Keep it on the physical terrain,
+   with enough irregular contrast to suggest unresolved vegetation without asserting a second
+   height or species silhouette. Re-measure the old high-pass target against the corrected
+   renderer before reusing it; the prior 14.6 figure measured the removed sheet.
+3. **Kill the middle-distance ring seam.** `TUNE.mid.radius = 27.0` can map to a constant screen
+   row on flat ground. Widen the fade or make the boundary irregular in world space, while every
+   individual card remains rooted on the terrain.
+4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
+   measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
+   tuning colour or contrast; never improve the score by closing the far field into a sheet.
 5. **Horizon continuity.** Columns carrying timber **31 % → ≥ 90 %** (reference 100 % in every
    band). Band *height* stays 1–4 px — that arithmetic is honest. Two mechanisms: drop
    `hazeDisplayLinear()`'s ACES step so the band stops being aimed 16 R / 12 G past the ground
    it touches, and suppress the crown/gap modulation `k` whenever a crown subtends under ~2 px,
    where it deletes the silhouette rather than texturing it.
-6. **Close the near field.** Detail-free area (5×5 luminance sigma < 2/255, below-horizon,
-   resampled to 1280 wide) **13.7 % → < 2.0 %** in the nearest quarter (references 0.3–1.5 %).
-   `TUNE.mat.inner = 10.0` leaves only ~66 blades/m² between the eye and raw terrain where a
-   closed sward needs 270–400. Headroom is already paid for: 456 tufts placed against a 2,400
-   cap. Add a **broad-leaf** element — in both references the visual mass at every distance is
-   dicot leaf, not grass blade — and deepen the shade without dimming the flecks (near-band
-   green p50 **121 → 75–95**).
+6. **Close the near field with rooted geometry.** Detail-free area (5×5 luminance sigma <
+   2/255, below-horizon, resampled to 1280 wide) was **13.7 %** in the nearest quarter against
+   references at 0.3–1.5 %; re-measure it after the one-surface correction. Add a **broad-leaf**
+   element — in both references the visual mass at every distance is dicot leaf, not grass
+   blade — and deepen the shade without dimming the flecks. Every new instance must begin on
+   `terrain.surfaceHeight()` rather than borrowing visual closure from an elevated sheet.
 7. **Flower load, against the corrected bar.** Whole-sward chroma flower **1.49 % → 4–6 %**
    (*not* 13.89 %: that figure came from a restoration planting on a former cornfield, not from
    prairie). Nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a never-plowed

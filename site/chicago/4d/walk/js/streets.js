@@ -10,7 +10,7 @@
  *
  * The second is a stated visual liberty.  It is not allowed to flatten the
  * terrain or author a second collision surface: every ribbon vertex samples
- * terrain.groundHeight(), and the walker continues to stand on that exact same
+ * terrain.surfaceHeight(), and the walker continues to stand on that exact same
  * heightfield.  Segments whose centres or edges are under water are omitted,
  * leaving honest gaps at unbridged channels rather than painting a ford.
  */
@@ -110,7 +110,7 @@ function addRecord(buffers, record, terrain) {
 
     const base = buf.pos.length / 3;
     for (const [e, n] of corners) {
-      buf.pos.push(e, terrain.groundHeight(e, n) + LIFT_M, -n);
+      buf.pos.push(e, terrain.surfaceHeight(e, n) + LIFT_M, -n);
       buf.conf.push(confidence);
     }
     // Across first, distance along second. The texture repeats every eight

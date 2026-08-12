@@ -180,6 +180,8 @@ async function boot() {
         navigation.setMapVisible(value);
       } else if (key === 'streetNames') {
         navigation.setStreetVisible(value);
+      } else if (key === 'units') {
+        navigation.setUnits(value);
       }
     },
   });
@@ -244,6 +246,7 @@ async function boot() {
   navigation.setCompassVisible(hud.settings.compass);
   navigation.setMapVisible(hud.settings.overviewMap);
   navigation.setStreetVisible(hud.settings.streetNames);
+  navigation.setUnits(hud.settings.units);
 
   // ---- input ------------------------------------------------------------ //
 
@@ -339,7 +342,7 @@ async function boot() {
       n = p.local_n ?? 0;
     }
     const wallH = record?.sidecar?.attributes?.wall_height_m?.value ?? 5;
-    return enuToWorld(e, n, terrain.height(e, n) + wallH * 0.55);
+    return enuToWorld(e, n, terrain.surfaceHeight(e, n) + wallH * 0.55);
   }
 
   /** One route for the complete search: frame a structure, stand at a verified

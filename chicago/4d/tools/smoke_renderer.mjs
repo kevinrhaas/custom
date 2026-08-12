@@ -19,7 +19,7 @@
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
- *   walk stays on terrain ....... the eye never eases through a bank on slopes
+ *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   navigation aids ............. compass, moving overview marker, settings toggles
  *   complete jump search ........ every loaded structure + verified intersection
@@ -731,7 +731,7 @@ for (const [label, viewport, touch] of [
         for (let i = 0; i < 520; i++) {
           a.walker.update(0.05, a.intent);
           const s = a.walker.state;
-          const ground = a.terrain.height(s.e, s.n);
+          const ground = a.terrain.walkHeight(s.e, s.n);
           minGround = Math.min(minGround, ground);
           maxGround = Math.max(maxGround, ground);
           worst = Math.max(worst, Math.abs(s.eyeY - ground - a.walkBudget.eyeHeight));
@@ -871,6 +871,10 @@ for (const [label, viewport, touch] of [
       return {
         compassShown: !document.getElementById('compass')?.hasAttribute('hidden'),
         mapShown: !document.getElementById('overview-map')?.hasAttribute('hidden'),
+        mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
+        mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
+        speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
+        units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
         east,
         first,
@@ -883,8 +887,14 @@ for (const [label, viewport, touch] of [
       `${nav.east.direction} ${nav.east.bearing}`);
     check(`${label}: overview map renders the whole heightfield`,
       nav.mapShown && nav.mapSize[0] >= 188 && nav.mapSize[1] >= 76
-      && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900,
-      `${nav.mapSize.join('x')}, E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
+      && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900
+      && nav.mapCaption === 'map' && nav.units === 'imperial'
+      && /feet|ft/.test(nav.mapAria ?? ''),
+      `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
+      + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
+    check(`${label}: walking speed is presented in miles per hour`,
+      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
+      `speed label ${nav.speedLabel}`);
     check(`${label}: overview marker follows position and bearing`,
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
@@ -904,28 +914,62 @@ for (const [label, viewport, touch] of [
           const e = pos.getX(i);
           const n = -pos.getZ(i);
           worstDrape = Math.max(worstDrape,
-            Math.abs(pos.getY(i) - a.terrain.groundHeight(e, n) - 0.022));
+            Math.abs(pos.getY(i) - a.terrain.surfaceHeight(e, n) - 0.022));
           if (a.terrain.isWater(e, n)) wetVertices++;
         }
       });
-      // The coarse far-field reed canopy used to use the channel bed as its
-      // base even though it represents the visible plant tops. That produced
-      // the dark jagged shelf seen at the water's edge. Every enabled canopy
-      // vertex over water must now be based at the water surface or above.
-      const canopy = a.flora.group.getObjectByName('flora-canopy');
-      const canopyPos = canopy?.geometry?.getAttribute('position');
-      const canopyMask = canopy?.geometry?.getAttribute('aMask');
+
+      // The former far-field canopy was a solid horizontal mesh at plant-top
+      // height. It looked like a second terrain layer, hid the bases of the
+      // buildings and let the visitor walk underneath it. The actual flora is
+      // instanced geometry whose matrices must begin on the same terrain
+      // sampler the buildings and streets use (or at the water surface for
+      // emergent plants). There must be no replacement canopy slab.
+      const canopyPresent = !!a.flora.group.getObjectByName('flora-canopy');
       const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
-      let wetCanopyVertices = 0;
-      let lowestWetCanopy = Infinity;
-      if (canopyPos && canopyMask) {
-        for (let i = 0; i < canopyPos.count; i++) {
-          const e = canopyPos.getX(i);
-          const n = -canopyPos.getZ(i);
-          if (canopyMask.getX(i) >= 0.5 && a.terrain.isWater(e, n)) {
-            wetCanopyVertices++;
-            lowestWetCanopy = Math.min(lowestWetCanopy, canopyPos.getY(i));
-          }
+      let rootedPlants = 0;
+      let worstPlantRoot = 0;
+      for (const name of ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette']) {
+        const mesh = a.flora.group.getObjectByName(name);
+        const matrix = mesh?.instanceMatrix?.array;
+        if (!matrix) continue;
+        for (let i = 0; i < mesh.count; i++) {
+          const o = i * 16;
+          const e = matrix[o + 12];
+          const y = matrix[o + 13];
+          const n = -matrix[o + 14];
+          const expected = a.terrain.isWater(e, n)
+            ? waterY : a.terrain.surfaceHeight(e, n);
+          worstPlantRoot = Math.max(worstPlantRoot, Math.abs(y - expected));
+          rootedPlants++;
+        }
+      }
+
+      let anchoredBuildings = 0;
+      let worstBuildingAnchor = 0;
+      let exchangeAnchor = null;
+      for (const [id, record] of a.registry.entries()) {
+        const p = record.sidecar?.placement;
+        const at = a.buildings.positionOf(id);
+        if (!p || !at) continue;
+        const expected = p.vertical_anchor === 'water'
+          ? waterY : a.terrain.surfaceHeight(p.local_e ?? 0, p.local_n ?? 0);
+        const error = Math.abs(at.y - expected);
+        worstBuildingAnchor = Math.max(worstBuildingAnchor, error);
+        anchoredBuildings++;
+        if (id === 'exchange_coffee_house') {
+          exchangeAnchor = { y: at.y, expected, error };
+        }
+      }
+
+      // Dry land has one value no matter which compatibility entry point an
+      // older caller uses. The walk-specific sampler differs only over water,
+      // where it deliberately supplies the navigation barrier.
+      let worstDrySurfaceAlias = 0;
+      for (const [e, n] of [[319.12, -90.66], [140, -35], [89.2, -110.4]]) {
+        if (!a.terrain.isWater(e, n)) {
+          worstDrySurfaceAlias = Math.max(worstDrySurfaceAlias,
+            Math.abs(a.terrain.surfaceHeight(e, n) - a.terrain.walkHeight(e, n)));
         }
       }
       a.walker.teleport({ local_e: 452.5, local_n: -110.4, yaw_deg: 0 });
@@ -946,7 +990,8 @@ for (const [label, viewport, touch] of [
       };
       return {
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
-        wetCanopyVertices, lowestWetCanopy, waterY,
+        canopyPresent, rootedPlants, worstPlantRoot,
+        anchoredBuildings, worstBuildingAnchor, exchangeAnchor, worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
         keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
         crossing, approaching,
@@ -957,11 +1002,20 @@ for (const [label, viewport, touch] of [
       && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
       `${streetLayer.records} streets, ${streetLayer.vertices} vertices, `
       + `drape ${streetLayer.worstDrape}, wet ${streetLayer.wetVertices}`);
-    check(`${label}: wetland canopy stays above the water instead of the channel bed`,
-      streetLayer.wetCanopyVertices > 0
-      && streetLayer.lowestWetCanopy >= streetLayer.waterY - 0.02,
-      `${streetLayer.wetCanopyVertices} wet vertices, lowest `
-      + `${streetLayer.lowestWetCanopy}, surface ${streetLayer.waterY}`);
+    check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
+      streetLayer.canopyPresent === false,
+      `flora-canopy present ${streetLayer.canopyPresent}`);
+    check(`${label}: detailed flora roots share the terrain and water surfaces`,
+      streetLayer.rootedPlants > 100 && streetLayer.worstPlantRoot < 1e-5,
+      `${streetLayer.rootedPlants} roots, worst error ${streetLayer.worstPlantRoot}`);
+    check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
+      streetLayer.anchoredBuildings > 20
+      && streetLayer.worstBuildingAnchor < 1e-6
+      && streetLayer.exchangeAnchor?.error < 1e-6
+      && streetLayer.worstDrySurfaceAlias < 1e-6,
+      `${streetLayer.anchoredBuildings} structures, worst ${streetLayer.worstBuildingAnchor}, `
+      + `Exchange ${JSON.stringify(streetLayer.exchangeAnchor)}, `
+      + `dry alias ${streetLayer.worstDrySurfaceAlias}`);
     check(`${label}: street clearing removes travel-track plants but preserves the block`,
       streetLayer.clearsLake && streetLayer.keepsBlockGreen, JSON.stringify(streetLayer));
     check(`${label}: the readout shows both 1835 and current names at an intersection`,
@@ -976,7 +1030,9 @@ for (const [label, viewport, touch] of [
       streetLayer.approaching.state?.mode === 'on'
       && streetLayer.approaching.historic === 'Market Street'
       && /N Wacker Drive/.test(streetLayer.approaching.modern)
-      && /Lake Street/.test(streetLayer.approaching.ahead),
+      && /Lake Street/.test(streetLayer.approaching.ahead)
+      && /\d+ ft/.test(streetLayer.approaching.ahead)
+      && !/\d+ m(?:\s|$)/.test(streetLayer.approaching.ahead),
       JSON.stringify(streetLayer.approaching));
 
     // The menu is built from the two runtime collections, not from a sampled
@@ -984,6 +1040,52 @@ for (const [label, viewport, touch] of [
     // control junction must have a button; a real search must narrow both kinds.
     await page.click('#btn-help');
     await page.click('.panel-tab[data-tab="settings"]');
+    const unitChoice = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const select = document.getElementById('s-units');
+      const choose = (value) => {
+        select.value = value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        api.walker.teleport({ local_e: 89.2, local_n: -180, yaw_deg: 0 });
+        api.step();
+        api.hud.setFly(true, { announce: false });
+        api.hud.setAltitude(100);
+        const result = {
+          value: select.value,
+          navigation: api.navigation.units,
+          speed: document.getElementById('v-speed')?.textContent?.trim(),
+          altitude: document.getElementById('badge-alt')?.textContent?.trim(),
+          map: document.getElementById('overview-map')?.getAttribute('aria-label'),
+          street: document.getElementById('street-approach')?.textContent?.trim(),
+        };
+        api.hud.setFly(false, { announce: false });
+        return result;
+      };
+      const metric = choose('metric');
+      const imperial = choose('imperial');
+      const { formatDistance } = await import('/renderers/web/js/units.js');
+      return {
+        metric, imperial,
+        mile: formatDistance(1609.344, 'imperial'),
+        kilometre: formatDistance(1000, 'metric'),
+        stored: JSON.parse(localStorage.getItem('chicago4d.settings') || '{}').units,
+      };
+    });
+    check(`${label}: Settings switches every navigation measurement as one unit system`,
+      unitChoice.metric.value === 'metric' && unitChoice.metric.navigation === 'metric'
+      && /km\/h$/.test(unitChoice.metric.speed ?? '')
+      && unitChoice.metric.altitude === '100 m up'
+      && /\d+ m/.test(unitChoice.metric.map ?? '')
+      && /\d+ m$/.test(unitChoice.metric.street ?? '')
+      && unitChoice.imperial.value === 'imperial'
+      && unitChoice.imperial.navigation === 'imperial'
+      && /mph$/.test(unitChoice.imperial.speed ?? '')
+      && unitChoice.imperial.altitude === '328 ft up'
+      && /\d+ ft/.test(unitChoice.imperial.map ?? '')
+      && /\d+ ft$/.test(unitChoice.imperial.street ?? '')
+      && unitChoice.mile === '1.0 mi' && unitChoice.kilometre === '1.0 km'
+      && unitChoice.stored === 'imperial',
+      JSON.stringify(unitChoice));
     const jumps = await page.evaluate(() => {
       const input = document.getElementById('jump-search');
       const all = {
@@ -1697,11 +1799,16 @@ for (const [label, viewport, touch] of [
       const a = window.__chicago4d;
       a.goTo('from_above');
       await new Promise((r) => setTimeout(r, 400));
-      return { alt: a.player.altitude, flying: a.player.flying, pitch: a.player.pitchDeg };
+      return {
+        alt: a.player.altitude, flying: a.player.flying, pitch: a.player.pitchDeg,
+        label: document.getElementById('badge-alt')?.textContent?.trim(),
+      };
     });
     check(`${label}: the aerial anchor arrives in the air, looking down`,
-      aerial.flying === true && aerial.alt > 100 && aerial.pitch < -10,
-      `flying ${aerial.flying}, ${aerial.alt?.toFixed(0)} m up, pitch ${aerial.pitch?.toFixed(0)}`);
+      aerial.flying === true && aerial.alt > 100 && aerial.pitch < -10
+      && /^\d+ ft up$/.test(aerial.label ?? '') && !/\d+ m up/.test(aerial.label ?? ''),
+      `flying ${aerial.flying}, internal ${aerial.alt?.toFixed(0)} m, `
+      + `HUD ${aerial.label}, pitch ${aerial.pitch?.toFixed(0)}`);
 
     const aboveShot = await page.evaluate(() => window.__chicago4d.capture());
     check(`${label}: the view from above renders`,

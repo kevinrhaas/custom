@@ -1371,7 +1371,7 @@ export async function createTrees({
         // and a clump about 3 m across, thinning these to half was what left
         // them standing as separate cushions on open sand.
         if (rnd() > 0.84 || blocked(px, pz)) continue;
-        const gy = terrain.groundHeight(px, pz);
+        const gy = terrain.surfaceHeight(px, pz);
         addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, pz, rnd,
           0.8 + rnd() * 0.5);
         stats.thickets++;
@@ -1405,7 +1405,7 @@ export async function createTrees({
       const id = pick(mix, rnd());
       const spec = specs[id];
       if (!spec) continue;
-      const gy = terrain.groundHeight(px, pz);
+      const gy = terrain.surfaceHeight(px, pz);
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
       stats.trees++;
       bump(stats.communities, key);
