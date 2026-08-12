@@ -263,11 +263,14 @@ const GRASS_SHAPE = {
 
 /**
  * @param {object} o  dataBase (data/ root) · terrain (createTerrain's return) ·
- *   footprints (nothing grows through a wall) · confidence (every material is
- *   patched into it) · problems (the shared collector) · lowSpec (touch/mobile)
+ *   footprints (nothing grows through a wall) · growthBlocked (a narrow dated
+ *   travelway clears plants, without clearing its whole legal corridor) ·
+ *   confidence (every material is patched into it) · problems (the shared
+ *   collector) · lowSpec (touch/mobile)
  */
 export async function createFlora({
-  dataBase, terrain, footprints = [], confidence = null, problems = [], lowSpec = false,
+  dataBase, terrain, footprints = [], growthBlocked = () => false,
+  confidence = null, problems = [], lowSpec = false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'flora';
@@ -370,6 +373,7 @@ export async function createFlora({
 
   /** Ground the plant stands on, or null if it may not stand here. */
   function station(e, n, zone) {
+    if (growthBlocked(e, n)) return null;
     if (water.isWater(e, n)) {
       // CONTRACT.md §4 rule 4: only a water-buffer community stands in water,
       // and it stands ON the water surface, not on the channel bed.
@@ -493,7 +497,7 @@ export async function createFlora({
         centres.yaw = yaw;
       }
       if (moved(centres.mat, e, n, TUNE.step.mat)) {
-        mat.rebuild(e, n, finder, terrain, water);
+        mat.rebuild(e, n, finder, terrain, water, growthBlocked);
         centres.mat = { e, n };
       }
       // From the air the hole would be a bite out of a green disc, so it
@@ -848,8 +852,13 @@ function clamp01(v) { return Math.min(1, Math.max(0, v)); }
 function waterField(terrain) {
   const hf = terrain.heightfield;
   const cell = 4.0;
+  const surfaceY = hf?.meta?.water_surface_m ?? 0;
   if (!hf?.loaded) {
-    return { isWater: (e, n) => terrain.isWater(e, n), distance: () => Infinity };
+    return {
+      surfaceY,
+      isWater: (e, n) => terrain.isWater(e, n),
+      distance: () => Infinity,
+    };
   }
   const e0 = hf.originE;
   const n0 = hf.originN;
@@ -880,6 +889,7 @@ function waterField(terrain) {
     }
   }
   return {
+    surfaceY,
     isWater: (e, n) => terrain.isWater(e, n),
     distance(e, n) {
       const c = Math.round((e - e0) / cell);
@@ -1951,7 +1961,7 @@ function swardMat(material, tune) {
   return {
     mesh,
     triangles: idx.length / 3,
-    rebuild(camE, camN, finder, terrain, water) {
+    rebuild(camE, camN, finder, terrain, water, growthBlocked) {
       for (let i = 0; i < R; i++) {
         const r = radii[i];
         for (let a = 0; a < A; a++) {
@@ -1961,7 +1971,7 @@ function swardMat(material, tune) {
           const k = i * A + a;
           const zone = finder(e, n);
           const wet = water.isWater(e, n);
-          const ok = !!zone && (!wet || zone.standsInWater);
+          const ok = !!zone && (!wet || zone.standsInWater) && !growthBlocked(e, n);
           msk[k] = ok ? 1 : 0;
           const h = zone ? zone.matHeight : 0;
           // Two scales: a canopy is not a table top, and the roughness has
@@ -1969,7 +1979,14 @@ function swardMat(material, tune) {
           const bump = h * 0.34 * (vnoise(e * 0.16, n * 0.16) - 0.5)
             + h * 0.22 * (vnoise(e * 0.62, n * 0.62) - 0.5);
           pos[k * 3] = e;
-          pos[k * 3 + 1] = terrain.groundHeight(e, n) + h + bump + tune.mat.lift;
+          // Emergent plants stand on the channel bed, but their far-field
+          // canopy is the visible tops of reeds above the water. Anchoring
+          // that canopy to the bed creates a dark, vertical-looking shelf at
+          // the shoreline as the camera approaches it.
+          const baseY = wet && zone?.standsInWater
+            ? water.surfaceY
+            : terrain.groundHeight(e, n);
+          pos[k * 3 + 1] = baseY + h + bump + tune.mat.lift;
           pos[k * 3 + 2] = -n;
           nor[k * 3] = 0; nor[k * 3 + 1] = 1; nor[k * 3 + 2] = 0;
           const c = zone ? zone.matColor : [0.2, 0.25, 0.1];

@@ -94,6 +94,12 @@
       <span class="overview-north" aria-hidden="true">N</span>
       <span class="overview-caption" aria-hidden="true">whole model</span>
     </div>
+    <div id="street-readout" class="street-readout" aria-live="polite" hidden>
+      <span class="street-mode" id="street-mode">On street</span>
+      <strong id="street-historic"></strong>
+      <span class="street-modern" id="street-modern"></span>
+      <span class="street-approach" id="street-approach" hidden></span>
+    </div>
   </div>
 
   <div class="hud-panel" id="panel" hidden>
@@ -143,6 +149,8 @@
         <input type="checkbox" id="s-compass"></label>
       <label class="field row check-field"><span>Show overview map</span>
         <input type="checkbox" id="s-overview-map"></label>
+      <label class="field row check-field"><span>Show 1835 / current street names</span>
+        <input type="checkbox" id="s-street-names"></label>
       <div class="field jump-field">
         <span>Jump to a structure or intersection <b id="jump-count"></b></span>
         <input type="search" id="jump-search" placeholder="Search every place…"

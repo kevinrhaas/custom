@@ -19,6 +19,8 @@
  *   the bridge floats ........... a water-anchored structure is placed on the
  *                                 water plane, not on the river bed under it
  *   walk moves the camera ....... input intent reaches the walker
+ *   walk stays on terrain ....... the eye never eases through a bank on slopes
+ *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   navigation aids ............. compass, moving overview marker, settings toggles
  *   complete jump search ........ every loaded structure + verified intersection
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
@@ -88,7 +90,7 @@ await new Promise((r) => server.listen(PORT, r));
 const base = `http://127.0.0.1:${PORT}/renderers/web/index.html?year=${YEAR}`;
 console.log(`serving ${ROOT} on ${PORT}\n`);
 
-const browser = await chromium.launch({
+const launchBrowser = () => chromium.launch({
   executablePath: process.env.PW_EXECUTABLE || undefined,
   // SwiftShader is the only GPU here. Chromium finds it unaided, but say so
   // rather than leaving a headless run to chance.
@@ -113,6 +115,10 @@ for (const [label, viewport, touch] of [
   ['desktop 1280x800', { width: 1280, height: 800 }, false],
 ]) {
   console.log(`${label}:`);
+  // Give each release viewport a fresh renderer process. Reusing one process
+  // makes a software-only run measure the previous viewport's accumulated GPU
+  // state and can starve the second walk test down to a single frame.
+  const browser = await launchBrowser();
   const ctx = await browser.newContext({
     viewport,
     hasTouch: touch,
@@ -158,8 +164,20 @@ for (const [label, viewport, touch] of [
   if (ready) {
     const problems = await page.evaluate(() => window.__chicago4d.problems);
     // Provisional placement and placeholder-asset notes are expected findings,
-    // not defects. Anything else in this list is a real integration problem.
-    const hard = problems.filter((p) => !/provisional|PLACEHOLDER|placeholder/i.test(p));
+    // not defects. `review_required` is also a deliberate release blocker, but
+    // pin its exact records before excluding it so a new blocker cannot hide in
+    // the general integration-problem list.
+    const reviews = problems.filter((p) => /review_required is set/.test(p));
+    const expectedReviews = await page.evaluate(() => [...window.__chicago4d.registry.values()]
+      .filter((r) => r.sidecar?.review_required)
+      .map((r) => r.sidecar.id)
+      .sort());
+    const reportedReviews = reviews.map((p) => p.split(':', 1)[0]).sort();
+    check(`${label}: the scene declares its exact consultation blockers`,
+      expectedReviews.length > 0
+      && JSON.stringify(reportedReviews) === JSON.stringify(expectedReviews),
+      `reported ${JSON.stringify(reportedReviews)}, expected ${JSON.stringify(expectedReviews)}`);
+    const hard = problems.filter((p) => !/provisional|PLACEHOLDER|placeholder|review_required is set/i.test(p));
     check(`${label}: no unexpected loader problems`, hard.length === 0, hard.slice(0, 3).join(' | '));
 
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
@@ -696,6 +714,38 @@ for (const [label, viewport, touch] of [
       `moved ${moved.toFixed(2)} m in 2.2 s (backend `
       + `${await page.evaluate(() => window.__chicago4d.controlBackend)})`);
 
+    // Walking used to ease the eye toward the sampled ground. On a bank that
+    // put the camera below the visible mesh uphill and left it floating
+    // downhill, even though both are driven by the same heightfield. Disturb
+    // the eye deliberately, then traverse the resolved slope in both directions:
+    // every update must restore exact standing clearance, not approach it.
+    const terrainLock = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const run = (n, bearing) => {
+        a.walker.teleport({ local_e: 140, local_n: n, yaw_deg: bearing });
+        a.walker.state.eyeY += 0.9;
+        let worst = 0;
+        let minGround = Infinity;
+        let maxGround = -Infinity;
+        a.intent.forward = 1;
+        for (let i = 0; i < 520; i++) {
+          a.walker.update(0.05, a.intent);
+          const s = a.walker.state;
+          const ground = a.terrain.height(s.e, s.n);
+          minGround = Math.min(minGround, ground);
+          maxGround = Math.max(maxGround, ground);
+          worst = Math.max(worst, Math.abs(s.eyeY - ground - a.walkBudget.eyeHeight));
+        }
+        a.intent.forward = 0;
+        return { worst, relief: maxGround - minGround };
+      };
+      return { uphill: run(-20, 180), downhill: run(-58, 0) };
+    });
+    check(`${label}: walking stays exactly on the terrain through rises and falls`,
+      terrainLock.uphill.worst < 1e-6 && terrainLock.downhill.worst < 1e-6
+      && terrainLock.uphill.relief > 0.25 && terrainLock.downhill.relief > 0.25,
+      JSON.stringify(terrainLock));
+
     // --- you cannot stand inside a building --------------------------------
     const pushed = await page.evaluate(() => {
       const a = window.__chicago4d;
@@ -840,6 +890,95 @@ for (const [label, viewport, touch] of [
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
       `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
 
+    const streetLayer = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      let vertices = 0;
+      let worstDrape = 0;
+      let wetVertices = 0;
+      a.streets.group.traverse((o) => {
+        const pos = o.geometry?.getAttribute?.('position');
+        if (!pos) return;
+        vertices += pos.count;
+        const step = Math.max(1, Math.floor(pos.count / 900));
+        for (let i = 0; i < pos.count; i += step) {
+          const e = pos.getX(i);
+          const n = -pos.getZ(i);
+          worstDrape = Math.max(worstDrape,
+            Math.abs(pos.getY(i) - a.terrain.groundHeight(e, n) - 0.022));
+          if (a.terrain.isWater(e, n)) wetVertices++;
+        }
+      });
+      // The coarse far-field reed canopy used to use the channel bed as its
+      // base even though it represents the visible plant tops. That produced
+      // the dark jagged shelf seen at the water's edge. Every enabled canopy
+      // vertex over water must now be based at the water surface or above.
+      const canopy = a.flora.group.getObjectByName('flora-canopy');
+      const canopyPos = canopy?.geometry?.getAttribute('position');
+      const canopyMask = canopy?.geometry?.getAttribute('aMask');
+      const waterY = a.terrain.heightfield?.meta?.water_surface_m ?? 0;
+      let wetCanopyVertices = 0;
+      let lowestWetCanopy = Infinity;
+      if (canopyPos && canopyMask) {
+        for (let i = 0; i < canopyPos.count; i++) {
+          const e = canopyPos.getX(i);
+          const n = -canopyPos.getZ(i);
+          if (canopyMask.getX(i) >= 0.5 && a.terrain.isWater(e, n)) {
+            wetCanopyVertices++;
+            lowestWetCanopy = Math.min(lowestWetCanopy, canopyPos.getY(i));
+          }
+        }
+      }
+      a.walker.teleport({ local_e: 452.5, local_n: -110.4, yaw_deg: 0 });
+      a.step();
+      const crossing = {
+        state: a.navigation.streetState,
+        historic: document.getElementById('street-historic')?.textContent,
+        modern: document.getElementById('street-modern')?.textContent,
+        shown: !document.getElementById('street-readout')?.hasAttribute('hidden'),
+      };
+      a.walker.teleport({ local_e: 89.2, local_n: -180, yaw_deg: 0 });
+      a.step();
+      const approaching = {
+        state: a.navigation.streetState,
+        historic: document.getElementById('street-historic')?.textContent,
+        modern: document.getElementById('street-modern')?.textContent,
+        ahead: document.getElementById('street-approach')?.textContent,
+      };
+      return {
+        records: a.streets.records.length, vertices, worstDrape, wetVertices,
+        wetCanopyVertices, lowestWetCanopy, waterY,
+        clearsLake: a.streets.blocksGrowth(452.5, -110.4),
+        keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
+        crossing, approaching,
+      };
+    });
+    check(`${label}: earth streets are populated and draped on the rendered ground`,
+      streetLayer.records >= 17 && streetLayer.vertices > 1000
+      && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
+      `${streetLayer.records} streets, ${streetLayer.vertices} vertices, `
+      + `drape ${streetLayer.worstDrape}, wet ${streetLayer.wetVertices}`);
+    check(`${label}: wetland canopy stays above the water instead of the channel bed`,
+      streetLayer.wetCanopyVertices > 0
+      && streetLayer.lowestWetCanopy >= streetLayer.waterY - 0.02,
+      `${streetLayer.wetCanopyVertices} wet vertices, lowest `
+      + `${streetLayer.lowestWetCanopy}, surface ${streetLayer.waterY}`);
+    check(`${label}: street clearing removes travel-track plants but preserves the block`,
+      streetLayer.clearsLake && streetLayer.keepsBlockGreen, JSON.stringify(streetLayer));
+    check(`${label}: the readout shows both 1835 and current names at an intersection`,
+      streetLayer.crossing.shown
+      && streetLayer.crossing.state?.mode === 'intersection'
+      && /Lake Street/.test(streetLayer.crossing.historic)
+      && /La Salle Street/.test(streetLayer.crossing.historic)
+      && /W Lake Street/.test(streetLayer.crossing.modern)
+      && /LaSalle/.test(streetLayer.crossing.modern),
+      JSON.stringify(streetLayer.crossing));
+    check(`${label}: the street readout announces the next cross street ahead`,
+      streetLayer.approaching.state?.mode === 'on'
+      && streetLayer.approaching.historic === 'Market Street'
+      && /N Wacker Drive/.test(streetLayer.approaching.modern)
+      && /Lake Street/.test(streetLayer.approaching.ahead),
+      JSON.stringify(streetLayer.approaching));
+
     // The menu is built from the two runtime collections, not from a sampled
     // shortlist.  With an empty query every loaded structure and every compiled
     // control junction must have a button; a real search must narrow both kinds.
@@ -878,20 +1017,23 @@ for (const [label, viewport, touch] of [
     const toggles = await page.evaluate(() => {
       const compass = document.getElementById('s-compass');
       const map = document.getElementById('s-overview-map');
-      compass.click(); map.click();
+      const street = document.getElementById('s-street-names');
+      compass.click(); map.click(); street.click();
       const hidden = {
         compass: document.getElementById('compass').hasAttribute('hidden'),
         map: document.getElementById('overview-map').hasAttribute('hidden'),
+        street: document.getElementById('street-readout').hasAttribute('hidden'),
       };
-      compass.click(); map.click();
+      compass.click(); map.click(); street.click();
       return {
         hidden,
         restored: !document.getElementById('compass').hasAttribute('hidden')
-          && !document.getElementById('overview-map').hasAttribute('hidden'),
+          && !document.getElementById('overview-map').hasAttribute('hidden')
+          && !document.getElementById('street-readout').hasAttribute('hidden'),
       };
     });
-    check(`${label}: settings toggle both navigation aids`,
-      toggles.hidden.compass && toggles.hidden.map && toggles.restored,
+    check(`${label}: settings toggle all three navigation aids`,
+      toggles.hidden.compass && toggles.hidden.map && toggles.hidden.street && toggles.restored,
       JSON.stringify(toggles));
     await page.click('#panel-close');
 
@@ -1040,7 +1182,7 @@ for (const [label, viewport, touch] of [
       return {
         l5: read('L5'), l8: read('L8'), l1: read('L1'), l4: read('L4'),
         l18: read('L18'), l19: read('L19'),
-        l32: read('L32'), l34: read('L34'), l32tokens: tokens('L32'),
+        bank: read('L31a'), slough: read('L31c'), bankTokens: tokens('L31a'),
       };
     });
     check(`${label}: an entry shows the inventions it admits to`,
@@ -1077,19 +1219,19 @@ for (const [label, viewport, touch] of [
     // admission must NOT read as the ground's, which a chip that simply printed
     // the token's first segment would have failed.
     check(`${label}: the ground admits to what it invented, and says it is the ground`,
-      claims.l32.length === 1 && /the ground/.test(claims.l32[0])
-      && /bank/.test(claims.l32[0]) && !claims.l5.some((t) => /the ground/.test(t)),
-      `L32 claims [${claims.l32.join(' | ')}]`);
+      claims.bank.length === 1 && /the ground/.test(claims.bank[0])
+      && /bank/.test(claims.bank[0]) && !claims.l5.some((t) => /the ground/.test(t)),
+      `L31a claims [${claims.bank.join(' | ')}]`);
     check(`${label}: the chip carries the epoch the admission is about`,
-      claims.l32tokens.length === 1
-      && /^admitted for terrain\.[a-z0-9_]+\.bank$/.test(claims.l32tokens[0]),
-      `L32 tokens [${claims.l32tokens.join(' | ')}]`);
+      claims.bankTokens.length === 1
+      && /^admitted for terrain\.[a-z0-9_]+\.bank$/.test(claims.bankTokens[0]),
+      `L31a tokens [${claims.bankTokens.join(' | ')}]`);
     // The one ground invention nobody had written down until the gate demanded
     // it. A visitor reading "north side slough" here is reading a depth that no
     // source gives, on a watercourse whose course is Wright's.
     check(`${label}: the invention the gate found is on the page, not only in the repo`,
-      claims.l34.length === 1 && /north side slough/.test(claims.l34[0]),
-      `L34 claims [${claims.l34.join(' | ')}]`);
+      claims.slough.length === 1 && /north side slough/.test(claims.slough[0]),
+      `L31c claims [${claims.slough.join(' | ')}]`);
 
     // Collapsed by default, and opening one gives the reasoning — not just the
     // admission that a liberty was taken.
@@ -1133,6 +1275,7 @@ for (const [label, viewport, touch] of [
         rendered: entries.length,
         busy: mount.hasAttribute('aria-busy'),
         text: mount.textContent,
+        titles: entries.map((d) => d.querySelector('.lib-title')?.textContent.trim() ?? ''),
         saloonWhen: saloon?.querySelector('.lib-scope')?.textContent.trim() ?? '',
         saloonReason: saloon?.querySelector('.lib-body dd')?.textContent.trim() ?? '',
         saloonCite: saloon?.querySelector('.cites .cite-text')?.textContent.trim() ?? '',
@@ -1171,8 +1314,8 @@ for (const [label, viewport, touch] of [
     // building the visitor can walk up to must not appear on it. A section that
     // dumped the whole dataset would still have passed every check above.
     check(`${label}: a building standing in the scene is not on the not-here list`,
-      !/Sauganash|Green Tree|Wolf Point Tavern|Western Hotel/.test(excl.text),
-      excl.text.slice(0, 160));
+      !excl.titles.some((t) => /Sauganash|Green Tree|Wolf Point Tavern|Western Hotel/.test(t)),
+      excl.titles.join(' | '));
     // Which is WHY this section withholds what a citation reprints, and the
     // rule above is the reason rather than a preference: the Inter Ocean piece
     // behind two of these entries is headed "The Old Western Hotel", and the
@@ -1345,14 +1488,13 @@ for (const [label, viewport, touch] of [
       `question "${openCard.western.chip}" · presence "${openCard.western.presenceChip}"`);
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
-    // The discriminating case, and it is a deliberate silence rather than a missing
-    // empty state. Seven of the eight buildings have nothing on the list, and a
-    // card saying "no open questions are recorded" would read as "this building is
-    // settled" — which four entries against forty researched structures cannot
-    // support. A card dumping the whole list would pass every assertion above.
-    check(`${label}: no other building carries it, and none claims to be settled`,
-      openCard.others.length === 0,
-      openCard.others.length ? `also on ${openCard.others.join(', ')}` : 'western hotel only');
+    // The discriminating case, and it is a deliberate silence rather than a
+    // missing empty state. The current watch list has exactly two structures in
+    // the scene: the Western Hotel and Cobweb Castle. Every other building must
+    // stay silent; a card dumping the whole list would fail this exact set.
+    check(`${label}: only tracked in-scene buildings carry open questions`,
+      openCard.others.length === 1 && openCard.others[0] === 'cobweb_castle',
+      `beside western_hotel: ${openCard.others.join(', ') || 'none'}`);
     // Reading every card leaves one open over the panel, which the panel's own
     // close button then cannot be clicked through.
     await page.evaluate(() => window.__chicago4d.popup.close());
@@ -1392,7 +1534,8 @@ for (const [label, viewport, touch] of [
         bank: find(/^bank$/, /the bank/),
         south: find(/South Division/, /divisions/),
         material: find(/^north division$/, /made of/),
-        southMaterial: find(/^south division$/, /made of/),
+        southMaterialWest: find(/^south division west of State St$/, /made of/),
+        southMaterialEast: find(/^south division east of State St$/, /made of/),
         marshMaterial: find(/^south division marsh$/, /made of/),
         // The compiled claim, so the assertion below compares the panel with the
         // repository rather than with a phrase typed into this file.
@@ -1436,7 +1579,7 @@ for (const [label, viewport, touch] of [
     // the same reason as the record's own account above.
     check(`${label}: the ground says which ground these claims are about`,
       ground.scopeShown === ground.scopeRecorded && (ground.scopeRecorded ?? '').length > 40
-      && /forks quadrant/i.test(ground.scopeShown ?? ''),
+      && /forks.*harbour/i.test(ground.scopeShown ?? ''),
       `shown "${(ground.scopeShown ?? '').slice(0, 90)}" of `
       + `${(ground.scopeRecorded ?? '').length} recorded`);
     check(`${label}: the panel quotes the spec's caveat that no survey exists`,
@@ -1445,7 +1588,7 @@ for (const [label, viewport, touch] of [
       ground.text.slice(0, 120));
     // A claim carries the spec's own figures and the source it rests on.
     check(`${label}: a land claim shows its figures and its citation`,
-      /near \(ft\)/.test(ground.south?.body ?? '') && /2\.4/.test(ground.south?.body ?? '')
+      /far \(m\)/.test(ground.south?.body ?? '') && /300/.test(ground.south?.body ?? '')
       && (ground.south?.cites ?? []).some((c) => /chicagoarchitecturehistory|architecture/i.test(c)),
       `${(ground.south?.body ?? '').slice(0, 80)} | ${(ground.south?.cites ?? [])[0] ?? 'no cite'}`);
     // Until 2026-08-10 this asserted the opposite: three surface materials were
@@ -1460,7 +1603,7 @@ for (const [label, viewport, touch] of [
     // grown a note for a different reason; see the next assertion.
     check(`${label}: every claim that calls itself an inference records its reasoning`,
       !ground.inferredWithoutReason.length
-      && /business district/i.test(ground.material?.body ?? ''),
+      && /north-side section measured on its own/i.test(ground.material?.body ?? ''),
       `${ground.inferredWithoutReason.join(', ') || 'none'} | material `
       + `"${(ground.material?.body ?? '').slice(0, 80)}"`);
     // A grade this project has decided is too high, said where the grade is read.
@@ -1478,17 +1621,19 @@ for (const [label, viewport, touch] of [
     // `chicagology_prefire273`) is correctly graded and carries no such
     // correction, so a panel that stamped this disclosure on every documented
     // claim would fail here.
-    const southNotes = ground.recordedNotes?.['surface_materials.south_division'] ?? [];
+    const southNotes = ground.recordedNotes?.['surface_materials.south_division west of State St'] ?? [];
     const marshNotes = ground.recordedNotes?.['surface_materials.south_division_marsh'] ?? [];
     const overGraded = southNotes.find((n) => /over-graded/.test(n)) ?? '';
     check(`${label}: the soil claim that is graded too high says so where it is graded`,
-      ground.southMaterial?.conf === 'documented'
+      ground.southMaterialWest?.conf === 'documented'
       && overGraded.length > 200
-      && (ground.southMaterial?.body ?? '').replace(/\s+/g, ' ').includes(overGraded)
+      && (ground.southMaterialWest?.body ?? '').replace(/\s+/g, ' ').includes(overGraded)
+      && ground.southMaterialEast?.conf === 'documented'
       && ground.marshMaterial?.conf === 'documented'
       && !marshNotes.some((n) => /over-graded/.test(n))
       && !/over-graded/.test(ground.marshMaterial?.body ?? ''),
-      `south "${ground.southMaterial?.conf}" carries ${overGraded.length} chars · `
+      `south-west "${ground.southMaterialWest?.conf}" carries ${overGraded.length} chars · `
+      + `south-east "${ground.southMaterialEast?.conf}" · `
       + `marsh "${ground.marshMaterial?.conf}" carries ${marshNotes.length} note(s)`);
     // The empty state stays: it is a guard now rather than a finding, and the
     // committed data no longer exercises the half that matters — a claim that
@@ -1622,12 +1767,14 @@ for (const [label, viewport, touch] of [
   check(`${label}: zero page errors`, errors.length === 0,
     errors.slice(0, 4).join(' | '));
   await ctx.close();
+  await browser.close();
   console.log('');
 }
 
 // The vendored meshopt decoder must be a working module, because the published
 // web derivatives will need it and a broken vendor file would only surface then.
 {
+  const browser = await launchBrowser();
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
   const errors = [];
@@ -1643,9 +1790,8 @@ for (const [label, viewport, touch] of [
     JSON.stringify(meshopt));
   check('vendor: meshopt import raises no page error', errors.length === 0, errors.join(' | '));
   await ctx.close();
+  await browser.close();
 }
-
-await browser.close();
 server.close();
 
 console.log(`\n${passes.length} passed, ${failures.length} failed`);

@@ -16,7 +16,8 @@ const CONF_KEY = 'chicago4d.confidence';
 const SET_KEY = 'chicago4d.settings';
 
 const DEFAULT_SETTINGS = {
-  speed: 1.45, fov: 72, quality: 1.5, compass: true, overviewMap: true,
+  speed: 1.45, fov: 72, quality: 1.5,
+  compass: true, overviewMap: true, streetNames: true,
 };
 
 function readSettings() {
@@ -231,6 +232,7 @@ export function createHud({
   }
   wireToggle('s-compass', 'compass');
   wireToggle('s-overview-map', 'overviewMap');
+  wireToggle('s-street-names', 'streetNames');
 
   // Every structure in the compiled scene and every verified street-control
   // intersection.  The list is complete by construction: the registry and the

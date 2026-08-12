@@ -208,7 +208,7 @@ body.is-touch .gate-touch { display: block; }
   font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
-.compass[hidden], .overview-map[hidden] { display: none; }
+.compass[hidden], .overview-map[hidden], .street-readout[hidden] { display: none; }
 .compass strong { min-width: 29px; color: var(--ink); font-size: 11.5px; }
 .compass > span:last-child { color: var(--ink-dim); }
 .compass-dial {
@@ -257,6 +257,39 @@ body.is-touch .gate-touch { display: block; }
 }
 .overview-north { top: 4px; right: 4px; color: #f4b54f; font-weight: 700; }
 .overview-caption { right: 4px; bottom: 4px; color: #d5d0c4; }
+.street-readout {
+  display: grid;
+  width: 248px;
+  gap: 2px;
+  padding: 8px 10px 9px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  line-height: 1.25;
+}
+.street-readout strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.street-mode {
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.street-modern, .street-approach {
+  overflow: hidden;
+  color: var(--ink-dim);
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.street-approach { color: var(--ink); }
 
 .chip {
   pointer-events: auto;
@@ -927,6 +960,7 @@ kbd {
      changes — so the date yields rather than the badge growing. */
   .badge.has-alt .badge-sub { display: none; }
   .navigation-stack { top: calc(55px + var(--safe-t)); }
+  .street-readout { width: 188px; }
   /* The mobile panel spans the same left edge as the navigation readouts. Hide
      them while it is open instead of letting its translucent surface mix the
      map into sliders and search results. Desktop keeps both columns visible. */

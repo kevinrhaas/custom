@@ -2,9 +2,10 @@
  * navigation.js — compass and a truthful top-down overview of the loaded world.
  *
  * The overview is not a second map asset.  Land and water are sampled from the
- * same committed heightfield the walker stands on, and structure outlines come
- * from the same compiled sidecars the 3D renderer places.  The only moving mark
- * is the visitor: north stays at the top and the arrow follows their bearing.
+ * same committed heightfield the walker stands on; streets and structure
+ * outlines come from the same compiled scene index the 3D renderer places.
+ * The only moving mark is the visitor: north stays at the top and the arrow
+ * follows their bearing.
  */
 
 const DEG = Math.PI / 180;
@@ -42,13 +43,18 @@ function structureOutlines(registry) {
   return out;
 }
 
-export function createNavigation({ root, terrain, registry } = {}) {
+export function createNavigation({ root, terrain, registry, streets } = {}) {
   const compass = root?.querySelector('#compass');
   const needle = root?.querySelector('#compass-needle');
   const direction = root?.querySelector('#compass-direction');
   const bearingLabel = root?.querySelector('#compass-bearing');
   const overview = root?.querySelector('#overview-map');
   const canvas = root?.querySelector('#overview-map-canvas');
+  const streetReadout = root?.querySelector('#street-readout');
+  const streetMode = root?.querySelector('#street-mode');
+  const streetHistoric = root?.querySelector('#street-historic');
+  const streetModern = root?.querySelector('#street-modern');
+  const streetApproach = root?.querySelector('#street-approach');
   const ctx = canvas?.getContext('2d');
   const background = document.createElement('canvas');
   const bg = background.getContext('2d');
@@ -66,8 +72,11 @@ export function createNavigation({ root, terrain, registry } = {}) {
   let logicalHeight = 0;
   let compassVisible = true;
   let mapVisible = true;
+  let streetVisible = true;
   let player = { e: 0, n: 0, bearingDeg: 0 };
   let lastPaint = { e: Infinity, n: Infinity, bearingDeg: Infinity };
+  let lastStreet = { e: Infinity, n: Infinity, bearingDeg: Infinity };
+  let streetState = null;
 
   function point(e, n) {
     return {
@@ -101,6 +110,22 @@ export function createNavigation({ root, terrain, registry } = {}) {
       }
     }
     bg.putImageData(image, 0, 0);
+
+    // The same compiled paths the earth ribbons use.  Legal corridor width is
+    // deliberately not drawn here: at this scale a centreline is the truthful
+    // distinction between a street and a whole block of tan pixels.
+    bg.save();
+    bg.strokeStyle = 'rgba(77, 61, 36, .78)';
+    bg.lineWidth = 0.9;
+    for (const street of streets?.records ?? []) {
+      bg.beginPath();
+      street.path.forEach(([e, n], i) => {
+        const screen = point(e, n);
+        if (i === 0) bg.moveTo(screen.x, screen.y); else bg.lineTo(screen.x, screen.y);
+      });
+      bg.stroke();
+    }
+    bg.restore();
 
     // Every compiled footprint, including water-anchored bridges and piers.
     bg.save();
@@ -171,11 +196,51 @@ export function createNavigation({ root, terrain, registry } = {}) {
     if (overview) overview.setAttribute('aria-label',
       `Overview map. Position east ${Math.round(e)} metres, north ${Math.round(n)} metres; heading ${cardinal(b)}.`);
 
+    if (Math.hypot(e - lastStreet.e, n - lastStreet.n) > 0.35
+        || Math.abs(b - lastStreet.bearingDeg) > 2) {
+      streetState = streets?.status?.(e, n, b) ?? null;
+      paintStreet();
+      lastStreet = { e, n, bearingDeg: b };
+    }
+
     if (Math.hypot(e - lastPaint.e, n - lastPaint.n) > 0.08
         || Math.abs(b - lastPaint.bearingDeg) > 0.35) {
       paintMap();
       lastPaint = { e, n, bearingDeg: b };
     }
+  }
+
+  function joined(items, key) {
+    return [...new Set(items.map((s) => s[key]).filter(Boolean))].join(' & ');
+  }
+
+  function paintStreet() {
+    const show = streetVisible && !!streetState;
+    streetReadout?.toggleAttribute('hidden', !show);
+    if (!show) return;
+    const records = streetState.streets ?? [];
+    const historic = joined(records, 'name_1835');
+    const modern = joined(records, 'name_2026');
+    let mode = 'On street';
+    if (streetState.mode === 'intersection') mode = 'At intersection';
+    if (streetState.mode === 'ahead') mode = `Ahead · ${Math.round(streetState.distance_m)} m`;
+    if (streetMode) streetMode.textContent = mode;
+    if (streetHistoric) streetHistoric.textContent = historic;
+    if (streetModern) streetModern.textContent = `Today: ${modern}`;
+
+    const upcoming = streetState.upcoming;
+    if (streetApproach) {
+      const text = upcoming
+        ? `Approaching ${upcoming.street.name_1835} · ${Math.round(upcoming.ahead_m)} m`
+        : '';
+      streetApproach.textContent = text;
+      streetApproach.toggleAttribute('hidden', !text);
+    }
+    const approachLabel = upcoming
+      ? `. Approaching ${upcoming.street.name_1835}, today ${upcoming.street.name_2026}, in ${Math.round(upcoming.ahead_m)} metres.`
+      : '';
+    streetReadout?.setAttribute('aria-label',
+      `${mode}. In 1835: ${historic}. Today: ${modern}${approachLabel}`);
   }
 
   function setCompassVisible(on) {
@@ -194,6 +259,12 @@ export function createNavigation({ root, terrain, registry } = {}) {
     return mapVisible;
   }
 
+  function setStreetVisible(on) {
+    streetVisible = !!on;
+    paintStreet();
+    return streetVisible;
+  }
+
   window.addEventListener('resize', resize);
   resize();
 
@@ -202,8 +273,16 @@ export function createNavigation({ root, terrain, registry } = {}) {
     update,
     setCompassVisible,
     setMapVisible,
+    setStreetVisible,
     get compassVisible() { return compassVisible; },
     get mapVisible() { return mapVisible; },
-    snapshot() { return { ...player, compassVisible, mapVisible, bounds: { ...bounds } }; },
+    get streetVisible() { return streetVisible; },
+    get streetState() { return streetState; },
+    snapshot() {
+      return {
+        ...player, compassVisible, mapVisible, streetVisible, streetState,
+        bounds: { ...bounds },
+      };
+    },
   };
 }
