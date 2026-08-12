@@ -15,6 +15,7 @@ import { formatHeight, formatSpeed, normalUnitSystem } from './units.js';
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
 const SET_KEY = 'chicago4d.settings';
+const CONTROL_HELP_KEY = 'chicago4d.controlHelpDismissed';
 
 const DEFAULT_SETTINGS = {
   speed: 1.45, fov: 72, quality: 1.5,
@@ -49,6 +50,7 @@ export function createHud({
   const btnTheme = $('btn-theme');
   const btnHelp = $('btn-help');
   const panel = $('panel');
+  const controlHelp = $('control-help');
   const hint = $('hint');
   const settings = readSettings();
   settings.units = normalUnitSystem(settings.units);
@@ -151,6 +153,28 @@ export function createHud({
 
   btnHelp?.addEventListener('click', () => setPanel(!panelOpen()));
   $('panel-close')?.addEventListener('click', () => setPanel(false));
+
+  function dismissControlHelp({ remember = true } = {}) {
+    if (!controlHelp) return;
+    controlHelp.setAttribute('hidden', '');
+    if (remember) store(CONTROL_HELP_KEY, '1');
+    onHelp?.(false);
+  }
+
+  function showControlHelp({ auto = false } = {}) {
+    if (!controlHelp || (auto && readStored(CONTROL_HELP_KEY, '0') === '1')) return false;
+    setPanel(false);
+    controlHelp.removeAttribute('hidden');
+    if (document.pointerLockElement) document.exitPointerLock?.();
+    onHelp?.(true);
+    return true;
+  }
+
+  $('control-help-close')?.addEventListener('click', () => dismissControlHelp());
+  $('control-help-gotit')?.addEventListener('click', () => dismissControlHelp());
+  $('s-show-control-help')?.addEventListener('click', () => showControlHelp());
+  $('control-help-desktop')?.toggleAttribute('hidden', !!isTouch);
+  $('control-help-touch')?.toggleAttribute('hidden', !isTouch);
 
   // ---- What's new ---------------------------------------------------------
   //
@@ -359,6 +383,8 @@ export function createHud({
     say,
     settings,
     setPanel,
+    showControlHelp,
+    dismissControlHelp,
     get confidenceOn() { return confidenceOn; },
     setConfidence,
     get flying() { return flying; },

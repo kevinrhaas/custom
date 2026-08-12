@@ -1,0 +1,148 @@
+{
+  "id": "recon_1835_south_a3_043",
+  "name": "Recommended A3 privy #043",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "recommended_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447632.446,
+        "utm_n": 4637220.329,
+        "rotation_deg": -0.53,
+        "symbolic_location": "Anonymous recommended roof in the South Division block between LaSalle and Clark, south of Lake Street",
+        "confidence": "conjectural",
+        "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            1.508,
+            0
+          ],
+          [
+            1.508,
+            1.686
+          ],
+          [
+            0,
+            1.686
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 1.51 × 1.69 m rectangle sampled deterministically inside the A3 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 2.05,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_pitch_deg": {
+          "value": 18.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "construction": {
+          "value": "plank",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "door": {
+          "value": "man",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "paint": {
+          "value": "whitewash",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        }
+      },
+      "change_note": "Recommended anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+    }
+  ],
+  "function": {
+    "value": "privy",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the A3 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "recommended_anonymous",
+    "family": "A3",
+    "district": "south",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase1_south_mixed_blocks",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 43,
+    "finish_key": "whitewash",
+    "roof_condition": "weathered",
+    "age_state": "older_frontier",
+    "yard_group": "lake_front_rear_yards"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

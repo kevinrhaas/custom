@@ -1,0 +1,147 @@
+{
+  "id": "recon_1835_south_w1_023",
+  "name": "Recommended W1 blacksmith shop #023",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "recommended_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447355.123,
+        "utm_n": 4637202.312,
+        "rotation_deg": -0.96,
+        "symbolic_location": "Anonymous recommended roof in the South Division block between Franklin and Wells, south of Lake Street",
+        "confidence": "conjectural",
+        "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            6.541,
+            0
+          ],
+          [
+            6.541,
+            9.199
+          ],
+          [
+            0,
+            9.199
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 6.54 × 9.20 m rectangle sampled deterministically inside the W1 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 3.42,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_pitch_deg": {
+          "value": 32.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "construction": {
+          "value": "plank",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "door": {
+          "value": "wagon",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the W1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        }
+      },
+      "change_note": "Recommended anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+    }
+  ],
+  "function": {
+    "value": "blacksmith shop",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the W1 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "recommended_anonymous",
+    "family": "W1",
+    "district": "south",
+    "inventory_class": "principal_functional",
+    "programme_phase": "phase1_south_mixed_blocks",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 23,
+    "finish_key": "fresh_timber",
+    "roof_condition": "weathered",
+    "age_state": "older_frontier"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

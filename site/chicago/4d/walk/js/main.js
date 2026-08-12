@@ -371,13 +371,14 @@ async function boot() {
     gate?.setAttribute('hidden', '');
     hud.show();
     hud.restore();
+    const controlHelpOpen = hud.showControlHelp({ auto: true });
     // The gate doubles as the audio-unlock gesture: browsers only allow an
     // AudioContext to start from one, and ambience lands in a later slice.
     try {
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (Ctx && !api.audio) { api.audio = new Ctx(); api.audio.resume?.(); }
     } catch { /* no audio is fine; a thrown error is not */ }
-    if (backends.active === pointerlock) pointerlock.lock();
+    if (backends.active === pointerlock && !controlHelpOpen) pointerlock.lock();
     hud.say(backends.name === 'touch'
       ? 'Left thumb walks · drag the right side to look · tap a building'
       : 'W A S D to walk · E to inspect what you are looking at');

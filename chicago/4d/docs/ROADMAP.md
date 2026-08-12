@@ -1242,6 +1242,38 @@ Three things worth carrying:
   re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
   `tools/check.sh`.
 
+## S10 — Complete July 1835 building inventory · **PHASE 1 IN 2026-08-11**
+
+The owner-supplied reconstruction specification establishes a production target of **665 roofs**:
+511 principal/functional and 154 ancillary, distributed South 370 / West 135 / North 150 / Fort
+10. The durable master ledger is `data/reconstruction/1835_building_inventory.json`; it preserves
+the independently reconcilable family and district matrices and explicitly separates aggregate
+moderate confidence from interpretive per-instance placement.
+
+- **Phase 1 done:** 48 visibly tagged anonymous South Division roofs in five mixed blocks—40
+  principal/functional and eight ancillary. Reproducible records and flagged review GLBs are
+  derived from the parcel recipe without Blender and checked on every commit.
+- **Phase 2 planning advanced in parallel:** reviewed, non-rendered recipes now reserve another
+  84 South roofs, 55 West roofs and 60 North roofs without overdrawing any family target. The
+  South recipe is collision-checked against protected named sites; the North set's 60 footprints
+  stay on the current dry terrain. The West recipe deliberately gates 35 roofs until the world
+  extends to local E -700 m, and the remaining 90-roof North pass waits for unified terrain,
+  hydrology, collision, flora, streets and map coverage to N +760 m. These are production plans,
+  not added scene count; existing-roof reconciliation comes first.
+- **Next:** reconcile all pre-existing records to physical roofs. Bridges, yards, palisades and
+  compounds make record count an invalid proxy.
+- Verify the occupied west/north settlement extent before extending terrain. The enlarged plat
+  is not the same thing as built footprint, and at least 45% of it remains sparse/open.
+- Implement the 35 family archetypes and 250+ visible combinations, replacing—not silently
+  promoting—the review massings.
+- Populate remaining district parcels to the reconciled target, then add terrain-sampled
+  foundations, yards and props. No separate collision plane.
+
+See `docs/RESEARCH/recommended_infill_1835.md`,
+`docs/RESEARCH/phase2_south_core_and_mixed.md`,
+`docs/RESEARCH/west_division_infill_1835.md`, and Liberty L81.
+The North analysis is `docs/RESEARCH/1835_north_division_extent_and_infill.md`.
+
 ## S8 — Milestone 1
 
 Wolf Point cluster + South Water block D (LaSalle–Clark). The first test of whether the
