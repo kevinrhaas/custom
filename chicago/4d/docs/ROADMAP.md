@@ -58,13 +58,48 @@ drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** 
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
 ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
 
-### K3 — Flora pop-in and coverage *(user-visible defect)*
-Grass and flowers "appear out of the ground as you walk towards them." `flora.js`: the near
-instanced ring materialises with no transition. Fix: grow/fade-in over distance (scale or alpha
-ramp on spawn), widen the ring or add hysteresis so churn is invisible, and profile — mobile
-390×780 stays a release gate. Also RAISE COVERAGE where it is thin: `river_bank`'s underfill is
-already measured (zone says cordgrass 40–55 % cover, `bare_soil_fraction: 0.0`; render shows
-bare soil), and the mid-field targets from the prairie sweep stand in § S6a.
+### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
+Grass and flowers "appear out of the ground as you walk towards them."
+
+**The pop-in half is fixed, and the diagnosis is the part worth keeping.** The transition was
+not missing — `ringFade`/`innerFade` had been scaling every plant down over the outer band of
+its ring since the layer was written. It was *frozen*: the fade was baked into the instance's
+height at lattice-rebuild time, and the lattice is rebuilt only every `TUNE.step.near` metres
+walked. So the ramp was sampled once per stride and held. With a 1.2 m step against the near
+ring's 2.2 m band, a plant went from nothing to **55 % of full height between one frame and the
+next** — a fade function producing a step, which is why the code looked like it already did
+what the owner was asking for.
+
+The ramp now runs per FRAME in the vertex shader against `cameraPosition` (`aChiRing` carries
+`[outer, band, inner, innerBand]` per instance; the scale is uniform, about the plant's base).
+Three things came with it:
+
+- **Flower heads have to descend, not just shrink.** A head's origin is partway up a stem, so
+  scaling it in place leaves it hanging over a plant that is no longer under it. `aChiRise`
+  carries the height of the head over its own plant's base and the shader lowers it by
+  `rise × (1 − fade)`, applied after the instance transform because the instance matrix carries
+  a real rotation for the tilted heads.
+- **The `fade < 0.35` head gate was a step in the middle of a ramp** — and the most conspicuous
+  pop in the field, because a flower is the brightest thing in it. Heads have their own ring now,
+  reaching zero exactly where the plant's ramp passes 0.35, so the same heads are drawn and the
+  head cap sees the same pressure.
+- **The lattice is now inset from the fade ring by the rebuild step** (`ringsFor`), which is what
+  makes arriving-already-grown impossible rather than merely rare: a plant is always already
+  placed, at zero height, before it is near enough to be worth any. The outer edge is bought by
+  moving the *fade* in (growing the lattice would cost a 34 % wider near annulus against 6 % of
+  triangle headroom — see K14); the inner edge by moving the *lattice* out, which costs 1.3 % of
+  the mid ring and keeps the near/mid crossover exactly where it is. `step` is halved to 0.6 m,
+  since its job is now the width of that margin rather than the frequency of the ramp.
+- **The bound is one frame, not zero**, and it is stated rather than hidden: the rebuild fires on
+  the frame that carries the walker past the step, so it can overshoot by however far that one
+  frame moved — 0.024 m at 60 fps, about 1 % of a plant's height. The gate walks twenty 0.15 m
+  paces at both viewports and requires every plant arriving in front of the walker to be under
+  10 % of full; measured 0.0 %.
+
+**Still open: COVERAGE.** `river_bank`'s underfill is already measured (zone says cordgrass
+40–55 % cover, `bare_soil_fraction: 0.0`; render shows bare soil), and the mid-field targets from
+the prairie sweep stand in § S6a. Note that the near ring's *visible* radius is 0.6 m shorter than
+it was — that is the inset, and it is a coverage question for this half of the parcel to weigh.
 
 ### K4 — Facades: weathered wood, not painted clones
 The buildings read as freshly painted and identical. Research first, then implement: most 1835

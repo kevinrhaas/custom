@@ -237,6 +237,14 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
     await page.waitForTimeout(250);
 
+    // Hold the visual clock across the three captures below. They ask what the
+    // confidence view does to a frame, and the wind blows between them: without
+    // the hold the residual is mostly swaying grass, which made the restore
+    // check fail about two runs in three. Holding removes the variable rather
+    // than widening the tolerance around it, and it makes the "changes the
+    // render" assertion strictly harder, since sway can no longer supply any of
+    // the difference it needs to find.
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const off = await page.evaluate(() => window.__chicago4d.capture());
     check(`${label}: canvas renders non-black`,
       off.mean > 12 && off.litFraction > 0.5,
@@ -260,12 +268,13 @@ for (const [label, viewport, touch] of [
     await page.evaluate(() => window.__chicago4d.setConfidenceView(false));
     const back = await page.evaluate(() => window.__chicago4d.capture());
     const dBack = signatureDistance(off, back);
-    // Flora continues to sway between these asynchronous captures.  Judge the
-    // restored frame by its tiny overall residual while allowing a few isolated
-    // plant-edge cells to move; a confidence tint left enabled changes the mean
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    // With the clock held these are two captures of one unchanged scene, so the
+    // restored frame should be the SAME frame. The residual left is readback
+    // noise, not weather; a confidence tint left enabled changes the mean
     // broadly (the assertion immediately above pins that at >= 0.6).
     check(`${label}: turning it off restores the render`,
-      dBack.mean <= 0.5 && dBack.worst <= 8,
+      dBack.mean <= 0.1 && dBack.worst <= 3,
       `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
 
     // --- pick -> provenance ----------------------------------------------
@@ -1081,6 +1090,88 @@ for (const [label, viewport, touch] of [
       `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
+
+    // The owner: "grass and flowers appear out of the ground as you walk towards
+    // them". The lattice is rebuilt every `step` metres walked and the fade ramp
+    // is evaluated per frame, so the ramp has to be inset from the lattice by at
+    // least the step — otherwise a plant that was outside the lattice at one
+    // rebuild is already well inside the ramp by the next and arrives at a real
+    // fraction of its height in a single frame. Two checks: the geometry of the
+    // rings, and then an actual walk, which is the one that would have caught it.
+    const popIn = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const SETS = ['flora-near', 'flora-mid', 'flora-forb', 'flora-rosette'];
+      const rings = a.flora.rings;
+      const inset = Object.entries(rings.layers).map(([id, r]) => ({
+        id,
+        outer: r.lattice.outer - (r.fade[0] + rings.step),
+        // Only the mid ring HAS an inner ramp; where there is none there is
+        // nothing for a plant to grow across on its way past the walker.
+        inner: r.fade[3] > 0 ? r.fade[2] - (r.lattice.inner + rings.step) : 0,
+      }));
+
+      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+      a.step();
+      const snap = () => {
+        const p = a.camera.position;
+        const f = p.clone();
+        a.camera.getWorldDirection(f);
+        const fl = Math.hypot(f.x, f.z) || 1;
+        const seen = new Map();
+        for (const name of SETS) {
+          const mesh = a.flora.group.getObjectByName(name);
+          const m = mesh?.instanceMatrix?.array;
+          if (!m) continue;
+          for (let i = 0; i < mesh.count; i++) {
+            const o = i * 16;
+            const e = m[o + 12];
+            const n = -m[o + 14];
+            seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`, { name, e, n });
+          }
+        }
+        return { seen, e: p.x, n: -p.z, fe: f.x / fl, fn: -f.z / fl };
+      };
+
+      // Short paces, so the lattice is rebuilt several times inside the walk and
+      // never by more than one pace beyond the step it is triggered on.
+      const PACE = 0.15;
+      const AHEAD = Math.cos(30 * Math.PI / 180);
+      let prev = snap();
+      let arrivals = 0;
+      let worst = 0;
+      let worstAt = null;
+      for (let k = 0; k < 20; k++) {
+        a.walker.teleport({ local_e: prev.e + prev.fe * PACE, local_n: prev.n + prev.fn * PACE });
+        a.step();
+        const now = snap();
+        for (const [key, plant] of now.seen) {
+          if (prev.seen.has(key)) continue;
+          const d = Math.hypot(plant.e - now.e, plant.n - now.n) || 1e-6;
+          // Only what is in front of the walker. A plant may also arrive across
+          // the view-cone edge, which is 62 degrees wide against a frame that is
+          // never more than 40 — off-screen, and not what the owner saw.
+          if (((plant.e - now.e) * now.fe + (plant.n - now.n) * now.fn) / d < AHEAD) continue;
+          const fade = a.flora.fadeAt(plant.name, d);
+          arrivals++;
+          if (fade > worst) { worst = fade; worstAt = { set: plant.name, d, fade }; }
+        }
+        prev = now;
+      }
+      return { inset, arrivals, worst, worstAt, pace: PACE, step: rings.step };
+    });
+    check(`${label}: every flora fade ring is inset inside its own lattice`,
+      popIn.inset.length === 3
+      && popIn.inset.every((r) => r.outer >= -1e-9 && r.inner >= -1e-9),
+      popIn.inset.map((r) => `${r.id} outer +${r.outer.toFixed(2)} inner +${r.inner.toFixed(2)}`)
+        .join(', ') + ` against a ${popIn.step} m rebuild step`);
+    // The bound is one pace, not zero: the rebuild fires on the frame that
+    // carries the walker past the step, so it can overshoot by however far that
+    // one frame moved. 0.15 m of a 2.2 m near band is 7%.
+    check(`${label}: a plant in front of the walker never arrives already grown`,
+      popIn.arrivals >= 20 && popIn.worst <= 0.10,
+      `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst height `
+      + `${(popIn.worst * 100).toFixed(1)}% of full`
+      + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       && streetLayer.worstBuildingAnchor < 1e-6

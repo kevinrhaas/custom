@@ -3,7 +3,7 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
+**Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + first 48 anonymous roofs) and R1 (renderer)
 complete.
@@ -138,6 +138,52 @@ committed traces via `tools/rederive_datum.py`, which `check.sh` enforces.
 Structure positions still carry `symbolic_location` with null coordinates — they get filled as
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
+
+## Fixed 2026-08-13 — a fade function that was producing a step
+
+**The transition the owner asked for had been there all along, sampled once per stride.**
+"Grass and flowers appear out of the ground as you walk towards them" (K3) read like a missing
+feature, and `flora.js` has scaled every plant down over the outer band of its ring since the
+layer was written. The defect is the RATE, not the absence: the ramp was evaluated on the CPU at
+lattice-rebuild time and baked into the instance's height, and the lattice rebuilds only every
+`TUNE.step.near` metres walked. 1.2 m of step against the near ring's 2.2 m band means a plant
+went from nothing to **55 % of full height in a single frame**, once per stride, forever. A fade
+that only updates when the thing it is fading is rebuilt is a step function wearing a ramp's name,
+and it is invisible in review precisely because the ramp reads correctly on the page.
+
+The ramp now runs per frame in the vertex shader against `cameraPosition`. What that cost, and
+what it bought, is in ROADMAP § K3; three things belong here.
+
+- **A flower head cannot just shrink — it has to come down.** Its origin is partway up a stem, so
+  scaling in place leaves it in the air over a plant that is no longer under it. `aChiRise` and a
+  world-space descent applied after the instance transform (the instance matrix carries a real
+  rotation for tilted heads, so it cannot be folded into the local offset).
+- **The `fade < 0.35` head gate was itself the worst pop in the field**, being a step in the
+  middle of a ramp on the brightest object in the frame. Heads have their own inset ring now, and
+  the same heads are drawn: the ring reaches zero exactly where the plant's ramp passes 0.35.
+- **The guarantee is geometric, not empirical.** The lattice is inset from the fade ring by the
+  rebuild step, so a plant is always placed, at zero height, before it is near enough to be worth
+  any. The residual is one frame of overshoot — the rebuild fires on the frame that carries the
+  walker past the step — which is 0.024 m at 60 fps, about 1 % of a plant's height, and it is
+  written down rather than rounded away. The near ring's visible radius is 0.6 m shorter than it
+  was, which is the price of the inset and is left as a coverage question in K3.
+- **The gate now walks.** Twenty 0.15 m paces at 390×780 and 1280×800, checking every plant that
+  appears in front of the walker: measured worst arrival **0.0 %** of full height against a 10 %
+  bar, plus a check on the ring geometry so the margin cannot be tuned away later. Triangles
+  564 821 desktop against 564 681 before — a rounding error, and no new asset.
+
+**And the gate was measuring the weather.** Running the baseline before touching anything turned
+up an unrelated red: *"turning it off restores the render"* failed about **two runs in three on
+main**, at 390×780, with a worst-cell delta of 9 against a bar of 8. The assertion compares two
+captures of the same scene to decide whether switching the confidence view off leaves anything
+behind — and the wind blows between them, at 1–3 fps under the software rasteriser, so most of
+the residual it was measuring was swaying grass. The tolerance had already been widened once for
+exactly that reason, which is the tell: a gate whose bar is set by its own noise is a gate that
+will be widened again. `main.js` gains a harness-only `setAnimationHold` — keep drawing, advance
+nothing — and the three captures are taken under it. The residual is readback noise now, so the
+bar **tightened** from mean 0.5 / worst 8 to mean 0.1 / worst 3, and the assertion above it
+(*confidence view changes the render*) got strictly harder, because sway can no longer supply any
+of the difference it has to find. Two consecutive full runs green at both viewports.
 
 ## Fixed 2026-08-13 — two defects the owner photographed, and what they taught
 

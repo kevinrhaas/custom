@@ -129,15 +129,70 @@ const SUN_FALLBACK = {
  * height the ground is invisible. LIBERTIES L32.
  */
 const TUNE = {
-  near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30 },
-  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4 },
-  forb: { radius: 26.0, cell: 3.4, perCell: 4 },
+  near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2 },
+  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0 },
+  forb: { radius: 26.0, cell: 3.4, perCell: 4, band: 5.0 },
   /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
-  /** Rebuild the lattice when the camera has moved this far, per layer. */
-  step: { near: 1.2, mid: 3.0, forb: 3.0 },
+  /**
+   * Rebuild the lattice when the camera has moved this far. It is also the
+   * margin the fade ring is inset by (`ringsFor`), so it is the width of the
+   * annulus of already-placed, zero-height plants that stands between the
+   * lattice edge and the first plant with any height in it. 1.2 m was the
+   * figure while the fade was frozen between rebuilds; halved now that the
+   * inset is what it buys, because a metre of the near ring is a lot of it.
+   */
+  step: { near: 0.6, mid: 3.0, forb: 3.0 },
 };
+
+/**
+ * The lattice is world-anchored and rebuilt only every `step` metres walked;
+ * the fade ramp is evaluated per FRAME, in the vertex shader, against where the
+ * camera actually is. Those two rates are what the pop was made of, and they
+ * are reconciled here rather than in either of them.
+ *
+ * A ring returned as `[outer, band, inner, innerBand]` — the four numbers the
+ * shader reads out of `aChiRing` — is inset from the lattice that carries it by
+ * `step` at BOTH edges, so a plant is always already placed, at scale zero,
+ * before the distance at which it is worth any height at all. Without the inset
+ * a plant outside the lattice at one rebuild is up to `step` inside the fade
+ * ring by the next, and arrives at `step / band` of full size in a single
+ * frame: 55% for the near ring as it stood, which is the "grass and flowers
+ * appear out of the ground as you walk towards them" the owner reported.
+ *
+ * The outer edge is bought by moving the fade IN — growing the lattice instead
+ * would cost a 34% wider near annulus of instances against 6% of triangle
+ * headroom. The inner edge is bought by moving the lattice OUT, because the
+ * inner annulus of the mid ring is 1.3% of its area and free, and because
+ * moving that fade outward would thin the near/mid crossover where the change
+ * of representation is supposed to be invisible.
+ */
+function ringsFor(layer, step) {
+  const inner = layer.inner ?? 0;
+  return {
+    lattice: { outer: layer.radius, inner: Math.max(0, inner - step) },
+    fade: [layer.radius - step, layer.band, inner, layer.innerBand ?? 0],
+  };
+}
+
+/** Heads used to be gated at 35% of their plant's fade — a step in the middle
+ *  of a ramp, and the most conspicuous pop in the field, because a flower is
+ *  the brightest thing in it. Their own ring reaches zero exactly where the
+ *  plant's ramp passes 0.35, so the same heads are drawn as before and the
+ *  cap sees the same pressure; only the step is gone. */
+const HEAD_FADE_AT = 0.35;
+function headRingOf(fade) {
+  return [fade[0] - HEAD_FADE_AT * fade[1], (1 - HEAD_FADE_AT) * fade[1], fade[2], fade[3]];
+}
+
+/** The ramp the vertex shader applies, in JS, so the two cannot disagree about
+ *  where a plant starts to grow. Kept identical to the GLSL in `plantMaterial`. */
+function fadeOf(ring, d) {
+  const outer = clamp01((ring[0] - d) / Math.max(ring[1], 1e-4));
+  const inner = ring[3] > 0 ? clamp01((d - ring[2]) / ring[3]) : 1;
+  return outer * inner;
+}
 
 /** Nearer than this, plants go all the way round whatever the cone says. */
 const CONE_KEEP_M = 3.5;
@@ -365,6 +420,20 @@ export async function createFlora({
   const centres = { near: null, yaw: null };
   const waterY = terrain.heightfield?.meta?.water_surface_m ?? 0;
 
+  // The lattice each layer is scattered on, and the ring the shader fades it
+  // over — the second strictly inside the first by `step`. See `ringsFor`.
+  const step = tune.step.near;
+  const rings = {};
+  for (const layer of ['near', 'mid', 'forb']) {
+    rings[layer] = ringsFor(tune[layer], step);
+    rings[layer].head = headRingOf(rings[layer].fade);
+  }
+  /** Which ring each rooted set is drawn on. A rosette is a forb. */
+  const ringOfSet = {
+    'flora-near': rings.near, 'flora-mid': rings.mid,
+    'flora-forb': rings.forb, 'flora-rosette': rings.forb,
+  };
+
   /** Ground the plant stands on, or null if it may not stand here. */
   function station(e, n, zone, species) {
     if (growthBlocked(e, n)) return null;
@@ -389,10 +458,12 @@ export async function createFlora({
     midSet.reset();
     for (const k in heads) heads[k].reset();
 
-    const near = tune.near;
-    const mid = tune.mid;
+    const near = rings.near;
+    const mid = rings.mid;
     // NEAR: individual tufts, dense enough to close the ground.
-    scatter(camE, camN, near.cell, near.perCell, near.radius, 0, 0x51ed27, cone,
+    nearSet.ring(near.fade);
+    scatter(camE, camN, tune.near.cell, tune.near.perCell,
+      near.lattice.outer, near.lattice.inner, 0x51ed27, cone,
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
@@ -400,27 +471,29 @@ export async function createFlora({
         const y = station(e, n, zone, sp);
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
-        const fade = ringFade(r, near.radius, 2.2);
         // The head is placed off the height the PLANT was actually given, and
         // only if the plant was actually drawn. Round 1 drew the two from
         // independent draws of the same range, so a 2.0 m cordgrass spike
         // could stand over a 1.25 m tuft — which is the pair of flower heads
         // the critic found floating unattached in the open sky.
-        const h = placeGraminoid(nearSet, sp, e, y, n, rng, fade);
-        if (h > 0) maybeHead(heads, sp, e, y, n, rng, fade, h);
+        const h = placeGraminoid(nearSet, sp, e, y, n, rng);
+        if (h > 0 && r <= near.head[0] + step) {
+          maybeHead(heads, sp, e, y, n, rng, h, near.head);
+        }
       });
 
     // MID: clump cards. The inner edge overlaps the near ring so the change of
     // representation happens inside the field rather than at a visible circle.
-    scatter(camE, camN, mid.cell, mid.perCell, mid.radius, mid.inner, 0x9e3779, cone,
+    midSet.ring(mid.fade);
+    scatter(camE, camN, tune.mid.cell, tune.mid.perCell,
+      mid.lattice.outer, mid.lattice.inner, 0x9e3779, cone,
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         const sp = pick(zone.graminoids, rng());
         const y = station(e, n, zone, sp);
         if (y === null) return;
-        const fade = ringFade(r, mid.radius, 7.0) * innerFade(r, mid.inner, 3.0);
-        placeCard(midSet, sp, zone, e, y, n, rng, fade);
+        placeCard(midSet, sp, zone, e, y, n, rng);
       });
     stats.rebuilds++;
   }
@@ -428,23 +501,27 @@ export async function createFlora({
   function rebuildForbs(camE, camN, cone) {
     forbSet.reset();
     rosetteSet.reset();
-    const f = tune.forb;
-    scatter(camE, camN, f.cell, f.perCell, f.radius, 0, 0x2545f9, cone, (e, n, r, rng) => {
-      const zone = finder(e, n);
-      if (!zone || !zone.forbs.length) return;
-      // The forb layer's density is the zone's OWN summed density_per_ha, so a
-      // sparse community stays sparse. `share` is the chance this lattice slot
-      // is used at all.
-      if (rng() > zone.forbShare) return;
-      const sp = pick(zone.forbs, rng());
-      const y = station(e, n, zone, sp);
-      if (y === null) return;
-      if (crowdsTheWalker(sp, r)) return;
-      const fade = ringFade(r, f.radius, 5.0);
-      const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
-      const h = placeForb(set, sp, e, y, n, rng, fade);
-      if (h > 0) maybeHead(heads, sp, e, y, n, rng, fade, h);
-    });
+    const f = rings.forb;
+    forbSet.ring(f.fade);
+    rosetteSet.ring(f.fade);
+    scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
+      f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng) => {
+        const zone = finder(e, n);
+        if (!zone || !zone.forbs.length) return;
+        // The forb layer's density is the zone's OWN summed density_per_ha, so a
+        // sparse community stays sparse. `share` is the chance this lattice slot
+        // is used at all.
+        if (rng() > zone.forbShare) return;
+        const sp = pick(zone.forbs, rng());
+        const y = station(e, n, zone, sp);
+        if (y === null) return;
+        if (crowdsTheWalker(sp, r)) return;
+        const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
+        const h = placeForb(set, sp, e, y, n, rng);
+        if (h > 0 && r <= f.head[0] + step) {
+          maybeHead(heads, sp, e, y, n, rng, h, f.head);
+        }
+      });
   }
 
   // Forbs and their heads share the head sets with the graminoids, so the two
@@ -468,6 +545,15 @@ export async function createFlora({
     stats,
     zoneAt(e, n) { return finder(e, n)?.id ?? null; },
     shoreDistance(e, n) { return water.distance(e, n); },
+    /** The lattice/fade rings and the rebuild step, for the gate that checks a
+     *  plant cannot arrive already grown. */
+    rings: { step, layers: rings },
+    /** The height multiplier the vertex shader gives an instance of `setName`
+     *  standing `d` metres from the camera — the same ramp, in JS. */
+    fadeAt(setName, d) {
+      const ring = ringOfSet[setName];
+      return ring ? fadeOf(ring.fade, d) : null;
+    },
 
     update(dt, camera) {
       uniforms.uChiTime.value += dt * TUNE.wind.speedNear;
@@ -488,7 +574,7 @@ export async function createFlora({
       const turned = centres.yaw === null
         || Math.abs(((yaw - centres.yaw + Math.PI * 3) % (Math.PI * 2)) - Math.PI)
            > CONE_YAW_STEP;
-      if (turned || moved(centres.near, e, n, TUNE.step.near)) {
+      if (turned || moved(centres.near, e, n, step)) {
         rebuildAll(e, n, { fe, fn, cos: CONE_COS });
         centres.near = { e, n };
         centres.yaw = yaw;
@@ -576,7 +662,7 @@ function sunFromScene(group, uniforms, problems) {
 function mergeTune(lowSpec) {
   const t = {
     near: { ...TUNE.near }, mid: { ...TUNE.mid }, forb: { ...TUNE.forb },
-    cap: { ...TUNE.cap },
+    cap: { ...TUNE.cap }, step: { ...TUNE.step },
   };
   if (!lowSpec) return t;
   Object.assign(t.near, LOW.near);
@@ -1050,16 +1136,6 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
   }
 }
 
-/** Scale a plant down over the outer band of its ring so nothing pops in. */
-function ringFade(r, radius, band) {
-  if (r <= radius - band) return 1;
-  return Math.max(0, (radius - r) / band);
-}
-function innerFade(r, inner, band) {
-  if (r >= inner + band) return 1;
-  return Math.max(0, (r - inner) / band);
-}
-
 /** Weighted pick from a compiled species list (weights sum to 1). */
 function pick(list, u) {
   let acc = 0;
@@ -1120,6 +1196,18 @@ function instSet(name, geometry, material, max) {
   const conf = new THREE.InstancedBufferAttribute(new Float32Array(max), 1);
   conf.setUsage(THREE.DynamicDrawUsage);
   geometry.setAttribute('_confidence', conf);
+  // The ring this instance is faded over, and how far its origin stands above
+  // the base of its own plant — zero for anything rooted, the stalk height for
+  // a flower head, which is what lets the shader lower a head to the ground as
+  // its plant shrinks instead of leaving it hanging where the CPU put it.
+  const ringAttr = new THREE.InstancedBufferAttribute(new Float32Array(max * 4), 4);
+  ringAttr.setUsage(THREE.DynamicDrawUsage);
+  geometry.setAttribute('aChiRing', ringAttr);
+  const riseAttr = new THREE.InstancedBufferAttribute(new Float32Array(max), 1);
+  riseAttr.setUsage(THREE.DynamicDrawUsage);
+  geometry.setAttribute('aChiRise', riseAttr);
+  /** Never fades: overwritten before the first push of every pass. */
+  let ringNow = [1e9, 1e-4, 0, 0];
 
   const tris = (geometry.index ? geometry.index.count : geometry.attributes.position.count) / 3;
   let n = 0;
@@ -1128,6 +1216,10 @@ function instSet(name, geometry, material, max) {
     tris,
     max,
     reset() { n = 0; },
+    /** The ring every following push is drawn on, `[outer, band, inner,
+     *  innerBand]`. A head set is pushed to from two different rings in one
+     *  rebuild, so this is per-push state rather than per-set. */
+    ring(r) { ringNow = r; },
     /**
      * @param {number} [tilt] radians off vertical, baked into the INSTANCE
      *   matrix rather than the vertex program: a flower head is held at an
@@ -1135,9 +1227,11 @@ function instSet(name, geometry, material, max) {
      *   `aFlora` can only turn it about the vertical. Pass `yaw` 0 alongside a
      *   tilt — the matrix carries the whole rotation.
      * @param {number} [tiltAz] which way it leans.
+     * @param {number} [rise] metres this instance's origin stands above the
+     *   base of its plant. The shader lowers it by `rise * (1 - fade)`.
      * @returns {boolean} false when the cap is reached — the caller stops.
      */
-    push(e, y, n2, yaw, height, spread, arch, r, g, b, conf2, tilt = 0, tiltAz = 0) {
+    push(e, y, n2, yaw, height, spread, arch, r, g, b, conf2, tilt = 0, tiltAz = 0, rise = 0) {
       if (n >= max) return false;
       if (tilt !== 0) {
         _e.set(Math.cos(tiltAz) * tilt, yaw, Math.sin(tiltAz) * tilt, 'YXZ');
@@ -1150,6 +1244,8 @@ function instSet(name, geometry, material, max) {
       mesh.instanceColor.setXYZ(n, r, g, b);
       params.setXYZW(n, height, spread, arch, yaw);
       conf.setX(n, conf2);
+      ringAttr.setXYZW(n, ringNow[0], ringNow[1], ringNow[2], ringNow[3]);
+      riseAttr.setX(n, rise);
       n++;
       return true;
     },
@@ -1159,6 +1255,8 @@ function instSet(name, geometry, material, max) {
       mesh.instanceColor.needsUpdate = true;
       params.needsUpdate = true;
       conf.needsUpdate = true;
+      ringAttr.needsUpdate = true;
+      riseAttr.needsUpdate = true;
     },
   };
 }
@@ -1184,9 +1282,13 @@ function tint(sp, u, v) {
   ];
 }
 
-function placeGraminoid(set, sp, e, y, n, rng, fade) {
+function placeGraminoid(set, sp, e, y, n, rng) {
   const u = rng();
-  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * fade;
+  // The record's own height, at full size. The ring fade that used to be baked
+  // in here is applied per frame in the vertex shader instead: baked, it could
+  // only change when the lattice was rebuilt, which made it a step rather than
+  // a ramp and put the plant's whole growth into one frame.
+  const h = sp.height[0] + (sp.height[1] - sp.height[0]) * u;
   // width_m is the clump diameter the record gives; only fall back to a
   // proportion of the height when it does not. The proportion had cordgrass
   // splaying 1.1 m against a recorded 0.5-0.9.
@@ -1205,9 +1307,9 @@ function placeGraminoid(set, sp, e, y, n, rng, fade) {
     sp.shape.arch * (0.7 + rng() * 0.7), col[0], col[1], col[2], sp.conf) ? h : 0;
 }
 
-function placeCard(set, sp, zone, e, y, n, rng, fade) {
+function placeCard(set, sp, zone, e, y, n, rng) {
   const u = rng();
-  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * fade * 0.92;
+  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * u) * 0.92;
   // A clump, not a hoarding. Width 1.25-2.15 x height made 2.5 m billboards
   // that tiled the mid-ground into flat-topped dark blocks.
   const w = h * (0.42 + rng() * 0.44);
@@ -1221,8 +1323,8 @@ function placeCard(set, sp, zone, e, y, n, rng, fade) {
     c[2] * 0.72 + m[2] * 0.28, sp.conf);
 }
 
-function placeForb(set, sp, e, y, n, rng, fade) {
-  const h = (sp.height[0] + (sp.height[1] - sp.height[0]) * rng()) * fade;
+function placeForb(set, sp, e, y, n, rng) {
+  const h = sp.height[0] + (sp.height[1] - sp.height[0]) * rng();
   // The leaf archetype is drawn at a nominal one metre, so whatever scales the
   // plant also scales its leaves. `width_m` is the CLUMP diameter, and a
   // riverbank shrub recorded at two metres across therefore grew sixty-
@@ -1232,7 +1334,7 @@ function placeForb(set, sp, e, y, n, rng, fade) {
   // that the leaves are huge (prairie dock, 0.6-1.0 m across the rosette).
   const rosette = sp.form === 'forb_basal_scape';
   const spread = rosette
-    ? THREE.MathUtils.clamp((sp.width ? mid(sp.width) * 0.5 : h * 0.18), 0.05, 0.55) * fade
+    ? THREE.MathUtils.clamp((sp.width ? mid(sp.width) * 0.5 : h * 0.18), 0.05, 0.55)
     : THREE.MathUtils.clamp(sp.width ? mid(sp.width) * 0.45 : h * 0.26, 0.07, 0.40);
   const c = tint(sp, rng() * 0.6, rng()).map((x) => x * patchOf(e, n));
   return set.push(e, y, n, rng() * Math.PI * 2, h, spread, 0.1 + rng() * 0.2,
@@ -1249,10 +1351,11 @@ function placeForb(set, sp, e, y, n, rng, fade) {
  * Both of those are the fix for the two heads the critic found floating in the
  * open sky with no stem beneath them.
  */
-function maybeHead(heads, sp, e, y, n, rng, fade, plantH) {
-  if (!sp.head || fade < 0.35 || !(plantH > 0)) return;
+function maybeHead(heads, sp, e, y, n, rng, plantH, ring) {
+  if (!sp.head || !(plantH > 0)) return;
   const set = heads[sp.head.kind];
   if (!set) return;
+  set.ring(ring);
   // A forb instance IS one plant. A matrix instance is a bundle of shoots, and
   // only a minority of shoots in a grass clump carry a culm in mid-July — a
   // head on every tuft made a flowering cordgrass sward look like a wheat
@@ -1287,14 +1390,20 @@ function maybeHead(heads, sp, e, y, n, rng, fade, plantH) {
     const r = i === 0 ? 0
       : Math.min(spread * (0.30 + rng() * 0.60) * (0.45 + 1.7 * down),
         reach * size * Math.sin(lean) * 0.94);
+    // How far over its plant's base this head hangs. It is passed to the shader
+    // as well as added to y, because the shader has to bring the head DOWN with
+    // the plant as the ring fades it: a head left at the height the CPU put it
+    // would hang in the air over a shrinking stem.
+    const rise = top * (1 - down) * (0.94 + rng() * 0.10);
     if (!set.push(
       e + Math.sin(a) * r,
-      y + top * (1 - down) * (0.94 + rng() * 0.10),
+      y + rise,
       n + Math.cos(a) * r,
       rng() * Math.PI * 2, size, size, 0, _c.r, _c.g, _c.b, sp.conf, lean,
       // Leaning OUTWARD, along the branch that carries it, so the stalk below
       // it leans back toward the stem instead of hanging in the air.
       i === 0 ? rng() * Math.PI * 2 : a + Math.PI / 2,
+      rise,
     )) return;
   }
 }
@@ -1944,6 +2053,8 @@ function plantMaterial({ uniforms, billboard = false, membrane = 1.0 }) {
 attribute vec2 aDir;
 attribute vec3 aSide;       // offset from the archetype's axis, in real metres
 attribute vec4 aFlora;      // height, spread, arch, yaw
+attribute vec4 aChiRing;    // fade ring: outer, band, inner, innerBand
+attribute float aChiRise;   // metres this origin stands over its plant's base
 uniform float uChiTime;
 uniform vec2  uChiWind;
 uniform float uChiSway;
@@ -1962,15 +2073,31 @@ varying float vChiLit;      // how much of the sky this point can see, 0..1.6
 `)
       .replace('#include <begin_vertex>', /* glsl */`
 #include <begin_vertex>
+float chiDrop = 0.0;
 {
   vec3 chiInst = vec3(instanceMatrix[3][0], instanceMatrix[3][1], instanceMatrix[3][2]);
   float chiT = clamp(transformed.y, 0.0, 1.0);
+  // The ring fade, measured from where the camera IS this frame. It used to be
+  // baked into the height on the CPU, where it could only change when the
+  // lattice was rebuilt — every 1.2 m walked, against a 2.2 m band, so a plant
+  // came up out of the ground to 55% of its height between one frame and the
+  // next. Here it is continuous, and the lattice is inset from it by the
+  // rebuild step (see \`ringsFor\`) so nothing is ever drawn before it is placed.
+  float chiD = distance(cameraPosition.xz, chiInst.xz);
+  float chiFade = clamp((aChiRing.x - chiD) / max(aChiRing.y, 1e-4), 0.0, 1.0);
+  if (aChiRing.w > 0.0) chiFade *= clamp((chiD - aChiRing.z) / aChiRing.w, 0.0, 1.0);
+  // A flower head's origin is up the stem, so shrinking it in place would leave
+  // it hanging over its own plant. It descends to the base at the same rate.
+  chiDrop = aChiRise * (1.0 - chiFade);
   // Arch each blade outward along its own azimuth, in nominal space.
   transformed.xz += aDir * (aFlora.z * chiT * chiT);
   // Scale: height from the record, spread from the archetype's own proportions.
   transformed.y *= aFlora.x;
   transformed.xz *= aFlora.y;
   transformed += aSide;
+  // ...and then the whole plant, uniformly, about its own base. Uniform because
+  // a plant that grows in is a plant, and one that only gets taller is a stretch.
+  transformed *= chiFade;
   ${billboard ? /* glsl */`
   // Turn the card to the camera about Y. Nothing else uses the yaw slot here.
   vec2 chiToCam = cameraPosition.xz - chiInst.xz;
@@ -1991,7 +2118,8 @@ varying float vChiLit;      // how much of the sky this point can see, 0..1.6
   // tip. This is the "wind-combed" reading the sources give the wet prairie.
   float chiPh = dot(chiInst.xz, uChiWind) * uChiWaveK + uChiTime;
   float chiGust = 0.62 + 0.38 * sin(chiPh * 0.31 + 1.7);
-  transformed.xz += uChiWind * (uChiSway * chiGust * sin(chiPh) * chiT * chiT * aFlora.x);
+  transformed.xz += uChiWind
+    * (uChiSway * chiGust * sin(chiPh) * chiT * chiT * aFlora.x * chiFade);
   `}
   // The world-space frame the sun terms need, built HERE rather than read off
   // three's vNormal: <defaultnormal_vertex> has already run by this point, so
@@ -1999,6 +2127,7 @@ varying float vChiLit;      // how much of the sky this point can see, 0..1.6
   // matrix carries a real rotation for the tilted flower heads.
   vChiNW = normalize(mat3(modelMatrix) * mat3(instanceMatrix) * objectNormal);
   vChiPW = (modelMatrix * instanceMatrix * vec4(transformed, 1.0)).xyz;
+  vChiPW.y -= chiDrop;
   // The archetype's own base-to-tip ramp, BEFORE the species colour multiplies
   // it. It is the one occlusion term this module has — how deep in the clump
   // this point sits — and it has to gate every light path, not just the
@@ -2007,6 +2136,19 @@ varying float vChiLit;      // how much of the sky this point can see, 0..1.6
   // as wrong as one with no sun (measured: median 56 -> 148, nothing under 20).
   vChiLit = color.g;
 }
+`)
+      // `chiDrop` is a WORLD-space descent of the instance's origin, and the
+      // instance matrix carries a real rotation for the tilted heads, so it
+      // cannot be folded into `transformed` — it goes on after the instance
+      // transform and before the view matrix.
+      .replace('#include <project_vertex>', /* glsl */`
+vec4 mvPosition = vec4(transformed, 1.0);
+#ifdef USE_INSTANCING
+  mvPosition = instanceMatrix * mvPosition;
+#endif
+mvPosition.y -= chiDrop;
+mvPosition = modelViewMatrix * mvPosition;
+gl_Position = projectionMatrix * mvPosition;
 `);
     // The fake sunward normal that used to live at <normal_fragment_begin> —
     // `normal.y = abs(normal.y)` — is GONE. It was standing in for exactly the
