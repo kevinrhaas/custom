@@ -88,6 +88,44 @@ ANCHORS = {
 }
 ANCHOR_MAX_PX = 60          # a claim further off than this is not a claim
 
+# Where the map's OWN LETTERING has to be read as lettering.
+#
+# Wright letters "CHICAGO RIVER" in outline display capitals straight across the
+# main stem. The interior of an outline capital is unwashed paper, so every one
+# of those letters comes out of the wash test as dry ground standing in the
+# channel. That is already handled where a letter falls wholly inside the water:
+# it becomes a HOLE in the water body, and `island_min_px` fills it back in — the
+# run reports "2 filled as lettering" for exactly this reason.
+#
+# The G of CHICAGO is the one that does not. A brown foxing stain runs south from
+# it to the drawn bank line, so the letter, the stain and the south bank are ONE
+# connected dry region: not a hole, never filled, and the boundary walk goes round
+# all three. What came out was a rounded 60 m headland pushing into the channel at
+# Clark Street, leaving about 12 m of water between it and the north bank. Wright
+# draws nothing of the kind — his two bank lines run near-parallel through this
+# reach — and the artefact is measurable from the other end as well: the traced
+# south bank sat 79.6 m north of the recorded South Water Street building faces at
+# Clark against 18.7 m at Dearborn, a 60 m swing over four blocks
+# (docs/RESEARCH/chicago_american_office.md § 3).
+#
+# So this is a declared window, in resource pixels like SEEDS and ANCHORS, inside
+# which a dry span with CHANNEL AT BOTH ENDS OF ITS OWN ROW is read as a gap in
+# the drawing rather than as land. The river runs west-east across this window, so
+# "water to my left and water to my right" is what a reader uses to see through
+# the type; the rule cannot leak past a bank, because a row south of the bank line
+# has no water on its landward side to bracket it. It fills nothing anywhere else:
+# every box must bite, or the run dies rather than quietly trusting a constant
+# that has rotted.
+#
+# It is a correction to a KNOWN DEFECT OF THE SHEET's condition and of its
+# lettering, not a redrawing of the waterline: the waterline inside the box is
+# still Wright's own wash, reconnected across his own type.
+LETTERING = {
+    # x0, y0, x1, y1 — the G of CHICAGO and the foxing stain under it.
+    # Local ENU E +530 .. +628, N +20 .. +87.
+    "chicago_g": (2188, 1710, 2328, 1800),
+}
+
 PARAMS = dict(
     bg_block=1600, bg_pct=88,         # paper luminance, measured across the window
     hue_block=280, hue_pct=40,
@@ -118,6 +156,29 @@ def fetch_region(cache: Path):
         cache.parent.mkdir(parents=True, exist_ok=True)
         cache.write_bytes(raw)
     return raw, hashlib.sha256(raw).hexdigest()
+
+
+def close_lettering(water, np):
+    """Read the map's display capitals as lettering inside the declared windows.
+
+    Within each LETTERING box a dry pixel becomes water when the same ROW carries
+    water on both sides of it inside that box. See the LETTERING comment for why
+    the rule is row-wise and why it cannot walk past a bank. Returns the number of
+    pixels each box recovered, so the caller can refuse to run on a box that has
+    stopped biting.
+    """
+    recovered = {}
+    for name, (x0, y0, x1, y1) in LETTERING.items():
+        sl = (slice(y0 - REGION[1], y1 - REGION[1]), slice(x0 - REGION[0], x1 - REGION[0]))
+        box = water[sl]
+        if box.size == 0:
+            die(f"lettering box {name} falls outside REGION — one of the two moved")
+        left = np.maximum.accumulate(box, axis=1)
+        right = np.maximum.accumulate(box[:, ::-1], axis=1)[:, ::-1]
+        bridged = left & right
+        recovered[name] = int(bridged.sum() - box.sum())
+        water[sl] = bridged
+    return recovered
 
 
 def split_runs(ring_px, margin=3):
@@ -202,6 +263,18 @@ def main() -> int:
         keep.add(v)
     water = np.isin(lab2, sorted(keep))
 
+    # The map's own type, read as type. Before the holes are counted, because a
+    # letter that leaks to the bank through a stain is not a hole and would never
+    # reach the island rule at all — which is the whole reason this step exists.
+    recovered = close_lettering(water, np)
+    for name, px in recovered.items():
+        if px <= 0:
+            die(f"lettering box {name} recovered no pixels — the segmentation or the "
+                f"box has moved. Fix the box against the scan; do not delete the check "
+                f"and do not widen it until something happens")
+        print(f"   lettering {name}: {px:,} px read as type rather than as land "
+              f"({px * cell_m * cell_m:,.0f} m2)")
+
     # Islands: a hole in the water body is land the water goes round. The sand bar
     # is one. The letters of "RIVER" drawn across the channel are not, so anything
     # under the threshold is filled back in rather than published as an island.
@@ -276,6 +349,22 @@ def main() -> int:
         "tool": "tools/trace_shoreline.py",
         "iiif_region": {"image": IIIF, "x": REGION[0], "y": REGION[1],
                         "w": REGION[2], "h": REGION[3], "sha256": sha},
+        "lettering_closed": {
+            "boxes_px": {k: list(v) for k, v in LETTERING.items()},
+            "recovered_px": recovered,
+            "why": "Wright letters CHICAGO RIVER in outline display capitals across the "
+                   "main stem, and the interior of an outline capital is unwashed paper. "
+                   "Letters that fall wholly inside the water come out as holes and the "
+                   "island rule fills them. The G of CHICAGO does not: a brown foxing "
+                   "stain joins it to the drawn south bank, so letter, stain and bank "
+                   "traced as one dry region and the run walked round all three — a 60 m "
+                   "headland into the channel at Clark Street that Wright does not draw, "
+                   "and which put the traced south bank 79.6 m off the recorded South "
+                   "Water building faces at Clark against 18.7 m at Dearborn. Inside the "
+                   "declared box a dry span with channel at both ends of its own row is "
+                   "read as a gap in the DRAWING. The waterline is still Wright's wash, "
+                   "reconnected across his own type; no new line is drawn.",
+        },
         "affine_rms_m": round(rms, 1),
         "map_scale_m_per_px": round(cell_m, 4),
         "simplify_tolerance_m": round(PARAMS["simplify_px"] * cell_m, 2),

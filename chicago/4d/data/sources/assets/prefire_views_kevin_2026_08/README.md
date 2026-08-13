@@ -36,3 +36,30 @@ The remaining images include the owner's screenshots of the current render for
 comparison. Anything used in a critique loop should be identified against
 chicagology's plate numbering first and cited to the matching `chicagology_*` source
 record.
+
+## `wright1834_clark_reach_crop.jpeg` — supplied 2026-08-13
+
+A detail crop of **Wright 1834** at the Clark Street reach, supplied by the project owner
+against ROADMAP **K6** (the river "bulge"). Unlike everything else in this directory it is
+NOT a retrospective lithograph — it is a piece of the master survey sheet, so the ordinary
+Wright rules apply: it may drive geometry, at the ±20 m working uncertainty.
+
+What it shows: the river's south bank running east, and a **narrow sinuous line dropping
+south off the bank between numbered blocks 19 and 18** (lots 4/3/2 along 18's north edge,
+5/6/7 along its south). The line is in the same thin ink as the river banks and runs BETWEEN
+the blocks — the platting respects it, which is itself evidence that the surveyor was working
+around a real watercourse.
+
+**The owner's reading, which reframes K6:** the bulge in the render may be that STREAM,
+mis-traced — most likely the water polygon closed ACROSS its mouth instead of running up it,
+which turns the ground between the stream and the river into an enclosed peninsula. The
+inverse (the stream traced too wide, drowning the land beside it) is also possible. The
+distinction matters and should be determined from the geometry, not assumed.
+
+Cross-reference: ROADMAP § S2e designates **Conley/Stelzer 1833** as the primary guide for
+"the streams coming in, and where each one terminates", with Wright as the check. If a
+documented watercourse belongs here and the trace never carried it, K6 is a MISSING FEATURE
+rather than a bad curve.
+
+The crop also shows block and lot numbers legibly, which is a georeferenced check on the
+plat module for **K7**.
