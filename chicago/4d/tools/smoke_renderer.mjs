@@ -930,6 +930,42 @@ for (const [label, viewport, touch] of [
       + `${stats.batches} batch(es) · ${stats.structures} structure(s) · `
       + `${(stats.bytes / 1024).toFixed(0)} KB of GLB · ${stats.fps} fps`);
 
+    // --- scene detail -------------------------------------------------------
+    //
+    // The triangle ceiling used to be one hard number for everyone. It is now the
+    // visitor's choice, which is only worth having if each level MEANS something,
+    // so this walks all three and asks two questions of each: does it stay inside
+    // its OWN ceiling, and does turning it down actually draw less? A setting that
+    // relabels the budget without changing the scene would pass the first and fail
+    // the second, which is exactly the failure worth catching.
+    const detail = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      const started = a.detail;
+      const seen = [];
+      for (const level of a.detailOrder) {
+        await a.setDetail(level);
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+        const s = a.stats();
+        seen.push({ level, tris: s.triangles, calls: s.drawCalls,
+          ceiling: a.detailLevels[level].triangles });
+      }
+      await a.setDetail(started);
+      return { seen, restored: a.detail === started };
+    });
+    for (const s of detail.seen) {
+      check(`${label}: scene detail '${s.level}' stays inside its own ceiling`,
+        s.tris <= s.ceiling && s.calls <= stats.budget.drawCalls,
+        `${s.tris} tris of ${s.ceiling}, ${s.calls} calls`);
+    }
+    const [full, balanced, light] = detail.seen;
+    check(`${label}: turning scene detail down actually draws less`,
+      full.tris > balanced.tris && balanced.tris > light.tris,
+      detail.seen.map((s) => `${s.level} ${s.tris}`).join(' > '));
+    check(`${label}: the level the visitor started on is restored`, detail.restored,
+      JSON.stringify(detail));
+    console.log(`        detail  ${detail.seen.map((s) =>
+      `${s.level} ${s.tris}/${s.ceiling} (${s.calls} calls)`).join('  ·  ')}`);
+
     // --- the gate and the chrome -------------------------------------------
     await page.click('#gate-btn');
     await page.waitForTimeout(150);
