@@ -1,0 +1,1259 @@
+{
+ "_doc": "The manifest for data/residents/, the inferred-residents programme's documented layer (docs/ROADMAP.md K1). ONE FILE PER HOUSEHOLD under households/; a static host cannot be globbed, which is why this manifest exists, and every field here that repeats a household record is a DENORMALISED COPY that tools/validate.py fails the build over if it disagrees with the record. The record is authoritative.\n\nTWO ORTHOGONAL AXES, AND THEY MUST NOT BE CONFLATED. `confidence` is the project's existing per-attribute evidence grade (documented / inferred / conjectural, docs/PROVENANCE.md) and it is applied here to every attested block exactly as it is to a structure's roof pitch. `grade` is NEW and belongs to persons and to nothing else: it says how much of a PERSON is reconstructed. documented = a source names this person. derived = a real, named person whose details are partly reconstructed. inferred = a hypothesised resident filling a demonstrable need of the town. The word 'recommended' is not in this vocabulary and never will be; the programme was renamed away from it on 2026-08-13 and tools/validate.py rejects it by name.\n\nPHASE ONE IS DOCUMENTED AND DERIVED ONLY. There are no inferred persons in this dataset yet, by design: the vocabulary exists and validates so that a later parcel can add them without touching the schema.\n\nNOTHING HERE CAUSES A PERSON TO BE DRAWN. docs/LIBERTIES.md L1 and AGENTS.md stand: v1 ships no human figures. This layer exists to justify BUILDINGS and to populate the evidence panel.\n\nCOUNTING CAVEAT: five person entries are named as unnamed placeholders for people a source counts but does not name (an unnamed wife, 'four children', 'and family'). They carry the count in their `name` and say in their `note` that they must not be counted as individuals. counts.persons below is the length of the person arrays, not a population estimate.",
+ "version": 1,
+ "scene_date": "1835-07-01",
+ "dossier": "docs/RESEARCH/residents_1835.md",
+ "vocabulary": {
+  "grades": [
+   "documented",
+   "derived",
+   "inferred"
+  ],
+  "relationships": [
+   "head",
+   "wife",
+   "husband",
+   "son",
+   "daughter",
+   "child",
+   "brother",
+   "sister",
+   "mother",
+   "father",
+   "partner",
+   "clerk",
+   "apprentice",
+   "journeyman",
+   "servant",
+   "boarder",
+   "lodger",
+   "household_member"
+  ],
+  "occupations": [
+   "army_officer",
+   "army_surgeon",
+   "attorney",
+   "auctioneer",
+   "baker",
+   "barber_surgeon",
+   "blacksmith",
+   "boarding_house_keeper",
+   "boatman",
+   "brickmaker",
+   "builder",
+   "butcher",
+   "carpenter",
+   "chaplain",
+   "clerk",
+   "clothier",
+   "cooper",
+   "county_clerk",
+   "dentist",
+   "domestic",
+   "drover",
+   "druggist",
+   "dry_goods_merchant",
+   "editor",
+   "farmer",
+   "ferryman",
+   "forwarding_and_commission",
+   "grocer",
+   "gunsmith",
+   "hardware_merchant",
+   "harness_maker",
+   "hotel_keeper",
+   "hunter",
+   "indian_agent",
+   "interpreter",
+   "joiner",
+   "justice_of_the_peace",
+   "laundress",
+   "lighthouse_keeper",
+   "lumber_merchant",
+   "mason",
+   "merchant",
+   "miller",
+   "minister",
+   "none_recorded",
+   "packer",
+   "painter",
+   "physician",
+   "plasterer",
+   "postmaster",
+   "priest",
+   "printer",
+   "saddler",
+   "sailmaker",
+   "sawyer",
+   "schoolteacher",
+   "seaman",
+   "ship_carpenter",
+   "shoemaker",
+   "soap_and_candle_maker",
+   "soldier",
+   "speculator",
+   "sub_agent",
+   "surveyor",
+   "tailor",
+   "tanner",
+   "tavern_keeper",
+   "teamster",
+   "trader",
+   "watchmaker",
+   "wheelwright"
+  ],
+  "sexes": [
+   "male",
+   "female"
+  ],
+  "presence": [
+   "present",
+   "absent",
+   "uncertain"
+  ],
+  "divisions": [
+   "south",
+   "north",
+   "west",
+   "fort",
+   "outside_town"
+  ],
+  "arrival_precision": [
+   "day",
+   "month",
+   "season",
+   "year",
+   "not_later_than"
+  ]
+ },
+ "counts": {
+  "households": 72,
+  "persons": 96,
+  "by_grade": {
+   "documented": 76,
+   "derived": 20,
+   "inferred": 0
+  }
+ },
+ "households": [
+  {
+   "id": "hh_bates_john_jr",
+   "file": "households/hh_bates_john_jr.json",
+   "head": "bates_john_jr",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "bates_auction_room",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_beaubien_jean_baptiste",
+   "file": "households/hh_beaubien_jean_baptiste.json",
+   "head": "beaubien_jean_baptiste",
+   "division": "south",
+   "persons": 3,
+   "grades": {
+    "documented": 1,
+    "derived": 2
+   },
+   "lives_at": "jb_beaubien_homestead",
+   "works_at": "jb_beaubien_homestead",
+   "present_on_scene_date": "present",
+   "review_required": true
+  },
+  {
+   "id": "hh_beaubien_madore",
+   "file": "households/hh_beaubien_madore.json",
+   "head": "beaubien_madore",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "madore_beaubien_house",
+   "works_at": "madore_beaubien_house",
+   "present_on_scene_date": "present",
+   "review_required": true
+  },
+  {
+   "id": "hh_beaubien_mark",
+   "file": "households/hh_beaubien_mark.json",
+   "head": "beaubien_mark",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_blodgett_tyler_k",
+   "file": "households/hh_blodgett_tyler_k.json",
+   "head": "blodgett_tyler_k",
+   "division": "north",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "brickyard_north_side",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_brown_lemuel",
+   "file": "households/hh_brown_lemuel.json",
+   "head": "brown_lemuel",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_brown_rufus",
+   "file": "households/hh_brown_rufus.json",
+   "head": "brown_rufus",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_caldwell_billy",
+   "file": "households/hh_caldwell_billy.json",
+   "head": "caldwell_billy",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "cobweb_castle",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_calhoun_john",
+   "file": "households/hh_calhoun_john.json",
+   "head": "calhoun_john",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "chicago_democrat_office",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_carpenter_philo",
+   "file": "households/hh_carpenter_philo.json",
+   "head": "carpenter_philo",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "carpenter_south_water_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_carver_david",
+   "file": "households/hh_carver_david.json",
+   "head": "carver_david",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_casey_edward_w",
+   "file": "households/hh_casey_edward_w.json",
+   "head": "casey_edward_w",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_caton_john_dean",
+   "file": "households/hh_caton_john_dean.json",
+   "head": "caton_john_dean",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_church_thomas",
+   "file": "households/hh_church_thomas.json",
+   "head": "church_thomas",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": "thomas_church_store",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_clybourne_archibald",
+   "file": "households/hh_clybourne_archibald.json",
+   "head": "clybourne_archibald",
+   "division": "outside_town",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "clybourn_slaughterhouse",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_cohen_peter",
+   "file": "households/hh_cohen_peter.json",
+   "head": "cohen_peter",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_couch_ira",
+   "file": "households/hh_couch_ira.json",
+   "head": "couch_ira",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": "tremont_house_1",
+   "works_at": "tremont_house_1",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_davis_john",
+   "file": "households/hh_davis_john.json",
+   "head": "davis_john",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "steamboat_hotel",
+   "works_at": "steamboat_hotel",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_davis_t_o",
+   "file": "households/hh_davis_t_o.json",
+   "head": "davis_t_o",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "chicago_american_office",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_democrat_printers",
+   "file": "households/hh_democrat_printers.json",
+   "head": "pratt_oscar",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "derived": 2
+   },
+   "lives_at": null,
+   "works_at": "chicago_democrat_office",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_dole_george_w",
+   "file": "households/hh_dole_george_w.json",
+   "head": "dole_george_w",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "newberry_dole_warehouse",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_egan_william_b",
+   "file": "households/hh_egan_william_b.json",
+   "head": "egan_william_b",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_elston_daniel",
+   "file": "households/hh_elston_daniel.json",
+   "head": "elston_daniel",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "elston_soap_candle_manufactory",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_fullerton_alexander",
+   "file": "households/hh_fullerton_alexander.json",
+   "head": "fullerton_alexander",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_gale_stephen_f",
+   "file": "households/hh_gale_stephen_f.json",
+   "head": "gale_stephen_f",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_goss_cobb",
+   "file": "households/hh_goss_cobb.json",
+   "head": "goss_o",
+   "division": "west",
+   "persons": 2,
+   "grades": {
+    "derived": 2
+   },
+   "lives_at": null,
+   "works_at": "goss_cobb_saddlery",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_greene_john",
+   "file": "households/hh_greene_john.json",
+   "head": "greene_john",
+   "division": "fort",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "fort_dearborn_commandants_quarters",
+   "works_at": "fort_dearborn_palisade",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_haddock_edward",
+   "file": "households/hh_haddock_edward.json",
+   "head": "haddock_edward",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "derived": 1
+   },
+   "lives_at": "mansion_house",
+   "works_at": "mansion_house",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_hamilton_richard_j",
+   "file": "households/hh_hamilton_richard_j.json",
+   "head": "hamilton_richard_j",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "cobweb_castle",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_handy_major",
+   "file": "households/hh_handy_major.json",
+   "head": "handy_major",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_harmon_brothers",
+   "file": "households/hh_harmon_brothers.json",
+   "head": "harmon_charles_l",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "harmon_loomis_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_harmon_elijah_d",
+   "file": "households/hh_harmon_elijah_d.json",
+   "head": "harmon_elijah_d",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_heacock_russel_e",
+   "file": "households/hh_heacock_russel_e.json",
+   "head": "heacock_russel_e",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_hogan_john_s_c",
+   "file": "households/hh_hogan_john_s_c.json",
+   "head": "hogan_john_s_c",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "hogan_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_hubbard_gurdon",
+   "file": "households/hh_hubbard_gurdon.json",
+   "head": "hubbard_gurdon",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "old_bank_building",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_ingersoll_chester",
+   "file": "households/hh_ingersoll_chester.json",
+   "head": "ingersoll_chester",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "green_tree_tavern",
+   "works_at": "green_tree_tavern",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_jones_benjamin",
+   "file": "households/hh_jones_benjamin.json",
+   "head": "jones_benjamin",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "h_jones_store",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_kercheval_gholson",
+   "file": "households/hh_kercheval_gholson.json",
+   "head": "kercheval_gholson",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "cobweb_castle",
+   "present_on_scene_date": "uncertain",
+   "review_required": true
+  },
+  {
+   "id": "hh_kimball_walter",
+   "file": "households/hh_kimball_walter.json",
+   "head": "kimball_walter",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "chicago_democrat_office",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_kinzie_james",
+   "file": "households/hh_kinzie_james.json",
+   "head": "kinzie_james",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "james_kinzie_house",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_kinzie_john_h",
+   "file": "households/hh_kinzie_john_h.json",
+   "head": "kinzie_john_h",
+   "division": "north",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "jh_kinzie_forwarding_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_kinzie_robert_a",
+   "file": "households/hh_kinzie_robert_a.json",
+   "head": "kinzie_robert_a",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "robert_kinzie_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_mason_matthias",
+   "file": "households/hh_mason_matthias.json",
+   "head": "mason_matthias",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_maxwell_philip",
+   "file": "households/hh_maxwell_philip.json",
+   "head": "maxwell_philip",
+   "division": "fort",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "fort_dearborn_officers_quarters",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_mckee_david",
+   "file": "households/hh_mckee_david.json",
+   "head": "mckee_david",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "blacksmith_shop_state_st",
+   "present_on_scene_date": "uncertain",
+   "review_required": true
+  },
+  {
+   "id": "hh_meeker_joseph",
+   "file": "households/hh_meeker_joseph.json",
+   "head": "meeker_joseph",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_miller_john",
+   "file": "households/hh_miller_john.json",
+   "head": "miller_john",
+   "division": "north",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "miller_tannery",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_mulford_e_h",
+   "file": "households/hh_mulford_e_h.json",
+   "head": "mulford_e_h",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_murphy_john",
+   "file": "households/hh_murphy_john.json",
+   "head": "murphy_john",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": "exchange_coffee_house",
+   "works_at": "exchange_coffee_house",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_norton_nelson_r",
+   "file": "households/hh_norton_nelson_r.json",
+   "head": "norton_nelson_r",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "dearborn_street_drawbridge",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_owen_thomas_jv",
+   "file": "households/hh_owen_thomas_jv.json",
+   "head": "owen_thomas_jv",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 1,
+    "derived": 1
+   },
+   "lives_at": null,
+   "works_at": "cobweb_castle",
+   "present_on_scene_date": "present",
+   "review_required": true
+  },
+  {
+   "id": "hh_pearsons_hiram",
+   "file": "households/hh_pearsons_hiram.json",
+   "head": "pearsons_hiram",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_peck_philip",
+   "file": "households/hh_peck_philip.json",
+   "head": "peck_philip",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "peck_store",
+   "works_at": "peck_store",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_pierce_asahel",
+   "file": "households/hh_pierce_asahel.json",
+   "head": "pierce_asahel",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "pierce_blacksmith_shop",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_porter_jeremiah",
+   "file": "households/hh_porter_jeremiah.json",
+   "head": "porter_jeremiah",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": "peck_store",
+   "works_at": "first_presbyterian_church",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_porthier_joseph",
+   "file": "households/hh_porthier_joseph.json",
+   "head": "porthier_joseph",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "blacksmith_shop_state_st",
+   "present_on_scene_date": "uncertain",
+   "review_required": true
+  },
+  {
+   "id": "hh_pruyne_kimberly",
+   "file": "households/hh_pruyne_kimberly.json",
+   "head": "pruyne_peter",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "pruyne_kimball_drugstore",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_robinson_alexander",
+   "file": "households/hh_robinson_alexander.json",
+   "head": "robinson_alexander",
+   "division": "west",
+   "persons": 3,
+   "grades": {
+    "documented": 2,
+    "derived": 1
+   },
+   "lives_at": "robinson_caldwell_cabins",
+   "works_at": "robinson_caldwell_cabins",
+   "present_on_scene_date": "present",
+   "review_required": true
+  },
+  {
+   "id": "hh_snow_george_w",
+   "file": "households/hh_snow_george_w.json",
+   "head": "snow_george_w",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_spring_giles",
+   "file": "households/hh_spring_giles.json",
+   "head": "spring_giles",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_sproat_grenville",
+   "file": "households/hh_sproat_grenville.json",
+   "head": "sproat_grenville",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "temple_building",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_st_cyr_john_mary",
+   "file": "households/hh_st_cyr_john_mary.json",
+   "head": "st_cyr_john_mary",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "st_marys_church",
+   "works_at": "st_marys_church",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_steele_ashbel",
+   "file": "households/hh_steele_ashbel.json",
+   "head": "steele_ashbel",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_stow_william_h",
+   "file": "households/hh_stow_william_h.json",
+   "head": "stow_william_h",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": "western_hotel",
+   "works_at": "western_hotel",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_sweet_alanson",
+   "file": "households/hh_sweet_alanson.json",
+   "head": "sweet_alanson",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_taylor_anson",
+   "file": "households/hh_taylor_anson.json",
+   "head": "taylor_anson_h",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": "south_branch_raft_bridge",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_taylor_augustine",
+   "file": "households/hh_taylor_augustine.json",
+   "head": "taylor_augustine",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "st_marys_church",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_temple_john_t",
+   "file": "households/hh_temple_john_t.json",
+   "head": "temple_john_t",
+   "division": "south",
+   "persons": 4,
+   "grades": {
+    "documented": 1,
+    "derived": 3
+   },
+   "lives_at": null,
+   "works_at": "temple_building",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_thomas_frederick",
+   "file": "households/hh_thomas_frederick.json",
+   "head": "thomas_frederick",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "frederick_thomas_shop",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_walters_william",
+   "file": "households/hh_walters_william.json",
+   "head": "walters_william",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "derived": 1
+   },
+   "lives_at": "wolf_point_tavern",
+   "works_at": "wolf_point_tavern",
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_watkins_john",
+   "file": "households/hh_watkins_john.json",
+   "head": "watkins_john",
+   "division": "north",
+   "persons": 1,
+   "grades": {
+    "documented": 1
+   },
+   "lives_at": null,
+   "works_at": "north_side_school_1833",
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_wright_john",
+   "file": "households/hh_wright_john.json",
+   "head": "wright_john",
+   "division": "south",
+   "persons": 2,
+   "grades": {
+    "documented": 2
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  }
+ ],
+ "researched_not_resident": [
+  {
+   "id": "newberry_oliver",
+   "name": "Oliver Newberry",
+   "category": "not_a_resident",
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "reason": "A Detroit merchant, not a Chicago household.",
+   "note": "He is half of 'Newberry & Dole', which advertises in the Chicago Democrat of 26 November 1833 and whose warehouse and slaughterhouse are two structure records in this dataset - so it would be easy to write him a Chicago household. Andreas names him consistently as of Detroit: 'some vessels belonging to Oliver Newberry, Esq., of Detroit'; the steamer Michigan 'built by Oliver Newberry, of Detroit, who, for many years, was largely engaged in the commerce of the lakes'; and the bill of lading for the first cargo of beef, tallow, beeswax and hides ever shipped from Chicago is consigned 'To say: O. Newberry, Detroit'. He was also left in charge of the abandoned fort as an agent in 1831, which is a Chicago interest and not a Chicago residence. THE CHICAGO END OF THE FIRM IS GEORGE W. DOLE, who has a household here."
+  },
+  {
+   "id": "wattles_william_w",
+   "name": "Wm. W. Wattles",
+   "category": "presence_unproven",
+   "sources": [
+    "chicago_democrat_1833_11_26"
+   ],
+   "reason": "Documented at Chicago in October 1833 and nowhere afterwards.",
+   "note": "Chester Ingersoll's advertisement in the Democrat of 26 November 1833, dated 4 October 1833, offers a tavern stand 'lately occupied by Mr. Wm. W. WATTLES' - so Wattles kept a Chicago tavern and had just given it up. Nothing reached follows him. A tavern keeper who has just left his stand is the single likeliest kind of person to have left the town, and a household asserting him in July 1835 would be a guess wearing a citation. NOTE THE SPELLING: this project's own source record for the Democrat carries a correction of 2026-08-11 recording that an earlier reading of this line as 'Wm. W. Barlow' was wrong and that the type reads WATTLES at 8x."
+  },
+  {
+   "id": "graves_dexter",
+   "name": "Dexter Graves",
+   "category": "presence_unproven",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "Kept the Mansion House in 1833 and had sold it to his son-in-law before 1835.",
+   "note": "Andreas has the Mansion House in 1833 as 'an unpretentious log tavern kept by Dexter Graves', and later has Graves selling it 'to a Mr. Haddock, his son-in-law, who kept it until 1835'. He also bought the lot St Mary's stood on for $10,000 - which is a 1830s Chicago land transaction and not a residence on 1 July 1835. Matthias Mason's 1833 advertisement locates his smithy 'nearly opposite Graves' Tavern', so the name is doing placement work in this dataset even though the man is not written. hh_haddock_edward carries the tavern."
+  },
+  {
+   "id": "darwin_of_canada",
+   "name": "Darwin",
+   "category": "insufficient_identity",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "A surname, a trade and an origin, and nothing else.",
+   "note": "Andreas on the first Tremont House: 'It was kept as a saloon and boarding-house by him [Alanson Sweet] and a man from Canada, named Darwin.' That is a documented Chicago resident of 1833 with a business, a partner and a country of origin, and no given name, no arrival and no later notice. He is left out rather than written, because a person record whose only content is one clause of somebody else's sentence inflates the documented count without adding evidence. RECORDED HERE SO THE DECISION IS VISIBLE: he is a real person this parcel chose not to write."
+  },
+  {
+   "id": "harmon_isaac_town_clerk",
+   "name": "Isaac Harmon, town clerk",
+   "category": "identity_collision",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "Cannot be distinguished from Isaac Dewey Harmon, who IS written.",
+   "note": "Andreas has an Isaac Harmon appointed clerk of the first board of trustees on 12 August 1833, collector on 7 November 1833 at ten per cent on all money put into the treasury, and clerk and collector again in 1834 - a documented office-holder across two municipal years. He also prints an 1832 militia agreement signed by BOTH 'Isaac Harmon' AND 'Isaac D. Harmon', two lines apart, which is positive evidence that the town held two men of that name. Writing the clerk would risk duplicating harmon_isaac_d, who is already a person in hh_harmon_brothers; merging them would assert an identity the evidence contradicts. THIS IS A DOCUMENTED RESIDENT DELIBERATELY LEFT OUT OF THE COUNT."
+  },
+  {
+   "id": "shabbona",
+   "name": "Shabbona (Shaw-bo-nee)",
+   "category": "not_a_resident",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "His village was at Shabbona Grove in De Kalb County, not at Chicago.",
+   "note": "Andreas gives him a full notice among the 'three friendly chiefs': born near the Maumee about 1775, an Ottawa chief's son, allied to Tecumseh from about 1807 and at his side at the Thames; with Billy Caldwell he kept the Potawatomi out of the Winnebago alarm of 1827 and out of the Black Hawk war of 1832; by the Chicago treaty of 1833 he received $200 a year for life. HIS VILLAGE WAS ON THE ILLINOIS NEAR PRESENT OTTAWA AND THEN AT SHABBONA GROVE IN DE KALB COUNTY, and no source reached makes him a resident of the town on any date. He is at Chicago repeatedly and lives elsewhere, which is a distinction this dataset has to be able to make about a man it would otherwise be tempting to include. TOUCHES THE REMOVAL: see AGENTS.md's standing constraint and chicagology_lastwardance."
+  },
+  {
+   "id": "porter_george_b",
+   "name": "Gov. George B. Porter",
+   "category": "not_a_resident",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "Governor of Michigan Territory; a treaty commissioner at Chicago, not a resident.",
+   "note": "He held the September 1833 treaty as commissioner on behalf of the Government with T. J. V. Owen and William Weatherford. Owen is a resident and has a household; Porter came for the treaty. Recorded because the 1833 treaty brings a large number of named men to Chicago for a few weeks and none of them is a resident on that account - the influx 'added largely to the permanent population of the town, as many who came here at that time remained', which is Andreas telling us that some stayed and not which."
+  },
+  {
+   "id": "ogden_william_b",
+   "name": "William B. Ogden",
+   "category": "uncited_gap",
+   "sources": [],
+   "reason": "Believed present in 1835; NO SOURCE IN data/sources/ DATES HIS ARRIVAL.",
+   "note": "docs/ROADMAP.md K1 names Ogden explicitly among the documented people to start with, and this parcel could not write him. Charles Butler's letter of 17 December 1881, which Andreas prints in full, is about Butler's own 1833 journey and says of his brother-in-law only that 'from 1835 to 1865, my house was Mr. Ogden's home when in New York' - which is a statement about New York. Andreas's own account of Ogden's coming west appears in a passage this parcel read and which gives no date. THE WIDELY REPEATED JUNE 1835 ARRIVAL COULD NOT BE TRACED TO ANY SOURCE THIS PROJECT HOLDS, and AGENTS.md rule 1 forbids citing one that does not resolve. He is recorded here as an open research item rather than written as a household on general knowledge. TO RESOLVE: Andreas's biographical notice of Ogden (printed p. 617, archive.org scan p. 1251) was not worked for this parcel and is the obvious place."
+  },
+  {
+   "id": "chicago_american_advertisers_1835",
+   "name": "The Chicago American's advertisers, 1835",
+   "category": "uncited_gap",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "A whole class of documented 1835 residents this project cannot yet cite directly.",
+   "note": "The single largest population source not in data/sources/. The American began in June 1835 and Andreas quotes its advertisements by name and date throughout - Frederick Thomas's drug and paint store of 8 June 1835 (written here as a household), John Davis of the Steamboat Hotel among its first patrons (also written), W. H. and A. F. Clarke's new drug store of 11 November 1835 at the corner of Water and Clark 'formerly occupied by Kimball & Porter', Frink & Walker's stage seats at Markle's Exchange Coffee House in August 1836. EVERY SUCH ADVERTISEMENT IS A DOCUMENTED RESIDENT WITH A TRADE AND OFTEN AN ADDRESS, IN THE SCENE YEAR ITSELF rather than nineteen months before it, which is what makes the Democrat of November 1833 the weaker witness for 1835 that it is. William Hull Clarke, for one, is documented arriving on 23 May 1835 - five weeks before the scene date - and is not written as a household because his shop is not attested until November."
+  },
+  {
+   "id": "arrivals_after_1835_07_01",
+   "name": "Arrivals after the scene date",
+   "category": "after_scene_date",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "reason": "The date gate: a person who arrived after 1835-07-01 is not in this scene.",
+   "note": "tools/validate.py rejects any household whose arrival cannot have preceded the scene date, and this entry records the class rather than enumerating it. Worked examples found while writing this parcel and deliberately NOT written as households: Abram A. Markle, whose name is on the Exchange Coffee House in a Chicago American advertisement of 6 August 1836 and who took the Mansion House at an unstated point in 1835 (see hh_haddock_edward); Rebecca Sherman, who married Peter Pruyne on 20 August 1835, seven weeks after the scene date, and is therefore NOT in his household here; John M. Van Osdel, Chicago's first architect, who is a 1836 arrival; the correspondent who told Andreas 'I came to Chicago in October, 1836'; and the whole 1836 board of trustees elected at the Tremont House on 6 June 1836. THE RULE CUTS THE OTHER WAY TOO: Jeremiah Porter married at Rochester, New York on 15 June 1835 and is recorded here with presence 'uncertain' rather than excluded, because he was a resident of the town whose whereabouts on one day are unknown - which is a different finding from an arrival that had not happened yet."
+  }
+ ],
+ "_researched_not_resident_doc": "THE EXCLUSIONS-STYLE HALF OF THIS DATASET, and it is as load-bearing as the households. Three kinds of finding live here: (a) a person whose ARRIVAL IS AFTER 1835-07-01 and who is therefore not in this scene, which is the rule tools/validate.py enforces on every household record; (b) a person the sources place at Chicago but NOT as a resident of the town; and (c) a person this project believes was here and CANNOT CITE, recorded so that the gap is visible rather than quietly filled. Adding to this list is preferred to deleting from it, exactly as data/exclusions.json requires for structures."
+}

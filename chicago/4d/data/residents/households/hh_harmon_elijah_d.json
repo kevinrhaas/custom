@@ -1,0 +1,97 @@
+{
+ "id": "hh_harmon_elijah_d",
+ "name": "The Dr Harmon household",
+ "division": "south",
+ "head": "harmon_elijah_d",
+ "arrival": {
+  "value": "1830-05-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'He arrived at Chicago in May, 1830; his family following him the succeeding year.' Month precision, and the family's arrival a year behind him is stated separately.",
+  "precision": "month"
+ },
+ "party_size_on_arrival": {
+  "value": 1,
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He came alone and his family followed in 1831 - the source distinguishes the two journeys, which almost none of them do."
+ },
+ "origin": {
+  "value": "Burlington, Vermont",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He practised at Burlington from 1806 and brought his medicines 'from the Green Mountains'."
+ },
+ "reason_for_coming": {
+  "value": "Financial reverses and an attempt to recover in the West",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'In 1829 the Doctor suffered some pecuniary reverses and resolved to attempt recuperation in the Great West.' THE PLAINEST STATEMENT OF MOTIVE IN THE PARCEL, and one that is not gold-rush optimism but debt."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED, AND DESCRIBED. 'His residence was a cabin of hewn logs' - a fabric, a construction method and a use, with no position and no record in data/structures/. Hewn rather than round logs is exactly the distinction ROADMAP K4 asks records to carry."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "He was post surgeon at the fort in 1830-32 and in private practice besides; by the scene date he was neither, on his own record. No link is made."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE HEAD IS DOCUMENTED TO HAVE LEFT. Andreas: 'In 1834, Dr. Harmon migrated to Texas, and until the time of his death - January 3, 1869 - divided his sojourns between that State and Chicago.' A man who divides his sojourns between Texas and Chicago is in one of them on 1 July 1835 and the source does not say which. Recorded as uncertain, and it must not be silently resolved to 'present' because his sons were here."
+ },
+ "persons": [
+  {
+   "id": "harmon_elijah_d",
+   "name": "Dr Elijah Dewey Harmon",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "birth_year": {
+    "value": 1782,
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "20 August 1782 at Bennington, Vermont."
+   },
+   "age_on_scene_date": {
+    "value": 52,
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "52 on 1 July 1835."
+   },
+   "occupation": {
+    "value": "physician",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'The Father of Medicine in Chicago' in Andreas's phrase. He arrived in May 1830, took the place of the absent Dr Finley as post surgeon at Fort Dearborn, isolated and treated the cholera cases of July 1832 and quarrelled with General Scott over it, and in the winter of 1832 performed 'the first surgical operation of any importance' in Chicago - an amputation on a half-breed Canadian who had frozen his feet carrying the mail on horseback from Green Bay."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A DOCUMENTED RESIDENT WHO MAY HAVE BEEN IN TEXAS, kept in the dataset precisely because the presence field can say so. Dropping him would lose the town's first doctor, his hewn-log cabin, his hundred books and the only stated economic motive in the parcel; asserting him would be a claim the source contradicts. HIS FAMILY IS THE REASON THE HOUSEHOLD MATTERS ANYWAY: the Harmon brothers' dry-goods firm is a separate household here, Harmon Court is named for him, and his daughter Mrs A. G. Burley supplied Andreas with these particulars fifty years later - which is a useful reminder that a good deal of what looks like documentation in this book is family recollection with a name attached."
+}

@@ -1,0 +1,72 @@
+{
+ "id": "hh_pearsons_hiram",
+ "name": "The Pearsons household",
+ "division": "south",
+ "head": "pearsons_hiram",
+ "arrival": {
+  "value": "1833-03-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in spring of 1833' - season precision, carried as the first day this project reads as spring.",
+  "precision": "season"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. No premises for this man is named in any source reached and none is in data/structures/."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Treasurer of the city from 1837 and an alderman from its first election; continuous in the record on either side of the scene date."
+ },
+ "persons": [
+  {
+   "id": "pearsons_hiram",
+   "name": "Hiram Pearsons",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "speculator",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "NO TRADE IS GIVEN. The roster says 'Hiram Pearson, came in spring of 1833'; Andreas's city rosters make him treasurer of Chicago in 1837, 1838 and 1839 and an alderman in 1837. 'Speculator' is this project's reading of a man who arrived in the spring before the land craze and ended as the city's treasurer, and it is a period-correct occupation that Andreas himself uses for others on the same page."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'. It gives a name, a trade and usually an arrival year, and it is a retrospective of 1884: a YEAR off it is documented, a MONTH is not, and it says nothing whatever about 1835."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "ONE OF THE TWELVE WHO VOTED TO INCORPORATE THE TOWN on 5 August 1833 - Andreas prints the poll and 'Hiram Pearsons' is on it - and one of the twenty-eight electors five days later. The surname is spelled both Pearson and Pearsons within two pages of each other and this record uses the form on the incorporation poll. THE OCCUPATION IS THE WEAKEST FIELD HERE and is graded documented only because the office-holding is; a source that names his business should replace it."
+}

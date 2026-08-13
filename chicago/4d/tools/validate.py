@@ -4021,6 +4021,403 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 
 
 # --------------------------------------------------------------------------
+# residents: households, persons and the accuracy grade
+# --------------------------------------------------------------------------
+#
+# docs/ROADMAP.md K1. The population is what justifies the buildings: every
+# household that needs a dwelling eventually becomes a structure record on the
+# plat. This section gates the dataset that carries them.
+#
+# TWO ORTHOGONAL AXES, AND THE WHOLE SECTION EXISTS BECAUSE THEY ARE DIFFERENT
+# QUESTIONS. `confidence` is the project's per-attribute evidence grade and is
+# checked by check_attested exactly as it is on a roof pitch. `grade` belongs to
+# a PERSON and says how much of that person is reconstructed:
+#
+#   documented  a source names this person
+#   derived     a real, named person whose details are partly reconstructed
+#   inferred    a hypothesised resident filling a demonstrable need of the town
+#
+# The word "recommended" is NOT in this vocabulary. The programme was renamed
+# away from it on 2026-08-13 and the rename is enforced by name below, because a
+# vocabulary that merely omits a word gets it back the first time somebody
+# copies an older file.
+#
+# The gate that actually protects the scene is the arrival date. A person who
+# arrived in September 1835 is not in a scene set on 1 July 1835, and the
+# failure mode is silent: nothing about a household record looks wrong when its
+# subject was still in Vermont. Arrival values carry a `precision` because the
+# sources give years far more often than days, and the rule is asymmetric on
+# purpose - the EARLIEST day a value permits must not be after the scene date
+# (an error), and a value whose LATEST day is after it earns a warning rather
+# than a failure, because "1835" with no month is a real state of the evidence
+# and not a mistake.
+
+RESIDENTS = DATA / "residents"
+
+RESIDENT_GRADES = ("documented", "derived", "inferred")
+
+# The term this programme was renamed away from. Anything mapping to a grade
+# gets a message naming the rename rather than a generic "unknown value", so the
+# next person to reach for it learns why.
+RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
+
+RESIDENT_PRECISION = ("day", "month", "season", "year", "not_later_than")
+
+# A season, in days, for bounding a "spring of 1833" arrival. Deliberately
+# generous: the point is to bound the claim, not to date it.
+SEASON_DAYS = 92
+
+# The floor for a not_later_than arrival. No household in this dataset predates
+# the first fort; a value earlier than this is a typo, not a finding.
+ARRIVAL_FLOOR = dt.date(1800, 1, 1)
+
+RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
+                           "party_size_on_arrival", "origin", "reason_for_coming",
+                           "lives_at", "works_at", "present_on_scene_date", "persons",
+                           "touches_removal", "review_required", "research_note")
+
+
+def arrival_bounds(value, precision: str):
+    """The earliest and latest day an arrival value permits, or None."""
+    if precision == "year":
+        try:
+            y = int(str(value))
+        except (TypeError, ValueError):
+            return None
+        return dt.date(y, 1, 1), dt.date(y, 12, 31)
+    d = parse_date(str(value))
+    if d is None:
+        return None
+    if precision == "day":
+        return d, d
+    if precision == "month":
+        if d.month == 12:
+            last = dt.date(d.year, 12, 31)
+        else:
+            last = dt.date(d.year, d.month + 1, 1) - dt.timedelta(days=1)
+        return dt.date(d.year, d.month, 1), last
+    if precision == "season":
+        return d, d + dt.timedelta(days=SEASON_DAYS)
+    if precision == "not_later_than":
+        return ARRIVAL_FLOOR, d
+    return None
+
+
+def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
+                         rep: Report) -> None:
+    """The accuracy vocabulary, and what each rung owes the reader."""
+    if isinstance(grade, str) and grade.strip().lower() in RETIRED_GRADE_TERMS:
+        rep.error(where, f"grade '{grade}' uses the term this programme was RENAMED AWAY FROM "
+                         f"on 2026-08-13. The word is 'inferred' - inferred residents and "
+                         f"inferred structures. See data/residents/index.json and "
+                         f"docs/ROADMAP.md K1")
+        return
+    if grade not in RESIDENT_GRADES:
+        rep.error(where, f"grade '{grade}' is not one of {RESIDENT_GRADES}")
+        return
+    if grade == "documented":
+        if not sources:
+            rep.error(where, "a documented person must cite at least one source_id - "
+                             "'documented' means a source NAMES this person")
+        for sid in sources or []:
+            if sid not in source_ids:
+                rep.error(where, f"source '{sid}' does not resolve in data/sources/")
+    elif grade == "derived":
+        if not note:
+            rep.error(where, "a derived person requires a note stating WHICH details are "
+                             "reconstructed and from what - a real person with invented "
+                             "details and no reasoning is indistinguishable from a fabrication")
+        for sid in sources or []:
+            if sid not in source_ids:
+                rep.error(where, f"source '{sid}' does not resolve in data/sources/")
+    else:  # inferred
+        if not note:
+            rep.error(where, "an inferred person requires a note arguing the demonstrable need "
+                             "of the town that this resident fills")
+        if sources:
+            rep.warn(where, "an inferred person is HYPOTHESISED and no source names them; "
+                            "cite the evidence for the NEED in the note instead of attaching "
+                            "source_ids to the person, or promote the grade to derived")
+
+
+def check_resident_link(where: str, key: str, node, structure_ids: set, rep: Report) -> None:
+    """lives_at / works_at must name a real structure or be null."""
+    if not isinstance(node, dict):
+        rep.error(where, f"{key} must be an attested block with a value, a confidence and a "
+                         f"note - a missing link and an unresearched one are different findings")
+        return
+    v = node.get("value")
+    if v is None:
+        if not (node.get("note") or "").strip():
+            rep.error(where, f"{key} is null and carries no note. A null link is a CLAIM that "
+                             f"the building is not in the dataset or not attested, and it has "
+                             f"to say which")
+        return
+    if not isinstance(v, str) or v not in structure_ids:
+        rep.error(where, f"{key} names '{v}', which is not a structure id in data/structures/. "
+                         f"A resident may point at a building that exists or at null; a later "
+                         f"parcel closes the loop by building the structure")
+
+
+def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dict,
+                    data_root: Path | None = None) -> dict:
+    """Schema, provenance, linkage and the scene-date gate for data/residents/**."""
+    root = (data_root or DATA) / "residents"
+    index_path = root / "index.json"
+    if not index_path.exists():
+        rep.note("residents: no data/residents/index.json - the scene carries no population")
+        return {}
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return {}
+
+    scene_date = index.get("scene_date") or ""
+    scene = parse_date(scene_date)
+    if scene is None:
+        rep.error("residents index", "scene_date must be an ISO date - every arrival in this "
+                                     "dataset is checked against it")
+        return {}
+
+    vocab = index.get("vocabulary") or {}
+    for key in ("grades", "relationships", "occupations", "sexes", "presence", "divisions",
+                "arrival_precision"):
+        if not vocab.get(key):
+            rep.error("residents index", f"vocabulary.{key} is missing - a renderer and the "
+                                         f"evidence panel read this block to know the closed "
+                                         f"sets they must implement")
+    if list(vocab.get("grades") or []) != list(RESIDENT_GRADES):
+        rep.error("residents index", f"vocabulary.grades must be exactly {list(RESIDENT_GRADES)} "
+                                     f"and is {vocab.get('grades')!r}. The accuracy vocabulary "
+                                     f"is a contract, not a preference")
+    if list(vocab.get("arrival_precision") or []) != list(RESIDENT_PRECISION):
+        rep.error("residents index", f"vocabulary.arrival_precision must be exactly "
+                                     f"{list(RESIDENT_PRECISION)} and is "
+                                     f"{vocab.get('arrival_precision')!r}. A renderer that "
+                                     f"reads a shorter list will silently mis-bound an arrival, "
+                                     f"which is the one claim the scene date rests on")
+    occupations = set(vocab.get("occupations") or [])
+    relationships = set(vocab.get("relationships") or [])
+    sexes = set(vocab.get("sexes") or [])
+    presences = set(vocab.get("presence") or [])
+    divisions = set(vocab.get("divisions") or [])
+
+    households: dict = {}
+    person_ids: dict = {}
+    grade_totals: dict = {g: 0 for g in RESIDENT_GRADES}
+    n_persons = 0
+
+    for entry in index.get("households", []):
+        hid, hfile = entry.get("id"), entry.get("file")
+        path = root / (hfile or "")
+        if not hfile or not path.exists():
+            rep.error("residents index", f"household '{hid}' names {hfile}, which does not "
+                                         f"exist - a static host cannot be globbed, so a "
+                                         f"manifest entry without a file is a 404 on the "
+                                         f"deployed site")
+            continue
+        h = load_json(path, rep)
+        if not isinstance(h, dict):
+            continue
+        where = f"resident household {hid}"
+        if h.get("id") != hid or path.stem != hid:
+            rep.error(where, "id must match both the manifest entry and the filename stem")
+        if not SLUG.match(str(hid or "")):
+            rep.error(where, f"id '{hid}' is not a lowercase slug")
+        if hid in households:
+            rep.error(where, "duplicate household id")
+        for key in RESIDENT_HOUSEHOLD_KEYS:
+            if key not in h:
+                rep.error(where, f"missing required key '{key}'")
+        if h.get("division") not in divisions:
+            rep.error(where, f"division '{h.get('division')}' is not declared in the manifest "
+                             f"vocabulary")
+
+        # --- persons -------------------------------------------------------
+        persons = h.get("persons") or []
+        if not persons:
+            rep.error(where, "a household with no persons is not a household record")
+        local_grades: dict = {}
+        heads = 0
+        for p in persons:
+            pid = p.get("id")
+            pwhere = f"{where}/{pid}"
+            if not SLUG.match(str(pid or "")):
+                rep.error(pwhere, f"person id '{pid}' is not a lowercase slug")
+            if pid in person_ids:
+                rep.error(pwhere, f"person id '{pid}' is already used in "
+                                  f"{person_ids[pid]} - one person, one id, across the whole "
+                                  f"dataset")
+            person_ids[pid] = hid
+            if not (p.get("name") or "").strip():
+                rep.error(pwhere, "a person must have a name, even when it is the source's "
+                                  "own placeholder for people it counts and does not name")
+            rel = p.get("relationship")
+            if rel not in relationships:
+                rep.error(pwhere, f"relationship '{rel}' is not declared in the manifest "
+                                  f"vocabulary")
+            if rel == "head":
+                heads += 1
+            if "sex" in p and p.get("sex") not in sexes:
+                rep.error(pwhere, f"sex '{p.get('sex')}' is not declared in the manifest "
+                                  f"vocabulary; omit the key where the sources do not say")
+            grade = p.get("grade")
+            check_resident_grade(pwhere, grade, p.get("sources") or [],
+                                 (p.get("note") or "").strip(), source_ids, rep)
+            if grade in grade_totals:
+                grade_totals[grade] += 1
+                local_grades[grade] = local_grades.get(grade, 0) + 1
+            n_persons += 1
+
+            occ = p.get("occupation")
+            if not isinstance(occ, dict):
+                rep.error(pwhere, "occupation must be an attested block - a trade is a claim "
+                                  "about a person and carries a confidence like any other")
+            elif occ.get("value") not in occupations:
+                rep.error(pwhere, f"occupation '{occ.get('value')}' is not in the manifest "
+                                  f"vocabulary. The vocabulary is PERIOD-CORRECT by "
+                                  f"construction: add the trade the sources actually name, do "
+                                  f"not reach for a modern equivalent")
+            for k in ("lives_at", "works_at"):
+                if k in p:
+                    check_resident_link(pwhere, k, p.get(k), structure_ids, rep)
+
+        if heads != 1:
+            rep.error(where, f"{heads} person(s) carry relationship 'head'; a household record "
+                             f"has exactly one")
+        head = h.get("head")
+        if head not in {p.get("id") for p in persons}:
+            rep.error(where, f"head '{head}' is not a person in this household")
+        elif next((p for p in persons if p.get("id") == head), {}).get("relationship") != "head":
+            rep.error(where, f"head '{head}' does not carry relationship 'head'")
+
+        # --- arrival, and the gate the whole scene rests on -----------------
+        arr = h.get("arrival")
+        if not isinstance(arr, dict):
+            rep.error(where, "arrival must be an attested block")
+        else:
+            prec = arr.get("precision")
+            if prec not in RESIDENT_PRECISION:
+                rep.error(where, f"arrival.precision '{prec}' is not one of "
+                                 f"{RESIDENT_PRECISION}. The sources give years far more often "
+                                 f"than days and the record has to say which it has")
+            else:
+                bounds = arrival_bounds(arr.get("value"), prec)
+                if bounds is None:
+                    rep.error(where, f"arrival value {arr.get('value')!r} cannot be read at "
+                                     f"precision '{prec}'")
+                else:
+                    earliest, latest = bounds
+                    if earliest > scene:
+                        rep.error(where, f"arrival {arr.get('value')!r} ({prec}) cannot have "
+                                         f"preceded the scene date {scene_date}. A person who "
+                                         f"arrived after 1 July 1835 IS NOT IN THIS SCENE and "
+                                         f"belongs in index.json's researched_not_resident "
+                                         f"list with the reason, exactly as a later building "
+                                         f"belongs in data/exclusions.json")
+                    elif latest > scene:
+                        rep.warn(where, f"arrival {arr.get('value')!r} at '{prec}' precision "
+                                        f"straddles the scene date {scene_date} - the "
+                                        f"household may or may not have been here. Narrow the "
+                                        f"precision if the evidence allows, and say so in the "
+                                        f"note if it does not")
+
+        # --- presence, links, and the removal flag --------------------------
+        pres = h.get("present_on_scene_date")
+        if not isinstance(pres, dict):
+            rep.error(where, "present_on_scene_date must be an attested block - being a "
+                             "resident and being in town on one day are different claims")
+        else:
+            if pres.get("value") not in presences:
+                rep.error(where, f"present_on_scene_date '{pres.get('value')}' is not declared "
+                                 f"in the manifest vocabulary")
+            elif pres.get("value") in ("absent", "uncertain")                     and not (pres.get("note") or "").strip():
+                rep.error(where, f"present_on_scene_date '{pres.get('value')}' requires a note. "
+                                 f"Saying a documented resident may not have been here is a "
+                                 f"finding and owes its reasoning")
+
+        for k in ("lives_at", "works_at"):
+            check_resident_link(where, k, h.get(k), structure_ids, rep)
+
+        if h.get("touches_removal") and not h.get("review_required"):
+            rep.error(where, "touches_removal is true but review_required is false. AGENTS.md's "
+                             "standing constraint: the final removal of the Potawatomi is the "
+                             "most historically significant event of this target year and any "
+                             "record touching it blocks a scene from being marked released "
+                             "until the consultation the project has committed to has happened")
+        if not (h.get("research_note") or "").strip():
+            rep.error(where, "research_note is required - a household is an argument about "
+                             "people and the argument has to be written down")
+
+        # the confidence contract, applied to every attested block in the record
+        walk_attested(where, {k: v for k, v in h.items() if k != "persons"},
+                      source_ids, rep, tally)
+        for p in persons:
+            walk_attested(f"{where}/{p.get('id')}", p, source_ids, rep, tally)
+
+        # --- the manifest's denormalised copies -----------------------------
+        for key, actual in (("head", h.get("head")),
+                            ("division", h.get("division")),
+                            ("lives_at", (h.get("lives_at") or {}).get("value")),
+                            ("works_at", (h.get("works_at") or {}).get("value")),
+                            ("present_on_scene_date",
+                             (h.get("present_on_scene_date") or {}).get("value")),
+                            ("review_required", h.get("review_required"))):
+            if entry.get(key) != actual:
+                rep.error("residents index", f"household '{hid}' {key} in the manifest "
+                                             f"({entry.get(key)!r}) disagrees with the record "
+                                             f"({actual!r}); the record is authoritative")
+        if entry.get("persons") != len(persons):
+            rep.error("residents index", f"household '{hid}' persons {entry.get('persons')!r} "
+                                         f"disagrees with the {len(persons)} in the record")
+        if entry.get("grades") != local_grades:
+            rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
+                                         f"disagrees with the record's {local_grades!r}")
+        households[hid] = h
+
+    counts = index.get("counts") or {}
+    if counts.get("households") != len(households):
+        rep.error("residents index", f"counts.households {counts.get('households')!r} "
+                                     f"disagrees with the {len(households)} loaded")
+    if counts.get("persons") != n_persons:
+        rep.error("residents index", f"counts.persons {counts.get('persons')!r} disagrees with "
+                                     f"the {n_persons} in the records")
+    if counts.get("by_grade") != grade_totals:
+        rep.error("residents index", f"counts.by_grade {counts.get('by_grade')!r} disagrees "
+                                     f"with the records' {grade_totals!r}")
+
+    # The researched-and-excluded half. Same standard as data/exclusions.json:
+    # a finding that a person is NOT in this scene is a claim and owes a reason.
+    for ex in index.get("researched_not_resident", []):
+        exid = ex.get("id")
+        exwhere = f"residents index/researched_not_resident/{exid}"
+        if not SLUG.match(str(exid or "")):
+            rep.error(exwhere, f"id '{exid}' is not a lowercase slug")
+        if not (ex.get("reason") or "").strip():
+            rep.error(exwhere, "a person researched and left out owes a reason")
+        if not (ex.get("note") or "").strip():
+            rep.error(exwhere, "a person researched and left out owes the reasoning, so the "
+                               "next agent does not redo the work or quietly reverse it")
+        for sid in ex.get("sources") or []:
+            if sid not in source_ids:
+                rep.error(exwhere, f"source '{sid}' does not resolve in data/sources/")
+        if exid in person_ids:
+            rep.error(exwhere, f"'{exid}' is both a resident and researched-and-excluded")
+
+    if households:
+        linked = sum(1 for h in households.values()
+                     if (h.get("lives_at") or {}).get("value")
+                     or (h.get("works_at") or {}).get("value"))
+        unsure = sum(1 for h in households.values()
+                     if (h.get("present_on_scene_date") or {}).get("value") != "present")
+        flagged = sum(1 for h in households.values() if h.get("review_required"))
+        rep.note(f"residents: {len(households)} household(s), {n_persons} person(s) "
+                 f"({grade_totals['documented']} documented, {grade_totals['derived']} derived, "
+                 f"{grade_totals['inferred']} inferred); {linked} linked to a structure, "
+                 f"{unsure} NOT recorded as certainly present on the scene date, "
+                 f"{flagged} flagged review_required")
+    return households
+
+# --------------------------------------------------------------------------
 # loaders
 # --------------------------------------------------------------------------
 
@@ -4224,6 +4621,13 @@ def main() -> int:
     # the animal records, and the July gate they have to obey — the same
     # argument as the flora phenology, one trophic level up
     check_fauna(source_ids, rep, tally)
+
+    # the people, and the scene-date gate they have to obey. The population is
+    # what justifies the buildings (docs/ROADMAP.md K1): a household that needs
+    # a dwelling becomes a structure record, so a household whose subject was
+    # still in Vermont on the scene date would put a house on the plat.
+    check_residents(source_ids, {st.get("id") for st in structures.values()
+                                 if isinstance(st, dict)}, rep, tally)
 
     # the datum gate — the single most consequential check in the suite
     if not datum.get("verified"):

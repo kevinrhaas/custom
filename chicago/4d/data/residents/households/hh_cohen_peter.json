@@ -1,0 +1,72 @@
+{
+ "id": "hh_cohen_peter",
+ "name": "The Cohen household",
+ "division": "south",
+ "head": "cohen_peter",
+ "arrival": {
+  "value": "1833-11-26",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Not_later_than precision on the date of the issue. His own copy implies an earlier arrival ('old customers ... past favors') and does not date it.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. His premises are located by his own advertisement to the east end of South Water Street and there is no structure record for them, so there is nothing to point at. The east end of South Water is the part of the street nearest the fort and the reservation, which is a district this dataset is thin in."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Documented in the town in November 1833 and not followed by anything reached to 1835. A clothier and grocer at the east end of South Water in the year the harbour opened is more likely than not to have stayed, but 'more likely than not' is what the uncertain value is for."
+ },
+ "persons": [
+  {
+   "id": "cohen_peter",
+   "name": "Peter Cohen",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "clothier",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "He advertises as a clothier and grocer in the Chicago Democrat of 26 November 1833, self-reported at the EAST END OF SOUTH WATER-STREET."
+   },
+   "sources": [
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "A DOCUMENTED RESIDENT WHOSE ADVERTISEMENT DATES HIS ARRIVAL BACKWARDS. His copy addresses 'old customers' and thanks them for 'past favors', which is a man who had been trading in Chicago for some time before November 1833 - the only such statement in the issue. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "ONE OF THE SIX DEMOCRAT ADVERTISERS THIS PARCEL CAN GIVE A SELF-REPORTED ADDRESS. Cohen, W. Kimball, Goss & Cobb and Matthias Mason & Co. all state where they are; Philo Carpenter, C. & I. Harmon, B. Jones and Newberry & Dole do not. That split is worth carrying forward: an 1833 advertisement with a street in it is a placement constraint for a structure record, and one without is only a trade."
+}

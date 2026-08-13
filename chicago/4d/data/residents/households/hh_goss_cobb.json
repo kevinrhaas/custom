@@ -1,0 +1,100 @@
+{
+ "id": "hh_goss_cobb",
+ "name": "The Goss and Cobb household",
+ "division": "west",
+ "head": "goss_o",
+ "arrival": {
+  "value": "1833-06-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Cobb's arrival, dated to the day by Andreas's roster: 'S. B. Cobb, a minor, came June 1, 1833.' Goss's own arrival is undated; his canal-lot purchase of 3 September 1832 would put him in the country a year earlier if he is the same O. Goss.",
+  "precision": "day"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": "Washington County, Vermont",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "From the canal-lot purchaser's entry, which gives 'O. Goss, Washington Co. Vermont'. It is an origin for a man identified with this one by initial alone."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "goss_cobb_saddlery",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "The firm names itself and its corner in its own advertisement."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Documented at Lake and Canal in November 1833. Silas B. Cobb's later Chicago career is long and prominent, which argues he stayed; the firm's survival is a different question and is not attested."
+ },
+ "persons": [
+  {
+   "id": "goss_o",
+   "name": "O. Goss",
+   "relationship": "head",
+   "grade": "derived",
+   "sex": "male",
+   "occupation": {
+    "value": "saddler",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "The firm 'Goss & Cobb, saddle and harness makers' advertises in the Chicago Democrat of 26 November 1833, self-reported on the corner of Lake and Canal streets."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "THE FORENAME IS A GUESS AT AN INITIAL AND THE RECORD SAYS SO. The advertisement gives 'Goss' with no initial. Andreas's table of first purchasers of canal lots carries an 'O. Goss, Washington Co. Vermont' buying on 3 September 1832, which is the only Goss in the volume near this date and place, and this record adopts that initial while grading the person derived because the identification is a reading and not a statement. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+  },
+  {
+   "id": "cobb_silas_b",
+   "name": "Silas B. Cobb",
+   "relationship": "partner",
+   "grade": "derived",
+   "sex": "male",
+   "occupation": {
+    "value": "saddler",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "'Cobb' in the firm name is the documented part. Silas B. Cobb is Andreas's 'S. B. Cobb, a minor, came June 1, 1833' - AN ARRIVAL DATED TO THE DAY, which is rare - and this project's building record notes that DRLOIH names a Silas B. Cobb as the carpenter who built the Green Tree Tavern on the opposite corner of the same crossing in the same year."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "IDENTIFIED, NOT PROVEN, AND ALREADY FLAGGED IN THE STRUCTURES LAYER. data/structures/goss_cobb_saddlery.json says in terms: 'Neither source connects the saddler to the carpenter in terms, so the identification is not made.' This household makes it, one grade down, because a minor arriving on 1 June 1833 and a Cobb advertising at Lake and Canal that November is a coherent single person and because leaving the initial unresolved loses a dated arrival. THE GRADE IS THE WARNING and a source that separates the two men should split this record."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "SADDLERY IS THE TRADE THAT PROVES THE TOWN HAD TRAFFIC. Two saddle and harness makers advertising at Lake and Canal in 1833 - on the west side, on the road out of town - is evidence about wagons, teams and the overland trade that this dataset otherwise sees only through Ordinance 9's barrels in the street. THIS HOUSEHOLD MAKES AN IDENTIFICATION THE STRUCTURES LAYER DECLINED TO MAKE, one grade down and with the disagreement written on both persons; that asymmetry is deliberate and should be read as the residents layer proposing a reading, not as the dataset having changed its mind."
+}

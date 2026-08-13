@@ -2563,6 +2563,307 @@ def test_a_derived_document_is_an_interface_too() -> None:
           any("`scope`" in e for e in rep.errors), rep.errors)
 
 
+# --------------------------------------------------------------------------
+# residents: the accuracy vocabulary and the scene-date gate
+# --------------------------------------------------------------------------
+#
+# docs/ROADMAP.md K1. Two rules here are load-bearing in a way that is easy to
+# lose: a person who arrived after the scene date is not in the scene, and the
+# accuracy grade is a closed vocabulary the programme was deliberately renamed
+# into. Both fail silently - a household record whose subject was still in
+# Vermont looks exactly like one whose subject was not - so both get a test.
+
+def _resident_person(**kw) -> dict:
+    p = {"id": "p1", "name": "A Person", "sex": "male", "relationship": "head",
+         "grade": "documented", "sources": ["s1"], "note": "named in s1",
+         "occupation": {"value": "cooper", "confidence": "documented",
+                        "sources": ["s1"], "note": "s1 names the trade"}}
+    p.update(kw)
+    return p
+
+
+def _resident_household(**kw) -> dict:
+    h = {
+        "id": "hh_a", "name": "The A household", "division": "south", "head": "p1",
+        "arrival": {"value": "1833", "precision": "year", "confidence": "documented",
+                    "sources": ["s1"], "note": "s1 gives the year"},
+        "party_size_on_arrival": {"value": None, "confidence": "conjectural",
+                                  "note": "not attested"},
+        "origin": {"value": None, "confidence": "conjectural", "note": "not attested"},
+        "reason_for_coming": {"value": None, "confidence": "conjectural",
+                              "note": "not attested"},
+        "lives_at": {"value": None, "confidence": "conjectural", "note": "not modelled"},
+        "works_at": {"value": "st1", "confidence": "documented", "sources": ["s1"],
+                     "note": "s1 puts him there"},
+        "present_on_scene_date": {"value": "present", "confidence": "inferred",
+                                  "sources": ["s1"], "note": "continuous in the record"},
+        "persons": [_resident_person()],
+        "touches_removal": False, "review_required": False,
+        "research_note": "why this household is written",
+    }
+    h.update(kw)
+    return h
+
+
+def _resident_index(households: list, **kw) -> dict:
+    entries = []
+    counts = {"documented": 0, "derived": 0, "inferred": 0}
+    for h in households:
+        g: dict = {}
+        for p in h["persons"]:
+            g[p["grade"]] = g.get(p["grade"], 0) + 1
+            counts[p["grade"]] = counts.get(p["grade"], 0) + 1
+        entries.append({
+            "id": h["id"], "file": f"households/{h['id']}.json", "head": h["head"],
+            "division": h["division"], "persons": len(h["persons"]), "grades": g,
+            "lives_at": h["lives_at"].get("value"), "works_at": h["works_at"].get("value"),
+            "present_on_scene_date": h["present_on_scene_date"].get("value"),
+            "review_required": h["review_required"],
+        })
+    idx = {
+        "version": 1, "scene_date": "1835-07-01",
+        "vocabulary": {
+            "grades": ["documented", "derived", "inferred"],
+            "relationships": ["head", "wife", "partner", "household_member"],
+            "occupations": ["cooper", "blacksmith", "tavern_keeper", "none_recorded"],
+            "sexes": ["male", "female"],
+            "presence": ["present", "absent", "uncertain"],
+            "divisions": ["south", "north", "west", "fort", "outside_town"],
+            "arrival_precision": ["day", "month", "season", "year", "not_later_than"],
+        },
+        "counts": {"households": len(households),
+                   "persons": sum(len(h["persons"]) for h in households),
+                   "by_grade": counts},
+        "households": entries,
+        "researched_not_resident": [],
+    }
+    idx.update(kw)
+    return idx
+
+
+def _run_residents(households: list, index_patch=None, structures=("st1",),
+                   sources=("s1",)) -> V.Report:
+    """Write a throwaway data root and run the residents gate over it."""
+    rep = V.Report()
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        (root / "residents" / "households").mkdir(parents=True)
+        idx = _resident_index(households)
+        if index_patch:
+            index_patch(idx)
+        (root / "residents" / "index.json").write_text(json.dumps(idx))
+        for h in households:
+            (root / "residents" / "households" / f"{h['id']}.json").write_text(json.dumps(h))
+        V.check_residents(set(sources), set(structures), rep, {}, data_root=root)
+    return rep
+
+
+def test_a_resident_who_arrived_after_the_scene_date_is_not_in_the_scene() -> None:
+    """The date gate, one layer up from the structures it will justify.
+
+    This is the Saloon Building problem wearing a coat: a household record for a
+    man who reached Chicago in September 1835 looks exactly like one for a man
+    who reached it in 1832, and the population is what licenses the buildings,
+    so an ungated arrival puts a house on the plat.
+    """
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1835-09-14", "precision": "day", "confidence": "documented",
+                 "sources": ["s1"], "note": "s1 dates the arrival"})])
+    check("an arrival after the scene date is an error",
+          any("cannot have preceded the scene date" in e for e in rep.errors), rep.errors)
+
+    # ...and the same claim at a coarser precision, where the whole VALUE is
+    # after the scene date, has to bite just as hard.
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1836", "precision": "year", "confidence": "documented",
+                 "sources": ["s1"], "note": "s1 gives the year"})])
+    check("a year-precision arrival wholly after the scene date is an error",
+          any("cannot have preceded the scene date" in e for e in rep.errors), rep.errors)
+
+    # The discriminating case, and the reason the rule is asymmetric: "1835"
+    # with no month is a real state of the evidence, not a mistake. It may or
+    # may not precede 1 July, so it warns and does not fail.
+    rep = _run_residents([_resident_household(
+        arrival={"value": "1835", "precision": "year", "confidence": "conjectural",
+                 "note": "the earliest year the evidence forces"})])
+    check("an arrival straddling the scene date warns rather than fails",
+          not rep.errors and any("straddles the scene date" in w for w in rep.warnings),
+          f"{rep.errors} / {rep.warnings}")
+
+    # And an arrival comfortably before it passes.
+    rep = _run_residents([_resident_household()])
+    check("an arrival before the scene date passes", not rep.errors, rep.errors)
+
+
+def test_the_accuracy_grade_is_a_closed_vocabulary_and_recommended_is_gone() -> None:
+    """`inferred`, never `recommended` — enforced by name, not by omission.
+
+    The programme was renamed on 2026-08-13. A vocabulary that merely omits a
+    word gets it back the first time somebody copies an older file, so the
+    retired term earns its own message pointing at the rename.
+    """
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="recommended")])])
+    check("a grade of 'recommended' names the rename",
+          any("RENAMED AWAY FROM" in e and "inferred" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(persons=[_resident_person(grade="probable")])])
+    check("an unknown grade is an error",
+          any("is not one of" in e for e in rep.errors), rep.errors)
+
+    for g in ("documented", "derived", "inferred"):
+        rep = _run_residents([_resident_household(
+            persons=[_resident_person(grade=g, sources=["s1"] if g == "documented" else [],
+                                      note="the reasoning")])])
+        check(f"grade '{g}' is accepted", not rep.errors, rep.errors)
+
+
+def test_each_grade_owes_what_it_claims() -> None:
+    """documented owes a source; derived and inferred owe reasoning."""
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="documented", sources=[])])])
+    check("a documented person with no source is an error",
+          any("must cite at least one source_id" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="documented", sources=["nope"])])])
+    check("a person citing an unresolvable source is an error",
+          any("does not resolve" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="derived", sources=["s1"], note="")])])
+    check("a derived person with no reasoning is an error",
+          any("WHICH details are reconstructed" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="inferred", sources=[], note="")])])
+    check("an inferred person with no reasoning is an error",
+          any("demonstrable need" in e for e in rep.errors), rep.errors)
+
+    # An inferred resident is HYPOTHESISED: no source names them, so attaching
+    # source_ids to the person is a category error rather than extra rigour.
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(grade="inferred", sources=["s1"], note="the town needs one")])])
+    check("an inferred person citing a source warns",
+          any("HYPOTHESISED" in w for w in rep.warnings), rep.warnings)
+
+
+def test_a_resident_points_at_a_real_building_or_at_nothing() -> None:
+    """lives_at / works_at are the whole point: households justify structures."""
+    rep = _run_residents([_resident_household(
+        works_at={"value": "no_such_building", "confidence": "documented",
+                  "sources": ["s1"], "note": "n"})])
+    check("works_at naming a structure that does not exist is an error",
+          any("not a structure id" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(lives_at={"value": "no_such_building",
+                                            "confidence": "inferred", "note": "n"})])])
+    check("a person-level link is held to the same rule",
+          any("not a structure id" in e for e in rep.errors), rep.errors)
+
+    # Null is a legitimate and expected answer - the building may not be built
+    # yet - but it is a CLAIM about the dataset and owes a note.
+    rep = _run_residents([_resident_household(
+        works_at={"value": None, "confidence": "conjectural", "note": ""})])
+    check("a null link with no note is an error",
+          any("null and carries no note" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        works_at={"value": None, "confidence": "conjectural",
+                  "note": "not modelled; no structure record exists"})])
+    check("a null link with a note passes", not rep.errors, rep.errors)
+
+
+def test_a_household_is_a_household() -> None:
+    """One head, resolvable, unique person ids, a period-correct trade."""
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(), _resident_person(id="p2", name="B")])])
+    check("two heads is an error",
+          any("carry relationship 'head'" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(head="nobody")])
+    check("a head who is not in the household is an error",
+          any("is not a person in this household" in e for e in rep.errors), rep.errors)
+
+    a = _resident_household()
+    b = _resident_household(id="hh_b", name="The B household")
+    rep = _run_residents([a, b])
+    check("the same person id in two households is an error",
+          any("one person, one id" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        persons=[_resident_person(occupation={"value": "software_engineer",
+                                              "confidence": "documented",
+                                              "sources": ["s1"], "note": "n"})])])
+    check("an occupation outside the period-correct vocabulary is an error",
+          any("PERIOD-CORRECT" in e for e in rep.errors), rep.errors)
+
+
+def test_presence_and_the_removal_flag_are_claims_that_owe_reasoning() -> None:
+    """Being a resident and being in town on one day are different claims.
+
+    Jeremiah Porter is the reason this field exists: the town's Presbyterian
+    minister, married at Rochester, New York on 15 June 1835, sixteen days
+    before the scene date.
+    """
+    rep = _run_residents([_resident_household(
+        present_on_scene_date={"value": "uncertain", "confidence": "inferred", "note": ""})])
+    check("an uncertain presence with no note is an error",
+          any("requires a note" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(
+        present_on_scene_date={"value": "maybe", "confidence": "inferred", "note": "n"})])
+    check("a presence outside the vocabulary is an error",
+          any("not declared in the manifest vocabulary" in e for e in rep.errors), rep.errors)
+
+    # AGENTS.md's standing constraint, made unrepresentable rather than merely
+    # discouraged: the final removal is August 1835, weeks after the scene date.
+    rep = _run_residents([_resident_household(touches_removal=True, review_required=False)])
+    check("a household touching the removal must block release",
+          any("review_required is false" in e for e in rep.errors), rep.errors)
+
+
+def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
+    """A static host cannot be globbed, so the manifest is load-bearing."""
+    def bad_head(idx):
+        idx["households"][0]["head"] = "somebody_else"
+    rep = _run_residents([_resident_household()], index_patch=bad_head)
+    check("a manifest head disagreeing with the record is an error",
+          any("head in the manifest" in e for e in rep.errors), rep.errors)
+
+    def bad_count(idx):
+        idx["counts"]["persons"] = 99
+    rep = _run_residents([_resident_household()], index_patch=bad_count)
+    check("a manifest person count disagreeing with the records is an error",
+          any("counts.persons" in e for e in rep.errors), rep.errors)
+
+    def bad_grades(idx):
+        idx["households"][0]["grades"] = {"documented": 7}
+    rep = _run_residents([_resident_household()], index_patch=bad_grades)
+    check("a manifest grade tally disagreeing with the record is an error",
+          any("grades" in e and "disagrees" in e for e in rep.errors), rep.errors)
+
+    def short_precision(idx):
+        idx["vocabulary"]["arrival_precision"] = ["day", "year"]
+    rep = _run_residents([_resident_household()], index_patch=short_precision)
+    check("a manifest that under-declares the arrival precisions is an error",
+          any("arrival_precision" in e for e in rep.errors), rep.errors)
+
+    def missing_file(idx):
+        idx["households"][0]["file"] = "households/not_here.json"
+    rep = _run_residents([_resident_household()], index_patch=missing_file)
+    check("a manifest entry pointing at a missing file is an error",
+          any("does not exist" in e for e in rep.errors), rep.errors)
+
+    # And the researched-and-excluded half is held to the same standard as
+    # data/exclusions.json: a finding that somebody is NOT here is still a claim.
+    def bad_exclusion(idx):
+        idx["researched_not_resident"] = [{"id": "someone", "sources": ["nope"]}]
+    rep = _run_residents([_resident_household()], index_patch=bad_exclusion)
+    check("a researched-and-excluded person owes a reason, a note and resolving sources",
+          sum(1 for e in rep.errors if "researched_not_resident" in e) >= 3, rep.errors)
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess

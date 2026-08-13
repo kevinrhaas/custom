@@ -1,0 +1,72 @@
+{
+ "id": "hh_fullerton_alexander",
+ "name": "The Fullerton household",
+ "division": "south",
+ "head": "fullerton_alexander",
+ "arrival": {
+  "value": "1833",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Put out their signs in 1833'.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED; no lawyer's office in the 1835 town is a structure record."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Elected or appointed town clerk in the scene month or the one after it."
+ },
+ "persons": [
+  {
+   "id": "fullerton_alexander",
+   "name": "Alexander N. Fullerton",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "attorney",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "One of the six lawyers Andreas counts at the close of 1833, having put out his sign that year."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "TOWN CLERK AT THE THIRD ELECTION, WHICH IS THE OFFICE NEAREST THE SCENE DATE ANY LAWYER IN THIS PARCEL HOLDS. Andreas's 1835 roster: 'A. N. Fullerton, Clerk, who was succeeded by Ebenezer Peck, who also acted as Counsel.' Whether he had taken the clerkship by 1 July 1835 depends on the date of the July 1835 election, which Andreas does not give - see hh_kinzie_john_h. He also appears among the subscribers Andreas prints for the town's early public undertakings."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A LAWYER WHO BECAME THE TOWN'S CLERK IN THE SCENE MONTH, and a household written mainly to keep the count of documented lawyers honest at six. The office-holding claim is deliberately left soft because the election that produced it cannot be dated inside July 1835."
+}

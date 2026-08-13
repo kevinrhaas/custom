@@ -1,0 +1,110 @@
+{
+ "id": "hh_pruyne_kimberly",
+ "name": "The Pruyne and Kimberly partnership household",
+ "division": "south",
+ "head": "pruyne_peter",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Kimberly's year, stated plainly. Pruyne's own arrival is dated only by his shop - 'early in 1833' - and the household takes the earlier of the two because that is when it first existed in the town.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested for either man. Note that this is a BUSINESS household rather than a domestic one - see the research note."
+ },
+ "works_at": {
+  "value": "pruyne_kimball_drugstore",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The partnership is documented; that it was trading on 1 July 1835 specifically is the inference, since Andreas dates it only to the 1830s. The building record carries the same grade for the same reason."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Pruyne is married at Chicago on 20 August 1835, seven weeks after the scene date; Kimberly is continuously in the town's public life."
+ },
+ "persons": [
+  {
+   "id": "pruyne_peter",
+   "name": "Peter Pruyne",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "druggist",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Early in 1833, Peter Pruyne and Edmund Stoughton Kimberly opened the second of Chicago's drug-stores' (Andreas, scan p. 955); the 1833 roster carries 'Peter Pruyne, druggist, early in 1833'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "Andreas adds a dated domestic fact in a footnote: 'On August 20, 1835, Mr. Peter Pruyne married Rebecca, only daughter of Silas W. Sherman.' THAT IS SEVEN WEEKS AFTER THE SCENE DATE, so on 1 July 1835 he is an unmarried man and Rebecca Sherman is not in this household - a small illustration of why every date in this layer has to be checked against 1835-07-01 rather than against 'the mid-1830s'."
+  },
+  {
+   "id": "kimberly_edmund_s",
+   "name": "Dr Edmund Stoughton Kimberly",
+   "relationship": "partner",
+   "grade": "documented",
+   "sex": "male",
+   "birth_year": {
+    "value": 1802,
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "NOT STATED. Andreas gives an age at death - seventy-two on 25 October 1874 - and 1802 is the arithmetic, which is why this is derived and not documented."
+   },
+   "age_on_scene_date": {
+    "value": 32,
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Follows from the derived birth year; 32 or 33 depending on his birthday, which is unknown."
+   },
+   "occupation": {
+    "value": "physician",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "One of the eight physicians Andreas counts in the town at the close of 1833 - 'In 1832, Dr. Edmund Stoughton Kimberly arrived here' - and the other half of the town's second drug store."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE CLERK OF THE TOWN'S OWN CREATION. He was clerk of the meeting of 5 August 1833 that voted to incorporate, signed the poll 'Ed. S. Kimberly, Clerk', issued the election notice over his own name, and was then elected one of the five first trustees on 10 August with 20 of 28 votes. He died in Lake County, Illinois, 25 October 1874, aged seventy-two - which puts his birth about 1802 and makes him about 33 on the scene date."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A PARTNERSHIP RECORDED AS A HOUSEHOLD, WHICH IS A COMPROMISE AND IS FLAGGED AS ONE. Nothing says Pruyne and Kimberly shared a roof; what is documented is that they opened a shop together. They are grouped because the alternative - two single-person households, each pointing at the same building - would double the household count without adding a person, and because the schema's relationship vocabulary carries 'partner' precisely for this. ANY LATER USE THAT TREATS A HOUSEHOLD AS A DWELLING UNIT MUST READ THIS FIELD: lives_at is null here on purpose, and the household should not be given a dwelling by the inferred phase until the two men are separated. A NAME COLLISION KEPT SEPARATE: the W. Kimball who advertised dry goods at South Water and Clark in the Democrat of 26 November 1833 is a different trade and, on the evidence, a different man; he has his own household here."
+}

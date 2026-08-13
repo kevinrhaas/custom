@@ -52,6 +52,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FT = 0.3048
 
+# `generators/` on the path at IMPORT time, not part-way through main(). Run as
+# `python3 generators/terrain_gen.py` it is already sys.path[0] and the flat
+# imports below (terrain_inputs, mesh_inputs, common.mesh) resolve by luck; run as
+# `blender --python generators/terrain_gen.py` sys.path[0] is elsewhere and the
+# staleness hash — which is computed BEFORE the two inserts main() used to do —
+# died on ModuleNotFoundError. The GLB half of this generator is a rare, deliberate
+# invocation, which is exactly why nothing caught it.
+if str(ROOT / "generators") not in sys.path:
+    sys.path.insert(0, str(ROOT / "generators"))
+
 try:
     import numpy as np
 except ImportError:                                   # pragma: no cover
@@ -796,7 +806,6 @@ def main() -> int:
               "-- --glb")
         return 2
 
-    sys.path.insert(0, str(ROOT / "generators"))
     built = build_meshes(h_m, conf, spec, args.epoch, Path(args.out), args.decimate_deg)
 
     manifest_path = ROOT / "assets" / "manifest.json"
@@ -805,7 +814,6 @@ def main() -> int:
     manifest["blender"] = bpy.app.version_string.split()[0]
     # Terrain and structures share one manifest and therefore one declaration of
     # what its hashes mean; see generators/mesh_inputs.py.
-    sys.path.insert(0, str(ROOT / "generators"))
     from mesh_inputs import SCHEME  # noqa: PLC0415
 
     manifest["inputs_scheme"] = SCHEME

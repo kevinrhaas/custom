@@ -91,6 +91,35 @@ const TIMBER_ZONES = [
 /** Below this the heightfield is under water (same value terrain.js uses). */
 const SHORE_Y = -0.10;
 /**
+ * How far ABOVE the water surface a stem's root has to stand.
+ *
+ * `terrain.isWater()` — the mask the gallery, the divisions and the release
+ * smoke are all built on — asks whether the heightfield is below SHORE_Y, which
+ * is 100 mm BELOW the water plane. It is the right question for "is this the
+ * river", and it was the wrong question for "may a tree stand here": the water
+ * surface is Z = 0 and the ground is drawn under it, so a stem rooted anywhere
+ * in the 100 mm band between SHORE_Y and the datum passes the mask and then
+ * renders standing in open water with its foot invisible. Thirty-six of the
+ * scene's 618 stations were in that band, and because a gallery-edge willow may
+ * stand at bank distance zero they were exactly the ones nearest the camera
+ * across the channel. The fort views show timber ALONG the river and never in
+ * it — see the module header and docs/research/02-flora.md ZONE 5.
+ *
+ * 0.20 m, and the number is the geometry rather than a taste: `addTree` sinks a
+ * bole 0.15 m below its ground point so no trunk floats on uneven cells, and the
+ * baked ground mesh is allowed to depart from the heightfield the placement
+ * samples by up to 0.03 m (`generators/terrain_gen.py` MESH_FIT_TOLERANCE_M).
+ * 0.15 + 0.03 puts the deepest modelled bark exactly at the water plane, so
+ * 0.20 leaves 20 mm of daylight under the worst case and nothing more.
+ *
+ * This is a placement floor, NOT a new waterline: `isWater` still answers the
+ * river question, the bank distance field is still measured to it, and the
+ * willows the sources put at the water's edge still stand at the water's edge —
+ * a few metres back up a bank that rises 0.2 m, which on the documented South
+ * Division marsh strip is a handful of metres and on the north bank is under one.
+ */
+const TREE_DRY_MARGIN_M = 0.20;
+/**
  * Below this is navigable channel rather than a shallow slough. Used only to
  * split the box into its three land divisions: the North Branch, the main stem
  * and the South Branch are all deeper than this, and the documented unnamed
@@ -1126,8 +1155,11 @@ export async function createTrees({
   const group = new THREE.Group();
   group.name = 'trees';
   // Placement stations are lightweight test observability: the release smoke
-  // checks each against the authoritative water mask, which is stronger than a
-  // screenshot and cheaper than reverse-engineering roots out of merged meshes.
+  // checks each against the authoritative water mask AND against the water
+  // surface itself, which is stronger than a screenshot and cheaper than
+  // reverse-engineering roots out of merged meshes. Each carries the ground
+  // height the stem was actually built at, so the check is on the number the
+  // renderer used rather than on one the test re-derives.
   group.userData.stations = [];
 
   const hf = terrain?.heightfield;
@@ -1139,6 +1171,7 @@ export async function createTrees({
       ...o, elevation_deg: apparentTopDeg(o.canopy_m, o.distance_m, 1.68) + horizonDipDeg(1.68),
     })),
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
+    rejectedBelowWaterline: 0, lowestStationY: null,
   };
 
   if (!hf?.loaded) {
@@ -1185,6 +1218,21 @@ export async function createTrees({
 
   const { cols, rows, cellM, originE, originN, data } = hf;
   const cells = cols * rows;
+
+  // The water surface, read from the epoch's own heightfield record rather than
+  // restated here: `water_surface_m` is what generators/terrain_gen.py wrote and
+  // what the internal datum means. A renderer carrying its own copy of the datum
+  // is how the two drift apart.
+  const waterY = Number.isFinite(hf.meta?.water_surface_m) ? hf.meta.water_surface_m : 0;
+  const dryFloorY = waterY + TREE_DRY_MARGIN_M;
+  /**
+   * The one question every stem must answer YES to. Sampled at the exact planting
+   * point with the same bilinear sampler that supplies `groundY`, not at the
+   * nearest cell centre: a 2.5 m cell is wider than a bank, so a nearest-cell
+   * test can pass on the land side of a boundary the tree is then planted on the
+   * water side of.
+   */
+  const standsDry = (e, n) => terrain.surfaceHeight(e, n) >= dryFloorY;
 
   // Distance from every cell to the nearest water, by two-pass chamfer. This is
   // the field the whole gallery depends on: ZONE 5 is defined as a band along
@@ -1305,6 +1353,7 @@ export async function createTrees({
     if (i < 0) return null;
     const y = data[i];
     if (terrain.isWater(e, n)) return null;      // authoritative traced water mask
+    if (!standsDry(e, n)) return null;           // and not on the waterline either
     const d = div[i];
     if (d === WEST) return null;                // Andreas: open prairie, entirely
     const bank = dw[i];
@@ -1357,6 +1406,11 @@ export async function createTrees({
     return mix[mix.length - 1][0];
   };
   const bump = (obj, key) => { obj[key] = (obj[key] ?? 0) + 1; };
+  /** Record a planted stem for the smoke suite, with the height it stands at. */
+  const noteStation = (e, n, y) => {
+    group.userData.stations.push({ e, n, y });
+    if (stats.lowestStationY === null || y < stats.lowestStationY) stats.lowestStationY = y;
+  };
 
   const half = 320 - step;
   for (let n = -half; n <= half; n += step) {
@@ -1364,6 +1418,13 @@ export async function createTrees({
       const px = e + (rnd() - 0.5) * step * 0.92;
       const pz = n + (rnd() - 0.5) * step * 0.92;
       if (terrain.isWater(px, pz)) continue;
+      // THE WATERLINE GATE, and it is deliberately the first thing after the
+      // river mask and ahead of every ecological question below. `gy` is the
+      // height the stem will actually be built at, so testing anything else here
+      // — the nearest cell, the community's own idea of the bank — is testing a
+      // different point from the one the tree stands on.
+      const gy = terrain.surfaceHeight(px, pz);
+      if (gy < dryFloorY) { stats.rejectedBelowWaterline++; continue; }
       const comm = communityAt(px, pz);
       if (!comm) continue;
 
@@ -1381,10 +1442,9 @@ export async function createTrees({
         // and a clump about 3 m across, thinning these to half was what left
         // them standing as separate cushions on open sand.
         if (rnd() > 0.84 || blocked(px, pz)) continue;
-        const gy = terrain.surfaceHeight(px, pz);
         addTree(buffers[chunkOf(px, pz)], specs.salix_interior, px, gy, pz, rnd,
           0.8 + rnd() * 0.5);
-        group.userData.stations.push({ e: px, n: pz });
+        noteStation(px, pz, gy);
         stats.thickets++;
         bump(stats.species, 'salix_interior');
         continue;
@@ -1416,9 +1476,8 @@ export async function createTrees({
       const id = pick(mix, rnd());
       const spec = specs[id];
       if (!spec) continue;
-      const gy = terrain.surfaceHeight(px, pz);
       addTree(buffers[chunkOf(px, pz)], spec, px, gy, pz, rnd);
-      group.userData.stations.push({ e: px, n: pz });
+      noteStation(px, pz, gy);
       stats.trees++;
       bump(stats.communities, key);
       bump(stats.species, id);

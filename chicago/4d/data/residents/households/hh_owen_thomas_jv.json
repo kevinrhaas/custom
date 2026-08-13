@@ -1,0 +1,110 @@
+{
+ "id": "hh_owen_thomas_jv",
+ "name": "The Owen household",
+ "division": "south",
+ "head": "owen_thomas_jv",
+ "arrival": {
+  "value": "1831-04-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas: 'appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831'. Spring is the source's word; 1 April is the first day this project reads it as, and the precision field says so - the DAY is not evidence.",
+  "precision": "season"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested. Owen arrived to take up a federal office and the ordinary reading is that his family came with him or followed, but no source counts them, so no number is given."
+ },
+ "origin": {
+  "value": "Kentucky",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas gives Kentucky as his birthplace, scan p. 195. Where he travelled FROM in 1831 is not stated and is not the same question."
+ },
+ "reason_for_coming": {
+  "value": "Appointed to the United States Indian agency at Chicago",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The clearest 'why' in the dataset: he did not choose Chicago, the War Department sent him. Gholson Kercheval, the sub-agent, ran the office until he got there."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED. The agency establishment at the foot of State Street held the agency house (cobweb_castle) and the government blacksmith shop, but Andreas has Colonel Hamilton living in the agency house in the autumn of 1832, and nothing places Owen under any particular roof. Left null rather than guessed; a later parcel that fixes the agent's residence closes it."
+ },
+ "works_at": {
+  "value": "cobweb_castle",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The Indian agency house is where the Indian agent's business was done: Owen's staff - Kercheval and James Stuart as sub-agents, Billy Caldwell as interpreter, David McKee as blacksmith and Joseph Porthier as striker - are the agency establishment, and the blacksmith shop this dataset holds stands beside this building. INFERRED, NOT DOCUMENTED: no source says Owen kept his office in this house on any date, and the agency's own buildings had already been lent to other uses by 1832."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He died at Chicago on 15 October 1835, having been chosen the town's first president in 1833 and served through; nothing suggests an absence in the summer."
+ },
+ "persons": [
+  {
+   "id": "owen_thomas_jv",
+   "name": "Thomas Jefferson Vance Owen",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "birth_year": {
+    "value": 1801,
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Andreas gives the day: 5 April 1801."
+   },
+   "age_on_scene_date": {
+    "value": 34,
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "34 on 1 July 1835, turning 35 the following April."
+   },
+   "occupation": {
+    "value": "indian_agent",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Appointed United States Indian agent for Chicago in the winter of 1830-31 and still agent at his death; Andreas, scan p. 195. He was also the first president of the town's board of trustees, elected 10 August 1833 with 26 of 28 votes, and a commissioner for the United States at the Chicago treaty of 26 September 1833. The occupation recorded is the office he held, not the trustee presidency, which was unpaid and annual."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "BORN IN KENTUCKY, 5 APRIL 1801, AND DIED AT CHICAGO ON 15 OCTOBER 1835 - fifteen weeks after the scene date, which is why this household is one of the few in the dataset whose presence on 1 July 1835 is settled at both ends. Andreas, scan p. 195: 'Colonel Owen was born in Kentucky, April 5, 1801. He was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831 ... When the Town of Chicago was incorporated in 1833, Colonel Owen was chosen President of its first board of trustees. He died at Chicago, October 15, 1835.'"
+  },
+  {
+   "id": "owen_household_unnamed",
+   "name": "Owen's household, unnamed",
+   "relationship": "household_member",
+   "grade": "derived",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "conjectural",
+    "note": "No trade is recorded for anyone in this household but Owen himself."
+   },
+   "sources": [],
+   "note": "A PLACEHOLDER FOR PEOPLE WHO CERTAINLY EXISTED AND WHOM NO SOURCE REACHED NAMES. Owen was a married man with children - his family is referred to in the Chicago literature and his son-in-law's line is traced in later chapters - but nothing this project holds names his wife or counts his children, so no person record is written for them and the household size is left as an admission rather than a number. This entry exists so that a reader of the dataset sees the gap instead of a household of one. It carries no age, no sex and no name, and it must not be counted as a person for any purpose but that."
+  }
+ ],
+ "touches_removal": true,
+ "review_required": true,
+ "research_note": "THE TOWN'S FIRST PRESIDENT AND THE UNITED STATES' AGENT TO THE POTAWATOMI, IN THE LAST SUMMER OF HIS LIFE. Two things make this a good anchor record. The first is that the presence question is closed at both ends: an arrival in the spring of 1831 and a death at Chicago on 15 October 1835, both in Andreas. The second is that the household is the dataset's first demonstration of the honest failure mode - one named person and an unnamed remainder that the record refuses to invent. THE RECORD DELIBERATELY DOES NOT CARRY OWEN'S ROLE IN THE 1833 TREATY AS AN OCCUPATION. He signed as a commissioner for the United States at the treaty of 26 September 1833 that ceded the land this town stands on, and that is a fact about the removal rather than about a trade; it is recorded here in prose and the household is flagged for review because of it."
+}

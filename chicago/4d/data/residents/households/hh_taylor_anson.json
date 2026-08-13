@@ -1,0 +1,97 @@
+{
+ "id": "hh_taylor_anson",
+ "name": "The Anson Taylor household",
+ "division": "south",
+ "head": "taylor_anson_h",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Both brothers, same year, stated twice.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": 2,
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Two brothers arriving in the same year and working together. Whether they travelled together is not stated."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "south_branch_raft_bridge",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "THIS IS A BUILT-BY LINK AND NOT A WORKPLACE, and the grade says so. Andreas credits the log bridge across the South Branch between Randolph and Lake to Anson H. Taylor and his brother in 1832; data/structures/south_branch_raft_bridge.json is this project's record of a crossing at that reach. Whether the raft bridge of 1835 is the same fabric as the log bridge of 1832 is a structures question this record does not settle."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the record through the 1830s; Andreas's later rosters carry a Charles Taylor and an A. W. Taylor at Chicago."
+ },
+ "persons": [
+  {
+   "id": "taylor_anson_h",
+   "name": "Anson H. Taylor",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "carpenter",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Anson H. and his brother, Charles Taylor, came in 1832.' John Bates, interviewed in 1883, remembered 'a sort of bridge built the year before by Anson Taylor across the South Branch near Randolph Street - a log-bridge, quite near the water, over which teams could pass'; Andreas dates that bridge to 1832 and credits it to Anson H. Taylor and his brother Charles. He hauled the lumber for St Mary's from the schooner to the site with his own team."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge."
+  },
+  {
+   "id": "taylor_charles",
+   "name": "Charles H. Taylor",
+   "relationship": "brother",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "carpenter",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "He is named as Anson's partner on the bridge and separately in the 1833 roster as 'Charles H. Taylor, came in 1832', with no trade. The trade is read across from the joint work."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ONE OF THE TWENTY-EIGHT ELECTORS OF 10 AUGUST 1833, listed by Andreas as 'Charles Taylor'. This project's wolf_point_tavern record has 'Charles and Mary Taylor' keeping that house from 1831 to 1833, which would make him a tavern keeper before he was anything else and gives him a named wife; the identification is not made here because the Taylor surname is carried by at least four distinct men in this parcel's sources and merging them on a forename would be exactly the error the Isaac Harmon case was avoided for."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE TOWN'S BRIDGE-BUILDERS, AND A CAUTION ABOUT SURNAMES. This parcel's sources carry at least four Taylors - Anson H., Charles H., Augustine D. (a separate household here) and the 'Charles and Mary Taylor' who kept the Wolf Point tavern - plus a Mary Taylor among the First Presbyterian Church's nine founding villagers and an A. W. Taylor on the 1832 militia roll. NO TWO OF THEM ARE MERGED HERE. Merging on a surname is how a documented population quietly becomes a fictional one."
+}

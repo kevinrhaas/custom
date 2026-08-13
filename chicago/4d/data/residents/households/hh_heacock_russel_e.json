@@ -1,0 +1,89 @@
+{
+ "id": "hh_heacock_russel_e",
+ "name": "The Heacock household",
+ "division": "south",
+ "head": "heacock_russel_e",
+ "arrival": {
+  "value": "1827",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Russel E. Heacock, who had come in 1827' - the earliest arrival of any Anglo-American household in this parcel, four years before the town's incorporation and six before the treaty.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested for 1827. What IS attested is the household's size later: a wife and five sons by the spring of 1835."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": "Professional and business interests at the settlement",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas states the relation directly in explaining his vote: he lived beyond the proposed town's southern border 'although having his business and professional interests at the settlement'."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED, AND IT IS THE BEST-DESCRIBED UNBUILT DWELLING IN THE PARCEL. Andreas: 'In the spring of 1835, he built a house on what he supposed was his lot, only to find that he was on Monroe Street, not Adams, whither he proceeded to remove it on rollers. \"This house,\" says his son, \"he occupied, off and on, until his death.\"' A frame or log house light enough to roll, built in the season before the scene date, on Monroe Street, and then moved one block. THAT IS A DATED, POSITIONED, DESCRIBED BUILDING WITH NO RECORD IN data/structures/, and it is the second-strongest structures handoff this parcel has produced after Rufus Brown's boarding house. Whether the move had happened by 1 July 1835 is not stated."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. He practised law, kept a tavern at Heacock's Point on the South Branch some five miles up, farmed there, and worked as a carpenter. None of the four has a record and the tavern is outside the modelled box."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Building a house in the town in the spring of 1835 and advertising as an attorney there on 5 August 1835."
+ },
+ "persons": [
+  {
+   "id": "heacock_russel_e",
+   "name": "Russel E. Heacock",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "attorney",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Russel E. Heacock, who had come in 1827' - the first of the six lawyers Andreas counts, and a justice of the peace for Cook County who administered the oaths at the incorporation meeting of 5 August 1833. Under date of 5 August 1835 - five weeks after the scene date - Andreas finds him 'advertised as attorney, which is perhaps an indication that he did not seek re-election as a Justice'. He was licensed to keep a tavern at Heacock's Point on the South Branch in April 1831 and cultivated land there, and Judge Goodrich records that 'Heacock in those first years, 1827 to 1835, made more money as a carpenter than as a lawyer or justice'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833."
+  },
+  {
+   "id": "heacock_household_unnamed",
+   "name": "Heacock's wife and children, unnamed",
+   "relationship": "household_member",
+   "grade": "derived",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "conjectural"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "COUNTED INDIRECTLY AND NOT NAMED. Andreas: he removed in 1834 'that his children might be nearer school', into a house on the east bank of the South Branch a little south of Randolph Street; in the spring of 1835 he built a house on what he supposed was his lot and 'Here his fifth son and youngest child was born'; and in the cholera of 1849 'he fled with his family to a farm he owned at Summit, where he himself, his wife, and two sons were attacked, and died in quick succession'. So the household on 1 July 1835 contains a wife and at least five sons. THE SOURCE COUNTS THEM AND NAMES NONE, so they are one placeholder entry and not seven invented people. Do not count this entry as a person."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE OLDEST RESIDENCE, THE ONLY VOTE AGAINST THE TOWN, AND THE LARGEST DOCUMENTED HOUSEHOLD IN THE PARCEL - a wife and five sons, the youngest born in the spring of 1835. It is also the record that best shows why the population layer must precede the building layer: this household of seven had a house built in the season before the scene date, at a street address, which the model does not contain. THE PROJECT SHOULD NOT LOSE THE ROLLERS. A documented instance of a Chicago house being moved bodily one block in 1835 is evidence about construction, weight and the town's attitude to its own buildings, and it belongs in the K4 facades work as much as here."
+}

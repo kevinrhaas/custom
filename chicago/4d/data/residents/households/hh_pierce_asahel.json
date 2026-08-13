@@ -1,0 +1,78 @@
+{
+ "id": "hh_pierce_asahel",
+ "name": "The Pierce household",
+ "division": "south",
+ "head": "pierce_asahel",
+ "arrival": {
+  "value": "1833-10-08",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The day, from the structure record's reading of Andreas.",
+  "precision": "day"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": "Vermont",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Arriving from Vermont on 8 October 1833', per data/structures/pierce_blacksmith_shop.json's reading of Andreas."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "pierce_blacksmith_shop",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Named as both the builder and the proprietor of the shop."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "An alderman of the new city from 1837 and continuously in its rosters thereafter; nothing records an absence in 1835."
+ },
+ "persons": [
+  {
+   "id": "pierce_asahel",
+   "name": "Asahel Pierce",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "blacksmith",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Builder and proprietor of the blacksmith shop this dataset models on the south side; data/structures/pierce_blacksmith_shop.json carries him as its occupant on Andreas's authority."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "ONE OF TWO BLACKSMITHS THIS DATASET CAN NAME AND PLACE, the other being David McKee at the agency. A third, Matthias Mason & Co., is documented by advertisement with no building, and Lemuel Brown is documented by roster with neither. FOUR NAMED SMITHS FOR A TOWN OF 3,265 IS PROBABLY CLOSE TO RIGHT for the documented layer and certainly short for the real one; the inferred phase should treat that ratio as its starting point rather than inventing from scratch."
+}

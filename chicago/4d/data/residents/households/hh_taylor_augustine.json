@@ -1,0 +1,75 @@
+{
+ "id": "hh_taylor_augustine",
+ "name": "The Augustine Taylor household",
+ "division": "south",
+ "head": "taylor_augustine",
+ "arrival": {
+  "value": "1833-06-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Arrived June, 1833' - month precision.",
+  "precision": "month"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "st_marys_church",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He built it, which is a builder's relation to a building rather than a workplace, and the church was finished long before the scene date. Linked one grade down because it is the only structure in this dataset his name is attached to; a carpenter in July 1835 was working on something else entirely and nothing says what."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Still living in Chicago' in 1883 on Andreas's own note; continuous in the record."
+ },
+ "persons": [
+  {
+   "id": "taylor_augustine",
+   "name": "Augustine Deodat Taylor",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "carpenter",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Augustin Taylor, builder, still living in Chicago, arrived June, 1833' - and Andreas's account of St Mary's calls him the architect and builder of the church: 'Augustine D. Taylor was the architect' of the twenty-five by thirty-five foot building whose lumber came by scow from St Joseph at $12 per thousand."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A CARPENTER IN THE YEAR THE TOWN NEEDED CARPENTERS MOST, and one of two Taylor brothers in this parcel - Anson H. Taylor hauled the lumber for the same church with his own team and has his own household. THE OCCUPATION FIELD UNDERSTATES HIM: Andreas calls him a builder and an architect and this project's vocabulary records the trade he worked in. A dedicated 'builder' value exists in the vocabulary and is used for men described only that way; carpenter is chosen here because it is what he was."
+}

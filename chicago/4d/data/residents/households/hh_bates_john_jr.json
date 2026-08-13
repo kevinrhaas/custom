@@ -1,0 +1,75 @@
+{
+ "id": "hh_bates_john_jr",
+ "name": "The Bates household",
+ "division": "south",
+ "head": "bates_john_jr",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1832' - year precision, stated twice.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": "bates_auction_room",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The auction room he built on the west side of Dearborn near Water and afterwards occupied in his business. data/structures/bates_auction_room.json carries him as 'auctioneer and deputy postmaster'."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The government land sales he housed ran from 28 May to 30 September 1835, straddling the scene date."
+ },
+ "persons": [
+  {
+   "id": "bates_john_jr",
+   "name": "John Bates Jr.",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "auctioneer",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'John Bates, Jr., still living in Chicago, auctioneer, who came in 1832'. He cried the sale of the school section in October 1833 under R. J. Hamilton as commissioner - all but four of one hundred and forty-four blocks sold, $38,865 in the aggregate - and the public land sales of 1835 were held by auction 'in a building on the west side of Dearborn Street, near Water Street. The building was erected by John Bates, and afterwards occupied by him in his business as an auctioneer.' He was also deputy postmaster."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "A DOCUMENTED WITNESS AS WELL AS A DOCUMENTED RESIDENT: Andreas prints an interview with him of 15 October 1883 describing the town of 1833 street by street, which this project uses elsewhere for the South Water Street row, the slough at the foot of State Street and the four-log footbridge. He is one of the twenty-eight electors of 10 August 1833. Andreas's 1835 town officers list has 'J. Bates and J. Haight, Measurers of Wood and Lumber' - an office he holds ON the scene date if the July election preceded it. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE MAN WHOSE ROOM THE LAND BOOM PASSED THROUGH. Between 28 May and 30 September 1835 the Chicago land office sold $459,953 75c of land, and the auctions were held in his building; the American reckoned in October 1835 that he had personally sold $1,800,000 of property, real and personal, in ten months. That is the economic engine behind the population this programme is trying to reconstruct, and it is documented in the scene year."
+}

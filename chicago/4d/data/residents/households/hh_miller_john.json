@@ -1,0 +1,97 @@
+{
+ "id": "hh_miller_john",
+ "name": "The Miller and Hall tannery household",
+ "division": "north",
+ "head": "miller_john",
+ "arrival": {
+  "value": "1831",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Miller's year; Hall's is 1832 and is stated separately in the same roster. The household takes the earlier because that is when the enterprise's first member was here.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": "To follow a brother already keeping a tavern at the forks",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The relationship is documented - 'John Miller, brother of Samuel, the landlord' - and the motive is this record's reading of a man arriving where his brother already was. Chain migration is the commonest reason anyone moved anywhere in this decade and it is almost never written down."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED FOR EITHER MAN. data/structures/miller_house.json is Samuel's house, not John's, and its own record leaves its occupants blank."
+ },
+ "works_at": {
+  "value": "miller_tannery",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'A tannery just north of Miller's tavern' - the direction is the find that placed this dataset's record, and both men are named in it."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Trading in 1833 on Bates's own recollection; nothing follows the firm to 1835 and nothing suggests it stopped."
+ },
+ "persons": [
+  {
+   "id": "miller_john",
+   "name": "John Miller",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "tanner",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern.' John Bates, interviewed in 1883: 'Hall & Miller had, in 1833, a large tannery on Wolf Point.'"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 20 of 28 votes, and Andreas notes that he 'being a candidate himself, refrained from voting' - so he is one of only two men in this parcel whose conduct at the poll is recorded. His brother Samuel Miller kept the tavern on the north bank at the forks and is not written as a household here, because Andreas's 1833 roster names him only in passing as 'Samuel, the landlord' and this project's miller_house record has the house 'past its innkeeping days' by the scene date. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
+  },
+  {
+   "id": "hall_benjamin",
+   "name": "Benjamin Hall",
+   "relationship": "partner",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "tanner",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Benjamin Hall, tanner, a partner of John Miller, who came in 1832.' Bates's 1883 interview names the firm 'Hall & Miller'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "A DOCUMENTED PARTNER IN THE SETTLEMENT'S FIRST MANUFACTORY. Andreas: 'The only manufactory established at that early day was the rude shed called a tannery, near the Miller tavern, where John Miller and Benjamin Hall were tanning a few hides into a rough but endurable leather.' He signed the 1832 militia agreement."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE SETTLEMENT'S FIRST FACTORY AND ITS TWO NAMED WORKMEN, in a household assembled from three passages - the roster, Bates's 1883 interview and Andreas's own summary of the settlement's industry. A TANNERY IS A POPULATION FACT AS WELL AS A BUILDING: it takes hides from the butchers (Archibald Clybourne has his own household here) and it supplies the saddlers at Lake and Canal (Goss & Cobb, also here), so three of this parcel's households are one supply chain. That is the sort of structure the inferred phase should be looking for when it decides which trades the town must have had."
+}

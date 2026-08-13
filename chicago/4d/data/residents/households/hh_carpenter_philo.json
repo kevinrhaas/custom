@@ -1,0 +1,77 @@
+{
+ "id": "hh_carpenter_philo",
+ "name": "The Carpenter household",
+ "division": "south",
+ "head": "carpenter_philo",
+ "arrival": {
+  "value": "1832-07-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Arrived here in July, 1832' - month precision, stated twice by Andreas in two chapters.",
+  "precision": "month"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested. A druggist arriving in July 1832 arrived four months after the Black Hawk War and a month after the cholera; nothing says whether either brought him."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": "carpenter_south_water_store",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "THE TWO-SHOP PROBLEM, INHERITED FROM THE STRUCTURES LAYER. This dataset holds both philo_carpenter_log_shop on Lake Street near the river and carpenter_south_water_store, and Andreas says he removed FROM the first TO the second. The South Water store is the later of the two and is where the sources leave him, so it is the link; the log shop's own record already argues that its survival to the scene date is doubtful. Inferred, because 'subsequently' is not a date."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas repeatedly notes him as 'still living in Chicago' in 1883; he is continuous in the record from 1832."
+ },
+ "persons": [
+  {
+   "id": "carpenter_philo",
+   "name": "Philo Carpenter",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "druggist",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "'The earliest pharmaceutist of Chicago was Philo Carpenter, who arrived here in July, 1832, shortly thereafter opening a variety and drug store on what is now known as Lake Street, near the eastern bank of the river; and subsequently removing to South Water Street' (Andreas, scan p. 955). He advertised drugs, medicines, oils, paints and dye-stuffs in the Chicago Democrat of 26 November 1833, over copy dated 22 November."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, which almost nobody in this parcel is. He was one of the twenty-eight electors of 10 August 1833 and got one vote for trustee; he was one of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and one of its three first elders, and Andreas notes he was the only Presbyterian among them, the rest being Congregationalists. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "CHICAGO'S FIRST DRUGGIST, AND THE HOUSEHOLD THAT SHOWS WHY A RESIDENT CAN OUTLAST A BUILDING LINK. Carpenter is documented from July 1832 to the 1880s; which of his two shops he was standing in on 1 July 1835 is a structures question this project has already argued and not settled."
+}

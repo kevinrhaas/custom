@@ -1,0 +1,73 @@
+{
+ "id": "hh_church_thomas",
+ "name": "The Church household",
+ "division": "south",
+ "head": "church_thomas",
+ "arrival": {
+  "value": "1834",
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "thomas_church_store",
+  "confidence": "inferred",
+  "sources": [
+   "chicagology_prefire275"
+  ],
+  "note": "The building he built. Whether he traded in it is the reconstruction; data/structures/thomas_church_store.json makes the same move and grades it inferred."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "chicagology_prefire275"
+  ],
+  "note": "Nothing places him in the town on any particular date."
+ },
+ "persons": [
+  {
+   "id": "church_thomas",
+   "name": "Thomas Church",
+   "relationship": "head",
+   "grade": "derived",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "inferred",
+    "sources": [
+     "chicagology_prefire275"
+    ],
+    "note": "NAMED AS THE BUILDER AND NOT AS THE OCCUPANT, which is all the source says: 'The first store building on Lake Street, a two-story frame structure, was built by Thomas Church.' A man who builds a store is usually a merchant and this record reads it that way one grade down."
+   },
+   "sources": [
+    "chicagology_prefire275",
+    "andreas_1884_v1"
+   ],
+   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A HOUSEHOLD WRITTEN ALMOST ENTIRELY TO KEEP A BUILDING FROM BEING ANONYMOUS, and graded so that a reader can see it. Every field but the name is derived or conjectural. It is kept because an empty building on Lake Street tells a visitor less than a named man with three warnings attached."
+}

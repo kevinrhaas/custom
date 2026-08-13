@@ -416,8 +416,18 @@ export function createPopup(root, { docBase = '../../' } = {}) {
       const placeholderAsset = record.assetIsPlaceholder
         ? '<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>'
         : '';
-      const reconstruction = s.reconstruction?.status === 'recommended_anonymous'
-        ? `<span class="pop-flag"><strong>Recommended reconstruction — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
+      // `inferred_anonymous`, not `recommended_anonymous`. The dataset's word for
+      // these roofs changed with the merge of 2026-08-13 ("recommended" becomes
+      // "inferred", which is the vocabulary docs/PROVENANCE.md already uses) —
+      // both generators, all 108 records and the GLB filenames moved, and this
+      // line did not. The test on a value nothing carries is always false, so
+      // every one of the 108 anonymous roofs was rendering with NO reconstruction
+      // flag at all: the card stopped saying the building was not a recovered
+      // one. That is the third time a card has silently lost a flag by reading a
+      // key the data does not write (STATUS § 28, and the placeholder line
+      // directly above). The release gate caught it; nothing else would have.
+      const reconstruction = s.reconstruction?.status === 'inferred_anonymous'
+        ? `<span class="pop-flag"><strong>Inferred reconstruction — anonymous ${escapeHtml(s.reconstruction.family)} roof.</strong>
              Its family and district come from the modern production specification;
              this is not a documented named building or recovered parcel.</span>`
         : '';

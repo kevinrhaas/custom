@@ -1,0 +1,72 @@
+{
+ "id": "hh_caton_john_dean",
+ "name": "The Caton household",
+ "division": "south",
+ "head": "caton_john_dean",
+ "arrival": {
+  "value": "1833-06-19",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The day, stated plainly.",
+  "precision": "day"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED, AND THE NEAR MISS IS INSTRUCTIVE. His office from December 1833 was the back room and attic of Dr Temple's building on LAKE STREET, which is a different building from the Temple Building at Franklin and South Water that this dataset models. Linking the two would be wrong by a block and by a use, and the Lake Street building has no record. It is also his lodging - he slept in the attic - so a single missing structure would close both fields at once."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the Chicago record from 1833; corporation counsel in 1833 and an alderman from 1837."
+ },
+ "persons": [
+  {
+   "id": "caton_john_dean",
+   "name": "John Dean Caton",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "attorney",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "One of the six lawyers Andreas counts in the town at the close of 1833, and its corporation counsel: 'On December 4, George W. Snow became Assessor and Surveyor, and John Dean Caton, Corporation Counsel.'"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ARRIVED 19 JUNE 1833 - A DAY-PRECISE ARRIVAL, which only four households in this parcel have. Andreas: 'The first lawyer in Chicago to make a living by his profession alone was Giles Spring; and separated from him by a few days was John Dean Caton, who arrived June 19, 1833.' Early in July the two of them kept office 'as was facetiously said, \"On the head of a barrel at the corner of Lake and Wells\"', and in December 1833 Caton rented from Dr Temple 'the back room and attic of his \"building\" on Lake Street, converting the attic into a bedroom, and extending to Spring the courtesy of desk-room in the room below, which thus became the first law-office in Chicago'. In August 1833 he defended six or seven free coloured men before the Court of County Commissioners and obtained certificates of freedom for them, his fee a dollar from each."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE FIRST LAW OFFICE IN CHICAGO WAS AN ATTIC A MAN SLEPT IN, and that is the most useful thing this household contributes: a documented example of the live-above-the-shop pattern that the inferred phase will have to assume for most of the town's tradesmen. SIX LAWYERS ARE DOCUMENTED IN THE 1833 TOWN and this parcel writes five as households - Heacock, Hamilton, Caton, Spring, Fullerton and Casey being the six; all are written. Not one of their offices is a structure record."
+}

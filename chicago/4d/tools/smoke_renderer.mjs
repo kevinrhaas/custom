@@ -630,7 +630,11 @@ for (const [label, viewport, touch] of [
         recommended: window.__chicago4d.registry.get('recon_1835_south_d3_001')
           ?.assetIsPlaceholder,
         placeholderFlag: recommendedFlags.some((t) => /placeholder massing/i.test(t)),
-        reconstructionFlag: recommendedFlags.some((t) => /recommended reconstruction/i.test(t)),
+        // The dataset's word for these roofs is `inferred_anonymous` since the
+        // merge of 2026-08-13; the card was still testing for `recommended` and
+        // so rendered no flag at all. Same assertion, current vocabulary — the
+        // flag must still be on the card, which is what this has always asked.
+        reconstructionFlag: recommendedFlags.some((t) => /inferred reconstruction/i.test(t)),
       };
     });
     check(`${label}: established assets remain identified as real bakes`,
@@ -981,6 +985,18 @@ for (const [label, viewport, touch] of [
       }
       const treeStations = a.trees.group.userData.stations ?? [];
       const wetTreeStations = treeStations.filter(({ e, n }) => a.terrain.isWater(e, n));
+      // ...and the stronger question the river mask does not answer. `isWater`
+      // asks whether the heightfield is below SHORE_Y, 100 mm UNDER the water
+      // plane, so a stem rooted in that band passes the mask and still renders
+      // standing in the river. Every station carries the ground height the
+      // renderer built it at; the water surface comes from the epoch record.
+      const drownedTreeStations = treeStations.filter(({ e, n, y }) => (
+        (typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)) < waterY
+      ));
+      const lowestTreeStation = treeStations.reduce(
+        (lo, { e, n, y }) => Math.min(lo, typeof y === 'number' ? y : a.terrain.surfaceHeight(e, n)),
+        Infinity,
+      );
 
       let anchoredBuildings = 0;
       let worstBuildingAnchor = 0;
@@ -1029,6 +1045,9 @@ for (const [label, viewport, touch] of [
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
         canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
         treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
+        drownedTreeStations: drownedTreeStations.length,
+        lowestTreeStation, waterY,
+        treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
         anchoredBuildings, worstBuildingAnchor, exchangeAnchor, worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
         keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
@@ -1052,6 +1071,16 @@ for (const [label, viewport, touch] of [
     check(`${label}: woody vegetation never occupies the river mask`,
       streetLayer.treeStations > 10 && streetLayer.wetTreeStations === 0,
       `${streetLayer.treeStations} trees, ${streetLayer.wetTreeStations} wet stations`);
+    // The owner photographed a row of gallery trees standing mid-channel while
+    // the mask check above was green: the mask's SHORE_Y sits 100 mm below the
+    // water plane, so a stem could root under the water and still pass. This
+    // asks the question the picture asks — is any stem's foot below the water
+    // surface — and it must never be relaxed into the mask test again.
+    check(`${label}: no tree stands below the waterline`,
+      streetLayer.treeStations > 10 && streetLayer.drownedTreeStations === 0,
+      `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
+      + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
+      + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       && streetLayer.worstBuildingAnchor < 1e-6

@@ -521,56 +521,16 @@
        4637416.18
       ],
       [
-       447668.96,
-       4637418.99
+       447671.07,
+       4637416.859999999
       ],
       [
-       447668.91000000003,
-       4637427.6899999995
+       447668.25,
+       4637420.43
       ],
       [
-       447687.68,
-       4637441.84
-      ],
-      [
-       447691.79000000004,
-       4637454.97
-      ],
-      [
-       447689.64,
-       4637464.35
-      ],
-      [
-       447679.10000000003,
-       4637475.0
-      ],
-      [
-       447651.85000000003,
-       4637478.06
-      ],
-      [
-       447626.71,
-       4637476.819999999
-      ],
-      [
-       447614.2,
-       4637467.859999999
-      ],
-      [
-       447610.75,
-       4637459.819999999
-      ],
-      [
-       447610.81,
-       4637449.68
-      ],
-      [
-       447620.7,
-       4637430.31
-      ],
-      [
-       447611.69,
-       4637419.9799999995
+       447609.60000000003,
+       4637419.22
       ],
       [
        447582.33,
@@ -1043,6 +1003,21 @@
       "h": 1500,
       "sha256": "cd4eb1931692242b644112af3e0b61b202206856213618ceb26fa257867d0f4c"
      },
+     "lettering_closed": {
+      "boxes_px": {
+       "chicago_g": [
+        2188,
+        1710,
+        2328,
+        1800
+       ]
+      },
+      "recovered_px": {
+       "chicago_g": 7606
+      },
+      "why": "Wright letters CHICAGO RIVER in outline display capitals across the main stem, and the interior of an outline capital is unwashed paper. Letters that fall wholly inside the water come out as holes and the island rule fills them. The G of CHICAGO does not: a brown foxing stain joins it to the drawn south bank, so letter, stain and bank traced as one dry region and the run walked round all three \u2014 a 60 m headland into the channel at Clark Street that Wright does not draw, and which put the traced south bank 79.6 m off the recorded South Water building faces at Clark against 18.7 m at Dearborn. Inside the declared box a dry span with channel at both ends of its own row is read as a gap in the DRAWING. The waterline is still Wright's wash, reconnected across his own type; no new line is drawn.",
+      "blast_radius": "The corrected walk is SPLICED into the uncorrected one at the box, so every vertex outside the boxes is the one the uncorrected trace produced, byte for byte. Douglas-Peucker halves a ring by index and is therefore not local: republishing the whole corrected ring instead would have moved vertices a kilometre away and made it impossible to show that only the Clark reach changed."
+     },
      "affine_rms_m": 17.5,
      "map_scale_m_per_px": 0.7115,
      "simplify_tolerance_m": 1.78,
@@ -1257,6 +1232,21 @@
       "w": 1802,
       "h": 1500,
       "sha256": "cd4eb1931692242b644112af3e0b61b202206856213618ceb26fa257867d0f4c"
+     },
+     "lettering_closed": {
+      "boxes_px": {
+       "chicago_g": [
+        2188,
+        1710,
+        2328,
+        1800
+       ]
+      },
+      "recovered_px": {
+       "chicago_g": 7606
+      },
+      "why": "Wright letters CHICAGO RIVER in outline display capitals across the main stem, and the interior of an outline capital is unwashed paper. Letters that fall wholly inside the water come out as holes and the island rule fills them. The G of CHICAGO does not: a brown foxing stain joins it to the drawn south bank, so letter, stain and bank traced as one dry region and the run walked round all three \u2014 a 60 m headland into the channel at Clark Street that Wright does not draw, and which put the traced south bank 79.6 m off the recorded South Water building faces at Clark against 18.7 m at Dearborn. Inside the declared box a dry span with channel at both ends of its own row is read as a gap in the DRAWING. The waterline is still Wright's wash, reconnected across his own type; no new line is drawn.",
+      "blast_radius": "The corrected walk is SPLICED into the uncorrected one at the box, so every vertex outside the boxes is the one the uncorrected trace produced, byte for byte. Douglas-Peucker halves a ring by index and is therefore not local: republishing the whole corrected ring instead would have moved vertices a kilometre away and made it impossible to show that only the Clark reach changed."
      },
      "affine_rms_m": 17.5,
      "map_scale_m_per_px": 0.7115,
@@ -1590,56 +1580,16 @@
       4637416.18
      ],
      [
-      447668.96,
-      4637418.99
+      447671.07,
+      4637416.859999999
      ],
      [
-      447668.91000000003,
-      4637427.6899999995
+      447668.25,
+      4637420.43
      ],
      [
-      447687.68,
-      4637441.84
-     ],
-     [
-      447691.79000000004,
-      4637454.97
-     ],
-     [
-      447689.64,
-      4637464.35
-     ],
-     [
-      447679.10000000003,
-      4637475.0
-     ],
-     [
-      447651.85000000003,
-      4637478.06
-     ],
-     [
-      447626.71,
-      4637476.819999999
-     ],
-     [
-      447614.2,
-      4637467.859999999
-     ],
-     [
-      447610.75,
-      4637459.819999999
-     ],
-     [
-      447610.81,
-      4637449.68
-     ],
-     [
-      447620.7,
-      4637430.31
-     ],
-     [
-      447611.69,
-      4637419.9799999995
+      447609.60000000003,
+      4637419.22
      ],
      [
       447582.33,
@@ -1689,7 +1639,7 @@
     "crest_ft_above_datum": null,
     "confidence": "inferred",
     "note": "Continuous from the forks box eastward: the same waterline the forks trace ends on, picked up again at local E +314. Beyond about N -580 it leaves the traced window; the shore and the old channel continue south of there and are not traced. Crest heights are carried in the terrain spec, not here: they come from narrative feet, not from the map.",
-    "length_m": 2466.3,
+    "length_m": 2331.8,
     "anchor_distance_m": 21.4,
     "sources": [
      "wright_1834"

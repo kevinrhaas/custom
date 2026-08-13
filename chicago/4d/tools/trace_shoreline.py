@@ -181,6 +181,58 @@ def close_lettering(water, np):
     return recovered
 
 
+def _box_run(ring_px, box):
+    """The contiguous runs of ring vertices inside `box`, each as an index list."""
+    x0, y0, x1, y1 = box
+    inside = [x0 - REGION[0] <= px <= x1 - REGION[0]
+              and y0 - REGION[1] <= py <= y1 - REGION[1] for px, py in ring_px]
+    runs, cur = [], []
+    for i, v in enumerate(inside):
+        if v:
+            cur.append(i)
+        elif cur:
+            runs.append(cur)
+            cur = []
+    if cur:
+        runs.append(cur)
+    if len(runs) > 1 and runs[0][0] == 0 and runs[-1][-1] == len(ring_px) - 1:
+        runs = [runs[-1] + runs[0]] + runs[1:-1]     # the run wrapped the seam
+    return runs
+
+
+def splice_lettering(ring_base, ring_fixed):
+    """Carry each lettering box's corrected boundary into the UNCORRECTED ring.
+
+    Why not simply publish the corrected ring. Douglas-Peucker is not a local
+    operation: `simplify_ring` halves the ring by INDEX, so removing a hundred
+    boundary pixels at Clark Street re-splits the whole walk and every vertex
+    downstream lands a pixel or two elsewhere. Harmless in itself — it is the same
+    line, resampled, at a tenth of this trace's own +/-20 m — but it destroys the
+    one thing a correction like this has to be able to show: that NOTHING outside
+    the reach being corrected moved. Measured on the heightfield, that churn moved
+    5,037 cells by up to 0.30 m and floated 49 of them across the waterline, all of
+    them hundreds of metres from the defect.
+
+    So the boxes are the blast radius, by construction. Outside them every vertex
+    is the one the uncorrected trace produced, byte for byte; inside them the
+    corrected walk replaces it. Both rings come from the same segmentation, the
+    masks differ only inside the boxes, and the two agree outside to the
+    simplifier's own tolerance — the splice asserts that rather than assuming it.
+    """
+    ring = list(ring_base)
+    for name, box in sorted(LETTERING.items(), key=lambda kv: -kv[1][0]):
+        base_runs = _box_run(ring, box)
+        fix_runs = _box_run(ring_fixed, box)
+        if len(base_runs) != 1 or len(fix_runs) != 1:
+            die(f"lettering box {name} is crossed by the traced boundary "
+                f"{len(base_runs)}/{len(fix_runs)} times, not once — the box now spans "
+                f"more of the water body than the defect it was drawn around; redraw it "
+                f"against the scan rather than splicing an ambiguous run")
+        b, f = base_runs[0], fix_runs[0]
+        ring[b[0]:b[-1] + 1] = [ring_fixed[i] for i in f]
+    return ring
+
+
 def split_runs(ring_px, margin=3):
     """Split a traced ring into the runs that are real waterline and the runs that
     are only the edge of the traced window. Pixel space, for the same reason the
@@ -261,7 +313,8 @@ def main() -> int:
                 f"moved under it; fix the seed or the parameters, do not widen the "
                 f"tolerance until it sticks")
         keep.add(v)
-    water = np.isin(lab2, sorted(keep))
+    water_uncorrected = np.isin(lab2, sorted(keep))
+    water = water_uncorrected.copy()
 
     # The map's own type, read as type. Before the holes are counted, because a
     # letter that leaks to the bank through a stain is not a hole and would never
@@ -301,7 +354,12 @@ def main() -> int:
         return sum(math.dist(line[i], line[i + 1]) for i in range(len(line) - 1))
 
     # --- the shore ----------------------------------------------------------
-    ring_px = tr.simplify_ring(tr.trace_outer(water, np), PARAMS["simplify_px"])
+    # Two walks of the same segmentation — the mask as it comes off the sheet, and
+    # the mask with the display capitals read as type — spliced so the correction
+    # cannot move a vertex outside its declared box. See `splice_lettering`.
+    ring_px = splice_lettering(
+        tr.simplify_ring(tr.trace_outer(water_uncorrected, np), PARAMS["simplify_px"]),
+        tr.simplify_ring(tr.trace_outer(water, np), PARAMS["simplify_px"]))
     runs_px = split_runs(ring_px)
     named, dropped = {}, []
     for idx in runs_px:
@@ -331,8 +389,7 @@ def main() -> int:
                                       for k, v in named.items()))
     print(f"sand bar ring {len(bar)} vertices, {length_m(bar + [bar[0]]):.0f} m perimeter")
 
-    water_px = tr.simplify_ring(tr.trace_outer(water, np), PARAMS["simplify_px"])
-    water_ring = px_to_local(water_px)
+    water_ring = px_to_local(ring_px)
 
     def closed(ring):
         return [[e + o_e, n + o_n] for e, n in ring] + [[ring[0][0] + o_e, ring[0][1] + o_n]]
@@ -364,6 +421,13 @@ def main() -> int:
                    "declared box a dry span with channel at both ends of its own row is "
                    "read as a gap in the DRAWING. The waterline is still Wright's wash, "
                    "reconnected across his own type; no new line is drawn.",
+            "blast_radius": "The corrected walk is SPLICED into the uncorrected one at the "
+                            "box, so every vertex outside the boxes is the one the "
+                            "uncorrected trace produced, byte for byte. Douglas-Peucker "
+                            "halves a ring by index and is therefore not local: republishing "
+                            "the whole corrected ring instead would have moved vertices a "
+                            "kilometre away and made it impossible to show that only the "
+                            "Clark reach changed.",
         },
         "affine_rms_m": round(rms, 1),
         "map_scale_m_per_px": round(cell_m, 4),

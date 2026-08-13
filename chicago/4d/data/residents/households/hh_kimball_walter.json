@@ -1,0 +1,77 @@
+{
+ "id": "hh_kimball_walter",
+ "name": "The Kimball household",
+ "division": "south",
+ "head": "kimball_walter",
+ "arrival": {
+  "value": "1833-11-26",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Not_later_than precision on the issue date. A 'New Store' implies a recent opening and dates nothing.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "chicago_democrat_office",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "data/structures/chicago_democrat_office.json is recorded as a printing office AND a store on exactly this reading: the paper's imprint and Kimball's advertisement put both at the corner of South Water and Clark in the same issue. Inferred rather than documented because 'on the corner of' names a junction and not a building, and two businesses at one junction need not share one roof."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Documented at the junction in November 1833; a W. Kimball is a town trustee in July 1835 and may or may not be the same man."
+ },
+ "persons": [
+  {
+   "id": "kimball_walter",
+   "name": "W. Kimball",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "dry_goods_merchant",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "His own signed advertisement for a 'New Store' at the corner of South Water and Clark, offering dry goods, crockery, hardware, cutlery, caps and cloth, in the Chicago Democrat of 26 November 1833."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "A SECOND, INDEPENDENTLY ATTESTED OCCUPANT OF THE DEMOCRAT'S OWN JUNCTION in the same issue of the same paper - which is why this project reads the printing office and the new store as sharing a building. Andreas's 1835 town officers list has a 'W. Kimball' among the nine trustees elected at the third town election of July 1835, and if that is this man he holds office on or about the scene date. THE IDENTIFICATION IS NOT MADE HERE: the surname is common in this record, and this project already keeps a separate Kimball (Dr E. S. Kimberly's partner is Pruyne, but a druggist 'Kimball & Porter' occupied the same corner later, and Andreas spells both Kimball and Kimberly loosely). The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE ADVERTISEMENT THAT SHAPED A STRUCTURE RECORD, now written from the population side. This household exists mainly to make the reasoning behind chicago_democrat_office visible as a person rather than as a paragraph: two named businesses, one junction, one building in the model, one inference holding them together."
+}

@@ -1,0 +1,103 @@
+{
+ "id": "hh_harmon_brothers",
+ "name": "The Harmon brothers' household",
+ "division": "south",
+ "head": "harmon_charles_l",
+ "arrival": {
+  "value": "1831",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Their father arrived in May 1830 and Andreas says 'his family following him the succeeding year'. The sons are part of that family on the ordinary reading, which puts them in Chicago in 1831; the source does not name them in that sentence.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested. The doctor's family that followed him in 1831 comprised a wife and up to nine children, four of whom died in infancy, and no source counts who travelled."
+ },
+ "origin": {
+  "value": "Burlington, Vermont",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Their father practised at Burlington from 1806, married there in 1808, was postmaster there from 1816 and left for the West after reverses in 1829. That is the family's home and the sons' presumed origin; it is not stated of them."
+ },
+ "reason_for_coming": {
+  "value": "Following their father west after his business reverses",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'In 1829 the Doctor suffered some pecuniary reverses and resolved to attempt recuperation in the Great West.' The sons' own motive is not recorded."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": "harmon_loomis_store",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "A DISCREPANCY CARRIED RATHER THAN SMOOTHED, and it is already on the building record: Andreas names the concern 'Harmon's and Loomis's' while the 1833 advertisement is headed 'C. & I. HARMON' and names no Loomis. Those are compatible - and note that Loomis is the brothers' own middle name and their mother's maiden name, Welthyan Loomis - but they are not the same statement."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Documented trading in November 1833; nothing follows the firm to 1835. Their father left for Texas in 1834 and they did not."
+ },
+ "persons": [
+  {
+   "id": "harmon_charles_l",
+   "name": "Charles Loomis Harmon",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "dry_goods_merchant",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "The firm 'C. & I. HARMON' advertised dry goods, crockery, hardware and wet and dry groceries in the Chicago Democrat of 26 November 1833, over copy dated the 18th."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "THE INITIALS ARE RESOLVED BY A SENTENCE IN ANOTHER CHAPTER, which is the find that makes this household possible. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' C. and I. are therefore the doctor's two eldest sons, and the firm in the town's first newspaper is a family partnership."
+  },
+  {
+   "id": "harmon_isaac_d",
+   "name": "Isaac Dewey Harmon",
+   "relationship": "brother",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "dry_goods_merchant",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "The other half of C. & I. Harmon."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "A SEPARATE MAN FROM 'ISAAC HARMON, TOWN CLERK', OR PERHAPS NOT, AND THE RECORD WILL NOT DECIDE. Andreas has an Isaac Harmon appointed clerk of the first board of trustees on 12 August 1833 and again as clerk and collector in 1834; he also prints an 1832 militia agreement signed by BOTH 'Isaac Harmon' AND 'Isaac D. Harmon', two lines apart, which is positive evidence that the town contained two men of that name. The town clerk is therefore NOT identified with this merchant and gets no person record here at all - writing him would risk creating a duplicate of a man already in this household."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "TWO BROTHERS IDENTIFIED BY CROSS-READING TWO CHAPTERS OF THE SAME BOOK, which is the kind of result this layer exists to produce: a newspaper masthead of initials becomes two named men with a father, a home town and a reason for being in Illinois. THE THIRD HARMON IS DELIBERATELY ABSENT. An Isaac Harmon was the town's clerk and collector in 1833-34 and is not written here, because Andreas's 1832 militia list carries two distinct Isaac Harmons and this project cannot tell which is which. That is a documented resident consciously left out of the count rather than guessed into it."
+}

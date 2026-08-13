@@ -1,0 +1,72 @@
+{
+ "id": "hh_spring_giles",
+ "name": "The Spring household",
+ "division": "south",
+ "head": "spring_giles",
+ "arrival": {
+  "value": "1833",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Put out their signs in 1833' - year precision, and 'separated from him by a few days' from Caton's 19 June puts him within about a week of it, which is a bound and not a date.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. He had desk-room in Caton's office from December 1833, in Dr Temple's Lake Street building, which has no structure record."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the Chicago legal record; Andreas's index carries him across the 1830s and 1840s."
+ },
+ "persons": [
+  {
+   "id": "spring_giles",
+   "name": "Giles Spring",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "attorney",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'The first lawyer in Chicago to make a living by his profession alone was Giles Spring', one of the six Andreas counts at the close of 1833, having 'put out his sign' that year."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HIS FIRST OFFICE WAS A BARREL-HEAD AND HIS SECOND WAS DESK-ROOM IN CATON'S. The two of them opposed each other in the first larceny case heard before a justice of the peace in July 1833, and Caton's account of hiring out to carry the chain for a surveyor on the North Side that same month - because clients were few, fees small and board bills maturing - is the only description in this dataset of what an educated newcomer actually did for money in the town's first summer."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE FIRST MAN IN CHICAGO TO LIVE BY LAW ALONE, in a town where in that same summer he had to carry a surveyor's chain to pay his board. Both halves are documented and both belong in a population dataset: a trade is not the same thing as an income."
+}

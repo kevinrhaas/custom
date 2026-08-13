@@ -1,0 +1,91 @@
+{
+ "id": "hh_brown_rufus",
+ "name": "The Brown boarding-house household",
+ "division": "south",
+ "head": "brown_rufus",
+ "arrival": {
+  "value": "1833",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He is a church founder in June 1833 and a militia signatory in 1832, so the household is in the town by then; nothing dates its arrival. The 1832 militia list is the earlier evidence and this value is the conservative reading of it.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED, AND IT SHOULD BE. Andreas places the building precisely - 'the first building in the rear of this store', i.e. behind Peck's store at the south-west corner of South Water and LaSalle - and calls it a log house. There is no structure record for it in data/structures/, so lives_at has nothing to point at. THIS IS THE PARCEL'S CLEAREST SINGLE HANDOFF TO THE STRUCTURES LAYER: a documented log boarding house, with a documented keeper and a documented position relative to a building already in the dataset."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Same building, same problem. When it is built, both fields point at it."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Documented in the town in 1832 and 1833. Nothing follows the boarding house to 1835, and boarding houses in a town whose population was quadrupling are exactly the businesses that changed hands."
+ },
+ "persons": [
+  {
+   "id": "brown_rufus",
+   "name": "Rufus Brown",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "boarding_house_keeper",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Andreas names the house as his - 'the log house of Rufus Brown, where Mr. Porter found table board' - and names his wife as the keeper: 'Mrs. Rufus Brown kept one of the first-class boarding houses.' Which of them the trade belongs to is a question the source answers in favour of his wife and the record says so."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "One of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and a signatory of the 1832 militia agreement submitting to Gholson Kercheval as captain 'until all apprehension of danger from the Indians may have subsided'."
+  },
+  {
+   "id": "brown_mrs_rufus",
+   "name": "Mrs Rufus Brown",
+   "relationship": "wife",
+   "grade": "derived",
+   "sex": "female",
+   "occupation": {
+    "value": "boarding_house_keeper",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Mrs. Rufus Brown kept one of the first-class boarding houses' - the trade is attributed to her in terms, in a sentence about how the town housed its transients when 'full meant three in a bed sometimes, with the floor covered besides'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "A WOMAN NAMED ONLY BY HER HUSBAND'S NAME AND DOCUMENTED AS THE PROPRIETOR OF A BUSINESS, which is a combination this literature produces constantly and this schema has to be able to carry. Two women named Brown are among the nine village citizens founding the First Presbyterian Church in June 1833 - 'Mrs. Elizabeth Brown' and 'Mrs. Cynthia Brown' - and one of them may be this woman. The record does not choose: identifying her with either would manufacture a forename out of a surname."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE BUILDING IS DOCUMENTED, POSITIONED AND ABSENT FROM THE MODEL. Andreas gives the fabric (log), the use (first-class boarding house), the keeper (Mrs Rufus Brown) and the position (immediately behind Peck's store at South Water and LaSalle) - which is more than several buildings already standing in this scene have. A structure record for it is the highest-value single piece of work this parcel has generated. WHY BOARDING HOUSES MATTER OUT OF ALL PROPORTION TO THEIR NUMBER: Andreas says the hotels and boarding houses of 1834 'were always full; and full meant three in a bed sometimes, with the floor covered besides', with emigrants living in their covered wagons outside. The gap between 3,265 people and the dwellings this dataset can name is bridged largely by buildings like this one."
+}
