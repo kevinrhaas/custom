@@ -202,12 +202,33 @@ GRADUATE the fort-reach south bank as the evidence supports; record the disagree
 the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
 documented height. Gradient audit re-run; exemption itemised like the others.
 
-### K9 — Navigation and settings UI
+### K9 — Navigation and settings UI · **DONE 2026-08-13**
 (a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now
 (inferred locations join later once K1 lands); it replaces the overlapping Viewpoints list and
 sits as its own tab after Controls. (b) The panel opener becomes a **hamburger menu** (it is
 more than settings); reassess the "?" icon. Mobile 390×780 gate; smoke tests updated with the
 UI, never weakened.
+
+**Shipped**: one list — 8 authored viewpoints, 4 verified junctions and all 222 loaded
+structures — in a `goto` tab second in the strip, opened by <kbd>G</kbd> (which focuses the
+search on a keyboard and deliberately does not on a phone, where it would raise the on-screen
+keyboard over the list). The Settings copies are gone: the viewpoint chips and the duplicate
+search are both retired to it. `#btn-help` is a hamburger with `aria-label="Menu"`.
+
+**The one departure from the parcel as written, and why.** It does NOT list documented entries
+only. K1 has landed since this was written, and the honest reading of "inferred locations join
+later" is now the second one: **no structure position in this dataset is `documented`** — 54 are
+`inferred` and 168 `conjectural` — so a documented-only menu would have held four junctions and
+nothing else. Every structure instead carries its own `placement.position_confidence` as a chip,
+in the popup's three words and three colours, and the gate compares every chip against the
+record it jumps to. Viewpoints and junctions carry none: neither is a claim about the town.
+
+**What it inherits.** (a) The tally in the tab is counted from the list, so it moves when the
+dataset does — nothing to restate here when a position is regraded. (b) Five tabs fit with about
+20 px of slack at both viewports (desktop panel widened 360 → 380 px, tab padding 9 → 6 px,
+mobile type 12.5 → 11.5 px); a **sixth tab does not fit** and the gate will say so rather than
+shipping a two-row strip. (c) The gate's own desktop half had not been running: see § the smoke
+budget in STATUS.
 
 ### K10 — Bridge approaches
 "How would a wagon cross that?" Every bridge currently floats over its banks

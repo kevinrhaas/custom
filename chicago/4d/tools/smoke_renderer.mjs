@@ -7,6 +7,9 @@
  * Drives the real page in a real browser at 390x780 AND 1280x800 and fails on
  * any page error. Mobile is a release gate, not a nice-to-have.
  *
+ * `SMOKE_VIEWPORT=mobile` (or `desktop`) runs one of the two while iterating.
+ * That is not the gate and the run says so on its first line.
+ *
  * What it asserts, and why each one is here:
  *
  *   scene reaches ready ......... the boot chain actually completed
@@ -22,7 +25,9 @@
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
  *   navigation aids ............. compass, moving overview marker, settings toggles
- *   complete jump search ........ every loaded structure + verified intersection
+ *   complete jump search ........ every viewpoint, verified junction and loaded
+ *                                 structure, in one Go to tab, each structure
+ *                                 graded with its own record's position grade
  *   liberties are readable ...... what we made up is in the panel, not only in the repo
  *   draw calls under budget ..... the batch strategy is doing its job
  *   zero page errors ............ everywhere, both widths
@@ -110,10 +115,18 @@ function signatureDistance(a, b) {
   return { mean: sum / a.cells.length, worst };
 }
 
+// The gate is both viewports and nothing less. SMOKE_VIEWPORT exists because a
+// full pass takes upwards of ten minutes on a software renderer and an agent
+// iterating on one half should not have to spend the other half to see it — it
+// says so out loud when it is used, so a filtered run cannot be mistaken for the
+// gate in a log somebody reads later.
+const ONLY = process.env.SMOKE_VIEWPORT || '';
+if (ONLY) console.log(`NOT THE FULL GATE — viewports filtered to "${ONLY}"\n`);
+
 for (const [label, viewport, touch] of [
   ['mobile 390x780', { width: 390, height: 780 }, true],
   ['desktop 1280x800', { width: 1280, height: 800 }, false],
-]) {
+].filter(([label]) => !ONLY || label.includes(ONLY))) {
   console.log(`${label}:`);
   // Give each release viewport a fresh renderer process. Reusing one process
   // makes a software-only run measure the previous viewport's accumulated GPU
@@ -126,6 +139,19 @@ for (const [label, viewport, touch] of [
     deviceScaleFactor: touch ? 2 : 1,
   });
   const page = await ctx.newPage();
+  // Playwright's default 30 s action timeout is not an assertion, and on this
+  // scene it had quietly become one. A click waits for the element to be stable
+  // across animation frames and then hit-tests it, and every one of those steps
+  // queues behind the render loop — which on a software renderer drawing 533 000
+  // triangles takes 0.5–1.1 s per frame (measured, both viewports). So opening
+  // the menu was timing out on a button that `elementFromPoint` returned as the
+  // topmost element at its own centre, with no pointer lock, the page visible
+  // and focused: nothing was wrong with the page and everything was wrong with
+  // the budget. The desktop half of the gate had stopped running entirely
+  // because of it. Ninety seconds is room for a slow machine, not permission
+  // for a broken control: a click that never lands still fails, three times
+  // slower.
+  page.setDefaultTimeout(90_000);
 
   const errors = [];
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message || e}`));
@@ -1304,24 +1330,141 @@ for (const [label, viewport, touch] of [
       && unitChoice.mile === '1.0 mi' && unitChoice.kilometre === '1.0 km'
       && unitChoice.stored === 'imperial',
       JSON.stringify(unitChoice));
+    // --- the Go to tab ------------------------------------------------------
+    //
+    // Going somewhere is not a setting, and it used to be two settings: a
+    // "Named viewpoints" row of chips with, underneath it, a search containing
+    // the same ground and more of it. Both are now one list in one tab, second
+    // after Controls. These assertions are what would notice the duplicate
+    // coming back, or the tab quietly moving to the end of the strip where
+    // nobody opens it.
+    const tabStrip = await page.evaluate(() => {
+      const bar = document.querySelector('.panel-tabs');
+      const items = [...bar.querySelectorAll('.panel-tab')];
+      return {
+        order: items.map((el) => el.dataset.tab),
+        // A strip that has silently become two rows tall is the failure mode
+        // this panel has already had once, so measure rows rather than trust
+        // white-space: nowrap to hold. The tabs only: the close button is
+        // shorter than they are and `align-items: center` gives it an offsetTop
+        // of its own, which is not a second row.
+        rows: new Set(items.map((el) => Math.round(el.offsetTop))).size,
+        overflow: Math.round(bar.scrollWidth - bar.clientWidth),
+        // The tabs are allowed to shrink, so "one row, no overflow" can also be
+        // reached by squeezing a label out past its own button. Count that too.
+        squeezed: items.filter((el) => el.scrollWidth > el.clientWidth + 1)
+          .map((el) => el.dataset.tab),
+        strayViewpointList: document.querySelectorAll(
+          '[data-panel="settings"] .anchor-btn, #anchors').length,
+      };
+    });
+    check(`${label}: Go to is a tab of its own, immediately after Controls`,
+      tabStrip.order.join(',') === 'controls,goto,settings,evidence,whatsnew',
+      tabStrip.order.join(','));
+    check(`${label}: five tabs still fit the panel on one row, unsqueezed`,
+      tabStrip.rows === 1 && tabStrip.overflow <= 1 && !tabStrip.squeezed.length,
+      `${tabStrip.rows} row(s), ${tabStrip.overflow}px of horizontal overflow, `
+      + `squeezed [${tabStrip.squeezed.join(', ')}]`);
+    check(`${label}: Settings no longer carries a second list of viewpoints`,
+      tabStrip.strayViewpointList === 0, `${tabStrip.strayViewpointList} stray node(s)`);
+
+    // G, from the walk, with the panel shut.
+    await page.click('#panel-close');
+    await page.keyboard.press('g');
+    await page.waitForTimeout(60);
+    const viaKey = await page.evaluate(() => ({
+      open: !document.getElementById('panel').hasAttribute('hidden'),
+      tab: document.querySelector('.panel-tab.is-on')?.dataset.tab,
+      focused: document.activeElement?.id,
+    }));
+    check(`${label}: G opens the Go to tab`,
+      viaKey.open && viaKey.tab === 'goto'
+      // The search takes focus for a visitor who arrived by keyboard, and must
+      // not on a phone: focusing it there raises the on-screen keyboard over
+      // the list the tap was for.
+      && (touch ? viaKey.focused !== 'jump-search' : viaKey.focused === 'jump-search'),
+      JSON.stringify(viaKey));
+
     const jumps = await page.evaluate(() => {
       const input = document.getElementById('jump-search');
+      const registry = window.__chicago4d.registry;
+      const rows = [...document.querySelectorAll('#jump-results .jump-result')];
+      // The chip on a result and the grade on the record it jumps to are the
+      // same claim shown twice. Compare every one of them, the way the popup's
+      // own confidence assertions do — a menu that graded a position more
+      // kindly than the record does would be this project's worst kind of bug.
+      const mismatched = [];
+      let graded = 0;
+      for (const row of rows) {
+        if (row.dataset.jumpKind !== 'structure') continue;
+        const want = registry.get(row.dataset.jumpId)?.sidecar?.placement?.position_confidence
+          || 'conjectural';
+        const chip = row.querySelector('.conf');
+        const shown = chip?.textContent?.trim();
+        if (shown === want && chip.classList.contains(`conf-${want}`)) graded++;
+        else mismatched.push({ id: row.dataset.jumpId, want, shown: shown ?? null });
+      }
+      // And the colour has to carry the distinction, which is exactly what a
+      // bare `.jump-result small` rule took away from it once: it outranks
+      // `.conf-inferred` on specificity and painted all three grades the same
+      // dim grey — a legend that lies, in a project whose whole product is the
+      // grading.
+      const colourOf = (grade) => {
+        const chip = document.querySelector(`.jump-result .conf-${grade}`);
+        return chip ? getComputedStyle(chip).color : null;
+      };
       const all = {
+        anchors: document.querySelectorAll('[data-jump-kind="anchor"]').length,
         structures: document.querySelectorAll('[data-jump-kind="structure"]').length,
         intersections: document.querySelectorAll('[data-jump-kind="intersection"]').length,
-        loaded: window.__chicago4d.registry.size,
+        loaded: registry.size,
+        sceneAnchors: window.__chicago4d.scene?.anchors?.length ?? 0,
+        chippedNonStructures: rows.filter((r) => r.dataset.jumpKind !== 'structure'
+          && r.querySelector('.conf')).length,
+      };
+      const note = document.getElementById('jump-note')?.textContent ?? '';
+      const tally = { documented: 0, inferred: 0, conjectural: 0 };
+      for (const [, record] of registry) {
+        const grade = record?.sidecar?.placement?.position_confidence || 'conjectural';
+        if (grade in tally) tally[grade]++;
+      }
+      const colours = {
+        inferred: colourOf('inferred'),
+        conjectural: colourOf('conjectural'),
+        plain: getComputedStyle(document.querySelector('.jump-result span')).color,
       };
       input.value = 'Randolph Canal';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       const filtered = [...document.querySelectorAll('#jump-results .jump-result')]
         .map((b) => ({ id: b.dataset.jumpId, kind: b.dataset.jumpKind, text: b.textContent }));
-      return { all, filtered };
+      return { all, filtered, graded, mismatched, note, tally, colours };
     });
     check(`${label}: jump menu includes every loaded structure`,
       jumps.all.structures === jumps.all.loaded && jumps.all.loaded > 70,
       `${jumps.all.structures} listed of ${jumps.all.loaded} loaded`);
     check(`${label}: jump menu includes every verified intersection`,
       jumps.all.intersections === 4, `${jumps.all.intersections} listed`);
+    check(`${label}: jump menu includes every viewpoint the scene names`,
+      jumps.all.anchors === jumps.all.sceneAnchors && jumps.all.anchors > 3,
+      `${jumps.all.anchors} listed of ${jumps.all.sceneAnchors} in the scene`);
+    check(`${label}: every structure result carries its record's position grade`,
+      jumps.graded === jumps.all.structures && !jumps.mismatched.length,
+      `${jumps.graded} graded of ${jumps.all.structures}, `
+      + `mismatched ${JSON.stringify(jumps.mismatched.slice(0, 3))}`);
+    check(`${label}: a viewpoint and a survey junction are not graded like a building`,
+      jumps.all.chippedNonStructures === 0,
+      `${jumps.all.chippedNonStructures} non-structure result(s) carry a confidence chip`);
+    check(`${label}: the grades are told apart by colour, not only by their words`,
+      jumps.colours.inferred && jumps.colours.conjectural
+      && jumps.colours.inferred !== jumps.colours.conjectural
+      && jumps.colours.inferred !== jumps.colours.plain,
+      JSON.stringify(jumps.colours));
+    check(`${label}: the tab counts its own list rather than quoting a written total`,
+      jumps.note.includes(`${jumps.all.structures} structures`)
+      && jumps.note.includes(`${jumps.tally.documented} are `)
+      && jumps.note.includes(`${jumps.tally.inferred} inferred`)
+      && jumps.note.includes(`${jumps.tally.conjectural} conjectural`),
+      `${jumps.note} / ${JSON.stringify(jumps.tally)}`);
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
       JSON.stringify(jumps.filtered));
