@@ -3,17 +3,25 @@
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-11 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
+**Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
-street layer), S10-partial (665-roof ledger + first 48 anonymous roofs) and R1 (renderer)
-complete.
+street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
+complete. **K1 (inferred residents) complete through phase two.**
 
-**Current expansion:** the 1835 scene now resolves **184 structure records**. The 76 pre-existing
-records are preserved; 48 South Division and 60 North Division records are explicitly tagged
-`recommended_anonymous` and display as flagged review massings. They begin—rather than complete—
-the owner specification's 665-roof target. Exact anonymous presence, footprint and lot position
-remain conjectural. The 76 earlier records now have an explicit physical-roof reconciliation;
-the remaining North expansion is still gated behind unified terrain and hydrology coverage.
+**Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
+188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
+`inferred_anonymous` and display as flagged review massings; **83 of those now have an argued
+occupant** rather than being anonymous count-units, and 162 structures name a household on the
+building card. They begin—rather than complete—the owner specification's 665-roof target. Exact
+anonymous presence, footprint and lot position remain conjectural, and the adoption changes none
+of that: what it adds is a reason for the roof, not evidence for it. **No inferred person has a
+name, and none should**; no figure is drawn (L1). The remaining North expansion is still gated
+behind unified terrain and hydrology coverage.
+
+**The weakest joint in the population layer, stated plainly:** no period trade table for a
+comparable western town exists in `data/sources/`. Every occupation ratio is therefore derived
+from five in-dataset calibrations rather than cited, and the arithmetic is written out per trade
+in `docs/RESEARCH/residents_1835_inferred.md`. That is a real gap, not a rounding error.
 
 **Water vegetation correction:** emergent plants now use true distance to shoreline and are
 limited to the shallow eight-metre marsh edge. Non-emergent flora and every woody placement are
@@ -138,6 +146,34 @@ committed traces via `tools/rederive_datum.py`, which `check.sh` enforces.
 Structure positions still carry `symbolic_location` with null coordinates — they get filled as
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
+
+## Fixed 2026-08-13 — the nightly bake had been red for days, and nobody could see it
+
+**The placeholder gate forbade the upgrade the bake exists to perform.** `generators/build.py`
+writes `assets/gltf/<id>__<phase>.glb` for any record whose archetype has a generator, and every
+`recon_*` record has one — so the canonical Blender bake lands on exactly the filename
+`generators/inferred_placeholder.py` claims, and the gate then rejected the real bake for not
+being the pure-Python placeholder it was built to replace. A second conflict rode along:
+`tools/bake.sh` runs gltf-transform over `assets/web/`, so demanding byte-equality with the
+master asserted that compression never happens. **What made it invisible is the shape worth
+remembering** — the gate passed on every developer machine and failed on every CI runner, because
+the difference was whether `npx` could reach the network. A green local gate was reporting on a
+pipeline it was not running. The gate now compares only the master against the record, requires
+the derivative merely to exist, and stands aside for any asset whose manifest entry says
+`kind: generated`, leaving that to the ordinary staleness check.
+
+**`tools/publish.sh` was an accumulator, not a mirror.** It copied files in and never took any
+out, so a retired asset shipped forever: 108 `__recommended_1835.glb` placeholders, orphaned when
+the programme was renamed, were still being served to visitors long after nothing referenced
+them. Deleting a file from the source tree was not a thing the published site could express.
+Fixed by clearing the published `data/gltf` before copying; payload 19.16 → 18.55 MB at the time.
+
+**Known flaky gate, deliberately not silenced.** `mobile 390x780: turning it off restores the
+render` compares a frame captured before the confidence toggle with one captured after, while the
+flora is still swaying. Observed failing twice at worst-cell delta 11 against a bound of 8 and
+passing on the third run with no code change. The bound has NOT been widened — a release gate
+loosened until it stops complaining is not a gate. The fix is to freeze the flora clock during
+capture, and it is owed.
 
 ## Fixed 2026-08-13 — two defects the owner photographed, and what they taught
 

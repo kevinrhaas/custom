@@ -48,6 +48,27 @@ baked, confidence-graded — this is how the town reaches its true 1835 density.
 DOCUMENTED people (mayors-to-be, Ogden, Hubbard, the clergy, every advertiser already in
 `chicago_democrat_1833_11_26`), then derive, then infer to fill the count by occupation census.
 
+**Phase one DONE 2026-08-13** — the documented and derived layer: 72 households, 96 persons,
+`tools/validate.py check_residents()`, and the rename that retired "recommended" from the
+vocabulary and from the code. **Phase two DONE 2026-08-13** — 80 inferred households and 92
+person entries (152 / 188 in all: 76 documented, 20 derived, 92 inferred), **38 new structures**
+(7 documented buildings the sources describe and the model lacked, 31 inferred workplaces and
+dwellings), and **83 of the 108 anonymous roofs adopted** into argued occupancy. 222 structures;
+162 name a household on the card. `docs/LIBERTIES.md` L84 admits the lot; the recipe and its
+re-runnable gates are `data/reconstruction/1835_inferred_household_programme.json` +
+`tools/generate_inferred_households.py --check`; reasoning in
+`docs/RESEARCH/residents_1835_inferred.md`.
+
+**What phase three inherits.** (a) No inferred person is named and none should be — an inferred
+resident is a claim about a ratio. (b) **No period trade table for a comparable western town is
+in `data/sources/`**; every ratio is derived from five in-dataset calibrations and the arithmetic
+is written out per trade. Finding a real trade table is the single highest-value research errand
+left in this programme, because it would move the occupation census off derived arithmetic.
+(c) 25 anonymous roofs are deliberately unadopted (privies, sheds, stables, the schoolhouse).
+(d) The 55 reserved West-Division slots and 84 South phase-2 slots are untouched and the
+placement gate now actively avoids them. (e) Two households arrive at `year` precision straddling
+1835-07-01 (`hh_davis_john`, `hh_haddock_edward`) and are still warnings.
+
 ### K2 — Image-accuracy loops on the landmark buildings
 Reference set: `data/sources/assets/prefire_views_kevin_2026_08/` (12 plates; READ ITS README —
 the Doric-portico courthouse plate is the 1837+ building and is a NEGATIVE reference). Also
