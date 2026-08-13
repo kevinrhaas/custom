@@ -88,7 +88,7 @@ function collectMeshes(structureNode) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
-function normalizeGeometry(src, matrix, confidence, facade, weathering, label) {
+function normalizeGeometry(src, matrix, confidence, facade, weathering, sidecar, label) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
@@ -111,12 +111,16 @@ function normalizeGeometry(src, matrix, confidence, facade, weathering, label) {
   if (!src.getAttribute('normal')) geo.computeVertexNormals();
 
   const warning = confidence.ensureAttribute(geo, label);
+  // Then compose the part's grade with the record's own existence grade, before
+  // the geometry reaches a batch and stops being addressable. confidence.js says
+  // why a derived roof on an invented building is not a derived roof.
+  const floored = confidence.floorToExistence(geo, sidecar, label);
   // The facade channel is written here rather than in the batch loop for the
   // reason the attribute list above exists: the FIRST geometry a BatchedMesh
   // receives fixes that batch's attributes for good, so every geometry has to
   // carry every channel before any of them is added.
   if (facade) facade.applyTo(geo, weathering);
-  return { geo, warning };
+  return { geo, warning, floored, census: confidence.census(geo) };
 }
 
 /** Two materials that render identically should not cost two draw calls. */
@@ -145,6 +149,12 @@ export function createBuildings({ registry, confidence, terrain, facade = null }
 
   // material key -> { material, entries: [{ record, geo }] }
   const groups = new Map();
+  // structure id -> what the confidence view actually paints on it, counted in
+  // vertices, plus the existence grade every one of them was floored to. The
+  // geometries are disposed into the batches below, so this is the only place
+  // the painted picture can be taken; a gate that asked afterwards would be
+  // asking a buffer that no longer exists.
+  const confidenceCensus = new Map();
   let totalTris = 0;
 
   for (const record of registry.values()) {
@@ -176,12 +186,25 @@ export function createBuildings({ registry, confidence, terrain, facade = null }
       const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       let prepared;
       try {
-        prepared = normalizeGeometry(mesh.geometry, matrix, confidence, facade, weathering, label);
+        prepared = normalizeGeometry(mesh.geometry, matrix, confidence, facade,
+          weathering, record.sidecar, label);
       } catch (err) {
         problems.push(`${label}: ${err.message}`);
         continue;
       }
       if (prepared.warning) problems.push(prepared.warning);
+      if (prepared.floored.warning) problems.push(prepared.floored.warning);
+
+      let tally = confidenceCensus.get(record.id);
+      if (!tally) {
+        tally = { existence: prepared.floored.level, raised: 0,
+                  documented: 0, derived: 0, inferred: 0 };
+        confidenceCensus.set(record.id, tally);
+      }
+      tally.raised += prepared.floored.raised;
+      for (const level of ['documented', 'derived', 'inferred']) {
+        tally[level] += prepared.census[level];
+      }
 
       const key = materialKey(material);
       let bucket = groups.get(key);
@@ -268,6 +291,7 @@ export function createBuildings({ registry, confidence, terrain, facade = null }
     group,
     batches,
     problems,
+    confidenceCensus,
     triangles: totalTris,
     /** Draw calls these buildings cost in the colour pass. */
     get drawCalls() { return batches.length; },

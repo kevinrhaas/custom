@@ -327,6 +327,81 @@ for (const [label, viewport, touch] of [
       dBack.mean <= 0.1 && dBack.worst <= 3,
       `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
 
+    // --- no part outranks the building it is part of (ROADMAP K17.1) -------
+    // The owner: an entirely invented building still reads as half-solid. It
+    // was not a missing attribute and not a missing patch — every primitive in
+    // all 244 masters carries `_CONFIDENCE` and every material is patched. It
+    // was that `_CONFIDENCE` grades the ATTRIBUTE a vertex came from, existence
+    // is not a driver of any part, and a gable really is derived reasoning even
+    // on a cooperage no source attests. So the roof was painted derived on a
+    // building that is invented.
+    //
+    // The census is taken during the build, because the geometries are disposed
+    // into the BatchedMesh and the channel stops being addressable afterwards.
+    // It counts what the view PAINTS, keyed by structure, against the existence
+    // grade re-read from the authored sidecar rather than from the renderer's
+    // own copy of it.
+    const painted = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      const rank = { documented: 0, derived: 1, inferred: 2 };
+      const index = await (await fetch(`${a.dataBase}sidecars/1835/index.json`)).json();
+      const authored = new Map();
+      await Promise.all(index.structures.map(async (s) => {
+        const car = await (await fetch(`${a.dataBase}${s.sidecar}`)).json();
+        authored.set(car.id, car.documented_range?.confidence ?? null);
+      }));
+      const out = { total: 0, ungraded: 0, overstated: [], raised: 0, raisedOn: 0,
+                    wholly: 0, invented: 0, keepsDocumented: 0, keepsDerived: 0,
+                    levels: { documented: 0, derived: 0, inferred: 0 } };
+      for (const [id, tally] of a.buildings.confidenceCensus) {
+        out.total += 1;
+        out.raised += tally.raised;
+        if (tally.raised) out.raisedOn += 1;
+        for (const k of ['documented', 'derived', 'inferred']) out.levels[k] += tally[k];
+        const grade = authored.get(id);
+        if (!grade) { out.ungraded += 1; continue; }
+        // Anything painted MORE certain than the building's own existence.
+        const over = ['documented', 'derived', 'inferred']
+          .filter((k) => rank[k] < rank[grade])
+          .reduce((n, k) => n + tally[k], 0);
+        if (over > 0) out.overstated.push({ id, grade, over });
+        if (grade === 'inferred') {
+          out.invented += 1;
+          if (tally.documented === 0 && tally.derived === 0) out.wholly += 1;
+        }
+        if (grade === 'documented' && tally.documented > 0) out.keepsDocumented += 1;
+        if (rank[grade] <= 1 && tally.derived > 0) out.keepsDerived += 1;
+      }
+      out.overstated.sort((x, y) => y.over - x.over);
+      return out;
+    });
+
+    check(`${label}: every structure carries an existence grade`,
+      painted.total > 200 && painted.ungraded === 0,
+      `${painted.ungraded} of ${painted.total} structures state no `
+      + 'documented_range.confidence');
+    check(`${label}: no geometry is painted more certain than its own building`,
+      painted.overstated.length === 0,
+      painted.overstated.length
+        ? `${painted.overstated.length} structure(s), worst `
+          + painted.overstated.slice(0, 3).map(
+            (o) => `${o.id} (${o.grade}, ${o.over} vertices)`).join(', ')
+        : `${painted.total} structures clean, ${painted.raised} vertices raised `
+          + `on ${painted.raisedOn} of them`);
+    check(`${label}: an invented building dithers all the way to its ridge`,
+      painted.invented > 100 && painted.wholly === painted.invented,
+      `${painted.wholly} of ${painted.invented} existence-inferred structures `
+      + 'carry nothing but inferred geometry');
+    // The floor is a floor, not a flatten. Without this a shader that painted
+    // the entire town inferred would satisfy everything above it.
+    check(`${label}: the better-evidenced buildings keep what they know`,
+      painted.keepsDocumented > 0 && painted.keepsDerived > 0
+      && painted.levels.documented > 0 && painted.levels.derived > 0,
+      `${painted.keepsDocumented} documented structure(s) keep documented `
+      + `geometry, ${painted.keepsDerived} keep derived; painted vertices `
+      + `${painted.levels.documented} documented / ${painted.levels.derived} `
+      + `derived / ${painted.levels.inferred} inferred`);
+
     // --- facade weathering (ROADMAP K4) -----------------------------------
     // Two questions, and answering only the first is how `cover.matrix_fraction`
     // went four months unread: does each record's own finish reach the

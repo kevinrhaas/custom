@@ -555,15 +555,46 @@ are re-derived byte for byte · `renderers/web/js/confidence.js` · the Evidence
 **Do not rewrite the historical prose in `docs/STATUS.md` or shipped changelog entries** — they
 are a record of what was said at the time.
 
-### K17 — Confidence view: dither the roofs, and let a level be switched off · **SPECIFIED, unclaimed**
+### K17 — Confidence view: dither the roofs, and let a level be switched off · **ITEM 1 DONE 2026-08-13; ITEMS 2–3 OPEN**
 
 Depends on K16's vocabulary. Three things the owner asked for on 2026-08-13:
 
-1. **The roofs do not dither.** In the confidence view the walls take the dithered treatment and
-   the roof planes do not, so a building that is entirely invented still reads as half-solid.
-   Find out whether the roof material misses the `_confidence` attribute or the patch, and either
-   dither it or — the owner's own suggestion — give the roof a distinct treatment so a dithered
-   wall and a dithered roof stay legible against each other.
+1. ~~**The roofs do not dither.**~~ **DONE 2026-08-13, and it was neither of the two causes the
+   item proposed.** Audited first, because the item names two hypotheses and both are testable:
+   all 993 primitives in the 244 committed masters carry `_CONFIDENCE` (and all 836 in the
+   published derivatives do too, so this was not the K4-shaped one-pipeline trap), and every
+   material is patched — `buildings.js` patches per material bucket, which cannot miss one.
+   The channel was reaching the roof and painting it correctly.
+
+   **The cause is that `_CONFIDENCE` grades the ATTRIBUTE a vertex came from, and existence
+   drives no part.** `generators/placeholder.py` resolves `roof` from `roof_type` and `walls`
+   from `stories` + `wall_height_m`, worst-wins within each part; `documented_range.confidence` —
+   *was this building here at all* — is not in any part's driver list, so it was never composed
+   with anything. On the 70 structures whose walls were `inferred` and whose roof was not, the
+   roof's `derived` grade is a defensible reading of the form (a gable IS the near-universal
+   type) about a building that is invented. Measured across the scene: **162 of 242 structures
+   have `inferred` existence and NOT ONE of them was wholly dithered.**
+
+   Fixed by applying the generators' own worst-wins rule once more, between the part and the
+   record: `confidence.floorToExistence()` in `renderers/web/js/confidence.js`, called from
+   `buildings.js` before a geometry reaches its batch. **97 184 of 355 478 vertices (27.3 %)
+   raised on 170 of 242 structures; all 162 invented buildings now dither to the ridge.** The
+   floor is a floor and not a flatten, and the gate requires that: 2 documented-existence
+   structures keep `documented` geometry (the Sauganash's white paint, the Mansion House) and 61
+   keep `derived`. Four assertions at both viewports; the rule is documented in
+   `docs/GLB-CONTRACT.md` § *Existence is the renderer's floor*, which also explains why it is
+   composed at paint time rather than baked — the per-part grade is a real fact about where the
+   geometry came from and a generator-side floor would overwrite it.
+
+   **What it inherits.** (a) The rule makes existence grades LOAD-BEARING for the first time, and
+   three records show it hardest: `fort_dearborn_palisade` (5 264 vertices raised) and both
+   bridges are graded `derived` on existence for good reasons stated in their own notes — an
+   upper bound on the pickets, a build date disputed by a year — so their documented details now
+   paint at that lower grade. Nothing was regraded and nothing should be without a source; if any
+   of those three existence grades is understated, that is a records question, not a view one.
+   (b) The owner's alternative suggestion — a *distinct* treatment for a dithered roof against a
+   dithered wall, so the two stay legible — was not built and is still open. It is a design
+   question worth asking now that whole buildings dither, and it belongs with item 2's control.
 2. **A hide mode.** *"I would like to be able to toggle that view to make the buildings objects
    items disappear altogether based on those levels."* So the confidence view gains a mode: COLOUR
    (today's behaviour) or HIDE, where a level's geometry is removed from the scene rather than

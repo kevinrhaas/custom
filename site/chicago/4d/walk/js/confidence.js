@@ -17,7 +17,7 @@
  * How each level renders when the view is on:
  *
  *   documented   unchanged
- *   inferred     lerped toward amber
+ *   derived      lerped toward amber
  *   inferred     screen-door dithered translucent massing — an ordered 4x4
  *                Bayer threshold against gl_FragCoord with a `discard`, IN THE
  *                OPAQUE PASS. No blending, no depth sorting, no per-object
@@ -39,6 +39,23 @@ export function levelOf(value) {
   if (value >= 0.75) return 'reconstructed';
   if (value >= 0.25) return 'inferred';
   return 'attested';
+}
+
+/**
+ * The record's own EXISTENCE grade: the confidence of `documented_range`, which
+ * is the claim that this building was standing at the scene date. It is a
+ * different question from every other grade on the record — `footprint` says how
+ * sure we are of a size, `placement.position_confidence` how sure we are of a
+ * spot, and this one says whether there was anything there at all.
+ *
+ * Absent is not `documented`. A record that never states the grade is a record
+ * that never made the claim, so the honest reading is the worst one — and the
+ * caller shouts, because silently painting unmarked geometry as attested is the
+ * failure this whole view exists to prevent.
+ */
+export function existenceLevelOf(sidecar) {
+  const level = sidecar?.documented_range?.confidence;
+  return Object.hasOwn(LEVELS, level) ? level : null;
 }
 
 const VERTEX_DECL = /* glsl */`
@@ -209,6 +226,54 @@ export function createConfidenceView({
     return msg;
   }
 
+  /**
+   * Raise a geometry's channel to its record's EXISTENCE grade, and report what
+   * that moved.
+   *
+   * The file is right and the picture was wrong, which is why this composes at
+   * paint time rather than being fixed in the bake. `_CONFIDENCE` encodes the
+   * grade of the ATTRIBUTE that produced each vertex (docs/GLB-CONTRACT.md), and
+   * the generators resolve it per part from the drivers that part reads — the
+   * roof from `roof_type`, the walls from `stories` + `wall_height_m`. Every one
+   * of those readings is correct on its own terms.
+   *
+   * Existence is not among those drivers, for ANY part, and that is the hole.
+   * `inf_cooperage_south` is a building no source attests — its own record says
+   * "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED" — but its
+   * `roof_type` is graded `derived`, because a gable really is the near-universal
+   * form for the type and period. So the walls dithered and the roof did not, and
+   * an invented building rendered half-solid: a derived claim about the shape of
+   * a roof that is not known to have existed.
+   *
+   * A grade for an attribute of a thing cannot outrank the thing. The worst-wins
+   * rule the generators already apply ACROSS the drivers of a part is applied
+   * here once more, between the part and the record that owns it. Nothing is
+   * regraded and nothing in the GLB is rewritten in place on disk: this raises
+   * the working copy the batch is built from, so what the view paints is
+   * min(certainty of the part, certainty of the building).
+   *
+   * It can only ever move a vertex toward LESS certainty. A documented building
+   * with a conjectural roof pitch is untouched, which is the case that proves
+   * this is not just painting the town inferred.
+   */
+  function floorToExistence(geometry, sidecar, label = 'geometry') {
+    const attr = geometry.getAttribute('_confidence');
+    const level = existenceLevelOf(sidecar);
+    const warning = level ? null
+      : `${label}: the record states no documented_range.confidence, so nothing `
+        + 'says whether this building existed — painting it as inferred, which '
+        + 'is the worst reading and may understate it.';
+    const value = LEVELS[level ?? 'inferred'];
+    let raised = 0;
+    if (attr) {
+      for (let i = 0; i < attr.count; i++) {
+        if (attr.getX(i) < value) { attr.setX(i, value); raised += 1; }
+      }
+      if (raised) attr.needsUpdate = true;
+    }
+    return { level: level ?? 'inferred', value, raised, warning };
+  }
+
   /** Count vertices per level — the honest picture of what is on screen. */
   function census(geometry) {
     const attr = geometry.getAttribute('_confidence');
@@ -223,6 +288,7 @@ export function createConfidenceView({
     uniforms,
     patch,
     ensureAttribute,
+    floorToExistence,
     census,
     get enabled() { return enabled; },
     /** @param {boolean} on */
