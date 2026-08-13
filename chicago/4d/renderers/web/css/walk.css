@@ -100,6 +100,27 @@ html, body {
 }
 .gate-sub { margin: 0 0 18px; color: var(--ink-dim); font-size: 14px; }
 
+/* Loading progress. A bar rather than a spinner because the question a visitor
+   actually has is "is this stuck?", and only a bar that MOVES answers it. It is
+   driven from the real boot stages in main.js, never from a timer. */
+.gate-bar {
+  height: 4px; margin: 0 0 18px; border-radius: 2px;
+  background: rgba(255, 255, 255, .10); overflow: hidden;
+}
+.gate-bar > i {
+  display: block; height: 100%; width: 0%;
+  background: var(--inf); border-radius: 2px;
+  transition: width .25s ease;
+}
+.gate-bar.done { opacity: 0; transition: opacity .4s ease .2s; }
+
+/* Which build you are looking at. Deliberately quiet, and deliberately the last
+   thing on the card: it is for the moment something has gone wrong. */
+.gate-build {
+  margin: 14px 0 0; font-size: 11px; letter-spacing: .04em;
+  color: var(--ink-dim); opacity: .65; font-variant-numeric: tabular-nums;
+}
+
 .gate-btn {
   width: 100%;
   padding: 13px 18px;

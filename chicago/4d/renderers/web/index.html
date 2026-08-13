@@ -47,6 +47,8 @@
     <p class="gate-eyebrow">4D Chicago</p>
     <h1 id="gate-title">Chicago, summer 1835</h1>
     <p class="gate-sub" id="gate-sub">Loading the scene…</p>
+    <div class="gate-bar" id="gate-bar" role="progressbar" aria-labelledby="gate-sub"
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
     <button id="gate-btn" class="gate-btn" disabled>Tap to walk</button>
     <p class="gate-keys">
       <span class="k">W A S D</span> walk · <span class="k">Shift</span> run ·
@@ -56,13 +58,9 @@
     <p class="gate-keys gate-touch">
       Left thumb to walk · drag the right side to look · tap a building to inspect
     </p>
-    <p class="gate-fine">
-      An empty, accurate town. This reconstruction contains no human figures —
-      see <code>AGENTS.md</code>.
-    </p>
+    <p class="gate-build" id="gate-build" hidden><!--BUILD_STAMP--></p>
   </div>
 </div>
-
 <div id="hud" class="hud" hidden>
   <div class="hud-top">
     <div class="badge" id="year-badge"><span class="badge-year">1835</span><span class="badge-sub">1 July</span><span

@@ -80,6 +80,22 @@ const canvas = document.getElementById('view');
 const gate = document.getElementById('gate');
 const gateBtn = document.getElementById('gate-btn');
 const gateSub = document.getElementById('gate-sub');
+const gateBar = document.getElementById('gate-bar');
+
+/**
+ * Loading progress, driven by the boot's REAL stages rather than by a timer.
+ * A timer-driven bar tells a visitor nothing except that time is passing, which
+ * they already know; this one only moves when something has actually finished,
+ * so a bar that stops IS the diagnosis.
+ */
+function progress(pct, label) {
+  if (gateSub && label) gateSub.textContent = label;
+  if (!gateBar) return;
+  const fill = gateBar.firstElementChild;
+  if (fill) fill.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+  gateBar.setAttribute('aria-valuenow', String(Math.round(pct)));
+  if (pct >= 100) gateBar.classList.add('done');
+}
 const hudRoot = document.getElementById('hud');
 const popupRoot = document.getElementById('popup');
 
@@ -125,7 +141,9 @@ async function boot() {
   const scene3d = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 3000);
 
+  progress(8, 'Reading the scene…');
   const loaded = await loadScene(YEAR, bases);
+  progress(30, 'Placing the buildings…');
   problems.push(...loaded.problems);
   api.scene = loaded.scene;
   api.datum = loaded.datum;
@@ -148,6 +166,7 @@ async function boot() {
     problems,
   });
   scene3d.add(terrain.group);
+  progress(55, 'Laying the ground and the river…');
 
   const buildings = createBuildings({ registry: loaded.registry, confidence, terrain });
   problems.push(...buildings.problems);
@@ -167,6 +186,7 @@ async function boot() {
     confidence,
   });
   scene3d.add(streets.group);
+  progress(68, 'Planting the prairie…');
 
   // ---- vegetation ------------------------------------------------------- //
   // Awaited, like the terrain and for the same reason: the sward is what the
@@ -669,6 +689,7 @@ async function boot() {
     footprints: { get: () => footprints, enumerable: false },
   });
 
+  progress(100, 'Ready');
   api.ready = true;
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
   if (gateSub) {

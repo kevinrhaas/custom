@@ -127,5 +127,27 @@ fi
 <noscript><meta http-equiv="refresh" content="0; url=walk/?year=1835"></noscript>
 HTML
 
+# The build stamp the gate shows. Written here because publish IS the build: the
+# one moment that knows which commit became which deployed tree. Central Time,
+# because that is the clock the project's dates are quoted in everywhere else.
+BUILD_VERSION=$(git rev-parse --short HEAD 2>/dev/null || echo unknown)
+BUILD_ISO=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+BUILD_CT=$(TZ=America/Chicago date +"%b %-d, %Y, %-I:%M %p CT")
+# Injected as TEXT into the published gate, not fetched. A stamp that needs a
+# request is a stamp that 404s in the dev tree and disappears exactly when the
+# build is broken enough to matter; this one renders with no JS at all.
+STAMP="build $BUILD_VERSION · $BUILD_CT"
+if [ -f "$SITE/walk/index.html" ]; then
+  python3 - "$SITE/walk/index.html" "$STAMP" <<'PYEOF'
+import sys, pathlib
+p, stamp = pathlib.Path(sys.argv[1]), sys.argv[2]
+s = p.read_text()
+s = s.replace('<p class="gate-build" id="gate-build" hidden><!--BUILD_STAMP--></p>',
+              '<p class="gate-build" id="gate-build">' + stamp + '</p>')
+p.write_text(s)
+PYEOF
+fi
+echo "   build $BUILD_VERSION  $BUILD_CT"
+
 BYTES=$(du -sb "$SITE" | cut -f1)
 printf 'published %s  (%.2f MB)\n' "$SITE" "$(echo "scale=4; $BYTES/1048576" | bc)"
