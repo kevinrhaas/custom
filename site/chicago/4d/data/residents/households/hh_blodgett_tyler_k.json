@@ -1,0 +1,97 @@
+{
+ "id": "hh_blodgett_tyler_k",
+ "name": "The brickyard household",
+ "division": "north",
+ "head": "blodgett_tyler_k",
+ "arrival": {
+  "value": "1833-03-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in the spring of 1833' - season precision, carried as the first day this project reads as spring. Blodgett's date; Lampman's own arrival is not given.",
+  "precision": "season"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": "To open a brickyard where there was none",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He came in the spring and started the first brickyard, which is a sequence rather than a motive; the inference is the obvious one."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "brickyard_north_side",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Both men are named for this yard's establishment. WHETHER EITHER WAS STILL ON THIS GROUND ON 1 JULY 1835 IS NOT ATTESTED and the building record says so; Andreas later has a Daniel Elston running the largest of the city's five brickyards by 1854, which is two decades past the scene."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Documented starting the yard in the spring of 1833 and not followed to 1835 by anything reached."
+ },
+ "persons": [
+  {
+   "id": "blodgett_tyler_k",
+   "name": "Tyler K. Blodgett",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "brickmaker",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Tyler K. Blodgett, came in the spring of 1833, and started the first brickyard, between Dearborn and Clark streets, on the North Side.'"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE MAN WHO MADE THE TOWN'S FIRST BRICKS, which matters to this dataset out of all proportion to his household: almost every building in the 1835 scene is timber, and the brick court-house going up on the square in the autumn of 1835 is the first thing this ground produced brick for. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
+  },
+  {
+   "id": "lampman_henry_s",
+   "name": "Henry S. Lampman",
+   "relationship": "partner",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "brickmaker",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Named with Blodgett for the yard's establishment in the spring of 1833; data/structures/brickyard_north_side.json carries 'Tyler K. Blodgett, with Henry S. Lampman as brickmaker'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "A NAMED WORKMAN RATHER THAN A PROPRIETOR, which this parcel has almost none of - the others are Oscar Pratt and Beckford at the Democrat and Joseph Porthier at the agency anvil. The distinction between the two men is the structure record's reading and is not spelled out in the source."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE ONLY BRICKMAKERS IN THE DATASET, AND THE SCENE'S ONLY DOMESTIC SOURCE OF BRICK. The town's ordinances of 7 November 1833 required stove pipes to be guarded by 'stone-ware pipe, brick, tin or sheet iron' where they passed through a roof or wall, which means every frame building in this scene had a documented reason to buy from this yard. That is a demand figure the inferred phase can actually use."
+}

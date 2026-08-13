@@ -1,0 +1,79 @@
+{
+ "id": "hh_davis_john",
+ "name": "The Davis household at the Steamboat Hotel",
+ "division": "north",
+ "head": "davis_john",
+ "arrival": {
+  "value": "1835",
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED. He is documented in the town in 1835 and nothing dates his coming. The value is the earliest year the evidence forces and it is graded conjectural; the attested fact is in present_on_scene_date, not here.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": "steamboat_hotel",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "drloih_hotels"
+  ],
+  "note": "A keeper lived in his house; not stated."
+ },
+ "works_at": {
+  "value": "steamboat_hotel",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1",
+   "drloih_hotels"
+  ]
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1",
+   "drloih_hotels"
+  ],
+  "note": "Named as the keeper in the scene year and replaced only in November 1835."
+ },
+ "persons": [
+  {
+   "id": "davis_john",
+   "name": "John Davis",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "hotel_keeper",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "drloih_hotels"
+    ],
+    "note": "Keeper of the Steamboat Hotel on North Water Street. Andreas's list of the Chicago American's advertising patrons in the paper's first year carries 'John Davis, Steamboat Hotel'."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "drloih_hotels"
+   ],
+   "note": "DOCUMENTED IN THE SCENE YEAR ITSELF: the American began in June 1835 and he is advertising in it. The hotel chronology has J. Dorsey and J. Force taking over the management on 9 November 1835, so his tenure covers 1 July. A COINCIDENCE THIS PROJECT DELIBERATELY DOES NOT RESOLVE: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is this man is unknown. If it is, one household kept two houses; if it is not, there is a second Davis in the town. Nothing reached settles it and neither reading is asserted here."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A HOUSEHOLD WHOSE ONLY DOCUMENTED FACT IS THE ONE THAT MATTERS - that a man of this name was keeping this house in the scene year. Everything else about him is blank, and four of the five household fields are conjectural as a result. THE SAUGANASH QUESTION IS LEFT OPEN ON PURPOSE. data/structures/sauganash_hotel.json records 'a Mr. Davis, proprietor' for 1835 and flags the possibility that he is this man; merging the two would create a documented claim out of a shared surname, and splitting them would create a second household out of the same. Neither is done."
+}

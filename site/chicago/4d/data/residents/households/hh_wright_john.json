@@ -1,0 +1,96 @@
+{
+ "id": "hh_wright_john",
+ "name": "The Wright household",
+ "division": "south",
+ "head": "wright_john",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Both men, same year, stated twice.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": 2,
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Two named Wrights arrive in 1832 and are grouped here as one household. Whether a mother or other children travelled with them is not stated."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. Wright's store is documented by his own advertisement of November 1833 and has no record in data/structures/, so there is nothing to link to. A second gap from the same advertisement: the TWO BUILDINGS he had to let are two more documented structures with no records, and they are evidence about the town's rental housing stock, which is otherwise invisible."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "John S. Wright's later Chicago career is continuous; the father is not followed past 1833 in anything reached, which is why the household is present on inference rather than on a statement."
+ },
+ "persons": [
+  {
+   "id": "wright_john",
+   "name": "John Wright",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "'John Wright, came in 1832, a merchant'. His advertisement in the Chicago Democrat of 26 November 1833 offers cut nails and general merchandise, and he separately advertises TWO BUILDINGS TO LET until 1 June 1834 - which makes him the only documented landlord of rental property in this parcel."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "ONE OF THE TWELVE WHO VOTED FOR INCORPORATION on 5 August 1833 (Andreas prints the poll: 'John W. Wright'), one of the twenty-eight electors five days later, a candidate who took two votes, and one of the nine village citizens founding the First Presbyterian Church on 26 June 1833 and one of its three first elders. Charles Butler met him on his first morning in Chicago in August 1833, at the funeral of a child. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds, and an advertisement in it is a peculiarly good witness: the advertiser was paying for it and his customers had to be able to find him. It is also NINETEEN MONTHS before the scene date, in the town's fastest-changing period, so it is strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835."
+  },
+  {
+   "id": "wright_john_s",
+   "name": "John S. Wright",
+   "relationship": "son",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "clerk",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A FATHER-AND-SON HOUSEHOLD ASSEMBLED FROM TWO SEPARATE ROSTER ENTRIES, and one of only three multi-generation households in this parcel. THE ADVERTISEMENT IS WORTH MORE THAN THE PEOPLE HERE: 'Two Buildings to Let' until 1 June 1834 documents a rental market in a town of perhaps a thousand people, and this project holds a trap about that same advertisement - it carries an engraving of a three-storey building which is a jobbing printer's stock cut and NOT a picture of anything in Chicago."
+}

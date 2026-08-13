@@ -1,0 +1,85 @@
+{
+ "id": "hh_ingersoll_chester",
+ "name": "The Ingersoll household",
+ "division": "west",
+ "head": "ingersoll_chester",
+ "arrival": {
+  "value": "1833-10-04",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Not_later_than precision, and the date is the date of his own advertisement in the Chicago Democrat - a man advertising a tavern stand in Chicago on 4 October 1833 was in Chicago on 4 October 1833. When he actually came is not stated.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": "To take over an existing tavern stand",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "His own advertisement describes the stand as 'lately occupied by Mr. Wm. W. Wattles', which is a succession, not a founding."
+ },
+ "lives_at": {
+  "value": "green_tree_tavern",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "drloih_hotels"
+  ],
+  "note": "The building record has his tenancy running 1834-1837, which covers the scene date, and a landlord of this period lived in his house. Inferred rather than documented because the tenancy dates are the building record's reading of two sources that do not agree about who opened the house."
+ },
+ "works_at": {
+  "value": "green_tree_tavern",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1",
+   "drloih_hotels"
+  ],
+  "note": "Both sources behind the building record put Ingersoll in the Green Tree across 1835."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A tenancy given as 1834-1837 covers 1 July 1835; no source states his whereabouts on that day."
+ },
+ "persons": [
+  {
+   "id": "ingersoll_chester",
+   "name": "Chester Ingersoll",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "tavern_keeper",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "Landlord of the Green Tree Tavern 1834-1837 per this project's building record, and before that of the old Wolf Point house which he re-christened 'The Travelers' Home'. The Democrat of 26 November 1833 carries his own advertisement, dated 4 October 1833, for a tavern stand 'lately occupied by Mr. Wm. W. Wattles'."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "A DOCUMENTED RESIDENT IN A CONTEMPORARY NEWSPAPER, which is worth more than any amount of Andreas. Two further things fix him in the town in this period: his house was the district polling place on 9 December 1833, and a travelling ventriloquist named Kenworthy advertised in the Democrat of 10 June 1834 the close of an engagement at 'the Travelers' Home, a hotel kept by Chester Ingersoll, on Wolf Point'."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A TAVERN KEEPER WHO MOVED HOUSE INSIDE THE DATASET'S OWN WINDOW, which is why the two buildings he is attached to must not be collapsed. In 1833-34 he kept the old Wolf Point house under the sign of the Travelers' Home; by the scene date this project's building record has him at the Green Tree. Both are in data/structures/ and only the second is linked here. THE ARRIVAL IS A NEWSPAPER DATE, NOT A JOURNEY: 4 October 1833 is when his copy was dated, and it bounds his arrival from above and not at all from below."
+}

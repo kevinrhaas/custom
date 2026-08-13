@@ -117,6 +117,78 @@
       "note": "THE KIMBALL READING, STATED AS A READING AND NOT AS A FACT. The first issue of 26 November 1833 carries an advertisement beginning 'Just Opened and for sale AT the New Store on the corner of South Water and Clark-streets' — dry goods, crockery and glass ware, hardware, cutlery, caps, cotton batting, yarn, sheeting, blankets — which the transcription supplied with the scan attributes to W. Kimball. Three things line up and none of them is proof. The paper's own imprint places it 'in THE building on the corner of South Water and Clark-streets', definite and singular. Andreas says the building Calhoun took his office in was UNFINISHED in November 1833, and a store advertising itself as 'Just Opened' at 'the New Store' on that corner in that month is what an unfinished building looks like a few weeks later. And the two notices sit in the same four pages. THE ALTERNATIVE IS THAT THE JUNCTION HELD TWO OR MORE BUILDINGS and the store was in another of them, which is perfectly possible on a four-cornered crossing — see harmon_loomis_store, recorded at the south-east corner of this same junction. NO SEPARATE STRUCTURE RECORD WAS CREATED FOR KIMBALL'S STORE, deliberately: building one would assert a second building at a junction where the only contemporary document says 'the building', and would put an invented footprint on top of this one. Note also that the attribution of the advertisement to W. Kimball rests on the supplied transcription rather than on the scan, and that transcription is demonstrably imperfect elsewhere in the same issue (it reads 'C. & L. HARMON' where the scan reads 'C. & I. HARMON'). See docs/RESEARCH/chicago_democrat_office.md."
     }
   },
+  "residents": [
+    {
+      "household": "hh_calhoun_john",
+      "name": "The Calhoun household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The paper's own imprint. This is the strongest work link in the parcel because it is contemporary, self-reported and printed.",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John Calhoun",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "editor",
+          "note": "THE ONLY MAN IN THIS PARCEL WHOSE ADDRESS IS SELF-REPORTED IN PRINT IN THE TOWN'S OWN WEEK. The Democrat was designated the official newspaper of the town in November 1833. Note precisely what the imprint settles: the JUNCTION, not the corner - 'on the corner of' leaves which of the four unsaid, and the pencilled 'S. W.' in the margin of the scan is a later reader's gloss that this project quarantines."
+        }
+      ],
+      "research_note": "THE FIRST CONTEMPORARY DOCUMENTED RESIDENT IN THIS DATASET, in the sense that his residence is attested by a Chicago document printed in Chicago rather than by a memoir of 1884. THREE OTHER HOUSEHOLDS DEPEND ON THIS ONE and are written separately: the two printers in his employ (hh_democrat_printers), Ashbel Steele who plastered his printing office in November 1833 (hh_steele_ashbel), and the W. Kimball whose new store this project argues shared the same building (hh_kimball_walter)."
+    },
+    {
+      "household": "hh_democrat_printers",
+      "name": "The Democrat's printers",
+      "division": "south",
+      "relation": "worked here",
+      "why": "'In the employ of Mr. Calhoun', whose office's address the paper itself prints.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Oscar Pratt",
+          "relationship": "head",
+          "grade": "derived",
+          "occupation": "printer",
+          "note": "A REAL, NAMED MAN WITH A TRADE AND AN EMPLOYER, and nothing else. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+        },
+        {
+          "name": "Beckford",
+          "relationship": "partner",
+          "grade": "derived",
+          "occupation": "printer",
+          "note": "SURNAME ONLY, NO FORENAME, NO SEX RECORDED. Andreas prints 'Oscar Pratt and Bcckford, printers' with the first letters damaged in the scan. The sex field is omitted rather than assumed: a compositor in 1833 was overwhelmingly likely to be a man, but 'overwhelmingly likely' is not what documented means and this record has no other information about the person at all."
+        }
+      ],
+      "research_note": "TWO WAGE-EARNERS, WHICH THIS DATASET OTHERWISE HAS ALMOST NONE OF, and a household that is a household only by convention. Andreas names them in one clause, as a pair, in an employment; nothing states where either lived or whether they lived together, and the grouping is a container for two people the source presents together, not a claim about a dwelling. lives_at is null for that reason and must stay null. WHY THEY ARE WORTH WRITING: the documented population of early Chicago as the sources give it is overwhelmingly proprietors - the men who owned the store, kept the tavern, edited the paper. The people who did the work are named perhaps a dozen times in the whole of Andreas's first volume, and these two are among them. The inferred phase's largest single task is the rest of them."
+    },
+    {
+      "household": "hh_kimball_walter",
+      "name": "The Kimball household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "data/structures/chicago_democrat_office.json is recorded as a printing office AND a store on exactly this reading: the paper's imprint and Kimball's advertisement put both at the corner of South Water and Clark in the same issue. Inferred rather than documented because 'on the corner of' names a junction and not a building, and two businesses at one junction need not share one roof.",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "W. Kimball",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "dry_goods_merchant",
+          "note": "A SECOND, INDEPENDENTLY ATTESTED OCCUPANT OF THE DEMOCRAT'S OWN JUNCTION in the same issue of the same paper - which is why this project reads the printing office and the new store as sharing a building. Andreas's 1835 town officers list has a 'W. Kimball' among the nine trustees elected at the third town election of July 1835, and if that is this man he holds office on or about the scene date. THE IDENTIFICATION IS NOT MADE HERE: the surname is common in this record, and this project already keeps a separate Kimball (Dr E. S. Kimberly's partner is Pruyne, but a druggist 'Kimball & Porter' occupied the same corner later, and Andreas spells both Kimball and Kimberly loosely). The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+        }
+      ],
+      "research_note": "THE ADVERTISEMENT THAT SHAPED A STRUCTURE RECORD, now written from the population side. This household exists mainly to make the reasoning behind chicago_democrat_office visible as a person rather than as a paragraph: two named businesses, one junction, one building in the model, one inference holding them together."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

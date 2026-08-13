@@ -1,0 +1,72 @@
+{
+ "id": "hh_snow_george_w",
+ "name": "The Snow household",
+ "division": "south",
+ "head": "snow_george_w",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1832' - year precision.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. A surveyor's work is the ground, not a building; the assessor's office was wherever he kept his book."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the record: he is one of the town's officers in 1833 and Andreas carries him into the city period."
+ },
+ "persons": [
+  {
+   "id": "snow_george_w",
+   "name": "George W. Snow",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "surveyor",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'George W. Snow, came in 1832'; appointed the town's Assessor and Surveyor on 4 December 1833 by the first board of trustees. He was one of the twelve who voted for incorporation on 5 August 1833 and one of the twenty-eight electors five days later."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE TOWN'S FIRST SURVEYOR AND ASSESSOR, WHICH IS AS CLOSE AS THE 1833 TOWN COMES TO A CENSUS-TAKER. An assessor's roll for 1834 or 1835 would settle a great deal of what this programme has had to infer, and none is in data/sources/. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE MAN WHOSE PAPERWORK WOULD HAVE ANSWERED THIS PROGRAMME'S QUESTIONS. Snow is also the name attached in the Chicago literature to the balloon frame, which this dataset's structure records treat with care: data/structures/exchange_coffee_house.json notes that balloon framing 'was developed in Chicago in 1832-33, so an 1834 building could be either' and chooses braced framing as the conservative reading. Nothing in this household supports or refutes the attribution and it is recorded here as a lead, not a finding."
+}

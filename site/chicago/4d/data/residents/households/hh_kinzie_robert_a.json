@@ -1,0 +1,75 @@
+{
+ "id": "hh_kinzie_robert_a",
+ "name": "The Robert Kinzie household",
+ "division": "west",
+ "head": "kinzie_robert_a",
+ "arrival": {
+  "value": "1831",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Not an arrival but a staying: the family left in the spring of 1831 and he did not. That is the date from which he is continuously a Chicago resident on the source's own account.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "robert_kinzie_store",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The frame store on the west side, which this dataset places immediately south of Wentworth's tavern in the Wolf Point row."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the Chicago record from 1831 into the 1840s."
+ },
+ "persons": [
+  {
+   "id": "kinzie_robert_a",
+   "name": "Robert Allen Kinzie",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'The Kinzies, John and Robert A., merchants' in the 1833 roster. Andreas: he 'remained in Chicago when the rest of the family left in the spring of 1831, and early in 1832 erected a frame store on the West Side - the first frame store in Chicago - and probably the first frame building, aside from the one erected by Government for Billy Caldwell in 1828.'"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HE IS THE REASON CHARLES BUTLER AND ARTHUR BRONSON CAME WEST, which is the best-documented chain of causation in the whole 1833-35 record. Butler's letter of 1881: Bronson called on the New York Indian-goods merchant Daniel Jackson for information about Chicago, and Jackson 'said that he would then introduce him to a man from Chicago, who at that moment happened to be in his store making purchases of Indian goods. This was Robert A. Kinzie.' Kinzie offered them his quarter interest in the north fractional half of Section 10 - the ground Kinzie's Addition was laid out on. He was also a candidate at the first town election of 10 August 1833 and took nine votes, the highest of any unsuccessful candidate."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A MERCHANT WHOSE BUYING TRIP TO NEW YORK PUT THE TOWN ON THE MAP. This household is worth its place less for the man than for the mechanism it documents: in the winter of 1832-33 a Chicago trader buying Indian goods in a New York store is how eastern capital first heard that Chicago was worth buying. The population curve K1 is reconstructing starts there."
+}

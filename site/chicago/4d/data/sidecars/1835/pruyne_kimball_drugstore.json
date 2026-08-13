@@ -105,6 +105,36 @@
       "note": "The partnership is documented; that it was trading on 1835-07-01 specifically is the inference, since Andreas dates it only to the 1830s. A NAME COLLISION WORTH KEEPING SEPARATE: a W. Kimball is named in the transcription of the Chicago Democrat of 26 November 1833 as advertising dry goods, crockery, hardware, cutlery, caps and cloth from a new store at the corner of South Water and Clark. Dry goods and drugs are different trades and there is no evidence the two Kimballs are one man; that advertisement is discussed on chicago_democrat_office and is deliberately not attached here."
     }
   },
+  "residents": [
+    {
+      "household": "hh_pruyne_kimberly",
+      "name": "The Pruyne and Kimberly partnership household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The partnership is documented; that it was trading on 1 July 1835 specifically is the inference, since Andreas dates it only to the 1830s. The building record carries the same grade for the same reason.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Peter Pruyne",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "druggist",
+          "note": "Andreas adds a dated domestic fact in a footnote: 'On August 20, 1835, Mr. Peter Pruyne married Rebecca, only daughter of Silas W. Sherman.' THAT IS SEVEN WEEKS AFTER THE SCENE DATE, so on 1 July 1835 he is an unmarried man and Rebecca Sherman is not in this household - a small illustration of why every date in this layer has to be checked against 1835-07-01 rather than against 'the mid-1830s'."
+        },
+        {
+          "name": "Dr Edmund Stoughton Kimberly",
+          "relationship": "partner",
+          "grade": "documented",
+          "occupation": "physician",
+          "note": "THE CLERK OF THE TOWN'S OWN CREATION. He was clerk of the meeting of 5 August 1833 that voted to incorporate, signed the poll 'Ed. S. Kimberly, Clerk', issued the election notice over his own name, and was then elected one of the five first trustees on 10 August with 20 of 28 votes. He died in Lake County, Illinois, 25 October 1874, aged seventy-two - which puts his birth about 1802 and makes him about 33 on the scene date."
+        }
+      ],
+      "research_note": "A PARTNERSHIP RECORDED AS A HOUSEHOLD, WHICH IS A COMPROMISE AND IS FLAGGED AS ONE. Nothing says Pruyne and Kimberly shared a roof; what is documented is that they opened a shop together. They are grouped because the alternative - two single-person households, each pointing at the same building - would double the household count without adding a person, and because the schema's relationship vocabulary carries 'partner' precisely for this. ANY LATER USE THAT TREATS A HOUSEHOLD AS A DWELLING UNIT MUST READ THIS FIELD: lives_at is null here on purpose, and the household should not be given a dwelling by the inferred phase until the two men are separated. A NAME COLLISION KEPT SEPARATE: the W. Kimball who advertised dry goods at South Water and Clark in the Democrat of 26 November 1833 is a different trade and, on the evidence, a different man; he has his own household here."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

@@ -102,6 +102,29 @@
       "note": "The one thing about this record that is documented: a man of this name advertised from these premises in 1835. Everything else — his trade, his building, its size, its height and where exactly it stood — is inference or invention."
     }
   },
+  "residents": [
+    {
+      "household": "hh_thomas_frederick",
+      "name": "The Frederick Thomas household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "data/structures/frederick_thomas_shop.json exists on the strength of this same advertisement.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Frederick Thomas",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "barber_surgeon",
+          "note": "DOCUMENTED IN THE TOWN THREE WEEKS BEFORE THE SCENE DATE, which almost nobody in this parcel is, and with a self-reported address relative to two other things in this dataset - the American's office and the Dearborn Street drawbridge. He took a partner, Thomas Jenkins, on 11 January 1836 and retired from that partnership on 2 April 1836, so he is continuous through the scene year on both sides."
+        }
+      ],
+      "research_note": "THE CLOSEST DOCUMENTED ARRIVAL TO THE SCENE DATE IN THE PARCEL, and a trade the occupation vocabulary had to be widened for. 'Barber-surgeon' is Andreas's own characterisation of a man who sold paint and drew teeth, and it is a period-correct trade in a way that 'pharmacist' or 'dentist' would not be. HIS ADDRESS IS A CHAIN OF LANDMARKS RATHER THAN A LOT: 'on Water Street, two doors from the American office, near the drawbridge' locates him against two structures this dataset already holds, which is the kind of constraint the placement work in K7 can actually use."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

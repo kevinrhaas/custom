@@ -1,0 +1,81 @@
+{
+ "id": "hh_calhoun_john",
+ "name": "The Calhoun household",
+ "division": "south",
+ "head": "calhoun_john",
+ "arrival": {
+  "value": "1833-11-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Arrived in November, 1833' - month precision - and he had a paper on the street by the 26th of that month, which is corroboration of a kind.",
+  "precision": "month"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": "To found a newspaper in a newly incorporated town",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "He arrived in November and printed the first issue on 26 November; a man does not carry a press across the country by accident. The MOTIVE is the inference, the sequence is not."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": "chicago_democrat_office",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "The paper's own imprint. This is the strongest work link in the parcel because it is contemporary, self-reported and printed."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Publishing weekly from November 1833; the Democrat was still the town's paper in 1835 when the American joined it."
+ },
+ "persons": [
+  {
+   "id": "calhoun_john",
+   "name": "John Calhoun",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "editor",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "'John Calhoun, printer and editor of the first newspaper published in Chicago, arrived in November, 1833, and issued the first number of the Chicago Democrat November 26, 1833.' The paper's own imprint in that issue reads: 'THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.'"
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "THE ONLY MAN IN THIS PARCEL WHOSE ADDRESS IS SELF-REPORTED IN PRINT IN THE TOWN'S OWN WEEK. The Democrat was designated the official newspaper of the town in November 1833. Note precisely what the imprint settles: the JUNCTION, not the corner - 'on the corner of' leaves which of the four unsaid, and the pencilled 'S. W.' in the margin of the scan is a later reader's gloss that this project quarantines."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE FIRST CONTEMPORARY DOCUMENTED RESIDENT IN THIS DATASET, in the sense that his residence is attested by a Chicago document printed in Chicago rather than by a memoir of 1884. THREE OTHER HOUSEHOLDS DEPEND ON THIS ONE and are written separately: the two printers in his employ (hh_democrat_printers), Ashbel Steele who plastered his printing office in November 1833 (hh_steele_ashbel), and the W. Kimball whose new store this project argues shared the same building (hh_kimball_walter)."
+}

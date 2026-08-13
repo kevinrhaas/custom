@@ -162,6 +162,29 @@
       "note": "The operator succession runs Archibald Caldwell for James Kinzie by 1829 (liquor licence 8 December 1829), Elijah 'Old Geese' Wentworth from early 1830, Charles and Mary Taylor 1831-1833, William Walters 1833-1836. Walters therefore covers 1835-07-01. Inferred rather than documented because the same body of sources also says the house stopped operating as a public house in 1834, and a landlord of a closed house is a contradiction someone needs to resolve."
     }
   },
+  "residents": [
+    {
+      "household": "hh_walters_william",
+      "name": "The Walters household at Wolf Point",
+      "division": "west",
+      "relation": "lived and worked here",
+      "why": "A landlord lived in his house; the tenancy itself is the reconstructed part.",
+      "sources": [
+        "drloih_hotels"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "William Walters",
+          "relationship": "head",
+          "grade": "derived",
+          "occupation": "tavern_keeper",
+          "note": "DERIVED, AND THE REASON IS A CONTRADICTION IN THE SOURCES RATHER THAN A GAP. The same body of material that puts Walters in the house 1833-1836 also says the house stopped operating as a public house in 1834, and a landlord of a closed house is not a coherent claim. data/structures/wolf_point_tavern.json records the occupancy as inferred for exactly this reason; this household inherits the doubt and does not paper over it."
+        }
+      ],
+      "research_note": "THE WEST BANK'S OLDEST PUBLIC HOUSE AND ITS LEAST CERTAIN OCCUPANT. This household is written so that the west-bank row is not left as buildings with nobody in them, and it is graded derived throughout because the sources behind it contradict each other about whether there was a tavern here to keep. THE SUCCESSION THIS RECORD SITS AT THE END OF is worth keeping in view for the derived phase: Archibald Caldwell for James Kinzie by 1829, Elijah 'Old Geese' Wentworth from early 1830, Charles and Mary Taylor 1831-1833, then Walters. Four households this project has not written, three of them out of scope by date."
+    }
+  ],
   "citations": [
     {
       "source_id": "chicagology_prefire273",

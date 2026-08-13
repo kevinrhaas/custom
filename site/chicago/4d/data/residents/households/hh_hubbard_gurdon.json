@@ -1,0 +1,72 @@
+{
+ "id": "hh_hubbard_gurdon",
+ "name": "The Hubbard household",
+ "division": "south",
+ "head": "hubbard_gurdon",
+ "arrival": {
+  "value": "1818",
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED IN ANYTHING WORKED FOR THIS PARCEL. Hubbard's arrival with the American Fur Company as a boy is a commonplace of the Chicago literature and Andreas's own chapter calls him the oldest living resident; the year could not be traced to a sentence here, so it is carried as a conjecture citing nothing and flagged for a later parcel to fix or delete.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "old_bank_building",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He is documented packing in that building in the 1834 SEASON, which is the season before the scene date, and data/structures/old_bank_building.json grades its own occupancy inferred for exactly that reason. A packing house is a seasonal building and July is not the season."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A trustee through 1834-35 and a Chicago resident for the rest of his long life."
+ },
+ "persons": [
+  {
+   "id": "hubbard_gurdon",
+   "name": "Gurdon Saltonstall Hubbard",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "packer",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "A forwarding and packing merchant. data/structures/old_bank_building.json records that he packed there in the 1834 season; Andreas's chapter heading calls him 'Gurdon S. Hubbard, the oldest living resident of Chicago' and he supplied Andreas with the Ramsey Crooks correspondence on the early fur trade."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ELECTED A TRUSTEE OF THE TOWN AT THE SECOND ELECTION, 11 AUGUST 1834 - 'J. H. Kinzie, G. S. Hubbard, E. Goodrich, J. K. Boyer, and John S. C. Hogan were chosen Trustees' - so he is on the board through the municipal year that ends in the scene month. He is also the man whose 1881 correction of the Wau-Bun view of Fort Dearborn supplies four of the constraints this project's fort dossier rests on: that the enclosure ran 'nearly north and south, east and west', that the north picket line stood nowhere more than 80 ft from the water, that the ground at the fort was 'not over eight feet above the River at its lowest stage', and that the north and south gates were on one sight line."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS. Everything about Hubbard's later Chicago life is documented here; the date he first came is a fact everyone knows and nothing in data/sources/ states. That asymmetry is worth leaving visible rather than quietly filling: it is precisely the case AGENTS.md rule 1 exists for."
+}

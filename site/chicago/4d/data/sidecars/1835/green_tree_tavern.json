@@ -173,7 +173,39 @@
       "note": "Ingersoll's tenancy is given as 1834-1837, which covers 1835-07-01, with Martin M. Ford associated. DRLOIH's list — 'initially by David Clark and then by Edward Parsons' — carries no dates and is compatible rather than contradictory: Clark (or Clock) is named elsewhere as the landlord who opened the house in 1833, before Ingersoll."
     }
   },
+  "residents": [
+    {
+      "household": "hh_ingersoll_chester",
+      "name": "The Ingersoll household",
+      "division": "west",
+      "relation": "lived and worked here",
+      "why": "The building record has his tenancy running 1834-1837, which covers the scene date, and a landlord of this period lived in his house. Inferred rather than documented because the tenancy dates are the building record's reading of two sources that do not agree about who opened the house.",
+      "sources": [
+        "andreas_1884_v1",
+        "drloih_hotels"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Chester Ingersoll",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "tavern_keeper",
+          "note": "A DOCUMENTED RESIDENT IN A CONTEMPORARY NEWSPAPER, which is worth more than any amount of Andreas. Two further things fix him in the town in this period: his house was the district polling place on 9 December 1833, and a travelling ventriloquist named Kenworthy advertised in the Democrat of 10 June 1834 the close of an engagement at 'the Travelers' Home, a hotel kept by Chester Ingersoll, on Wolf Point'."
+        }
+      ],
+      "research_note": "A TAVERN KEEPER WHO MOVED HOUSE INSIDE THE DATASET'S OWN WINDOW, which is why the two buildings he is attached to must not be collapsed. In 1833-34 he kept the old Wolf Point house under the sign of the Travelers' Home; by the scene date this project's building record has him at the Green Tree. Both are in data/structures/ and only the second is linked here. THE ARRIVAL IS A NEWSPAPER DATE, NOT A JOURNEY: 4 October 1833 is when his copy was dated, and it bounds his arrival from above and not at all from below."
+    }
+  ],
   "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     {
       "source_id": "chicagology_prefire127",
       "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",

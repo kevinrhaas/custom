@@ -1,0 +1,77 @@
+{
+ "id": "hh_jones_benjamin",
+ "name": "The Jones household",
+ "division": "south",
+ "head": "jones_benjamin",
+ "arrival": {
+  "value": "1833-11-07",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Not_later_than precision on the day the trustees appointed him street commissioner. His advertisements in the same month corroborate the presence and not the arrival.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "h_jones_store",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1",
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "data/structures/h_jones_store.json carries 'Jones, grocer and provision merchant' as its occupants and rests on the same advertisement."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He resigned a town office for ill health in 1833-34 and nothing reached follows him to 1835. A resignation for ill health is the one biographical fact in the parcel that argues AGAINST assuming continuity, and the value follows it."
+ },
+ "persons": [
+  {
+   "id": "jones_benjamin",
+   "name": "Benjamin Jones",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "grocer",
+    "confidence": "documented",
+    "sources": [
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "Two separate advertisements in the Chicago Democrat of 26 November 1833: a grocery and provision store, and a storage, forwarding and commission business. Neither gives a street."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "APPOINTED THE TOWN'S FIRST STREET COMMISSIONER ON 7 NOVEMBER 1833 and resigned before his term expired: Andreas, 'It was during these days that Benjamin Jones was appointed Street Commissioner, but on account of ill-health resigned before his term expired, and was succeeded by O. Morrison and Silas W. Sherman.' His health is the only medical fact about any private resident in this parcel. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE TOWN'S FIRST STREET COMMISSIONER, WHICH IS A JOB THIS DATASET'S GROUND LAYER SHOULD CARE ABOUT: the ordinances of 7 November 1833 that he was appointed to enforce are the same ones that document timber, stone, brick, boxes and barrels stacked in the streets and hogs running at large. He is the man who was supposed to stop it, and he was ill."
+}

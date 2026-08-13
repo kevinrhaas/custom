@@ -113,6 +113,7 @@
       "note": "The garrison's vegetable and fruit ground. Labelled 'Garden for the Garrison' on the 1830 survey and described in fruit by Juliette Kinzie in 1831. A separate 'Cultivated Field belonging to The Fort' is drawn further west on the same plate and is NOT modelled - it is a field, not a structure, and it belongs to the terrain and flora layers."
     }
   },
+  "residents": [],
   "citations": [
     {
       "source_id": "harrison_1830_river_mouth",

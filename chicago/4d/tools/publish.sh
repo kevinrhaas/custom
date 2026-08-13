@@ -40,6 +40,12 @@ for m in assets/gltf/*.glb; do
     cp -f "$m" "$w"
   fi
 done
+# The mirror is a MIRROR, not an accumulator. Copying in without clearing out
+# means a retired asset ships forever: the 108 __recommended_1835.glb placeholders
+# were deleted from the source tree and kept being published for as long as anyone
+# ran this script. Clear the directory so a deletion propagates the way an edit does.
+rm -rf "$SITE/data/gltf"
+mkdir -p "$SITE/data/gltf"
 if compgen -G "assets/web/*.glb" > /dev/null; then
   cp -f assets/web/*.glb "$SITE/data/gltf/"
 fi
@@ -76,6 +82,18 @@ fi
 # left behind here is an HTTP 404 on the deployed walkthrough while the dev tree
 # renders perfectly — the same failure the scenes/ subdirectory once caused.
 # tools/validate.py --site checks the manifest against what actually landed here.
+# The population layer. `data/residents/` carries no geometry by design (L1: no
+# human figures), so nothing here is drawn — but the building card now names the
+# households attached to a structure, and the Evidence panel and any future "who
+# lived here" view read the manifest and the household records straight off the
+# site. Until this line existed the whole layer stopped at the repo: ninety-six
+# researched people that a visitor had no way to reach, which reads exactly like
+# work that was never done.
+if [ -d data/residents ]; then
+  rm -rf "$SITE/data/residents"
+  cp -a data/residents "$SITE/data/residents"
+fi
+
 if [ -d data/flora ]; then
   rm -rf "$SITE/data/flora"
   cp -a data/flora "$SITE/data/flora"

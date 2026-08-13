@@ -133,6 +133,37 @@
       "note": "Two sources put Couch here across the scene date and neither leaves a gap. chicagology_prefire021's 1874 letter: 'In 1833 there was built ... the Tremont House, and the following year Ira Couch became its proprietor' - i.e. 1834. Andreas: 'Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.' So 1835-07-01 falls squarely inside Ira Couch's tenure. TWO CLAIMS IN CIRCULATION ARE NOT ADOPTED BECAUSE NOTHING THIS PROJECT HOLDS SUPPORTS THEM: docs/research/04-structures-south.md line 155 names Starr Foot as first proprietor and has the house 'sold to Mallory & Able 1835'. Neither name attaches to this building anywhere in Andreas vol. 1 - Starr Foot appears once, in an unrelated list, and no Mallory but a Hiram Mallory in another context - and neither is on the chicagology page. They are left out rather than repeated."
     }
   },
+  "residents": [
+    {
+      "household": "hh_couch_ira",
+      "name": "The Couch household",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "A hotel proprietor of this period lived in his house. Not stated.",
+      "sources": [
+        "andreas_1884_v1",
+        "chicagology_prefire021"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Ira Couch",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "hotel_keeper",
+          "note": "1 JULY 1835 FALLS SQUARELY INSIDE HIS TENURE, on two sources that do not disagree: chicagology's 1874 letter has him becoming proprietor in 1834, and Andreas has him running the house until 1836."
+        },
+        {
+          "name": "James Couch",
+          "relationship": "brother",
+          "grade": "derived",
+          "occupation": "hotel_keeper",
+          "note": "A REAL, NAMED MAN WHOSE PRESENCE ON THE SCENE DATE IS THE RECONSTRUCTED PART. Andreas names him twice - as one of 'the Couch brothers' who bought the property and as the brother who took control in 1836 - and quotes him directly on how crowded the house was in its early days ('every available space of floor room' occupied at night). That he was living at Chicago in July 1835 rather than joining later is this project's reading of a joint purchase, not a statement in the source."
+        }
+      ],
+      "research_note": "THE TREMONT'S FIRST PROPRIETOR, AND A CLEAN EXAMPLE OF THE derived GRADE DOING WORK. Ira Couch is documented in the house across 1 July 1835 by two independent sources. His brother James is a real, named man, documented as a co-purchaser and later as the proprietor, whose residence at Chicago on the scene date is reconstructed from the joint purchase rather than stated. Two men, two grades, one household. THE BUILDING THIS HOUSEHOLD IS ATTACHED TO IS THE FIRST TREMONT at Lake and Dearborn, built in 1833 by Alanson Sweet - not the later houses of 1840 and 1850 that carry the same name."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

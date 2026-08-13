@@ -107,6 +107,30 @@
       "note": "NOT THE POST OFFICE AT THE SCENE DATE, which is the fact this record exists to get right. It held Chicago's first post office from 31 March 1831 until about July 1834, when Andreas has the office removed to near the corner of Franklin and South Water, where it stayed through Hogan's term. What the building was doing on 1835-07-01 is NOT ATTESTED: it is recorded as a store because that is what it was before the post office arrived ('a log house occupied as a store') and alongside it for three years, and because nothing describes it changing to anything else. Brewster, Hogan & Co. advertised as forwarding and commission merchants in the early numbers of the Chicago Democrat, but no source reached puts the firm in THIS building in 1835, so the record carries no occupants block rather than guessing at one."
     }
   },
+  "residents": [
+    {
+      "household": "hh_hogan_john_s_c",
+      "name": "The Hogan household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The log building at the intersection of South Water and Lake, near the east end of the bridge, with Hogan's store in it and the post office in the store. Twenty by forty-five feet, which Andreas gives as an aside about how little room the town's mail needed.",
+      "sources": [
+        "andreas_1884_v1",
+        "chicagology_first_post_office"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John S. C. Hogan",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "postmaster",
+          "note": "IN OFFICE ACROSS THE SCENE DATE AND DOCUMENTED RESIGNING FROM ANOTHER ONE IN THE SCENE MONTH'S NEIGHBOUR. He was one of the twelve who voted for incorporation on 5 August 1833, an elector on the 10th, a candidate who took three votes, a trustee elected in 1834 and the town's treasurer that year - and Andreas: 'John S. C. Hogan voluntarily ceased to act as Treasurer, in June, 1835, because the corporation was determined, as a sanitary measure, to borrow $2,000 in order to have the streets cleared up.' THAT IS THE MONTH BEFORE THE SCENE DATE and it is one of the sharpest dated acts by any named resident inside the scene season. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+        }
+      ],
+      "research_note": "A POSTMASTER WHO RESIGNED A SECOND OFFICE ON PRINCIPLE FOUR WEEKS BEFORE THE SCENE DATE, which is as close as this dataset gets to knowing what a documented resident was thinking in June 1835. The $2,000 he would not borrow was to be spent clearing the streets against an expected cholera - so the sanitary state of the town in the scene summer is documented through the man who objected to paying for it."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

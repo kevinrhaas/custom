@@ -40,6 +40,14 @@ step "inferred infill records match the 665-roof programme" \
 step "North Division initial parcel matches its reviewed recipe" \
   python3 tools/generate_north_infill.py --check
 
+# The inferred-household layer (K1 phase two) is the same shape of thing: an
+# authored recipe — an occupation census, a roof-adoption table and a placement
+# list — expanded into households, occupancy blocks and structure records. It also
+# re-runs its own placement gates, so a centre that drifts onto another building,
+# onto water or off the modelled ground fails here rather than in a bake.
+step "inferred households, adoptions and their buildings match the programme" \
+  python3 tools/generate_inferred_households.py --check
+
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 

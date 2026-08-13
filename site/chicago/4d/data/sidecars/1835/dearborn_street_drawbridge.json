@@ -149,6 +149,29 @@
       "note": "A public crossing and the first movable bridge in Chicago: 'The first drawbridge thrown across the river was at Dearborn Street.' It replaced a trustee-established free ferry at the same street — a flat-bottomed boat on a cable, which was moved to Rush Street when the bridge opened — and it was the only fixed link between the North and South Divisions of the town. By the scene date it is also an address: the Chicago American set up its office in June 1835 'on Water Street, near the draw-bridge'."
     }
   },
+  "residents": [
+    {
+      "household": "hh_norton_nelson_r",
+      "name": "The Norton household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "A BUILT-BY LINK RATHER THAN A WORKPLACE. He built the Dearborn Street drawbridge in March 1834, sixteen months before the scene date; what he was building on 1 July 1835 is not stated, and the sloop Clarissa was not launched until May 1836. The grade marks the difference.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Nelson R. Norton",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "ship_carpenter",
+          "note": "AN ARRIVAL DATED TO THE DAY - 16 NOVEMBER 1833 - which only four households in this parcel have, and a trade that ties a person to two dated artefacts. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+        }
+      ],
+      "research_note": "THE ONLY SHIPWRIGHT IN THE DATASET, in a town whose whole future was a harbour. He is also the parcel's clearest example of a trade the structures layer already depends on: data/structures/dearborn_street_drawbridge.json models a bridge whose builder now has a name, an arrival date and a second, later vessel to his credit."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

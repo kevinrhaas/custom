@@ -1,0 +1,75 @@
+{
+ "id": "hh_watkins_john",
+ "name": "The Watkins household",
+ "division": "north",
+ "head": "watkins_john",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1832' - year precision, stated twice.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "north_side_school_1833",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas's account of the 1835 school year puts him teaching in exactly the building this record models - on the river bank just east of Clark Street, erected by Hamilton and Owen. data/structures/north_side_school_1833.json carries the doubt about whether that building was ever built; this household carries the man who is said to have taught in it."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Teaching the North Side public school in 1835, per Andreas's account of that school year."
+ },
+ "persons": [
+  {
+   "id": "watkins_john",
+   "name": "John Watkins",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "schoolteacher",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'John Watkins, school-master, came in 1832'. Andreas: 'In the fall of 1832, Colonel Hamilton and Colonel Owen employed John Watkins to teach a small school in the North Division, near the old Indian agency-house'; and by 1835 'John Watkins was then teaching what had become a public school on the North Side, on the river bank just east of Clark Street, in the building erected by Colonels Hamilton and Owen'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE ONLY TEACHER IN THIS PARCEL DOCUMENTED AT WORK IN THE SCENE YEAR ITSELF, and the only person in it who contradicts Andreas in his own book. Of the purpose-built schoolhouse Andreas says 'it is stated in Mr. Wells's report that these gentlemen afterwards built a house on the north bank of the river, just east of Clark Street, in which Mr. Watkins continued his school, and that it was the first house built for a school in Chicago. But this does not recur to Mr. Watkins's recollection.' Watkins wrote to the Calumet Club from Joliet in later life and Andreas quotes him directly on his first quarter: thirty scholars subscribed for but only twelve attending, 'only four of them were white: the others were quarter, half, and three-quarters Indians', and after the first quarter he moved the school into a double log house on the West Side owned by the Rev. Jesse Walker, who lived in one end while Watkins taught in the other and preached in the schoolroom on Sundays. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. It is the densest population passage this project holds and it is a retrospective, so a YEAR off it is documented and a MONTH is not."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE SCHOOLMASTER, AND THE PARCEL'S BEST WITNESS TO WHO ACTUALLY LIVED HERE. His own account of his first class - twelve children, four of them white - is the single most concrete statement about the composition of the settlement's population that this project has found, and it belongs to 1832 rather than to 1835. THREE BUILDINGS IN THIS DATASET ARE ATTACHED TO HIM and only one is linked: north_side_school_1833, where he was teaching in the scene year; watkins_school_house on Michigan Street, where he taught at some point and whose own record calls itself 'the thinnest record in this parcel'; and Jesse Walker's double log house on the West Side, which is probably this dataset's walker_meeting_house and is not linked because that record cannot even settle which bank it stood on."
+}

@@ -1723,6 +1723,12 @@
       "asset": "gltf/brickyard_north_side__yard_1833.glb"
     },
     {
+      "id": "brown_boarding_house",
+      "name": "Rufus Brown's Boarding House",
+      "sidecar": "sidecars/1835/brown_boarding_house.json",
+      "asset": "gltf/brown_boarding_house__documented_1835.glb"
+    },
+    {
       "id": "carpenter_south_water_store",
       "name": "Philo Carpenter's South Water Street Store",
       "sidecar": "sidecars/1835/carpenter_south_water_store.json",
@@ -1921,16 +1927,208 @@
       "asset": "gltf/h_jones_store__frame_1833.glb"
     },
     {
+      "id": "harmon_log_cabin",
+      "name": "Dr Elijah Harmon's Cabin",
+      "sidecar": "sidecars/1835/harmon_log_cabin.json",
+      "asset": "gltf/harmon_log_cabin__documented_1835.glb"
+    },
+    {
       "id": "harmon_loomis_store",
       "name": "Harmon & Loomis's Store",
       "sidecar": "sidecars/1835/harmon_loomis_store.json",
       "asset": "gltf/harmon_loomis_store__frame_1833.glb"
     },
     {
+      "id": "heacock_house_monroe",
+      "name": "Russel E. Heacock's House, Monroe Street",
+      "sidecar": "sidecars/1835/heacock_house_monroe.json",
+      "asset": "gltf/heacock_house_monroe__documented_1835.glb"
+    },
+    {
       "id": "hogan_store",
       "name": "Hogan's Store",
       "sidecar": "sidecars/1835/hogan_store.json",
       "asset": "gltf/hogan_store__log_1831.glb"
+    },
+    {
+      "id": "inf_artisan_dwelling_west_a",
+      "name": "Inferred dwelling (blacksmith)",
+      "sidecar": "sidecars/1835/inf_artisan_dwelling_west_a.json",
+      "asset": "gltf/inf_artisan_dwelling_west_a__inferred_1835.glb"
+    },
+    {
+      "id": "inf_artisan_dwelling_west_b",
+      "name": "Inferred dwelling (wheelwright)",
+      "sidecar": "sidecars/1835/inf_artisan_dwelling_west_b.json",
+      "asset": "gltf/inf_artisan_dwelling_west_b__inferred_1835.glb"
+    },
+    {
+      "id": "inf_bakery_lake",
+      "name": "Inferred bakery (baker)",
+      "sidecar": "sidecars/1835/inf_bakery_lake.json",
+      "asset": "gltf/inf_bakery_lake__inferred_1835.glb"
+    },
+    {
+      "id": "inf_barber_shop",
+      "name": "Inferred barber shop (barber-surgeon)",
+      "sidecar": "sidecars/1835/inf_barber_shop.json",
+      "asset": "gltf/inf_barber_shop__inferred_1835.glb"
+    },
+    {
+      "id": "inf_blacksmith_shop_west",
+      "name": "Inferred blacksmith shop (blacksmith)",
+      "sidecar": "sidecars/1835/inf_blacksmith_shop_west.json",
+      "asset": "gltf/inf_blacksmith_shop_west__inferred_1835.glb"
+    },
+    {
+      "id": "inf_boatman_cabin_north",
+      "name": "Inferred dwelling (boatman)",
+      "sidecar": "sidecars/1835/inf_boatman_cabin_north.json",
+      "asset": "gltf/inf_boatman_cabin_north__inferred_1835.glb"
+    },
+    {
+      "id": "inf_brickmaker_dwelling_north",
+      "name": "Inferred dwelling (brickmaker)",
+      "sidecar": "sidecars/1835/inf_brickmaker_dwelling_north.json",
+      "asset": "gltf/inf_brickmaker_dwelling_north__inferred_1835.glb"
+    },
+    {
+      "id": "inf_butcher_market",
+      "name": "Inferred butcher shop (butcher)",
+      "sidecar": "sidecars/1835/inf_butcher_market.json",
+      "asset": "gltf/inf_butcher_market__inferred_1835.glb"
+    },
+    {
+      "id": "inf_carpenter_dwelling_north",
+      "name": "Inferred dwelling (carpenter)",
+      "sidecar": "sidecars/1835/inf_carpenter_dwelling_north.json",
+      "asset": "gltf/inf_carpenter_dwelling_north__inferred_1835.glb"
+    },
+    {
+      "id": "inf_cooperage_south",
+      "name": "Inferred cooperage (cooper)",
+      "sidecar": "sidecars/1835/inf_cooperage_south.json",
+      "asset": "gltf/inf_cooperage_south__inferred_1835.glb"
+    },
+    {
+      "id": "inf_cooperage_south_branch",
+      "name": "Inferred cooperage (cooper)",
+      "sidecar": "sidecars/1835/inf_cooperage_south_branch.json",
+      "asset": "gltf/inf_cooperage_south_branch__inferred_1835.glb"
+    },
+    {
+      "id": "inf_grocery_west",
+      "name": "Inferred store residence (grocer)",
+      "sidecar": "sidecars/1835/inf_grocery_west.json",
+      "asset": "gltf/inf_grocery_west__inferred_1835.glb"
+    },
+    {
+      "id": "inf_gunsmith_shop",
+      "name": "Inferred gunsmith shop (gunsmith)",
+      "sidecar": "sidecars/1835/inf_gunsmith_shop.json",
+      "asset": "gltf/inf_gunsmith_shop__inferred_1835.glb"
+    },
+    {
+      "id": "inf_harness_shop",
+      "name": "Inferred harness shop (harness maker)",
+      "sidecar": "sidecars/1835/inf_harness_shop.json",
+      "asset": "gltf/inf_harness_shop__inferred_1835.glb"
+    },
+    {
+      "id": "inf_labourer_shanty_north_a",
+      "name": "Inferred dwelling (labourer)",
+      "sidecar": "sidecars/1835/inf_labourer_shanty_north_a.json",
+      "asset": "gltf/inf_labourer_shanty_north_a__inferred_1835.glb"
+    },
+    {
+      "id": "inf_labourer_shanty_north_b",
+      "name": "Inferred dwelling (labourer)",
+      "sidecar": "sidecars/1835/inf_labourer_shanty_north_b.json",
+      "asset": "gltf/inf_labourer_shanty_north_b__inferred_1835.glb"
+    },
+    {
+      "id": "inf_labourer_shanty_west_a",
+      "name": "Inferred dwelling (labourer)",
+      "sidecar": "sidecars/1835/inf_labourer_shanty_west_a.json",
+      "asset": "gltf/inf_labourer_shanty_west_a__inferred_1835.glb"
+    },
+    {
+      "id": "inf_labourer_shanty_west_b",
+      "name": "Inferred dwelling (labourer)",
+      "sidecar": "sidecars/1835/inf_labourer_shanty_west_b.json",
+      "asset": "gltf/inf_labourer_shanty_west_b__inferred_1835.glb"
+    },
+    {
+      "id": "inf_laundry_north",
+      "name": "Inferred wash house (laundress)",
+      "sidecar": "sidecars/1835/inf_laundry_north.json",
+      "asset": "gltf/inf_laundry_north__inferred_1835.glb"
+    },
+    {
+      "id": "inf_mason_dwelling_north",
+      "name": "Inferred dwelling (mason)",
+      "sidecar": "sidecars/1835/inf_mason_dwelling_north.json",
+      "asset": "gltf/inf_mason_dwelling_north__inferred_1835.glb"
+    },
+    {
+      "id": "inf_packer_dwelling",
+      "name": "Inferred dwelling (packer)",
+      "sidecar": "sidecars/1835/inf_packer_dwelling.json",
+      "asset": "gltf/inf_packer_dwelling__inferred_1835.glb"
+    },
+    {
+      "id": "inf_sawpit_shed",
+      "name": "Inferred sawpit shed (sawyer)",
+      "sidecar": "sidecars/1835/inf_sawpit_shed.json",
+      "asset": "gltf/inf_sawpit_shed__inferred_1835.glb"
+    },
+    {
+      "id": "inf_sawyer_dwelling_a",
+      "name": "Inferred dwelling (sawyer)",
+      "sidecar": "sidecars/1835/inf_sawyer_dwelling_a.json",
+      "asset": "gltf/inf_sawyer_dwelling_a__inferred_1835.glb"
+    },
+    {
+      "id": "inf_sawyer_dwelling_b",
+      "name": "Inferred dwelling (sawyer)",
+      "sidecar": "sidecars/1835/inf_sawyer_dwelling_b.json",
+      "asset": "gltf/inf_sawyer_dwelling_b__inferred_1835.glb"
+    },
+    {
+      "id": "inf_shoemaker_shop",
+      "name": "Inferred shoemaker shop (shoemaker)",
+      "sidecar": "sidecars/1835/inf_shoemaker_shop.json",
+      "asset": "gltf/inf_shoemaker_shop__inferred_1835.glb"
+    },
+    {
+      "id": "inf_tailor_shop",
+      "name": "Inferred tailor shop (tailor)",
+      "sidecar": "sidecars/1835/inf_tailor_shop.json",
+      "asset": "gltf/inf_tailor_shop__inferred_1835.glb"
+    },
+    {
+      "id": "inf_teamster_dwelling_south",
+      "name": "Inferred dwelling (teamster)",
+      "sidecar": "sidecars/1835/inf_teamster_dwelling_south.json",
+      "asset": "gltf/inf_teamster_dwelling_south__inferred_1835.glb"
+    },
+    {
+      "id": "inf_teamster_dwelling_west",
+      "name": "Inferred dwelling (teamster)",
+      "sidecar": "sidecars/1835/inf_teamster_dwelling_west.json",
+      "asset": "gltf/inf_teamster_dwelling_west__inferred_1835.glb"
+    },
+    {
+      "id": "inf_teamster_stable_west",
+      "name": "Inferred stable and wagon yard (teamster)",
+      "sidecar": "sidecars/1835/inf_teamster_stable_west.json",
+      "asset": "gltf/inf_teamster_stable_west__inferred_1835.glb"
+    },
+    {
+      "id": "inf_wheelwright_shop_west",
+      "name": "Inferred wheelwright shop (wheelwright)",
+      "sidecar": "sidecars/1835/inf_wheelwright_shop_west.json",
+      "asset": "gltf/inf_wheelwright_shop_west__inferred_1835.glb"
     },
     {
       "id": "james_kinzie_house",
@@ -1979,6 +2177,12 @@
       "name": "Mansion House",
       "sidecar": "sidecars/1835/mansion_house.json",
       "asset": "gltf/mansion_house__log_frame_1833.glb"
+    },
+    {
+      "id": "mason_blacksmith_shop",
+      "name": "Matthias Mason & Co.'s Blacksmith Shop",
+      "sidecar": "sidecars/1835/mason_blacksmith_shop.json",
+      "asset": "gltf/mason_blacksmith_shop__documented_1835.glb"
     },
     {
       "id": "miller_house",
@@ -2039,6 +2243,12 @@
       "name": "Philo Carpenter's Log Drug Store",
       "sidecar": "sidecars/1835/philo_carpenter_log_shop.json",
       "asset": "gltf/philo_carpenter_log_shop__log_1832.glb"
+    },
+    {
+      "id": "physicians_office",
+      "name": "Inferred physicians office (physician)",
+      "sidecar": "sidecars/1835/physicians_office.json",
+      "asset": "gltf/physicians_office__inferred_1835.glb"
     },
     {
       "id": "pierce_blacksmith_shop",
@@ -2755,6 +2965,12 @@
       "asset": "gltf/temple_building__frame_1833.glb"
     },
     {
+      "id": "temple_lake_st_building",
+      "name": "Dr Temple's Building, Lake Street",
+      "sidecar": "sidecars/1835/temple_lake_st_building.json",
+      "asset": "gltf/temple_lake_st_building__documented_1835.glb"
+    },
+    {
       "id": "thomas_church_store",
       "name": "Thomas Church's Store",
       "sidecar": "sidecars/1835/thomas_church_store.json",
@@ -2801,6 +3017,18 @@
       "name": "The Wolf Point Tavern's Stable",
       "sidecar": "sidecars/1835/wolf_point_tavern_stable.json",
       "asset": "gltf/wolf_point_tavern_stable__stable_1831.glb"
+    },
+    {
+      "id": "wright_building_to_let_a",
+      "name": "John Wright's Building to Let (east)",
+      "sidecar": "sidecars/1835/wright_building_to_let_a.json",
+      "asset": "gltf/wright_building_to_let_a__documented_1835.glb"
+    },
+    {
+      "id": "wright_building_to_let_b",
+      "name": "John Wright's Building to Let (west)",
+      "sidecar": "sidecars/1835/wright_building_to_let_b.json",
+      "asset": "gltf/wright_building_to_let_b__documented_1835.glb"
     }
   ],
   "excluded_by_date": []

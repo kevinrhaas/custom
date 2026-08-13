@@ -1,0 +1,69 @@
+{
+ "id": "hh_inf_teamster_west_05",
+ "name": "An inferred teamster's household (west division)",
+ "division": "west",
+ "head": "inf_teamster_west_05",
+ "arrival": {
+  "value": "1835-07-01",
+  "confidence": "inferred",
+  "note": "NOT AN ARRIVAL, A BOUND. Nothing dates a hypothesised household, and a year would be a claim nobody made. `not_later_than` the scene date states the only thing the inference carries: the town's need is measured on 1 July 1835, so the household is posited as being here by then and at no stated time before it.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not claimed. The layer infers households, not families: the person entries here are the ones the trade argument requires and nothing counts wives or children, because counting them would multiply a hypothesis by an invention."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not claimed. Where a hypothesised resident came from is unknowable by construction, and the documented layer's origins (Vermont, Washington, Ann Arbor) are evidence about those men and not a distribution to sample from."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not claimed for the person. The reason the HOUSEHOLD is in the dataset is the trade argument in research_note, which is a statement about the town and not about a motive."
+ },
+ "lives_at": {
+  "value": "inf_teamster_dwelling_west",
+  "confidence": "inferred",
+  "sources": [
+   "owner_chicago_1835_reconstruction_spec_2026"
+  ],
+  "note": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_teamster_dwelling_west is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one."
+ },
+ "works_at": {
+  "value": "inf_teamster_stable_west",
+  "confidence": "inferred",
+  "sources": [
+   "owner_chicago_1835_reconstruction_spec_2026"
+  ],
+  "note": "inf_teamster_stable_west is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
+ },
+ "persons": [
+  {
+   "id": "inf_teamster_west_05",
+   "name": "A teamster (inferred resident, unnamed)",
+   "relationship": "head",
+   "grade": "inferred",
+   "occupation": {
+    "value": "teamster",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1",
+     "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "The town's freight moves by wagon: between the forwarding houses on South Water, the piers at the river mouth, the brickyard, the slaughter-houses and the country roads. Pierce ironed the first Chicago-to-St-Louis stage line in January 1834 (Andreas, scan p. 1161), and the Western Hotel keeps a wagon yard and a stable, both modelled here. Five teamster households are inferred, three of them working from anonymous stables the reconstruction programme has already placed."
+   },
+   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIFTH OF 5 TEAMSTER HOUSEHOLDS THIS LAYER INFERS. The town's freight moves by wagon: between the forwarding houses on South Water, the piers at the river mouth, the brickyard, the slaughter-houses and the country roads. Pierce ironed the first Chicago-to-St-Louis stage line in January 1834 (Andreas, scan p. 1161), and the Western Hotel keeps a wagon yard and a stable, both modelled here. Five teamster households are inferred, three of them working from anonymous stables the reconstruction programme has already placed."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "INFERRED HOUSEHOLD - fifth of 5 teamster households in this layer, in the west division. The town's freight moves by wagon: between the forwarding houses on South Water, the piers at the river mouth, the brickyard, the slaughter-houses and the country roads. Pierce ironed the first Chicago-to-St-Louis stage line in January 1834 (Andreas, scan p. 1161), and the Western Hotel keeps a wagon yard and a stable, both modelled here. Five teamster households are inferred, three of them working from anonymous stables the reconstruction programme has already placed. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+}

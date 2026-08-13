@@ -106,6 +106,36 @@
       "note": "Inferred rather than documented because of the name question set out on documented_range: Andreas's list says 'Jim Kinzie's store' and his 1834 advertisement says J. H. Kinzie, and those are two different men of the same family. The record follows the advertisement because an advertisement is the man's own word about his own business, and flags the doubt rather than resolving it."
     }
   },
+  "residents": [
+    {
+      "household": "hh_kinzie_john_h",
+      "name": "The John H. Kinzie household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "The building record is graded inferred for a name reason this household inherits: Andreas's list says 'Jim Kinzie's store' and the 1834 advertisement says J. H. Kinzie, and those are two different men of the same family. The record follows the advertisement. This dataset also holds kinzie_hunter_warehouse under 'John H. Kinzie and Lieut. David Hunter', which is a second premises and is not linked here.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John Harris Kinzie",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "forwarding_and_commission",
+          "note": "PRESIDENT OF THE BOARD OF TRUSTEES FOR THE YEAR BEFORE THE SCENE DATE. He was elected a trustee at the second town election of 11 August 1834 and chosen president, and the 1834 roster is: 'J. H. Kinzie, President; Isaac Harmon, Clerk and Collector; J. S. C. Hogan, Treasurer.' Whether he was still president on 1 July 1835 depends on the date of the third election, which Andreas places only 'in July, 1835' - see the research note."
+        },
+        {
+          "name": "Juliette Augusta Magill Kinzie",
+          "relationship": "wife",
+          "grade": "documented",
+          "occupation": "none_recorded",
+          "note": "THE ONLY PERSON IN THIS PARCEL WHO IS ALSO ONE OF ITS SOURCES. Wau-Bun's descriptions of the forks in 1831 - Wentworth's tavern, the log cabins occupied by Robinson, the small square log building meant for a school, the white Sauganash with bright blue shutters - are the evidence behind four structure records in data/structures/. That a household member of the 1835 town is also the eye behind a quarter of the west-bank model is worth stating plainly, and it cuts both ways: Wau-Bun is a memoir of 1856 describing 1831 and this project grades it accordingly."
+        }
+      ],
+      "research_note": "THE HOUSEHOLD THAT EXPOSES A DATE THE WHOLE OFFICER LAYER TURNS ON. Andreas says only that 'the third election was held in July, 1835' and then lists the officers it produced - H. Hugunin president, with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Loyd and George W. Dole as trustees. THIS PROJECT CANNOT SAY WHETHER THAT ELECTION HAD HAPPENED BY 1 JULY 1835. If it had not, the town's president on the scene date is John H. Kinzie and the 1834 board is in office; if it had, it is Hiram Hugunin. The town elections of 1833 and 1834 were both held on the tenth or eleventh of August, which is an argument that the 1835 one fell late in the month rather than at its start, but Andreas's own text says July. NO OFFICE-HOLDING CLAIM IN THIS PARCEL RESTS ON THE ANSWER, and the seven trustees of the 1835 board are deliberately not written as households on the strength of an election this project cannot date."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

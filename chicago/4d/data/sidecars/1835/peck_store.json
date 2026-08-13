@@ -120,6 +120,57 @@
       "note": "Peck arrived at Chicago in July 1831 with a stock of goods in the schooner Telegraph and was among the town's first licensed merchants. He is attested keeping this store and living in it across 1833-35. No source reached names a clerk, a partner or a lodger at the scene date; the Porter lodging is May 1833 and is not carried forward as an 1835 occupancy."
     }
   },
+  "residents": [
+    {
+      "household": "hh_peck_philip",
+      "name": "The Peck household",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "A merchant of this period lived over or behind his store, and this one demonstrably housed a lodger in its loft. Not stated of Peck himself.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Philip F. W. Peck",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "merchant",
+          "note": "HIS UNFINISHED LOFT IS THE PARCEL'S BEST DOCUMENTED LODGING. Andreas: 'Among these was P. F. W. Peck, who invited Mr. Porter to make his temporary lodging place and study in the unfinished loft of his two-story store'; and 'The first building in the rear of this store was the log house of Rufus Brown, where Mr. Porter found table board.' Three households and two buildings meet in those two sentences. He arrived in July 1831 with a stock of goods carried by schooner, per this project's building record. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'."
+        }
+      ],
+      "research_note": "THE HOUSEHOLD AT THE CENTRE OF A THREE-WAY LINK. Peck's store lodged the Presbyterian minister in its loft and Rufus Brown's log boarding house stood directly behind it - so a single corner of South Water and LaSalle carries a merchant, a minister and a boarding-house keeper, all documented, all in this parcel. That is the density the inferred phase should expect to find everywhere and can only demonstrate here."
+    },
+    {
+      "household": "hh_porter_jeremiah",
+      "name": "The Porter household",
+      "division": "south",
+      "relation": "lived here",
+      "why": "ONE OF ONLY TWO DOCUMENTED RESIDENCE LINKS IN THIS PARCEL, and it is a lodging rather than a home. Andreas: 'Among these was P. F. W. Peck, who invited Mr. Porter to make his temporary lodging place and study in the unfinished loft of his two-story store, standing on the southwest corner of South Water and LaSalle streets.' data/structures/peck_store.json independently records the unfinished loft used as lodging. THE WORD 'TEMPORARY' IS IN THE SOURCE and this link is dated 1833; whether he was still in the loft in 1835, and whether he took his wife there, is unknown.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Rev. Jeremiah Porter",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "minister",
+          "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
+        },
+        {
+          "name": "Eliza Chappel Porter",
+          "relationship": "wife",
+          "grade": "documented",
+          "occupation": "schoolteacher",
+          "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
+        }
+      ],
+      "research_note": "THE RECORD THAT PROVES THE presence FIELD EARNS ITS KEEP. Jeremiah Porter is, on any reading, a documented Chicago resident of 1835 and the town's Presbyterian minister; and the best evidence this project holds puts him at a wedding in western New York sixteen days before the scene date and on a family visit in Massachusetts after it. Without a presence field the dataset would have had to either drop him or assert him, and both would be wrong. A SECOND CONSEQUENCE, ALREADY IN THE STRUCTURES LAYER: the church record's refusal to name a minister as its occupant now has a reason attached to it, which is the kind of loop the residents programme is meant to close."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

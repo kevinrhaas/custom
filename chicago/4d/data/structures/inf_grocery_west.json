@@ -1,0 +1,177 @@
+{
+  "id": "inf_grocery_west",
+  "name": "Inferred store residence (grocer)",
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+      },
+      "position": {
+        "utm_e": 446894.652,
+        "utm_n": 4637381.228,
+        "rotation_deg": 0.0,
+        "symbolic_location": "West Division, local ENU E -175 N -10",
+        "confidence": "conjectural",
+        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            6.096,
+            0
+          ],
+          [
+            6.096,
+            9.144
+          ],
+          [
+            0,
+            9.144
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 20 x 30 ft rectangle from the C2 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "wall_height_m": {
+          "value": 3.25,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_pitch_deg": {
+          "value": 33.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "gable_front": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "cladding": {
+          "value": "clapboard",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "loft": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "shopfront": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "goods_door": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "goods_door_side": {
+          "value": "end",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C2 band in the reconstruction specification; it is not evidence for this building."
+        }
+      },
+      "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it."
+    }
+  ],
+  "function": {
+    "value": "store_residence",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "A grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size."
+  },
+  "occupants": {
+    "value": "An inferred household; no name is claimed",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "The inferred household this building exists for: hh_inf_grocer_west_04 in data/residents/households/. No name is claimed and no figure is drawn."
+  },
+  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "review_required": false
+}

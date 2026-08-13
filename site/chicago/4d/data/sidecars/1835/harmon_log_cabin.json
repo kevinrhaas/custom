@@ -1,0 +1,165 @@
+{
+  "id": "harmon_log_cabin",
+  "phase": "documented_1835",
+  "name": "Dr Elijah Harmon's Cabin",
+  "aka": [],
+  "archetype": "log_dwelling",
+  "asset": "gltf/harmon_log_cabin__documented_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-01-01",
+    "to": "1835-12-31",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "'HIS RESIDENCE WAS A CABIN OF HEWN LOGS' - Andreas's medical chapter, in the passage that also gives Harmon's rusty instruments, his hundred books and his larder of flour, bacon and coffee. The fabric and the use are documented; the far end of the range is inferred, and note that the household's own presence on the scene date is recorded as UNCERTAIN because Harmon may have been in Texas. The cabin does not move when its owner does."
+  },
+  "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
+  "placement": {
+    "local_e": 246.952,
+    "local_n": -261.963,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district.",
+    "symbolic_location": "South Division, local ENU E 250 N -258",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6.096,
+        0
+      ],
+      [
+        6.096,
+        7.925
+      ],
+      [
+        0,
+        7.925
+      ]
+    ],
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 26 ft is the schedule's D1 older-log-cabin band: one room and a loft, which is what a doctor's residence-and-surgery would have been in a town this size. Every number is invented."
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "wall_height_m": {
+      "value": 2.6,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_pitch_deg": {
+      "value": 35.0,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "construction": {
+      "value": "log",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "loft": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the D1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "function": {
+      "value": "dwelling",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "THE HEWN-VERSUS-ROUND DISTINCTION ROADMAP K4 ASKS FOR, ATTESTED. Andreas says HEWN logs, which is the more finished construction and the commoner one at the forks; the log_dwelling archetype builds hewn logs, so the record and the mesh agree without any further parameter. When K4 adds a round-log variant, this record is the reference for the other side of the distinction."
+    },
+    "occupants": {
+      "value": "Dr Elijah Dewey Harmon",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Dr Elijah Dewey Harmon, the town's first physician (data/residents/households/hh_harmon_elijah_d.json). His presence on 1835-07-01 is recorded as uncertain in that record and this building does not assert it."
+    }
+  },
+  "residents": [
+    {
+      "household": "hh_harmon_elijah_d",
+      "name": "The Dr Harmon household",
+      "division": "south",
+      "relation": "lived here",
+      "why": "'His residence was a cabin of hewn logs' now has a structure to point at. The household's presence on the scene date remains uncertain and the link does not change that. Linked by the inferred-household programme's building parcel (docs/ROADMAP.md K1, phase two); the building record carries the evidence.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "The building is documented and the household is the one the sources attach to it; this parcel built the record they had been waiting for.",
+      "persons": [
+        {
+          "name": "Dr Elijah Dewey Harmon",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "physician",
+          "note": "HIS STOCK IN TRADE IS DESCRIBED AND IT IS THE MOST CONCRETE MATERIAL DETAIL ABOUT ANY PERSON IN THIS PARCEL: 'A case of rusty instruments, a library of about one hundred volumes and a stock of medicines brought from the Green Mountains ... His residence was a cabin of hewn logs; his larder, a repository of flour, bacon and coffee.' Born at Bennington, Vermont, 20 August 1782; married Welthyan Loomis 30 October 1808; volunteer surgeon aboard the Saratoga at Plattsburg in 1814. He pre-empted one hundred and forty acres whose northern boundary was near Sixteenth Street."
+        }
+      ],
+      "research_note": "A DOCUMENTED RESIDENT WHO MAY HAVE BEEN IN TEXAS, kept in the dataset precisely because the presence field can say so. Dropping him would lose the town's first doctor, his hewn-log cabin, his hundred books and the only stated economic motive in the parcel; asserting him would be a claim the source contradicts. HIS FAMILY IS THE REASON THE HOUSEHOLD MATTERS ANYWAY: the Harmon brothers' dry-goods firm is a separate household here, Harmon Court is named for him, and his daughter Mrs A. G. Burley supplied Andreas with these particulars fifty years later - which is a useful reminder that a good deal of what looks like documentation in this book is family recollection with a name attached."
+    }
+  ],
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    }
+  ],
+  "research_note": "THE HEWN-VERSUS-ROUND DISTINCTION ROADMAP K4 ASKS FOR, ATTESTED. Andreas says HEWN logs, which is the more finished construction and the commoner one at the forks; the log_dwelling archetype builds hewn logs, so the record and the mesh agree without any further parameter. When K4 adds a round-log variant, this record is the reference for the other side of the distinction.",
+  "research_doc": "docs/RESEARCH/harmon_log_cabin.md",
+  "review_required": false
+}

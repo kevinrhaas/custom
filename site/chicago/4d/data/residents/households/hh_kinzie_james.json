@@ -1,0 +1,77 @@
+{
+ "id": "hh_kinzie_james",
+ "name": "The James Kinzie household",
+ "division": "west",
+ "head": "kinzie_james",
+ "arrival": {
+  "value": "1831",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He is in the settlement by 1831, when he stands surety on the ferry bond. Nothing dates his coming.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": "james_kinzie_house",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "kinzie_waubun_1856"
+  ],
+  "note": "Andreas's residents list places 'James Kinzie and family' near Wentworth's tavern and this dataset's james_kinzie_house sits in that row, south of the tavern, on the strength of the same clause. Inferred rather than documented because the building record itself calls its evidence 'a single clause' and grades its own position inferred."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED AT THE SCENE DATE. He built the Green Tree and Chester Ingersoll kept it; he built a tavern on the west side of the South Branch and a Mr Crook kept it. This dataset holds james_kinzie_house as his residence and that is a lives_at, not a works_at."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the Chicago record across the period."
+ },
+ "persons": [
+  {
+   "id": "kinzie_james",
+   "name": "James Kinzie",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'James Kinzie and family ... resided near Wentworth's tavern' in the list Andreas prints of the settlement's residents; he is a candidate at the 1833 town election and takes five votes. He built the Green Tree Tavern in 1833 and leased it, and he was surety on Mark Beaubien's ferry bond of 6 June 1831."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "kinzie_waubun_1856"
+   ],
+   "note": "A BUILDER OF TAVERNS RATHER THAN A KEEPER OF THEM, which is why his structure links are thin. Andreas has him building the Green Tree and leasing it to David Clock; Charles Butler in August 1833 lodged at a tavern on the west side of the South Branch 'erected by James Kinzie, but kept by a Mr. Crook (?)' - the question mark is Andreas's or Butler's, not this project's. He is a half-brother to John H. and Robert A. Kinzie."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A HOUSEHOLD WITH A FAMILY IN THE SOURCE AND NO PEOPLE IN THE RECORD. Andreas's list says 'James Kinzie and family' and this parcel writes one person, because naming a wife or counting children on the strength of the word 'family' is the exact move the grade vocabulary forbids. THE HONEST READING OF THIS RECORD is that it stands for at least three or four people and can defend only one."
+}

@@ -1,0 +1,72 @@
+{
+ "id": "hh_steele_ashbel",
+ "name": "The Steele household",
+ "division": "south",
+ "head": "steele_ashbel",
+ "arrival": {
+  "value": "1833-11-30",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Not_later_than precision on the end of the month in which he did the work. He was in Chicago in November 1833 because he plastered a room there; when he came is not stated.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT LINKED, DELIBERATELY. He plastered data/structures/chicago_democrat_office in November 1833 - a single documented job, twenty months before the scene date - and a works_at pointing there would read as employment. A jobbing plasterer in July 1835 was somewhere else."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "PRESENCE ON THE SCENE DATE IS AN ASSUMPTION OF CONTINUITY AND NOT A STATEMENT. Nothing reached follows this household past 1833. It is graded uncertain rather than present because the town's population roughly quadrupled between the roster and the scene date and a great many of the men on it were, in Andreas's own phrase, 'adventurers, comprising moneyed speculators and prospectors, as yet undecided whether to stay at Chicago or go on'."
+ },
+ "persons": [
+  {
+   "id": "steele_ashbel",
+   "name": "Ashbel Steele",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "plasterer",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Ashbel Steele, plastered Calhoun's printing office in November, 1833' - the trade is stated as an act rather than as a title, which is how this roster names several of its artisans."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'. It gives a name, a trade and usually an arrival year, and it is a retrospective of 1884: a YEAR off it is documented, a MONTH is not, and it says nothing whatever about 1835."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE ONLY PLASTERER IN THE DATASET, AND THE ONLY MAN IN IT DOCUMENTED BY A SINGLE JOB. What makes him worth a record is what the job proves about a building: the town's ordinances of 7 November 1833 legislate for 'wooden buildings with wooden and lath-and-plaster partitions', and this is a named man doing exactly that work in the same month, in a building this dataset models. THE LINK IS NOT MADE IN works_at because plastering a room once is not working somewhere; it is recorded here."
+}

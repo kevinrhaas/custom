@@ -207,27 +207,49 @@ def main() -> int:
     files, entries = expected()
     manifest = load(MANIFEST)
     drift = []
+    superseded = 0
     for name, data in files.items():
-        for folder in (MASTER, WEB):
-            path = folder / name
-            if args.check:
-                if not path.exists() or path.read_bytes() != data:
-                    drift.append(f"{path.relative_to(ROOT)} is missing or stale")
-            else:
-                path.write_bytes(data)
-        if args.check:
-            if manifest["assets"].get(name) != entries[name]:
-                drift.append(f"assets/manifest.json entry for {name} is missing or stale")
-        else:
+        if not args.check:
+            for folder in (MASTER, WEB):
+                (folder / name).write_bytes(data)
             manifest["assets"][name] = entries[name]
+            continue
+
+        # A placeholder is a placeholder only until the canonical archetype bake
+        # produces the same asset.  generators/build.py writes that same filename
+        # and stamps the manifest entry `kind: generated`; from that moment this
+        # generator's bytes are the OLD answer, and demanding them back would
+        # forbid the upgrade the bake exists to perform.  Hand off to the ordinary
+        # staleness gate in tools/validate.py, which hashes a generated asset
+        # against its own recorded inputs.
+        entry = manifest["assets"].get(name)
+        if entry is not None and entry.get("kind") != "placeholder":
+            superseded += 1
+            continue
+
+        master = MASTER / name
+        if not master.exists() or master.read_bytes() != data:
+            drift.append(f"{master.relative_to(ROOT)} is missing or stale")
+        # The web tree is a DERIVATIVE, not a second copy.  tools/bake.sh runs
+        # gltf-transform over it when the optimiser is available, so requiring
+        # byte-equality with the master asserts that compression never happens —
+        # which is why the nightly content build was red wherever npx could reach
+        # the network and green wherever it could not.  Require it to be there.
+        web = WEB / name
+        if not web.exists():
+            drift.append(f"{web.relative_to(ROOT)} is missing")
+        if entry != entries[name]:
+            drift.append(f"assets/manifest.json entry for {name} is missing or stale")
     if not args.check:
         MANIFEST.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     if drift:
-        print("RECOMMENDED PLACEHOLDER DRIFT")
+        print("INFERRED PLACEHOLDER DRIFT")
         for item in drift:
             print(f"  - {item}")
         return 1
-    print(f"{'verified' if args.check else 'built'} {len(files)} flagged placeholder GLBs in master and web trees")
+    tail = f"; {superseded} superseded by a canonical bake" if superseded else ""
+    print(f"{'verified' if args.check else 'built'} {len(files) - superseded}"
+          f" flagged placeholder GLBs{tail}")
     return 0
 
 

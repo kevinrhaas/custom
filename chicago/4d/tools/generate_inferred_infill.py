@@ -31,6 +31,15 @@ PHASE_ID = "inferred_1835"
 PREFIX = "recon_1835_south_"
 
 sys.path.insert(0, str(ROOT / "generators"))
+sys.path.insert(0, str(ROOT / "tools"))
+
+# Phase two of the inferred-residents programme adopts some of these anonymous roofs
+# as the dwellings and shops of inferred households (docs/ROADMAP.md K1). The link is
+# data, not a hand edit: this generator still re-derives every record byte for byte,
+# and the occupancy block arrives from the household programme's ledger.
+from inferred_occupancy import occupancy  # noqa: E402
+
+OCCUPANCY = occupancy()
 
 
 def load(path: Path):
@@ -233,6 +242,7 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
             "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
         }],
         "function": inferred(function, f"Assigned from the {family} production family to satisfy the aggregate South Division mix; no occupant or individual use is known."),
+        **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
         "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
         "review_required": False

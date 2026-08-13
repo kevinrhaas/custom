@@ -164,6 +164,36 @@
       "note": "The congregation was organised in June 1833 under Rev. Jeremiah Porter, who had arrived that May and lodged in the unfinished loft of Peck's store - the two records meet there. NO SOURCE REACHED NAMES THE MINISTER IN CHARGE ON 1835-07-01, so the occupancy is stated as the congregation and not as a person."
     }
   },
+  "residents": [
+    {
+      "household": "hh_porter_jeremiah",
+      "name": "The Porter household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "His own congregation, in its own building at Lake and Clark by the scene date. data/structures/first_presbyterian_church.json deliberately records its occupants as the CONGREGATION rather than as a person, because no source names the minister in charge on 1 July 1835 - and this household is why. He is the minister and he may have been away.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Rev. Jeremiah Porter",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "minister",
+          "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
+        },
+        {
+          "name": "Eliza Chappel Porter",
+          "relationship": "wife",
+          "grade": "documented",
+          "occupation": "schoolteacher",
+          "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
+        }
+      ],
+      "research_note": "THE RECORD THAT PROVES THE presence FIELD EARNS ITS KEEP. Jeremiah Porter is, on any reading, a documented Chicago resident of 1835 and the town's Presbyterian minister; and the best evidence this project holds puts him at a wedding in western New York sixteen days before the scene date and on a family visit in Massachusetts after it. Without a presence field the dataset would have had to either drop him or assert him, and both would be wrong. A SECOND CONSEQUENCE, ALREADY IN THE STRUCTURES LAYER: the church record's refusal to name a minister as its occupant now has a reason attached to it, which is the kind of loop the residents programme is meant to close."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

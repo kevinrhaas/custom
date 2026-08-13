@@ -1,0 +1,78 @@
+{
+ "id": "hh_beaubien_madore",
+ "name": "The Madore Beaubien household",
+ "division": "south",
+ "head": "beaubien_madore",
+ "arrival": {
+  "value": "1831",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He is licensed to sell goods at Chicago in 1831 and a resident thereafter. His birth and early years belong to the family's Chicago period from 1812 and are not dated here.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": "madore_beaubien_house",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The house is recorded under his name and is a dwelling and store."
+ },
+ "works_at": {
+  "value": "madore_beaubien_house",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "data/structures/madore_beaubien_house.json is the log house at the south-west corner of South Water and Dearborn, built 1831, two rooms, the first building on Lot 1 - and its occupants field carries his name."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A trustee in 1833 and continuous in the record; no absence is stated for 1835."
+ },
+ "persons": [
+  {
+   "id": "beaubien_madore",
+   "name": "Madore Benjamin Beaubien",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Madore W. Beaubien, merchant' in the 1833 roster; licensed to sell goods by the county court in 1831 alongside Alexander Robinson and his father."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 23 of 28 votes - the third-highest poll. He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman, which makes him the only person in this parcel who is both a documented office-holder of the incorporated town and a documented member of a Native family. THE RECORD STATES THAT AND STOPS THERE."
+  }
+ ],
+ "touches_removal": true,
+ "review_required": true,
+ "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them."
+}
