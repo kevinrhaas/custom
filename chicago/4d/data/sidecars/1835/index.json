@@ -2911,6 +2911,126 @@
       "asset": "gltf/recon_1835_south_w4_032__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_west_001",
+      "name": "Inferred D1 older log dwelling #001",
+      "sidecar": "sidecars/1835/recon_1835_west_001.json",
+      "asset": "gltf/recon_1835_west_001__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_002",
+      "name": "Inferred D3 one-room frame cottage #002",
+      "sidecar": "sidecars/1835/recon_1835_west_002.json",
+      "asset": "gltf/recon_1835_west_002__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_003",
+      "name": "Inferred D4 two-room frame cottage #003",
+      "sidecar": "sidecars/1835/recon_1835_west_003.json",
+      "asset": "gltf/recon_1835_west_003__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_005",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #004",
+      "sidecar": "sidecars/1835/recon_1835_west_005.json",
+      "asset": "gltf/recon_1835_west_005__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_006",
+      "name": "Inferred H1 small boarding house #005",
+      "sidecar": "sidecars/1835/recon_1835_west_006.json",
+      "asset": "gltf/recon_1835_west_006__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_007",
+      "name": "Inferred C1 small shop or office #006",
+      "sidecar": "sidecars/1835/recon_1835_west_007.json",
+      "asset": "gltf/recon_1835_west_007__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_008",
+      "name": "Inferred W1 blacksmith shop #007",
+      "sidecar": "sidecars/1835/recon_1835_west_008.json",
+      "asset": "gltf/recon_1835_west_008__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_009",
+      "name": "Inferred W2 carpenter or joiner shop #008",
+      "sidecar": "sidecars/1835/recon_1835_west_009.json",
+      "asset": "gltf/recon_1835_west_009__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_010",
+      "name": "Inferred A1 stable #009",
+      "sidecar": "sidecars/1835/recon_1835_west_010.json",
+      "asset": "gltf/recon_1835_west_010__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_011",
+      "name": "Inferred A3 privy #010",
+      "sidecar": "sidecars/1835/recon_1835_west_011.json",
+      "asset": "gltf/recon_1835_west_011__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_012",
+      "name": "Inferred A4 woodshed or storage shed #011",
+      "sidecar": "sidecars/1835/recon_1835_west_012.json",
+      "asset": "gltf/recon_1835_west_012__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_014",
+      "name": "Inferred D1 older log dwelling #012",
+      "sidecar": "sidecars/1835/recon_1835_west_014.json",
+      "asset": "gltf/recon_1835_west_014__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_015",
+      "name": "Inferred D2 rough plank dwelling or shanty #013",
+      "sidecar": "sidecars/1835/recon_1835_west_015.json",
+      "asset": "gltf/recon_1835_west_015__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_016",
+      "name": "Inferred D3 one-room frame cottage #014",
+      "sidecar": "sidecars/1835/recon_1835_west_016.json",
+      "asset": "gltf/recon_1835_west_016__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_018",
+      "name": "Inferred D5 deep-plan frame cottage #015",
+      "sidecar": "sidecars/1835/recon_1835_west_018.json",
+      "asset": "gltf/recon_1835_west_018__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_019",
+      "name": "Inferred D7 small two-story frame house #016",
+      "sidecar": "sidecars/1835/recon_1835_west_019.json",
+      "asset": "gltf/recon_1835_west_019__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_021",
+      "name": "Inferred W3 cooper, wagon or wheelwright shop #017",
+      "sidecar": "sidecars/1835/recon_1835_west_021.json",
+      "asset": "gltf/recon_1835_west_021__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_022",
+      "name": "Inferred W4 small artisan shop #018",
+      "sidecar": "sidecars/1835/recon_1835_west_022.json",
+      "asset": "gltf/recon_1835_west_022__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_023",
+      "name": "Inferred A1 stable #019",
+      "sidecar": "sidecars/1835/recon_1835_west_023.json",
+      "asset": "gltf/recon_1835_west_023__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_west_024",
+      "name": "Inferred A2 barn or carriage shed #020",
+      "sidecar": "sidecars/1835/recon_1835_west_024.json",
+      "asset": "gltf/recon_1835_west_024__inferred_1835.glb"
+    },
+    {
       "id": "robert_kinzie_store",
       "name": "Robert A. Kinzie's Store",
       "sidecar": "sidecars/1835/robert_kinzie_store.json",
