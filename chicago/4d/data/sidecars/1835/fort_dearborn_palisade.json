@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1849-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "kinzie_waubun_1856",
       "wentworth_1881_fort_dearborn",
@@ -28,7 +28,7 @@
     "local_e": 1122.07,
     "local_n": 198.45,
     "rotation_deg": 8.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "harrison_1830_river_mouth",
       "wright_1834",
@@ -59,7 +59,7 @@
         53.0
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "harrison_1830_river_mouth",
       "andreas_1884_v1",
@@ -70,7 +70,7 @@
   "attributes": {
     "wall_kind": {
       "value": "picket_stockade",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "kinzie_waubun_1856",
         "andreas_1884_v1"
@@ -79,22 +79,22 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. 'Pickets' in this literature means split or roughly squared timber posts set upright, and the fort was built by soldiers out of local timber. The archetype builds squared posts, which is the commonest form and the one that matches the hewn work in the town across the river."
     },
     "picket_height_m": {
       "value": 3.7,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "THE SOURCE GIVES AN ADJECTIVE AND THIS RECORD NEEDS A NUMBER. Kinzie says 'high pickets' and nobody else says anything at all. 3.7 m is twelve feet, the common height for a frontier stockade of this class, and it is a guess dressed in a plausible number. A visitor looking at the height of this wall is looking at our arithmetic, not at evidence."
     },
     "picket_width_m": {
       "value": 0.24,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. Roughly a ten-inch face, which is what a split oak or cedar picket of that height needs to stand without racking."
     },
     "picket_spacing_m": {
       "value": 0.3,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. Set so the posts stand shoulder to shoulder with the narrow gap a hand-set picket line actually leaves, rather than touching perfectly, which reads as a fence panel."
     },
     "gate_sides": {
@@ -102,7 +102,7 @@
         "n",
         "s"
       ],
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "kinzie_waubun_1856",
         "andreas_1884_v1"
@@ -111,7 +111,7 @@
     },
     "gate_width_m": {
       "value": 3.6,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "'Large gates' is the whole attestation. 3.6 m is twelve feet, wide enough for a loaded team, which is what a fort gate has to pass. The leaves are built shut; nothing says how they hung or which way they swung."
     },
     "bastion_corners": {
@@ -119,7 +119,7 @@
         "nw",
         "se"
       ],
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "kinzie_waubun_1856",
@@ -129,17 +129,17 @@
     },
     "bastion_length_m": {
       "value": 7.0,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. The 1830 plan draws the corner works as shallow rectangular projections; this is that shape at a size the plate supports to about +/-40 percent, which is worse than the enclosure's own error bar because the works are small on the plate."
     },
     "bastion_projection_m": {
       "value": 3.2,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. How far the work stands proud of the curtain, read off the same small marks on the same plate."
     },
     "posterns": {
       "value": true,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "kinzie_waubun_1856"
       ],
@@ -148,7 +148,7 @@
     },
     "function": {
       "value": "military post enclosure",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "kinzie_waubun_1856"
@@ -157,7 +157,7 @@
     },
     "occupants": {
       "value": "United States 5th Infantry, Maj. John Greene commanding",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "drloih_fort_dearborn"
@@ -181,7 +181,7 @@
         {
           "name": "Major John Greene",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "army_officer",
           "note": "THE MAN IN COMMAND ON THE SCENE DATE, on a tour that starts eighteen months before it and ends ten weeks after it. Three separately written accounts agree the fort was garrisoned through 1835, and the post surgeon's prescription book carries an entry dated 15 March 1835."
         }

@@ -102,7 +102,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from the sibling params modules rather than
 # imported so that no params module can break another's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
+CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 
 # Gable and shed only. A hip, gambrel or mansard roof on a Chicago house in 1835 would
 # be a claim rather than a default, so the archetype refuses it loudly instead of
@@ -318,7 +318,7 @@ class FrameDwellingParams:
 
     # ---------------------------------------------------------------- confidence
 
-    def conf(self, attr: str, default: str = "inferred") -> float:
+    def conf(self, attr: str, default: str = "reconstructed") -> float:
         """The _CONFIDENCE float for one attribute."""
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
@@ -653,7 +653,7 @@ def from_phase(phase: dict) -> FrameDwellingParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="inferred"):
+    def conf(attr, default="reconstructed"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -682,7 +682,7 @@ def from_phase(phase: dict) -> FrameDwellingParams:
             "would silently overwrite an attested plan")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
 
     stories = float(val("stories", 1.5))
     # Storey heights built up from the Green Tree's attested 7 1/2 ft ceiling plus floor

@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1",
           "wentworth_1881_fort_dearborn"
@@ -24,7 +24,7 @@
         "utm_n": 4637602.55,
         "rotation_deg": 8.0,
         "symbolic_location": "The open court at the centre of Fort Dearborn, between the commandant's quarters and the officers' quarters on the north and west and the barracks on the east.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "harrison_1830_river_mouth",
           "wentworth_1881_fort_dearborn"
@@ -54,7 +54,7 @@
             33.2
           ]
         ],
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "harrison_1830_river_mouth",
           "wentworth_1881_fort_dearborn"
@@ -64,7 +64,7 @@
       "form": {
         "kind": {
           "value": "parade",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "wentworth_1881_fort_dearborn",
             "kinzie_waubun_1856"
@@ -73,12 +73,12 @@
         },
         "construction": {
           "value": "earth",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not stated. Bare trodden earth: nothing in any source describes a surface, and no paved or gravelled parade is plausible at a frontier post in 1835 - the town's own streets were unpaved mud for another decade."
         },
         "roof_type": {
           "value": "none",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "wentworth_1881_fort_dearborn"
           ],
@@ -86,7 +86,7 @@
         },
         "sun_dial": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "wentworth_1881_fort_dearborn"
           ],
@@ -94,7 +94,7 @@
         },
         "paint": {
           "value": "earth",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "The colour of trodden ground. No source describes it; the value exists so the material is not the archetype's default timber."
         }
       }
@@ -102,7 +102,7 @@
   ],
   "function": {
     "value": "parade and drill ground",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "wentworth_1881_fort_dearborn",
       "kinzie_waubun_1856"

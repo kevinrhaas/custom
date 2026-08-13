@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1831-01-01",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "drloih_wolf_point",
       "andreas_1884_v1"
@@ -25,7 +25,7 @@
     "local_e": 14.0,
     "local_n": 78.0,
     "rotation_deg": 180.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "drloih_wolf_point"
@@ -55,14 +55,14 @@
         5.5
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED and neither is the plan. What the sources give is a category: 'a log house ... that he used as a tannery'. 7 x 5.5 m is an ordinary single-pen log house of the type and period, chosen so that the building reads as a house put to a trade rather than as a purpose-built works, which is what the sources describe. Every number is invented. NOTE ALSO WHAT IS NOT DRAWN: a tannery is its yard — bark mill, lime pits, tan vats, drying sheds, and a water supply — and none of that is in this polygon or in the model. The record models the log house the sources name and nothing else. To resolve: any account of Miller and Hall's tanyard, or the Chicago Democrat's advertisements."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "drloih_wolf_point",
         "andreas_1884_v1"
@@ -71,32 +71,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. A single-pen log house is the near-universal form at the forks in 1831, and a building put to a trade is the last one anybody would raise a second storey on. Inference from the type, not from a statement about this building."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn-log wall plus a sill, the same reading and the same number this project gives Hogan's store and the Walker meeting house."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested, and nothing describes a stack on this building. One is the normal number for a single-pen log house and the minimum for a building worked through Chicago winters. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "tannery",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "drloih_wolf_point",
         "andreas_1884_v1"
@@ -119,14 +119,14 @@
         {
           "name": "John Miller",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "tanner",
           "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 20 of 28 votes, and Andreas notes that he 'being a candidate himself, refrained from voting' - so he is one of only two men in this parcel whose conduct at the poll is recorded. His brother Samuel Miller kept the tavern on the north bank at the forks and is not written as a household here, because Andreas's 1833 roster names him only in passing as 'Samuel, the landlord' and this project's miller_house record has the house 'past its innkeeping days' by the scene date. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
         },
         {
           "name": "Benjamin Hall",
           "relationship": "partner",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "tanner",
           "note": "A DOCUMENTED PARTNER IN THE SETTLEMENT'S FIRST MANUFACTORY. Andreas: 'The only manufactory established at that early day was the rude shed called a tannery, near the Miller tavern, where John Miller and Benjamin Hall were tanning a few hides into a rough but endurable leather.' He signed the 1832 militia agreement."
         }

@@ -60,8 +60,25 @@ def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+INVENTED_NOTE = (
+    "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction "
+    "spec — what a building of this kind was ordinarily like — and NOT from evidence "
+    "about this particular building, because there is no particular building: the "
+    "structure itself is an invention filling a demonstrable need of the town. The "
+    "spec is cited because the invention is bounded by it, which is what makes it "
+    "defensible rather than arbitrary; the GRADE is the bottom tier because nothing "
+    "here is a reading of a source about this thing. "
+)
+
+
 def inferred(value, reason: str):
-    return {"value": value, "confidence": "derived", "sources": [SOURCE_ID], "note": reason}
+    # The grade is the BOTTOM tier, not the middle one. This helper is called
+    # `inferred` and wrote "derived", which is the whole bug: every roof it raises
+    # is an invention, and grading those as reasoned-from-evidence made buildings
+    # that never existed render solid while the documented Exchange Coffee House
+    # rendered as a dithered ghost beside them.
+    return {"value": value, "confidence": "reconstructed", "sources": [SOURCE_ID],
+            "note": INVENTED_NOTE + reason}
 
 
 def archetype_for(family: str) -> str:
@@ -242,7 +259,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
         "phases": [{
             "id": PHASE_ID,
             "documented_range": {
-                "from": "1835-01-01", "to": "1835-12-31", "confidence": "inferred",
+                "from": "1835-01-01", "to": "1835-12-31", "confidence": "reconstructed",
                 "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
             },
             "position": {
@@ -250,7 +267,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                 "utm_n": round(float(datum["origin_utm_n"]) + local_n, 3),
                 "rotation_deg": bearing,
                 "symbolic_location": f"Anonymous inferred roof on {where}",
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": ("Interpretive placement within the reviewed West Division cluster "
                          f"{row['cluster']}. The recipe coordinate is a production-layout "
                          "control, not a recovered lot." + setback),
@@ -258,7 +275,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
             },
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, seq, paint),

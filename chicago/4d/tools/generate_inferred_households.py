@@ -71,7 +71,8 @@ def dumps(doc, indent: int) -> str:
 def arrival_block() -> dict:
     return {
         "value": SCENE_DATE,
-        "confidence": "derived",
+        # Bottom tier: this bounds an invention, it does not report a finding.
+        "confidence": "reconstructed",
         "note": ("NOT AN ARRIVAL, A BOUND. Nothing dates a hypothesised household, and a year "
                  "would be a claim nobody made. `not_later_than` the scene date states the only "
                  "thing the inference carries: the town's need is measured on 1 July 1835, so "
@@ -82,13 +83,15 @@ def arrival_block() -> dict:
 
 
 def null_block(note: str) -> dict:
-    return {"value": None, "confidence": "inferred", "note": note}
+    return {"value": None, "confidence": "reconstructed", "note": note}
 
 
 def link_block(sid, note: str) -> dict:
     if sid is None:
         return null_block(note)
-    return {"value": sid, "confidence": "derived", "sources": [SPEC], "note": note}
+    # An invented person attached to an invented building. The link is a construction
+    # of this generator, not a reading of a source about either end of it.
+    return {"value": sid, "confidence": "reconstructed", "sources": [SPEC], "note": note}
 
 
 def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = None) -> dict:
@@ -111,10 +114,14 @@ def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = 
         "id": pid,
         "name": name,
         "relationship": rel,
-        "grade": "inferred",
+        "grade": "reconstructed",
         "occupation": {
             "value": occ,
-            "confidence": "derived",
+            # The occupation is the REASON this person was invented — the town needed
+            # this many of this trade — so it is a claim about a ratio, not a finding
+            # about a person. Grading it as reasoned-from-evidence-about-this-person
+            # asserts a person the record explicitly says does not exist.
+            "confidence": "reconstructed",
             "sources": [ANDREAS, SPEC],
             "note": census[occ]["argument"],
         },
@@ -202,7 +209,7 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
         "works_at": link_block(works, works_note),
         "present_on_scene_date": {
             "value": "present",
-            "confidence": "derived",
+            "confidence": "reconstructed",
             "note": ("Presence on the scene date IS the hypothesis: this household exists in the "
                      "dataset because the town of 1 July 1835 demonstrably needed households of "
                      "this trade. It is not a finding about anybody's whereabouts."),
@@ -230,6 +237,25 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
 # --------------------------------------------------------------------------
 FT = 0.3048
 
+REAL_BUILDING_FORM_NOTE = (
+    "THE BUILDING IS ATTESTED; THIS ATTRIBUTE IS NOT. A source places this building and "
+    "says what it was, but nothing records this particular dimension or detail, so the "
+    "value is a typology from the reconstruction spec — what a building of this kind was "
+    "ordinarily like. Reconstructed, therefore, and not because the building is in doubt: "
+    "it is not. Only this number is. "
+)
+
+
+INVENTED_FORM_NOTE = (
+    "INVENTED, NOT DERIVED. A typology value from the reconstruction spec — what a "
+    "building of this kind was ordinarily like — not a reading of evidence about this "
+    "particular building, because no source speaks to it: the structure exists in the "
+    "model because the town demonstrably needed one of these, and nothing more. The "
+    "spec is cited because the invention is bounded by it. "
+)
+
+
+
 
 def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
     th = math.radians(bearing)
@@ -237,9 +263,28 @@ def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
     return (ce - w * .5 * cos - d * .5 * sin, cn + w * .5 * sin - d * .5 * cos)
 
 
-def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 9.0) -> dict:
+def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 9.0,
+                  building_documented: bool = False) -> dict:
+    # Every value below is INVENTED, and the grade says so.
+    #
+    # It used to say "derived", which under this project's own definition means
+    # "reasoned from evidence about THIS PARTICULAR THING". There is no particular
+    # thing: these attributes describe a building raised because the town must have
+    # had a shoemaker, not a building anybody recorded. The typology behind them is
+    # real and the spec is cited — an invention bounded by a source is defensible,
+    # which is why the citation stays — but a claim about what shops of this kind
+    # were ordinarily like is not a reading of a source about this shop.
+    #
+    # The cost of the old grade was not academic. It made 158 buildings that never
+    # existed render SOLID in the confidence view while the Exchange Coffee House —
+    # a real tavern with a name, a keeper and a documented function — rendered as a
+    # dithered ghost beside them, because its wall height is honestly unknown. The
+    # view was telling the visitor the exact opposite of the truth.
+    lede = REAL_BUILDING_FORM_NOTE if building_documented else INVENTED_FORM_NOTE
+
     def a(v):
-        return {"value": v, "confidence": "derived", "sources": [SPEC], "note": spec_note}
+        return {"value": v, "confidence": "reconstructed", "sources": [SPEC],
+                "note": lede + spec_note}
 
     if archetype == "log_dwelling":
         return {"stories": a(1), "wall_height_m": a(2.5), "roof_type": a("gable"),
@@ -265,8 +310,8 @@ def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 
                 "roof_pitch_deg": a(33.0), "gable_front": a(True),
                 "construction": a("braced_frame"), "cladding": a("clapboard"),
                 "paint": a("unpainted"), "loft": a(family in ("C2", "C3")), "chimneys": a(1),
-                "shopfront": ({"value": False, "confidence": "derived", "sources": [SPEC],
-                               "note": narrow_note} if not wide else a(True)),
+                "shopfront": ({"value": False, "confidence": "reconstructed", "sources": [SPEC],
+                               "note": lede + narrow_note} if not wide else a(True)),
                 "goods_door": a(wide), "goods_door_side": a("end")}
     door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
         "stable" if family == "A1" else "man")
@@ -302,7 +347,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         exist_conf, exist_src, exist_note = p["existence"]
         pos_conf, pos_src, pos_note = p["position"]
         foot_note = p["footprint"]
-        func_conf, func_src, func_note = "documented", [ANDREAS], p["research"]
+        func_conf, func_src, func_note = "attested", [ANDREAS], p["research"]
         name = p["name"]
         function_value = p["function"]
         occ_conf, occ_src, occ_note = p["occupants"]
@@ -318,14 +363,14 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         trade = label(b["occupation"])
         name = "Inferred " + b["function"].replace("_", " ") + " (" + trade + ")"
         function_value = b["function"]
-        exist_conf, exist_src = "inferred", None
+        exist_conf, exist_src = "reconstructed", None
         exist_note = ("NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the "
                       "roof an inferred household requires - " + role_lc + " The argument for the "
                       "trade's presence in the town is in the household record and in the "
                       "occupation census at "
                       "data/reconstruction/1835_inferred_household_programme.json; the argument "
                       "for THIS BUILDING is only that the household needs somewhere to be.")
-        pos_conf, pos_src = "inferred", None
+        pos_conf, pos_src = "reconstructed", None
         pos_note = ("INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. " + role + " The band follows "
                     "ROADMAP K1's placement rule - businesses toward the river and the built "
                     "streets, residences further out - using the same frontage bands the "
@@ -343,8 +388,8 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
                      f"building, which does not exist in any source; the band is type-level "
                      f"evidence about what buildings of this class measured and is not evidence "
                      f"about this one.")
-        func_conf, func_src, func_note = "inferred", [ANDREAS, SPEC], role
-        occ_conf, occ_src = "inferred", [ANDREAS, SPEC]
+        func_conf, func_src, func_note = "reconstructed", [ANDREAS, SPEC], role
+        occ_conf, occ_src = "reconstructed", [ANDREAS, SPEC]
         occ_note = ("The inferred household this building exists for: "
                     + ", ".join(occupants_hh) + " in data/residents/households/. No name is "
                     "claimed and no figure is drawn.")
@@ -363,9 +408,10 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
 
     spec_note = (f"Type-level choice within the {b['family']} band in the reconstruction "
                  f"specification; it is not evidence for this building.")
-    form = inferred_form(b["archetype"], b["family"], spec_note, w)
+    form = inferred_form(b["archetype"], b["family"], spec_note, w,
+                         building_documented=documented)
     for key, value in (form_over or {}).items():
-        form[key] = attested(value, "inferred", [ANDREAS] if documented else [SPEC],
+        form[key] = attested(value, "reconstructed", [ANDREAS] if documented else [SPEC],
                              p.get("form_note") or spec_note)
 
     phase = {
@@ -396,7 +442,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         },
         "footprint": {
             "polygon": [[0, 0], [w, 0], [w, d], [0, d]],
-            "confidence": "inferred",
+            "confidence": "reconstructed",
             "note": foot_note,
         },
         "form": form,
@@ -634,7 +680,7 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
             if link.get(key):
                 doc[key] = {
                     "value": link[key],
-                    "confidence": "documented",
+                    "confidence": "attested",
                     "sources": [ANDREAS],
                     "note": link["note"] + " Linked by the inferred-household programme's "
                                            "building parcel (docs/ROADMAP.md K1, phase two); the "
@@ -648,6 +694,12 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     vocab = index["vocabulary"]
     if "labourer" not in vocab["occupations"]:
         vocab["occupations"] = sorted(set(vocab["occupations"]) | {"labourer"})
+    # The vocabulary is a contract (validate.py checks it exactly), so it is
+    # stated here rather than carried forward from whatever the file happened to
+    # say. The three levels were renamed and this list is the one place that
+    # would otherwise still be quoting the old ones.
+    vocab["grades"] = ["attested", "inferred", "reconstructed"]
+
     keep = [e for e in index["households"] if not e["id"].startswith(PREFIX)]
     by_id = {d["id"]: d for d in households + documented_updates}
     for entry in keep:
@@ -655,13 +707,26 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
         if doc:
             entry["lives_at"] = (doc["lives_at"] or {}).get("value")
             entry["works_at"] = (doc["works_at"] or {}).get("value")
+        # RECOUNT from the record rather than carrying the row's own tally. An
+        # index is a claim about files that exist; when the grades in those files
+        # were renamed, every untouched row went on quoting the old words and the
+        # manifest disagreed with the dataset it indexes.
+        hh_path = HOUSEHOLDS / f"{entry['id']}.json"
+        if hh_path.exists():
+            tally: dict[str, int] = {}
+            for person in load(hh_path).get("persons", []):
+                g = person.get("grade")
+                if g:
+                    tally[g] = tally.get(g, 0) + 1
+            if tally:
+                entry["grades"] = dict(sorted(tally.items()))
     rows = keep + [{
         "id": h["id"],
         "file": f"households/{h['id']}.json",
         "head": h["head"],
         "division": h["division"],
         "persons": len(h["persons"]),
-        "grades": {"inferred": len(h["persons"])},
+        "grades": {"reconstructed": len(h["persons"])},
         "lives_at": (h["lives_at"] or {}).get("value"),
         "works_at": (h["works_at"] or {}).get("value"),
         "present_on_scene_date": h["present_on_scene_date"]["value"],
@@ -670,7 +735,7 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     rows.sort(key=lambda e: e["id"])
     index["households"] = rows
 
-    totals = {"documented": 0, "derived": 0, "inferred": 0}
+    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
     for entry in rows:
         for grade, n in entry["grades"].items():
             totals[grade] = totals.get(grade, 0) + n

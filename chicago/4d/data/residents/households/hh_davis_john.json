@@ -5,28 +5,28 @@
  "head": "davis_john",
  "arrival": {
   "value": "1835",
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "NOT ATTESTED. He is documented in the town in 1835 and nothing dates his coming. The value is the earliest year the evidence forces and it is graded conjectural; the attested fact is in present_on_scene_date, not here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "steamboat_hotel",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -35,7 +35,7 @@
  },
  "works_at": {
   "value": "steamboat_hotel",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -43,7 +43,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -55,11 +55,11 @@
    "id": "davis_john",
    "name": "John Davis",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "hotel_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels"

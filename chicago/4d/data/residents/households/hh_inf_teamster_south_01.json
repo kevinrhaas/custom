@@ -5,28 +5,28 @@
  "head": "inf_teamster_south_01",
  "arrival": {
   "value": "1835-07-01",
-  "confidence": "derived",
+  "confidence": "reconstructed",
   "note": "NOT AN ARRIVAL, A BOUND. Nothing dates a hypothesised household, and a year would be a claim nobody made. `not_later_than` the scene date states the only thing the inference carries: the town's need is measured on 1 July 1835, so the household is posited as being here by then and at no stated time before it.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not claimed. The layer infers households, not families: the person entries here are the ones the trade argument requires and nothing counts wives or children, because counting them would multiply a hypothesis by an invention."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not claimed. Where a hypothesised resident came from is unknowable by construction, and the documented layer's origins (Vermont, Washington, Ann Arbor) are evidence about those men and not a distribution to sample from."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not claimed for the person. The reason the HOUSEHOLD is in the dataset is the trade argument in research_note, which is a statement about the town and not about a motive."
  },
  "lives_at": {
   "value": "inf_teamster_dwelling_south",
-  "confidence": "derived",
+  "confidence": "reconstructed",
   "sources": [
    "owner_chicago_1835_reconstruction_spec_2026"
   ],
@@ -34,7 +34,7 @@
  },
  "works_at": {
   "value": "recon_1835_south_a1_046",
-  "confidence": "derived",
+  "confidence": "reconstructed",
   "sources": [
    "owner_chicago_1835_reconstruction_spec_2026"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "reconstructed",
   "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
  },
  "persons": [
@@ -50,10 +50,10 @@
    "id": "inf_teamster_south_01",
    "name": "A teamster (inferred resident, unnamed)",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "reconstructed",
    "occupation": {
     "value": "teamster",
-    "confidence": "derived",
+    "confidence": "reconstructed",
     "sources": [
      "andreas_1884_v1",
      "owner_chicago_1835_reconstruction_spec_2026"

@@ -3,7 +3,7 @@
  "source": "hathaway_1834",
  "tool": "tools/measure_street_widths.py",
  "read_on": "2026-08-10",
- "confidence": "documented",
+ "confidence": "attested",
  "confidence_note": "The corridor width is measured off a cadastral survey sheet at a stated place with a stated method, reproducible by re-running the tool \u2014 which is what documented means here. What it is documented ABOUT is the sheet: the figure it supports is the width Hathaway draws, and the 3.7-4.5% anisotropic stretch of these sheets puts about a metre of local scale error on a 24 m street. That is small against the 4.27 m between the two candidate figures and large against the 0.6 m between 18 ft and 16 ft alleys, which is why the streets are settled here and the alleys are not.",
  "raster": {
   "iiif_image": "https://tile.loc.gov/image-services/iiif/service:gmd:gmd410:g4104:g4104c:ct007620",

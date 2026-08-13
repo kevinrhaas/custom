@@ -88,6 +88,51 @@ function collectMeshes(structureNode) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
+/**
+ * Rewrite a structure's confidence channel so the MASSING answers "was this
+ * building here", not "do we know its exact wall height".
+ *
+ * Those are different questions and the view was answering the wrong one. The
+ * Exchange Coffee House is a tavern Andreas names, whose keeper is known and
+ * whose corner is described — but nobody wrote down how tall it was, so its
+ * wall height is honestly reconstructed, and the shader dithered its walls into
+ * translucent massing. Dithering is this project's mark for "we made this up".
+ * Applied to a building that demonstrably stood there, it is simply false, and
+ * a visitor reads it as doubt about the building rather than about a number.
+ *
+ * So the structure's OWN existence grade sets the range its parts may occupy:
+ *
+ *   existence reconstructed  every vertex goes to 1.0 — the whole building
+ *                            dithers, walls, roof, trim and chimney together.
+ *                            A half-dithered invention with a solid chimney
+ *                            reads as a real building with an odd texture.
+ *   existence attested       nothing dithers. Attribute uncertainty still shows,
+ *   or inferred              tinted, because the card behind the click carries
+ *                            the exact per-attribute grade and this is the
+ *                            summary, not a replacement for it.
+ *
+ * Nothing is lost by this: the popup still reports every attribute at its own
+ * grade, unclamped. What changes is only what the SHAPE in front of you claims.
+ */
+function existenceFloor(record) {
+  const grade = record?.sidecar?.documented_range?.confidence;
+  if (grade === 'reconstructed') return { force: 1.0 };
+  if (grade === 'attested' || grade === 'inferred') return { ceiling: 0.5 };
+  // No stated existence grade: leave the channel exactly as authored rather
+  // than inventing a policy for a case the dataset does not produce.
+  return {};
+}
+
+function applyExistence(geo, rule) {
+  const attr = geo.getAttribute('_confidence');
+  if (!attr || (rule.force === undefined && rule.ceiling === undefined)) return;
+  const a = attr.array;
+  for (let i = 0; i < a.length; i += 1) {
+    a[i] = rule.force !== undefined ? rule.force : Math.min(a[i], rule.ceiling);
+  }
+  attr.needsUpdate = true;
+}
+
 function normalizeGeometry(src, matrix, confidence, label) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
@@ -168,6 +213,9 @@ export function createBuildings({ registry, confidence, terrain }) {
       let prepared;
       try {
         prepared = normalizeGeometry(mesh.geometry, matrix, confidence, label);
+        // After the channel exists and is float — see existenceFloor for why the
+        // building's own existence grade governs what its parts may claim.
+        applyExistence(prepared.geo, existenceFloor(record));
       } catch (err) {
         problems.push(`${label}: ${err.message}`);
         continue;

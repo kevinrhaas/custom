@@ -74,8 +74,24 @@ COVER_ASPECTS = ("footprint", "position", "documented_range", "function", "occup
                  "ground_contact")
 FORM_ASPECT = r"form(?:\.[a-z0-9_]+)+"
 COVER_TOKEN = re.compile(
-    r"^([a-z0-9_]+?)(?:\.([a-z0-9_]+?))?\.("
-    + "|".join(COVER_ASPECTS) + r"|" + FORM_ASPECT + r")$")
+    r"^([a-z0-9_]+\*?|\*)(?:\.([a-z0-9_]+?|\*))?\.("
+    + "|".join(COVER_ASPECTS) + r"|" + FORM_ASPECT + r"|form\.\*)$")
+
+# A CLASS token: `recon_*.*.form.*`.
+#
+# Added because grading the invented buildings honestly turned ~2,900 values into
+# admitted inventions overnight, and the alternative was 2,900 hand-written
+# tokens. That is not a stricter document, it is an unreadable one — and this
+# register exists to be read. A visitor's question is "which parts of this did
+# you make up", and "every dimension of every building the reconstruction
+# programme raised, because none of them is recorded anywhere" answers it better
+# than two thousand lines they will never scroll through.
+#
+# The wildcard is deliberately narrow. It may stand for a structure id, a phase
+# id, or the attribute after `form.` — never for the aspect vocabulary itself,
+# so no entry can write `*.*.*` and silently discharge the whole gate. An
+# admission still has to say WHAT KIND of thing it is admitting to inventing.
+WILDCARD = "*"
 
 # "**Covers:** `terrain.e1834_harbor_cut.bank`" — the ground's own namespace.
 #

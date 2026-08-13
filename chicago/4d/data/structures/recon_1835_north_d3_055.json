@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637704.153,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous inferred roof in North Division cluster kinzie_michigan_interior; between the north bank and Michigan Street",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
           "method": "not_derivable",
@@ -42,81 +42,81 @@
             6.706
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "A 18 × 22 ft rectangle assigned by the reconstruction recipe within the D3 family band; no individual dimensions are documented."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "wall_height_m": {
           "value": 2.78,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "construction": {
           "value": "balloon_frame",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "plan": {
           "value": "single_pen",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "bays": {
           "value": 3,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         },
         "paint": {
           "value": "whitewash",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D3 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         }
       },
       "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
@@ -124,15 +124,15 @@
   ],
   "function": {
     "value": "one-room frame cottage",
-    "confidence": "derived",
+    "confidence": "reconstructed",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "Assigned from the D3 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
+    "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Assigned from the D3 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
   },
   "occupants": {
     "value": "An inferred household; no name is claimed",
-    "confidence": "derived",
+    "confidence": "reconstructed",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"

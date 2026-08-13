@@ -51,12 +51,21 @@ def stable_fraction(key: str, slot: int) -> float:
     return int.from_bytes(raw[:4], "big") / 0xFFFFFFFF
 
 
+INVENTED_NOTE = (
+    "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading "
+    "of evidence about this particular building — there is no particular building. The "
+    "spec is cited because the invention is bounded by it. "
+)
+
+
 def inferred(value, reason: str):
+    # Named `inferred`, and it used to write "derived". That one-word mismatch is why
+    # buildings that never existed rendered solid in the confidence view.
     return {
         "value": value,
-        "confidence": "derived",
+        "confidence": "reconstructed",
         "sources": [SOURCE_ID],
-        "note": reason,
+        "note": INVENTED_NOTE + reason,
     }
 
 
@@ -222,20 +231,20 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
         "phases": [{
             "id": PHASE_ID,
             "documented_range": {
-                "from": "1835-01-01", "to": "1835-12-31", "confidence": "inferred",
+                "from": "1835-01-01", "to": "1835-12-31", "confidence": "reconstructed",
                 "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
             },
             "position": {
                 "utm_e": round(datum["origin_utm_e"] + local_e, 3),
                 "utm_n": round(datum["origin_utm_n"] + local_n, 3),
                 "rotation_deg": rotation, "symbolic_location": location,
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
                 "derivation": {"method": "not_derivable", "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."}
             },
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, seq, finish, width, depth),

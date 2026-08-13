@@ -6,7 +6,7 @@
  ],
  "tool": "tools/measure_street_widths.py",
  "read_on": "2026-08-10",
- "confidence": "documented",
+ "confidence": "attested",
  "confidence_note": "A corridor width is measured at a stated place by a stated method that anyone can re-run, which is what documented means here. What it is documented ABOUT is the sheet: the figure it supports is the width these surveys DRAW. Both sheets carry 3.7-4.5% anisotropic paper stretch, which puts about a metre of local scale error on a 24 m street \u2014 small against the 4.27 m between the two candidate figures, and large against the 0.6 m between 18 ft and 16 ft alleys. That is why the streets are settled here and the alleys are reported but not settled.",
  "method": {
   "traverse": "each traverse starts at a committed GCP pixel and runs along one axis of the plat grid, reporting every boundary line it crosses; the axes come from the modern control through the sheet's own affine",

@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "wentworth_1881_fort_dearborn",
@@ -27,7 +27,7 @@
     "local_e": 1149.02,
     "local_n": 244.98,
     "rotation_deg": 188.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "harrison_1830_river_mouth",
       "wright_1834",
@@ -58,7 +58,7 @@
         7.62
       ]
     ],
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "wentworth_1881_fort_dearborn",
       "harrison_1830_river_mouth"
@@ -68,7 +68,7 @@
   "attributes": {
     "kind": {
       "value": "quarters",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -77,7 +77,7 @@
     },
     "construction": {
       "value": "brick",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -86,27 +86,27 @@
     },
     "stories": {
       "value": 2,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. A 50 x 25 ft brick building housing the commanding officer of a two-company post, standing tall enough to be one of the 'two of the principal buildings of the Fort' identified in a photograph taken from across the river, is two storeys by type. The inference is from the building's size and its prominence, not from a statement."
     },
     "wall_height_m": {
       "value": 5.4,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No height is attested for any building in this fort. 5.4 m is two storeys at about nine feet of interior height each plus floor structure, which is the ordinary figure for officers' quarters of this class. What is inferred is that the wall falls in this range, not that it is exactly 5.4 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for a rectangular range of this period, and it is what the building silhouetted in the 1855 photograph reads as. Inferred from type."
     },
     "roof_pitch_deg": {
       "value": 34.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
     },
     "chimneys": {
       "value": 2,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "wentworth_1881_fort_dearborn"
       ],
@@ -114,12 +114,12 @@
     },
     "paint": {
       "value": "brick",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Bare brick. Nothing says this building was rendered, painted or whitewashed; the whitewash in the sources belongs to the board fence of the 1850s compound and to John H. Kinzie's boyhood memory of the FIRST fort's blockhouses."
     },
     "function": {
       "value": "commanding officer's quarters",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -143,7 +143,7 @@
         {
           "name": "Major John Greene",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "army_officer",
           "note": "THE MAN IN COMMAND ON THE SCENE DATE, on a tour that starts eighteen months before it and ends ten weeks after it. Three separately written accounts agree the fort was garrisoned through 1835, and the post surgeon's prescription book carries an entry dated 15 March 1835."
         }

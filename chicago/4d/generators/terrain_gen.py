@@ -351,7 +351,7 @@ def build_field(spec, feats, origin):
         face = np.where(m, float(isl["face_m"]), face)
         band.setdefault(isl["id"], np.zeros(E.shape, bool))
         band[isl["id"]] |= m
-        if isl.get("confidence") == "inferred":
+        if isl.get("confidence") == "reconstructed":
             conj_land |= m
 
     # ---- mounds: the one piece of high ground the record names ------------

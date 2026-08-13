@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637121.073,
         "rotation_deg": 89.0,
         "symbolic_location": "Anonymous inferred roof on the Canal and Randolph teamster approach",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed West Division cluster w2_canal_randolph_teamster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
           "method": "not_derivable",
@@ -42,81 +42,81 @@
             9.144
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "A 22 × 30 ft rectangle assigned by the reconstruction recipe within the D7 family band; no individual dimensions are documented."
       },
       "form": {
         "stories": {
           "value": 2,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "wall_height_m": {
           "value": 5.05,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "plan": {
           "value": "centre_passage",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "bays": {
           "value": 5,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "derived",
+          "confidence": "reconstructed",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
-          "note": "Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+          "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D7 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         }
       },
       "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
@@ -124,11 +124,11 @@
   ],
   "function": {
     "value": "small two-story frame house",
-    "confidence": "derived",
+    "confidence": "reconstructed",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "Assigned from the D7 family to satisfy the aggregate West Division mix; no occupant or individual use is known."
+    "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Assigned from the D7 family to satisfy the aggregate West Division mix; no occupant or individual use is known."
   },
   "reconstruction": {
     "status": "inferred_anonymous",

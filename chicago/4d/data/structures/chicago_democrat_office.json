@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1833-11-26",
         "to": "1835-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicago_democrat_1833_11_26",
           "andreas_1884_v1"
@@ -25,7 +25,7 @@
         "utm_n": 4637389.9,
         "rotation_deg": 0.0,
         "symbolic_location": "The corner of South Water Street and Clark Street (today West Wacker Drive at North Clark Street); the south-west corner on Andreas's reading, which is the reading this coordinate takes.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicago_democrat_1833_11_26",
           "andreas_1884_v1",
@@ -56,13 +56,13 @@
             7.62
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "INVENTED, and the same borrowed rectangle this parcel uses on every South Water store whose size nobody recorded: 12.192 x 7.62 m is 40 x 25 ft, the frontage attested for the Green Tree Tavern and the Western Hotel's front, and the depth derived from the Green Tree's attested room module. Andreas gives this building no dimension; the 26 November 1833 issue gives none either. The one documented constraint is the street's: South Water lots were 55 ft wide (Andreas), so a single-lot building here cannot have fronted more than 55 ft, and 40 ft sits inside that. IT IS SIZED AS A WHOLE BUILDING, NOT AS AN OFFICE, and that is a decision the evidence supports rather than a default: Andreas says Calhoun 'secured an office IN a building', so the press occupied part of a larger structure, and the same first issue advertises 'the New Store on the corner of South Water and Clark-streets' — see this record's occupants block. A building holding a store and a printing office is not a shed."
       },
       "form": {
         "stories": {
           "value": 2,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -70,7 +70,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -78,22 +78,22 @@
         },
         "wall_height_m": {
           "value": 5.5,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course, the number this project uses for its other two-storey frame buildings. It inherits the storey count's uncertainty — if the building was single-storey this is nearly twice too tall — and that is why the confidence view should be trusted over the silhouette here."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region. Typological derivation, not a measurement."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. One is the minimum for a building holding a store and a printing office through a Chicago winter — a press room needs heat as much as a shop does, because ink stiffens and paper has to be damped. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -102,7 +102,7 @@
   ],
   "function": {
     "value": "printing_office_and_store",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
@@ -111,7 +111,7 @@
   },
   "occupants": {
     "value": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"

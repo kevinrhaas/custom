@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-01-01",
         "to": "1835-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637389.2,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street between Franklin Street and Wells Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "CONJECTURAL, AND ONLY THE STREET IS EVIDENCE. Andreas puts this store 'on South Water Street' and no closer; this project's dossier records the block as unattested. The point recorded here is on the south side of the Franklin-to-Wells block, and the choice of block carries ONE weak argument and no more: a forwarding and commission house wants wharfage, and the west end of South Water was the wharf and landing end nearest the forks and the South Branch, so the west end is a slightly better guess than the east. That is a reason, not evidence, and it is the difference between this record and a coin toss rather than the difference between a guess and a finding. THE ALONG-STREET UNCERTAINTY IS THE WHOLE STREET, about 630 m from Market to State. THE SIDE OF THE STREET IS REASONED: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), so a store building is on the south side, however much its trade faced the water. METHOD, for the cross-street position only: the modern West Upper Wacker Drive centreline was interpolated between the intersection centres at North Franklin (EPSG:26916 E 447281.2, N 4637407.2) and North Wells (E 447402.5, N 4637411.6), read from OpenStreetMap 2026-08-11, and the south kerb taken 12.2 m south of it as half an 80 ft platted street. Working uncertainty about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS) and the length of the street along it. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
         "derivation": {
           "method": "not_derivable",
@@ -49,18 +49,18 @@
             7.62
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, from the Green Tree Tavern's attested frontage and room module. Nothing is attested about this building. The larger rather than the smaller rectangle is used because a forwarding and commission house handles other men's goods and needs floor for them, which is an argument about the trade and not about the building. The documented South Water lot width of 55 ft is a cap and 40 ft sits inside it."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "reconstructed",
           "note": "Nothing is attested. One is recorded because it is the smaller claim, though a forwarding house with a loft over would be as likely. Invention, tagged as such."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -68,22 +68,22 @@
         },
         "wall_height_m": {
           "value": 3.6,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No figure is attested. 3.6 m is about 12 ft: one storey built taller than a dwelling's, which is what stacked goods and a cart door need. It inherits the storey count's uncertainty, which is conjectural."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. One is the minimum for premises worked through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -92,7 +92,7 @@
   ],
   "function": {
     "value": "forwarding_and_commission_store",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -100,7 +100,7 @@
   },
   "occupants": {
     "value": "J. H. Kinzie, forwarding and commission merchant",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],

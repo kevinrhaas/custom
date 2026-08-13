@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 292.154,
     "local_n": -151.004,
     "rotation_deg": -1.06,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in the South Division block between Franklin and Wells, south of Lake Street",
@@ -46,94 +46,94 @@
         9.755
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 6.68 × 9.76 m rectangle sampled deterministically inside the D5 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "wall_height_m": {
       "value": 2.78,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "plan": {
       "value": "hall_parlour",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "bays": {
       "value": 3,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the D5 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "function": {
       "value": "deep-plan frame cottage",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Assigned from the D5 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Assigned from the D5 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -156,7 +156,7 @@
         {
           "name": "A baker (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "reconstructed",
           "occupation": "baker",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 BAKER HOUSEHOLDS THIS LAYER INFERS. A town whose hotels and boarding houses are 'always full', and where several hundred single men are living in them, buys its bread rather than baking it. One baker is inferred - the town's first, on Lake Street where the trade is - and only one, because a bakehouse serves a great many people and nothing attests a second."
         }

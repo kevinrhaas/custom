@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1833-03-01",
         "to": "1835-08-18",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire252",
           "chicagology_lastwardance"
@@ -25,7 +25,7 @@
         "utm_n": 4637217.73,
         "rotation_deg": 0.292,
         "symbolic_location": "Across the South Branch between Lake and Randolph Streets, its west landing on West Water Street (now Canal Street) below Wolf Point.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_lastwardance",
           "wright_1834",
@@ -56,7 +56,7 @@
             3.048
           ]
         ],
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "old_settlers_bridges_1883",
           "chicagology_prefire252",
@@ -67,7 +67,7 @@
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883",
             "chicagology_prefire252"
@@ -76,7 +76,7 @@
         },
         "width_m": {
           "value": 3.048,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883",
             "chicagology_prefire252"
@@ -85,7 +85,7 @@
         },
         "clearance_m": {
           "value": 1.83,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -93,7 +93,7 @@
         },
         "abutments": {
           "value": true,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883",
             "chicagology_prefire252"
@@ -102,7 +102,7 @@
         },
         "pier_kind": {
           "value": "bent",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -110,7 +110,7 @@
         },
         "pier_count": {
           "value": 2,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -118,7 +118,7 @@
         },
         "deck_kind": {
           "value": "puncheon",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -126,7 +126,7 @@
         },
         "stringer_count": {
           "value": 4,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -134,7 +134,7 @@
         },
         "railing": {
           "value": false,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "old_settlers_bridges_1883"
           ],
@@ -150,7 +150,7 @@
   ],
   "function": {
     "value": "river_crossing",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "chicagology_lastwardance",
       "chicagology_prefire252"
