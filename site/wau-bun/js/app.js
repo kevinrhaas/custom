@@ -6,7 +6,14 @@
 
    The model: a scene names who is present (`cast`) and who is spoken of
    (`offstage`). Everything else — first appearance, last appearance, arcs,
-   counts, the "enters here" badges — is derived, never hand-maintained. */
+   counts, the "enters here" badges — is derived, never hand-maintained.
+
+   Navigation is history-driven: every move (view, scene, selection, an open
+   panel) is a history entry, so the browser Back button always undoes exactly
+   one step and the URL is shareable.
+
+   The full text of each scene lives in js/data-text-part1.js and is fetched
+   only when the reader first needs it — first paint stays light. */
 (function () {
   'use strict';
 
@@ -16,14 +23,27 @@
   var CH = {};
   WAUBUN_CHARACTERS.forEach(function (c) { CH[c.id] = c; });
 
+  var MODES = [
+    { id: 'summary',  label: 'Summary',  note: 'What happens, in brief.' },
+    { id: 'modern',   label: 'Modern',   note: 'The contemporary-English edition, in full.' },
+    { id: 'original', label: '1856',     note: 'Juliette Kinzie\'s original text, in full.' }
+  ];
+
   var state = {
     part: 'part1',
     view: 'chart',
-    scene: null,          // scene id shown in the reader
+    scene: null,          // scene shown in the reader
+    mode: 'summary',      // summary | modern | original
+    selected: [],         // scene ids selected in the chart
+    panel: null,          // { kind:'scene'|'character', id }
     factions: FAC_ORDER.slice(),
     query: '',
     pivotalOnly: false
   };
+  try {
+    var savedMode = localStorage.getItem('waubun.mode');
+    if (savedMode && MODES.some(function (m) { return m.id === savedMode; })) state.mode = savedMode;
+  } catch (e) {}
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   function el(tag, cls, html) {
@@ -41,9 +61,18 @@
     for (var i = 0; i < PARTS.length; i++) if (PARTS[i].id === state.part) return PARTS[i];
     return PARTS[0];
   }
+  function sceneById(id) {
+    var list = part().scenes || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function sceneNo(id) {
+    var list = part().scenes || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return i;
+    return -1;
+  }
 
   /* ---------------- derived model ---------------- */
-  // For the active part: which characters appear, in which scenes, first & last.
   function buildIndex(p) {
     var idx = { byChar: {}, order: [], scenes: p.scenes || [] };
     (p.scenes || []).forEach(function (sc, i) {
@@ -61,7 +90,6 @@
         rec.last = i;
       } else rec.mentioned.push(i);
     }
-    // stable order: faction block, then first appearance, then name
     idx.order.sort(function (a, b) {
       var fa = FAC_ORDER.indexOf(CH[a].faction), fb = FAC_ORDER.indexOf(CH[b].faction);
       if (fa !== fb) return fa - fb;
@@ -80,19 +108,86 @@
     var p = part();
     return (p.scenes || []).filter(function (sc) { return !state.pivotalOnly || sc.pivotal; });
   }
+  function isSelected(id) { return state.selected.indexOf(id) >= 0; }
+
   function visibleChars() {
     var idx = INDEX[state.part], q = state.query.trim().toLowerCase();
-    var scenes = visibleScenes(), keep = {};
-    scenes.forEach(function (sc) { keep[sc.id] = true; });
+    var cols = visibleScenes(), inCol = {};
+    cols.forEach(function (sc) { inCol[sc.id] = true; });
+    var sel = state.selected.filter(function (id) { return inCol[id]; });
     return idx.order.filter(function (id) {
       var c = CH[id], rec = idx.byChar[id];
       if (state.factions.indexOf(c.faction) < 0) return false;
       if (q && (c.name + ' ' + (c.alias || '') + ' ' + c.role).toLowerCase().indexOf(q) < 0) return false;
-      // drop anyone with nothing to show under the current column filter
+      // with scenes selected, only the people who appear in them (or are spoken of)
+      if (sel.length) return sel.some(function (sid) { return !!rec.at[sceneNo(sid)]; });
       var any = false;
-      (part().scenes || []).forEach(function (sc, i) { if (keep[sc.id] && rec.at[i]) any = true; });
+      (part().scenes || []).forEach(function (sc, i) { if (inCol[sc.id] && rec.at[i]) any = true; });
       return any;
     });
+  }
+
+  /* ---------------- history-driven navigation ---------------- */
+  var pushed = 0;
+  function snapshot() {
+    return {
+      part: state.part, view: state.view, scene: state.scene, mode: state.mode,
+      selected: state.selected.slice(), panel: state.panel ? { kind: state.panel.kind, id: state.panel.id } : null,
+      factions: state.factions.slice(), query: state.query, pivotalOnly: state.pivotalOnly
+    };
+  }
+  function hashFor() {
+    var h = '#/' + state.part + '/' + state.view;
+    if (state.view === 'story' && state.scene) h += '/' + state.scene + (state.mode !== 'summary' ? '/' + state.mode : '');
+    else if (state.panel && state.panel.kind === 'scene') h += '/' + state.panel.id;
+    else if (state.selected.length) h += '/sel-' + state.selected.join('+');
+    return h;
+  }
+  // `replace` keeps the current history entry (use for filter fiddling);
+  // otherwise every move becomes a Back step.
+  function go(patch, replace) {
+    Object.assign(state, patch);
+    if (replace) history.replaceState(snapshot(), '', hashFor());
+    else { history.pushState(snapshot(), '', hashFor()); pushed++; }
+    render();
+  }
+  window.addEventListener('popstate', function (e) {
+    if (pushed > 0) pushed--;
+    if (e.state) { Object.assign(state, e.state); render(); }
+    else { readHash(); render(); }
+  });
+  function readHash() {
+    var m = (location.hash || '').replace(/^#\//, '').split('/');
+    if (m[0] && PARTS.some(function (p) { return p.id === m[0]; })) state.part = m[0];
+    if (m[1] && ['chart', 'story', 'cast', 'table'].indexOf(m[1]) >= 0) state.view = m[1];
+    if (m[2]) {
+      if (m[2].indexOf('sel-') === 0) state.selected = m[2].slice(4).split('+');
+      else if (state.view === 'story') state.scene = m[2];
+      else state.panel = { kind: 'scene', id: m[2] };
+    }
+    if (m[3] && MODES.some(function (x) { return x.id === m[3]; })) state.mode = m[3];
+  }
+
+  /* ---------------- full text, fetched on demand ---------------- */
+  var textState = 'idle';   // idle | loading | ready | failed
+  var textWaiters = [];
+  function ensureText(cb) {
+    if (window.WAUBUN_TEXT_PART1) { textState = 'ready'; return cb(); }
+    if (textState === 'failed') return cb();
+    textWaiters.push(cb);
+    if (textState === 'loading') return;
+    textState = 'loading';
+    var s = document.createElement('script');
+    s.src = 'js/data-text-part1.js';
+    s.onload = function () { textState = 'ready'; flush(); };
+    s.onerror = function () { textState = 'failed'; flush(); };
+    document.head.appendChild(s);
+    function flush() { var w = textWaiters; textWaiters = []; w.forEach(function (f) { f(); }); }
+  }
+  function passage(sceneId, mode) {
+    var store = window.WAUBUN_TEXT_PART1;
+    if (state.part !== 'part1' || !store || !store[sceneId]) return null;
+    return store[sceneId][mode] || null;
   }
 
   /* ---------------- chrome ---------------- */
@@ -106,9 +201,8 @@
       b.setAttribute('aria-selected', p.id === state.part ? 'true' : 'false');
       b.innerHTML = '<b>PART ' + p.number + '</b> ' + esc(p.title);
       b.addEventListener('click', function () {
-        state.part = p.id; state.scene = null;
-        if (!(p.scenes || []).length && state.view !== 'chart') state.view = 'chart';
-        render();
+        go({ part: p.id, scene: null, selected: [], panel: null,
+             view: (p.scenes || []).length ? state.view : 'chart' });
       });
       host.appendChild(b);
     });
@@ -153,7 +247,7 @@
       b.type = 'button';
       b.setAttribute('role', 'tab');
       b.setAttribute('aria-selected', state.view === v[0] ? 'true' : 'false');
-      b.addEventListener('click', function () { state.view = v[0]; render(); });
+      b.addEventListener('click', function () { go({ view: v[0], panel: null }); });
       views.appendChild(b);
     });
     bar.appendChild(views);
@@ -167,10 +261,9 @@
         b.style.setProperty('--c', 'var(--f-' + f.id + ')');
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
         b.addEventListener('click', function () {
-          var i = state.factions.indexOf(f.id);
-          if (i >= 0) { if (state.factions.length > 1) state.factions.splice(i, 1); }
-          else state.factions.push(f.id);
-          render();
+          var next = state.factions.slice(), i = next.indexOf(f.id);
+          if (i >= 0) { if (next.length > 1) next.splice(i, 1); } else next.push(f.id);
+          go({ factions: next }, true);
         });
         facs.appendChild(b);
       });
@@ -181,9 +274,7 @@
       search.placeholder = 'Find a character…';
       search.value = state.query;
       search.addEventListener('input', function () {
-        state.query = search.value;
-        render();
-        // the toolbar is rebuilt on every render — put the caret back where it was
+        go({ query: search.value }, true);
         var fresh = $('.wb-search');
         if (fresh) { fresh.focus(); fresh.setSelectionRange(fresh.value.length, fresh.value.length); }
       });
@@ -193,7 +284,7 @@
       var piv = el('button', 'wb-toggle', '★ Pivotal scenes only');
       piv.type = 'button';
       piv.setAttribute('aria-pressed', state.pivotalOnly ? 'true' : 'false');
-      piv.addEventListener('click', function () { state.pivotalOnly = !state.pivotalOnly; render(); });
+      piv.addEventListener('click', function () { go({ pivotalOnly: !state.pivotalOnly }, true); });
       bar.appendChild(piv);
     }
   }
@@ -203,15 +294,13 @@
     var p = part(), idx = INDEX[p.id];
     var scenes = visibleScenes();
     var chars = visibleChars();
-    var sceneIndexOf = {};
-    (p.scenes || []).forEach(function (sc, i) { sceneIndexOf[sc.id] = i; });
 
     var fig = el('figure', 'wb-figure');
-    fig.appendChild(el('figcaption', 'wb-figtitle', 'Who is on stage, scene by scene'));
+    fig.appendChild(el('figcaption', 'wb-figtitle', 'Who appears, scene by scene'));
     fig.appendChild(el('p', 'wb-fignote',
       'Every character in Part ' + p.number + ' against every scene, in the order the narrative tells them. ' +
       'A filled mark means the character is present; a ringed mark is their first appearance; a dashed mark means they are spoken of, remembered, or acting at a distance. ' +
-      'The faint line is the span between a character\'s first and last appearance. Click any scene or name for the detail.'));
+      'The faint line is the span between a character\'s first and last appearance.'));
 
     var legend = el('div', 'wb-legend');
     legend.innerHTML =
@@ -220,6 +309,7 @@
       '<span><i class="wb-key ghost"></i>spoken of, not present</span>' +
       '<span>★ pivotal plot point</span>';
     fig.appendChild(legend);
+    fig.appendChild(selectionBar(scenes, chars));
 
     if (!scenes.length || !chars.length) {
       fig.appendChild(el('p', 'wb-empty', 'No scenes match the current filters.'));
@@ -230,11 +320,11 @@
     var scroll = el('div', 'wb-scroll');
     var grid = el('div', 'wb-grid');
     grid.style.gridTemplateColumns = 'var(--namew) repeat(' + scenes.length + ', var(--cell))';
+    var anySel = state.selected.length > 0;
 
     // row 1 — act bands
     var corner = el('div', 'wb-corner');
-    corner.style.gridRow = '1'; corner.style.gridColumn = '1';
-    corner.style.height = '44px';
+    corner.style.gridRow = '1'; corner.style.gridColumn = '1'; corner.style.height = '44px';
     grid.appendChild(corner);
     var col = 2;
     p.acts.forEach(function (act) {
@@ -255,13 +345,20 @@
     corner2.appendChild(el('div', '', '<span style="display:block;padding:8px 10px;font-size:10.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--text-3)">Character ↓ &nbsp; Scene →</span>'));
     grid.appendChild(corner2);
     scenes.forEach(function (sc, c) {
-      var h = el('div', 'wb-colhead' + (sc.pivotal ? ' pivotal' : ''));
+      var sel = isSelected(sc.id);
+      var h = el('div', 'wb-colhead' + (sc.pivotal ? ' pivotal' : '') + (sel ? ' sel' : '') + (anySel && !sel ? ' dim' : ''));
       h.style.gridRow = '2'; h.style.gridColumn = (c + 2);
       h.dataset.col = String(c);
-      h.appendChild(el('div', '', '<b>' + (sceneIndexOf[sc.id] + 1) + '. ' + esc(sc.title) + '</b> <span>' + esc(sc.placeShort) + '</span>'));
-      h.title = sc.title + ' — ' + sc.place;
-      h.addEventListener('click', function () { openScene(sc.id); });
+      h.tabIndex = 0;
+      h.setAttribute('role', 'button');
+      h.setAttribute('aria-pressed', sel ? 'true' : 'false');
+      h.appendChild(el('div', '', '<b>' + (sceneNo(sc.id) + 1) + '. ' + esc(sc.title) + '</b> <span>' + esc(sc.placeShort) + '</span>'));
+      h.title = sc.title + ' — ' + sc.place + '\nClick to select · double-click to open';
+      bindPick(h, sc.id);
       h.addEventListener('mouseenter', function () { highlight(null, c); });
+      h.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleScene(sc.id); }
+      });
       grid.appendChild(h);
     });
 
@@ -285,23 +382,24 @@
         nm.style.gridRow = String(r); nm.style.gridColumn = '1';
         nm.dataset.row = id;
         nm.title = c.name + (c.alias ? ' (' + c.alias + ')' : '') + ' — ' + c.role;
-        nm.addEventListener('click', function () { openCharacter(id); });
+        nm.addEventListener('click', function () { go({ panel: { kind: 'character', id: id } }); });
         nm.addEventListener('mouseenter', function () { highlight(id, null); });
         grid.appendChild(nm);
 
         scenes.forEach(function (sc, cIdx) {
-          var i = sceneIndexOf[sc.id];
+          var i = sceneNo(sc.id);
           var kind = rec.at[i];
+          var sel = isSelected(sc.id);
           var inRange = rec.first !== null && i >= rec.first && i <= rec.last;
           var cell = el('div', 'wb-cell ' + (kind === 'on' ? 'present' : kind === 'men' ? 'mention' : 'empty') +
-            (kind === 'on' && i === rec.first ? ' first' : ''));
+            (kind === 'on' && i === rec.first ? ' first' : '') + (sel ? ' sel' : '') + (anySel && !sel ? ' dim' : ''));
           cell.style.setProperty('--c', 'var(--f-' + fid + ')');
           cell.style.gridRow = String(r); cell.style.gridColumn = (cIdx + 2);
           cell.dataset.row = id; cell.dataset.col = String(cIdx);
           if (inRange) cell.appendChild(el('span', 'wb-arc'));
           cell.appendChild(el('span', 'wb-dot'));
           if (kind) {
-            cell.addEventListener('click', function () { openScene(sc.id); });
+            bindPick(cell, sc.id);
             cell.addEventListener('mouseenter', function (ev) {
               highlight(id, cIdx);
               tip(ev, '<b>' + esc(c.name) + '</b><em>' + (i === rec.first && kind === 'on' ? 'Enters the story · ' : '') +
@@ -321,7 +419,7 @@
     fig.appendChild(scroll);
     host.appendChild(fig);
 
-    // journey strip — the season is a journey, so show the ground it covers
+    // the ground it covers
     var places = [];
     scenes.forEach(function (s) {
       var last = places[places.length - 1];
@@ -334,11 +432,90 @@
     places.forEach(function (pl) {
       var b = el('button', 'wb-person', esc(pl.name) + ' <em style="color:var(--text-3)">' + pl.n + ' scene' + (pl.n === 1 ? '' : 's') + '</em>');
       b.type = 'button';
-      b.addEventListener('click', function () { openScene(pl.scene); });
+      b.addEventListener('click', function () { go({ panel: { kind: 'scene', id: pl.scene } }); });
       row2.appendChild(b);
     });
     strip.appendChild(row2);
     host.appendChild(strip);
+  }
+
+  // one click selects, two opens — a short timer keeps the two apart
+  function bindPick(node, sceneId) {
+    var timer = null;
+    node.addEventListener('click', function () {
+      if (timer) return;
+      timer = setTimeout(function () { timer = null; toggleScene(sceneId); }, 230);
+    });
+    node.addEventListener('dblclick', function (e) {
+      e.preventDefault();
+      if (timer) { clearTimeout(timer); timer = null; }
+      go({ panel: { kind: 'scene', id: sceneId } });
+    });
+  }
+  function toggleScene(id) {
+    var next = state.selected.slice(), i = next.indexOf(id);
+    if (i >= 0) next.splice(i, 1); else next.push(id);
+    next.sort(function (a, b) { return sceneNo(a) - sceneNo(b); });
+    go({ selected: next });
+  }
+
+  function selectionBar(scenes, chars) {
+    var wrap = el('div', 'wb-selbar');
+    var sel = state.selected.filter(function (id) { return sceneById(id); });
+    if (!sel.length) {
+      wrap.classList.add('hint');
+      wrap.innerHTML = '<span class="wb-selhint"><b>Click</b> a scene to focus it — the other scenes fade and the chart keeps only the people in it. ' +
+        'Click more scenes to build a set. <b>Double-click</b> opens a scene; clicking a name opens that character.</span>';
+      return wrap;
+    }
+    var idx = INDEX[state.part];
+    var present = {}, spoken = {};
+    sel.forEach(function (id) {
+      var sc = sceneById(id);
+      (sc.cast || []).forEach(function (c) { present[c] = true; });
+      (sc.offstage || []).forEach(function (c) { if (!present[c]) spoken[c] = true; });
+    });
+    var head = el('div', 'wb-selhead');
+    head.innerHTML = '<b>' + sel.length + ' scene' + (sel.length === 1 ? '' : 's') + ' selected</b>' +
+      '<span>' + Object.keys(present).length + (Object.keys(present).length === 1 ? ' appears' : ' appear') +
+      ' · ' + Object.keys(spoken).length + ' spoken of · ' +
+      chars.length + ' row' + (chars.length === 1 ? '' : 's') + ' shown</span>';
+    wrap.appendChild(head);
+
+    var chips = el('div', 'wb-selchips');
+    sel.forEach(function (id) {
+      var sc = sceneById(id), n = sceneNo(id) + 1;
+      var chip = el('div', 'wb-selchip');
+      var open = el('button', 'wb-selopen', '<b>' + n + '</b>' + esc(sc.title) + (sc.pivotal ? ' <em>★</em>' : ''));
+      open.type = 'button';
+      open.title = 'Open the detail for this scene';
+      open.addEventListener('click', function () { go({ panel: { kind: 'scene', id: id } }); });
+      var drop = el('button', 'wb-seldrop', '✕');
+      drop.type = 'button';
+      drop.setAttribute('aria-label', 'Remove scene ' + n + ' from the selection');
+      drop.addEventListener('click', function () { toggleScene(id); });
+      chip.appendChild(open); chip.appendChild(drop);
+      chips.appendChild(chip);
+    });
+    wrap.appendChild(chips);
+
+    var acts = el('div', 'wb-selacts');
+    var read = el('button', 'wb-btn primary', sel.length === 1 ? 'Read this scene →' : 'Read from scene ' + (sceneNo(sel[0]) + 1) + ' →');
+    read.type = 'button';
+    read.addEventListener('click', function () { go({ view: 'story', scene: sel[0], panel: null }); });
+    acts.appendChild(read);
+    if (sel.length === 1) {
+      var det = el('button', 'wb-btn', 'Open details');
+      det.type = 'button';
+      det.addEventListener('click', function () { go({ panel: { kind: 'scene', id: sel[0] } }); });
+      acts.appendChild(det);
+    }
+    var clr = el('button', 'wb-btn', 'Clear selection');
+    clr.type = 'button';
+    clr.addEventListener('click', function () { go({ selected: [] }); });
+    acts.appendChild(clr);
+    wrap.appendChild(acts);
+    return wrap;
   }
 
   function highlight(rowId, colIdx) {
@@ -375,10 +552,8 @@
   /* ---------------- view: the story reader ---------------- */
   function renderStory(host) {
     var p = part(), scenes = p.scenes;
-    if (!state.scene) state.scene = scenes[0].id;
-    var pos = 0;
-    scenes.forEach(function (s, i) { if (s.id === state.scene) pos = i; });
-    var sc = scenes[pos];
+    if (!state.scene || sceneNo(state.scene) < 0) state.scene = scenes[0].id;
+    var pos = sceneNo(state.scene), sc = scenes[pos];
 
     var wrap = el('div', 'wb-reader');
     var rail = el('nav', 'wb-rail');
@@ -392,7 +567,7 @@
         var b = el('button', 'wb-railitem', '<b>' + (i + 1) + '</b>' + esc(s.title) + (s.pivotal ? ' ★' : ''));
         b.type = 'button';
         if (s.id === sc.id) b.setAttribute('aria-current', 'true');
-        b.addEventListener('click', function () { state.scene = s.id; render(); scrollToPage(); });
+        b.addEventListener('click', function () { go({ scene: s.id }); scrollToPage(); });
         rail.appendChild(b);
       });
     });
@@ -400,50 +575,119 @@
 
     var page = el('article', 'wb-page');
     page.id = 'wbPage';
-    page.innerHTML = sceneHTML(sc, pos, true);
-    wireCast(page);
+    page.innerHTML = sceneHead(sc, pos);
+    page.appendChild(modeSwitch(sc));
+    page.appendChild(bodyForMode(sc));
 
     var nav = el('div', 'wb-pagenav');
     var prev = el('button', 'wb-btn', '← Previous');
     prev.type = 'button'; prev.disabled = pos === 0;
-    prev.addEventListener('click', function () { state.scene = scenes[pos - 1].id; render(); scrollToPage(); });
+    prev.addEventListener('click', function () { go({ scene: scenes[pos - 1].id }); scrollToPage(); });
     var next = el('button', 'wb-btn primary', 'Next scene →');
     next.type = 'button'; next.disabled = pos === scenes.length - 1;
-    next.addEventListener('click', function () { state.scene = scenes[pos + 1].id; render(); scrollToPage(); });
+    next.addEventListener('click', function () { go({ scene: scenes[pos + 1].id }); scrollToPage(); });
     var prog = el('div', 'wb-progress', '<i style="width:' + Math.round(((pos + 1) / scenes.length) * 100) + '%"></i>');
-    nav.appendChild(prev);
-    nav.appendChild(prog);
-    nav.appendChild(next);
+    nav.appendChild(prev); nav.appendChild(prog); nav.appendChild(next);
     page.appendChild(nav);
 
     wrap.appendChild(page);
     host.appendChild(wrap);
+    wireCast(page);
   }
+
+  function modeSwitch(sc) {
+    var box = el('div', 'wb-modes');
+    var seg = el('div', 'wb-views');
+    seg.setAttribute('role', 'tablist');
+    seg.setAttribute('aria-label', 'How to read this scene');
+    MODES.forEach(function (m) {
+      var b = el('button', 'wb-view', m.label);
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', state.mode === m.id ? 'true' : 'false');
+      b.title = m.note;
+      b.addEventListener('click', function () {
+        try { localStorage.setItem('waubun.mode', m.id); } catch (e) {}
+        if (m.id === 'summary') return go({ mode: m.id });
+        ensureText(function () { go({ mode: m.id }); });
+        if (textState === 'loading') { state.mode = m.id; render(); }
+      });
+      seg.appendChild(b);
+    });
+    box.appendChild(seg);
+    var note = MODES.filter(function (m) { return m.id === state.mode; })[0];
+    box.appendChild(el('span', 'wb-modenote', note ? note.note : ''));
+    return box;
+  }
+
+  function bodyForMode(sc) {
+    var box = el('div');
+    if (state.mode === 'summary') {
+      box.innerHTML = summaryHTML(sc);
+      return box;
+    }
+    if (state.part !== 'part1') {
+      box.appendChild(el('div', 'wb-note', 'The full text is wired up for Part 1 so far. Summaries are available for every part that has scenes.'));
+      box.innerHTML += summaryHTML(sc);
+      return box;
+    }
+    if (textState === 'loading' || (textState === 'idle' && !window.WAUBUN_TEXT_PART1)) {
+      ensureText(function () { render(); });
+      box.appendChild(el('div', 'wb-note', 'Fetching the text…'));
+      return box;
+    }
+    var paras = passage(sc.id, state.mode);
+    if (!paras || !paras.length) {
+      box.appendChild(el('div', 'wb-note', 'The text for this scene could not be loaded. The summary is below.'));
+      box.innerHTML += summaryHTML(sc);
+      return box;
+    }
+    var words = paras.join(' ').split(/\s+/).length;
+    var pr = el('div', 'wb-prose wb-fulltext');
+    pr.innerHTML = paras.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+    box.appendChild(pr);
+    var store = window.WAUBUN_TEXT_PART1;
+    var isRetold = !!(store && store[sc.id] && store[sc.id].retold);
+    box.appendChild(el('div', 'wb-source',
+      (state.mode === 'original'
+        ? 'Chapter ' + esc(sc.chapter) + ' of the 1856 first edition — Juliette Kinzie\'s own words, unaltered.'
+        : 'Chapter ' + esc(sc.chapter) + (isRetold
+            ? ', retold in a plain modern voice — every event, name and detail of the original kept.'
+            : ', in an earlier, lighter modernization. The full rewrite is working through the part scene by scene.')) +
+      ' ' + words.toLocaleString() + ' words.'));
+    var more = el('details', 'wb-details');
+    more.appendChild(el('summary', '', 'Summary, plot points and cast'));
+    more.appendChild(el('div', '', summaryHTML(sc)));
+    box.appendChild(more);
+    return box;
+  }
+
   function scrollToPage() {
     var n = document.getElementById('wbPage');
     if (n && n.getBoundingClientRect().top < 0) n.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   /* ---------------- shared: scene rendering ---------------- */
-  function sceneHTML(sc, pos, long) {
-    var p = part(), idx = INDEX[p.id];
-    var h = '';
-    h += '<div class="wb-meta">' +
+  function sceneHead(sc, pos) {
+    var p = part();
+    return '<div class="wb-meta">' +
       '<span class="wb-chip">Scene ' + (pos + 1) + ' of ' + p.scenes.length + '</span>' +
       '<span class="wb-chip">Chapter ' + esc(sc.chapter) + ' · ' + esc(sc.chapterTitle) + '</span>' +
       '<span class="wb-chip">' + esc(sc.place) + '</span>' +
       (sc.pivotal ? '<span class="wb-chip pivot">★ Pivotal</span>' : '') +
-      '</div>';
-    h += '<div class="wb-when">' + esc(sc.date) + '</div>';
-    // in the side panel the title already sits in the panel header
-    if (long) h += '<h2>' + esc(sc.title) + '</h2>';
-    h += '<div class="wb-prose" style="margin-top:14px">' + esc(sc.summary) + '</div>';
+      '</div>' +
+      '<div class="wb-when">' + esc(sc.date) + '</div>' +
+      '<h2>' + esc(sc.title) + '</h2>';
+  }
+
+  function summaryHTML(sc) {
+    var p = part(), idx = INDEX[p.id];
+    var h = '<div class="wb-prose" style="margin-top:14px">' + esc(sc.summary) + '</div>';
     if (sc.points && sc.points.length) {
       h += '<div class="wb-subhead">Plot points</div><ul class="wb-points">' +
         sc.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>';
     }
-    h += castHTML(sc, idx, p);
-    return h;
+    return h + castHTML(sc, idx, p);
   }
 
   function castHTML(sc, idx, p) {
@@ -480,7 +724,10 @@
 
   function wireCast(root) {
     Array.prototype.forEach.call(root.querySelectorAll('[data-person]'), function (b) {
-      b.addEventListener('click', function () { openCharacter(b.dataset.person); });
+      b.addEventListener('click', function () { go({ panel: { kind: 'character', id: b.dataset.person } }); });
+    });
+    Array.prototype.forEach.call(root.querySelectorAll('[data-scene]'), function (b) {
+      b.addEventListener('click', function () { go({ panel: { kind: 'scene', id: b.dataset.scene } }); });
     });
   }
 
@@ -518,7 +765,7 @@
           '<div class="wb-appear">' + (rec.present.length
             ? 'In ' + rec.present.length + ' scene' + (rec.present.length === 1 ? '' : 's') + ' · enters at scene ' + (firstScene + 1)
             : 'Spoken of in ' + rec.mentioned.length + ' scene' + (rec.mentioned.length === 1 ? '' : 's')) + '</div>';
-        card.addEventListener('click', function () { openCharacter(id); });
+        card.addEventListener('click', function () { go({ panel: { kind: 'character', id: id } }); });
         grid.appendChild(card);
       });
       host.appendChild(grid);
@@ -548,7 +795,7 @@
         '<td>' + (sc.cast || []).map(function (id) { return esc(CH[id] ? CH[id].name : id); }).join(', ') + '</td>' +
         '<td>' + (sc.offstage || []).map(function (id) { return esc(CH[id] ? CH[id].name : id); }).join(', ') + '</td>';
       tr.style.cursor = 'pointer';
-      tr.addEventListener('click', function () { openScene(sc.id); });
+      tr.addEventListener('click', function () { go({ panel: { kind: 'scene', id: sc.id } }); });
       tb.appendChild(tr);
     });
     t1.appendChild(tb); w1.appendChild(t1); host.appendChild(w1);
@@ -571,7 +818,7 @@
         '<td class="num">' + (rec.last !== null ? rec.last + 1 : '—') + '</td>' +
         '<td class="num">' + rec.present.length + (rec.mentioned.length ? ' (+' + rec.mentioned.length + ' mentioned)' : '') + '</td>';
       tr.style.cursor = 'pointer';
-      tr.addEventListener('click', function () { openCharacter(id); });
+      tr.addEventListener('click', function () { go({ panel: { kind: 'character', id: id } }); });
       tb2.appendChild(tr);
     });
     t2.appendChild(tb2); w2.appendChild(t2); host.appendChild(w2);
@@ -594,72 +841,106 @@
       box.appendChild(el('div', 'wb-subhead', 'Who this part belongs to'));
       var cast = el('div', 'wb-cast');
       cast.innerHTML = p.leads.map(function (id) { return personHTML(id, '', false); }).join('');
-      wireCast(cast);
       box.appendChild(cast);
+      wireCast(box);
     }
     host.appendChild(box);
   }
 
-  /* ---------------- panel ---------------- */
-  function openScene(id) {
-    var p = part(), pos = -1;
-    p.scenes.forEach(function (s, i) { if (s.id === id) pos = i; });
-    if (pos < 0) return;
-    var sc = p.scenes[pos];
-    panel(sc.title, sceneHTML(sc, pos, false), function (body) {
-      var read = el('button', 'wb-btn primary', 'Read this scene →');
-      read.type = 'button';
-      read.style.marginTop = '22px';
-      read.addEventListener('click', function () { state.view = 'story'; state.scene = sc.id; closePanel(); render(); });
-      body.appendChild(read);
-    });
-  }
-
-  function openCharacter(id) {
-    var c = CH[id];
-    if (!c) return;
-    var p = part(), idx = INDEX[p.id], rec = idx.byChar[id];
-    var h = '<div class="wb-meta">' +
-      '<span class="wb-chip" style="border-color:var(--f-' + c.faction + ');color:var(--f-' + c.faction + ')">' + esc(FAC[c.faction].name) + '</span>' +
-      '<span class="wb-chip">' + esc(c.role) + '</span></div>';
-    if (c.alias) h += '<div class="wb-when">also called ' + esc(c.alias) + '</div>';
-    h += '<div class="wb-prose" style="margin-top:12px">' + esc(c.bio) + '</div>';
-    if (rec) {
-      h += '<div class="wb-subhead">Their run through Part ' + p.number + '</div>';
-      h += '<div class="wb-cast">';
-      var seen = {};
-      rec.present.forEach(function (i) { seen[i] = 'on'; });
-      rec.mentioned.forEach(function (i) { if (!seen[i]) seen[i] = 'men'; });
-      Object.keys(seen).map(Number).sort(function (a, b) { return a - b; }).forEach(function (i) {
-        var sc = p.scenes[i];
-        h += '<button type="button" class="wb-person' + (seen[i] === 'men' ? ' ghost' : '') + '" data-scene="' + sc.id + '" ' +
-          'style="--c:var(--f-' + c.faction + ')"><i></i>' + (i + 1) + '. ' + esc(sc.title) +
-          (i === rec.first && rec.present.length ? '<em class="in">enters</em>' : '') + '</button>';
-      });
-      h += '</div>';
-    } else {
-      h += '<div class="wb-note" style="margin-top:18px">Does not appear in Part ' + p.number + '.</div>';
-    }
-    panel(c.name, h);
-  }
-
-  function panel(title, html, after) {
+  /* ---------------- the detail panel ---------------- */
+  function paintPanel() {
     var pn = $('#wbPanel'), body = $('#wbPanelBody');
+    if (!state.panel) {
+      pn.classList.remove('open');
+      $('#wbScrim').classList.remove('open');
+      pn.setAttribute('aria-hidden', 'true');
+      return;
+    }
+    var title = '', html = '', after = null;
+    if (state.panel.kind === 'scene') {
+      var sc = sceneById(state.panel.id);
+      if (!sc) { state.panel = null; return paintPanel(); }
+      var pos = sceneNo(sc.id);
+      title = sc.title;
+      html = '<div class="wb-meta">' +
+        '<span class="wb-chip">Scene ' + (pos + 1) + ' of ' + part().scenes.length + '</span>' +
+        '<span class="wb-chip">Chapter ' + esc(sc.chapter) + ' · ' + esc(sc.chapterTitle) + '</span>' +
+        '<span class="wb-chip">' + esc(sc.place) + '</span>' +
+        (sc.pivotal ? '<span class="wb-chip pivot">★ Pivotal</span>' : '') +
+        '</div><div class="wb-when">' + esc(sc.date) + '</div>' + summaryHTML(sc);
+      after = function (b) {
+        var acts = el('div', 'wb-panelacts');
+        MODES.forEach(function (m) {
+          var btn = el('button', 'wb-btn' + (m.id === 'summary' ? '' : ' primary'),
+            m.id === 'summary' ? 'Read scene ' + (pos + 1) + ' →' : (m.id === 'modern' ? 'Full text →' : 'Original 1856 →'));
+          btn.type = 'button';
+          btn.title = m.note;
+          btn.addEventListener('click', function () {
+            try { localStorage.setItem('waubun.mode', m.id); } catch (e) {}
+            if (m.id === 'summary') return go({ view: 'story', scene: sc.id, mode: 'summary', panel: null });
+            ensureText(function () { go({ view: 'story', scene: sc.id, mode: m.id, panel: null }); });
+          });
+          acts.appendChild(btn);
+        });
+        var sel = el('button', 'wb-btn', isSelected(sc.id) ? 'Remove from selection' : 'Add to selection');
+        sel.type = 'button';
+        sel.addEventListener('click', function () { toggleScene(sc.id); });
+        acts.appendChild(sel);
+        b.appendChild(acts);
+        b.appendChild(el('p', 'wb-backhint', 'The browser Back button returns you here.'));
+      };
+    } else {
+      var c = CH[state.panel.id];
+      if (!c) { state.panel = null; return paintPanel(); }
+      var p = part(), idx = INDEX[p.id], rec = idx.byChar[state.panel.id];
+      title = c.name;
+      html = '<div class="wb-meta">' +
+        '<span class="wb-chip" style="border-color:var(--f-' + c.faction + ');color:var(--f-' + c.faction + ')">' + esc(FAC[c.faction].name) + '</span>' +
+        '<span class="wb-chip">' + esc(c.role) + '</span></div>';
+      if (c.alias) html += '<div class="wb-when">also called ' + esc(c.alias) + '</div>';
+      html += '<div class="wb-prose" style="margin-top:12px">' + esc(c.bio) + '</div>';
+      if (rec) {
+        html += '<div class="wb-subhead">Their run through Part ' + p.number + '</div><div class="wb-cast">';
+        var seen = {};
+        rec.present.forEach(function (i) { seen[i] = 'on'; });
+        rec.mentioned.forEach(function (i) { if (!seen[i]) seen[i] = 'men'; });
+        Object.keys(seen).map(Number).sort(function (a, b) { return a - b; }).forEach(function (i) {
+          var s2 = p.scenes[i];
+          html += '<button type="button" class="wb-person' + (seen[i] === 'men' ? ' ghost' : '') + '" data-scene="' + s2.id + '" ' +
+            'style="--c:var(--f-' + c.faction + ')"><i></i>' + (i + 1) + '. ' + esc(s2.title) +
+            (i === rec.first && rec.present.length ? '<em class="in">enters</em>' : '') + '</button>';
+        });
+        html += '</div>';
+        after = function (b) {
+          var acts = el('div', 'wb-panelacts');
+          var only = el('button', 'wb-btn primary', 'Show only their scenes');
+          only.type = 'button';
+          only.addEventListener('click', function () {
+            var ids = Object.keys(seen).map(Number).sort(function (a, b) { return a - b; })
+              .map(function (i) { return p.scenes[i].id; });
+            go({ view: 'chart', selected: ids, panel: null });
+          });
+          acts.appendChild(only);
+          b.appendChild(acts);
+        };
+      } else {
+        html += '<div class="wb-note" style="margin-top:18px">Does not appear in Part ' + p.number + '.</div>';
+      }
+    }
     $('#wbPanelTitle').textContent = title;
     body.innerHTML = html;
     wireCast(body);
-    Array.prototype.forEach.call(body.querySelectorAll('[data-scene]'), function (b) {
-      b.addEventListener('click', function () { openScene(b.dataset.scene); });
-    });
     if (after) after(body);
     pn.classList.add('open');
+    pn.setAttribute('aria-hidden', 'false');
     $('#wbScrim').classList.add('open');
     pn.scrollTop = 0;
-    $('#wbPanelClose').focus();
   }
+
   function closePanel() {
-    $('#wbPanel').classList.remove('open');
-    $('#wbScrim').classList.remove('open');
+    if (!state.panel) return;
+    if (pushed > 0) history.back();          // keeps Back/forward honest
+    else go({ panel: null }, true);
   }
 
   /* ---------------- render ---------------- */
@@ -670,28 +951,16 @@
     var host = $('#wbMain');
     host.innerHTML = '';
     var p = part();
-    if (!(p.scenes || []).length) { renderOutline(host); }
+    if (!(p.scenes || []).length) renderOutline(host);
     else if (state.view === 'chart') renderChart(host);
     else if (state.view === 'story') renderStory(host);
     else if (state.view === 'cast') renderCast(host);
     else renderTable(host);
-    writeHash();
-  }
-
-  function writeHash() {
-    var h = '#/' + state.part + '/' + state.view + (state.view === 'story' && state.scene ? '/' + state.scene : '');
-    if (location.hash !== h) history.replaceState(null, '', h);
-  }
-  function readHash() {
-    var m = (location.hash || '').replace(/^#\//, '').split('/');
-    if (m[0] && PARTS.some(function (p) { return p.id === m[0]; })) state.part = m[0];
-    if (m[1] && ['chart', 'story', 'cast', 'table'].indexOf(m[1]) >= 0) state.view = m[1];
-    if (m[2]) state.scene = m[2];
+    paintPanel();
   }
 
   /* ---------------- boot ---------------- */
   function boot() {
-    // theme, shared with the rest of the workshop site
     var root = document.documentElement, saved = null;
     try { saved = localStorage.getItem('custom.theme'); } catch (e) {}
     if (!saved && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) saved = 'dark';
@@ -709,16 +978,18 @@
     $('#wbPanelClose').addEventListener('click', closePanel);
     $('#wbScrim').addEventListener('click', closePanel);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closePanel();
-      if (state.view === 'story' && !$('#wbPanel').classList.contains('open')) {
-        var p = part(), scenes = p.scenes || [], pos = -1;
-        scenes.forEach(function (s, i) { if (s.id === state.scene) pos = i; });
-        if (e.key === 'ArrowRight' && pos >= 0 && pos < scenes.length - 1) { state.scene = scenes[pos + 1].id; render(); }
-        if (e.key === 'ArrowLeft' && pos > 0) { state.scene = scenes[pos - 1].id; render(); }
+      if (e.key === 'Escape') { closePanel(); return; }
+      if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+      if (state.view === 'story' && !state.panel) {
+        var scenes = part().scenes || [], pos = sceneNo(state.scene);
+        if (e.key === 'ArrowRight' && pos >= 0 && pos < scenes.length - 1) go({ scene: scenes[pos + 1].id });
+        if (e.key === 'ArrowLeft' && pos > 0) go({ scene: scenes[pos - 1].id });
       }
     });
 
     readHash();
+    history.replaceState(snapshot(), '', hashFor());
+    if (state.mode !== 'summary' && state.view === 'story') ensureText(function () { render(); });
     render();
   }
 
