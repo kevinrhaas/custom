@@ -1150,7 +1150,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
  */
 export async function createTrees({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
-  confidence = null, problems = [], lowSpec = false,
+  confidence = null, problems = [], lowSpec = false, detail = 'full',
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1393,10 +1393,21 @@ export async function createTrees({
   const buffers = [new MeshBuf(), new MeshBuf(), new MeshBuf(), new MeshBuf()];
   const chunkOf = (e, n) => (e < 0 ? 0 : 1) + (n < 0 ? 0 : 2);
 
-  const step = lowSpec ? 5.6 : 4.0;
+  // Scene detail sets how many stems are drawn and how coarsely the ground is
+  // sampled for them. It does NOT touch the species mix, the zone rules or the
+  // waterline margin: fewer of the same trees in the same places, never a
+  // different wood. `lowSpec` is the device guess; an explicit choice outranks it.
+  const level = lowSpec && detail === 'full' ? 'light' : detail;
+  const STEMS = {
+    full:     { step: 4.0, trees: 820, thickets: 420 },
+    balanced: { step: 4.7, trees: 520, thickets: 270 },
+    light:    { step: 5.6, trees: 300, thickets: 170 },
+  };
+  const stems = STEMS[level] ?? STEMS.full;
+  const step = stems.step;
   const cellArea = step * step;
-  const maxTrees = lowSpec ? 300 : 820;
-  const maxThickets = lowSpec ? 170 : 420;
+  const maxTrees = stems.trees;
+  const maxThickets = stems.thickets;
 
   const pick = (mix, r) => {
     let total = 0;
