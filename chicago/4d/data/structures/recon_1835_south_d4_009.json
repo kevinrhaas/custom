@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637244.357,
         "rotation_deg": 0.49,
         "symbolic_location": "Anonymous inferred roof in the South Division block between LaSalle and Clark, south of Lake Street",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
         "derivation": {
           "method": "not_derivable",
@@ -42,13 +42,13 @@
             8.028
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "A 6.28 × 8.03 m rectangle sampled deterministically inside the D4 family band; no individual dimensions are documented."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -56,7 +56,7 @@
         },
         "wall_height_m": {
           "value": 2.78,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -64,7 +64,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -72,7 +72,7 @@
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -80,7 +80,7 @@
         },
         "construction": {
           "value": "balloon_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -88,7 +88,7 @@
         },
         "plan": {
           "value": "hall_parlour",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -96,7 +96,7 @@
         },
         "bays": {
           "value": 3,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -104,7 +104,7 @@
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -112,7 +112,7 @@
         },
         "paint": {
           "value": "whitewash",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -120,7 +120,7 @@
         },
         "porch": {
           "value": "stoop",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -132,7 +132,7 @@
   ],
   "function": {
     "value": "two-room frame cottage",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
@@ -140,7 +140,7 @@
   },
   "occupants": {
     "value": "An inferred household; no name is claimed",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"

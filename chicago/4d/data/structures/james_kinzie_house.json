@@ -11,7 +11,7 @@
       "documented_range": {
         "from": "1830-01-01",
         "to": "1835-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -22,7 +22,7 @@
         "utm_n": 4637316.0,
         "rotation_deg": 90.0,
         "symbolic_location": "West bank of the river at Wolf Point, south of Wentworth's tavern (the Wolf Point Tavern) and north of the Lake Street crossing.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273",
           "osm_streets_2026"
@@ -52,13 +52,13 @@
             6.5
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "PLACEHOLDER — NOT ONE DIMENSION, PROPORTION OR PLAN FORM IS ATTESTED FOR THIS BUILDING. Unlike the Miller house, where the SHAPE carries evidence and only the size is invented, here neither does: the dossier's entry for this structure reads, in full, 'Location: south of Wentworth's tavern, west bank. Type/date/appearance: not attested in sources reached.' 8 x 6.5 m is about 26 x 21 ft, an ordinary one-and-a-half-pen log house of the type and period, and it is a shape chosen to sit in a river-front row rather than a shape anybody described. The 8 m runs north-south along the frontage and the 6.5 m is the depth. Sources are deliberately omitted from this attribute because none supports it. To resolve: Andreas vol. 1 at page-image level around the Wolf Point material (the index gives Wolf Point at pp. 111, 114, 174, 629-631), or the Braunhold-style retrospective view 'Wolf Point in 1830' that Andreas reproduces, which shows the west-bank row and has not been examined at plate level for this parcel."
       },
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire273"
           ],
@@ -70,7 +70,7 @@
   ],
   "function": {
     "value": "residence",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "chicagology_prefire273"
     ],

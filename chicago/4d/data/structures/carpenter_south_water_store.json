@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-08-01",
         "to": "1835-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637391.6,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street between Wells Street and LaSalle Street (today the south side of West Wacker Drive between North Wells and North LaSalle), placed at the middle of the block face.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1",
           "osm_streets_2026"
@@ -53,13 +53,13 @@
             6.096
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "INVENTED, INSIDE THE ONE ADJECTIVE THE SOURCE OFFERS. Andreas calls it 'a small store' and gives no dimension, so this is deliberately the second-smallest building in the parcel: 7.62 x 6.096 m is 25 x 20 ft. Both figures are borrowed rather than freshly guessed — 20 ft is the documented depth of Hogan's store, the one log footprint in this dataset that is evidence, and 25 ft is the depth derived from the Green Tree Tavern's attested room module, used here as a frontage. The documented South Water lot width of 55 ft is a cap and this sits at less than half of it, which is what 'small' should look like on a street of 40 ft frontages."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -67,7 +67,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -75,22 +75,22 @@
         },
         "wall_height_m": {
           "value": 3.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey with a little more head-room than a dwelling's. It inherits the storey count's uncertainty."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. One is the minimum for a store kept through Chicago winters, and a druggist compounding needs heat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -99,7 +99,7 @@
   ],
   "function": {
     "value": "drug_store",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "chicago_democrat_1833_11_26"
@@ -108,7 +108,7 @@
   },
   "occupants": {
     "value": "Philo Carpenter, druggist",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],

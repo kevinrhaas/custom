@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-10-08",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": -145.0,
     "local_n": -131.0,
     "rotation_deg": 0.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -54,14 +54,14 @@
         7
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED, AND THE BUILDING IS MODELLED AT ITS ENLARGED SIZE. Andreas records that Pierce 'was soon obliged to enlarge his shop' and gives no date for it and no size at either stage (scan p. 1161), so this polygon is the shop as it stood after that enlargement, which is the state the scene date needs. 9 x 7 m is about 30 x 23 ft: room for a forge, an anvil, a horse standing in to be shod, and the plough work he took up in the spring of 1834. The 9 m fronts Lake Street and the 7 m is the depth. Every number is invented and the polygon cites no sources."
   },
   "attributes": {
     "construction": {
       "value": "light_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -69,17 +69,17 @@
     },
     "wall_height_m": {
       "value": 3.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 3.0 m is about 10 ft at the eave: headroom to swing a sledge and to stand a horse under, with air over a forge. Stated rather than left to the archetype's size-aware default of 3.14 m for this footprint, which is close enough that the difference is not the point — the point is that the number is the record's and its reasoning is on the record."
     },
     "door": {
       "value": "stable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No source describes an opening. 'stable' is the archetype's 1.35 m clear doorway, sized for a horse led through in hand, and shoeing is half of what a frontier smith did. The wider 'wagon' opening is tempting because Pierce ironed wagons and stage gear, but that work is done to the ironwork rather than to the assembled vehicle, and a 2.9 m opening would need a taller wall than this record claims."
     },
     "forge": {
       "value": "forge, bellows and chimney",
-      "confidence": "derived",
+      "confidence": "inferred",
       "geometry": "absent",
       "sources": [
         "andreas_1884_v1"
@@ -88,7 +88,7 @@
     },
     "function": {
       "value": "blacksmith_shop",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -96,7 +96,7 @@
     },
     "occupants": {
       "value": "Asahel Pierce",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -118,7 +118,7 @@
         {
           "name": "Asahel Pierce",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "blacksmith",
           "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
         }

@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1832-06-01",
     "to": "1839-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicagology_kinzie_bridge",
       "chicagology_prefire252",
@@ -27,7 +27,7 @@
     "local_e": -117.5,
     "local_n": 260.5,
     "rotation_deg": 0.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "chicagology_kinzie_bridge",
       "chicagology_lastwardance",
@@ -59,7 +59,7 @@
         3.048
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicagology_prefire252",
       "wright_1834"
@@ -69,7 +69,7 @@
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_kinzie_bridge",
         "chicagology_prefire252"
@@ -78,7 +78,7 @@
     },
     "width_m": {
       "value": 3.048,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_prefire252"
       ],
@@ -86,7 +86,7 @@
     },
     "clearance_m": {
       "value": 1.83,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -94,7 +94,7 @@
     },
     "abutments": {
       "value": true,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_prefire252",
         "old_settlers_bridges_1883"
@@ -103,7 +103,7 @@
     },
     "pier_kind": {
       "value": "bent",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883",
         "chicagology_prefire252",
@@ -113,7 +113,7 @@
     },
     "pier_count": {
       "value": 2,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -121,7 +121,7 @@
     },
     "deck_kind": {
       "value": "puncheon",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -129,12 +129,12 @@
     },
     "stringer_count": {
       "value": 4,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "THE 1835 READING OF A BRIDGE THAT CHANGED. Andreas describes the 1832 structure as 'formed of stringers and only fitted for foot passengers' and 'useless for teams' even in the summer of 1833; six and a half weeks after this scene's date a procession of hundreds crossed it, and Cleaver remembered driving over it. Something was rebuilt or widened between 1833 and 1835 and no source reached says what. Four stringers under a full-width deck is the later, load-carrying reading, chosen because the scene date is 1835-07-01 and the evidence for 1835 is a crowd on the deck. The alternative — the 1832 walkway, two stringers and a plank — is a defensible model of a different year and would be the right value in an 1833 scene."
     },
     "railing": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -142,7 +142,7 @@
     },
     "function": {
       "value": "river_crossing",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_kinzie_bridge",
         "chicagology_lastwardance"

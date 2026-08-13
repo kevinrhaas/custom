@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -23,7 +23,7 @@
     "local_e": 679.7,
     "local_n": -43.7,
     "rotation_deg": 90.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -53,19 +53,19 @@
         7.62
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "INVENTED. No source gives this building a dimension. It is the parcel's borrowed rectangle turned end-on: 12.192 m of frontage along Dearborn and 7.62 m of depth back from it, which is 40 x 25 ft — the frontage attested for the Green Tree Tavern and the Western Hotel and the depth derived from the Green Tree's room module. THE ONE THING THE USE ARGUES FOR IS A CLEAR SPAN: an auction room is one room with a crowd standing in it, not a partitioned store, so a rectangle with no internal structure is at least the right kind of shape. That is an argument about the type and not about this building, and the polygon carries no evidence."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. Andreas calls it 'a wooden structure ... for an auction-room' — a purpose-built single-use room rather than a store with living quarters over it — and a single-storey hall is what that describes. Two storeys is possible if Bates let the upper floor, and nothing reached says either way."
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -73,32 +73,32 @@
     },
     "wall_height_m": {
       "value": 3.6,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 3.6 m is about 12 ft: a single storey built taller than a dwelling's, which is what a room full of standing bidders and stacked lots needs. The reasoning is from the use, not from a measurement, and it is deliberately not the 2.5 m this project gives single-storey log dwellings."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region, and the simplest way to roof a clear-span room."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. One stove flue is the minimum for a room used through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "shopfront": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "An auction room is entered, not shopped in: goods were cried inside to a standing crowd rather than displayed to the street. Andreas describes the building's purpose and never its face. Inferred from the attested use; the archetype's default is a composed shopfront and turning it off is a claim this record makes deliberately."
     },
     "function": {
       "value": "auction_room",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -106,7 +106,7 @@
     },
     "occupants": {
       "value": "John Bates Jr., auctioneer and deputy postmaster",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -128,7 +128,7 @@
         {
           "name": "John Bates Jr.",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "auctioneer",
           "note": "A DOCUMENTED WITNESS AS WELL AS A DOCUMENTED RESIDENT: Andreas prints an interview with him of 15 October 1883 describing the town of 1833 street by street, which this project uses elsewhere for the South Water Street row, the slough at the foot of State Street and the four-log footbridge. He is one of the twenty-eight electors of 10 August 1833. Andreas's 1835 town officers list has 'J. Bates and J. Haight, Measurers of Wood and Lumber' - an office he holds ON the scene date if the July election preceded it. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
         }

@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 515.412,
     "local_n": -151.382,
     "rotation_deg": -1.14,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in the South Division block between LaSalle and Clark, south of Lake Street",
@@ -46,14 +46,14 @@
         9.007
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 6.20 × 9.01 m rectangle sampled deterministically inside the D5 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "wall_height_m": {
       "value": 2.78,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "plan": {
       "value": "hall_parlour",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "bays": {
       "value": 3,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "porch": {
       "value": "stoop",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -133,7 +133,7 @@
     },
     "function": {
       "value": "deep-plan frame cottage",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -141,7 +141,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -164,7 +164,7 @@
         {
           "name": "A butcher (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "reconstructed",
           "occupation": "butcher",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 BUTCHER HOUSEHOLDS THIS LAYER INFERS. One butcher is documented: Clybourne, the government butcher, who is also a packer and lives three kilometres out on the North Branch. A town of 3,265 buys fresh meat daily and does not walk to the North Branch for it. One butchering household is inferred, keeping a market shop on the built streets."
         }

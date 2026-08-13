@@ -48,9 +48,9 @@ from archetypes.frame_tavern_params import FrameTavernParams  # noqa: E402
 from archetypes.log_dwelling_params import LogDwellingParams  # noqa: E402
 from archetypes.outbuilding_params import OutbuildingParams  # noqa: E402
 
-DOCUMENTED = "documented"
-INFERRED = "inferred"
-CONJ = "inferred"
+DOCUMENTED = "attested"
+INFERRED = "reconstructed"
+CONJ = "reconstructed"
 
 
 # The documented buildings, written out as parameters. These are golden cases for

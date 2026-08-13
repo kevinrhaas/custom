@@ -1875,14 +1875,14 @@
    "name": "Rufus Brown's Boarding House",
    "function": "boarding_house",
    "existence": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
     "DOCUMENTED IN FABRIC, USE, KEEPER AND POSITION, and absent from this dataset until now. Andreas describes a log house kept as a first-class boarding house by Mrs Rufus Brown, 'the first building in the rear of this store' - Peck's store at South Water and LaSalle. The range opens at the start of 1833, which is not a build date: what is documented is that the house was standing and keeping boarders in the town of 1833-34, and nothing follows it past 1835."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     [
      "andreas_1884_v1"
     ],
@@ -1890,7 +1890,7 @@
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 24 x 40 ft is a log boarding house with a hall and two rooms below and a sleeping loft above, which is the smallest thing that answers 'a first-class boarding house' with a keeper, her household and paying boarders in it. Every number is invented.",
    "occupants": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
@@ -1911,7 +1911,7 @@
    "name": "Matthias Mason & Co.'s Blacksmith Shop",
    "function": "blacksmith_shop",
    "existence": [
-    "documented",
+    "attested",
     [
      "chicago_democrat_1833_11_26",
      "andreas_1884_v1"
@@ -1919,7 +1919,7 @@
     "SELF-REPORTED IN THE ONLY CONTEMPORARY CHICAGO DOCUMENT THIS PROJECT HOLDS. Mason & Co. advertise as blacksmiths in the Chicago Democrat of 26 November 1833, on 'Main-street, nearly opposite Graves' Tavern'. The '& Co.' says the shop employed more than one man. The far end of the range is inferred: nothing follows the firm past 1833, and a working smithy in a town growing tenfold is far more likely to have continued than to have closed."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     [
      "chicago_democrat_1833_11_26",
      "andreas_1884_v1"
@@ -1928,7 +1928,7 @@
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 30 ft is a two-fire shop: room for two hearths, an anvil each and a horse standing in, which is what '& Co.' implies. Every number is invented.",
    "occupants": [
-    "documented",
+    "attested",
     [
      "chicago_democrat_1833_11_26"
     ],
@@ -1952,20 +1952,20 @@
    "name": "Dr Temple's Building, Lake Street",
    "function": "office_and_lodging",
    "existence": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
     "DOCUMENTED THROUGH ITS TENANT. Andreas's account of the bar has John Dean Caton opening the town's first law office in Dr Temple's building on Lake Street in 1833 and sleeping in the attic of the same building. That is a building, a street, a use and an occupant. NOT THE TEMPLE BUILDING at Franklin and South Water, which is a different structure already in this dataset (temple_building) - the two must not be merged."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     null,
     "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly."
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 34 ft is a two-storey frame building with a business room below and a habitable attic above, which is the minimum that answers a law office on the ground floor and a bed in the attic. Every number is invented.",
    "occupants": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
@@ -1991,20 +1991,20 @@
    "name": "Dr Elijah Harmon's Cabin",
    "function": "dwelling",
    "existence": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
     "'HIS RESIDENCE WAS A CABIN OF HEWN LOGS' - Andreas's medical chapter, in the passage that also gives Harmon's rusty instruments, his hundred books and his larder of flour, bacon and coffee. The fabric and the use are documented; the far end of the range is inferred, and note that the household's own presence on the scene date is recorded as UNCERTAIN because Harmon may have been in Texas. The cabin does not move when its owner does."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     null,
     "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district."
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 26 ft is the schedule's D1 older-log-cabin band: one room and a loft, which is what a doctor's residence-and-surgery would have been in a town this size. Every number is invented.",
    "occupants": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
@@ -2026,20 +2026,20 @@
    "name": "John Wright's Building to Let (east)",
    "function": "dwelling_to_let",
    "existence": [
-    "documented",
+    "attested",
     [
      "chicago_democrat_1833_11_26"
     ],
     "'TWO BUILDINGS TO LET' - John Wright's own advertisement in the Chicago Democrat of 26 November 1833, offering them until 1 June 1834. Two buildings existed, they were his, and they were rental stock. This is one of the two. The advertisement's own term of 1 June 1834 is not the building's life: a building does not cease at the end of a tenancy, and the range runs to the end of 1835 as the last date this record needs."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     null,
     "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented.",
    "occupants": [
-    "inferred",
+    "reconstructed",
     null,
     "TO LET, AND THE TENANT IS NOT NAMED. The advertisement documents rental housing stock and nobody in it. This building is deliberately left without an occupant household: the honest reading of 'to let' is a building whose tenant this project cannot name."
    ],
@@ -2061,20 +2061,20 @@
    "name": "Russel E. Heacock's House, Monroe Street",
    "function": "dwelling",
    "existence": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
     "BUILT IN THE SPRING OF 1835, WHICH IS INSIDE THE SCENE YEAR AND BEFORE THE SCENE DATE. Andreas: 'In the spring of 1835, he built a house on what he supposed was his lot, only to find that he was on Monroe Street, not Adams, whither he proceeded to remove it on rollers.' The house, its season, its owner and the fact that it was moved a block are all documented. The range opens on 1835-03-01 as the earliest reading of 'the spring'."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     null,
     "OUTSIDE THE MODELLED GROUND, AND THE DATE OF THE MOVE IS UNKNOWN. Two things are invented here. First, WHICH STREET IT STOOD ON on 1 July 1835: Andreas gives no date for the removal, so the house may have been on Monroe or already on Adams. This record puts it on Monroe, where it was built, because that is the position the source actually states. Second, WHERE ON MONROE: nothing says. The northing is estimated from the plat module - the block pitch implied by the reconstruction recipes' Randolph-to-Washington bands, carried two blocks further south - and lands about 215 m beyond the southern edge of the e1834_harbor_cut heightfield, so the phase declares ground_contact: outside_modelled_ground. THE BUILDING IS IN THE DATASET AND NOT UNDER THE WALKER'S FEET until the terrain extends south."
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 30 ft is the schedule's D5 deep-plan frame cottage, sized for the largest documented household in the residents layer: a wife and five sons, the youngest born in this house. Every number is invented.",
    "occupants": [
-    "documented",
+    "attested",
     [
      "andreas_1884_v1"
     ],
@@ -2102,20 +2102,20 @@
    "name": "John Wright's Building to Let (west)",
    "function": "dwelling_to_let",
    "existence": [
-    "documented",
+    "attested",
     [
      "chicago_democrat_1833_11_26"
     ],
     "'TWO BUILDINGS TO LET' - John Wright's own advertisement in the Chicago Democrat of 26 November 1833, offering them until 1 June 1834. Two buildings existed, they were his, and they were rental stock. This is one of the two. The advertisement's own term of 1 June 1834 is not the building's life: a building does not cease at the end of a tenancy, and the range runs to the end of 1835 as the last date this record needs."
    ],
    "position": [
-    "inferred",
+    "reconstructed",
     null,
     "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
    ],
    "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented.",
    "occupants": [
-    "inferred",
+    "reconstructed",
     null,
     "TO LET, AND THE TENANT IS NOT NAMED. The advertisement documents rental housing stock and nobody in it. This building is deliberately left without an occupant household: the honest reading of 'to let' is a building whose tenant this project cannot name."
    ],

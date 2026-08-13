@@ -5,7 +5,7 @@
  "head": "ingersoll_chester",
  "arrival": {
   "value": "1833-10-04",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To take over an existing tavern stand",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -32,7 +32,7 @@
  },
  "lives_at": {
   "value": "green_tree_tavern",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -41,7 +41,7 @@
  },
  "works_at": {
   "value": "green_tree_tavern",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -50,7 +50,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -61,11 +61,11 @@
    "id": "ingersoll_chester",
    "name": "Chester Ingersoll",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

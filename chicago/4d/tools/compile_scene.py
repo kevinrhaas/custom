@@ -590,7 +590,7 @@ def compile_streets(scene_id: str, target_date: str,
                 or not 0 < track < corridor:
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
         for key in ("geometry_confidence", "surface_confidence", "wear_confidence"):
-            if raw.get(key, "inferred") not in ("documented", "derived", "inferred"):
+            if raw.get(key, "reconstructed") not in ("attested", "inferred", "reconstructed"):
                 raise SystemExit(f"{path.relative_to(ROOT)}: {sid}.{key} is not a confidence grade")
         street_sources = sorted(set([*common_sources, *(raw.get("sources", []) or [])]))
         missing = [s for s in street_sources if s not in sources]
@@ -606,9 +606,9 @@ def compile_streets(scene_id: str, target_date: str,
             "track_width_m": track,
             "surface": raw["surface"],
             "traffic": raw["traffic"],
-            "geometry_confidence": raw.get("geometry_confidence", "inferred"),
-            "surface_confidence": raw.get("surface_confidence", "inferred"),
-            "wear_confidence": raw.get("wear_confidence", "inferred"),
+            "geometry_confidence": raw.get("geometry_confidence", "reconstructed"),
+            "surface_confidence": raw.get("surface_confidence", "reconstructed"),
+            "wear_confidence": raw.get("wear_confidence", "reconstructed"),
             "note": raw.get("note", ""),
             "citations": cite(street_sources, sources),
         })
@@ -662,7 +662,7 @@ def compile_residents() -> dict[str, list[dict]]:
             elif building:
                 basis = ("The building is documented and the household is the one the sources "
                          "attach to it; this parcel built the record they had been waiting for.")
-            elif sid.startswith("recon_") and "inferred" in grades:
+            elif sid.startswith("recon_") and "reconstructed" in grades:
                 basis = ("An anonymous roof of the reconstruction programme, ADOPTED by this "
                          "household rather than raised for it. The roof's own existence and "
                          "position stay conjectural; what the adoption adds is an argued "
@@ -680,7 +680,7 @@ def compile_residents() -> dict[str, list[dict]]:
                 "persons": [{
                     "name": person.get("name", ""),
                     "relationship": person.get("relationship", ""),
-                    "grade": person.get("grade", "inferred"),
+                    "grade": person.get("grade", "reconstructed"),
                     "occupation": (person.get("occupation") or {}).get("value", ""),
                     "note": person.get("note", ""),
                 } for person in hh.get("persons", [])],
@@ -785,7 +785,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "documented_range": {
                 "from": rng.get("from", ""),
                 "to": rng.get("to", ""),
-                "confidence": rng.get("confidence", "inferred"),
+                "confidence": rng.get("confidence", "reconstructed"),
                 "sources": rng.get("sources", []),
                 "note": rng.get("note", ""),
             },
@@ -798,7 +798,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "local_e": local_e,
                 "local_n": local_n,
                 "rotation_deg": pos.get("rotation_deg", 0.0),
-                "position_confidence": pos.get("confidence", "inferred"),
+                "position_confidence": pos.get("confidence", "reconstructed"),
                 "position_sources": pos.get("sources", []),
                 "position_note": pos.get("note", ""),
                 "symbolic_location": pos.get("symbolic_location", ""),
@@ -826,7 +826,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             # `documented_range` and `research_note` before it.
             "footprint": {
                 "polygon": phase.get("footprint", {}).get("polygon", []),
-                "confidence": phase.get("footprint", {}).get("confidence", "inferred"),
+                "confidence": phase.get("footprint", {}).get("confidence", "reconstructed"),
                 "sources": phase.get("footprint", {}).get("sources", []),
                 "note": phase.get("footprint", {}).get("note", ""),
             },

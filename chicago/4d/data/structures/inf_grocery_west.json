@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637380.228,
         "rotation_deg": 0.0,
         "symbolic_location": "West Division, local ENU E -182 N -11",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A grocery on the west-side approach with the keeper's rooms behind and above it - the schedule's C2 store-residence family, which is the commonest small commercial building in a town this size. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, against the platted street corridors of the K7 block grid so that no invented building stands in the roadway, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
         "derivation": {
           "method": "not_derivable",
@@ -42,13 +42,13 @@
             9.144
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "A 20 x 30 ft rectangle from the C2 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -56,7 +56,7 @@
         },
         "wall_height_m": {
           "value": 3.25,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -64,7 +64,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -72,7 +72,7 @@
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -80,7 +80,7 @@
         },
         "gable_front": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -88,7 +88,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -96,7 +96,7 @@
         },
         "cladding": {
           "value": "clapboard",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -104,7 +104,7 @@
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -112,7 +112,7 @@
         },
         "loft": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -120,7 +120,7 @@
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -128,7 +128,7 @@
         },
         "shopfront": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -136,7 +136,7 @@
         },
         "goods_door": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -144,7 +144,7 @@
         },
         "goods_door_side": {
           "value": "end",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -156,7 +156,7 @@
   ],
   "function": {
     "value": "store_residence",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
@@ -165,7 +165,7 @@
   },
   "occupants": {
     "value": "An inferred household; no name is claimed",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"

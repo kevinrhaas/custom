@@ -5,7 +5,7 @@
  "head": "peck_philip",
  "arrival": {
   "value": "1831-07-01",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To open a store with a shipped stock of goods",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -32,7 +32,7 @@
  },
  "lives_at": {
   "value": "peck_store",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -40,14 +40,14 @@
  },
  "works_at": {
   "value": "peck_store",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ]
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -58,11 +58,11 @@
    "id": "peck_philip",
    "name": "Philip F. W. Peck",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "merchant",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

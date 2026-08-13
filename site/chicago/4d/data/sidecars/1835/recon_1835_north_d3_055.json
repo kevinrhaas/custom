@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 542.743,
     "local_n": 308.353,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in North Division cluster kinzie_michigan_interior; between the north bank and Michigan Street",
@@ -46,14 +46,14 @@
         6.706
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 18 × 22 ft rectangle assigned by the reconstruction recipe within the D3 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "wall_height_m": {
       "value": 2.78,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "plan": {
       "value": "single_pen",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "bays": {
       "value": 3,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "paint": {
       "value": "whitewash",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "function": {
       "value": "one-room frame cottage",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -133,7 +133,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -156,7 +156,7 @@
         {
           "name": "A domestic (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "reconstructed",
           "occupation": "domestic",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE SECOND OF 4 DOMESTIC HOUSEHOLDS THIS LAYER INFERS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her."
         }

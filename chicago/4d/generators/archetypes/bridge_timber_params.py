@@ -112,7 +112,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
+CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
 
 # `bent` is the settlers' own word for what stood in the deeper water: four heavy
 # logs resting on the bottom under a cap. `crib` is a sunk and filled log box and
@@ -277,7 +277,7 @@ class BridgeTimberParams:
             self.deck_height_m = round(
                 self.clearance_m + self.stringer_d_m + self.plank_t_m, 4)
 
-    def conf(self, attr: str, default: str = "inferred") -> float:
+    def conf(self, attr: str, default: str = "reconstructed") -> float:
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
     def worst_conf(self, *attrs: str) -> float:
@@ -416,7 +416,7 @@ def from_phase(phase: dict) -> BridgeTimberParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="inferred"):
+    def conf(attr, default="reconstructed"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -428,7 +428,7 @@ def from_phase(phase: dict) -> BridgeTimberParams:
     span, width = max(xs) - min(xs), max(ys) - min(ys)
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
     # The deck's width comes off the polygon, so a record that documents "about ten
     # feet" in prose but leaves the footprint conjectural should say so on the
     # width_m attribute. Where it does not, the footprint's confidence stands in.

@@ -5,7 +5,7 @@
  "head": "kinzie_john_h",
  "arrival": {
   "value": "1834",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 2,
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -23,7 +23,7 @@
  },
  "origin": {
   "value": "Chicago, by way of Fort Winnebago",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -31,7 +31,7 @@
  },
  "reason_for_coming": {
   "value": "Family property and the forwarding trade",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -39,12 +39,12 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "NOT ATTESTED, AND ONE CANDIDATE IS EXPLICITLY RULED OUT. Charles Butler in 1833 recollected that the old Kinzie house on the north side 'had been previously destroyed by fire'; an 1830s list Andreas prints says it 'was then unoccupied and in a dilapidated state'. Either way it is not a residence for this household and this dataset does not model it."
  },
  "works_at": {
   "value": "jh_kinzie_forwarding_store",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -52,7 +52,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -63,11 +63,11 @@
    "id": "kinzie_john_h",
    "name": "John Harris Kinzie",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "forwarding_and_commission",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -83,11 +83,11 @@
    "id": "kinzie_juliette",
    "name": "Juliette Augusta Magill Kinzie",
    "relationship": "wife",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "female",
    "occupation": {
     "value": "none_recorded",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "No trade is recorded for her; she is the author of Wau-Bun, published in 1856, which is a tier-2 source in this dataset."
    },
    "sources": [

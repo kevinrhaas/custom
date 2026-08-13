@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "harrison_1830_river_mouth"
@@ -24,7 +24,7 @@
     "local_e": 1121.18,
     "local_n": 196.72,
     "rotation_deg": 8.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "harrison_1830_river_mouth",
       "andreas_1884_v1"
@@ -54,7 +54,7 @@
         9.8
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "harrison_1830_river_mouth"
     ],
@@ -63,7 +63,7 @@
   "attributes": {
     "kind": {
       "value": "blockhouse",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -71,47 +71,47 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated for this fort. The 1803 War Department instruction for posts of this class required 'the block-houses to be constructed of timber, slightly hewed', which is the type; nothing says the 1816 rebuild departed from it."
     },
     "stories": {
       "value": 2,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. Two storeys with the upper one jettied is what makes a blockhouse a blockhouse: the 1803 instruction says the block-houses are 'so placed as to scour from the upper and lower stories the whole of the lines', which is a two-storey building described by what it does."
     },
     "wall_height_m": {
       "value": 5.2,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. Two storeys of hewn log. A guess in a plausible range."
     },
     "upper_overhang_m": {
       "value": 0.45,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested at this fort. The jetty of the upper storey over the lower is the defining feature of the type and it is invented here at a typical size; a visitor looking at the overhang is looking at a definition, not at evidence."
     },
     "loopholes": {
       "value": true,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested at this fort. The 1803 instruction for this class of post describes blockhouses scouring the lines from both storeys and barracks with port-holes 'for the use of musketry', so loopholes are what the building is for - but that is a specification for the first fort and the pattern, spacing and height of every slit built here is ours."
     },
     "roof_type": {
       "value": "pyramid",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. A four-sided pitched cap over a near-square plan is the surviving type. Andreas's own 1808 index for the first fort notes 'the Cupolas are not yet built on the Block Houses as laid down', which attests a cupola on that fort's blockhouses and nothing about this one; no cupola is built here."
     },
     "roof_pitch_deg": {
       "value": 30.0,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. A shallower pitch than the ranges because a pyramid over a wide plan gets tall fast."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. A blockhouse manned in a Chicago winter is heated; the count, the position and everything else about the stack is ours."
     },
     "function": {
       "value": "block-house",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],

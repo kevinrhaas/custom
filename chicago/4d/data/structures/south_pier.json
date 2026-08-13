@@ -11,7 +11,7 @@
       "documented_range": {
         "from": "1835-06-01",
         "to": "1835-07-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1",
           "wikipedia_chicago_river"
@@ -23,7 +23,7 @@
         "utm_n": 4637648.28,
         "rotation_deg": 13.5,
         "symbolic_location": "The south side of the 1834 cut through the sand bar, running from the Fort Dearborn reservation's shore at the river mouth east-south-east into Lake Michigan.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "wright_1834"
         ],
@@ -52,13 +52,13 @@
             0.0
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "ONE AXIS IS AN INTERPOLATION AND THE OTHER IS AN INVENTION, SO THE DRAWN SHAPE IS CONJECTURAL. The length, 121.92 m, is 400 ft, interpolated between two year-end figures that are themselves in dispute — argued on form.length_m. The width, 7.62 m, is 25 ft and is nobody's measurement: see form.width_m. Least-confident wins over a polygon as it does over a mesh, so the outline is graded by its weaker axis and the confidence view renders the whole pier as massing. A reader should take from this shape that the harbour works ran into the lake from here on this line, and nothing at all from how far or how wide it is drawn. THE POLYGON RUNS ON THE NEGATIVE SIDE OF THE MEASURED LINE, from v = -7.62 to v = 0, because that line is the pier's CHANNEL face and the structure stands south of it. Building it the other way would put a 25-ft crib inside a 200-ft entrance and narrow the harbour by an eighth. NO SOURCE IS CITED ON THIS BLOCK, DELIBERATELY. The measured axis is argued in this note and cited on the position, which is where the survey reading belongs; a conjectural block carrying a source_id would claim Wright supports a shape he cannot."
       },
       "form": {
         "length_m": {
           "value": 121.92,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1",
             "wikipedia_chicago_river"
@@ -67,17 +67,17 @@
         },
         "width_m": {
           "value": 7.62,
-          "confidence": "inferred",
+          "confidence": "reconstructed",
           "note": "TWENTY-FIVE FEET, AND NOBODY MEASURED IT — the same invention the north pier carries, from the same archetype constant, so that both structures inherit one guess a reader can find in one place rather than two that could drift apart. Not one source reached states how wide either Chicago pier was in the 1830s, and the master survey cannot supply it: Wright 1834 is drawn at about 1:7,200, where a 25-ft crib is 0.13 mm on the paper and about a fifth of the width of the pen that drew the pier line. The red bands on that sheet are line weight; measuring one would be measuring the draughtsman's nib. The only argument behind the number is that a gravity crib standing in open lake and carrying a working deck cannot be narrow, which supports 'not narrow' and not twenty-five feet. Graded conjectural, and the footprint it draws is graded with it. WHAT WOULD SETTLE IT: J. D. Graham's 1857 and 1858 hydrographic surveys of the Chicago bar, named in docs/research/01-terrain-hydrology.md, or any specification or voucher for the crib work."
         },
         "deck_height_m": {
           "value": 1.524,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "FIVE FEET ABOVE THE WATER, FROM A BAND WITH NO CITATION UNDER IT. docs/research/01-terrain-hydrology.md zone 24 gives '~+4 to +6' ft for the north pier's deck and cites nothing; zone 25 gives the south pier no height at all. So this value is doubly borrowed — the middle of an uncited band, stated of the other pier — and it is recorded inferred for exactly that reason. It is retained because the two piers were built in the same works, in the same seasons, by the same supervisors, to hold the same channel, and because the alternative is having no height for a structure whose whole visible form is a horizontal line above the lake. An error of a foot here is an error of a fifth in the only dimension the eye can check."
         },
         "construction": {
           "value": "timber_crib",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "LOG CRIBS SUNK AND FILLED WITH STONE, INFERRED FROM PERIOD AND REGIONAL PRACTICE AND NOT STATED BY ANY SOURCE RECORD THIS PROJECT HOLDS. docs/research/01-terrain-hydrology.md names the north pier 'timber crib' without a citation and gives the south pier no construction at all; the texts held here supply the works' chronology, appropriations, supervisors and lengths and never say what the piers were made of. Timber cribbing sunk and stone-filled is how Great Lakes harbour piers of the 1830s were built, it is what was available to a works run out of a frontier garrison with unlimited timber and no cement, and it is what the town's own bridge builders used for abutments in the same years. A reading, not a report. WHAT WOULD SETTLE IT: the Chief Engineer's annual reports, or the 1833-35 contracts for the Chicago harbour appropriation."
         }
       },
@@ -90,7 +90,7 @@
   ],
   "function": {
     "value": "harbour_works",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1",
       "wikipedia_chicago_river",

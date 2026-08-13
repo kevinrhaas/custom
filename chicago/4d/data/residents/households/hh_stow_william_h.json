@@ -5,7 +5,7 @@
  "head": "stow_william_h",
  "arrival": {
   "value": "1833",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To build and keep a hotel in the boom",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -32,7 +32,7 @@
  },
  "lives_at": {
   "value": "western_hotel",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -41,7 +41,7 @@
  },
  "works_at": {
   "value": "western_hotel",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -49,7 +49,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -60,11 +60,11 @@
    "id": "stow_william_h",
    "name": "William H. Stow",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "hotel_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels"

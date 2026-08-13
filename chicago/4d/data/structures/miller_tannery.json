@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1831-01-01",
         "to": "1835-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "drloih_wolf_point",
           "andreas_1884_v1"
@@ -24,7 +24,7 @@
         "utm_n": 4637473.8,
         "rotation_deg": 180.0,
         "symbolic_location": "North bank at the forks, just north of Samuel Miller's house and tavern, on the point of land between the North Branch and the main stem.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "andreas_1884_v1",
           "drloih_wolf_point"
@@ -54,13 +54,13 @@
             5.5
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED and neither is the plan. What the sources give is a category: 'a log house ... that he used as a tannery'. 7 x 5.5 m is an ordinary single-pen log house of the type and period, chosen so that the building reads as a house put to a trade rather than as a purpose-built works, which is what the sources describe. Every number is invented. NOTE ALSO WHAT IS NOT DRAWN: a tannery is its yard — bark mill, lime pits, tan vats, drying sheds, and a water supply — and none of that is in this polygon or in the model. The record models the log house the sources name and nothing else. To resolve: any account of Miller and Hall's tanyard, or the Chicago Democrat's advertisements."
       },
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "drloih_wolf_point",
             "andreas_1884_v1"
@@ -69,27 +69,27 @@
         },
         "stories": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. A single-pen log house is the near-universal form at the forks in 1831, and a building put to a trade is the last one anybody would raise a second storey on. Inference from the type, not from a statement about this building."
         },
         "wall_height_m": {
           "value": 2.5,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn-log wall plus a sill, the same reading and the same number this project gives Hogan's store and the Walker meeting house."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested, and nothing describes a stack on this building. One is the normal number for a single-pen log house and the minimum for a building worked through Chicago winters. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
         }
       },
@@ -98,7 +98,7 @@
   ],
   "function": {
     "value": "tannery",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "drloih_wolf_point",
       "andreas_1884_v1"

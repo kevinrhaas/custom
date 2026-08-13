@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -23,7 +23,7 @@
     "local_e": 465.8,
     "local_n": -133.3,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "CONJECTURAL, AND THE REASON IS THE DIFFERENCE BETWEEN THIS RECORD AND harmon_loomis_store, WHERE THE SAME PROBLEM IS TAGGED INFERRED. Andreas gives 'corner of Lake and La Salle streets' and no side, exactly as he gives 'corner of Clark and South Water' for Harmon and Loomis. At Clark and South Water two of the four corners fall away on evidence — the north side of South Water was the river frontage — and a third is separately claimed, so the choice is reasoned. Lake and LaSalle is an ordinary four-cornered crossing a block inland with nothing to eliminate any of its quarters, so the corner here is a one-in-four guess with no argument behind it, and a guess with no argument is what conjectural means in this dataset. THE FOUR CANDIDATES ARE ABOUT 40 M APART, which is twice the georeference's own error. METHOD: the modern West Lake Street / North LaSalle Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447526.3, N 4637283.8 (two nodes averaged, spread 14.6 m, fetched 2026-08-11); the origin sits 12.2 m east and 12.2 m south of it less the depth, so the north face is on the Lake frontage and the west face on the LaSalle frontage of a south-east corner lot. WORKING UNCERTAINTY ABOUT 20 M from the georeference, plus about 40 m for the corner. ONE CONTEMPORARY DETAIL WORTH RECORDING ABOUT THIS CROSSING, though it decides nothing: Andreas has 'a pond of water on Lake Street, corner of La Salle, inhabited by frogs' as late as July 1836, so part of this junction was standing water in the mid-1830s. Which part is unstated, and it is not used to choose a corner. Facade bearing 0, north onto Lake Street, inferred from the street rather than from any statement.",
     "symbolic_location": "At the corner of Lake Street and LaSalle Street (today West Lake Street at North LaSalle); the south-east corner, which is this record's guess — the source names no side.",
@@ -50,19 +50,19 @@
         9.144
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "INVENTED, AND DELIBERATELY THE LARGEST RECTANGLE IN THIS PARCEL. 15.24 x 9.144 m is 50 x 30 ft. No source gives this building a dimension, but the one thing the source does say about it is a statement about VOLUME: Hubbard packed a season's work of some five thousand hogs inside it in 1834, which is not a season a man gets through in a 40 x 25 ft shop. The rectangle is scaled up from the parcel's borrowed 40 x 25 ft on that reasoning alone. THAT REASONING IS WEAKER THAN IT LOOKS and the record should say so: a packing season is months long, hogs come in and barrels go out continuously, and the building needed to hold a day's work rather than a season's. The documented 55 ft cap on South Water Street lots is not evidence about Lake Street and is not applied."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Nothing is attested and there is no typological argument either way — a packing house is a tall single-storey space, a bank building is a two-storey block with offices over, and the name says one thing while the use says the other. One is recorded because it is the smaller claim. Invention, tagged as such."
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -70,32 +70,32 @@
     },
     "wall_height_m": {
       "value": 4.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 4.0 m is about 13 ft: a single storey taller than a shop's, which is what hanging and dressing carcasses needs. It inherits the storey count's uncertainty, which is conjectural, so this number is only as good as that guess."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. One is the minimum for a working building used through a Chicago winter, and packing is winter work — the season ran when it was cold enough to keep meat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "shopfront": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Nothing is attested about this building's street face, and the two uses the sources associate with it — a bank and a hog-packing floor — are both buildings without display windows. Inferred from the attested use rather than from any description; the archetype's default is a composed shopfront and turning it off is a claim this record makes."
     },
     "function": {
       "value": "packing_house",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -103,7 +103,7 @@
     },
     "occupants": {
       "value": "unattested at the scene date; Gurdon S. Hubbard packed here in the 1834 season",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -125,7 +125,7 @@
         {
           "name": "Gurdon Saltonstall Hubbard",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "packer",
           "note": "ELECTED A TRUSTEE OF THE TOWN AT THE SECOND ELECTION, 11 AUGUST 1834 - 'J. H. Kinzie, G. S. Hubbard, E. Goodrich, J. K. Boyer, and John S. C. Hogan were chosen Trustees' - so he is on the board through the municipal year that ends in the scene month. He is also the man whose 1881 correction of the Wau-Bun view of Fort Dearborn supplies four of the constraints this project's fort dossier rests on: that the enclosure ran 'nearly north and south, east and west', that the north picket line stood nowhere more than 80 ft from the water, that the ground at the fort was 'not over eight feet above the River at its lowest stage', and that the north and south gates were on one sight line."
         }

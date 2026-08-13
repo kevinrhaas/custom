@@ -97,7 +97,7 @@
           ]
         ],
         "priority": 20,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273",
           "white_1978_inai"
@@ -210,7 +210,7 @@
           ]
         ],
         "priority": 22,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [],
         "note": "There is no survey of the wet/mesic boundary at the forks and no source distinguishes them here at all. This takes the highest ground in the committed heightfield (1.18 m and up, the inland crest of the West Division, about 3.9 ft above the water, at the top of the terrain spec's +3 to +6 ft range for that division) as the drier community. It is a reading of the terrain, not evidence, and a critic should treat the line as ours."
       },
@@ -240,7 +240,7 @@
           0.66
         ],
         "priority": 55,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -273,7 +273,7 @@
           8
         ],
         "priority": 70,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -460,7 +460,7 @@
           ]
         ],
         "priority": 30,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -566,7 +566,7 @@
           ]
         ],
         "priority": 25,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -604,7 +604,7 @@
           ]
         },
         "priority": 10,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -642,7 +642,7 @@
           ]
         },
         "priority": 45,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [],
         "note": "PRIORITY RAISED 12 -> 45, 2026-08-11. Planting this zone did nothing until now: at 12 it lost everywhere to z02_mesic_prairie (22) and z01_wet_prairie (20), which are ELEVATION BANDS matching the general plain, so the beach and the foredune were being rendered as mesic prairie. A zone defined by a specific geography and a specific SUBSTRATE has to outrank a band defined by height alone — the same reasoning that already puts the settled town (60) and the marsh (70) above both prairies. 45 keeps it below the marsh, the town and the sedge meadow, which is right: where the river mouth is marsh it is marsh, and where the fort stands it is settled ground, beach or no beach. PLANTABLE SINCE 2026-08-11. This community was written and then withheld: the ground it describes did not exist in the model. ROADMAP S2e has since extended the heightfield east from a 640 m square to E -320..+1700, and this zone's extent now matches 7,353 samples of the committed terrain, so it is planted. Nothing about the species, the July phenology or the confidence has changed — the records were always ready and the ground was not. WHAT THE ORIGINAL NOTE SAID, kept because it was correct when it was written: PLANTABLE SINCE 2026-08-11, when ROADMAP S2e parcel (b) carried the heightfield east to E +1700: the lake shore, the beach face and the sand bar are modelled ground now, so this community has something to stand on. The box is the belt east of the sand-ridge crest, bounded north and south by the scene's own span; the beach continues well beyond it. NOT FIXED HERE, for the flora parcel: at priority 12 this zone loses everywhere to z02_mesic_prairie (priority 22), whose 1.18-3.0 m elevation band now covers the whole sand belt, so the beach and the bar are currently planted as mesic prairie. The priorities were set when nothing east of E +320 had ground under it and the question could not arise."
       },
@@ -678,7 +678,7 @@
           ]
         },
         "priority": 40,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [],
         "note": "PRIORITY RAISED 11 -> 40, 2026-08-11. Same correction as z08 and for the same reason — the relict beach-ridge belt was losing to the mesic-prairie elevation band that runs across it. 40 sits just below the lakeshore at 45 so that where the two boxes meet at E +1400 the open beach wins over the older ridges, which is the seaward order. PLANTABLE SINCE 2026-08-11. This community was written and then withheld: the ground it describes did not exist in the model. ROADMAP S2e has since extended the heightfield east from a 640 m square to E -320..+1700, and this zone's extent now matches 14,577 samples of the committed terrain, so it is planted. Nothing about the species, the July phenology or the confidence has changed — the records were always ready and the ground was not. WHAT THE ORIGINAL NOTE SAID, kept because it was correct when it was written: PLANTABLE SINCE 2026-08-11, when ROADMAP S2e parcel (b) carried the heightfield east to E +1700. The relict beach-ridge belt runs from the State Street break-of-slope — the terrain spec builds that band between E +780 and +880, centred on the two State Street ground-control points at E +837.6 and +822.5 — east to the lakeshore sand ridges, and all of it is modelled ground now, standing at +7.6 to +9.5 ft above the water. The north-south bounds are the scene's own, not the belt's. NOT FIXED HERE, for the flora parcel: at priority 11 this zone loses everywhere to z02_mesic_prairie (priority 22), so the dry sand prairie is currently planted as mesic prairie — the opposite of the 10-25 per cent bare sand this record exists to state."
       },
@@ -750,7 +750,7 @@
           ]
         ],
         "priority": 60,
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire278",
           "chicagology_prefire273"

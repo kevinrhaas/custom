@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 73, title: 'Attested, inferred, reconstructed', kind: 'feature', ts: '2026-08-13T17:53:05.882Z', date: 'Aug 13, 2026, 12:53 PM CT',
+    items: [
+      'The three grades this reconstruction puts on every claim now use the words a historian would use. ATTESTED, shown plain: a source says so. INFERRED, shown in gold: reasoned from evidence about this particular thing — a described location, a measured lot, a neighbouring record. RECONSTRUCTED, shown as dithered massing: no source speaks to this one at all; it is here because the town demonstrably needed it, and it is built rather than found.',
+      'The distinction that forced the change: placing the government blacksmith shop where Andreas describes it is research, and inventing a cooper because a town packing two thousand hogs a season must have had one is not. Both used to say the same word. They no longer do, and nothing that is genuinely built rather than found can now borrow the credibility of something that was recorded.',
+      'The same three words grade the people as well as the buildings, which they always should have. An attested resident is named in a source. An inferred one is a real person whose details are partly rebuilt. A reconstructed one is a claim about a ratio — the town needed coopers — and never a claim about anybody in particular.',
+    ] },
   { v: 72, title: 'Three words for three different kinds of knowing', kind: 'feature', ts: '2026-08-13T16:44:22.208Z', date: 'Aug 13, 2026, 11:44 AM CT',
     items: [
       'This reconstruction has always graded every claim it makes, and until now it used one word for two completely different acts. Placing the government blacksmith shop where Andreas describes it is RESEARCH. Inventing a cooper because a town packing two thousand hogs a season must have had one is INVENTION. Both said "inferred", which flattered the second and insulted the first.',

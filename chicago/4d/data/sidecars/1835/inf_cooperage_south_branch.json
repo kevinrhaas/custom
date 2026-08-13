@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a second cooperage, beside the Newberry & Dole slaughter-house on the South Branch: barrels are made where the packing is done, and this dataset already models the plant. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
   },
@@ -19,7 +19,7 @@
     "local_e": 68.952,
     "local_n": -239.877,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A second cooperage, beside the Newberry & Dole slaughter-house on the South Branch: barrels are made where the packing is done, and this dataset already models the plant. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, against the platted street corridors of the K7 block grid so that no invented building stands in the roadway, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
     "symbolic_location": "South Division, local ENU E 72 N -235",
@@ -46,14 +46,14 @@
         9.754
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 20 x 32 ft rectangle from the W3 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
   },
   "attributes": {
     "wall_height_m": {
       "value": 3.42,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_pitch_deg": {
       "value": 32.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "construction": {
       "value": "light_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "door": {
       "value": "wagon",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "door_side": {
       "value": "front",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "loft": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "board_gap_m": {
       "value": 0.012,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "function": {
       "value": "cooperage",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -134,7 +134,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -157,7 +157,7 @@
         {
           "name": "A cooper (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "reconstructed",
           "occupation": "cooper",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE THIRD OF 4 COOPER HOUSEHOLDS THIS LAYER INFERS. A TOWN PACKING THOUSANDS OF HOGS A SEASON NEEDS COOPERS, AND THIS DATASET HELD NONE. Andreas records that Clybourne packed some 250 head of cattle and about 2,000 hogs in the season of 1833, that George W. Dole packed a further 250 cattle and 1,000 hogs at the same place, and that the Newberry & Dole house on the South Branch packed 300 cattle and 1,400 hogs in 1834 (scan p. 1151). Packed provisions travel in barrels and barrels are made by coopers. The documented layer holds a packer, two slaughter-houses and not one cooper. Four cooper households are inferred against the schedule's six W3 cooper, wagon or wheelwright shops."
         }
