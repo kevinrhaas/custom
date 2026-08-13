@@ -17,6 +17,132 @@ not need coordinates is deliberately structured to proceed in parallel.
 
 ---
 
+## K — Kevin's punch list of 2026-08-13 · **THE PRIORITY QUEUE — steward, work these first**
+
+Thirteen directions from the project owner, written up as parcels an agent can pick up cold.
+Each names its files, its evidence, its gate and its trap. Standing policy for all of them:
+**build liberally, grade honestly** — `conjectural` is a legitimate answer and the confidence
+view paints it; the two absolute rules (never invent a source, never silently fill a gap) do
+not relax. *Avoid circling on historical perfection: do the reasonable best, mark the rest,
+move on.* One parcel per run; leave the others for the next tick or for interactive sessions —
+check `git log` first so you do not duplicate a parcel already landed.
+
+### K1 — The inferred-residents programme *(the big one; multi-session; carve into districts)*
+Chicago went from ~350 people (1833) to ~3,265 (late 1835). Build the POPULATION as a dataset,
+then build the buildings it implies. New directory `data/residents/`: one file per HOUSEHOLD,
+grouping persons, with per-person fields — name, arrival date (month if knowable), party size,
+origin, why they came, period-correct occupation, where they lived, where they worked — and an
+accuracy grade using EXACTLY this vocabulary: **`documented`** (named in a source: Andreas is
+dense with them — officials, ministers, traders, tavern keepers, the *Democrat*'s advertisers),
+**`derived`** (a real person whose details are partly reconstructed), **`inferred`** (a
+hypothesised resident filling the town's demonstrable needs — the first barber, the second
+blacksmith, the cooper the packing trade requires). NEVER "recommended" — the words are
+**inferred residents** and **inferred structures**. Natives who remained belong in the
+population where sourced; depiction of people stays out of scope (L1) — this is a DATASET layer
+feeding structures. Cross-reference each household to `data/structures/` ids (`lives_at`,
+`works_at`); businesses cluster toward the river/streets, residences spread outward as the town
+crowds (use the Thompson plat lots, K7). Extend `tools/validate.py` so a resident's source_ids
+must resolve and grades are enforced. **The primary goal is buildings**: every inferred
+household that needs a dwelling gets an `inferred structure` record on the plat, archetyped,
+baked, confidence-graded — this is how the town reaches its true 1835 density. Start with
+DOCUMENTED people (mayors-to-be, Ogden, Hubbard, the clergy, every advertiser already in
+`chicago_democrat_1833_11_26`), then derive, then infer to fill the count by occupation census.
+
+### K2 — Image-accuracy loops on the landmark buildings
+Reference set: `data/sources/assets/prefire_views_kevin_2026_08/` (12 plates; READ ITS README —
+the Doric-portico courthouse plate is the 1837+ building and is a NEGATIVE reference). Also
+https://chicagology.com/prefire/prefire275/ (source record exists). Loop per building:
+render the model's building from the plate's viewpoint, compare, improve, repeat until massing,
+roof, fenestration rhythm, chimneys and signboard match. Tier-5 pictorial rule holds: views
+drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** (plate 11 —
+two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
+ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
+
+### K3 — Flora pop-in and coverage *(user-visible defect)*
+Grass and flowers "appear out of the ground as you walk towards them." `flora.js`: the near
+instanced ring materialises with no transition. Fix: grow/fade-in over distance (scale or alpha
+ramp on spawn), widen the ring or add hysteresis so churn is invisible, and profile — mobile
+390×780 stays a release gate. Also RAISE COVERAGE where it is thin: `river_bank`'s underfill is
+already measured (zone says cordgrass 40–55 % cover, `bare_soil_fraction: 0.0`; render shows
+bare soil), and the mid-field targets from the prairie sweep stand in § S6a.
+
+### K4 — Facades: weathered wood, not painted clones
+The buildings read as freshly painted and identical. Research first, then implement: most 1835
+Chicago frame buildings were UNPAINTED weatherboard or whitewashed — paint was expensive; keep
+the documented exceptions exactly as documented (Wau-Bun's white Sauganash with bright-blue
+shutters). Add material variation per building — board tone jitter, weathering by age of the
+phase, board-width irregularity — so no two share a face (extends L22/L23 rather than
+repeating them). Log buildings: hewn vs round logs per record. Cite what you can; grade the
+rest `inferred` with the economics argument in the note.
+
+### K5 — The town's furniture: fences, yards, wagons, signs, porches, docks
+The scene is buildings on bare ground; a working town has STUFF. In order: (a) the
+**`enclosure` archetype** — fence line, gateway count, gate width, fence type (picket/rail/
+worm) — already the single biggest structural gap: it discharges the estray pen (currently a
+roofed shed, wrongly), the Western Hotel wagon yard (L10), Clybourn's stockyard, garden fences
+(the Kinzie-view plate shows picket-fenced garden plots and Lombardy poplars — reference for
+TREATMENT, the house itself stays excluded); (b) **signboards** on businesses — attested
+(the Green Tree plate's hanging sign; the wolf sign documented) — parameter exists in
+`frame_storefront`, switch it on per record, lettering stays undrawn (L25); (c) **yard
+objects**: wagons/drays (documented mired on Lake St), woodpiles and lumber stacks (Ordinance 9
+documents timber, stone, brick, boxes, barrels IN the streets), crates and barrels at the
+stores, kitchen gardens (fort garden documented; dooryard gardens inferred), stove pipes on
+every frame building (Ordinance 6 — documented, none modelled); (d) **porches** ONLY where
+attested or typologically argued — the Kinzie piazza is the attested exemplar; do not blanket
+the town; (e) **docks/wharves** at the forwarding houses (attested "with its dock along the
+river front"; needs a river-wharf mode of `pier_crib`). Everything invented gets its liberty.
+
+### K6 — The river bulge at Clark Street
+The owner reports a bulge in the river at Clark that contradicts the record. Re-examine the
+traced 1834 waterline through the central blocks against the Thompson plat block lines and
+Wright; the South Water georeference note already shows the Clark end sitting ~78–80 m off
+where Dearborn sits 15–19 — likely a tracing artifact from local paper stretch. Re-trace that
+reach, regenerate the heightfield (land outside the reach must stay bit-identical — prove it
+the way S2e did), re-run the gradient audit.
+
+### K7 — Thompson plat lot lines
+Generate block/lot geometry analytically from the plat module (80-ft streets, documented lot
+widths), snapped to the datum — the S1 carry-forward note already prescribes exactly this.
+Commit as `data/traces/vectors/thompson_lots.json`. It becomes the placement grid for K1's
+inferred structures and the check on every "corner of X and Y" position in the dataset.
+
+### K8 — River bank heights *(research first, then terrain)*
+The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The
+dossier gives +2–4 ft banks at the forks (documented) but the FORT stood on distinctly rising
+ground — "the flattened mound", the 1830 Harrison plan's bank, Swearingen's 18-ft pool at the
+fort bend. Parcel: re-read `01-terrain-hydrology.md` and the primary accounts; raise and
+GRADUATE the fort-reach south bank as the evidence supports; record the disagreement between
+the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
+documented height. Gradient audit re-run; exemption itemised like the others.
+
+### K9 — Navigation and settings UI
+(a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now
+(inferred locations join later once K1 lands); it replaces the overlapping Viewpoints list and
+sits as its own tab after Controls. (b) The panel opener becomes a **hamburger menu** (it is
+more than settings); reassess the "?" icon. Mobile 390×780 gate; smoke tests updated with the
+UI, never weakened.
+
+### K10 — Bridge approaches
+"How would a wagon cross that?" Every bridge currently floats over its banks
+(`approach_not_modelled`). Build abutment earthworks/ramps that meet the deck at grade on both
+ends — evidence: the 1883 settlers' statement (log abutments IN the shallow water near the
+banks), deck heights already documented. Walkable end to end, wagon-plausible gradients;
+regrade `ground_contact` as each bridge actually lands; move the relevant liberty text.
+
+### K11 — Trees standing in the river
+Placement bug: trees render mid-channel. `trees.js` placement must reject any position whose
+ground sample is below the water surface (and the thicket screens must sit ON the point bars,
+not in the water). Add the check to the smoke suite — "no tree below the waterline" — so it
+cannot regress. Bank-edge willows stay; the fort views show timber ALONG the river, never in it.
+
+### K12 — Loop hygiene *(standing instruction to every steward run)*
+Every run that adds anything user-visible writes its changelog entry (v: null, ts: '') IN THE
+SAME RUN — the overnight push of 2026-08-11 landed ~50 buildings with no changelog entry and
+the owner noticed before we did. Publish (`tools/publish.sh`) and merge to main so the deploy
+actually ships; main is the only branch Pages publishes.
+
+---
+
 ## S1 — Georeference and verify the datum · **DONE 2026-08-09**
 
 Origin: E 447072.7, N 4637395.8 (EPSG:26916) = 41.886721, -87.637951 — the Wright-drawn forks,
