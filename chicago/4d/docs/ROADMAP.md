@@ -79,13 +79,48 @@ drive FORM as `inferred`, never a coordinate or footprint. **Green Tree first** 
 two-storey clapboard, end chimneys both gables, even 6/6 bays, hanging corner SIGNBOARD, rear
 ell), then the fort group (whitewashed palisade on rising ground), then Sauganash/Wolf Point.
 
-### K3 — Flora pop-in and coverage *(user-visible defect)*
-Grass and flowers "appear out of the ground as you walk towards them." `flora.js`: the near
-instanced ring materialises with no transition. Fix: grow/fade-in over distance (scale or alpha
-ramp on spawn), widen the ring or add hysteresis so churn is invisible, and profile — mobile
-390×780 stays a release gate. Also RAISE COVERAGE where it is thin: `river_bank`'s underfill is
-already measured (zone says cordgrass 40–55 % cover, `bare_soil_fraction: 0.0`; render shows
-bare soil), and the mid-field targets from the prairie sweep stand in § S6a.
+### K3 — Flora pop-in and coverage · **POP-IN DONE 2026-08-13; COVERAGE STILL OPEN**
+Grass and flowers "appear out of the ground as you walk towards them."
+
+**The pop-in half is fixed, and the diagnosis is the part worth keeping.** The transition was
+not missing — `ringFade`/`innerFade` had been scaling every plant down over the outer band of
+its ring since the layer was written. It was *frozen*: the fade was baked into the instance's
+height at lattice-rebuild time, and the lattice is rebuilt only every `TUNE.step.near` metres
+walked. So the ramp was sampled once per stride and held. With a 1.2 m step against the near
+ring's 2.2 m band, a plant went from nothing to **55 % of full height between one frame and the
+next** — a fade function producing a step, which is why the code looked like it already did
+what the owner was asking for.
+
+The ramp now runs per FRAME in the vertex shader against `cameraPosition` (`aChiRing` carries
+`[outer, band, inner, innerBand]` per instance; the scale is uniform, about the plant's base).
+Three things came with it:
+
+- **Flower heads have to descend, not just shrink.** A head's origin is partway up a stem, so
+  scaling it in place leaves it hanging over a plant that is no longer under it. `aChiRise`
+  carries the height of the head over its own plant's base and the shader lowers it by
+  `rise × (1 − fade)`, applied after the instance transform because the instance matrix carries
+  a real rotation for the tilted heads.
+- **The `fade < 0.35` head gate was a step in the middle of a ramp** — and the most conspicuous
+  pop in the field, because a flower is the brightest thing in it. Heads have their own ring now,
+  reaching zero exactly where the plant's ramp passes 0.35, so the same heads are drawn and the
+  head cap sees the same pressure.
+- **The lattice is now inset from the fade ring by the rebuild step** (`ringsFor`), which is what
+  makes arriving-already-grown impossible rather than merely rare: a plant is always already
+  placed, at zero height, before it is near enough to be worth any. The outer edge is bought by
+  moving the *fade* in (growing the lattice would cost a 34 % wider near annulus against 6 % of
+  triangle headroom — see K14); the inner edge by moving the *lattice* out, which costs 1.3 % of
+  the mid ring and keeps the near/mid crossover exactly where it is. `step` is halved to 0.6 m,
+  since its job is now the width of that margin rather than the frequency of the ramp.
+- **The bound is one frame, not zero**, and it is stated rather than hidden: the rebuild fires on
+  the frame that carries the walker past the step, so it can overshoot by however far that one
+  frame moved — 0.024 m at 60 fps, about 1 % of a plant's height. The gate walks twenty 0.15 m
+  paces at both viewports and requires every plant arriving in front of the walker to be under
+  10 % of full; measured 0.0 %.
+
+**Still open: COVERAGE.** `river_bank`'s underfill is already measured (zone says cordgrass
+40–55 % cover, `bare_soil_fraction: 0.0`; render shows bare soil), and the mid-field targets from
+the prairie sweep stand in § S6a. Note that the near ring's *visible* radius is 0.6 m shorter than
+it was — that is the inset, and it is a coverage question for this half of the parcel to weigh.
 
 ### K4 — Facades: weathered wood, not painted clones
 The buildings read as freshly painted and identical. Research first, then implement: most 1835
@@ -127,11 +162,36 @@ this item cited was this defect, so **`docs/RESEARCH/chicago_american_office.md`
 overstates the Clark residual** and should be re-measured against the corrected trace.
 
 
-### K7 — Thompson plat lot lines
+### K7 — Thompson plat lot lines · **PHASE ONE DONE 2026-08-13**
 Generate block/lot geometry analytically from the plat module (80-ft streets, documented lot
 widths), snapped to the datum — the S1 carry-forward note already prescribes exactly this.
 Commit as `data/traces/vectors/thompson_lots.json`. It becomes the placement grid for K1's
 inferred structures and the check on every "corner of X and Y" position in the dataset.
+
+**Shipped**: 19 blocks, 152 lots, generated from the module and this project's committed street
+lines by `tools/generate_plat_lots.py`, re-derived byte for byte in `tools/check.sh`. Block edges
+are `inferred` (arithmetic on inferred street lines and an inferred module width); the lot lines
+and the alley POSITION are `conjectural` and say so — four lots to a face is a reading of one
+block, block 18 on the owner's Clark-reach crop. No lot or block is numbered: this project has
+never read Thompson's numbering off a sheet. Five candidate blocks are refused with their
+reasons, three of them because a block there would span the South Branch. Memo:
+`docs/RESEARCH/thompson_plat_grid.md`.
+
+**What phase two inherits.** (a) **Seven structures stand 6.5–12.1 m inside a platted street
+corridor**, all of them `conjectural` placements from the inferred programme
+(`tools/generate_plat_lots.py --report` lists them with their depth) — the placement gate in
+`tools/generate_inferred_households.py` tests overlap, water and modelled ground and has never
+tested for the street. Fixing them re-derives the household ledger, so it belongs to K1 phase
+three, not to the slice that found them. Nothing documented is in the road, and the Sauganash's
+first cabin is the reminder that a building in the street is sometimes a fact. (b) The grid
+covers 19 of the plat's 58 blocks; the North Division is absent because its street control is
+what § S9 still records as owed, and `blk_south_water_market` — one of the most built-up blocks
+in town — is refused only because the street layer does not carry South Water west of E +100.
+(c) Two pitches disagree with the 1834 traverses (Dearborn→State 128.0 m, Lake→Randolph 142.8 m)
+and are recorded rather than averaged. (d) No source in `data/sources/` gives a Thompson LOT
+DEPTH; the depths here are residuals of the block, and finding a stated one is what would move
+the lot lines off conjecture. (e) Nothing draws the grid — when the lot lines reach the screen
+they need a liberty and a confidence treatment with them.
 
 ### K8 — River bank heights *(research first, then terrain)*
 The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The
@@ -142,12 +202,33 @@ GRADUATE the fort-reach south bank as the evidence supports; record the disagree
 the tier-5 lithographs and the dossier rather than averaging it; keep the forks banks at their
 documented height. Gradient audit re-run; exemption itemised like the others.
 
-### K9 — Navigation and settings UI
+### K9 — Navigation and settings UI · **DONE 2026-08-13**
 (a) A **"Go to" tab** — buildings and street intersections, DOCUMENTED entries only for now
 (inferred locations join later once K1 lands); it replaces the overlapping Viewpoints list and
 sits as its own tab after Controls. (b) The panel opener becomes a **hamburger menu** (it is
 more than settings); reassess the "?" icon. Mobile 390×780 gate; smoke tests updated with the
 UI, never weakened.
+
+**Shipped**: one list — 8 authored viewpoints, 4 verified junctions and all 222 loaded
+structures — in a `goto` tab second in the strip, opened by <kbd>G</kbd> (which focuses the
+search on a keyboard and deliberately does not on a phone, where it would raise the on-screen
+keyboard over the list). The Settings copies are gone: the viewpoint chips and the duplicate
+search are both retired to it. `#btn-help` is a hamburger with `aria-label="Menu"`.
+
+**The one departure from the parcel as written, and why.** It does NOT list documented entries
+only. K1 has landed since this was written, and the honest reading of "inferred locations join
+later" is now the second one: **no structure position in this dataset is `documented`** — 54 are
+`inferred` and 168 `conjectural` — so a documented-only menu would have held four junctions and
+nothing else. Every structure instead carries its own `placement.position_confidence` as a chip,
+in the popup's three words and three colours, and the gate compares every chip against the
+record it jumps to. Viewpoints and junctions carry none: neither is a claim about the town.
+
+**What it inherits.** (a) The tally in the tab is counted from the list, so it moves when the
+dataset does — nothing to restate here when a position is regraded. (b) Five tabs fit with about
+20 px of slack at both viewports (desktop panel widened 360 → 380 px, tab padding 9 → 6 px,
+mobile type 12.5 → 11.5 px); a **sixth tab does not fit** and the gate will say so rather than
+shipping a two-row strip. (c) The gate's own desktop half had not been running: see § the smoke
+budget in STATUS.
 
 ### K10 — Bridge approaches
 "How would a wagon cross that?" Every bridge currently floats over its banks

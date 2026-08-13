@@ -791,7 +791,11 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
 .hud-panel {
   pointer-events: auto;
   align-self: flex-end;
-  width: min(360px, calc(100% - 4px));
+  /* 380, not 360: with a fifth tab the strip fits 360 exactly, and a layout
+     with no slack in it is one font-metric difference away from wrapping on
+     somebody else's machine. The extra twenty pixels are also twenty pixels of
+     place name in the Go to list. */
+  width: min(380px, calc(100% - 4px));
   margin-top: 8px;
   max-height: min(70vh, 560px);
   overflow-y: auto;
@@ -849,18 +853,24 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
 .panel-tabs {
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 8px 8px 0;
+  gap: 1px;
+  padding: 8px 6px 0;
   border-bottom: 1px solid var(--edge);
 }
 
 .panel-tab {
   flex: 0 1 auto;
-  padding: 7px 9px;
-  /* Four tabs plus the close button do not fit 360px if any of them may wrap;
+  /* 6px of side padding, not 9. Five tabs and a close button want 348 px of a
+     342 px strip at the old figure, and flex-shrink pays the difference out of
+     the labels rather than out of the row — which the release gate reads,
+     correctly, as a squeezed tab. Measured rather than guessed: the desktop
+     panel is 358 px wide and the strip now needs 334. */
+  padding: 7px 6px;
+  /* Five tabs plus the close button do not fit 360px if any of them may wrap;
      "What's new" broke onto a second line and made the whole strip two rows
      tall. Let the labels shrink instead — they are short enough to stay
-     legible, and a ragged one-line strip beats a lumpy two-line one. */
+     legible, and a ragged one-line strip beats a lumpy two-line one. The
+     narrow-viewport block below buys the room the fifth tab needs. */
   white-space: nowrap;
   min-width: 0;
   border: 0;
@@ -868,7 +878,7 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
   background: transparent;
   color: var(--ink-dim);
   font: inherit;
-  font-size: 12.5px;
+  font-size: 12px;
   cursor: pointer;
 }
 .panel-tab:hover { color: var(--ink); }
@@ -934,7 +944,9 @@ kbd {
 }
 .jump-field input[type="search"]:focus { border-color: var(--accent); }
 .jump-results {
-  max-height: 230px;
+  /* The list is the whole of its own tab now rather than a field inside
+     Settings, so it gets the height the panel can spare. */
+  max-height: min(340px, 42vh);
   margin-top: 7px;
   overflow-y: auto;
   border: 1px solid var(--edge);
@@ -970,17 +982,13 @@ kbd {
   cursor: pointer;
 }
 .jump-result:hover, .jump-result:focus-visible { background: rgb(255 255 255 / 11%); }
-.jump-result small { flex: none; color: var(--ink-dim); font-size: 9px; }
+/* `:not(.conf)`, because the confidence chip is also a <small> here and it
+   carries the colour that IS its meaning — a bare `.jump-result small` rule
+   outranks `.conf-inferred` on specificity and painted all three grades the
+   same dim grey, which is a legend that lies. */
+.jump-result small:not(.conf) { flex: none; color: var(--ink-dim); font-size: 9px; }
+.jump-result .conf { flex: none; margin-left: 0; font-size: 9px; }
 .jump-empty { margin: 0; padding: 10px; color: var(--ink-dim); font-size: 11.5px; }
-
-.anchors { display: flex; flex-wrap: wrap; gap: 6px; }
-.anchor-btn {
-  padding: 5px 9px;
-  border: 1px solid var(--edge); border-radius: 999px;
-  background: rgb(255 255 255 / 6%); color: var(--ink);
-  font: inherit; font-size: 11.5px; cursor: pointer;
-}
-.anchor-btn:hover { background: rgb(255 255 255 / 12%); border-color: var(--accent); }
 
 .legend-list { margin: 0 0 10px; padding: 0; list-style: none; display: grid; gap: 8px; }
 .legend-list li { font-size: 12.5px; color: var(--ink); line-height: 1.45; }
@@ -1037,6 +1045,11 @@ kbd {
   /* And when an altitude is showing, it says more than a date that never
      changes — so the date yields rather than the badge growing. */
   .badge.has-alt .badge-sub { display: none; }
+  /* The narrow panel cannot grow the way the desktop one just did, so the fifth
+     tab's room comes out of the type instead. The release gate measures the
+     result at 390×780 — one row, nothing squeezed — which is where a sixth tab
+     would be caught. */
+  .panel-tab { font-size: 11.5px; }
   .navigation-stack { top: calc(55px + var(--safe-t)); }
   .street-readout { width: 188px; }
   /* The mobile panel spans the same left edge as the navigation readouts. Hide

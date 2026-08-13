@@ -6,7 +6,8 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 **Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
-complete. **K1 (inferred residents) complete through phase two.**
+complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot
+grid) complete through phase one; K9 (navigation UI) complete.**
 
 **Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
 188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
@@ -147,6 +148,55 @@ Structure positions still carry `symbolic_location` with null coordinates — th
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
 
+## Fixed 2026-08-13 — a fade function that was producing a step
+
+**The transition the owner asked for had been there all along, sampled once per stride.**
+"Grass and flowers appear out of the ground as you walk towards them" (K3) read like a missing
+feature, and `flora.js` has scaled every plant down over the outer band of its ring since the
+layer was written. The defect is the RATE, not the absence: the ramp was evaluated on the CPU at
+lattice-rebuild time and baked into the instance's height, and the lattice rebuilds only every
+`TUNE.step.near` metres walked. 1.2 m of step against the near ring's 2.2 m band means a plant
+went from nothing to **55 % of full height in a single frame**, once per stride, forever. A fade
+that only updates when the thing it is fading is rebuilt is a step function wearing a ramp's name,
+and it is invisible in review precisely because the ramp reads correctly on the page.
+
+The ramp now runs per frame in the vertex shader against `cameraPosition`. What that cost, and
+what it bought, is in ROADMAP § K3; three things belong here.
+
+- **A flower head cannot just shrink — it has to come down.** Its origin is partway up a stem, so
+  scaling in place leaves it in the air over a plant that is no longer under it. `aChiRise` and a
+  world-space descent applied after the instance transform (the instance matrix carries a real
+  rotation for tilted heads, so it cannot be folded into the local offset).
+- **The `fade < 0.35` head gate was itself the worst pop in the field**, being a step in the
+  middle of a ramp on the brightest object in the frame. Heads have their own inset ring now, and
+  the same heads are drawn: the ring reaches zero exactly where the plant's ramp passes 0.35.
+- **The guarantee is geometric, not empirical.** The lattice is inset from the fade ring by the
+  rebuild step, so a plant is always placed, at zero height, before it is near enough to be worth
+  any. The residual is one frame of overshoot — the rebuild fires on the frame that carries the
+  walker past the step — which is 0.024 m at 60 fps, about 1 % of a plant's height, and it is
+  written down rather than rounded away. The near ring's visible radius is 0.6 m shorter than it
+  was, which is the price of the inset and is left as a coverage question in K3.
+- **The gate now walks.** Twenty 0.15 m paces at 390×780 and 1280×800, checking every plant that
+  appears in front of the walker: measured worst arrival **0.0 %** of full height against a 10 %
+  bar, plus a check on the ring geometry so the margin cannot be tuned away later. Triangles
+  564 821 desktop against 564 681 before — a rounding error, and no new asset.
+
+**And the gate was measuring the weather.** Running the baseline before touching anything turned
+up an unrelated red: *"turning it off restores the render"* failed about **two runs in three on
+main**, at 390×780, with a worst-cell delta of 9 against a bar of 8. The assertion compares two
+captures of the same scene to decide whether switching the confidence view off leaves anything
+behind — and the wind blows between them, at 1–3 fps under the software rasteriser, so most of
+the residual it was measuring was swaying grass. The tolerance had already been widened once for
+exactly that reason, which is the tell: a gate whose bar is set by its own noise is a gate that
+will be widened again. `main.js` gains a harness-only `setAnimationHold` — keep drawing, advance
+nothing — and the three captures are taken under it. The residual is readback noise now, so the
+bar **tightened** from mean 0.5 / worst 8 to mean 0.1 / worst 3, and the assertion above it
+(*confidence view changes the render*) got strictly harder, because sway can no longer supply any
+of the difference it has to find. Two consecutive full runs green at both viewports.
+
+That closes the debt the bake-gate entry below records as owed: the flora clock is frozen during
+capture, and the bound was tightened rather than widened.
+
 ## Fixed 2026-08-13 — the nightly bake had been red for days, and nobody could see it
 
 **The placeholder gate forbade the upgrade the bake exists to perform.** `generators/build.py`
@@ -173,7 +223,8 @@ render` compares a frame captured before the confidence toggle with one captured
 flora is still swaying. Observed failing twice at worst-cell delta 11 against a bound of 8 and
 passing on the third run with no code change. The bound has NOT been widened — a release gate
 loosened until it stops complaining is not a gate. The fix is to freeze the flora clock during
-capture, and it is owed.
+capture, and it is owed. **Paid 2026-08-13** — see the flora-fade entry above: captures now run
+under `setAnimationHold` and the bound tightened to a worst cell of 3.
 
 ## Fixed 2026-08-13 — two defects the owner photographed, and what they taught
 
@@ -198,6 +249,79 @@ one after at `0.03` (see K14).
 question and was silently wrong for "may a stem stand here". The release gate had a green
 check on the first question while the owner had a photograph of the second failing. Both
 checks are now present.
+
+## New 2026-08-13 — the platted grid exists, and it found seven buildings in the road
+
+**K7 phase one.** The block and lot grid is generated rather than traced:
+`tools/generate_plat_lots.py` offsets this project's committed street centrelines by half the
+platted corridor, intersects them, and divides the result into lots — 19 blocks, 152 lots,
+re-derived byte for byte by `tools/check.sh`. Tracing the 1834 sheets instead would have baked
+their 3.7–4.5 % paper stretch into every block face. The blocks are `inferred` because their
+inputs are; the lot lines and the alley position are `conjectural` and stay that way, because
+four lots to a face is a reading of ONE block (block 18 on the owner's Clark-reach crop). No lot
+and no block is numbered — this project has never read Thompson's numbering off a sheet.
+
+**The grid immediately paid for itself as a check.** Of 222 placed structures, 80 stand inside a
+generated block, 120 stand outside the 19 blocks it covers, and 22 stand inside a platted street
+corridor. Most of those 22 are within a metre or two of a corridor edge, which says nothing
+against a ±20 m georeference — but **seven sit 6.5 to 12.1 m in, which is the middle of the
+road**, and every one of them is a `conjectural` placement from the inferred-structure
+programme. The placement gate that put them there tests for overlap with other buildings, for
+water, and for modelled ground; it has never tested for the street. Nothing documented is in the
+road.
+
+**Nothing was moved in this slice, on purpose.** Repositioning generated structures re-derives
+the household ledger, so it belongs to the parcel that owns those files (ROADMAP K1 phase three)
+rather than to the slice that discovered the problem. The finding is recorded with the seven
+records named, in `docs/RESEARCH/thompson_plat_grid.md` § 7 and ROADMAP K7.
+
+**What the grid is honest about not being**: 19 blocks of the plat's 58, no North Division (its
+street control is what § S9 records as owed), no lot depth from any source — the depths are
+residuals of the block — and nothing rendered. `blk_south_water_market`, one of the most built-up
+blocks in the town, is refused outright because the street layer does not carry South Water west
+of E +100. That refusal is the street control owed, arriving from a different direction.
+
+## New 2026-08-13 — one way to go somewhere, graded; and the half of the gate that was not running
+
+**K9.** Viewpoints and the place search were two lists of the same ground inside Settings.
+They are now one `Go to` tab, second in the strip after Controls, opened by <kbd>G</kbd>: 8
+authored viewpoints, 4 verified junctions, 222 structures, built from the scene, the index and
+the registry rather than from a menu somebody maintains. `#btn-help` is a hamburger.
+
+**The parcel asked for documented entries only, and that turned out to be the wrong list.**
+No structure position in this dataset is graded `documented` — **54 are `inferred` and 168
+`conjectural`** — so documented-only would have shipped four junctions. Every structure result
+instead carries its own `placement.position_confidence`, in the same three words and three
+colours the building card uses, and the tab's summary line counts the grades from the list it
+paints. What survives about a building is usually a street and a side of it, so a well-documented
+tavern with a conjectural position is the normal case here rather than a failure — and the menu
+now says which is which at the moment the visitor chooses where to go. The gate compares every
+chip against the record it jumps to; a menu that graded a position more kindly than the record
+does would be this project's worst kind of bug.
+
+**Two defects the new assertions caught in their own slice.** The five-tab strip fitted 360 px
+only by flex-shrinking labels out past their own buttons — one tidy row, measured, and a mess to
+look at; the desktop panel is 380 px now, tab padding is 6 px and mobile type 11.5 px, leaving
+about 20 px of slack at both viewports, and the gate measures rows, overflow and squeeze at both.
+A sixth tab does not fit and will fail there. The confidence chips also rendered identically
+grey, because a plain `.jump-result small` rule outranks `.conf-inferred` on specificity; the
+gate now requires the grades to differ by colour as well as by word.
+
+**The desktop half of `tools/smoke_renderer.mjs` had not been running, and it is not clear for
+how long.** It aborted every run at the first click on the menu button — on `main` as well as on
+this branch, reproducibly — and every desktop assertion after that point, roughly a third of the
+suite, simply never executed while the run reported a failure that read like a broken control.
+Nothing was covering the button: `elementFromPoint` returned the button itself at its own centre,
+with no pointer lock, the page visible and focused. The cause is the scene's own weight. At
+533 000 triangles on a software renderer one animation frame takes **0.46–1.10 s (measured)**,
+and Playwright's click waits for the element to hold still across frames before it will hit-test
+it, so 30 s of default action budget was being spent on frames rather than on the page. The
+budget is now 90 s — room for a slow machine, not permission for a broken control, since a click
+that never lands still fails. **This is a standing hazard, not a fixed one**: the same starvation
+will return as the town grows (ROADMAP K14 already records 6 % of triangle headroom), and the
+next symptom will again look like a UI bug rather than a budget. A full two-viewport pass now
+takes upwards of ten minutes here; `SMOKE_VIEWPORT=mobile|desktop` runs one half while
+iterating and prints that it is not the gate.
 
 ## Known weaknesses, stated plainly
 

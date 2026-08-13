@@ -414,13 +414,24 @@ async function boot() {
   let fps = 0;
   /** Set by capture(); read back at the end of the frame it asked for. */
   let pendingCapture = null;
+  /**
+   * Harness only, default off: keep drawing, advance nothing. The gate compares
+   * two captures of the same scene to decide whether the confidence view left
+   * anything behind, and the wind blows between them — which is a comparison of
+   * the weather, not of the tint. Holding the clock takes that variable out
+   * instead of widening the tolerance around it.
+   */
+  let animationHold = false;
 
   function tick() {
     // Keep visual simulation stable, but do not make a visitor crawl in direct
     // proportion to a slow renderer. At 2 fps the former 0.05 s clamp advanced
     // walking by only 0.10 s per real second. Movement now consumes up to a
     // quarter-second of real frame time in <= 0.05 s collision/terrain steps.
-    const frameDt = Math.min(clock.getDelta(), 0.25);
+    // The clock is read either way, so releasing a hold does not deliver the
+    // whole held interval as one enormous frame.
+    const elapsed = Math.min(clock.getDelta(), 0.25);
+    const frameDt = animationHold ? 0 : elapsed;
     const dt = Math.min(frameDt, 0.05);
 
     backends.active?.update?.(dt);
@@ -537,6 +548,9 @@ async function boot() {
     },
     /** Force one frame — for tests that must not race the animation loop. */
     step() { tick(); },
+    /** Keep rendering, advance nothing — for tests comparing two frames of the
+     *  same scene. Never set by the application. */
+    setAnimationHold(on) { animationHold = !!on; return animationHold; },
     walkBudget: WALK,
   });
 

@@ -1,0 +1,4598 @@
+{
+ "_doc": "The platted block and lot grid, generated from the Thompson module and snapped to this project's committed street lines — never traced off the 1834 sheets, whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block face. A block edge here is a street centreline from data/streets/1835.json offset by half the platted corridor; a lot line is the module divided into it. Written by tools/generate_plat_lots.py, which re-derives this file byte for byte offline on every commit (tools/check.sh). Block ids name the streets that bound a block, NOT Thompson's block numbers: this project has never read those off a sheet and does not have them to give.",
+ "tool": "tools/generate_plat_lots.py",
+ "generated_from": [
+  "data/traces/street_control.json",
+  "data/streets/1835.json",
+  "data/sources/thompson_plat_1830.json"
+ ],
+ "sources": [
+  "thompson_plat_1830",
+  "hathaway_1834",
+  "wright_1834",
+  "osm_streets_2026"
+ ],
+ "module": {
+  "street_width_m": 24.384,
+  "street_width_ft": 80,
+  "street_confidence": "inferred",
+  "alley_width_m": 5.4864,
+  "alley_width_ft": 18.0,
+  "alley_confidence": "conjectural",
+  "alley_note": "18 ft is the module the Thompson plat source record carries and the figure the 1834 traverses read (17.1-18.7 ft), so the WIDTH is as well attested as the street. Everything else about it is not: nothing in data/sources/ says which blocks were alleyed, or whether the alley ran with the long axis of a block or across it. The mid-block east-west alley generated here is the arrangement the lot rows on Wright's block 18 imply, and it is a conjecture in exactly the way its confidence says. The 16 ft dissent recorded in data/traces/street_control.json is not settled by the traverses: two feet is inside that method's error.",
+  "lot_frontage_m": 24.384,
+  "lot_frontage_ft": 80.0,
+  "lot_confidence": "conjectural",
+  "lot_note": "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's crop of Wright's sheet at the Clark reach carries block 18's north row numbered 4 3 2 1 and its south row 5 6 7 (docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a block of about 320 ft. Applying it to the other blocks is inference from a single instance and it is graded as the conjecture it is. Lots are NOT numbered here — the crop reads block 18's numbering and nothing fixes the other blocks', and a numbering invented to look complete is exactly what this project does not do."
+ },
+ "method": {
+  "block_edge": "a street centreline offset by half the platted corridor (12.192 m), the four offsets intersected",
+  "reach_m": 12.192,
+  "reach_note": "A block is emitted only where the committed centrelines of all four of its bounding streets reach it, allowing at most half a corridor of extension for a line drawn to a junction rather than through it. Everything refused is in `omitted` with the street that falls short, which is the same list of street control ROADMAP § S9 still records as owed.",
+  "max_pitch_m": 200.0,
+  "water_rule": "a block with a corner on water or beyond the modelled ground is omitted rather than drawn over the river",
+  "lot_subdivision": "the block's north and south faces divided in the same proportion, joined station to station, with a centred alley taken out of the middle"
+ },
+ "confidence": "inferred",
+ "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
+ "summary": {
+  "blocks": 19,
+  "omitted": 5,
+  "lots": 152,
+  "block_frontage_ft": {
+   "min": 309.6,
+   "median": 323.4,
+   "max": 340.2
+  },
+  "lot_frontage_ft": {
+   "min": 77.3,
+   "max": 85.1
+  }
+ },
+ "blocks": [
+  {
+   "id": "blk_south_water_franklin",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "franklin",
+    "east": "wells"
+   },
+   "boundary_local_enu_m": [
+    [
+     220.62,
+     -6.47
+    ],
+    [
+     221.7,
+     -6.18
+    ],
+    [
+     318.24,
+     -5.3
+    ],
+    [
+     317.68,
+     -100.07
+    ],
+    [
+     220.07,
+     -99.27
+    ]
+   ],
+   "area_m2": 9167.6,
+   "frontage_m": 97.63,
+   "frontage_ft": 320.3,
+   "depth_m": 93.9,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     220.37,
+     -50.13
+    ],
+    [
+     317.97,
+     -49.94
+    ],
+    [
+     317.94,
+     -55.43
+    ],
+    [
+     220.33,
+     -55.62
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.38,
+     "depth_m": 43.83,
+     "polygon": [
+      [
+       220.62,
+       -6.47
+      ],
+      [
+       245.0,
+       -5.97
+      ],
+      [
+       244.75,
+       -49.98
+      ],
+      [
+       220.37,
+       -50.13
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 43.83,
+     "polygon": [
+      [
+       220.33,
+       -55.62
+      ],
+      [
+       244.72,
+       -55.46
+      ],
+      [
+       244.47,
+       -99.47
+      ],
+      [
+       220.07,
+       -99.27
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.41,
+     "depth_m": 44.12,
+     "polygon": [
+      [
+       245.0,
+       -5.97
+      ],
+      [
+       269.41,
+       -5.74
+      ],
+      [
+       269.16,
+       -49.96
+      ],
+      [
+       244.75,
+       -49.98
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 44.12,
+     "polygon": [
+      [
+       244.72,
+       -55.46
+      ],
+      [
+       269.13,
+       -55.45
+      ],
+      [
+       268.88,
+       -99.67
+      ],
+      [
+       244.47,
+       -99.47
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.41,
+     "depth_m": 44.33,
+     "polygon": [
+      [
+       269.41,
+       -5.74
+      ],
+      [
+       293.82,
+       -5.52
+      ],
+      [
+       293.57,
+       -49.95
+      ],
+      [
+       269.16,
+       -49.96
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 44.33,
+     "polygon": [
+      [
+       269.13,
+       -55.45
+      ],
+      [
+       293.53,
+       -55.44
+      ],
+      [
+       293.28,
+       -99.87
+      ],
+      [
+       268.88,
+       -99.67
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.41,
+     "depth_m": 44.54,
+     "polygon": [
+      [
+       293.82,
+       -5.52
+      ],
+      [
+       318.24,
+       -5.3
+      ],
+      [
+       317.97,
+       -49.94
+      ],
+      [
+       293.57,
+       -49.95
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 44.54,
+     "polygon": [
+      [
+       293.53,
+       -55.44
+      ],
+      [
+       317.94,
+       -55.43
+      ],
+      [
+       317.68,
+       -100.07
+      ],
+      [
+       293.28,
+       -99.87
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_south_water_wells",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "wells",
+    "east": "lasalle"
+   },
+   "boundary_local_enu_m": [
+    [
+     342.62,
+     -5.09
+    ],
+    [
+     440.24,
+     -4.29
+    ],
+    [
+     439.67,
+     -101.06
+    ],
+    [
+     342.06,
+     -100.27
+    ]
+   ],
+   "area_m2": 9368.1,
+   "frontage_m": 97.61,
+   "frontage_ft": 320.3,
+   "depth_m": 95.97,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     342.36,
+     -49.93
+    ],
+    [
+     439.97,
+     -49.93
+    ],
+    [
+     439.93,
+     -55.42
+    ],
+    [
+     342.32,
+     -55.42
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 44.95,
+     "polygon": [
+      [
+       342.62,
+       -5.09
+      ],
+      [
+       367.02,
+       -4.89
+      ],
+      [
+       366.76,
+       -49.93
+      ],
+      [
+       342.36,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 44.95,
+     "polygon": [
+      [
+       342.32,
+       -55.42
+      ],
+      [
+       366.73,
+       -55.42
+      ],
+      [
+       366.46,
+       -100.46
+      ],
+      [
+       342.06,
+       -100.27
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 45.15,
+     "polygon": [
+      [
+       367.02,
+       -4.89
+      ],
+      [
+       391.43,
+       -4.69
+      ],
+      [
+       391.16,
+       -49.93
+      ],
+      [
+       366.76,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 45.15,
+     "polygon": [
+      [
+       366.73,
+       -55.42
+      ],
+      [
+       391.13,
+       -55.42
+      ],
+      [
+       390.86,
+       -100.66
+      ],
+      [
+       366.46,
+       -100.46
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 45.34,
+     "polygon": [
+      [
+       391.43,
+       -4.69
+      ],
+      [
+       415.83,
+       -4.49
+      ],
+      [
+       415.56,
+       -49.93
+      ],
+      [
+       391.16,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 45.34,
+     "polygon": [
+      [
+       391.13,
+       -55.42
+      ],
+      [
+       415.53,
+       -55.42
+      ],
+      [
+       415.26,
+       -100.86
+      ],
+      [
+       390.86,
+       -100.66
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 45.54,
+     "polygon": [
+      [
+       415.83,
+       -4.49
+      ],
+      [
+       440.24,
+       -4.29
+      ],
+      [
+       439.97,
+       -49.93
+      ],
+      [
+       415.56,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 45.54,
+     "polygon": [
+      [
+       415.53,
+       -55.42
+      ],
+      [
+       439.93,
+       -55.42
+      ],
+      [
+       439.67,
+       -101.06
+      ],
+      [
+       415.26,
+       -100.86
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_south_water_lasalle",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "lasalle",
+    "east": "clark"
+   },
+   "boundary_local_enu_m": [
+    [
+     464.62,
+     -4.09
+    ],
+    [
+     563.73,
+     -3.29
+    ],
+    [
+     563.1,
+     -102.07
+    ],
+    [
+     464.05,
+     -101.26
+    ]
+   ],
+   "area_m2": 9707.0,
+   "frontage_m": 99.08,
+   "frontage_ft": 325.1,
+   "depth_m": 97.97,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     464.35,
+     -49.93
+    ],
+    [
+     563.43,
+     -49.94
+    ],
+    [
+     563.4,
+     -55.42
+    ],
+    [
+     464.32,
+     -55.42
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.78,
+     "depth_m": 45.94,
+     "polygon": [
+      [
+       464.62,
+       -4.09
+      ],
+      [
+       489.4,
+       -3.89
+      ],
+      [
+       489.12,
+       -49.93
+      ],
+      [
+       464.35,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.76,
+     "depth_m": 45.94,
+     "polygon": [
+      [
+       464.32,
+       -55.42
+      ],
+      [
+       489.09,
+       -55.42
+      ],
+      [
+       488.81,
+       -101.46
+      ],
+      [
+       464.05,
+       -101.26
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.78,
+     "depth_m": 46.14,
+     "polygon": [
+      [
+       489.4,
+       -3.89
+      ],
+      [
+       514.18,
+       -3.69
+      ],
+      [
+       513.89,
+       -49.93
+      ],
+      [
+       489.12,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.76,
+     "depth_m": 46.14,
+     "polygon": [
+      [
+       489.09,
+       -55.42
+      ],
+      [
+       513.86,
+       -55.42
+      ],
+      [
+       513.58,
+       -101.66
+      ],
+      [
+       488.81,
+       -101.46
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.78,
+     "depth_m": 46.34,
+     "polygon": [
+      [
+       514.18,
+       -3.69
+      ],
+      [
+       538.95,
+       -3.49
+      ],
+      [
+       538.66,
+       -49.93
+      ],
+      [
+       513.89,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.76,
+     "depth_m": 46.34,
+     "polygon": [
+      [
+       513.86,
+       -55.42
+      ],
+      [
+       538.63,
+       -55.42
+      ],
+      [
+       538.34,
+       -101.86
+      ],
+      [
+       513.58,
+       -101.66
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.78,
+     "depth_m": 46.54,
+     "polygon": [
+      [
+       538.95,
+       -3.49
+      ],
+      [
+       563.73,
+       -3.29
+      ],
+      [
+       563.43,
+       -49.94
+      ],
+      [
+       538.66,
+       -49.93
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.76,
+     "depth_m": 46.54,
+     "polygon": [
+      [
+       538.63,
+       -55.42
+      ],
+      [
+       563.4,
+       -55.42
+      ],
+      [
+       563.1,
+       -102.07
+      ],
+      [
+       538.34,
+       -101.86
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_south_water_clark",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "clark",
+    "east": "dearborn"
+   },
+   "boundary_local_enu_m": [
+    [
+     588.11,
+     -3.39
+    ],
+    [
+     686.66,
+     -4.99
+    ],
+    [
+     686.05,
+     -103.07
+    ],
+    [
+     587.48,
+     -102.26
+    ]
+   ],
+   "area_m2": 9706.3,
+   "frontage_m": 98.57,
+   "frontage_ft": 323.4,
+   "depth_m": 98.47,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     587.82,
+     -50.08
+    ],
+    [
+     686.38,
+     -51.29
+    ],
+    [
+     686.34,
+     -56.77
+    ],
+    [
+     587.78,
+     -55.57
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 46.64,
+     "polygon": [
+      [
+       588.11,
+       -3.39
+      ],
+      [
+       612.75,
+       -3.79
+      ],
+      [
+       612.46,
+       -50.38
+      ],
+      [
+       587.82,
+       -50.08
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.64,
+     "depth_m": 46.64,
+     "polygon": [
+      [
+       587.78,
+       -55.57
+      ],
+      [
+       612.42,
+       -55.87
+      ],
+      [
+       612.13,
+       -102.46
+      ],
+      [
+       587.48,
+       -102.26
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 46.54,
+     "polygon": [
+      [
+       612.75,
+       -3.79
+      ],
+      [
+       637.39,
+       -4.19
+      ],
+      [
+       637.1,
+       -50.69
+      ],
+      [
+       612.46,
+       -50.38
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.64,
+     "depth_m": 46.54,
+     "polygon": [
+      [
+       612.42,
+       -55.87
+      ],
+      [
+       637.06,
+       -56.17
+      ],
+      [
+       636.77,
+       -102.66
+      ],
+      [
+       612.13,
+       -102.46
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 46.44,
+     "polygon": [
+      [
+       637.39,
+       -4.19
+      ],
+      [
+       662.03,
+       -4.59
+      ],
+      [
+       661.74,
+       -50.99
+      ],
+      [
+       637.1,
+       -50.69
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.64,
+     "depth_m": 46.44,
+     "polygon": [
+      [
+       637.06,
+       -56.17
+      ],
+      [
+       661.7,
+       -56.47
+      ],
+      [
+       661.41,
+       -102.87
+      ],
+      [
+       636.77,
+       -102.66
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 46.34,
+     "polygon": [
+      [
+       662.03,
+       -4.59
+      ],
+      [
+       686.66,
+       -4.99
+      ],
+      [
+       686.38,
+       -51.29
+      ],
+      [
+       661.74,
+       -50.99
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.64,
+     "depth_m": 46.34,
+     "polygon": [
+      [
+       661.7,
+       -56.47
+      ],
+      [
+       686.34,
+       -56.77
+      ],
+      [
+       686.05,
+       -103.07
+      ],
+      [
+       661.41,
+       -102.87
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_south_water_dearborn",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "dearborn",
+    "east": "state"
+   },
+   "boundary_local_enu_m": [
+    [
+     711.05,
+     -5.54
+    ],
+    [
+     804.66,
+     -8.19
+    ],
+    [
+     814.72,
+     -8.47
+    ],
+    [
+     814.11,
+     -104.11
+    ],
+    [
+     710.44,
+     -103.26
+    ]
+   ],
+   "area_m2": 10024.7,
+   "frontage_m": 103.7,
+   "frontage_ft": 340.2,
+   "depth_m": 96.67,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     710.76,
+     -51.66
+    ],
+    [
+     814.43,
+     -53.55
+    ],
+    [
+     814.4,
+     -59.03
+    ],
+    [
+     710.72,
+     -57.14
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 25.93,
+     "depth_m": 45.99,
+     "polygon": [
+      [
+       711.05,
+       -5.54
+      ],
+      [
+       736.97,
+       -6.27
+      ],
+      [
+       736.68,
+       -52.13
+      ],
+      [
+       710.76,
+       -51.66
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.92,
+     "depth_m": 45.99,
+     "polygon": [
+      [
+       710.72,
+       -57.14
+      ],
+      [
+       736.64,
+       -57.62
+      ],
+      [
+       736.36,
+       -103.48
+      ],
+      [
+       710.44,
+       -103.26
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.93,
+     "depth_m": 45.73,
+     "polygon": [
+      [
+       736.97,
+       -6.27
+      ],
+      [
+       762.89,
+       -7.0
+      ],
+      [
+       762.6,
+       -52.6
+      ],
+      [
+       736.68,
+       -52.13
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.92,
+     "depth_m": 45.73,
+     "polygon": [
+      [
+       736.64,
+       -57.62
+      ],
+      [
+       762.56,
+       -58.09
+      ],
+      [
+       762.27,
+       -103.69
+      ],
+      [
+       736.36,
+       -103.48
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.93,
+     "depth_m": 45.47,
+     "polygon": [
+      [
+       762.89,
+       -7.0
+      ],
+      [
+       788.8,
+       -7.74
+      ],
+      [
+       788.52,
+       -53.07
+      ],
+      [
+       762.6,
+       -52.6
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.92,
+     "depth_m": 45.47,
+     "polygon": [
+      [
+       762.56,
+       -58.09
+      ],
+      [
+       788.48,
+       -58.56
+      ],
+      [
+       788.19,
+       -103.9
+      ],
+      [
+       762.27,
+       -103.69
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.93,
+     "depth_m": 45.21,
+     "polygon": [
+      [
+       788.8,
+       -7.74
+      ],
+      [
+       814.72,
+       -8.47
+      ],
+      [
+       814.43,
+       -53.55
+      ],
+      [
+       788.52,
+       -53.07
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.92,
+     "depth_m": 45.21,
+     "polygon": [
+      [
+       788.48,
+       -58.56
+      ],
+      [
+       814.4,
+       -59.03
+      ],
+      [
+       814.11,
+       -104.11
+      ],
+      [
+       788.19,
+       -103.9
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_clinton",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "boundary_local_enu_m": [
+    [
+     -271.02,
+     -119.69
+    ],
+    [
+     -176.35,
+     -120.45
+    ],
+    [
+     -170.7,
+     -238.88
+    ],
+    [
+     -268.18,
+     -238.11
+    ]
+   ],
+   "area_m2": 11374.7,
+   "frontage_m": 96.08,
+   "frontage_ft": 315.2,
+   "depth_m": 118.39,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     -269.67,
+     -176.16
+    ],
+    [
+     -173.66,
+     -176.92
+    ],
+    [
+     -173.39,
+     -182.4
+    ],
+    [
+     -269.54,
+     -181.64
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 23.67,
+     "depth_m": 56.49,
+     "polygon": [
+      [
+       -271.02,
+       -119.69
+      ],
+      [
+       -247.35,
+       -119.88
+      ],
+      [
+       -245.66,
+       -176.35
+      ],
+      [
+       -269.67,
+       -176.16
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.37,
+     "depth_m": 56.49,
+     "polygon": [
+      [
+       -269.54,
+       -181.64
+      ],
+      [
+       -245.5,
+       -181.83
+      ],
+      [
+       -243.81,
+       -238.3
+      ],
+      [
+       -268.18,
+       -238.11
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.67,
+     "depth_m": 56.5,
+     "polygon": [
+      [
+       -247.35,
+       -119.88
+      ],
+      [
+       -223.69,
+       -120.07
+      ],
+      [
+       -221.66,
+       -176.54
+      ],
+      [
+       -245.66,
+       -176.35
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.37,
+     "depth_m": 56.5,
+     "polygon": [
+      [
+       -245.5,
+       -181.83
+      ],
+      [
+       -221.47,
+       -182.02
+      ],
+      [
+       -219.44,
+       -238.49
+      ],
+      [
+       -243.81,
+       -238.3
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.67,
+     "depth_m": 56.51,
+     "polygon": [
+      [
+       -223.69,
+       -120.07
+      ],
+      [
+       -200.02,
+       -120.26
+      ],
+      [
+       -197.66,
+       -176.73
+      ],
+      [
+       -221.66,
+       -176.54
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.37,
+     "depth_m": 56.51,
+     "polygon": [
+      [
+       -221.47,
+       -182.02
+      ],
+      [
+       -197.43,
+       -182.21
+      ],
+      [
+       -195.07,
+       -238.69
+      ],
+      [
+       -219.44,
+       -238.49
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.67,
+     "depth_m": 56.53,
+     "polygon": [
+      [
+       -200.02,
+       -120.26
+      ],
+      [
+       -176.35,
+       -120.45
+      ],
+      [
+       -173.66,
+       -176.92
+      ],
+      [
+       -197.66,
+       -176.73
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.37,
+     "depth_m": 56.53,
+     "polygon": [
+      [
+       -197.43,
+       -182.21
+      ],
+      [
+       -173.39,
+       -182.4
+      ],
+      [
+       -170.7,
+       -238.88
+      ],
+      [
+       -195.07,
+       -238.69
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_market",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "market",
+    "east": "franklin"
+   },
+   "boundary_local_enu_m": [
+    [
+     101.29,
+     -122.69
+    ],
+    [
+     195.55,
+     -123.46
+    ],
+    [
+     194.84,
+     -241.85
+    ],
+    [
+     100.35,
+     -241.08
+    ]
+   ],
+   "area_m2": 11173.6,
+   "frontage_m": 94.37,
+   "frontage_ft": 309.6,
+   "depth_m": 118.4,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     100.85,
+     -179.14
+    ],
+    [
+     195.21,
+     -179.91
+    ],
+    [
+     195.18,
+     -185.4
+    ],
+    [
+     100.8,
+     -184.63
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 23.56,
+     "depth_m": 56.45,
+     "polygon": [
+      [
+       101.29,
+       -122.69
+      ],
+      [
+       124.86,
+       -122.88
+      ],
+      [
+       124.44,
+       -179.34
+      ],
+      [
+       100.85,
+       -179.14
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.62,
+     "depth_m": 56.45,
+     "polygon": [
+      [
+       100.8,
+       -184.63
+      ],
+      [
+       124.4,
+       -184.82
+      ],
+      [
+       123.98,
+       -241.28
+      ],
+      [
+       100.35,
+       -241.08
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.56,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       124.86,
+       -122.88
+      ],
+      [
+       148.42,
+       -123.07
+      ],
+      [
+       148.03,
+       -179.53
+      ],
+      [
+       124.44,
+       -179.34
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.62,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       124.4,
+       -184.82
+      ],
+      [
+       147.99,
+       -185.01
+      ],
+      [
+       147.6,
+       -241.47
+      ],
+      [
+       123.98,
+       -241.28
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.56,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       148.42,
+       -123.07
+      ],
+      [
+       171.98,
+       -123.27
+      ],
+      [
+       171.62,
+       -179.72
+      ],
+      [
+       148.03,
+       -179.53
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.62,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       147.99,
+       -185.01
+      ],
+      [
+       171.59,
+       -185.21
+      ],
+      [
+       171.22,
+       -241.66
+      ],
+      [
+       147.6,
+       -241.47
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.56,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       171.98,
+       -123.27
+      ],
+      [
+       195.55,
+       -123.46
+      ],
+      [
+       195.21,
+       -179.91
+      ],
+      [
+       171.62,
+       -179.72
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.62,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       171.59,
+       -185.21
+      ],
+      [
+       195.18,
+       -185.4
+      ],
+      [
+       194.84,
+       -241.85
+      ],
+      [
+       171.22,
+       -241.66
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_franklin",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "franklin",
+    "east": "wells"
+   },
+   "boundary_local_enu_m": [
+    [
+     219.93,
+     -123.66
+    ],
+    [
+     317.53,
+     -124.45
+    ],
+    [
+     316.83,
+     -242.85
+    ],
+    [
+     219.23,
+     -242.05
+    ]
+   ],
+   "area_m2": 11556.7,
+   "frontage_m": 97.61,
+   "frontage_ft": 320.2,
+   "depth_m": 118.4,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     219.6,
+     -180.11
+    ],
+    [
+     317.2,
+     -180.91
+    ],
+    [
+     317.17,
+     -186.39
+    ],
+    [
+     219.56,
+     -185.6
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       219.93,
+       -123.66
+      ],
+      [
+       244.33,
+       -123.86
+      ],
+      [
+       244.0,
+       -180.31
+      ],
+      [
+       219.6,
+       -180.11
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       219.56,
+       -185.6
+      ],
+      [
+       243.96,
+       -185.8
+      ],
+      [
+       243.63,
+       -242.25
+      ],
+      [
+       219.23,
+       -242.05
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       244.33,
+       -123.86
+      ],
+      [
+       268.73,
+       -124.05
+      ],
+      [
+       268.4,
+       -180.51
+      ],
+      [
+       244.0,
+       -180.31
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       243.96,
+       -185.8
+      ],
+      [
+       268.37,
+       -186.0
+      ],
+      [
+       268.03,
+       -242.45
+      ],
+      [
+       243.63,
+       -242.25
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       268.73,
+       -124.05
+      ],
+      [
+       293.13,
+       -124.25
+      ],
+      [
+       292.8,
+       -180.71
+      ],
+      [
+       268.4,
+       -180.51
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       268.37,
+       -186.0
+      ],
+      [
+       292.77,
+       -186.19
+      ],
+      [
+       292.43,
+       -242.65
+      ],
+      [
+       268.03,
+       -242.45
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       293.13,
+       -124.25
+      ],
+      [
+       317.53,
+       -124.45
+      ],
+      [
+       317.2,
+       -180.91
+      ],
+      [
+       292.8,
+       -180.71
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       292.77,
+       -186.19
+      ],
+      [
+       317.17,
+       -186.39
+      ],
+      [
+       316.83,
+       -242.85
+      ],
+      [
+       292.43,
+       -242.65
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_wells",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "wells",
+    "east": "lasalle"
+   },
+   "boundary_local_enu_m": [
+    [
+     341.92,
+     -124.65
+    ],
+    [
+     439.52,
+     -125.44
+    ],
+    [
+     438.83,
+     -243.84
+    ],
+    [
+     341.22,
+     -243.05
+    ]
+   ],
+   "area_m2": 11557.3,
+   "frontage_m": 97.61,
+   "frontage_ft": 320.2,
+   "depth_m": 118.4,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     341.58,
+     -181.11
+    ],
+    [
+     439.19,
+     -181.9
+    ],
+    [
+     439.16,
+     -187.39
+    ],
+    [
+     341.55,
+     -186.59
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       341.92,
+       -124.65
+      ],
+      [
+       366.32,
+       -124.85
+      ],
+      [
+       365.98,
+       -181.3
+      ],
+      [
+       341.58,
+       -181.11
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       341.55,
+       -186.59
+      ],
+      [
+       365.95,
+       -186.79
+      ],
+      [
+       365.62,
+       -243.25
+      ],
+      [
+       341.22,
+       -243.05
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       366.32,
+       -124.85
+      ],
+      [
+       390.72,
+       -125.05
+      ],
+      [
+       390.39,
+       -181.5
+      ],
+      [
+       365.98,
+       -181.3
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       365.95,
+       -186.79
+      ],
+      [
+       390.35,
+       -186.99
+      ],
+      [
+       390.02,
+       -243.45
+      ],
+      [
+       365.62,
+       -243.25
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       390.72,
+       -125.05
+      ],
+      [
+       415.12,
+       -125.25
+      ],
+      [
+       414.79,
+       -181.7
+      ],
+      [
+       390.39,
+       -181.5
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       390.35,
+       -186.99
+      ],
+      [
+       414.76,
+       -187.19
+      ],
+      [
+       414.42,
+       -243.65
+      ],
+      [
+       390.02,
+       -243.45
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       415.12,
+       -125.25
+      ],
+      [
+       439.52,
+       -125.44
+      ],
+      [
+       439.19,
+       -181.9
+      ],
+      [
+       414.79,
+       -181.7
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       414.76,
+       -187.19
+      ],
+      [
+       439.16,
+       -187.39
+      ],
+      [
+       438.83,
+       -243.84
+      ],
+      [
+       414.42,
+       -243.65
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_lasalle",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "lasalle",
+    "east": "clark"
+   },
+   "boundary_local_enu_m": [
+    [
+     463.91,
+     -125.64
+    ],
+    [
+     562.95,
+     -126.45
+    ],
+    [
+     562.19,
+     -244.85
+    ],
+    [
+     463.21,
+     -244.04
+    ]
+   ],
+   "area_m2": 11723.9,
+   "frontage_m": 99.02,
+   "frontage_ft": 324.9,
+   "depth_m": 118.4,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     463.57,
+     -182.1
+    ],
+    [
+     562.59,
+     -182.91
+    ],
+    [
+     562.55,
+     -188.39
+    ],
+    [
+     463.54,
+     -187.59
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.76,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       463.91,
+       -125.64
+      ],
+      [
+       488.67,
+       -125.84
+      ],
+      [
+       488.33,
+       -182.3
+      ],
+      [
+       463.57,
+       -182.1
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.75,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       463.54,
+       -187.59
+      ],
+      [
+       488.29,
+       -187.79
+      ],
+      [
+       487.96,
+       -244.25
+      ],
+      [
+       463.21,
+       -244.04
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.76,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       488.67,
+       -125.84
+      ],
+      [
+       513.43,
+       -126.05
+      ],
+      [
+       513.08,
+       -182.5
+      ],
+      [
+       488.33,
+       -182.3
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.75,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       488.29,
+       -187.79
+      ],
+      [
+       513.05,
+       -187.99
+      ],
+      [
+       512.7,
+       -244.45
+      ],
+      [
+       487.96,
+       -244.25
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.76,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       513.43,
+       -126.05
+      ],
+      [
+       538.19,
+       -126.25
+      ],
+      [
+       537.83,
+       -182.71
+      ],
+      [
+       513.08,
+       -182.5
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.75,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       513.05,
+       -187.99
+      ],
+      [
+       537.8,
+       -188.19
+      ],
+      [
+       537.45,
+       -244.65
+      ],
+      [
+       512.7,
+       -244.45
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.76,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       538.19,
+       -126.25
+      ],
+      [
+       562.95,
+       -126.45
+      ],
+      [
+       562.59,
+       -182.91
+      ],
+      [
+       537.83,
+       -182.71
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.75,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       537.8,
+       -188.19
+      ],
+      [
+       562.55,
+       -188.39
+      ],
+      [
+       562.19,
+       -244.85
+      ],
+      [
+       537.45,
+       -244.65
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_clark",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "clark",
+    "east": "dearborn"
+   },
+   "boundary_local_enu_m": [
+    [
+     587.33,
+     -126.65
+    ],
+    [
+     685.9,
+     -127.45
+    ],
+    [
+     685.17,
+     -245.85
+    ],
+    [
+     586.58,
+     -245.05
+    ]
+   ],
+   "area_m2": 11673.0,
+   "frontage_m": 98.58,
+   "frontage_ft": 323.4,
+   "depth_m": 118.41,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     586.97,
+     -183.11
+    ],
+    [
+     685.55,
+     -183.91
+    ],
+    [
+     685.52,
+     -189.4
+    ],
+    [
+     586.94,
+     -188.59
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       587.33,
+       -126.65
+      ],
+      [
+       611.97,
+       -126.85
+      ],
+      [
+       611.62,
+       -183.31
+      ],
+      [
+       586.97,
+       -183.11
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       586.94,
+       -188.59
+      ],
+      [
+       611.58,
+       -188.79
+      ],
+      [
+       611.22,
+       -245.25
+      ],
+      [
+       586.58,
+       -245.05
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       611.97,
+       -126.85
+      ],
+      [
+       636.62,
+       -127.05
+      ],
+      [
+       636.26,
+       -183.51
+      ],
+      [
+       611.62,
+       -183.31
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       611.58,
+       -188.79
+      ],
+      [
+       636.23,
+       -188.99
+      ],
+      [
+       635.87,
+       -245.45
+      ],
+      [
+       611.22,
+       -245.25
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       636.62,
+       -127.05
+      ],
+      [
+       661.26,
+       -127.25
+      ],
+      [
+       660.91,
+       -183.71
+      ],
+      [
+       636.26,
+       -183.51
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       636.23,
+       -188.99
+      ],
+      [
+       660.87,
+       -189.19
+      ],
+      [
+       660.52,
+       -245.65
+      ],
+      [
+       635.87,
+       -245.45
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.64,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       661.26,
+       -127.25
+      ],
+      [
+       685.9,
+       -127.45
+      ],
+      [
+       685.55,
+       -183.91
+      ],
+      [
+       660.91,
+       -183.71
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       660.87,
+       -189.19
+      ],
+      [
+       685.52,
+       -189.4
+      ],
+      [
+       685.17,
+       -245.85
+      ],
+      [
+       660.52,
+       -245.65
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_lake_dearborn",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "dearborn",
+    "east": "state"
+   },
+   "boundary_local_enu_m": [
+    [
+     710.29,
+     -127.65
+    ],
+    [
+     813.95,
+     -128.49
+    ],
+    [
+     813.19,
+     -246.9
+    ],
+    [
+     709.55,
+     -246.05
+    ]
+   ],
+   "area_m2": 12274.0,
+   "frontage_m": 103.66,
+   "frontage_ft": 340.1,
+   "depth_m": 118.41,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     709.94,
+     -184.11
+    ],
+    [
+     813.59,
+     -184.95
+    ],
+    [
+     813.55,
+     -190.44
+    ],
+    [
+     709.9,
+     -189.59
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 25.92,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       710.29,
+       -127.65
+      ],
+      [
+       736.2,
+       -127.86
+      ],
+      [
+       735.85,
+       -184.32
+      ],
+      [
+       709.94,
+       -184.11
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.91,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       709.9,
+       -189.59
+      ],
+      [
+       735.81,
+       -189.81
+      ],
+      [
+       735.46,
+       -246.27
+      ],
+      [
+       709.55,
+       -246.05
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.92,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       736.2,
+       -127.86
+      ],
+      [
+       762.12,
+       -128.07
+      ],
+      [
+       761.76,
+       -184.53
+      ],
+      [
+       735.85,
+       -184.32
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.91,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       735.81,
+       -189.81
+      ],
+      [
+       761.73,
+       -190.02
+      ],
+      [
+       761.37,
+       -246.48
+      ],
+      [
+       735.46,
+       -246.27
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.92,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       762.12,
+       -128.07
+      ],
+      [
+       788.04,
+       -128.28
+      ],
+      [
+       787.68,
+       -184.74
+      ],
+      [
+       761.76,
+       -184.53
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.91,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       761.73,
+       -190.02
+      ],
+      [
+       787.64,
+       -190.23
+      ],
+      [
+       787.28,
+       -246.69
+      ],
+      [
+       761.37,
+       -246.48
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.92,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       788.04,
+       -128.28
+      ],
+      [
+       813.95,
+       -128.49
+      ],
+      [
+       813.59,
+       -184.95
+      ],
+      [
+       787.68,
+       -184.74
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.91,
+     "depth_m": 56.46,
+     "polygon": [
+      [
+       787.64,
+       -190.23
+      ],
+      [
+       813.55,
+       -190.44
+      ],
+      [
+       813.19,
+       -246.9
+      ],
+      [
+       787.28,
+       -246.69
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_clinton",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "boundary_local_enu_m": [
+    [
+     -267.6,
+     -262.5
+    ],
+    [
+     -169.53,
+     -263.27
+    ],
+    [
+     -164.23,
+     -374.27
+    ],
+    [
+     -264.94,
+     -373.45
+    ]
+   ],
+   "area_m2": 11026.4,
+   "frontage_m": 99.39,
+   "frontage_ft": 326.1,
+   "depth_m": 110.94,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     -266.34,
+     -315.24
+    ],
+    [
+     -167.01,
+     -316.03
+    ],
+    [
+     -166.75,
+     -321.51
+    ],
+    [
+     -266.2,
+     -320.72
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.52,
+     "depth_m": 52.76,
+     "polygon": [
+      [
+       -267.6,
+       -262.5
+      ],
+      [
+       -243.08,
+       -262.69
+      ],
+      [
+       -241.5,
+       -315.43
+      ],
+      [
+       -266.34,
+       -315.24
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.18,
+     "depth_m": 52.76,
+     "polygon": [
+      [
+       -266.2,
+       -320.72
+      ],
+      [
+       -241.34,
+       -320.92
+      ],
+      [
+       -239.76,
+       -373.66
+      ],
+      [
+       -264.94,
+       -373.45
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.52,
+     "depth_m": 52.77,
+     "polygon": [
+      [
+       -243.08,
+       -262.69
+      ],
+      [
+       -218.57,
+       -262.89
+      ],
+      [
+       -216.67,
+       -315.63
+      ],
+      [
+       -241.5,
+       -315.43
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.18,
+     "depth_m": 52.77,
+     "polygon": [
+      [
+       -241.34,
+       -320.92
+      ],
+      [
+       -216.48,
+       -321.12
+      ],
+      [
+       -214.59,
+       -373.86
+      ],
+      [
+       -239.76,
+       -373.66
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.52,
+     "depth_m": 52.79,
+     "polygon": [
+      [
+       -218.57,
+       -262.89
+      ],
+      [
+       -194.05,
+       -263.08
+      ],
+      [
+       -191.84,
+       -315.83
+      ],
+      [
+       -216.67,
+       -315.63
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.18,
+     "depth_m": 52.79,
+     "polygon": [
+      [
+       -216.48,
+       -321.12
+      ],
+      [
+       -191.61,
+       -321.31
+      ],
+      [
+       -189.41,
+       -374.07
+      ],
+      [
+       -214.59,
+       -373.86
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.52,
+     "depth_m": 52.81,
+     "polygon": [
+      [
+       -194.05,
+       -263.08
+      ],
+      [
+       -169.53,
+       -263.27
+      ],
+      [
+       -167.01,
+       -316.03
+      ],
+      [
+       -191.84,
+       -315.83
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.18,
+     "depth_m": 52.81,
+     "polygon": [
+      [
+       -191.61,
+       -321.31
+      ],
+      [
+       -166.75,
+       -321.51
+      ],
+      [
+       -164.23,
+       -374.27
+      ],
+      [
+       -189.41,
+       -374.07
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_market",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "market",
+    "east": "franklin"
+   },
+   "boundary_local_enu_m": [
+    [
+     100.16,
+     -265.47
+    ],
+    [
+     194.7,
+     -266.24
+    ],
+    [
+     194.04,
+     -377.18
+    ],
+    [
+     99.28,
+     -376.41
+    ]
+   ],
+   "area_m2": 10501.5,
+   "frontage_m": 94.65,
+   "frontage_ft": 310.5,
+   "depth_m": 110.95,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     99.74,
+     -318.2
+    ],
+    [
+     194.39,
+     -318.97
+    ],
+    [
+     194.36,
+     -324.45
+    ],
+    [
+     99.7,
+     -323.68
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 23.64,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       100.16,
+       -265.47
+      ],
+      [
+       123.8,
+       -265.66
+      ],
+      [
+       123.4,
+       -318.39
+      ],
+      [
+       99.74,
+       -318.2
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.69,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       99.7,
+       -323.68
+      ],
+      [
+       123.36,
+       -323.87
+      ],
+      [
+       122.97,
+       -376.6
+      ],
+      [
+       99.28,
+       -376.41
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.64,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       123.8,
+       -265.66
+      ],
+      [
+       147.43,
+       -265.85
+      ],
+      [
+       147.07,
+       -318.58
+      ],
+      [
+       123.4,
+       -318.39
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.69,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       123.36,
+       -323.87
+      ],
+      [
+       147.03,
+       -324.07
+      ],
+      [
+       146.66,
+       -376.79
+      ],
+      [
+       122.97,
+       -376.6
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.64,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       147.43,
+       -265.85
+      ],
+      [
+       171.07,
+       -266.04
+      ],
+      [
+       170.73,
+       -318.77
+      ],
+      [
+       147.07,
+       -318.58
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.69,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       147.03,
+       -324.07
+      ],
+      [
+       170.69,
+       -324.26
+      ],
+      [
+       170.35,
+       -376.99
+      ],
+      [
+       146.66,
+       -376.79
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 23.64,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       171.07,
+       -266.04
+      ],
+      [
+       194.7,
+       -266.24
+      ],
+      [
+       194.39,
+       -318.97
+      ],
+      [
+       170.73,
+       -318.77
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 23.69,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       170.69,
+       -324.26
+      ],
+      [
+       194.36,
+       -324.45
+      ],
+      [
+       194.04,
+       -377.18
+      ],
+      [
+       170.35,
+       -376.99
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_franklin",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "franklin",
+    "east": "wells"
+   },
+   "boundary_local_enu_m": [
+    [
+     219.08,
+     -266.44
+    ],
+    [
+     316.69,
+     -267.23
+    ],
+    [
+     316.04,
+     -378.17
+    ],
+    [
+     218.43,
+     -377.38
+    ]
+   ],
+   "area_m2": 10829.0,
+   "frontage_m": 97.61,
+   "frontage_ft": 320.2,
+   "depth_m": 110.94,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     218.77,
+     -319.16
+    ],
+    [
+     316.38,
+     -319.96
+    ],
+    [
+     316.35,
+     -325.44
+    ],
+    [
+     218.74,
+     -324.65
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       219.08,
+       -266.44
+      ],
+      [
+       243.49,
+       -266.64
+      ],
+      [
+       243.17,
+       -319.36
+      ],
+      [
+       218.77,
+       -319.16
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       218.74,
+       -324.65
+      ],
+      [
+       243.14,
+       -324.85
+      ],
+      [
+       242.83,
+       -377.57
+      ],
+      [
+       218.43,
+       -377.38
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       243.49,
+       -266.64
+      ],
+      [
+       267.89,
+       -266.83
+      ],
+      [
+       267.58,
+       -319.56
+      ],
+      [
+       243.17,
+       -319.36
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       243.14,
+       -324.85
+      ],
+      [
+       267.54,
+       -325.05
+      ],
+      [
+       267.23,
+       -377.77
+      ],
+      [
+       242.83,
+       -377.57
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       267.89,
+       -266.83
+      ],
+      [
+       292.29,
+       -267.03
+      ],
+      [
+       291.98,
+       -319.76
+      ],
+      [
+       267.58,
+       -319.56
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       267.54,
+       -325.05
+      ],
+      [
+       291.95,
+       -325.25
+      ],
+      [
+       291.63,
+       -377.97
+      ],
+      [
+       267.23,
+       -377.77
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       292.29,
+       -267.03
+      ],
+      [
+       316.69,
+       -267.23
+      ],
+      [
+       316.38,
+       -319.96
+      ],
+      [
+       291.98,
+       -319.76
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.73,
+     "polygon": [
+      [
+       291.95,
+       -325.25
+      ],
+      [
+       316.35,
+       -325.44
+      ],
+      [
+       316.04,
+       -378.17
+      ],
+      [
+       291.63,
+       -377.97
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_wells",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "wells",
+    "east": "lasalle"
+   },
+   "boundary_local_enu_m": [
+    [
+     341.07,
+     -267.43
+    ],
+    [
+     438.68,
+     -268.23
+    ],
+    [
+     438.03,
+     -379.16
+    ],
+    [
+     340.42,
+     -378.37
+    ]
+   ],
+   "area_m2": 10828.6,
+   "frontage_m": 97.61,
+   "frontage_ft": 320.3,
+   "depth_m": 110.93,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     340.76,
+     -320.16
+    ],
+    [
+     438.37,
+     -320.95
+    ],
+    [
+     438.34,
+     -326.44
+    ],
+    [
+     340.73,
+     -325.64
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       341.07,
+       -267.43
+      ],
+      [
+       365.48,
+       -267.63
+      ],
+      [
+       365.17,
+       -320.35
+      ],
+      [
+       340.76,
+       -320.16
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       340.73,
+       -325.64
+      ],
+      [
+       365.13,
+       -325.84
+      ],
+      [
+       364.82,
+       -378.56
+      ],
+      [
+       340.42,
+       -378.37
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       365.48,
+       -267.63
+      ],
+      [
+       389.88,
+       -267.83
+      ],
+      [
+       389.57,
+       -320.55
+      ],
+      [
+       365.17,
+       -320.35
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       365.13,
+       -325.84
+      ],
+      [
+       389.54,
+       -326.04
+      ],
+      [
+       389.23,
+       -378.76
+      ],
+      [
+       364.82,
+       -378.56
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       389.88,
+       -267.83
+      ],
+      [
+       414.28,
+       -268.03
+      ],
+      [
+       413.97,
+       -320.75
+      ],
+      [
+       389.57,
+       -320.55
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       389.54,
+       -326.04
+      ],
+      [
+       413.94,
+       -326.24
+      ],
+      [
+       413.63,
+       -378.96
+      ],
+      [
+       389.23,
+       -378.76
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       414.28,
+       -268.03
+      ],
+      [
+       438.68,
+       -268.23
+      ],
+      [
+       438.37,
+       -320.95
+      ],
+      [
+       413.97,
+       -320.75
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.4,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       413.94,
+       -326.24
+      ],
+      [
+       438.34,
+       -326.44
+      ],
+      [
+       438.03,
+       -379.16
+      ],
+      [
+       413.63,
+       -378.96
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_lasalle",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "lasalle",
+    "east": "clark"
+   },
+   "boundary_local_enu_m": [
+    [
+     463.07,
+     -268.43
+    ],
+    [
+     562.04,
+     -269.23
+    ],
+    [
+     561.33,
+     -380.16
+    ],
+    [
+     462.41,
+     -379.36
+    ]
+   ],
+   "area_m2": 10976.4,
+   "frontage_m": 98.95,
+   "frontage_ft": 324.6,
+   "depth_m": 110.93,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     462.76,
+     -321.15
+    ],
+    [
+     561.7,
+     -321.95
+    ],
+    [
+     561.67,
+     -327.44
+    ],
+    [
+     462.72,
+     -326.64
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.74,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       463.07,
+       -268.43
+      ],
+      [
+       487.81,
+       -268.63
+      ],
+      [
+       487.49,
+       -321.35
+      ],
+      [
+       462.76,
+       -321.15
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.73,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       462.72,
+       -326.64
+      ],
+      [
+       487.46,
+       -326.84
+      ],
+      [
+       487.14,
+       -379.56
+      ],
+      [
+       462.41,
+       -379.36
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.74,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       487.81,
+       -268.63
+      ],
+      [
+       512.55,
+       -268.83
+      ],
+      [
+       512.23,
+       -321.55
+      ],
+      [
+       487.49,
+       -321.35
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.73,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       487.46,
+       -326.84
+      ],
+      [
+       512.2,
+       -327.04
+      ],
+      [
+       511.87,
+       -379.76
+      ],
+      [
+       487.14,
+       -379.56
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.74,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       512.55,
+       -268.83
+      ],
+      [
+       537.3,
+       -269.03
+      ],
+      [
+       536.97,
+       -321.75
+      ],
+      [
+       512.23,
+       -321.55
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.73,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       512.2,
+       -327.04
+      ],
+      [
+       536.93,
+       -327.24
+      ],
+      [
+       536.6,
+       -379.96
+      ],
+      [
+       511.87,
+       -379.76
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.74,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       537.3,
+       -269.03
+      ],
+      [
+       562.04,
+       -269.23
+      ],
+      [
+       561.7,
+       -321.95
+      ],
+      [
+       536.97,
+       -321.75
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.73,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       536.93,
+       -327.24
+      ],
+      [
+       561.67,
+       -327.44
+      ],
+      [
+       561.33,
+       -380.16
+      ],
+      [
+       536.6,
+       -379.96
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_clark",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "clark",
+    "east": "dearborn"
+   },
+   "boundary_local_enu_m": [
+    [
+     586.42,
+     -269.43
+    ],
+    [
+     685.01,
+     -270.24
+    ],
+    [
+     684.32,
+     -381.16
+    ],
+    [
+     585.72,
+     -380.36
+    ]
+   ],
+   "area_m2": 10937.4,
+   "frontage_m": 98.6,
+   "frontage_ft": 323.5,
+   "depth_m": 110.92,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     586.09,
+     -322.15
+    ],
+    [
+     684.69,
+     -322.95
+    ],
+    [
+     684.65,
+     -328.44
+    ],
+    [
+     586.05,
+     -327.64
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       586.42,
+       -269.43
+      ],
+      [
+       611.07,
+       -269.63
+      ],
+      [
+       610.74,
+       -322.35
+      ],
+      [
+       586.09,
+       -322.15
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       586.05,
+       -327.64
+      ],
+      [
+       610.7,
+       -327.84
+      ],
+      [
+       610.37,
+       -380.56
+      ],
+      [
+       585.72,
+       -380.36
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       611.07,
+       -269.63
+      ],
+      [
+       635.72,
+       -269.84
+      ],
+      [
+       635.39,
+       -322.55
+      ],
+      [
+       610.74,
+       -322.35
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       610.7,
+       -327.84
+      ],
+      [
+       635.35,
+       -328.04
+      ],
+      [
+       635.02,
+       -380.76
+      ],
+      [
+       610.37,
+       -380.56
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       635.72,
+       -269.84
+      ],
+      [
+       660.37,
+       -270.04
+      ],
+      [
+       660.04,
+       -322.75
+      ],
+      [
+       635.39,
+       -322.55
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       635.35,
+       -328.04
+      ],
+      [
+       660.0,
+       -328.24
+      ],
+      [
+       659.67,
+       -380.96
+      ],
+      [
+       635.02,
+       -380.76
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       660.37,
+       -270.04
+      ],
+      [
+       685.01,
+       -270.24
+      ],
+      [
+       684.69,
+       -322.95
+      ],
+      [
+       660.04,
+       -322.75
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 24.65,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       660.0,
+       -328.24
+      ],
+      [
+       684.65,
+       -328.44
+      ],
+      [
+       684.32,
+       -381.16
+      ],
+      [
+       659.67,
+       -380.96
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blk_randolph_dearborn",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "dearborn",
+    "east": "state"
+   },
+   "boundary_local_enu_m": [
+    [
+     709.4,
+     -270.44
+    ],
+    [
+     813.04,
+     -271.28
+    ],
+    [
+     812.32,
+     -382.2
+    ],
+    [
+     708.71,
+     -381.36
+    ]
+   ],
+   "area_m2": 11494.3,
+   "frontage_m": 103.63,
+   "frontage_ft": 340.0,
+   "depth_m": 110.92,
+   "lots_per_face": 4,
+   "alley_local_enu_m": [
+    [
+     709.07,
+     -323.15
+    ],
+    [
+     812.7,
+     -324.0
+    ],
+    [
+     812.66,
+     -329.48
+    ],
+    [
+     709.04,
+     -328.64
+    ]
+   ],
+   "lots": [
+    {
+     "tier": "north",
+     "frontage_m": 25.91,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       709.4,
+       -270.44
+      ],
+      [
+       735.31,
+       -270.65
+      ],
+      [
+       734.98,
+       -323.36
+      ],
+      [
+       709.07,
+       -323.15
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.9,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       709.04,
+       -328.64
+      ],
+      [
+       734.94,
+       -328.85
+      ],
+      [
+       734.61,
+       -381.57
+      ],
+      [
+       708.71,
+       -381.36
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.91,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       735.31,
+       -270.65
+      ],
+      [
+       761.22,
+       -270.86
+      ],
+      [
+       760.88,
+       -323.57
+      ],
+      [
+       734.98,
+       -323.36
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.9,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       734.94,
+       -328.85
+      ],
+      [
+       760.85,
+       -329.06
+      ],
+      [
+       760.52,
+       -381.78
+      ],
+      [
+       734.61,
+       -381.57
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.91,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       761.22,
+       -270.86
+      ],
+      [
+       787.13,
+       -271.07
+      ],
+      [
+       786.79,
+       -323.79
+      ],
+      [
+       760.88,
+       -323.57
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.9,
+     "depth_m": 52.72,
+     "polygon": [
+      [
+       760.85,
+       -329.06
+      ],
+      [
+       786.75,
+       -329.27
+      ],
+      [
+       786.42,
+       -381.99
+      ],
+      [
+       760.52,
+       -381.78
+      ]
+     ]
+    },
+    {
+     "tier": "north",
+     "frontage_m": 25.91,
+     "depth_m": 52.71,
+     "polygon": [
+      [
+       787.13,
+       -271.07
+      ],
+      [
+       813.04,
+       -271.28
+      ],
+      [
+       812.7,
+       -324.0
+      ],
+      [
+       786.79,
+       -323.79
+      ]
+     ]
+    },
+    {
+     "tier": "south",
+     "frontage_m": 25.9,
+     "depth_m": 52.71,
+     "polygon": [
+      [
+       786.75,
+       -329.27
+      ],
+      [
+       812.66,
+       -329.48
+      ],
+      [
+       812.32,
+       -382.2
+      ],
+      [
+       786.42,
+       -381.99
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "omitted": [
+  {
+   "id": "blk_south_water_clinton",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "clinton",
+    "east": "canal"
+   },
+   "reason": "South Water Street's committed centreline stops 878 m short of this block"
+  },
+  {
+   "id": "blk_south_water_canal",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "canal",
+    "east": "market"
+   },
+   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+  },
+  {
+   "id": "blk_south_water_market",
+   "bounded_by": {
+    "north": "south_water",
+    "south": "lake",
+    "west": "market",
+    "east": "franklin"
+   },
+   "reason": "South Water Street's committed centreline stops 24 m short of this block"
+  },
+  {
+   "id": "blk_lake_canal",
+   "bounded_by": {
+    "north": "lake",
+    "south": "randolph",
+    "west": "canal",
+    "east": "market"
+   },
+   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+  },
+  {
+   "id": "blk_randolph_canal",
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "canal",
+    "east": "market"
+   },
+   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+  }
+ ]
+}

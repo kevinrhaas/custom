@@ -1,0 +1,605 @@
+#!/usr/bin/env python3
+"""Generate the platted block and lot grid from the module, not from a trace.
+
+ROADMAP K7. The 1830 Thompson plat is a PARAMETER source in this dataset — no open
+high-resolution scan of it exists and the surviving artifact is a Canal Commissioners'
+working copy — so its geometry is generated analytically from the module it fixes
+(80-ft streets, 18-ft alleys) and snapped to the street lines this project has already
+committed. Tracing the 1834 sheets instead would bake their 3.7-4.5% anisotropic paper
+stretch into every block face: the corridors those draughtsmen drew run about 5 ft wide
+of 80 on both sheets, which is stretch and pen placement rather than a wider street.
+
+What each part of the output is entitled to claim, and why:
+
+* A **block boundary** is a street centreline offset by half the platted corridor. The
+  centrelines are `data/streets/1835.json`, whose own geometry confidence is `inferred`,
+  and the half-width is the module. Arithmetic on inferred inputs is inferred, so that is
+  what the block edges carry.
+* A **lot line** is `conjectural` and stays that way. Four lots to a block face is read
+  off the owner's crop of Wright's sheet at the Clark reach — block 18's north row runs
+  4 3 2 1 and its south row 5 6 7 (`docs/RESEARCH/clark_reach_bulge_1834.md` § 8) — and a
+  reading of ONE block does not document the subdivision of the other seventeen. The
+  alley is worse off: 18 ft is the module, but nothing in `data/sources/` says which
+  blocks were alleyed or where the alley ran inside them.
+* A block is emitted only where the committed centrelines of all four of its bounding
+  streets actually REACH it. Extending a street line past where this project has drawn it
+  would be an invention dressed as geometry, so those blocks are listed in `omitted` with
+  the street that falls short — which is the same list as the street control still owed
+  under ROADMAP § S9.
+
+The grid is not a claim about Thompson's block NUMBERS. This project has never read them
+off a sheet, so blocks here are named for the streets that bound them.
+
+    tools/generate_plat_lots.py            regenerate data/traces/vectors/thompson_lots.json
+    tools/generate_plat_lots.py --check    fail if the committed file is not what the
+                                           module and the street lines re-derive
+    tools/generate_plat_lots.py --report   where the dataset's structures fall on the grid
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+OUT_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
+SIDECARS = DATA / "sidecars" / "1835"
+
+FT_M = 0.3048
+ALLEY_FT = 18.0
+LOT_FRONTAGE_FT = 80.0
+
+# The plat's module pitch runs 116-143 m; every larger gap between two consecutive
+# streets in this table is the river, not a block. Named rather than tuned: it is the
+# rule that keeps a "block" from being generated across the South Branch.
+MAX_PITCH_M = 200.0
+
+# Ordered north to south, and west to east. Restricted to the South and West Division
+# grid on purpose: the north-side streets (Kinzie, North Water, Wolcott, Michigan) are
+# the ones ROADMAP § S9 still records as owing control, and a block generated between
+# two lines that are not yet fixed would look exactly like one that is.
+EW_STREETS = ["south_water", "lake", "randolph", "washington"]
+NS_STREETS = ["clinton", "canal", "market", "franklin", "wells", "lasalle", "clark",
+              "dearborn", "state"]
+
+SOURCE_IDS = ["thompson_plat_1830", "hathaway_1834", "wright_1834", "osm_streets_2026"]
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+# ---------------------------------------------------------------- geometry helpers
+
+def unit(dx: float, dy: float) -> tuple[float, float]:
+    length = math.hypot(dx, dy)
+    if length == 0:
+        raise SystemExit("a street segment of zero length cannot carry a direction")
+    return dx / length, dy / length
+
+
+def offset_polyline(points: list[tuple[float, float]], distance: float,
+                    toward: tuple[float, float]) -> list[tuple[float, float]]:
+    """Shift a polyline `distance` metres to the side `toward` points at.
+
+    Each vertex moves along its own segment normal; consecutive offset segments are
+    joined by intersecting them (a miter), which is exact for the near-straight lines
+    these streets are and does not fold on the shallow bends South Water carries.
+    """
+    segments = []
+    for (ax, ay), (bx, by) in zip(points, points[1:]):
+        ux, uy = unit(bx - ax, by - ay)
+        nx, ny = -uy, ux
+        if nx * toward[0] + ny * toward[1] < 0:
+            nx, ny = -nx, -ny
+        segments.append(((ax + nx * distance, ay + ny * distance),
+                         (bx + nx * distance, by + ny * distance)))
+    out = [segments[0][0]]
+    for first, second in zip(segments, segments[1:]):
+        crossing = line_intersection(first[0], first[1], second[0], second[1])
+        out.append(crossing if crossing else first[1])
+    out.append(segments[-1][1])
+    return out
+
+
+def line_intersection(p1, p2, p3, p4):
+    """Intersection of the infinite lines through p1p2 and p3p4, or None if parallel."""
+    x1, y1 = p1
+    x2, y2 = p2
+    x3, y3 = p3
+    x4, y4 = p4
+    denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+    if abs(denominator) < 1e-9:
+        return None
+    a = x1 * y2 - y1 * x2
+    b = x3 * y4 - y3 * x4
+    return ((a * (x3 - x4) - (x1 - x2) * b) / denominator,
+            (a * (y3 - y4) - (y1 - y2) * b) / denominator)
+
+
+def cross_polyline(polyline: list[tuple[float, float]], line: tuple, reach_m: float):
+    """Where `polyline` crosses the infinite `line`, and the vertex it happens after.
+
+    Returns (point, index, extrapolated_m). A crossing found on one of the polyline's
+    own segments is a street that reaches the block. A crossing beyond its ends is
+    reported with how far past the drawn end it lies, so the caller can refuse it.
+    """
+    (lx1, ly1), (lx2, ly2) = line
+
+    def side(p):
+        return (lx2 - lx1) * (p[1] - ly1) - (ly2 - ly1) * (p[0] - lx1)
+
+    for index, (a, b) in enumerate(zip(polyline, polyline[1:])):
+        sa, sb = side(a), side(b)
+        if sa == 0 or sb == 0 or (sa > 0) != (sb > 0):
+            point = line_intersection(a, b, (lx1, ly1), (lx2, ly2))
+            if point:
+                return point, index, 0.0
+    # No segment straddles it: extend the nearer end and measure the reach.
+    best = None
+    for end, neighbour, index in ((polyline[0], polyline[1], -1),
+                                  (polyline[-1], polyline[-2], len(polyline) - 1)):
+        point = line_intersection(end, neighbour, (lx1, ly1), (lx2, ly2))
+        if point is None:
+            continue
+        gap = math.dist(point, end)
+        if best is None or gap < best[2]:
+            best = (point, index, gap)
+    if best is None or best[2] > reach_m:
+        return None, None, (best[2] if best else float("inf"))
+    return best
+
+
+def polyline_between(polyline, start, start_index, end, end_index):
+    """The run of `polyline` from one crossing to the other, ends included."""
+    if start_index <= end_index:
+        middle = polyline[start_index + 1:end_index + 1]
+    else:
+        middle = list(reversed(polyline[end_index + 1:start_index + 1]))
+    return [start] + middle + [end]
+
+
+def resample(chain: list[tuple[float, float]], fraction: float) -> tuple[float, float]:
+    """The point `fraction` of the way along a chain, by arc length."""
+    lengths = [math.dist(a, b) for a, b in zip(chain, chain[1:])]
+    target = sum(lengths) * fraction
+    for (a, b), length in zip(zip(chain, chain[1:]), lengths):
+        if target <= length or length == 0:
+            t = 0.0 if length == 0 else target / length
+            return (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
+        target -= length
+    return chain[-1]
+
+
+def chain_length(chain) -> float:
+    return sum(math.dist(a, b) for a, b in zip(chain, chain[1:]))
+
+
+def polygon_area(ring) -> float:
+    total = 0.0
+    for a, b in zip(ring, ring[1:] + ring[:1]):
+        total += a[0] * b[1] - b[0] * a[1]
+    return abs(total) / 2.0
+
+
+def point_in_polygon(point, ring) -> bool:
+    e, n = point
+    inside = False
+    for (ax, ay), (bx, by) in zip(ring, ring[1:] + ring[:1]):
+        if (ay > n) != (by > n):
+            x = ax + (n - ay) * (bx - ax) / (by - ay)
+            if x > e:
+                inside = not inside
+    return inside
+
+
+def rounded(points, places: int = 2):
+    return [[round(e, places), round(n, places)] for e, n in points]
+
+
+# ---------------------------------------------------------------- the grid itself
+
+def street_lines(streets: dict) -> dict:
+    lines = {}
+    for street in streets["streets"]:
+        points = [(float(e), float(n)) for e, n in street["path_local_enu_m"]]
+        lines[street["id"]] = {
+            "id": street["id"],
+            "name": street["name_1835"],
+            "points": points,
+            "mean_e": sum(p[0] for p in points) / len(points),
+            "mean_n": sum(p[1] for p in points) / len(points),
+            "confidence": street.get("geometry_confidence", "conjectural"),
+        }
+    return lines
+
+
+def block_edges(lines: dict, half_width: float) -> dict:
+    """Both platted edges of every street: the block faces the corridor is cut between."""
+    edges = {}
+    for street_id, street in lines.items():
+        if street_id in EW_STREETS:
+            edges[street_id] = {
+                "south": offset_polyline(street["points"], half_width, (0.0, -1.0)),
+                "north": offset_polyline(street["points"], half_width, (0.0, 1.0)),
+            }
+        elif street_id in NS_STREETS:
+            edges[street_id] = {
+                "east": offset_polyline(street["points"], half_width, (1.0, 0.0)),
+                "west": offset_polyline(street["points"], half_width, (-1.0, 0.0)),
+            }
+    return edges
+
+
+def build_block(north_id, south_id, west_id, east_id, lines, edges, reach_m):
+    """The quadrilateral between four platted corridors, or why it cannot be built."""
+    north_edge = edges[north_id]["south"]
+    south_edge = edges[south_id]["north"]
+    west_edge = edges[west_id]["east"]
+    east_edge = edges[east_id]["west"]
+    west_line = (west_edge[0], west_edge[-1])
+    east_line = (east_edge[0], east_edge[-1])
+    north_line = (north_edge[0], north_edge[-1])
+    south_line = (south_edge[0], south_edge[-1])
+
+    nw, nw_i, nw_gap = cross_polyline(north_edge, west_line, reach_m)
+    ne, ne_i, ne_gap = cross_polyline(north_edge, east_line, reach_m)
+    sw, sw_i, sw_gap = cross_polyline(south_edge, west_line, reach_m)
+    se, se_i, se_gap = cross_polyline(south_edge, east_line, reach_m)
+    for point, gap, street_id in ((nw, nw_gap, north_id), (ne, ne_gap, north_id),
+                                  (sw, sw_gap, south_id), (se, se_gap, south_id)):
+        if point is None:
+            return None, (f"{lines[street_id]['name']}'s committed centreline stops "
+                          f"{gap:.0f} m short of this block")
+    for edge_id, edge, near, far in ((west_id, west_edge, north_line, south_line),
+                                     (east_id, east_edge, north_line, south_line)):
+        for line in (near, far):
+            point, _, gap = cross_polyline(edge, line, reach_m)
+            if point is None:
+                return None, (f"{lines[edge_id]['name']}'s committed centreline stops "
+                              f"{gap:.0f} m short of this block")
+
+    north_chain = polyline_between(north_edge, nw, nw_i, ne, ne_i)
+    south_chain = polyline_between(south_edge, sw, sw_i, se, se_i)
+    ring = north_chain + list(reversed(south_chain))
+    return {"ring": ring, "north_chain": north_chain, "south_chain": south_chain}, None
+
+
+def subdivide(block: dict, alley_m: float, frontage_m: float) -> dict:
+    """Two tiers of lots either side of a mid-block alley, fronting the E-W streets."""
+    north_chain, south_chain = block["north_chain"], block["south_chain"]
+    frontage = (chain_length(north_chain) + chain_length(south_chain)) / 2.0
+    count = max(1, round(frontage / frontage_m))
+    stations = []
+    for index in range(count + 1):
+        fraction = index / count
+        top = resample(north_chain, fraction)
+        bottom = resample(south_chain, fraction)
+        depth = math.dist(top, bottom)
+        # The alley is centred, so each tier is (depth - alley) / 2 deep at this station.
+        a = (0.5 - alley_m / (2 * depth)) if depth else 0.0
+        b = (0.5 + alley_m / (2 * depth)) if depth else 1.0
+        stations.append({
+            "top": top,
+            "alley_north": (top[0] + (bottom[0] - top[0]) * a,
+                            top[1] + (bottom[1] - top[1]) * a),
+            "alley_south": (top[0] + (bottom[0] - top[0]) * b,
+                            top[1] + (bottom[1] - top[1]) * b),
+            "bottom": bottom,
+            "depth": depth,
+        })
+    lots = []
+    for index in range(count):
+        left, right = stations[index], stations[index + 1]
+        lots.append({
+            "tier": "north",
+            "frontage_m": round(math.dist(left["top"], right["top"]), 2),
+            "depth_m": round((left["depth"] + right["depth"]) / 2 / 2 - alley_m / 2, 2),
+            "polygon": rounded([left["top"], right["top"],
+                                right["alley_north"], left["alley_north"]]),
+        })
+        lots.append({
+            "tier": "south",
+            "frontage_m": round(math.dist(left["bottom"], right["bottom"]), 2),
+            "depth_m": round((left["depth"] + right["depth"]) / 2 / 2 - alley_m / 2, 2),
+            "polygon": rounded([left["alley_south"], right["alley_south"],
+                                right["bottom"], left["bottom"]]),
+        })
+    alley = rounded([stations[0]["alley_north"], stations[-1]["alley_north"],
+                     stations[-1]["alley_south"], stations[0]["alley_south"]])
+    return {"lots": lots, "alley": alley, "frontage_m": frontage, "count": count}
+
+
+def grid_from_inputs() -> dict:
+    control = load(DATA / "traces" / "street_control.json")
+    streets = load(DATA / "streets" / "1835.json")
+    module = control["platted_street"]
+    half_width = float(module["half_width_m"])
+    alley_m = round(ALLEY_FT * FT_M, 4)
+    frontage_m = round(LOT_FRONTAGE_FT * FT_M, 4)
+    # A crossing may be sought this far past a drawn centreline's end: half a corridor,
+    # which is the distance a street line stops short of the far kerb when it is drawn
+    # to the junction it ends at rather than through it. Anything further is refused.
+    reach_m = half_width
+
+    lines = street_lines(streets)
+    missing = [s for s in EW_STREETS + NS_STREETS if s not in lines]
+    if missing:
+        raise SystemExit(f"street table is missing {', '.join(missing)}")
+    edges = block_edges(lines, half_width)
+
+    rows = sorted((s for s in EW_STREETS), key=lambda s: -lines[s]["mean_n"])
+    columns = sorted((s for s in NS_STREETS), key=lambda s: lines[s]["mean_e"])
+
+    field = None
+    try:
+        sys.path.insert(0, str(ROOT / "tools"))
+        from heightfield import Heightfield  # noqa: PLC0415
+        field = Heightfield.load(DATA / "terrain" / "epochs" / "e1834_harbor_cut")
+    except Exception:  # pragma: no cover - the field is committed; absence is reported
+        field = None
+    if field is None:
+        raise SystemExit("cannot build the grid: the committed heightfield is missing")
+
+    blocks, omitted = [], []
+    for north_id, south_id in zip(rows, rows[1:]):
+        pitch_n = abs(lines[north_id]["mean_n"] - lines[south_id]["mean_n"])
+        for west_id, east_id in zip(columns, columns[1:]):
+            block_id = f"blk_{north_id}_{west_id}"
+            pitch_e = abs(lines[east_id]["mean_e"] - lines[west_id]["mean_e"])
+            bounded_by = {"north": north_id, "south": south_id,
+                          "west": west_id, "east": east_id}
+            if pitch_n > MAX_PITCH_M or pitch_e > MAX_PITCH_M:
+                omitted.append({
+                    "id": block_id, "bounded_by": bounded_by,
+                    "reason": (f"the streets are {max(pitch_n, pitch_e):.0f} m apart, past "
+                               f"the {MAX_PITCH_M:.0f} m the plat's module allows a block "
+                               f"— what lies between them is the river, not a block")})
+                continue
+            built, why = build_block(north_id, south_id, west_id, east_id,
+                                     lines, edges, reach_m)
+            if built is None:
+                omitted.append({"id": block_id, "bounded_by": bounded_by, "reason": why})
+                continue
+            ring = built["ring"]
+            wet = [p for p in ring if not field.covers(*p) or field.height(*p) < 0.0]
+            if wet:
+                omitted.append({
+                    "id": block_id, "bounded_by": bounded_by,
+                    "reason": (f"{len(wet)} of {len(ring)} corners fall on water or beyond "
+                               "the modelled ground; a platted block there is not something "
+                               "this dataset can stand behind")})
+                continue
+            divided = subdivide(built, alley_m, frontage_m)
+            blocks.append({
+                "id": block_id,
+                "bounded_by": bounded_by,
+                "boundary_local_enu_m": rounded(ring),
+                "area_m2": round(polygon_area(ring), 1),
+                "frontage_m": round(divided["frontage_m"], 2),
+                "frontage_ft": round(divided["frontage_m"] / FT_M, 1),
+                "depth_m": round(polygon_area(ring) / divided["frontage_m"], 2),
+                "lots_per_face": divided["count"],
+                "alley_local_enu_m": divided["alley"],
+                "lots": divided["lots"],
+            })
+
+    return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines)
+
+
+def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> dict:
+    faces = [lot["frontage_m"] for b in blocks for lot in b["lots"]]
+    return {
+        "_doc": (
+            "The platted block and lot grid, generated from the Thompson module and snapped "
+            "to this project's committed street lines — never traced off the 1834 sheets, "
+            "whose 3.7-4.5% anisotropic stretch would arrive as 4% of wobble in every block "
+            "face. A block edge here is a street centreline from data/streets/1835.json "
+            "offset by half the platted corridor; a lot line is the module divided into it. "
+            "Written by tools/generate_plat_lots.py, which re-derives this file byte for byte "
+            "offline on every commit (tools/check.sh). Block ids name the streets that bound "
+            "a block, NOT Thompson's block numbers: this project has never read those off a "
+            "sheet and does not have them to give."),
+        "tool": "tools/generate_plat_lots.py",
+        "generated_from": [
+            "data/traces/street_control.json",
+            "data/streets/1835.json",
+            "data/sources/thompson_plat_1830.json",
+        ],
+        "sources": SOURCE_IDS,
+        "module": {
+            "street_width_m": module["width_m"],
+            "street_width_ft": module["width_ft"],
+            "street_confidence": module["confidence"],
+            "alley_width_m": alley_m,
+            "alley_width_ft": ALLEY_FT,
+            "alley_confidence": "conjectural",
+            "alley_note": (
+                "18 ft is the module the Thompson plat source record carries and the figure "
+                "the 1834 traverses read (17.1-18.7 ft), so the WIDTH is as well attested as "
+                "the street. Everything else about it is not: nothing in data/sources/ says "
+                "which blocks were alleyed, or whether the alley ran with the long axis of a "
+                "block or across it. The mid-block east-west alley generated here is the "
+                "arrangement the lot rows on Wright's block 18 imply, and it is a conjecture "
+                "in exactly the way its confidence says. The 16 ft dissent recorded in "
+                "data/traces/street_control.json is not settled by the traverses: two feet is "
+                "inside that method's error."),
+            "lot_frontage_m": frontage_m,
+            "lot_frontage_ft": LOT_FRONTAGE_FT,
+            "lot_confidence": "conjectural",
+            "lot_note": (
+                "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's "
+                "crop of Wright's sheet at the Clark reach carries block 18's north row "
+                "numbered 4 3 2 1 and its south row 5 6 7 "
+                "(docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a "
+                "block of about 320 ft. Applying it to the other blocks is inference from a "
+                "single instance and it is graded as the conjecture it is. Lots are NOT "
+                "numbered here — the crop reads block 18's numbering and nothing fixes the "
+                "other blocks', and a numbering invented to look complete is exactly what "
+                "this project does not do."),
+        },
+        "method": {
+            "block_edge": ("a street centreline offset by half the platted corridor "
+                           f"({module['half_width_m']} m), the four offsets intersected"),
+            "reach_m": reach_m,
+            "reach_note": (
+                "A block is emitted only where the committed centrelines of all four of its "
+                "bounding streets reach it, allowing at most half a corridor of extension for "
+                "a line drawn to a junction rather than through it. Everything refused is in "
+                "`omitted` with the street that falls short, which is the same list of street "
+                "control ROADMAP § S9 still records as owed."),
+            "max_pitch_m": MAX_PITCH_M,
+            "water_rule": ("a block with a corner on water or beyond the modelled ground is "
+                           "omitted rather than drawn over the river"),
+            "lot_subdivision": ("the block's north and south faces divided in the same "
+                                "proportion, joined station to station, with a centred "
+                                "alley taken out of the middle"),
+        },
+        "confidence": "inferred",
+        "confidence_note": (
+            "The blocks are arithmetic on inferred inputs — street lines whose own geometry "
+            "confidence is `inferred`, offset by a module width the street control also grades "
+            "`inferred` — so `inferred` is the most this grid can carry. The lots and the "
+            "alleys inside those blocks are `conjectural` and are recorded separately for that "
+            "reason: a visitor is entitled to know that the block face is a defensible "
+            "position and the line dividing it is not."),
+        "summary": {
+            "blocks": len(blocks),
+            "omitted": len(omitted),
+            "lots": sum(len(b["lots"]) for b in blocks),
+            "block_frontage_ft": {
+                "min": round(min((b["frontage_ft"] for b in blocks), default=0.0), 1),
+                "median": round(sorted(b["frontage_ft"] for b in blocks)[len(blocks) // 2], 1)
+                if blocks else 0.0,
+                "max": round(max((b["frontage_ft"] for b in blocks), default=0.0), 1),
+            },
+            "lot_frontage_ft": {
+                "min": round(min(faces, default=0.0) / FT_M, 1),
+                "max": round(max(faces, default=0.0) / FT_M, 1),
+            },
+        },
+        "blocks": blocks,
+        "omitted": omitted,
+    }
+
+
+# ---------------------------------------------------------------- the cross-check
+
+def corridor_rings(lines: dict, half_width: float) -> dict:
+    """The platted corridor of every grid street, as a closed ring.
+
+    A corridor is only as long as the centreline this project has committed, so a
+    building beyond a street's drawn end is not reported as standing in it.
+    """
+    rings = {}
+    for street_id, street in lines.items():
+        if street_id in EW_STREETS:
+            left, right = (0.0, 1.0), (0.0, -1.0)
+        elif street_id in NS_STREETS:
+            left, right = (-1.0, 0.0), (1.0, 0.0)
+        else:
+            continue
+        a = offset_polyline(street["points"], half_width, left)
+        b = offset_polyline(street["points"], half_width, right)
+        rings[street_id] = a + list(reversed(b))
+    return rings
+
+
+def point_to_ring_m(point, ring) -> float:
+    """Shortest distance from a point to a ring's edges."""
+    best = float("inf")
+    px, py = point
+    for (ax, ay), (bx, by) in zip(ring, ring[1:] + ring[:1]):
+        dx, dy = bx - ax, by - ay
+        span = dx * dx + dy * dy
+        t = 0.0 if span == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / span))
+        best = min(best, math.dist(point, (ax + dx * t, ay + dy * t)))
+    return best
+
+
+def report(grid: dict) -> int:
+    """Where the dataset's own buildings fall on this grid."""
+    control = load(DATA / "traces" / "street_control.json")
+    half_width = float(control["platted_street"]["half_width_m"])
+    lines = street_lines(load(DATA / "streets" / "1835.json"))
+    corridors = corridor_rings(lines, half_width)
+    rings = {b["id"]: [tuple(p) for p in b["boundary_local_enu_m"]] for b in grid["blocks"]}
+
+    placed = 0
+    in_block, in_street, off_grid = [], [], []
+    for path in sorted(SIDECARS.glob("*.json")):
+        record = load(path)
+        placement = record.get("placement") or {}
+        if placement.get("local_e") is None:
+            continue
+        point = (float(placement["local_e"]), float(placement["local_n"]))
+        if point == (0.0, 0.0):
+            continue
+        placed += 1
+        confidence = placement.get("position_confidence")
+        home = next((bid for bid, ring in rings.items() if point_in_polygon(point, ring)), None)
+        street = next((sid for sid, ring in corridors.items()
+                       if point_in_polygon(point, ring)), None)
+        if home:
+            in_block.append((record["id"], point, confidence, home, 0.0))
+        elif street:
+            in_street.append((record["id"], point, confidence, street,
+                              point_to_ring_m(point, corridors[street])))
+        else:
+            off_grid.append((record["id"], point, confidence, None, 0.0))
+
+    print(f"{placed} placed structures against {len(rings)} generated blocks:")
+    print(f"  {len(in_block):4d} stand inside a block")
+    print(f"  {len(in_street):4d} stand INSIDE A PLATTED STREET CORRIDOR")
+    print(f"  {len(off_grid):4d} stand outside this grid altogether (the North Division, the "
+          "fort, the West Division beyond Clinton, and the blocks in `omitted`)")
+    by_confidence = {}
+    for _, _, confidence, _, _ in in_street:
+        by_confidence[confidence] = by_confidence.get(confidence, 0) + 1
+    if in_street:
+        print("\nin a street corridor, by position confidence: "
+              + ", ".join(f"{k}: {v}" for k, v in sorted(by_confidence.items(), key=str)))
+        print("`depth` is how far the record's centre lies inside the corridor. Anything "
+              "under a few metres is inside the georeference's own ±20 m and says little; a "
+              "centre 8-12 m in is a building standing in the middle of the street.")
+        for sid, point, confidence, street, depth in sorted(in_street, key=lambda r: -r[4]):
+            print(f"  - {sid:44s} ({point[0]:8.1f}, {point[1]:8.1f})  "
+                  f"{str(confidence):12s} {lines[street]['name']:20s} depth {depth:5.1f} m")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true",
+                        help="fail if the committed grid is not what the inputs re-derive")
+    parser.add_argument("--report", action="store_true",
+                        help="report where the dataset's structures fall on the grid")
+    args = parser.parse_args()
+
+    grid = grid_from_inputs()
+    if args.report:
+        return report(grid)
+
+    text = json.dumps(grid, indent=1, ensure_ascii=False) + "\n"
+    if args.check:
+        if not OUT_PATH.exists():
+            print(f"PLAT GRID DRIFT\n  - {OUT_PATH.relative_to(ROOT)} is missing")
+            return 1
+        if OUT_PATH.read_text(encoding="utf-8") != text:
+            print("PLAT GRID DRIFT\n  - data/traces/vectors/thompson_lots.json is not what "
+                  "the module and the committed street lines re-derive")
+            return 1
+    else:
+        OUT_PATH.write_text(text, encoding="utf-8")
+    mode = "verified" if args.check else "generated"
+    print(f"{mode} {grid['summary']['blocks']} platted blocks "
+          f"({grid['summary']['lots']} lots, {grid['summary']['omitted']} omitted)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
