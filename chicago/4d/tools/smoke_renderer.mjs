@@ -640,9 +640,21 @@ for (const [label, viewport, touch] of [
     check(`${label}: established assets remain identified as real bakes`,
       placeholder.real === false && placeholder.realFlag === false,
       JSON.stringify(placeholder));
-    check(`${label}: anonymous infill is visibly flagged as placeholder reconstruction`,
-      placeholder.recommended === true && placeholder.placeholderFlag
-      && placeholder.reconstructionFlag,
+    // Two claims that were tangled into one, and came apart the first time a
+    // canonical bake actually reached these roofs. "This building is anonymous
+    // inferred infill" is a fact about the RECORD and is permanent. "Its mesh is
+    // review massing" is a fact about the ASSET and stops being true the moment
+    // generators/build.py bakes it properly. Asserting them together meant the
+    // honest upgrade read as a regression.
+    check(`${label}: anonymous infill is visibly flagged as inferred reconstruction`,
+      placeholder.reconstructionFlag === true,
+      JSON.stringify(placeholder));
+    // Both directions, which the single assertion never checked: placeholder
+    // massing is claimed when the asset IS one, and — the half that was missing —
+    // never claimed when it is not. A real bake wearing a placeholder label is a
+    // lie in the opposite direction, and would previously have passed.
+    check(`${label}: the placeholder label agrees with the asset it describes`,
+      placeholder.placeholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
     // --- the record's own account -----------------------------------------
