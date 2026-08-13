@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wau-Bun — an interactive telling</title>
+<meta name="description" content="Juliette Kinzie's Wau-Bun (1856) told scene by scene: an interactive character-presence chart, a scene-by-scene reader, and the full cast of the early Northwest — who enters the story, who is in every scene, and where the story turns.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%84%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Wau-Bun — an interactive telling">
+<meta property="og:description" content="The early Northwest, scene by scene: every character, every scene they share, and where the story turns.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="wb-bar">
+  <a class="wb-home" href="../">← Custom</a>
+  <div class="wb-wordmark">Wau-Bun<small>an interactive telling</small></div>
+  <div class="wb-bar-spacer"></div>
+  <div class="wb-parts" id="wbParts" role="tablist" aria-label="Parts"></div>
+  <button class="wb-iconbtn" id="wbTheme" type="button" aria-label="Toggle light/dark">🌙</button>
+</header>
+
+<div class="wb-wrap">
+  <div class="wb-head">
+    <div class="wb-kicker" id="wbKicker"></div>
+    <h1 id="wbTitle"></h1>
+    <p class="wb-sub" id="wbBlurb"></p>
+    <div class="wb-stats" id="wbStats"></div>
+  </div>
+
+  <div class="wb-toolbar" id="wbToolbar"></div>
+
+  <main id="wbMain"></main>
+
+  <footer style="margin:56px 0 20px;padding-top:22px;border-top:1px solid var(--border);color:var(--text-3);font-size:13px;line-height:1.7">
+    <p><b>Wau-Bun: The Early Day in the North-West</b> was written by Juliette Augusta Magill Kinzie
+    and published in 1856. The scene summaries, cast list and plot points here are drawn from a
+    contemporary-English edition of her text; the words in quotation marks are hers.</p>
+    <p style="margin-top:8px">Part of <a href="../" style="color:var(--leaf);font-weight:700">Custom</a>
+    — a workshop of made things. No accounts, no tracking, nothing to install.</p>
+  </footer>
+</div>
+
+<div class="wb-scrim" id="wbScrim"></div>
+<aside class="wb-panel" id="wbPanel" aria-label="Detail">
+  <div class="wb-panel-head">
+    <h3 id="wbPanelTitle"></h3>
+    <button class="wb-iconbtn wb-close" id="wbPanelClose" type="button" aria-label="Close">✕</button>
+  </div>
+  <div class="wb-panel-body" id="wbPanelBody"></div>
+</aside>
+
+<script src="js/data-characters.js"></script>
+<script src="js/data-part1.js"></script>
+<script src="js/data-parts23.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

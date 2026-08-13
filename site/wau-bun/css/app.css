@@ -1,0 +1,322 @@
+/* Wau-Bun — an interactive telling.
+   Sits on top of the workshop's site.css (aurora backdrop, garden palette,
+   [data-theme] light/dark). Everything below is app-local.
+
+   Chart colours: the four faction hues are the validated categorical palette
+   (slots 1–4). Faction BLOCKS are laid out kinzie → native → military →
+   settler so only validated adjacent pairs ever touch; light-mode aqua and
+   yellow sit below 3:1 on the surface, so identity is never colour-alone —
+   every mark carries a text label, a legend, and a full table view. */
+
+:root {
+  --f-kinzie:  #2a78d6;
+  --f-native:  #eb6834;
+  --f-military:#1baf7a;
+  --f-settler: #eda100;
+  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --cell: 22px;
+  --namew: 210px;
+}
+:root[data-theme="dark"] {
+  --f-kinzie:  #3987e5;
+  --f-native:  #d95926;
+  --f-military:#199e70;
+  --f-settler: #c98500;
+}
+
+body { padding-bottom: 40px; }
+
+/* ---------- top bar ---------- */
+.wb-bar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 10px max(16px, calc((100vw - 1240px) / 2));
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.wb-home {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 14px; text-decoration: none; color: var(--text-2);
+  padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+}
+.wb-home:hover { color: var(--text); border-color: var(--border-2); }
+.wb-wordmark { font-family: var(--serif); font-size: 19px; font-weight: 700; letter-spacing: .2px; }
+.wb-wordmark small { display: block; font-family: inherit; font-size: 11px; font-weight: 400;
+  letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-3); }
+.wb-bar-spacer { flex: 1 1 auto; }
+.wb-iconbtn {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 999px; width: 36px; height: 36px; font-size: 15px; cursor: pointer;
+}
+.wb-iconbtn:hover { border-color: var(--border-2); }
+
+/* ---------- part tabs ---------- */
+.wb-parts { display: flex; gap: 8px; flex-wrap: wrap; }
+.wb-part {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; display: inline-flex; align-items: baseline; gap: 7px; line-height: 1.2;
+}
+.wb-part b { font-size: 11px; color: var(--text-3); font-weight: 800; letter-spacing: .6px; }
+.wb-part:hover { border-color: var(--border-2); color: var(--text); }
+.wb-part[aria-selected="true"] {
+  background: var(--leaf); border-color: var(--leaf); color: #fff;
+}
+.wb-part[aria-selected="true"] b { color: rgba(255,255,255,.72); }
+
+/* ---------- page shell ---------- */
+.wb-wrap { max-width: 1240px; margin: 0 auto; padding: 0 max(16px, 4vw); }
+.wb-head { padding: 34px 0 6px; }
+.wb-kicker { font-size: 12px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--leaf); }
+.wb-head h1 { font-family: var(--serif); font-size: clamp(28px, 5vw, 46px); letter-spacing: -.5px; margin-top: 6px; }
+.wb-head .wb-sub { color: var(--text-2); max-width: 76ch; margin-top: 10px; font-size: 16px; }
+.wb-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.wb-stat {
+  border: 1px solid var(--border); background: var(--surface); border-radius: var(--r-sm);
+  padding: 8px 13px; line-height: 1.25;
+}
+.wb-stat b { display: block; font-size: 19px; font-family: var(--serif); }
+.wb-stat span { font-size: 11px; text-transform: uppercase; letter-spacing: .9px; color: var(--text-3); font-weight: 700; }
+
+/* ---------- view switch + filters ---------- */
+.wb-toolbar {
+  display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  margin: 22px 0 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.wb-views { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 3px; }
+.wb-view {
+  border: 0; background: transparent; color: var(--text-2); font: inherit; font-size: 13px; font-weight: 700;
+  padding: 7px 15px; border-radius: 999px; cursor: pointer;
+}
+.wb-view[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.wb-search {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 13px; min-width: 190px;
+}
+.wb-facs { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.wb-fac {
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12.5px; font-weight: 700;
+}
+.wb-fac:hover { color: var(--text); border-color: var(--border-2); }
+.wb-fac[aria-pressed="false"] { opacity: .45; }
+.wb-swatch { width: 11px; height: 11px; border-radius: 3px; background: var(--c); flex: none; }
+.wb-toggle {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer;
+}
+.wb-toggle[aria-pressed="true"] { background: var(--leaf); border-color: var(--leaf); color: #fff; }
+
+/* ---------- the presence chart ---------- */
+.wb-figure { margin-bottom: 28px; }
+.wb-figtitle { font-family: var(--serif); font-size: 21px; }
+.wb-fignote { color: var(--text-2); font-size: 14px; margin: 6px 0 14px; max-width: 82ch; }
+.wb-legend { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 0 0 12px; font-size: 12.5px; color: var(--text-2); }
+.wb-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.wb-key { width: 12px; height: 12px; border-radius: 3px; background: var(--text-3); flex: none; }
+.wb-key.first { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--text-3); }
+.wb-key.ghost { background: transparent; border: 1.5px dashed var(--text-3); }
+
+.wb-scroll {
+  position: relative; overflow: auto; border: 1px solid var(--border);
+  border-radius: var(--r-sm); background: var(--surface); max-height: 78vh;
+}
+.wb-grid { display: grid; width: max-content; min-width: 100%; font-size: 12px; }
+
+.wb-corner, .wb-colhead, .wb-actband { position: sticky; top: 0; background: var(--surface); z-index: 3; }
+.wb-corner { left: 0; z-index: 6; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.wb-actband {
+  z-index: 4; border-bottom: 1px solid var(--border); padding: 7px 10px; line-height: 1.15;
+  border-left: 2px solid var(--border-2); white-space: nowrap; overflow: hidden;
+}
+.wb-actband b { font-size: 12px; }
+.wb-actband em { font-style: normal; display: block; font-size: 10.5px; color: var(--text-3); letter-spacing: .4px; }
+.wb-colhead {
+  top: 44px; z-index: 3; height: 152px; border-bottom: 1px solid var(--border);
+  cursor: pointer; padding: 0;
+}
+.wb-colhead > div {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  height: 100%; width: 100%; display: flex; align-items: flex-start; justify-content: flex-start;
+  gap: 6px; padding: 8px 4px; white-space: nowrap; overflow: hidden;
+  font-size: 10.5px; color: var(--text-2); letter-spacing: .2px;
+}
+.wb-colhead b { color: var(--text); font-size: 10.5px; }
+.wb-colhead:hover { background: var(--surface-2); }
+.wb-colhead.pivotal b::after { content: '★'; margin-left: 4px; color: var(--honey); }
+.wb-colhead.on, .wb-colhead.on > div { background: color-mix(in srgb, var(--leaf) 14%, var(--surface)); }
+
+.wb-grouphead {
+  position: sticky; left: 0; z-index: 5; background: var(--surface-2);
+  font-size: 10.5px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase;
+  color: var(--text-3); padding: 9px 10px 5px; border-right: 1px solid var(--border);
+  display: flex; align-items: center; gap: 7px;
+}
+.wb-grouprow { background: var(--surface-2); border-top: 1px solid var(--border); }
+
+.wb-name {
+  position: sticky; left: 0; z-index: 2; background: var(--surface);
+  border-right: 1px solid var(--border); padding: 0 10px;
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  height: var(--cell); font-size: 12px;
+}
+.wb-name i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: none; font-style: normal; }
+.wb-name span { overflow: hidden; text-overflow: ellipsis; }
+.wb-name:hover { background: var(--surface-2); }
+.wb-name.on { background: color-mix(in srgb, var(--leaf) 14%, var(--surface)); font-weight: 700; }
+
+.wb-cell {
+  height: var(--cell); display: flex; align-items: center; justify-content: center;
+  border: 0; background: transparent; padding: 0; cursor: pointer; position: relative;
+}
+.wb-cell::before { content: ''; position: absolute; inset: 0; background: transparent; }
+.wb-cell.rowon::before, .wb-cell.colon::before { background: color-mix(in srgb, var(--leaf) 9%, transparent); }
+.wb-dot { width: 12px; height: 12px; border-radius: 3px; background: var(--c); position: relative; z-index: 1; }
+.wb-cell.mention .wb-dot { background: transparent; border: 1.5px dashed var(--c); width: 11px; height: 11px; }
+.wb-cell.first .wb-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--c); }
+.wb-cell.empty { cursor: default; }
+.wb-cell.empty .wb-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-2); }
+.wb-arc { position: absolute; left: 0; right: 0; height: 2px; background: color-mix(in srgb, var(--c) 26%, transparent); z-index: 0; }
+
+/* ---------- scene detail panel ---------- */
+.wb-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(520px, 100vw);
+  background: var(--surface); border-left: 1px solid var(--border);
+  box-shadow: var(--shadow); z-index: 60; overflow-y: auto;
+  transform: translateX(101%); transition: transform .26s cubic-bezier(.4,0,.2,1);
+}
+.wb-panel.open { transform: none; }
+.wb-panel-head {
+  position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 16px 18px 12px; display: flex; gap: 12px; align-items: flex-start;
+}
+.wb-panel-head h3 { font-family: var(--serif); font-size: 21px; line-height: 1.2; }
+.wb-panel-body { padding: 16px 18px 60px; }
+.wb-close { margin-left: auto; }
+.wb-scrim { position: fixed; inset: 0; background: rgba(10,16,12,.42); z-index: 55; opacity: 0; pointer-events: none; transition: opacity .26s; }
+.wb-scrim.open { opacity: 1; pointer-events: auto; }
+
+.wb-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.wb-chip {
+  border: 1px solid var(--border); background: var(--surface-2); border-radius: 999px;
+  padding: 4px 10px; font-size: 11.5px; font-weight: 700; color: var(--text-2);
+}
+.wb-chip.pivot { border-color: var(--honey); color: var(--honey); background: transparent; }
+.wb-prose { font-family: var(--serif); font-size: 16px; line-height: 1.72; color: var(--text); }
+.wb-points { margin: 16px 0 0; padding: 0; list-style: none; }
+.wb-points li {
+  position: relative; padding: 0 0 0 22px; margin-bottom: 10px; font-size: 14.5px; color: var(--text-2); line-height: 1.6;
+}
+.wb-points li::before { content: '◆'; position: absolute; left: 2px; top: -1px; color: var(--honey); font-size: 11px; }
+.wb-subhead {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--text-3); margin: 22px 0 10px;
+}
+.wb-castrow { margin-bottom: 12px; }
+.wb-castrow > div:first-child { font-size: 11.5px; font-weight: 700; color: var(--text-3); margin-bottom: 6px; }
+.wb-cast { display: flex; gap: 6px; flex-wrap: wrap; }
+.wb-person {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 999px; padding: 5px 11px 5px 8px; font: inherit; font-size: 12.5px;
+}
+.wb-person:hover { border-color: var(--border-2); background: var(--surface-2); }
+.wb-person i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: none; }
+.wb-person em { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+.wb-person em.in { color: var(--leaf); }
+.wb-person em.out { color: var(--bloom); }
+.wb-person.ghost { border-style: dashed; color: var(--text-2); }
+
+/* ---------- story reader ---------- */
+.wb-reader { display: grid; grid-template-columns: 260px 1fr; gap: 26px; align-items: start; }
+.wb-rail {
+  position: sticky; top: 118px; max-height: calc(100vh - 150px); overflow-y: auto;
+  border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); padding: 8px;
+}
+.wb-railact { font-size: 10.5px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; color: var(--text-3); padding: 12px 8px 6px; }
+.wb-railitem {
+  display: block; width: 100%; text-align: left; border: 0; background: transparent; color: var(--text-2);
+  font: inherit; font-size: 12.5px; padding: 7px 9px; border-radius: 8px; cursor: pointer; line-height: 1.35;
+}
+.wb-railitem:hover { background: var(--surface-2); color: var(--text); }
+.wb-railitem[aria-current="true"] { background: color-mix(in srgb, var(--leaf) 15%, var(--surface)); color: var(--text); font-weight: 700; }
+.wb-railitem b { color: var(--text-3); font-weight: 800; margin-right: 6px; font-size: 11px; }
+
+.wb-page { border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); padding: 30px clamp(20px, 4vw, 40px) 34px; }
+.wb-page h2 { font-family: var(--serif); font-size: clamp(23px, 3.4vw, 33px); line-height: 1.15; margin: 10px 0 4px; letter-spacing: -.3px; }
+.wb-page .wb-when { color: var(--text-3); font-size: 13px; font-style: italic; font-family: var(--serif); }
+.wb-pagenav { display: flex; gap: 10px; align-items: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
+.wb-btn {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 999px; padding: 9px 16px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.wb-btn:hover:not(:disabled) { border-color: var(--border-2); background: var(--surface-2); }
+.wb-btn:disabled { opacity: .4; cursor: default; }
+.wb-btn.primary { background: var(--leaf); border-color: var(--leaf); color: #fff; }
+.wb-progress { flex: 1; height: 4px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.wb-progress i { display: block; height: 100%; background: var(--leaf); transition: width .3s; }
+
+/* ---------- cast view ---------- */
+.wb-castgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 30px; }
+.wb-card {
+  border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface);
+  padding: 16px 16px 14px; cursor: pointer; text-align: left; font: inherit; color: var(--text);
+  border-top: 3px solid var(--c);
+}
+.wb-card:hover { border-color: var(--border-2); box-shadow: var(--shadow); }
+.wb-card h4 { font-family: var(--serif); font-size: 17px; line-height: 1.2; }
+.wb-card .wb-alias { font-size: 12.5px; color: var(--text-3); font-style: italic; font-family: var(--serif); }
+.wb-card .wb-role { font-size: 12px; font-weight: 700; color: var(--c); margin-top: 7px; }
+.wb-card p { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-top: 9px; }
+.wb-spark { display: flex; gap: 2px; margin-top: 12px; align-items: center; }
+.wb-spark i { width: 5px; height: 12px; border-radius: 1.5px; background: var(--border-2); }
+.wb-spark i.on { background: var(--c); }
+.wb-spark i.men { background: color-mix(in srgb, var(--c) 34%, transparent); }
+.wb-appear { font-size: 11.5px; color: var(--text-3); margin-top: 8px; font-weight: 700; }
+
+/* ---------- table view ---------- */
+.wb-tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); margin-bottom: 26px; }
+table.wb-table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.wb-table th, .wb-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.wb-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .9px; color: var(--text-3); position: sticky; top: 0; background: var(--surface-2); }
+.wb-table tbody tr:hover { background: var(--surface-2); }
+.wb-table td.num { font-variant-numeric: tabular-nums; color: var(--text-3); font-weight: 700; }
+
+/* ---------- outline (parts 2 & 3) ---------- */
+.wb-outline { border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); padding: 26px clamp(20px, 4vw, 34px); }
+.wb-outline ol { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: ch; }
+.wb-outline li { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.wb-outline li:last-child { border-bottom: 0; }
+.wb-outline li b { font-size: 11.5px; font-weight: 800; letter-spacing: .8px; color: var(--text-3); min-width: 66px; }
+.wb-outline li span { font-family: var(--serif); font-size: 16px; }
+.wb-note {
+  border: 1px dashed var(--border-2); border-radius: var(--r-sm); background: var(--surface-2);
+  padding: 14px 16px; font-size: 14px; color: var(--text-2); line-height: 1.6;
+}
+
+/* ---------- tooltip ---------- */
+.wb-tip {
+  position: fixed; z-index: 80; pointer-events: none; opacity: 0; transition: opacity .12s;
+  background: var(--text); color: var(--bg); border-radius: 8px; padding: 8px 11px;
+  font-size: 12px; line-height: 1.45; max-width: 260px; box-shadow: 0 8px 24px rgba(0,0,0,.28);
+}
+.wb-tip.on { opacity: 1; }
+.wb-tip b { display: block; font-size: 12.5px; }
+.wb-tip em { font-style: normal; opacity: .75; }
+
+.wb-hidden { display: none !important; }
+.wb-empty { color: var(--text-3); font-size: 14px; padding: 30px 4px; }
+
+@media (max-width: 900px) {
+  :root { --cell: 18px; --namew: 150px; }
+  .wb-reader { grid-template-columns: 1fr; }
+  .wb-rail { position: static; max-height: 260px; }
+  .wb-panel { width: 100vw; }
+  .wb-colhead { height: 128px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wb-panel, .wb-scrim, .wb-progress i { transition: none; }
+}

@@ -24,6 +24,7 @@
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
+    <a href="wau-bun/">Wau-Bun</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
     <a href="#about">About</a>
@@ -113,6 +114,7 @@
     <a href="#featured">Featured</a>
     <a href="#projects">Projects</a>
     <a href="chicago/">Chicago Atlas</a>
+    <a href="wau-bun/">Wau-Bun</a>
     <a href="vehicle/">Vehicle Finder</a>
     <a href="porchfest/">Porchfest Planner</a>
   </div>
@@ -174,7 +176,15 @@
     'energy, loudness, kid-friendly and the rest \u2014 so you can ask for &quot;loud and fast&quot; or &quot;quiet enough for a stroller&quot;, ' +
     'pick how many bands you want, and get an optimised schedule, walking map and a shareable link.</p>' +
     '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the planner \u2197</div></a>';
-  grid.innerHTML = chicagoCard + vehicleCard + porchfestCard + projects.map(function (p) {
+  var waubunCard = '<a class="app-card reveal" href="wau-bun/" style="--c:#2a78d6">' +
+    '<div class="app-top"><span class="app-glyph">\ud83c\udf04</span>' +
+    '<div><div class="app-name">Wau-Bun</div><div class="app-sub">wau-bun \u00b7 the early Northwest, scene by scene</div></div></div>' +
+    '<p class="app-tagline">Juliette Kinzie\'s 1856 memoir of the frontier, told as an interactive book: ' +
+    'a character-presence chart of every person against every scene, a scene-by-scene reader with summaries and ' +
+    'pivotal turns, and the full cast \u2014 who enters the story, who leaves it, and who shares each scene. ' +
+    'Part 1, Journey West (1830\u201331), is complete.</p>' +
+    '<div class="app-status"><span class="app-dot"></span>Live \u00b7 open the telling \u2197</div></a>';
+  grid.innerHTML = chicagoCard + waubunCard + vehicleCard + porchfestCard + projects.map(function (p) {
     return '<div class="app-card reveal" style="--c:' + p.c + '">' +
       '<div class="app-top"><span class="app-glyph">' + p.glyph + '</span>' +
       '<div><div class="app-name">' + p.name + '</div><div class="app-sub">' + p.dir + '</div></div></div>' +
