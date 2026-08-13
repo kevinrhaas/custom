@@ -781,6 +781,30 @@ while the ground it stands on converges to (136, 163, 192), the two are **16 red
 apart** with the band `toneMapped: false, fog: false` so nothing downstream reconciles them.
 The far timber and the far ground are lit by two different laws and meet at the horizon.
 
+**Revised 2026-08-13 — that last paragraph is now history rather than state.** The ACES step is
+out of `hazeDisplayLinear()`; the band decodes `HORIZON_HAZE` once, exactly as the fog uniform
+does, and both ends report **#88a3c0**. The chroma break at the horizon is closed and the gate
+compares the band's own hazed end against `scene.fog.color` rather than against a hex written
+down in either file, so retargeting the atmosphere cannot silently reopen it. One consequence
+of the old error deserves recording because this entry twice wrote up its symptom as physics:
+the band's far end was displaying at **L 170 against a horizon sky of L 162** — a *pale* band,
+brighter than the sky behind it, which is what a distant treeline never is. It is L 159 now.
+**The cap this entry exists to confess is untouched at 0.82**, and so is the compression it
+buys: the argument for it is still EVIDENCE and nothing else.
+
+**Also revised: the third point's measurement is half answered.** The band was additionally
+being *deleted* rather than merely dim — the crown/gap modulation cuts a bearing to as little
+as 2 % of its height to open sky through a stand, which is texture at four hundred metres and
+a deletion on a six-mile body whose whole silhouette is one or two pixels. Measured at the
+spawn station: 30 of 280 bearings on a phone and 14 of 281 on a desktop were drawn under one
+pixel, the worst at 0.18 px. `renderers/web/js/trees.js` now floors the modulated result at one
+pixel of the live viewport and the count is 280/280 and 281/281. **The 31 %-of-columns figure
+in this entry is a photographic detection measure and has NOT been re-measured** — it was taken
+with a shot harness that is not in the release gate, and this entry has already been burned
+once by asserting a visual outcome it did not check. What can be said is that the geometry it
+was measuring is no longer being thrown away, and that the band is now darker than its sky
+rather than paler.
+
 Third — **this entry asserted a visual outcome and the assertion was false.** It first said a
 visitor "would have no reason to suspect it — the band simply reads as far-off woods." Measured
 in the delivered frame, the band covers **0.9 %** of its own detection window at Weber **0.026**,

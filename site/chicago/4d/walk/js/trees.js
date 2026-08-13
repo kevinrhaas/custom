@@ -148,15 +148,15 @@ const HAZE_DENSITY = 0.00125;
  * to for that reason (the bar's distant land runs B-R +27; the grey-green this
  * replaced ran -13).
  *
- * **This is a fog INPUT, not a rendered colour.** `world.js` feeds it to
- * `FogExp2`, so what the eye finally sees is this colour after ACES and the
- * scene's exposure. The band must match what the fogged GROUND displays, not
- * this hex — see `hazeDisplayLinear()`. Getting that distinction wrong is what
- * made the band and the sward live in different tonal worlds.
+ * **This hex IS the rendered colour, and this file spent three weeks assuming
+ * it was not.** `world.js` feeds it to `FogExp2`, whose lerp runs after the
+ * tone curve on a uniform uploaded in the output colour space, so a fully
+ * fogged pixel displays sRGB (136,163,192) — this value, unmodified. The band
+ * matches the fogged GROUND by decoding the same hex once and no more; see
+ * `hazeDisplayLinear()`, which used to do more and is what put the band and the
+ * ground in different tonal worlds.
  */
 const HORIZON_HAZE = 0x88a3c0;
-/** `renderer.toneMappingExposure`, copied from world.js for the same reason. */
-const TONE_EXPOSURE = 0.95;
 /**
  * The cap, and the one place this file argues with the scene's atmosphere.
  * world.js's haze is total by 1500 m by design — docs/LIBERTIES.md L17 leans on
@@ -182,16 +182,17 @@ const TONE_EXPOSURE = 0.95;
  * curve: a fully-fogged pixel is exactly sRGB (136,163,192), L 159.4 — four
  * levels BELOW the horizon sky, which is what airlight is supposed to do.
  *
- * The L 170 came from `hazeDisplayLinear()` below, which runs HORIZON_HAZE
- * through ACES to derive this band's display colour. That is arithmetically
- * correct and answers a question the renderer never asks. The consequence is
- * live and is this file's bug to fix, not the atmosphere's: the band is aimed
- * at (152,175,195) while the ground it stands on converges to (136,163,192), so
- * the far timber sits 16 red and 12 green off the far ground it touches — and
- * because the band is `toneMapped: false, fog: false`, nothing downstream
- * reconciles them. In prairie_west the two are identical in red and green to a
- * tenth of a level and 69 apart in BLUE, which is the hard chroma break visible
- * along the horizon.
+ * The L 170 came from `hazeDisplayLinear()` below, which USED TO run
+ * HORIZON_HAZE through ACES to derive this band's display colour. That was
+ * arithmetically correct and answered a question the renderer never asks. The
+ * consequence was live and was this file's bug, not the atmosphere's: the band
+ * was aimed at (152,175,195) while the ground it stands on converges to
+ * (136,163,192), so the far timber sat 16 red and 12 green off the far ground
+ * it touches — and because the band is `toneMapped: false, fog: false`, nothing
+ * downstream reconciles them. **Fixed 2026-08-13**: the tone curve is gone from
+ * that function and both ends now decode the same hex once. The gate compares
+ * the band's own hazed end against `scene.fog.color` rather than against a
+ * number written down here.
  *
  * So: this cap is about EVIDENCE (holding the dossier's 3-6 mile timber on the
  * horizon), and only about that. Judge it on that argument alone. And do not
@@ -226,6 +227,43 @@ const RING_REBUILD_M = 0.75;
  * that is a worse lie than the gap it leaves.
  */
 const MIN_FAR_M = 330;
+/**
+ * The floor under the crown/gap modulation, in FRAME PIXELS, and the reason the
+ * band is solved against the viewport at all.
+ *
+ * The modulation below breaks the profile up crown by crown and opens sky
+ * through the stand — `k` runs down to about 0.02 in a gap. That is texture on
+ * a treeline four hundred metres out, where the band is forty pixels tall. On
+ * the dossier's three-, four- and six-mile bodies the same multiplier is a
+ * DELETION: a 20 m canopy at 9.7 km subtends 1.4 px at desktop, and two per
+ * cent of 1.4 px is nothing at all. Measured at the spawn station with this
+ * floor removed, the modulation cut **30 of 280 bearings on a phone and 14 of
+ * 281 on a desktop** below one pixel, with the worst silhouette drawn at
+ * **0.18 px** and **0.31 px** — geometry solved, written into the buffer, and
+ * too thin to land on a pixel. That is the mechanism ROADMAP § S6a item 5 names
+ * behind the photographic finding that only 31 % of horizon columns carried any
+ * timber; the photograph's own measure is not re-run here, and the item says so.
+ *
+ * So the modulation may take a bearing down to this and no further, whenever
+ * the bearing's own unmodulated crown is at least this tall. Below it — a body
+ * so far off that its raw silhouette is already sub-pixel — the modulation is
+ * suppressed entirely, because a texture that cannot be drawn can only subtract.
+ * Where the band IS resolvable (a treeline at 400 m is 40 px) the floor binds
+ * on nothing: 0.02 of 40 px is 0.8 px and the gaps stay open.
+ *
+ * 1.0 px rather than 2: at 1 px the silhouette is continuous and still thin
+ * enough that no crown reads as a ridge, which is the failure the modulation
+ * exists to prevent. The gate measures both directions — see
+ * `horizonContinuity()`.
+ */
+const MIN_SILHOUETTE_PX = 1.0;
+/**
+ * Pixels per radian of vertical field, used when nothing supplies the live
+ * viewport. 800 rows over a 55° vertical field — the desktop release viewport
+ * at its narrowest clamp, so an unwired caller gets the conservative answer
+ * rather than a generous one.
+ */
+const DEFAULT_PX_PER_RAD = 800 / (55 * Math.PI / 180);
 
 /* -------------------------------------------------------------------------- */
 /* the species                                                                 */
@@ -764,53 +802,35 @@ function linear(hex) {
 }
 
 /**
- * three's ACES filmic curve, in JS, at the scene's own exposure.
+ * The vertex colour whose DISPLAYED value is the one a fully fogged surface
+ * displays — the colour the band's hazed end has to reach for, because that is
+ * where the far ground it stands on converges.
  *
- * The horizon band is a `MeshBasicMaterial` with `toneMapped = false`: it opts
- * out of the tone mapping every other surface goes through, so it has to be
- * authored in the space the tone mapper OUTPUTS. That makes matching the fogged
- * ground a two-step job — take the fog colour into linear, then run the same
- * curve the ground's fragments run — and doing it here rather than by pasting a
- * hand-measured hex means the band cannot silently drift when the atmosphere
- * parcel moves `HORIZON_HAZE` again. Kept in step with
- * `vendor/three-0.185.1` `tonemapping_pars_fragment`.
- */
-const ACES_IN = [
-  [0.59719, 0.35458, 0.04823],
-  [0.07600, 0.90834, 0.01566],
-  [0.02840, 0.13383, 0.83777],
-];
-const ACES_OUT = [
-  [1.60475, -0.53108, -0.07367],
-  [-0.10208, 1.10813, -0.00605],
-  [-0.00327, -0.07276, 1.07602],
-];
-function mat3Apply(m, v) {
-  return [
-    m[0][0] * v[0] + m[0][1] * v[1] + m[0][2] * v[2],
-    m[1][0] * v[0] + m[1][1] * v[1] + m[1][2] * v[2],
-    m[2][0] * v[0] + m[2][1] * v[1] + m[2][2] * v[2],
-  ];
-}
-function acesFilmic(rgbLinear, exposure = TONE_EXPOSURE) {
-  const k = exposure / 0.6;
-  let c = mat3Apply(ACES_IN, [rgbLinear[0] * k, rgbLinear[1] * k, rgbLinear[2] * k]);
-  c = c.map((v) => {
-    const a = v * (v + 0.0245786) - 0.000090537;
-    const b = v * (0.983729 * v + 0.432951) + 0.238081;
-    return a / b;
-  });
-  return mat3Apply(ACES_OUT, c).map((v) => clamp01(v));
-}
-
-/**
- * The linear colour a FULLY hazed surface finally displays at — the value the
- * band has to reach for, because that is where the fogged ground ends up.
- * Derived, never pasted: with `HORIZON_HAZE` at 0x88a3c0 this comes out at sRGB
- * (152,175,195), which is emphatically not 0x88a3c0 itself.
+ * **It is `linear(HORIZON_HAZE)`, and until 2026-08-13 it was that run through
+ * ACES as well.** The tone curve was not wrong arithmetic; it answered a
+ * question the renderer never asks. The band is a `MeshBasicMaterial` with
+ * `toneMapped = false`, so its fragment goes `opaque → colorspace` and a linear
+ * vertex colour displays as exactly the sRGB hex it decodes from. The ground's
+ * fragment goes `opaque → tonemapping → colorspace → fog`, and in the vendored
+ * r185 `fogColor` is uploaded through `getUnlitUniformColorSpace()` — so the
+ * fog is a straight lerp toward the literal hex AFTER the tone curve. Both ends
+ * therefore land on the same target by decoding the same hex once, and the tone
+ * curve was applied to one of them and to nothing it had to match.
+ *
+ * What that error cost is measured in docs/LIBERTIES.md L35: the band was aimed
+ * at sRGB (152,175,195) while the ground under it converges to (136,163,192),
+ * so the far timber sat **16 red and 12 green** off the far ground it touches,
+ * with nothing downstream to reconcile them — `fog: false` on this material
+ * means the band never meets the lerp that would have closed the gap. That is
+ * the hard chroma break along the horizon, and it is this file's bug rather
+ * than the atmosphere's: the copied constants matched `world.js` exactly the
+ * whole time; it was the maths on top of them that drifted.
+ *
+ * Kept as a function, and derived rather than pasted, so the band still cannot
+ * silently drift when the atmosphere parcel next moves `HORIZON_HAZE`.
  */
 function hazeDisplayLinear() {
-  return acesFilmic(linear(HORIZON_HAZE));
+  return linear(HORIZON_HAZE);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1151,6 +1171,7 @@ function addTree(buf, spec, x, groundY, z, rnd, scale = 1) {
 export async function createTrees({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
   confidence = null, problems = [], lowSpec = false, detail = 'full',
+  pixelsPerRadian = null,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'trees';
@@ -1167,6 +1188,7 @@ export async function createTrees({
     trees: 0, thickets: 0, drawCalls: 0, triangles: 0,
     communities: {}, species: {},
     horizonBodies: 0, horizonBins: 0, timberedBearingFraction: 0,
+    horizonDrawnFraction: 0, horizonPxPerRad: 0,
     omitted: OMITTED_TIMBER.map((o) => ({
       ...o, elevation_deg: apparentTopDeg(o.canopy_m, o.distance_m, 1.68) + horizonDipDeg(1.68),
     })),
@@ -1554,6 +1576,21 @@ uniform float uWind;
   const binRad = (Math.PI * 2) / BINS;
   const topRad = new Float32Array(BINS);
   const binDist = new Float32Array(BINS);
+  // The profile BEFORE the crown/gap modulation, kept so the gate can ask what
+  // the modulation did rather than re-deriving the noise that drives it.
+  const rawRad = new Float32Array(BINS);
+  // Vertical pixels per radian, re-read from the live viewport each solve. The
+  // band is the one thing in this file whose correctness is measured in pixels
+  // rather than in metres, because what it draws is an angular silhouette.
+  let pxPerRad = DEFAULT_PX_PER_RAD;
+  const readPxPerRad = () => {
+    const v = pixelsPerRadian?.();
+    return Number.isFinite(v) && v > 0 ? v : DEFAULT_PX_PER_RAD;
+  };
+  const continuity = {
+    bins: BINS, pxPerRad, covered: 0, resolvable: 0, drawn: 0,
+    fraction: 0, worstResolvablePx: 0, minSilhouettePx: MIN_SILHOUETTE_PX,
+  };
 
   const horizon = new THREE.Group();
   horizon.name = 'horizon-timber';
@@ -1592,6 +1629,8 @@ uniform float uWind;
   function solveHorizon(camE, camN, eyeY) {
     topRad.fill(-1);
     binDist.fill(0);
+    rawRad.fill(0);
+    pxPerRad = readPxPerRad();
 
     for (const body of FAR_TIMBER) {
       const path = body.path;
@@ -1633,8 +1672,14 @@ uniform float uWind;
     // treeline rather than in degrees, so the bumps stay crown-sized whether
     // the timber is four hundred metres away or four kilometres.
     let timbered = 0;
+    let resolvable = 0;
+    let drawn = 0;
+    let worstResolvablePx = Infinity;
     for (let b = 0; b < BINS; b++) {
       if (topRad[b] <= 0) { topRad[b] = 0; continue; }
+      timbered++;
+      rawRad[b] = topRad[b];
+      const rawPx = topRad[b] * pxPerRad;
       const d = binDist[b];
       const bearing = (b + 0.5) * binRad;
       const u = (bearing * d) / 15;
@@ -1646,9 +1691,30 @@ uniform float uWind;
       // solid — without this the band is a silhouette with one outline, which
       // on a flat plain reads as a distant RIDGE and there are no ridges here.
       if (gapN < 0.40) k *= lerp(0.05, 0.92, gapN / 0.40);
+      // ...but a hole the frame cannot resolve is not sky through a stand, it
+      // is the stand deleted. The modulation may cut a bearing to
+      // MIN_SILHOUETTE_PX and no further; where the raw crown is already under
+      // that it is suppressed outright (kFloor reaches 1). This is a floor on
+      // the RESULT rather than a cap on `k`, so it binds exactly where the
+      // pixels are scarce and nowhere else — the near treelines keep their
+      // gaps to the last per cent.
+      const kFloor = Math.min(1, MIN_SILHOUETTE_PX / Math.max(rawPx, 1e-6));
+      if (k < kFloor) k = kFloor;
       topRad[b] = topRad[b] * k;
-      if (topRad[b] > 1e-5) timbered++; else topRad[b] = 0;
+      const px = topRad[b] * pxPerRad;
+      if (rawPx >= MIN_SILHOUETTE_PX) {
+        resolvable++;
+        if (px < worstResolvablePx) worstResolvablePx = px;
+      }
+      if (px >= MIN_SILHOUETTE_PX - 1e-6) drawn++;
+      if (topRad[b] <= 1e-5) topRad[b] = 0;
     }
+    continuity.pxPerRad = pxPerRad;
+    continuity.covered = timbered;
+    continuity.resolvable = resolvable;
+    continuity.drawn = drawn;
+    continuity.fraction = resolvable > 0 ? drawn / resolvable : 0;
+    continuity.worstResolvablePx = Number.isFinite(worstResolvablePx) ? worstResolvablePx : 0;
 
     // Emit each contiguous run of timbered bearings as ONE strip, with the
     // profile carried on shared vertices. Quad-per-bin looks like a staircase:
@@ -1723,6 +1789,8 @@ uniform float uWind;
     hGeo.setDrawRange(0, indices);
     stats.horizonBins = timbered;
     stats.timberedBearingFraction = timbered / BINS;
+    stats.horizonDrawnFraction = continuity.fraction;
+    stats.horizonPxPerRad = pxPerRad;
     stats.triangles = stats.triangles - (stats.horizonTriangles ?? 0) + indices / 3;
     stats.horizonTriangles = indices / 3;
   }
@@ -1745,6 +1813,32 @@ uniform float uWind;
     omitted: OMITTED_TIMBER,
     stats,
 
+    /**
+     * What the crown/gap modulation did to the silhouette, in the band's own
+     * terms — asked of the solver rather than re-derived from its noise.
+     *
+     * `covered` is the bearings a timber body reaches at all; `resolvable`
+     * those whose unmodulated crown is at least one pixel of THIS viewport;
+     * `drawn` those the modulation leaves at a pixel or more. The fraction is
+     * drawn/resolvable, because a body whose raw silhouette is already
+     * sub-pixel — a 20 m canopy at 9.7 km is 0.7 px on a phone — cannot be
+     * made visible by any choice this function has, and counting it as a
+     * failure would only invite the floor to be raised until it lies.
+     */
+    horizonContinuity() {
+      return { ...continuity };
+    },
+
+    /**
+     * The sRGB the band's fully-hazed end displays at, so the gate can compare
+     * it against `scene.fog.color` — the two must be the same colour, and were
+     * 16 red and 12 green apart until 2026-08-13.
+     */
+    hazeTargetHex() {
+      const c = new THREE.Color().setRGB(haze[0], haze[1], haze[2]);
+      return c.getHex(THREE.SRGBColorSpace);
+    },
+
     update(dt, camera) {
       wind += (dt || 0);
       uWind.value = wind;
@@ -1753,8 +1847,12 @@ uniform float uWind;
       horizon.position.set(p.x, p.y, p.z);
       const e = p.x;
       const n = -p.z;
+      // A viewport change moves the pixel the floor is measured in, so it is a
+      // reason to re-solve exactly as walking is. 2 % keeps a drag-resize from
+      // re-solving every frame.
+      const pxNow = readPxPerRad();
       if (Math.abs(e - lastE) > RING_REBUILD_M || Math.abs(n - lastN) > RING_REBUILD_M
-        || Math.abs(p.y - lastY) > 0.30) {
+        || Math.abs(p.y - lastY) > 0.30 || Math.abs(pxNow - pxPerRad) > pxPerRad * 0.02) {
         lastE = e; lastN = n; lastY = p.y;
         solveHorizon(e, n, p.y);
       }
