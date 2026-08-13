@@ -1,29 +1,7 @@
-/* Wau-Bun — Parts 2 and 3.
-   These carry the part framing plus the real chapter spine (headings exactly as
-   they stand in the text). Scene-by-scene detail is built one part at a time;
-   Part 1 is complete, these are staged behind it. Nothing here is invented:
-   every row is a chapter that exists, under its own heading. */
-var WAUBUN_PART2 = {
-  id: 'part2',
-  number: 2,
-  title: 'The Early Frontier',
-  range: 'c. 1770s – 1816',
-  chapters: 'Chapters XVIII–XXIII',
-  status: 'outline',
-  blurb: 'The story jumps back to the world that created the Kinzies: the Great Lakes fur trade, Native nations, early settlers, and the beginnings of Chicago. Growing conflict culminates in the War of 1812 and the Fort Dearborn massacre, followed by captivity, survival, and the rebuilding of Fort Dearborn.',
-  acts: [],
-  scenes: [],
-  outline: [
-    { chapter: 'XVIII', title: 'Massacre at Chicago' },
-    { chapter: 'XIX', title: 'Narrative of the massacre, continued' },
-    { chapter: 'XX', title: 'Captivity of J. Kinzie, Sen. — an amusing mistake' },
-    { chapter: 'XXI', title: 'A sermon' },
-    { chapter: 'XXII', title: 'The captives' },
-    { chapter: 'XXIII', title: 'Second-sight — Hickory Creek' }
-  ],
-  leads: ['eleanor', 'kinziesen', 'margaret', 'billycaldwell']
-};
-
+/* Wau-Bun — Part 3: Wau Bun (1831–1833), chapters XXIV–XXXVIII.
+   Chapter spine only for now — the scene breakdown, casts and summaries are
+   built one part at a time, exactly as Parts 1 and 2 were. Nothing here is
+   invented: every row is a chapter that exists, under its own heading. */
 var WAUBUN_PART3 = {
   id: 'part3',
   number: 3,

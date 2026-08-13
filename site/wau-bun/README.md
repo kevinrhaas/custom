@@ -33,7 +33,7 @@ No build step, no framework, no dependencies.
 | Part | Title | Chapters | Status |
 |------|-------|----------|--------|
 | 1 | Journey West (1830 – March 1831) | I–XVII | **complete** — 49 scenes, 83 characters |
-| 2 | The Early Frontier (c. 1770s–1816) | XVIII–XXIII | chapter outline |
+| 2 | The Early Frontier (1779–1816) | XVIII–XXIII | **complete** — 40 scenes, 61 characters |
 | 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | chapter outline |
 
 ## The data model
@@ -76,13 +76,14 @@ the 1856 text by rare-word overlap within the same chapter, printing the match
 score for every boundary (all of Part 1 lands at 0.88–1.00). Sources are not
 committed — see that script's docstring for what to drop in `wau-bun/sources/`.
 
-## Adding Part 2 or Part 3
+## Adding Part 3
 
-Fill in `acts` and `scenes` on `WAUBUN_PART2` / `WAUBUN_PART3` in
-`js/data-parts23.js` using the same shape as `js/data-part1.js`, add any new
-people to `js/data-characters.js`, and delete that part's `outline` array. The
-app switches from the outline view to the four full views as soon as a part
-has scenes.
+Fill in `acts` and `scenes` on `WAUBUN_PART3` in `js/data-part3.js` using the
+same shape as `js/data-part1.js` and `js/data-part2.js`, add any new people to
+`js/data-characters.js`, and delete that part's `outline` array. The app
+switches from the outline view to the four full views as soon as a part has
+scenes. Then extend `wau-bun/build-text.py` with that part's line ranges to
+give it the two full texts.
 
 ## Colour
 
