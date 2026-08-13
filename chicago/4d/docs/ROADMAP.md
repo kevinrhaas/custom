@@ -264,7 +264,7 @@ form the north-side slough already takes — never as traced boundaries, because
 is not there to trace. Cross-check the State Street slough mouth the trace already carries at
 E +850 … +856 against dossier zone 14.
 
-### K14 — The terrain decimator's tolerance cliff
+### K14 — The terrain decimator’s tolerance cliff · **DONE 2026-08-13**
 `generators/terrain_gen.py --decimate-deg` behaves as a cliff, not a dial, against
 `MESH_FIT_TOLERANCE_M`: after the K6 correction, 0.040 and 0.038 both land at 30 mm and are
 refused, while 0.030 lands at 3.1 mm — and costs 247 527 triangles / 6.4 MB against the
@@ -277,6 +277,22 @@ wide margin. **The rendered-triangle budget is the tighter constraint**: the smo
 change there was roughly 25 %. The terrain is `frustumCulled = false`, so all 247 527 of its
 triangles are in every frame. The next parcel that adds geometry will hit this ceiling
 before it hits the payload one.
+
+**RESOLVED 2026-08-13, and not where this item was looking.** The decimator was never the
+problem worth solving: the ground was ONE mesh with `frustumCulled = false`, so its whole
+247 527 triangles were drawn every frame no matter which way the walker faced. Cut into a
+**12 × 3 grid by triangle centroid** (`renderers/web/js/terrain.js tileGround()`), each tile
+carries its own bounding sphere and the ones behind you are skipped. Desktop went **550 513 →
+461 112 triangles** at 71 of 80 draw calls; headroom is now **138 888** where it was 49 487.
+Grid picked by measurement — 8×4 gives the same draw calls for 27 000 MORE triangles, 12×6
+saves another 26 000 but leaves ONE draw call spare, which is not headroom.
+**Two things still on the table**, neither taken: (a) 12×6 or finer, if the draw-call budget is
+ever deliberately revisited — the terrain tiles are cheap calls sharing one material, but the
+budget is a gate and moving it is a decision, not a side effect; (b) the decimator question as
+originally written, which is now about PAYLOAD rather than frame cost and is much less urgent
+since the published tree fell to 10.78 MB (see the meshopt fix of the same day).
+**The payload figure quoted above is stale** — 19.16 MB was measured when the anonymous roofs
+were placeholder massing and every web derivative was an uncompressed copy of its master.
 ---
 
 ## S1 — Georeference and verify the datum · **DONE 2026-08-09**
