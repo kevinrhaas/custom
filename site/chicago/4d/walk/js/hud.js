@@ -20,6 +20,8 @@ const CONTROL_HELP_KEY = 'chicago4d.controlHelpDismissed';
 const DEFAULT_SETTINGS = {
   speed: 1.45, fov: 72, quality: 1.5,
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
+  // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
+  detail: '',
 };
 
 function readSettings() {
@@ -38,7 +40,7 @@ function store(key, value) {
 
 export function createHud({
   root, scene, registry, intersections = [], onConfidence, onFly, onHelp,
-  onSetting, onGoTo, isTouch,
+  onSetting, onGoTo, isTouch, resolvedDetail = 'full',
 }) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
@@ -262,6 +264,22 @@ export function createHud({
       paintSpeed?.();
       setAltitude(lastAltitudeM);
       onSetting?.('units', settings.units);
+      store(SET_KEY, JSON.stringify(settings));
+    });
+  }
+
+  // Scene detail. Distinct from Render quality on purpose: quality is how many
+  // PIXELS are drawn, detail is how much GEOMETRY. Conflating them would hide
+  // which one a visitor with a slow machine actually needs to turn down.
+  const detail = $('s-detail');
+  if (detail) {
+    // '' means the visitor has never chosen, and the level in force is the
+    // device guess main.js made. Show THAT, not the first option in the list:
+    // a phone running `light` must not display `Full`.
+    detail.value = settings.detail || resolvedDetail;
+    detail.addEventListener('change', () => {
+      settings.detail = detail.value;
+      onSetting?.('detail', settings.detail);
       store(SET_KEY, JSON.stringify(settings));
     });
   }

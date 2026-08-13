@@ -212,6 +212,23 @@ const LOW = {
   cap: { near: 420, mid: 900, forb: 260, head: 240 },
 };
 
+/**
+ * The middle setting. It has to be a real tune rather than a scale factor on
+ * TUNE's caps, because at full detail the CAPS ARE NOT WHAT BINDS — the ring
+ * radii are. Scaling the caps alone was measured at 8 177 triangles off 461 112,
+ * which is a setting that says "fewer plants" and does essentially nothing.
+ * What costs geometry is the mid ring's area: 27 m against LOW's 13 m is over
+ * four times the ground. So this sits between the two, and every number here is
+ * a RENDERING radius or ceiling. The species mix, the July states and the rules
+ * about where a plant may stand are untouched, because those are evidence.
+ */
+const MID = {
+  near: { radius: 6.2, tuftsPerM2: 6.4 },
+  mid: { inner: 4.0, radius: 18.0 },
+  forb: { radius: 17.5 },
+  cap: { near: 1500, mid: 2700, forb: 580, head: 520 },
+};
+
 /** The closed `form` list, split by how it is drawn. */
 const GRAMINOID_FORMS = new Set([
   'grass_fine', 'grass_arching', 'grass_clump', 'sedge_tussock', 'rush_culm',
@@ -325,7 +342,7 @@ const GRASS_SHAPE = {
  */
 export async function createFlora({
   dataBase, terrain, footprints = [], growthBlocked = () => false,
-  confidence = null, problems = [], lowSpec = false,
+  confidence = null, problems = [], lowSpec = false, detail = 'full',
 } = {}) {
   const group = new THREE.Group();
   group.name = 'flora';
@@ -338,7 +355,9 @@ export async function createFlora({
   const dataset = await loadFlora(dataBase, problems);
   if (!dataset) return inertRig(group, stats);
 
-  const tune = mergeTune(lowSpec);
+  // `lowSpec` is the device guess and still means the lightest tune; an
+  // explicit visitor choice arrives as `detail` and outranks it.
+  const tune = mergeTune(lowSpec && detail === 'full' ? 'light' : detail);
   const zones = compileZones(dataset, terrain, problems, stats);
   if (!zones.length) {
     problems.push('flora: the manifest named no usable zone — nothing is planted');
@@ -659,16 +678,18 @@ function sunFromScene(group, uniforms, problems) {
   return true;
 }
 
-function mergeTune(lowSpec) {
+function mergeTune(level) {
   const t = {
     near: { ...TUNE.near }, mid: { ...TUNE.mid }, forb: { ...TUNE.forb },
     cap: { ...TUNE.cap }, step: { ...TUNE.step },
   };
-  if (!lowSpec) return t;
-  Object.assign(t.near, LOW.near);
-  Object.assign(t.mid, LOW.mid);
-  Object.assign(t.forb, LOW.forb);
-  Object.assign(t.cap, LOW.cap);
+  const preset = level === 'light' ? LOW : level === 'balanced' ? MID : null;
+  if (preset) {
+    Object.assign(t.near, preset.near);
+    Object.assign(t.mid, preset.mid);
+    Object.assign(t.forb, preset.forb);
+    Object.assign(t.cap, preset.cap);
+  }
   return t;
 }
 

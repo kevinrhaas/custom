@@ -33,7 +33,44 @@ import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
 
 const VERSION = '0.1.0';
-const BUDGET = { drawCalls: 80, triangles: 600000 };
+
+/**
+ * Scene detail: how much geometry the visitor asks for.
+ *
+ * 600 000 triangles used to be a single hard ceiling written into the release
+ * gate, and it had quietly become an architectural constraint — the reason a
+ * finished parcel of buildings could not be added was a number, not a machine.
+ * A ceiling is the wrong instrument for that. It is now a CHOICE with three
+ * settings, the gate holds each one to ITS OWN ceiling, and the town can grow
+ * into the top of the range while anyone on a slow machine steps down.
+ *
+ * `densityScale` scales the flora and tree CAPS only — the same species in the
+ * same places, fewer of them. It never changes where a plant may stand, which
+ * is evidence rather than performance. Buildings, terrain and the river do not
+ * scale at all: the reconstruction is not allowed to get less true because a
+ * machine is slow, so what gives way is the sward, which is the only layer whose
+ * count is a rendering decision rather than a claim.
+ */
+const DETAIL = {
+  full:     { triangles: 1000000 },
+  balanced: { triangles: 800000 },
+  light:    { triangles: 600000 },
+};
+const DETAIL_ORDER = ['full', 'balanced', 'light'];
+const BUDGET = { drawCalls: 80, triangles: DETAIL.full.triangles };
+
+/** The visitor's stored choice, read straight from the HUD's own settings blob so
+ *  the two cannot disagree about which level is selected. Returns '' when they
+ *  have never chosen, which is what lets the device guess stand. */
+function readDetailPreference() {
+  try {
+    const raw = window.localStorage.getItem('chicago4d.settings');
+    const level = raw ? JSON.parse(raw).detail : '';
+    return DETAIL[level] ? level : '';
+  } catch {
+    return '';
+  }
+}
 
 const params = new URLSearchParams(location.search);
 const YEAR = (params.get('year') || '1835').replace(/[^0-9a-z_-]/gi, '');
@@ -137,18 +174,63 @@ async function boot() {
   // gate onto a bare plane and grew a prairie a second later would be showing
   // the visitor a loading state and calling it 1835. Missing records degrade to
   // NOTHING planted plus a recorded problem — never to an invented community.
-  const flora = await createFlora({
+  // A phone starts at `light` and a desktop at `full`; the visitor's own choice,
+  // once made, outranks the guess and is what `hud.settings.detail` carries.
+  let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
+    : (coarse ? 'light' : 'full');
+  const detailOpts = () => ({ detail: detailLevel });
+  BUDGET.triangles = DETAIL[detailLevel].triangles;
+
+  let flora = await createFlora({
     dataBase: bases.dataBase, terrain, footprints,
     growthBlocked: streets.blocksGrowth,
-    confidence, problems, lowSpec: coarse,
+    confidence, problems, ...detailOpts(),
   });
   scene3d.add(flora.group);
-  const trees = await createTrees({
+  let trees = await createTrees({
     dataBase: bases.dataBase, terrain, footprints,
     growthBlocked: streets.blocksGrowth,
-    confidence, problems, lowSpec: coarse,
+    confidence, problems, ...detailOpts(),
   });
   scene3d.add(trees.group);
+
+  /**
+   * Rebuild the two layers that scale, in place. Both are planted from a FIXED
+   * seed, so the same setting always yields the same prairie — changing detail
+   * and changing back gives you the town you had, not a reshuffled one.
+   */
+  let detailPending = null;
+  async function applyDetail(level) {
+    if (!DETAIL[level] || level === detailLevel) return;
+    detailLevel = level;
+    BUDGET.triangles = DETAIL[level].triangles;
+    // Serialise: a visitor clicking through the options faster than the rebuild
+    // would otherwise interleave two plantings into one scene.
+    const run = (detailPending ?? Promise.resolve()).then(async () => {
+      scene3d.remove(flora.group);
+      flora.dispose?.();
+      flora = await createFlora({
+        dataBase: bases.dataBase, terrain, footprints,
+        growthBlocked: streets.blocksGrowth,
+        confidence, problems, ...detailOpts(),
+      });
+      scene3d.add(flora.group);
+
+      scene3d.remove(trees.group);
+      trees.dispose?.();
+      trees = await createTrees({
+        dataBase: bases.dataBase, terrain, footprints,
+        growthBlocked: streets.blocksGrowth,
+        confidence, problems, ...detailOpts(),
+      });
+      scene3d.add(trees.group);
+      api.flora = flora;
+      api.trees = trees;
+      confidence.set(confidence.enabled);
+    });
+    detailPending = run.catch(() => {});
+    return run;
+  }
 
   const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
   const navigation = createNavigation({
@@ -160,6 +242,7 @@ async function boot() {
     registry: loaded.registry,
     intersections: loaded.index?.intersections ?? [],
     isTouch: prefersTouch(),
+    resolvedDetail: detailLevel,
     onConfidence: (on) => confidence.set(on),
     onFly: (on) => { intent.flying = !!on; },
     onGoTo: (target) => goToTarget(target),
@@ -174,6 +257,8 @@ async function boot() {
         camera.updateProjectionMatrix();
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
+      } else if (key === 'detail') {
+        applyDetail(value);
       } else if (key === 'compass') {
         navigation.setCompassVisible(value);
       } else if (key === 'overviewMap') {
@@ -487,6 +572,10 @@ async function boot() {
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
     backends, streets, flora, trees, navigation,
+    detailLevels: DETAIL,
+    detailOrder: DETAIL_ORDER,
+    get detail() { return detailLevel; },
+    setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
