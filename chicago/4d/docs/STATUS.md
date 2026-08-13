@@ -6,7 +6,8 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 **Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
-complete. **K1 (inferred residents) complete through phase two.**
+complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot
+grid) complete through phase one.**
 
 **Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
 188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
@@ -198,6 +199,37 @@ one after at `0.03` (see K14).
 question and was silently wrong for "may a stem stand here". The release gate had a green
 check on the first question while the owner had a photograph of the second failing. Both
 checks are now present.
+
+## New 2026-08-13 — the platted grid exists, and it found seven buildings in the road
+
+**K7 phase one.** The block and lot grid is generated rather than traced:
+`tools/generate_plat_lots.py` offsets this project's committed street centrelines by half the
+platted corridor, intersects them, and divides the result into lots — 19 blocks, 152 lots,
+re-derived byte for byte by `tools/check.sh`. Tracing the 1834 sheets instead would have baked
+their 3.7–4.5 % paper stretch into every block face. The blocks are `inferred` because their
+inputs are; the lot lines and the alley position are `conjectural` and stay that way, because
+four lots to a face is a reading of ONE block (block 18 on the owner's Clark-reach crop). No lot
+and no block is numbered — this project has never read Thompson's numbering off a sheet.
+
+**The grid immediately paid for itself as a check.** Of 222 placed structures, 80 stand inside a
+generated block, 120 stand outside the 19 blocks it covers, and 22 stand inside a platted street
+corridor. Most of those 22 are within a metre or two of a corridor edge, which says nothing
+against a ±20 m georeference — but **seven sit 6.5 to 12.1 m in, which is the middle of the
+road**, and every one of them is a `conjectural` placement from the inferred-structure
+programme. The placement gate that put them there tests for overlap with other buildings, for
+water, and for modelled ground; it has never tested for the street. Nothing documented is in the
+road.
+
+**Nothing was moved in this slice, on purpose.** Repositioning generated structures re-derives
+the household ledger, so it belongs to the parcel that owns those files (ROADMAP K1 phase three)
+rather than to the slice that discovered the problem. The finding is recorded with the seven
+records named, in `docs/RESEARCH/thompson_plat_grid.md` § 7 and ROADMAP K7.
+
+**What the grid is honest about not being**: 19 blocks of the plat's 58, no North Division (its
+street control is what § S9 records as owed), no lot depth from any source — the depths are
+residuals of the block — and nothing rendered. `blk_south_water_market`, one of the most built-up
+blocks in the town, is refused outright because the street layer does not carry South Water west
+of E +100. That refusal is the street control owed, arriving from a different direction.
 
 ## Known weaknesses, stated plainly
 
