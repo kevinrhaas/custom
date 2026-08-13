@@ -74,7 +74,7 @@ this building by twenty months.
 | **South Water Street** | **BUILT 2026-08-11** — sixteen commercial records land the town's business street, which the model held none of: Peck's store, both newspaper offices, Harmon & Loomis, Madore Beaubien's log house, Bates's auction room, the Beaubien homestead, Dole's warehouse, both Carpenter shops, Frederick Thomas, the old bank building, Pruyne & Kimball, J. H. Kinzie, Jones, and Thomas Church on Lake. One footprint is evidence (Carpenter's 16 x 20 ft log shop — the dataset's SECOND real footprint); fifteen are invented inside the documented 55 ft South Water lot cap. **What this street knows is *who* and *where*, and almost never *how big*.** Two records carry `review_required` (the Beaubiens, whose history runs straight into the August 1835 removal and the reservation pre-emption) — which blocks the 1835 scene from `released` until consultation happens. Two unresolved reads are flagged on the records themselves: whether Harmon & Loomis's building IS the *Chicago Democrat*'s building (they sit 37 m apart and Andreas gives no side), and whether Philo Carpenter's Lake Street log shop still stood after he built on South Water in 1833 |
 | **Renderer** | **WALKABLE AND NAVIGABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup, live compass and a north-up overview derived from the loaded heightfield and structure footprints |
 | **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. A fourth persistent setting switches every visitor-facing navigation measurement between Imperial (the default: ft, mi, mph) and Metric (m, km, km/h) without changing the metric scene data. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m / 230 ft ahead. |
-| **Smoke** | **PASS 2026-08-13.** `tools/check.sh` (which now runs the changelog contract check as a step) and `node tools/smoke_renderer.mjs` both pass in the foreground: **327 assertions**, zero page errors, at both release viewports (390×780 and 1280×800). The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, asks the flora placer itself where each species may stand, and exercises both unit systems. Mobile: 61 draw calls / 287,857 triangles / 3 fps; desktop: 71 / 425,560 / 1 fps, both under the 80 / 600,000 release budgets. |
+| **Smoke** | **PASS 2026-08-13.** `tools/check.sh` (which now runs the changelog contract check as a step) and `node tools/smoke_renderer.mjs` both pass in the foreground: **359 assertions** (181 mobile + 178 desktop), zero page errors, at both release viewports (390×780 and 1280×800) — the two halves run as separate foreground commands, because a full pass now exceeds the ten minutes a single one gets here. Draw calls and triangles at the spawn station: **62 / 330,283** mobile and **65 / 332,455** desktop, both inside the 80 / 1,000,000 budget for Full detail; the horizon band is 562 triangles at both. The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, asks the flora placer itself where each species may stand, and exercises both unit systems. Mobile: 61 draw calls / 287,857 triangles / 3 fps; desktop: 71 / 425,560 / 1 fps, both under the 80 / 600,000 release budgets. |
 | **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). **Since 2026-08-13 each community is planted at its own recorded `cover.matrix_fraction`** — a field the records carried, the validator gated and the renderer had never asked for — and each is split by the published `substrate` of its species, so a floating-leaved aquatic is planted over water and never on the bank it was standing on. |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on* reads graded claims off `terrain_spec.json`, derived per scene by `compile_scene.py` and re-derived by `check.sh`; the same slice added reasoning and geometry-state checks so those rows are no longer silent promises. |
 | **What a source is, in the app** | **done** (2026-08-11) — citations now carry the document a modern page reprints (`transcribes`) or the reading that it reprints none, plus each source's own `what_it_supplies` / `what_it_does_not_supply`, so the ladder a visitor sees includes the reason it is the ladder. |
@@ -194,6 +194,53 @@ project runs on a commit somebody wrote. Nothing ran on the commit git wrote.
   repository's CI is outside `chicago/4d` and outside this lane's scope. A human merge on GitHub
   can still publish a union-corrupted changelog. The narrow version of that hazard is now loud
   the moment anyone runs the gate; the general version is recorded in ROADMAP § K12.
+
+## Fixed 2026-08-13 — the horizon timber was being deleted by its own texture
+
+**S6a item 5, both mechanisms the item names.** The far-timber band draws the dossier's bodies
+of woods at three, four and six miles as a silhouette on a ring, broken up crown by crown with
+sky opened through the stand — `k` runs down to about 0.02 in a gap. At four hundred metres,
+where the band is forty pixels tall, that is texture. On a six-mile body whose entire silhouette
+is one or two pixels it is a **deletion**, and the band was carrying both failures at once.
+
+- **Measured at the spawn station, with the pixel floor removed and then in place.** 281 of 900
+  bearings carry a timber body. Without the floor the modulation drew **251 of 280** resolvable
+  bearings at a pixel or more on the phone and **267 of 281** on the desktop — worst silhouette
+  **0.18 px** and **0.31 px**, geometry solved and written into the buffer and too thin to land
+  anywhere. With it: **280/280 and 281/281**, worst **1.00 px**. The band's triangle count is
+  **562, unchanged** — the floor moves vertices and never their number.
+- **The floor is on the RESULT, not a cap on `k`**, so it binds only where pixels are scarce: a
+  400 m treeline is 40 px tall and keeps its gaps to the last per cent. Where a body's raw
+  silhouette is itself sub-pixel the modulation is suppressed outright, because a texture that
+  cannot be drawn can only subtract.
+- **The band is therefore now solved against the live viewport.** `main.js` passes
+  `pixelsPerRadian` off the renderer size and the camera's own field — 475 px/rad on a phone at
+  its 94° clamp against 833 px/rad on a desktop at 55°, a factor of 1.75 the old fixed field got
+  wrong in the direction that over-cuts a phone. A viewport change re-solves the band exactly as
+  walking does.
+- **The colour was one line of arithmetic answering a question the renderer never asks.**
+  `hazeDisplayLinear()` ran the haze colour through ACES to reach the band's display value. The
+  band is `toneMapped: false, fog: false` — its fragment is `opaque → colorspace`, so a linear
+  vertex colour displays as the hex it decodes from — while the fogged ground is
+  `opaque → tonemapping → colorspace → fog` with `fogColor` uploaded in the OUTPUT colour space,
+  converging on that same literal hex. One decode each. The tone curve was applied to one end
+  and to nothing it had to match: **16 red and 12 green** off the ground it touches, 69 in blue
+  at `prairie_west`. Both ends report **#88a3c0** now. And the old value was **L 170 against a
+  horizon sky of L 162** — a band *paler* than its own sky, which is what a distant treeline
+  never is; it is L 159 now, three below.
+- **The gate is every resolvable bearing, not a percentage.** A 90 % bar would have passed the
+  desktop half of the defect (267/281 is 95 %). Three new assertions at both viewports: the band
+  and `scene.fog.color` are one colour, no resolvable bearing is drawn under the floor, and the
+  band was solved against THIS viewport — a floor measured in pixels is meaningless against a
+  hard-coded field. Verified they bite by removing the floor: both viewports fail, with the
+  counts and the worst pixel named.
+- **What this does NOT claim.** The finding behind item 5 is photographic — *31 % of horizon
+  columns carry any timber, 3.6 % across the central two-thirds* — and it was taken with a shot
+  harness that is not in the release gate. **It has not been re-measured**, so no column figure
+  is quoted here. What is measured is that the geometry it was measuring is no longer being
+  thrown away, and that the band is darker than its sky rather than paler. `docs/LIBERTIES.md`
+  L35 is revised in both directions; the 0.82 haze cap it exists to confess is untouched, and
+  the distance compression it buys is unchanged.
 
 ## Fixed 2026-08-13 — the sward ended on a straight line, and the line was arithmetic
 

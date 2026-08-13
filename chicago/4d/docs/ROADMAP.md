@@ -1307,6 +1307,42 @@ in the **mid** field.
    `hazeDisplayLinear()`'s ACES step so the band stops being aimed 16 R / 12 G past the ground
    it touches, and suppress the crown/gap modulation `k` whenever a crown subtends under ~2 px,
    where it deletes the silhouette rather than texturing it.
+   **BOTH MECHANISMS DONE 2026-08-13. The photographic column count is NOT re-measured, and
+   that half of the item stays open** — the shot harness the 31 % came from is not in the gate,
+   and quoting a number this slice did not measure would be exactly the failure § S6a was
+   reordered to stop.
+   - **The colour is one line and it was arithmetic answering the wrong question.**
+     `hazeDisplayLinear()` ran `HORIZON_HAZE` through ACES to reach the band's display colour.
+     The band is `toneMapped: false, fog: false`, so its fragment goes `opaque → colorspace`
+     and a linear vertex colour displays as the hex it decodes from; the fogged ground goes
+     `opaque → tonemapping → colorspace → fog` with `fogColor` uploaded in the OUTPUT colour
+     space, so it converges on that same literal hex. One decode each. The tone curve was
+     applied to one end and to nothing it had to match, which is the 16 R / 12 G — and the 69
+     in blue at `prairie_west` — of L35. Both ends now report **#88a3c0** and the gate compares
+     the band's own hazed end against `scene.fog.color` rather than against a hex in either
+     file. A second consequence, unstated in the item: the band's far end was displaying at
+     **L 170 against a horizon sky of L 162** — a *pale* band, brighter than the sky behind it,
+     which is the one thing a treeline never is. It is L 159 now, three below its sky.
+   - **The modulation is floored in PIXELS, which is why the band is now solved against the
+     viewport.** `MIN_SILHOUETTE_PX = 1.0`: the crown/gap term may cut a bearing to one pixel
+     and no further, and where the raw crown is itself sub-pixel it is suppressed outright
+     (`kFloor` reaches 1). A floor on the RESULT rather than a cap on `k` binds only where
+     pixels are scarce — a 400 m treeline is 40 px tall and keeps its gaps to the last per
+     cent. `main.js` passes `pixelsPerRadian` from the live renderer size and camera field, so
+     a phone (475 px/rad at its 94° clamp) and a desktop (833 px/rad at 55°) get their own
+     answer instead of one hard-coded field; a viewport change re-solves the band exactly as
+     walking does.
+   - **Measured at the spawn station, with the floor removed and then in place.** 281 of 900
+     bearings carry a body. Without the floor the modulation drew **251 of 280** resolvable
+     bearings at a pixel or more on the phone and **267 of 281** on the desktop, worst
+     silhouette **0.18 px** and **0.31 px**. With it, **280/280 and 281/281**, worst
+     **1.00 px**, and the horizon band's triangle count is unchanged at 562 — the floor moves
+     vertices, never their number.
+   - **The gate is every resolvable bearing, not a percentage**, because 90 % would have passed
+     the desktop half of the defect (267/281 is 95 %). It carries both anti-vacuity guards — a
+     solver that stopped putting timber up would otherwise report a perfect fraction of nothing
+     — and a third assertion that the band was solved against THIS viewport, since a floor
+     measured in pixels is meaningless against a hard-coded field.
 6. **Close the near field with rooted geometry.** Detail-free area (5×5 luminance sigma <
    2/255, below-horizon, resampled to 1280 wide) was **13.7 %** in the nearest quarter against
    references at 0.3–1.5 %; re-measure it after the one-surface correction. Add a **broad-leaf**

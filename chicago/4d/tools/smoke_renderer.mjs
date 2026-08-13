@@ -24,6 +24,9 @@
  *   walk moves the camera ....... input intent reaches the walker
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
+ *   the horizon reads as timber . the band meets the fogged ground in one colour,
+ *                                 and the crown modulation never cuts a silhouette
+ *                                 below the pixel it needs to be seen at all
  *   navigation aids ............. compass, moving overview marker, settings toggles
  *   complete jump search ........ every viewpoint, verified junction and loaded
  *                                 structure, in one Go to tab, each structure
@@ -1274,6 +1277,68 @@ for (const [label, viewport, touch] of [
       `${streetLayer.drownedTreeStations} of ${streetLayer.treeStations} stations below `
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
+
+    // The horizon timber, in the two ways it was failing to read as timber.
+    //
+    // (1) COLOUR. The band opts out of the scene fog and out of tone mapping,
+    // so it has to be authored where the fogged ground lands — and it was aimed
+    // 16 red and 12 green past it, because `trees.js` ran the haze colour
+    // through ACES to derive a value the renderer never asks for. This compares
+    // the band's own hazed end against `scene.fog.color` rather than against a
+    // hex written down in either file, so retargeting the atmosphere cannot
+    // silently reopen the break.
+    //
+    // (2) CONTINUITY. The crown/gap modulation cuts a bearing to as little as
+    // 2 % of its height to open sky through a stand. At four hundred metres
+    // that is texture; on the dossier's three- to six-mile bodies, whose whole
+    // silhouette is one or two pixels, it is a deletion — only 31 % of horizon
+    // columns carried any timber at all. The solver now floors the result at a
+    // pixel and this asks IT what the modulation did, in its own bins, rather
+    // than re-deriving the noise or hunting the band in a screenshot.
+    const horizon = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const c = a.trees.horizonContinuity();
+      return {
+        ...c,
+        bandHaze: a.trees.hazeTargetHex(),
+        fogHex: a.scene3d.fog?.color?.getHex('srgb') ?? null,
+        bodies: a.trees.stats.horizonBodies,
+        // The live field, so the check below compares the band against the
+        // renderer's own viewport rather than against a second copy of main.js's
+        // Hor+ arithmetic living in the gate.
+        liveHeightCss: a.renderer.domElement.clientHeight,
+        liveFovDeg: a.camera.fov,
+      };
+    });
+    const expectedPxPerRad = horizon.liveHeightCss / (horizon.liveFovDeg * Math.PI / 180);
+    check(`${label}: the horizon band and the fogged ground converge on one colour`,
+      horizon.fogHex !== null && horizon.bandHaze === horizon.fogHex,
+      `band haze #${horizon.bandHaze?.toString(16)} against fog #${horizon.fogHex?.toString(16)}`);
+    // Anti-vacuity twice over: bodies must be on the horizon at all, and the
+    // resolvable count must be a real share of the covered bearings — a solver
+    // that silently stopped putting timber up would otherwise report a perfect
+    // fraction of nothing.
+    //
+    // The bar is EVERY resolvable bearing, not a percentage. Measured with the
+    // floor removed at the spawn station it fails at both viewports — 251 of
+    // 280 mobile and 267 of 281 desktop, worst silhouette 0.18 px and 0.31 px —
+    // so a 90 % bar would have passed the desktop half of the defect. A gate
+    // whose bar is set below the failure it exists to catch is not a gate.
+    check(`${label}: the crown modulation never deletes a resolvable silhouette`,
+      horizon.bodies >= 4 && horizon.covered > 100 && horizon.resolvable > 100
+      && horizon.drawn === horizon.resolvable
+      && horizon.worstResolvablePx >= horizon.minSilhouettePx - 1e-3,
+      `${horizon.drawn}/${horizon.resolvable} drawn of ${horizon.covered} covered bearings `
+      + `(${(horizon.fraction * 100).toFixed(1)} %), worst `
+      + `${horizon.worstResolvablePx?.toFixed?.(2)} px against a floor of `
+      + `${horizon.minSilhouettePx} px, at ${horizon.pxPerRad?.toFixed?.(0)} px/rad`);
+    // The floor is measured in pixels, so it has to be solved against the
+    // viewport the visitor has. A band solved against a hard-coded desktop
+    // field would over-cut a phone by 1.75x and this is what says so.
+    check(`${label}: the band is solved against this viewport, not a default one`,
+      Math.abs(horizon.pxPerRad - expectedPxPerRad) < expectedPxPerRad * 0.02,
+      `${horizon.pxPerRad?.toFixed?.(1)} px/rad against ${expectedPxPerRad.toFixed(1)} live `
+      + `(${horizon.liveHeightCss} css px over ${horizon.liveFovDeg?.toFixed?.(1)}°)`);
 
     // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
     // exactly like the cattails, so the placer — which read the role — stood them

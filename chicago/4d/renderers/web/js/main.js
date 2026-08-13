@@ -179,6 +179,19 @@ async function boot() {
   let detailLevel = DETAIL[readDetailPreference()] ? readDetailPreference()
     : (coarse ? 'light' : 'full');
   const detailOpts = () => ({ detail: detailLevel });
+  /**
+   * Vertical pixels per radian of field, for the horizon band — the one layer
+   * whose correctness is measured in pixels, because it draws an angular
+   * silhouette and a crown that subtends less than one cannot be textured, only
+   * deleted. In CSS pixels, which is what the release viewports (390×780 and
+   * 1280×800) are stated in; the device ratio would make the same frame answer
+   * differently on a phone for no reason the eye can see.
+   */
+  const _size = new THREE.Vector2();
+  const pixelsPerRadian = () => {
+    renderer.getSize(_size);
+    return _size.y / (camera.fov * Math.PI / 180);
+  };
   BUDGET.triangles = DETAIL[detailLevel].triangles;
 
   let flora = await createFlora({
@@ -190,7 +203,7 @@ async function boot() {
   let trees = await createTrees({
     dataBase: bases.dataBase, terrain, footprints,
     growthBlocked: streets.blocksGrowth,
-    confidence, problems, ...detailOpts(),
+    confidence, problems, pixelsPerRadian, ...detailOpts(),
   });
   scene3d.add(trees.group);
 
@@ -221,7 +234,7 @@ async function boot() {
       trees = await createTrees({
         dataBase: bases.dataBase, terrain, footprints,
         growthBlocked: streets.blocksGrowth,
-        confidence, problems, ...detailOpts(),
+        confidence, problems, pixelsPerRadian, ...detailOpts(),
       });
       scene3d.add(trees.group);
       api.flora = flora;
