@@ -150,6 +150,49 @@ Structure positions still carry `symbolic_location` with null coordinates — th
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
 
+## Fixed 2026-08-13 — the changelog was broken BY A MERGE, and both parents were green
+
+**`renderers/web/js/changelog.js` did not parse on `main`, and neither did its published
+mirror.** The What's-new tab imports it, so the tab was dead on the deployed site; Manager and
+the polecat.live launcher parse the mirror, so this project reported no releases at all. 64
+entries, back to the first building, were in the file and reaching nobody.
+
+**Exactly one `] },` was missing** — the terminator of v64 *"Twenty-three buildings were standing
+in the street"*. Every entry below it was nested inside that entry's `items` array, which is why
+node reported the syntax error at line 565, the end of the file, 540 lines from the damage. A
+second entry rode along with a duplicate `v: 64`: two branches finished 33 minutes apart, each
+stamped its entry on its own branch, and neither knew the number was taken.
+
+**The mechanism is the part worth keeping, because no existing gate could have caught it.**
+`.gitattributes` merges this file with `merge=union` — a deliberate, documented choice, because
+two branches each prepending an entry collide every time and union keeps both instead of
+conflicting. But the union driver runs DURING THE MERGE. Merge `65c8de1` has two parents,
+`cbe494c` and `60a78d0`; **both parse, and the merge of them does not.** Every gate in this
+project runs on a commit somebody wrote. Nothing ran on the commit git wrote.
+
+- **The repair.** The terminator is restored. The duplicated entry is now **v67** and sits at the
+  top, where its own `ts` (12:26 UTC, the newest in the file) says it belongs. No entry anyone has
+  read was renumbered — while the file was broken, no entry was readable at all.
+- **`tools/check.sh` now runs the changelog contract**, as a step like any other. AGENTS.md has
+  always instructed an agent to run `check-changelog.mjs` by hand before merging; a hand-run check
+  is exactly the thing a merge-time corruption evades, and the file that gates every commit did
+  not gate this one. The generic *renderer modules parse* step did catch it — as `parse error:
+  renderers/web/js/changelog.js`, which names a file and not a defect.
+- **The contract check reads the literal's SHAPE as text before executing it**, because executing
+  it is the weaker test in two ways. A swallowed entry is still a valid object literal, so it need
+  not raise a syntax error at all — it can simply vanish from the array with the file loading
+  cleanly. And Manager and the launcher never execute this file; they walk it bracket-aware, so
+  the shape IS the contract. Every entry must open at bracket depth 1; one that opens deeper got
+  swallowed, and the entry above it is the one that lost its terminator. Verified against the real
+  corrupted file from `main`: *"line 25: entry v64 opens at bracket depth 3, not 1 — it is nested
+  inside entry v64 (line 18), which is missing its `] },`"*. The header count from the text walk
+  is also compared against `CHANGELOG.length`, which is what catches the silent half.
+- **What this still does not cover.** The check now runs before every commit and before every
+  merge an agent performs, but nothing in this subtree runs on a merge commit itself — the
+  repository's CI is outside `chicago/4d` and outside this lane's scope. A human merge on GitHub
+  can still publish a union-corrupted changelog. The narrow version of that hazard is now loud
+  the moment anyone runs the gate; the general version is recorded in ROADMAP § K12.
+
 ## Fixed 2026-08-13 — a fade function that was producing a step
 
 **The transition the owner asked for had been there all along, sampled once per stride.**

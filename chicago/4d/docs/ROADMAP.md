@@ -314,6 +314,26 @@ SAME RUN — the overnight push of 2026-08-11 landed ~50 buildings with no chang
 the owner noticed before we did. Publish (`tools/publish.sh`) and merge to main so the deploy
 actually ships; main is the only branch Pages publishes.
 
+**2026-08-13 — the changelog was corrupted by a MERGE, and the gate now runs in `check.sh`.**
+`main` carried a `renderers/web/js/changelog.js` that did not parse, and had done since merge
+`65c8de1`. One missing `] },` swallowed 64 entries into one; a duplicate `v: 64` rode along. The
+What's-new tab was dead on the live site and this project reported no releases to Manager or the
+launcher. **Both parents of that merge parse; the merge does not** — `.gitattributes` merges this
+file `merge=union`, and the union driver runs during the merge, so a green PR can still produce a
+red `main`. Repaired, and `tools/check.sh` now runs `tools/check-changelog.mjs` as a step
+(previously a hand-run instruction in AGENTS.md, which is precisely what a merge-time corruption
+evades). The contract check now reads the literal's shape as TEXT before executing it, and names
+the entry that lost its terminator and the entry that got swallowed. Detail in STATUS.
+
+**What is still open, and it is not this parcel's to fix.** Nothing runs on a merge commit
+itself. The repository's CI lives outside `chicago/4d` and outside this lane's scope, so a merge
+performed on GitHub can still publish a union-corrupted changelog with no gate between it and
+Pages. Two candidate fixes, both needing a decision rather than a slice: run the subtree's gate
+from the repo's own workflow on pushes to `main`, or replace `merge=union` on this path with a
+merge driver that understands the literal. **The standing instruction until then: any agent that
+performs a merge affecting `changelog.js` re-runs `tools/check-changelog.mjs` AFTER the merge,
+not only before it.**
+
 
 ### K13 — The La Salle Street re-entrant, and the other Main Branch sloughs
 Wright draws a narrow watercourse dropping south off the main stem between plat blocks 19 and

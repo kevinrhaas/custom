@@ -91,6 +91,14 @@ check_js() {
 }
 step "renderer modules parse" check_js
 
+# The changelog contract, on every run rather than only when somebody remembers
+# it. AGENTS.md has always told an agent to run this by hand before merging, and
+# on 2026-08-13 the file was corrupted BY A MERGE — `.gitattributes` merges it
+# with `merge=union`, so both parents were green and the union of them was not.
+# A hand-run check cannot cover a file that a merge rewrites; this one can.
+step "changelog contract" \
+  node tools/check-changelog.mjs
+
 # Every JSON in data/ must be loadable — a stray comma here breaks the whole build
 # in a place far from the edit that caused it.
 check_json() {
