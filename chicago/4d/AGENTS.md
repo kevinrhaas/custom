@@ -99,6 +99,11 @@ is the authority and this section is the local restatement.
     "top + 1" both get it wrong, and the second to merge ships a duplicate — that cost
     three manual renumbers on 2026-08-10 alone. The stamper assigns it after the merge;
     `.gitattributes` (`merge=union`) keeps the merge itself conflict-free.
+  - **Re-run `check-changelog.mjs` AFTER any merge that touches this file, not only before.**
+    `merge=union` runs during the merge, so both parents can be green and the result broken —
+    that is exactly how `main` shipped an unparseable changelog on 2026-08-13, killing the
+    What's-new tab and this project's release feed to Manager and the launcher. `tools/check.sh`
+    now runs the contract check as a step, so a plain `./tools/check.sh` after merging covers it.
   - Nothing stamps after merge. The file is authored inside the app because the
     What's-new tab imports it; `publish.sh` mirrors it to
     `site/chicago/4d/js/changelog.js`, the URL Manager and the polecat.live launcher
