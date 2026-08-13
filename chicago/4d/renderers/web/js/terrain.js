@@ -60,6 +60,24 @@ const SHORE_Y = -0.10;
  *  step-up rule refuses it from any bank in the dataset. */
 const WATER_BARRIER_Y = 4.0;
 
+/** How finely the ground is cut for frustum culling — a trade between triangles
+ *  saved and draw calls spent, both of which main.js budgets (600 000 and 80).
+ *  Measured end to end through the smoke at 1280×800, against 58 draw calls and
+ *  550 513 triangles untiled:
+ *
+ *      8 × 4   71 calls   488 405 tris
+ *     12 × 3   71 calls   461 112 tris   <- here
+ *     12 × 6   79 calls   434 516 tris
+ *
+ *  12 × 3 is strictly better than 8 × 4: the same draw calls for 27 000 fewer
+ *  triangles. 12 × 6 buys another 26 000 and costs eight more calls, which would
+ *  leave ONE of headroom — a gate that fails on the next building batch is not
+ *  headroom. Columns outnumber rows 4:1 rather than the 2.5:1 the box's own
+ *  2 km × 800 m shape suggests because culling here is mostly by BEARING: a walker
+ *  looks along the box, so cuts across the long axis are the ones that pay. */
+const GROUND_TILE_COLS = 12;
+const GROUND_TILE_ROWS = 3;
+
 /** local ENU metres -> three world position. */
 export function enuToWorld(e, n, y = 0, target = new THREE.Vector3()) {
   return target.set(e, y, -n);
@@ -245,11 +263,26 @@ export async function createTerrain({
   ground.material = groundMat;
   ground.receiveShadow = true;
   ground.castShadow = false;
-  // The ground is the biggest thing in the scene and it is always around the
-  // camera; frustum culling it can only ever throw it away by mistake.
-  ground.frustumCulled = false;
-  group.add(ground);
-  disposables.push(ground.geometry);
+  // The ground was `frustumCulled = false` because one mesh wrapped around the
+  // camera always intersects the frustum, so testing it could only ever cost time
+  // or throw the floor away by mistake. True of one mesh; not true of the ground.
+  // Cut it into tiles and the half of the world behind you stops being drawn —
+  // see tileGround() for the measurements behind the grid below.
+  const tiles = tileGround(ground, GROUND_TILE_COLS, GROUND_TILE_ROWS);
+  if (tiles) {
+    for (const tile of tiles) {
+      group.add(tile);
+      disposables.push(tile.geometry);
+    }
+    // The source mesh is never added to the scene, so nothing else will dispose it.
+    ground.geometry.dispose();
+    ground = tiles[0];
+  } else {
+    // A ground too coarse to tile is small enough not to need it.
+    ground.frustumCulled = false;
+    group.add(ground);
+    disposables.push(ground.geometry);
+  }
 
   // ---- the water --------------------------------------------------------- //
 
@@ -341,6 +374,86 @@ async function fetchOk(url) {
   const res = await fetch(url, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
   return res;
+}
+
+/**
+ * Cut the ground into a grid of tiles so frustum culling has something to bite on.
+ *
+ * The ground arrives as ONE mesh spanning the whole 2 km × 800 m box, and a single
+ * mesh that surrounds the camera always intersects the frustum — so culling it can
+ * never help, which is exactly why it was switched off. That was the correct
+ * conclusion from a false premise: the premise is that the ground has to be one
+ * mesh. Cut into tiles, each tile gets its own bounding sphere, and the ones behind
+ * you stop being drawn.
+ *
+ * Measured on the committed 247,527-triangle ground, standing on South Water and
+ * looking south: 4×2 culls 29 % of it, 6×3 and 8×4 both cull 54 %, 12×6 culls 79 %.
+ * Looking straight down from the `from_above` anchor — where culling helps least and
+ * costs most, because nearly everything is on screen — 12×6 still culls 54 % and
+ * leaves 26 tiles visible. Tiles are cheap draw calls (one shared material, no state
+ * change between them) but they are NOT free, and `main.js` budgets 80. The grid
+ * finally chosen is at GROUND_TILE_COLS, with the end-to-end numbers beside it;
+ * the per-tile percentages here are what made it worth trying at all.
+ *
+ * The split is by triangle CENTROID, so no triangle is duplicated and no seam is
+ * introduced: every triangle lands in exactly one tile and the surface is the same
+ * surface. Every attribute travels with it — `_confidence` included, which the
+ * confidence view reads, and which a naive position-only split would silently drop.
+ */
+function tileGround(mesh, cols, rows) {
+  const geo = mesh.geometry;
+  const pos = geo.attributes.position;
+  if (!pos) return null;
+  const index = geo.index ? geo.index.array : null;
+  const triCount = index ? index.length / 3 : pos.count / 3;
+  if (triCount < cols * rows * 4) return null;   // too coarse to be worth splitting
+
+  geo.computeBoundingBox();
+  const bb = geo.boundingBox;
+  const spanX = (bb.max.x - bb.min.x) / cols;
+  const spanZ = (bb.max.z - bb.min.z) / rows;
+  if (!(spanX > 0) || !(spanZ > 0)) return null;
+
+  const px = pos.array;
+  const buckets = new Map();
+  for (let t = 0; t < triCount; t++) {
+    const a = index ? index[t * 3] : t * 3;
+    const b = index ? index[t * 3 + 1] : t * 3 + 1;
+    const c = index ? index[t * 3 + 2] : t * 3 + 2;
+    const cx = (px[a * 3] + px[b * 3] + px[c * 3]) / 3;
+    const cz = (px[a * 3 + 2] + px[b * 3 + 2] + px[c * 3 + 2]) / 3;
+    const col = Math.min(cols - 1, Math.max(0, Math.floor((cx - bb.min.x) / spanX)));
+    const row = Math.min(rows - 1, Math.max(0, Math.floor((cz - bb.min.z) / spanZ)));
+    const key = row * cols + col;
+    let bucket = buckets.get(key);
+    if (!bucket) { bucket = []; buckets.set(key, bucket); }
+    bucket.push(a, b, c);
+  }
+  if (buckets.size < 2) return null;
+
+  const names = Object.keys(geo.attributes);
+  const tiles = [];
+  for (const [key, verts] of [...buckets.entries()].sort((x, y) => x[0] - y[0])) {
+    const tileGeo = new THREE.BufferGeometry();
+    for (const name of names) {
+      const src = geo.attributes[name];
+      const size = src.itemSize;
+      const out = new Float32Array(verts.length * size);
+      for (let i = 0; i < verts.length; i++) {
+        const v = verts[i];
+        for (let k = 0; k < size; k++) out[i * size + k] = src.array[v * size + k];
+      }
+      tileGeo.setAttribute(name, new THREE.BufferAttribute(out, size));
+    }
+    tileGeo.computeBoundingSphere();
+    const tile = new THREE.Mesh(tileGeo, mesh.material);
+    tile.name = `${mesh.name || 'terrain'}__t${key}`;
+    tile.receiveShadow = mesh.receiveShadow;
+    tile.castShadow = mesh.castShadow;
+    tile.frustumCulled = true;
+    tiles.push(tile);
+  }
+  return tiles;
 }
 
 /** Load a GLB and hand back its first mesh, detached from the loaded scene. */
