@@ -58,7 +58,7 @@
     <p class="gate-keys gate-touch">
       Left thumb to walk · drag the right side to look · tap a building to inspect
     </p>
-    <p class="gate-build" id="gate-build">build 58dd345 · Aug 13, 2026, 3:51 PM CT</p>
+    <p class="gate-build" id="gate-build">build 0c121c6 · Aug 13, 2026, 4:44 PM CT</p>
   </div>
 </div>
 <div id="hud" class="hud" hidden>
@@ -187,6 +187,16 @@
         </select></label>
       <label class="field"><span>Walking speed <b id="v-speed"></b></span>
         <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
+      <!-- Eye height is a CLAIM about 1835, so the default is the researched
+           figure and the slider says where that figure sits. Raising it is a
+           comfort choice about the view, not a correction. -->
+      <label class="field"><span>Eye height <b id="v-eye"></b></span>
+        <input type="range" id="s-eye" min="1.4" max="2.6" step="0.02"></label>
+      <p class="legend-note" id="eye-note">The default, 1.68 m, is the mean stature of an adult
+        man in the 1830s United States — this walkthrough puts your eye where a person of the
+        period had theirs, which is lower than a modern viewer expects and lower than the
+        prairie grass beside you, because both of those are true of the place. Raise it if the
+        view is uncomfortable; it changes only the camera, never the town.</p>
       <label class="field"><span>Field of view <b id="v-fov"></b></span>
         <input type="range" id="s-fov" min="55" max="100" step="1"></label>
       <label class="field row"><span>Scene detail</span>

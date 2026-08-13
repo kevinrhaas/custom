@@ -285,6 +285,12 @@ async function boot() {
         // a fixed run speed, so the two stay in proportion at any setting.
         WALK.speed = value;
         WALK.sprintSpeed = value * 2.28;
+      } else if (key === 'eyeHeight') {
+        // Applied to the standing eye immediately, not on the next step: a
+        // slider you have to walk away from before it does anything reads as
+        // broken, and this one exists because the default view felt too low.
+        WALK.eyeHeight = value;
+        walker.resettle();
       } else if (key === 'fov') {
         camera.fov = value;
         camera.updateProjectionMatrix();
@@ -358,6 +364,7 @@ async function boot() {
   // visibly snaps a moment after load.
   WALK.speed = hud.settings.speed;
   WALK.sprintSpeed = hud.settings.speed * 2.28;
+  WALK.eyeHeight = hud.settings.eyeHeight;
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));

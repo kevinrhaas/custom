@@ -1912,6 +1912,65 @@ for (const [label, viewport, touch] of [
       && unitChoice.mile === '1.0 mi' && unitChoice.kilometre === '1.0 km'
       && unitChoice.stored === 'imperial',
       JSON.stringify(unitChoice));
+
+    // --- eye height ---------------------------------------------------------
+    //
+    // The default is a claim about 1835 — the mean stature of an adult man of
+    // the period — and a visitor found it uncomfortably low, which it is: the
+    // prairie grass beside you is genuinely taller. So it is adjustable, and
+    // three things have to hold. The default must still be the researched
+    // figure, so the setting does not quietly become a restatement of it. The
+    // eye must move the moment the slider does, or the control reads as dead.
+    // And free-fly must NOT be resettled — up there the eye height is an
+    // altitude the visitor is flying, and dropping them to standing height mid
+    // flight would be the setting reaching somewhere it has no business.
+    await page.click('.panel-tab[data-tab="settings"]');
+    const eye = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const el = document.getElementById('s-eye');
+      const above = () => +(api.walker.state.eyeY - api.walker.state.groundY).toFixed(3);
+      const move = async (v) => {
+        el.value = String(v);
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        await new Promise((r) => setTimeout(r, 60));
+        return above();
+      };
+      api.setFly(false);
+      const dflt = above();
+      const readoutAtDefault = document.getElementById('v-eye')?.textContent ?? '';
+      const raised = await move(2.2);
+      const lowered = await move(1.5);
+      await move(1.68);
+      // Now in the air, where it must not apply.
+      api.setFly(true);
+      api.walker.teleport({ local_e: 60, local_n: -160, yaw_deg: 0, altitude_m: 200, pitch_deg: -60 });
+      await new Promise((r) => setTimeout(r, 120));
+      const flyingBefore = above();
+      const flyingAfter = await move(1.5);
+      api.setFly(false);
+      await move(1.68);
+      return { dflt, readoutAtDefault, raised, lowered, flyingBefore, flyingAfter,
+        min: Number(el.min), max: Number(el.max),
+        stored: JSON.parse(localStorage.getItem('chicago4d.settings') || '{}').eyeHeight };
+    });
+    check(`${label}: eye height starts at the researched period figure`,
+      Math.abs(eye.dflt - 1.68) < 0.005 && /period eye level/.test(eye.readoutAtDefault),
+      `${eye.dflt} m, readout "${eye.readoutAtDefault}"`);
+    check(`${label}: the eye height readout is a stature, not rounded to whole feet`,
+      /\d+ ft \d+ in/.test(eye.readoutAtDefault),
+      // '6 ft' for 1.68 m is wrong by half a foot AND unchanging across a third
+      // of the slider, which is what made the control look broken.
+      `readout "${eye.readoutAtDefault}"`);
+    check(`${label}: moving the eye height slider moves the eye immediately`,
+      Math.abs(eye.raised - 2.2) < 0.005 && Math.abs(eye.lowered - 1.5) < 0.005,
+      `raised to ${eye.raised} m, lowered to ${eye.lowered} m`);
+    check(`${label}: eye height does not yank the camera down mid-flight`,
+      Math.abs(eye.flyingAfter - eye.flyingBefore) < 1,
+      `${eye.flyingBefore} m up before, ${eye.flyingAfter} m after`);
+    check(`${label}: the eye height range covers short to tall without absurdity`,
+      eye.min <= 1.5 && eye.max >= 2.0 && eye.max <= 3.0,
+      `${eye.min}–${eye.max} m`);
+
     // --- the Go to tab ------------------------------------------------------
     //
     // Going somewhere is not a setting, and it used to be two settings: a

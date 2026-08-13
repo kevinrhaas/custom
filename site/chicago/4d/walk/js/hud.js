@@ -10,7 +10,7 @@
  */
 
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
-import { formatHeight, formatSpeed, normalUnitSystem } from './units.js';
+import { formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
@@ -18,7 +18,10 @@ const SET_KEY = 'chicago4d.settings';
 const CONTROL_HELP_KEY = 'chicago4d.controlHelpDismissed';
 
 const DEFAULT_SETTINGS = {
-  speed: 1.45, fov: 72, quality: 1.5,
+  // eyeHeight defaults to WALK.eyeHeight — the researched figure, not a taste.
+  // It lives here so a visitor can raise it for comfort without the project
+  // quietly restating the average height of an 1830s adult as something else.
+  speed: 1.45, eyeHeight: 1.68, fov: 72, quality: 1.5,
   compass: true, overviewMap: true, streetNames: true, units: 'imperial',
   // '' = never chosen, so main.js's device guess stands (phone light, desktop full).
   detail: '',
@@ -253,6 +256,10 @@ export function createHud({
   }
   const paintSpeed = wireRange('s-speed', 'v-speed', 'speed',
     (v) => formatSpeed(v, settings.units));
+  // The readout names the researched default rather than only the number, so
+  // moving off it is a visible choice instead of a silent drift.
+  const paintEye = wireRange('s-eye', 'v-eye', 'eyeHeight',
+    (v) => `${formatStature(v, settings.units)}${Math.abs(v - 1.68) < 0.01 ? ' — period eye level' : ''}`);
   wireRange('s-fov', 'v-fov', 'fov', (v) => `${Math.round(v)}°`);
 
   const units = $('s-units');
@@ -262,6 +269,7 @@ export function createHud({
       settings.units = normalUnitSystem(units.value);
       units.value = settings.units;
       paintSpeed?.();
+      paintEye?.();
       setAltitude(lastAltitudeM);
       onSetting?.('units', settings.units);
       store(SET_KEY, JSON.stringify(settings));

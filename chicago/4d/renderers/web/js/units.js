@@ -36,6 +36,23 @@ export function formatHeight(metres, units = 'imperial') {
     : `${Math.round(value * M_TO_FT)} ft`;
 }
 
+/**
+ * A height at PERSON scale — feet and inches, or metres to the centimetre.
+ *
+ * Separate from `formatHeight` because they answer different questions at
+ * different magnitudes. Altitude wants whole feet: "1378 ft up" is exactly as
+ * precise as anyone needs 400 m in the air. A stature does not survive that
+ * rounding — 1.68 m becomes "6 ft", which is both wrong by half a foot and
+ * unchanged across a third of the eye-height slider's travel, so the control
+ * reads as broken. Nobody has ever given their own height in whole feet.
+ */
+export function formatStature(metres, units = 'imperial') {
+  const value = Number(metres) || 0;
+  if (normalUnitSystem(units) === 'metric') return `${value.toFixed(2)} m`;
+  const totalInches = Math.round(value * M_TO_FT * 12);
+  return `${Math.floor(totalInches / 12)} ft ${totalInches % 12} in`;
+}
+
 export function formatSpeed(metresPerSecond, units = 'imperial') {
   const value = Number(metresPerSecond) || 0;
   return normalUnitSystem(units) === 'metric'

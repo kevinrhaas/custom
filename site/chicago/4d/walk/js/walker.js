@@ -222,6 +222,22 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
     },
 
     /** Stand `distance` metres from a world point, looking at it. */
+    /**
+     * Put the eye back where the current WALK.eyeHeight says it belongs.
+     *
+     * Only meaningful on foot: in free-fly the eye height is an altitude the
+     * visitor is flying, not a stature, and resettling would yank them to the
+     * ground mid-flight. Called when the eye-height setting changes, so the
+     * slider moves the view under you instead of on the next footstep.
+     */
+    resettle() {
+      if (state.flying) return false;
+      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.eyeY = state.groundY + WALK.eyeHeight;
+      this.apply();
+      return true;
+    },
+
     lookAt(target, distance = 26, fromBearingDeg = null) {
       const te = target.x;
       const tn = -target.z;
