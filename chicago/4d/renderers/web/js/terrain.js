@@ -466,6 +466,16 @@ async function loadGlbMesh(url) {
   let found = null;
   gltf.scene.traverse((o) => { if (!found && o.isMesh) found = o; });
   if (!found) throw new Error('no mesh in the GLB');
+  // BAKE the node transform into the geometry before flattening it. Resetting
+  // position/rotation/scale to identity is the right normalisation for an
+  // AUTHORED transform and catastrophic for an ENCODED one: under
+  // `KHR_mesh_quantization` the dequantisation lives on the node as a scale and
+  // a translation, so discarding it collapses the ground to a fraction of its
+  // size and drops it under the water plane. Applying it first keeps the mesh
+  // exactly where the file says while still handing back something at identity.
+  found.updateWorldMatrix(true, false);
+  found.geometry = found.geometry.clone();
+  found.geometry.applyMatrix4(found.matrixWorld);
   found.removeFromParent();
   found.position.set(0, 0, 0);
   found.rotation.set(0, 0, 0);

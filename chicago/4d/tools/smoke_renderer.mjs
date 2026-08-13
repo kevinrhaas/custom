@@ -930,6 +930,64 @@ for (const [label, viewport, touch] of [
       + `${stats.batches} batch(es) · ${stats.structures} structure(s) · `
       + `${(stats.bytes / 1024).toFixed(0)} KB of GLB · ${stats.fps} fps`);
 
+    // --- the scene is at life size ------------------------------------------
+    //
+    // This gate ran green through a scene in which every building was a sixth of
+    // its size and the ground had sunk under the water plane, because nothing it
+    // checked was a LENGTH. Draw calls, triangles, page errors and even "the
+    // walker stays on the terrain" all survive a uniform scale error: the walker
+    // reads the heightfield, not the mesh, so it went on standing at the correct
+    // height over a shrunken world and the owner got a photograph of a flood.
+    //
+    // So: measure the rendered geometry against the authored numbers it is a
+    // rendering OF. A quantised GLB carries its dequantisation on the node, and
+    // any loader that drops that transform fails here immediately.
+    const scale = await page.evaluate(() => {
+      const a = window.App ?? window.__chicago4d;
+      const hf = a.terrain.heightfield;
+      const wantW = (hf.cols - 1) * hf.cellM;
+      const wantD = (hf.rows - 1) * hf.cellM;
+      let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+      let terrainMeshes = 0;
+      a.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
+        terrainMeshes++;
+        o.geometry.computeBoundingBox();
+        const b = o.geometry.boundingBox;
+        minX = Math.min(minX, b.min.x); maxX = Math.max(maxX, b.max.x);
+        minZ = Math.min(minZ, b.min.z); maxZ = Math.max(maxZ, b.max.z);
+      });
+      // A documented two-storey hotel, so its rendered height is a fact with a
+      // knowable range rather than a magic number.
+      const rec = a.registry.get('sauganash_hotel');
+      const wall = rec?.sidecar?.attributes?.wall_height_m?.value ?? null;
+      let tallest = 0;
+      a.buildings.group.traverse((o) => {
+        if (!o.geometry) return;
+        if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+        tallest = Math.max(tallest, o.geometry.boundingBox.max.y - o.geometry.boundingBox.min.y);
+      });
+      return { terrainMeshes, gotW: maxX - minX, gotD: maxZ - minZ, wantW, wantD,
+        wall, tallest };
+    });
+    // The ground is deliberately LARGER than the heightfield — it carries a
+    // far-field skirt past the modelled box, which is what you see on the horizon
+    // and what the fly-mode notice calls the edge of the detail. So the invariant
+    // is COVERAGE, not equality: there must be no place with terrain data and no
+    // ground under it. A dropped dequantisation shrinks the mesh and fails this
+    // instantly, which is the failure it exists to catch; the upper bound only
+    // stops the skirt growing without anyone noticing.
+    check(`${label}: the rendered ground covers the whole heightfield`,
+      scale.terrainMeshes > 0
+      && scale.gotW >= scale.wantW && scale.gotD >= scale.wantD
+      && scale.gotW <= scale.wantW * 8 && scale.gotD <= scale.wantD * 8,
+      `${scale.gotW?.toFixed(0)}x${scale.gotD?.toFixed(0)} m rendered against `
+      + `${scale.wantW?.toFixed(0)}x${scale.wantD?.toFixed(0)} m of heightfield `
+      + `(${scale.terrainMeshes} mesh(es))`);
+    check(`${label}: buildings are rendered at human size`,
+      scale.tallest > 3 && scale.tallest < 30,
+      `tallest rendered building geometry ${scale.tallest?.toFixed(2)} m`);
+
     // --- scene detail -------------------------------------------------------
     //
     // The triangle ceiling used to be one hard number for everyone. It is now the

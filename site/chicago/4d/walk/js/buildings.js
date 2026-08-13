@@ -49,10 +49,29 @@ function findStructureNode(root, id) {
   return found ?? root;
 }
 
-/** Everything that renders, in one flat list, with node-relative geometry. */
+/**
+ * Everything that renders, in one flat list, with geometry in the frame the
+ * structure node SITS IN rather than the frame it defines.
+ *
+ * The difference is not academic and it broke the whole scene once. Under
+ * `KHR_mesh_quantization` — which `tools/bake.sh` asks gltf-transform for, and
+ * which is what makes the web derivatives small — positions are stored as
+ * integers and the DEQUANTISATION is carried on the node as a translation and a
+ * scale (6.25 on the Sauganash, for instance). That transform is part of the
+ * encoding, not an authored placement. Taking geometry relative to the node
+ * itself inverts it and cancels it out, so every building rendered at about a
+ * sixth of its size and the ground sank under the water plane while the walker,
+ * which reads the heightfield and not the mesh, went on standing at the right
+ * height — a scene that looked flooded and left you floating over it.
+ *
+ * So: the parent's frame. For an uncompressed file the node is identity and this
+ * is exactly what it always was; for a quantised one the node's own transform
+ * survives, which is the whole point.
+ */
 function collectMeshes(structureNode) {
   structureNode.updateWorldMatrix(true, true);
-  const toLocal = new THREE.Matrix4().copy(structureNode.matrixWorld).invert();
+  const frame = structureNode.parent ?? structureNode;
+  const toLocal = new THREE.Matrix4().copy(frame.matrixWorld).invert();
   const out = [];
   structureNode.traverse((o) => {
     if (!o.isMesh || !o.geometry) return;
