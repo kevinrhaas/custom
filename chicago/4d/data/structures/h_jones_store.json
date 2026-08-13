@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-11-26",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicago_democrat_1833_11_26",
           "andreas_1884_v1"
@@ -24,7 +24,7 @@
         "utm_n": 4637391.3,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street just east of Wells Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "CONJECTURAL, AND ONLY THE STREET IS EVIDENCE. Andreas places Jones among the South Water Street district advertisers and this project's dossier records the block as unattested; the contemporary advertisement of 26 November 1833 gives no address at all beyond 'Chicago-Illinois'. The point recorded here is at the west end of the Wells-to-LaSalle block, on the south side, and NOTHING SUPPORTS THAT CHOICE OF BLOCK — it is a lot on the right street with room on it, which is a rendering decision and not a finding. THE ALONG-STREET UNCERTAINTY IS THE WHOLE STREET, about 630 m from Market to State. THE SIDE OF THE STREET IS REASONED: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), so a store is on the south side. METHOD, for the cross-street position only: the modern West Upper Wacker Drive centreline was interpolated between the intersection centres at North Wells (EPSG:26916 E 447402.5, N 4637411.6) and North LaSalle (E 447525.2, N 4637408.1), read from OpenStreetMap 2026-08-11, and the south kerb taken 12.2 m south of it as half an 80 ft platted street. Working uncertainty about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS) and the length of the street along it. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
         "derivation": {
           "method": "not_derivable",
@@ -50,18 +50,18 @@
             7.62
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, from the Green Tree Tavern's attested frontage and room module. Nothing is attested about this building. The larger rather than the smaller rectangle is used because Andreas describes the business as a grocery and provision store AND a forwarding and commission store, which is two trades under one roof and wants floor for barrels — an argument about the trade, not about the building. The documented South Water lot width of 55 ft is a cap and 40 ft sits inside it."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Nothing is attested. One is recorded because it is the smaller claim. Invention, tagged as such."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -69,22 +69,22 @@
         },
         "wall_height_m": {
           "value": 3.6,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.6 m is about 12 ft, one storey built taller than a dwelling's for stacked goods and a cart door. It inherits the storey count's uncertainty, which is conjectural."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a store kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -102,7 +102,7 @@
   },
   "occupants": {
     "value": "Jones, grocer and provision merchant",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"

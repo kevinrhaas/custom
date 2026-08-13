@@ -5,7 +5,7 @@
  "head": "walters_william",
  "arrival": {
   "value": "1833",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "drloih_hotels",
    "drloih_wolf_point"
@@ -15,22 +15,22 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "wolf_point_tavern",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "drloih_hotels"
   ],
@@ -38,7 +38,7 @@
  },
  "works_at": {
   "value": "wolf_point_tavern",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "drloih_hotels"
   ],
@@ -46,7 +46,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "drloih_hotels"
   ],
@@ -61,7 +61,7 @@
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels",

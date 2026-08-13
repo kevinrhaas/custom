@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "harrison_1830_river_mouth"
@@ -24,7 +24,7 @@
     "local_e": 1131.73,
     "local_n": 207.28,
     "rotation_deg": 8.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "harrison_1830_river_mouth"
@@ -54,7 +54,7 @@
         3.66
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. No source gives this building's size, and the 1830 plan does not draw it. 4.57 x 3.66 m is fifteen by twelve feet, which is a powder magazine for a two-company post and nothing more than that. The reason there is a polygon at all is that the alternative is not modelling a brick building two sources describe; the reason it is graded conjectural is that a visitor looking at this outline is looking at our arithmetic."
   },
@@ -77,22 +77,22 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A powder magazine is a single vaulted or single-storey room by definition of the type."
     },
     "wall_height_m": {
       "value": 2.4,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. About eight feet of brick wall, which is what the type carries. A guess."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. Gable rather than the conic figure of the 1803 specification, for the reason set out in the construction note - and either choice is ours."
     },
     "roof_pitch_deg": {
       "value": 34.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
     },
     "chimneys": {

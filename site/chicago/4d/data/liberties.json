@@ -6981,9 +6981,99 @@
         },
         {
           "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.loft"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "brown_boarding_house",
+          "phase": "documented_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
           "structure": "harmon_log_cabin",
           "phase": "documented_1835",
           "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.loft"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "harmon_log_cabin",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
         },
         {
           "domain": "structure",
@@ -6996,6 +7086,60 @@
           "structure": "heacock_house_monroe",
           "phase": "documented_1835",
           "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.bays"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.plan"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "heacock_house_monroe",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
         },
         {
           "domain": "structure",
@@ -7012,6 +7156,18 @@
         {
           "domain": "structure",
           "structure": "inf_artisan_dwelling_west_a",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_artisan_dwelling_west_a",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_artisan_dwelling_west_a",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7030,6 +7186,18 @@
         {
           "domain": "structure",
           "structure": "inf_artisan_dwelling_west_b",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_artisan_dwelling_west_b",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_artisan_dwelling_west_b",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7048,6 +7216,18 @@
         {
           "domain": "structure",
           "structure": "inf_bakery_lake",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_bakery_lake",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_bakery_lake",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7066,6 +7246,18 @@
         {
           "domain": "structure",
           "structure": "inf_barber_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_barber_shop",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_barber_shop",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7084,6 +7276,18 @@
         {
           "domain": "structure",
           "structure": "inf_blacksmith_shop_west",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_blacksmith_shop_west",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_blacksmith_shop_west",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7102,6 +7306,18 @@
         {
           "domain": "structure",
           "structure": "inf_boatman_cabin_north",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_boatman_cabin_north",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_boatman_cabin_north",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7120,6 +7336,18 @@
         {
           "domain": "structure",
           "structure": "inf_brickmaker_dwelling_north",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_brickmaker_dwelling_north",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_brickmaker_dwelling_north",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7138,6 +7366,18 @@
         {
           "domain": "structure",
           "structure": "inf_butcher_market",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_butcher_market",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_butcher_market",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7156,6 +7396,18 @@
         {
           "domain": "structure",
           "structure": "inf_carpenter_dwelling_north",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_carpenter_dwelling_north",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_carpenter_dwelling_north",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7174,6 +7426,18 @@
         {
           "domain": "structure",
           "structure": "inf_cooperage_south",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_cooperage_south",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_cooperage_south",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7192,6 +7456,18 @@
         {
           "domain": "structure",
           "structure": "inf_cooperage_south_branch",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_cooperage_south_branch",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_cooperage_south_branch",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7210,6 +7486,18 @@
         {
           "domain": "structure",
           "structure": "inf_grocery_west",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_grocery_west",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_grocery_west",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7228,6 +7516,18 @@
         {
           "domain": "structure",
           "structure": "inf_gunsmith_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_gunsmith_shop",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_gunsmith_shop",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7246,6 +7546,18 @@
         {
           "domain": "structure",
           "structure": "inf_harness_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_harness_shop",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_harness_shop",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7264,6 +7576,18 @@
         {
           "domain": "structure",
           "structure": "inf_labourer_shanty_north_a",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_north_a",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_north_a",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7282,6 +7606,18 @@
         {
           "domain": "structure",
           "structure": "inf_labourer_shanty_north_b",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_north_b",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_north_b",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7300,6 +7636,18 @@
         {
           "domain": "structure",
           "structure": "inf_labourer_shanty_west_a",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_west_a",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_west_a",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7318,6 +7666,18 @@
         {
           "domain": "structure",
           "structure": "inf_labourer_shanty_west_b",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_west_b",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_labourer_shanty_west_b",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7336,6 +7696,18 @@
         {
           "domain": "structure",
           "structure": "inf_laundry_north",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_laundry_north",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_laundry_north",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7354,6 +7726,18 @@
         {
           "domain": "structure",
           "structure": "inf_mason_dwelling_north",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_mason_dwelling_north",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_mason_dwelling_north",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7372,6 +7756,18 @@
         {
           "domain": "structure",
           "structure": "inf_packer_dwelling",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_packer_dwelling",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_packer_dwelling",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7390,6 +7786,18 @@
         {
           "domain": "structure",
           "structure": "inf_sawpit_shed",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawpit_shed",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawpit_shed",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7408,6 +7816,18 @@
         {
           "domain": "structure",
           "structure": "inf_sawyer_dwelling_a",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawyer_dwelling_a",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawyer_dwelling_a",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7426,6 +7846,18 @@
         {
           "domain": "structure",
           "structure": "inf_sawyer_dwelling_b",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawyer_dwelling_b",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_sawyer_dwelling_b",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7444,6 +7876,18 @@
         {
           "domain": "structure",
           "structure": "inf_shoemaker_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_shoemaker_shop",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_shoemaker_shop",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7462,6 +7906,18 @@
         {
           "domain": "structure",
           "structure": "inf_tailor_shop",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_tailor_shop",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_tailor_shop",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7480,6 +7936,18 @@
         {
           "domain": "structure",
           "structure": "inf_teamster_dwelling_south",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_dwelling_south",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_dwelling_south",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7498,6 +7966,18 @@
         {
           "domain": "structure",
           "structure": "inf_teamster_dwelling_west",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_dwelling_west",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_dwelling_west",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7516,6 +7996,18 @@
         {
           "domain": "structure",
           "structure": "inf_teamster_stable_west",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_stable_west",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_teamster_stable_west",
           "phase": "inferred_1835",
           "aspect": "documented_range"
         },
@@ -7530,6 +8022,18 @@
           "structure": "inf_teamster_stable_west",
           "phase": "inferred_1835",
           "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_wheelwright_shop_west",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "inf_wheelwright_shop_west",
+          "phase": null,
+          "aspect": "occupants"
         },
         {
           "domain": "structure",
@@ -7557,6 +8061,78 @@
         },
         {
           "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.board_gap_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.door"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.door_side"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.loft"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "mason_blacksmith_shop",
+          "phase": "documented_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "physicians_office",
+          "phase": null,
+          "aspect": "function"
+        },
+        {
+          "domain": "structure",
+          "structure": "physicians_office",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
           "structure": "physicians_office",
           "phase": "inferred_1835",
           "aspect": "documented_range"
@@ -7583,13 +8159,139 @@
           "domain": "structure",
           "structure": "temple_lake_st_building",
           "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.cladding"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.gable_front"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.loft"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.shopfront"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "temple_lake_st_building",
+          "phase": "documented_1835",
           "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": null,
+          "aspect": "occupants"
         },
         {
           "domain": "structure",
           "structure": "wright_building_to_let_a",
           "phase": "documented_1835",
           "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.bays"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.plan"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_a",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
         },
         {
           "domain": "structure",
@@ -7600,8 +8302,68 @@
         {
           "domain": "structure",
           "structure": "wright_building_to_let_b",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
           "phase": "documented_1835",
           "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.bays"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.plan"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "wright_building_to_let_b",
+          "phase": "documented_1835",
+          "aspect": "form.wall_height_m"
         },
         {
           "domain": "structure",
@@ -7627,7 +8389,7 @@
         },
         {
           "label": "Covers",
-          "text": "`brown_boarding_house.documented_1835.footprint`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`, `heacock_house_monroe.documented_1835.footprint`, `heacock_house_monroe.documented_1835.ground_contact`, `heacock_house_monroe.documented_1835.position`, `inf_artisan_dwelling_west_a.inferred_1835.documented_range`, `inf_artisan_dwelling_west_a.inferred_1835.footprint`, `inf_artisan_dwelling_west_a.inferred_1835.position`, `inf_artisan_dwelling_west_b.inferred_1835.documented_range`, `inf_artisan_dwelling_west_b.inferred_1835.footprint`, `inf_artisan_dwelling_west_b.inferred_1835.position`, `inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`, `inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`, `inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`, `inf_blacksmith_shop_west.inferred_1835.documented_range`, `inf_blacksmith_shop_west.inferred_1835.footprint`, `inf_blacksmith_shop_west.inferred_1835.position`, `inf_boatman_cabin_north.inferred_1835.documented_range`, `inf_boatman_cabin_north.inferred_1835.footprint`, `inf_boatman_cabin_north.inferred_1835.position`, `inf_brickmaker_dwelling_north.inferred_1835.documented_range`, `inf_brickmaker_dwelling_north.inferred_1835.footprint`, `inf_brickmaker_dwelling_north.inferred_1835.position`, `inf_butcher_market.inferred_1835.documented_range`, `inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`, `inf_carpenter_dwelling_north.inferred_1835.documented_range`, `inf_carpenter_dwelling_north.inferred_1835.footprint`, `inf_carpenter_dwelling_north.inferred_1835.position`, `inf_cooperage_south.inferred_1835.documented_range`, `inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`, `inf_cooperage_south_branch.inferred_1835.documented_range`, `inf_cooperage_south_branch.inferred_1835.footprint`, `inf_cooperage_south_branch.inferred_1835.position`, `inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`, `inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`, `inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`, `inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`, `inf_harness_shop.inferred_1835.position`, `inf_labourer_shanty_north_a.inferred_1835.documented_range`, `inf_labourer_shanty_north_a.inferred_1835.footprint`, `inf_labourer_shanty_north_a.inferred_1835.position`, `inf_labourer_shanty_north_b.inferred_1835.documented_range`, `inf_labourer_shanty_north_b.inferred_1835.footprint`, `inf_labourer_shanty_north_b.inferred_1835.position`, `inf_labourer_shanty_west_a.inferred_1835.documented_range`, `inf_labourer_shanty_west_a.inferred_1835.footprint`, `inf_labourer_shanty_west_a.inferred_1835.position`, `inf_labourer_shanty_west_b.inferred_1835.documented_range`, `inf_labourer_shanty_west_b.inferred_1835.footprint`, `inf_labourer_shanty_west_b.inferred_1835.position`, `inf_laundry_north.inferred_1835.documented_range`, `inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`, `inf_mason_dwelling_north.inferred_1835.documented_range`, `inf_mason_dwelling_north.inferred_1835.footprint`, `inf_mason_dwelling_north.inferred_1835.position`, `inf_packer_dwelling.inferred_1835.documented_range`, `inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`, `inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`, `inf_sawpit_shed.inferred_1835.position`, `inf_sawyer_dwelling_a.inferred_1835.documented_range`, `inf_sawyer_dwelling_a.inferred_1835.footprint`, `inf_sawyer_dwelling_a.inferred_1835.position`, `inf_sawyer_dwelling_b.inferred_1835.documented_range`, `inf_sawyer_dwelling_b.inferred_1835.footprint`, `inf_sawyer_dwelling_b.inferred_1835.position`, `inf_shoemaker_shop.inferred_1835.documented_range`, `inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`, `inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`, `inf_tailor_shop.inferred_1835.position`, `inf_teamster_dwelling_south.inferred_1835.documented_range`, `inf_teamster_dwelling_south.inferred_1835.footprint`, `inf_teamster_dwelling_south.inferred_1835.position`, `inf_teamster_dwelling_west.inferred_1835.documented_range`, `inf_teamster_dwelling_west.inferred_1835.footprint`, `inf_teamster_dwelling_west.inferred_1835.position`, `inf_teamster_stable_west.inferred_1835.documented_range`, `inf_teamster_stable_west.inferred_1835.footprint`, `inf_teamster_stable_west.inferred_1835.position`, `inf_wheelwright_shop_west.inferred_1835.documented_range`, `inf_wheelwright_shop_west.inferred_1835.footprint`, `inf_wheelwright_shop_west.inferred_1835.position`, `mason_blacksmith_shop.documented_1835.footprint`, `physicians_office.inferred_1835.documented_range`, `physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`, `temple_lake_st_building.documented_1835.footprint`, `temple_lake_st_building.documented_1835.position`, `wright_building_to_let_a.documented_1835.footprint`, `wright_building_to_let_a.documented_1835.position`, `wright_building_to_let_b.documented_1835.footprint`, `wright_building_to_let_b.documented_1835.position`"
+          "text": "`brown_boarding_house.documented_1835.footprint`,, `brown_boarding_house.documented_1835.form.chimneys`, `brown_boarding_house.documented_1835.form.construction`, `brown_boarding_house.documented_1835.form.loft`, `brown_boarding_house.documented_1835.form.roof_pitch_deg`, `brown_boarding_house.documented_1835.form.stories`, `brown_boarding_house.documented_1835.form.wall_height_m`, `brown_boarding_house.documented_1835.position`, `harmon_log_cabin.documented_1835.form.chimneys`, `harmon_log_cabin.documented_1835.form.construction`, `harmon_log_cabin.documented_1835.form.loft`, `harmon_log_cabin.documented_1835.form.roof_pitch_deg`, `harmon_log_cabin.documented_1835.form.roof_type`, `harmon_log_cabin.documented_1835.form.stories`, `harmon_log_cabin.documented_1835.form.wall_height_m`, `heacock_house_monroe.documented_1835.form.bays`, `heacock_house_monroe.documented_1835.form.chimneys`, `heacock_house_monroe.documented_1835.form.construction`, `heacock_house_monroe.documented_1835.form.paint`, `heacock_house_monroe.documented_1835.form.plan`, `heacock_house_monroe.documented_1835.form.roof_pitch_deg`, `heacock_house_monroe.documented_1835.form.roof_type`, `heacock_house_monroe.documented_1835.form.stories`, `heacock_house_monroe.documented_1835.form.wall_height_m`, `inf_artisan_dwelling_west_a.function`, `inf_artisan_dwelling_west_a.occupants`, `inf_artisan_dwelling_west_b.function`, `inf_artisan_dwelling_west_b.occupants`, `inf_bakery_lake.function`, `inf_bakery_lake.occupants`, `inf_barber_shop.function`, `inf_barber_shop.occupants`, `inf_blacksmith_shop_west.function`, `inf_blacksmith_shop_west.occupants`, `inf_boatman_cabin_north.function`, `inf_boatman_cabin_north.occupants`, `inf_brickmaker_dwelling_north.function`, `inf_brickmaker_dwelling_north.occupants`, `inf_butcher_market.function`, `inf_butcher_market.occupants`, `inf_carpenter_dwelling_north.function`, `inf_carpenter_dwelling_north.occupants`, `inf_cooperage_south.function`, `inf_cooperage_south.occupants`, `inf_cooperage_south_branch.function`, `inf_cooperage_south_branch.occupants`, `inf_grocery_west.function`, `inf_grocery_west.occupants`, `inf_gunsmith_shop.function`, `inf_gunsmith_shop.occupants`, `inf_harness_shop.function`, `inf_harness_shop.occupants`, `inf_labourer_shanty_north_a.function`, `inf_labourer_shanty_north_a.occupants`, `inf_labourer_shanty_north_b.function`, `inf_labourer_shanty_north_b.occupants`, `inf_labourer_shanty_west_a.function`, `inf_labourer_shanty_west_a.occupants`, `inf_labourer_shanty_west_b.function`, `inf_labourer_shanty_west_b.occupants`, `inf_laundry_north.function`, `inf_laundry_north.occupants`, `inf_mason_dwelling_north.function`, `inf_mason_dwelling_north.occupants`, `inf_packer_dwelling.function`, `inf_packer_dwelling.occupants`, `inf_sawpit_shed.function`, `inf_sawpit_shed.occupants`, `inf_sawyer_dwelling_a.function`, `inf_sawyer_dwelling_a.occupants`, `inf_sawyer_dwelling_b.function`, `inf_sawyer_dwelling_b.occupants`, `inf_shoemaker_shop.function`, `inf_shoemaker_shop.occupants`, `inf_tailor_shop.function`, `inf_tailor_shop.occupants`, `inf_teamster_dwelling_south.function`, `inf_teamster_dwelling_south.occupants`, `inf_teamster_dwelling_west.function`, `inf_teamster_dwelling_west.occupants`, `inf_teamster_stable_west.function`, `inf_teamster_stable_west.occupants`, `inf_wheelwright_shop_west.function`, `inf_wheelwright_shop_west.occupants`, `mason_blacksmith_shop.documented_1835.form.board_gap_m`, `mason_blacksmith_shop.documented_1835.form.construction`, `mason_blacksmith_shop.documented_1835.form.door`, `mason_blacksmith_shop.documented_1835.form.door_side`, `mason_blacksmith_shop.documented_1835.form.loft`, `mason_blacksmith_shop.documented_1835.form.paint`, `mason_blacksmith_shop.documented_1835.form.roof_pitch_deg`, `mason_blacksmith_shop.documented_1835.form.roof_type`, `mason_blacksmith_shop.documented_1835.form.wall_height_m`, `mason_blacksmith_shop.documented_1835.position`, `physicians_office.function`, `physicians_office.occupants`, `temple_lake_st_building.documented_1835.form.chimneys`, `temple_lake_st_building.documented_1835.form.cladding`, `temple_lake_st_building.documented_1835.form.construction`, `temple_lake_st_building.documented_1835.form.gable_front`, `temple_lake_st_building.documented_1835.form.loft`, `temple_lake_st_building.documented_1835.form.paint`, `temple_lake_st_building.documented_1835.form.roof_pitch_deg`, `temple_lake_st_building.documented_1835.form.roof_type`, `temple_lake_st_building.documented_1835.form.shopfront`, `temple_lake_st_building.documented_1835.form.stories`, `temple_lake_st_building.documented_1835.form.wall_height_m`, `wright_building_to_let_a.documented_1835.form.bays`, `wright_building_to_let_a.documented_1835.form.chimneys`, `wright_building_to_let_a.documented_1835.form.construction`, `wright_building_to_let_a.documented_1835.form.paint`, `wright_building_to_let_a.documented_1835.form.plan`, `wright_building_to_let_a.documented_1835.form.roof_pitch_deg`, `wright_building_to_let_a.documented_1835.form.roof_type`, `wright_building_to_let_a.documented_1835.form.stories`, `wright_building_to_let_a.documented_1835.form.wall_height_m`, `wright_building_to_let_a.occupants`, `wright_building_to_let_b.documented_1835.form.bays`, `wright_building_to_let_b.documented_1835.form.chimneys`, `wright_building_to_let_b.documented_1835.form.construction`, `wright_building_to_let_b.documented_1835.form.paint`, `wright_building_to_let_b.documented_1835.form.plan`, `wright_building_to_let_b.documented_1835.form.roof_pitch_deg`, `wright_building_to_let_b.documented_1835.form.roof_type`, `wright_building_to_let_b.documented_1835.form.stories`, `wright_building_to_let_b.documented_1835.form.wall_height_m`, `wright_building_to_let_b.occupants`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`, `heacock_house_monroe.documented_1835.footprint`, `heacock_house_monroe.documented_1835.ground_contact`, `heacock_house_monroe.documented_1835.position`, `inf_artisan_dwelling_west_a.inferred_1835.documented_range`, `inf_artisan_dwelling_west_a.inferred_1835.footprint`, `inf_artisan_dwelling_west_a.inferred_1835.position`, `inf_artisan_dwelling_west_b.inferred_1835.documented_range`, `inf_artisan_dwelling_west_b.inferred_1835.footprint`, `inf_artisan_dwelling_west_b.inferred_1835.position`, `inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`, `inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`, `inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`, `inf_blacksmith_shop_west.inferred_1835.documented_range`, `inf_blacksmith_shop_west.inferred_1835.footprint`, `inf_blacksmith_shop_west.inferred_1835.position`, `inf_boatman_cabin_north.inferred_1835.documented_range`, `inf_boatman_cabin_north.inferred_1835.footprint`, `inf_boatman_cabin_north.inferred_1835.position`, `inf_brickmaker_dwelling_north.inferred_1835.documented_range`, `inf_brickmaker_dwelling_north.inferred_1835.footprint`, `inf_brickmaker_dwelling_north.inferred_1835.position`, `inf_butcher_market.inferred_1835.documented_range`, `inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`, `inf_carpenter_dwelling_north.inferred_1835.documented_range`, `inf_carpenter_dwelling_north.inferred_1835.footprint`, `inf_carpenter_dwelling_north.inferred_1835.position`, `inf_cooperage_south.inferred_1835.documented_range`, `inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`, `inf_cooperage_south_branch.inferred_1835.documented_range`, `inf_cooperage_south_branch.inferred_1835.footprint`, `inf_cooperage_south_branch.inferred_1835.position`, `inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`, `inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`, `inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`, `inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`, `inf_harness_shop.inferred_1835.position`, `inf_labourer_shanty_north_a.inferred_1835.documented_range`, `inf_labourer_shanty_north_a.inferred_1835.footprint`, `inf_labourer_shanty_north_a.inferred_1835.position`, `inf_labourer_shanty_north_b.inferred_1835.documented_range`, `inf_labourer_shanty_north_b.inferred_1835.footprint`, `inf_labourer_shanty_north_b.inferred_1835.position`, `inf_labourer_shanty_west_a.inferred_1835.documented_range`, `inf_labourer_shanty_west_a.inferred_1835.footprint`, `inf_labourer_shanty_west_a.inferred_1835.position`, `inf_labourer_shanty_west_b.inferred_1835.documented_range`, `inf_labourer_shanty_west_b.inferred_1835.footprint`, `inf_labourer_shanty_west_b.inferred_1835.position`, `inf_laundry_north.inferred_1835.documented_range`, `inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`, `inf_mason_dwelling_north.inferred_1835.documented_range`, `inf_mason_dwelling_north.inferred_1835.footprint`, `inf_mason_dwelling_north.inferred_1835.position`, `inf_packer_dwelling.inferred_1835.documented_range`, `inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`, `inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`, `inf_sawpit_shed.inferred_1835.position`, `inf_sawyer_dwelling_a.inferred_1835.documented_range`, `inf_sawyer_dwelling_a.inferred_1835.footprint`, `inf_sawyer_dwelling_a.inferred_1835.position`, `inf_sawyer_dwelling_b.inferred_1835.documented_range`, `inf_sawyer_dwelling_b.inferred_1835.footprint`, `inf_sawyer_dwelling_b.inferred_1835.position`, `inf_shoemaker_shop.inferred_1835.documented_range`, `inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`, `inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`, `inf_tailor_shop.inferred_1835.position`, `inf_teamster_dwelling_south.inferred_1835.documented_range`, `inf_teamster_dwelling_south.inferred_1835.footprint`, `inf_teamster_dwelling_south.inferred_1835.position`, `inf_teamster_dwelling_west.inferred_1835.documented_range`, `inf_teamster_dwelling_west.inferred_1835.footprint`, `inf_teamster_dwelling_west.inferred_1835.position`, `inf_teamster_stable_west.inferred_1835.documented_range`, `inf_teamster_stable_west.inferred_1835.footprint`, `inf_teamster_stable_west.inferred_1835.position`, `inf_wheelwright_shop_west.inferred_1835.documented_range`, `inf_wheelwright_shop_west.inferred_1835.footprint`, `inf_wheelwright_shop_west.inferred_1835.position`, `mason_blacksmith_shop.documented_1835.footprint`, `physicians_office.inferred_1835.documented_range`, `physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`, `temple_lake_st_building.documented_1835.footprint`, `temple_lake_st_building.documented_1835.position`, `wright_building_to_let_a.documented_1835.footprint`, `wright_building_to_let_a.documented_1835.position`, `wright_building_to_let_b.documented_1835.footprint`, `wright_building_to_let_b.documented_1835.position`"
         }
       ]
     },

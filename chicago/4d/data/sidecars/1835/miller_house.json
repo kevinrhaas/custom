@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1827-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "drloih_hotels",
       "drloih_wolf_point",
@@ -27,7 +27,7 @@
     "local_e": 14.0,
     "local_n": 61.0,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicagology_prefire273",
       "kinzie_waubun_1856",
@@ -67,14 +67,14 @@
         11
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED. The SHAPE carries evidence and the SIZE does not, and the two should not be confused. What is attested is the composition: a log cabin with a two-storey house added to it fronting the river, described from the south bank in 1833 as 'a two-story building and adjoining log cabin', and by chicagology as 'a log structure partly sided'. This L reflects that — a 9 x 6 m two-storey range along the river frontage with a 6 x 5 m log cabin set back behind it — but every number in it is invented, so the whole polygon is tagged conjectural and cites no sources. The bounding box is 9 x 11 m. To resolve: Andreas vol. 1, 'Wharfs, Piers and Early Hotels' pp. 626-631, at page-image level."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire273",
         "drloih_hotels"
@@ -118,37 +118,37 @@
     },
     "frame_addition_width_m": {
       "value": 9.0,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Read off this record's own footprint polygon — the river-fronting limb is 9 m across — rather than chosen afresh, so the mesh agrees with the plan the record already draws instead of taking the archetype's default half-width of 4.5 m, which would have put a narrow block in the middle of a frontage the polygon draws full-width. That is a smaller invention than a new number and it is still an invention, because the polygon itself is a PLACEHOLDER whose every dimension is invented. Admitted in docs/LIBERTIES.md L27."
     },
     "frame_addition_depth_m": {
       "value": 6.0,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED, and read off the footprint polygon on the same terms as the width: the river-fronting limb is 6 m deep of the bounding box's 11 m, leaving the 5 m the polygon gives the log cabin behind it. Inherits the polygon's invention. Admitted in docs/LIBERTIES.md L27."
     },
     "frame_addition_height_m": {
       "value": 5.2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 5.2 m is about 17 ft: two storeys at typical period floor heights plus structure and a sill. THIS IS THE HEIGHT THIS RECORD HAS CARRIED SINCE 2026-08-09, moved to the element it was written about — it sat on `wall_height_m`, which the archetype applies to the log core, and the note there said so and flagged the overstatement because the archetype could not then express two heights. It can, so the value moves rather than staying flagged. Stated explicitly instead of taking the archetype's 4.7 m default for two storeys, so that the reasoning already recorded for this building is what the mesh is built from."
     },
     "wall_height_m": {
       "value": 2.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "THE LOG CABIN'S WALL, not the frame range's. No figure is attested for either. 2.6 m is a single-pen log wall at the forks — the same height this record has named for the cabin since 2026-08-09, when it stood in this note as the height the archetype could not yet express while the field itself carried the range's 5.2 m. The two heights are now separate attributes, so the overstatement this note used to flag is gone rather than described: docs/LIBERTIES.md L13, the entry that recorded it, moves to Resolved with this slice."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Gable is the near-universal roof form for both elements of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is mid-range for period framing. Inferred from construction practice, not measured."
     },
     "cladding": {
       "value": "clapboard",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire273"
       ],
@@ -157,18 +157,18 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source describes a finish. Unpainted is the default reading and is positively supported by Wau-Bun's account of the Sauganash's white paint being the admiration of the little circle at Wolf Point in 1831 — the Miller house was directly across the water from it and is not singled out that way.",
       "geometry": "simplified"
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A two-part building of this size — a former tavern with a log cabin behind — would normally carry a stack in each element. The number is inference."
     },
     "function": {
       "value": "store_residence",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "kinzie_waubun_1856",
         "drloih_hotels"

@@ -13,7 +13,7 @@
   "kind": "everywhere",
   "box": {"e":[-2600,-600],"n":[-6400,-4400]},
   "priority": 10,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": ["chicagology_prefire273"],
   "note": "NOT PLANTABLE IN THIS SCENE. The box is a bounding rectangle for the grove up the South Branch at Hardscrabble (Lee's Place, later Bridgeport), the only West Side timber Andreas names, about 5.6 km SSW of the forks. It lies far outside the 640 m heightfield, so nothing matches it and the sward renderer plants nothing. The grove's real outline was never traced and this rectangle is not one; the horizon timber that this community actually supplies to the scene is placed by the tree renderer from the dossier's named-grove table by bearing and distance, not from this extent."
  },
@@ -87,7 +87,7 @@
     "inflorescence": {"shape":"spike","rgb":[178,180,138],"height_frac":0.9,"size_m":[0.1,0.18]},
     "appearance": "Thick nodding bristly spikes, green going straw — the one savanna grass that does head up in July."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier names Elymus in the savanna ground matrix without a species; E. canadensis is the regional member and the identification is this record's."
   },

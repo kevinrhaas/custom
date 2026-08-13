@@ -716,7 +716,7 @@
         }
       ],
       "carried_by": "log_1820.documented_range",
-      "carried_confidence": "inferred"
+      "carried_confidence": "derived"
     },
     {
       "id": "billy_caldwell_house",
@@ -769,7 +769,7 @@
         }
       ],
       "carried_by": "frame_1834.documented_range",
-      "carried_confidence": "inferred"
+      "carried_confidence": "derived"
     }
   ]
 }

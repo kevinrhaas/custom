@@ -5,7 +5,7 @@
  "head": "dole_george_w",
  "arrival": {
   "value": "1831",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": "Connecticut, by way of Detroit",
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "NOT ATTESTED IN ANYTHING THIS PROJECT HOLDS. Dole's New England origin and his Detroit connection through Oliver Newberry are widely repeated in the Chicago literature and could not be traced to a source in this dataset, so the value is carried as a conjecture, cites nothing, and is flagged for a later parcel to settle or delete."
  },
  "reason_for_coming": {
   "value": "Trade at the head of the lake, in partnership with a Detroit merchant",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -33,7 +33,7 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested. Dole's warehouse and packing buildings are in the dataset; his dwelling is not, and no source places him under a roof."
  },
  "works_at": {

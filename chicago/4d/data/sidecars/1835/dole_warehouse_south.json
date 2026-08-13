@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1832-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -23,7 +23,7 @@
     "local_e": 712.2,
     "local_n": -134.1,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -53,19 +53,19 @@
         7.62
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, taken from the Green Tree Tavern's attested frontage and room module. No source gives this building a dimension. A WAREHOUSE WAS PROBABLY BIGGER THAN THIS AND THE RECORD DOES NOT CLAIM OTHERWISE: forwarding and commission work means floor space for barrels and hides, and 93 square metres is a large room rather than a warehouse. The rectangle is used because it is the dataset's one defensible borrowed figure and because inventing a larger one would be inventing more, not less. The 55 ft lot cap Andreas states applies to South Water Street lots and is not evidence about Lake Street, so it is not applied here."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOTHING AT ALL IS ATTESTED ABOUT THIS BUILDING'S HEIGHT, and unlike most storey counts in this dataset there is not even a typological argument to make: warehouses of the period run from single-storey sheds to two-and-a-half-storey lofted stores, and the choice changes the silhouette by half. One is recorded because it is the smaller claim. This is invention and is tagged as such."
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -73,27 +73,27 @@
     },
     "wall_height_m": {
       "value": 3.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 3.6 m is about 12 ft: a single storey built taller than a dwelling's, which is what stacked goods and a cart door need. It inherits the storey count's uncertainty, which is conjectural, so this number is only as good as that guess."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "A COUNT OF ZERO IS A CLAIM, NOT AN ABSENCE, and the archetypes treat it as one. Nothing is attested about heating here; zero is recorded because a store house for barrels and hides is the one building type in this parcel with no reason to have a hearth, and because the slaughtering that would have needed fire is attested as happening in a YARD rather than indoors. If the building doubled as an office it had a stove and this is wrong by one."
     },
     "shopfront": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "A warehouse had no shop front. Andreas describes a warehouse and a slaughter yard, which is a building goods went into and out of by cart, not one customers were served over a counter in. Inferred from the attested use; the archetype's default is a composed shopfront and turning it off here is a claim this record makes deliberately."
     },
     "function": {

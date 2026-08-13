@@ -13,7 +13,7 @@
   "kind": "polygon",
   "polygon": [[-160,-14],[-146,-112],[-96,-150],[20,-176],[96,-186],[164,-152],[186,-96],[168,-38],[104,2],[10,16],[-72,10]],
   "priority": 60,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": ["chicagology_prefire278","chicagology_prefire273"],
   "note": "The polygon covers the settled river frontage at the forks, drawn around the eight structures the 1835 scene actually places (it spans the water between the two banks, which is harmless because no zone plants over water except the marsh buffer). The grazed halo is documented only as a process, not as an extent: the town's first code of 7 Nov 1833 forbade letting pigs wander in the streets, which is evidence that they did, and cattle grazed the unfenced commons. The dossier puts the halo 50-200 m beyond the built blocks and tags that extent inferred; this polygon uses the low end, because in July 1835 the built ground here is a scatter of taverns, not a continuous town. Isolated buildings outside the polygon stand in open prairie with only their own dooryard cleared."
  },
@@ -32,7 +32,7 @@
     "inflorescence": null,
     "appearance": "Cropped, patchy, dusty turf grazed hard and kept short — dulled by dust, but still green where it survives."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier tags the halo D for the grazing and pigs (the 7 Nov 1833 ordinance against pigs at large) and I for the plant composition. Poa is the type genus the dossier names; P. pratensis is this record's species reading and is not attested at Chicago in 1835."
   },
@@ -51,7 +51,7 @@
     "inflorescence": {"shape":"spike","rgb":[140,152,88],"height_frac":0.8,"size_m":[0.06,0.14]},
     "appearance": "Flat rosettes pressed into the mud with slim green flower spikes — the classic footpath weed."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -70,7 +70,7 @@
     "inflorescence": {"shape":"cluster_axillary","rgb":[214,210,196],"height_frac":0.6,"size_m":[0.004,0.008]},
     "appearance": "Wiry mats colonising the ruts and the cart tracks."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -88,7 +88,7 @@
     "inflorescence": {"shape":"panicle_dense","rgb":[148,156,118],"height_frac":0.85,"size_m":[0.06,0.12]},
     "appearance": "Mealy grey-green weed standing where hooves have not reached."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -106,7 +106,7 @@
     "inflorescence": {"shape":"spike","rgb":[136,144,92],"height_frac":0.88,"size_m":[0.05,0.12]},
     "appearance": "Coarse bristly green spikes on a red-based stem."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -124,7 +124,7 @@
     "inflorescence": null,
     "appearance": "Ferny foliage on disturbed ground; the flower spike is not out yet."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -142,7 +142,7 @@
     "inflorescence": {"shape":"cluster_axillary","rgb":[130,142,88],"height_frac":0.8,"size_m":[0.02,0.04]},
     "appearance": "Coarse rough leaves on the churned mud at the water's edge of the town."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -160,7 +160,7 @@
     "inflorescence": {"shape":"spike","rgb":[150,96,62],"height_frac":0.85,"size_m":[0.15,0.3],"fruit":true},
     "appearance": "Wavy-edged basal leaves and a dense fruiting spike already turning rust-brown."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -178,7 +178,7 @@
     "inflorescence": {"shape":"spike","rgb":[232,232,224],"height_frac":0.9,"size_m":[0.08,0.16]},
     "appearance": "Thin branching spikes carrying a few tiny white flowers at a time."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I] for composition."
   },
@@ -197,7 +197,7 @@
     "inflorescence": {"shape":"head_globe","rgb":[238,238,226],"height_frac":0.85,"size_m":[0.015,0.025]},
     "appearance": "Creeping trefoil mats in the grazed halo with white flower heads."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire278"],
    "note": "Dossier [I]: the Trifolium of the halo list. A European pasture clover, plausible around stock by 1835 but not attested at Chicago."
   },
@@ -217,7 +217,7 @@
     "inflorescence": null,
     "appearance": "Left standing on a cleared block, with fresh stumps, brush piles and axe-cut spars around it."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire273"],
    "note": "Andreas documents that the river timber belt still ran east to Wells and across Clark, so relict trees stand inside the platted blocks; the 8-25/ha survivor density is the dossier's inference, not a count."
   },
@@ -236,7 +236,7 @@
     "inflorescence": null,
     "appearance": "Survivor elm in a part-cleared block."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire273"],
    "note": "See populus_deltoides: survivor density inferred."
   },
@@ -255,7 +255,7 @@
     "inflorescence": null,
     "appearance": "Left along the bank where the landing was cut."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire273"],
    "note": "See populus_deltoides: survivor density inferred."
   },
@@ -274,12 +274,12 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[176,78,74],"height_frac":0.6,"size_m":[0.01,0.016],"fruit":true},
     "appearance": "Planted in the fenced dooryards, in ripening fruit."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["chicagology_prefire273"],
    "note": "Andreas records currant bushes in the Fort Dearborn garden and Dr. Harmon's nursery south of the fort, both about 1.2 km east of the modelled box. Currants in the dooryards inside this box are inferred from that, not attested."
   }
  ],
- "confidence": "inferred",
+ "confidence": "derived",
  "sources": ["chicagology_prefire278","chicagology_prefire273"],
  "note": "Streets are unpaved graded mud 80 ft wide, rutted and dust-glazed in dry July and churned where water stands; no sidewalks until 1850. The composition of the ruderal turf is inferred throughout: every species in it is a regional weed list, not a Chicago record, and several are European introductions whose presence here in 1835 is plausible but unattested.",
  "review_required": false

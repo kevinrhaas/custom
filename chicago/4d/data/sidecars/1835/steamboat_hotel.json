@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "drloih_hotels"
@@ -26,7 +26,7 @@
     "local_e": 968.0,
     "local_n": 291.0,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "drloih_hotels",
@@ -58,49 +58,49 @@
         8
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NOTHING ABOUT THIS BUILDING'S FABRIC OR SIZE IS ATTESTED. 15 x 8 m is about 50 x 26 ft: a plausible two-storey town hotel of 1835, sized between the Green Tree (40 x 25 ft, itself derived rather than measured) and the Western Hotel (40 x 60 ft in an L, which is attested). Every number is invented and the rectangle is a rectangle because no source describes a plan. To resolve: the Chicago American and Chicago Democrat advertisements — Davis was advertising this house, and hotel advertisements of the period routinely count rooms and describe the building."
   },
   "attributes": {
     "construction": {
       "value": "braced_frame",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED, AND THIS IS THE MOST CONSEQUENTIAL GUESS IN THE RECORD, because it also chose the archetype: a frame reading makes this a `frame_tavern` and a log reading would make it a `log_dwelling`, so if it is wrong the building is wrong in kind and not merely in detail. THE ARGUMENT FOR FRAME: every Chicago hotel this dataset can date to 1833 or later is frame — the Green Tree of 1833, the Western of 1834, the Tremont of 1833 — while the log taverns at the forks all belong to the 1828-31 generation; by 1835 the town had sawn lumber, carpenters and a building boom, and it was raising a three-storey brick hotel half a mile east on the same bank. THE ARGUMENT AGAINST TREATING THAT AS EVIDENCE is this project's own line, set in docs/LIBERTIES.md L18: the ordinary reading of a TYPE is not evidence about a BUILDING. Nobody described this house at all. So the value is chosen, declared and tagged conjectural, and the confidence view renders the whole building as massing rather than as a finding."
     },
     "stories": {
       "value": 2,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Two storeys is what a town hotel of 1835 carried and no source says it of this one. Chosen rather than derived."
     },
     "wall_height_m": {
       "value": 5.2,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. 5.2 m is about 17 ft — two storeys at period floor heights plus structure and a sill, the same figure this project uses for the Miller house's two-storey range. It inherits the storey count above, which is itself a guess."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Gable is the ordinary roof for a frame block of this type and period and nothing says it of this building."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is this archetype's mid-range for period framing, inferred from construction practice rather than measured — the same value and the same reasoning as the other frame records here. It is an inference about how a roof of this kind was framed, sitting on a roof form the record has already tagged as a guess."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED EITHER WAY, and this attribute is read by the archetype, so leaving it out would have painted the building white by default — which is a claim, and one Wau-Bun's account of the Sauganash's white paint being 'the admiration of all the little circle at Wolf Point' shows was worth remarking on in 1831. Unpainted is the cheaper reading for a 1835 speculative-boom house and it is still a choice."
     },
     "gallery": {
       "value": false,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED EITHER WAY. False is what the archetype falls back to, not a finding, and the consequence is the one docs/LIBERTIES.md L19 records for the Green Tree and the Western: a plain front reads as the answer while a drawn shape at least announces itself as a choice. A house taking steamboat passengers off the North Water Street frontage is precisely the type that often carried a porch."
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Two is the count a frame block of this frontage carries if it is heating public rooms and lodging rooms through a Chicago winter, and it is what this project's other two frame hotels record. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
     },
     "function": {

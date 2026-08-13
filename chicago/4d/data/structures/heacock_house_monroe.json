@@ -19,7 +19,7 @@
         "utm_n": 4636776.228,
         "rotation_deg": 0.0,
         "symbolic_location": "South Division, local ENU E 465 N -615",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "OUTSIDE THE MODELLED GROUND, AND THE DATE OF THE MOVE IS UNKNOWN. Two things are invented here. First, WHICH STREET IT STOOD ON on 1 July 1835: Andreas gives no date for the removal, so the house may have been on Monroe or already on Adams. This record puts it on Monroe, where it was built, because that is the position the source actually states. Second, WHERE ON MONROE: nothing says. The northing is estimated from the plat module - the block pitch implied by the reconstruction recipes' Randolph-to-Washington bands, carried two blocks further south - and lands about 215 m beyond the southern edge of the e1834_harbor_cut heightfield, so the phase declares ground_contact: outside_modelled_ground. THE BUILDING IS IN THE DATASET AND NOT UNDER THE WALKER'S FEET until the terrain extends south.",
         "derivation": {
           "method": "not_derivable",
@@ -45,7 +45,7 @@
             9.144
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 30 ft is the schedule's D5 deep-plan frame cottage, sized for the largest documented household in the residents layer: a wife and five sons, the youngest born in this house. Every number is invented."
       },
       "form": {

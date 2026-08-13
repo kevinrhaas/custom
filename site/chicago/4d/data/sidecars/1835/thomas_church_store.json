@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire275"
     ],
@@ -23,7 +23,7 @@
     "local_e": 521.4,
     "local_n": -92.4,
     "rotation_deg": 180.0,
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "CONJECTURAL, AND ONLY THE STREET IS EVIDENCE. The claim gives 'Lake Street' and no block, no corner and no side. The point recorded here is mid-block on the north side between LaSalle and Clark, chosen because that stretch is unclaimed by anything this dataset models — the buildings whose Lake Street positions ARE attested sit elsewhere on the street: the Tremont House at the north-west corner of Lake and Dearborn, the Mansion House on the north side just east of Dearborn, the Exchange Coffee House at the north-west corner of Lake and Wells, the First Presbyterian church at the south-west corner of Lake and Clark, St Mary's at Lake and State. None of those is modelled yet, so this record is placed to avoid them rather than to relate to them, WHICH IS A RENDERING DECISION AND NOT A FINDING. THE ALONG-STREET UNCERTAINTY IS THE WHOLE OF LAKE STREET inside the town, roughly 700 m, and the side of the street is a coin toss. METHOD, for the cross-street position only: the modern West Lake Street centreline was interpolated between the intersection centres at North LaSalle (EPSG:26916 E 447526.3, N 4637283.8) and North Clark (E 447649.7, N 4637283.4), read from OpenStreetMap 2026-08-11, and the north kerb taken 12.2 m north of it as half an 80 ft platted street, with the building's south face set on it. Working uncertainty about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS), and the length of the street along it. Facade bearing 180, due south onto Lake Street, inferred from the street rather than from any statement — the same bearing and the same reasoning hogan_store carries on the same street.",
     "symbolic_location": "North side of Lake Street between LaSalle Street and Clark Street (today West Lake Street) — the street is attested, the block is not.",
@@ -50,7 +50,7 @@
         7.62
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, taken from the Green Tree Tavern's attested frontage and its room module. Nothing is attested about this building's size. The documented 55 ft lot width applies to South Water Street and is not evidence about Lake Street, so no cap is claimed here; 40 ft is used because it is the dataset's one defensible borrowed frontage and not because anything says this building was that wide."
   },
@@ -65,7 +65,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire275"
       ],
@@ -73,22 +73,22 @@
     },
     "wall_height_m": {
       "value": 5.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course, the number this project uses for its other two-storey frame buildings, the Sauganash and Peck's store."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for a store kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
@@ -101,7 +101,7 @@
     },
     "occupants": {
       "value": "Thomas Church",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire275"
       ],

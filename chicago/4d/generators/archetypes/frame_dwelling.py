@@ -489,7 +489,7 @@ def _facade(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: float,
     """
     story_h = wall_z / 2.0 if p.stories >= 2.0 else wall_z
     sill = min(0.95, story_h * 0.36)
-    c_shut = p.conf("shutters", "conjectural")
+    c_shut = p.conf("shutters", "inferred")
     # everything on this wall stops under the frieze board
     top_head = wall_z - 0.28
     h = _sash(sill, story_h - 0.14 if p.stories >= 2.0 else top_head)

@@ -43,7 +43,7 @@ WIDE_RANGE_YEARS = 12
 # published tree holds plain binaries and has to stay reasonable.
 SITE_BUDGET_MB = 25
 
-CONFIDENCE = ("documented", "inferred", "conjectural")
+CONFIDENCE = ("documented", "derived", "inferred")
 SLUG = re.compile(r"^[a-z0-9_]+$")
 
 # The record's fixed attested blocks, in the order a claim reads best. Everything
@@ -162,16 +162,31 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    elif conf == "inferred":
+    elif conf == "derived":
+        # Reasoned FROM something, so it owes the reasoning; and it may cite the
+        # evidence it reasoned from, which is the ordinary case.
         if not note:
-            rep.error(where, f"{key}: inferred requires a note stating the reasoning")
+            rep.error(where, f"{key}: derived requires a note stating the reasoning")
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    else:  # conjectural
-        if srcs:
-            rep.warn(where, f"{key}: conjectural but cites sources — either the source "
-                            f"supports it (make it documented/inferred) or the citation is decorative")
+    else:  # inferred — invented to fill a demonstrable need of the town
+        # It owes its reasoning too: an invention nobody can defend is the thing
+        # this project exists not to ship. What it may NOT be is silent.
+        #
+        # It may also cite sources, and under the old vocabulary that was a
+        # warning — "conjectural but cites sources, so either it is not
+        # conjectural or the citation is decorative". That rule died with the
+        # rename: an inferred value is invented WITHIN a bound, and the source
+        # that establishes the bound (the reconstruction programme, a trade
+        # roster, a census total) is exactly what makes the invention defensible
+        # rather than arbitrary. Citing it is right, not suspicious.
+        if not note:
+            rep.error(where, f"{key}: inferred requires a note stating the reasoning — "
+                             f"an invention nobody can defend is not a reconstruction")
+        for sid in srcs:
+            if sid not in source_ids:
+                rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
     return conf
 
 
@@ -536,20 +551,20 @@ def terrain_claim_index(specs: dict[str, dict], rep: Report) -> dict[str, dict[s
             for epoch, spec in sorted(specs.items())}
 
 
-def terrain_conjectural_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
+def terrain_inferred_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
     """Every value the ground states without evidence.
 
     Returns `(epoch, claim_id, label, where)`. The ground invents as freely as a
     record does — a bank face nobody drew, two swale alignments attested nowhere,
     a channel section whose own note says it carries no evidence at all — and a
     visitor walks on all of it. The confidence view even dithers it. So it owes
-    `docs/LIBERTIES.md` an admission on exactly the argument a conjectural
+    `docs/LIBERTIES.md` an admission on exactly the argument an inferred
     footprint does.
     """
     return [(epoch, cid, claim.get("label") or cid, f"terrain {epoch}/{cid}")
             for epoch, claims in sorted(index.items())
             for cid, claim in claims.items()
-            if claim.get("confidence") == "conjectural"]
+            if claim.get("confidence") == "inferred"]
 
 
 def check_terrain_claims(source_ids: set, rep: Report,
@@ -559,7 +574,7 @@ def check_terrain_claims(source_ids: set, rep: Report,
 
     `terrain_spec.json` is as fully graded as any record — a documented water
     plane, three inferred division levels argued from period narrative feet, a
-    conjectural bank face — and until the ground claims reached the Evidence
+    inferred bank face — and until the ground claims reached the Evidence
     panel it was read only by the generator, so none of it was ever checked.
     Both halves of that mattered: rule one of AGENTS.md is that every
     `source_id` resolves in `data/sources/`, and this was the second file after
@@ -938,7 +953,7 @@ def graded_values(structures: dict) -> list[tuple]:
     quietly stop asking about the newest ones — which is the exact failure the
     checks built on this enumeration exist to prevent, one level up.
 
-    One enumeration, several questions: `conjectural_values` asks which of these
+    One enumeration, several questions: `inferred_values` asks which of these
     were invented, and `check_evidence_ladder` asks what each one rests on. Two
     walks over the same record is how two gates start disagreeing about what a
     record contains.
@@ -971,7 +986,7 @@ def graded_values(structures: dict) -> list[tuple]:
     return found
 
 
-def conjectural_values(structures: dict) -> list[tuple]:
+def inferred_values(structures: dict) -> list[tuple]:
     """Every value a structure record states without evidence.
 
     `(structure_id, phase_id|None, aspect, where)` — the `graded_values`
@@ -979,7 +994,7 @@ def conjectural_values(structures: dict) -> list[tuple]:
     """
     return [(sid, pid, aspect, where)
             for sid, pid, aspect, where, block in graded_values(structures)
-            if block.get("confidence") == "conjectural"]
+            if block.get("confidence") == "inferred"]
 
 
 def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
@@ -991,7 +1006,7 @@ def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
 
       * tiers 5-6 "must never be the sole evidence for a `documented` attribute";
       * "no geometry is traced from them" — an outline "comes from tier-1 sheets
-        or stays conjectural".
+        or stays inferred".
 
     Both were written in the prose AND in `data/source.schema.json`, and until
     now neither was enforced anywhere: the word `tier` did not occur in this
@@ -1069,7 +1084,7 @@ def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
             if off:
                 rep.error(where, f"footprint: graded {conf} while citing "
                                  f"{', '.join(named(t) for t in off)} — an outline comes from a "
-                                 f"period sheet or stays conjectural; a retrospective gives you "
+                                 f"period sheet or stays inferred; a retrospective gives you "
                                  f"that a thing was here, not its plan")
 
     if thin:
@@ -1893,34 +1908,34 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                              unlanded: list[tuple] | None = None,
                              ground: dict[str, dict[str, dict]] | None = None,
                              ground_consumed: dict[str, frozenset] | None = None) -> None:
-    """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
+    """Every inferred value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
     the provenance card report the liberties that were *recorded* — which is not
     the claim that everything taken was written down, and the project's standard
-    is that a visitor can tell you which parts we made up. A conjectural footprint
+    is that a visitor can tell you which parts we made up. An inferred footprint
     is not merely an unknown: the polygon gets drawn, the building stands on it,
     and the visitor sees one specific shape. That is an invention, and an
     invention nobody wrote down is exactly the gap the standard is about.
 
     The same argument runs past the drawn geometry, which is why the requirement
-    now covers every attested value in the record. A conjectural `roof_type` is
+    now covers every attested value in the record. An inferred `roof_type` is
     not an absence in the model: a gable gets built, and the visitor sees a gable.
-    A conjectural `gallery: false` is the same claim in the negative — the front
+    An inferred `gallery: false` is the same claim in the negative — the front
     of the building is rendered plain because nobody found evidence either way,
     and *that* is a decision a visitor cannot recover from a dithered tint. The
     confidence chip says "we do not know"; only the liberty says what we did about
     not knowing.
 
     So the confidence value drives the requirement, mechanically: mark anything
-    conjectural and the gate demands an entry whose `Covers:` field names that
+    inferred and the gate demands an entry whose `Covers:` field names that
     structure and that aspect. The claim is DECLARED, not inferred from the
     entry's wording. Reading the prose — the earlier rule — meant a liberty could
     discharge a footprint by mentioning the word while discussing a gallery, which
     is a coverage check that can be satisfied by an accident of phrasing.
 
     The claims are checked the other way too. A `Covers:` token that names no such
-    structure, no such phase, or an attribute that is not conjectural is an
+    structure, no such phase, or an attribute that is not inferred is an
     over-claim: the document says it admitted to something it did not, and that
     reads as diligence while providing none. Entries under **Resolved** are exempt
     from the last of those, because an append-only document has to be able to say
@@ -1967,7 +1982,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     # Two kinds of thing owe the document an entry, and they are opposites: a
     # value invented to fill a gap, and a value we have but did not build.
     owed: list[tuple] = [(sid, pid, aspect, where, "invented")
-                         for sid, pid, aspect, where in conjectural_values(structures)]
+                         for sid, pid, aspect, where in inferred_values(structures)]
     for sid, pid, aspect, where, attr in unbuilt_values(structures, consumed or {}):
         state = attr.get("geometry")
         if state in GEOMETRY_OWES_LIBERTY and attr.get("value"):
@@ -1997,7 +2012,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
             what = (f"a drawn {aspect}" if aspect in ("footprint", "position")
                     else "a stated " + re.sub(r"\bm\b", "(m)",
                                               aspect.split(".")[-1].replace("_", " ")))
-            why = (f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
+            why = (f"{aspect} is inferred but no liberty in docs/LIBERTIES.md "
                    f"claims it — {what} nobody can defend is something we made up")
         elif kind == "unlanded":
             why = ("this structure does not reach the ground it stands over and no "
@@ -2019,7 +2034,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     ground = ground or {}
     ground_honoured: set[tuple] = set()
     ground_owed = [(e, c, lab, w, "invented")
-                   for e, c, lab, w in terrain_conjectural_values(ground)]
+                   for e, c, lab, w in terrain_inferred_values(ground)]
     # And the ground's omissions, on the same terms as a building's. The claim is
     # per FIELD and the admission is per CLAIM, because `terrain.<epoch>.<claim>`
     # is the vocabulary the document already writes in and a soil profile is not
@@ -2042,7 +2057,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
             ground_honoured.add(key)
             continue
         if kind == "invented":
-            why = (f"'{label}' is conjectural and no liberty in docs/LIBERTIES.md claims "
+            why = (f"'{label}' is inferred and no liberty in docs/LIBERTIES.md claims "
                    f"it — the ground invents as freely as a record does, a visitor walks "
                    f"on the result")
         else:
@@ -2073,7 +2088,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         if all((e.get("section") or "") == "resolved" for e in owners):
             continue
         rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}', but that "
-                               f"ground claim is neither conjectural nor stating a figure "
+                               f"ground claim is neither inferred nor stating a figure "
                                f"declared absent or simplified — either evidence arrived "
                                f"and the spec caught up, or the ground was built and the "
                                f"declaration dropped, in which case move the entry to the "
@@ -2100,7 +2115,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
             continue
         rep.error("liberties", f"{who} claims to cover '{csid}"
                                f"{'.' + cpid if cpid else ''}.{aspect}', but that value is "
-                               f"neither conjectural, nor declared absent or simplified, nor "
+                               f"neither inferred, nor declared absent or simplified, nor "
                                f"standing off the ground — either "
                                f"the evidence arrived and the model caught up, in which case "
                                f"move the entry to the Resolved section of docs/LIBERTIES.md, or "
@@ -3874,7 +3889,7 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
     conf = check_attested(where, "species", sp, source_ids, rep)
     if conf:
         tally[conf] = tally.get(conf, 0) + 1
-    if conf == "conjectural" and not (sp.get("note") or "").strip():
+    if conf == "inferred" and not (sp.get("note") or "").strip():
         rep.error(where, "conjectural requires a note saying what the belief rests on and that "
                          "it is not evidence. Unknown is recorded as unknown, never left blank")
 

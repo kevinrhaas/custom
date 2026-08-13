@@ -8,7 +8,7 @@
  * forgotten per-building.
  *
  * The channel is `_CONFIDENCE`, a custom glTF SCALAR float attribute
- * (docs/GLB-CONTRACT.md): 0.0 documented, 0.5 inferred, 1.0 conjectural.
+ * (docs/GLB-CONTRACT.md): 0.0 documented, 0.5 derived, 1.0 inferred.
  * GLTFLoader lowercases unknown attributes, so it arrives as
  * `geometry.attributes._confidence`. three will not wire it up for us and must
  * not: it is data, not colour, and nothing may tint by accident. We declare the
@@ -18,7 +18,7 @@
  *
  *   documented   unchanged
  *   inferred     lerped toward amber
- *   conjectural  screen-door dithered translucent massing — an ordered 4x4
+ *   inferred     screen-door dithered translucent massing — an ordered 4x4
  *                Bayer threshold against gl_FragCoord with a `discard`, IN THE
  *                OPAQUE PASS. No blending, no depth sorting, no per-object
  *                render order. That is what lets it work inside one BatchedMesh,
@@ -30,14 +30,14 @@ import * as THREE from 'three';
 
 export const LEVELS = {
   documented: 0.0,
-  inferred: 0.5,
-  conjectural: 1.0,
+  derived: 0.5,
+  inferred: 1.0,
 };
 
 /** Level name for a raw channel value — the inverse of LEVELS, band-wise. */
 export function levelOf(value) {
-  if (value >= 0.75) return 'conjectural';
-  if (value >= 0.25) return 'inferred';
+  if (value >= 0.75) return 'inferred';
+  if (value >= 0.25) return 'derived';
   return 'documented';
 }
 
@@ -66,9 +66,9 @@ const VERTEX_ASSIGN = /* glsl */`
 const FRAGMENT_DECL = /* glsl */`
 varying float vConfidence;
 uniform float uConfMode;
-uniform float uConjecturalAlpha;
+uniform float uInferredAlpha;
+uniform vec3 uDerivedTint;
 uniform vec3 uInferredTint;
-uniform vec3 uConjecturalTint;
 
 // Ordered 4x4 Bayer matrix. Screen-door translucency: a stable per-pixel
 // threshold means no sorting, no blending, and no order dependence between the
@@ -89,17 +89,17 @@ float chicago_bayer4(vec2 fragXY) {
 
 // Crisp bands, because the contract's values are exactly 0.0 / 0.5 / 1.0 — but
 // they degrade sanely if a generator ever emits something in between.
-float chicago_wInferred(float c)    { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
-float chicago_wConjectural(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
+float chicago_wDerived(float c)  { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
+float chicago_wInferred(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
 `;
 
 const FRAGMENT_DISCARD = /* glsl */`
   // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
   // bad value cannot reach the arithmetic at all when the view is switched off.
   if (uConfMode > 0.0) {
-    float conj = chicago_wConjectural(vConfidence) * uConfMode;
-    if (conj > 0.0) {
-      float alpha = mix(1.0, uConjecturalAlpha, conj);
+    float inf = chicago_wInferred(vConfidence) * uConfMode;
+    if (inf > 0.0) {
+      float alpha = mix(1.0, uInferredAlpha, inf);
       if (chicago_bayer4(gl_FragCoord.xy) >= alpha) discard;
     }
   }
@@ -109,10 +109,10 @@ const FRAGMENT_TINT = /* glsl */`
   // Same guard as the discard: when the view is off, diffuseColor is not touched
   // by a single instruction. See VERTEX_ASSIGN for why that is load-bearing.
   if (uConfMode > 0.0) {
+    float wDer = chicago_wDerived(vConfidence) * uConfMode;
     float wInf = chicago_wInferred(vConfidence) * uConfMode;
-    float wCon = chicago_wConjectural(vConfidence) * uConfMode;
-    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wInf * 0.72);
-    diffuseColor.rgb = mix(diffuseColor.rgb, uConjecturalTint, wCon * 0.80);
+    diffuseColor.rgb = mix(diffuseColor.rgb, uDerivedTint, wDer * 0.72);
+    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wInf * 0.80);
   }
 `;
 
@@ -121,13 +121,13 @@ const FRAGMENT_TINT = /* glsl */`
  * a single assignment no matter how many materials exist.
  */
 export function createConfidenceView({
-  inferred = 0xe2a63f,
-  conjectural = 0x93a6bb,
-  conjecturalAlpha = 0.34,
+  derived = 0xe2a63f,
+  inferred = 0x93a6bb,
+  inferredAlpha = 0.34,
 } = {}) {
   const uniforms = {
     uConfMode: { value: 0 },
-    uConjecturalAlpha: { value: conjecturalAlpha },
+    uInferredAlpha: { value: inferredAlpha },
     // ONE conversion, not two — and here it matters more than anywhere else in
     // the renderer, because these two colours are the confidence view itself.
     //
@@ -146,8 +146,8 @@ export function createConfidenceView({
     // tint on the wall is supposed to be the colour of the chip the visitor is
     // reading it against. Double-converted, it could not be, so the one view
     // that exists to say which parts we made up disagreed with its own legend.
+    uDerivedTint: { value: new THREE.Color(derived) },
     uInferredTint: { value: new THREE.Color(inferred) },
-    uConjecturalTint: { value: new THREE.Color(conjectural) },
   };
 
   const patched = new Set();
@@ -172,7 +172,7 @@ export function createConfidenceView({
       );
 
       let f = FRAGMENT_DECL + shader.fragmentShader;
-      // Discard first: a conjectural fragment that is dithered away should not
+      // Discard first: an inferred fragment that is dithered away should not
       // pay for lighting, and it must not write depth.
       f = f.replace(
         '#include <clipping_planes_fragment>',
@@ -212,7 +212,7 @@ export function createConfidenceView({
   /** Count vertices per level — the honest picture of what is on screen. */
   function census(geometry) {
     const attr = geometry.getAttribute('_confidence');
-    const out = { documented: 0, inferred: 0, conjectural: 0 };
+    const out = { documented: 0, derived: 0, inferred: 0 };
     if (!attr) return out;
     for (let i = 0; i < attr.count; i++) out[levelOf(attr.getX(i))]++;
     return out;

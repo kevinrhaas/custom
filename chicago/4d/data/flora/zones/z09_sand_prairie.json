@@ -37,7 +37,7 @@
       ]
     },
     "priority": 40,
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [],
     "note": "PRIORITY RAISED 11 -> 40, 2026-08-11. Same correction as z08 and for the same reason — the relict beach-ridge belt was losing to the mesic-prairie elevation band that runs across it. 40 sits just below the lakeshore at 45 so that where the two boxes meet at E +1400 the open beach wins over the older ridges, which is the seaward order. PLANTABLE SINCE 2026-08-11. This community was written and then withheld: the ground it describes did not exist in the model. ROADMAP S2e has since extended the heightfield east from a 640 m square to E -320..+1700, and this zone's extent now matches 14,577 samples of the committed terrain, so it is planted. Nothing about the species, the July phenology or the confidence has changed — the records were always ready and the ground was not. WHAT THE ORIGINAL NOTE SAID, kept because it was correct when it was written: PLANTABLE SINCE 2026-08-11, when ROADMAP S2e parcel (b) carried the heightfield east to E +1700. The relict beach-ridge belt runs from the State Street break-of-slope — the terrain spec builds that band between E +780 and +880, centred on the two State Street ground-control points at E +837.6 and +822.5 — east to the lakeshore sand ridges, and all of it is modelled ground now, standing at +7.6 to +9.5 ft above the water. The north-south bounds are the scene's own, not the belt's. NOT FIXED HERE, for the flora parcel: at priority 11 this zone loses everywhere to z02_mesic_prairie (priority 22), so the dry sand prairie is currently planted as mesic prairie — the opposite of the 10-25 per cent bare sand this record exists to state."
   },
@@ -108,7 +108,7 @@
         "inflorescence": null,
         "appearance": "Dwarfed on sand, shorter than it grows on clay."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -140,7 +140,7 @@
         "inflorescence": null,
         "appearance": "Fine pale tufts between the bunchgrass."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -172,7 +172,7 @@
         "inflorescence": null,
         "appearance": "Fine wiry tufts; the panicle stays in the sheath."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -216,7 +216,7 @@
         },
         "appearance": "Brilliant orange flat umbels — the highest-value colour accent on the sand."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -260,7 +260,7 @@
         },
         "appearance": "Tiered whorls of pink-purple bracts stacked up the stem."
       },
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Dossier [C]: plausible on sand here, unattested."
     },
     {
@@ -301,7 +301,7 @@
         },
         "appearance": "Silky pinnate foliage with cream-and-pink pea flowers."
       },
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Dossier [C]: plausible, unattested."
     },
     {
@@ -346,7 +346,7 @@
         },
         "appearance": "Sprawling jointed pads with waxy yellow flowers."
       },
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Dossier [C]: plausible, unattested."
     },
     {
@@ -388,7 +388,7 @@
         },
         "appearance": "Past bloom: hairy grey foliage with small nutlets, the orange gone."
       },
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Dossier [C]: plausible, unattested."
     },
     {
@@ -429,7 +429,7 @@
         },
         "appearance": "Nodding pink umbels on arching scapes — the Chicago onion that is actually visible in July."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994",
         "drloih_chicago_name"
@@ -473,7 +473,7 @@
       ]
     }
   ],
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
     "fpdcc_ecosystems"
   ],

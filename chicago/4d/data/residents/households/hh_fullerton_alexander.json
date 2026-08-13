@@ -14,27 +14,27 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "NOT MODELLED; no lawyer's office in the 1835 town is a structure record."
  },
  "present_on_scene_date": {

@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire273"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637408.5,
         "rotation_deg": 0.0,
         "symbolic_location": "Where South Water Street crossed the slough, a little west of the slough's mouth at the foot of State (Wolcott) Street, on the south bank of the main stem. Outside the modelled terrain box.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire273",
           "osm_streets_2026"
@@ -53,7 +53,7 @@
             3
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER — NO DIMENSION OF THIS CROSSING IS ATTESTED. The polygon is the DECK: its u extent is the span, 8 m, and its v extent the width, 3 m. THE SPAN IS SIZED OFF THE STREAM, NOT OFF THE BRIDGE: docs/research/01-terrain-hydrology.md's hydrology inventory gives the slough a width of 15 to 40 ft (zone 14) and tags the width and depth conjectural while calling the route documented, so 8 m of deck is a crossing of the narrow end of that range with a little bank at each side. If the slough ran 40 ft wide here the span is half what it should be. Every number is invented and the polygon cites no sources. THIS IS NOT A RIVER BRIDGE AND MUST NOT BE SIZED LIKE ONE: the two branch bridges in this dataset span 72 m and 56 m and carried the documented ten-foot width and six-foot clearance of the town's main crossings; this is a street culvert in all but name, and the record deliberately does not borrow their measurements — see the width and clearance notes."
       },
       "form": {
@@ -67,32 +67,32 @@
         },
         "width_m": {
           "value": 3.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "NOT ATTESTED FOR THIS CROSSING, AND DELIBERATELY NOT THE BRANCH BRIDGES' DOCUMENTED FIGURE. Charles Cleaver's 'these bridges were ten feet wide' (3.05 m) is evidence about the North and South Branch crossings and this project treats it as documented THERE; here it is only a yardstick. 3.0 m is a hair under it: what is inferred is that a bridge carrying a graded public street had to be about a wagon wide, and that nobody built a street crossing wider than the town's main river bridges. The number should be read as 'about a wagon's width', not as a measurement."
         },
         "clearance_m": {
           "value": 0.5,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "INVENTED OUTRIGHT, and the attribute where this record most needs to hold its nerve against a documented number. The two branch bridges stood 'about six feet above the water, so that teams passed under them on the ice freely' (the 1883 old-settlers statement) — 1.83 m, and utterly wrong for a slough. Nothing passed under this bridge. The hydrology dossier puts the slough's thalweg 1.5 to 3.0 ft below the adjacent plain, so a deck laid at street level sits roughly half a metre over the water: 0.5 m is that reading and it is a reading of a conjectural depth, not of a measurement. Admitted in docs/LIBERTIES.md."
         },
         "pier_count": {
           "value": 0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "NOBODY DESCRIBED THE MIDDLE OF THIS BRIDGE AND ZERO IS THE ANSWER THAT INVENTS LEAST. The archetype accepts 0 explicitly — 'a short crossing lands abutment to abutment with nothing in the water' — and without a stated count it would fall back to a spacing of 4.5 m and put a support in the middle of an 8 m span. An 8 m run of log stringers needs no intermediate bent; the branch bridges needed two each over 56 and 72 m. So the count is inference from the span, and it keeps a pier out of a stream nobody says had one."
         },
         "deck_kind": {
           "value": "puncheon",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested for this crossing. Puncheon — split logs laid flat side up — is what the 1883 old-settlers statement describes on both branch bridges ('on those stringers puncheons or split logs were laid for a floor'), and a smaller, cruder, unremarked street crossing of the same decade is not going to have carried better. Inference from local practice, not from this bridge."
         },
         "stringer_d_m": {
           "value": 0.25,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 0.25 m is a lighter log than the 0.30 m this project gives the branch bridges, on the reasoning that a stringer is sized to its span and this one is a seventh of theirs. Inference about carpentry, not a measurement."
         },
         "plank_t_m": {
           "value": 0.08,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 0.08 m of split-log floor, a little thinner than the branch bridges' 0.09 m, on the same reasoning as the stringers."
         }
       },

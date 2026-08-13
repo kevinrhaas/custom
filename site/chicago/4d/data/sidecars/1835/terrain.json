@@ -110,7 +110,7 @@
       "id": "reaches.main_stem",
       "group": "the channel beds",
       "label": "main_stem",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -166,7 +166,7 @@
       "id": "reaches.fort_bend_pool",
       "group": "the channel beds",
       "label": "fort_bend_pool",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -222,7 +222,7 @@
       "id": "reaches.harbour_cut_1834",
       "group": "the channel beds",
       "label": "harbour_cut_1834",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -304,7 +304,7 @@
       "id": "reaches.old_south_channel",
       "group": "the channel beds",
       "label": "old_south_channel",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -370,7 +370,7 @@
       "id": "reaches.open_lake_shelf",
       "group": "the channel beds",
       "label": "open_lake_shelf",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -405,7 +405,7 @@
       "id": "reaches.north_branch",
       "group": "the channel beds",
       "label": "north_branch",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -436,7 +436,7 @@
       "id": "reaches.south_branch",
       "group": "the channel beds",
       "label": "south_branch",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -467,7 +467,7 @@
       "id": "channel_profile",
       "group": "the channel cross-section",
       "label": "channel_profile",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "bed_confidence",
       "fields": [
         {
@@ -492,7 +492,7 @@
       "id": "bank",
       "group": "the bank",
       "label": "bank",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -521,7 +521,7 @@
       "id": "divisions.south_division",
       "group": "the three divisions",
       "label": "South Division — the low plain west of State Street, the sand-ridge belt east of it, and the Fort Dearborn reservation",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -605,7 +605,7 @@
       "id": "divisions.north_division",
       "group": "the three divisions",
       "label": "North Division — timbered, better-drained sandy ground rising toward the lake",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -676,7 +676,7 @@
       "id": "divisions.west_division",
       "group": "the three divisions",
       "label": "West Division — Wolf Point and the open wet prairie",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -726,7 +726,7 @@
       "id": "marsh_strips.south_division_marsh",
       "group": "the marshy shore",
       "label": "south_division_marsh",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -788,7 +788,7 @@
       "id": "swales.west_prairie_swale_a",
       "group": "the prairie swales",
       "label": "west_prairie_swale_a",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -815,7 +815,7 @@
       "id": "swales.west_prairie_swale_b",
       "group": "the prairie swales",
       "label": "west_prairie_swale_b",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -842,7 +842,7 @@
       "id": "watercourses.north_side_slough",
       "group": "the watercourses",
       "label": "north_side_slough",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -891,7 +891,7 @@
       "id": "micro_relief",
       "group": "the surface texture",
       "label": "micro_relief",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1020,7 +1020,7 @@
       "id": "surface_materials.north_division",
       "group": "what the ground is made of",
       "label": "north_division",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1044,7 +1044,7 @@
       "id": "surface_materials.north_division near the lake",
       "group": "what the ground is made of",
       "label": "north_division near the lake",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1068,7 +1068,7 @@
       "id": "surface_materials.west_division",
       "group": "what the ground is made of",
       "label": "west_division",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1186,7 +1186,7 @@
       "id": "surface_materials.channel",
       "group": "what the ground is made of",
       "label": "channel",
-      "confidence": "inferred",
+      "confidence": "derived",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1210,7 +1210,7 @@
       "id": "surface_materials.open_lake_shelf",
       "group": "what the ground is made of",
       "label": "open_lake_shelf",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "confidence",
       "fields": [
         {
@@ -1226,13 +1226,15 @@
       ],
       "sources": [],
       "citations": [],
-      "notes": []
+      "notes": [
+        "No source describes the lake bed offshore of the 1835 beach. It is carried as the same Henry Formation sand that the shoreline and dune ridges are made of, because the beach is what is being continued underwater and a lake bed of some other material would be the stranger claim. Nothing rests on it: the shelf is below the water surface at every point and is never seen."
+      ]
     },
     {
       "id": "datum.lake_stage",
       "group": "the vertical datum",
       "label": "How high the 1835 water surface stood",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "confidence_key": "lake_stage_confidence",
       "fields": [
         {

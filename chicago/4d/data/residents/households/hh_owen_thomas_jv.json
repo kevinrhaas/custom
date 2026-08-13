@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested. Owen arrived to take up a federal office and the ordinary reading is that his family came with him or followed, but no source counts them, so no number is given."
  },
  "origin": {
@@ -35,12 +35,12 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "NOT ATTESTED. The agency establishment at the foot of State Street held the agency house (cobweb_castle) and the government blacksmith shop, but Andreas has Colonel Hamilton living in the agency house in the autumn of 1832, and nothing places Owen under any particular roof. Left null rather than guessed; a later parcel that fixes the agent's residence closes it."
  },
  "works_at": {
   "value": "cobweb_castle",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -97,7 +97,7 @@
    "grade": "derived",
    "occupation": {
     "value": "none_recorded",
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "note": "No trade is recorded for anyone in this household but Owen himself."
    },
    "sources": [],

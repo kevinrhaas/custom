@@ -21,7 +21,7 @@
     "local_e": 482.257,
     "local_n": -277.963,
     "rotation_deg": 0.0,
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage.",
     "symbolic_location": "South Division, local ENU E 485 N -274",
@@ -48,7 +48,7 @@
         7.925
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented."
   },

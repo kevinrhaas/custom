@@ -13,7 +13,7 @@
   "kind": "elevation_band",
   "elev_m": [0.18,0.66],
   "priority": 55,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": ["chicagology_prefire273"],
   "note": "Inside the modelled box this band is the marshy shore strip of the South Division, which the terrain spec builds at +1.25 ft from Andreas's 'strip of land along the river shore that was still more marshy, where land and water mingled, covered with tall grass, reeds and rushes', plus the toe of the west and north banks. NOT MODELLED HERE: the documented Public-Square-to-State-Street slough, the single most important vegetation feature inside the platted grid, runs about 480 to 840 m EAST of this 640 m box and has no ground in this scene. The north-side slough of Wright 1834 is inside the box but is a 7 m watercourse whose margin falls inside the marsh buffer of z04. The West Division swales are 0.6 to 0.8 ft deep and stay above this band, so they read as wet prairie with sedge patches rather than as sedge meadow."
  },
@@ -87,7 +87,7 @@
     "inflorescence": {"shape":"spike","rgb":[128,128,92],"height_frac":0.8,"size_m":[0.04,0.08],"fruit":true},
     "appearance": "Broad glaucous blades in loose colonies, spikes already shed."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I] and gives C. lacustris and C. aquatilis jointly at 10-15% cover; split evenly here, which is this record's division, not the dossier's."
   },
@@ -105,7 +105,7 @@
     "inflorescence": {"shape":"spike","rgb":[126,126,94],"height_frac":0.8,"size_m":[0.04,0.08],"fruit":true},
     "appearance": "Blue-green blades in wet hollows, fruiting spikes going over."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "See carex_lacustris: the 10-15% is a joint figure, split here."
   },
@@ -124,7 +124,7 @@
     "inflorescence": {"shape":"cluster_terminal","rgb":[96,116,70],"height_frac":0.92,"size_m":[0.08,0.14]},
     "appearance": "Leafy triangular stems carrying dark-green branched heads."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional sedge-meadow flora."
   },
@@ -143,7 +143,7 @@
     "inflorescence": {"shape":"panicle_open","rgb":[150,122,88],"height_frac":0.9,"size_m":[0.12,0.2]},
     "appearance": "Drooping woolly-brown branched heads over coarse leafy culms."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional sedge-meadow flora."
   },
@@ -161,7 +161,7 @@
     "inflorescence": {"shape":"capsule_green","rgb":[136,148,88],"height_frac":0.7,"size_m":[0.05,0.09],"fruit":true},
     "appearance": "PAST BLOOM: sword leaves and fat green three-ridged seed capsules, no blue flowers left."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I], and one of its named phenology traps: blue flag is a late-May to June flower and is in green fruit by 1 July."
   },
@@ -196,7 +196,7 @@
     "inflorescence": {"shape":"cluster_axillary","rgb":[226,228,218],"height_frac":0.6,"size_m":[0.015,0.03]},
     "appearance": "Inconspicuous: tiny white axillary whorls on square stems."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: matrix filler on the regional list."
   },
@@ -214,7 +214,7 @@
     "inflorescence": {"shape":"spike","rgb":[124,142,84],"height_frac":0.7,"size_m":[0.03,0.07]},
     "appearance": "Inconspicuous green: opposite nettle-like leaves and slim green flower spikes."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: matrix filler on the regional list."
   },
@@ -233,7 +233,7 @@
     "inflorescence": {"shape":"cluster_terminal","rgb":[148,126,92],"height_frac":0.72,"size_m":[0.03,0.06]},
     "appearance": "Dense tufts of round green culms with a small brown flower cluster part-way up."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: matrix filler."
   }

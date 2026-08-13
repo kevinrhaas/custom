@@ -345,8 +345,8 @@ body.is-touch .gate-touch { display: block; }
 .hud-legend li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; align-items: start; color: var(--ink-dim); }
 .sw { width: 12px; height: 12px; border-radius: 3px; margin-top: 3px; display: block; }
 .sw-doc { background: var(--doc); }
-.sw-inf { background: var(--inf); }
-.sw-con { background: repeating-linear-gradient(45deg, var(--con) 0 2px, transparent 2px 4px); border: 1px solid var(--con); }
+.sw-der { background: var(--inf); }
+.sw-inf { background: repeating-linear-gradient(45deg, var(--con) 0 2px, transparent 2px 4px); border: 1px solid var(--con); }
 .legend-note { margin: 10px 0 0; color: var(--ink-dim); font-size: 11.5px; }
 .legend-note code { font-size: 11px; }
 
@@ -604,11 +604,11 @@ table.attrs td .val { font-variant-numeric: tabular-nums; }
   white-space: nowrap;
 }
 .conf-documented  { background: rgba(160, 200, 140, .2); color: #a9cf93; border: 1px solid rgba(160, 200, 140, .4); }
-.conf-inferred    { background: rgba(226, 166, 63, .18); color: var(--inf); border: 1px solid rgba(226, 166, 63, .45); }
-.conf-conjectural { background: rgba(154, 163, 173, .16); color: var(--con); border: 1px solid rgba(154, 163, 173, .4); }
+.conf-derived     { background: rgba(226, 166, 63, .18); color: var(--inf); border: 1px solid rgba(226, 166, 63, .45); }
+.conf-inferred    { background: rgba(154, 163, 173, .16); color: var(--con); border: 1px solid rgba(154, 163, 173, .4); }
 [data-theme="light"] .conf-documented { color: #3f6a2c; }
-[data-theme="light"] .conf-inferred { color: #8a5a12; }
-[data-theme="light"] .conf-conjectural { color: #4d5560; }
+[data-theme="light"] .conf-derived { color: #8a5a12; }
+[data-theme="light"] .conf-inferred    { color: #4d5560; }
 
 /* WHO WAS HERE. A person's `grade` is a different axis from an attribute's
    confidence — it says how much of a PERSON is reconstructed, not how sure we
@@ -984,7 +984,7 @@ kbd {
 .jump-result:hover, .jump-result:focus-visible { background: rgb(255 255 255 / 11%); }
 /* `:not(.conf)`, because the confidence chip is also a <small> here and it
    carries the colour that IS its meaning — a bare `.jump-result small` rule
-   outranks `.conf-inferred` on specificity and painted all three grades the
+   outranks `.conf-derived` on specificity and painted all three grades the
    same dim grey, which is a legend that lies. */
 .jump-result small:not(.conf) { flex: none; color: var(--ink-dim); font-size: 9px; }
 .jump-result .conf { flex: none; margin-left: 0; font-size: 9px; }

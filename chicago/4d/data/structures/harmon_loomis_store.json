@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1833-11-26",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicago_democrat_1833_11_26",
           "andreas_1884_v1"
@@ -25,7 +25,7 @@
         "utm_n": 4637389.9,
         "rotation_deg": 0.0,
         "symbolic_location": "The corner of Clark Street and South Water Street (today North Clark Street at West Wacker Drive); the south-east corner, which is this record's reading and not a statement in any source.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "osm_streets_2026"
@@ -55,13 +55,13 @@
             7.62
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, taken from the Green Tree Tavern's attested frontage and room module because no source gives this building a dimension. The documented cap applies: South Water lots were 55 ft wide, so the frontage cannot have exceeded that. THE ONE FIGURE THAT MUST NOT BE USED IS THE ONE THE SOURCES DO OFFER. Andreas describes a THREE-STOREY building on this corner housing the Daily Chicago American on its third floor — in 1839, four years after the scene date, in a town whose first three-storey structure (the Saloon Building) is 1836 and is already in data/exclusions.json. Sizing or massing this 1835 record from the 1839 building would import the boom that had not happened yet."
       },
       "form": {
         "stories": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -69,7 +69,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -77,22 +77,22 @@
         },
         "wall_height_m": {
           "value": 5.5,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 5.5 m is about 18 ft, two 8 ft storeys plus floor structure and a sill course — the number this project uses for its other two-storey frame buildings. It inherits the storey count's uncertainty in full."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region. Typological derivation, not a measurement."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a store kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -110,7 +110,7 @@
   },
   "occupants": {
     "value": "C. & I. Harmon, merchants; the firm Andreas names as Harmon and Loomis",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
