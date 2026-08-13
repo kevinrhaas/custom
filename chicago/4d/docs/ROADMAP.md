@@ -458,6 +458,96 @@ relief — and `Heightfield.covers()` exists because a structure once landed 832
 reported a perfect fit. (e) Triangle budget: 139 roofs at the ~723 tris the K1 bake averaged is
 ~100 000, against 574 440 of headroom at Full detail. It fits now; it did not before K14.
 
+### K16 — The confidence vocabulary is wrong, and the owner named the fix · **CLAIMED 2026-08-13, expires 2026-08-16**
+
+> **CLAIM — steward, skip.** Held by the interactive session. This is a RENAME across the whole
+> dataset (240+ structure records, flora, fauna, ground claims), the schema, the validator, the
+> liberties gate, the legend and the popup. Half of it applied is worse than none of it. Take K2,
+> K5, K8 or K10.
+
+The owner's correction, 2026-08-13, in their words: *"I don't want to use inferred in those kind
+of cases where there was some solid research behind it… the government blacksmith shop seems
+fairly good in location and you labeled it inferred. Inferred is the name for when you make your
+research combination and invent a person based on likely needs of the city and population."*
+
+They are right, and the fault is that two very different acts share one word. Placing the agency
+blacksmith shop from Andreas's description is RESEARCH; inventing a cooper because a town packing
+two thousand hogs needs one is INVENTION. Both currently read `inferred`.
+
+**The rename, which is a rename and not a new tier** — the three existing levels keep their
+meanings and their paint, and two of them get honest names:
+
+| now | becomes | paint | means |
+|---|---|---|---|
+| `documented` | `documented` | white / unmarked | a source attests this at the scene date |
+| `inferred` | **`derived`** | gold | reasoned from specific evidence ABOUT THIS THING — a described location, a measured lot, an adjacent record. Researched and likely. |
+| `conjectural` | **`inferred`** | dithered | invented to fill a demonstrable need of the town. No evidence for this particular thing. **Not a "guess"** — the owner asked for that word to go. |
+
+This also UNIFIES the two axes: `data/residents/` already grades people
+`documented` / `derived` / `inferred` with almost exactly these meanings (docs/PROVENANCE.md and
+`data/residents/index.json`). After the rename one vocabulary covers both.
+
+**Order matters, because the words collide mid-flight.** `conjectural`→`inferred` cannot run
+before `inferred`→`derived`, or every old `inferred` is swallowed. Do it as ONE scripted pass
+with a two-phase substitution through a sentinel, re-derive every generated record, and diff the
+count of each level before and after: the totals must move as a permutation, not change.
+
+**What must move with it:** `schemas/*.json` enums · `tools/validate.py` (including
+`check_liberties_coverage`, which keys on `conjectural` — after the rename the liberties trigger
+is `inferred`) · the three infill generators and the household generator, whose literal strings
+are re-derived byte for byte · `renderers/web/js/confidence.js` · the Evidence legend in
+`index.html` · `popup.js` · `docs/PROVENANCE.md`, `AGENTS.md`, `docs/LIBERTIES.md` prose.
+**Do not rewrite the historical prose in `docs/STATUS.md` or shipped changelog entries** — they
+are a record of what was said at the time.
+
+### K17 — Confidence view: dither the roofs, and let a level be switched off · **SPECIFIED, unclaimed**
+
+Depends on K16's vocabulary. Three things the owner asked for on 2026-08-13:
+
+1. **The roofs do not dither.** In the confidence view the walls take the dithered treatment and
+   the roof planes do not, so a building that is entirely invented still reads as half-solid.
+   Find out whether the roof material misses the `_confidence` attribute or the patch, and either
+   dither it or — the owner's own suggestion — give the roof a distinct treatment so a dithered
+   wall and a dithered roof stay legible against each other.
+2. **A hide mode.** *"I would like to be able to toggle that view to make the buildings objects
+   items disappear altogether based on those levels."* So the confidence view gains a mode: COLOUR
+   (today's behaviour) or HIDE, where a level's geometry is removed from the scene rather than
+   tinted — walk a town of only what is documented, then only what is documented and derived.
+   The owner suggests consolidating it into the confidence control rather than adding a second
+   one, which is right: it is the same question asked two ways.
+3. Per-level toggles, so the three levels can be shown or hidden independently.
+
+**The honest trap:** hiding by level must hide whole OBJECTS by their record's grade, not
+individual attributes — a building whose position is derived but whose roof pitch is inferred is
+one building, and it has to be somewhere. Decide and write down which attribute governs an
+object's visibility (existence, surely) before building the control.
+
+### K18 — Invent period-appropriate names for inferred residents · **SPECIFIED, unclaimed**
+
+The owner, 2026-08-13: *"for inferred people you can invent/create period appropriate names for
+them… of course it's one of the inferences so I'm sure it will be clear… use whatever historical
+research is reasonable for names like doctors might have some names and laborers would have
+others."*
+
+This REVERSES the standing rule in `docs/LIBERTIES.md` L84 and `data/residents/index.json`, which
+say no inferred person is named. That reversal is the owner's call and it is made — but the
+reason for the old rule has to be answered rather than forgotten: a named invented person must
+never be mistakable for a documented one. So the name is an attribute like any other and carries
+the `inferred` grade the person already has; the card must show the name and the grade together.
+
+**Do the research rather than picking pleasant names.** 1835 Chicago's inferred population should
+draw on the documented one's own composition — the 1833 trade roster and the residents already in
+`data/residents/` are the sample: New England and New York Yankees, New York Dutch, Irish and
+German arrivals on the canal works, French-Canadian and Métis families at the forks. Trade
+correlates with origin in ways the sources support (canal labour heavily Irish; merchants and
+professionals disproportionately Yankee), and that correlation — not a random draw — is what
+makes an invented name defensible. Surnames and given names should come from period-attested
+lists, and the memo must say which and why, per the standing rule that a source_id resolves.
+
+Add `name_basis` (or equivalent) to the person record so the card can say WHY this name and not
+another, and extend `tools/validate.py` so an inferred person's name cannot be graded above
+`inferred`.
+
 ---
 
 ## S1 — Georeference and verify the datum · **DONE 2026-08-09**
