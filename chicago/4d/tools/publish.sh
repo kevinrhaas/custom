@@ -40,6 +40,12 @@ for m in assets/gltf/*.glb; do
     cp -f "$m" "$w"
   fi
 done
+# The mirror is a MIRROR, not an accumulator. Copying in without clearing out
+# means a retired asset ships forever: the 108 __recommended_1835.glb placeholders
+# were deleted from the source tree and kept being published for as long as anyone
+# ran this script. Clear the directory so a deletion propagates the way an edit does.
+rm -rf "$SITE/data/gltf"
+mkdir -p "$SITE/data/gltf"
 if compgen -G "assets/web/*.glb" > /dev/null; then
   cp -f assets/web/*.glb "$SITE/data/gltf/"
 fi

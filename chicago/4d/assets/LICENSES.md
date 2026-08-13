@@ -39,7 +39,7 @@ Held out of the published tree entirely, by the user's instruction:
 `tools/bake.sh` from `data/` and `generators/`, and tracked in `assets/manifest.json`
 with the input hash and the Blender version that produced them. Explicitly flagged
 review massings for the anonymous reconstruction programme are regenerated without
-Blender by `generators/recommended_placeholder.py`; the glTF asset itself carries
+Blender by `generators/inferred_placeholder.py`; the glTF asset itself carries
 `asset.extras.placeholder: true`, the viewer says so, and `tools/check.sh` compares
 the bytes to the source record. Do not hand-edit either kind; stale output is a check
 failure.
@@ -47,7 +47,7 @@ failure.
 | path | origin | license | notes |
 |---|---|---|---|
 | `gltf/sauganash_hotel__frame_1831.glb` | `tools/bake.sh` (this repo, Blender 4.5.3) from `data/structures/sauganash_hotel.json` | project license | The Milestone 0 bake. Generated output; its provenance is the provenance of the record it was generated from, tracked in `assets/manifest.json`. |
-| `gltf/recon_1835_south_*__recommended_1835.glb` and matching `web/` derivatives | `generators/recommended_placeholder.py` from the matching `data/structures/recon_1835_south_*.json` record | project license | Pure-Python review massing for the first 48 anonymous recommended roofs. Every file self-identifies as a placeholder and is replaced, not silently promoted, when the canonical family bake lands. |
+| `gltf/recon_1835_*__inferred_1835.glb` and matching `web/` derivatives | `generators/inferred_placeholder.py` from the matching `data/structures/recon_1835_*.json` record | project license | Pure-Python review massing for the 108 anonymous inferred roofs. Every file self-identifies as a placeholder and is replaced, not silently promoted, when the canonical family bake lands. |
 
 `authored/` holds hero assets that cannot come from a structure record (Fort Dearborn
 detailing, signboards). They are exempt from regeneration but **not** from provenance:
