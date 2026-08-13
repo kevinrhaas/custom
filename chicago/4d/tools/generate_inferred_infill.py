@@ -230,7 +230,7 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
                 "utm_n": round(datum["origin_utm_n"] + local_n, 3),
                 "rotation_deg": rotation, "symbolic_location": location,
                 "confidence": "conjectural",
-                "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+                "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
                 "derivation": {"method": "not_derivable", "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."}
             },
             "footprint": {
@@ -247,6 +247,44 @@ def make_record(seq: int, family: str, e: float, n: float, row: dict,
         "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
         "review_required": False
     }
+
+
+def world_polygon(record: dict, datum: dict) -> list[tuple[float, float]]:
+    """A record's footprint in local ENU metres, rotated as it is placed."""
+    phase = record["phases"][0]
+    pos, poly = phase["position"], phase["footprint"]["polygon"]
+    theta = math.radians(float(pos.get("rotation_deg") or 0))
+    cos, sin = math.cos(theta), math.sin(theta)
+    e0 = float(pos["utm_e"]) - float(datum["origin_utm_e"])
+    n0 = float(pos["utm_n"]) - float(datum["origin_utm_n"])
+    return [(e0 + u * cos + v * sin, n0 - u * sin + v * cos) for u, v in poly]
+
+
+def check_corridors(records: list[dict], datum: dict) -> None:
+    """No anonymous roof of this parcel may stand in a platted street.
+
+    ROADMAP K7 phase two. The grid report found four of these eight ancillary buildings
+    inside a corridor and the generator had never asked - it tested nothing at all about
+    where it put a roof. The question is asked through `tools/plat_corridors.py`, the same
+    module `generate_plat_lots.py --report` and the household generator read, so the report
+    that finds a problem and the gate that must satisfy it cannot answer differently.
+
+    The test is on the FOOTPRINT, not the centre. A centre is one point and a building is a
+    rectangle up to 11 m across, so a building can front a street with its centre clear of
+    the corridor and half its depth inside it - which is exactly what the household parcel
+    turned out to have been doing. The plat is the LEGAL corridor rather than the travelled
+    way (L79 puts the visible tracks at 5.8-10.5 m inside 80 ft), and a real building did
+    sometimes encroach; the Sauganash's first cabin is the standing reminder. But an
+    ANONYMOUS COUNT-UNIT has nothing to encroach with. Its position is a band assignment,
+    so standing in the road is a defect in this generator and nothing else can see it.
+    """
+    from plat_corridors import corridors, intrusion  # noqa: PLC0415
+    lanes = corridors()
+    for record in records:
+        street, depth = intrusion(world_polygon(record, datum), lanes)
+        if street:
+            raise SystemExit(f"{record['id']} reaches {depth:.1f} m inside the platted "
+                             f"{lanes[street]['name']} corridor")
 
 
 def validate_programme(inventory: dict, parcel: dict, records: list[dict]) -> None:
@@ -281,6 +319,7 @@ def records_from_inputs() -> list[dict]:
         for e, family in row["placements"]:
             records.append(make_record(len(records) + 1, family, float(e), float(row["local_n"]), row, inventory, datum))
     validate_programme(inventory, parcel, records)
+    check_corridors(records, datum)
     return records
 
 

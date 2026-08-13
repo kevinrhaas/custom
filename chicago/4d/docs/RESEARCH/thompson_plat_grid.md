@@ -204,6 +204,66 @@ elsewhere) rather than a nudge to thirteen records. `slough_log_bridge` reaching
 Water is the other reminder in this list that the corridor is not a keep-out zone: a bridge in
 the roadway is a bridge doing its job.
 
+## 7b. The last four, and the eight-building row that was aimed at the streets
+
+**Landed 2026-08-13, K7 phase two (b).** The four anonymous roofs § 7a left in the roadway are
+out of it, and the two infill generators now ask the same question the household generator does,
+through the same `tools/plat_corridors.py`. All three read one module; none of them can put a
+generated building in a platted street any more. **No generated placement anywhere in this
+dataset stands in a corridor.** Footprints with some part inside one: **33 → 29**, and the 29 are
+hand-placed records with a frontage argument, unchanged by this slice on purpose.
+
+**The four were not four numbers. They were one row's spacing.** `data/reconstruction/`
+`1835_phase1_south_mixed_blocks.json` carries eight ancillary buildings in two yard rows, and
+their local E values were 314, 438, 560, 687, 810 and 315, 559, 809 — a **123 m pitch, which is
+the block pitch**. That put exactly one yard building at the eastern edge of every block, a
+building's width from the next platted street, five times over and then three times again. The
+generator that wrote them tested nothing at all: not overlap, not water, not ground, not the
+street.
+
+**Half of them passed, and the reason they passed is the part worth keeping.** Measured from the
+corridor edge before this slice:
+
+| record | family | what it is | before | after |
+|---|---|---|---|---|
+| `recon_1835_south_a5_044` | A5 | small utility building | **−4.32 m** (Dearborn) | +14.68 m |
+| `recon_1835_south_a1_046` | A1 | stable | **−3.24 m** (Wells) | +28.11 m |
+| `recon_1835_south_a2_047` | A2 | barn or carriage shed | **−2.83 m** (Clark) | +23.17 m |
+| `recon_1835_south_a4_042` | A4 | woodshed | **−1.03 m** (La Salle) | +18.97 m |
+| `recon_1835_south_a3_041` | A3 | privy | +1.54 m (Wells) | +23.54 m |
+| `recon_1835_south_a3_043` | A3 | privy | +1.38 m (Clark) | +19.38 m |
+| `recon_1835_south_a4_048` | A4 | woodshed | +1.40 m (State) | +30.40 m |
+| `recon_1835_south_a3_045` | A3 | privy | +2.06 m (State) | +19.06 m |
+
+Negative is inside the roadway. The four that failed are the four largest ancillary footprints in
+the parcel; the four that passed are three privies and a small shed, and they cleared the corridor
+by **1.4–2.1 m against this dataset's own ±20 m georeference**. They were not placed clear of the
+street — they were too small to reach it. A gate that had only ever been shown the four failures
+would have read as four bad numbers in a good row.
+
+**So all eight moved, by one rule rather than by four corrections.** Each yard building now
+stands directly behind the easternmost principal roof of its own block — the same local E as that
+roof, 24 m behind it for the lake-front rear yards and 21 m for the block-interior service yards.
+That is not a new invention laid over an old one: a rear yard belongs to a lot, a lot belongs to a
+house, and the rows are already named `rear_yards` and `deep_yards`. Moving a privy to the back of
+a lot is the typology the row was written for, and standing one at the street line was the
+accident. The moves are 17–32 m west.
+
+**What did not change, and must not be read as having changed.** These positions were
+`conjectural` before and are `conjectural` after. Clearing the roadway is not standing on a
+recovered lot, and being behind a particular anonymous roof is not evidence that this yard served
+that house — both buildings are count-units, and neither exists in any source. Nothing was
+regraded, no confidence moved, and no occupancy changed: the household ledger keys on structure
+id, not on position, so the 83 adopted roofs kept their households across the move. The
+re-derivation gates in `tools/check.sh` re-run all three generators and the sidecar compile, so
+the eight moved records are the recipe's output rather than eight hand edits.
+
+**The North parcel is inside the rule without being bound by it.** `generate_north_infill.py`
+carries the same gate, and it refuses nothing today: the grid covers 19 South and West Division
+blocks and no North Division block, because the North's street control is what § S9 records as
+owed. Wiring it now means that when that control lands, the 60 North roofs are already inside the
+rule instead of waiting to be found in the road by a report — which is how these four were found.
+
 ## 8. What this is not
 
 - **Not rendered.** The grid is a dataset layer; the walkthrough does not draw it and no visitor

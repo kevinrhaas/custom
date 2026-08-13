@@ -195,10 +195,19 @@ reasons, three of them because a block there would span the South Branch. Memo:
 corridor~~ — **DONE 2026-08-13 under K1 phase three (a)**: the gate exists
 (`tools/plat_corridors.py`, shared with `--report`), 23 recipe centres moved clear, and the
 report now measures FOOTPRINTS as well as centres, which is what showed the seven to be the loud
-end of a set of 23. What is left in the roadway is not the generator's: **four anonymous roofs**
+end of a set of 23. ~~What is left in the roadway is not the generator's: **four anonymous roofs**
 from the two infill generators (worst `recon_1835_south_a5_044`, 4.3 m — that gate is added when
 that parcel next runs, because moving an anonymous roof re-derives the occupancy ledger those
-generators own), and **29 hand-placed records whose positions carry a frontage argument**. Of
+generators own)~~ — **DONE 2026-08-13 as phase two (b)**: both infill generators carry the gate,
+through the same `tools/plat_corridors.py`, and **no generated placement anywhere in this dataset
+stands in a platted corridor** (footprints in a corridor 33 → 29). The four were one row's
+spacing, not four numbers: the parcel's eight ancillary buildings were laid on a 123 m pitch —
+the block pitch — which put one at the eastern edge of every block, and the four that passed
+passed by being privies rather than by being placed (1.4–2.1 m clear against a ±20 m
+georeference). All eight now stand behind the easternmost principal roof of their own block,
+which is what a rear yard is; 17–32 m of movement, nothing regraded, and the household ledger
+keys on id so the adoptions survived. Detail in `docs/RESEARCH/thompson_plat_grid.md` § 7b. What
+is left is **29 hand-placed records whose positions carry a frontage argument**. Of
 those, thirteen are on South Water Street and they are a finding rather than a queue: from South
 Water's committed centreline the traced 1834 waterline is **10.75 m away at E +180 against a
 12.19 m half-corridor**, so the platted street there runs 1.4 m into the river and a building on
