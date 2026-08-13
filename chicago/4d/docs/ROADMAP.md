@@ -27,6 +27,16 @@ not relax. *Avoid circling on historical perfection: do the reasonable best, mar
 move on.* One parcel per run; leave the others for the next tick or for interactive sessions —
 check `git log` first so you do not duplicate a parcel already landed.
 
+**Claims — how two runs avoid building the same thing.** `git log` only shows work already
+LANDED, which is no help against work in flight: the scheduled steward and an interactive
+session can both start the same parcel and neither can see the other until one of them pushes.
+So a run taking a parcel big enough to be worth protecting marks its heading
+**`· CLAIMED <date> — DO NOT PICK UP`**, writes one line saying who holds it and what to take
+instead, and **pushes that to `main` before starting the work** — a claim that sits unpushed on
+a branch protects nothing. Respect any claim you find. Claims carry an expiry, and an expired
+one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
+Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
+
 ### K1 — The inferred-residents programme *(the big one; multi-session; carve into districts)*
 Chicago went from ~350 people (1833) to ~3,265 (late 1835). Build the POPULATION as a dataset,
 then build the buildings it implies. New directory `data/residents/`: one file per HOUSEHOLD,
@@ -375,6 +385,45 @@ originally written, which is now about PAYLOAD rather than frame cost and is muc
 since the published tree fell to 10.78 MB (see the meshopt fix of the same day).
 **The payload figure quoted above is stale** — 19.16 MB was measured when the anonymous roofs
 were placeholder massing and every web derivative was an uncompressed copy of its master.
+### K15 — The two reserved anonymous parcels, 139 roofs · **CLAIMED 2026-08-13 — DO NOT PICK UP**
+
+> **CLAIM — steward, skip this parcel.** Taken by the interactive session on 2026-08-13 after
+> K14 freed the triangle headroom it needs. It is a large, single, indivisible unit (two
+> generators, ~139 records, one liberties block) and two runs building it concurrently would
+> collide on `data/structures/` and on the 665-roof ledger, which is exactly the kind of
+> conflict that is expensive rather than merely annoying. Take **K2, K4, K5, K8 or K10**
+> instead. This claim is void if no commit touching it lands by **2026-08-15** — a claim that
+> outlives the work is a lock, and nobody should be blocked by an abandoned one.
+
+Two recipes have been sitting fully specified and uninstantiated, and together they are the
+largest remaining block of buildings in the project:
+
+- **`data/reconstruction/1835_phase2_west_wolf_point_approaches.json`** (`status:
+  research_recipe_not_instantiated`) — **55 roofs**, 44 principal + 11 ancillary, 40.7 % of the
+  135-roof West Division target. Group mix and per-family counts (D1–D7, H1–H2, C1–C2, W1–W5,
+  F1, A1–A5) are already written. Memo: `docs/RESEARCH/west_division_infill_1835.md`.
+- **`data/reconstruction/1835_phase2_south_core_and_mixed_recipe.json`** (`status:
+  proposed_not_generated`) — **84 roofs**, 66 principal + 18 ancillary, against a 370-roof South
+  Division target. Carries a `placement_schema` and a `coordinate_system` block with the UTM
+  conversion spelled out. Memo: `docs/RESEARCH/phase2_south_core_and_mixed.md`.
+
+**The pattern to follow already exists twice**: `tools/generate_inferred_infill.py` (South
+phase 1, 48) and `tools/generate_north_infill.py` (North, 60), both re-derived byte-for-byte by
+a `--check` step in `tools/check.sh`. A third and fourth generator in that shape is the job —
+NOT hand-written records, because 139 hand-placed buildings cannot be re-derived and the
+placement gate would have nothing to check against.
+
+**The traps, all of them already paid for once.** (a) The counting rule is in the South recipe's
+own words: *a better-evidenced roof SUBSTITUTES for a slot; it never increases the 665 target* —
+so these 139 do not stack on top of K1's 38. (b) `tools/generate_inferred_households.py` placed
+K1 phase two while actively avoiding these slots, so they are still clear — keep it that way, and
+re-run its `--check` after. (c) Every conjectural existence, position and footprint owes a
+`docs/LIBERTIES.md` entry with `Covers:` tokens, in both directions. (d) Placement must pass the
+existing gates: no footprint within 3 m of any other, terrain covered, dry, ≤0.30 m perimeter
+relief — and `Heightfield.covers()` exists because a structure once landed 832 m adrift and
+reported a perfect fit. (e) Triangle budget: 139 roofs at the ~723 tris the K1 bake averaged is
+~100 000, against 574 440 of headroom at Full detail. It fits now; it did not before K14.
+
 ---
 
 ## S1 — Georeference and verify the datum · **DONE 2026-08-09**
