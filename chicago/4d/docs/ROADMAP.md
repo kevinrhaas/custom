@@ -415,6 +415,50 @@ originally written, which is now about PAYLOAD rather than frame cost and is muc
 since the published tree fell to 10.78 MB (see the meshopt fix of the same day).
 **The payload figure quoted above is stale** — 19.16 MB was measured when the anonymous roofs
 were placeholder massing and every web derivative was an uncompressed copy of its master.
+### K19 — The town shipped as 242 two-metre boxes, and the gate was green · **DONE 2026-08-13**
+
+> **DONE.** Fixed in `buildings.js` + `terrain.js`; new gates in `smoke_renderer.mjs`; the trap
+> is written up in `docs/GLB-CONTRACT.md` § *Quantised geometry: float before you transform*.
+
+**What the visitor saw.** Every building at roughly a sixth of its size. At South Water and
+Lake — the busiest corner in the town — two knee-high boxes and some very large trees. Live for
+several days, through two attempted fixes.
+
+**The defect, exactly.** Under `KHR_mesh_quantization` a POSITION is a *normalized* `Int16Array`
+— stored integer over 32767, so the attribute can only represent `[-1, 1]` — and the metres come
+from a dequantisation scale on the node (6.25 on the Sauganash).
+`BufferAttribute.applyMatrix4` reads denormalised floats, transforms them, and writes the result
+**back into that same normalized `Int16Array`**. Applying the dequantisation therefore clamped
+every coordinate over a metre to exactly one metre. Both scale regressions were this one
+write-back: discarding the node transform gave two-metre buildings, applying it gave two-metre
+buildings *in pieces*, because the clamp is per-axis and a building is not centred on its
+origin. The fix is to float first and transform second, in both modules.
+
+**Why three rounds of diagnosis missed it.** Every reading was taken from a tree that does not
+have the bug. A sidecar's `gltf/<name>.glb` resolves against `assets/` in the source tree — the
+uncompressed masters — and against `data/` on the site, which `publish.sh` fills from
+`assets/web/`. The smoke had never once loaded a compressed asset. Local captures rendered
+correctly, measured buildings came out at sensible sizes, and all of it was true and irrelevant.
+
+**Three gates now exist that would have caught it on day one:**
+
+1. `smoke_renderer.mjs --published` serves the mirror and enters at `/walk/` — the visitor's
+   exact bytes and layout. `bake.sh` runs it after publish. This also covers the other failure
+   this project keeps hitting: a file that exists in the source tree, is never copied, and 404s
+   only when live.
+2. Per-structure size assertions. The old check took the **tallest** building in the scene and
+   asked whether it was between 3 and 30 m — which passes with one correct building and 241
+   broken ones, and that is the scene that shipped. Every structure is now measured against its
+   own record, including its documented `wall_height_m`. Reintroducing the fault fails the new
+   checks by name on all 242 and quotes the heights they should have had.
+3. `tools/measure_glbs.py` measures assets against records with no browser at all, and
+   `tools/shoot.mjs` takes pictures rather than assertions — because the assertions were green
+   and the town was not.
+
+**The lesson worth keeping:** a gate that cannot reach the bytes that ship is not a gate, and an
+aggregate assertion (`max`, `any`, `the tallest`) hides exactly the failure mode where almost
+everything is broken. Neither of those is specific to quantisation.
+
 ### K15 — The two reserved anonymous parcels · **WEST PART DONE 2026-08-13 · SOUTH STILL CLAIMED**
 
 > **WEST: DONE.** `tools/generate_west_infill.py` emits **20 of the 55** and is re-derived by
