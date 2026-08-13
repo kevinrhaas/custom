@@ -118,6 +118,27 @@ function signatureDistance(a, b) {
   return { mean: sum / a.cells.length, worst };
 }
 
+/**
+ * The same distance over any named channel of the signature. `chroma` exists
+ * because facade.js's weathering is the removal of colour and moves luminance
+ * almost not at all — the luminance grid reported 0.09 mean / 1 worst on a frame
+ * where chroma moved 0.97 / 11.9, so a luminance-only gate would have passed a
+ * shader that never compiled.
+ */
+function channelDistance(a, b, channel) {
+  if (!a?.[channel] || !b?.[channel] || a[channel].length !== b[channel].length) {
+    return { mean: Infinity, worst: Infinity };
+  }
+  let sum = 0;
+  let worst = 0;
+  for (let i = 0; i < a[channel].length; i++) {
+    const d = Math.abs(a[channel][i] - b[channel][i]);
+    sum += d;
+    worst = Math.max(worst, d);
+  }
+  return { mean: sum / a[channel].length, worst };
+}
+
 // The gate is both viewports and nothing less. SMOKE_VIEWPORT exists because a
 // full pass takes upwards of ten minutes on a software renderer and an agent
 // iterating on one half should not have to spend the other half to see it — it
@@ -305,6 +326,140 @@ for (const [label, viewport, touch] of [
     check(`${label}: turning it off restores the render`,
       dBack.mean <= 0.1 && dBack.worst <= 3,
       `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
+
+    // --- facade weathering (ROADMAP K4) -----------------------------------
+    // Two questions, and answering only the first is how `cover.matrix_fraction`
+    // went four months unread: does each record's own finish reach the
+    // treatment, and does the treatment reach the frame.
+    const facade = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      // Re-read the authored sidecars rather than asking the renderer what it
+      // thinks it loaded.
+      const index = await (await fetch(`${a.dataBase}sidecars/1835/index.json`)).json();
+      const cars = await Promise.all(index.structures.map(
+        (s) => fetch(`${a.dataBase}${s.sidecar}`).then((r) => r.json())));
+      const rows = cars.map((car) => {
+        const drawn = a.facade.weatheringOf(car.id);
+        return {
+          id: car.id,
+          paint: car.attributes?.paint?.value ?? null,
+          conf: car.attributes?.paint?.confidence ?? null,
+          from: car.documented_range?.from ?? null,
+          drawn: drawn ? { silvering: drawn.silvering, tone: drawn.tone, years: drawn.years } : null,
+        };
+      });
+      return {
+        rows,
+        structures: a.registry.size,
+        batches: a.buildings.drawCalls,
+      };
+    });
+
+    const drawnRows = facade.rows.filter((r) => r.drawn);
+    check(`${label}: every loaded structure carries a facade channel`,
+      drawnRows.length === facade.rows.length && drawnRows.length > 200,
+      `${drawnRows.length} of ${facade.rows.length} structures`);
+
+    // The contract, stated as the records state it — not as facade.js computes it.
+    const timber = drawnRows.filter((r) => r.paint === 'unpainted' && r.conf !== 'documented');
+    const masonry = drawnRows.filter((r) => ['brick', 'stone', 'earth'].includes(r.paint));
+    const silent = drawnRows.filter((r) => r.paint === null);
+    const documented = drawnRows.filter((r) => r.conf === 'documented');
+    const weathered = drawnRows.filter((r) => r.drawn.silvering > 0);
+    check(`${label}: an unpainted wall weathers and a masonry one does not`,
+      timber.length >= 130 && timber.every((r) => r.drawn.silvering > 0.4)
+      && masonry.every((r) => r.drawn.silvering === 0)
+      && silent.every((r) => r.drawn.silvering === 0),
+      `${timber.length} unpainted (min silvering `
+      + `${Math.min(...timber.map((r) => r.drawn.silvering)).toFixed(3)}), `
+      + `${masonry.length} masonry, ${silent.length} with no stated finish`);
+    // Anti-vacuity in the other direction: a treatment that silvered nothing
+    // would satisfy every "is not weathered" clause above.
+    check(`${label}: the treatment is actually applied`,
+      weathered.length >= 140, `${weathered.length} of ${drawnRows.length} weathered`);
+
+    // Rule 3 — where a source states the colour, the colour it states is drawn.
+    check(`${label}: a documented finish is left exactly as documented`,
+      documented.length === 2
+      && documented.every((r) => r.drawn.silvering === 0 && r.drawn.tone === 0),
+      `${documented.length} documented finishes: `
+      + documented.map((r) => `${r.id} ${r.drawn.silvering}/${r.drawn.tone}`).join(', '));
+
+    // Rule 2 — age is a lower bound, so it may only ever add.
+    const aged = [...timber].sort((x, y) => x.drawn.years - y.drawn.years);
+    const monotonic = aged.every((r, i) => i === 0
+      || r.drawn.silvering >= aged[i - 1].drawn.silvering - 1e-9);
+    check(`${label}: a building standing longer is never less weathered`,
+      monotonic && aged[aged.length - 1].drawn.years > aged[0].drawn.years + 1,
+      `${aged[0]?.drawn.years?.toFixed(1)}–${aged[aged.length - 1]?.drawn.years?.toFixed(1)} years, `
+      + `silvering ${aged[0]?.drawn.silvering.toFixed(3)}–`
+      + `${aged[aged.length - 1]?.drawn.silvering.toFixed(3)}`);
+
+    // "Identical" is the other half of the owner's finding, and the ids that
+    // would betray a weak hash are the generated ones: `recon_1835_north_d1_0…`
+    // is 22 shared characters before anything varies.
+    const recon = drawnRows.filter((r) => r.id.startsWith('recon_') && r.drawn.tone !== 0);
+    const reconTones = new Set(recon.map((r) => r.drawn.tone.toFixed(6)));
+    const tones = drawnRows.map((r) => r.drawn.tone);
+    const spread = Math.max(...tones) - Math.min(...tones);
+    check(`${label}: no two buildings share a face`,
+      recon.length > 90 && reconTones.size >= recon.length * 0.98
+      && spread > 0.12 && Math.max(...tones.map(Math.abs)) <= 0.0751,
+      `${reconTones.size} distinct tones across ${recon.length} generated roofs; `
+      + `spread ${spread.toFixed(4)}, peak ${Math.max(...tones.map(Math.abs)).toFixed(4)}`);
+
+    // Per-building variation that cost a draw call per building would be a
+    // regression dressed as a feature — that is the whole reason it is a vertex
+    // channel and not a material.
+    check(`${label}: variation costs no draw calls`,
+      facade.batches > 0 && facade.batches < facade.structures / 5,
+      `${facade.batches} building batches for ${facade.structures} structures`);
+
+    // And it reaches the frame. Measured in CHROMA, not luminance: weathering
+    // here is the removal of colour — each fragment mixed toward its own
+    // luminance — so a luminance grid is very nearly blind to it by
+    // construction, and the first version of this assertion failed against a
+    // shader that was working perfectly. Held clock across the captures, same
+    // shape and same reason as the confidence view above.
+    await page.evaluate(() => window.__chicago4d.frame('green_tree_tavern', 26));
+    await page.waitForTimeout(250);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const facadeOn = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => window.__chicago4d.setFacadeView(false));
+    const facadeOff = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => window.__chicago4d.setFacadeView(true));
+    const facadeBack = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const chromaOff = channelDistance(facadeOn, facadeOff, 'chroma');
+    const chromaBack = channelDistance(facadeOn, facadeBack, 'chroma');
+    const lumBack = signatureDistance(facadeOn, facadeBack);
+    check(`${label}: weathering reaches the pixels`,
+      chromaOff.worst >= 6 && chromaOff.mean >= 0.4,
+      `chroma delta mean ${chromaOff.mean?.toFixed(2)}, worst ${chromaOff.worst?.toFixed(1)} `
+      + `(need worst>=6) at the Green Tree, silvering `
+      + `${facade.rows.find((r) => r.id === 'green_tree_tavern')?.drawn?.silvering?.toFixed(3)}`);
+    check(`${label}: switching weathering off and on restores the render`,
+      chromaBack.mean <= 0.1 && chromaBack.worst <= 3 && lumBack.worst <= 3,
+      `chroma residual mean ${chromaBack.mean?.toFixed(2)} worst ${chromaBack.worst?.toFixed(1)}, `
+      + `luminance worst ${lumBack.worst}`);
+
+    // Rule 3 in the frame rather than in the data: the one building whose finish
+    // a source states must not move when the treatment is switched off. Without
+    // this the "reaches the pixels" check above would be equally happy with a
+    // shader that weathered everything indiscriminately.
+    await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
+    await page.waitForTimeout(250);
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const docOn = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => window.__chicago4d.setFacadeView(false));
+    const docOff = await page.evaluate(() => window.__chicago4d.capture());
+    await page.evaluate(() => window.__chicago4d.setFacadeView(true));
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    const docDelta = channelDistance(docOn, docOff, 'chroma');
+    check(`${label}: the documented finish does not move when weathering does`,
+      docDelta.worst <= 2 && docDelta.mean <= 0.05,
+      `chroma delta mean ${docDelta.mean?.toFixed(3)}, worst ${docDelta.worst?.toFixed(1)} `
+      + `on a frame of the Sauganash`);
 
     // --- pick -> provenance ----------------------------------------------
     const picked = await page.evaluate(() => {
