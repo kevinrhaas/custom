@@ -1,0 +1,155 @@
+{
+  "id": "recon_1835_south_d3_017",
+  "name": "Inferred D3 one-room frame cottage #017",
+  "archetype": "frame_dwelling",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447788.489,
+        "utm_n": 4637245.407,
+        "rotation_deg": 1.07,
+        "symbolic_location": "Anonymous inferred roof in the South Division block between Dearborn and State, south of Lake Street",
+        "confidence": "conjectural",
+        "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            5.143,
+            0
+          ],
+          [
+            5.143,
+            6.399
+          ],
+          [
+            0,
+            6.399
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 5.14 × 6.40 m rectangle sampled deterministically inside the D3 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "wall_height_m": {
+          "value": 2.78,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_pitch_deg": {
+          "value": 38.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "construction": {
+          "value": "balloon_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "plan": {
+          "value": "single_pen",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "bays": {
+          "value": 2,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "porch": {
+          "value": "stoop",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        }
+      },
+      "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+    }
+  ],
+  "function": {
+    "value": "one-room frame cottage",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the D3 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "D3",
+    "district": "south",
+    "inventory_class": "principal_functional",
+    "programme_phase": "phase1_south_mixed_blocks",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 17,
+    "finish_key": "fresh_timber",
+    "roof_condition": "darkened",
+    "age_state": "recent"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

@@ -177,11 +177,11 @@ export function createBuildings({ registry, confidence, terrain }) {
     // ground, EXCEPT one declared `water`, whose local y = 0 is the design water
     // surface — that plane is z = 0 by the definition of the vertical datum, so
     // the anchor is a literal zero and not a lookup. Note what the alternative
-    // actually does: `terrain.height()` reports a wading BARRIER over water, not
+    // actually does: `terrain.walkHeight()` reports a wading BARRIER over water, not
     // the bed, so a bridge left on the terrain anchor does not sink — it hangs
     // four metres above the river, which is the harder failure to read.
     const onWater = p.vertical_anchor === 'water';
-    const y = onWater ? 0 : (terrain ? terrain.height(e, n) : 0);
+    const y = onWater ? 0 : (terrain ? terrain.surfaceHeight(e, n) : 0);
     placements.set(record.id, new THREE.Matrix4().compose(
       enuToWorld(e, n, y),
       new THREE.Quaternion().setFromEuler(

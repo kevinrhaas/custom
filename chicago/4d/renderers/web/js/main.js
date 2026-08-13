@@ -26,6 +26,8 @@ import { createFlora } from './flora.js';
 import { createTrees } from './trees.js';
 import { createPopup } from './popup.js';
 import { createHud } from './hud.js';
+import { createNavigation } from './navigation.js';
+import { createStreets } from './streets.js';
 import { mountExclusions } from './exclusions.js';
 import { mountGround } from './ground.js';
 import { mountLiberties } from './liberties.js';
@@ -119,6 +121,16 @@ async function boot() {
   const walker = createWalker({ camera, terrain, footprints, spawn });
   walker.apply();
 
+  // The dated street layer is a skin on the heightfield, never a replacement
+  // for it.  Mount it before vegetation so the travelled strips can clear only
+  // the plants that would otherwise grow through the visible wagon tracks.
+  const streets = createStreets({
+    terrain,
+    records: loaded.index?.streets ?? [],
+    confidence,
+  });
+  scene3d.add(streets.group);
+
   // ---- vegetation ------------------------------------------------------- //
   // Awaited, like the terrain and for the same reason: the sward is what the
   // ground looks like from standing height, and a walkthrough that opened its
@@ -126,22 +138,31 @@ async function boot() {
   // the visitor a loading state and calling it 1835. Missing records degrade to
   // NOTHING planted plus a recorded problem — never to an invented community.
   const flora = await createFlora({
-    dataBase: bases.dataBase, terrain, footprints, confidence, problems, lowSpec: coarse,
+    dataBase: bases.dataBase, terrain, footprints,
+    growthBlocked: streets.blocksGrowth,
+    confidence, problems, lowSpec: coarse,
   });
   scene3d.add(flora.group);
   const trees = await createTrees({
-    dataBase: bases.dataBase, terrain, footprints, confidence, problems, lowSpec: coarse,
+    dataBase: bases.dataBase, terrain, footprints,
+    growthBlocked: streets.blocksGrowth,
+    confidence, problems, lowSpec: coarse,
   });
   scene3d.add(trees.group);
 
   const popup = createPopup(popupRoot, { docBase: bases.dev ? '../../' : '../' });
+  const navigation = createNavigation({
+    root: hudRoot, terrain, registry: loaded.registry, streets,
+  });
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
+    registry: loaded.registry,
+    intersections: loaded.index?.intersections ?? [],
     isTouch: prefersTouch(),
     onConfidence: (on) => confidence.set(on),
     onFly: (on) => { intent.flying = !!on; },
-    onGoTo: (id) => api.goTo?.(id),
+    onGoTo: (target) => goToTarget(target),
     onSetting: (key, value) => {
       if (key === 'speed') {
         // Keep the run multiplier the walker was tuned with rather than pinning
@@ -153,6 +174,14 @@ async function boot() {
         camera.updateProjectionMatrix();
       } else if (key === 'quality') {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, value));
+      } else if (key === 'compass') {
+        navigation.setCompassVisible(value);
+      } else if (key === 'overviewMap') {
+        navigation.setMapVisible(value);
+      } else if (key === 'streetNames') {
+        navigation.setStreetVisible(value);
+      } else if (key === 'units') {
+        navigation.setUnits(value);
       }
     },
   });
@@ -214,6 +243,10 @@ async function boot() {
   camera.fov = hud.settings.fov;
   camera.updateProjectionMatrix();
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
+  navigation.setCompassVisible(hud.settings.compass);
+  navigation.setMapVisible(hud.settings.overviewMap);
+  navigation.setStreetVisible(hud.settings.streetNames);
+  navigation.setUnits(hud.settings.units);
 
   // ---- input ------------------------------------------------------------ //
 
@@ -309,7 +342,25 @@ async function boot() {
       n = p.local_n ?? 0;
     }
     const wallH = record?.sidecar?.attributes?.wall_height_m?.value ?? 5;
-    return enuToWorld(e, n, terrain.height(e, n) + wallH * 0.55);
+    return enuToWorld(e, n, terrain.surfaceHeight(e, n) + wallH * 0.55);
+  }
+
+  /** One route for the complete search: frame a structure, stand at a verified
+   * intersection, or use one of the authored scene viewpoints. */
+  function goToTarget(target) {
+    if (!target?.kind) return false;
+    if (target.kind === 'anchor') return api.goTo?.(target.id) ?? false;
+    hud.setFly(false, { announce: false });
+    walker.setFlying(false);
+    if (target.kind === 'structure') return frame(target.id);
+    if (target.kind === 'intersection'
+        && Number.isFinite(target.local_e) && Number.isFinite(target.local_n)) {
+      walker.teleport({
+        local_e: target.local_e, local_n: target.local_n, yaw_deg: 0,
+      });
+      return true;
+    }
+    return false;
   }
 
   // ---- gate ------------------------------------------------------------- //
@@ -320,13 +371,14 @@ async function boot() {
     gate?.setAttribute('hidden', '');
     hud.show();
     hud.restore();
+    const controlHelpOpen = hud.showControlHelp({ auto: true });
     // The gate doubles as the audio-unlock gesture: browsers only allow an
     // AudioContext to start from one, and ambience lands in a later slice.
     try {
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (Ctx && !api.audio) { api.audio = new Ctx(); api.audio.resume?.(); }
     } catch { /* no audio is fine; a thrown error is not */ }
-    if (backends.active === pointerlock) pointerlock.lock();
+    if (backends.active === pointerlock && !controlHelpOpen) pointerlock.lock();
     hud.say(backends.name === 'touch'
       ? 'Left thumb walks · drag the right side to look · tap a building'
       : 'W A S D to walk · E to inspect what you are looking at');
@@ -364,13 +416,20 @@ async function boot() {
   let pendingCapture = null;
 
   function tick() {
-    const dt = Math.min(clock.getDelta(), 0.05);
+    // Keep visual simulation stable, but do not make a visitor crawl in direct
+    // proportion to a slow renderer. At 2 fps the former 0.05 s clamp advanced
+    // walking by only 0.10 s per real second. Movement now consumes up to a
+    // quarter-second of real frame time in <= 0.05 s collision/terrain steps.
+    const frameDt = Math.min(clock.getDelta(), 0.25);
+    const dt = Math.min(frameDt, 0.05);
 
     backends.active?.update?.(dt);
     terrain.update(dt);
     const asked = intent.takeInteract();
     if (asked) inspect(asked.point ? new THREE.Vector2(asked.point.x, asked.point.y) : null);
-    walker.update(dt, intent);
+    const walkSteps = Math.max(1, Math.ceil(frameDt / 0.05));
+    const walkDt = frameDt / walkSteps;
+    for (let i = 0; i < walkSteps; i++) walker.update(walkDt, intent);
     world.follow(camera.position);
     flora.update(dt, camera);
     trees.update(dt, camera);
@@ -398,6 +457,7 @@ async function boot() {
     api.player.altitude = st.altitude;
     api.player.flying = st.flying;
     hud.setAltitude(st.altitude);
+    navigation.update({ e: st.e, n: st.n, bearingDeg: walker.bearingDeg });
 
     // Wall-clock, not the clamped dt: a clamped dt reports a healthy 20 fps on
     // a machine that is actually drawing three frames a second.
@@ -415,13 +475,14 @@ async function boot() {
 
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
-    backends, flora, trees,
+    backends, streets, flora, trees, navigation,
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
     pick,
     frame,
+    goToTarget,
     goTo(anchorId) {
       const a = anchorFor(loaded.scene, anchorId);
       if (!a) return false;

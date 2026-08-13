@@ -1,6 +1,1702 @@
 {
   "scene": "1835",
   "target_date": "1835-07-01",
+  "intersections": [
+    {
+      "id": "kinzie_canal",
+      "label": "Kinzie Street & Canal Street",
+      "streets": [
+        "kinzie",
+        "canal"
+      ],
+      "search_terms": [
+        "Kinzie Street",
+        "Canal Street",
+        "W Kinzie Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -183.41,
+      "local_n": 264.93
+    },
+    {
+      "id": "lake_canal",
+      "label": "Lake Street & Canal Street",
+      "streets": [
+        "lake",
+        "canal"
+      ],
+      "search_terms": [
+        "Lake Street",
+        "Canal Street",
+        "W Lake Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -159.67,
+      "local_n": -108.38
+    },
+    {
+      "id": "lake_market",
+      "label": "Lake Street & Market Street",
+      "streets": [
+        "lake",
+        "market"
+      ],
+      "search_terms": [
+        "Lake Street",
+        "Market Street",
+        "W Lake Street, unchanged alignment",
+        "N Wacker Drive"
+      ],
+      "local_e": 89.2,
+      "local_n": -110.4
+    },
+    {
+      "id": "randolph_canal",
+      "label": "Randolph Street & Canal Street",
+      "streets": [
+        "randolph",
+        "canal"
+      ],
+      "search_terms": [
+        "Randolph Street",
+        "Canal Street",
+        "W Randolph Street, unchanged alignment",
+        "N/S Canal Street, unchanged alignment"
+      ],
+      "local_e": -155.24,
+      "local_n": -251.19
+    }
+  ],
+  "street_standard": "No gravel or hard paving is shown. 'graded' and 'turnpiked' are rendered as drained or thrown-up earth with wagon wear; ordinary streets are worn native soil with a grassy crown and margins.",
+  "streets": [
+    {
+      "id": "south_water",
+      "name_1835": "South Water Street",
+      "name_2026": "Wacker Drive",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          100,
+          -101
+        ],
+        [
+          120,
+          -57
+        ],
+        [
+          140,
+          -35
+        ],
+        [
+          160,
+          -18
+        ],
+        [
+          180,
+          -5
+        ],
+        [
+          220,
+          6
+        ],
+        [
+          330,
+          7
+        ],
+        [
+          452,
+          8
+        ],
+        [
+          576,
+          9
+        ],
+        [
+          699,
+          7
+        ],
+        [
+          805,
+          4
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 10.5,
+      "surface": "graded_earth",
+      "traffic": "principal",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lake",
+      "name_1835": "Lake Street",
+      "name_2026": "W Lake Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          -107.1
+        ],
+        [
+          89.2,
+          -110.4
+        ],
+        [
+          900,
+          -117
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 10.5,
+      "surface": "graded_earth",
+      "traffic": "principal",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "randolph",
+      "name_1835": "Randolph Street",
+      "name_2026": "W Randolph Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          -249.9
+        ],
+        [
+          -155.24,
+          -251.19
+        ],
+        [
+          900,
+          -259.8
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "washington",
+      "name_1835": "Washington Street",
+      "name_2026": "W Washington Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          -385.2
+        ],
+        [
+          900,
+          -395.1
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "market",
+      "name_1835": "Market Street",
+      "name_2026": "N Wacker Drive",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          86.9,
+          -400
+        ],
+        [
+          89.2,
+          -110.4
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 8.0,
+      "surface": "worn_earth",
+      "traffic": "principal",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "franklin",
+      "name_1835": "Franklin Street",
+      "name_2026": "N Franklin Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          206.1,
+          -400
+        ],
+        [
+          208.5,
+          5
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wells",
+      "name_1835": "Wells Street",
+      "name_2026": "N Wells Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          328.1,
+          -400
+        ],
+        [
+          330.5,
+          7
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lasalle",
+      "name_1835": "La Salle Street",
+      "name_2026": "N LaSalle Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          450.1,
+          -400
+        ],
+        [
+          452.5,
+          8
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clark",
+      "name_1835": "Clark Street",
+      "name_2026": "N Clark Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          573.4,
+          -400
+        ],
+        [
+          576,
+          9
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dearborn",
+      "name_1835": "Dearborn Street",
+      "name_2026": "N Dearborn Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          696.4,
+          -400
+        ],
+        [
+          699,
+          18
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "state",
+      "name_1835": "State Street",
+      "name_2026": "N State Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          824.4,
+          -400
+        ],
+        [
+          827.1,
+          20
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 6.0,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canal",
+      "name_1835": "Canal Street",
+      "name_2026": "N/S Canal Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -150.8,
+          -400
+        ],
+        [
+          -159.67,
+          -108.38
+        ],
+        [
+          -181.0,
+          262
+        ],
+        [
+          -189,
+          400
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clinton",
+      "name_1835": "Clinton Street",
+      "name_2026": "N/S Clinton Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -276.5,
+          -400
+        ],
+        [
+          -288,
+          80
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kinzie",
+      "name_1835": "Kinzie Street",
+      "name_2026": "W/E Kinzie Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          -320,
+          263.1
+        ],
+        [
+          -181,
+          262
+        ],
+        [
+          1100,
+          251.8
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 7.0,
+      "surface": "worn_earth",
+      "traffic": "ordinary",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "north_water",
+      "name_1835": "North Water Street",
+      "name_2026": "N Water Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          200,
+          55
+        ],
+        [
+          330,
+          66
+        ],
+        [
+          452,
+          75
+        ],
+        [
+          576,
+          86
+        ],
+        [
+          699,
+          98
+        ],
+        [
+          827,
+          116
+        ],
+        [
+          920,
+          190
+        ],
+        [
+          970,
+          270
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 6.0,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "conjectural",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "A schematic bank-following path used for orientation and readout. The 1834 sheets and surviving name establish the corridor, but the committed street module does not yet carry enough control to claim this curve as a trace.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wolcott",
+      "name_1835": "Wolcott Street",
+      "name_2026": "N State Street",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          827,
+          108
+        ],
+        [
+          829,
+          400
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "michigan_north",
+      "name_1835": "Michigan Street",
+      "name_2026": "E/W Hubbard Street",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          450,
+          395
+        ],
+        [
+          1180,
+          389
+        ]
+      ],
+      "corridor_width_m": 24.384,
+      "track_width_m": 5.8,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "conjectural",
+      "note": "",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        }
+      ]
+    }
+  ],
   "structures": [
     {
       "id": "bates_auction_room",
@@ -355,6 +2051,654 @@
       "name": "Pruyne & Kimball's Drug Store",
       "sidecar": "sidecars/1835/pruyne_kimball_drugstore.json",
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_008",
+      "name": "Inferred A1 stable #008",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_008.json",
+      "asset": "gltf/recon_1835_north_a1_008__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_032",
+      "name": "Inferred A1 stable #032",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_032.json",
+      "asset": "gltf/recon_1835_north_a1_032__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_036",
+      "name": "Inferred A1 stable #036",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_036.json",
+      "asset": "gltf/recon_1835_north_a1_036__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a1_050",
+      "name": "Inferred A1 stable #050",
+      "sidecar": "sidecars/1835/recon_1835_north_a1_050.json",
+      "asset": "gltf/recon_1835_north_a1_050__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_033",
+      "name": "Inferred A2 barn or carriage shed #033",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_033.json",
+      "asset": "gltf/recon_1835_north_a2_033__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_048",
+      "name": "Inferred A2 barn or carriage shed #048",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_048.json",
+      "asset": "gltf/recon_1835_north_a2_048__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a2_059",
+      "name": "Inferred A2 barn or carriage shed #059",
+      "sidecar": "sidecars/1835/recon_1835_north_a2_059.json",
+      "asset": "gltf/recon_1835_north_a2_059__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_009",
+      "name": "Inferred A3 privy #009",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_009.json",
+      "asset": "gltf/recon_1835_north_a3_009__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_034",
+      "name": "Inferred A3 privy #034",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_034.json",
+      "asset": "gltf/recon_1835_north_a3_034__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a3_051",
+      "name": "Inferred A3 privy #051",
+      "sidecar": "sidecars/1835/recon_1835_north_a3_051.json",
+      "asset": "gltf/recon_1835_north_a3_051__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_010",
+      "name": "Inferred A4 woodshed or storage shed #010",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_010.json",
+      "asset": "gltf/recon_1835_north_a4_010__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_035",
+      "name": "Inferred A4 woodshed or storage shed #035",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_035.json",
+      "asset": "gltf/recon_1835_north_a4_035__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a4_052",
+      "name": "Inferred A4 woodshed or storage shed #052",
+      "sidecar": "sidecars/1835/recon_1835_north_a4_052.json",
+      "asset": "gltf/recon_1835_north_a4_052__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a5_011",
+      "name": "Inferred A5 small utility building #011",
+      "sidecar": "sidecars/1835/recon_1835_north_a5_011.json",
+      "asset": "gltf/recon_1835_north_a5_011__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_a5_049",
+      "name": "Inferred A5 small utility building #049",
+      "sidecar": "sidecars/1835/recon_1835_north_a5_049.json",
+      "asset": "gltf/recon_1835_north_a5_049__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c1_020",
+      "name": "Inferred C1 small shop or office #020",
+      "sidecar": "sidecars/1835/recon_1835_north_c1_020.json",
+      "asset": "gltf/recon_1835_north_c1_020__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c1_047",
+      "name": "Inferred C1 small shop or office #047",
+      "sidecar": "sidecars/1835/recon_1835_north_c1_047.json",
+      "asset": "gltf/recon_1835_north_c1_047__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_c2_027",
+      "name": "Inferred C2 store-residence #027",
+      "sidecar": "sidecars/1835/recon_1835_north_c2_027.json",
+      "asset": "gltf/recon_1835_north_c2_027__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_001",
+      "name": "Inferred D1 older log dwelling #001",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_001.json",
+      "asset": "gltf/recon_1835_north_d1_001__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_013",
+      "name": "Inferred D1 older log dwelling #013",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_013.json",
+      "asset": "gltf/recon_1835_north_d1_013__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_023",
+      "name": "Inferred D1 older log dwelling #023",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_023.json",
+      "asset": "gltf/recon_1835_north_d1_023__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_053",
+      "name": "Inferred D1 older log dwelling #053",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_053.json",
+      "asset": "gltf/recon_1835_north_d1_053__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_054",
+      "name": "Inferred D1 older log dwelling #054",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_054.json",
+      "asset": "gltf/recon_1835_north_d1_054__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d1_060",
+      "name": "Inferred D1 older log dwelling #060",
+      "sidecar": "sidecars/1835/recon_1835_north_d1_060.json",
+      "asset": "gltf/recon_1835_north_d1_060__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_003",
+      "name": "Inferred D2 rough plank dwelling or shanty #003",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_003.json",
+      "asset": "gltf/recon_1835_north_d2_003__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_014",
+      "name": "Inferred D2 rough plank dwelling or shanty #014",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_014.json",
+      "asset": "gltf/recon_1835_north_d2_014__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_029",
+      "name": "Inferred D2 rough plank dwelling or shanty #029",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_029.json",
+      "asset": "gltf/recon_1835_north_d2_029__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d2_046",
+      "name": "Inferred D2 rough plank dwelling or shanty #046",
+      "sidecar": "sidecars/1835/recon_1835_north_d2_046.json",
+      "asset": "gltf/recon_1835_north_d2_046__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_002",
+      "name": "Inferred D3 one-room frame cottage #002",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_002.json",
+      "asset": "gltf/recon_1835_north_d3_002__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_006",
+      "name": "Inferred D3 one-room frame cottage #006",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_006.json",
+      "asset": "gltf/recon_1835_north_d3_006__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_016",
+      "name": "Inferred D3 one-room frame cottage #016",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_016.json",
+      "asset": "gltf/recon_1835_north_d3_016__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_024",
+      "name": "Inferred D3 one-room frame cottage #024",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_024.json",
+      "asset": "gltf/recon_1835_north_d3_024__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_038",
+      "name": "Inferred D3 one-room frame cottage #038",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_038.json",
+      "asset": "gltf/recon_1835_north_d3_038__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_042",
+      "name": "Inferred D3 one-room frame cottage #042",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_042.json",
+      "asset": "gltf/recon_1835_north_d3_042__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d3_055",
+      "name": "Inferred D3 one-room frame cottage #055",
+      "sidecar": "sidecars/1835/recon_1835_north_d3_055.json",
+      "asset": "gltf/recon_1835_north_d3_055__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_004",
+      "name": "Inferred D4 two-room frame cottage #004",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_004.json",
+      "asset": "gltf/recon_1835_north_d4_004__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_012",
+      "name": "Inferred D4 two-room frame cottage #012",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_012.json",
+      "asset": "gltf/recon_1835_north_d4_012__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_017",
+      "name": "Inferred D4 two-room frame cottage #017",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_017.json",
+      "asset": "gltf/recon_1835_north_d4_017__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_025",
+      "name": "Inferred D4 two-room frame cottage #025",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_025.json",
+      "asset": "gltf/recon_1835_north_d4_025__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_039",
+      "name": "Inferred D4 two-room frame cottage #039",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_039.json",
+      "asset": "gltf/recon_1835_north_d4_039__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_043",
+      "name": "Inferred D4 two-room frame cottage #043",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_043.json",
+      "asset": "gltf/recon_1835_north_d4_043__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d4_056",
+      "name": "Inferred D4 two-room frame cottage #056",
+      "sidecar": "sidecars/1835/recon_1835_north_d4_056.json",
+      "asset": "gltf/recon_1835_north_d4_056__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_019",
+      "name": "Inferred D5 deep-plan frame cottage #019",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_019.json",
+      "asset": "gltf/recon_1835_north_d5_019__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_026",
+      "name": "Inferred D5 deep-plan frame cottage #026",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_026.json",
+      "asset": "gltf/recon_1835_north_d5_026__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_037",
+      "name": "Inferred D5 deep-plan frame cottage #037",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_037.json",
+      "asset": "gltf/recon_1835_north_d5_037__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_041",
+      "name": "Inferred D5 deep-plan frame cottage #041",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_041.json",
+      "asset": "gltf/recon_1835_north_d5_041__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d5_057",
+      "name": "Inferred D5 deep-plan frame cottage #057",
+      "sidecar": "sidecars/1835/recon_1835_north_d5_057.json",
+      "asset": "gltf/recon_1835_north_d5_057__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_021",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #021",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_021.json",
+      "asset": "gltf/recon_1835_north_d6_021__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_044",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #044",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_044.json",
+      "asset": "gltf/recon_1835_north_d6_044__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d6_058",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #058",
+      "sidecar": "sidecars/1835/recon_1835_north_d6_058.json",
+      "asset": "gltf/recon_1835_north_d6_058__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_d7_031",
+      "name": "Inferred D7 small two-story frame house #031",
+      "sidecar": "sidecars/1835/recon_1835_north_d7_031.json",
+      "asset": "gltf/recon_1835_north_d7_031__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_f1_022",
+      "name": "Inferred F1 freight or storage shed #022",
+      "sidecar": "sidecars/1835/recon_1835_north_f1_022.json",
+      "asset": "gltf/recon_1835_north_f1_022__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h1_007",
+      "name": "Inferred H1 small boarding house #007",
+      "sidecar": "sidecars/1835/recon_1835_north_h1_007.json",
+      "asset": "gltf/recon_1835_north_h1_007__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h2_030",
+      "name": "Inferred H2 medium boarding house #030",
+      "sidecar": "sidecars/1835/recon_1835_north_h2_030.json",
+      "asset": "gltf/recon_1835_north_h2_030__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_h3_045",
+      "name": "Inferred H3 large boarding house #045",
+      "sidecar": "sidecars/1835/recon_1835_north_h3_045.json",
+      "asset": "gltf/recon_1835_north_h3_045__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_i2_015",
+      "name": "Inferred I2 schoolhouse or meeting hall #015",
+      "sidecar": "sidecars/1835/recon_1835_north_i2_015.json",
+      "asset": "gltf/recon_1835_north_i2_015__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_t1_028",
+      "name": "Inferred T1 small inn or tavern #028",
+      "sidecar": "sidecars/1835/recon_1835_north_t1_028.json",
+      "asset": "gltf/recon_1835_north_t1_028__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w1_018",
+      "name": "Inferred W1 blacksmith shop #018",
+      "sidecar": "sidecars/1835/recon_1835_north_w1_018.json",
+      "asset": "gltf/recon_1835_north_w1_018__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w2_005",
+      "name": "Inferred W2 carpenter or joiner shop #005",
+      "sidecar": "sidecars/1835/recon_1835_north_w2_005.json",
+      "asset": "gltf/recon_1835_north_w2_005__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_north_w5_040",
+      "name": "Inferred W5 large workshop #040",
+      "sidecar": "sidecars/1835/recon_1835_north_w5_040.json",
+      "asset": "gltf/recon_1835_north_w5_040__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a1_046",
+      "name": "Inferred A1 stable #046",
+      "sidecar": "sidecars/1835/recon_1835_south_a1_046.json",
+      "asset": "gltf/recon_1835_south_a1_046__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a2_047",
+      "name": "Inferred A2 barn or carriage shed #047",
+      "sidecar": "sidecars/1835/recon_1835_south_a2_047.json",
+      "asset": "gltf/recon_1835_south_a2_047__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a3_041",
+      "name": "Inferred A3 privy #041",
+      "sidecar": "sidecars/1835/recon_1835_south_a3_041.json",
+      "asset": "gltf/recon_1835_south_a3_041__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a3_043",
+      "name": "Inferred A3 privy #043",
+      "sidecar": "sidecars/1835/recon_1835_south_a3_043.json",
+      "asset": "gltf/recon_1835_south_a3_043__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a3_045",
+      "name": "Inferred A3 privy #045",
+      "sidecar": "sidecars/1835/recon_1835_south_a3_045.json",
+      "asset": "gltf/recon_1835_south_a3_045__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a4_042",
+      "name": "Inferred A4 woodshed or storage shed #042",
+      "sidecar": "sidecars/1835/recon_1835_south_a4_042.json",
+      "asset": "gltf/recon_1835_south_a4_042__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a4_048",
+      "name": "Inferred A4 woodshed or storage shed #048",
+      "sidecar": "sidecars/1835/recon_1835_south_a4_048.json",
+      "asset": "gltf/recon_1835_south_a4_048__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_a5_044",
+      "name": "Inferred A5 small utility building #044",
+      "sidecar": "sidecars/1835/recon_1835_south_a5_044.json",
+      "asset": "gltf/recon_1835_south_a5_044__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c1_003",
+      "name": "Inferred C1 small shop or office #003",
+      "sidecar": "sidecars/1835/recon_1835_south_c1_003.json",
+      "asset": "gltf/recon_1835_south_c1_003__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c1_010",
+      "name": "Inferred C1 small shop or office #010",
+      "sidecar": "sidecars/1835/recon_1835_south_c1_010.json",
+      "asset": "gltf/recon_1835_south_c1_010__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c1_018",
+      "name": "Inferred C1 small shop or office #018",
+      "sidecar": "sidecars/1835/recon_1835_south_c1_018.json",
+      "asset": "gltf/recon_1835_south_c1_018__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c2_007",
+      "name": "Inferred C2 store-residence #007",
+      "sidecar": "sidecars/1835/recon_1835_south_c2_007.json",
+      "asset": "gltf/recon_1835_south_c2_007__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c2_036",
+      "name": "Inferred C2 store-residence #036",
+      "sidecar": "sidecars/1835/recon_1835_south_c2_036.json",
+      "asset": "gltf/recon_1835_south_c2_036__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c3_015",
+      "name": "Inferred C3 narrow two-story store #015",
+      "sidecar": "sidecars/1835/recon_1835_south_c3_015.json",
+      "asset": "gltf/recon_1835_south_c3_015__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c3_037",
+      "name": "Inferred C3 narrow two-story store #037",
+      "sidecar": "sidecars/1835/recon_1835_south_c3_037.json",
+      "asset": "gltf/recon_1835_south_c3_037__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_c3_040",
+      "name": "Inferred C3 narrow two-story store #040",
+      "sidecar": "sidecars/1835/recon_1835_south_c3_040.json",
+      "asset": "gltf/recon_1835_south_c3_040__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d1_021",
+      "name": "Inferred D1 older log dwelling #021",
+      "sidecar": "sidecars/1835/recon_1835_south_d1_021.json",
+      "asset": "gltf/recon_1835_south_d1_021__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d1_033",
+      "name": "Inferred D1 older log dwelling #033",
+      "sidecar": "sidecars/1835/recon_1835_south_d1_033.json",
+      "asset": "gltf/recon_1835_south_d1_033__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d2_005",
+      "name": "Inferred D2 rough plank dwelling or shanty #005",
+      "sidecar": "sidecars/1835/recon_1835_south_d2_005.json",
+      "asset": "gltf/recon_1835_south_d2_005__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d2_024",
+      "name": "Inferred D2 rough plank dwelling or shanty #024",
+      "sidecar": "sidecars/1835/recon_1835_south_d2_024.json",
+      "asset": "gltf/recon_1835_south_d2_024__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_001",
+      "name": "Inferred D3 one-room frame cottage #001",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_001.json",
+      "asset": "gltf/recon_1835_south_d3_001__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_008",
+      "name": "Inferred D3 one-room frame cottage #008",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_008.json",
+      "asset": "gltf/recon_1835_south_d3_008__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_013",
+      "name": "Inferred D3 one-room frame cottage #013",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_013.json",
+      "asset": "gltf/recon_1835_south_d3_013__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_017",
+      "name": "Inferred D3 one-room frame cottage #017",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_017.json",
+      "asset": "gltf/recon_1835_south_d3_017__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_022",
+      "name": "Inferred D3 one-room frame cottage #022",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_022.json",
+      "asset": "gltf/recon_1835_south_d3_022__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d3_027",
+      "name": "Inferred D3 one-room frame cottage #027",
+      "sidecar": "sidecars/1835/recon_1835_south_d3_027.json",
+      "asset": "gltf/recon_1835_south_d3_027__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_002",
+      "name": "Inferred D4 two-room frame cottage #002",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_002.json",
+      "asset": "gltf/recon_1835_south_d4_002__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_006",
+      "name": "Inferred D4 two-room frame cottage #006",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_006.json",
+      "asset": "gltf/recon_1835_south_d4_006__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_009",
+      "name": "Inferred D4 two-room frame cottage #009",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_009.json",
+      "asset": "gltf/recon_1835_south_d4_009__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_014",
+      "name": "Inferred D4 two-room frame cottage #014",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_014.json",
+      "asset": "gltf/recon_1835_south_d4_014__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_019",
+      "name": "Inferred D4 two-room frame cottage #019",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_019.json",
+      "asset": "gltf/recon_1835_south_d4_019__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_025",
+      "name": "Inferred D4 two-room frame cottage #025",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_025.json",
+      "asset": "gltf/recon_1835_south_d4_025__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d4_030",
+      "name": "Inferred D4 two-room frame cottage #030",
+      "sidecar": "sidecars/1835/recon_1835_south_d4_030.json",
+      "asset": "gltf/recon_1835_south_d4_030__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d5_004",
+      "name": "Inferred D5 deep-plan frame cottage #004",
+      "sidecar": "sidecars/1835/recon_1835_south_d5_004.json",
+      "asset": "gltf/recon_1835_south_d5_004__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d5_011",
+      "name": "Inferred D5 deep-plan frame cottage #011",
+      "sidecar": "sidecars/1835/recon_1835_south_d5_011.json",
+      "asset": "gltf/recon_1835_south_d5_011__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d5_016",
+      "name": "Inferred D5 deep-plan frame cottage #016",
+      "sidecar": "sidecars/1835/recon_1835_south_d5_016.json",
+      "asset": "gltf/recon_1835_south_d5_016__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d5_028",
+      "name": "Inferred D5 deep-plan frame cottage #028",
+      "sidecar": "sidecars/1835/recon_1835_south_d5_028.json",
+      "asset": "gltf/recon_1835_south_d5_028__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d5_034",
+      "name": "Inferred D5 deep-plan frame cottage #034",
+      "sidecar": "sidecars/1835/recon_1835_south_d5_034.json",
+      "asset": "gltf/recon_1835_south_d5_034__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d6_012",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #012",
+      "sidecar": "sidecars/1835/recon_1835_south_d6_012.json",
+      "asset": "gltf/recon_1835_south_d6_012__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d6_020",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #020",
+      "sidecar": "sidecars/1835/recon_1835_south_d6_020.json",
+      "asset": "gltf/recon_1835_south_d6_020__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d6_031",
+      "name": "Inferred D6 one-and-a-half-story frame cottage #031",
+      "sidecar": "sidecars/1835/recon_1835_south_d6_031.json",
+      "asset": "gltf/recon_1835_south_d6_031__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_d7_035",
+      "name": "Inferred D7 small two-story frame house #035",
+      "sidecar": "sidecars/1835/recon_1835_south_d7_035.json",
+      "asset": "gltf/recon_1835_south_d7_035__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_f1_038",
+      "name": "Inferred F1 freight or storage shed #038",
+      "sidecar": "sidecars/1835/recon_1835_south_f1_038.json",
+      "asset": "gltf/recon_1835_south_f1_038__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_f2_039",
+      "name": "Inferred F2 narrow two-story warehouse #039",
+      "sidecar": "sidecars/1835/recon_1835_south_f2_039.json",
+      "asset": "gltf/recon_1835_south_f2_039__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_w1_023",
+      "name": "Inferred W1 blacksmith shop #023",
+      "sidecar": "sidecars/1835/recon_1835_south_w1_023.json",
+      "asset": "gltf/recon_1835_south_w1_023__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_w2_026",
+      "name": "Inferred W2 carpenter or joiner shop #026",
+      "sidecar": "sidecars/1835/recon_1835_south_w2_026.json",
+      "asset": "gltf/recon_1835_south_w2_026__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_w3_029",
+      "name": "Inferred W3 cooper, wagon, or wheelwright shop #029",
+      "sidecar": "sidecars/1835/recon_1835_south_w3_029.json",
+      "asset": "gltf/recon_1835_south_w3_029__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_south_w4_032",
+      "name": "Inferred W4 small artisan shop #032",
+      "sidecar": "sidecars/1835/recon_1835_south_w4_032.json",
+      "asset": "gltf/recon_1835_south_w4_032__inferred_1835.glb"
     },
     {
       "id": "robert_kinzie_store",

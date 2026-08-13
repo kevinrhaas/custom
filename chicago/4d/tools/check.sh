@@ -31,6 +31,18 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+# Anonymous reconstruction infill is authored as a compact parcel recipe, then
+# expanded to ordinary one-file-per-structure records and visibly flagged GLBs.
+# Both derivations must stay reproducible without Blender.
+step "inferred infill records match the 665-roof programme" \
+  python3 tools/generate_inferred_infill.py --check
+
+step "North Division initial parcel matches its reviewed recipe" \
+  python3 tools/generate_north_infill.py --check
+
+step "inferred placeholder GLBs match their records" \
+  python3 generators/inferred_placeholder.py --check
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

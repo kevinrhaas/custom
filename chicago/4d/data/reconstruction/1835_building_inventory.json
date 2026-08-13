@@ -1,0 +1,69 @@
+{
+  "$schema_note": "Authored reconstruction programme. Structure records remain the scene source of truth; tools/generate_inferred_infill.py checks its generated parcel against this ledger.",
+  "id": "chicago_july_1835_building_inventory",
+  "target_date": "1835-07-01",
+  "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+  "confidence": "moderate aggregate; interpretive per anonymous instance",
+  "targets": {
+    "roof_total": 665,
+    "defensible_range": [565, 765],
+    "principal_functional": 511,
+    "ancillary": 154,
+    "population_working_range": [3200, 3265],
+    "ordinary_max_stories": 2,
+    "minimum_visible_combinations": 250
+  },
+  "districts": {
+    "south": {"target": 370, "character": "Commercial core along South Water and Lake, then mixed blocks with density falling rapidly southward."},
+    "west": {"target": 135, "character": "Older irregular fabric at Wolf Point approaches: cabins, taverns, yards, work and river storage."},
+    "north": {"target": 150, "character": "Scattered development around Kinzie properties and crossings, with substantial open ground."},
+    "fort": {"target": 10, "character": "Ten principal roofs in the custom Fort Dearborn compound; stockade and props are outside this roof count."}
+  },
+  "district_group_matrix": {
+    "ordinary_dwellings": {"south": 170, "west": 75, "north": 90, "fort": 0, "total": 335},
+    "larger_boarding_houses": {"south": 28, "west": 6, "north": 8, "fort": 0, "total": 42},
+    "stores_mixed_use": {"south": 42, "west": 6, "north": 4, "fort": 0, "total": 52},
+    "inns_taverns": {"south": 5, "west": 3, "north": 2, "fort": 0, "total": 10},
+    "workshops": {"south": 15, "west": 8, "north": 7, "fort": 0, "total": 30},
+    "warehouses_freight": {"south": 17, "west": 2, "north": 1, "fort": 0, "total": 20},
+    "institutional_public": {"south": 10, "west": 1, "north": 1, "fort": 0, "total": 12},
+    "fort_principal": {"south": 0, "west": 0, "north": 0, "fort": 10, "total": 10},
+    "barns_stables": {"south": 35, "west": 20, "north": 17, "fort": 0, "total": 72},
+    "small_outbuildings": {"south": 48, "west": 14, "north": 20, "fort": 0, "total": 82}
+  },
+  "family_targets": {
+    "D1": 52, "D2": 38, "D3": 65, "D4": 75, "D5": 58, "D6": 29, "D7": 18,
+    "H1": 18, "H2": 14, "H3": 10,
+    "C1": 18, "C2": 12, "C3": 17, "C4": 5,
+    "T1": 6, "T2": 3, "T3": 1,
+    "W1": 6, "W2": 8, "W3": 6, "W4": 6, "W5": 4,
+    "F1": 8, "F2": 7, "F3": 3, "F4": 2,
+    "I1": 4, "I2": 2, "I3": 6, "M1": 10,
+    "A1": 42, "A2": 30, "A3": 40, "A4": 28, "A5": 14
+  },
+  "family_bands_ft": {
+    "D1": [16, 20, 20, 26], "D2": [12, 16, 18, 24], "D3": [16, 20, 18, 24], "D4": [18, 24, 22, 30], "D5": [18, 28, 24, 34], "D6": [20, 26, 24, 34], "D7": [20, 26, 24, 34],
+    "C1": [14, 20, 20, 30], "C2": [18, 30, 22, 40], "C3": [18, 36, 22, 50],
+    "W1": [16, 22, 24, 34], "W2": [16, 24, 24, 36], "W3": [18, 26, 26, 40], "W4": [14, 20, 20, 30],
+    "F1": [18, 32, 28, 50], "F2": [20, 40, 26, 60],
+    "A1": [12, 18, 20, 32], "A2": [18, 26, 28, 44], "A3": [4, 5, 6, 8], "A4": [6, 8, 12, 18], "A5": [6, 8, 12, 16]
+  },
+  "density_zones": {
+    "A": {"developed_share": "about 10%", "side_gap_ft": [3, 20], "description": "river commercial core"},
+    "B": {"developed_share": "about 20%", "side_gap_ft": [10, 35], "description": "mixed town blocks with rear outbuildings"},
+    "C": {"developed_share": "about 25%", "side_gap_ft": [20, 80], "description": "loose residential fringe"},
+    "D": {"developed_share": "45% or more", "description": "sparse or open plat; few or no roofs"}
+  },
+  "protected_existing_policy": "Every existing record is retained. Named or better-documented geometry may replace an anonymous inferred roof only by an explicit later substitution, never by addition to the 665 target.",
+  "reconciliation_note": "Existing structure records include bridges, stockade segments, yards and multi-roof compounds; record count is not roof count. A physical-roof reconciliation precedes the final 665-instance release.",
+  "programme_phases": [
+    {"id": "phase1_south_mixed_blocks", "district": "south", "status": "implemented_first_parcel", "roofs": 48, "principal_functional": 40, "ancillary": 8},
+    {"id": "phase2_existing_roof_reconciliation", "status": "planned_before_recipe_adoption", "purpose": "Map every committed structure record to zero, one, or several physical roofs without deleting evidence."},
+    {"id": "phase2_south_core_and_mixed_recipe", "district": "south", "status": "reviewed_recipe_not_rendered", "roofs": 84, "principal_functional": 66, "ancillary": 18, "purpose": "A collision-checked South Division core and mixed-use recipe held behind existing-roof reconciliation and family-cap adoption gates."},
+    {"id": "phase2_west_wolf_point_approaches", "district": "west", "status": "reviewed_recipe_not_rendered", "roofs": 55, "principal_functional": 44, "ancillary": 11, "extension_gated_roofs": 35, "purpose": "A tapered West Division recipe; its outer roofs wait for unified terrain, hydrology, collision, flora and map coverage to local E -700 m."},
+    {"id": "phase2_north_division_initial", "district": "north", "status": "implemented_review_massings", "roofs": 60, "principal_functional": 45, "ancillary": 15, "purpose": "A terrain-, water-, collision- and relief-checked initial North Division parcel; the remaining 90 North roofs wait for unified terrain, hydrology, collision, flora, streets and map coverage to local N +760 m."},
+    {"id": "phase3_west_and_north_extent", "status": "planned", "purpose": "Verify settlement/terrain extents before expanding west and north; do not confuse the enlarged plat with occupied footprint."},
+    {"id": "phase4_remaining_district_parcels", "status": "planned", "purpose": "Populate to the reconciled district targets while preserving at least 45% sparse/open land."},
+    {"id": "phase5_archetype_and_site_detail", "status": "planned", "purpose": "Replace temporary massing with 35 family implementations, variants, foundations, yards and props."}
+  ]
+}

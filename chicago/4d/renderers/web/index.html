@@ -80,6 +80,45 @@
     </div>
   </div>
 
+  <div class="control-help" id="control-help" role="dialog"
+    aria-labelledby="control-help-title" hidden>
+    <button class="control-help-close" id="control-help-close" type="button"
+      aria-label="Dismiss navigation help">×</button>
+    <strong id="control-help-title">How to explore</strong>
+    <div id="control-help-desktop" class="control-help-grid">
+      <kbd>W A S D</kbd><span>walk</span><kbd>mouse</kbd><span>look around</span>
+      <kbd>Shift</kbd><span>run</span><kbd>click / E</kbd><span>inspect a building</span>
+      <kbd>F</kbd><span>fly or walk</span><kbd>H</kbd><span>controls and settings</span>
+    </div>
+    <div id="control-help-touch" class="control-help-grid" hidden>
+      <kbd>left stick</kbd><span>walk</span><kbd>drag right</kbd><span>look around</span>
+      <kbd>tap</kbd><span>inspect</span><kbd>Fly</kbd><span>switch walk / aerial view</span>
+    </div>
+    <button class="control-help-gotit" id="control-help-gotit" type="button">Got it</button>
+  </div>
+
+  <div class="navigation-stack" aria-label="Navigation aids">
+    <div id="compass" class="compass" aria-label="Heading north, 0 degrees">
+      <span class="compass-dial" aria-hidden="true">
+        <span class="compass-n">N</span><span class="compass-e">E</span>
+        <span class="compass-s">S</span><span class="compass-w">W</span>
+        <span class="compass-needle" id="compass-needle">↑</span>
+      </span>
+      <strong id="compass-direction">N</strong><span id="compass-bearing">000°</span>
+    </div>
+    <div id="overview-map" class="overview-map" aria-label="Overview map">
+      <canvas id="overview-map-canvas" aria-hidden="true"></canvas>
+      <span class="overview-north" aria-hidden="true">N</span>
+      <span class="overview-caption" aria-hidden="true">map</span>
+    </div>
+    <div id="street-readout" class="street-readout" aria-live="polite" hidden>
+      <span class="street-mode" id="street-mode">On street</span>
+      <strong id="street-historic"></strong>
+      <span class="street-modern" id="street-modern"></span>
+      <span class="street-approach" id="street-approach" hidden></span>
+    </div>
+  </div>
+
   <div class="hud-panel" id="panel" hidden>
     <div class="panel-tabs" role="tablist">
       <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
@@ -113,6 +152,11 @@
     </section>
 
     <section class="panel-body" data-panel="settings" hidden>
+      <label class="field row"><span>Measurement units</span>
+        <select id="s-units">
+          <option value="imperial">Imperial — ft, mi, mph</option>
+          <option value="metric">Metric — m, km, km/h</option>
+        </select></label>
       <label class="field"><span>Walking speed <b id="v-speed"></b></span>
         <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
       <label class="field"><span>Field of view <b id="v-fov"></b></span>
@@ -123,7 +167,22 @@
           <option value="1.5">Medium</option>
           <option value="2">High — sharper</option>
         </select></label>
-      <div class="field"><span>Go to</span><div class="anchors" id="anchors"></div></div>
+      <label class="field row check-field"><span>Show compass</span>
+        <input type="checkbox" id="s-compass"></label>
+      <label class="field row check-field"><span>Show overview map</span>
+        <input type="checkbox" id="s-overview-map"></label>
+      <label class="field row check-field"><span>Show 1835 / current street names</span>
+        <input type="checkbox" id="s-street-names"></label>
+      <div class="field row"><span>Navigation help</span>
+        <button class="setting-button" id="s-show-control-help" type="button">Show guide</button>
+      </div>
+      <div class="field jump-field">
+        <span>Jump to a structure or intersection <b id="jump-count"></b></span>
+        <input type="search" id="jump-search" placeholder="Search every place…"
+          autocomplete="off" spellcheck="false" aria-controls="jump-results">
+        <div class="jump-results" id="jump-results" role="listbox"></div>
+      </div>
+      <div class="field"><span>Named viewpoints</span><div class="anchors" id="anchors"></div></div>
     </section>
 
     <section class="panel-body" data-panel="evidence" hidden>

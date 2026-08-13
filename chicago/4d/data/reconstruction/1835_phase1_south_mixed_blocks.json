@@ -1,0 +1,46 @@
+{
+  "id": "phase1_south_mixed_blocks",
+  "district": "south",
+  "density_zone": "B",
+  "description": "First anonymous infill parcel in five platted blocks between Franklin and State, south of Lake and north of Randolph. Alternating open lots remain intentional.",
+  "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+  "principal_functional": 40,
+  "ancillary": 8,
+  "rows": [
+    {
+      "id": "lake_front",
+      "local_n": -151.0,
+      "placements": [
+        [226, "D3"], [244, "D4"], [266, "C1"], [292, "D5"], [348, "D2"], [367, "D4"], [390, "C2"], [418, "D3"],
+        [470, "D4"], [491, "C1"], [516, "D5"], [542, "D6"], [594, "D3"], [616, "D4"], [641, "C3"], [668, "D5"],
+        [716, "D3"], [739, "C1"], [765, "D4"], [793, "D6"]
+      ]
+    },
+    {
+      "id": "block_interior",
+      "local_n": -194.0,
+      "placements": [
+        [229, "D1"], [253, "D3"], [283, "W1"], [350, "D2"], [377, "D4"], [407, "W2"],
+        [473, "D3"], [501, "D5"], [533, "W3"], [596, "D4"], [625, "D6"], [659, "W4"],
+        [719, "D1"], [748, "D5"], [780, "D7"]
+      ]
+    },
+    {
+      "id": "randolph_approach",
+      "local_n": -231.0,
+      "placements": [[239, "C2"], [361, "C3"], [482, "F1"], [604, "F2"], [728, "C3"]]
+    },
+    {
+      "id": "rear_yards",
+      "local_n": -175.0,
+      "yard_group": "lake_front_rear_yards",
+      "placements": [[314, "A3"], [438, "A4"], [560, "A3"], [687, "A5"], [810, "A3"]]
+    },
+    {
+      "id": "deep_yards",
+      "local_n": -215.0,
+      "yard_group": "block_interior_service_yards",
+      "placements": [[315, "A1"], [559, "A2"], [809, "A4"]]
+    }
+  ]
+}

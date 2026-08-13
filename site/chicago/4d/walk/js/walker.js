@@ -25,7 +25,6 @@ export const WALK = {
   sprintSpeed: 3.3,     // m/s — a jog, not a sprint
   stepUp: 0.35,         // m — the plank-walk rule
   pitchLimit: 85 * DEG,
-  groundSmoothing: 14,  // 1/s — how fast the eye settles to a new ground height
 };
 
 /**
@@ -136,7 +135,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
     /** Metres above local ground, 0 on foot. What the HUD reports. */
     altitude: 0,
   };
-  state.groundY = terrain.height(state.e, state.n);
+  state.groundY = terrain.walkHeight(state.e, state.n);
   state.eyeY = state.groundY + WALK.eyeHeight;
 
   const euler = new THREE.Euler(0, 0, 0, 'YXZ');
@@ -166,17 +165,17 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
   /** One axis at a time, so you slide along a slope instead of sticking to it. */
   function tryStep(e, n, de, dn) {
     let ok = true;
-    const here = terrain.height(e, n);
+    const here = terrain.walkHeight(e, n);
     let next = { e, n };
 
     if (de !== 0) {
       const cand = { e: e + de, n };
-      if (terrain.height(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
+      if (terrain.walkHeight(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
       else ok = false;
     }
     if (dn !== 0) {
       const cand = { e: next.e, n: n + dn };
-      if (terrain.height(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
+      if (terrain.walkHeight(cand.e, cand.n) - here <= WALK.stepUp) next = cand;
       else ok = false;
     }
     return { ...next, ok };
@@ -209,7 +208,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
         // every crosshair inspection at the ground instead of the building.
         state.pitch = 0;
       }
-      state.groundY = terrain.height(state.e, state.n);
+      state.groundY = terrain.walkHeight(state.e, state.n);
       if (altitude_m !== null) {
         this.setFlying(true);
         state.eyeY = state.groundY + Math.max(FLY.minClearance, altitude_m);
@@ -230,7 +229,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       const rad = bearing * DEG;
       state.e = te + Math.sin(rad) * distance;
       state.n = tn + Math.cos(rad) * distance;
-      state.groundY = terrain.height(state.e, state.n);
+      state.groundY = terrain.walkHeight(state.e, state.n);
       state.eyeY = state.groundY + WALK.eyeHeight;
 
       const de = te - state.e;
@@ -264,7 +263,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
         const clear = pushOut(state.e, state.n);
         state.e = clear.e;
         state.n = clear.n;
-        state.groundY = terrain.height(state.e, state.n);
+        state.groundY = terrain.walkHeight(state.e, state.n);
         state.eyeY = state.groundY + WALK.eyeHeight;
         state.altitude = 0;
         this.apply();
@@ -284,7 +283,7 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       const mag = Math.hypot(f, s);
       if (mag > 1) { f /= mag; s /= mag; }
 
-      state.groundY = terrain.height(state.e, state.n);
+      state.groundY = terrain.walkHeight(state.e, state.n);
       const gain = FLY.altitudeGain(state.eyeY - state.groundY);
       const base = intent.sprint ? FLY.sprintSpeed : FLY.speed;
       const speed = base * gain;
@@ -307,9 +306,9 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       state.n += -dz;                      // world -z is north
       state.eyeY += dy;
 
-      const floor = terrain.height(state.e, state.n) + FLY.minClearance;
+      const floor = terrain.walkHeight(state.e, state.n) + FLY.minClearance;
       state.eyeY = Math.max(floor, Math.min(FLY.maxAltitude, state.eyeY));
-      state.groundY = terrain.height(state.e, state.n);
+      state.groundY = terrain.walkHeight(state.e, state.n);
       state.altitude = state.eyeY - state.groundY;
       state.speed = Math.hypot(dx, dz, dy) / Math.max(dt, 1e-6);
 
@@ -368,17 +367,15 @@ export function createWalker({ camera, terrain, footprints = [], spawn = {} }) {
       state.e = clear.e;
       state.n = clear.n;
 
-      // Settle the eye onto the ground rather than snapping — a hard snap over a
-      // plank edge reads as a stumble.
-      state.groundY = terrain.height(state.e, state.n);
-      const targetEye = state.groundY + WALK.eyeHeight;
-      const k = 1 - Math.exp(-WALK.groundSmoothing * dt);
-      state.eyeY += (targetEye - state.eyeY) * k;
-      // Snap the last centimetre. The exponential never quite arrives, and a
-      // descent from 300 m would otherwise leave a visible fraction of a metre
-      // of drift for several seconds after it looks finished.
-      if (Math.abs(targetEye - state.eyeY) < 0.01) state.eyeY = targetEye;
-      state.altitude = state.eyeY - state.groundY - WALK.eyeHeight;
+      // Walking is a constraint, not a camera animation: the eye stays exactly
+      // WALK.eyeHeight above the SAME bilinear heightfield that built the mesh.
+      // The old exponential easing lagged behind on every rise and fall, so the
+      // visitor visibly entered a bank while climbing and floated while coming
+      // down.  Bilinear sampling already makes ordinary terrain continuous;
+      // the 0.35 m step rule above is the only place an actual step may occur.
+      state.groundY = terrain.walkHeight(state.e, state.n);
+      state.eyeY = state.groundY + WALK.eyeHeight;
+      state.altitude = 0;
 
       this.apply();
     },

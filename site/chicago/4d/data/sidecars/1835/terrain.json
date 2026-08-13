@@ -966,7 +966,9 @@
           ]
         }
       ],
-      "notes": []
+      "notes": [
+        "The chip above this line is stronger than the evidence under it, and this sentence is the correction arriving ahead of the grade. The source page was opened at its own locator on 2026-08-11 (docs/RESEARCH/surface_materials_south_division.md) and it prints no footnote, endnote or reference of any kind. A named witness on the page, John Mills Van Osdel, attests saturated sand over impervious clay and the failure of the ground to drain, but he gives no black loam and no thickness. The top layer and all three dimensions are the 2022 author's unsupported synthesis. This value is over-graded and should become inferred; it remains documented only because confidence is baked into the committed ground mesh and the regrade requires the queued Blender rebuild."
+      ]
     },
     {
       "id": "surface_materials.south_division east of State St",

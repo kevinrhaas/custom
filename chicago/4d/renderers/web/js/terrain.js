@@ -28,15 +28,15 @@
  *      drawn by the depth buffer rather than by a second outline that could
  *      drift out of step with it.
  *
- * Wading, and why `height()` is not `heightfield.sample()`
+ * Wading, and why `walkHeight()` is not `surfaceHeight()`
  * --------------------------------------------------------
  * The heightfield carries the real channel bed — about -12 ft in the main stem.
  * A walker whose eye is pinned to that surface walks into the river and ends up
  * looking at the world from under the water, which reads as a bug rather than
- * as a river. `height()` therefore reports the WALKABLE surface: dry ground
+ * as a river. `walkHeight()` therefore reports the WALKABLE surface: dry ground
  * where there is dry ground, and a wall at the waterline where there is not, so
  * the walker stops at the water's edge the way a person without a boat does.
- * `groundHeight()` still reports the real surface, the mesh still draws it, and
+ * `surfaceHeight()` still reports the real surface, the mesh still draws it, and
  * the heightfield still stores it. This is a navigation rule, not a claim about
  * the terrain — the moment there is a boat or a bridge it should be revisited.
  *
@@ -56,7 +56,7 @@ export const DEG = Math.PI / 180;
 export const WATER_Y = 0;
 /** Below this the ground is under water and the walker may not stand on it. */
 const SHORE_Y = -0.10;
-/** What `height()` reports over water: high enough that the walker's 0.35 m
+/** What `walkHeight()` reports over water: high enough that the walker's 0.35 m
  *  step-up rule refuses it from any bank in the dataset. */
 const WATER_BARRIER_Y = 4.0;
 
@@ -298,16 +298,24 @@ export async function createTerrain({
     epochId,
     loaded: heightfield.loaded,
 
+    /** The one rendered terrain surface in metres at local ENU (e, n).
+     * Buildings, streets, trees and plant roots all anchor to this sampler. */
+    surfaceHeight(e, n) { return heightfield.sample(e, n); },
+
     /**
-     * The WALKABLE surface in metres at local ENU (e, n): real ground on land,
-     * a wall at the waterline. See the note at the top of this file.
+     * The WALKABLE surface: the rendered terrain on land, with the documented
+     * navigation barrier over open water. See the note at the top of this file.
      */
-    height(e, n) {
+    walkHeight(e, n) {
       const h = heightfield.sample(e, n);
       return h < SHORE_Y ? WATER_BARRIER_Y : h;
     },
 
-    /** The real surface, bank and channel bed alike. */
+    /** Backward-compatible names for older harnesses and external consumers. */
+    height(e, n) {
+      const h = heightfield.sample(e, n);
+      return h < SHORE_Y ? WATER_BARRIER_Y : h;
+    },
     groundHeight(e, n) { return heightfield.sample(e, n); },
 
     /** True where the terrain is below the water surface. */

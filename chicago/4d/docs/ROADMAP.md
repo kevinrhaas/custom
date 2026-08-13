@@ -282,10 +282,15 @@ Success is not "a building appears". Success is that a viewer can toggle the con
 and see exactly which parts of the Sauganash we can defend — the white two-story block and the
 blue shutters solid, the invented footprint and the disputed gallery dithered.
 
-## S9 — Streets, roads and paths · **queued next after S2e (Kevin, 2026-08-10)**
+## S9 — Streets, roads and paths · **VISIBLE EARTH LAYER + LIVE NAMES DONE 2026-08-11**
 
-Asked for as "streets, roads, paths in accurate surface and elevations". Both halves of
-that have a specific answer here, and the second one is a trap.
+Asked for as "streets, roads, paths in accurate surface and elevations", then expanded to a
+toggleable 1835/current-name readout. The first dated visible layer is now in: seventeen earth
+travelways compiled into the scene index, draped on the heightfield, cut at water, cleared only
+through the narrow travelled strip, drawn on the overview map and queried live for the street
+underfoot or the next cross street ahead. The remaining work is to extend control on North Water
+and the north-side grid, research any dated plank footwalks separately, and replace L79's visual
+wear widths wherever a specification or depiction survives.
 
 **Half of that sentence is committed data as of 2026-08-10.** `data/traces/street_control.json`
 holds the module (80 ft streets, `inferred`, with the 66 ft dissent recorded beside it) and the
@@ -337,23 +342,24 @@ in as wobble. Generate the grid analytically from the module and snap it to cont
 street that is straight because the surveyor made it straight should not arrive bent
 because we traced a folded sheet.
 
-**"Accurate surface" in 1835 means mud.** This is the trap: the instinct is to model a
-crowned, kerbed, gravelled roadway, and every part of that is wrong for the date. Chicago's
-streets were unpaved earth — notoriously, memorably so — with **plank sidewalks** where
-anyone had bothered to lay them. The first plank roadway is over a decade later. So the
-street surface is a material and a wear pattern on the prairie, not a built structure, and
-the plank walks are the only raised element. Both need their own sources before they are
-drawn; do not let the archetype supply them silently, which is the mistake the bridge
-already made once (see v21).
+**"Accurate surface" in 1835 means earth, not gravel.** The first instinct — a crowned,
+kerbed, gravelled or paved roadway — is wrong for the date, but the earlier wording here was
+too broad in the opposite direction. The official 1891 municipal chronology records South
+Water ordered pitched by April 1834 and graded for drainage that July, and calls South Water
+and Lake the two principal early turnpiked and graded streets. It separately dates Canal,
+Lake west to Desplaines and Randolph turnpiking to fall 1836; street planking begins in 1844,
+general planking in 1849, limestone block in 1855, and macadam/cobble in 1856. On 1 July 1835
+the defensible visual vocabulary is therefore **graded or thrown-up earth on the principal
+routes, worn native soil on lesser streets, grassy margins, no gravel or hard paving**. Dated
+plank footwalks remain a separate research parcel and are not silently supplied by the road.
 
-**"Accurate elevations" means the streets follow the ground, because nothing had been
-graded yet.** The great raising of Chicago is 1855–58, twenty years later. So there is no
-cut, no fill, no crown and no camber: the roadway is the prairie surface with the sod worn
-off it. Drape the grid on the heightfield and resist the urge to smooth it — the existing
-gradient audit already puts the whole quadrant under 0.5 ft per 300 ft, so flat is the
-finding, not a shortcut. Where a street crosses the slough or the marshy shore strip, that
-is a real crossing problem the sources may describe; treat it as content, not as a
-rendering artefact to be flattened away.
+**"Accurate elevations" means modest early grading is not the later Raising of Chicago.**
+South Water's documented drainage order means "nothing had been graded" was false. What no
+source supplies is the amount, cross-section, crown or fill profile, so this first layer does
+not edit the heightfield or invent one: its vertices sample the existing ground exactly and sit
+22 mm above it only to avoid depth fighting. The walk camera now locks to that same bilinear
+surface each frame instead of easing behind it on rises and falls. Where a street reaches water,
+the ribbon stops; a crossing is content to research, not a rendering artefact to flatten away.
 
 ## S5a — Fort Dearborn · **DONE 2026-08-11**
 
@@ -798,12 +804,18 @@ into the data as `absent` entries with citations, so nobody re-adds them later.
 ### S6a — the eye-height sward · **ROUND 1 IN 2026-08-10**
 
 `renderers/web/js/flora.js` draws the graminoid matrix, the forb layer, the emergents and the
-low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Three layers: blade
-geometry within about 7.6 m, camera-facing clump cards to 27 m, and one canopy surface at the
-sward's own height from 10 m to the edge of the modelled ground. Placement is a deterministic
-world lattice re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and
-nothing is paid for behind your head. Heights, greens, cover, phenology and per-plant confidence
-all come from the records; the tuft density and the far-field surface are liberties (L32, L33).
+low shrubs from `data/flora/`, mounted in `main.js` beside `trees.js`. Blade geometry runs within
+about 7.6 m and camera-facing clump cards to 27 m; beyond them the actual terrain's procedural
+prairie texture carries unresolved colour. Placement is a deterministic world lattice
+re-centred on the walker and culled to a 62° cone, so nothing swims underfoot and nothing is
+paid for behind your head. Heights, greens, cover, phenology and per-plant confidence all come
+from the records; the tuft density and far-texture compression are liberties (L32, L80).
+
+**Corrected after the 2026-08-11 real-device review:** the former L33 far-field canopy was a
+solid surface at plant-top height. It looked like a second terrain layer, hid foundations and
+roots, and could be walked underneath. It was removed rather than making the walker and every
+building stand on false plant-top topography. Terrain is now the sole physical and visible
+surface; all detailed flora and structures share its sampler. L80 records the replacement.
 
 **Judged against `WORK/bar`** — two verified photographs of surviving Illinois tallgrass in
 mid-July (a Chicago-region remnant, 29 July 2021; a DuPage restoration, 24 July 2018) and an
@@ -827,36 +839,31 @@ reference. See STATUS.md § "Known weaknesses" 00 for the full measurements. The
 items 1–3 were not wrong; they were aimed at the near field, and the blind test is being lost
 in the **mid** field.
 
-1. **Draw vegetation past 455 m.** *The single biggest gap, and it is one bug behind four
-   symptoms.* Canopy rings from 511.8 m outward drop to `y = 0.05` with `aMask = 0` and are
-   discarded, so the vegetated surface ends where fog is 27 % and no visible surface ever
-   reaches the haze all three parcels converge on. Fixing this alone should move the blind
-   tell, the aerial recession, the grain collapse and the horizon step. Whatever stands beyond
-   the modelled zone polygons has to be *drawn* — even a nominal community, graded honestly.
-2. **Give the far sheet grain at fragment scale.** Its noise is two octaves over 88 × 36
-   vertices, so its finest feature is metres across near and ~100 m across far. Target:
-   5×5 high-pass RMS in the +30..70 band from **14.6 → ≥ 30** (references 31.4 and 41.7).
-3. **Kill the ring seam.** `TUNE.mid.radius = 27.0` maps to a constant screen row on flat
-   ground — measured as a razor edge at row 450 across all 1280 columns. Widen `ringFade`
-   substantially or make the boundary irregular in world space.
-4. **Crown surface.** Fine-detail ratio **0.23–0.34 → ≥ 0.55** (references 0.61–0.64); crown
-   total sd **46–55 → ≤ 36** scale-matched; darkest decile **L ≥ 12, never (0,0,0)**;
-   brightest decile **G−B ≥ +10** (currently −19 to −26 — sunlit crown tops are blue where the
-   photograph's are warm green). Cheapest route: high-frequency shading at leaf-clump scale
-   plus stochastic alpha cutout at the silhouette, a bounded indirect floor, and rebalancing
-   sun against hemisphere on upward-facing normals.
+1. **Restore distant vegetation without restoring a second surface.** The removed L33 sheet
+   cannot return: any impostor or sparse far geometry must be rooted on the heightfield, remain
+   visibly porous, and pass the same root/building/walker surface checks as the detailed field.
+   The terrain texture is the honest current fallback beyond 27 m.
+2. **Give the far terrain texture grain at fragment scale.** Keep it on the physical terrain,
+   with enough irregular contrast to suggest unresolved vegetation without asserting a second
+   height or species silhouette. Re-measure the old high-pass target against the corrected
+   renderer before reusing it; the prior 14.6 figure measured the removed sheet.
+3. **Kill the middle-distance ring seam.** `TUNE.mid.radius = 27.0` can map to a constant screen
+   row on flat ground. Widen the fade or make the boundary irregular in world space, while every
+   individual card remains rooted on the terrain.
+4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
+   measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
+   tuning colour or contrast; never improve the score by closing the far field into a sheet.
 5. **Horizon continuity.** Columns carrying timber **31 % → ≥ 90 %** (reference 100 % in every
    band). Band *height* stays 1–4 px — that arithmetic is honest. Two mechanisms: drop
    `hazeDisplayLinear()`'s ACES step so the band stops being aimed 16 R / 12 G past the ground
    it touches, and suppress the crown/gap modulation `k` whenever a crown subtends under ~2 px,
    where it deletes the silhouette rather than texturing it.
-6. **Close the near field.** Detail-free area (5×5 luminance sigma < 2/255, below-horizon,
-   resampled to 1280 wide) **13.7 % → < 2.0 %** in the nearest quarter (references 0.3–1.5 %).
-   `TUNE.mat.inner = 10.0` leaves only ~66 blades/m² between the eye and raw terrain where a
-   closed sward needs 270–400. Headroom is already paid for: 456 tufts placed against a 2,400
-   cap. Add a **broad-leaf** element — in both references the visual mass at every distance is
-   dicot leaf, not grass blade — and deepen the shade without dimming the flecks (near-band
-   green p50 **121 → 75–95**).
+6. **Close the near field with rooted geometry.** Detail-free area (5×5 luminance sigma <
+   2/255, below-horizon, resampled to 1280 wide) was **13.7 %** in the nearest quarter against
+   references at 0.3–1.5 %; re-measure it after the one-surface correction. Add a **broad-leaf**
+   element — in both references the visual mass at every distance is dicot leaf, not grass
+   blade — and deepen the shade without dimming the flecks. Every new instance must begin on
+   `terrain.surfaceHeight()` rather than borrowing visual closure from an elevated sheet.
 7. **Flower load, against the corrected bar.** Whole-sward chroma flower **1.49 % → 4–6 %**
    (*not* 13.89 %: that figure came from a restoration planting on a former cornfield, not from
    prairie). Nearest quarter **0.07 % → 3.0 %**, which *is* right — it is what a never-plowed
@@ -888,6 +895,15 @@ first puts a dark skirt under a pile of slate.
 
 Performance against the budgets, licensed ambience audio, provenance-popup UX, `LIBERTIES.md`
 completeness pass, mobile release gate.
+
+**Done 2026-08-11 — navigation that grows with the dataset.** A live compass shows the
+walker's sixteen-point heading and numeric bearing. A north-up overview draws land and water
+from the loaded heightfield, every structure from its compiled footprint, and the moving visitor
+marker from the walker state; both overlays are independently persistent settings. The old
+anchor buttons remain as authored viewpoints, while the searchable jump index now enumerates
+all 76 loaded structures and all four verified street-control intersections. Intersections are
+compiled into `sidecars/<scene>/index.json` from `street_control.json` and the datum, so the
+renderer still consumes derived scene data and no control coordinate is copied into the UI.
 
 **Done 2026-08-10 — free-fly, and the town seen whole.** `F` (or the ▲ chip) lifts the visitor
 off the prairie; `Space`/`Q` and a touch pad rise and descend; the `from_above` anchor arrives
@@ -1351,6 +1367,41 @@ Three things worth carrying:
   the Western Hotel. `tools/refetch_control.py` re-derives a junction from the street names and
   re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
   `tools/check.sh`.
+
+## S10 — Complete July 1835 building inventory · **PHASE 1 IN 2026-08-11**
+
+The owner-supplied reconstruction specification establishes a production target of **665 roofs**:
+511 principal/functional and 154 ancillary, distributed South 370 / West 135 / North 150 / Fort
+10. The durable master ledger is `data/reconstruction/1835_building_inventory.json`; it preserves
+the independently reconcilable family and district matrices and explicitly separates aggregate
+moderate confidence from interpretive per-instance placement.
+
+- **Phase 1 done:** 48 visibly tagged anonymous South Division roofs in five mixed blocks—40
+  principal/functional and eight ancillary. Reproducible records and flagged review GLBs are
+  derived from the parcel recipe without Blender and checked on every commit.
+- **Phase 2 planning advanced in parallel:** reviewed, non-rendered recipes now reserve another
+  84 South roofs, 55 West roofs and 60 North roofs without overdrawing any family target. The
+  South recipe is collision-checked against protected named sites; the North set's 60 footprints
+  stay on the current dry terrain. The West recipe deliberately gates 35 roofs until the world
+  extends to local E -700 m, and the remaining 90-roof North pass waits for unified terrain,
+  hydrology, collision, flora, streets and map coverage to N +760 m. These are production plans,
+  not added scene count; existing-roof reconciliation comes first.
+- **Done 2026-08-12:** all 76 pre-existing records are reconciled to physical roof units; bridges,
+  yards, palisades, construction sites and compounds no longer make record count a proxy.
+- **Done 2026-08-12:** the terrain-safe 60-roof North initial parcel is visible and checked.
+- Verify the occupied west/north settlement extent before extending terrain. The enlarged plat
+  is not the same thing as built footprint, and at least 45% of it remains sparse/open.
+- Implement the 35 family archetypes and 250+ visible combinations, replacing—not silently
+  promoting—the review massings.
+- Populate remaining district parcels to the reconciled target, then add terrain-sampled
+  foundations, yards and props. No separate collision plane.
+
+See `docs/RESEARCH/recommended_infill_1835.md`,
+`docs/RESEARCH/1835_existing_roof_reconciliation.md`,
+`docs/RESEARCH/1835_family_archetype_crosswalk.md`,
+`docs/RESEARCH/phase2_south_core_and_mixed.md`,
+`docs/RESEARCH/west_division_infill_1835.md`, and Liberty L81.
+The North analysis is `docs/RESEARCH/1835_north_division_extent_and_infill.md`.
 
 ## S8 — Milestone 1
 

@@ -29,10 +29,12 @@
  *                   ground in frame is 3.4 m away.
  *   MID   to ~27 m  a blade is a third of a pixel at 20 m. Clump cards turned
  *                   to the camera: silhouette and colour, all that survives.
- *   FAR   10 m out  one canopy surface at the sward's own height. Every sight
- *                   line past ~40 m grazes the sward rather than reaching
- *                   between the plants, so what is honest to draw out there is
- *                   the top of the sward, not the soil under it. (L33)
+ *   FAR   beyond the instanced plants, the terrain material's procedural
+ *                   prairie texture carries the unresolved colour. There is
+ *                   deliberately no second horizontal vegetation surface:
+ *                   one at plant-top height reads as elevated ground, hides
+ *                   building bases, and leaves the visitor walking underneath
+ *                   it at banks. Detailed plants remain rooted on the terrain.
  *
  * Placement is a deterministic world lattice: a plant's position, species,
  * height and colour are a hash of its cell, so re-centring on a walking camera
@@ -40,7 +42,7 @@
  * changes, and it is scaled in rather than popped.
  *
  * Procedural per AGENTS.md and the publish budget: no image asset, no binary,
- * 8 draw calls. Every material carries `_CONFIDENCE` as a per-INSTANCE
+ * a bounded handful of draw calls. Every material carries `_CONFIDENCE` as a per-INSTANCE
  * attribute, so the confidence view grades each plant by its species' evidence.
  */
 
@@ -130,12 +132,11 @@ const TUNE = {
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30 },
   mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4 },
   forb: { radius: 26.0, cell: 3.4, perCell: 4 },
-  mat: { inner: 10.0, outer: 1400.0, segments: 88, rings: 36, lift: 0.05 },
   /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
   /** Rebuild the lattice when the camera has moved this far, per layer. */
-  step: { near: 1.2, mid: 3.0, forb: 3.0, mat: 7.0 },
+  step: { near: 1.2, mid: 3.0, forb: 3.0 },
 };
 
 /** Nearer than this, plants go all the way round whatever the cone says. */
@@ -148,12 +149,11 @@ const CONE_YAW_STEP = 0.20;
 const LOW = {
   // A phone is not a small desktop: the mobile pass draws a 585x1170 buffer,
   // MORE pixels than the desktop one, on a fraction of the fill rate. So the
-  // sward is not scaled down here, it is a shallower field — tight near ring,
-  // short mid ring, canopy taking over four metres out instead of eight.
+  // sward is not scaled down here, it is a shallower field — tight near and
+  // mid rings, with the terrain's prairie texture carrying the far field.
   near: { radius: 4.6, tuftsPerM2: 4.6 },
   mid: { inner: 3.0, radius: 13.0 },
   forb: { radius: 13.0 },
-  mat: { inner: 4.6, outer: 1400.0, segments: 56, rings: 24, lift: 0.05 },
   cap: { near: 420, mid: 900, forb: 260, head: 240 },
 };
 
@@ -263,11 +263,14 @@ const GRASS_SHAPE = {
 
 /**
  * @param {object} o  dataBase (data/ root) · terrain (createTerrain's return) ·
- *   footprints (nothing grows through a wall) · confidence (every material is
- *   patched into it) · problems (the shared collector) · lowSpec (touch/mobile)
+ *   footprints (nothing grows through a wall) · growthBlocked (a narrow dated
+ *   travelway clears plants, without clearing its whole legal corridor) ·
+ *   confidence (every material is patched into it) · problems (the shared
+ *   collector) · lowSpec (touch/mobile)
  */
 export async function createFlora({
-  dataBase, terrain, footprints = [], confidence = null, problems = [], lowSpec = false,
+  dataBase, terrain, footprints = [], growthBlocked = () => false,
+  confidence = null, problems = [], lowSpec = false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'flora';
@@ -307,7 +310,6 @@ export async function createFlora({
     uChiWind: { value: new THREE.Vector2(0.82, 0.57) },
     uChiSway: { value: TUNE.wind.sway },
     uChiWaveK: { value: (Math.PI * 2) / TUNE.wind.waveM },
-    uChiInner: { value: tune.mat.inner },
     // World space, pointing AT the sun. Filled from the scene's own light on
     // the first update; the fallback is the same instant world.js computes.
     uChiSun: { value: sunDirFallback() },
@@ -323,8 +325,7 @@ export async function createFlora({
   // every extra shader program is seconds of compile time on the first frame,
   // and a flower head's own sway works out at four millimetres.
   const headMat = bladeMat;
-  const matMat = swardMatMaterial({ uniforms });
-  for (const m of [bladeMat, cardMat, matMat]) {
+  for (const m of [bladeMat, cardMat]) {
     confidence?.patch(m);
     disposables.push(m);
   }
@@ -359,28 +360,28 @@ export async function createFlora({
   const sets = [nearSet, midSet, forbSet, rosetteSet, ...Object.values(heads)];
   for (const s of sets) { group.add(s.mesh); disposables.push(s.mesh.geometry); }
 
-  const mat = swardMat(matMat, tune);
-  group.add(mat.mesh);
-  disposables.push(mat.mesh.geometry);
-
   // ---- placement --------------------------------------------------------- //
 
-  const centres = { near: null, mat: null, yaw: null };
+  const centres = { near: null, yaw: null };
   const waterY = terrain.heightfield?.meta?.water_surface_m ?? 0;
 
   /** Ground the plant stands on, or null if it may not stand here. */
-  function station(e, n, zone) {
+  function station(e, n, zone, species) {
+    if (growthBlocked(e, n)) return null;
     if (water.isWater(e, n)) {
-      // CONTRACT.md §4 rule 4: only a water-buffer community stands in water,
-      // and it stands ON the water surface, not on the channel bed.
-      return zone.standsInWater ? waterY : null;
+      // A water BUFFER is not permission for every member of that community to
+      // stand in the channel. Only records whose role is explicitly `emergent`
+      // may root in water, and the corrected signed shore-distance field below
+      // keeps even those inside the eight-metre marsh edge rather than assigning
+      // distance zero to the entire river.
+      return zone.standsInWater && species?.role === 'emergent' ? waterY : null;
     }
     for (const b of blocks) {
       const dx = e - b.e;
       const dz = n - b.n;
       if (dx * dx + dz * dz < b.r2 && pointInPolygon(b.pts, e, n)) return null;
     }
-    return terrain.groundHeight(e, n);
+    return terrain.surfaceHeight(e, n);
   }
 
   function rebuildGround(camE, camN, cone) {
@@ -395,9 +396,9 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
-        const y = station(e, n, zone);
-        if (y === null) return;
         const sp = pick(zone.graminoids, rng());
+        const y = station(e, n, zone, sp);
+        if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         const fade = ringFade(r, near.radius, 2.2);
         // The head is placed off the height the PLANT was actually given, and
@@ -415,9 +416,9 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
-        const y = station(e, n, zone);
-        if (y === null) return;
         const sp = pick(zone.graminoids, rng());
+        const y = station(e, n, zone, sp);
+        if (y === null) return;
         const fade = ringFade(r, mid.radius, 7.0) * innerFade(r, mid.inner, 3.0);
         placeCard(midSet, sp, zone, e, y, n, rng, fade);
       });
@@ -435,9 +436,9 @@ export async function createFlora({
       // sparse community stays sparse. `share` is the chance this lattice slot
       // is used at all.
       if (rng() > zone.forbShare) return;
-      const y = station(e, n, zone);
-      if (y === null) return;
       const sp = pick(zone.forbs, rng());
+      const y = station(e, n, zone, sp);
+      if (y === null) return;
       if (crowdsTheWalker(sp, r)) return;
       const fade = ringFade(r, f.radius, 5.0);
       const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
@@ -455,9 +456,8 @@ export async function createFlora({
     stats.instances = sets.reduce((a, s) => a + s.mesh.count, 0);
     stats.sets = Object.fromEntries(sets.map((s) => [s.mesh.name, s.mesh.count]));
     stats.capped = sets.filter((s) => s.mesh.count >= s.max).map((s) => s.mesh.name);
-    stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0)
-      + mat.triangles;
-    stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length + 1;
+    stats.triangles = sets.reduce((a, s) => a + s.mesh.count * s.tris, 0);
+    stats.drawCalls = sets.filter((s) => s.mesh.count > 0).length;
   }
 
   const tmpV = new THREE.Vector3();
@@ -467,6 +467,7 @@ export async function createFlora({
     group,
     stats,
     zoneAt(e, n) { return finder(e, n)?.id ?? null; },
+    shoreDistance(e, n) { return water.distance(e, n); },
 
     update(dt, camera) {
       uniforms.uChiTime.value += dt * TUNE.wind.speedNear;
@@ -492,16 +493,6 @@ export async function createFlora({
         centres.near = { e, n };
         centres.yaw = yaw;
       }
-      if (moved(centres.mat, e, n, TUNE.step.mat)) {
-        mat.rebuild(e, n, finder, terrain, water);
-        centres.mat = { e, n };
-      }
-      // From the air the hole would be a bite out of a green disc, so it
-      // closes as you climb.
-      const eye = tmpV.y - terrain.groundHeight(e, n);
-      uniforms.uChiInner.value = THREE.MathUtils.clamp(
-        tune.mat.inner - Math.max(0, eye - 2.0) * 2.6, 2.0, tune.mat.inner,
-      );
     },
 
     dispose() {
@@ -585,13 +576,12 @@ function sunFromScene(group, uniforms, problems) {
 function mergeTune(lowSpec) {
   const t = {
     near: { ...TUNE.near }, mid: { ...TUNE.mid }, forb: { ...TUNE.forb },
-    mat: { ...TUNE.mat }, cap: { ...TUNE.cap },
+    cap: { ...TUNE.cap },
   };
   if (!lowSpec) return t;
   Object.assign(t.near, LOW.near);
   Object.assign(t.mid, LOW.mid);
   Object.assign(t.forb, LOW.forb);
-  Object.assign(t.mat, LOW.mat);
   Object.assign(t.cap, LOW.cap);
   return t;
 }
@@ -714,12 +704,12 @@ function compileZones({ index, files }, terrain, problems, stats) {
       zone: entry.zone,
       extent: rec.extent ?? entry.extent ?? null,
       priority: rec.extent?.priority ?? entry.priority ?? 0,
-      standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water',
+      standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water'
+        && rec.species.some((sp) => sp.role === 'emergent'),
       graminoids,
       forbs,
       /** Chance a forb lattice slot is used, from the record's own densities. */
       forbShare: Math.min(1, forbPerM2 * cell * cell / TUNE.forb.perCell),
-      matHeight: swardTop(graminoids),
       matColor: meanColor(graminoids, palette),
       palette,
     });
@@ -806,16 +796,6 @@ function headOf(inflor, sp, problems, zoneId) {
   };
 }
 
-function swardTop(graminoids) {
-  if (!graminoids.length) return 0.35;
-  let sum = 0;
-  let w = 0;
-  for (const g of graminoids) { sum += mid(g.height) * g.weight; w += g.weight; }
-  // The canopy sits a little under the mean top: the tallest element stands
-  // above the surface the sward as a whole presents.
-  return w > 0 ? (sum / w) * 0.80 : 0.35;
-}
-
 function meanColor(graminoids, palette) {
   const fallback = rgb(palette?.greens?.[1]) ?? [0.30, 0.38, 0.16];
   if (!graminoids.length) return fallback;
@@ -848,44 +828,65 @@ function clamp01(v) { return Math.min(1, Math.max(0, v)); }
 function waterField(terrain) {
   const hf = terrain.heightfield;
   const cell = 4.0;
+  const surfaceY = hf?.meta?.water_surface_m ?? 0;
   if (!hf?.loaded) {
-    return { isWater: (e, n) => terrain.isWater(e, n), distance: () => Infinity };
+    return {
+      surfaceY,
+      isWater: (e, n) => terrain.isWater(e, n),
+      distance: () => Infinity,
+    };
   }
   const e0 = hf.originE;
   const n0 = hf.originN;
   const cols = Math.max(2, Math.ceil(hf.widthM / cell) + 1);
   const rows = Math.max(2, Math.ceil(hf.depthM / cell) + 1);
   const BIG = 1e6;
-  const d = new Float32Array(cols * rows).fill(BIG);
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      if (terrain.isWater(e0 + c * cell, n0 + r * cell)) d[r * cols + c] = 0;
-    }
-  }
-  const put = (i, v) => { if (v < d[i]) d[i] = v; };
+  // Two fields make this a distance to the SHORE, not merely a distance to
+  // water. The old one seeded every water cell with zero, so a `0–8 m from
+  // water` marsh extent matched the middle of the river just as strongly as
+  // the bank. On land we ask for the nearest water cell; in water we ask for
+  // the nearest land cell.
+  const toWater = new Float32Array(cols * rows).fill(BIG);
+  const toLand = new Float32Array(cols * rows).fill(BIG);
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const i = r * cols + c;
-      if (c > 0) put(i, d[i - 1] + cell);
-      if (r > 0) put(i, d[i - cols] + cell);
-      if (c > 0 && r > 0) put(i, d[i - cols - 1] + cell * 1.4142);
+      if (terrain.isWater(e0 + c * cell, n0 + r * cell)) toWater[i] = 0;
+      else toLand[i] = 0;
     }
   }
-  for (let r = rows - 1; r >= 0; r--) {
-    for (let c = cols - 1; c >= 0; c--) {
-      const i = r * cols + c;
-      if (c < cols - 1) put(i, d[i + 1] + cell);
-      if (r < rows - 1) put(i, d[i + cols] + cell);
-      if (c < cols - 1 && r < rows - 1) put(i, d[i + cols + 1] + cell * 1.4142);
+  const solve = (d) => {
+    const put = (i, v) => { if (v < d[i]) d[i] = v; };
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const i = r * cols + c;
+        if (c > 0) put(i, d[i - 1] + cell);
+        if (r > 0) put(i, d[i - cols] + cell);
+        if (c > 0 && r > 0) put(i, d[i - cols - 1] + cell * 1.4142);
+        if (c < cols - 1 && r > 0) put(i, d[i - cols + 1] + cell * 1.4142);
+      }
     }
-  }
+    for (let r = rows - 1; r >= 0; r--) {
+      for (let c = cols - 1; c >= 0; c--) {
+        const i = r * cols + c;
+        if (c < cols - 1) put(i, d[i + 1] + cell);
+        if (r < rows - 1) put(i, d[i + cols] + cell);
+        if (c < cols - 1 && r < rows - 1) put(i, d[i + cols + 1] + cell * 1.4142);
+        if (c > 0 && r < rows - 1) put(i, d[i + cols - 1] + cell * 1.4142);
+      }
+    }
+  };
+  solve(toWater);
+  solve(toLand);
   return {
+    surfaceY,
     isWater: (e, n) => terrain.isWater(e, n),
     distance(e, n) {
       const c = Math.round((e - e0) / cell);
       const r = Math.round((n - n0) / cell);
       if (c < 0 || r < 0 || c >= cols || r >= rows) return Infinity;
-      return d[r * cols + c];
+      const i = r * cols + c;
+      return terrain.isWater(e, n) ? toLand[i] : toWater[i];
     },
   };
 }
@@ -914,7 +915,7 @@ function matches(x, e, n, terrain, water) {
       ok = true;
       break;
     case 'elevation_band': {
-      const y = terrain.groundHeight(e, n);
+      const y = terrain.surfaceHeight(e, n);
       ok = Array.isArray(x.elev_m) && y >= x.elev_m[0] && y <= x.elev_m[1];
       break;
     }
@@ -1893,109 +1894,6 @@ function rosetteGeometry() {
   return finishGeo(g, 'flora-rosette');
 }
 
-/* -------------------------------------------------------------------------- */
-/* the canopy — the far field                                                  */
-/* -------------------------------------------------------------------------- */
-
-/**
- * The sward's own top surface: a polar sheet centred on the walker, carried to
- * the edge of the modelled ground. A surface and not more plants because at
- * 1.68 m a sight line reaching soil 60 m away is 1.6 degrees below the horizon
- * — the whole ground from 45 m out occupies about two degrees of a fifty-degree
- * frame, where nothing can be resolved as a plant and everything must be paid
- * for across the plain. Coloured by the community under it, holed where the
- * record says water. Recorded as a liberty: L33.
- */
-function swardMat(material, tune) {
-  const A = tune.mat.segments;
-  const R = tune.mat.rings;
-  const inner = 2.5;
-  const outer = tune.mat.outer;
-  const pos = new Float32Array(A * R * 3);
-  const col = new Float32Array(A * R * 3);
-  const msk = new Float32Array(A * R);
-  const nor = new Float32Array(A * R * 3);
-  const idx = [];
-  const radii = [];
-  // A cubic ramp, not a geometric one: the canopy's near edge is the part the
-  // eye can still resolve roughness in, and a geometric series spends its rings
-  // out at 800 m where two of them project onto the same pixel.
-  for (let i = 0; i < R; i++) radii.push(inner + (outer - inner) * (i / (R - 1)) ** 3);
-  for (let i = 0; i < R - 1; i++) {
-    for (let a = 0; a < A; a++) {
-      const a1 = (a + 1) % A;
-      const p = i * A;
-      const q = (i + 1) * A;
-      idx.push(p + a, q + a, p + a1, p + a1, q + a, q + a1);
-    }
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.name = 'flora-canopy';
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geo.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  geo.setAttribute('aMask', new THREE.BufferAttribute(msk, 1));
-  geo.setAttribute('_confidence', new THREE.BufferAttribute(new Float32Array(A * R), 1));
-  geo.setIndex(idx);
-  const conf = geo.getAttribute('_confidence');
-
-  const mesh = new THREE.Mesh(geo, material);
-  mesh.name = 'flora-canopy';
-  mesh.frustumCulled = false;
-  mesh.castShadow = false;
-  mesh.receiveShadow = false;
-  // Also before the ground — see instSet(). The canopy covers the far field
-  // completely, so it is the biggest occluder in the frame.
-  mesh.renderOrder = -1;
-
-  return {
-    mesh,
-    triangles: idx.length / 3,
-    rebuild(camE, camN, finder, terrain, water) {
-      for (let i = 0; i < R; i++) {
-        const r = radii[i];
-        for (let a = 0; a < A; a++) {
-          const th = (a / A) * Math.PI * 2;
-          const e = camE + Math.sin(th) * r;
-          const n = camN + Math.cos(th) * r;
-          const k = i * A + a;
-          const zone = finder(e, n);
-          const wet = water.isWater(e, n);
-          const ok = !!zone && (!wet || zone.standsInWater);
-          msk[k] = ok ? 1 : 0;
-          const h = zone ? zone.matHeight : 0;
-          // Two scales: a canopy is not a table top, and the roughness has
-          // to fall off with distance or the far field boils.
-          const bump = h * 0.34 * (vnoise(e * 0.16, n * 0.16) - 0.5)
-            + h * 0.22 * (vnoise(e * 0.62, n * 0.62) - 0.5);
-          pos[k * 3] = e;
-          pos[k * 3 + 1] = terrain.groundHeight(e, n) + h + bump + tune.mat.lift;
-          pos[k * 3 + 2] = -n;
-          nor[k * 3] = 0; nor[k * 3 + 1] = 1; nor[k * 3 + 2] = 0;
-          const c = zone ? zone.matColor : [0.2, 0.25, 0.1];
-          // Wide on purpose. The far field is one surface, and a surface with a
-          // narrow tonal range reads as painted canvas: measured against the
-          // bar, our sward beyond seven metres had a 25th percentile of 129
-          // where the photographs sit at 46 and 64. Two scales of noise, so the
-          // sea has both patches and grain.
-          const v = (0.44 + 0.86 * vnoise(e * 0.13 + 11.3, n * 0.13 - 4.1))
-            * (0.72 + 0.58 * vnoise(e * 0.55 - 3.7, n * 0.55 + 8.9));
-          col[k * 3] = c[0] * v;
-          col[k * 3 + 1] = c[1] * v;
-          col[k * 3 + 2] = c[2] * v;
-          conf.setX(k, 0.5);
-        }
-      }
-      geo.getAttribute('position').needsUpdate = true;
-      geo.getAttribute('color').needsUpdate = true;
-      geo.getAttribute('aMask').needsUpdate = true;
-      geo.getAttribute('normal').needsUpdate = true;
-      conf.needsUpdate = true;
-      geo.computeVertexNormals();
-    },
-  };
-}
-
 /** Smooth value noise, 0..1. No texture, no table. */
 function vnoise(x, z) {
   const xi = Math.floor(x);
@@ -2186,81 +2084,4 @@ varying float vChiLit;
  *  `0` where it wants a float and a template literal will happily write one. */
 function f(v) {
   return Number.isInteger(v) ? `${v}.0` : String(v);
-}
-
-/** The canopy sheet. Two discards: the ragged hole under the walker, and the
- *  holes where the records put water or put nothing at all. */
-function swardMatMaterial({ uniforms }) {
-  const mat = new THREE.MeshLambertMaterial({
-    color: 0xffffff,
-    vertexColors: true,
-    side: THREE.DoubleSide,
-  });
-  const prior = mat.onBeforeCompile;
-  mat.onBeforeCompile = (shader, renderer) => {
-    if (typeof prior === 'function') prior(shader, renderer);
-    Object.assign(shader.uniforms, {
-      uChiInner: uniforms.uChiInner,
-      uChiSun: uniforms.uChiSun,
-      uChiSunCol: uniforms.uChiSunCol,
-      uChiSky: uniforms.uChiSky,
-    });
-    shader.vertexShader = `
-attribute float aMask;
-varying float vChiMask;
-varying vec3 vChiCanopy;
-varying vec3 vChiCanopyN;
-` + shader.vertexShader.replace('#include <begin_vertex>', /* glsl */`
-#include <begin_vertex>
-  vChiMask = aMask;
-  vChiCanopy = (modelMatrix * vec4(transformed, 1.0)).xyz;
-  vChiCanopyN = normalize(mat3(modelMatrix) * objectNormal);
-`);
-    shader.fragmentShader = `
-varying float vChiMask;
-varying vec3 vChiCanopy;
-varying vec3 vChiCanopyN;
-uniform float uChiInner;
-uniform vec3 uChiSun;
-uniform vec3 uChiSunCol;
-uniform vec3 uChiSky;
-` + shader.fragmentShader.replace('#include <opaque_fragment>', /* glsl */`
-{
-  // The canopy is not a lawn seen from above, it is a mass of blade TIPS seen
-  // nearly edge-on, so it gets the same membrane the near field gets — weaker,
-  // because a surface standing in for ten thousand blades has already averaged
-  // most of the glint away, but present, or the far sward reads as a painted
-  // sheet beside a near field that glows.
-  vec3 chiN = normalize(vChiCanopyN) * (gl_FrontFacing ? 1.0 : -1.0);
-  vec3 chiV = normalize(cameraPosition - vChiCanopy);
-  float chiNL = dot(chiN, uChiSun);
-  float chiGraze = 1.0 - abs(dot(chiV, chiN));
-  vec3 chiHue = diffuseColor.rgb
-    / max(max(diffuseColor.r, diffuseColor.g), max(diffuseColor.b, 1e-4));
-  vec3 chiFilter = chiHue * vec3(${f(LEAF.tint[0])}, ${f(LEAF.tint[1])}, ${f(LEAF.tint[2])});
-  float chiFwd = pow(clamp(dot(chiV, -uChiSun) * 0.5 + 0.5, 0.0, 1.0), ${f(LEAF.forward)});
-  outgoingLight += uChiSunCol
-      * (${f(+(LEAF.transmit * 0.055).toFixed(4))} * chiGraze * max(chiNL, 0.0)
-         * (0.42 + 0.58 * chiFwd))
-      * chiFilter
-    + uChiSky * (${f(+(LEAF.skyTransmit * 0.15).toFixed(4))} * chiFilter);
-}
-#include <opaque_fragment>
-`).replace('#include <clipping_planes_fragment>', /* glsl */`
-#include <clipping_planes_fragment>
-  if (vChiMask < 0.5) discard;
-  {
-    float chiR = length(vChiCanopy.xz - cameraPosition.xz);
-    // A hash without a transcendental. sin() is cheap on a GPU and is not
-    // cheap in a software rasteriser, and this one runs on every fragment of
-    // the largest surface in the frame.
-    vec2 chiCell = floor(vChiCanopy.xz * 2.7);
-    float chiN = fract(dot(chiCell, vec2(0.1031, 0.0973))
-      + fract(chiCell.x * 0.0619) * fract(chiCell.y * 0.0847) * 37.0);
-    if (chiR < uChiInner * (0.70 + 0.60 * chiN)) discard;
-  }
-`);
-  };
-  mat.needsUpdate = true;
-  return mat;
 }

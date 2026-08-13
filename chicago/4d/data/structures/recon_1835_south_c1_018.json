@@ -1,0 +1,179 @@
+{
+  "id": "recon_1835_south_c1_018",
+  "name": "Inferred C1 small shop or office #018",
+  "archetype": "frame_storefront",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447811.706,
+        "utm_n": 4637244.202,
+        "rotation_deg": 0.63,
+        "symbolic_location": "Anonymous inferred roof in the South Division block between Dearborn and State, south of Lake Street",
+        "confidence": "conjectural",
+        "note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            5.312,
+            0
+          ],
+          [
+            5.312,
+            7.52
+          ],
+          [
+            0,
+            7.52
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 5.31 × 7.52 m rectangle sampled deterministically inside the C1 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "wall_height_m": {
+          "value": 3.25,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "roof_pitch_deg": {
+          "value": 34.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "gable_front": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "construction": {
+          "value": "braced_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "cladding": {
+          "value": "clapboard",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "shopfront": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "goods_door": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        },
+        "goods_door_side": {
+          "value": "end",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the C1 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+        }
+      },
+      "change_note": "Inferred anonymous July 1835 infill. It may later be replaced by a named, better-evidenced roof through an explicit inventory substitution."
+    }
+  ],
+  "function": {
+    "value": "small shop or office",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the C1 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "C1",
+    "district": "south",
+    "inventory_class": "principal_functional",
+    "programme_phase": "phase1_south_mixed_blocks",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 18,
+    "finish_key": "fresh_timber",
+    "roof_condition": "patched",
+    "age_state": "established"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

@@ -1,0 +1,148 @@
+{
+  "id": "recon_1835_north_a4_035",
+  "name": "Inferred A4 woodshed or storage shed #035",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 447883.919,
+        "utm_n": 4637612.629,
+        "rotation_deg": 180.0,
+        "symbolic_location": "Anonymous inferred roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
+        "confidence": "conjectural",
+        "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 North Division roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            2.438,
+            0
+          ],
+          [
+            2.438,
+            3.658
+          ],
+          [
+            0,
+            3.658
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 8 × 12 ft rectangle assigned by the reconstruction recipe within the A4 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 2.05,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "roof_pitch_deg": {
+          "value": 18.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "construction": {
+          "value": "plank",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "door": {
+          "value": "man",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
+        }
+      },
+      "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+    }
+  ],
+  "function": {
+    "value": "woodshed or storage shed",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the A4 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "A4",
+    "district": "north",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase2_north_division_initial",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 35,
+    "finish_key": "mixed_patch",
+    "roof_condition": "weathered",
+    "age_state": "older_frontier",
+    "yard_group": "wk_w1_018_yard"
+  },
+  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

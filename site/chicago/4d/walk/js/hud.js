@@ -10,12 +10,17 @@
  */
 
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
+import { formatHeight, formatSpeed, normalUnitSystem } from './units.js';
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
 const SET_KEY = 'chicago4d.settings';
+const CONTROL_HELP_KEY = 'chicago4d.controlHelpDismissed';
 
-const DEFAULT_SETTINGS = { speed: 1.45, fov: 72, quality: 1.5 };
+const DEFAULT_SETTINGS = {
+  speed: 1.45, fov: 72, quality: 1.5,
+  compass: true, overviewMap: true, streetNames: true, units: 'imperial',
+};
 
 function readSettings() {
   try {
@@ -31,7 +36,10 @@ function store(key, value) {
   try { window.localStorage.setItem(key, value); } catch { /* private mode */ }
 }
 
-export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting, onGoTo, isTouch }) {
+export function createHud({
+  root, scene, registry, intersections = [], onConfidence, onFly, onHelp,
+  onSetting, onGoTo, isTouch,
+}) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
   const badgeSub = root.querySelector('.badge-sub');
@@ -42,8 +50,10 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
   const btnTheme = $('btn-theme');
   const btnHelp = $('btn-help');
   const panel = $('panel');
+  const controlHelp = $('control-help');
   const hint = $('hint');
   const settings = readSettings();
+  settings.units = normalUnitSystem(settings.units);
 
   if (badgeYear) badgeYear.textContent = scene?.id ?? '';
   if (badgeSub) badgeSub.textContent = formatSceneDate(scene?.target_date);
@@ -104,13 +114,15 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
 
   btnFly?.addEventListener('click', () => setFly(!flying));
 
-  /** Altitude readout, driven from the frame loop. Metres above local ground. */
+  /** Altitude readout, driven from the frame loop. Stored internally in metres. */
+  let lastAltitudeM = 0;
   function setAltitude(m) {
+    lastAltitudeM = m;
     if (!badgeAlt) return;
     const show = flying && m > 1;
     badgeAlt.toggleAttribute('hidden', !show);
     badgeAlt.parentElement?.classList.toggle('has-alt', show);
-    if (show) badgeAlt.textContent = `${Math.round(m)} m up`;
+    if (show) badgeAlt.textContent = `${formatHeight(m, settings.units)} up`;
   }
 
   btnTheme?.addEventListener('click', () => {
@@ -130,6 +142,7 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
   function setPanel(open) {
     if (!panel) return;
     panel.toggleAttribute('hidden', !open);
+    root.classList.toggle('panel-open', !!open);
     btnHelp?.setAttribute('aria-pressed', String(!!open));
     // Release the pointer lock on open. While the cursor is captured for
     // looking around, every click goes to the canvas and none of these controls
@@ -140,6 +153,28 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
 
   btnHelp?.addEventListener('click', () => setPanel(!panelOpen()));
   $('panel-close')?.addEventListener('click', () => setPanel(false));
+
+  function dismissControlHelp({ remember = true } = {}) {
+    if (!controlHelp) return;
+    controlHelp.setAttribute('hidden', '');
+    if (remember) store(CONTROL_HELP_KEY, '1');
+    onHelp?.(false);
+  }
+
+  function showControlHelp({ auto = false } = {}) {
+    if (!controlHelp || (auto && readStored(CONTROL_HELP_KEY, '0') === '1')) return false;
+    setPanel(false);
+    controlHelp.removeAttribute('hidden');
+    if (document.pointerLockElement) document.exitPointerLock?.();
+    onHelp?.(true);
+    return true;
+  }
+
+  $('control-help-close')?.addEventListener('click', () => dismissControlHelp());
+  $('control-help-gotit')?.addEventListener('click', () => dismissControlHelp());
+  $('s-show-control-help')?.addEventListener('click', () => showControlHelp());
+  $('control-help-desktop')?.toggleAttribute('hidden', !!isTouch);
+  $('control-help-touch')?.toggleAttribute('hidden', !isTouch);
 
   // ---- What's new ---------------------------------------------------------
   //
@@ -199,9 +234,24 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
       onSetting?.(key, settings[key]);
       store(SET_KEY, JSON.stringify(settings));
     });
+    return paint;
   }
-  wireRange('s-speed', 'v-speed', 'speed', (v) => `${v.toFixed(1)} m/s`);
+  const paintSpeed = wireRange('s-speed', 'v-speed', 'speed',
+    (v) => formatSpeed(v, settings.units));
   wireRange('s-fov', 'v-fov', 'fov', (v) => `${Math.round(v)}°`);
+
+  const units = $('s-units');
+  if (units) {
+    units.value = settings.units;
+    units.addEventListener('change', () => {
+      settings.units = normalUnitSystem(units.value);
+      units.value = settings.units;
+      paintSpeed?.();
+      setAltitude(lastAltitudeM);
+      onSetting?.('units', settings.units);
+      store(SET_KEY, JSON.stringify(settings));
+    });
+  }
 
   const qual = $('s-quality');
   if (qual) {
@@ -213,6 +263,96 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
     });
   }
 
+  function wireToggle(id, key) {
+    const el = $(id);
+    if (!el) return;
+    el.checked = settings[key] !== false;
+    el.addEventListener('change', () => {
+      settings[key] = el.checked;
+      onSetting?.(key, settings[key]);
+      store(SET_KEY, JSON.stringify(settings));
+    });
+  }
+  wireToggle('s-compass', 'compass');
+  wireToggle('s-overview-map', 'overviewMap');
+  wireToggle('s-street-names', 'streetNames');
+
+  // Every structure in the compiled scene and every verified street-control
+  // intersection.  The list is complete by construction: the registry and the
+  // scene index are the same two collections the renderer loaded, rather than a
+  // hand-maintained menu that becomes stale when the town grows.
+  const jumpTargets = [];
+  for (const i of intersections) {
+    jumpTargets.push({
+      kind: 'intersection', id: i.id, label: i.label || i.id,
+      local_e: i.local_e, local_n: i.local_n,
+      search: [i.id, i.label, ...(i.search_terms ?? [])].filter(Boolean).join(' '),
+    });
+  }
+  for (const [id, record] of registry?.entries?.() ?? []) {
+    const structureSidecar = record.sidecar ?? {};
+    jumpTargets.push({
+      kind: 'structure', id, label: structureSidecar.name || id,
+      search: [id, structureSidecar.name, ...(structureSidecar.aka ?? []),
+        structureSidecar.placement?.symbolic_location]
+        .filter(Boolean).join(' '),
+    });
+  }
+  jumpTargets.sort((a, b) => a.kind.localeCompare(b.kind) || a.label.localeCompare(b.label));
+
+  const jumpSearch = $('jump-search');
+  const jumpResults = $('jump-results');
+  const jumpCount = $('jump-count');
+  const normal = (value) => String(value ?? '').toLocaleLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  function paintJumpResults(query = '') {
+    if (!jumpResults) return;
+    const terms = normal(query).trim().split(/\s+/).filter(Boolean);
+    const matched = jumpTargets.filter((t) => terms.every((word) => normal(t.search).includes(word)));
+    jumpResults.replaceChildren();
+    if (jumpCount) jumpCount.textContent = terms.length
+      ? `${matched.length} of ${jumpTargets.length}` : `${jumpTargets.length} places`;
+    if (!matched.length) {
+      const empty = document.createElement('p');
+      empty.className = 'jump-empty';
+      empty.textContent = 'No matching structure or intersection.';
+      jumpResults.appendChild(empty);
+      return;
+    }
+    let lastKind = '';
+    for (const target of matched) {
+      if (target.kind !== lastKind) {
+        const heading = document.createElement('p');
+        heading.className = 'jump-group';
+        heading.textContent = target.kind === 'intersection' ? 'Intersections' : 'Structures';
+        jumpResults.appendChild(heading);
+        lastKind = target.kind;
+      }
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'jump-result';
+      button.dataset.jumpKind = target.kind;
+      button.dataset.jumpId = target.id;
+      button.setAttribute('role', 'option');
+      const name = document.createElement('span');
+      name.textContent = target.label;
+      const kind = document.createElement('small');
+      kind.textContent = target.kind;
+      button.append(name, kind);
+      button.addEventListener('click', () => { onGoTo?.(target); setPanel(false); });
+      jumpResults.appendChild(button);
+    }
+  }
+  jumpSearch?.addEventListener('input', () => paintJumpResults(jumpSearch.value));
+  jumpSearch?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const first = jumpResults?.querySelector('.jump-result');
+      if (first) { e.preventDefault(); first.click(); }
+    }
+  });
+  paintJumpResults();
+
   // Anchor jumps: the scene already names viewpoints for the smoke harness, so
   // the visitor may as well have them too.
   const anchors = $('anchors');
@@ -221,13 +361,16 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
       const b = document.createElement('button');
       b.className = 'anchor-btn';
       b.textContent = a.label || a.id;
-      b.addEventListener('click', () => { onGoTo?.(a.id); setPanel(false); });
+      b.addEventListener('click', () => { onGoTo?.({ kind: 'anchor', id: a.id }); setPanel(false); });
       anchors.appendChild(b);
     }
   }
 
   window.addEventListener('keydown', (e) => {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) {
+      if (e.key === 'Escape' && panelOpen()) setPanel(false);
+      return;
+    }
     const k = e.key.toLowerCase();
     if (k === 'h' || k === '?') { e.preventDefault(); setPanel(!panelOpen()); }
     else if (k === 'c') { e.preventDefault(); setConfidence(!confidenceOn); }
@@ -240,6 +383,8 @@ export function createHud({ root, scene, onConfidence, onFly, onHelp, onSetting,
     say,
     settings,
     setPanel,
+    showControlHelp,
+    dismissControlHelp,
     get confidenceOn() { return confidenceOn; },
     setConfidence,
     get flying() { return flying; },
