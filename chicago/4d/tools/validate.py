@@ -3192,7 +3192,7 @@ def check_flora_extents(zones: dict, field, rep: Report) -> None:
 
 
 def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
-                        rep: Report, tally: dict) -> None:
+                        rep: Report, tally: dict, ext: dict | None = None) -> None:
     where = f"flora zone {zid}/{sp.get('id', '?')}"
     binomial = (sp.get("binomial") or "").strip()
     for key in ("id", "binomial", "common", "role", "form", "abundance", "height_m",
@@ -3213,6 +3213,33 @@ def check_flora_species(zid: str, sp: dict, source_ids: set, vocab: dict,
         if binomial.lower() == banned.lower():
             rep.error(where, f"{banned} is a post-settlement arrival and must not appear in "
                              f"an 1835 record")
+
+    # WHICH SIDE OF THE WATERLINE. Nothing machine-readable used to distinguish a
+    # water lily from a cattail: both were `role: emergent`, and the placer read
+    # the role, so a floating pad was planted on the dry bank like any other
+    # emergent. `appearance` said "floating pads in open water" — but that is
+    # prose, and prose is not a gate. See ROADMAP § K3.
+    substrates = tuple(vocab.get("substrates") or ())
+    substrate = sp.get("substrate")
+    if substrate is not None and substrate not in substrates:
+        rep.error(where, f"substrate '{substrate}' is not declared in index.json's "
+                         f"vocabulary {substrates} — the placer reads that block to know "
+                         f"which stations a species may be given")
+    elif sp["role"] == "emergent" and substrate is None:
+        rep.error(where, f"role 'emergent' must state a substrate, one of {substrates}: "
+                         f"rooted in wet ground or standing water with the foliage above the "
+                         f"surface ('saturated_soil') and rooted under water with the leaves "
+                         f"floating on it ('open_water') are different placements, and a "
+                         f"record that does not choose gets planted as whichever the renderer "
+                         f"guesses")
+    if substrate == "open_water":
+        is_water_buffer = bool(ext) and ext.get("kind") == "buffer" and ext.get("of") == "water"
+        reaches_water = is_water_buffer and (ext.get("distance_m") or [1])[0] == 0
+        if not reaches_water:
+            rep.error(where, "substrate 'open_water' may only be planted over water, and this "
+                             "zone's extent never reaches any: a record that can never be "
+                             "drawn is a claim the walkthrough does not make. Either the zone "
+                             "is wrong or the species belongs in the marsh record")
 
     ab = sp["abundance"]
     keys = [k for k in ABUNDANCE_LIMITS if k in ab]
@@ -3332,7 +3359,7 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
                                  f"phenology, do not move the month")
 
     vocab = index.get("vocabulary") or {}
-    for key in ("roles", "forms_flora", "forms_trees", "phenology"):
+    for key in ("roles", "forms_flora", "forms_trees", "substrates", "phenology"):
         if not vocab.get(key):
             rep.error("flora index", f"vocabulary.{key} is missing — the renderer reads this "
                                      f"block to know the closed sets it must implement")
@@ -3435,7 +3462,7 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
             if sp.get("id") in seen:
                 rep.error(where, f"duplicate species id '{sp.get('id')}' in this zone")
             seen.add(sp.get("id"))
-            check_flora_species(zid, sp, source_ids, vocab, rep, tally)
+            check_flora_species(zid, sp, source_ids, vocab, rep, tally, ext)
             if sp.get("role") in ("matrix", "ground"):
                 cf = (sp.get("abundance") or {}).get("cover_fraction")
                 if isinstance(cf, list) and len(cf) == 2:

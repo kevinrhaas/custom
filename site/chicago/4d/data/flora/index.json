@@ -845,6 +845,11 @@
     "forms_unimplemented": [
       "vine_drape"
     ],
+    "substrates": [
+      "soil",
+      "saturated_soil",
+      "open_water"
+    ],
     "phenology": [
       "flowering",
       "vegetative",
@@ -882,6 +887,6 @@
       "umbel_flat",
       "umbel_nodding"
     ],
-    "_doc": "forms_unimplemented are forms deliberately outside the renderer's draw archetypes: the module should record them once as unimplemented and draw nothing, never substitute a different archetype."
+    "_doc": "forms_unimplemented are forms deliberately outside the renderer's draw archetypes: the module should record them once as unimplemented and draw nothing, never substitute a different archetype. substrates say which side of the waterline a species may be planted on, because nothing else in a record does: 'soil' is rooted ground above the water and is the default when the field is absent; 'saturated_soil' is the emergent habit, rooted in wet ground OR standing water with the foliage carried above the surface, and is plantable on both sides; 'open_water' is rooted below the surface with the leaves floating ON it, and is plantable ONLY over water. A record whose role is 'emergent' must state one — 'the leaves float' and 'the culm stands in it' are different placements and were being drawn the same way."
   }
 }

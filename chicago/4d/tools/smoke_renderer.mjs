@@ -1181,6 +1181,52 @@ for (const [label, viewport, touch] of [
       + `z=${streetLayer.waterY}; lowest station ${streetLayer.lowestTreeStation?.toFixed?.(3)} m, `
       + `${streetLayer.treeRejectedBelowWaterline} candidates rejected at placement`);
 
+    // A pad FLOATS. Both water lilies in the marsh record are `role: emergent`
+    // exactly like the cattails, so the placer — which read the role — stood them
+    // on the dry marsh edge: 0.01-0.10 m mats rooted in soil, about 7 % of the
+    // tufts on that bank. The record's own `appearance` said "floating pads in
+    // open water" the whole time, which is prose, and prose is not a gate. The
+    // published `substrate` field is, and this asks the placer itself rather than
+    // re-deriving its rules: sweep the modelled box and ask where each species
+    // may stand. The cattail half is the anti-vacuity guard — a placer that
+    // refused everything on that bank would otherwise read as a pass.
+    const aquatics = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const FLOATING = ['nuphar_advena', 'nymphaea_odorata'];
+      const EMERGENT = 'typha_latifolia';
+      const seen = { floatingDry: 0, floatingWet: 0, emergentDry: 0, emergentWet: 0 };
+      const worst = [];
+      for (let e = -320; e <= 660; e += 8) {
+        for (let n = -240; n <= 240; n += 8) {
+          if (a.flora.zoneAt(e, n) !== 'z04_marsh') continue;
+          const wet = a.terrain.isWater(e, n);
+          for (const id of FLOATING) {
+            if (a.flora.stationOf(e, n, id) === null) continue;
+            seen[wet ? 'floatingWet' : 'floatingDry']++;
+            if (!wet && worst.length < 4) worst.push(`${id} at ${e},${n}`);
+          }
+          if (a.flora.stationOf(e, n, EMERGENT) !== null) {
+            seen[wet ? 'emergentWet' : 'emergentDry']++;
+          }
+        }
+      }
+      const marsh = a.flora.substrates().find((z) => z.id === 'z04_marsh') ?? { dry: [], wet: [] };
+      return { ...seen, worst, marshDry: marsh.dry, marshWet: marsh.wet };
+    });
+    check(`${label}: no floating-leaved aquatic is planted on dry ground`,
+      aquatics.floatingDry === 0 && aquatics.floatingWet > 20,
+      `${aquatics.floatingDry} dry station(s) [${aquatics.worst.join('; ')}], `
+      + `${aquatics.floatingWet} over water`);
+    check(`${label}: the marsh's emergents still stand on both sides of its waterline`,
+      aquatics.emergentDry > 20 && aquatics.emergentWet > 20,
+      `cattail: ${aquatics.emergentDry} dry station(s), ${aquatics.emergentWet} over water`);
+    check(`${label}: the marsh community is split by the substrate its records state`,
+      !aquatics.marshDry.includes('nymphaea_odorata')
+      && aquatics.marshWet.includes('nymphaea_odorata')
+      && aquatics.marshDry.includes('typha_latifolia')
+      && aquatics.marshWet.includes('typha_latifolia'),
+      `dry [${aquatics.marshDry.join(',')}] wet [${aquatics.marshWet.join(',')}]`);
+
     // The owner: "grass and flowers appear out of the ground as you walk towards
     // them". The lattice is rebuilt every `step` metres walked and the fade ramp
     // is evaluated per frame, so the ramp has to be inset from the lattice by at

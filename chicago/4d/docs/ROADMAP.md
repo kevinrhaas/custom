@@ -152,19 +152,39 @@ communities is the record's now; the absolute figure and the saturation anchor s
 and the near ring's *visible* radius is 0.6 m shorter than it was — that is the pop-in inset, and
 it is a coverage question for this half of the parcel to weigh.
 
-**Two findings this slice measured and did not fix.** (a) **S6a item 9 names the wrong zone.** It
-reads the `river_bank` shot against zone 1's cordgrass at 40–55 %, but ground within eight metres
-of water is the MARSH zone by extent (`z04`, priority 70) — measured at the shot's own bank, the
-sward there is 100 % z04 and z10, and none of it is z01. The marsh's own record says 0.75 matrix
-and 0.0 bare, which is what it is now planted at. (b) **Two floating-leaved aquatics are rooted on
-dry land.** `nuphar_advena` and `nymphaea_odorata` are `role: emergent`, `form: mat_prostrate`,
-0.01–0.10 m tall, and their own `appearance` says "floating pads in open water" — but that is
-prose, and nothing machine-readable distinguishes a water lily from a cattail, so both are planted
-on the dry marsh edge like any other emergent. They are **7 % of the tufts** on that bank: pads at
-ankle height standing on soil, which is the better explanation of the "~25 cm sprigs" in item 9
-than any density is. The fix is a data field (a substrate or habit value in the published
-vocabulary, gated by `validate.py`) and then one line in `station()`; it is not a renderer guess
-about which heights float.
+**Two findings that slice measured and did not fix — BOTH RESOLVED 2026-08-13.** (a) **S6a item 9
+named the wrong zone.** It read the `river_bank` shot against zone 1's cordgrass at 40–55 %, but
+ground within eight metres of water is the MARSH zone by extent (`z04`, priority 70) — measured at
+the shot's own bank, the sward there is 100 % z04 and z10, and none of it is z01. The marsh's own
+record says 0.75 matrix and 0.0 bare, which is what it is now planted at. Item 9 says so now.
+(b) **Two floating-leaved aquatics were rooted on dry land — FIXED, and it was a data field.**
+`nuphar_advena` and `nymphaea_odorata` are `role: emergent`, `form: mat_prostrate`, 0.01–0.10 m
+tall, and their own `appearance` says "floating pads in open water" — but that is prose, and
+nothing machine-readable distinguished a water lily from a cattail, so both were planted on the
+dry marsh edge like any other emergent: **6.5 % of the tufts** on that bank, pads at ankle height
+standing on soil, which is a better explanation of the "~25 cm sprigs" in item 9 than any density
+is.
+
+`data/flora/index.json` now publishes a **`substrates`** vocabulary — `soil` (rooted ground above
+the water, the default when the field is absent), `saturated_soil` (the emergent habit: wet ground
+OR standing water, foliage above the surface) and `open_water` (rooted below the surface, leaves
+floating ON it) — every `role: emergent` record must state one, and `validate.py` refuses an
+`open_water` species in a zone whose extent never reaches water, because a record that can never
+be drawn is a claim the walkthrough does not make. `flora.js` splits each community into the
+subset legal on each side of its waterline and picks from THAT, with the weights renormalised
+over the subset: the recorded `matrix_fraction` still decides how many slots carry a plant, so
+clearing the lilies off the bank does not thin it. Refusing the slot instead would have removed
+6.5 % of that sward, and 0.75 does not stop meaning 0.75 because two of its species float.
+
+**Measured, both viewports.** An 8 m sweep of the modelled box finds **299 dry marsh-edge
+stations** (289 the placer will plant at all) and **286 over water**; the two lilies were legal at
+every one of the 289 and are now legal at **none**, while the cattail still stands on both sides
+(289 dry / 273 wet). At the marsh-edge station nearest the forks the sward is the same density it
+was — **2 483 → 2 481 rooted instances, 47 551 → 47 435 triangles** — and the two `head_ray`
+flowers that stood on that dry bank, which are the water-lily blooms, are gone. A wet-prairie
+control station is identical to the byte. New gate: three assertions in `smoke_renderer.mjs` that
+ask the placer itself (`flora.stationOf`) rather than re-deriving its rules, including the
+anti-vacuity half — a placer that refused everything on that bank would otherwise read as a pass.
 
 ### K4 — Facades: weathered wood, not painted clones
 The buildings read as freshly painted and identical. Research first, then implement: most 1835
@@ -1119,10 +1139,12 @@ in the **mid** field.
    recorded `cover.matrix_fraction`, which nothing had read. **The item's own reading is wrong
    in two ways, both measured rather than argued.** The bank is not zone 1: within eight metres
    of water the extent is the marsh (`z04`, priority 70), and the shot's sward is entirely z04
-   and z10. And the sprigs are not a density problem — `nuphar_advena` and `nymphaea_odorata`,
-   floating-leaved aquatics recorded 0.01–0.10 m tall, are 7 % of the tufts planted on that dry
-   bank, because `role: emergent` is all the renderer can see and nothing in the vocabulary says
-   a lily floats. That is the open half, and it is a data field before it is a renderer change.
+   and z10. And the sprigs were not a density problem — `nuphar_advena` and `nymphaea_odorata`,
+   floating-leaved aquatics recorded 0.01–0.10 m tall, were 6.5 % of the tufts planted on that
+   dry bank, because `role: emergent` was all the renderer could see and nothing in the
+   vocabulary said a lily floats. **DONE 2026-08-13** — the published vocabulary gained
+   `substrate` and the placer reads it; see K3. What remains of this item is the mid-field
+   coverage question in items 1–7, not the lilies and not zone 1.
 10. **Adaptive budget.** Thin the sward automatically when measured frame time exceeds a
     threshold, so a slow device degrades instead of stuttering. Mobile is a release gate and
     the low-spec field is currently a fixed, hand-tuned reduction.
