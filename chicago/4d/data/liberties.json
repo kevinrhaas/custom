@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 76,
+  "count": 83,
   "liberties": [
     {
       "id": "L1",
@@ -165,11 +165,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "frame_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "footprint"
@@ -267,16 +269,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "footprint"
@@ -316,6 +321,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.side_additions"
@@ -361,11 +367,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.stables"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel_stable",
           "phase": "stable_1834",
           "aspect": "form.wagon_yard"
@@ -443,6 +451,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": "log_1831",
           "aspect": "position"
@@ -602,11 +611,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": "log_1829",
           "aspect": "form.wall_height_m"
@@ -651,11 +662,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": "frame_1833",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": "frame_1834",
           "aspect": "form.gallery"
@@ -704,36 +717,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.paint"
@@ -779,16 +799,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.fenestration"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.fenestration"
@@ -832,16 +855,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_side"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_addition_width_m"
@@ -956,11 +982,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": "log_frame_1827",
           "aspect": "form.frame_addition_width_m"
@@ -1004,6 +1032,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "ground_contact"
@@ -1070,6 +1099,347 @@
         {
           "label": "How to resolve",
           "text": "a survey, a section, or a repair account with dimensions. Andreas's main text records that a committee was appointed in December 1833 \"to see that they were properly repaired\" and that \"in September the corporation paid $166.67 on account of repairing\" — a voucher or a council minute behind that payment is the most likely thing to describe the structure member by member."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31a",
+      "title": "Terrain: the bank face is a shape nobody recorded",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "bank"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the ground rises from the waterline to the local bank crest on an eased quadratic over **6 m** by default, widening east where the south and north shores climb into the sand ridge. The profile string in `terrain_spec.json` is a description of the generator's ramp, not an input it reads."
+        },
+        {
+          "label": "Why",
+          "text": "no source gives a bank cross-section at any point in this scene. The bank has to meet two constraints at once — it must reach Z = 0 exactly at the traced waterline, and it must arrive at the crest heights the dossier argues for without producing a cliff. The ease-out ramp is therefore geometry chosen to satisfy the known endpoints, not evidence in itself."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees a shaped bank carrying the project's confidence tint, but the tint on the block says only how sure we are about the heights and zones around it. The actual curvature of the bank face is ours. The note is where that distinction is stated."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any period section, profile, or measured description of a bank at the forks or harbour reach."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.bank`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31b",
+      "title": "Terrain: the channel cross-section carries no evidence at all",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "channel_profile"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "water depth approaches the stated bed with an exponential law, `depth = bed_ft * (1 - exp(-d_in / e_fold_m))`, where distance is measured in from the traced waterline."
+        },
+        {
+          "label": "Why",
+          "text": "the project has period statements about bed depths at a few places and none about cross-sections. A smooth curve is what lets the surface meet the bank at Z = 0 exactly on the traced line while still giving the river and cut a usable interior depth. That is a modelling convenience chosen under total evidential silence."
+        },
+        {
+          "label": "Consequence",
+          "text": "the geometry under the water is an answer to a renderer's question, not a historical finding. It affects boat draught and the hidden shape of the channel and nothing a visitor can see directly."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging cross-section or sounding transect of the Chicago River, the 1834 cut or the old southward channel."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.channel_profile`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31c",
+      "title": "Terrain: the north-side slough is one foot deep because a shallower one would not read",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "watercourses.north_side_slough"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the slough off the Main Branch is cut to a bed of **−1.0 ft** with a 1.2 m e-folding distance, and the whole block is tagged `conjectural` in `terrain_spec.json`."
+        },
+        {
+          "label": "Why",
+          "text": "its existence and its course are Wright 1834's, drawn on the sheet this terrain is fitted to, and its width is measured off the drafted band. Its **depth is invented outright** — no sounding, no description, nothing. One foot is the shallowest figure that still reads as water at the surface, which is a rendering argument and not a historical one, and the 1.2 m e-fold overrides the river's 9 m for the same reason: at 9 m a 1 ft channel would be four inches deep across a 7 m width and would look like damp grass."
+        },
+        {
+          "label": "Consequence",
+          "text": "the grade a visitor sees on this claim is the block's, so it says `conjectural` about a watercourse whose existence and course are the best-attested thing in this quadrant. The note is the only place that distinction is legible, which is a limit of block-level grading and not of the evidence — see `docs/STATUS.md`."
+        },
+        {
+          "label": "Why it is recorded now",
+          "text": "it is the one ground invention the terrain slice never wrote down. The coverage gate found it the first time it was allowed to look at the terrain spec."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging sounding of the north-side backwater, or a description of it as fordable or not."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.watercourses.north_side_slough`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31d",
+      "title": "Terrain: the ground says what it is made of and nothing is made of it",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.channel"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.north_division"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.north_division near the lake"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.open_lake_shelf"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.sand_bar_1834"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division east of State St"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division west of State St"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.south_division_marsh"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "surface_materials.west_division"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the spec grades multiple surface materials — black loam over quicksand over blue clay, beach-and-dune sand, peat muck with sedge, reeds and rushes, Cahokia Alluvium silt — and **no surface in the model is made of any of them**. The ground mesh carries one earth treatment unless and until the surface parcel builds otherwise."
+        },
+        {
+          "label": "Why",
+          "text": "the material entries are the dossier's surface table, kept in the spec because they are what a terrain claim *is*, and `terrain_gen.py` builds elevation and water only. Colouring or texturing ground by zone is a later parcel, and doing it badly — inventing a palette for a soil nobody photographed — would be a larger invention than leaving it out."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor reading a strong confidence grade on one of these rows is reading how sure the project is about the site's stratigraphy, not a description of the literal surface underfoot. The row needs an explicit admission because the mesh does not embody it."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a surface-treatment parcel driven from these entries, with the palette argued from the sources rather than picked."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.surface_materials.south_division west of State St`, `terrain.e1834_harbor_cut.surface_materials.south_division east of State St`, `terrain.e1834_harbor_cut.surface_materials.north_division`, `terrain.e1834_harbor_cut.surface_materials.north_division near the lake`, `terrain.e1834_harbor_cut.surface_materials.west_division`, `terrain.e1834_harbor_cut.surface_materials.south_division_marsh`, `terrain.e1834_harbor_cut.surface_materials.channel`, `terrain.e1834_harbor_cut.surface_materials.open_lake_shelf`, `terrain.e1834_harbor_cut.surface_materials.sand_bar_1834`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31e",
+      "title": "Terrain: two water bodies keep invented beds because the sources give only their existence",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "reaches.old_south_channel"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "reaches.open_lake_shelf"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the abandoned southward channel behind the bar is given a bed of **−2.5 ft**, and the open-lake shelf east of the traced water is given a bed of **−11.0 ft** with a long 130 m e-fold. Both are tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "Wright 1834 and later discussion tell this project that both water bodies existed; neither gives a sounding on the date this scene models. The old channel is therefore placed between the dossier's qualitative banks as a midpoint, and the open lake shelf exists to stop the harbour from ending in a wall where the traced window ends. Both figures are modelling choices under evidential silence."
+        },
+        {
+          "label": "Consequence",
+          "text": "the harbour opens into plausible water rather than into a box edge, and the abandoned channel remains a watercourse rather than collapsing flat. Neither depth is a measurement and neither should be read as one."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any pre-dredging sounding or section of the old outlet channel or the nearshore lake bed east of the cut."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.reaches.old_south_channel`, `terrain.e1834_harbor_cut.reaches.open_lake_shelf`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31f",
+      "title": "Terrain: the west-prairie swales are invented alignments",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_a"
+        },
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "swales.west_prairie_swale_b"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the two west-prairie swales are drawn on invented lines with shallow invented depths, tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the dossier says the wet prairie carried slough swales. It does not say where they ran in this box. A swale has to be somewhere to be visible at all, so two were drawn where they plausibly express the described relief without exceeding the project's flatness rule."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor sees channels in the prairie that stand for a real kind of landform and not for attested individual ones. Their existence is argued; their exact alignment is ours."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any map, survey or description locating specific swales in the west prairie."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.swales.west_prairie_swale_a`, `terrain.e1834_harbor_cut.swales.west_prairie_swale_b`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-10."
+        }
+      ]
+    },
+    {
+      "id": "L31g",
+      "title": "Terrain: the plain is roughened by synthetic micro-relief",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [
+        {
+          "domain": "terrain",
+          "epoch": "e1834_harbor_cut",
+          "claim": "micro_relief"
+        }
+      ],
+      "recorded": "2026-08-10",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "land above the waterline carries two octaves of value noise at **±0.10 ft**, faded out across the bank face, and the whole block is tagged `conjectural`."
+        },
+        {
+          "label": "Why",
+          "text": "the sources describe this ground as dead flat and a perfectly numerical plane reads as a rendering error when walked on. The noise is there for motion parallax and legibility, not because any source measured hummocks at these wavelengths."
+        },
+        {
+          "label": "Consequence",
+          "text": "the visitor sees a surface that reads as ground rather than as a spreadsheet, but the small undulations are not evidence. They are a rendering texture declared as such."
+        },
+        {
+          "label": "How to resolve",
+          "text": "it does not resolve into evidence; it would only go away if a different rendering strategy made a perfectly flat plain read correctly."
+        },
+        {
+          "label": "Covers",
+          "text": "`terrain.e1834_harbor_cut.micro_relief`."
         },
         {
           "label": "Recorded",
@@ -1221,106 +1591,127 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "bates_auction_room",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "carpenter_south_water_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "chicago_democrat_office",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "function"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": null,
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "harmon_loomis_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "jb_beaubien_homestead",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "madore_beaubien_house",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "peck_store",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": null,
           "aspect": "position"
@@ -1397,6 +1788,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "south_branch_raft_bridge",
           "phase": "log_1833",
           "aspect": "ground_contact"
@@ -1440,41 +1832,49 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.draw_lifting_gear"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.gallows_height_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.overall_length_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.pier_count"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.pier_kind"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "form.width_m"
         },
         {
+          "domain": "structure",
           "structure": "dearborn_street_drawbridge",
           "phase": "draw_1834",
           "aspect": "ground_contact"
@@ -1524,11 +1924,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "thomas_church_store",
           "phase": "frame_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "thomas_church_store",
           "phase": "frame_1834",
           "aspect": "position"
@@ -1576,36 +1978,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.bastion_length_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.bastion_projection_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.gate_width_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_spacing_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.picket_width_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "form.posterns"
@@ -1654,96 +2063,115 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_barracks",
           "phase": "log_1816",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_barracks",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.loopholes"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.upper_overhang_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_blockhouse",
           "phase": "log_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_officers_quarters",
           "phase": "log_1816",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_officers_quarters",
           "phase": "log_1816",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "form.wall_height_m"
@@ -1789,26 +2217,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_artillery_house",
           "phase": "log_1816",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_magazine",
           "phase": "brick_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_root_house",
           "phase": "cellar_1816",
           "aspect": "position"
@@ -1852,21 +2285,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "chicago_lighthouse_1832",
           "phase": "tower_1832",
           "aspect": "position"
@@ -1910,26 +2347,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.fence_height_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.panel_length_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.panel_offset_m"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.planting"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_garrison_garden",
           "phase": "fence_1816",
           "aspect": "form.rail_courses"
@@ -1974,11 +2416,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "fort_dearborn_commandants_quarters",
           "phase": "brick_1816",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "fort_dearborn_palisade",
           "phase": "picket_1816",
           "aspect": "ground_contact"
@@ -2027,21 +2471,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "form.width_m"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "form.width_m"
@@ -2095,41 +2543,49 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "blacksmith_shop_state_st",
           "phase": "log_1823",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "miller_tannery",
           "phase": "log_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "footprint"
@@ -2169,16 +2625,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.cladding"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.plan_composition"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "form.roof_type"
@@ -2222,31 +2681,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "form.wall_height_m"
@@ -2292,16 +2757,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "form.cabin_count"
         },
         {
+          "domain": "structure",
           "structure": "robinson_caldwell_cabins",
           "phase": "log_1831",
           "aspect": "position"
@@ -2347,31 +2815,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "form.bays"
         },
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "form.plan"
@@ -2421,21 +2895,25 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "form.interior_division"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.interior_finish"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "form.seating"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "form.seating"
@@ -2479,6 +2957,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "temple_building",
           "phase": "frame_1833",
           "aspect": "footprint"
@@ -2524,16 +3003,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "log_jail",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "footprint"
@@ -2578,11 +3060,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "position"
@@ -2630,31 +3114,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.door"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "form.wall_height_m"
@@ -2698,36 +3188,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.door"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.roof_pitch_deg"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "position"
@@ -2767,16 +3264,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.plan"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "form.stories"
@@ -2822,11 +3322,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "james_kinzie_house",
           "phase": "dwelling_1830",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "robert_kinzie_store",
           "phase": "store_1830",
           "aspect": "footprint"
@@ -2871,31 +3373,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "form.cabin_count"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_cabins",
           "phase": "log_1824",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "clybourn_slaughterhouse",
           "phase": "log_1827",
           "aspect": "position"
@@ -2943,46 +3451,55 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "brickyard_north_side",
           "phase": "yard_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "brickyard_north_side",
           "phase": "yard_1833",
           "aspect": "form.yard_works"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "form.plant"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_slaughterhouse_south_branch",
           "phase": "works_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "pierce_blacksmith_shop",
           "phase": "shop_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "pierce_blacksmith_shop",
           "phase": "shop_1833",
           "aspect": "form.forge"
@@ -3027,36 +3544,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "documented_range"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "form.dock"
         },
         {
+          "domain": "structure",
           "structure": "kinzie_hunter_warehouse",
           "phase": "warehouse_1834",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "form.dock"
         },
         {
+          "domain": "structure",
           "structure": "newberry_dole_warehouse",
           "phase": "frame_1833",
           "aspect": "position"
@@ -3104,11 +3628,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "documented_range"
         },
         {
+          "domain": "structure",
           "structure": "elston_soap_candle_manufactory",
           "phase": "works_1833",
           "aspect": "position"
@@ -3152,11 +3678,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "form.clearance_m"
@@ -3201,6 +3729,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "slough_log_bridge",
           "phase": "log_1833",
           "aspect": "ground_contact"
@@ -3314,36 +3843,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "beaubien_barn",
           "phase": "converted_1817",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel_stable",
           "phase": "stable_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "form.door_side"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern_stable",
           "phase": "stable_1831",
           "aspect": "position"
@@ -3418,31 +3954,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "tremont_house_1",
           "phase": "frame_1833",
           "aspect": "form.wall_height_m"
@@ -3483,26 +4025,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "mansion_house",
           "phase": "log_frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "mansion_house",
           "phase": "log_frame_1833",
           "aspect": "form.frame_addition_depth_m"
         },
         {
+          "domain": "structure",
           "structure": "mansion_house",
           "phase": "log_frame_1833",
           "aspect": "form.frame_addition_stories"
         },
         {
+          "domain": "structure",
           "structure": "mansion_house",
           "phase": "log_frame_1833",
           "aspect": "form.frame_addition_width_m"
         },
         {
+          "domain": "structure",
           "structure": "mansion_house",
           "phase": "log_frame_1833",
           "aspect": "form.frame_paint"
@@ -3547,36 +4094,43 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.construction"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.gallery"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.paint"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.roof_type"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "exchange_coffee_house",
           "phase": "frame_1834",
           "aspect": "form.wall_height_m"
@@ -3624,26 +4178,31 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "lake_house_construction",
           "phase": "shell_1835",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "lake_house_construction",
           "phase": "shell_1835",
           "aspect": "form.kind"
         },
         {
+          "domain": "structure",
           "structure": "lake_house_construction",
           "phase": "shell_1835",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "lake_house_construction",
           "phase": "shell_1835",
           "aspect": "form.wall_height_m"
         },
         {
+          "domain": "structure",
           "structure": "lake_house_construction",
           "phase": "shell_1835",
           "aspect": "position"
@@ -3688,16 +4247,19 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "goss_cobb_saddlery",
           "phase": "shop_1833",
           "aspect": "documented_range"
         },
         {
+          "domain": "structure",
           "structure": "goss_cobb_saddlery",
           "phase": "shop_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "goss_cobb_saddlery",
           "phase": "shop_1833",
           "aspect": "form.stories"
@@ -3768,166 +4330,199 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "bates_auction_room",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "blacksmith_shop_state_st",
           "phase": "log_1823",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "carpenter_south_water_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chappel_infant_school",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chicago_american_office",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "chicago_democrat_office",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "cobweb_castle",
           "phase": "log_1820",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "cook_county_courthouse_1835",
           "phase": "wood_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "council_house",
           "phase": "log_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "dole_warehouse_south",
           "phase": "frame_1832",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "estray_pen",
           "phase": "pen_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "first_presbyterian_church",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "frederick_thomas_shop",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "h_jones_store",
           "phase": "frame_1833",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "harmon_loomis_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "jb_beaubien_homestead",
           "phase": "factory_1817",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "footprint"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "form.stories"
         },
         {
+          "domain": "structure",
           "structure": "jh_kinzie_forwarding_store",
           "phase": "frame_1830s",
           "aspect": "position"
         },
         {
+          "domain": "structure",
           "structure": "log_jail",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "madore_beaubien_house",
           "phase": "log_1831",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "north_pier",
           "phase": "crib_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "north_side_school_1833",
           "phase": "log_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": "frame_1834",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "peck_store",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "pruyne_kimball_drugstore",
           "phase": "frame_1830s",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "south_pier",
           "phase": "crib_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "st_marys_church",
           "phase": "frame_1833",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "steamboat_hotel",
           "phase": "frame_1835",
           "aspect": "ground_contact"
         },
         {
+          "domain": "structure",
           "structure": "watkins_school_house",
           "phase": "house_1833",
           "aspect": "ground_contact"
@@ -4013,11 +4608,13 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.frame_extension"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": "log_frame_1828",
           "aspect": "form.signage"
@@ -4070,31 +4667,37 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "green_tree_tavern",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "miller_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "sauganash_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "walker_meeting_house",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "western_hotel",
           "phase": null,
           "aspect": "form.chimneys"
         },
         {
+          "domain": "structure",
           "structure": "wolf_point_tavern",
           "phase": null,
           "aspect": "form.chimneys"
@@ -4142,6 +4745,7 @@
       ],
       "covers": [
         {
+          "domain": "structure",
           "structure": "north_branch_bridge",
           "phase": "log_1832",
           "aspect": "form.pier_spacing_m"

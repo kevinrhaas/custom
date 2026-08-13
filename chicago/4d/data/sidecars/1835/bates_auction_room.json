@@ -9,11 +9,26 @@
   "asset": "gltf/bates_auction_room__frame_1834.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1834-01-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE SOURCE OFFERS TWO YEARS AND THIS RANGE TAKES THE LATER ONE AS A FLOOR. Andreas: 'a wooden structure, erected in 1833 or 1834, by John Bates, for an auction-room.' The range opens at the start of 1834, the later of the two; if Andreas meant 1833 the building is a year older than this says, and if he meant late 1834 the range opens a few months early. Neither reading changes the 1835 scene, which is why the ambiguity is recorded rather than resolved. Bates is independently attested as the auctioneer for the school-section sale of October 1833 and as an active advertiser in 1834, and he was deputy postmaster from 1833, so the man is well placed in the town on either date. THE END IS THE ORDINARY CONTINUITY CUT AT THE SCENE YEAR; no source reached follows the building past its erection."
+  },
+  "change_note": "The wooden auction room John Bates Jr. put up on the west side of Dearborn between Lake and South Water in 1833 or 1834 — the town's sale room, in the years when the town was selling itself. Bates cried the school-section sale of October 1833, the sale that turned the section south of Madison into lots, and he was deputy postmaster from the same year.",
   "placement": {
     "local_e": 679.7,
     "local_n": -43.7,
     "rotation_deg": 90.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE BLOCK FACE IS DOCUMENTED AND THE POINT ALONG IT IS NOT. Andreas gives 'west side of Dearborn Street between Lake and South Water' — a side of a street and a pair of cross streets, which fixes one axis tightly and leaves the other free over the whole 126 m of the block. METHOD: Dearborn Street is unchanged; its modern centreline easting was taken as the mean of the two intersection centres read from OpenStreetMap at EPSG:26916 — West Upper Wacker Drive / North Dearborn E 447771.8, N 4637409.0 and West Lake Street / North Dearborn E 447772.7, N 4637283.0 (fetched 2026-08-11) — giving E 447772.2, and the west kerb 12.2 m west of that at E 447760.0. The footprint's east face is set on that kerb and the building centred on the block face at N 4637346. THE UNCERTAINTY IS NOT ISOTROPIC AND THAT IS THE POINT: across the street it is about 20 m, the georeference's residual (data/datum.json, 17.5 m RMS); ALONG the street it is about 55 m, half the block, because nothing says where on the face the room stood. A COLLISION RECORDED RATHER THAN NUDGED: madore_beaubien_house is documented on Lot 1 at the south-west corner of South Water and Dearborn, which is the north end of this same block face. The two records do not overlap only because this one is centred for want of a statement. If the auction room stood at the north end of the face it stood on Madore Beaubien's lot, and one of the two records is then wrong about something. Facade bearing 90, due east onto Dearborn: the street the source names is the one it fronts, which is the only bearing argument this record has.",
     "symbolic_location": "West side of Dearborn Street between Lake Street and South Water Street, fronting east onto Dearborn; placed at the middle of that block face, which the source does not state.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -38,7 +53,9 @@
         7.62
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. No source gives this building a dimension. It is the parcel's borrowed rectangle turned end-on: 12.192 m of frontage along Dearborn and 7.62 m of depth back from it, which is 40 x 25 ft — the frontage attested for the Green Tree Tavern and the Western Hotel and the depth derived from the Green Tree's room module. THE ONE THING THE USE ARGUES FOR IS A CLEAR SPAN: an auction room is one room with a crowd standing in it, not a partitioned store, so a rectangle with no internal structure is at least the right kind of shape. That is an argument about the type and not about this building, and the polygon carries no evidence."
   },
   "attributes": {
     "stories": {
@@ -102,14 +119,16 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "A BUILDING WHOSE PURPOSE IS DOCUMENTED AND WHOSE EVERY DIMENSION IS INVENTED. Andreas gives the material ('a wooden structure'), the purpose ('for an auction-room'), the builder and a two-year window for the erection, and gives the location as a block face rather than a corner. The position note above is the important part of this record: the uncertainty is anisotropic — about 20 m across Dearborn Street and about 55 m along it — and the record is placed at the middle of the face purely for want of a statement. THE COLLISION WITH MADORE BEAUBIEN'S LOT IS THE THING TO WATCH. Andreas separately calls Madore Beaubien's two-roomed log house 'the first building on lot No. 1' at the south-west corner of South Water and Dearborn, which is the north end of this very block face. Both records cannot be right about everything if the auction room stood at that end. WHAT WOULD UPGRADE THIS RECORD: an 1834-35 Chicago Democrat advertisement giving Bates's sale-room address in relation to a cross street; the school-section sale notices; or the 1834 town lot records for the Dearborn frontage between Lake and South Water. See docs/RESEARCH/bates_auction_room.md.",

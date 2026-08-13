@@ -10,11 +10,28 @@
   "asset": "gltf/tremont_house_1__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-01-01",
+    "to": "1839-10-27",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1",
+      "chicagology_prefire021"
+    ],
+    "note": "BOTH ENDS ARE ATTESTED, WHICH IS RARE HERE. Andreas, printed p. 635: 'In 1833, the first Tremont House, situated then on the northwest corner of Lake and Dearborn streets, was built by Alanson Sweet.' The end is dated to the day, twice in the same volume: 'was managing it at the time it burned, October 27, 1839' (p. 635) and, in the year-by-year narrative, 'October 27, the most disastrous fire occurred that had ever visited Chicago. It commenced on Lake Street, near Dearborn. The Tremont House and seventeen other buildings were burned.' chicagology_prefire021's 1874 Tribune letter agrees on the year - 'In the fall of 1839, the Tremont House was first consumed by fire.' THE FROM DATE IS A BOUND, NOT A DATE: no source gives a month in 1833, so 1833-01-01 is the earliest day the attested year permits. The scene date sits nearly two years inside the range under any reading of that month, so nothing in this record turns on it - unlike the Steamboat Hotel, where the same kind of bound is the whole risk."
+  },
+  "change_note": "The house as built in 1833 by Alanson Sweet and kept through the scene date by Ira Couch. No change of fabric is attested inside the phase - Andreas records changes of proprietor (Sweet and a man from Canada named Darwin, then the Couch brothers, then James Couch from 1836) and no alteration - so the whole 1833-1839 span is modelled as one state, which is a limitation of the evidence rather than a claim that nothing changed.",
   "placement": {
     "local_e": 687.82,
     "local_n": -91.42,
     "rotation_deg": 180.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "chicagology_prefire021",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE CORNER IS DOCUMENTED AND AGREED BY TWO INDEPENDENT PERIOD TEXTS; THE COORDINATE IS DERIVED, so the tag follows the weaker half. Andreas, p. 635: 'situated then on the northwest corner of Lake and Dearborn streets'. The Chicago Tribune letter of 2 February 1874, transcribed on chicagology_prefire021: 'In 1833 there was built upon the northwest corner of Lake and Dearborn streets an unpretending frame structure known as the Tremont House.' Chicago Illustrated of January 1866, on the same page, gives 'the north-west corner of Lake and Dearborn streets' a third time. DO NOT USE THAT PAGE'S HEADER, which says 'SE corner of Lake and Dearborn Streets' - data/sources/chicagology_prefire021.json records that the header describes the LATER Tremonts (the 1850 brick house by Van Osdel) and contradicts every body text on its own page. Andreas confirms the move: the house begun in December 1839 was built 'on the corner where the present Tremont stands', which is a different corner from the one that burned. METHOD, the project's standard one: Lake Street and Dearborn Street both survive on their 1830 plat lines, and the modern West Lake Street / North Dearborn Street intersection centre was read from OpenStreetMap at EPSG:26916 E 447772.72, N 4637283.04 (OSM node 27477597, fetched 2026-08-11 - the same node and the same figures data/structures/dole_warehouse_south.json used). The building's south face is set on the Lake Street frontage 12.2 m north of that centre and its east face on the Dearborn frontage 12.2 m west of it, 12.2 m being half of an 80 ft street as annotated on Hathaway 1834; the stored coordinate is the polygon origin AFTER the 180 degree facade bearing, which under the renderer's convention (renderers/web/js/walker.js) puts it at the building's north-east corner. Currey has the 1830 Thompson plat laying streets 'uniformly 66 feet wide', which would move each offset 2.1 m; that discrepancy is already recorded in docs/RESEARCH/hogan_store.md section 5. WORKING UNCERTAINTY ABOUT 20 M, which is the georeference's residual (data/datum.json: 17.5 m RMS on Wright 1834, 3.7 per cent paper stretch), not an additional guess. Facade bearing 180, due south onto Lake Street, which is an inference from the street and not a statement: no source says which way the house fronted, and the corner would equally admit a Dearborn Street front. THE GROUND UNDER IT IS NOW MODELLED: the e1834_harbor_cut heightfield was extended east and its box now runs local E -320..+1700 and N -400..+400 (data/terrain/epochs/e1834_harbor_cut/heightfield.json), so this footprint sits on real terrain and the validator measures its contact rather than clamping at a box edge. It lands within the walker's 0.35 m step-up rule, so the phase carries no ground_contact declaration. That is new as of this parcel: docs/LIBERTIES.md L40 - two thirds of the town standing on ground that had not been built - is already in that document's Resolved section, and this record is written on the far side of that resolution: no Lake Street building in this parcel needed a ground_contact declaration.",
     "symbolic_location": "North-west corner of Lake Street and Dearborn Street (today West Lake Street at North Dearborn Street), fronting south onto Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +56,9 @@
         9.14
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING ANY DIMENSION. 15.24 x 9.14 m is 50 x 30 ft, recorded converted with the original figures stated per data/datum.json's units rule. The size is chosen to sit between the two frame hotels this project can measure at all - the Green Tree's 40 x 25 ft, itself derived from a room module rather than measured, and the Western Hotel's attested 40 ft front with a 60 ft wing - because the Tremont was the principal house on the town's other main street and took stage passengers off the Lake and Dearborn crossing. Nothing about that reasoning is evidence. The rectangle is a rectangle because no source describes a plan, and the record carries no sources on this attribute because none supports it. TO RESOLVE: the 1839 fire losses printed in the Daily American, which Andreas quotes for the merchants burned out that night and which named insured sums building by building; or an 1830s Chicago American or Democrat advertisement of the house, which in the period habitually counted rooms."
   },
   "attributes": {
     "construction": {
@@ -120,21 +139,40 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicagology_prefire021",
       "citation": "\"Tremont House.\" Chicagology. Compiling city-directory entries 1846-1870, an uncredited building summary, Chicago Illustrated (January 1866) by James W. Sheahan, and a reader's letter headed \"THE FOUR TREMONTS\", Chicago Tribune, 2 February 1874.",
       "url": "https://chicagology.com/prefire/prefire021/",
       "archived_url": "https://web.archive.org/web/20260411172619/https://chicagology.com/prefire/prefire021/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship",
+      "what_it_supplies": [
+        "built 1833 at the north-west corner of Lake and Dearborn streets",
+        "frame / wooden construction, twice attested in period texts on the page",
+        "\"a mere shell, without any sidewalk around it\", poorly furnished, rooms not entirely carpeted, beds often without a pillow",
+        "Ira Couch became proprietor the year after it was built, i.e. 1834",
+        "the corner impassable to the stage in early spring, passengers walking some two blocks",
+        "destroyed by fire in the fall of 1839",
+        "kept by the Couch brothers (Chicago Illustrated, 1866)"
+      ],
+      "what_it_does_not_supply": [
+        "an independent storey count - the only one on the page is an uncredited modern summary sentence",
+        "any dimension, plan or roof form",
+        "the builder's name (Alanson Sweet is not on this page)",
+        "the first proprietor Starr Foot, or the 1835 sale to Mallory & Able",
+        "anything reliable in its header metadata block, which describes the later Tremonts"
+      ]
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE GUARD ON THIS RECORD IS ITS STOREY COUNT, and it is a clean example of how a modern compilation manufactures a fact. chicagology_prefire021 prints, with no typographic break between them, an uncredited editorial summary, a passage of Chicago Illustrated (January 1866) and a reader's letter to the Chicago Tribune of 2 February 1874. The two period texts describe 'a wooden structure' and 'an unpretending frame structure' and count no storeys. The uncredited sentence says 'a three-story wooden building', and that sentence - one modern editor, no source - is where every three-storey Tremont of 1833 comes from, including Wikipedia's and including this project's own dossier, which cites 'chicagology and Wikipedia' as though they were two witnesses. Andreas, the fullest account, gives the building a builder, a corner, a material, four proprietors and a death date, and no height. The record therefore carries two storeys, tagged conjectural, with the three-storey reading argued against on the record rather than dropped. THE SAME PAGE'S HEADER IS WORSE AND MUST NOT BE READ: it gives 'SE corner of Lake and Dearborn Streets' and 'Architect: John M. Van Osdel', both of which belong to the LATER Tremonts, and it contradicts all three body texts on the corner. Andreas independently confirms the move, since the house begun in December 1839 stood 'on the corner where the present Tremont stands'. WHAT IS SOLIDLY ATTESTED, and it is not much: the north-west corner of Lake and Dearborn (three times), frame construction (three times), built 1833 by Alanson Sweet, Ira Couch proprietor from 1834, burned 27 October 1839 with seventeen other buildings, and Couch's own description of what he took over - 'a mere shell, without any sidewalk around it, and poorly furnished, as none of the rooms were entirely carpeted, little pieces in front of the bed being considered sufficient for anyone; and very many of the beds were minus one pleasant luxury, a pillow.' A USEFUL SCENE-LEVEL CHECK ON THIS PARCEL: the Chicago American of 15 August 1835, quoted by Andreas, counts the town's stock six weeks after the scene date - 'There are now upward of fifty business houses, four large forwarding-houses, EIGHT TAVERNS, two printing offices, two book-stores, one steam saw-mill, one brewery, one furnace (just going up), and twenty-five mechanics' shops of all kinds.' With this record, the Mansion House and the Exchange Coffee House added, the dataset holds exactly eight public houses for 1835 - Sauganash, Green Tree, Western, Wolf Point, Steamboat, Tremont, Mansion House, Exchange - which is a corroboration of the parcel as a whole rather than of any building in it. See docs/RESEARCH/tremont_house_1.md.",

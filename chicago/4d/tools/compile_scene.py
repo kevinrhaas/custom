@@ -30,6 +30,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+sys.path.insert(0, str(ROOT / "tools"))
+from tiers import tier_ladder, tier_label  # noqa: E402
+
 
 CHECK = False
 DRIFT: list[str] = []
@@ -94,23 +97,113 @@ def resolve_phase(structure: dict, target: dt.date):
     return hits[0] if hits else None
 
 
+#: Which fields of a source record a visitor is shown, and which stay in the
+#: repository — declared, because the alternative is what happened for the life
+#: of this project. `data/source.schema.json` grew four fields whose own
+#: descriptions say they are written for a reader ("so an agent reaching for it
+#: sees the limit before the citation"), and `cite()` never carried one of them,
+#: so nothing anywhere read them. That fault is a third kind, after the two
+#: STATUS § 28-30 found: not a field read and never emitted, and not a field
+#: emitted and never read, but a field that never entered the interface at all.
+#: Neither direction of `check_sidecar_contract` can see it, because a shape
+#: unioned over what is emitted cannot report what was never offered.
+#:
+#: The set that CAN be enumerated is the schema, so the partition is over the
+#: schema's own properties and `check_source_surface` fails on a property in
+#: neither half. Adding a field to a source record now costs one line saying
+#: whether a visitor sees it — which is the whole mechanism, and the reason this
+#: lives beside `cite()` rather than in a document.
+SOURCE_FIELD_SURFACE: dict[str, str] = {
+    # --- shown on the citation line -----------------------------------------
+    "citation": "visitor: the citation itself",
+    "url": "visitor: where to read it",
+    "archived_url": "visitor: whether it can be re-read at all",
+    "tier": "visitor: the rung, with tier_label supplying the words",
+    "transcribes": "visitor: WHY the rung is what it is when the URL is a modern page",
+    "carries_no_document": "visitor: the reading that established the page reprints nothing",
+    "what_it_supplies": "visitor: what this source can legitimately be used for",
+    "what_it_does_not_supply": "visitor: what it is assumed to give and does not",
+    # --- kept in the repository ---------------------------------------------
+    "id": "internal: the join key; the citation text is what a person reads",
+    "type": "internal: machinery, and the tier label says the same thing in words",
+    "author": "internal: already inside the citation string",
+    "date": "internal: already inside the citation string",
+    "describes_date": "internal: the phase's documented_range is the visitor's form of this",
+    "repository": "internal: already inside the citation string",
+    "locator": "internal: already inside the citation string",
+    "rights_status": "internal: governs asset derivation, not the reading of a claim",
+    "rights_note": "internal: same",
+    "rights_checked": "internal: same",
+    "asset_use": "internal: same",
+    "verified": "internal: a workflow flag; an unverified source may not be cited anyway",
+    "access_notes": "internal: fetch problems, addressed to whoever fetches next",
+    "note": "internal: the working note; its reader-facing halves are the four fields above",
+}
+
+#: The keys `cite()` may take from a source record, derived from the partition
+#: rather than typed twice. `tier_label` is computed here and is not a schema
+#: property, so it is named on its own.
+VISITOR_SOURCE_FIELDS: tuple[str, ...] = tuple(
+    k for k, why in SOURCE_FIELD_SURFACE.items() if why.startswith("visitor")
+)
+
+
 def cite(source_ids, sources: dict) -> list[dict]:
     """Join source ids to the citation the visitor reads. One shape, one place:
-    the popup and the exclusions list quote the same record the same way."""
-    return [
-        {
-            "source_id": s,
-            "citation": sources[s].get("citation", ""),
-            "url": sources[s].get("url", ""),
-            "archived_url": sources[s].get("archived_url", ""),
-            "tier": sources[s].get("tier"),
-        }
-        for s in sorted(source_ids) if s in sources
-    ]
+    the popup and the exclusions list quote the same record the same way.
+
+    `tier_label` travels with the number because the number on its own says
+    nothing. The card has printed "tier 4" since it was written, next to a
+    citation, at a visitor who has no table to look it up in — and the whole
+    argument of this panel is that a person can judge the evidence for
+    themselves. The words come out of `data/source.schema.json` through
+    `tools/tiers.py`, the same ladder `check_evidence_ladder` enforces, so the
+    rung a value is held to and the rung a visitor is shown cannot come apart.
+
+    And the rung's REASON travels with it, which it did not. A rung is a
+    judgement about a document, and on ten of these records the document is not
+    the page: `chicagology_lastwardance` is rung 2 because it reprints the
+    *Chicago Tribune* of 14 August 1910 printing John Dean Caton's own
+    recollection, and a visitor following that citation arrived at a modern
+    blog stamped "tier 2 · near-primary recollection" with nothing on the card
+    saying why. That is the ladder made to look like an over-grade by the one
+    field that would have explained it. `transcribes` and its opposite number
+    `carries_no_document` are the reading that fixed the rung, and they are on
+    the line now.
+
+    So are the source's own stated limits. `hathaway_1834` says in its record
+    that it does NOT supply building footprints — a claim that reached this
+    project's brief before anyone opened the scan, and the correction stayed in
+    the repository. A source shown without its limits is the one thing this
+    panel is not for.
+
+    The four new fields are omitted when a record does not carry them, rather
+    than emitted empty: a source with no stated limit should render nothing on
+    the card, not an empty heading, and thirteen of twenty-nine records carry
+    them. The four that every citation has kept their unconditional shape, so a
+    renderer reading `c.tier` still reads a key that is always there.
+    """
+    ladder = tier_ladder()
+    always = ("citation", "url", "archived_url", "tier")
+    out = []
+    for s in sorted(source_ids):
+        if s not in sources:
+            continue
+        rec = sources[s]
+        c: dict = {"source_id": s}
+        for key in always:
+            c[key] = rec.get(key, "") if key != "tier" else rec.get("tier")
+        c["tier_label"] = tier_label(rec.get("tier"), ladder)
+        for key in VISITOR_SOURCE_FIELDS:
+            if key not in always and rec.get(key):
+                c[key] = rec[key]
+        out.append(c)
+    return out
 
 
 def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
-                       sources: dict, exclusions: dict, outdir: Path) -> int:
+                       sources: dict, exclusions: dict, outdir: Path,
+                       in_scene: dict | None = None) -> int:
     """The structures researched and deliberately LEFT OUT of this scene.
 
     `data/exclusions.json` is the authored research record and has lived only in
@@ -125,6 +218,7 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
     whose `earliest_scene` this scene has reached is not an exclusion here, and
     the validator reports that contradiction rather than this compiler hiding it.
     """
+    in_scene = in_scene or {}
     year = target.year
     entries = []
     for ex in exclusions.get("excluded", []):
@@ -140,6 +234,8 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
             "citations": cite(ex.get("sources", []) or [], sources),
         })
 
+    uncertain = compile_watch_list(scene_id, sources, exclusions, in_scene)
+
     emit(outdir / "exclusions.json", {
         "scene": scene_id,
         "target_date": scene["target_date"],
@@ -149,8 +245,275 @@ def compile_exclusions(scene_id: str, scene: dict, target: dt.date,
                     "this scene, with the evidence that dates them. It is not a list of "
                     "everything missing: most of the town is simply not built yet.",
         "excluded": entries,
+        "uncertain_standard": "Structures whose status on this date is genuinely OPEN — "
+                              "neither built with confidence nor ruled out. They are the "
+                              "third category, and one of them is standing in front of you.",
+        "uncertain": uncertain,
     })
     return len(entries)
+
+
+def compile_watch_list(scene_id: str, sources: dict, exclusions: dict,
+                       in_scene: dict) -> list[dict]:
+    """The open questions, which are neither a building nor an exclusion.
+
+    A visitor can be told what stands and, since the exclusions shipped, what was
+    researched and left out. Between those sits a third statement the walkthrough
+    could not make: researched, and still open. Three of the four are empty
+    ground for the same reason a gap is empty — nobody could establish whether
+    the building was there — and the fourth is standing in the scene with an
+    `inferred` claim about its own date. Putting all four under "what is not
+    here" would be false about that one, which is why they get their own section
+    rather than a footnote on somebody else's.
+
+    `standing` is derived from the scene rather than read off the entry: whether
+    a structure resolves into 1 July 1835 is a fact about the dataset and the
+    date, and an entry that asserted it would be one more thing to drift.
+    """
+    out = []
+    for item in exclusions.get("watch_list", []):
+        wid = item.get("id")
+        phase = in_scene.get(wid)
+        entry = {
+            "id": wid,
+            "name": item.get("name", wid),
+            "question": item.get("question", ""),
+            "consequence": item.get("consequence", ""),
+            "standing": phase is not None,
+            "no_source_record": item.get("no_source_record", ""),
+            "dossier": item.get("dossier", {}),
+            "citations": cite(item.get("sources", []) or [], sources),
+        }
+        # For the one that IS standing, name the claim on its own record that
+        # carries the doubt and repeat that claim's grade — so the section and
+        # the provenance card cannot describe the same uncertainty differently.
+        ref = (item.get("carried_by") or "").strip()
+        if phase is not None and ref.count(".") == 1:
+            _, field = ref.split(".")
+            claim = phase.get(field) or {}
+            entry["carried_by"] = ref
+            entry["carried_confidence"] = claim.get("confidence", "")
+        out.append(entry)
+    return out
+
+
+# Keys that are the claim's machinery rather than part of what it states: the
+# grade itself, the evidence behind it, the reasoning, the names already shown in
+# the heading, and the `mesh` map, which is a statement ABOUT the figures
+# rather than one of them (it is attached to the rows below instead). Everything
+# else in a block is a figure the spec authored and a visitor is entitled to read.
+#
+# `zone` is in the heading exactly as `id` and `label` are — a surface-material
+# block is titled by it — so it is machinery here for the same reason.
+GROUND_META_KEYS = {"confidence", "bed_confidence", "sources", "note", "label",
+                    "id", "zone", "mesh"}
+
+# The blocks of `terrain_spec.json`, in the order a visitor should meet them:
+# what the water is, what it does under the surface, how the land leaves it, what
+# each division stands at, and what was laid on top. Order is authored because
+# reading order is a piece of writing; membership is not — anything inside these
+# blocks that grades itself is surfaced, so a zone added to the spec appears here
+# the day it is added.
+GROUND_GROUPS = [
+    ("water", "the water surface"),
+    ("reaches", "the channel beds"),
+    ("channel_profile", "the channel cross-section"),
+    ("bank", "the bank"),
+    ("divisions", "the three divisions"),
+    ("marsh_strips", "the marshy shore"),
+    ("swales", "the prairie swales"),
+    ("watercourses", "the watercourses"),
+    ("micro_relief", "the surface texture"),
+    ("surface_materials", "what the ground is made of"),
+]
+
+
+def ground_fields(block: dict) -> list[dict]:
+    """The figures a spec block states, as the block states them.
+
+    No prose is composed here. A division says `near_ft: 2.4` and the card says
+    `near_ft 2.4`, because the moment this function starts writing "rising gently
+    from the bank" it is making a claim the record does not.
+
+    Nested structure is skipped rather than flattened: a swale's `line` is a
+    polyline of eleven numbers that tells a reader nothing, and the alignment it
+    describes is exactly the thing that entry admits is invented.
+
+    A field the terrain generator does not read carries its `mesh:` declaration
+    here, on the row, for the reason the provenance card puts the
+    same mark beside a building's attribute: a figure a visitor is shown with a
+    confidence chip over it, and no vertex behind it, reads as something they are
+    looking at. The declaration is authored on the block, in a map keyed by field
+    name, and travels to the row so the panel cannot show one without the other.
+    """
+    declared = block.get("mesh") or {}
+    out = []
+    for key, value in block.items():
+        if key in GROUND_META_KEYS or key.endswith("_note"):
+            continue
+        if isinstance(value, (dict, type(None))):
+            continue
+        if isinstance(value, list):
+            if len(value) > 4 or any(isinstance(v, (list, dict)) for v in value):
+                continue
+        field = {"key": key, "value": value}
+        if isinstance(declared, dict) and declared.get(key):
+            field["mesh"] = declared[key]
+        out.append(field)
+    return out
+
+
+def ground_claim(group: str, path: str, block: dict, sources: dict) -> dict | None:
+    """One graded statement the ground makes about itself, joined to its evidence.
+
+    A block earns a card by carrying a confidence, which is the same rule the
+    provenance popup applies to a building's attributes: a value with a grade on
+    it is a claim, and a claim a visitor cannot read is one this project has not
+    really made. `channel_profile` grades itself under `bed_confidence`, so the
+    key travels with the claim rather than being normalised away — the spec is a
+    generator input whose bytes are hashed into the terrain's staleness, and
+    tidying its vocabulary would re-stale the ground for a rename.
+    """
+    key = "confidence" if "confidence" in block else (
+        "bed_confidence" if "bed_confidence" in block else None)
+    if key is None:
+        return None
+    notes = [str(block[k]) for k in block if k == "note" or k.endswith("_note")]
+    return {
+        "id": path,
+        "group": group,
+        "label": (block.get("label") or block.get("id") or block.get("zone")
+                  or path.split(".")[-1]),
+        "confidence": block[key],
+        "confidence_key": key,
+        "fields": ground_fields(block),
+        "sources": block.get("sources", []) or [],
+        "citations": cite(block.get("sources", []) or [], sources),
+        "notes": notes,
+    }
+
+
+def ground_claims(spec: dict, sources: dict) -> list[dict]:
+    """Every graded statement in one epoch's terrain spec, in reading order.
+
+    One enumeration, two callers — this compiler, which puts the claims on the
+    Evidence panel, and `tools/validate.py`, which holds them to the citation
+    rule. A gate walking its own copy of the spec would check a set of claims
+    that could quietly stop being the set a visitor reads, which is the drift
+    this project keeps closing in other places.
+    """
+    claims = []
+    for group, group_label in GROUND_GROUPS:
+        block = spec.get(group)
+        if isinstance(block, dict):
+            claim = ground_claim(group_label, group, block, sources)
+            if claim:
+                claims.append(claim)
+        elif isinstance(block, list):
+            for i, item in enumerate(block):
+                if not isinstance(item, dict):
+                    continue
+                key = item.get("id") or item.get("zone") or i
+                claim = ground_claim(group_label, f"{group}.{key}", item, sources)
+                if claim:
+                    claims.append(claim)
+    return claims
+
+
+def compile_ground(scene_id: str, scene: dict, sources: dict, outdir: Path) -> int:
+    """What the ground claims, for the visitor standing on it.
+
+    Every building in this scene can tell you what it asserts, how sure of it we
+    are, which sources say so and where the record is weakest. The surface all of
+    them stand on could tell you none of that. `terrain_spec.json` is as fully
+    graded as any structure record — a documented water plane, three inferred
+    division levels arguing from period narrative feet, a conjectural bank face
+    and a channel cross-section that says on its own face that it carries no
+    evidence at all — and none of it reached any surface a visitor could read.
+    The ground even dithers under the confidence view, which shows that a grade
+    exists while saying nothing about what it grades.
+
+    Derived, never authored: the spec is a generator input, hashed into the
+    terrain's staleness, and this compiler only ever reads it. The measured
+    figures come off `heightfield.json`, which the generator wrote — so the
+    relief a visitor is told about is the relief the mesh actually has, not a
+    number copied into prose and left to rot.
+    """
+    epoch = scene.get("terrain_epoch", "")
+    ep_dir = DATA / "terrain" / "epochs" / epoch
+    spec_path = ep_dir / "terrain_spec.json"
+    if not spec_path.exists():
+        emit(outdir / "terrain.json", {
+            "scene": scene_id, "epoch": epoch, "claims": [], "not_modelled": [],
+            "standard": f"No terrain spec is committed for epoch '{epoch}', so the "
+                        f"ground in this scene makes no recorded claims.",
+        })
+        return 0
+
+    spec = load(spec_path)
+    datum = load(DATA / "datum.json")
+    hf = load(ep_dir / "heightfield.json") if (ep_dir / "heightfield.json").exists() else {}
+
+    claims = ground_claims(spec, sources)
+
+    vert = datum.get("vertical", {})
+    # The one claim the ground makes that is not in its own spec. Z = 0 is the
+    # 1835 water surface by definition, and what that surface stood at above the
+    # sea is a working assumption the whole vertical datum hangs off — recorded
+    # in datum.json, graded conjectural there, and read by nobody.
+    if vert.get("lake_stage_confidence"):
+        claims.append({
+            "id": "datum.lake_stage",
+            "group": "the vertical datum",
+            "label": "How high the 1835 water surface stood",
+            "confidence": vert["lake_stage_confidence"],
+            "confidence_key": "lake_stage_confidence",
+            "fields": [{"key": "export_offset_ft_asl", "value": vert.get("export_offset_ft_asl")}],
+            "sources": [],
+            "citations": [],
+            "notes": [t for t in (vert.get("lake_stage_note"), vert.get("internal")) if t],
+        })
+
+    relief = (hf.get("relief_ft") or {})
+    grid = spec.get("grid", {})
+    context = [
+        {"label": "Zero", "text": spec.get("vertical", {}).get("datum", "")},
+        {"label": "Vertical exaggeration",
+         "text": spec.get("vertical", {}).get("exaggeration_note", "")},
+        {"label": "The modelled box", "text": grid.get("note", "")},
+    ]
+    if relief:
+        # Measured off the committed heightfield rather than asserted: the whole
+        # argument for refusing the dossier's 4-8x exaggeration is that the site
+        # really is this flat, and a visitor should get that figure from the mesh
+        # they are standing on.
+        context.append({
+            "label": "Measured relief",
+            "text": f"Land in the modelled box runs {relief.get('land_min')} to "
+                    f"{relief.get('land_max')} ft above the water surface, and the "
+                    f"channel floor reaches {relief.get('channel_min')} ft below it. "
+                    f"Measured from the committed heightfield, not asserted.",
+        })
+
+    emit(outdir / "terrain.json", {
+        "scene": scene_id,
+        "target_date": scene["target_date"],
+        "epoch": epoch,
+        "scope": spec.get("scope", ""),
+        # The spec's own caveat, verbatim, for the same reason the exclusions list
+        # quotes its own standard: the section's honesty claim belongs to the
+        # dataset, not to whichever renderer happens to be displaying it.
+        "standard": spec.get("critical_caveat", ""),
+        "context": [c for c in context if c["text"]],
+        "claims": claims,
+        # Researched, sited, and outside this box — the terrain's own version of
+        # "what is not here", which the same spec has recorded since it was written.
+        "not_modelled": [
+            {"dossier_zone": z.get("dossier_zone"), "why": z.get("why", "")}
+            for z in spec.get("not_modelled_in_this_box", [])
+        ],
+    })
+    return len(claims)
 
 
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
@@ -161,6 +524,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
 
     written, skipped = 0, []
     index = []
+    # id -> the phase that resolves into this scene, for the watch list below
+    resolved: dict[str, dict] = {}
 
     for path in sorted((DATA / "structures").glob("*.json")):
         st = load(path)
@@ -200,6 +565,20 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 attributes[key] = {k: v for k, v in st[key].items() if k in
                                    ("value", "confidence", "sources", "note", "geometry")}
 
+        # THE PHASE'S CLAIM ABOUT ITSELF. Every `form` attribute has carried its
+        # note to the card since the card was written; the two phase-level blocks
+        # a visitor is most likely to ask about — was it here, and how do you know
+        # where — carried only a confidence chip, and `documented_range` did not
+        # reach the sidecar at all. The popup has read `documented_range` since it
+        # was written and this compiler never wrote it, so the line has never once
+        # rendered: the question the whole scene rests on was answered nowhere in
+        # the walkthrough while being argued at length in the record.
+        #
+        # Note the shape is the SAME as an attribute's — value/confidence/sources/
+        # note — because the card renders these rows with the attribute renderer.
+        # Two renderers describing the same kind of claim differently is the drift
+        # this project keeps closing.
+        rng = phase.get("documented_range", {})
         pos = phase.get("position", {})
         provisional = pos.get("utm_e") is None
         datum = load(DATA / "datum.json")
@@ -218,11 +597,30 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "asset": f"gltf/{st['id']}__{phase['id']}.glb",
             "scene": scene_id,
             "target_date": scene["target_date"],
+            # Was it here at all? The scene date falls inside this span by
+            # construction — resolve_phase would not have returned the phase
+            # otherwise — so what the card has to show is not the fact but the
+            # STRENGTH of it, and the reasoning behind the end of the range, which
+            # for a building nobody followed past 1834 is the weakest claim on it.
+            "documented_range": {
+                "from": rng.get("from", ""),
+                "to": rng.get("to", ""),
+                "confidence": rng.get("confidence", "conjectural"),
+                "sources": rng.get("sources", []),
+                "note": rng.get("note", ""),
+            },
+            # What this phase IS, in the record's own words. Written for a reader
+            # and read by nobody: it is where a record says that a building holding
+            # the post office for three years is not the post office on the scene
+            # date, which no chip can express.
+            "change_note": phase.get("change_note", ""),
             "placement": {
                 "local_e": local_e,
                 "local_n": local_n,
                 "rotation_deg": pos.get("rotation_deg", 0.0),
                 "position_confidence": pos.get("confidence", "conjectural"),
+                "position_sources": pos.get("sources", []),
+                "position_note": pos.get("note", ""),
                 "symbolic_location": pos.get("symbolic_location", ""),
                 "uncertainty_m": 20,
                 "placement_provisional": provisional,
@@ -233,9 +631,24 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             },
             # Carry the footprint's own confidence, not just its geometry — a bare
             # polygon loses precisely the thing the confidence view exists to show.
+            #
+            # And carry its ARGUMENT, which this compiler dropped on the floor from
+            # the day it was written. The footprint note is the longest and most
+            # load-bearing uncertainty statement on most of these records — six of
+            # the eight say PLACEHOLDER in their first line — and it reached no
+            # visitor, while a roof pitch carried its chip, its sources and its
+            # reasoning. Worse, the tint stopped carrying it deliberately: when an
+            # unknown SIZE was found dithering whole buildings into ghost massing,
+            # the massing rule was narrowed to the attributes that say what a
+            # building WAS, on the stated understanding that dimensional
+            # uncertainty is carried in the sidecar "where the popup shows it".
+            # The sidecar carried it. The popup was never given it. Same shape as
+            # `documented_range` and `research_note` before it.
             "footprint": {
                 "polygon": phase.get("footprint", {}).get("polygon", []),
                 "confidence": phase.get("footprint", {}).get("confidence", "conjectural"),
+                "sources": phase.get("footprint", {}).get("sources", []),
+                "note": phase.get("footprint", {}).get("note", ""),
             },
             "attributes": attributes,
             "citations": cite(cited, sources),
@@ -244,6 +657,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "review_required": st.get("review_required", False),
         }
         emit(outdir / f"{st['id']}.json", sidecar)
+        resolved[st["id"]] = phase
         index.append({"id": st["id"], "name": st["name"],
                       "sidecar": f"sidecars/{scene_id}/{st['id']}.json",
                       "asset": sidecar["asset"]})
@@ -256,9 +670,12 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
         "excluded_by_date": skipped,
     })
 
-    left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir)
+    left_out = compile_exclusions(scene_id, scene, target, sources, exclusions, outdir,
+                                  in_scene=resolved)
+    ground = compile_ground(scene_id, scene, sources, outdir)
 
-    print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s)"
+    print(f"scene {scene_id}: {written} sidecar(s), {left_out} researched exclusion(s), "
+          f"{ground} ground claim(s)"
           + (f", {len(skipped)} excluded by date ({', '.join(skipped)})" if skipped else ""))
     return written
 

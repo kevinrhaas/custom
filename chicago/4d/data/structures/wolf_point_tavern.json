@@ -31,6 +31,10 @@
         "rotation_deg": 90.0,
         "symbolic_location": "West bank of the river at the forks, north of the Lake Street crossing; north of James Kinzie's residence and south of the Methodist log meeting house.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "The weakest placement in the dataset and the one this check most conspicuously cannot help with. Lake Street's centreline northing at the west bank is interpolated between two control points, and the building is then set 40 m north of it because nothing fixes how far north of the crossing the tavern stood. An interpolation plus a free 40 m is not a derivation from control; recording it as one would be the check certifying a guess."
+        },
         "sources": [
           "chicagology_prefire273",
           "drloih_wolf_point",

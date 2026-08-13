@@ -311,6 +311,133 @@ input[type=range]::-moz-range-thumb{
 }
 .stop .morebtn:hover{border-color:var(--brand);color:var(--brand)}
 .stop .morebtn svg{width:12px;height:12px}
+/* ---- the two endpoints ---------------------------------------------------
+   Drawn as the A→B route they describe. The rail between them carries the
+   swap, so the relationship reads at a glance instead of being two unrelated
+   dropdowns stacked on top of each other. */
+.ends{
+  display:grid;gap:0;margin-top:2px;
+}
+.endbtn{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  padding:9px 10px;border:1px solid var(--border);border-radius:12px;
+  background:var(--surface-2);color:var(--text);cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.endbtn:hover{border-color:var(--brand);background:var(--surface-3)}
+.endbtn:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.endpin{
+  width:25px;height:25px;border-radius:50%;flex:none;
+  display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;
+}
+.endpin.a{background:var(--accent)}
+.endpin.b{background:var(--brand)}
+.endtxt{flex:1;min-width:0;display:grid;gap:1px}
+.endtxt small{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3)}
+.endtxt b{font-size:13px;font-weight:650;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.endtxt em{font-size:10.5px;font-style:normal;color:var(--text-3)}
+.endgo{width:15px;height:15px;flex:none;color:var(--text-3)}
+.endbtn:hover .endgo{color:var(--brand)}
+/* The dotted run between A and B, with the swap sitting on it. */
+.endrail{position:relative;height:22px;margin-left:21px}
+.endrail>span{
+  position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:repeating-linear-gradient(var(--border) 0 3px,transparent 3px 6px);
+}
+.endswap{
+  position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  width:24px;height:24px;border-radius:8px;display:grid;place-items:center;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-3);cursor:pointer;
+}
+.endswap:hover:not(:disabled){border-color:var(--brand);color:var(--brand)}
+.endswap:disabled{opacity:.35;cursor:default}
+.endswap svg{width:13px;height:13px}
+
+/* ---- the picker ---- */
+.pickwrap{
+  position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.55);
+  display:grid;place-items:center;padding:16px;
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+}
+.pickwrap[hidden]{display:none}
+.picksheet{
+  width:min(460px,100%);max-height:min(86vh,720px);display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden;
+}
+.pickhd{display:flex;align-items:center;gap:8px;padding:13px 14px 10px;flex:none}
+.pickhd h2{margin:0;font-size:15px;font-weight:750;flex:1}
+.pickx{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);cursor:pointer}
+.pickx:hover{border-color:var(--brand);color:var(--brand)}
+.pickx svg{width:14px;height:14px}
+.pickfind{position:relative;padding:0 14px;flex:none}
+.pickfind svg{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--text-3);pointer-events:none}
+.pickfind input{width:100%;padding-left:32px}
+.homebar{flex:none;display:flex;align-items:center;gap:8px;margin:9px 14px 0;padding:8px 10px;
+  border:1px solid var(--border);border-radius:10px;background:var(--surface-2);font-size:12px}
+.homebar svg{width:14px;height:14px;flex:none;color:var(--accent)}
+.homebar .ht{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2)}
+.homebar .ht b{color:var(--text);font-weight:650}
+.homebar button{flex:none;padding:3px 9px;border-radius:99px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);font-size:11px;font-weight:650;cursor:pointer}
+.homebar button:hover{border-color:var(--brand);color:var(--brand)}
+.homebar button.go{border-color:var(--brand);color:var(--brand);background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.homebar button:disabled{opacity:.5;cursor:default}
+.segs{display:flex;gap:7px;padding:10px 14px 0;flex:none}
+.segs button{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:8px 6px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text-2);font-size:12px;font-weight:650;cursor:pointer;
+}
+.segs button svg{width:14px;height:14px}
+.segs button[aria-selected="true"]{
+  border-color:var(--brand);color:var(--brand);
+  background:color-mix(in srgb,var(--brand) 14%,transparent);
+}
+.segn{font-size:10.5px;opacity:.6;font-weight:600}
+.pickmapwrap{flex:none;position:relative;margin:10px 14px 0;height:136px;border-radius:11px;overflow:hidden;background:var(--map-ground);border:1px solid var(--border)}
+#pickMap{width:100%;height:100%;display:block}
+.pickmaplab{
+  position:absolute;left:7px;bottom:6px;right:7px;pointer-events:none;font-size:10.5px;font-weight:650;
+  color:var(--text-2);background:color-mix(in srgb,var(--surface) 84%,transparent);
+  padding:3px 6px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.picklist{flex:1;overflow-y:auto;padding:8px 8px 4px;margin-top:8px;outline:none}
+.pickrow{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  padding:8px 8px;border-radius:10px;border:1px solid transparent;background:none;
+  color:var(--text);cursor:pointer;
+}
+.pickrow:hover,.pickrow.cur{background:var(--surface-2);border-color:var(--border)}
+.pickrow.cur{border-color:var(--brand)}
+.pickrow .ico{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;background:var(--surface-3);color:var(--text-3)}
+.pickrow .ico svg{width:13px;height:13px}
+.pickrow.sel .ico{background:var(--brand);color:#fff}
+.pickrow .tx{flex:1;min-width:0;display:grid;gap:1px}
+.pickrow .tx b{font-size:12.5px;font-weight:620;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pickrow .tx small{font-size:10.5px;color:var(--text-3)}
+.pickrow mark{background:color-mix(in srgb,var(--brand) 32%,transparent);color:inherit;border-radius:2px}
+.pickhome{
+  width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;
+  border:1px solid transparent;background:none;color:var(--text-3);cursor:pointer;
+}
+.pickhome:hover{border-color:var(--brand);color:var(--brand)}
+.pickhome svg{width:13px;height:13px}
+.pickhome.on{color:var(--brand);background:color-mix(in srgb,var(--brand) 15%,transparent)}
+.pickfoot{flex:none;display:flex;gap:8px;padding:9px 14px;border-top:1px solid var(--border);background:var(--surface-2)}
+.pickact{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 8px;
+  border-radius:10px;border:1px solid var(--border);background:var(--surface);
+  color:var(--text-2);font-size:12px;font-weight:650;cursor:pointer;
+}
+.pickact:hover{border-color:var(--brand);color:var(--brand)}
+.pickact svg{width:14px;height:14px}
+.pickempty{padding:22px 14px;text-align:center;color:var(--text-3);font-size:12.5px}
+@media (max-width:760px){
+  .pickwrap{padding:0;place-items:end stretch}
+  .picksheet{width:100%;max-height:92vh;border-radius:16px 16px 0 0;border-bottom:0}
+  .pickmapwrap{height:124px}
+}
 .stop .stopacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
 .stop .stopacts .morebtn{margin-top:0}
 .stop .morebtn[data-swap] svg{width:13px;height:13px}
@@ -524,8 +651,25 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
         <div><label class="f" for="t0">Start</label><select id="t0"></select></div>
         <div><label class="f" for="t1">Home by</label><select id="t1"></select></div>
       </div>
-      <div><label class="f" for="from">Start from</label><select id="from"></select></div>
-      <div style="margin-top:9px"><label class="f" for="to">End at</label><select id="to"></select></div>
+      <!-- Two endpoints, shown as the route they describe rather than as two
+           dropdowns of 81 addresses each. The picker behind them does the work. -->
+      <div class="ends">
+        <button class="endbtn" data-pick="from" id="fromBtn">
+          <span class="endpin a">A</span>
+          <span class="endtxt"><small>Start from</small><b id="fromLabel">—</b><em id="fromSub"></em></span>
+          <svg class="endgo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+        <div class="endrail"><span></span>
+          <button class="endswap" id="endSwap" title="Swap start and end" aria-label="Swap start and end">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v13M4 14l3 3 3-3"/><path d="M17 20V7M14 10l3-3 3 3"/></svg>
+          </button>
+        </div>
+        <button class="endbtn" data-pick="to" id="toBtn">
+          <span class="endpin b">B</span>
+          <span class="endtxt"><small>End at</small><b id="toLabel">—</b><em id="toSub"></em></span>
+          <svg class="endgo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
       <div class="row" style="margin-top:9px">
         <div><label class="f" for="minB">At least</label><select id="minB"></select></div>
         <div><label class="f" for="maxB">At most</label><select id="maxB"></select></div>
@@ -654,6 +798,45 @@ dialog::backdrop{background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(3px);bac
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="17" r="3"/><circle cx="18" cy="15" r="2.5"/><path d="M11 17V5l9-2v12" stroke-linecap="round"/></svg>Bands</button>
 </nav>
 
+<!-- Where-to-stand picker. One overlay serves both endpoints and the home
+     setting; which one it is writing to lives in PICK.slot. -->
+<div class="pickwrap" id="pick" hidden>
+  <div class="picksheet" role="dialog" aria-modal="true" aria-labelledby="pickTitle">
+    <header class="pickhd">
+      <h2 id="pickTitle">Start from</h2>
+      <button class="pickx" id="pickX" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <div class="pickfind">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="pickQ" type="search" placeholder="Street, address, or your own — “26th”, “2911 James Ave S”" autocomplete="off">
+    </div>
+    <!-- Home was a small icon on each row and went unnoticed. It gets its own
+         line, states what home currently is, and is where you change it. -->
+    <div class="homebar" id="homeBar"></div>
+    <div class="segs" id="pickSegs" role="tablist">
+      <button role="tab" data-seg="corner" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg>
+        Street corners<span class="segn" id="segNc"></span></button>
+      <button role="tab" data-seg="porch" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        Porches<span class="segn" id="segNp"></span></button>
+    </div>
+    <!-- The visual: where the highlighted place actually is. A list of 48
+         corner names tells you nothing about which side of the park it is on. -->
+    <div class="pickmapwrap"><svg id="pickMap" aria-hidden="true"></svg><span class="pickmaplab" id="pickMapLab"></span></div>
+    <div class="picklist" id="pickList" role="listbox" tabindex="0"></div>
+    <div class="pickfoot">
+      <button class="pickact" id="pickGeo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8.2"/></svg>
+        Use my location</button>
+      <button class="pickact" id="pickHomeGo" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+        Start at my home</button>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <dialog id="shareDlg"><div class="dlg">
@@ -871,6 +1054,7 @@ const S = {
   recent: [],                        // recent routes, so Shuffle doesn't cycle
   bfilter: [],                       // genre filters for the band browser only
   rejected: [],                      // bands swapped away, out until brought back
+  home: null,                        // {lat,lon,label} you call home, or null
 };
 function idxCorner(label){
   const i = D.corners.findIndex(c=>c.a===label);
@@ -1025,6 +1209,292 @@ function plan(runs, opts){
   return best;
 }
 
+/* ---- where you stand: home, and the picker -----------------------------
+   Home is a COORDINATE — {lat, lon, label} — not one of the festival's 81
+   places. It was a place index, on the assumption that nobody would need an
+   address outside the few blocks the festival covers. That was wrong: people
+   walk to a porchfest from home, and home is usually a few streets past the
+   edge of it. The street graph reaches further than the porches do, so an
+   address just outside still snaps onto it and its distances are real.
+
+   Addresses off the graph are geocoded ONCE, on an explicit tap, and the
+   coordinates are kept forever. Planning still never touches the network —
+   that guarantee is about being able to work out your afternoon on a dead
+   tower, and it survives a one-off setup step that you opt into. */
+const HOME_KEY='pf.home';
+function loadHome(){
+  try{
+    const raw=localStorage.getItem(HOME_KEY); if(!raw) return;
+    // Migration: home used to be a bare PLACES index.
+    if(/^\d+$/.test(raw)){
+      const i=+raw;
+      if(i>=0 && i<PLACES.length) setHome({lat:PLACES[i].lat, lon:PLACES[i].lon, label:PLACES[i].label});
+      return;
+    }
+    const o=JSON.parse(raw);
+    if(o && Number.isFinite(o.lat) && Number.isFinite(o.lon)) setHome(o);
+  }catch(e){}
+}
+let HOMED=null;                       // distances from home to every place
+function setHome(h){
+  S.home = h || null;
+  HOMED = null;
+  try{ S.home ? localStorage.setItem(HOME_KEY, JSON.stringify(S.home)) : localStorage.removeItem(HOME_KEY); }catch(e){}
+}
+function homeDists(){
+  if(HOMED || !S.home) return HOMED;
+  // Same shape as the porch-to-porch table: snap onto the graph, walk from
+  // there, and add the straight-line offset at each end. A home a few blocks
+  // outside the mapped streets gets a fair estimate rather than nothing.
+  const s=snap(G, S.home.lat, S.home.lon);
+  const {dist}=dijkstra(G, [[s.a,s.da],[s.b,s.db]]);
+  HOMED=new Float64Array(PLACES.length);
+  PLACES.forEach((p,j)=>{
+    const t=p.snap;
+    let d = s.offset + Math.min(dist[t.a]+t.da, dist[t.b]+t.db) + t.offset;
+    // Routing out to a junction and back overstates anything on the same
+    // stretch of street — including home itself, which came out as twice its
+    // own offset instead of zero and sorted below its own neighbours.
+    if((s.a===t.a && s.b===t.b) || (s.a===t.b && s.b===t.a)){
+      const along = (s.a===t.a) ? Math.abs(s.da-t.da) : Math.abs(s.da-t.db);
+      d = Math.min(d, s.offset + along + t.offset);
+    }
+    HOMED[j] = isHomePlace(j) ? 0 : d;
+  });
+  return HOMED;
+}
+const homeDist = (i) => S.home ? homeDists()[i] : null;
+// A place counts as "home" when it is essentially on top of it.
+// Guarded: -1 is a real argument here — it means "nothing highlighted", which
+// happens whenever a search matches no festival place.
+const isHomePlace = (i) => !!S.home && !!PLACES[i]
+  && Math.hypot((PLACES[i].lat-S.home.lat)*M_LAT, (PLACES[i].lon-S.home.lon)*M_LON) < 30;
+
+const PICK={slot:'from', seg:'corner', q:'', cur:-1, rows:[]};
+
+function pickOpen(slot){
+  PICK.slot=slot;
+  const at = slot==='from' ? S.from : (S.to<0 ? S.from : S.to);
+  // Open on the kind you are already standing on, so the list you land in is
+  // the one you most likely want.
+  PICK.seg = at>=NP ? 'corner' : 'porch';
+  PICK.q=''; $('#pickQ').value='';
+  $('#pickTitle').textContent = slot==='from' ? 'Start from' : 'End at';
+  $('#pick').hidden=false;
+  document.body.style.overflow='hidden';
+  pickRender(true);
+  $('#pickQ').focus();
+}
+function pickClose(){
+  $('#pick').hidden=true;
+  document.body.style.overflow='';
+  const btn = PICK.slot==='from' ? $('#fromBtn') : $('#toBtn');
+  if(btn) btn.focus();
+}
+/* A pasted address has to work. Plain substring matching only ever found a
+   query SHORTER than the label, so "2441 Lyndale Ave S, Minneapolis MN 55405"
+   matched nothing at all — including the porch it names. Tokenise instead,
+   drop the parts a festival label never carries (unit, city, state, ZIP) and
+   the interchangeable street-type words, then require what is left to appear. */
+const ADDR_NOISE=new Set(['apt','apartment','unit','ste','suite','no','minneapolis','mn','minnesota','usa','us','#']);
+const STREET_WORD={av:'ave', avenue:'ave', st:'st', street:'st', str:'st', rd:'rd', road:'rd',
+                   dr:'dr', drive:'dr', blvd:'blvd', boulevard:'blvd', pkwy:'pkwy', parkway:'pkwy',
+                   ln:'ln', lane:'ln', ct:'ct', court:'ct', pl:'pl', place:'pl', ter:'ter', terrace:'ter'};
+function addrTokens(s){
+  return s.toLowerCase().replace(/[.,#]/g,' ').split(/\s+/)
+    .filter(Boolean)
+    .filter(t=>!ADDR_NOISE.has(t))
+    .filter(t=>!/^\d{5}(-\d{4})?$/.test(t))          // ZIP
+    .map(t=>STREET_WORD[t]||t)
+    // "404" in "Apt 404" is already gone with its label; a bare 3+ digit run
+    // that is not the house number still helps nothing, but keeping it is
+    // safe because matching requires ALL tokens.
+    .map(t=>t.replace(/(\d+)(st|nd|rd|th)$/,'$1'));  // 26th -> 26
+}
+// "2911 James Ave S, Apt 404 Minneapolis MN 55408" is not a label. Keep the
+// street address and drop the unit, city, state and ZIP.
+function shortAddr(s){
+  let t=s.split(',')[0].trim();
+  t=t.replace(/\s+(apt|apartment|unit|ste|suite|#)\s*\S+.*$/i,'');
+  t=t.replace(/\s+minneapolis\b.*$/i,'');
+  t=t.replace(/\s+mn\s*\d{5}(-\d{4})?\s*$/i,'');
+  return t.trim() || s.trim();
+}
+function placeMatches(label, toks){
+  const hay=addrTokens(label);
+  // Prefix matching in ONE direction only, and only for tokens long enough to
+  // mean something: allowing the query to be a prefix of the label too made
+  // "2441" match the "24" in W 24th Street.
+  return toks.every(t=>hay.some(h=>h===t || (t.length>=3 && h.startsWith(t))));
+}
+function pickCandidates(){
+  const q=PICK.q.trim();
+  let list=PLACES.map((p,i)=>({p,i})).filter(({p})=>p.kind===PICK.seg);
+  // A search looks across both kinds — you know the street, not whether the
+  // festival calls it a corner or a porch.
+  if(q){
+    const toks=addrTokens(q);
+    list = toks.length
+      ? PLACES.map((p,i)=>({p,i})).filter(({p})=>placeMatches(p.label,toks))
+      : [];
+  }
+  if(S.home) list.sort((a,b)=>homeDist(a.i)-homeDist(b.i));
+  else list.sort((a,b)=>a.p.label.localeCompare(b.p.label,undefined,{numeric:true}));
+  return list;
+}
+/* The one network call in the app, and only from an explicit tap. Nominatim
+   is the OpenStreetMap geocoder — the same project the map data is credited
+   to. The answer is stored as coordinates, so this never runs again. */
+function geocodeQuery(s){
+  // "#" gets its own pass: \b never matches before it after a space, since
+  // both are non-word characters, so "St #2" kept its unit and found nothing.
+  let t=s.replace(/#\s*[\w-]+/g,' ')
+         .replace(/\b(apt|apartment|unit|ste|suite)\b\.?\s*[\w-]+/ig,' ')
+         .replace(/\b\d{5}(-\d{4})?\b/g,' ')
+         .replace(/\s*,\s*,/g,',').replace(/\s+/g,' ')
+         .replace(/\s*,\s*$/,'').trim();
+  if(!/minneapolis|\bmn\b/i.test(t)) t+=', Minneapolis, MN';
+  return t;
+}
+async function geocodeHome(text){
+  const q=text.trim();
+  if(!q) return null;
+  // Send a CLEANED address. Nominatim returns nothing at all for a query
+  // carrying a unit number — "2911 James Ave S, Apt 404 Minneapolis MN 55408"
+  // finds nothing while the same address without the Apt resolves fine. The
+  // ZIP goes too; it adds nothing and can conflict. City is appended only when
+  // absent, since a bare "James Ave S" is ambiguous across the country.
+  const full=geocodeQuery(q);
+  const url='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q='+encodeURIComponent(full);
+  const res=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!res.ok) throw new Error('geocoder said '+res.status);
+  const j=await res.json();
+  if(!j.length) throw new Error('no match');
+  return {lat:+j[0].lat, lon:+j[0].lon, label:shortAddr(q)};
+}
+function renderHomeBar(){
+  const el=$('#homeBar'), q=PICK.q.trim();
+  const house='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>';
+  // Typing something the festival does not contain is the moment to offer
+  // geocoding — that is exactly when a real home address has been typed.
+  const noLocal = q && !PICK.rows.length;
+  if(noLocal){
+    el.innerHTML=`${house}<span class="ht">Not in the festival — it can still be your home</span>
+      <button class="go" id="homeSet">Set as home</button>`;
+  } else if(S.home){
+    el.innerHTML=`${house}<span class="ht">Home: <b>${esc(S.home.label||'set')}</b></span>
+      <button id="homeClear">Clear</button>`;
+  } else {
+    el.innerHTML=`${house}<span class="ht">Set a home to see how far each spot is</span>
+      <button id="homeHere">Use my location</button>`;
+  }
+}
+function pickRender(reset){
+  const list=pickCandidates();
+  PICK.rows=list;
+  const cur = PICK.slot==='from' ? S.from : S.to;
+  if(reset||PICK.cur<0||PICK.cur>=list.length){
+    const at=list.findIndex(({i})=>i===(cur<0?S.from:cur));
+    PICK.cur = at>=0 ? at : 0;
+  }
+  $$('#pickSegs button').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.seg===PICK.seg && !PICK.q.trim())));
+  $('#segNc').textContent=D.corners.length; $('#segNp').textContent=D.porches.length;
+  const q=PICK.q.trim();
+  const mark=(s)=>{
+    if(!q) return esc(s);
+    const at=s.toLowerCase().indexOf(q.toLowerCase());
+    return at<0 ? esc(s) : esc(s.slice(0,at))+'<mark>'+esc(s.slice(at,at+q.length))+'</mark>'+esc(s.slice(at+q.length));
+  };
+  if(!list.length){
+    $('#pickList').innerHTML=`<div class="pickempty">No festival spot matches “${esc(q)}”.<br>If that is your own address, set it as your home below.</div>`;
+    renderHomeBar(); pickMap(-1); return;
+  }
+  $('#pickList').innerHTML=list.map(({p,i},n)=>{
+    const d=homeDist(i);
+    const bits=[];
+    if(d!==null) bits.push(isHomePlace(i) ? 'your home' : km(d)+' from home');
+    if(p.kind==='porch'){ const np=D.bands.filter(b=>b.p===p.i).length; bits.push(np+' band'+(np===1?'':'s')); }
+    return `<button class="pickrow${n===PICK.cur?' cur':''}${i===cur?' sel':''}" data-i="${i}" data-n="${n}" role="option" aria-selected="${i===cur}">
+      <span class="ico">${p.kind==='porch'
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.8" fill="currentColor" stroke="none"/></svg>'}</span>
+      <span class="tx"><b>${mark(p.label)}</b>${bits.length?`<small>${bits.join(' · ')}</small>`:''}</span>
+      <span class="pickhome${isHomePlace(i)?' on':''}" data-home="${i}" role="button" tabindex="-1" title="${isHomePlace(i)?'This is your home':'Set as my home'}">
+        <svg viewBox="0 0 24 24" fill="${isHomePlace(i)?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span>
+    </button>`;
+  }).join('');
+  $('#pickHomeGo').hidden = !S.home;
+  renderHomeBar();
+  pickMap(list[PICK.cur] ? list[PICK.cur].i : -1);
+  const el=$('#pickList').querySelector('.pickrow.cur');
+  if(el) el.scrollIntoView({block:'nearest'});
+}
+/* The visual. Streets faintly, every porch as a dot, the highlighted place
+   ringed — so a corner name becomes a location instead of a string. */
+function pickMap(i){
+  const svg=$('#pickMap'), r=svg.getBoundingClientRect();
+  const W=Math.max(120,r.width), H=Math.max(80,r.height);
+  const b=BOUNDS, bw=b.x1-b.x0;
+  // The festival is tall and narrow and this strip is wide and short, so
+  // fitting the whole thing renders an unreadable blob. Fit the full EAST-WEST
+  // extent — that is the context that means something, since the avenues run
+  // north-south — then crop vertically around the highlighted place. You see
+  // which avenue you are on and what is a block either side of you.
+  const k=W/(bw*1.06);
+  const focus = i>=0 ? -my(PLACES[i].lat) : (b.y0+b.y1)/2;
+  const halfH = H/(2*k);
+  const cy = Math.max(b.y0+halfH, Math.min(b.y1-halfH, focus));
+  const ox=(W-bw*k)/2-b.x0*k, oy=H/2-cy*k;
+  const X=(lon)=>mx(lon)*k+ox, Y=(lat)=>-my(lat)*k+oy;
+  // Ways hold point INDICES into D.streets.pts, not coordinates.
+  const seg=(D.streets.ways||[]).map(w=>
+    'M'+w.n.map(n=>{const q=D.streets.pts[n]; return `${X(q[1]).toFixed(1)},${Y(q[0]).toFixed(1)}`;}).join('L')).join('');
+  // --map-major, not a --map-road: that token does not exist, and an invalid
+  // stroke silently falls back to black, which is invisible on this ground.
+  const ways=`<path d="${seg}" fill="none" stroke="var(--map-major)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const dots=D.porches.map(p=>`<circle cx="${X(p.lon).toFixed(1)}" cy="${Y(p.lat).toFixed(1)}" r="2.6" fill="var(--text-3)" opacity=".6"/>`).join('');
+  let hi='';
+  if(i>=0){
+    const p=PLACES[i], x=X(p.lon), y=Y(p.lat);
+    hi=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="var(--brand)" opacity=".2"/>
+        <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.6" fill="var(--brand)" stroke="#fff" stroke-width="1.6"/>`;
+    $('#pickMapLab').textContent=p.label;
+  } else $('#pickMapLab').textContent='';
+  if(S.home && !isHomePlace(i)){
+    const h=S.home;
+    hi+=`<circle cx="${X(h.lon).toFixed(1)}" cy="${Y(h.lat).toFixed(1)}" r="3.6" fill="var(--ok)" stroke="#fff" stroke-width="1.4"/>`;
+  }
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=ways+dots+hi;
+}
+function pickChoose(i){
+  if(PICK.slot==='from'){
+    S.from=i;
+    // "Same as start" follows the start, so it never silently becomes a
+    // one-way trip to wherever you used to begin.
+  } else {
+    S.to = (i===S.from) ? -1 : i;
+  }
+  pickClose(); renderEnds(); drawMap(); changed();
+}
+function renderEnds(){
+  const kindOf=(p)=> p.kind==='porch' ? 'Porch' : 'Street corner';
+  const f=PLACES[S.from];
+  $('#fromLabel').textContent = f ? f.label : '—';
+  $('#fromSub').textContent = f ? kindOf(f) + (isHomePlace(S.from) ? ' · your home' : '') : '';
+  // A round trip says so rather than repeating the start address twice.
+  const back = S.to<0;
+  const t = back ? f : PLACES[S.to];
+  $('#toLabel').textContent = back ? 'Back where you started' : (t ? t.label : '—');
+  $('#toSub').textContent = back ? 'Round trip'
+    : (t ? kindOf(t) + (S.to>=0 && isHomePlace(S.to) ? ' · your home' : '') : '');
+  // A round trip has nothing to swap — A→A reversed is still A→A. Saying
+  // "swapped" and changing nothing is worse than not offering it.
+  const sw=$('#endSwap');
+  sw.disabled = back;
+  sw.title = back ? 'Nothing to swap on a round trip' : 'Swap start and end';
+}
+
 /* Swap one band out and refill its slot, leaving the rest of the afternoon
    alone. The other stops are held in place for the re-solve, so tapping Swap
    on the 3pm act does not quietly rearrange the other nine. */
@@ -1117,16 +1587,7 @@ function renderControls(){
   $('#t0').innerHTML=opts.join(''); $('#t1').innerHTML=opts.join('');
   $('#t0').value=S.t0; $('#t1').value=S.t1;
 
-  const places=[
-    '<optgroup label="Street corners">',
-    ...D.corners.map((c,i)=>`<option value="${NP+i}">${c.a}</option>`),
-    '</optgroup><optgroup label="Porches">',
-    ...D.porches.map((p,i)=>`<option value="${i}">${p.a}</option>`),
-    '</optgroup>',
-  ].join('');
-  $('#from').innerHTML=places;
-  $('#to').innerHTML='<option value="-1">Same as start</option>'+places;
-  $('#from').value=S.from; $('#to').value=S.to;
+  renderEnds();
 
   $('#draw').innerHTML=`<div class="sl taste draw ${S.pop?'':'off'}">
       <div class="lab"><b>Big names</b><span>${popWord(S.pop)}</span></div>
@@ -1647,8 +2108,116 @@ function changed(){
 
 $('#t0').onchange=e=>{S.t0=+e.target.value; changed();};
 $('#t1').onchange=e=>{S.t1=+e.target.value; changed();};
-$('#from').onchange=e=>{S.from=+e.target.value; drawMap(); changed();};
-$('#to').onchange=e=>{S.to=+e.target.value; drawMap(); changed();};
+$$('[data-pick]').forEach(b=>b.addEventListener('click',()=>pickOpen(b.dataset.pick)));
+$('#endSwap').addEventListener('click',()=>{
+  const end = S.to<0 ? S.from : S.to;      // a round trip swaps to itself
+  S.to = S.from===end ? -1 : S.from;
+  S.from = end;
+  renderEnds(); drawMap(); changed();
+  toast('Start and end swapped');
+});
+$('#pickX').addEventListener('click', pickClose);
+$('#pick').addEventListener('click', e=>{ if(e.target.id==='pick') pickClose(); });
+$('#pickQ').addEventListener('input', e=>{ PICK.q=e.target.value; pickRender(true); });
+$$('#pickSegs button').forEach(b=>b.addEventListener('click',()=>{
+  PICK.seg=b.dataset.seg; PICK.q=''; $('#pickQ').value=''; pickRender(true);
+}));
+$('#pickList').addEventListener('click', e=>{
+  const h=e.target.closest('[data-home]');
+  if(h){
+    e.stopPropagation();
+    const i=+h.dataset.home;
+    setHome(isHomePlace(i) ? null : {lat:PLACES[i].lat, lon:PLACES[i].lon, label:PLACES[i].label});
+    pickRender();
+    toast(!S.home ? 'Home cleared' : `Home set — distances are from ${S.home.label}`);
+    return;
+  }
+  const row=e.target.closest('.pickrow');
+  if(row) pickChoose(+row.dataset.i);
+});
+$('#pickList').addEventListener('mousemove', e=>{
+  const row=e.target.closest('.pickrow'); if(!row) return;
+  const n=+row.dataset.n; if(n===PICK.cur) return;
+  PICK.cur=n;
+  $$('#pickList .pickrow').forEach(r=>r.classList.toggle('cur', +r.dataset.n===n));
+  pickMap(+row.dataset.i);
+});
+$('#pickHomeGo').addEventListener('click',()=>{
+  if(!S.home) return;
+  // Home may be a street away from anything the festival lists, so start from
+  // the closest place to it rather than pretending it is one.
+  const d=homeDists(); let best=0;
+  for(let i=1;i<d.length;i++) if(d[i]<d[best]) best=i;
+  pickChoose(best);
+});
+$('#homeBar').addEventListener('click', async e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  if(b.id==='homeClear'){ setHome(null); pickRender(); toast('Home cleared'); return; }
+  if(b.id==='homeHere'){
+    // From here it means "home is where I am standing", which is a real
+    // coordinate — not the nearest festival spot, which is what the footer
+    // button means when you are choosing where to start.
+    if(!navigator.geolocation){ toast('This browser cannot share a location'); return; }
+    b.disabled=true; b.textContent='Locating…';
+    navigator.geolocation.getCurrentPosition(pos=>{
+      setHome({lat:pos.coords.latitude, lon:pos.coords.longitude, label:'My location'});
+      pickRender(); toast('Home set to where you are');
+    }, ()=>{ b.disabled=false; b.textContent='Use my location'; toast('Could not get your location'); },
+       {timeout:8000});
+    return;
+  }
+  if(b.id!=='homeSet') return;
+  const q=PICK.q.trim();
+  b.disabled=true; b.textContent='Looking up…';
+  try{
+    const h=await geocodeHome(q);
+    setHome(h);
+    // Show what it actually resolved to; a silent pin somewhere wrong is
+    // worse than no pin at all.
+    const d=homeDists(); let best=0;
+    for(let i=1;i<d.length;i++) if(d[i]<d[best]) best=i;
+    PICK.q=''; $('#pickQ').value=''; pickRender(true);
+    toast(`Home set — ${km(d[best])} to the nearest festival spot`);
+  }catch(err){
+    b.disabled=false; b.textContent='Set as home';
+    toast(String(err.message)==='no match'
+      ? "Couldn't find that address"
+      : "Couldn't look that up — you may be offline");
+  }
+});
+$('#pickGeo').addEventListener('click',()=>{
+  if(!navigator.geolocation){ toast('This browser cannot share a location'); return; }
+  const btn=$('#pickGeo'); btn.disabled=true;
+  navigator.geolocation.getCurrentPosition(pos=>{
+    btn.disabled=false;
+    // Snap to the nearest place — the plan is built on the street graph, so
+    // an arbitrary point off it has nowhere to start from.
+    let best=-1, bd=Infinity;
+    PLACES.forEach((p,i)=>{
+      const d=(p.lat-pos.coords.latitude)**2 + ((p.lon-pos.coords.longitude)*Math.cos(p.lat*Math.PI/180))**2;
+      if(d<bd){ bd=d; best=i; }
+    });
+    if(best<0) return;
+    PICK.q=''; $('#pickQ').value=''; PICK.seg=PLACES[best].kind;
+    pickRender(true);
+    const n=PICK.rows.findIndex(r=>r.i===best);
+    if(n>=0){ PICK.cur=n; pickRender(); }
+    toast(`Nearest spot: ${PLACES[best].label}`);
+  }, ()=>{ btn.disabled=false; toast('Could not get your location'); }, {timeout:8000});
+});
+// Keyboard: the list is the primary control, so it has to work without a mouse.
+$('#pick').addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ pickClose(); return; }
+  if(!PICK.rows.length) return;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+    e.preventDefault();
+    PICK.cur=Math.max(0,Math.min(PICK.rows.length-1, PICK.cur+(e.key==='ArrowDown'?1:-1)));
+    pickRender();
+  } else if(e.key==='Enter'){
+    e.preventDefault();
+    const r=PICK.rows[PICK.cur]; if(r) pickChoose(r.i);
+  }
+});
 $('#minB').onchange=e=>{
   S.minBands=+e.target.value;
   if(S.maxBands && S.minBands>S.maxBands){ S.maxBands=S.minBands; $('#maxB').value=S.maxBands; }
@@ -1989,7 +2558,7 @@ $('#resetLayout').addEventListener('click',()=>{
   $('#festline').textContent=`${D.fest.name} · Sat Aug 15, ${D.fest.year} · ${D.bands.length} bands`;
   const parts=hashParts();
   const restored = parts.s ? decodeState(parts.s) : false;
-  loadLayout();
+  loadLayout(); loadHome();
   renderControls();
   applyTheme(theme);
   renderPlan();

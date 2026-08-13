@@ -24,7 +24,11 @@
         "rotation_deg": 278.0,
         "symbolic_location": "Inside the south-east of Fort Dearborn, at the south end of the east side of the parade, below the soldiers' barracks.",
         "confidence": "conjectural",
-        "note": "INVENTED WITHIN A DOCUMENTED SIDE. Fergus puts the artillery house on the east of the parade with the barracks and the storehouse; the 1830 plan draws only one range on that side and this project reads that range as the barracks, because Hubbard's 1827 sentence fixes the barracks there and the sutler's north of it. So there is no drawn building for this record to sit on. It is placed inside the east curtain at the south end - the one part of that side the plan leaves empty - clear of the barracks by about a metre and of the south wall by about three. Every one of those numbers is ours."
+        "note": "INVENTED WITHIN A DOCUMENTED SIDE. Fergus puts the artillery house on the east of the parade with the barracks and the storehouse; the 1830 plan draws only one range on that side and this project reads that range as the barracks, because Hubbard's 1827 sentence fixes the barracks there and the sutler's north of it. So there is no drawn building for this record to sit on. It is placed inside the east curtain at the south end - the one part of that side the plan leaves empty - clear of the barracks by about a metre and of the south wall by about three. Every one of those numbers is ours.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
       },
       "footprint": {
         "polygon": [

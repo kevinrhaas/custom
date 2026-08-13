@@ -587,6 +587,63 @@ voucher or a council minute behind that payment is the most likely thing to desc
 structure member by member.
 **Recorded:** 2026-08-10.
 
+### L31a — Terrain: the bank face is a shape nobody recorded
+**Decision:** the ground rises from the waterline to the local bank crest on an eased quadratic over **6 m** by default, widening east where the south and north shores climb into the sand ridge. The profile string in `terrain_spec.json` is a description of the generator's ramp, not an input it reads.
+**Why:** no source gives a bank cross-section at any point in this scene. The bank has to meet two constraints at once — it must reach Z = 0 exactly at the traced waterline, and it must arrive at the crest heights the dossier argues for without producing a cliff. The ease-out ramp is therefore geometry chosen to satisfy the known endpoints, not evidence in itself.
+**Consequence:** a visitor sees a shaped bank carrying the project's confidence tint, but the tint on the block says only how sure we are about the heights and zones around it. The actual curvature of the bank face is ours. The note is where that distinction is stated.
+**How to resolve:** any period section, profile, or measured description of a bank at the forks or harbour reach.
+**Covers:** `terrain.e1834_harbor_cut.bank`.
+**Recorded:** 2026-08-10.
+
+### L31b — Terrain: the channel cross-section carries no evidence at all
+**Decision:** water depth approaches the stated bed with an exponential law, `depth = bed_ft * (1 - exp(-d_in / e_fold_m))`, where distance is measured in from the traced waterline.
+**Why:** the project has period statements about bed depths at a few places and none about cross-sections. A smooth curve is what lets the surface meet the bank at Z = 0 exactly on the traced line while still giving the river and cut a usable interior depth. That is a modelling convenience chosen under total evidential silence.
+**Consequence:** the geometry under the water is an answer to a renderer's question, not a historical finding. It affects boat draught and the hidden shape of the channel and nothing a visitor can see directly.
+**How to resolve:** any pre-dredging cross-section or sounding transect of the Chicago River, the 1834 cut or the old southward channel.
+**Covers:** `terrain.e1834_harbor_cut.channel_profile`.
+**Recorded:** 2026-08-10.
+
+### L31c — Terrain: the north-side slough is one foot deep because a shallower one would not read
+**Decision:** the slough off the Main Branch is cut to a bed of **−1.0 ft** with a 1.2 m e-folding distance, and the whole block is tagged `conjectural` in `terrain_spec.json`.
+**Why:** its existence and its course are Wright 1834's, drawn on the sheet this terrain is fitted to, and its width is measured off the drafted band. Its **depth is invented outright** — no sounding, no description, nothing. One foot is the shallowest figure that still reads as water at the surface, which is a rendering argument and not a historical one, and the 1.2 m e-fold overrides the river's 9 m for the same reason: at 9 m a 1 ft channel would be four inches deep across a 7 m width and would look like damp grass.
+**Consequence:** the grade a visitor sees on this claim is the block's, so it says `conjectural` about a watercourse whose existence and course are the best-attested thing in this quadrant. The note is the only place that distinction is legible, which is a limit of block-level grading and not of the evidence — see `docs/STATUS.md`.
+**Why it is recorded now:** it is the one ground invention the terrain slice never wrote down. The coverage gate found it the first time it was allowed to look at the terrain spec.
+**How to resolve:** any pre-dredging sounding of the north-side backwater, or a description of it as fordable or not.
+**Covers:** `terrain.e1834_harbor_cut.watercourses.north_side_slough`.
+**Recorded:** 2026-08-10.
+
+### L31d — Terrain: the ground says what it is made of and nothing is made of it
+**Decision:** the spec grades multiple surface materials — black loam over quicksand over blue clay, beach-and-dune sand, peat muck with sedge, reeds and rushes, Cahokia Alluvium silt — and **no surface in the model is made of any of them**. The ground mesh carries one earth treatment unless and until the surface parcel builds otherwise.
+**Why:** the material entries are the dossier's surface table, kept in the spec because they are what a terrain claim *is*, and `terrain_gen.py` builds elevation and water only. Colouring or texturing ground by zone is a later parcel, and doing it badly — inventing a palette for a soil nobody photographed — would be a larger invention than leaving it out.
+**Consequence:** a visitor reading a strong confidence grade on one of these rows is reading how sure the project is about the site's stratigraphy, not a description of the literal surface underfoot. The row needs an explicit admission because the mesh does not embody it.
+**How to resolve:** a surface-treatment parcel driven from these entries, with the palette argued from the sources rather than picked.
+**Covers:** `terrain.e1834_harbor_cut.surface_materials.south_division west of State St`, `terrain.e1834_harbor_cut.surface_materials.south_division east of State St`, `terrain.e1834_harbor_cut.surface_materials.north_division`, `terrain.e1834_harbor_cut.surface_materials.north_division near the lake`, `terrain.e1834_harbor_cut.surface_materials.west_division`, `terrain.e1834_harbor_cut.surface_materials.south_division_marsh`, `terrain.e1834_harbor_cut.surface_materials.channel`, `terrain.e1834_harbor_cut.surface_materials.open_lake_shelf`, `terrain.e1834_harbor_cut.surface_materials.sand_bar_1834`.
+**Recorded:** 2026-08-10.
+
+### L31e — Terrain: two water bodies keep invented beds because the sources give only their existence
+**Decision:** the abandoned southward channel behind the bar is given a bed of **−2.5 ft**, and the open-lake shelf east of the traced water is given a bed of **−11.0 ft** with a long 130 m e-fold. Both are tagged `conjectural`.
+**Why:** Wright 1834 and later discussion tell this project that both water bodies existed; neither gives a sounding on the date this scene models. The old channel is therefore placed between the dossier's qualitative banks as a midpoint, and the open lake shelf exists to stop the harbour from ending in a wall where the traced window ends. Both figures are modelling choices under evidential silence.
+**Consequence:** the harbour opens into plausible water rather than into a box edge, and the abandoned channel remains a watercourse rather than collapsing flat. Neither depth is a measurement and neither should be read as one.
+**How to resolve:** any pre-dredging sounding or section of the old outlet channel or the nearshore lake bed east of the cut.
+**Covers:** `terrain.e1834_harbor_cut.reaches.old_south_channel`, `terrain.e1834_harbor_cut.reaches.open_lake_shelf`.
+**Recorded:** 2026-08-10.
+
+### L31f — Terrain: the west-prairie swales are invented alignments
+**Decision:** the two west-prairie swales are drawn on invented lines with shallow invented depths, tagged `conjectural`.
+**Why:** the dossier says the wet prairie carried slough swales. It does not say where they ran in this box. A swale has to be somewhere to be visible at all, so two were drawn where they plausibly express the described relief without exceeding the project's flatness rule.
+**Consequence:** a visitor sees channels in the prairie that stand for a real kind of landform and not for attested individual ones. Their existence is argued; their exact alignment is ours.
+**How to resolve:** any map, survey or description locating specific swales in the west prairie.
+**Covers:** `terrain.e1834_harbor_cut.swales.west_prairie_swale_a`, `terrain.e1834_harbor_cut.swales.west_prairie_swale_b`.
+**Recorded:** 2026-08-10.
+
+### L31g — Terrain: the plain is roughened by synthetic micro-relief
+**Decision:** land above the waterline carries two octaves of value noise at **±0.10 ft**, faded out across the bank face, and the whole block is tagged `conjectural`.
+**Why:** the sources describe this ground as dead flat and a perfectly numerical plane reads as a rendering error when walked on. The noise is there for motion parallax and legibility, not because any source measured hummocks at these wavelengths.
+**Consequence:** the visitor sees a surface that reads as ground rather than as a spreadsheet, but the small undulations are not evidence. They are a rendering texture declared as such.
+**How to resolve:** it does not resolve into evidence; it would only go away if a different rendering strategy made a perfectly flat plain read correctly.
+**Covers:** `terrain.e1834_harbor_cut.micro_relief`.
+**Recorded:** 2026-08-10.
+
 ### L32 — The sward is drawn at a density that hides the ground, not at a stem count
 **Decision:** the near field plants roughly **7.3 tufts per square metre**, each tuft a dozen
 blades, and that number is a rendering constant in `renderers/web/js/flora.js` (`TUNE.near`).

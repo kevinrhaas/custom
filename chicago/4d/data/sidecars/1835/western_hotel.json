@@ -9,11 +9,28 @@
   "asset": "gltf/western_hotel__frame_1834.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1834-01-01",
+    "to": "1840-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire278",
+      "drloih_hotels"
+    ],
+    "note": "THE BUILD DATE IS DISPUTED, 1834 AGAINST 1835, AND THE DISPUTE IS RESOLVED HERE RATHER THAN LEFT OPEN — but the reasoning matters, because the two dates mean different things for this scene. chicagology reports W. H. Stow, who 'came to Chicago about 1833', saying of his own hotel that 'it was built in 1834'. The hotel chronology says it 'opened in 1835'. 1834 is adopted because it is the BUILDER'S OWN STATEMENT about his own building, recorded with the same detail that gives the 40 ft front, the 60 ft wing and the yard, against an undated one-line entry in a chronology that also mis-sizes the building. THE PHASE MECHANISM WAS CONSIDERED AND DELIBERATELY NOT USED. If the 1835 date were right, the hotel might have been unfinished or brand new on 1835-07-01, and a construction phase would be the honest way to show that. But a construction phase would have to invent a start month, a duration and a state of completeness, none of which any source gives, and it would silently adopt the weaker date to do it. One completed phase on the better-attested date, with the alternative recorded here and in the dossier, claims less. If the 1835 date is ever confirmed, split this phase then. The end of the range is set at the end of 1840, past the last account reached that describes the house in operation; it is not a demolition date and no source reached gives one."
+  },
+  "change_note": "Built 1834 by W. H. Stow at the south-east corner of Randolph and Canal — a 40 ft front with a 60 ft wing in an L, a large stable and a yard the wagon trains drove into. Complete and in operation on the scene date under the adopted 1834 date.",
   "placement": {
-    "local_e": -140.9,
-    "local_n": -277.8,
+    "local_e": -143.05,
+    "local_n": -281.67,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire278",
+      "drloih_hotels",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-09. The corner is documented and agreed by both sources — chicagology gives 'southeast corner of Randolph and Canal streets' and the hotel chronology gives 'the S.E. corner of Canal and Randolph streets' — but the COORDINATE is derived, so the tag follows the weaker half. MOVED 4.44 m ON 2026-08-10, and the move is the correction the control file owed. Method, the same as the Sauganash's: the modern intersection centre is read from OpenStreetMap and the footprint offset half an 80 ft platted street east and south of it, so that the building's west face sits on the Canal frontage and its north face on the Randolph frontage of a south-east corner lot; the offset south is taken from the footprint's north face, which is 18.29 m above its origin. WHAT CHANGED IS THE INTERSECTION CENTRE, not the method and not the corner. The 2026-08-09 reading (E 446919.6, N 4637148.5) was taken without recording which nodes it averaged, and re-deriving the junction on 2026-08-10 showed why that mattered: Randolph and Canal is a single crossing of the two street centrelines at E 446917.46, N 4637144.61, and the older number is reproduced only by averaging the roadway crossing together with three BIKEWAY crossings, which sit a few metres off the centrelines they follow. The road-only reading is adopted (data/traces/street_control.json § node_rule), so the origin is now 446917.46 + 12.192 east and 4637144.61 - 12.192 - 18.29 north. The building moves 2.14 m west and 3.89 m south. That is an order of magnitude inside the georeference's own ±20 m and changes nothing about the corner, the lot or the frontages; what it changes is that the coordinate can now be re-fetched from the source it cites, which it could not be before. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 0, due north onto Randolph. WHICH STREET THE 40 FT FRONT FACED IS NOT ATTESTED: chicagology says only 'The front was about forty feet and the wing sixty feet. It was in an L.' Randolph is adopted because it was the through street from the west and this was the house 'for all the farmers town from the west', for farmers and teamsters. If the front was on Canal instead, the same L is rotated to bearing 270 and the wing runs east rather than south — an alternative that costs nothing to test once the lot geometry is read off Wright 1834.",
     "symbolic_location": "South-east corner of Randolph Street and Canal Street, west side, one block south of the Green Tree; a 40 ft front with a 60 ft wing in an L, stables and a wagon yard behind, with entrances to the yard from both streets.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -46,7 +63,11 @@
         18.29
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire278"
+    ],
+    "note": "THE ENVELOPE IS ATTESTED AND THE PLAN IS NOT. Original units: 'The front was about forty feet and the wing sixty feet. It was in an L.' 40 ft = 12.19 m and 60 ft = 18.29 m, which is the polygon's bounding box exactly. What the source does not give is the arms' WIDTH, so the 7.0 m depth of the front range and of the wing is invented — chosen as about 23 ft, enough for a room and a passage, which is the shallowest width that makes an L rather than a solid block. Areas follow from that and are not attested: about 164 m2 on the ground, 1,770 sq ft. The word 'about' in 'about forty feet' is the source's own. DISPUTED: the hotel chronology calls the Western 'a small structure', which contradicts a 40 by 60 ft two-storey L outright. chicagology's figures are preferred because they come with the builder's account and with the yard and stable description; the chronology gives no dimensions at all, so 'small' is an impression, not a measurement. The stables and yard are attested and are NOT in this polygon."
   },
   "attributes": {
     "stories": {
@@ -137,24 +158,35 @@
   "citations": [
     {
       "source_id": "chicagology_prefire278",
-      "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+      "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",
       "url": "https://chicagology.com/prefire/prefire278/",
       "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+          "date": "1883-07-22",
+          "tier": 2,
+          "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "The teamsters' house on the west side, and the one record in this parcel where a disputed date could have changed what stands in the scene. chicagology dates it 1834 on W. H. Stow's own word and gives the description everything else here rests on — a 40 ft front and a 60 ft wing in an L, a large stable, a yard the wagon trains drove into with entrances from both streets, and a clientele of farmers and teamsters coming in from the west. The hotel chronology dates it 1835 and calls it 'a small structure', contradicting the size as well as the date. BOTH DISPUTES ARE DECIDED THE SAME WAY AND FOR THE SAME REASON: the builder's own account, with corroborating detail, beats an undated line in a chronology that is unfootnoted and demonstrably inconsistent elsewhere. THE PHASE MECHANISM WAS CONSIDERED FOR THE 1835 READING AND REJECTED — modelling a construction site would require inventing a start month, a build duration and a degree of completeness, which is more invention than the honest alternative of one completed phase with the dispute written down. The largest unmodelled thing about this building is not its date but its yard: the stable and the enclosed wagon court are attested, are most of the site, and are not built by the frame_tavern archetype. See docs/RESEARCH/western_hotel.md and docs/LIBERTIES.md.",

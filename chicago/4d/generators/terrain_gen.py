@@ -536,16 +536,11 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
     decide whether the committed GLB still matches its inputs. Two copies of this
     list would agree until the day one of them mattered.
 
-    `shoreline.geojson` joined the list on 2026-08-11, when S2e parcel (b)
-    extended the box east and `build_field` started reading it: the lake shore,
-    the 1834 cut, the old southward channel and the sand bar now move vertices,
-    so a change to that file has to report the ground stale.
-
-    Nothing here imports bpy — the meshing does, this does not.
+    Nothing on this path imports bpy — the meshing does, this does not.
     """
-    return inputs_hash([ep_dir / "terrain_spec.json", ep_dir / "river.geojson",
-                        ep_dir / "hydrology.geojson", ep_dir / "shoreline.geojson",
-                        ROOT / "data" / "datum.json", Path(__file__)])
+    import terrain_inputs  # noqa: PLC0415 — flat import, generators/ is on sys.path
+
+    return terrain_inputs.terrain_inputs_sha(ep_dir)
 
 
 # ---------------------------------------------------------------------------

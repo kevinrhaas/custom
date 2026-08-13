@@ -174,9 +174,16 @@ GLB. The renderer reads placement, provenance and footprint from here.
   "name": "Sauganash Hotel",
   "aka": ["Eagle Exchange Tavern"],
   "asset": "gltf/sauganash_hotel__frame_1831.glb",
+  "documented_range": {
+    "from": "1831-01-01", "to": "1851-03-04", "confidence": "documented",
+    "sources": ["kinzie_waubun_1856"], "note": "..."
+  },
+  "change_note": "Two-story frame block built onto the log core ...",
   "placement": {
     "local_e": 0.0, "local_n": 0.0, "rotation_deg": 0.0,
     "position_confidence": "documented",
+    "position_sources": ["kinzie_waubun_1856"],
+    "position_note": "...",
     "symbolic_location": "SE corner of Lake St and Market St",
     "uncertainty_m": 20
   },
@@ -186,11 +193,21 @@ GLB. The renderer reads placement, provenance and footprint from here.
   },
   "citations": [
     { "source_id": "kinzie_waubun_1856", "citation": "...", "url": "...", "archived_url": "...",
-      "tier": 2 }
+      "tier": 2, "tier_label": "near-primary recollection",
+      "transcribes": [ { "work": "...", "date": "1883-07-22" } ],
+      "what_it_supplies": ["..."], "what_it_does_not_supply": ["..."] }
   ],
   "research_doc": "docs/RESEARCH/sauganash_hotel.md"
 }
 ```
+
+The five keys after `tier` are additive and four of them are present only when the source
+record carries them. `tier_label` is the ladder in words; `transcribes` (or, for a page read
+and found to reprint nothing, `carries_no_document`) is what the rung is a judgement ABOUT,
+which matters because on ten of these records the document is not the page; and the two
+`what_it_…_supply` lists are the source's own stated limits. Which fields of a source record
+cross this boundary is not a matter of taste — `compile_scene.SOURCE_FIELD_SURFACE` partitions
+the schema and `validate.check_source_surface` fails on a property in neither half.
 
 `placement.local_e` / `local_n` are **metres east and north of the scene datum origin**
 (`data/datum.json`). While a structure's coordinates are still null, the compiler emits the
@@ -202,6 +219,31 @@ is better than about ±20 m.
 
 `footprint` is `{ "polygon": [[u,v],…], "confidence": "…" }` — the polygon alone would lose the
 footprint's confidence, which is exactly what the confidence view exists to show.
+
+`documented_range`, `change_note` and the `position_*` fields are the phase's claim about
+itself, carried in the same shape as an attribute (value/confidence/sources/note) so the card
+can render them with the attribute renderer. Additive, 2026-08-10, and added because the
+renderer had been reading `documented_range` off a sidecar that never contained it: the scene
+date falls inside the span by construction, so what a visitor needs is not the fact but its
+strength and its reasoning — for a building nobody followed past 1834, the end of the range is
+an argument rather than a source.
+
+**This list is now checked from both sides, and the check is what makes it a contract rather
+than a description.** `validate.py`'s `check_sidecar_contract` reads what the compiler emits off
+the committed sidecars — which `compile_scene.py --check` proves are exactly what the dataset
+compiles to — and scans what the renderer reads out of the renderer's own modules. A field read
+on one side and absent from the other is a gate failure. It was switched on 2026-08-10 and found
+a second live instance of the fault that prompted the `documented_range` fix above: the
+provenance card had been asking the sidecar `asset_is_placeholder`, which the compiler has never
+written and, reading only `data/`, could not write. Whether a mesh is a stand-in is a fact the
+GLB states about itself, so it now travels from the loader that opens the file to the card
+(`record.assetIsPlaceholder`) rather than through a sidecar field.
+
+The scan follows `record.sidecar` and the names bound directly to it; a value handed to a
+function is read through that function's parameter and is out of its reach. It reports the
+reverse direction — fields compiled and never read — as a note rather than an error, because at
+the top level that limit does not bite and an unread field is dead weight rather than a false
+claim.
 
 **Discovery.** A static host cannot be globbed, so each scene publishes
 `sidecars/<scene>/index.json` listing `{id, name, sidecar, asset}` plus `excluded_by_date`.

@@ -10,11 +10,29 @@
   "asset": "gltf/green_tree_tavern__frame_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-01-01",
+    "to": "1880-12-31",
+    "confidence": "documented",
+    "sources": [
+      "chicagology_prefire127",
+      "drloih_hotels",
+      "drloih_wolf_point"
+    ],
+    "note": "Built 1833 by James Kinzie — 'the first structure ever erected in the place for hotel purposes' — and standing at the north-east corner of Lake and Canal until it was moved in 1880 to 35 and 37 Milwaukee Avenue to clear the site for the Jones & Laughlin works. Both ends are attested, which is why a forty-seven-year span is tagged documented rather than being a research gap in disguise. IT IS STILL TOO LONG TO BE ONE FORM-STATE, and that is a known limitation: John Gray, landlord 1838-41, recalls 'a low one-story addition to the right, the same as on the left', so the building demonstrably grew, and nothing dates those additions. The phase should be split the moment they can be dated. A second, smaller conflict: chicagology's Green Tree page dates the move to 1880, while its Town of Chicago page, written in 1883, says the building was 'removed two years ago', i.e. 1881. Immaterial to the 1835 scene. The carpenter is disputed too — chicagology names 'Philo Cobb', DRLOIH names Silas B. Cobb, who is the historically real person and is almost certainly correct."
+  },
+  "change_note": "Built 1833 as the first building in Chicago put up specifically to be a hotel. The phase carries the two-storey core as built; the low one-storey side additions attested by 1838-41 are recorded on the record but not in the geometry, because nothing dates them.",
   "placement": {
     "local_e": -135.3,
     "local_n": -96.2,
     "rotation_deg": 270.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire127",
+      "drloih_hotels",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-09. The corner is documented and agreed by two independent sources — chicagology gives 'Northeast Corner of Lake and Canal Streets' and DRLOIH gives 'the N.E. corner of what is now Lake and Canal Streets' — but the COORDINATE is derived, so the tag follows the weaker half. Method, the same as the Sauganash's: the modern intersection centre was read from OpenStreetMap (EPSG:26916 E 446913.0, N 4637287.4) and the footprint offset 12.2 m east and 12.2 m north of it, half an 80 ft platted street in each direction, so that the building's west face sits on the Canal frontage and its south face on the Lake frontage of a north-east corner lot. No extra depth offset is needed on either axis because the footprint origin is already its south-west corner. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 270, due west onto Canal: F. H. Taylor's recollection is explicit — 'The fornt was on Canal street and this side was on Lake' — with the long elevation on Lake and, per John Gray, a second entrance 'on the Lake street front about the middle of the long side'. RESIDUAL UNCERTAINTY WORTH RECORDING, because it is larger than the georeference's: DRLOIH's article title gives the corner as 'Lake and West Water Streets' and glosses West Water as 'now Canal Street'. Historically West Water Street ran along the west bank and Canal Street lay one block further west, and the modern geometry agrees — modern Canal at Lake is about 146 m back from the modern west-bank line, a full block. If the tavern actually stood on the riverbank street rather than on Canal, it belongs about 145 m east of where this record puts it. The Canal reading is adopted because both detailed sources name Canal in modern terms and one of them says 'what is now'. The check that would settle it is the lot geometry on Wright 1834 or Hathaway 1834, which is exactly what those sheets are good for.",
     "symbolic_location": "North-east corner of Lake Street and Canal Street (historically Lake and West Water), one block west of the river on the west bank; front on Canal, long side on Lake.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +57,11 @@
         12.19
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "chicagology_prefire127"
+    ],
+    "note": "DERIVED FROM THE ATTESTED INTERIOR, not invented and not measured. This is the only footprint in the parcel with a textual basis. The arithmetic, in the original units: guest chambers 'about 12x12' feet, so a depth of two 12 ft ranks plus board partitions gives about 25 ft = 7.62 m; a hall 'divided the house' with the entrance 'about the middle of the long side', so the length is two end blocks either side of a hall of about 8 ft, and each end block must hold a 12 ft room plus partitions, giving about 40 ft = 12.19 m. The bar-room occupied one whole end, which is consistent. WHAT IS ATTESTED IS THE MODULE, NOT THE COUNT: no source gives the building's overall length or width, and a plan with three rooms rather than two on one side would make it about 52 ft. Treat the length as plus or minus about 20 per cent and the depth as firmer. The polygon is the two-storey core only — the 'low one-story addition to the right, the same as on the left' that John Gray recalls is NOT included, because its size is unattested and its date is unknown. The c. 1859 photograph (chm_green_tree_1859) would settle the overall dimensions from the proportions of a known-height building; it has not been seen."
   },
   "attributes": {
     "stories": {
@@ -154,38 +176,78 @@
   "citations": [
     {
       "source_id": "chicagology_prefire127",
-      "citation": "\"Green Tree Tavern.\" Chicagology. Compiling first-hand recollections by John Gray (landlord 1838-41), Edwin O. Gale and F. H. Taylor, with an editor's commentary.",
+      "citation": "\"Green Tree Tavern.\" Chicagology. Transcribing the Inter Ocean of 1 July 1883 — the old-settlers hotel feature, in which named witnesses who had lived in the house are shown a sketch of it and asked to correct it — and Edwin O. Gale's Reminiscences of Early Chicago and Vicinity (1902), around nine city directories 1839-1885 and Chicago Tribune notices of the 1880 move and the 1902 collapse.",
       "url": "https://chicagology.com/prefire/prefire127/",
       "archived_url": "https://web.archive.org/web/20260217122931/https://chicagology.com/prefire/prefire127/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago' — the early-hotels feature on the Green Tree: interviews with F. H. Taylor (in Chicago from 1834, lodged in the west one-storey addition), John Gray (landlord 1838-41) and Mrs. Murphy of the United States Hotel, each shown the S. W. Fallis sketch and asked to correct it",
+          "date": "1883-07-01",
+          "tier": 2,
+          "note": "Carries every Green Tree claim in this dataset: the function and occupants, the two-storey block with a divided hall and a stairway to the second floor, the gable with an attic window that fixes the roof form, and the dated span. Recollection by men who lived in the house, taken down in print — rung 2, not the reporter's rung."
+        },
+        {
+          "work": "Edwin O. Gale, Reminiscences of Early Chicago and Vicinity — the Green Tree bar-room chapter",
+          "date": "1902",
+          "tier": 2,
+          "note": "Gale reached Chicago in 1835 and describes the bar-room from inside: the room module ('about 12x12, with two windows 6x8'), the whitewashed walls, ceilings and board partitions, and the seven-and-a-half-foot ceiling the record's storey height is reasoned from. A participant writing his own recollection — rung 2."
+        }
+      ],
+      "what_it_supplies": [
+        "interior room module and ceiling height",
+        "plan and circulation",
+        "which street the front faced",
+        "roof form (gable end with attic window)",
+        "landlord chronology",
+        "the 1880 move and 1902 demolition"
+      ],
+      "what_it_does_not_supply": [
+        "overall building dimensions in feet",
+        "exterior finish or colour",
+        "the date the one-story side additions were built"
+      ]
     },
     {
       "source_id": "chicagology_prefire278",
-      "citation": "\"Town of Chicago.\" Chicagology. Including the town code of 7 November 1833.",
+      "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",
       "url": "https://chicagology.com/prefire/prefire278/",
       "archived_url": "https://web.archive.org/web/20260308051207/https://chicagology.com/prefire/prefire278/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Inter Ocean, 'Old Chicago: The Town in 1833' — the section headed 'The Old Western Hotel: First Frame House on the West Side', with the reporter's description of the surviving fragment and interviews with old settlers and with the builder's son",
+          "date": "1883-07-22",
+          "tier": 2,
+          "note": "Carries all four Western Hotel claims in this dataset — the farmers' and teamsters' house, W. H. Stow as builder and proprietor, the original two storeys, and the large stable and wagon yard with entrances from both streets — and it carries the dispute over the build date that keeps the dated range at `inferred`. Men recalling a house they used: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "drloih_wolf_point",
       "citation": "\"The Beginning of Wolf Point in Chicago, Illinois, including the history of the Wolf Point Tavern.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2018/11/wolf-point-beginnings-in-chicago-illinois.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "THE BEST-DOCUMENTED BUILDING IN THIS DATASET, and it is documented from the inside out — which is the opposite of the usual situation here and is worth understanding. The Green Tree survived until 1902, long enough for people who had slept in it to be asked what it was like in print: John Gray, who kept it 1838-41, Edwin O. Gale, who was put up in a chamber 'about 12x12, with two windows 6x8', and F. H. Taylor, who fixed which street the front was on. From them come the room module, the 7 1/2 ft ceilings, the board partitions, the interior whitewash, the dividing hall and its stairway, the bar-room at one end, the attic used for lodging, the gable-end attic window and the low one-storey additions at each end. What none of them gives is an overall dimension, so even here the footprint is a derivation from the room module rather than a measurement. IT ALSO SURVIVED LONG ENOUGH TO BE PHOTOGRAPHED, about 1859, at its original corner — the closest thing to direct visual evidence for any Wolf Point building. Note the caveat carefully, because the version in circulation is wrong: the 1859 plate PREDATES the 1880 move and shows the tavern where it was built, so what stands between it and the scene date is twenty-six years of alteration, not forty-seven years and a move. That plate has not been seen for this record and it is the single highest-value open lead in the parcel: it would settle the overall dimensions, the exterior finish and the gallery in one look. CONFLICTS RECORDED: frame throughout versus a log core weatherboarded later, a claim attributable to W. H. Stow personally; the carpenter, Philo Cobb versus Silas B. Cobb; the move dated 1880 versus 1881; and, the largest in metres, whether 'Lake and Canal' or 'Lake and West Water' names the corner, which are a full block apart. See docs/RESEARCH/green_tree_tavern.md.",

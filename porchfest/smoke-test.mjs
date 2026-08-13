@@ -80,6 +80,19 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // run. Failing them immediately is the same outcome the app is built for
     // (it degrades to initials) and keeps the suite deterministic.
     await ctx.route(/porchfest-band-photos|drive\.google/, r => r.abort());
+    // The geocoder is the app's ONLY network call and must fire only from an
+    // explicit tap. Count every hit and stand in for it so this stays offline.
+    let geoCalls = 0;
+    await ctx.route(/nominatim\.openstreetmap\.org/, r => {
+      geoCalls++;
+      // Behave like the real service, which returns NOTHING for a query
+      // carrying a unit number or a ZIP. A mock that accepts anything hid a
+      // live failure on exactly the address that prompted this feature.
+      const q = decodeURIComponent(new URL(r.request().url()).searchParams.get('q') || '');
+      const dirty = /(\b(apt|apartment|unit|ste|suite)\b|#)/i.test(q) || /\b\d{5}\b/.test(q);
+      r.fulfill({ status: 200, contentType: 'application/json',
+        body: JSON.stringify(dirty ? [] : [{ lat: '44.9490277', lon: '-93.3031901' }]) });
+    });
     const page = await ctx.newPage();
     const tag = `${name}/${vp}`;
     console.log(`\n${tag}`);
@@ -114,6 +127,9 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
       .catch(() => fail(`${tag} — no route on load`));
     const ms = Date.now() - t0;
     ok('routes on load without a click');
+    // Remember the shipped endpoints so later tests can put them back before
+    // measuring anything that depends on where the walk starts.
+    const ENDS0 = await page.evaluate(() => ({ from: S.from, to: S.to }));
     if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
 
     // Moving a dial must re-plan on its own.
@@ -526,6 +542,216 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     else ok(`longest star toast fits (${worst.h.toFixed(0)}px)`);
     await setPop(0);
 
+    // ---- the start / end picker ----
+    // The two endpoints used to be a single dropdown of 81 addresses. This
+    // checks the replacement actually navigates: search across both kinds,
+    // the two kinds are separately reachable, and a pick re-plans.
+    if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
+    await page.waitForTimeout(250);
+    const startLabel = () => page.textContent('#fromLabel');
+    const startWas = await startLabel();
+    if (!startWas || startWas === '—') fail(`${tag} — start endpoint has no label`);
+    else ok(`start endpoint reads as a place (${startWas.slice(0, 30)})`);
+    if ((await page.textContent('#toLabel')) !== 'Back where you started')
+      fail(`${tag} — a round trip should say so, got "${await page.textContent('#toLabel')}"`);
+    else ok('a round trip says so rather than repeating the address');
+
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(450);
+    if (await page.locator('#pick').getAttribute('hidden') !== null)
+      fail(`${tag} — picker did not open`);
+    const corners = await page.locator('.pickrow').count();
+    if (corners !== 48) fail(`${tag} — corners tab showed ${corners}, expected 48`);
+    else ok(`picker opens on street corners (${corners})`);
+
+    // The visual: streets have to actually render, not silently fall back to
+    // black-on-black the way an undefined colour token did.
+    const mapPath = await page.evaluate(() => {
+      const p = document.querySelector('#pickMap path');
+      if (!p) return { len: 0, stroke: '' };
+      return { len: (p.getAttribute('d') || '').length, stroke: getComputedStyle(p).stroke };
+    });
+    if (mapPath.len < 500) fail(`${tag} — picker map drew no streets (d length ${mapPath.len})`);
+    else if (/rgb\(0,\s*0,\s*0\)/.test(mapPath.stroke))
+      fail(`${tag} — picker map streets are black, the colour token is undefined`);
+    else ok(`picker map draws the streets (${mapPath.stroke})`);
+    if (!(await page.textContent('#pickMapLab'))) fail(`${tag} — picker map has no label`);
+    else ok('picker map names the highlighted place');
+
+    // Search is the answer to the daunting list, and spans both kinds.
+    await page.fill('#pickQ', '2441');
+    await page.waitForTimeout(350);
+    const hit = await page.locator('.pickrow').count();
+    const hitTxt = hit ? await page.locator('.pickrow .tx b').first().textContent() : '';
+    if (!hit || !hitTxt.includes('2441'))
+      fail(`${tag} — searching a house number found ${hit} rows (${hitTxt})`);
+    else ok(`address search works across kinds (2441 -> ${hitTxt})`);
+    await page.fill('#pickQ', 'zznope');
+    await page.waitForTimeout(300);
+    if (!(await page.locator('.pickempty').count())) fail(`${tag} — no empty state in the picker`);
+    else ok('picker explains an empty result');
+    await page.fill('#pickQ', '');
+    await page.waitForTimeout(300);
+
+    await page.locator('[data-seg="porch"]').click();
+    await page.waitForTimeout(350);
+    const porches = await page.locator('.pickrow').count();
+    if (porches !== 33) fail(`${tag} — porches tab showed ${porches}, expected 33`);
+    else ok(`both kinds are reachable as tabs (${porches} porches)`);
+
+    // Home drives the distances shown against every option.
+    await page.locator('.pickrow').nth(2).locator('[data-home]').click();
+    await page.waitForTimeout(450);
+    const withHome = await page.locator('.pickrow .tx small').allTextContents();
+    const fromHome = withHome.filter(t => /from home|your home/.test(t)).length;
+    if (fromHome < porches - 1)
+      fail(`${tag} — only ${fromHome} of ${porches} rows show a distance from home`);
+    else ok(`home sets distances on the list (${fromHome} rows)`);
+    const firstRow = await page.locator('.pickrow .tx small').first().textContent();
+    if (!/your home/.test(firstRow))
+      fail(`${tag} — list not sorted by distance from home, first row is "${firstRow}"`);
+    else ok('list sorts nearest-to-home first');
+
+    const picked = await page.locator('.pickrow .tx b').nth(1).textContent();
+    await page.locator('.pickrow').nth(1).click();
+    await page.waitForTimeout(1200);
+    if ((await startLabel()) !== picked)
+      fail(`${tag} — picked "${picked}" but the card says "${await startLabel()}"`);
+    else ok(`picking sets the endpoint (${picked})`);
+    if (!(await page.locator('#stops .stop').count()))
+      fail(`${tag} — the route emptied after choosing a start`);
+    else ok('choosing a start re-plans');
+
+    // A round trip has nothing to swap, so the control must say so rather
+    // than claiming success and changing nothing.
+    if (!(await page.locator('#endSwap').isDisabled()))
+      fail(`${tag} — swap is offered on a round trip, where it cannot do anything`);
+    else ok('swap is disabled on a round trip');
+
+    // Give it a real second endpoint, then swapping must actually reverse them.
+    await page.locator('#toBtn').click();
+    await page.waitForTimeout(450);
+    await page.locator('[data-seg="corner"]').click();
+    await page.waitForTimeout(350);
+    await page.locator('.pickrow').nth(4).click();
+    await page.waitForTimeout(1200);
+    const endWas = await page.textContent('#toLabel');
+    const startWas2 = await startLabel();
+    if (endWas === 'Back where you started')
+      fail(`${tag} — choosing a distinct end still reads as a round trip`);
+    else ok(`end can be set independently (${endWas.slice(0, 28)})`);
+    await page.locator('#endSwap').click();
+    await page.waitForTimeout(1200);
+    if ((await startLabel()) !== endWas || (await page.textContent('#toLabel')) !== startWas2)
+      fail(`${tag} — swap did not reverse the ends (${await startLabel()} / ${await page.textContent('#toLabel')})`);
+    else ok('swapping start and end reverses them');
+    await page.locator('#endSwap').click();
+    await page.waitForTimeout(1200);
+
+    // Home outlives the session — it is a property of you, not of this plan.
+    const homeIdx = await page.evaluate(() => S.home && S.home.label);
+    if (!homeIdx) fail(`${tag} — home was not retained`);
+    else {
+      const hp = await ctx.newPage();
+      const doneHp = watch(hp, `${tag}/home`);
+      await hp.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
+      await hp.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
+        null, { timeout: 25000 }).catch(() => {});
+      const kept = await hp.evaluate(() => S.home && S.home.label);
+      if (kept !== homeIdx) fail(`${tag} — home did not persist: ${homeIdx} -> ${kept}`);
+      else ok(`home persists into a new session (${kept})`);
+      doneHp();
+      await hp.close();
+    }
+
+    // ---- a real, pasted address ----
+    // Plain substring matching only found queries SHORTER than the label, so
+    // pasting a full postal address matched nothing — including the porch it
+    // names. This is the exact string a phone's autofill hands you.
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(400);
+    await page.fill('#pickQ', '2441 Lyndale Ave S, Minneapolis MN 55405');
+    await page.waitForTimeout(400);
+    const pasted = await page.locator('.pickrow .tx b').allTextContents();
+    if (pasted.length !== 1 || !pasted[0].startsWith('2441 Lyndale'))
+      fail(`${tag} — pasting a full address gave ${pasted.length} rows (${pasted.slice(0,2)})`);
+    else ok('a pasted postal address finds its porch');
+    // House numbers must not bleed into street numbers.
+    await page.fill('#pickQ', '2441');
+    await page.waitForTimeout(350);
+    const numOnly = await page.locator('.pickrow .tx b').allTextContents();
+    if (numOnly.some(t => /24th/.test(t)))
+      fail(`${tag} — "2441" matched a 24th Street corner`);
+    else ok(`a house number does not match a street number (${numOnly.length})`);
+
+    // An address outside the festival is offered as a home, not dead-ended.
+    const geoBefore = geoCalls;
+    await page.fill('#pickQ', '2911 James Ave S, Apt 404 Minneapolis MN 55408');
+    await page.waitForTimeout(400);
+    if (await page.locator('.pickrow').count())
+      fail(`${tag} — an out-of-area address matched a festival place`);
+    if (!(await page.locator('#homeSet').count()))
+      fail(`${tag} — no way to make an out-of-area address your home`);
+    else ok('an address outside the festival can still become home');
+    if (geoCalls !== geoBefore)
+      fail(`${tag} — the geocoder fired on typing, before any tap`);
+    else ok('typing never calls the geocoder');
+
+    await page.locator('#homeSet').click();
+    await page.waitForTimeout(1400);
+    if (geoCalls !== geoBefore + 1)
+      fail(`${tag} — expected exactly one geocode, saw ${geoCalls - geoBefore}`);
+    else ok('setting a home address geocodes exactly once');
+    // Every unit form a phone's autofill produces has to survive the trip to
+    // the geocoder, which returns nothing for any of them if left in.
+    const unitForms = await page.evaluate(() => ['2911 James Ave S, Apt 404 Minneapolis MN 55408',
+      '1420 W 28th St #2', '123 Main St Unit B', '2416 Aldrich Ave S Ste 3, Minneapolis MN 55405']
+      .map(a => geocodeQuery(a)));
+    const stillDirty = unitForms.filter(q => /(\b(apt|unit|ste|suite)\b|#|\b\d{5}\b)/i.test(q));
+    if (stillDirty.length)
+      fail(`${tag} — unit/ZIP survived into the geocoder query: ${stillDirty.join(' | ')}`);
+    else ok('every unit form is stripped before the lookup');
+
+    const setLabel = await page.evaluate(() => S.home && S.home.label);
+    if (setLabel !== '2911 James Ave S')
+      fail(`${tag} — home label kept the unit/city cruft: "${setLabel}"`);
+    else ok(`home label is the street address (${setLabel})`);
+    const away = await page.evaluate(() => {
+      const d = homeDists();
+      return Math.min(...Array.from(d));
+    });
+    if (!(away > 100 && away < 5000))
+      fail(`${tag} — distance from an off-graph home is implausible (${Math.round(away)} m)`);
+    else ok(`an off-map home still measures (${(away / 1609).toFixed(1)} mi to nearest)`);
+
+    // A home stored in the old index form must survive the upgrade.
+    await page.evaluate(() => { localStorage.setItem('pf.home', '7'); });
+    const mp = await ctx.newPage();
+    const doneMp = watch(mp, `${tag}/migrate`);
+    await mp.goto(at('/app/'), { waitUntil: 'domcontentloaded' });
+    await mp.waitForFunction(() => document.querySelectorAll('#stops .stop').length > 0,
+      null, { timeout: 25000 }).catch(() => {});
+    const migrated = await mp.evaluate(() => S.home);
+    if (!migrated || !Number.isFinite(migrated.lat))
+      fail(`${tag} — a legacy index home did not migrate (${JSON.stringify(migrated)})`);
+    else ok(`legacy home index migrates to coordinates (${migrated.label})`);
+    doneMp();
+    await mp.close();
+    await page.evaluate(() => localStorage.removeItem('pf.home'));
+
+    // Escape has to close it — it is a modal over the whole app.
+    // (The picker is still open from the address tests above; close it first
+    // or this click lands on the overlay rather than the button.)
+    await page.locator('#pickX').click();
+    await page.waitForTimeout(300);
+    await page.locator('#fromBtn').click();
+    await page.waitForTimeout(400);
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(350);
+    if (await page.locator('#pick').getAttribute('hidden') === null)
+      fail(`${tag} — Escape did not close the picker`);
+    else ok('Escape closes the picker');
+
     // ---- distances in miles ----
     const units = await page.evaluate(() => ({
       walk: document.getElementById('sWalk').textContent,
@@ -603,6 +829,14 @@ for (const [name, browserType] of [['chromium', chromium], ['webkit', webkit]]) 
     // variety does not cost too much match quality.
     if (vp === 'mobile') await page.locator('[data-go="tune"]:visible').first().click();
     await page.waitForTimeout(250);
+    // Back to the shipped start/end first. The picker tests above move where
+    // the walk begins, and shuffle quality is measured against the route from
+    // a given start — inheriting a relocated one measures the wrong thing.
+    await page.evaluate((e) => {
+      S.from = e.from; S.to = e.to; S.rejected = []; S.recent = []; setHome(null);
+      renderEnds(); replan(true);
+    }, ENDS0);
+    await page.waitForTimeout(1700);
     await page.evaluate(() => [...document.querySelectorAll('[data-preset]')]
       .find(b => b.dataset.preset === 'Loud & fast').click());
     await page.waitForTimeout(1800);

@@ -257,7 +257,7 @@ Parcels (parallel once S1 lands):
   agree there to 0.1–5.7 m, which is the check that the segmentation is reading the map rather
   than its own parameters. Not yet consumed by `terrain_gen.py`; it is the evidence, not the
   ground.
-- **(b) Heightfield** — the 30-zone table in `docs/research/01-terrain-hydrology.md`, quantized ≤0.25 ft at 5–10 ft cells. Z=0 at the 1835 lake surface. **Next slice**, and it needs a bake for the ground GLB, so record + mesh land together. Two things parcel (a) hands it: the bar is *land inside water*, so the signed-distance rule that builds the forks ground has to understand islands, not only banks; and no elevation for the bar exists in any source, so its height is a spec argument to be made in the open, not a number to pick.
+- **(b) Heightfield** — the 30-zone table in `docs/research/01-terrain-hydrology.md`, quantized ≤0.25 ft at 5–10 ft cells. One thing this parcel no longer has to budget for (2026-08-10, STATUS § 34): **prose in `terrain_spec.json` is out of the terrain's staleness hash**, so a zone's reasoning, caveat or citation can be written, argued and rewritten without a bake — and it must be, because an `inferred` ground claim with no stated reasoning is now an error rather than a warning. A number, an id or a confidence still stales the ground, so the spec's figures and the bake are still one slice. Z=0 at the 1835 lake surface. **Next slice**, and it needs a bake for the ground GLB, so record + mesh land together. Two things parcel (a) hands it: the bar is *land inside water*, so the signed-distance rule that builds the forks ground has to understand islands, not only banks; and no elevation for the bar exists in any source, so its height is a spec argument to be made in the open, not a number to pick.
 - **(c) Hydrology** — the slough (public-square pond → past Lake & Dearborn → river at the foot of State), Frog Pond at Lake & LaSalle, the Wells Street marsh, the marshy river-shore strip.
 - **(d) `terrain_gen.py`** — spec + vectors → terrain mesh + `heightfield.bin` for collision.
 
@@ -286,6 +286,49 @@ blue shutters solid, the invented footprint and the disputed gallery dithered.
 
 Asked for as "streets, roads, paths in accurate surface and elevations". Both halves of
 that have a specific answer here, and the second one is a trap.
+
+**Half of that sentence is committed data as of 2026-08-10.** `data/traces/street_control.json`
+holds the module (80 ft streets, `inferred`, with the 66 ft dissent recorded beside it) and the
+control table this project actually snaps to, each street carrying its axis and its modern
+equivalent — and, since 2026-08-10, the rule that makes a control point re-derivable rather than
+merely re-fetchable (`node_rule`: the nodes shared by the two named surface roadways, averaged,
+with bikeways and stacked lower-level streets excluded). What is still missing for this parcel is
+the plat's **block dimensions and extent** — that file holds only what the existing placements
+used. See `docs/RESEARCH/street_module_1830.md`.
+
+**And the module is measured rather than annotated, 2026-08-10** (STATUS § 42,
+`docs/RESEARCH/street_module_1830.md` § 8, `data/traces/vectors/street_corridors_1834.json`).
+Eight platted corridors read off BOTH 1834 sheets, 75.7-92.8 ft, none within 9 ft of 66: the
+dissent is excluded and so is the reconciliation that it might be about different streets. Two
+things this parcel inherits. First, a **measured block pitch** — seven consecutive corridor
+spacings of 116.6-123.2 m, the 300 ft block plus one street — which is the beginning of the block
+dimensions this section asks for, though not yet the plat's extent. Second, a **method problem to
+solve before the E-W streets can be measured**: the N-S traverse reads Wright's lot lines, whose
+depths are a platted street's width and whose lines run as far as a block face does, so a corridor
+here has to be identified by something other than its width. Lake, Randolph, South Water and
+Market are unmeasured until that exists.
+
+**SOLVED 2026-08-11** (STATUS § 52, memo § 10). The three tests that failed are all readings
+taken *across* a candidate at one place; the one that works turns ninety degrees and asks how far
+a candidate is open ground **down its own centreline**, which a street is for a whole block and a
+strip of lots never is. The threshold is derived from the module band (95 − 30 = 65 m) rather
+than tuned. **Lake reads 79.4 ft and Randolph 81.5 ft** on Wright — both named by their committed
+modern junctions to 0.9 m, not by counting — with one unnamed corridor a block further south at
+86.5 ft; ten lot strips were rejected and none of the eight already-committed corridors was.
+Three things this parcel inherits from it. **The E-W pitch is 134-136 m against 116.6-123.2 m the
+other way**, so the blocks are NOT square and the 300 ft block that fits the N-S streets does not
+describe them — that is the rest of the block dimensions this section asks for, and it comes off
+two spacings on one sheet, so measure more before generating a grid from it. **The E-W widths
+rest on one sheet**: Hathaway's N-S traverse commits nothing, so they have no cross-check. And
+**South Water and Market are still unmeasured** — Market falls outside both traverses, and every
+candidate north of Lake is bounded by a line that stops after 24-32 m. Both need a traverse
+placed for them, not a looser filter.
+
+**A caution for the generator, from the same slice.** The corridors drawn on these sheets run
+about 5 ft wider than 80 ft on both, and that is paper stretch plus pen placement, not evidence
+of a wider street. Generate the grid from the platted module (§ above) and snap it to control —
+do not fit it to the traced corridor widths, which would bake 4% of paper distortion into the
+town.
 
 **Geometry comes from the Thompson module, generated, not traced.** The 1830 plat gives
 80-ft streets and 18-ft alleys over the original 0.375 sq mi; Wright 1834 shows the same
@@ -319,18 +362,39 @@ harbour works are read, so there is ground to put it on once S2e builds the heig
 
 - **Position is settled and cross-checked**: local E +1152, N +221, two independent methods
   35 m apart (see S2e).
-- **The footprint is not.** Wright *labels* the reservation and draws no plan, so the
-  palisade, blockhouses, barracks, magazine and parade have to come from elsewhere —
-  Andreas 1884 carries fort plans, and the fort's own published drawings exist. Find and
-  record that source before modelling; do not infer a stockade outline from a banner.
+- **What it *was* on 1835-07-01 is SETTLED, 2026-08-10** — `docs/RESEARCH/fort_dearborn.md`.
+  An **occupied United States Army post, commanded by Major John Greene**, who held it from
+  18 December 1833 until 16 September 1835. Three separately written accounts agree the fort
+  was garrisoned through 1835 and the post surgeon's prescription book has an entry dated
+  15 March 1835. The soldiers left on 29 December 1836 and the post was not given up until
+  June or July 1837 — which is how Andreas manages to give 1836 in one chapter and
+  10 May 1837 in another. Nothing here goes to `data/exclusions.json`; the fort was here.
+- **The footprint is still NOT sourced, but the search is narrowed to three candidates.**
+  Wright *labels* the reservation and draws no plan; neither does Hathaway. The best lead is
+  a survey, not a picture: the War Department's agent, reporting on 21 November 1840, names
+  the platted lots of the **Fort-Dearborn Addition (1839)** that were withheld from sale
+  because they covered "the fortress of Fort Dearborn *within the pickets*". Find that plat,
+  fit it (its streets survive in the modern grid) and read the withheld lots. Second: **Henry
+  Hart's 1853 survey of the fort**, named but not yet located. Third: a War Department plan
+  of the rebuilt fort, never looked for. Ruled out with reasons in the memo § 7 — do not
+  re-run them. Still: do not infer a stockade outline from a banner.
+- **Four constraints exist now that did not.** Gurdon S. Hubbard, correcting the *Wau-Bun*
+  view in 1881, states that the enclosure ran "nearly north and south, east and west"; that
+  the north picket line stood nowhere more than 80 ft from the water and 50-60 ft opposite
+  the north gate; that the ground at the fort was "not over eight feet above the River at its
+  lowest stage"; and that the north and south gates were on one sight line. The first two are
+  usable against the traced 1834 bank. **The third is a finding about the terrain**: an 8 ft
+  platform is taller than any landform in the modelled box (total relief 4.30 ft), so it
+  belongs to S2e parcel (b) as much as to this parcel.
 - It is a **complex, not a building**: S5's Fort Dearborn parcel already itemises palisade,
   blockhouse, bastion, magazine, quarters, barracks, sutler, hospital, parade and gardens.
-  Expect several records and several bakes, not one.
-- **Settle what it *was* on 1835-07-01 before drawing it.** This is the second fort, rebuilt
-  1816. The garrison's comings and goings in the mid-1830s are exactly the kind of detail
-  this project gets wrong by assuming — an occupied fort and an empty one are different
-  scenes. Research it and cite it; `data/exclusions.json` is the place for whatever turns
-  out not to be there.
+  Expect several records and several bakes, not one. The interior arrangement is now attested
+  element by element (memo § 5) and the one open disagreement is whether there were two
+  bastions or one.
+- **A caution the memo pays for.** Three enclosures get confused in this literature and only
+  one is the 1835 fort: the 1816 stockade, the post-army compound of 1850 (pickets gone, a
+  whitewashed board fence, "say 400 feet"), and the 53¼-acre reservation. The 400 ft figure
+  is the middle one and must not be read as a palisade.
 
 **How both gates were cleared, and what it cost.**
 
@@ -467,8 +531,113 @@ time" in November 1833. Never a default.
 
 ## S5 — Structure records
 
-**Queued first, and it is a repair, not an addition: three attributes that are recorded and
-unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L20 and L21.
+**Queued first, and it is a regrade rather than an addition: 21 `documented` values rest on
+later scholarship alone** (2026-08-10, STATUS § 43). The evidence ladder has a gate now, and its
+fourth rule is a counted warning rather than an error: a `documented` value with no source at
+tier 3 or better — no period document, no eyewitness recollection, no compilation from pioneer
+testimony — is either an over-graded value or an under-tiered source, and only reading the page
+settles which.
+
+**The source half is DONE 2026-08-10 and it was fifteen of the twenty-one** (STATUS § 44,
+`docs/RESEARCH/evidence_tiers_chicagology.md`). `prefire127`, `prefire273` and `prefire278` were
+fetched and read in full; all three transcribe near-primary recollection — the *Inter Ocean*
+old-settler interviews of 1 and 22 July 1883, and the *Chicago Magazine* of 15 May 1857 built on
+Hubbard's own account — and all three were graded 4. They are 2, no value moved, no mesh went
+stale, and the count reads **six**. The judgement is also a declaration now rather than a typed
+number: a record dating its own retrieval and claiming a testimony rung must declare
+`transcribes`, and its tier is the best rung it declares.
+
+**The four sharp ones are what is left, and they are the expensive half**: `sauganash_hotel`
+`form.stories` and `form.construction`, `miller_house` `form.frame_addition_stories` and
+`wolf_point_tavern` `form.sign` are supported by nothing but the two `drloih` blog compilations,
+whose own source records say *never as sole evidence*. Re-tiering cannot touch them — the pages
+are unfootnoted, mutually contradictory and unarchived — so this is a regrade of the VALUE, and
+a confidence is a mesh input: the slice stales those GLBs and lands with a bake. Behind it, the
+machine-readable half — a `never_sole_evidence` flag on a source record, which turns those four
+into errors — stays deliberately behind the regrade, because a gate that fails the committed
+dataset on the day it lands is a gate that gets switched off.
+
+**The other two are outside the buildings**: ground `surface_materials.south_division`
+(`chicago_architecture_history_115`) and ground `water` (`wikipedia_chicago_river`). ~~The first
+of those has not been opened.~~ **Both are read and both are over-graded VALUES** — `water` on
+2026-08-11 (§ 46, `docs/RESEARCH/swearingen_1803.md`) and the soil profile the same day
+(STATUS § 51, `docs/RESEARCH/surface_materials_south_division.md`). The soil page is a 2022 essay
+that is its own document, correctly at rung 4, and it prints **no footnote, endnote or reference
+anywhere in it**; the one witness on it — John Mills Van Osdel, block-quoted with no publication,
+date or page, and unmentioned by this project's own dossier — attests the ORDER of the strata and
+the drainage failure and gives **no black loam and not one thickness**, so the three figures in
+the claim have nobody behind them. `documented` → `inferred`, and it lands with the bake.
+
+**The three pages that looked like the same case were opened 2026-08-11** (STATUS § 45,
+`docs/RESEARCH/evidence_tiers_round_two.md`), and two of them were. `prefire062` reprints
+**Andreas**, who quotes the *Chicago American* of 9 July **1836** (not 1835) for the Lake and
+La Salle frog pond — tier 3, on Andreas and deliberately not on the newspaper nobody here has
+opened. `prefire276` reprints the *Chicago Magazine* of 15 May 1857, the same document and the
+same reading as `prefire273` — tier 2, with the 1856 *Tribune* notice beside it left undeclared
+because no claim here rests on it. Neither page is cited by anything today, so the ladder count
+stays at six; both are queued research (S2 parcel (c)'s pond, and the fort) that can now be
+graded honestly when it is written.
+
+**`wikipedia_chicago_river` was NOT the case, and that is the finding with a consequence.** It
+reprints nothing — one sentence of encyclopedia prose paraphrasing Swearingen with a footnote to
+**Quaife 1913, pp. 373-377**, which is the primary printing the record has asked for since it was
+written. Two things come off it:
+
+| queued | what it costs |
+|---|---|
+| ~~Fetch Quaife 1913 pp. 373-377 and record Swearingen's 1803 soundings at their own rung~~ | **DONE 2026-08-11** — `quaife_1913_swearingen`, the dataset's first tier-1 written eyewitness document; memo `docs/RESEARCH/swearingen_1803.md`. And **the price above was wrong**: `generators/terrain_inputs.py` strips `sources` from the terrain hash along with the prose, so citing it from `terrain_spec.json` cost nothing and was done in the same slice. A `confidence` is the mesh input, not a citation |
+| **ground `water`: `documented` → `inferred`** — the flat surface rests on an unfootnoted encyclopedia sentence about sluggish flow, not on Swearingen, who gives no gradient and measures 1.2 miles downstream | a confidence is a mesh input: it stales the ground and lands with its Blender bake, exactly like the four `drloih` values. **Better argued as of 2026-08-11 and unchanged in direction**: reading Swearingen made the case stronger rather than rescuing it, because his 'dead water' is attributed in the same clause to a mouth stopped by sand — the `e1830_natural` condition the 1834 cut removed. He is deliberately NOT cited on the water plane; the block's note says so where a visitor reads it |
+
+That is the **first of the six warnings settled in the over-graded direction** — the source is
+correctly tiered and the value is not.
+
+**And the primary printing arrived 2026-08-11, which cost the encyclopedia one of its two bank
+figures** (STATUS § 46, `docs/RESEARCH/swearingen_1803.md`). Quaife's Appendix I is now
+`quaife_1913_swearingen` at tier 1, read from two Internet Archive scans that agree character
+for character. Wikipedia's *"6 ft on the north"* is nowhere in the journal: Swearingen gives no
+north-bank height, only a bounded difference flagged as made *by appearances*, and 6 is what a
+later writer got by subtracting the maximum from 8. What the paraphrase dropped matters more —
+*"the banks above are quite low"* is the only sentence in the passage about the reach this
+project models, and it is attached to the spec's `bank` block now, which cited nothing before.
+Fourth citation found misdescribing its own page, and the first found by opening the document
+rather than the host. ~~Six pages at tier 4 or weaker still declare nothing
+(`chicago_temple_history`, `chicagology_first_post_office`, `chicagology_lastwardance`,
+`chicagology_prefire274`, `drloih_hotels`, `drloih_wolf_point`), counted by the validator every
+run, and the two `drloih` pages are not solvable this way.~~
+
+**The four that could be opened were opened 2026-08-11, and the count reads two** (STATUS § 47,
+`docs/RESEARCH/evidence_tiers_round_three.md`). `chicagology_lastwardance` is the *Chicago
+Tribune* of 14 August 1910 printing **John Dean Caton's own written recollection** — an
+identified eyewitness, not the "later compilation of recollections" the record claimed — and is
+rung 2. `chicagology_prefire274` is *Chicago Magazine*, March 1857, the installment before
+`prefire276`, and is the first source here graded **by which part of it you stand on**: rung 2
+for the landform this project cites, no better than 3 for its 1803-1812 fort narrative, which
+nothing cites. `chicagology_first_post_office` was read and **left at 4** — Currey 1922 naming
+no authority for the post-office facts — which is what this section meant by *unread rather than
+wrong*. `chicago_temple_history` reprints nothing and says so in `carries_no_document`; its
+missing `archived_url` is filled from a 2026-06-05 snapshot verified against both quotations,
+one standing warning gone.
+
+**The finding is on the post-office page and it touches S9.** The 66 ft street module — the
+dissent against the 80 ft every platted placement is offset from — is *not part of Currey's
+article*: it interrupts his chronology, its subject is a survey in an article about buildings,
+and it is the one paragraph naming no authority while writing "downstate Randolph County". It is
+undeclared, off the ladder, and `data/traces/street_control.json` no longer says "Currey states".
+No number moves — the figure was already excluded by measurement — but the dissent is now a
+sourceless website sentence rather than a named historian, which is a different thing for the
+streets parcel to weigh.
+
+**What is left of this thread is not research, and as of 2026-08-11 that is true of all six.**
+Only `drloih_hotels` and `drloih_wolf_point` still declare nothing, and this method does not reach
+them: the pages are unfootnoted, mutually contradictory and unarchived, and their four values need
+the VALUE regraded, which is a mesh input. **That slice, ground `water` and ground
+`surface_materials.south_division` are one bake** — five values, six warnings, take them together
+on a runner with Blender. Every page behind the six has now been opened and the verdict on every
+one of them is the same: the source is tiered correctly and the value is graded too high.
+
+
+**The repair queue that came before it, all of it DONE — three attributes that were recorded
+and unbuilt.** Found by the omission gate on 2026-08-10 and admitted meanwhile by L20 and L21.
 
 | record | attribute | what the archetype reads | effect |
 |---|---|---|---|
@@ -613,6 +782,13 @@ Per-cluster parcels, each one file per structure so parallel agents never collid
 | Crossings | ~~North Branch bridge~~ **DONE 2026-08-10** · South Branch raft bridge (floating — needs its own archetype, see `bridge_timber_params`) · Dearborn Street drawbridge (200 ft with a 60-ft draw, a different animal and outside the current terrain box) |
 
 ## S6 — Flora and fauna
+
+**And the ground's surface, which is now a declared omission rather than an unstated one**
+(2026-08-10, L35): the terrain spec grades five surface materials — the divisions' loam over
+quicksand over blue clay, the marsh strip's peat and sedge, the channel's silt — and the mesh is
+one earth colour. A per-zone surface treatment driven by those entries retires L35; the palette
+has to be argued from the sources rather than picked, which is the same trap the street surface
+is (§ S9).
 
 Per-zone parcels from the dossiers: 10 flora zones, 7 fauna zones. Honor the July phenology
 rules — big bluestem is vegetative in July, cordgrass is the tall flowering element, ramps are
@@ -824,6 +1000,191 @@ And the sidecars are re-derived on every commit (`compile_scene.py --all --check
 walkthrough and the archive together if a record edited without a recompile is a gate failure
 rather than a discovery on the deployed site. All eight were byte-identical on the first run.
 
+**Done 2026-08-10 — the third category, and the promise inside it.** The entry above ends by
+saying the watch list is deliberately not shown and that its uncertainty belongs on the records
+and in the popup. That was right about the one of the four that is STANDING and wrong about the
+three that are not: an empty lot cannot say *researched, and still open* any more than it could
+say *researched and ruled out*. The four are structured data now — what is open, what settling it
+would change, a dossier pointer that must resolve to a committed file and to a line inside it,
+and citations that resolve or a sentence saying why there are none — and they render under **What
+is still an open question**, with the standing one chipped *standing here* rather than listed
+among absences. `check_watch_list` enforces the file's own sentence, which had never been
+enforced: an entry naming a committed record must name the claim carrying the doubt, and that
+claim may not be `documented`, so the day the evidence arrives the gate fails instead of the list
+quietly going out of date. Nothing in the committed four was wrong — the value is the next entry
+— and the near miss it did surface is `western_hotel`, whose line still read as though its
+build-date question were open a day after the record settled it. See STATUS § 37.
+
+**Done 2026-08-10 — the card answers "was it here?", which it never had.** Every gate and every
+panel above asks how sure we are of something we built. None of them was asking the question a
+visitor asks first, and the card could not answer it: `popup.js` has read
+`sidecar.documented_range` since the card was written and `compile_scene.py` never emitted the
+field, so the line rendered as nothing on every building for the life of the project. The phase's
+claim about itself now travels to the card in the attribute shape — the dated span with its
+confidence, sources and reasoning; the phase's `change_note` in the record's own words; and the
+position's argument behind a `why` on the line that already showed its chip. Dates print as
+recorded, because seven of the eight spans end on 31 December of a year and that is a bound, not
+a day anybody wrote down.
+
+The failure class is worth carrying rather than the fix: **two halves each correct about their
+own side of an interface neither states**. The compiler was consistent with itself, which is all
+`--check` proves; the record validated clean; the markup was right. So the test opens the actual
+card and reads what a visitor would see, and asserts the discriminating pair — the Sauganash
+`documented`, Hogan's store `inferred` — because a card stamping one grade on all eight would
+have passed any check for "there is a chip". Any other sidecar field the renderer reads is in the
+same category; `test_the_card_is_fed_the_claims_it_renders` is where the next one goes.
+One gate came with it: a `documented` date span now owes a resolving source, like every other
+`documented` value. Still not on the card: the footprint's reasoning, because the footprint has
+no display value that is not itself a derivation — see STATUS § 28.
+
+**Done 2026-08-10 — the sidecar interface is stated, and stating it found the second field
+falling through it.** The entry above ends with a sentence where a mechanism belongs — *any
+other sidecar field the renderer reads is in the same category* — and one of them was already
+broken. The provenance card asks the sidecar `asset_is_placeholder`, a field `compile_scene.py`
+has never written and, compiling from `data/` alone, cannot: so the note telling a visitor *this
+shape is a stand-in, not a bake from the record* has never rendered on any building.
+
+`check_sidecar_contract` derives the interface from both halves rather than asking either to
+declare it — what is emitted comes off the committed sidecars, which `--check` already proves
+are what the dataset compiles to, and what is read is scanned out of the renderer's own modules.
+27 reads across six modules; one resolved to nothing. The fix moves the fact instead of inventing
+a field: a placeholder is something the GLB says about itself, `scene-loader` has read it at load
+time all along, and it now reaches the card on the registry entry. The scan sees a read that
+names a field while the sidecar is in hand and not one made through a function parameter — which
+is the direction both faults came from, since that is where the field name is chosen. The
+reverse direction is a note, not an error, and it has one finding in it: `research_note` is
+compiled into every sidecar and shown nowhere. That is an unshipped claim rather than dead
+weight, and it belongs to whoever next works on the card.
+
+**Done 2026-08-10 — and that claim is shipped: the record's own account is on the card.** The
+last entry ends by handing `research_note` to whoever next worked here, and this is that slice.
+It is a different fault from the two above it and the difference is the point: nothing was
+broken. The card asked for nothing it was not given, the compiler wrote what it should, every
+gate was right — **the field simply had no surface**, which is how a claim goes unshipped when
+there is no fault for a check to find. Every structure record carries one, written for a reader:
+what it actually asserts, which sources disagree, which was believed and why, and where the
+record is weakest.
+
+Shown **verbatim**, and the smoke pins that with an exact string comparison against the sidecar
+rather than a substring match — a note whose subject is the limit of the evidence is the last
+text on this card that a program should trim or summarise, and a first sentence with an ellipsis
+would pass any looser check. The discriminating case is asserted as everywhere else on this
+card: a second building gets its own account, so one fixed block of prose fails. Collapsed by
+default for the liberties' reason — several hundred words open would push the citations off a
+62vh panel on a phone. The unread-field note is down to `archetype`, `scene` and `target_date`,
+which are machinery a visitor has no reason to see, so the list is empty of unshipped claims.
+Untested and stated: the empty state, since all eight records carry a note.
+
+**Done 2026-08-10 — the outline says how much of itself is evidence, and the silence is countable
+now.** The card graded a roof pitch and said nothing whatever about the largest claim a visitor is
+standing in front of: `compile_scene.py` carried `footprint.confidence` and dropped
+`footprint.sources` and `footprint.note`, so six placeholders that say PLACEHOLDER in their own
+first line reached nobody, and neither did the two footprints that are evidence. **Was it this
+shape?** is a section of its own, rendered by the same claim renderer as the presence line so the
+two cannot be qualified differently.
+
+The card prints **no dimension**, and STATUS § 28's argument for that is unchanged — the only
+printable value is the polygon, reducing it to a box is a measurement the record does not make, and
+the shape is already in front of the visitor at full size. `claimRow` renders no value cell for a
+`null` value and the smoke pins that across all eight buildings.
+
+Two things worth carrying. **The compensating disclosure was a sentence, not a build**: the massing
+rule was narrowed to stop dithering a documented building over an unknown SIZE, on the recorded
+understanding that the size would be carried on the card, and nothing carried it. **And this is the
+second graded-and-silent claim found by reading a file** (`documented_range` was the first), so it
+has a count rather than a third discoverer: the smoke matches each record's graded claims against
+the chips its card draws, for every building, and reports all eight one chip short when run against
+the previous commit. What it cannot see is a chip whose reasoning is wrong, and it cannot reach a
+field the compiler never writes — `check_sidecar_contract`'s unread report is top-level only, and
+widening it to leaves was refused because the scan cannot follow a value into a function.
+
+**Done 2026-08-10 — the open question reaches the building it is about, and the panel's promise
+about the card is a gate.** § 26 said the watch list's uncertainty belongs on the records and in the
+provenance popup and left it unqueued; the panel half shipped and its entry for the one STANDING
+structure tells a visitor, in rendered text, that *the provenance card shows it*. The card showed
+the dated claim with an `inferred` chip and never that the claim is a tracked open question — not
+the dispute behind it (the builder's own statement against a hotel chronology), not that the later
+date would make the Western Hotel brand new on the scene date, not that the grade is held down on
+purpose. The card now carries the panel's own entry through the panel's own renderer with an
+`onCard` flag, filtered by `openQuestionsFor` exactly as the liberties are, so one uncertainty
+cannot be described two ways. The other seven buildings render nothing rather than a reassurance,
+because "no open questions recorded" would read as settled and the list cannot promise that.
+And `check_watch_list` now holds `carried_by` to a claim the card really renders — the path is read
+out of `popup.js` by § 29's scanner — which is the third instance of a sentence in this project
+describing a surface it could not see. Data and meshes untouched; nothing was re-baked. STATUS § 41.
+
+**Done 2026-08-11 — a rung is a judgement about a document, and the document had never reached
+the card.** Four slices (§ 44-47) established which page carries which document and what each
+one cannot supply; all of it landed in `data/sources/*.json` and none of it left the repository.
+So a visitor following a citation reached a present-day blog stamped *tier 2 · near-primary
+recollection* with nothing saying it reprints the *Chicago Tribune* of 14 August 1910 carrying
+John Dean Caton's own account — the ladder made to look like an over-grade by the one field that
+would have explained it. Every citation now carries the document it reprints with that
+document's date, or the finding that the page reprints none, and the source's own
+`what_it_supplies` / `what_it_does_not_supply` behind a `<details>`.
+
+The fault is a third kind and it is why the gate is shaped the way it is. § 28 was a field read
+and never emitted; § 30 was a field emitted and never read. This one **never entered the
+interface**, which neither direction of `check_sidecar_contract` can see — a shape unioned over
+what is emitted cannot report what was never offered. The bounded set is the schema, so
+`compile_scene.SOURCE_FIELD_SURFACE` partitions all 22 properties and `check_source_surface`
+fails on a property in neither half, on a visitor-facing field no compiled citation carries, and
+on one `citations.js` never reads. Adding a field to a source record now costs one line saying
+whether a visitor sees it.
+
+Three things worth carrying:
+
+- **A partition inside a field is legitimate and has to be argued.** The card gets the document
+  and the limits; it does not get the `note` on a `transcribes` entry or the reading in
+  `carries_no_document`, because both quote rung numbers, name files in `data/` and record HTTP
+  statuses — they are addressed to whoever re-grades the source. Stated in `citations.js` and in
+  STATUS § 48 rather than left looking like an oversight.
+- **One renderer for every context stopped being right, and a test said so first.** The reprints
+  line arrived under "What is not here" and named *"The Old Western Hotel"* — a building standing
+  200 m away — failing § 26's assertion that a standing building may not appear on that list. The
+  section keeps the plain citation, `evidence: false` says so at the call site, and a new
+  assertion pins it so the option cannot flip back.
+- **Markup inside a list item makes counting selectors wrong.** A nested `<ul>` broke two
+  unrelated assertions enumerating `.cites li`; they are `.cites > li` now. Second occurrence of
+  this shape.
+
+**Done 2026-08-11 — the other three derived documents are an interface too, and both sentences
+they were hiding were written for a visitor.** The entry above closes the source-record
+direction. What it does not close is the *document*: `sidecar_shape` says in its own docstring
+that it covers the per-structure sidecar and not `exclusions.json` or `terrain.json`, because
+those "have their own readers and their own shapes" — so the interface where § 28, § 29 and § 30
+each found a fault was guarded for one document out of four. `check_derived_contract` covers the
+other three, both directions, and found two on its first run.
+
+The ground now says **which ground** its twenty claims are about — the spec's own sentence about
+the forks quadrant, compiled into every terrain sidecar since the terrain landed and asked for by
+nobody, which is the first question a visitor has after watching the ground end from the air. And
+the liberties list says what a liberty is **in the document's words**: `liberties.json` carries
+that sentence, `index.html` carried a hand-typed paraphrase of it with nothing holding the two
+together, and the paraphrase is gone.
+
+Three things worth carrying:
+
+- **The binding is declared, not inferred, and that is the design.** A sidecar names itself;
+  these are fetched into `doc` and handed entry by entry to a renderer, so the field name is
+  chosen against a function parameter — § 29's stated limit. `DERIVED_DOCUMENTS` writes the
+  binding down and the gate holds the module to it both ways, including a root bound where the
+  document has nothing.
+- **`internal` is § 48's partition on a second family**, over what the compiler emits rather than
+  over a schema, checked in both directions so a declaration cannot outlive its field or be wrong
+  about the visitor. Citation leaves stay with `check_source_surface`: one field, one owner.
+- ~~**A read is a name, not a render — and one is still outstanding.**~~ **DONE 2026-08-11**
+  (STATUS § 50). `exclusions.json`'s `standard` and `uncertain_standard` were read into
+  `mountExclusions`'s return value, rendered by nobody, and restated by hand in `index.html`;
+  both are mounted verbatim now and the paraphrases are deleted. It was the estimated size — a
+  `standardMount` and two paragraphs — and it found one thing the estimate did not: the
+  open-questions paraphrase had drifted into a **hand-typed count** of the watch list ("three of
+  these … and the fourth"), which goes wrong the day a fifth question is recorded and which no
+  gate in this project could have held. The smoke asserts the compiled sentence verbatim, once,
+  and that the count is gone. **The gate's limit is unchanged and was not widened**: a read is
+  still a name, the scan still cannot follow a value into a function, and the next such field
+  will be found by a person reading a module.
+
 **Done 2026-08-10 — the staleness gate is a check now, not a sentence.** Every rule above
 assumes the shipped mesh is the one the record describes, and nothing was testing that: the
 manifest had carried an `inputs_sha256` per asset since the first bake and no code ever
@@ -862,6 +1223,134 @@ on the table, both real and both bigger than a slice:
 - **Walking the deck** (STATUS § 21) is now measurably blocked rather than merely unbuilt: even
   with surfaces-above-the-ground in the walker, there is nothing to step from. The two are one
   piece of work, in that order.
+
+**Done 2026-08-10 — the ground states its own claims, and stating them found the second file
+where rule one was never checked.** Every honesty surface above belongs to a building. The
+terrain grades itself as carefully as any record — `documented` water, `inferred` division
+levels off period narrative feet, a `conjectural` bank face, a channel section whose note says
+it carries no evidence at all — and said none of it to a visitor, while dithering under the
+confidence view like everything else, which shows that a judgement exists and nothing about
+what was judged. The Evidence panel now carries *The ground you are standing on*: 20 claims
+with the spec's own figures, its reasoning verbatim and its citations joined, derived by
+`compile_scene.py` and re-derived by `check.sh`. `check_terrain_claims` holds them to the
+record's rules — sources resolve, `documented` owes evidence, no land elevation may claim to be
+documented — off the same enumeration the panel renders, so the checked set cannot stop being
+the displayed set. L32 and L33 admit the bank face and the channel profile, which have been
+conjectural in the data since the terrain landed and were admitted nowhere.
+
+Two follow-ons, both real, both stated in STATUS § 32 rather than quietly dropped:
+
+- **Three claims are `inferred` with no reasoning at all** — the north and west division soils
+  and the channel's. On a record that is an error; here it is a warning, because the note has to
+  go in `terrain_spec.json`, whose *bytes* are the terrain's staleness hash, so a sentence that
+  cannot move a vertex re-stales the ground and needs a bake. **The slice that writes those three
+  notes lands the bake with them and turns the rule into an error.** Worth doing at the same time:
+  `terrain_inputs_sha` still hashes whole files, which is the false positive STATUS § 15 removed
+  from the building hash arriving on the terrain side.
+- ~~**The liberties coverage gate cannot see the terrain spec.**~~ **DONE 2026-08-10** — see the
+  entry below.
+
+**Done 2026-08-10 — the ground answers to the coverage gate, and the first thing it asked for
+was an invention nobody had noticed.** The entry above names its own limit: the terrain's
+inventions reached the Evidence panel and stayed outside the gate, so L32 and L33 existed
+because a person noticed. `Covers:` now has a second namespace, `terrain.<epoch>.<claim>`,
+enumerated by the same `compile_scene.ground_claims` the panel renders from and matched in both
+directions — an unclaimed conjectural ground value fails, and so does a claim on a block that is
+not conjectural, on an epoch that is not committed, or on a claim id the spec does not grade.
+
+Six conjectural ground claims; five had prose behind them (L14 micro-relief, L15 the two swales,
+L32 the bank face, L33 the channel section) and adding their `Covers:` fields was bookkeeping.
+**The sixth had nothing.** The north-side slough's existence and course are Wright 1834's; its
+one-foot bed and 1.2 m e-fold are in the model because a shallower channel stops reading as
+water, and no list mentioned them. **L34** is new. Third check in this family to find something
+on its first run.
+
+Two decisions are asserted rather than assumed, and both are about naming. The epoch is in the
+token because `docs/EPOCHS.md` versions the ground, so a later shoreline's inventions must not be
+discharged by this one's admission — the self-test pins that. And the terrain is not modelled as
+a structure record called `terrain`: the domains are separate obligations, neither discharges the
+other, and the claim carries its `domain` rather than leaving a reader to infer it from a token's
+shape. ~~What is still outside the rule is the ground's **omissions** — there is no terrain
+`CONSUMED`~~ — **DONE 2026-08-10, see the entry below**; the grades stay block-level, so L34
+admits more than the data does.
+
+**Done 2026-08-10 — the ground has to say what it does not build, and it is not made of what it
+says it is made of.** The entry above names its own limit: the coverage rule fires on a
+`conjectural` tag, so an invention was demanded and an omission left no trace. The terrain has a
+`CONSUMED` now — the spec figures `terrain_gen.build_field` actually reads — and
+`check_ground_geometry` holds every other figure the Evidence panel shows to a `mesh:`
+declaration on its block, in both directions, with `absent` and `simplified` owing a `Covers:`
+token exactly as they do on a record.
+
+**Five surface materials, two of them `documented`, describe a soil no surface in this model is
+made of.** The ground mesh is one earth colour edge to edge; `terrain_gen.py` builds elevation
+and nothing else. That is the Wolf Point wolf sign one domain over — the project's strongest
+chip over something a visitor is emphatically not looking at — and L35 is where it is admitted.
+The rows say *not modelled from this*, in the provenance card's words, out of the provenance
+card's module (`renderers/web/js/geometry.js`, now shared by both surfaces). Colouring ground by
+zone is **S6** and the declaration comes off the day the generator reads the value.
+
+Three things worth carrying, all of them about where a declaration may live:
+
+- **`terrain_inputs.CONSUMED`, not `terrain_gen.CONSUMED`.** An archetype declares its consumed
+  set beside the code that reads it, and that only works because a params module's bytes are out
+  of the building hash. `terrain_gen.py` goes into the ground's hash whole, so the map re-staled
+  the terrain on sight and asked for a Blender bake to land a constant. It sits beside the
+  denylist instead — same file, same subject — and `test_declared_terrain_reads_are_real_reads`
+  scans the generator for a read of every declared key, which is what co-location would have
+  bought.
+- **The key is `mesh` because `geometry` is taken.** In a GeoJSON that word is the coordinates;
+  stripping it from the hash would have taken every traced bank line out of the ground's
+  staleness. A test written for § 34's purpose refused it on the first run.
+- **`restated_in_code` is a fourth state and only the ground needs it.** The water plane's zero
+  and the bank's ease-out are written in the spec and separately written in Python. The mesh
+  agrees with them and does not read them; that is a warning to whoever edits the generator rather
+  than a caveat to a visitor, so it carries no marker. **What held the two halves together was
+  nothing, and since 2026-08-10 (STATUS § 36) it is `terrain_inputs.RESTATES`**: each restatement
+  names the half it agrees with — a figure in the heightfield the bake wrote, another figure in
+  the same block, or a line of `terrain_gen.py` — and `check_restated_agreement` compares them.
+  Switching it on found three figures making the promise under the wrong state: every division's
+  `bank_crest_ft` restates `near_ft` and was declared `record_only`, which owes nothing and asks
+  nothing. All seven agree today; the value is that the next edit to a division level cannot leave
+  the panel showing the old crest.
+
+**Done 2026-08-10 — the sum under five buildings is data now, and it was five paragraphs.** Every
+gate above asks whether a claim is honest; this one asks whether the arithmetic beneath a
+coordinate was ever redone. Five placements are the same construction — a modern intersection
+centre off OpenStreetMap, half an 80 ft platted street to the kerb, a named face on it — written
+out once per record, with the number 12.2 appearing in five paragraphs and no file.
+`data/traces/street_control.json` holds the module and the control once;
+`check_position_derivations` rebuilds every placement from them and holds the rest to a
+declaration; and the sums were all correct, which is the least interesting part.
+
+Three things worth carrying:
+
+- **Ask the placed shape, not the coordinate.** A record's position is the footprint polygon's own
+  origin, so a facade bearing turns it off the corner the claim is about — the Green Tree's
+  easting sits 24.4 m from its intersection where the claim says 12.2. A check comparing
+  coordinates to kerbs passes a correctly placed building and a rotated-out-of-its-lot building
+  with equal confidence, so the self-test's discriminating case is one building appearing twice.
+- **A disagreement you cannot act on gets recorded and left.** The 80 ft / 66 ft street width
+  (`docs/RESEARCH/hogan_store.md` § 5) sat because settling it meant five hand-redone sums. It is
+  now one edit and a printed list of which buildings moved, 2.13 m each.
+- **Writing the control down found two coordinates for one junction** — Canal and Kinzie, averaged
+  over five OSM nodes for the georeference and three for the bridge, 3.8 m apart. The bridge is
+  not moved: its span is the distance between the traced banks along its centreline, that distance
+  is a mesh parameter, and re-deriving it asks for a bake. The variance is declared and checked
+  instead. See `docs/RESEARCH/street_module_1830.md`.
+- **The control point the whole west division is measured from is inside a block** (2026-08-10,
+  STATUS § 42): Hathaway HA is 52.4 m west of the Canal Street corridor and Wright G5 20.2 m west,
+  both with block 28's number printed across them. G5 is a datum GCP, so the exposure is priced
+  (15.0 m of origin movement, RMS unchanged) and queued rather than taken — adopting it re-derives
+  every coordinate and stales every mesh. `check_street_module` fails the day either correction
+  lands, because the finding's inputs would have moved.
+- **And re-fetching the control the next day said which of the two was right** (2026-08-10,
+  STATUS § 39). A junction is the nodes shared by the two named *surface roadways*; two of Kinzie
+  and Canal's five committed nodes are bikeway crossings, and the other three are the bridge's
+  reading to a centimetre. The same inclusion had put Randolph and Canal 4.44 m out, which moved
+  the Western Hotel. `tools/refetch_control.py` re-derives a junction from the street names and
+  re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
+  `tools/check.sh`.
 
 ## S8 — Milestone 1
 

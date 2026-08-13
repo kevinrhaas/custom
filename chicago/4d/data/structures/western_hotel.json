@@ -19,17 +19,36 @@
         "note": "THE BUILD DATE IS DISPUTED, 1834 AGAINST 1835, AND THE DISPUTE IS RESOLVED HERE RATHER THAN LEFT OPEN — but the reasoning matters, because the two dates mean different things for this scene. chicagology reports W. H. Stow, who 'came to Chicago about 1833', saying of his own hotel that 'it was built in 1834'. The hotel chronology says it 'opened in 1835'. 1834 is adopted because it is the BUILDER'S OWN STATEMENT about his own building, recorded with the same detail that gives the 40 ft front, the 60 ft wing and the yard, against an undated one-line entry in a chronology that also mis-sizes the building. THE PHASE MECHANISM WAS CONSIDERED AND DELIBERATELY NOT USED. If the 1835 date were right, the hotel might have been unfinished or brand new on 1835-07-01, and a construction phase would be the honest way to show that. But a construction phase would have to invent a start month, a duration and a state of completeness, none of which any source gives, and it would silently adopt the weaker date to do it. One completed phase on the better-attested date, with the alternative recorded here and in the dossier, claims less. If the 1835 date is ever confirmed, split this phase then. The end of the range is set at the end of 1840, past the last account reached that describes the house in operation; it is not a demolition date and no source reached gives one."
       },
       "position": {
-        "utm_e": 446931.8,
-        "utm_n": 4637118.0,
+        "utm_e": 446929.65,
+        "utm_n": 4637114.13,
         "rotation_deg": 0.0,
         "symbolic_location": "South-east corner of Randolph Street and Canal Street, west side, one block south of the Green Tree; a 40 ft front with a 60 ft wing in an L, stables and a wagon yard behind, with entrances to the yard from both streets.",
         "confidence": "inferred",
+        "derivation": {
+          "method": "platted_corner",
+          "control": "randolph_canal",
+          "constraints": [
+            {
+              "face": "west",
+              "street": "canal",
+              "kerb": "east",
+              "offset_m": 0
+            },
+            {
+              "face": "north",
+              "street": "randolph",
+              "kerb": "south",
+              "offset_m": 0
+            }
+          ],
+          "note": "A south-east corner lot: the north face on Randolph Street's south frontage, the west face on Canal Street's east frontage. This is the L-shaped footprint, so 'north face' is the northernmost point of the polygon as placed, which is the front of the L and the face the corner claim is about."
+        },
         "sources": [
           "chicagology_prefire278",
           "drloih_hotels",
           "osm_streets_2026"
         ],
-        "note": "PLACED 2026-08-09. The corner is documented and agreed by both sources — chicagology gives 'southeast corner of Randolph and Canal streets' and the hotel chronology gives 'the S.E. corner of Canal and Randolph streets' — but the COORDINATE is derived, so the tag follows the weaker half. Method, the same as the Sauganash's: the modern intersection centre was read from OpenStreetMap (EPSG:26916 E 446919.6, N 4637148.5) and the footprint offset 12.2 m east and 12.2 m south of it, half an 80 ft platted street in each direction, so that the building's west face sits on the Canal frontage and its north face on the Randolph frontage of a south-east corner lot. The offset south is taken from the footprint's north face, which is 18.29 m above its origin, so the origin's northing is 4637148.5 - 12.2 - 18.29. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 0, due north onto Randolph. WHICH STREET THE 40 FT FRONT FACED IS NOT ATTESTED: chicagology says only 'The front was about forty feet and the wing sixty feet. It was in an L.' Randolph is adopted because it was the through street from the west and this was the house 'for all the farmers town from the west', for farmers and teamsters. If the front was on Canal instead, the same L is rotated to bearing 270 and the wing runs east rather than south — an alternative that costs nothing to test once the lot geometry is read off Wright 1834."
+        "note": "PLACED 2026-08-09. The corner is documented and agreed by both sources — chicagology gives 'southeast corner of Randolph and Canal streets' and the hotel chronology gives 'the S.E. corner of Canal and Randolph streets' — but the COORDINATE is derived, so the tag follows the weaker half. MOVED 4.44 m ON 2026-08-10, and the move is the correction the control file owed. Method, the same as the Sauganash's: the modern intersection centre is read from OpenStreetMap and the footprint offset half an 80 ft platted street east and south of it, so that the building's west face sits on the Canal frontage and its north face on the Randolph frontage of a south-east corner lot; the offset south is taken from the footprint's north face, which is 18.29 m above its origin. WHAT CHANGED IS THE INTERSECTION CENTRE, not the method and not the corner. The 2026-08-09 reading (E 446919.6, N 4637148.5) was taken without recording which nodes it averaged, and re-deriving the junction on 2026-08-10 showed why that mattered: Randolph and Canal is a single crossing of the two street centrelines at E 446917.46, N 4637144.61, and the older number is reproduced only by averaging the roadway crossing together with three BIKEWAY crossings, which sit a few metres off the centrelines they follow. The road-only reading is adopted (data/traces/street_control.json § node_rule), so the origin is now 446917.46 + 12.192 east and 4637144.61 - 12.192 - 18.29 north. The building moves 2.14 m west and 3.89 m south. That is an order of magnitude inside the georeference's own ±20 m and changes nothing about the corner, the lot or the frontages; what it changes is that the coordinate can now be re-fetched from the source it cites, which it could not be before. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 0, due north onto Randolph. WHICH STREET THE 40 FT FRONT FACED IS NOT ATTESTED: chicagology says only 'The front was about forty feet and the wing sixty feet. It was in an L.' Randolph is adopted because it was the through street from the west and this was the house 'for all the farmers town from the west', for farmers and teamsters. If the front was on Canal instead, the same L is rotated to bearing 270 and the wing runs east rather than south — an alternative that costs nothing to test once the lot geometry is read off Wright 1834."
       },
       "footprint": {
         "polygon": [

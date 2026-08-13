@@ -1,0 +1,118 @@
+{
+  "_doc": "The modern street control every platted placement in this dataset is offset from, and the platted street module those offsets use. Until 2026-08-10 both lived only in the prose of each record's position note, restated once per building: 'the modern intersection centre was read from OpenStreetMap (E …, N …) and the footprint offset 12.2 m, half an 80 ft platted street'. Five records said it, nothing checked it, and changing the module would have meant editing five paragraphs and re-doing five sums by hand. The figures here are the ones those placements actually used; tools/validate.py recomputes each placement from them (check_position_derivations) and the records declare which control they stand on.",
+
+  "node_rule": "HOW A CONTROL POINT IS MADE FROM OpenStreetMap, written down 2026-08-10 because leaving it unwritten had already produced two wrong coordinates. A junction is the set of nodes SHARED BY THE TWO NAMED SURFACE ROADWAYS in `osm_ways`, averaged — the georeference's own rule (data/traces/gcp/hathaway_1834_gcps.json: 'multi-node crossings averaged'), since a crossing of two dual carriageways is several nodes and its centre is their mean. SURFACE ROADWAYS ONLY. Ways tagged highway=construction or proposed are not streets yet; ways under a different name are a different street, which matters here because Market Street's successor is three stacked streets (North Upper Wacker Drive, North Lower Wacker Drive, a service drive beneath that) and only the top one is the plat's; and BIKEWAYS AND FOOTWAYS ARE EXCLUDED because they are mapped a few metres off the roadway centreline, so averaging one in moves the junction centre off the streets the plat module is about. A name query written as a substring match pulls them in silently — 'Canal Street' matches 'Canal Street Bikeway' — and that is exactly what happened at randolph_canal and at kinzie_canal. tools/refetch_control.py implements both halves: --discover re-derives the node set from the names, and the default pass re-fetches the recorded ids and reports the drift. It needs the network, so it is on-demand and not part of tools/check.sh.",
+
+  "platted_street": {
+    "id": "thompson_module_1830",
+    "width_ft": 80,
+    "width_m": 24.384,
+    "half_width_m": 12.192,
+    "confidence": "inferred",
+    "sources": ["hathaway_1834", "thompson_plat_1830"],
+    "note": "80 ft is the street width annotated on Hathaway 1834 and read off the sheet during the datum work; this project applies it town-wide to Lake, Market, Canal, Randolph and Kinzie. MEASURED 2026-08-10, AND THE RIVAL FIGURE IS OUT: eleven platted corridors have now been measured off the two 1834 sheets, block boundary line to block boundary line, and every one of them falls between 75.7 and 92.8 ft. None comes within 9 ft of 66. Eight of the eleven were N-S streets; the three E-W corridors added 2026-08-11 read 79.4, 81.5 and 86.5 ft, so the figure no longer rests on one axis of the grid. See `measured` below; the gate is check_street_module in tools/validate.py, which re-derives every one of those metres from its committed pixels, offline, on every commit. It stays INFERRED rather than documented and the reason has CHANGED. It is no longer that the sheet was never read street by street; it is that what has now been read is the corridor these draughtsmen DREW in 1834 — median about 4 ft wide of 80 on both sheets — while this figure claims what Thompson PLATTED in 1830. Between those two sit 3.7-4.5% of paper stretch and the placement of a pen line, so the measurement settles WHICH candidate and not the platted figure to the foot. Alleys read 17.1-18.7 ft on the same traverses, which is consistent with 18 ft and NOT conclusive against 16: two feet is inside this method's error, and a reading that cannot separate two figures does not get to pick one.",
+    "measured": {
+      "file": "data/traces/vectors/street_corridors_1834.json",
+      "tool": "tools/measure_street_widths.py",
+      "read_on": "2026-08-10; the E-W streets 2026-08-11",
+      "sheets": ["hathaway_1834", "wright_1834"],
+      "n_corridors": 11,
+      "median_ft": 83.7,
+      "range_ft": [75.7, 92.8],
+      "nearest_candidate_ft": 80,
+      "excluded_ft": [66],
+      "note": "Two traverses per sheet. Along the block row south of Lake Street: four N-S corridors on each at a centre-to-centre pitch of 116.6-123.2 m, which is the 300 ft block plus one street the plat describes and is the check that the reading is the module rather than the tool's own thresholds. Those corridors are Desplaines, Jefferson, Clinton and Canal, named from the sheets' own street labels. AND DOWN THE LOT COLUMN EAST OF CANAL, 2026-08-11: three E-W corridors on the Wright sheet, Lake at 79.4 ft and Randolph at 81.5 ft — both named by their committed modern junctions rather than by counting west from anything — and one unnamed corridor a block further south at 86.5 ft. That is the half of the reading the first pass measured and threw away, because nothing then told a Wright lot strip from a street. What tells them apart is `clear_run`: how far a candidate is open ground down its own centreline, which a strip of lots cannot be for a block face. It rejected ten lot strips on that traverse. The same traverse reads NOTHING on Hathaway — no candidate there has another a block pitch away from it — so the E-W widths rest on one sheet and are not cross-checked. See docs/RESEARCH/street_module_1830.md § 10."
+    },
+    "dissent": {
+      "width_ft": 66,
+      "alley_ft": 16,
+      "sources": ["chicagology_first_post_office"],
+      "status": "excluded by measurement, 2026-08-10",
+      "note": "The page at chicagology_first_post_office states that Thompson's 1830 plat laid the town out with 'straight streets uniformly 66 feet wide (the length of a surveyor's chain) with alleys 16 feet wide'. THE ATTRIBUTION WAS WRONG AND IS CORRECTED 2026-08-11: this note said 'Currey states', and the page was then read in full. The sentence is not part of Currey's 1922 article — it interrupts his post-office chronology between 1832 and 1837, it is about a survey rather than a building, and it is the one paragraph on the page carrying no authority while using diction no 1922 writer would use. It is unattributed website prose and therefore off the ladder entirely, where before it was credited to a named historian at rung 4. That does not change the outcome by a foot; it changes what was being disagreed with. See docs/RESEARCH/evidence_tiers_round_three.md § 2. NOT ADOPTED, and not averaged: an annotation on a cadastral survey sheet outweighs a narrative sentence about the town as a whole. EXCLUDED BY MEASUREMENT 2026-08-10, together with the reconciliation that was standing in for a reading. The suggestion was that the two figures are about different streets — 66 ft general, the riverfront and market streets platted wider. The eight corridors measured are the general streets of the west division (Desplaines, Jefferson, Clinton, Canal), which is exactly where a 66 ft general width would have to show, and they read 75.7-92.8 ft. So this is not a reading about other streets; it is a narrative summary that matches neither survey. It stays recorded, because a source is not deleted for turning out to be wrong. See docs/RESEARCH/hogan_store.md § 5. WHAT IT WOULD HAVE COST, kept because it is the reason the module was made one figure in one file: every offset drops from 12.192 m to 10.058 m, moving five buildings 2.13 m — an order of magnitude inside the georeference's own ±20 m, and one edit to this file rather than five."
+    }
+  },
+
+  "streets": {
+    "lake": {
+      "name": "Lake Street",
+      "axis": "ew",
+      "modern": "W Lake Street, unchanged alignment",
+      "note": "Platted in the original town and surviving on its line, which is what makes it usable as control."
+    },
+    "canal": {
+      "name": "Canal Street",
+      "axis": "ns",
+      "modern": "N/S Canal Street, unchanged alignment",
+      "note": "West of the South Branch. NOT West Water Street, which ran along the west bank one block east — a confusion recorded on green_tree_tavern's position."
+    },
+    "market": {
+      "name": "Market Street",
+      "axis": "ns",
+      "modern": "N Wacker Drive",
+      "note": "The equivalence is stated by this project's research dossiers and independently corroborated by the georeference, since the 1834 plats warp onto the modern centrelines at 17.5 m RMS."
+    },
+    "randolph": {
+      "name": "Randolph Street",
+      "axis": "ew",
+      "modern": "W Randolph Street, unchanged alignment"
+    },
+    "kinzie": {
+      "name": "Kinzie Street",
+      "axis": "ew",
+      "modern": "W Kinzie Street, unchanged alignment",
+      "note": "North of the main stem, in Kinzie's Addition rather than the original town; one of the streets that survives on its 1835 alignment, which is why the North Branch bridge's deck sits on it."
+    }
+  },
+
+  "control": {
+    "lake_canal": {
+      "streets": ["lake", "canal"],
+      "utm_e": 446913.03,
+      "utm_n": 4637287.42,
+      "lat": 41.8857338,
+      "lon": -87.6398656,
+      "osm_node_ids": [258020603],
+      "osm_ways": ["West Lake Street", "North Canal Street"],
+      "refetched": "2026-08-10",
+      "derived_from": "data/traces/gcp/wright_1834_gcps.json G5 = data/traces/gcp/hathaway_1834_gcps.json HA",
+      "note": "The only control point used for a placement that is also a georeferencing GCP, so its node id is recorded and its coordinate is re-fetchable. Re-fetched 2026-08-10: the node still stands where the file says, to 0.00 m. It is a single street crossing with no bikeway mapped through it, which is why it never acquired the inclusion error described on randolph_canal."
+    },
+    "lake_market": {
+      "streets": ["lake", "market"],
+      "utm_e": 447161.9,
+      "utm_n": 4637285.4,
+      "lat": 41.8857321,
+      "lon": -87.6368665,
+      "osm_node_ids": [28358888, 28358944],
+      "osm_ways": ["West Lake Street", "North Upper Wacker Drive"],
+      "refetched": "2026-08-10",
+      "derived_from": "read from OpenStreetMap 2026-08-09 for the Sauganash placement; re-used 2026-08-10 for Hogan's store; node ids recovered 2026-08-10 by tools/refetch_control.py --discover",
+      "note": "GAP CLOSED 2026-08-10, AND NOTHING MOVED. The ids above were missing until then: the coordinate five buildings were offset from could not be re-derived from the source it names. Re-deriving the junction under the rule stated in `node_rule` gives the mean of two nodes — Lake Street crosses both carriageways of Wacker Drive's bend, 17.68 m apart — at E 447161.86, N 4637285.38, which is the committed coordinate rounded to 0.1 m, 0.04 m away. So the 2026-08-09 read is reproduced rather than corrected, and the Sauganash and Hogan's store stand exactly where they stood. The committed value is left at its 0.1 m rounding on purpose: adopting the two-decimal mean would move both buildings 4 cm for no evidential gain and for no reason a reader could see. Both nodes were last edited 2024-07-24, so nothing has moved under the dataset since it was read. Wacker Drive is three streets stacked here — North Upper Wacker Drive at the surface, North Lower Wacker Drive beneath it and a service drive beneath that — and only the surface roadway is the 1830 plat's Market Street; the same two nodes are shared with West Upper Wacker Drive, so which arm of the bend is named does not move the control."
+    },
+    "randolph_canal": {
+      "streets": ["randolph", "canal"],
+      "utm_e": 446917.46,
+      "utm_n": 4637144.61,
+      "lat": 41.8844479,
+      "lon": -87.6397994,
+      "osm_node_ids": [7015619031],
+      "osm_ways": ["West Randolph Street", "North Canal Street"],
+      "refetched": "2026-08-10",
+      "derived_from": "read from OpenStreetMap 2026-08-09 for the Western Hotel placement; re-derived 2026-08-10 by tools/refetch_control.py --discover and CORRECTED",
+      "note": "GAP CLOSED 2026-08-10, AND THIS ONE MOVED 4.44 m. Randolph and Canal is a single crossing node in OpenStreetMap — the two street centrelines meet once — and it sits at E 446917.46, N 4637144.61, which is 2.14 m west and 3.89 m south of the coordinate committed on 2026-08-09. That older number cannot be reproduced from the two streets alone. What reproduces it, to 0.04 m, is the mean of FOUR nodes: the street crossing plus the three crossings the Canal Street and Randolph Street BIKEWAYS make with each other and with the roadways. That reading is inferred rather than recorded — nobody wrote the query down, which is the whole cost of the missing ids — but it is not a guess about a coincidence: the same inclusion is visible in `kinzie_canal`, whose five committed nodes include two Kinzie Street Bikeway crossings, and a name query written as a substring match ('Canal Street' matching 'Canal Street Bikeway') produces exactly this at both junctions and produces nothing extra at the other two, where no bikeway is mapped. A bikeway is drawn a few metres off the roadway it follows, so averaging one in moves the junction centre off the streets whose module the plat is about. The road-only reading is therefore adopted, the Western Hotel is moved with it, and the correction is 4.44 m against a georeference that carries ±20 m — an order of magnitude inside the uncertainty already declared, and now re-fetchable by anyone. The node was last edited 2024-05-01, so this is a correction to our reading, not a change in the city."
+    },
+    "kinzie_canal": {
+      "streets": ["kinzie", "canal"],
+      "utm_e": 446889.29,
+      "utm_n": 4637660.73,
+      "lat": 41.8890943,
+      "lon": -87.6401853,
+      "osm_node_ids": [10942616788, 10942616789, 11851144361, 11851144367, 11851144368],
+      "osm_ways": ["West Kinzie Street", "North Canal Street"],
+      "refetched": "2026-08-10",
+      "derived_from": "data/traces/gcp/hathaway_1834_gcps.json HB",
+      "queued_correction": "THE 3.8 m IS NO LONGER A MYSTERY, 2026-08-10. Two of the five nodes above — 11851144367 and 11851144368 — are not Kinzie × Canal at all: they are where the KINZIE STREET BIKEWAY crosses Canal Street, about 6 m north of the roadway crossing. Under the road-only rule now stated in `node_rule`, this junction is the other three nodes, whose mean is E 446891.71, N 4637657.80 — which is the North Branch bridge's 2026-08-10 reading to 0.01 m. So the two coordinates were never two subsets chosen at random: one applied the rule and one did not. This entry keeps the five-node mean anyway, and the reason is cost, not doubt. It is georeferencing GCP HB, so re-deriving it re-runs the Hathaway cross-check fit, and it is the bridge's control, so moving it re-derives the deck's span from the traced banks and re-bakes the bridge — a Blender slice and a datum slice in one, which is not this slice. The variance stays declared on the bridge (data/structures/north_branch_bridge.json) and the correction stays queued with its cost written down.",
+      "note": "TWO COORDINATES FOR ONE JUNCTION EXIST IN THIS DATASET AND THIS IS THE OLDER AND BETTER-RECORDED ONE. The georeference took the mean of the five shared nodes above on 2026-08-09. The North Branch bridge's placement note describes reading the same junction on 2026-08-10 from 'three shared nodes', giving 41.889068 N, -87.640156 W = E 446891.7, N 4637657.8 — 3.8 m away, and its deck centreline stands on that second reading. Which subset of a five-node crossing you average is a choice nobody recorded making, and averaging a different subset of the same crossing is not a disagreement about where Kinzie and Canal is. The bridge declares the variance rather than absorbing it (data/structures/north_branch_bridge.json), because its span is a mesh parameter derived from where the deck meets the traced 1834 banks: moving the deck 2.9 m north re-derives the span and re-bakes the bridge, which is a slice with a Blender in it and not a bookkeeping edit. See docs/RESEARCH/street_module_1830.md § 3."
+    }
+  }
+}

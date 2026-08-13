@@ -68,7 +68,7 @@ jobs:
             ./tools/bake.sh
           fi
 
-      - name: Open a PR if anything changed
+      - name: Push a bake branch and open a PR if permitted
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "bake produced no changes — nothing to do"
@@ -81,8 +81,18 @@ jobs:
           git add -A chicago/4d site/chicago/4d
           git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
           git push -u origin "$BRANCH"
-          gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
+          if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake." \
-            --head "$BRANCH"
+            --head "$BRANCH" 2>&1); then
+            # GitHub reports this org/repo policy failure as a GraphQL error string.
+            # Match it exactly so other gh failures still stop the workflow.
+            if printf '%s\n' "$pr_output" | grep -Fq "GitHub Actions is not permitted to create or approve pull requests"; then
+              echo "::warning::$pr_output"
+              echo "::notice::Baked changes were pushed to $BRANCH. Open a PR manually at https://github.com/${GITHUB_REPOSITORY}/compare/${BRANCH}?expand=1"
+            else
+              printf '%s\n' "$pr_output" >&2
+              exit 1
+            fi
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

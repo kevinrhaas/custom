@@ -11,11 +11,28 @@
   "asset": "gltf/sauganash_hotel__frame_1831.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1831-01-01",
+    "to": "1851-03-04",
+    "confidence": "documented",
+    "sources": [
+      "kinzie_waubun_1856",
+      "drloih_hotels"
+    ],
+    "note": "Wau-Bun, describing 1831: 'a house just completed by Mark Beaubien.' Destroyed by fire 4 March 1851. The 1838 rename to Chicago Hotel and the 1837 arrival of the Chicago Theatre Company in the dining room are changes of use, not of form, so they do not open a new phase."
+  },
+  "change_note": "Two-story frame block built onto the log core at the Lake and Market corner, 1831; the whole then known as the Sauganash Hotel, Chicago's first hotel.",
   "placement": {
     "local_e": 101.4,
     "local_n": -130.6,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "chicagology_prefire273",
+      "chicago_landmark_sauganash",
+      "wright_1834"
+    ],
+    "position_note": "PLACED 2026-08-09. The corner is documented — chicagology and the Chicago Landmark record both put the Sauganash at the south-east corner of Lake and Market — but the COORDINATE is inferred, so the tag follows the weaker half. Method: Market Street is today's N Wacker Drive and Lake Street is unchanged, an equivalence the research dossier states and the georeference independently corroborates, since the 1834 plats warped onto the modern street centrelines at 17.5 m RMS. The modern intersection centre was read from OpenStreetMap (EPSG:26916 E 447161.9, N 4637285.4) and the footprint origin offset 12.2 m east and 20.2 m south of it: half of an 80 ft platted street to reach the kerb, and the footprint's own 8 m depth so the building's north face sits on the Lake Street frontage of a south-east corner lot. Working uncertainty about 20 m, which is the georeference's, not an additional guess. Facade bearing 0 (north, onto Lake Street): the sources say it faced the forks to the north-west, so the true bearing is likely nearer 315, but the plat lot lines are orthogonal and a corner building fronting Lake is the defensible reading until better evidence appears.",
     "symbolic_location": "South-east corner of Lake Street and Market Street (today Lake St and N Wacker Dr).",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -40,7 +57,9 @@
         8
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER — the central unresolved question of this record. NO DIMENSIONS FOR THE SAUGANASH ARE ATTESTED in any source reached. This 12 x 8 m rectangle is a plausible two-story frame tavern footprint and nothing more. Two leads remain: Andreas vol. 1 p. 106 ('Eagle Exchange'), not yet read at page-image level, and the individual building rectangle on Hathaway 1834, which requires the datum work first. Until then this renders as conjectural massing. NOTE ON WHAT THIS TAG MEANS: conjectural here is about SIZE, not about existence or character. That the building was a two-storey white frame block is documented (Wau-Bun); how big it was is unknown. The renderer therefore does NOT dither the massing on account of this tag — see generators/archetypes/frame_tavern.py — and the dimensional uncertainty is carried in the sidecar instead."
   },
   "attributes": {
     "stories": {
@@ -150,49 +169,75 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "chicago_landmark_sauganash",
       "citation": "City of Chicago, Commission on Chicago Landmarks. \"Site of the Sauganash Hotel/Wigwam.\" Designated 6 November 2002. lanId 1417.",
       "url": "https://webapps1.chicago.gov/landmarksweb/web/landmarkdetails.htm?lanId=1417",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "chicagology_prefire273",
-      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Compiling A. T. Andreas, History of Chicago, and Fergus Historical Series.",
+      "citation": "\"Wolf's Point and the Town of Chicago.\" Chicagology. Transcribing the Chicago Magazine of 15 May 1857 — the account of the Wolf's Point settlement built on George Davis's 1832 drawing and on Gurdon S. Hubbard's own description of the place as he found it in 1818 — with A. T. Andreas and modern editorial matter around it.",
       "url": "https://chicagology.com/prefire/prefire273/",
       "archived_url": "https://web.archive.org/web/20260217122628/https://chicagology.com/prefire/prefire273/",
-      "tier": 4
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Wolf's Point' — the account of the settlement at the forks, engraved from George Davis's 1832 drawing and incorporating Gurdon S. Hubbard's description of Chicago as he first saw it in 1818",
+          "date": "1857-05-15",
+          "tier": 2,
+          "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
+        }
+      ]
     },
     {
       "source_id": "drloih_hotels",
       "citation": "\"A Chronology of Early Chicago Area Hotels.\" Digital Research Library of Illinois History Journal.",
       "url": "https://drloihjournal.blogspot.com/2022/07/chronology-of-early-chicago-area-hotels.html",
       "archived_url": "",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     },
     {
       "source_id": "kinzie_waubun_1856",
       "citation": "Kinzie, Juliette A. M. Wau-Bun: The 'Early Day' in the North-West. New York: Derby & Jackson, 1856.",
       "url": "https://www.authorama.com/wau-bun-19.html",
       "archived_url": "https://archive.org/details/waubunearlydayin00kinzbyu",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection"
     },
     {
       "source_id": "kurz_allison_1893",
       "citation": "Kurz & Allison. Chicago In Early Days, 1779-1857. Chicago: Kurz & Allison, 76 & 78 Wabash Avenue, 1893. Chromolithograph, fifteen numbered vignettes with printed key.",
       "url": "https://www.loc.gov/pictures/item/2003656685/",
       "archived_url": "",
-      "tier": 5
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction"
     },
     {
       "source_id": "wright_1834",
       "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
       "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
       "archived_url": "",
-      "tier": 1
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "shoreline",
+        "river channel and the 1834 cut",
+        "survey-date colouring"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
     }
   ],
   "research_note": "MILESTONE 0 REFERENCE RECORD. Two things are documented and vivid — the white two-story frame and the bright-blue shutters, both from Wau-Bun — and two things are unknown: the building's dimensions and whether it had a gallery. That combination is exactly why the per-attribute confidence model exists, and this record is deliberately the first one in the dataset. See docs/RESEARCH/sauganash_hotel.md for the source conflicts and the reasoning behind each reading. The Wigwam of 1860 stood on this site later; the hotel burned 4 March 1851.",

@@ -28,7 +28,11 @@
           "andreas_1884_v1",
           "harrison_1830_river_mouth"
         ],
-        "note": "PLACED BY A SENTENCE, NOT BY THE PLAN. The 1830 plan draws no magazine; the only positional evidence is Hubbard in 1827: 'the magazine, of brick, was situated about half way between the west end of the guard and block-houses.' That reading is what put the guard house on the WEST side of the south gate rather than the east - it is the only assignment of the two flanking buildings that leaves a real gap for the magazine to stand in - and this position is the midpoint of that gap, just inside the curtain in the south-west quarter of the enclosure. UNCERTAINTY IS LARGER THAN THE REST OF THE COMPLEX: 'about half way' is the whole of it, and the sentence can be parsed two ways (midway between the two buildings' west ends, or midway between the guard house's west end and the block-house), which move the point about 4 m apart. The rotation is the fort's."
+        "note": "PLACED BY A SENTENCE, NOT BY THE PLAN. The 1830 plan draws no magazine; the only positional evidence is Hubbard in 1827: 'the magazine, of brick, was situated about half way between the west end of the guard and block-houses.' That reading is what put the guard house on the WEST side of the south gate rather than the east - it is the only assignment of the two flanking buildings that leaves a real gap for the magazine to stand in - and this position is the midpoint of that gap, just inside the curtain in the south-west quarter of the enclosure. UNCERTAINTY IS LARGER THAN THE REST OF THE COMPLEX: 'about half way' is the whole of it, and the sentence can be parsed two ways (midway between the two buildings' west ends, or midway between the guard house's west end and the block-house), which move the point about 4 m apart. The rotation is the fort's.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
       },
       "footprint": {
         "polygon": [

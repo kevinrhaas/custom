@@ -28,7 +28,11 @@
           "harrison_1830_river_mouth",
           "andreas_1884_v1"
         ],
-        "note": "PLACED FROM THE PLAN AND CORROBORATED BY TWO TEXTS. The 1830 plan draws a heavy hollow block at the south-west angle, projecting outside the curtain on both faces - the only element of the fort drawn that way. Andreas: 'The block-house was in the southwest corner.' Hubbard, 1827: 'the block-house was located at the southwest and the bastion at the northwest corners of the fort.' Three sources, one corner. The rotation is the fort's."
+        "note": "PLACED FROM THE PLAN AND CORROBORATED BY TWO TEXTS. The 1830 plan draws a heavy hollow block at the south-west angle, projecting outside the curtain on both faces - the only element of the fort drawn that way. Andreas: 'The block-house was in the southwest corner.' Hubbard, 1827: 'the block-house was located at the southwest and the bastion at the northwest corners of the fort.' Three sources, one corner. The rotation is the fort's.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
       },
       "footprint": {
         "polygon": [

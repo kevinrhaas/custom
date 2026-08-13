@@ -10,11 +10,26 @@
   "asset": "gltf/log_jail__log_1833.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1833-10-01",
+    "to": "1835-12-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "Andreas: 'During the fall of 1833, the citizens felt that something more metropolitan was required than the estray pen', and a log jail was built (docs/research/04-structures-south.md section 7, from Andreas I scan pp. 367 and 1243). A SEASON IS THE WHOLE OF THE DATING. 1833-10-01 is the middle of a northern-Illinois autumn and is a bound rather than a date; the building is standing well before the scene date on any reading of 'fall'. THE END IS A HOUSEKEEPING BOUND, NOT A DEMOLITION DATE - nothing reached says when this jail came down or was replaced, and 1835-12-31 is the ordinary continuity cut at the scene year this dataset uses where a fate is unattested."
+  },
+  "change_note": "The log jail the citizens put up on the north-west corner of the court-house square in the fall of 1833, because the estray pen at the other corner of the same block had until then been the town's only place of confinement. Standing on 1835-07-01. No change of fabric is attested inside the phase.",
   "placement": {
     "local_e": 465.55,
     "local_n": -269.59,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "andreas_1884_v1",
+      "osm_streets_2026"
+    ],
+    "position_note": "PLACED 2026-08-11. THE CORNER IS DOCUMENTED AND THE COORDINATE IS DERIVED, so the tag follows the weaker half. Andreas puts the log jail on 'the northwest corner of the court-house square'. The public square is the block bounded by Randolph Street on the north, Washington Street on the south, Clark Street on the east and LaSalle Street on the west - the block this project's own ground control identifies as such in data/traces/gcp/wright_1834_gcps.json, where LaSalle and Randolph is labelled 'NW corner of the Public Square block' and Clark and Washington 'SE corner of the Public Square block'. Its four inside corners were computed for this parcel from modern OpenStreetMap intersection centres fetched 2026-08-11, offset 12.2 m into the block on each axis, half of an 80 ft street per Hathaway 1834: NW 447538.25 / 4637130.78, NE 447639.27 / 4637130.25, SW 447541.20 / 4637018.49, SE 447639.80 / 4637018.05, which makes the block about 101 x 112 m. The jail's own north-west corner is set on the square's north-west corner, so the footprint origin - which is the building's south-west corner - sits its own depth south of it. THIS IS A CORNER OF A BLOCK, NOT A LOT, so it is a weaker statement than the corner-lot placements elsewhere in this dataset: nothing says how far into the block the building stood, whether it was set back from either street line, or which way it faced. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json: 17.5 m RMS on Wright 1834, 3.7 per cent paper stretch), plus an unquantified setback into the block. Facade bearing 0, due north onto Randolph, CONVENTION RATHER THAN EVIDENCE - a jail at the north-west corner could as reasonably have faced west onto LaSalle or inward onto the square, and nothing attests it. The square itself in 1835 was otherwise an open, unimproved prairie block, fenced or not; no fence, path or improvement of the block is modelled.",
     "symbolic_location": "North-west corner of the court-house square (the public square bounded by Randolph, Clark, Washington and LaSalle), at the Randolph and LaSalle end; fronting north onto Randolph.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +54,9 @@
         4.572
       ]
     ],
-    "confidence": "conjectural"
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION, a plan, or a number of cells. 6.096 x 4.572 m is 20 x 15 ft, recorded converted with the original figures stated per data/datum.json's units rule. The only constraint the evidence offers is relative and it runs in both directions: the jail was built because something more metropolitan was required than the estray pen, so it is a more substantial thing than a stock pound; and it was itself superseded within a few years, so it was small. A 20 x 15 ft log box is a two-cell lock-up and is the smallest thing that answers both. Nothing else about the shape is a finding: the plain rectangle, the proportion and the scale are all this record's."
   },
   "attributes": {
     "construction": {
@@ -85,14 +102,16 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "osm_streets_2026",
       "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
       "url": "https://www.openstreetmap.org/",
       "archived_url": "https://overpass-api.de/",
-      "tier": 4
+      "tier": 4,
+      "tier_label": "later scholarship"
     }
   ],
   "research_note": "A DOCUMENTED BUILDING WITH ONE DOCUMENTED ATTRIBUTE. What is attested is that it was a jail, that it was of logs, that it went up in the fall of 1833, and that it stood at the north-west corner of the court-house square. Everything else in this record - every dimension, the roof, the wall height, the door, the bearing - is inference or invention, and the confidence view will show it as such. THE RECORD IS WORTH HAVING ANYWAY, and this is the clearest case in the parcel for the working policy behind it: on 1835-07-01 the public square carried three things, a pound, a jail and (probably) a court-house, and a square rendered empty is a stronger and more misleading claim than a square carrying three honestly-graded conjectural boxes. ARCHETYPE CHOICE: outbuilding rather than log_dwelling, and the difference is not cosmetic. log_dwelling reads a storey count, a loft, a chimney count and a sign, and builds a dwelling's openings; outbuilding builds a plain box with one door sized by what has to get through it, and refuses a storey count outright. A jail is the second of those. The archetype's own family list - stable, shed, barn, smokehouse, privy, crib, woodshed - does not name a jail, and that is a gap in the vocabulary rather than a reason to build the wrong thing. WHAT WOULD UPGRADE THIS RECORD, in order of value: any county order or contract for the jail's construction, which is the kind of document that carries a dimension, a cost or a specification for the logs; Andreas vol. 1 at page-image level around scan pp. 367 and 1243, which is where the prose transcribed into this project's dossier sits; and the Cook County Sheriff's own published jail history, cited in the dossier and not yet held as a source record here.",

@@ -28,6 +28,8 @@ import sys
 from pathlib import Path
 
 from heightfield import Heightfield
+from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
+                   TRACEABLE_MAX_TIER, tier_ladder)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -207,6 +209,14 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
             rep.error(where, f"documented_range: source '{sid}' does not resolve")
     if rng.get("confidence") == "inferred" and not (rng.get("note") or "").strip():
         rep.error(where, "documented_range: inferred requires a note")
+    # The confidence contract applied to the claim the whole scene rests on. Every
+    # other `documented` value in this dataset owes a resolving source (see
+    # check_attested); the date span was outside that rule for no reason but the
+    # order the checks were written in, and it is the claim that decides whether a
+    # building is in the town at all. It reaches the provenance card now, which is
+    # the argument for holding it to the same standard as a roof pitch.
+    if rng.get("confidence") == "documented" and not (rng.get("sources") or []):
+        rep.error(where, "documented_range: documented requires at least one source_id")
     return frm, to
 
 
@@ -315,22 +325,623 @@ def check_exclusions(exclusions: dict, source_ids: set, rep: Report) -> None:
                 rep.error(where, f"source '{s}' does not resolve in data/sources/")
 
 
+# The claims the provenance card renders, as a RECORD names them mapped to the
+# sidecar field the card reads. Two of the three words are the same on both sides;
+# the position's is not, because `compile_scene.py` flattens the phase's position
+# block into `placement.*`. The map is authored — a phase field and a card section
+# are two documents and something has to say which pairs with which — but the
+# CHECK is not: each path has to be one `renderers/web/js/popup.js` actually
+# reads, scanned by the same machinery that found `asset_is_placeholder` never
+# rendering. So deleting a section from the card fails here rather than leaving
+# the Evidence panel promising a card that shows nothing.
+CARD_CLAIM_PATHS = {
+    "documented_range": "documented_range",
+    "footprint": "footprint",
+    "position": "placement.position_confidence",
+}
+
+PROVENANCE_CARD = Path("renderers") / "web" / "js" / "popup.js"
+
+
+def card_claim_reads() -> set[str]:
+    """The sidecar paths the provenance card reads, off the card itself."""
+    path = ROOT / PROVENANCE_CARD
+    if not path.is_file():
+        return set()
+    return {dotted for _, dotted in sidecar_field_reads(path.read_text(encoding="utf-8"))}
+
+
+def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
+                     rep: Report, root: Path | None = None) -> None:
+    """The third category — researched, and neither built nor ruled out.
+
+    `excluded` is a settled finding and a record is a settled decision. Between
+    them sits the watch list: four structures whose 1835 status is genuinely
+    open. It has been four free-text sentences since the scaffold, read by
+    nobody but an agent, and its own stated purpose — "listed here so nobody
+    promotes them to documented without new evidence" — was a sentence with
+    nothing behind it. One of the four IS in the dataset, so that sentence is
+    checkable, and this checks it: an entry naming a committed record must say
+    which of the record's claims carries the uncertainty, and that claim may not
+    be `documented`. The day the evidence arrives, the promotion fails here and
+    the entry has to be argued off this list rather than quietly outgrown.
+
+    The other direction is the cheaper half and worth as much: an entry naming a
+    structure that has since been built, still declaring itself unbuilt, would be
+    the drift L12 was caught by — a document and its data disagreeing because
+    nobody carried a change back.
+
+    The named claim must also be one the provenance card RENDERS, which is the
+    other half of the same promise. The Evidence panel's entry for the standing
+    structure ends by telling a visitor that "the provenance card shows it" — a
+    sentence about a surface this file could not see, which is exactly the shape
+    of the two faults that cost this project a `documented_range` and an
+    `asset_is_placeholder` that never rendered on any building. `carried_by` could
+    have named a graded block the card has no section for, and the panel would
+    have gone on promising it. The claim is now held to `CARD_CLAIM_PATHS`, and
+    each of those paths is held to being one the card really reads.
+
+    A question is required for the reason a reason is required on an exclusion:
+    an id and a shrug is not a finding. `sources` are held to rule one like
+    every other citation in this project, and an entry with none must SAY it has
+    none and why — the escape hatch is a sentence a reader can weigh, not an
+    empty array. The dossier pointer is checked to resolve to a committed file
+    and to a line in it, because a pointer into research nobody can find is the
+    same failure one level up.
+    """
+    root = root or ROOT
+    excluded_ids = {ex.get("id") for ex in exclusions.get("excluded", [])}
+    # Read once, and off the real card rather than off `root`: a temp fixture
+    # carries a dataset, never a renderer, and the card being checked is the one
+    # that ships.
+    card_reads = card_claim_reads()
+    seen: set[str] = set()
+    uncited: list[str] = []
+    for item in exclusions.get("watch_list", []):
+        wid = item.get("id") or "?"
+        where = f"watch list {wid}"
+        if not SLUG.match(wid):
+            rep.error(where, f"id '{wid}' is not a lowercase slug")
+        if wid in seen:
+            rep.error(where, "duplicate id in the watch list")
+        seen.add(wid)
+        if wid in excluded_ids:
+            rep.error(where, "is also in `excluded` — a structure is either ruled out or "
+                             "an open question, and saying both says neither")
+        if not (item.get("name") or "").strip():
+            rep.error(where, "no name — the list is read by people, not only by ids")
+        if not (item.get("question") or "").strip():
+            rep.error(where, "no question — an entry here states what is UNCERTAIN; an id "
+                             "with no question is a hunch with a filename")
+
+        # rule one, and the sentence that stands in for a citation when there is
+        # honestly none to give
+        srcs = item.get("sources") or []
+        for s in srcs:
+            if s not in source_ids:
+                rep.error(where, f"source '{s}' does not resolve in data/sources/")
+        if not srcs:
+            uncited.append(wid)
+            if not (item.get("no_source_record") or "").strip():
+                rep.error(where, "no sources and no `no_source_record` — an open question "
+                                 "with nothing behind it has to say so in words, because "
+                                 "an empty array reads as an oversight")
+
+        # the dossier pointer resolves to a file and to a line in it
+        dossier = item.get("dossier") or {}
+        dfile, anchor = dossier.get("file"), dossier.get("anchor")
+        if not dfile or not anchor:
+            rep.error(where, "no dossier pointer — an open question comes from somewhere, "
+                             "and `file` + `anchor` is where the next agent starts")
+        else:
+            path = root / dfile
+            if not path.is_file():
+                rep.error(where, f"dossier '{dfile}' is not a committed file")
+            elif anchor not in path.read_text(encoding="utf-8"):
+                rep.error(where, f"dossier '{dfile}' does not contain the anchor "
+                                 f"'{anchor}' — a pointer nobody can follow is not one")
+
+        # both directions against the dataset
+        record = next((st for st in structures.values() if st.get("id") == wid), None)
+        declared = bool(item.get("in_dataset"))
+        if record is None and declared:
+            rep.error(where, "declares in_dataset but no record of that id exists in "
+                             "data/structures/")
+        if record is not None and not declared:
+            rep.error(where, "a record of that id IS committed and the entry still says it "
+                             "is not in the dataset — the document and the data disagree")
+        if record is None and (item.get("carried_by") or "").strip():
+            rep.error(where, "carries `carried_by` with no record to carry it")
+        if record is not None and declared:
+            ref = (item.get("carried_by") or "").strip()
+            if not ref:
+                rep.error(where, "in the dataset and does not say which claim carries the "
+                                 "uncertainty — the point of this list is that the claim "
+                                 "stays honest, so it has to be named")
+                continue
+            if ref.count(".") != 1:
+                rep.error(where, f"carried_by '{ref}' is not '<phase_id>.<field>'")
+                continue
+            pid, field = ref.split(".")
+            phase = next((p for p in record.get("phases", []) if p.get("id") == pid), None)
+            if phase is None:
+                rep.error(where, f"carried_by names phase '{pid}', which the record does "
+                                 f"not have")
+                continue
+            claim = phase.get(field)
+            if not isinstance(claim, dict):
+                rep.error(where, f"carried_by names '{field}' on phase '{pid}', which is "
+                                 f"not a graded claim on the record")
+                continue
+            if not claim.get("confidence"):
+                rep.error(where, f"carried_by names '{field}' on phase '{pid}', which "
+                                 f"carries no confidence — an uncertainty has to sit on a "
+                                 f"claim that is graded, or there is nothing to hold down")
+                continue
+            if claim.get("confidence") == "documented":
+                rep.error(where, f"{ref} is `documented` while this entry says its 1835 "
+                                 f"status is open — the watch list exists to stop exactly "
+                                 f"that promotion, so either the evidence arrived and the "
+                                 f"entry retires, or the grade is wrong")
+
+            # and the promise the panel makes about the other surface
+            wanted = CARD_CLAIM_PATHS.get(field)
+            if wanted is None:
+                rep.error(where, f"carried_by names '{field}', and the provenance card "
+                                 f"renders no claim for it — the Evidence panel tells a "
+                                 f"visitor the card shows this doubt, so it has to be one "
+                                 f"of {sorted(CARD_CLAIM_PATHS)}")
+            elif wanted not in card_reads:
+                rep.error(where, f"carried_by names '{field}' and {PROVENANCE_CARD} no "
+                                 f"longer reads `{wanted}` — the panel would keep promising "
+                                 f"a card that shows this claim while the card shows nothing")
+    if uncited:
+        rep.note(f"watch list: {len(uncited)} entry(ies) rest on no source record "
+                 f"[{', '.join(uncited)}] — each says why")
+
+
+# Land vertices. The terrain spec's own caveat says no land elevation in it is
+# better than `inferred` and that the generator refuses to emit `documented` for
+# any land vertex — a statement that was true because whoever wrote the spec kept
+# it true, and nothing was checking. These are the blocks that set the height of
+# ground a visitor walks on; the reaches and the channel are under water.
+LAND_ELEVATION_GROUPS = ("bank", "divisions", "marsh_strips", "swales", "micro_relief")
+
+
+def load_terrain_specs(rep: Report) -> dict[str, dict]:
+    """epoch -> its committed `terrain_spec.json`."""
+    specs: dict[str, dict] = {}
+    for spec_path in sorted((DATA / "terrain" / "epochs").glob("*/terrain_spec.json")):
+        specs[spec_path.parent.name] = load_json(spec_path, rep) or {}
+    return specs
+
+
+def terrain_claim_index(specs: dict[str, dict], rep: Report) -> dict[str, dict[str, dict]]:
+    """epoch -> claim id -> the graded statement the ground makes.
+
+    Off `compile_scene.ground_claims`, which is also what puts these on the
+    Evidence panel — so the set a gate checks, the set a liberty may admit to and
+    the set a visitor reads are one set. A second enumeration would agree with
+    the panel until the day somebody added a zone to the spec, which is the drift
+    this project keeps closing everywhere else.
+    """
+    sys.path.insert(0, str(ROOT / "tools"))
+    try:
+        import compile_scene as ground  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        rep.error("terrain", f"cannot import the ground compiler, so the claims the "
+                             f"Evidence panel shows cannot be checked: {e}")
+        return {}
+    return {epoch: {c["id"]: c for c in ground.ground_claims(spec, {})}
+            for epoch, spec in sorted(specs.items())}
+
+
+def terrain_conjectural_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
+    """Every value the ground states without evidence.
+
+    Returns `(epoch, claim_id, label, where)`. The ground invents as freely as a
+    record does — a bank face nobody drew, two swale alignments attested nowhere,
+    a channel section whose own note says it carries no evidence at all — and a
+    visitor walks on all of it. The confidence view even dithers it. So it owes
+    `docs/LIBERTIES.md` an admission on exactly the argument a conjectural
+    footprint does.
+    """
+    return [(epoch, cid, claim.get("label") or cid, f"terrain {epoch}/{cid}")
+            for epoch, claims in sorted(index.items())
+            for cid, claim in claims.items()
+            if claim.get("confidence") == "conjectural"]
+
+
+def check_terrain_claims(source_ids: set, rep: Report,
+                         specs: dict[str, dict] | None = None,
+                         index: dict[str, dict[str, dict]] | None = None) -> None:
+    """The ground is held to the rules a structure record is held to.
+
+    `terrain_spec.json` is as fully graded as any record — a documented water
+    plane, three inferred division levels argued from period narrative feet, a
+    conjectural bank face — and until the ground claims reached the Evidence
+    panel it was read only by the generator, so none of it was ever checked.
+    Both halves of that mattered: rule one of AGENTS.md is that every
+    `source_id` resolves in `data/sources/`, and this was the second file after
+    `exclusions.json` where nothing enforced it. A citation here could have named
+    a source that never existed, and now a visitor reads these ids joined to
+    their citations.
+
+    The claims are enumerated by the same function that puts them on the panel
+    (`compile_scene.ground_claims`), so the checked set and the displayed set are
+    one set. A gate walking its own copy would agree with the panel until a zone
+    was added to the spec.
+
+    Four rules are enforced, all of them the record's rules:
+      * every cited `source_id` resolves;
+      * a `documented` claim owes at least one resolving source;
+      * an `inferred` claim owes stated reasoning;
+      * no land elevation may be `documented` — the spec says so itself, in the
+        caveat the walkthrough now quotes to visitors.
+
+    The third of those was a WARNING until 2026-08-10, and what it was waiting for
+    is worth recording because it was not the data. Three surface-material claims
+    carried no note; the only place to write one is `terrain_spec.json`, and that
+    file's BYTES were the terrain's staleness hash, so a sentence of reasoning
+    reported the ground as stale and could not land without a Blender bake. The
+    rule was right, the data was short, and the gate one level down was charging a
+    bake for prose. `generators/terrain_inputs.py` strips prose from the hash, the
+    three notes are written, and the rule is an error here exactly as
+    `check_attested` makes it one on a record.
+    """
+    if index is None:
+        index = terrain_claim_index(specs if specs is not None else load_terrain_specs(rep), rep)
+
+    total = unreasoned = 0
+    for epoch, claims in sorted(index.items()):
+        for claim in claims.values():
+            total += 1
+            where = f"terrain {epoch}/{claim['id']}"
+            conf = claim["confidence"]
+            if conf not in CONFIDENCE:
+                rep.error(where, f"confidence '{conf}' is not one of {sorted(CONFIDENCE)}")
+            srcs = claim["sources"]
+            for s in srcs:
+                if s not in source_ids:
+                    rep.error(where, f"source '{s}' does not resolve in data/sources/ — "
+                                     f"the ground quotes these ids to a visitor")
+            if conf == "documented" and not srcs:
+                rep.error(where, "documented with no source — the ground is held to the "
+                                 "same rule as a structure record, and the strongest "
+                                 "grade this project has is the one that needs evidence")
+            if conf == "inferred" and not any(n.strip() for n in claim["notes"]):
+                unreasoned += 1
+                rep.error(where, "inferred with no reasoning recorded — that is what "
+                                 "separates an inference from a guess, and the ground is "
+                                 "held to it exactly as a structure record is. Write the "
+                                 "reasoning in terrain_spec.json; prose there is stripped "
+                                 "from the terrain's staleness hash, so it costs no bake")
+            if conf == "documented" and claim["id"].split(".")[0] in LAND_ELEVATION_GROUPS:
+                rep.error(where, "a land elevation marked documented — the spec's own "
+                                 "caveat says no land elevation in it is better than "
+                                 "inferred, and that sentence is now shown to visitors")
+
+    rep.note(f"ground claims: {total} graded statement(s) in the terrain specs, held to "
+             f"the citation and reasoning rules and shown in the Evidence panel; "
+             f"{unreasoned} inferred without recorded reasoning")
+
+
+def terrain_consumed(rep: Report | None = None) -> dict[str, frozenset]:
+    """spec block -> the field keys whose value `terrain_gen.build_field` reads.
+
+    Declared as `CONSUMED` in `generators/terrain_inputs.py` — beside the
+    denylist, which is the same kind of statement about the same generator, and
+    NOT inside `terrain_gen.py`, whose bytes go into the ground's hash whole: a
+    constant that cannot move a vertex would have re-staled the terrain and asked
+    for a Blender bake to land a declaration. That module explains the choice at
+    length. Imported rather than parsed, and it costs nothing —
+    `terrain_inputs.py` imports only hashlib, json and pathlib, so `check.sh`
+    stays a sub-second gate with no dependencies.
+    """
+    sys.path.insert(0, str(ROOT / "generators"))
+    try:
+        import terrain_inputs  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        if rep:
+            rep.error("ground-geometry", f"cannot import generators/terrain_inputs.py, so "
+                                         f"nothing can tell which of the ground's claims "
+                                         f"reach a vertex: {e}")
+        return {}
+    consumed = getattr(terrain_inputs, "CONSUMED", None)
+    if consumed is None:
+        if rep:
+            rep.error("ground-geometry", "generators/terrain_inputs.py declares no CONSUMED "
+                                         "map, so a figure the spec states and the ground "
+                                         "does not contain cannot be told from one it does")
+        return {}
+    return {k: frozenset(v) for k, v in consumed.items()}
+
+
+def unbuilt_ground_values(index: dict[str, dict[str, dict]],
+                          consumed: dict[str, frozenset]) -> list[tuple]:
+    """Every figure the ground states that no vertex comes from.
+
+    Returns `(epoch, claim_id, field_key, state, where)` for the declared ones.
+    The fields are the ones `compile_scene.ground_fields` puts on the Evidence
+    panel, so the gate asks about exactly what a visitor is shown.
+    """
+    out: list[tuple] = []
+    for epoch, claims in sorted(index.items()):
+        for cid, claim in claims.items():
+            known = consumed.get(cid.split(".")[0])
+            if known is None:
+                continue
+            for f in claim.get("fields") or []:
+                if f["key"] in known:
+                    continue
+                out.append((epoch, cid, f["key"], f.get("mesh"),
+                            f"terrain {epoch}/{cid}"))
+    return out
+
+
+def check_ground_geometry(index: dict[str, dict[str, dict]],
+                          consumed: dict[str, frozenset], rep: Report) -> None:
+    """The ground may not state a figure the mesh does not contain without saying so.
+
+    This is `check_geometry_declarations` arriving on the terrain, and the
+    argument does not change in the move. A building's `documented` wolf sign
+    over a building with no sign on it is the failure that rule was written for;
+    the ground's version is `black_loam_over_quicksand_over_blue_clay`,
+    `documented`, on a surface that is one flat earth colour from one edge of the
+    box to the other. The confidence model grades how sure we are of the soil. It
+    has nothing to say about whether any of it was built, and a visitor reading
+    the panel cannot tell the two apart.
+
+    Nothing here depends on somebody noticing. The claims come from
+    `compile_scene.ground_claims`, which is what the panel renders; what reaches
+    a vertex comes from `terrain_inputs.CONSUMED`, held to the generator's actual
+    reads by a scan in the self-tests. Anything in the first and not the second owes a `mesh:`
+    declaration on its block, keyed by field name. (`mesh` rather than the
+    records' `geometry`, because in a GeoJSON `geometry` is the coordinates and
+    the terrain hash strips this key — see `generators/terrain_inputs.py`.)
+
+    Checked in both directions, as on the structure side: declaring a state over
+    a figure the generator DOES read is a false admission that would quietly
+    excuse a real omission the day the generator stopped reading it.
+    """
+    if not consumed:
+        rep.note("ground geometry check: no CONSUMED map to compare against")
+        return
+    missing_group = sorted({cid.split(".")[0]
+                            for claims in index.values() for cid in claims
+                            if cid.split(".")[0] not in consumed})
+    for group in missing_group:
+        rep.error("ground-geometry", f"the terrain spec grades a '{group}' block and "
+                                     f"terrain_inputs.CONSUMED says nothing about it — 'the "
+                                     f"generator ignores it' and 'nobody has said' are "
+                                     f"different states and only one of them is a finding")
+
+    declared = owed = 0
+    for epoch, cid, key, state, where in unbuilt_ground_values(index, consumed):
+        if state is None:
+            rep.error(where, f"'{key}' is a figure this claim states, the terrain generator "
+                             f"never reads it, and the Evidence panel shows it to a visitor "
+                             f"under a confidence chip — so nothing in the ground comes from "
+                             f"it and nothing says so. Declare what the ground does in "
+                             f"the block's mesh map: 'absent' (nothing of it is built), "
+                             f"'simplified' (a fixed default stands in its place), "
+                             f"'record_only' (recorded, never a build instruction) or "
+                             f"'restated_in_code' (the mesh agrees with it and does not read "
+                             f"it). Prose and declarations in terrain_spec.json are stripped "
+                             f"from the staleness hash, so this costs no bake")
+            continue
+        if state not in GROUND_GEOMETRY_STATES:
+            rep.error(where, f"'{key}' declares mesh: '{state}', which is not one of "
+                             f"{', '.join(GROUND_GEOMETRY_STATES)}")
+            continue
+        declared += 1
+        owed += state in GEOMETRY_OWES_LIBERTY
+
+    # The other direction: an admission over a figure that is built.
+    for epoch, claims in sorted(index.items()):
+        for cid, claim in claims.items():
+            known = consumed.get(cid.split(".")[0])
+            if known is None:
+                continue
+            for f in claim.get("fields") or []:
+                if f["key"] in known and f.get("mesh"):
+                    rep.error(f"terrain {epoch}/{cid}",
+                              f"'{f['key']}' declares mesh: '{f['mesh']}', but "
+                              f"terrain_gen reads this field — the ground is built from the "
+                              f"value, so there is nothing to declare. Drop it, or take the "
+                              f"key out of CONSUMED if the generator stopped using it")
+
+    rep.note(f"ground geometry check: {declared} stated figure(s) the terrain generator does "
+             f"not read, each declaring what the ground does instead; {owed} of them owe "
+             f"docs/LIBERTIES.md an admission")
+
+
+def terrain_restates(rep: Report | None = None) -> dict[str, dict]:
+    """spec block -> field key -> where the other half of the restatement lives.
+
+    Declared as `RESTATES` in `generators/terrain_inputs.py`, beside `CONSUMED`
+    and for the same reason: it is a statement about the generator, and a new key
+    in `terrain_spec.json` outside the stripped `mesh` block would be a mesh input
+    and would cost a Blender bake to write down.
+    """
+    sys.path.insert(0, str(ROOT / "generators"))
+    try:
+        import terrain_inputs  # noqa: PLC0415
+    except Exception as e:  # noqa: BLE001
+        if rep:
+            rep.error("ground-restated", f"cannot import generators/terrain_inputs.py, so "
+                                         f"nothing can tell what the ground's restatements "
+                                         f"are supposed to agree with: {e}")
+        return {}
+    return dict(getattr(terrain_inputs, "RESTATES", {}) or {})
+
+
+def strip_py_comments(text: str) -> str:
+    """The same source with comment tokens blanked and line numbers preserved.
+
+    A scan for an expression in the generator must not be satisfied by a comment
+    quoting that expression — which is not hypothetical: `check_sidecar_contract`
+    reported itself on its first run, because the comment explaining why a field
+    is no longer read names the field. `tokenize` rather than a regex, because a
+    `#` inside a string literal is not a comment and this file is not the place
+    to rediscover that.
+    """
+    try:
+        import io  # noqa: PLC0415
+        import tokenize  # noqa: PLC0415
+        out = list(text)
+        for tok in tokenize.generate_tokens(io.StringIO(text).readline):
+            if tok.type != tokenize.COMMENT:
+                continue
+            (r1, c1), (r2, c2) = tok.start, tok.end
+            if r1 != r2:  # a comment token is always one line
+                continue
+            starts = [0]
+            for line in text.splitlines(keepends=True):
+                starts.append(starts[-1] + len(line))
+            for i in range(starts[r1 - 1] + c1, min(starts[r1 - 1] + c2, len(out))):
+                out[i] = " "
+        return "".join(out)
+    except Exception:  # noqa: BLE001 — a generator that will not tokenize is its own error
+        return text
+
+
+def check_restated_agreement(index: dict[str, dict[str, dict]],
+                             restates: dict[str, dict], rep: Report) -> None:
+    """`restated_in_code` promises an agreement, so something has to check it.
+
+    The other three `mesh:` states say the ground does NOT contain a figure, and a
+    reader who doubts one can go and look. This one says the opposite — the mesh
+    contains exactly what the figure says and does not read it from here — which
+    is a claim about two documents at once, and the pair was held together by the
+    hand that wrote them and by nothing else. `docs/STATUS.md` § 35 filed that as
+    the residual: *the one state that asserts an agreement nothing enforces, which
+    is a smaller version of the fault this whole family of checks exists to end.*
+
+    Both directions, as everywhere else in this family. A figure declaring the
+    state with no entry in `terrain_inputs.RESTATES` is back to asserting an
+    agreement with nothing named on the other side of it, and an entry naming a
+    figure that no longer declares the state is a check quietly guarding nothing.
+
+    What each kind buys is `RESTATES`' own subject and is written there. The short
+    version: an `artifact` claim is held against the heightfield the bake wrote, a
+    `figure` claim against the build instruction it restates, and a `code` claim —
+    prose describing an algorithm — only against the presence of the expression it
+    names. The third is the weak one and is labelled as such rather than left to
+    look like the other two.
+    """
+    if not restates:
+        rep.note("restated-in-code check: no RESTATES map to compare against")
+        return
+
+    gen_src = strip_py_comments((ROOT / "generators" / "terrain_gen.py").read_text())
+    gen_flat = " ".join(gen_src.split())
+    checked = weak = 0
+
+    for epoch, claims in sorted(index.items()):
+        ep_dir = DATA / "terrain" / "epochs" / epoch
+        for cid, claim in claims.items():
+            block = cid.split(".")[0]
+            declared = restates.get(block) or {}
+            fields = {f["key"]: f for f in (claim.get("fields") or [])}
+            where = f"terrain {epoch}/{cid}"
+
+            for key, f in fields.items():
+                if f.get("mesh") == "restated_in_code" and key not in declared:
+                    rep.error(where, f"'{key}' declares mesh: 'restated_in_code' — the mesh "
+                                     f"agrees with this figure and does not read it — and "
+                                     f"nothing says WHAT it agrees with. That is the state "
+                                     f"asserting an agreement with an unnamed second half, "
+                                     f"which is the arrangement it was written to end. Name "
+                                     f"the other half in terrain_inputs.RESTATES")
+
+            for key, claim_of in declared.items():
+                f = fields.get(key)
+                if f is None:
+                    continue  # a block may not state every figure the map knows about
+                if f.get("mesh") != "restated_in_code":
+                    rep.error(where, f"terrain_inputs.RESTATES says '{key}' restates "
+                                     f"{claim_of[1]}, and the figure declares mesh: "
+                                     f"'{f.get('mesh') or 'nothing'}'. A restatement that is "
+                                     f"not declared one is a check guarding a promise nobody "
+                                     f"made")
+                    continue
+                kind = claim_of[0]
+                checked += 1
+
+                if kind == "artifact":
+                    ref, scale = claim_of[1], float(claim_of[2])
+                    fname, _, akey = ref.partition(":")
+                    doc = load_json(ep_dir / fname, rep, required=False) or {}
+                    if akey not in doc:
+                        rep.error(where, f"'{key}' restates {ref} and that artifact has no "
+                                         f"'{akey}' — the figure it agrees with is gone")
+                        continue
+                    want, got = float(f["value"]) * scale, float(doc[akey])
+                    if abs(want - got) > 1e-9:
+                        rep.error(where, f"'{key}' is {f['value']} and declares that the mesh "
+                                         f"agrees with it, but {fname} records {akey} = {got}, "
+                                         f"which is {want} short of it. One of the two is "
+                                         f"describing a ground that does not exist, and the "
+                                         f"panel is showing the spec's number to a visitor")
+                elif kind == "figure":
+                    other = claim_of[1]
+                    if other not in fields:
+                        rep.error(where, f"'{key}' restates '{other}' and this block does not "
+                                         f"state '{other}'")
+                        continue
+                    a, b = f["value"], fields[other]["value"]
+                    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+                        same = abs(float(a) - float(b)) <= 1e-9
+                    else:
+                        same = a == b
+                    if not same:
+                        rep.error(where, f"'{key}' is {a} and restates '{other}', which is {b}. "
+                                         f"'{other}' is what the generator reads, so the ground "
+                                         f"is built to {b} and the Evidence panel is telling a "
+                                         f"visitor {a}")
+                elif kind == "code":
+                    expr = " ".join(claim_of[1].split())
+                    n = gen_flat.count(expr)
+                    if n != 1:
+                        rep.error(where, f"'{key}' describes, for a reader, what terrain_gen.py "
+                                         f"does — and the line it names, `{claim_of[1]}`, "
+                                         f"appears {n} times in that generator with comments "
+                                         f"stripped. Either the code moved and this figure now "
+                                         f"describes a ground the model no longer has, or the "
+                                         f"expression was reformatted and the declaration in "
+                                         f"terrain_inputs.RESTATES needs to follow it")
+                    weak += 1
+                else:
+                    rep.error(where, f"'{key}' declares an unknown restatement kind '{kind}'")
+
+    rep.note(f"restated-in-code check: {checked} figure(s) the ground agrees with and does not "
+             f"read, each held against the half it restates; {weak} of them are prose about an "
+             f"algorithm and are checked only for the presence of the line they describe")
+
+
 # --------------------------------------------------------------------------
 # semantic: the liberties document is complete about what was invented
 # --------------------------------------------------------------------------
 
-def conjectural_values(structures: dict) -> list[tuple]:
-    """Every value a structure record states without evidence.
+def graded_values(structures: dict) -> list[tuple]:
+    """Every value a structure record puts a confidence on, with the block itself.
 
-    Returns `(structure_id, phase_id|None, aspect, where)`, with `aspect` in the
-    same vocabulary a `Covers:` token is written in — `footprint`, `position`,
-    `documented_range`, the structure-level `function` and `occupants`, and
-    `form.<attribute>` for anything under a phase's form, however deeply nested.
+    Returns `(structure_id, phase_id|None, aspect, where, block)`, with `aspect`
+    in the same vocabulary a `Covers:` token is written in — `footprint`,
+    `position`, `documented_range`, the structure-level `function` and
+    `occupants`, and `form.<attribute>` for anything under a phase's form,
+    however deeply nested.
 
     The form half is enumerated from the data rather than from a list, because
     the archetypes keep adding attributes and a hard-coded vocabulary would
-    quietly stop asking about the newest ones — which is the exact failure this
-    check exists to prevent, one level up.
+    quietly stop asking about the newest ones — which is the exact failure the
+    checks built on this enumeration exist to prevent, one level up.
+
+    One enumeration, several questions: `conjectural_values` asks which of these
+    were invented, and `check_evidence_ladder` asks what each one rests on. Two
+    walks over the same record is how two gates start disagreeing about what a
+    record contains.
     """
     found: list[tuple] = []
 
@@ -338,8 +949,7 @@ def conjectural_values(structures: dict) -> list[tuple]:
         if not isinstance(node, dict):
             return
         if "confidence" in node and "value" in node:
-            if node.get("confidence") == "conjectural":
-                found.append((sid, pid, path, where))
+            found.append((sid, pid, path, where, node))
             return
         for k, v in node.items():
             walk_form(v, sid, pid, where, f"{path}.{k}")
@@ -348,17 +958,278 @@ def conjectural_values(structures: dict) -> list[tuple]:
         sid = st.get("id", name)
         for aspect in STRUCTURE_ASPECTS:
             block = st.get(aspect)
-            if isinstance(block, dict) and block.get("confidence") == "conjectural":
-                found.append((sid, None, aspect, f"structure {sid}"))
+            if isinstance(block, dict) and "confidence" in block:
+                found.append((sid, None, aspect, f"structure {sid}", block))
         for ph in st.get("phases", []):
             pid = ph.get("id", "?")
             where = f"structure {sid}/{pid}"
             for aspect in PHASE_ASPECTS:
                 block = ph.get(aspect)
-                if isinstance(block, dict) and block.get("confidence") == "conjectural":
-                    found.append((sid, pid, aspect, where))
+                if isinstance(block, dict) and "confidence" in block:
+                    found.append((sid, pid, aspect, where, block))
             walk_form(ph.get("form") or {}, sid, pid, where, "form")
     return found
+
+
+def conjectural_values(structures: dict) -> list[tuple]:
+    """Every value a structure record states without evidence.
+
+    `(structure_id, phase_id|None, aspect, where)` — the `graded_values`
+    enumeration filtered to the inventions.
+    """
+    return [(sid, pid, aspect, where)
+            for sid, pid, aspect, where, block in graded_values(structures)
+            if block.get("confidence") == "conjectural"]
+
+
+def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
+                          ground_index: dict | None = None) -> None:
+    """What a claim rests on, held to the ladder the schema defines.
+
+    `docs/PROVENANCE.md` § Evidence tiers ranks the evidence and attaches two
+    rules to the ranking:
+
+      * tiers 5-6 "must never be the sole evidence for a `documented` attribute";
+      * "no geometry is traced from them" — an outline "comes from tier-1 sheets
+        or stays conjectural".
+
+    Both were written in the prose AND in `data/source.schema.json`, and until
+    now neither was enforced anywhere: the word `tier` did not occur in this
+    file. Every other rung of the confidence model has had a gate for weeks —
+    `documented` owes a resolving source, `inferred` owes stated reasoning, an
+    invention owes an admission — while the question those gates all assume an
+    answer to, *how good is the source*, was checked by nobody.
+
+    Two readings of the tier-5 rule appear in `docs/PROVENANCE.md` and they are
+    not the same rule. The table says such a source may not be the SOLE evidence;
+    the 2026-08-10 revision says a tier-5 map "never reaches it, alone or in
+    company". The table's reading is the one enforced here, with reasons: the
+    revision exists precisely to stop over-caution making the dataset less
+    accurate, and forbidding a documented value from CITING a retrospective would
+    punish corroboration — the opposite of what it was written for. A value
+    carried by a period survey and cross-checked against a 1933 pictorial map is
+    better evidenced than the same value with the map struck out.
+
+    The third rule here is a warning, not an error, and it is the one with
+    findings in it today. `documented` "still requires a period source"; the
+    ladder puts first-hand and testimony-derived evidence at tiers 1-3 and later
+    scholarly synthesis at 4. Values resting on nothing but tier 4 are counted
+    and named rather than failed, because the fix is research and not a rename:
+    either those values are over-graded or those sources are under-tiered — a
+    page transcribing a period newspaper is tier 2 whatever the site hosting it
+    is, and this dataset already grades one chicagology page that way. Regrading
+    a confidence is also a mesh input, so the decision arrives with a bake
+    attached. Priced and queued in `docs/STATUS.md` § 43.
+    """
+    ladder = tier_ladder()
+    tiers = {sid: s.get("tier") for sid, s in
+             ((s.get("id"), s) for s in sources.values() if isinstance(s, dict))
+             if sid}
+
+    def rungs(block: dict) -> list[int]:
+        return [tiers[s] for s in (block.get("sources") or [])
+                if isinstance(tiers.get(s), int)]
+
+    def named(t: int) -> str:
+        return f"tier {t} ({ladder.get(t, '?')})"
+
+    # a source may not declare a use its rung does not support
+    for name, s in sorted(sources.items()):
+        if not isinstance(s, dict):
+            continue
+        t = s.get("tier")
+        if isinstance(t, int) and t > TRACEABLE_MAX_TIER and s.get("asset_use") == "geometry":
+            rep.error(f"source {name}",
+                      f"asset_use is 'geometry' at {named(t)} — no geometry is traced from a "
+                      f"retrospective reconstruction; it tells you a thing was here, not its "
+                      f"outline (docs/PROVENANCE.md § Evidence tiers)")
+
+    claims: list[tuple[str, str, dict]] = [
+        (where, aspect, block) for _sid, _pid, aspect, where, block in graded_values(structures)
+    ]
+    for epoch, blocks in sorted((ground_index or {}).items()):
+        for cid, claim in sorted(blocks.items()):
+            claims.append((f"ground {epoch}", cid, claim))
+
+    thin: list[str] = []
+    for where, aspect, block in claims:
+        conf = block.get("confidence")
+        got = rungs(block)
+        if conf == "documented" and got:
+            if min(got) > SOLE_EVIDENCE_MAX_TIER:
+                rep.error(where, f"{aspect}: documented on {named(min(got))} alone — tiers "
+                                 f"{SOLE_EVIDENCE_MAX_TIER + 1} and up inform inventory and "
+                                 f"cross-checks and may never be the sole evidence for a "
+                                 f"documented value")
+            elif min(got) > TESTIMONY_MAX_TIER:
+                thin.append(f"{where} {aspect}")
+        # an outline is the one thing a pictorial source cannot give you
+        if aspect == "footprint" and conf in ("documented", "inferred") and got:
+            off = sorted({t for t in got if t > TRACEABLE_MAX_TIER})
+            if off:
+                rep.error(where, f"footprint: graded {conf} while citing "
+                                 f"{', '.join(named(t) for t in off)} — an outline comes from a "
+                                 f"period sheet or stays conjectural; a retrospective gives you "
+                                 f"that a thing was here, not its plan")
+
+    if thin:
+        rep.warn("evidence ladder",
+                 f"{len(thin)} documented value(s) rest on no source at tier "
+                 f"{TESTIMONY_MAX_TIER} or better — later scholarship only, with no period "
+                 f"document, eyewitness recollection or compilation from testimony behind them: "
+                 f"{', '.join(sorted(thin)[:4])}"
+                 + (f" and {len(thin) - 4} more" if len(thin) > 4 else "")
+                 + ". Either the values are over-graded or the sources are under-tiered; both "
+                   "are research, and regrading a confidence stales a mesh. See "
+                   "docs/STATUS.md § 43")
+
+    rep.note(f"evidence ladder: {len(claims)} graded claim(s) held to the {len(ladder)}-rung "
+             f"ladder in data/source.schema.json — tiers "
+             f"{SOLE_EVIDENCE_MAX_TIER + 1}+ never sole evidence for documented, never an "
+             f"outline; {len(thin)} documented on later scholarship alone")
+
+
+# A record that dates its own retrieval is describing a web page, not a document:
+# `date` reads "accessed 2026-08-10" rather than "1884" or "1893-10-29". That
+# string is the dataset's own signal and not a new convention — see the check.
+_ACCESSED = re.compile(r"^\s*accessed\b", re.I)
+
+
+def dates_its_own_retrieval(source: dict) -> bool:
+    """True when the record dates the fetch rather than the document it carries."""
+    return bool(_ACCESSED.match(str(source.get("date") or "")))
+
+
+def check_transcription_declarations(sources: dict, rep: Report) -> None:
+    """A rung is a judgement about a document; this holds it to one.
+
+    `check_evidence_ladder` asks what rung a claim rests on and takes the rung
+    from the source record, where somebody typed it. Nothing ever asked what the
+    number was a judgement ABOUT — which matters most for the modern pages that
+    carry old documents, because there the number is not a judgement about the
+    page at all. `chicagology_prefire252` is tier 2 because it prints an 1893
+    Tribune retrospective; `chicagology_kinzie_bridge` is tier 3 because it
+    prints Andreas, and its `note` said so in as many words — "Tier 3 for the
+    Andreas transcription; the surrounding apparatus is a finding aid" — in a
+    sentence no check could read. That is the shape of every fault this family of
+    gates has found: a true sentence in a file, describing something nothing
+    verified.
+
+    So a record that dates its own RETRIEVAL rather than a document — `date`
+    reading "accessed 2026-08-10" — and that claims a rung at or above
+    `TESTIMONY_MAX_TIER` must declare `transcribes`: the documents it carries,
+    each with its own date and its own rung, and each saying which of this
+    project's claims it carries. The record's tier is then the best rung
+    declared, derived rather than asserted, exactly as a changelog version is.
+
+    Declare the documents the dataset DRAWS ON. A page also carrying a period
+    city directory that no value here rests on is carrying apparatus, and
+    apparatus goes in `note`; declaring it would claim, falsely, that a rung this
+    dataset does not use is a rung it stands on.
+
+    A page that has been READ and reprints nothing is the third state, and it
+    needs a word of its own because it is indistinguishable here from a page
+    nobody has opened — both declare nothing, and the count below would go on
+    calling a read page unread, which is the sentence-nothing-can-see fault this
+    whole family of gates exists to end. `wikipedia_chicago_river` is the case:
+    it PARAPHRASES Swearingen's 1803 river soundings and footnotes them to a
+    named reprinting, which is a citation and not a transcription. Such a record
+    says so in `carries_no_document` — the reading, not a flag — and may not be
+    graded at or above `TESTIMONY_MAX_TIER`, because there is no document on the
+    page for the rung to be a judgement about.
+
+    Two limits, both real and neither closable here. The check cannot read a
+    transcription, so it cannot tell whether the document named actually says
+    what the note claims — a human read is what put the entry there and a human
+    read is what would overturn it. And it is per-record, while
+    `check_evidence_ladder` is per-value: a source cited for corroboration on one
+    attribute lends its rung to every attribute that lists it, so clearing a
+    warning is not the same as improving the evidence for the value that carried
+    it. `docs/RESEARCH/evidence_tiers_chicagology.md` walks the committed cases
+    one at a time for exactly that reason.
+    """
+    ladder = tier_ladder()
+    undeclared: list[str] = []
+    read_and_empty: list[str] = []
+
+    for name, s in sorted(sources.items()):
+        if not isinstance(s, dict):
+            continue
+        tier, declared = s.get("tier"), s.get("transcribes")
+        if not isinstance(tier, int):
+            continue
+        retrieval = dates_its_own_retrieval(s)
+        empty = str(s.get("carries_no_document") or "").strip()
+
+        if empty:
+            if declared is not None:
+                rep.error(f"source {name}",
+                          "declares `transcribes` and `carries_no_document` — a page either "
+                          "reprints a document or it does not, and both fields are readings of "
+                          "the same page")
+                continue
+            if not retrieval:
+                rep.error(f"source {name}",
+                          f"dates a document ('{s.get('date')}') and declares "
+                          f"`carries_no_document` — a record that IS its document is outside this "
+                          f"rule, and saying it reprints nothing describes the wrong page")
+                continue
+            if tier <= TESTIMONY_MAX_TIER:
+                rep.error(f"source {name}",
+                          f"graded tier {tier} ({ladder.get(tier, '?')}) while declaring that it "
+                          f"reprints no document — a rung at or above {TESTIMONY_MAX_TIER} is a "
+                          f"judgement about a document, so a page carrying none is later "
+                          f"scholarship at best")
+            read_and_empty.append(name)
+            continue
+
+        if declared is None:
+            if retrieval and tier <= TESTIMONY_MAX_TIER:
+                rep.error(f"source {name}",
+                          f"graded tier {tier} ({ladder.get(tier, '?')}) while dating its own "
+                          f"retrieval ('{s.get('date')}') — a rung at or above "
+                          f"{TESTIMONY_MAX_TIER} belongs to a document, not to a page that "
+                          f"reprints one, so declare the document in `transcribes`")
+            elif retrieval:
+                undeclared.append(name)
+            continue
+
+        rungs = [e.get("tier") for e in declared if isinstance(e, dict)]
+        rungs = [t for t in rungs if isinstance(t, int)]
+        if not rungs:
+            rep.error(f"source {name}", "`transcribes` declares no rung to read the record's own "
+                                        "tier from")
+            continue
+        best = min(rungs)
+        if tier != best:
+            rep.error(f"source {name}",
+                      f"graded tier {tier} ({ladder.get(tier, '?')}) while the best document it "
+                      f"declares carrying is tier {best} ({ladder.get(best, '?')}) — the record's "
+                      f"rung is the best rung it transcribes, derived and not typed; move the "
+                      f"apparatus out of `transcribes` or correct the tier")
+        for i, entry in enumerate(declared):
+            if not isinstance(entry, dict):
+                continue
+            if not str(entry.get("note") or "").strip():
+                rep.error(f"source {name}",
+                          f"transcribes[{i}] names a document and not what it carries — say which "
+                          f"claims in this dataset rest on it, or it is apparatus and does not "
+                          f"belong here")
+            if _ACCESSED.match(str(entry.get("date") or "")):
+                rep.error(f"source {name}",
+                          f"transcribes[{i}] dates a retrieval — the document's own date is what "
+                          f"places it on the ladder")
+
+    declared_records = sum(1 for s in sources.values()
+                           if isinstance(s, dict) and s.get("transcribes"))
+    rep.note(f"transcription declarations: {declared_records} source(s) derive their rung from the "
+             f"document they carry and {len(read_and_empty)} page(s) were read and reprint none; "
+             f"{len(undeclared)} page(s) at tier "
+             f"{TESTIMONY_MAX_TIER + 1} or weaker date their own retrieval and declare nothing — "
+             f"unread rather than wrong, and the queue in docs/ROADMAP.md § S5"
+             + (f" ({', '.join(undeclared[:4])}"
+                + (f" and {len(undeclared) - 4} more)" if len(undeclared) > 4 else ")")
+                if undeclared else ""))
 
 
 def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
@@ -403,6 +1274,16 @@ def archetype_consumed(rep: Report | None = None) -> dict[str, frozenset]:
 # negative finding — has nothing missing from the model to admit to.
 GEOMETRY_STATES = ("absent", "simplified", "record_only")
 GEOMETRY_OWES_LIBERTY = ("absent", "simplified")
+
+# The ground's vocabulary is the same three plus one a record cannot need.
+# `restated_in_code` is a value the mesh AGREES with and does not come from: the
+# water plane is a literal zero in `terrain_gen.py` and the bank's ease-out is
+# written in Python, so those spec lines describe the ground accurately while
+# driving nothing. Calling that `absent` would be a lie in the visitor's
+# direction and `simplified` one in the reviewer's. It owes no liberty — nothing
+# is missing from the model — and what it does owe is a warning to whoever edits
+# the generator, which is why the declaration says where the duplicate lives.
+GROUND_GEOMETRY_STATES = GEOMETRY_STATES + ("restated_in_code",)
 
 
 def unbuilt_values(structures: dict, consumed: dict[str, frozenset]) -> list[tuple]:
@@ -752,9 +1633,266 @@ def check_ground_contact(structures: dict, unlanded: list[tuple], rep: Report) -
              f"{declared} declaring it")
 
 
+# How close a recomputed placement has to land. The corner tolerance is a
+# rounding allowance and nothing else: coordinates are committed to 0.1 m and
+# polygons to the millimetre, so the eight corner constraints in the dataset
+# reproduce to 0.02 m. The waterline tolerance is larger for a stated reason —
+# a traced bank is a polyline, and where it crosses a given northing depends on
+# which vertex pair you sample, so agreement to the centimetre would be luck
+# rather than correctness.
+PLACEMENT_TOL_M = 0.05
+WATERLINE_TOL_M = 0.5
+
+
+def world_footprint(phase: dict) -> list[tuple[float, float]]:
+    """The footprint polygon where it actually stands, in EPSG:26916 metres.
+
+    `rotation_deg` is a facade bearing, degrees CLOCKWISE from grid north, and
+    the polygon is local ENU about the position — so a building at bearing 270
+    has its recorded coordinate at what reads on paper as its south-east corner.
+    Every constraint below is asked of the placed shape rather than of the
+    coordinate, because "the west face stands on the Canal frontage" is a claim
+    about the building and stays true when the building is rotated.
+    """
+    pos = phase.get("position") or {}
+    poly = (phase.get("footprint") or {}).get("polygon") or []
+    if pos.get("utm_e") is None or pos.get("utm_n") is None or len(poly) < 3:
+        return []
+    b = math.radians(float(pos.get("rotation_deg") or 0.0))
+    cos, sin = math.cos(b), math.sin(b)
+    e0, n0 = float(pos["utm_e"]), float(pos["utm_n"])
+    return [(e0 + x * cos + y * sin, n0 - x * sin + y * cos) for x, y in poly]
+
+
+def face_of(pts: list[tuple[float, float]], face: str) -> float:
+    es = [p[0] for p in pts]
+    ns = [p[1] for p in pts]
+    return {"west": min(es), "east": max(es), "south": min(ns), "north": max(ns)}[face]
+
+
+def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
+                        where: str) -> list[float]:
+    """Eastings where the traced water boundary crosses a northing."""
+    doc = load_json(epoch_dir / "river.geojson", rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error(where, f"no traced river at {epoch_dir.name} to meet")
+        return []
+    out: list[float] = []
+    for ft in doc.get("features", []):
+        geom = ft.get("geometry") or {}
+        if geom.get("type") != "Polygon":
+            continue
+        for ring in geom.get("coordinates", []):
+            for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+                if y1 != y2 and (y1 - northing) * (y2 - northing) <= 0:
+                    out.append(x1 + (northing - y1) / (y2 - y1) * (x2 - x1))
+    return out
+
+
+def check_position_derivations(structures: dict, source_ids: set, rep: Report,
+                               data_root: Path | None = None) -> None:
+    """Every placement says how it was arrived at, and the checkable ones are recomputed.
+
+    Five of the nine placements in this dataset are the same construction: read
+    a modern intersection centre off OpenStreetMap, step half a platted street
+    to the kerb, and stand a named face on it. That construction was written out
+    in prose once per building — the same sentence, the same 12.2 m, five sums
+    done by hand — and nothing recomputed any of it. Two consequences, and the
+    second is the reason this exists rather than the first:
+
+    - A transcription slip in any of those sums is invisible. The numbers happen
+      to be right; nothing was making them right.
+    - **The module could not be changed.** `data/traces/street_control.json`
+      records a live disagreement about the platted street width (80 ft
+      annotated on Hathaway 1834, against Currey's 66 ft) whose consequence is
+      2.13 m on every offset. Settling it against five paragraphs means five
+      hand-redone sums and a reviewer with a calculator; settling it against one
+      figure and this check means editing one number and reading which buildings
+      moved.
+
+    The rule runs in both directions, which is what stops the file going quietly
+    out of date: a phase with coordinates and no `derivation` is an error, and a
+    derivation naming control, a street, a kerb or an epoch that does not
+    resolve is an error too. A placement no line in the dataset can check
+    declares `not_derivable` and owes a reason — three of the nine do, and their
+    reasons are the honest ones: no surviving street here, a position stacked on
+    another inferred position, an interpolation plus a free 40 m.
+    """
+    base = data_root or DATA
+    doc = load_json(base / "traces" / "street_control.json", rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error("street control", "data/traces/street_control.json is missing or unreadable — "
+                                    "the placements cannot be recomputed without it")
+        return
+
+    module = doc.get("platted_street") or {}
+    half = module.get("half_width_m")
+    if not isinstance(half, (int, float)) or half <= 0:
+        rep.error("street control", "platted_street.half_width_m is missing or not a length")
+        return
+    if module.get("confidence") not in CONFIDENCE:
+        rep.error("street control", "the platted street width carries no confidence, and every "
+                                    "figure this dataset stands on is graded")
+    if module.get("confidence") != "documented" and not (module.get("note") or "").strip():
+        rep.error("street control", "the street width is not documented and states no reasoning")
+    for key, node in (("platted_street", module), ("platted_street.dissent", module.get("dissent") or {})):
+        for s in node.get("sources") or []:
+            if s not in source_ids:
+                rep.error("street control", f"{key} cites '{s}', which does not resolve in data/sources/")
+
+    streets = doc.get("streets") or {}
+    for sid, st in streets.items():
+        if st.get("axis") not in ("ew", "ns"):
+            rep.error("street control", f"street '{sid}' has no axis; a kerb cannot be found "
+                                        f"without knowing which way the street runs")
+
+    control = doc.get("control") or {}
+    for cid, c in control.items():
+        for sid in c.get("streets") or []:
+            if sid not in streets:
+                rep.error("street control", f"control '{cid}' names street '{sid}', which is not "
+                                            f"in the streets table")
+        if c.get("utm_e") is None or c.get("utm_n") is None:
+            rep.error("street control", f"control '{cid}' has no coordinate")
+        if not c.get("osm_node_ids") and not (c.get("gap") or "").strip():
+            rep.error("street control", f"control '{cid}' records no OpenStreetMap node ids and "
+                                        f"no `gap` saying so — data/sources/osm_streets_2026.json "
+                                        f"promises the ids are recorded, and a control point that "
+                                        f"cannot be re-fetched has to say it cannot")
+        # Ids alone are not re-derivability. A list of node ids says which nodes
+        # were averaged; it does not say what junction they are, so nobody can
+        # tell whether the SET is right — and a wrong set is exactly the fault
+        # that cost this dataset two coordinates (a substring name query pulling
+        # a bikeway's crossings in beside the roadway's, 2026-08-10). The names
+        # make the set re-derivable rather than merely re-fetchable, which is the
+        # difference between checking the number and checking the reading.
+        if c.get("osm_node_ids"):
+            ways = c.get("osm_ways") or []
+            if len(ways) != 2 or not all(isinstance(w, str) and w.strip() for w in ways):
+                rep.error("street control", f"control '{cid}' records node ids but not the two "
+                                            f"modern street names in `osm_ways` that make the "
+                                            f"junction — without them the node SET cannot be "
+                                            f"re-derived, only re-fetched, and a set with the "
+                                            f"wrong nodes in it re-fetches perfectly")
+            if c.get("lat") is None or c.get("lon") is None:
+                rep.error("street control", f"control '{cid}' records node ids and no lat/lon — "
+                                            f"the re-fetch reads WGS84 and the comparison would "
+                                            f"have to reproject the answer it is checking")
+
+    checked = declared = 0
+    for name, st in sorted(structures.items()):
+        sid = st.get("id", name)
+        for ph in st.get("phases", []):
+            pos = ph.get("position") or {}
+            where = f"structure {sid}/{ph.get('id', '?')}"
+            der = pos.get("derivation")
+            if pos.get("utm_e") is None:
+                if der:
+                    rep.error(where, "declares a derivation and has no coordinates to derive")
+                continue
+            if not der:
+                rep.error(where, "has coordinates and no `position.derivation` — how a placement "
+                                 "was arrived at is part of the claim, and a placement that "
+                                 "nothing can recompute has to say so rather than say nothing")
+                continue
+            declared += 1
+            method = der.get("method")
+
+            if method == "not_derivable":
+                if not (der.get("reason") or "").strip():
+                    rep.error(where, "not_derivable without a reason — that is an undeclared "
+                                     "placement with a label on it")
+                for k in ("control", "constraints", "centreline", "ends"):
+                    if der.get(k):
+                        rep.error(where, f"not_derivable but carries `{k}`")
+                continue
+
+            cid = der.get("control")
+            c = control.get(cid or "")
+            if not c:
+                rep.error(where, f"control '{cid}' does not resolve in "
+                                 f"data/traces/street_control.json")
+                continue
+            pts = world_footprint(ph)
+            if not pts:
+                rep.error(where, "has coordinates but no footprint polygon to stand on a frontage")
+                continue
+
+            if method == "platted_corner":
+                cons = der.get("constraints") or []
+                if not cons:
+                    rep.error(where, "platted_corner with no constraints")
+                for con in cons:
+                    street = streets.get(con.get("street") or "")
+                    if not street:
+                        rep.error(where, f"names street '{con.get('street')}', not in the "
+                                         f"streets table")
+                        continue
+                    if con.get("street") not in (c.get("streets") or []):
+                        rep.error(where, f"stands on '{con.get('street')}' but its control "
+                                         f"'{cid}' is not on that street")
+                        continue
+                    kerb, axis = con.get("kerb"), street["axis"]
+                    if (axis == "ns") != (kerb in ("east", "west")):
+                        rep.error(where, f"a {axis} street has no {kerb} kerb")
+                        continue
+                    outward = 1.0 if kerb in ("east", "north") else -1.0
+                    centre = c["utm_e"] if axis == "ns" else c["utm_n"]
+                    want = centre + outward * (half + float(con.get("offset_m") or 0.0))
+                    got = face_of(pts, con["face"])
+                    if abs(got - want) > PLACEMENT_TOL_M:
+                        rep.error(where, f"the {con['face']} face stands at {got:.2f} and the "
+                                         f"{kerb} frontage of {con['street']} is at {want:.2f} "
+                                         f"({got - want:+.2f} m)")
+                    else:
+                        checked += 1
+
+            elif method == "traced_waterline":
+                cl = der.get("centreline") or {}
+                ends = der.get("ends") or {}
+                axis = cl.get("axis")
+                if axis in ("e", "n"):
+                    lo = face_of(pts, "west" if axis == "e" else "south")
+                    hi = face_of(pts, "east" if axis == "e" else "north")
+                    mid = (lo + hi) / 2.0
+                    centre = c["utm_e"] if axis == "e" else c["utm_n"]
+                    var = float(cl.get("control_variance_m") or 0.0)
+                    if var and not (der.get("note") or "").strip():
+                        rep.error(where, "declares a variance from its control and explains it "
+                                         "nowhere — a stated offset with no reason is the thing "
+                                         "this check exists to stop being written")
+                    if abs(abs(centre - mid) - abs(var)) > PLACEMENT_TOL_M:
+                        rep.error(where, f"sits {centre - mid:+.2f} m from control '{cid}' on the "
+                                         f"{axis} axis and declares {var:+.2f}")
+                    else:
+                        checked += 1
+                epoch_dir = base / "terrain" / "epochs" / (ends.get("epoch") or "")
+                if not epoch_dir.is_dir():
+                    rep.error(where, f"ends on epoch '{ends.get('epoch')}', which is not committed")
+                    continue
+                mid_n = (face_of(pts, "south") + face_of(pts, "north")) / 2.0
+                xs = waterline_crossings(epoch_dir, mid_n, rep, where)
+                for f in ends.get("faces") or []:
+                    got = face_of(pts, f)
+                    near = min((abs(got - x) for x in xs), default=None)
+                    if near is None or near > WATERLINE_TOL_M:
+                        rep.error(where, f"its {f} end stands at {got:.2f} and meets no traced "
+                                         f"{ends.get('epoch')} waterline there"
+                                         + (f" (nearest {near:.2f} m)" if near is not None else ""))
+                    else:
+                        checked += 1
+            else:
+                rep.error(where, f"unknown derivation method '{method}'")
+
+    rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
+             f"from data/traces/street_control.json")
+
+
 def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                              consumed: dict[str, frozenset] | None = None,
-                             unlanded: list[tuple] | None = None) -> None:
+                             unlanded: list[tuple] | None = None,
+                             ground: dict[str, dict[str, dict]] | None = None,
+                             ground_consumed: dict[str, frozenset] | None = None) -> None:
     """Every conjectural value in a record must be CLAIMED in LIBERTIES.md.
 
     This is the inverse of the check the walkthrough already makes. The panel and
@@ -787,6 +1925,18 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     reads as diligence while providing none. Entries under **Resolved** are exempt
     from the last of those, because an append-only document has to be able to say
     "evidence settled this" without the settlement itself becoming a gate failure.
+
+    **And the ground answers to all of it too.** Every paragraph above is about a
+    building, because the check read `data/structures/` and nothing else. The
+    terrain invents on the same terms and at a larger scale — a 6 m bank face
+    nobody recorded, on every bank in the box, which is the piece of ground every
+    visitor walks down to the water on — and none of that was demanded by a
+    check: L32 and L33 were written by a person who noticed. A liberty owed by
+    somebody's attention is precisely the arrangement this gate exists to
+    replace. Ground claims are enumerated by the same function that puts them on
+    the Evidence panel and claimed in a namespace of their own,
+    `terrain.<epoch>.<claim>`, because the terrain is not a structure and the one
+    document whose subject is honesty should not have to call it one.
     """
     entries = liberties.get("liberties") if isinstance(liberties, dict) else None
     if not entries:
@@ -795,10 +1945,17 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                                "docs/LIBERTIES.md — run tools/compile_liberties.py")
         return
 
-    # (structure, phase|None, aspect) -> the entries claiming it.
+    # (structure, phase|None, aspect) -> the entries claiming it, and the ground's
+    # (epoch, claim) beside it. Two dicts rather than one keyspace with a marker
+    # in it: the two domains are checked against different documents and fail for
+    # different reasons, and a shared key would only make that harder to read.
     claims: dict[tuple, list[dict]] = {}
+    ground_claims_made: dict[tuple, list[dict]] = {}
     for e in entries:
         for c in e.get("covers") or []:
+            if c.get("domain") == "terrain":
+                ground_claims_made.setdefault((c.get("epoch"), c.get("claim")), []).append(e)
+                continue
             key = (c.get("structure"), c.get("phase"), c.get("aspect"))
             claims.setdefault(key, []).append(e)
 
@@ -820,7 +1977,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
         owed.append((sid, pid, aspect, where, "unlanded"))
 
     covered = 0
-    invented = omitted = unlanded_n = 0
+    invented = omitted = unlanded_n = ground_n = 0
     honoured: set[tuple] = set()
     for sid, pid, aspect, where, kind in owed:
         keys = [(sid, pid, aspect), (sid, None, aspect)]
@@ -856,6 +2013,74 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                   f"Append the liberty with '**Covers:** `{token}`' and re-run "
                   f"tools/compile_liberties.py (liberties naming {sid}: {named})")
 
+    # The ground, on the same terms. Its claims are blocks of a spec rather than
+    # attributes of a record, so they are matched by id and not by aspect — but
+    # the requirement is the identical one, and so is the argument for it.
+    ground = ground or {}
+    ground_honoured: set[tuple] = set()
+    ground_owed = [(e, c, lab, w, "invented")
+                   for e, c, lab, w in terrain_conjectural_values(ground)]
+    # And the ground's omissions, on the same terms as a building's. The claim is
+    # per FIELD and the admission is per CLAIM, because `terrain.<epoch>.<claim>`
+    # is the vocabulary the document already writes in and a soil profile is not
+    # separably admittable from the block that states it. The mismatch is the
+    # block-level grading this panel already carries, one level down: the note is
+    # where a reader learns which figure is the unbuilt one.
+    seen_omitted: set[tuple] = set()
+    for epoch, cid, key, state, where in unbuilt_ground_values(
+            ground, ground_consumed if ground_consumed is not None else terrain_consumed()):
+        if state not in GEOMETRY_OWES_LIBERTY or (epoch, cid) in seen_omitted:
+            continue
+        seen_omitted.add((epoch, cid))
+        label = (ground.get(epoch, {}).get(cid, {}) or {}).get("label") or cid
+        ground_owed.append((epoch, cid, label, where, state))
+    for epoch, cid, label, where, kind in ground_owed:
+        key = (epoch, cid)
+        if key in ground_claims_made:
+            covered += 1
+            ground_n += 1
+            ground_honoured.add(key)
+            continue
+        if kind == "invented":
+            why = (f"'{label}' is conjectural and no liberty in docs/LIBERTIES.md claims "
+                   f"it — the ground invents as freely as a record does, a visitor walks "
+                   f"on the result")
+        else:
+            why = (f"'{label}' states a figure the ground does not contain "
+                   f"(mesh: '{kind}') and no liberty in docs/LIBERTIES.md claims it — "
+                   f"the panel shows the claim with a confidence chip over it and nothing "
+                   f"tells a visitor there is no vertex behind it")
+        rep.error(where,
+                  f"{why}, and the standard is that they can tell you which parts. "
+                  f"Append the liberty with '**Covers:** `terrain.{epoch}.{cid}`' and "
+                  f"re-run tools/compile_liberties.py")
+
+    for (epoch, cid), owners in sorted(ground_claims_made.items(), key=lambda kv: str(kv[0])):
+        who = ", ".join(e.get("id", "?") for e in owners)
+        if epoch not in ground:
+            rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}' but no "
+                                   f"terrain epoch '{epoch}' is committed — an admission "
+                                   f"about ground that does not exist")
+            continue
+        if cid not in ground[epoch]:
+            rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}' but that "
+                                   f"epoch's spec makes no graded claim '{cid}' — the claims "
+                                   f"are the ones the Evidence panel shows, so a token "
+                                   f"naming none of them admits to nothing a visitor reads")
+            continue
+        if (epoch, cid) in ground_honoured:
+            continue
+        if all((e.get("section") or "") == "resolved" for e in owners):
+            continue
+        rep.error("liberties", f"{who} claims to cover 'terrain.{epoch}.{cid}', but that "
+                               f"ground claim is neither conjectural nor stating a figure "
+                               f"declared absent or simplified — either evidence arrived "
+                               f"and the spec caught up, or the ground was built and the "
+                               f"declaration dropped, in which case move the entry to the "
+                               f"Resolved section of docs/LIBERTIES.md; or the claim was "
+                               f"never true. An admission to something we did not do reads "
+                               f"as diligence and provides none")
+
     # The claims answer for themselves.
     for (csid, cpid, aspect), owners in sorted(claims.items(), key=lambda kv: str(kv[0])):
         who = ", ".join(e.get("id", "?") for e in owners)
@@ -883,8 +2108,868 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
                                f"do reads as diligence and provides none")
 
     rep.note(f"liberties coverage: {covered} value(s) owed an admission — {invented} invented, "
-             f"{omitted} stated and not built, {unlanded_n} standing off the ground — claimed by "
-             f"{len(honoured)} declaration(s) in docs/LIBERTIES.md")
+             f"{omitted} stated and not built, {unlanded_n} standing off the ground, "
+             f"{ground_n} invented in the ground itself — claimed by "
+             f"{len(honoured) + len(ground_honoured)} declaration(s) in docs/LIBERTIES.md")
+
+
+# --------------------------------------------------------------------------
+# the sidecar interface
+# --------------------------------------------------------------------------
+#
+# `tools/compile_scene.py` writes the sidecars and the renderer reads them, and
+# until now nothing stated what passes between them. That is not a hypothetical
+# gap: `popup.js` read `sidecar.documented_range` from the day the card was
+# written and the compiler never emitted it, so the one line answering *was this
+# building here on 1 July 1835* rendered as nothing for the life of the project
+# (STATUS § 28). Every existing gate was silent, and correctly so — each half was
+# consistent with itself, `--check` proves only that the compiler agrees with its
+# own output, and the record validated clean.
+#
+# So the interface is derived from both sides and compared. What the compiler
+# emits is read off the committed sidecars, which `compile_scene.py --check`
+# proves are exactly what the dataset compiles to; what the renderer reads is
+# scanned out of the renderer's own source. A field read on one side and absent
+# on the other is an error.
+
+# `record.sidecar`, or the bare `sidecar` the loader binds when it fetches one.
+SIDECAR_ROOT = r"(?:\brecord\b\s*\??\.\s*)?\bsidecar\b"
+JS_IDENT = r"[A-Za-z_$][\w$]*"
+JS_CHAIN = r"((?:\s*\??\.\s*[A-Za-z_$][\w$]*)*)"
+
+
+def sidecar_shape() -> dict:
+    """The shape of a per-structure sidecar, unioned over every committed one.
+
+    A union rather than one file because a field is part of the interface even
+    when only one structure carries it — `aka` is empty on most records and the
+    card still reads it. The set is taken from each scene's `index.json` rather
+    than from every file in the directory, because the other derived documents —
+    `exclusions.json`, `terrain.json` — have their own readers and their own
+    shapes, and a name-exclusion list stops being right the moment somebody
+    compiles a third one. This gate covers the record the popup, the walker and
+    the placement code all read.
+
+    Dict values recurse; anything else becomes a leaf. Resolution stops at a
+    leaf, which is what keeps `aka.length` and `polygon.map` from being read as
+    missing fields of a list.
+    """
+    def merge(shape: dict, doc: dict) -> dict:
+        for k, v in doc.items():
+            if isinstance(v, dict):
+                prev = shape.get(k)
+                shape[k] = merge(prev if isinstance(prev, dict) else {}, v)
+            else:
+                shape.setdefault(k, None)
+        return shape
+
+    shape: dict = {}
+    for index in sorted((DATA / "sidecars").glob("*/index.json")):
+        listed = json.loads(index.read_text()).get("structures", [])
+        for entry in listed:
+            p = DATA / entry.get("sidecar", "")
+            if not p.is_file():
+                continue
+            doc = json.loads(p.read_text())
+            if isinstance(doc, dict):
+                merge(shape, doc)
+    return shape
+
+
+def strip_js_comments(text: str) -> str:
+    """Comments out, line numbers intact.
+
+    Not cosmetic: this file's modules explain their own history in prose, and the
+    first thing the gate reported was a field named in the comment that documents
+    why it is no longer read. A sentence about a field is not a read of it.
+
+    Block comments collapse to their own newlines so a reported line still points
+    at the right line. The line-comment rule refuses a `//` preceded by a colon or
+    a quote, which is what keeps a URL inside a string from truncating the code
+    after it; the cost of the heuristic is a missed read on such a line, never a
+    false one.
+    """
+    text = re.sub(r"/\*[\s\S]*?\*/", lambda m: "\n" * m.group(0).count("\n"), text)
+    return re.sub(r"""(?<![:'"\\\w])//[^\n]*""", "", text)
+
+
+def sidecar_field_reads(text: str, shape: dict | None = None,
+                        roots: list[tuple[str, list[str]]] | None = None,
+                        ) -> list[tuple[int, str]]:
+    """Every sidecar field one renderer module reads, as (line, dotted path).
+
+    A regex over JavaScript is a blunt instrument and this one is deliberately
+    narrow: it follows `record.sidecar` and the local names bound directly to it
+    (`const s = record.sidecar`, `const p = s.placement ?? {}`), and nothing
+    else. A name is only followed when its path lands on a dict, so `const e =
+    p.local_e` binds nothing further and a later unrelated `e` in the same file
+    cannot be mistaken for it.
+
+    `roots` is how a caller states a binding this scanner cannot infer. The
+    per-structure sidecar needs none — `record.sidecar` names itself — but the
+    derived documents are read as `doc` and then handed entry by entry to a
+    renderer, where the name arrives as a function parameter and the anchor is
+    gone. `check_derived_contract` declares those bindings rather than guessing
+    them: `("doc", [])` for the document itself, `("claim", ["claims"])` for the
+    parameter that holds one of its claims. Each is (identifier, path prefix),
+    and it is a claim about the module that the gate's other direction then
+    holds to the document.
+
+    What it cannot see is stated rather than implied: a sidecar value handed to a
+    function is read through that function's parameter, so `claimRow(label, span,
+    range)` puts `range.confidence` out of reach. This finds the reads that name
+    the field where the sidecar is in hand, which is where the field name is
+    chosen and therefore where it can be wrong.
+
+    Where it errs it errs loudly. Bind a name to a sidecar block and then reuse
+    that name for an unrelated object in the same module, and this attributes the
+    second object's fields to the sidecar and reports them missing. That is a
+    false alarm a reader resolves in a minute by renaming the variable, and it is
+    the direction to fail in: the alternative is the silence that let a card read
+    a field nobody wrote for the life of the project.
+    """
+    shape = sidecar_shape() if shape is None else shape
+    text = strip_js_comments(text)
+    seeds: list[tuple[str, list[str]]] = ([(SIDECAR_ROOT, [])] if roots is None
+                                          else [(r"\b%s\b" % re.escape(n), list(p))
+                                                for n, p in roots])
+
+    def resolve(path: list[str]):
+        """(node, ok, missing_segment) — resolution stops at the first leaf."""
+        node = shape
+        for i, seg in enumerate(path):
+            if not isinstance(node, dict):
+                return node, True, None, path[:i]
+            if seg not in node:
+                return None, False, seg, path[:i + 1]
+            node = node[seg]
+        return node, True, None, path
+
+    def segments(chain: str) -> list[str]:
+        return re.findall(JS_IDENT, chain or "")
+
+    bound: dict[str, list[str]] = {}
+    for _ in range(3):          # `s` binds before `p = s.placement` resolves
+        anchors = seeds + [(r"\b%s\b" % re.escape(n), p)
+                           for n, p in bound.items()]
+        for anchor, prefix in anchors:
+            pat = r"\b(?:const|let|var)\s+(%s)\s*=\s*%s%s" % (JS_IDENT, anchor, JS_CHAIN)
+            for m in re.finditer(pat, text):
+                name, path = m.group(1), prefix + segments(m.group(2))
+                node, ok, _, _ = resolve(path)
+                if name not in bound and ok and isinstance(node, dict):
+                    bound[name] = path
+
+    reads: dict[str, int] = {}
+    anchors = seeds + [(r"\b%s\b" % re.escape(n), p)
+                       for n, p in bound.items()]
+    for anchor, prefix in anchors:
+        for m in re.finditer(anchor + JS_CHAIN, text):
+            path = prefix + segments(m.group(1))
+            if not path:
+                continue
+            _, _, _, reached = resolve(path)
+            key = ".".join(reached)
+            line = text[:m.start()].count("\n") + 1
+            if key and reads.get(key, 1 << 30) > line:
+                reads[key] = line
+    return sorted((line, path) for path, line in reads.items())
+
+
+def _corridor_passes_its_method(sheet: str, tv: dict, c_: dict, params: dict,
+                                rep: Report) -> None:
+    """A committed corridor has to pass the tests the file says it passed.
+
+    The measurement runs on a network fetch and cannot be re-run here, so what this holds
+    is the readings against the thresholds the file itself declares. It is not a formality:
+    the E-W streets exist in this file because one new test — `clear_run`, how far a
+    candidate is open ground down its own middle — threw out ten strips of Wright lots that
+    the width test could not tell from a street. A corridor added by hand without that
+    reading, or with one below the threshold, is a corridor the method would have rejected.
+    """
+    where = f"{sheet}/{tv.get('id')}"
+    reach = params.get("corridor_reach_m")
+    for key, floor, what in (
+        ("clear_run_m", params.get("clear_run_min_m"),
+         "open ground down its own middle, which is what tells a street from a strip of lots"),
+        ("boundary_run_m", params.get("face_min_m"),
+         "boundary lines that run a block face"),
+    ):
+        if floor is None:
+            continue
+        got = c_.get(key)
+        if got is None:
+            rep.error("street module", f"{where}: a committed corridor records no {key}, so "
+                                       f"nothing says it was held to the method's own test for "
+                                       f"{what}")
+            continue
+        low = min(got) if isinstance(got, list) else got
+        if low < float(floor) - 0.05:
+            rep.error("street module", f"{where}: a committed corridor records {key} {got}, "
+                                       f"below the {floor} m the method requires — this "
+                                       f"reading did not pass the test the file says it did")
+        if key == "clear_run_m" and reach and got > 2 * float(reach) + 0.05:
+            rep.error("street module", f"{where}: a corridor is open for {got} m along a "
+                                       f"centreline the method only follows "
+                                       f"{2 * float(reach):g} m of")
+    share, ceiling = c_.get("interior_ink_share"), params.get("ink_share")
+    if share is not None and ceiling is not None and share > float(ceiling) + 1e-9:
+        rep.error("street module", f"{where}: a committed corridor's interior is inked over "
+                                   f"{share} of its length, above the {ceiling} the method "
+                                   f"allows a corridor")
+
+
+def _identification_rederives(sheet: str, tv: dict, c_: dict, coef, k: float,
+                              ctl: dict, rep: Report) -> None:
+    """A corridor's street name is re-derived from the control it was named by.
+
+    The names in this file are not counted off from Canal — each one is the corridor that
+    the street's committed modern junction(s) land on, projected onto the traverse through
+    the sheet's own affine. All three inputs are committed, so the naming re-derives
+    offline here: move a junction in `street_control.json`, or edit the offset, and the
+    identification stops being true and this fails. A name nothing can re-derive is the
+    kind of claim this project does not keep.
+    """
+    ident = c_.get("identified_as")
+    if not ident:
+        return
+    where = f"{sheet}/{tv.get('id')}"
+    sid = ident.get("street")
+    street = ((ctl.get("streets") or {}).get(sid) or {})
+    if not street:
+        rep.error("street module", f"{where}: a corridor is identified as '{sid}', which is "
+                                   f"not a street in data/traces/street_control.json")
+        return
+    if street.get("axis") == tv.get("axis"):
+        rep.error("street module", f"{where}: a corridor is identified as {street.get('name')}, "
+                                   f"which runs along this traverse rather than across it — a "
+                                   f"traverse cannot measure the width of a street it rides")
+        return
+    across = tv.get("across_utm") or []
+    if len(across) != 2:
+        rep.error("street module", f"{where}: the traverse records no across_utm axis, so an "
+                                   f"identification on it cannot be re-derived")
+        return
+    junctions = [(ctl.get("control") or {}).get(j) for j in (ident.get("control") or [])]
+    if not junctions or not all(junctions):
+        rep.error("street module", f"{where}: {street.get('name')} is identified from control "
+                                   f"{ident.get('control')}, which does not resolve in "
+                                   f"data/traces/street_control.json")
+        return
+    a, b, c, d, e, f = coef
+    cx, cy = (c_.get("centre_px") or [0, 0])
+    cE, cN = a * (cx / k) + b * (cy / k) + c, d * (cx / k) + e * (cy / k) + f
+    jE = sum(float(j["utm_e"]) for j in junctions) / len(junctions)
+    jN = sum(float(j["utm_n"]) for j in junctions) / len(junctions)
+    off = abs((cE - jE) * float(across[0]) + (cN - jN) * float(across[1]))
+    if abs(off - float(ident.get("offset_m", -1))) > 0.5:
+        rep.error("street module", f"{where}: {street.get('name')} is recorded "
+                                   f"{ident.get('offset_m')} m from its control and the "
+                                   f"committed pixels re-derive to {off:.1f} m")
+    tol = ident.get("tolerance_m")
+    if tol is not None and off > float(tol) + 0.05:
+        rep.error("street module", f"{where}: {street.get('name')} names a corridor {off:.1f} m "
+                                   f"from where its control puts it, beyond the {tol} m the "
+                                   f"method allows an identification")
+
+
+def check_street_module(source_ids: set, rep: Report, data_root: Path | None = None) -> None:
+    """The module every placement stands on is held to the sheets it was measured off.
+
+    `check_position_derivations` recomputes each placement FROM the module. Nothing
+    checked the module itself: 80 ft was an annotation read once during the datum work,
+    a second source said 66, and the file recorded the disagreement and left it. The
+    corridors are measured now (`data/traces/vectors/street_corridors_1834.json`,
+    written by `tools/measure_street_widths.py`), and this is the offline half of that
+    measurement — the half that runs on every commit, because the tool needs the network
+    and a commit gate that needs the network fails for reasons that have nothing to do
+    with the commit.
+
+    Three things are held, and the third is the one with teeth:
+
+    - **Every metre is re-derived from its pixels.** A corridor's width comes back out
+      of the two committed boundary pixels through the sheet's own committed affine, and
+      the summary comes back out of the corridor list. A metre edited by hand, or a
+      median that no longer matches the readings under it, is an error — the same rule
+      `tools/rederive_datum.py` applies to the origin.
+    - **The adopted figure has to be the one the readings support.** `platted_street`
+      may only carry the candidate nearest the measured median, and may not carry a
+      candidate the readings exclude. Moving the module to 66 ft now fails here instead
+      of moving five buildings quietly.
+    - **The control-point finding may not go stale.** The measurement recorded that two
+      GCPs sit inside a block rather than in the Canal Street corridor, and what it costs
+      the datum to correct one of them. Both figures are pinned to the GCP pixels they
+      were computed from, so the day somebody adopts either correction the gate fails
+      until the sheet is read again. A finding whose inputs have moved is not a finding.
+    """
+    base = data_root or DATA
+    path = base / "traces" / "vectors" / "street_corridors_1834.json"
+    doc = load_json(path, rep, required=False)
+    if not isinstance(doc, dict):
+        rep.error("street module", "data/traces/vectors/street_corridors_1834.json is missing "
+                                   "or unreadable — the platted module is the one figure every "
+                                   "placement in this dataset stands on and it is measured, not "
+                                   "asserted")
+        return
+    for s in doc.get("sources") or []:
+        if s not in source_ids:
+            rep.error("street module", f"the corridor measurement cites '{s}', which does not "
+                                       f"resolve in data/sources/")
+
+    params = (doc.get("method") or {}).get("params") or {}
+    if not params:
+        rep.error("street module", "the file states no method parameters, so nothing can hold "
+                                   "a committed corridor to the method that produced it")
+    ctl = load_json(base / "traces" / "street_control.json", rep, required=False) or {}
+
+    ft = 0.3048
+    all_ft: list[float] = []
+    for sheet, sh in (doc.get("sheets") or {}).items():
+        if sheet not in source_ids:
+            rep.error("street module", f"sheet '{sheet}' is not a source in data/sources/")
+        co = ((sh.get("affine") or {}).get("coefficients") or {})
+        try:
+            a, b, c, d, e, f = (float(co[k]) for k in "abcdef")
+        except (KeyError, TypeError, ValueError):
+            rep.error("street module", f"sheet '{sheet}' records no usable affine, so its "
+                                       f"metres cannot be re-derived from its pixels")
+            continue
+        k = float((sh.get("raster") or {}).get("gcp_px_to_native") or 0) or None
+        if not k:
+            rep.error("street module", f"sheet '{sheet}' does not say how its pixels relate to "
+                                       f"the image they were read in")
+            continue
+        for tv in sh.get("traverses") or []:
+            for c_ in tv.get("corridors") or []:
+                pts = c_.get("px") or []
+                if len(pts) != 2:
+                    rep.error("street module", f"{sheet}/{tv.get('id')}: a corridor with no two "
+                                               f"boundary pixels is not a measurement")
+                    continue
+                (x1, y1), (x2, y2) = pts
+                e1, n1 = a * (x1 / k) + b * (y1 / k) + c, d * (x1 / k) + e * (y1 / k) + f
+                e2, n2 = a * (x2 / k) + b * (y2 / k) + c, d * (x2 / k) + e * (y2 / k) + f
+                w = math.hypot(e2 - e1, n2 - n1)
+                if abs(w - float(c_.get("width_m", -1))) > 0.05:
+                    rep.error("street module",
+                              f"{sheet}/{tv.get('id')}: a corridor records {c_.get('width_m')} m "
+                              f"but its pixels re-derive to {w:.2f} m through the sheet's own "
+                              f"affine")
+                if abs(w / ft - float(c_.get("width_ft", -1))) > 0.1:
+                    rep.error("street module",
+                              f"{sheet}/{tv.get('id')}: {c_.get('width_m')} m is not "
+                              f"{c_.get('width_ft')} ft")
+                all_ft.append(round(w / ft, 1))
+                _corridor_passes_its_method(sheet, tv, c_, params, rep)
+                _identification_rederives(sheet, tv, c_, (a, b, c, d, e, f), k, ctl, rep)
+
+    summary = doc.get("summary") or {}
+    if not all_ft:
+        rep.error("street module", "the file records no corridor at all")
+    else:
+        all_ft.sort()
+        median = all_ft[len(all_ft) // 2]
+        for key, got in (("n_corridors", len(all_ft)), ("median_ft", median),
+                         ("min_ft", all_ft[0]), ("max_ft", all_ft[-1])):
+            if summary.get(key) != got:
+                rep.error("street module", f"summary.{key} says {summary.get(key)} and the "
+                                           f"committed readings give {got}")
+
+    cand = doc.get("candidates") or {}
+    tol = float(cand.get("tolerance_ft") or 0)
+    figures = [cand.get("adopted", {}).get("width_ft"), cand.get("dissent", {}).get("width_ft")]
+    if all_ft and tol > 0 and all(isinstance(x, (int, float)) for x in figures):
+        median = all_ft[len(all_ft) // 2]
+        nearest = min(figures, key=lambda x: abs(median - x))
+        excluded = [x for x in figures if all(abs(r - x) > tol for r in all_ft)]
+        if cand.get("nearest_ft") != nearest:
+            rep.error("street module", f"candidates.nearest_ft says {cand.get('nearest_ft')} and "
+                                       f"the readings are nearest {nearest} ft")
+        if sorted(cand.get("excluded_ft") or []) != sorted(excluded):
+            rep.error("street module", f"candidates.excluded_ft says {cand.get('excluded_ft')} "
+                                       f"and the readings exclude {excluded}")
+        module = ctl.get("platted_street") or {}
+        adopted = module.get("width_ft")
+        if adopted is not None:
+            if adopted in excluded:
+                rep.error("street module", f"the placements step half of {adopted} ft and no "
+                                           f"corridor measured on either 1834 sheet comes within "
+                                           f"{tol:g} ft of it")
+            elif adopted != nearest:
+                rep.error("street module", f"the placements step half of {adopted} ft while the "
+                                           f"measured corridors are nearest {nearest} ft; the "
+                                           f"module and the sheets have to agree or the "
+                                           f"disagreement has to be argued in the file")
+
+    # The finding, pinned to the pixels it was computed from.
+    for sheet, sh in (doc.get("sheets") or {}).items():
+        cpc = sh.get("control_point_check") or {}
+        gid, recorded = cpc.get("gcp"), cpc.get("recorded_px")
+        gcp_file = (sh.get("affine") or {}).get("source")
+        if not (gid and recorded and gcp_file):
+            rep.error("street module", f"sheet '{sheet}' states no control-point reading to check")
+            continue
+        # Repo-relative in the file, resolved against the data root so the rule is
+        # testable against a fixture rather than only against the committed tree.
+        gdoc = load_json(base / str(gcp_file).removeprefix("data/"), rep,
+                         required=False) or {}
+        found = [g for g in gdoc.get("gcps", []) if g.get("id") == gid]
+        if not found:
+            rep.error("street module", f"sheet '{sheet}' measures GCP {gid}, which is not in "
+                                       f"{gcp_file}")
+        elif list(found[0].get("pixel") or []) != list(recorded):
+            rep.error("street module",
+                      f"{gcp_file} GCP {gid} is now at pixel {found[0].get('pixel')} and the "
+                      f"corridor measurement was taken against {recorded}. If the correction "
+                      f"has been adopted, re-run tools/measure_street_widths.py: the offset and "
+                      f"the datum exposure it reports are about the old pixel.")
+
+    exp = doc.get("datum_exposure") or {}
+    wg = load_json(base / "traces" / "gcp" / "wright_1834_gcps.json", rep,
+                   required=False) or {}
+    g5 = [g for g in wg.get("gcps", []) if g.get("id") == exp.get("gcp")]
+    if g5 and list(g5[0].get("pixel") or []) != list(exp.get("recorded_px") or []):
+        rep.error("street module",
+                  f"datum_exposure is computed against {exp.get('gcp')} at "
+                  f"{exp.get('recorded_px')} and the committed pixel is "
+                  f"{g5[0].get('pixel')} — the figure for what the correction costs is "
+                  f"stale, which is worse than not having it")
+    if exp and exp.get("status") not in ("queued, not adopted", "adopted"):
+        rep.error("street module", "datum_exposure has to say whether the correction it prices "
+                                   "has been adopted")
+
+
+def check_sidecar_contract(rep: Report) -> None:
+    """Every sidecar field the renderer reads must be one the compiler writes."""
+    shape = sidecar_shape()
+    if not shape:
+        rep.note("sidecar contract: skipped — no committed sidecars to read the shape from")
+        return
+
+    js = sorted(p for p in (ROOT / "renderers").rglob("*.js") if "vendor" not in p.parts)
+    read_paths: set[str] = set()
+    files_reading = 0
+    for path in js:
+        reads = sidecar_field_reads(path.read_text(), shape)
+        if reads:
+            files_reading += 1
+        for line, dotted in reads:
+            read_paths.add(dotted)
+            node = shape
+            for seg in dotted.split("."):
+                if not isinstance(node, dict):
+                    break
+                if seg not in node:
+                    rep.error("sidecar contract",
+                              f"{path.relative_to(ROOT)}:{line} reads `{dotted}` and no "
+                              f"committed sidecar carries it — the renderer would read "
+                              f"undefined on every building, silently, forever. Either "
+                              f"tools/compile_scene.py emits the field or the renderer "
+                              f"stops asking for it")
+                    break
+                node = node[seg]
+
+    # A scanner that matched nothing would pass every renderer ever written, so
+    # it reports what it found and the floor it is holding itself to.
+    if read_paths and files_reading < 2:
+        rep.error("sidecar contract",
+                  f"only {files_reading} renderer module reads a sidecar — the scan has "
+                  f"probably stopped matching; check sidecar_field_reads")
+    rep.note(f"sidecar contract: {len(read_paths)} field(s) read across {files_reading} "
+             f"renderer module(s), all present in the compiled sidecars")
+
+    # The other direction is reported and not enforced, because the scan cannot
+    # follow a value into a function: `documented_range` is read field by field
+    # inside the row renderer it is passed to. At the top level that limit does
+    # not bite, so an unread root key is a real finding — something the compiler
+    # writes for a visitor who never sees it.
+    unread = sorted(k for k in shape if k not in {p.split(".")[0] for p in read_paths})
+    if unread:
+        rep.note(f"sidecar contract: {len(unread)} top-level field(s) compiled and never "
+                 f"read by the renderer ({', '.join(unread)}) — dead weight or an "
+                 f"unshipped claim, not an error either way")
+
+
+# --- the OTHER derived documents ------------------------------------------
+#
+# `sidecar_shape` says in as many words that it covers the per-structure sidecar
+# and not `exclusions.json` or `terrain.json`, because those "have their own
+# readers and their own shapes". That sentence has been true and unenforced
+# since it was written, and it names precisely the interface the three faults of
+# STATUS § 28-30 lived in: a field read and never emitted, a field emitted and
+# never read, and a field that never entered the interface at all. Three
+# documents were outside every one of those gates.
+#
+# The binding is DECLARED rather than inferred, and that is the whole design.
+# A per-structure sidecar names itself — `record.sidecar` is an anchor a regex
+# can follow. These are fetched into a local `doc` and then handed entry by
+# entry to a renderer, so the field names are chosen inside a function whose
+# parameter is `claim` or `ex` or `u`, with nothing left to anchor on. Writing
+# the binding down is a claim about the module, and the gate then holds the
+# module to it in both directions: a declared root that reads a field the
+# document does not carry fails, and a field the compiler writes that no root
+# reads must be declared internal with the reason.
+#
+# `internal` is § 48's partition arriving at a second family of documents. The
+# bounded set there was the source schema; here it is what the compiler emits,
+# which `compile_scene.py --check` and `compile_liberties.py --check` already
+# prove is exactly what the dataset derives to.
+DERIVED_DOCUMENTS = [
+    {
+        "doc": "sidecars/*/terrain.json",
+        "module": "renderers/web/js/ground.js",
+        # identifier in that module -> the path inside the document it holds
+        "roots": {"doc": "", "claim": "claims", "f": "claims.fields",
+                  "c": "context", "z": "not_modelled"},
+        "internal": {
+            "scene": "the sidecar is fetched by scene id; naming it back is machinery",
+            "target_date": "the scene's date, shown by the HUD from the scene record",
+            "epoch": "which terrain epoch compiled these claims — a reviewer's join, "
+                     "and the claims themselves carry no epoch-specific wording",
+            "claims.id": "the spec key the claim was derived from; `label` is what a "
+                         "visitor reads and `Covers:` tokens are the gate's business",
+            "claims.confidence_key": "which key of the block held the grade, so the "
+                                     "gate can find it again; the grade itself is shown",
+            "claims.sources": "the raw source ids, joined into `citations` by cite() "
+                              "and shown from there",
+            "not_modelled.dossier_zone": "the terrain dossier's zone number, a pointer "
+                                         "into a file no visitor has; `why` says it in "
+                                         "words",
+        },
+    },
+    {
+        "doc": "sidecars/*/exclusions.json",
+        "module": "renderers/web/js/exclusions.js",
+        "roots": {"doc": "", "ex": "excluded", "u": "uncertain"},
+        "internal": {
+            "scene": "as above — the id this file was fetched by",
+            "target_date": "as above",
+        },
+    },
+    {
+        "doc": "liberties.json",
+        "module": "renderers/web/js/liberties.js",
+        "roots": {"doc": "", "lib": "liberties", "f": "liberties.fields",
+                  "c": "liberties.covers"},
+        "internal": {
+            "_doc": "the do-not-hand-edit banner, addressed to whoever opens the file",
+            "source": "docs/LIBERTIES.md, the path the list was derived from",
+            "count": "the length of the list the visitor is already scrolling",
+        },
+    },
+]
+
+# Citation leaves are deferred to `check_source_surface`, which partitions all
+# 22 properties of the source schema and holds `citations.js` to them (§ 48).
+# One compiled citation shape reaches all three of these documents, so checking
+# it here as well would give one field two owners and, the day they disagree,
+# two answers.
+CITATION_SEGMENT = "citations"
+
+
+def node_shape(docs: list, path: list[str]) -> dict:
+    """Union shape of the node at `path`, with lists left as leaves.
+
+    Descending THROUGH a list means "each element of it", which is what makes a
+    declared root like `claims.fields` name the thing a renderer's parameter
+    actually holds. Stopping AT one keeps `(claim.fields || []).map` from being
+    read as a field named `map` — the same reason `sidecar_shape` stops at a
+    leaf, arriving where the interface is a list of entries rather than one
+    record.
+    """
+    nodes: list = list(docs)
+    for seg in path:
+        nxt: list = []
+        for n in nodes:
+            if isinstance(n, list):
+                nxt.extend(e.get(seg) for e in n if isinstance(e, dict))
+            elif isinstance(n, dict) and seg in n:
+                nxt.append(n[seg])
+        nodes = nxt
+    def merge(shape: dict, doc: dict) -> dict:
+        for k, v in doc.items():
+            if isinstance(v, dict):
+                prev = shape.get(k)
+                shape[k] = merge(prev if isinstance(prev, dict) else {}, v)
+            else:
+                shape.setdefault(k, None)
+        return shape
+
+    shape: dict = {}
+    for n in nodes:
+        for e in (n if isinstance(n, list) else [n]):
+            if isinstance(e, dict):
+                merge(shape, e)
+    return shape
+
+
+def emitted_leaves(docs: list, prefix: str = "") -> dict[str, None]:
+    """Every field a derived document states, as dotted paths to its leaves.
+
+    A list of dicts is not a leaf — its entries' fields are — because that is
+    the level a visitor meets: `excluded` is a section and `excluded.reason` is
+    a sentence somebody wrote. A list of scalars IS one: `subjects` is a set of
+    ids rendered as a row of chips, not a nested claim.
+    """
+    out: dict[str, None] = {}
+
+    def walk(nodes: list, path: str) -> None:
+        keys: dict[str, list] = {}
+        for n in nodes:
+            if not isinstance(n, dict):
+                continue
+            for k, v in n.items():
+                keys.setdefault(k, []).append(v)
+        for k, vals in keys.items():
+            here = f"{path}.{k}" if path else k
+            nested = [v for v in vals if isinstance(v, dict)]
+            entries = [e for v in vals if isinstance(v, list) for e in v
+                       if isinstance(e, dict)]
+            if nested or entries:
+                walk(nested + entries, here)
+            else:
+                out[here] = None
+
+    walk(docs, prefix)
+    return out
+
+
+def load_derived(spec: dict) -> tuple[list, str | None]:
+    """The committed copies of a derived document and its declared reader."""
+    pattern = spec["doc"]
+    paths = sorted(DATA.glob(pattern)) if "*" in pattern else [DATA / pattern]
+    docs = [json.loads(p.read_text()) for p in paths if p.is_file()]
+    src = ROOT / spec["module"]
+    return docs, (src.read_text() if src.is_file() else None)
+
+
+def check_derived_contract(rep: Report, *, specs: list[dict] | None = None,
+                           load=load_derived) -> None:
+    """The derived documents outside the sidecar gate, held from both sides."""
+    for spec in (DERIVED_DOCUMENTS if specs is None else specs):
+        pattern, module = spec["doc"], spec["module"]
+        docs, text = load(spec)
+        if not docs:
+            rep.error("derived contract",
+                      f"{pattern} is declared as a derived document and nothing "
+                      f"matching it is committed — either the compiler stopped "
+                      f"writing it or this declaration is stale")
+            continue
+        if text is None:
+            rep.error("derived contract", f"{module} is declared as the reader of "
+                                          f"{pattern} and does not exist")
+            continue
+
+        read: dict[str, int] = {}
+        for ident, prefix in spec["roots"].items():
+            segs = [s for s in prefix.split(".") if s]
+            shape = node_shape(docs, segs)
+            if not shape:
+                rep.error("derived contract",
+                          f"{module} binds `{ident}` to `{prefix or '(the document)'}` "
+                          f"of {pattern}, and no committed copy has anything there")
+                continue
+            for line, dotted in sidecar_field_reads(text, shape, roots=[(ident, [])]):
+                full = ".".join(segs + dotted.split("."))
+                if CITATION_SEGMENT in full.split("."):
+                    continue
+                node, ok = shape, True
+                for seg in dotted.split("."):
+                    if not isinstance(node, dict):
+                        break
+                    if seg not in node:
+                        ok = False
+                        break
+                    node = node[seg]
+                if not ok:
+                    rep.error("derived contract",
+                              f"{module}:{line} reads `{ident}.{dotted}` and no "
+                              f"committed {pattern} carries `{full}` — it renders as "
+                              f"nothing, on every entry, silently. Either the compiler "
+                              f"emits the field or the renderer stops asking for it")
+                    continue
+                read.setdefault(full, line)
+
+        leaves = [p for p in emitted_leaves(docs)
+                  if CITATION_SEGMENT not in p.split(".")]
+        internal = spec["internal"]
+        for path in sorted(leaves):
+            if path in read:
+                if path in internal:
+                    rep.error("derived contract",
+                              f"{pattern}: `{path}` is declared internal — "
+                              f"\"{internal[path]}\" — and {module} reads it at line "
+                              f"{read[path]}. One of the two is wrong about the visitor")
+                continue
+            if path not in internal:
+                rep.error("derived contract",
+                          f"{pattern}: `{path}` is compiled and {module} never reads "
+                          f"it. Either it reaches a visitor or DERIVED_DOCUMENTS says "
+                          f"in one line why it does not — an authored sentence that "
+                          f"renders nowhere is an unshipped claim, not dead weight")
+        for path in sorted(internal):
+            if path not in leaves:
+                rep.error("derived contract",
+                          f"{pattern}: `{path}` is declared internal and the compiler "
+                          f"does not emit it — a stale partition")
+
+        rep.note(f"derived contract: {pattern} — {len(read)} field(s) read by "
+                 f"{Path(module).name}, {len(internal)} declared internal, "
+                 f"{len(leaves)} emitted")
+
+    # The honest limit, and it is the same one § 28 was written about: this
+    # proves a module NAMES the field, not that the field reaches a pixel.
+    # `exclusions.json`'s `standard` and `uncertain_standard` were the standing
+    # example — read into a return value, rendered by nobody, and the scan
+    # satisfied — until 2026-08-11, when both were mounted and the smoke was given
+    # a verbatim assertion against the compiled value. The limit itself has not
+    # moved: nothing here can distinguish the next such read from a render, which
+    # is why the smoke pins rendered text for every claim that carries one, and
+    # why a read is never the last word.
+    rep.note("derived contract: a read is a name, not a render — the smoke pins the "
+             "rendered text for the claims that carry one")
+
+
+def citation_shape() -> set[str]:
+    """The keys a compiled citation actually carries, unioned over every one.
+
+    Same union argument as `sidecar_shape`: a key is part of the interface even
+    when one source in twenty-nine carries it. Taken from every derived document
+    that joins citations — the per-structure sidecars, the exclusions list and
+    the terrain claims — because `cite()` writes one shape into all three and a
+    check reading only the first would stop being right the day a field is
+    emitted for an exclusion alone.
+    """
+    keys: set[str] = set()
+    for path in sorted((DATA / "sidecars").rglob("*.json")):
+        def walk(node) -> None:
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    if k == "citations" and isinstance(v, list):
+                        for c in v:
+                            if isinstance(c, dict):
+                                keys.update(c)
+                    else:
+                        walk(v)
+            elif isinstance(node, list):
+                for v in node:
+                    walk(v)
+        walk(json.loads(path.read_text()))
+    return keys
+
+
+def check_source_surface(sources: dict, rep: Report, *,
+                         surface: dict[str, str] | None = None,
+                         properties: set[str] | None = None,
+                         emitted: set[str] | None = None,
+                         js_src: str | None = None) -> None:
+    """Every field of a source record either reaches a visitor or says why not.
+
+    The two directions of `check_sidecar_contract` are *read and never emitted*
+    (an error: the renderer reads undefined forever) and *emitted and never
+    read* (a note: an unshipped claim). Neither can see the third kind, and the
+    third kind is what happened here: `data/source.schema.json` grew
+    `transcribes`, `carries_no_document`, `what_it_supplies` and
+    `what_it_does_not_supply` — four fields whose own schema descriptions are
+    addressed to a reader — and `cite()` never carried one of them into a
+    sidecar. Nothing was broken. A shape unioned over what IS emitted cannot
+    report what was never offered, and the compiler was consistent with itself,
+    which is all `--check` proves.
+
+    What makes the fault checkable is that the candidate set is bounded: it is
+    the schema's own properties. So the partition is declared in
+    `compile_scene.SOURCE_FIELD_SURFACE` and this holds it three ways.
+
+    1. A schema property in neither half fails. That is the mechanism — a field
+       added to a source record costs one line saying whether a visitor sees it,
+       and the sentence has to be written by whoever knows the answer.
+    2. A `visitor` field that some record carries and no compiled citation does
+       fails. This is the check that was missing: it is exactly the state the
+       dataset was in until today, for four fields and the life of the project.
+    3. A `visitor` field never read by `renderers/web/js/citations.js` fails.
+       The card is where the promise is kept, and one module renders every
+       citation in this walkthrough — which is what makes the § 40 objection
+       ("the scan cannot follow a value into a function") not bite here: the
+       shape has one name and one renderer, so a member read is a real read.
+       It is still a name scan and not dataflow, and that limit is why the
+       smoke asserts the rendered card rather than trusting this.
+
+    The reverse of 3 — a key emitted and never read — stays a note, as it is at
+    the top level, because the honest response to it is a decision rather than
+    an error.
+
+    The four keyword arguments exist for the self-test and default to the
+    committed halves; nothing in the suite passes them.
+    """
+    if surface is None:
+        try:
+            sys.path.insert(0, str(ROOT / "tools"))
+            import compile_scene  # noqa: PLC0415
+            surface = compile_scene.SOURCE_FIELD_SURFACE
+        except Exception as exc:  # noqa: BLE001
+            rep.error("source surface", f"cannot read compile_scene.SOURCE_FIELD_SURFACE: {exc}")
+            return
+
+    if properties is None:
+        schema_path = DATA / "source.schema.json"
+        if not schema_path.is_file():
+            rep.note("source surface: skipped — no data/source.schema.json")
+            return
+        properties = set(json.loads(schema_path.read_text()).get("properties", {}))
+
+    for prop in sorted(properties - set(surface)):
+        rep.error("source surface",
+                  f"`{prop}` is in data/source.schema.json and not in "
+                  f"compile_scene.SOURCE_FIELD_SURFACE. Every field of a source record "
+                  f"either reaches the citation a visitor reads or says in one line why "
+                  f"it stays in the repository — undeclared is how four reader-facing "
+                  f"fields went to nobody for the life of the project")
+    for prop in sorted(set(surface) - properties):
+        rep.error("source surface",
+                  f"compile_scene.SOURCE_FIELD_SURFACE declares `{prop}`, which is not a "
+                  f"property of data/source.schema.json — a partition of a set that has "
+                  f"moved underneath it")
+
+    visitor = {k for k, why in surface.items() if why.startswith("visitor")}
+    if emitted is None:
+        emitted = citation_shape()
+    if not emitted:
+        rep.note("source surface: skipped the emitted half — no compiled citations to read")
+    else:
+        for prop in sorted(visitor):
+            carried = sorted(s for s, rec in sources.items() if rec.get(prop))
+            if carried and prop not in emitted:
+                rep.error("source surface",
+                          f"`{prop}` is declared visitor-facing, {len(carried)} source "
+                          f"record(s) carry it ({', '.join(carried[:3])}"
+                          f"{', …' if len(carried) > 3 else ''}) and no compiled citation "
+                          f"does — tools/compile_scene.cite() is not carrying it, so the "
+                          f"claim is written for a reader who cannot reach it")
+        for prop in sorted(emitted - visitor - {"source_id", "tier_label"}):
+            rep.error("source surface",
+                      f"a compiled citation carries `{prop}`, which "
+                      f"{'is declared internal' if prop in surface else 'is not in the partition'}"
+                      f" — the sidecar is shipping a field nobody said a visitor should see")
+
+    if js_src is None:
+        js = ROOT / "renderers" / "web" / "js" / "citations.js"
+        if not js.is_file():
+            rep.error("source surface", "renderers/web/js/citations.js is missing — the one "
+                                        "renderer every citation in this walkthrough goes "
+                                        "through")
+            return
+        js_src = js.read_text()
+    src = strip_js_comments(js_src)
+    unread = sorted(p for p in visitor
+                    if p in emitted and not re.search(rf"\.{re.escape(p)}\b", src))
+    for prop in unread:
+        rep.error("source surface",
+                  f"`{prop}` is compiled into the citations and "
+                  f"renderers/web/js/citations.js never reads it. A field declared "
+                  f"visitor-facing that no renderer touches is the same unshipped claim "
+                  f"in a new place")
+    rep.note(f"source surface: {len(properties)} schema field(s) partitioned, "
+             f"{len(visitor)} visitor-facing, {len(emitted)} key(s) on a compiled citation")
 
 
 # --------------------------------------------------------------------------
@@ -2043,6 +4128,39 @@ def main() -> int:
     # anything else here, and now one the walkthrough quotes to a visitor
     check_exclusions(exclusions, source_ids, rep)
 
+    # and the third category, which is neither: researched, standing in neither
+    # the dataset nor the exclusions, and open. Its own promise — that nothing
+    # here gets promoted to documented without new evidence — is a check now.
+    check_watch_list(exclusions, structures, source_ids, rep)
+
+    # and the ground itself, which makes graded claims like everything else here
+    # and was checked by nothing until it started making them to a visitor. One
+    # enumeration serves this check and the coverage gate below, so the ground
+    # cannot be graded against one list and admitted to against another.
+    ground_index = terrain_claim_index(load_terrain_specs(rep), rep)
+    check_terrain_claims(source_ids, rep, index=ground_index)
+    # and the ground's omissions, which are the other half of the same question:
+    # every gate above asks how sure we are of what the ground claims, and none
+    # of them can see a claim with no vertex behind it at all.
+    ground_consumed = terrain_consumed(rep)
+    check_ground_geometry(ground_index, ground_consumed, rep)
+    # and the one declaration that is a promise rather than an absence: the mesh
+    # agrees with this figure and does not read it. Three states say a thing is
+    # not built and can be checked by looking at the ground; this one says two
+    # documents say the same thing, and nothing was holding them together.
+    check_restated_agreement(ground_index, terrain_restates(rep), rep)
+
+    # and what every one of those grades rests on. The confidence model ranks the
+    # evidence in `data/source.schema.json` and in `docs/PROVENANCE.md`, and until
+    # now the ranking was enforced nowhere — a `documented` value owed a source
+    # that resolved and nothing asked what kind of source it was.
+    check_evidence_ladder(structures, sources, rep, ground_index)
+
+    # and what each rung is a judgement ABOUT. A modern page that reprints an
+    # 1883 interview is worth what the interview is worth; until this ran, that
+    # reasoning lived in a `note` no check could read.
+    check_transcription_declarations(sources, rep)
+
     # scenes
     for name, sc in scenes.items():
         validate_scene(sc, structures, epochs, exclusions, rep)
@@ -2077,7 +4195,28 @@ def main() -> int:
         unlanded = unlanded_values(structures, scenes, rep, field, datum_origin, contacts)
         check_ground_contact(structures, unlanded, rep)
 
-    check_liberties_coverage(structures, liberties, rep, consumed, unlanded)
+    check_liberties_coverage(structures, liberties, rep, consumed, unlanded, ground_index,
+                             ground_consumed)
+
+    # and how each of those positions was arrived at, which every record stated
+    # in prose and nothing recomputed. The corners come back out of the control
+    # and the platted module; the crossing comes back out of the traced bank.
+    check_position_derivations(structures, source_ids, rep)
+
+    # and the module those corners are stepped from, which nothing checked until the
+    # corridors were measured off both 1834 sheets
+    check_street_module(source_ids, rep)
+
+    # what passes between the compiler and the renderer, checked from both sides
+    check_sidecar_contract(rep)
+
+    # and the same interface for the three derived documents that gate says, in
+    # its own docstring, that it does not cover
+    check_derived_contract(rep)
+
+    # and the third direction those two cannot see: a field of a source record
+    # that never entered the interface at all
+    check_source_surface(sources, rep)
 
     # the vegetation records, and the July phenology rules they have to obey
     check_flora(source_ids, field, rep, tally)
@@ -2217,8 +4356,12 @@ def run_stale_check(structures: dict, rep: Report) -> None:
     rendering the old one, green.
 
     The recipe lives with the generators — `generators/mesh_inputs.py` for
-    structures, `terrain_gen.terrain_inputs_sha` for the ground — so the bake that
+    structures, `generators/terrain_inputs.py` for the ground — so the bake that
     writes the hash and the gate that checks it cannot drift apart.
+
+    The two halves carry their own schemes, and the manifest records both, because
+    they were redefined on different days for the same reason and a single version
+    number would have made the second redefinition look like the first.
     """
     manifest_path = ROOT / "assets" / "manifest.json"
     gltf_dir = ROOT / "assets" / "gltf"
@@ -2241,18 +4384,23 @@ def run_stale_check(structures: dict, rep: Report) -> None:
     try:
         import mesh_inputs  # noqa: PLC0415
         import terrain_gen  # noqa: PLC0415
+        import terrain_inputs  # noqa: PLC0415
     except Exception as e:  # noqa: BLE001
         rep.error("stale", f"cannot import the generators' input-hash recipe, so no committed "
                            f"asset can be checked against its inputs: {e}")
         return
 
+    schemes = {"inputs_scheme": (manifest.get("inputs_scheme"), mesh_inputs.SCHEME),
+               "terrain_inputs_scheme": (manifest.get("terrain_inputs_scheme"),
+                                         terrain_inputs.SCHEME)}
+    for key, (recorded_scheme, computed) in schemes.items():
+        if recorded_scheme != computed:
+            rep.error("stale", f"manifest {key} is {recorded_scheme!r} but the generators compute "
+                               f"{computed!r} — the two sides are hashing different things, so "
+                               f"every comparison below would be meaningless. Re-stamp the "
+                               f"manifest (and say in the commit why the definition changed)")
+            return
     scheme = manifest.get("inputs_scheme")
-    if scheme != mesh_inputs.SCHEME:
-        rep.error("stale", f"manifest inputs_scheme is {scheme!r} but the generators compute "
-                           f"{mesh_inputs.SCHEME!r} — the two sides are hashing different things, "
-                           f"so every comparison below would be meaningless. Re-stamp the manifest "
-                           f"(and say in the commit why the definition changed)")
-        return
 
     by_id = {st.get("id"): st for st in structures.values() if isinstance(st, dict)}
     fresh, stale, unchecked = 0, 0, 0
@@ -2305,7 +4453,8 @@ def run_stale_check(structures: dict, rep: Report) -> None:
 
     rep.note(f"stale check: {fresh} asset(s) match their inputs, {stale} stale"
              + (f", {unchecked} not input-tracked" if unchecked else "")
-             + f"; scheme {scheme}, manifest blender {manifest.get('blender', '?')}")
+             + f"; schemes {scheme} / {manifest.get('terrain_inputs_scheme')}, "
+             + f"manifest blender {manifest.get('blender', '?')}")
 
 
 def run_site_check(rep: Report) -> None:

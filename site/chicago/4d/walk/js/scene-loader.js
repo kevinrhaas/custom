@@ -130,6 +130,16 @@ export async function loadScene(year, bases = resolveBases()) {
 
     const assetUrl = new URL(sidecar.asset, assetBase);
     let gltf = null;
+    /**
+     * Is the shape you are looking at a bake from the record, or a stand-in?
+     *
+     * The GLB says so about itself (`asset.extras.placeholder`) and nothing else
+     * can: the sidecar is compiled from `data/` alone and never opens a mesh, so
+     * a record cannot know which of its bakes is real. The fact is therefore
+     * carried from the file it is a fact about to the card that shows it, rather
+     * than routed through a sidecar field the compiler would have to invent.
+     */
+    let assetIsPlaceholder = false;
     try {
       const res = await fetch(assetUrl, { cache: 'no-cache' });
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
@@ -145,6 +155,7 @@ export async function loadScene(year, bases = resolveBases()) {
         loader.parse(buffer, String(assetUrl), resolve, reject);
       });
       if (header?.asset?.extras?.placeholder) {
+        assetIsPlaceholder = true;
         problems.push(`${id}: rendering a PLACEHOLDER asset (${sidecar.asset}) — `
           + 'massing only, not a bake');
       }
@@ -156,6 +167,7 @@ export async function loadScene(year, bases = resolveBases()) {
       id,
       sidecar,
       gltf,
+      assetIsPlaceholder,
       assetUrl: String(assetUrl),
       sidecarUrl: String(sidecarUrl),
       /** filled in by buildings.js once the node is in the batch */

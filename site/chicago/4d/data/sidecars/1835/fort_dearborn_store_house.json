@@ -10,11 +10,27 @@
   "asset": "gltf/fort_dearborn_store_house__log_1816.glb",
   "scene": "1835",
   "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1816-07-01",
+    "to": "1856-08-31",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "harrison_1830_river_mouth"
+    ],
+    "note": "THE RANGE IS THE FORT'S, NOT THIS BUILDING'S. No source reached dates any individual building inside Fort Dearborn. It opens with the rebuild of 1816 and closes with the demolition of the fort's principal structures in the summer of 1856 (Andreas). What carries the scene date is the middle: the post was garrisoned continuously from June 1832 to 29 December 1836."
+  },
+  "change_note": "",
   "placement": {
     "local_e": 1152.34,
     "local_n": 199.09,
     "rotation_deg": 8.0,
     "position_confidence": "inferred",
+    "position_sources": [
+      "harrison_1830_river_mouth",
+      "andreas_1884_v1"
+    ],
+    "position_note": "READ OFF THE 1830 HARRISON PLAN. Position in pixels on the plate Andreas reproduces at vol. 1 p. 113, scaled at 1.10 ft per pixel (the derivation is on fort_dearborn_palisade and in docs/RESEARCH/fort_dearborn.md section 3), rotated to the sheet's true-north arrow, and hung on the fort centre at local E +1152, N +221. Carry +/-20 percent on the offset from the fort centre and +/-20 m on the fort itself. Hubbard, 1827: 'The store-house and guard-house were on either side of the southern gate'. This record takes the eastern of the two buildings the 1830 plan draws there; the argument for that assignment is on fort_dearborn_guard_house and it rests on where Hubbard's next clause puts the magazine.",
     "symbolic_location": "Inside the south wall of Fort Dearborn, immediately east of the south gate, fronting north onto the parade.",
     "uncertainty_m": 20,
     "placement_provisional": false,
@@ -39,7 +55,11 @@
         4.37
       ]
     ],
-    "confidence": "inferred"
+    "confidence": "inferred",
+    "sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "note": "NO SOURCE GIVES THIS BUILDING'S SIZE. 12.24 x 4.37 m (about 40 x 14 ft) is the eastern of the two small south-wall buildings as drawn on the 1830 plan at the derived scale. Same warning as its neighbour: the depth is a fourteen-pixel measurement."
   },
   "attributes": {
     "kind": {
@@ -95,14 +115,29 @@
       "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
       "url": "https://archive.org/details/historyofchicago01andr",
       "archived_url": "",
-      "tier": 3
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
     },
     {
       "source_id": "harrison_1830_river_mouth",
       "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
       "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
       "archived_url": "",
-      "tier": 2
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the fort's plan arrangement: a quadrangular picket enclosure, corner works, four ranges, two gates",
+        "which building stood on which side of the parade",
+        "the relative proportions of the enclosure and the buildings in it",
+        "the fort's rotation relative to true north",
+        "the named ground around the fort: garrison garden, cultivated field, barn, wash house, well, shop, cemetery, ferry"
+      ],
+      "what_it_does_not_supply": [
+        "any dimension in feet - there is no scale bar",
+        "elevations, heights, roof forms or materials",
+        "the state of the fort in 1835 - it is five years earlier",
+        "a separation between the 1830 survey and the settler-memory additions the plate admits to"
+      ]
     }
   ],
   "research_note": "The eastern building at the south gate. Nothing distinguishes it from its neighbour in the sources except its name and the side it stands on, and this project's reason for putting it east rather than west is written on fort_dearborn_guard_house.",

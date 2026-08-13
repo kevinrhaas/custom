@@ -28,7 +28,11 @@
         "sources": [
           "harrison_1830_river_mouth"
         ],
-        "note": "READ OFF THE 1830 HARRISON PLAN, which draws it as a large diamond labelled 'Garden for the Garrison' with the Big Barn with Cupola on the river bank beyond its north-west corner and Charles Jouett's grave beyond its south-east one. Its four corners were read in pixels and converted at the same 1.10 ft/px scale as the fort itself; the plot is set square to nothing on the sheet, so the 53-degree rotation is the diamond's own and is measured rather than assumed. Carry +/-20 percent on the size and +/-25 m on the position."
+        "note": "READ OFF THE 1830 HARRISON PLAN, which draws it as a large diamond labelled 'Garden for the Garrison' with the Big Barn with Cupola on the river bank beyond its north-west corner and Charles Jouett's grave beyond its south-east one. Its four corners were read in pixels and converted at the same 1.10 ft/px scale as the fort itself; the plot is set square to nothing on the sheet, so the 53-degree rotation is the diamond's own and is measured rather than assumed. Carry +/-20 percent on the size and +/-25 m on the position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "This placement predates the derivation module. Its provenance and reasoning are recorded in position.note, but no machine-checkable derivation block has been authored for it yet."
+        }
       },
       "footprint": {
         "polygon": [
