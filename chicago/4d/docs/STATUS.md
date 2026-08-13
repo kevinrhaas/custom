@@ -281,6 +281,46 @@ residuals of the block — and nothing rendered. `blk_south_water_market`, one o
 blocks in the town, is refused outright because the street layer does not carry South Water west
 of E +100. That refusal is the street control owed, arriving from a different direction.
 
+## New 2026-08-13 — twenty-three buildings out of the road, and the point test that could not see them
+
+**K1 phase three (a) / K7 phase two (a).** The grid found seven structures standing 6.5–12.1 m
+inside a platted street corridor and left them there on purpose, because moving a generated
+building re-derives the household ledger. This slice moves them and shuts the hole they came
+through: `tools/plat_corridors.py` holds the corridor geometry for BOTH the report that found the
+problem and the placement gate that has to satisfy it, so the two cannot answer differently — the
+same argument `generators/mesh_inputs.py` settles for the staleness hash. The gate refuses any
+generated footprint that reaches inside a corridor. **23 of the 38 recipe centres moved** (median
+12.0 m, worst 21.9 m); in-corridor centres across the scene fell **22 → 10**, and none of the ten
+is a generated placement.
+
+**The seven were the loud end of twenty-three, and the point test is why nobody knew.** A centre
+is one point and a building is a rectangle up to 11 m across, so a building can front a street
+with its centre clear of the corridor and half its depth inside it. That is exactly what the
+recipe had built: it read the 80 ft frontage bands as centre-lines to sit ON rather than as edges
+to sit BEHIND, and the whole Lake Street shop row stood with its front half in the street and its
+centre within a metre of the kerb line. Counting footprints instead of centres finds **56**
+structures with some part in a corridor before this slice and **33** after it.
+
+**Three of the moves could not simply step back.** `physicians_office` snapped into the First
+Presbyterian Church, `inf_packer_dwelling` into a reserved phase-2 slot, `inf_cooperage_south`
+into the South Branch — so each went to the nearest position clearing the corridor, every
+committed footprint by 3 m, the two uninstantiated phase-2 recipes and the heightfield's dry
+covered ground. The physician's office is 17.7 m from where it was because the nearest free
+ground to its Lake Street frontage is a lot back from it. **Nothing was regraded.** These
+positions were `conjectural` before and are `conjectural` after; clearing the roadway is not
+standing on a recovered lot, and the recipe says so where it used to say the centres were band
+assignments alone.
+
+**What is left in the road is mostly not a defect, and one part of it is a measurement.** Four
+anonymous roofs from the infill generators inherit this gate when that parcel next runs. The
+other 29 are hand-placed records with a frontage argument behind them, and **thirteen are on
+South Water Street** — where, walking north from the committed centreline, the traced 1834
+waterline is **10.75 m away at E +180 against a 12.19 m half-corridor**. The platted 80 ft street
+there runs 1.4 m into the river, and the spare is under 3 m at four more of eleven stations. On
+that reach a building on the north side of South Water cannot be both outside the legal corridor
+and on dry land — so the disagreement is between the plat module and the drawn bank, and it wants
+a reading of the travelled way rather than thirteen nudged records.
+
 ## New 2026-08-13 — one way to go somewhere, graded; and the half of the gate that was not running
 
 **K9.** Viewpoints and the place search were two lists of the same ground inside Settings.

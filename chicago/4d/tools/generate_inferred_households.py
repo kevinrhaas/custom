@@ -332,10 +332,12 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
                     "reconstruction recipes already work in, which come from the 80 ft platted "
                     "street module in data/traces/street_control.json. The centre was tested "
                     "against every structure footprint in the dataset, against the reserved "
-                    "slots of the two uninstantiated phase-2 recipes, and against the committed "
-                    "heightfield for coverage, dry ground and step tolerance; it is free ground "
-                    "and nothing more. The dataset's 20 m working georeference uncertainty "
-                    "applies on top of an already invented position.")
+                    "slots of the two uninstantiated phase-2 recipes, against the platted "
+                    "street corridors of the K7 block grid so that no invented building "
+                    "stands in the roadway, and against the committed heightfield for "
+                    "coverage, dry ground and step tolerance; it is free ground and nothing "
+                    "more. The dataset's 20 m working georeference uncertainty applies on top "
+                    "of an already invented position.")
         foot_note = (f"A {wft:g} x {dft:g} ft rectangle from the {b['family']} family band in the "
                      f"reconstruction specification. NO DIMENSION IS DOCUMENTED for this "
                      f"building, which does not exist in any source; the band is type-level "
@@ -502,6 +504,20 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
         for other_sid, other in mine[:i]:
             if overlaps(poly, other, -3.0):
                 raise SystemExit(f"{sid} is within 3 m of {other_sid}")
+
+    # and nothing may stand in the platted roadway. The plat is a LEGAL corridor rather
+    # than a travelled way - L79 puts the visible tracks at 5.8-10.5 m inside 80 ft - and
+    # a real building did sometimes encroach: the Sauganash's first cabin is the standing
+    # reminder. But an INVENTED placement has nothing to encroach with. Where a record's
+    # position is a frontage-band assignment rather than a finding, standing in the road
+    # is a defect in this generator, and the grid is the only thing that can see it.
+    from plat_corridors import corridors, intrusion  # noqa: PLC0415
+    lanes = corridors()
+    for sid, poly in mine:
+        street, depth = intrusion(poly, lanes)
+        if street:
+            raise SystemExit(f"{sid} stands {depth:.1f} m inside the platted "
+                             f"{lanes[street]['name']} corridor")
 
     # buildable ground, on the same committed surface the walker uses
     from heightfield import Heightfield  # noqa: PLC0415

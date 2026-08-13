@@ -521,13 +521,28 @@ def point_to_ring_m(point, ring) -> float:
     return best
 
 
+def world_footprint(record: dict) -> list:
+    """A sidecar's footprint polygon in local ENU, oriented and placed."""
+    placement = record["placement"]
+    theta = math.radians(float(placement.get("rotation_deg") or 0))
+    cos, sin = math.cos(theta), math.sin(theta)
+    e0, n0 = float(placement["local_e"]), float(placement["local_n"])
+    return [(e0 + u * cos + v * sin, n0 - u * sin + v * cos)
+            for u, v in record["footprint"]["polygon"]]
+
+
 def report(grid: dict) -> int:
     """Where the dataset's own buildings fall on this grid."""
+    from plat_corridors import intrusion  # noqa: PLC0415 - avoids an import cycle
+
     control = load(DATA / "traces" / "street_control.json")
     half_width = float(control["platted_street"]["half_width_m"])
     lines = street_lines(load(DATA / "streets" / "1835.json"))
     corridors = corridor_rings(lines, half_width)
+    lanes = {sid: {"name": lines[sid]["name"], "ring": ring, "points": lines[sid]["points"]}
+             for sid, ring in corridors.items()}
     rings = {b["id"]: [tuple(p) for p in b["boundary_local_enu_m"]] for b in grid["blocks"]}
+    footprint_hits = []
 
     placed = 0
     in_block, in_street, off_grid = [], [], []
@@ -551,6 +566,9 @@ def report(grid: dict) -> int:
                               point_to_ring_m(point, corridors[street])))
         else:
             off_grid.append((record["id"], point, confidence, None, 0.0))
+        lane, depth = intrusion(world_footprint(record), lanes)
+        if lane:
+            footprint_hits.append((record["id"], confidence, lane, depth))
 
     print(f"{placed} placed structures against {len(rings)} generated blocks:")
     print(f"  {len(in_block):4d} stand inside a block")
@@ -569,6 +587,20 @@ def report(grid: dict) -> int:
         for sid, point, confidence, street, depth in sorted(in_street, key=lambda r: -r[4]):
             print(f"  - {sid:44s} ({point[0]:8.1f}, {point[1]:8.1f})  "
                   f"{str(confidence):12s} {lines[street]['name']:20s} depth {depth:5.1f} m")
+
+    # A centre in the road is the loud case; a FOOTPRINT in the road is the common one,
+    # and it is the question the placement gate in tools/generate_inferred_households.py
+    # actually asks. The two lists differ because a building can front a street with its
+    # centre well clear of the corridor and half its depth inside it.
+    if footprint_hits:
+        print(f"\n{len(footprint_hits)} structure(s) put some part of a footprint inside a "
+              "platted corridor. The plat is the LEGAL corridor, not the travelled way "
+              "(L79: 5.8-10.5 m of visible track inside 80 ft), so this is a measurement "
+              "against the plat rather than a list of defects — but no generated placement "
+              "is allowed to be here.")
+        for sid, confidence, lane, depth in sorted(footprint_hits, key=lambda r: -r[3]):
+            print(f"  - {sid:44s} {str(confidence):12s} {lanes[lane]['name']:20s} "
+                  f"reaches {depth:5.1f} m in")
     return 0
 
 

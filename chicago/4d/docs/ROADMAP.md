@@ -59,6 +59,20 @@ re-runnable gates are `data/reconstruction/1835_inferred_household_programme.jso
 `tools/generate_inferred_households.py --check`; reasoning in
 `docs/RESEARCH/residents_1835_inferred.md`.
 
+**Phase three (a) DONE 2026-08-13 — the buildings are out of the road, and the gate can see the
+road now.** The placement gate in `tools/generate_inferred_households.py` tested overlap, water
+and modelled ground and had never tested for the street. It does now, through
+`tools/plat_corridors.py` — the same module `tools/generate_plat_lots.py --report` reads, so the
+check and the generator that must satisfy it cannot answer differently — and it refuses **any**
+generated footprint that reaches inside a platted corridor. **23 of the 38 recipe centres moved**
+(median 12.0 m, worst 21.9 m); in-corridor centres across the whole scene fell 22 → 10 and not
+one of the ten is a generated placement. The centre test had understated the problem by more than
+half: the recipe read the 80 ft frontage bands as lines to sit ON rather than edges to sit
+BEHIND, so a row of Lake Street shops stood with its front half in the street and its centre a
+metre outside the corridor, invisible to a point test. Footprints inside a corridor across the
+scene: **56 → 33**. Positions stay `conjectural`: clearing the roadway is not standing on a
+recovered lot. Detail in `docs/RESEARCH/thompson_plat_grid.md` § 7a.
+
 **What phase three inherits.** (a) No inferred person is named and none should be — an inferred
 resident is a claim about a ratio. (b) **No period trade table for a comparable western town is
 in `data/sources/`**; every ratio is derived from five in-dataset calibrations and the arithmetic
@@ -177,13 +191,22 @@ never read Thompson's numbering off a sheet. Five candidate blocks are refused w
 reasons, three of them because a block there would span the South Branch. Memo:
 `docs/RESEARCH/thompson_plat_grid.md`.
 
-**What phase two inherits.** (a) **Seven structures stand 6.5–12.1 m inside a platted street
-corridor**, all of them `conjectural` placements from the inferred programme
-(`tools/generate_plat_lots.py --report` lists them with their depth) — the placement gate in
-`tools/generate_inferred_households.py` tests overlap, water and modelled ground and has never
-tested for the street. Fixing them re-derives the household ledger, so it belongs to K1 phase
-three, not to the slice that found them. Nothing documented is in the road, and the Sauganash's
-first cabin is the reminder that a building in the street is sometimes a fact. (b) The grid
+**What phase two inherits.** (a) ~~Seven structures stand 6.5–12.1 m inside a platted street
+corridor~~ — **DONE 2026-08-13 under K1 phase three (a)**: the gate exists
+(`tools/plat_corridors.py`, shared with `--report`), 23 recipe centres moved clear, and the
+report now measures FOOTPRINTS as well as centres, which is what showed the seven to be the loud
+end of a set of 23. What is left in the roadway is not the generator's: **four anonymous roofs**
+from the two infill generators (worst `recon_1835_south_a5_044`, 4.3 m — that gate is added when
+that parcel next runs, because moving an anonymous roof re-derives the occupancy ledger those
+generators own), and **29 hand-placed records whose positions carry a frontage argument**. Of
+those, thirteen are on South Water Street and they are a finding rather than a queue: from South
+Water's committed centreline the traced 1834 waterline is **10.75 m away at E +180 against a
+12.19 m half-corridor**, so the platted street there runs 1.4 m into the river and a building on
+its north side cannot be both clear of the corridor and on dry land. That is the plat module and
+the drawn bank disagreeing, and it wants a reading of the travelled way (L79), not a nudge to
+thirteen records. The Sauganash's first cabin remains the reminder that a building in the street
+is sometimes a fact, and `slough_log_bridge` in the South Water corridor is the reminder that
+sometimes it is the point. (b) The grid
 covers 19 of the plat's 58 blocks; the North Division is absent because its street control is
 what § S9 still records as owed, and `blk_south_water_market` — one of the most built-up blocks
 in town — is refused only because the street layer does not carry South Water west of E +100.
