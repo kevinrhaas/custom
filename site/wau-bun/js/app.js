@@ -646,10 +646,14 @@
     var pr = el('div', 'wb-prose wb-fulltext');
     pr.innerHTML = paras.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
     box.appendChild(pr);
+    var store = window.WAUBUN_TEXT_PART1;
+    var isRetold = !!(store && store[sc.id] && store[sc.id].retold);
     box.appendChild(el('div', 'wb-source',
       (state.mode === 'original'
         ? 'Chapter ' + esc(sc.chapter) + ' of the 1856 first edition — Juliette Kinzie\'s own words, unaltered.'
-        : 'Chapter ' + esc(sc.chapter) + ' in the contemporary-English edition.') +
+        : 'Chapter ' + esc(sc.chapter) + (isRetold
+            ? ', retold in a plain modern voice — every event, name and detail of the original kept.'
+            : ', in an earlier, lighter modernization. The full rewrite is working through the part scene by scene.')) +
       ' ' + words.toLocaleString() + ' words.'));
     var more = el('details', 'wb-details');
     more.appendChild(el('summary', '', 'Summary, plot points and cast'));

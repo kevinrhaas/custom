@@ -26,6 +26,7 @@ from html.parser import HTMLParser
 
 SRC = (sys.argv[1] if len(sys.argv) > 1 else 'wau-bun/sources').rstrip('/') + '/'
 OUT = 'site/wau-bun/js/data-text-part1.js'
+RETOLD = 'wau-bun/modern/'   # hand-written retellings, one <scene-id>.txt per scene
 
 # ---------- modern text ----------
 mod = open(SRC + 'waubun.txt').read().split('\n')
@@ -111,6 +112,17 @@ def score(a, b):
     if not A or not B: return 0.0
     return len(A & B) / len(A | B)
 
+def retold(sid):
+    """A hand-written contemporary retelling of this scene, if one exists:
+    wau-bun/modern/<sid>.txt, paragraphs separated by blank lines. These take
+    the place of the light .docx modernization as the 'modern' text."""
+    try:
+        raw = open(RETOLD + sid + '.txt').read()
+    except IOError:
+        return None
+    paras = [' '.join(b.split()) for b in re.split(r'\n\s*\n', raw) if b.strip()]
+    return paras or None
+
 out = {}
 report = []
 for k, (sid, roman, a, b) in enumerate(RANGES):
@@ -122,8 +134,10 @@ for k, (sid, roman, a, b) in enumerate(RANGES):
     for i, op in enumerate(ops):
         sc = max(score(mp[0], op), score(anchor, ' '.join(ops[i:i + 2])))
         if sc > best_s: best_i, best_s = i, sc
-    out[sid] = {'roman': roman, 'modern': mp, '_ostart': best_i, '_oscore': round(best_s, 3)}
-    report.append((sid, roman, len(mp), best_i, round(best_s, 3)))
+    rt = retold(sid)
+    out[sid] = {'roman': roman, 'modern': rt or mp, 'retold': bool(rt),
+                '_ostart': best_i, '_oscore': round(best_s, 3)}
+    report.append((sid, roman, len(out[sid]['modern']), best_i, round(best_s, 3), bool(rt)))
 
 # original ranges = from this scene's start to the next scene's start in the same chapter
 ids = [r[0] for r in RANGES]
@@ -133,24 +147,43 @@ for i, sid in enumerate(ids):
     end = nxt['_ostart'] if (nxt and nxt['roman'] == rec['roman']) else len(orig_ch[rec['roman']])
     rec['original'] = orig_ch[rec['roman']][rec['_ostart']:end]
 
-print(f"{'scene':6} {'ch':6} {'mod¶':>5} {'orig¶':>6} {'match':>6}")
-for sid, roman, nm, oi, sc in report:
-    print(f"{sid:6} {roman:6} {nm:>5} {len(out[sid]['original']):>6} {sc:>6}")
+def words(paras): return len(' '.join(paras).split())
 
-bad = [r for r in report if r[4] < 0.15]
-if bad:
-    print('\nWEAK ANCHOR MATCHES (check these):')
-    for r in bad: print('  ', r)
+print(f"{'scene':6} {'ch':6} {'mod¶':>5} {'orig¶':>6} {'match':>6} {'words':>13} {'len%':>5}  src")
+short, thin = [], []
+for sid, roman, nm, oi, sc, rt in report:
+    rec = out[sid]
+    wm, wo = words(rec['modern']), words(rec['original'])
+    pct = round(100 * wm / wo) if wo else 0
+    print(f"{sid:6} {roman:6} {nm:>5} {len(rec['original']):>6} {sc:>6} "
+          f"{wm:>6}/{wo:<6} {pct:>4}%  {'retold' if rt else 'docx'}")
+    if sc < 0.15: short.append(sid)
+    # the retellings must not quietly shed detail
+    if rt and pct < 90: thin.append((sid, pct))
+
+done = sum(1 for r in report if r[5])
+print(f"\nretold: {done}/{len(report)} scenes · "
+      f"{words([p for r in report if r[5] for p in out[r[0]]['modern']]):,} of "
+      f"{words([p for r in report for p in out[r[0]]['original']]):,} words")
+if short:
+    print('WEAK ANCHOR MATCHES (check these):', ', '.join(short))
+if thin:
+    print('RETELLINGS THAT LOST LENGTH (fix these):',
+          ', '.join(f'{s} at {p}%' for s, p in thin))
+    sys.exit(1)
 
 # ---------- emit ----------
 js = ['/* Wau-Bun — Part 1 full text, one passage per scene.',
-      '   modern:   the contemporary-English edition (the source this app was built from)',
+      '   modern:   contemporary English. retold:true = rewritten for this app in a',
+      '             plain modern voice, nothing cut; retold:false = the earlier, lighter',
+      '             modernization, still awaiting its rewrite',
       '   original: the 1856 first-edition text (Project Gutenberg #12183, public domain)',
       '   Generated — do not hand-edit. Loaded on demand by the reader, never on first paint. */',
       'var WAUBUN_TEXT_PART1 = {']
 for sid in ids:
     rec = out[sid]
     js.append('  %s: {' % sid)
+    js.append('    retold: %s,' % ('true' if rec['retold'] else 'false'))
     js.append('    modern: %s,' % json.dumps(rec['modern'], ensure_ascii=False))
     js.append('    original: %s' % json.dumps(rec['original'], ensure_ascii=False))
     js.append('  },')
