@@ -457,17 +457,25 @@ export async function createFlora({
    *  gate asks without naming a species. */
   const NO_COMMUNITY = { standsInWater: false };
 
-  /** Ground the plant stands on, or null if it may not stand here. */
-  function station(e, n, zone, species) {
+  /** Ground the plant stands on, or null if it may not stand here. `wet` is the
+   *  caller's already-computed water test, since the placer asks it once per
+   *  lattice slot to choose which half of the community it may pick from. */
+  function station(e, n, zone, species, wet = water.isWater(e, n)) {
     if (growthBlocked(e, n)) return null;
-    if (water.isWater(e, n)) {
+    if (wet) {
       // A water BUFFER is not permission for every member of that community to
-      // stand in the channel. Only records whose role is explicitly `emergent`
-      // may root in water, and the corrected signed shore-distance field below
-      // keeps even those inside the eight-metre marsh edge rather than assigning
-      // distance zero to the entire river.
-      return zone.standsInWater && species?.role === 'emergent' ? waterY : null;
+      // stand in the channel. Only records whose recorded `substrate` puts them
+      // in water may root there, and the corrected signed shore-distance field
+      // below keeps even those inside the eight-metre marsh edge rather than
+      // assigning distance zero to the entire river.
+      return zone.standsInWater && species?.substrate && species.substrate !== 'soil'
+        ? waterY : null;
     }
+    // ...and the mirror of it, which is the half nothing enforced: a plant whose
+    // leaves FLOAT has no station on dry ground. `nuphar_advena` and
+    // `nymphaea_odorata` are 0.01-0.10 m tall, so the failure was quiet — pads at
+    // ankle height standing on the soil of the marsh edge rather than on water.
+    if (species?.substrate === 'open_water') return null;
     for (const b of blocks) {
       const dx = e - b.e;
       const dz = n - b.n;
@@ -494,8 +502,10 @@ export async function createFlora({
         // carries a plant — the same rule the forb layer has always applied to
         // its own recorded densities, on the field the matrix layer ignored.
         if (rng() > zone.matrixShare) return;
-        const sp = pick(zone.graminoids, rng());
-        const y = station(e, n, zone, sp);
+        const wet = water.isWater(e, n);
+        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        if (!sp) return;
+        const y = station(e, n, zone, sp, wet);
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         // The head is placed off the height the PLANT was actually given, and
@@ -522,8 +532,10 @@ export async function createFlora({
         // the other would put a seam at the near/mid crossover exactly where
         // the change of representation is supposed to be invisible.
         if (rng() > zone.matrixShare) return;
-        const sp = pick(zone.graminoids, rng());
-        const y = station(e, n, zone, sp);
+        const wet = water.isWater(e, n);
+        const sp = pick(wet ? zone.wet.graminoids : zone.dry.graminoids, rng());
+        if (!sp) return;
+        const y = station(e, n, zone, sp, wet);
         if (y === null) return;
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
@@ -542,10 +554,13 @@ export async function createFlora({
         if (!zone || !zone.forbs.length) return;
         // The forb layer's density is the zone's OWN summed density_per_ha, so a
         // sparse community stays sparse. `share` is the chance this lattice slot
-        // is used at all.
-        if (rng() > zone.forbShare) return;
-        const sp = pick(zone.forbs, rng());
-        const y = station(e, n, zone, sp);
+        // is used at all — of the half of the community that may stand on this
+        // side of the waterline, which is why there are two of them.
+        const wet = water.isWater(e, n);
+        if (rng() > (wet ? zone.forbShareWet : zone.forbShare)) return;
+        const sp = pick(wet ? zone.wet.forbs : zone.dry.forbs, rng());
+        if (!sp) return;
+        const y = station(e, n, zone, sp, wet);
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
@@ -582,6 +597,24 @@ export async function createFlora({
      *  measuring how densely a community was planted has to divide by the
      *  ground that was actually available to it, not by the disc it sampled. */
     plantableAt(e, n) { return station(e, n, NO_COMMUNITY, null) !== null; },
+    /** The station a NAMED species of the community here would be given, or null
+     *  if this is not a place that species may stand. The gate asks the placer
+     *  itself rather than re-deriving its rules: `substrate` is only worth
+     *  recording if the thing that plants the town reads it. */
+    stationOf(e, n, speciesId) {
+      const zone = finder(e, n);
+      const sp = zone?.byId.get(speciesId);
+      if (!sp) return null;
+      return station(e, n, zone, sp);
+    },
+    /** What each community may plant on each side of its waterline, by id. */
+    substrates() {
+      return zones.map((z) => ({
+        id: z.id,
+        dry: z.dry.graminoids.items.concat(z.dry.forbs.items).map((s) => s.id),
+        wet: z.wet.graminoids.items.concat(z.wet.forbs.items).map((s) => s.id),
+      }));
+    },
     /** What each compiled community carries out of its record, so the gate can
      *  ask whether the authored number reached the renderer rather than
      *  trusting that it did. */
@@ -857,23 +890,55 @@ function compileZones({ index, files }, terrain, problems, stats) {
       matrixShare = 1;
     }
 
+    // A COMMUNITY IS NOT THE SAME LIST ON BOTH SIDES OF ITS WATERLINE. The marsh
+    // record carries cattails, bulrushes and two floating-leaved water lilies,
+    // and only the lilies are impossible on the bank. So each side gets its own
+    // legal subset, drawn from with the weights RENORMALISED over that subset:
+    // the recorded cover still decides how many slots carry a plant, and what
+    // fills a slot is whatever can actually stand there.
+    //
+    // Filtering at the pick rather than dropping the slot at the station is the
+    // whole point. A slot that picked a water lily on dry ground and was then
+    // refused would simply be empty, which would thin the dry marsh edge by the
+    // lilies' 6.5 % share of that sward — the record's `matrix_fraction` says
+    // 0.75 there, and it does not stop meaning 0.75 because two of its species
+    // cannot stand on a bank.
+    const subsetOn = (list, wet) => {
+      const items = list.filter((s) => (
+        wet ? s.substrate !== 'soil' : s.substrate !== 'open_water'));
+      return { items, total: items.reduce((a, s) => a + s.weight, 0) };
+    };
+
     const cell = TUNE.forb.cell;
+    const forbShareOf = (subset) => Math.min(
+      1, subset.total * forbPerM2 * cell * cell / TUNE.forb.perCell);
+    const dry = { graminoids: subsetOn(graminoids, false), forbs: subsetOn(forbs, false) };
+    const wet = { graminoids: subsetOn(graminoids, true), forbs: subsetOn(forbs, true) };
     out.push({
       id: entry.id,
       zone: entry.zone,
       extent: rec.extent ?? entry.extent ?? null,
       priority: rec.extent?.priority ?? entry.priority ?? 0,
       standsInWater: rec.extent?.kind === 'buffer' && rec.extent?.of === 'water'
-        && rec.species.some((sp) => sp.role === 'emergent'),
+        && (wet.graminoids.items.length > 0 || wet.forbs.items.length > 0),
       graminoids,
       forbs,
+      /** The same two lists split by `substrate`: what may be planted on the
+       *  dry side of the waterline, and what may be planted over water. */
+      dry,
+      wet,
+      /** Every drawn species of this community by id, so a gate can ask the
+       *  placer about one by name. */
+      byId: new Map([...graminoids, ...forbs].map((s) => [s.id, s])),
       /** Chance a matrix lattice slot is used at all: the record's own
        *  `cover.matrix_fraction`. Clamped only because a fraction over 1 would
        *  be a bookkeeping error the validator already refuses. */
       matrixShare: clamp01(matrixShare),
       bareSoil: typeof cover.bare_soil_fraction === 'number' ? cover.bare_soil_fraction : null,
-      /** Chance a forb lattice slot is used, from the record's own densities. */
-      forbShare: Math.min(1, forbPerM2 * cell * cell / TUNE.forb.perCell),
+      /** Chance a forb lattice slot is used, from the record's own densities —
+       *  per side, because the legal subset is what stands there. */
+      forbShare: forbShareOf(dry.forbs),
+      forbShareWet: forbShareOf(wet.forbs),
       matColor: meanColor(graminoids, palette),
       palette,
     });
@@ -922,6 +987,7 @@ function buildSpecies(sp, palette, problems, zoneId) {
     id: sp.id ?? sp.binomial ?? 'unnamed',
     form: sp.form,
     role: sp.role,
+    substrate: substrateOf(sp, problems, zoneId),
     weight,
     height: h,
     width: Array.isArray(sp.width_m) ? sp.width_m : null,
@@ -932,6 +998,42 @@ function buildSpecies(sp, palette, problems, zoneId) {
     head: headOf(inflor, sp, problems, zoneId),
     conf: LEVEL[sp.confidence] ?? LEVEL.inferred,
   };
+}
+
+/** The published `substrates` vocabulary (data/flora/index.json), and the only
+ *  thing in a record that says which side of the waterline a plant may stand on.
+ *
+ *  `soil` is rooted ground above the water; `saturated_soil` is the emergent
+ *  habit — wet ground OR standing water, foliage carried above the surface —
+ *  and `open_water` is rooted below the surface with the leaves floating ON it.
+ *
+ *  Before this field existed the placer read `role`, and a water lily and a
+ *  cattail are both `emergent`: the pads were planted on the dry marsh edge
+ *  like any other reed, ankle-high mats standing on soil. Their `appearance`
+ *  said "floating pads in open water" the whole time, but that is prose. */
+const SUBSTRATES = new Set(['soil', 'saturated_soil', 'open_water']);
+
+function substrateOf(sp, problems, zoneId) {
+  const declared = sp.substrate;
+  if (declared === undefined) {
+    // The validator requires the field of every `emergent` record, so a missing
+    // one means the renderer is reading data older than its own rules. Report it
+    // and fall back to the habit the role implies, which is what this module did
+    // before the field existed.
+    if (sp.role === 'emergent') {
+      problems.push(`flora: ${zoneId}/${sp.id ?? sp.binomial} is emergent and records no `
+        + 'substrate — it is planted as if it stood in the shallows, which is a guess '
+        + 'about a plant that may float');
+      return 'saturated_soil';
+    }
+    return 'soil';
+  }
+  if (!SUBSTRATES.has(declared)) {
+    problems.push(`flora: ${zoneId}/${sp.id ?? sp.binomial} records substrate '${declared}', `
+      + 'which is not in the published vocabulary — it is planted on dry ground');
+    return 'soil';
+  }
+  return declared;
 }
 
 /**
@@ -1215,11 +1317,20 @@ function scatter(camE, camN, cell, perCell, radius, inner, salt, cone, emit) {
 }
 
 /** Weighted pick from a compiled species list (weights sum to 1). */
-function pick(list, u) {
+/**
+ * One species out of a `{items, total}` subset, at its recorded weight. The
+ * weights are normalised over the WHOLE community, so a subset sums to its own
+ * share of it and `u` is scaled by that total — which is what renormalising over
+ * the subset amounts to, without copying every entry to rewrite one number.
+ */
+function pick(subset, u) {
+  const list = subset.items;
+  if (!list.length) return null;
   let acc = 0;
+  const target = u * subset.total;
   for (const item of list) {
     acc += item.weight;
-    if (u <= acc) return item;
+    if (target <= acc) return item;
   }
   return list[list.length - 1];
 }

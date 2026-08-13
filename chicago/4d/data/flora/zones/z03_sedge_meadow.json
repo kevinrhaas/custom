@@ -115,6 +115,7 @@
    "common": "dark-green bulrush",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"density_per_ha":[100,300]},
    "height_m": [1.0,1.4],
    "july": {
@@ -133,6 +134,7 @@
    "common": "woolgrass",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"density_per_ha":[100,300]},
    "height_m": [1.0,1.4],
    "july": {

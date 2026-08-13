@@ -25,6 +25,7 @@
    "common": "broad-leaved cattail",
    "role": "emergent",
    "form": "cattail",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[30,60]},
    "height_m": [1.5,2.4],
    "july": {
@@ -43,6 +44,7 @@
    "common": "hardstem bulrush",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[10,20]},
    "height_m": [1.5,2.5],
    "july": {
@@ -61,6 +63,7 @@
    "common": "softstem bulrush",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[10,20]},
    "height_m": [1.5,2.5],
    "july": {
@@ -79,6 +82,7 @@
    "common": "common bur-reed",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[8,20]},
    "height_m": [0.8,1.2],
    "july": {
@@ -97,6 +101,7 @@
    "common": "broadleaf arrowhead",
    "role": "emergent",
    "form": "forb_basal_scape",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[3,10]},
    "height_m": [0.4,0.8],
    "july": {
@@ -115,6 +120,7 @@
    "common": "river bulrush",
    "role": "emergent",
    "form": "rush_culm",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[10,25]},
    "height_m": [1.2,1.8],
    "july": {
@@ -133,6 +139,7 @@
    "common": "pickerelweed",
    "role": "emergent",
    "form": "forb_spike",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[4,12]},
    "height_m": [0.5,0.8],
    "july": {
@@ -169,6 +176,7 @@
    "common": "yellow pond lily",
    "role": "emergent",
    "form": "mat_prostrate",
+   "substrate": "open_water",
    "abundance": {"stems_per_m2":[2,6]},
    "height_m": [0.02,0.1],
    "width_m": [0.25,0.4],
@@ -180,7 +188,7 @@
    },
    "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
-   "note": "Dossier [I]: regional open-water flora."
+   "note": "Dossier [I]: regional open-water flora. Rooted below the surface with the pads floating ON it, which is why the substrate is open_water: this is the one habit in the flora records that cannot be planted on a bank. Height_m is the pad over the water, not over a soil."
   },
   {
    "id": "nymphaea_odorata",
@@ -188,6 +196,7 @@
    "common": "American white water lily",
    "role": "emergent",
    "form": "mat_prostrate",
+   "substrate": "open_water",
    "abundance": {"stems_per_m2":[2,6]},
    "height_m": [0.01,0.06],
    "width_m": [0.15,0.28],
@@ -199,7 +208,7 @@
    },
    "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
-   "note": "Dossier [I]: regional open-water flora."
+   "note": "Dossier [I]: regional open-water flora. Same habit as nuphar_advena and the same substrate: the pad floats, so a station with no water under it is not a place this species can be."
   },
   {
    "id": "zizania_aquatica",
@@ -207,6 +216,7 @@
    "common": "northern wild rice",
    "role": "emergent",
    "form": "grass_arching",
+   "substrate": "saturated_soil",
    "abundance": {"stems_per_m2":[0.2,2.0]},
    "height_m": [1.5,3.0],
    "july": {

@@ -28,7 +28,9 @@ in `docs/RESEARCH/residents_1835_inferred.md`. That is a real gap, not a roundin
 
 **Water vegetation correction:** emergent plants now use true distance to shoreline and are
 limited to the shallow eight-metre marsh edge. Non-emergent flora and every woody placement are
-rejected over the traced water mask. A first-run navigation guide can be dismissed and reopened
+rejected over the traced water mask, and since 2026-08-13 the mirror of that rule holds too: a
+species whose recorded `substrate` is `open_water` — a pad that floats — is refused every station
+on dry ground. A first-run navigation guide can be dismissed and reopened
 from Settings.
 
 **Parallel phase-two planning:** three non-rendered parcel recipes now cover 84 additional South
@@ -72,8 +74,8 @@ this building by twenty months.
 | **South Water Street** | **BUILT 2026-08-11** — sixteen commercial records land the town's business street, which the model held none of: Peck's store, both newspaper offices, Harmon & Loomis, Madore Beaubien's log house, Bates's auction room, the Beaubien homestead, Dole's warehouse, both Carpenter shops, Frederick Thomas, the old bank building, Pruyne & Kimball, J. H. Kinzie, Jones, and Thomas Church on Lake. One footprint is evidence (Carpenter's 16 x 20 ft log shop — the dataset's SECOND real footprint); fifteen are invented inside the documented 55 ft South Water lot cap. **What this street knows is *who* and *where*, and almost never *how big*.** Two records carry `review_required` (the Beaubiens, whose history runs straight into the August 1835 removal and the reservation pre-emption) — which blocks the 1835 scene from `released` until consultation happens. Two unresolved reads are flagged on the records themselves: whether Harmon & Loomis's building IS the *Chicago Democrat*'s building (they sit 37 m apart and Andreas gives no side), and whether Philo Carpenter's Lake Street log shop still stood after he built on South Water in 1833 |
 | **Renderer** | **WALKABLE AND NAVIGABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup, live compass and a north-up overview derived from the loaded heightfield and structure footprints |
 | **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. A fourth persistent setting switches every visitor-facing navigation measurement between Imperial (the default: ft, mi, mph) and Metric (m, km, km/h) without changing the metric scene data. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m / 230 ft ahead. |
-| **Smoke** | **PASS 2026-08-11.** `tools/check.sh` and changelog checks pass. `node tools/smoke_renderer.mjs` passed all **273 assertions** in foreground Chromium at both release viewports (390×780 and 1280×800), with zero page errors. The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, and exercises both unit systems. Mobile: 49 draw calls / 378,647 triangles / 5 fps; desktop: 53 / 499,343 / 2 fps, both under the 80 / 600,000 release budgets. |
-| **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). **Since 2026-08-13 each community is planted at its own recorded `cover.matrix_fraction`** — a field the records carried, the validator gated and the renderer had never asked for. |
+| **Smoke** | **PASS 2026-08-13.** `tools/check.sh` (which now runs the changelog contract check as a step) and `node tools/smoke_renderer.mjs` both pass in the foreground: **327 assertions**, zero page errors, at both release viewports (390×780 and 1280×800). The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, asks the flora placer itself where each species may stand, and exercises both unit systems. Mobile: 61 draw calls / 287,857 triangles / 3 fps; desktop: 71 / 425,560 / 1 fps, both under the 80 / 600,000 release budgets. |
+| **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). **Since 2026-08-13 each community is planted at its own recorded `cover.matrix_fraction`** — a field the records carried, the validator gated and the renderer had never asked for — and each is split by the published `substrate` of its species, so a floating-leaved aquatic is planted over water and never on the bank it was standing on. |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on* reads graded claims off `terrain_spec.json`, derived per scene by `compile_scene.py` and re-derived by `check.sh`; the same slice added reasoning and geometry-state checks so those rows are no longer silent promises. |
 | **What a source is, in the app** | **done** (2026-08-11) — citations now carry the document a modern page reprints (`transcribes`) or the reading that it reprints none, plus each source's own `what_it_supplies` / `what_it_does_not_supply`, so the ladder a visitor sees includes the reason it is the ladder. |
 | **Liberties, in the app** | **done** — the Evidence panel lists the liberties derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, a terrain claim, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype or terrain generator never reads and no liberty owns up to leaving out |
@@ -481,15 +483,59 @@ has always applied to its own recorded densities, on the field the matrix layer 
   67 rooted plants against about 150 before. The guard is 50; the 1e-5 m root tolerance is
   untouched. That number is a property of the dataset now rather than of the renderer.
 
-**Two findings measured on the way, and not fixed.** S6a item 9 reads the `river_bank` shot
-against zone 1's cordgrass — but ground within eight metres of water is the MARSH zone by extent,
-and the shot's sward is entirely `z04`/`z10` with no `z01` in it at all. And the "~25 cm sprigs"
-are better explained by species than by density: `nuphar_advena` and `nymphaea_odorata` are
-floating-leaved aquatics recorded at 0.01–0.10 m whose own `appearance` text says they float in
-open water, and they are **7 % of the tufts standing on that dry bank**, because `role: emergent`
-is all the renderer can see. Fixing that is a data field in the published vocabulary before it is
-a line in the renderer — a renderer that decided which plants float by reading their heights would
-be guessing at exactly the point this project refuses to.
+**Two findings measured on the way, and not fixed then. Both fixed 2026-08-13 — see below.** S6a
+item 9 reads the `river_bank` shot against zone 1's cordgrass — but ground within eight metres of
+water is the MARSH zone by extent, and the shot's sward is entirely `z04`/`z10` with no `z01` in
+it at all. And the "~25 cm sprigs" are better explained by species than by density:
+`nuphar_advena` and `nymphaea_odorata` are floating-leaved aquatics recorded at 0.01–0.10 m whose
+own `appearance` text says they float in open water, and they were **6.5 % of the tufts standing
+on that dry bank**, because `role: emergent` was all the renderer could see. Fixing that is a data
+field in the published vocabulary before it is a line in the renderer — a renderer that decided
+which plants float by reading their heights would be guessing at exactly the point this project
+refuses to.
+
+## New 2026-08-13 — the pads were standing on soil, and prose was the only thing that said so
+
+**K3, the second finding.** A water lily and a cattail were the same record to the placer: both
+`role: emergent`, and the role is what `station()` read. So the marsh community was planted
+identically on both sides of its own waterline, and `nuphar_advena` and `nymphaea_odorata` —
+0.01–0.10 m, `form: mat_prostrate`, `appearance` "floating pads in open water" — stood as ankle-
+high mats rooted in the soil of the dry bank. **The evidence was in the record and unreadable by
+anything but a person.**
+
+`data/flora/index.json` now publishes a `substrates` vocabulary and every `role: emergent` record
+states one:
+
+| value | habit | may be planted |
+|---|---|---|
+| `soil` | rooted ground above the water; the default when the field is absent | dry ground only |
+| `saturated_soil` | the emergent habit — wet ground OR standing water, foliage above the surface | both sides |
+| `open_water` | rooted below the surface, leaves floating ON it | over water only |
+
+- **The validator refuses the unplantable record**, not just the unknown word: an `open_water`
+  species in a zone whose extent never reaches water — or a buffer that starts at the bank rather
+  than at the waterline — is an error, because a record that can never be drawn is a claim the
+  walkthrough does not make. Six new self-tests in `tools/test_validate.py`.
+- **The community is split, not the slot dropped.** `flora.js` picks from the subset legal on the
+  side of the waterline it is planting, with the weights renormalised over that subset. Refusing
+  the slot after the pick would have been one line shorter and would have thinned the dry marsh
+  edge by the lilies' 6.5 % share; `matrix_fraction` 0.75 does not stop meaning 0.75 because two
+  of that community's species float.
+- **Measured, at 1280×800.** An 8 m sweep of the modelled box: **299 dry marsh-edge stations**
+  (289 plantable at all) and **286 over water**. Both lilies were legal at all 289 dry stations
+  and are now legal at none; the cattail is unchanged at 289 dry / 273 wet. At the marsh-edge
+  station nearest the forks the sward holds its density — **2 483 → 2 481 rooted instances,
+  47 551 → 47 435 triangles** — and the two `head_ray` heads that stood on that dry bank, which
+  are the lily blooms, are gone. A wet-prairie control station is identical.
+- **The gate asks the placer, not a copy of its rules.** `flora.stationOf(e, n, speciesId)` runs
+  the same `station()` the scatter runs; the smoke sweeps the box with it at both viewports and
+  asserts no floating-leaved aquatic has a dry station, that the lilies still have wet ones, and
+  that the cattail still stands on both sides — that last one because a placer that had refused
+  *everything* on that bank would otherwise read as a pass.
+- **What this does not claim.** That the lilies are at the forks at all is still `inferred` from a
+  regional flora (`swink_wilhelm_1994`), at a token density, and where the pads sit within the
+  eight-metre marsh edge is the scatter's, not a source's. The change moves a species from ground
+  it cannot occupy to ground it can; it is not new evidence that it was there.
 
 ## Known weaknesses, stated plainly
 

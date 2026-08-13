@@ -2864,6 +2864,79 @@ def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
     check("a researched-and-excluded person owes a reason, a note and resolving sources",
           sum(1 for e in rep.errors if "researched_not_resident" in e) >= 3, rep.errors)
 
+FLORA_VOCAB = {"forms_flora": ["cattail", "mat_prostrate"], "forms_trees": [],
+               "substrates": ["soil", "saturated_soil", "open_water"],
+               "phenology": ["fruiting", "flowering"]}
+WATER_BUFFER = {"kind": "buffer", "of": "water", "distance_m": [0, 8], "priority": 70}
+DRY_BAND = {"kind": "elevation_band", "elev_m": [0.0, 3.0], "priority": 40}
+
+
+def _flora_species(**kw) -> dict:
+    """A cattail record: emergent, and legal."""
+    sp = {
+        "id": "typha_latifolia", "binomial": "Typha latifolia",
+        "common": "broad-leaved cattail", "role": "emergent", "form": "cattail",
+        "substrate": "saturated_soil",
+        "abundance": {"stems_per_m2": [30, 60]}, "height_m": [1.5, 2.4],
+        "july": {"phenology": "fruiting", "foliage_rgb": [110, 132, 96],
+                 "appearance": "brown mature spikes",
+                 "inflorescence": {"shape": "spadix_brown", "rgb": [92, 62, 40],
+                                   "height_frac": 0.8, "size_m": [0.15, 0.25],
+                                   "fruit": True}},
+        "confidence": "inferred", "sources": ["s1"],
+        "note": "test fixture",
+    }
+    sp.update(kw)
+    return sp
+
+
+def _run_flora_species(sp: dict, ext: dict) -> V.Report:
+    rep = V.Report()
+    V.check_flora_species("z04_marsh", sp, {"s1"}, FLORA_VOCAB, rep, {}, ext)
+    return rep
+
+
+def test_a_species_says_which_side_of_the_waterline_it_stands_on() -> None:
+    """A water lily and a cattail were both `role: emergent`, so the placer — which
+    read the role — planted floating pads on the dry bank. `appearance` said
+    "floating pads in open water", but prose is not a gate. ROADMAP § K3."""
+    rep = _run_flora_species(_flora_species(), WATER_BUFFER)
+    check("the cattail as recorded is legal", not rep.errors, rep.errors)
+
+    sp = _flora_species()
+    del sp["substrate"]
+    rep = _run_flora_species(sp, WATER_BUFFER)
+    check("an emergent that does not say where it roots is an error",
+          any("must state a substrate" in e for e in rep.errors), rep.errors)
+
+    rep = _run_flora_species(_flora_species(substrate="mud"), WATER_BUFFER)
+    check("a substrate outside the published vocabulary is an error",
+          any("is not declared in index.json's vocabulary" in e for e in rep.errors),
+          rep.errors)
+
+    # The lily itself: legal in the marsh, and unplantable in a zone whose extent
+    # never reaches water — which is the record claiming something no visitor can
+    # ever be shown.
+    lily = _flora_species(id="nymphaea_odorata", binomial="Nymphaea odorata",
+                          common="American white water lily", form="mat_prostrate",
+                          substrate="open_water", height_m=[0.01, 0.06],
+                          abundance={"stems_per_m2": [2, 6]},
+                          july={"phenology": "flowering", "foliage_rgb": [72, 106, 56],
+                                "appearance": "round floating pads",
+                                "inflorescence": {"shape": "head_ray", "rgb": [246, 246, 240],
+                                                  "height_frac": 0.15, "size_m": [0.08, 0.14]}})
+    rep = _run_flora_species(lily, WATER_BUFFER)
+    check("a floating-leaved aquatic is legal in a zone that reaches the water",
+          not rep.errors, rep.errors)
+    rep = _run_flora_species(lily, DRY_BAND)
+    check("the same aquatic in a zone that never reaches water is an error",
+          any("may only be planted over water" in e for e in rep.errors), rep.errors)
+    rep = _run_flora_species(lily, {"kind": "buffer", "of": "water",
+                                    "distance_m": [2, 8], "priority": 70})
+    check("a water buffer that starts on the bank does not count as water either",
+          any("may only be planted over water" in e for e in rep.errors), rep.errors)
+
+
 def test_real_dataset_passes() -> None:
     """The shipped dataset must satisfy its own rules."""
     import subprocess
