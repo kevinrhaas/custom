@@ -188,6 +188,99 @@
       "note": "NOT AN OPERATING INDIAN AGENCY BUILDING AT THE SCENE DATE, most likely, and that is the fact this record has least evidence for. Andreas has it 'left unoccupied by the death of Dr. Wolcott' in 1830, then in the autumn of 1832 describes 'the old Indian agency-house in which Colonel Hamilton then resided' — Colonel R. J. Hamilton, the county's clerk and commissioner of school lands, living in it as a private house while the agency's business ran down through the 1833 treaty. Nothing reached says who was in it in July 1835 or what it was being used for, so the value records a residence and this record carries no occupants block rather than guessing at one."
     }
   },
+  "residents": [
+    {
+      "household": "hh_caldwell_billy",
+      "name": "The Caldwell household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "The agency's interpreter worked where the agency's business was done, and the government blacksmith shop this dataset holds stands beside the agency house. Inferred: no source puts this man in this building.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Billy Caldwell (Sauganash)",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "interpreter",
+          "note": "THE MAN THE SAUGANASH HOTEL IS NAMED AFTER, which is how this dataset first met him: 'It was suggested to Mark that he should name his house after some great man. He could think of no greater personage than Billy Caldwell and so his tavern became celebrated as the \"Sauganash.\"' Andreas: son of a Colonel Caldwell, an Irish officer in the British army at Detroit, and a Potawatomi mother; born about 1780; educated at the Jesuit schools of Detroit and fluent in French and English besides several Indian languages; secretary to Tecumseh from about 1807 until Tecumseh's death and present at the Thames on 5 October 1813; a captain in the British Indian Department as late as 1816. By the treaty of Prairie du Chien of 1829 he was granted two and a half sections on the Chicago River, about six miles up the North Branch, and by the treaties of 1832 and 1833 annuities aggregating $1,000; he sold the land early. When John Watkins started his school in 1832 Caldwell offered to pay the tuition and buy books and clothes for any Indian children who would attend."
+        }
+      ],
+      "research_note": "THE INTERPRETER OF THE AGENCY, THE NAMESAKE OF THE TOWN'S BEST-KNOWN TAVERN, AND A MAN WHO LEFT WITH HIS PEOPLE. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to. ANDREAS AND THIS PROJECT'S OTHER SOURCE DISAGREE BY A YEAR ABOUT THE REMOVAL ITSELF and the disagreement is recorded here rather than resolved: Andreas, 'In 1836, under the leadership of Captain Russell the Government Agent, and Billy Caldwell, the Indians to the number of nearly twenty-five hundred assembled for the last time at Chicago, to receive their payments and then take up their line of march for their new home on the Missouri, at Council Bluffs'; chicagology_lastwardance, transcribing a 1910 Tribune account, dates the last great war dance to 18 August 1835. AGENTS.md takes the 1835 dating as the project's standing constraint. Under either, 1 July 1835 is before it, and this household is in the scene. He died at Council Bluffs on 28 September 1841."
+    },
+    {
+      "household": "hh_hamilton_richard_j",
+      "name": "The Hamilton household",
+      "division": "north",
+      "relation": "lived here",
+      "why": "DOCUMENTED FOR 1832 AND NOT FOR THE SCENE DATE, which is why this is graded derived rather than documented. Andreas, on the founding of the first school: 'In the fall of 1832, Colonel Hamilton and Colonel Owen employed John Watkins to teach a small school in the North Division, near the old Indian agency-house in which Colonel Hamilton then resided.' That is a plain statement that he lived in the building this dataset records as cobweb_castle, and it is nearly three years before 1 July 1835. Nothing reached follows him out of it or keeps him in it. The link is made because it is the only attested residence for any named person in that building and because an unlinked household teaches a reader nothing; the grade is the warning.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Richard Jones Hamilton",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "county_clerk",
+          "note": "ONE OF THE SIX MEN ANDREAS COUNTS AS CHICAGO'S LAWYERS AT THE END OF 1833, and one of the twelve who voted for incorporation on 5 August 1833. Andreas, scan p. 281: 'It comprised six lawyers - Russel E. Heacock, who had come in 1827; Richard J. Hamilton, 1831; and Giles Spring, John Dean Caton, Edward W. Casey and Alexander N. Fullerton, who had put out their signs in 1833.' He administered the oath of office to the first board of trustees as a notary public and acted as its clerk pro tem, and he ran the auction of the school section in October 1833 with John Bates as auctioneer."
+        }
+      ],
+      "research_note": "THE COUNTY'S CLERK, AND THE ONE NAMED PERSON THIS PROJECT CAN PUT INSIDE COBWEB CASTLE. The residence link is the point of the record and it is also its weakness: the sentence that supplies it is about a schoolmaster's employment in 1832, and it is doing double duty here as evidence about a building and about a household. Graded derived on both counts. A SECOND THING THIS RECORD DOES NOT CLAIM: Hamilton appears constantly in the 1833-35 record as commissioner, notary, clerk pro tem and attorney, and it would be easy to write him a household of five and an origin. Nothing supports either."
+    },
+    {
+      "household": "hh_kercheval_gholson",
+      "name": "The Kercheval household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The agency's business was done at the agency house. Same inference and same weakness as the agent's own work link: no source puts this man in this building.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Gholson Kercheval",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "sub_agent",
+          "note": "HE GUIDED THE MEN WHO BROUGHT EASTERN MONEY TO CHICAGO, and he commanded its militia. Charles Butler's 1881 letter: preparing to travel from Detroit in the summer of 1833 they 'arranged with a young man, named Gholson Kercheval, who was familiar with the route, having been connected with the Indian agency at Chicago, to accompany us all the way from Detroit to Chicago'. The 1832 militia agreement Andreas prints begins 'we, the undersigned, agree to submit ourselves, for the time being, to Gholson Kercheval, Captain, and George W. Dole and John S. C. Hogan, First and Second Lieutenants, as commanders of the Militia of the town of Chicago, until all apprehension of danger from the Indians may have subsided' and carries about forty signatures. He is trustee for three of the payments in the 1833 treaty's schedule - $800 each for Alexander and Paschal Muller. He was one of the twenty-eight electors of 10 August 1833 and died in California."
+        }
+      ],
+      "research_note": "THE SUB-AGENT, THE MILITIA CAPTAIN AND THE GUIDE - three roles that between them describe how a frontier agency actually worked, and none of which the single-value occupation field can carry. THE MILITIA ROLL IS THE MOST VALUABLE UNWORKED LIST THIS PARCEL FOUND: about forty men of the town signed it in 1832, several of whom appear nowhere else in this dataset, and it is a population census of the adult male settlement two years before the 1833 roster. Working it is derived-phase work. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to."
+    },
+    {
+      "household": "hh_owen_thomas_jv",
+      "name": "The Owen household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The Indian agency house is where the Indian agent's business was done: Owen's staff - Kercheval and James Stuart as sub-agents, Billy Caldwell as interpreter, David McKee as blacksmith and Joseph Porthier as striker - are the agency establishment, and the blacksmith shop this dataset holds stands beside this building. INFERRED, NOT DOCUMENTED: no source says Owen kept his office in this house on any date, and the agency's own buildings had already been lent to other uses by 1832.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Thomas Jefferson Vance Owen",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "indian_agent",
+          "note": "BORN IN KENTUCKY, 5 APRIL 1801, AND DIED AT CHICAGO ON 15 OCTOBER 1835 - fifteen weeks after the scene date, which is why this household is one of the few in the dataset whose presence on 1 July 1835 is settled at both ends. Andreas, scan p. 195: 'Colonel Owen was born in Kentucky, April 5, 1801. He was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831 ... When the Town of Chicago was incorporated in 1833, Colonel Owen was chosen President of its first board of trustees. He died at Chicago, October 15, 1835.'"
+        },
+        {
+          "name": "Owen's household, unnamed",
+          "relationship": "household_member",
+          "grade": "derived",
+          "occupation": "none_recorded",
+          "note": "A PLACEHOLDER FOR PEOPLE WHO CERTAINLY EXISTED AND WHOM NO SOURCE REACHED NAMES. Owen was a married man with children - his family is referred to in the Chicago literature and his son-in-law's line is traced in later chapters - but nothing this project holds names his wife or counts his children, so no person record is written for them and the household size is left as an admission rather than a number. This entry exists so that a reader of the dataset sees the gap instead of a household of one. It carries no age, no sex and no name, and it must not be counted as a person for any purpose but that."
+        }
+      ],
+      "research_note": "THE TOWN'S FIRST PRESIDENT AND THE UNITED STATES' AGENT TO THE POTAWATOMI, IN THE LAST SUMMER OF HIS LIFE. Two things make this a good anchor record. The first is that the presence question is closed at both ends: an arrival in the spring of 1831 and a death at Chicago on 15 October 1835, both in Andreas. The second is that the household is the dataset's first demonstration of the honest failure mode - one named person and an unnamed remainder that the record refuses to invent. THE RECORD DELIBERATELY DOES NOT CARRY OWEN'S ROLE IN THE 1833 TREATY AS AN OCCUPATION. He signed as a commissioner for the United States at the treaty of 26 September 1833 that ceded the land this town stands on, and that is a fact about the removal rather than about a trade; it is recorded here in prose and the household is flagged for review because of it."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

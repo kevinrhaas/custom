@@ -165,6 +165,30 @@
       "note": "THE FORT WAS OCCUPIED ON 1835-07-01 AND THIS PROJECT CHECKED RATHER THAN ASSUMED IT. Andreas gives the sequence: the garrison was withdrawn in 1823, the post was re-garrisoned in October 1828, the troops were removed to Green Bay in May 1831, and 'In June [1832] the fort was once more garrisoned. Major William Whistler being assigned to the command' - held continuously from then until 29 December 1836. For the scene date itself Andreas brackets the command rather than naming it: DeLafayette Wilcox 'commanded until December 18, 1833, and again from September 16, 1835', with 'Major John Bender, Major John Greene and Captain and Brevet-Major Joseph Plympton ... in command at various times' between. The drloihjournal chronology fills the bracket with Maj. John Greene, 5th Infantry, 18 December 1833 to 16 September 1835, which is unfootnoted but lands exactly inside Andreas's two dates. STRENGTH IS NOT ATTESTED for mid-1835; Andreas gives two companies of infantry in 1833 and nothing later, so no number is recorded here. The garrison is why the gates are built shut rather than open and why the fort is modelled maintained rather than decaying."
     }
   },
+  "residents": [
+    {
+      "household": "hh_greene_john",
+      "name": "The commandant's household",
+      "division": "fort",
+      "relation": "worked here",
+      "why": "The post itself. data/structures/fort_dearborn_palisade.json already carries 'United States 5th Infantry, Maj. John Greene commanding' as its occupants; this household is the other end of that link.",
+      "sources": [
+        "andreas_1884_v1",
+        "drloih_fort_dearborn"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Major John Greene",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "army_officer",
+          "note": "THE MAN IN COMMAND ON THE SCENE DATE, on a tour that starts eighteen months before it and ends ten weeks after it. Three separately written accounts agree the fort was garrisoned through 1835, and the post surgeon's prescription book carries an entry dated 15 March 1835."
+        }
+      ],
+      "research_note": "THE FORT AS A HOUSEHOLD, WHICH IT WAS NOT - and the record says so rather than pretending. A garrison is not a family; it is a command with a strength, and this record names the one man the sources put at the head of it on 1 July 1835. THE ENLISTED MEN ARE DELIBERATELY NOT WRITTEN. data/structures/fort_dearborn_barracks.json records 'enlisted men of the 5th Infantry garrison' as its occupants and that is where they stay until a muster roll enters data/sources/. Inventing a company of privates would inflate the documented count with people no source names, which is precisely the error the grade vocabulary exists to make impossible."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

@@ -1,0 +1,145 @@
+{
+  "id": "inf_teamster_stable_west",
+  "name": "Inferred stable and wagon yard (teamster)",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a teamster's stable on the Canal Street approach, where the country roads come into the town and where the Western Hotel already keeps its own wagon yard. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+      },
+      "position": {
+        "utm_e": 446894.652,
+        "utm_n": 4637160.618,
+        "rotation_deg": 0.0,
+        "symbolic_location": "West Division, local ENU E -175 N -230",
+        "confidence": "conjectural",
+        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A teamster's stable on the Canal Street approach, where the country roads come into the town and where the Western Hotel already keeps its own wagon yard. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            6.096,
+            0
+          ],
+          [
+            6.096,
+            10.363
+          ],
+          [
+            0,
+            10.363
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 20 x 34 ft rectangle from the A2 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 3.42,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_pitch_deg": {
+          "value": 32.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "construction": {
+          "value": "light_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door": {
+          "value": "wagon",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "loft": {
+          "value": true,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A2 band in the reconstruction specification; it is not evidence for this building."
+        }
+      },
+      "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it."
+    }
+  ],
+  "function": {
+    "value": "stable_and_wagon_yard",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "A teamster's stable on the Canal Street approach, where the country roads come into the town and where the Western Hotel already keeps its own wagon yard."
+  },
+  "occupants": {
+    "value": "An inferred household; no name is claimed",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "The inferred household this building exists for: hh_inf_teamster_west_05 in data/residents/households/. No name is claimed and no figure is drawn."
+  },
+  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A teamster's stable on the Canal Street approach, where the country roads come into the town and where the Western Hotel already keeps its own wagon yard. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "review_required": false
+}

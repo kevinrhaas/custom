@@ -1,0 +1,82 @@
+{
+ "id": "hh_walters_william",
+ "name": "The Walters household at Wolf Point",
+ "division": "west",
+ "head": "walters_william",
+ "arrival": {
+  "value": "1833",
+  "confidence": "inferred",
+  "sources": [
+   "drloih_hotels",
+   "drloih_wolf_point"
+  ],
+  "note": "The year his tenancy begins in the succession, standing in for an arrival date.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": "wolf_point_tavern",
+  "confidence": "inferred",
+  "sources": [
+   "drloih_hotels"
+  ],
+  "note": "A landlord lived in his house; the tenancy itself is the reconstructed part."
+ },
+ "works_at": {
+  "value": "wolf_point_tavern",
+  "confidence": "inferred",
+  "sources": [
+   "drloih_hotels"
+  ],
+  "note": "The Wolf Point house is the premises his tenancy is a tenancy OF, and a landlord's workplace is his house. Inferred rather than documented because the tenancy itself is the reconstructed part: the same body of sources that gives Walters the house from 1833 to 1836 also says the house stopped operating as a public house in 1834, so what he was doing here in July 1835 - if he was here - is open."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "drloih_hotels"
+  ],
+  "note": "If the house had closed as a public house in 1834, what Walters was doing at Wolf Point in July 1835 - or whether he was there - is open."
+ },
+ "persons": [
+  {
+   "id": "walters_william",
+   "name": "William Walters",
+   "relationship": "head",
+   "grade": "derived",
+   "sex": "male",
+   "occupation": {
+    "value": "tavern_keeper",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1",
+     "drloih_hotels",
+     "drloih_wolf_point"
+    ],
+    "note": "The building record's operator succession gives Walters the Wolf Point house from 1833 to 1836, which covers the scene date."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "drloih_hotels"
+   ],
+   "note": "DERIVED, AND THE REASON IS A CONTRADICTION IN THE SOURCES RATHER THAN A GAP. The same body of material that puts Walters in the house 1833-1836 also says the house stopped operating as a public house in 1834, and a landlord of a closed house is not a coherent claim. data/structures/wolf_point_tavern.json records the occupancy as inferred for exactly this reason; this household inherits the doubt and does not paper over it."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE WEST BANK'S OLDEST PUBLIC HOUSE AND ITS LEAST CERTAIN OCCUPANT. This household is written so that the west-bank row is not left as buildings with nobody in them, and it is graded derived throughout because the sources behind it contradict each other about whether there was a tavern here to keep. THE SUCCESSION THIS RECORD SITS AT THE END OF is worth keeping in view for the derived phase: Archibald Caldwell for James Kinzie by 1829, Elijah 'Old Geese' Wentworth from early 1830, Charles and Mary Taylor 1831-1833, then Walters. Four households this project has not written, three of them out of scope by date."
+}

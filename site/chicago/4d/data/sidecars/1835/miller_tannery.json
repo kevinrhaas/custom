@@ -104,6 +104,36 @@
       "note": "'a log house ... that he used as a tannery, Chicago's first recorded factory' (DRLOIH); 'run a tannery just north of Miller's tavern' (Andreas). The function is the best-attested thing about this building and the model cannot show it: what stands is a log house, because a log house is what was built and because the yard that made it a tannery is not modelled. WHETHER IT WAS STILL TANNING ON 1835-07-01 IS UNATTESTED — Andreas's tanner partner arrives in 1832 and the trade then disappears from the record — so this value states what the building was for, not what it was doing on the scene date."
     }
   },
+  "residents": [
+    {
+      "household": "hh_miller_john",
+      "name": "The Miller and Hall tannery household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "'A tannery just north of Miller's tavern' - the direction is the find that placed this dataset's record, and both men are named in it.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John Miller",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "tanner",
+          "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 20 of 28 votes, and Andreas notes that he 'being a candidate himself, refrained from voting' - so he is one of only two men in this parcel whose conduct at the poll is recorded. His brother Samuel Miller kept the tavern on the north bank at the forks and is not written as a household here, because Andreas's 1833 roster names him only in passing as 'Samuel, the landlord' and this project's miller_house record has the house 'past its innkeeping days' by the scene date. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. A YEAR off it is documented; a MONTH is not, and neither is anything about 1835."
+        },
+        {
+          "name": "Benjamin Hall",
+          "relationship": "partner",
+          "grade": "documented",
+          "occupation": "tanner",
+          "note": "A DOCUMENTED PARTNER IN THE SETTLEMENT'S FIRST MANUFACTORY. Andreas: 'The only manufactory established at that early day was the rude shed called a tannery, near the Miller tavern, where John Miller and Benjamin Hall were tanning a few hides into a rough but endurable leather.' He signed the 1832 militia agreement."
+        }
+      ],
+      "research_note": "THE SETTLEMENT'S FIRST FACTORY AND ITS TWO NAMED WORKMEN, in a household assembled from three passages - the roster, Bates's 1883 interview and Andreas's own summary of the settlement's industry. A TANNERY IS A POPULATION FACT AS WELL AS A BUILDING: it takes hides from the butchers (Archibald Clybourne has his own household here) and it supplies the saddlers at Lake and Canal (Goss & Cobb, also here), so three of this parcel's households are one supply chain. That is the sort of structure the inferred phase should be looking for when it decides which trades the town must have had."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

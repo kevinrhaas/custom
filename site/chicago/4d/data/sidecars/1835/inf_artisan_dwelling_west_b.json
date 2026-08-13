@@ -1,0 +1,200 @@
+{
+  "id": "inf_artisan_dwelling_west_b",
+  "phase": "inferred_1835",
+  "name": "Inferred dwelling (wheelwright)",
+  "aka": [],
+  "archetype": "frame_dwelling",
+  "asset": "gltf/inf_artisan_dwelling_west_b__inferred_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-01-01",
+    "to": "1835-12-31",
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - the wheelwright's own roof. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+  },
+  "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it.",
+  "placement": {
+    "local_e": -177.438,
+    "local_n": -33.353,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. The wheelwright's own roof. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+    "symbolic_location": "West Division, local ENU E -175 N -30",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        4.877,
+        0
+      ],
+      [
+        4.877,
+        6.706
+      ],
+      [
+        0,
+        6.706
+      ]
+    ],
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "A 16 x 22 ft rectangle from the D3 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "wall_height_m": {
+      "value": 2.78,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_pitch_deg": {
+      "value": 38.0,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "plan": {
+      "value": "single_pen",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "bays": {
+      "value": 3,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the D3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "function": {
+      "value": "dwelling",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "The wheelwright's own roof."
+    },
+    "occupants": {
+      "value": "An inferred household; no name is claimed",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "The inferred household this building exists for: hh_inf_wheelwright_west_01 in data/residents/households/. No name is claimed and no figure is drawn."
+    }
+  },
+  "residents": [
+    {
+      "household": "hh_inf_wheelwright_west_01",
+      "name": "An inferred wheelwright's household (west division)",
+      "division": "west",
+      "relation": "lived here",
+      "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_artisan_dwelling_west_b is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
+      "persons": [
+        {
+          "name": "A wheelwright (inferred resident, unnamed)",
+          "relationship": "head",
+          "grade": "inferred",
+          "occupation": "wheelwright",
+          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 WHEELWRIGHT HOUSEHOLDS THIS LAYER INFERS. A wagon town wears out wheels. One wheelwright household is inferred, on the west side where the country roads come in and where the Western Hotel's wagon yard already stands."
+        }
+      ],
+      "research_note": "INFERRED HOUSEHOLD - first of 1 wheelwright households in this layer, in the west division. A wagon town wears out wheels. One wheelwright household is inferred, on the west side where the country roads come in and where the Western Hotel's wagon yard already stands. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+    }
+  ],
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
+      "url": "",
+      "archived_url": "",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
+        "Thirty-five architectural family definitions with dimensional and massing bands.",
+        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
+        "A required distinction between named documentary landmarks and anonymous inferred infill."
+      ],
+      "what_it_does_not_supply": [
+        "A surviving July 1835 building census or parcel-by-parcel roof register.",
+        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
+        "Authority to replace stronger building-specific evidence already represented in the dataset."
+      ]
+    }
+  ],
+  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). The wheelwright's own roof. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "research_doc": "docs/RESEARCH/inf_artisan_dwelling_west_b.md",
+  "review_required": false
+}

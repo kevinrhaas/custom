@@ -171,6 +171,50 @@
       "note": "St. Cyr selected the lot in 1833 and, per the same page's account of the removal, was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window. Tagged inferred rather than documented because the page states his arrival and his succession and does not state who was in charge on any particular day in 1835."
     }
   },
+  "residents": [
+    {
+      "household": "hh_st_cyr_john_mary",
+      "name": "The presbytery household at St Mary's",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "The church at the south-west corner of Lake and State is his charge and this dataset holds no separate presbytery. A priest of a mission church of this period commonly lodged at or beside it; not stated.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Rev. John Mary Irenaeus St Cyr",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "priest",
+          "note": "BORN AT LYONS, FRANCE, 2 NOVEMBER 1803, AND EDUCATED THERE. Andreas: 'He left France in June, 1831, reached St. Louis August 1, of the same year, and was there made a subdeacon. He was ordained at St. Mary's the Barrens by Bishop Rosatti in 1832, and on April 6, 1833, was by the same Bishop ordained priest.' He was sent to Chicago because 'Catholics were increasing in numbers in Chicago, and were becoming desirous' of a priest - a petition answered, not a migration chosen. He was succeeded by Father O'Meara only after 1837, so he is the pastor across the whole scene window."
+        }
+      ],
+      "research_note": "THE ONLY CATHOLIC HOUSEHOLD IN THIS PARCEL AND ONE OF ITS BEST-DATED, which is a lopsided result worth stating: St Cyr's own movements are documented to the day while the congregation he came for - the Catholics who were 'increasing in numbers' and petitioned for him - is a body of people this dataset cannot name at all. THAT CONGREGATION IS THE LARGEST SINGLE POPULATION THE INFERRED PHASE HAS TO ACCOUNT FOR on the south side, and the church building is the evidence that it existed. A note for that phase: the lumber for the twenty-five by thirty-five foot church came by scow from St Joseph, Michigan, at $12 per thousand, and Anson Taylor hauled it from the schooner with his own team - three named trades in one sentence about one building."
+    },
+    {
+      "household": "hh_taylor_augustine",
+      "name": "The Augustine Taylor household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "He built it, which is a builder's relation to a building rather than a workplace, and the church was finished long before the scene date. Linked one grade down because it is the only structure in this dataset his name is attached to; a carpenter in July 1835 was working on something else entirely and nothing says what.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Augustine Deodat Taylor",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "carpenter",
+          "note": "AN ARRIVAL WITH A MONTH, WHICH ONLY SIX HOUSEHOLDS IN THIS PARCEL HAVE. He is also the man whose name is attached in the Chicago literature to the first balloon-frame building - St Mary's - and this record makes no claim about that, because Andreas calls him the architect and says nothing about the framing method. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+        }
+      ],
+      "research_note": "A CARPENTER IN THE YEAR THE TOWN NEEDED CARPENTERS MOST, and one of two Taylor brothers in this parcel - Anson H. Taylor hauled the lumber for the same church with his own team and has his own household. THE OCCUPATION FIELD UNDERSTATES HIM: Andreas calls him a builder and an architect and this project's vocabulary records the trade he worked in. A dedicated 'builder' value exists in the vocabulary and is used for men described only that way; carpenter is chosen here because it is what he was."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

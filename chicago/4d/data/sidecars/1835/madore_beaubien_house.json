@@ -109,6 +109,29 @@
       "note": "Andreas attaches the building to Madore Beaubien as its builder, records him licensed as a merchant in 1831 and elected a town trustee in 1833. NO SOURCE REACHED PLACES HIM IN THIS BUILDING ON THE SCENE DATE, and the record claims occupancy in 1835 as an inference from continuity rather than as a fact. Nothing further about the household is stated here; see review_required and the research note."
     }
   },
+  "residents": [
+    {
+      "household": "hh_beaubien_madore",
+      "name": "The Madore Beaubien household",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "The house is recorded under his name and is a dwelling and store.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Madore Benjamin Beaubien",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "merchant",
+          "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 23 of 28 votes - the third-highest poll. He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman, which makes him the only person in this parcel who is both a documented office-holder of the incorporated town and a documented member of a Native family. THE RECORD STATES THAT AND STOPS THERE."
+        }
+      ],
+      "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

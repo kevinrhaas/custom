@@ -1,0 +1,151 @@
+{
+  "id": "mason_blacksmith_shop",
+  "name": "Matthias Mason & Co.'s Blacksmith Shop",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "documented_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "documented",
+        "sources": [
+          "chicago_democrat_1833_11_26",
+          "andreas_1884_v1"
+        ],
+        "note": "SELF-REPORTED IN THE ONLY CONTEMPORARY CHICAGO DOCUMENT THIS PROJECT HOLDS. Mason & Co. advertise as blacksmiths in the Chicago Democrat of 26 November 1833, on 'Main-street, nearly opposite Graves' Tavern'. The '& Co.' says the shop employed more than one man. The far end of the range is inferred: nothing follows the firm past 1833, and a working smithy in a town growing tenfold is far more likely to have continued than to have closed."
+      },
+      "position": {
+        "utm_e": 447805.652,
+        "utm_n": 4637265.228,
+        "rotation_deg": 0.0,
+        "symbolic_location": "South Division, local ENU E 736 N -126",
+        "confidence": "inferred",
+        "sources": [
+          "chicago_democrat_1833_11_26",
+          "andreas_1884_v1"
+        ],
+        "note": "THE ADDRESS IS DOCUMENTED IN A STREET NAME NOBODY ELSE USES, AND THE CROSS-REFERENCE IS WHAT PLACES IT. 'Main-street' appears nowhere in data/traces/street_control.json, the Thompson plat module or either 1834 sheet. Graves' Tavern is Dexter Graves's log tavern, which this dataset models as mansion_house at what became 84-86 Lake Street, on the NORTH side of Lake near Dearborn. 'Nearly opposite' therefore puts the smithy on the SOUTH side of Lake Street facing north across it, and 'Main-street' in November 1833 is very probably Lake Street under a colloquial name. The northing is the Lake Street south frontage band this dataset's reconstruction recipes already use; the easting is set opposite mansion_house. WHAT IS INVENTED: the exact lot, the setback and the facade bearing.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            6.096,
+            0
+          ],
+          [
+            6.096,
+            9.144
+          ],
+          [
+            0,
+            9.144
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 30 ft is a two-fire shop: room for two hearths, an anvil each and a horse standing in, which is what '& Co.' implies. Every number is invented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 3.1,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_pitch_deg": {
+          "value": 32.0,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "construction": {
+          "value": "light_frame",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door": {
+          "value": "stable",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "andreas_1884_v1"
+          ],
+          "note": "Type-level choice within the W1 band in the reconstruction specification; it is not evidence for this building."
+        }
+      },
+      "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute."
+    }
+  ],
+  "function": {
+    "value": "blacksmith_shop",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "THE THIRD SMITHY, and the one phase one identified as a documented building with no record. This dataset already holds pierce_blacksmith_shop on the south side and blacksmith_shop_state_st at the Indian agency; DO NOT MERGE ANY OF THE THREE. The street name 'Main-street' is recorded as a finding for the streets layer in docs/RESEARCH/residents_1835.md section 7 and is not acted on beyond this placement."
+  },
+  "occupants": {
+    "value": "Matthias Mason & Co., blacksmiths",
+    "confidence": "documented",
+    "sources": [
+      "chicago_democrat_1833_11_26"
+    ],
+    "note": "Matthias Mason and at least one partner or journeyman - the firm advertises as 'Mason & Co.' (data/residents/households/hh_mason_matthias.json). No other name is given."
+  },
+  "research_note": "THE THIRD SMITHY, and the one phase one identified as a documented building with no record. This dataset already holds pierce_blacksmith_shop on the south side and blacksmith_shop_state_st at the Indian agency; DO NOT MERGE ANY OF THE THREE. The street name 'Main-street' is recorded as a finding for the streets layer in docs/RESEARCH/residents_1835.md section 7 and is not acted on beyond this placement.",
+  "review_required": false
+}

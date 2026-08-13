@@ -1,0 +1,145 @@
+{
+  "id": "inf_laundry_north",
+  "name": "Inferred wash house (laundress)",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a wash house on the north side: a copper, a hearth and a drying yard, serving the boarding houses the schedule puts on the same ground. The work is documented in aggregate by the hotels' own crowding and named nowhere. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+      },
+      "position": {
+        "utm_e": 447370.567,
+        "utm_n": 4637592.752,
+        "rotation_deg": 0.0,
+        "symbolic_location": "North Division, local ENU E 300 N 200",
+        "confidence": "conjectural",
+        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A wash house on the north side: a copper, a hearth and a drying yard, serving the boarding houses the schedule puts on the same ground. The work is documented in aggregate by the hotels' own crowding and named nowhere. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            4.267,
+            0
+          ],
+          [
+            4.267,
+            6.096
+          ],
+          [
+            0,
+            6.096
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 14 x 20 ft rectangle from the A5 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 2.05,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "roof_pitch_deg": {
+          "value": 18.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "construction": {
+          "value": "light_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door": {
+          "value": "man",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A5 band in the reconstruction specification; it is not evidence for this building."
+        }
+      },
+      "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it."
+    }
+  ],
+  "function": {
+    "value": "wash_house",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "A wash house on the north side: a copper, a hearth and a drying yard, serving the boarding houses the schedule puts on the same ground. The work is documented in aggregate by the hotels' own crowding and named nowhere."
+  },
+  "occupants": {
+    "value": "An inferred household; no name is claimed",
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "The inferred household this building exists for: hh_inf_laundress_north_02 in data/residents/households/. No name is claimed and no figure is drawn."
+  },
+  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). A wash house on the north side: a copper, a hearth and a drying yard, serving the boarding houses the schedule puts on the same ground. The work is documented in aggregate by the hotels' own crowding and named nowhere. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "review_required": false
+}

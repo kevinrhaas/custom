@@ -113,6 +113,29 @@
       "note": "Carpenter is documented as the man who bought the lot and erected the store in 1833. That he was still in it on 1835-07-01 is the continuity inference argued on documented_range. No partner, clerk or successor is attested."
     }
   },
+  "residents": [
+    {
+      "household": "hh_carpenter_philo",
+      "name": "The Carpenter household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "THE TWO-SHOP PROBLEM, INHERITED FROM THE STRUCTURES LAYER. This dataset holds both philo_carpenter_log_shop on Lake Street near the river and carpenter_south_water_store, and Andreas says he removed FROM the first TO the second. The South Water store is the later of the two and is where the sources leave him, so it is the link; the log shop's own record already argues that its survival to the scene date is doubtful. Inferred, because 'subsequently' is not a date.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Philo Carpenter",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "druggist",
+          "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, which almost nobody in this parcel is. He was one of the twenty-eight electors of 10 August 1833 and got one vote for trustee; he was one of the nine village citizens among the twenty-six founding members of the First Presbyterian Church on 26 June 1833, and one of its three first elders, and Andreas notes he was the only Presbyterian among them, the rest being Congregationalists. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+        }
+      ],
+      "research_note": "CHICAGO'S FIRST DRUGGIST, AND THE HOUSEHOLD THAT SHOWS WHY A RESIDENT CAN OUTLAST A BUILDING LINK. Carpenter is documented from July 1832 to the 1880s; which of his two shops he was standing in on 1 July 1835 is a structures question this project has already argued and not settled."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

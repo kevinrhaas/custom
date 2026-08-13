@@ -1,0 +1,72 @@
+{
+ "id": "hh_brown_lemuel",
+ "name": "The Brown household",
+ "division": "south",
+ "head": "brown_lemuel",
+ "arrival": {
+  "value": "1833",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1833' - year precision.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED. No premises for this man is named in any source reached and none is in data/structures/."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "PRESENCE ON THE SCENE DATE IS AN ASSUMPTION OF CONTINUITY AND NOT A STATEMENT. Nothing reached follows this household past 1833. It is graded uncertain rather than present because the town's population roughly quadrupled between the roster and the scene date and a great many of the men on it were, in Andreas's own phrase, 'adventurers, comprising moneyed speculators and prospectors, as yet undecided whether to stay at Chicago or go on'."
+ },
+ "persons": [
+  {
+   "id": "brown_lemuel",
+   "name": "Lemuel Brown",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "blacksmith",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Lemuel Brown, blacksmith, came in 1833.'"
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'. It gives a name, a trade and usually an arrival year, and it is a retrospective of 1884: a YEAR off it is documented, a MONTH is not, and it says nothing whatever about 1835."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE FOURTH NAMED BLACKSMITH IN THIS PARCEL AND THE ONE WITH NOTHING ATTACHED TO HIM - no shop, no address, no partner, no later notice. He is written because a documented smith with nothing round him is still worth more to the inferred phase than an invented one, and because four documented smiths is the ratio that phase should reason from. He is not identified with the Rufus Brown of the boarding house or with either of the two Mrs Browns among the Presbyterian founders; Brown is the commonest surname in this parcel's sources."
+}

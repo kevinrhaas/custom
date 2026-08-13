@@ -1,0 +1,232 @@
+{
+  "id": "physicians_office",
+  "phase": "inferred_1835",
+  "name": "Inferred physicians office (physician)",
+  "aka": [],
+  "archetype": "frame_storefront",
+  "asset": "gltf/physicians_office__inferred_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-01-01",
+    "to": "1835-12-31",
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - eIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+  },
+  "change_note": "Raised by the inferred-household programme. A better-evidenced named building substitutes for this roof rather than standing beside it.",
+  "placement": {
+    "local_e": 569.562,
+    "local_n": -129.657,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+    "symbolic_location": "South Division, local ENU E 572 N -126",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        4.877,
+        0
+      ],
+      [
+        4.877,
+        7.315
+      ],
+      [
+        0,
+        7.315
+      ]
+    ],
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "A 16 x 24 ft rectangle from the C1 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
+  },
+  "attributes": {
+    "stories": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "wall_height_m": {
+      "value": 3.25,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_pitch_deg": {
+      "value": 33.0,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "gable_front": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "cladding": {
+      "value": "clapboard",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "loft": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "shopfront": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building. THE SHOPFRONT IS OFF because this frontage cannot carry one: the archetype's glazed front needs 3.25 m of bay plus a return at each end, and a shop of this width had a door and a window instead."
+    },
+    "goods_door": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "goods_door_side": {
+      "value": "end",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C1 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "function": {
+      "value": "physicians_office",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution."
+    },
+    "occupants": {
+      "value": "An inferred household; no name is claimed",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "The inferred household this building exists for: hh_inf_physician_south_01 in data/residents/households/. No name is claimed and no figure is drawn."
+    }
+  },
+  "residents": [
+    {
+      "household": "hh_inf_physician_south_01",
+      "name": "An inferred physician's household (south division)",
+      "division": "south",
+      "relation": "worked here",
+      "why": "physicians_office is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
+      "persons": [
+        {
+          "name": "A physician (inferred resident, unnamed)",
+          "relationship": "head",
+          "grade": "inferred",
+          "occupation": "physician",
+          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 PHYSICIAN HOUSEHOLDS THIS LAYER INFERS. EIGHT PHYSICIANS ARE DOCUMENTED IN THE 1833 TOWN AND THIS DATASET HELD NOT ONE DOCTOR'S OFFICE. Four are written as households in the documented layer. One further physician household is inferred to occupy the office this parcel builds, because naming that office for a documented doctor would attach a real man to an invented building."
+        }
+      ],
+      "research_note": "INFERRED HOUSEHOLD - first of 1 physician households in this layer, in the south division. EIGHT PHYSICIANS ARE DOCUMENTED IN THE 1833 TOWN AND THIS DATASET HELD NOT ONE DOCTOR'S OFFICE. Four are written as households in the documented layer. One further physician household is inferred to occupy the office this parcel builds, because naming that office for a documented doctor would attach a real man to an invented building. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+    }
+  ],
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
+      "url": "",
+      "archived_url": "",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
+        "Thirty-five architectural family definitions with dimensional and massing bands.",
+        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
+        "A required distinction between named documentary landmarks and anonymous inferred infill."
+      ],
+      "what_it_does_not_supply": [
+        "A surviving July 1835 building census or parcel-by-parcel roof register.",
+        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
+        "Authority to replace stronger building-specific evidence already represented in the dataset."
+      ]
+    }
+  ],
+  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "research_doc": "docs/RESEARCH/physicians_office.md",
+  "review_required": false
+}

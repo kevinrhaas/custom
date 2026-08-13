@@ -130,9 +130,49 @@
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
       "note": "Assigned from the A1 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+    },
+    "occupants": {
+      "value": "An inferred household; no name is claimed",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1",
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the workplace of an inferred teamster's household (1 of 5 this layer infers): hh_inf_teamster_south_01 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
     }
   },
+  "residents": [
+    {
+      "household": "hh_inf_teamster_south_01",
+      "name": "An inferred teamster's household (south division)",
+      "division": "south",
+      "relation": "worked here",
+      "why": "recon_1835_south_a1_046 is an anonymous inferred roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
+      "persons": [
+        {
+          "name": "A teamster (inferred resident, unnamed)",
+          "relationship": "head",
+          "grade": "inferred",
+          "occupation": "teamster",
+          "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 5 TEAMSTER HOUSEHOLDS THIS LAYER INFERS. The town's freight moves by wagon: between the forwarding houses on South Water, the piers at the river mouth, the brickyard, the slaughter-houses and the country roads. Pierce ironed the first Chicago-to-St-Louis stage line in January 1834 (Andreas, scan p. 1161), and the Western Hotel keeps a wagon yard and a stable, both modelled here. Five teamster households are inferred, three of them working from anonymous stables the reconstruction programme has already placed."
+        }
+      ],
+      "research_note": "INFERRED HOUSEHOLD - first of 5 teamster households in this layer, in the south division. The town's freight moves by wagon: between the forwarding houses on South Water, the piers at the river mouth, the brickyard, the slaughter-houses and the country roads. Pierce ironed the first Chicago-to-St-Louis stage line in January 1834 (Andreas, scan p. 1161), and the Western Hotel keeps a wagon yard and a stable, both modelled here. Five teamster households are inferred, three of them working from anonymous stables the reconstruction programme has already placed. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one."
+    }
+  ],
   "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
       "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
@@ -144,7 +184,7 @@
         "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
         "Thirty-five architectural family definitions with dimensional and massing bands.",
         "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
-        "A required distinction between named documentary landmarks and anonymous recommended infill."
+        "A required distinction between named documentary landmarks and anonymous inferred infill."
       ],
       "what_it_does_not_supply": [
         "A surviving July 1835 building census or parcel-by-parcel roof register.",
@@ -154,7 +194,7 @@
     }
   ],
   "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Family and aggregate district role follow the owner-supplied 2026 specification; exact presence, location, footprint, finish and instance-level form are interpretive.",
-  "research_doc": "docs/RESEARCH/recommended_infill_1835.md",
+  "research_doc": "docs/RESEARCH/inferred_infill_1835.md",
   "review_required": false,
   "reconstruction": {
     "status": "inferred_anonymous",

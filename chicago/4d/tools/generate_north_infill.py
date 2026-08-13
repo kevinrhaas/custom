@@ -34,6 +34,14 @@ PREFIX = "recon_1835_north_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+# Phase two of the inferred-residents programme adopts some of these anonymous roofs
+# as the dwellings and shops of inferred households (docs/ROADMAP.md K1). The link is
+# data, not a hand edit: this generator still re-derives every record byte for byte,
+# and the occupancy block arrives from the household programme's ledger.
+from inferred_occupancy import occupancy  # noqa: E402
+
+OCCUPANCY = occupancy()
+
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -219,6 +227,7 @@ def make_record(row: list, datum: dict) -> dict:
             "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": inferred(function, f"Assigned from the {family} family to satisfy the aggregate North Division mix; no occupant or individual use is known."),
+        **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
         "research_note": ("RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. "
                           "Aggregate mix follows the supplied specification; exact presence, "

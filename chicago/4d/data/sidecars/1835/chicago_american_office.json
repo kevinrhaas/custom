@@ -109,6 +109,29 @@
       "note": "Davis is documented as the paper's founder in June 1835. A second occupancy is attested in relation to this building and is NOT modelled here: Frederick Thomas advertised from 'two doors from the American office', which is a separate premises and has its own record, frederick_thomas_shop."
     }
   },
+  "residents": [
+    {
+      "household": "hh_davis_t_o",
+      "name": "The Davis household at the American",
+      "division": "south",
+      "relation": "worked here",
+      "why": "",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "T. O. Davis",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "editor",
+          "note": "A DOCUMENTED RESIDENT OF THE SCENE MONTH ITSELF - the American's first issue belongs to June 1835, weeks before 1 July, which makes this one of only three households in the parcel whose Chicago presence is fixed by an event inside the scene season. data/structures/chicago_american_office.json already carries him."
+        }
+      ],
+      "research_note": "THE NEWEST ARRIVAL IN THE PARCEL, and the one whose paper this project quotes most often for the state of the town in the scene year. A NOTE FOR ANY LATER PARCEL: the Chicago American of 1835-36 is the single most valuable unfetched source for this programme. Andreas quotes its advertisements by name and date - Frederick Thomas's drug and paint store of 8 June 1835, John Davis of the Steamboat Hotel among its first patrons, W. H. and A. F. Clarke's new drug store of 11 November 1835 - and every such advertisement is a documented resident with a trade and often an address, in the scene year rather than nineteen months before it."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

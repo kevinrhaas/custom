@@ -1,0 +1,80 @@
+{
+ "id": "hh_sproat_grenville",
+ "name": "The Sproat household",
+ "division": "south",
+ "head": "sproat_grenville",
+ "arrival": {
+  "value": "1833-11-26",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "Not_later_than precision on the date of the Democrat issue that reports his school already running. A school in operation on 26 November 1833 means a teacher in Chicago before it.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": "Boston",
+  "confidence": "documented",
+  "sources": [
+   "chicago_democrat_1833_11_26"
+  ],
+  "note": "'A school established in the village by Mr. Sproat of Boston' - the Chicago Democrat's own words, in the town's own week. The only contemporary origin statement about any resident in this dataset."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "temple_building",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The upper storey. data/structures/temple_building.json already carries 'Grenville T. Sproat's English and Classical School for Boys in the upper storey'."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Documented teaching in 1833-34 and nothing reached follows him to 1835. By the winter of 1834-35 Andreas has George Davis opening a school on Lake Street over a store between Dearborn and Clark, and later in 1835 teaching in the Presbyterian church, which is a different man in a different room."
+ },
+ "persons": [
+  {
+   "id": "sproat_grenville",
+   "name": "Grenville Temple Sproat",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "schoolteacher",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "chicago_democrat_1833_11_26"
+    ],
+    "note": "'The lower story was a hall for religious services, the upper floor was a school-room, where Granville Temple Sproat kept one of the first public schools.' The Chicago Democrat of 26 November 1833 independently reports a school established in the village by Mr Sproat of Boston, already running on the day the paper appeared."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel."
+}

@@ -150,6 +150,72 @@
       "note": "The First Baptist Church was organised on 19 October 1833 with nineteen members and Rev. Allen B. Freeman; Andreas calls this structure 'a small house of worship belonging to the First Baptist Church Society' by December 1833. Sproat's school is Andreas's. THE SHARED USE BY METHODISTS AND PRESBYTERIANS ENDED IN JANUARY 1834 and is not carried forward to the scene date: by 1835 the Presbyterians had their own building at Lake and Clark, which is a separate record here, and the Methodist meeting house is a north- or west-bank building (see walker_meeting_house and data/exclusions.json)."
     }
   },
+  "residents": [
+    {
+      "household": "hh_sproat_grenville",
+      "name": "The Sproat household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The upper storey. data/structures/temple_building.json already carries 'Grenville T. Sproat's English and Classical School for Boys in the upper storey'.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Grenville Temple Sproat",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "schoolteacher",
+          "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date."
+        }
+      ],
+      "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel."
+    },
+    {
+      "household": "hh_temple_john_t",
+      "name": "The Temple household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "He built it, headed its subscription with $100, and rented it out to whatever societies could pay. That is a proprietor's relation to a building rather than a workplace, and his medical practice and his stage line were carried on elsewhere. Linked because it is the building this town knew him by; graded derived because 'works at' overstates it.",
+      "sources": [
+        "andreas_1884_v1",
+        "baptisthistoryhomepage"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Dr John Taylor Temple",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "physician",
+          "note": "THE BEST-DOCUMENTED ARRIVAL IN THE WHOLE PARCEL, and the only one that gives a month, a party size, an origin AND a reason in a single sentence. Andreas, scan p. 281: 'Dr. John T. Temple, who had arrived early in July, 1833, with his family, consisting of a wife and four children. He was a pious and earnest Baptist Christian, and came to Chicago from Washington, D. C., armed with a contract to carry the mails from Chicago to Fort Howard, Green Bay.' He then headed the subscription for the Temple Building with $100."
+        },
+        {
+          "name": "Mrs Temple",
+          "relationship": "wife",
+          "grade": "derived",
+          "occupation": "none_recorded",
+          "note": "DOCUMENTED AS A PERSON AND UNNAMED IN THE SOURCE. Andreas counts her - 'his family, consisting of a wife and four children' - and never gives her name. She is written as a person because the source counts her; the record carries no forename because inventing one would be the exact failure this grade exists to prevent."
+        },
+        {
+          "name": "The four Temple children",
+          "relationship": "child",
+          "grade": "derived",
+          "occupation": "none_recorded",
+          "note": "FOUR CHILDREN, COUNTED AND NOT NAMED. Andreas gives the number and nothing else - no names, no sexes, no ages. They are carried as one entry with a count in its name rather than as four invented individuals; the count is the evidence and the individuation is not. A later parcel with a church register or a school list would split this into four person records."
+        },
+        {
+          "name": "Dr Peter Temple",
+          "relationship": "brother",
+          "grade": "derived",
+          "occupation": "dentist",
+          "note": "DOCUMENTED IN THE TOWN, DERIVED INTO THIS HOUSEHOLD. His own advertisement of 7 July 1834 places him 'adjacent to the dwelling of Dr. J. T. Temple' - i.e. NEXT DOOR, not in the same house - so grouping him here is a reconstruction and the note has to say so. He is also documented at Chicago after the scene date: on the executive committee of the Chicago Bible Society on 23 August 1835 and a secretary of the canal meeting of 7 November 1835. The brotherhood is Andreas's word ('through the influence of his brother') in a later passage."
+        }
+      ],
+      "research_note": "THE MODEL HOUSEHOLD FOR THIS PROGRAMME, because one sentence of Andreas supplies four of the six things K1 asks for - month of arrival, party size, origin and reason - and because the household then demonstrates the two honest ways of handling people a source counts but does not name. A wife who is counted gets a person record with no forename; four children who are counted get ONE record whose name states the count. Neither is inflated into individuals and neither is dropped. FIVE PERSONS ARE WRITTEN AND SIX PEOPLE ARE CLAIMED - the discrepancy is the four-children entry and it is deliberate; any later code that counts persons must read the notes, not the array length."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

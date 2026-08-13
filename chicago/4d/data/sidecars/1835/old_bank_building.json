@@ -110,6 +110,29 @@
       "note": "Hubbard is documented in the building for one season. He is NOT carried forward: his packing operation moved to Kinzie Street in 1837-38 and to South Water Street in 1840, and this project's data/exclusions.json already keeps both of those out of the 1835 scene. Nobody is attested here in 1835."
     }
   },
+  "residents": [
+    {
+      "household": "hh_hubbard_gurdon",
+      "name": "The Hubbard household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "He is documented packing in that building in the 1834 SEASON, which is the season before the scene date, and data/structures/old_bank_building.json grades its own occupancy inferred for exactly that reason. A packing house is a seasonal building and July is not the season.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Gurdon Saltonstall Hubbard",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "packer",
+          "note": "ELECTED A TRUSTEE OF THE TOWN AT THE SECOND ELECTION, 11 AUGUST 1834 - 'J. H. Kinzie, G. S. Hubbard, E. Goodrich, J. K. Boyer, and John S. C. Hogan were chosen Trustees' - so he is on the board through the municipal year that ends in the scene month. He is also the man whose 1881 correction of the Wau-Bun view of Fort Dearborn supplies four of the constraints this project's fort dossier rests on: that the enclosure ran 'nearly north and south, east and west', that the north picket line stood nowhere more than 80 ft from the water, that the ground at the fort was 'not over eight feet above the River at its lowest stage', and that the north and south gates were on one sight line."
+        }
+      ],
+      "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS. Everything about Hubbard's later Chicago life is documented here; the date he first came is a fact everyone knows and nothing in data/sources/ states. That asymmetry is worth leaving visible rather than quietly filling: it is precisely the case AGENTS.md rule 1 exists for."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

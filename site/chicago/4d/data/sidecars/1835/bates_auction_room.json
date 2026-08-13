@@ -113,6 +113,29 @@
       "note": "Andreas names Bates as the builder and the auctioneer. He was also deputy postmaster from 1833, sorting mail in Hogan's store at the other end of the town's business street — the two buildings are 570 m apart in this model and the same man worked in both."
     }
   },
+  "residents": [
+    {
+      "household": "hh_bates_john_jr",
+      "name": "The Bates household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The auction room he built on the west side of Dearborn near Water and afterwards occupied in his business. data/structures/bates_auction_room.json carries him as 'auctioneer and deputy postmaster'.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John Bates Jr.",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "auctioneer",
+          "note": "A DOCUMENTED WITNESS AS WELL AS A DOCUMENTED RESIDENT: Andreas prints an interview with him of 15 October 1883 describing the town of 1833 street by street, which this project uses elsewhere for the South Water Street row, the slough at the foot of State Street and the four-log footbridge. He is one of the twenty-eight electors of 10 August 1833. Andreas's 1835 town officers list has 'J. Bates and J. Haight, Measurers of Wood and Lumber' - an office he holds ON the scene date if the July election preceded it. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+        }
+      ],
+      "research_note": "THE MAN WHOSE ROOM THE LAND BOOM PASSED THROUGH. Between 28 May and 30 September 1835 the Chicago land office sold $459,953 75c of land, and the auctions were held in his building; the American reckoned in October 1835 that he had personally sold $1,800,000 of property, real and personal, in ten months. That is the economic engine behind the population this programme is trying to reconstruct, and it is documented in the scene year."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

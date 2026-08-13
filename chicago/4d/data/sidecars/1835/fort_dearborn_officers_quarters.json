@@ -131,6 +131,29 @@
       "note": "Not attested for 1835. Inferred from the building's function and from the post being garrisoned on the scene date; Hubbard's 1827 civilian tenants belong to the years when there were no troops."
     }
   },
+  "residents": [
+    {
+      "household": "hh_maxwell_philip",
+      "name": "The post surgeon's household",
+      "division": "fort",
+      "relation": "lived here",
+      "why": "A commissioned officer of the garrison lodged in the officers' quarters. The building is in the dataset and the practice is universal for a post of this kind; no source puts this man in this building, hence inferred.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Dr Philip Maxwell",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "army_surgeon",
+          "note": "A GARRISON OFFICER WHOSE TOUR BRACKETS THE SCENE DATE AT BOTH ENDS - 3 February 1833 to 29 December 1836 - which makes him one of the few people in the dataset whose presence on 1 July 1835 is a matter of record rather than of inference. Born at Guilford, Windham Co., Vt., 3 April 1799; practised at Sackett's Harbor, N.Y., and sat in the New York legislature before his appointment. He was a witness to the Indian treaty of 26 September 1833."
+        }
+      ],
+      "research_note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE PRESENCE NEEDS NO ARGUMENT, and the one that identifies a missing building. Everything about Maxwell is dated: birth, appointment, arrival, treaty witness, departure. What is not in the dataset is the room he worked in. THE GARRISON IS UNDER-REPRESENTED HERE ON PURPOSE. Fort Dearborn on 1 July 1835 was an occupied post under Major John Greene with an enlisted company, and this parcel writes only the two officers the sources name and date. Every private soldier is a documented human being whom no source in this dataset names, and turning a muster strength into person records is derived-phase work with a muster roll, not something to guess at now."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

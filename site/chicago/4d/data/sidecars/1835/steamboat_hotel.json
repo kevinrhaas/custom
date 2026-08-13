@@ -122,6 +122,30 @@
       "note": "Both sources name Davis as the keeper in 1835, and Andreas's list of the Chicago American's advertising patrons carries 'John Davis, Steamboat Hotel' in the paper's first year. THE GRAIN IS THE YEAR, NOT THE DAY: DRLOIH has J. Dorsey and J. Force taking over the management on 9 November 1835, so Davis's tenure covers the scene date if the house was open at all. Note the coincidence this project should not resolve by assumption: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is the same John Davis is unattested."
     }
   },
+  "residents": [
+    {
+      "household": "hh_davis_john",
+      "name": "The Davis household at the Steamboat Hotel",
+      "division": "north",
+      "relation": "lived and worked here",
+      "why": "A keeper lived in his house; not stated.",
+      "sources": [
+        "andreas_1884_v1",
+        "drloih_hotels"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "John Davis",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "hotel_keeper",
+          "note": "DOCUMENTED IN THE SCENE YEAR ITSELF: the American began in June 1835 and he is advertising in it. The hotel chronology has J. Dorsey and J. Force taking over the management on 9 November 1835, so his tenure covers 1 July. A COINCIDENCE THIS PROJECT DELIBERATELY DOES NOT RESOLVE: a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is this man is unknown. If it is, one household kept two houses; if it is not, there is a second Davis in the town. Nothing reached settles it and neither reading is asserted here."
+        }
+      ],
+      "research_note": "A HOUSEHOLD WHOSE ONLY DOCUMENTED FACT IS THE ONE THAT MATTERS - that a man of this name was keeping this house in the scene year. Everything else about him is blank, and four of the five household fields are conjectural as a result. THE SAUGANASH QUESTION IS LEFT OPEN ON PURPOSE. data/structures/sauganash_hotel.json records 'a Mr. Davis, proprietor' for 1835 and flags the possibility that he is this man; merging the two would create a documented claim out of a shared surname, and splitting them would create a second household out of the same. Neither is done."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

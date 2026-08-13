@@ -79,6 +79,29 @@
       "note": "A storehouse dealing in groceries and Indian goods (chicagology), its keeper listed by Andreas among the town's Indian traders (scan p. 235) and among those licensed to sell goods (scan p. 249). WHAT THE TRADE WAS ON 1835-07-01 IS NOT ATTESTED and there is a specific reason to doubt continuity: the 1833 Treaty of Chicago ceded the land and the removal was under way through the summer of 1835, so the 'Indian goods' half of this business was ending as the scene opens. The record models a standing store and makes no claim about what was on its shelves."
     }
   },
+  "residents": [
+    {
+      "household": "hh_kinzie_robert_a",
+      "name": "The Robert Kinzie household",
+      "division": "west",
+      "relation": "worked here",
+      "why": "The frame store on the west side, which this dataset places immediately south of Wentworth's tavern in the Wolf Point row.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Robert Allen Kinzie",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "merchant",
+          "note": "HE IS THE REASON CHARLES BUTLER AND ARTHUR BRONSON CAME WEST, which is the best-documented chain of causation in the whole 1833-35 record. Butler's letter of 1881: Bronson called on the New York Indian-goods merchant Daniel Jackson for information about Chicago, and Jackson 'said that he would then introduce him to a man from Chicago, who at that moment happened to be in his store making purchases of Indian goods. This was Robert A. Kinzie.' Kinzie offered them his quarter interest in the north fractional half of Section 10 - the ground Kinzie's Addition was laid out on. He was also a candidate at the first town election of 10 August 1833 and took nine votes, the highest of any unsuccessful candidate."
+        }
+      ],
+      "research_note": "A MERCHANT WHOSE BUYING TRIP TO NEW YORK PUT THE TOWN ON THE MAP. This household is worth its place less for the man than for the mechanism it documents: in the winter of 1832-33 a Chicago trader buying Indian goods in a New York store is how eastern capital first heard that Chicago was worth buying. The population curve K1 is reconstructing starts there."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

@@ -1,0 +1,72 @@
+{
+ "id": "hh_casey_edward_w",
+ "name": "The Casey household",
+ "division": "south",
+ "head": "casey_edward_w",
+ "arrival": {
+  "value": "1833",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Put out their signs in 1833'.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT MODELLED."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "In town office through the 1834-35 municipal year and still in the town in November 1836."
+ },
+ "persons": [
+  {
+   "id": "casey_edward_w",
+   "name": "Edward W. Casey",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "attorney",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "One of the six lawyers Andreas counts at the close of 1833; corporation counsel to the 1834 board and, from November 1834, its clerk and collector as well."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HE HELD TWO TOWN OFFICES ACROSS THE MUNICIPAL YEAR THAT ENDED IN THE SCENE MONTH. Andreas's 1834 roster: 'Edward W. Casey, Corporation Counsel, and, from November, Clerk and Collector.' He was also one of the three men chosen for District No. 1 in the city-charter conference of November 1836, which places him in Chicago on both sides of the scene date."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE LAST OF THE SIX 1833 LAWYERS, and the one whose two offices show how thin the town's administration was: the corporation's counsel was also its clerk and its collector, in a town whose population was about to pass three thousand."
+}

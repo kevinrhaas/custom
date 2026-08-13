@@ -96,6 +96,29 @@
       "note": "Andreas names Clybourne as the builder in 1827 and as the operator in the 1833 packing season, with George W. Dole packing at the same premises that year. Whether anyone was working the plant on 1835-07-01 specifically is not attested; July is the wrong end of the year for packing, which is winter work, so the honest reading of the scene date is a standing building between seasons."
     }
   },
+  "residents": [
+    {
+      "household": "hh_clybourne_archibald",
+      "name": "The Clybourne household",
+      "division": "outside_town",
+      "relation": "worked here",
+      "why": "data/structures/clybourn_slaughterhouse.json carries him as its occupant. This dataset also holds newberry_dole_slaughterhouse_south_branch, which is a different firm's packing house.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Archibald Clybourne",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "butcher",
+          "note": "DOCUMENTED AND DELIBERATELY OUTSIDE THE TOWN, which is why this household's division is 'outside_town' and why it matters. Andreas's own roster explains the status in the same clause that gives the trade: he lived north of the limits and could not vote in the village. 'Julia K. Clark, half-brother of A. Clybourne, then living with him' is named in the next clause and is written into this household. The Clybourne family had been at Chicago since the 1820s and its assessment appears in the Peoria County taxpayer lists of 1825."
+        }
+      ],
+      "research_note": "THE BUTCHER WHO LIVED OUTSIDE THE CORPORATION, and the household that forces the schema's division field to have a value for people the town did not count. Chicago's population figures - 350 in 1833, 3,265 in the town census of 1835 - are figures for a corporate area with a boundary that moved twice in eighteen months, and households like this one fall outside it while supplying it with meat. ANY LATER COUNT MUST DECIDE WHETHER TO INCLUDE THEM and this field is where that decision gets made. THE FAMILY'S BUILDINGS ARE A KNOWN PROBLEM IN THIS DATASET: data/structures/clybourn_cabins.json says outright that it is DISPLACED - the attested ground is several miles up the North Branch, outside the modelled box - so lives_at is left null here rather than pointing at a record that admits it is in the wrong place."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

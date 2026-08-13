@@ -1,0 +1,232 @@
+{
+  "id": "temple_lake_st_building",
+  "phase": "documented_1835",
+  "name": "Dr Temple's Building, Lake Street",
+  "aka": [],
+  "archetype": "frame_storefront",
+  "asset": "gltf/temple_lake_st_building__documented_1835.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1835-01-01",
+    "to": "1835-12-31",
+    "confidence": "documented",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "DOCUMENTED THROUGH ITS TENANT. Andreas's account of the bar has John Dean Caton opening the town's first law office in Dr Temple's building on Lake Street in 1833 and sleeping in the attic of the same building. That is a building, a street, a use and an occupant. NOT THE TEMPLE BUILDING at Franklin and South Water, which is a different structure already in this dataset (temple_building) - the two must not be merged."
+  },
+  "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
+  "placement": {
+    "local_e": 296.647,
+    "local_n": -131.182,
+    "rotation_deg": 0.0,
+    "position_confidence": "conjectural",
+    "position_sources": [],
+    "position_note": "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly.",
+    "symbolic_location": "South Division, local ENU E 300 N -126",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain"
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        6.706,
+        0
+      ],
+      [
+        6.706,
+        10.363
+      ],
+      [
+        0,
+        10.363
+      ]
+    ],
+    "confidence": "conjectural",
+    "sources": [],
+    "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 34 ft is a two-storey frame building with a business room below and a habitable attic above, which is the minimum that answers a law office on the ground floor and a bed in the attic. Every number is invented."
+  },
+  "attributes": {
+    "stories": {
+      "value": 2,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "wall_height_m": {
+      "value": 5.05,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_type": {
+      "value": "gable",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "roof_pitch_deg": {
+      "value": 36.0,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "gable_front": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "construction": {
+      "value": "braced_frame",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "cladding": {
+      "value": "clapboard",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "loft": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "chimneys": {
+      "value": 1,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "shopfront": {
+      "value": false,
+      "confidence": "inferred",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "goods_door": {
+      "value": true,
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "goods_door_side": {
+      "value": "end",
+      "confidence": "inferred",
+      "sources": [
+        "owner_chicago_1835_reconstruction_spec_2026"
+      ],
+      "note": "Type-level choice within the C3 band in the reconstruction specification; it is not evidence for this building."
+    },
+    "function": {
+      "value": "office_and_lodging",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "CATON'S ATTIC IS THE POINT. It is the only account in this corpus of what an educated newcomer actually did for money and where he slept in the town's first summer, and it makes this building a lodging as well as an office - which is exactly the mixed use the reconstruction schedule's C-family roofs are for."
+    },
+    "occupants": {
+      "value": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
+      "confidence": "documented",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "John Dean Caton's first law office, and Caton's own lodging in the attic (data/residents/households/hh_caton_john_dean.json). The building is Dr John T. Temple's."
+    }
+  },
+  "residents": [
+    {
+      "household": "hh_caton_john_dean",
+      "name": "The Caton household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "His first law office, and his bedroom in the attic of the same building. Linked by the inferred-household programme's building parcel (docs/ROADMAP.md K1, phase two); the building record carries the evidence.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "The building is documented and the household is the one the sources attach to it; this parcel built the record they had been waiting for.",
+      "persons": [
+        {
+          "name": "John Dean Caton",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "attorney",
+          "note": "ARRIVED 19 JUNE 1833 - A DAY-PRECISE ARRIVAL, which only four households in this parcel have. Andreas: 'The first lawyer in Chicago to make a living by his profession alone was Giles Spring; and separated from him by a few days was John Dean Caton, who arrived June 19, 1833.' Early in July the two of them kept office 'as was facetiously said, \"On the head of a barrel at the corner of Lake and Wells\"', and in December 1833 Caton rented from Dr Temple 'the back room and attic of his \"building\" on Lake Street, converting the attic into a bedroom, and extending to Spring the courtesy of desk-room in the room below, which thus became the first law-office in Chicago'. In August 1833 he defended six or seven free coloured men before the Court of County Commissioners and obtained certificates of freedom for them, his fee a dollar from each."
+        }
+      ],
+      "research_note": "THE FIRST LAW OFFICE IN CHICAGO WAS AN ATTIC A MAN SLEPT IN, and that is the most useful thing this household contributes: a documented example of the live-above-the-shop pattern that the inferred phase will have to assume for most of the town's tradesmen. SIX LAWYERS ARE DOCUMENTED IN THE 1833 TOWN and this parcel writes five as households - Heacock, Hamilton, Caton, Spring, Fullerton and Casey being the six; all are written. Not one of their offices is a structure record."
+    }
+  ],
+  "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
+    {
+      "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+      "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",
+      "url": "",
+      "archived_url": "",
+      "tier": 5,
+      "tier_label": "modern retrospective illustration/reconstruction",
+      "what_it_supplies": [
+        "A 665-roof production target with independently reconcilable group, district, level, and construction totals.",
+        "Thirty-five architectural family definitions with dimensional and massing bands.",
+        "District character, spacing, variation, finish, and chronology constraints for a July 1835 reconstruction.",
+        "A required distinction between named documentary landmarks and anonymous inferred infill."
+      ],
+      "what_it_does_not_supply": [
+        "A surviving July 1835 building census or parcel-by-parcel roof register.",
+        "Exact locations, dimensions, appearance, occupants, or construction dates for anonymous roofs.",
+        "Authority to replace stronger building-specific evidence already represented in the dataset."
+      ]
+    }
+  ],
+  "research_note": "CATON'S ATTIC IS THE POINT. It is the only account in this corpus of what an educated newcomer actually did for money and where he slept in the town's first summer, and it makes this building a lodging as well as an office - which is exactly the mixed use the reconstruction schedule's C-family roofs are for.",
+  "research_doc": "docs/RESEARCH/temple_lake_st_building.md",
+  "review_required": false
+}

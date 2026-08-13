@@ -1,0 +1,104 @@
+{
+ "id": "hh_murphy_john",
+ "name": "The Murphy household",
+ "division": "south",
+ "head": "murphy_john",
+ "arrival": {
+  "value": "1834-08-01",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "NOT AN ARRIVAL IN CHICAGO - AN ARRIVAL IN THE HOUSE. What August 1834 dates is the Murphys taking charge of the Exchange Coffee House, and Andreas says nothing about when they reached the town. The value is carried at not_later_than precision for that reason: they were here by 1 August 1834, and possibly long before.",
+  "precision": "not_later_than"
+ },
+ "party_size_on_arrival": {
+  "value": 2,
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Two is the number of people the source names taking charge of the house. It is a count of the keepers, not of a travelling party, and no children are mentioned."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": "To keep a new hotel on Lake Street",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The source states the occasion directly: Beaubien completed the house and the Murphys took charge of it."
+ },
+ "lives_at": {
+  "value": "exchange_coffee_house",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A hotel keeper of this period lived in the house he kept, and Andreas has them 'there' until they 'removed to the old Sauganash' in 1836 - a verb about moving house."
+ },
+ "works_at": {
+  "value": "exchange_coffee_house",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas, twice, in two chapters."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "In charge of the house from August 1834 to 1836, eleven months either side of the scene date."
+ },
+ "persons": [
+  {
+   "id": "murphy_john",
+   "name": "John Murphy",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "tavern_keeper",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1",
+     "drloih_hotels"
+    ],
+    "note": "Keeper of the Exchange Coffee House at the north-west corner of Lake and Wells from August 1834 until 1836."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "Attested twice in Andreas, in two different chapters, with dates on both sides of the scene date: 'In August of 1834, Mr. and Mrs. Murphy took charge of this new hotel, which they christened the Exchange Coffee House. They remained there until 1836, when they removed to the old Sauganash'; and, in the life of Mark Beaubien, the house was 'first kept by Mr. and Mrs. John Murphy'. THIS IS THE BEST-ATTESTED OCCUPANCY OF A NAMED BUILDING BY A NAMED HOUSEHOLD IN THE DATASET."
+  },
+  {
+   "id": "murphy_harriet",
+   "name": "Harriet Murphy",
+   "relationship": "wife",
+   "grade": "derived",
+   "sex": "female",
+   "occupation": {
+    "value": "tavern_keeper",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Andreas names her as a keeper in her own right - 'Mr. and Mrs. Murphy took charge' and 'they christened' - not as a wife who happened to live there. A public house of this period was run by a couple and the source says so."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "DOCUMENTED AS A PERSON, DERIVED AS A NAME. Andreas calls her only 'Mrs. Murphy'. The forename Harriet reaches this project through data/structures/exchange_coffee_house.json, whose occupants field carries 'John and Harriet Murphy, keepers', and it could not be traced back to a sentence in Andreas. The woman is documented; the forename is the reconstructed part, and that is exactly what the derived grade is for."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE CLEANEST HOUSEHOLD-TO-BUILDING LINK IN THIS PARCEL, and the reason it is worth writing the residents layer at all: a building record that says 'tavern_inn' becomes a household of two people with a trade, a date and a tenancy with ends. THE CONFLICT ALREADY RECORDED ON THE BUILDING IS NOT RESOLVED HERE: Abram A. Markle's name is on this house in a Chicago American advertisement of August 1836 while Andreas has Markle taking the Mansion House in 1835, and this project holds both readings without choosing. The Murphy tenancy is the one with dates on both sides of 1 July 1835 and it is what this record carries."
+}

@@ -1,0 +1,76 @@
+{
+ "id": "hh_hogan_john_s_c",
+ "name": "The Hogan household",
+ "division": "south",
+ "head": "hogan_john_s_c",
+ "arrival": {
+  "value": "1832",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1832'.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "works_at": {
+  "value": "hogan_store",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1",
+   "chicagology_first_post_office"
+  ],
+  "note": "The log building at the intersection of South Water and Lake, near the east end of the bridge, with Hogan's store in it and the post office in the store. Twenty by forty-five feet, which Andreas gives as an aside about how little room the town's mail needed."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Resigned the treasurership in June 1835, four weeks before the scene date."
+ },
+ "persons": [
+  {
+   "id": "hogan_john_s_c",
+   "name": "John S. C. Hogan",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "postmaster",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'John S. C. Hogan, Postmaster, came in 1832'. He also kept a store in the same log building, which is why this dataset's hogan_store record is both a shop and the place where Chicago's mail began."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "IN OFFICE ACROSS THE SCENE DATE AND DOCUMENTED RESIGNING FROM ANOTHER ONE IN THE SCENE MONTH'S NEIGHBOUR. He was one of the twelve who voted for incorporation on 5 August 1833, an elector on the 10th, a candidate who took three votes, a trustee elected in 1834 and the town's treasurer that year - and Andreas: 'John S. C. Hogan voluntarily ceased to act as Treasurer, in June, 1835, because the corporation was determined, as a sanitary measure, to borrow $2,000 in order to have the streets cleared up.' THAT IS THE MONTH BEFORE THE SCENE DATE and it is one of the sharpest dated acts by any named resident inside the scene season. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "A POSTMASTER WHO RESIGNED A SECOND OFFICE ON PRINCIPLE FOUR WEEKS BEFORE THE SCENE DATE, which is as close as this dataset gets to knowing what a documented resident was thinking in June 1835. The $2,000 he would not borrow was to be spent clearing the streets against an expected cholera - so the sanitary state of the town in the scene summer is documented through the man who objected to paying for it."
+}

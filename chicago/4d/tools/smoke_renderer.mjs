@@ -688,6 +688,49 @@ for (const [label, viewport, touch] of [
       && /MILESTONE 0 REFERENCE RECORD/.test(account.saug.shown),
       `sauganash "${account.saug.shown.slice(0, 90)}"`);
 
+    // --- who was here -------------------------------------------------------
+    // `data/residents/` draws nobody by design, so the ONLY place a visitor can
+    // meet the town's people is this card. Before it existed the layer stopped at
+    // the repo — the failure mode that looks identical, from the street, to the
+    // work never having been done. The discriminating half is the third check: a
+    // building the programme RAISED for a hypothesised household has to say so,
+    // or the card reads as evidence that somebody lived here.
+    const who = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = [...document.querySelectorAll('#popup .pop-sec')]
+          .find((x) => /who was here/i.test(x.querySelector('h3')?.textContent ?? ''));
+        return {
+          present: !!sec,
+          text: sec?.textContent ?? '',
+          grades: [...(sec?.querySelectorAll('.grade') ?? [])].map((g) => g.className),
+          basis: sec?.querySelector('.res-basis')?.textContent ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.residents ?? [],
+        };
+      };
+      return {
+        brown: read('brown_boarding_house'),
+        inferred: read('inf_cooperage_south'),
+        none: read('log_jail'),
+      };
+    });
+    check(`${label}: a building names the household the sources put in it`,
+      who.brown.present && /Mrs Rufus Brown/.test(who.brown.text)
+      && who.brown.grades.some((c) => c.includes('grade-documented')),
+      `present ${who.brown.present}, grades ${who.brown.grades.join('|')}`);
+    check(`${label}: a person's grade is shown, and it is not a confidence chip`,
+      who.brown.grades.some((c) => c.includes('grade-derived'))
+      && !who.brown.grades.some((c) => c.includes('conf-')),
+      who.brown.grades.join('|'));
+    check(`${label}: a building raised for an inferred household says so`,
+      who.inferred.present
+      && who.inferred.grades.every((c) => c.includes('grade-inferred'))
+      && /BECAUSE OF THIS HOUSEHOLD/.test(who.inferred.basis),
+      `basis "${who.inferred.basis.slice(0, 80)}"`);
+    check(`${label}: a building with no household gets no section at all`,
+      !who.none.present && who.none.recorded.length === 0,
+      `present ${who.none.present}`);
+
     // Collapsed by default, for the same reason the liberties are: these run to
     // several hundred words, and on a phone the panel is 62vh — an open account
     // would push the citations off the card entirely.

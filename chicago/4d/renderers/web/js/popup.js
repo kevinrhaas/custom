@@ -163,6 +163,61 @@ function claimRow(label, value, claim) {
 }
 
 /**
+ * Who was here.
+ *
+ * `data/residents/` reconstructs the town's population as a dataset and draws
+ * nobody (docs/LIBERTIES.md L1 stands: v1 ships no human figures). Until this
+ * section existed the layer reached no visitor at all — ninety-six researched
+ * Chicagoans lived in a JSON file the renderer never fetched, which is
+ * indistinguishable, from the street, from not having done the work.
+ *
+ * A person carries a GRADE, which is a different axis from an attribute's
+ * confidence and must not be read as one: `documented` means a source names this
+ * person, `derived` means a real named person whose details are partly
+ * reconstructed, `inferred` means a hypothesised resident filling a demonstrable
+ * need of the town — a claim about a ratio, not about anybody. The chip is
+ * therefore rendered in its own class, and an inferred household on a building
+ * this project RAISED for it says so in the same breath, because otherwise the
+ * card reads as evidence that somebody lived here.
+ */
+function gradeChip(grade) {
+  const g = grade || 'inferred';
+  return `<span class="grade grade-${escapeHtml(g)}">${escapeHtml(g)}</span>`;
+}
+
+function residentsSection(s) {
+  const households = Array.isArray(s.residents) ? s.residents : [];
+  if (!households.length) return '';
+
+  const blocks = households.map((h) => {
+    // `person`, not `p`: this module binds `p` to the sidecar's `placement`, and
+    // the sidecar-contract scanner reads a bare `p.name` here as `placement.name`.
+    const people = h.persons.map((person) => `<li>
+        <span class="res-name">${escapeHtml(person.name)}</span>
+        <span class="res-role">${escapeHtml(person.occupation ? person.occupation.replace(/_/g, ' ') : '')}${
+          person.relationship && person.relationship !== 'head'
+            ? ` · ${escapeHtml(person.relationship)}` : ''}</span>
+        ${gradeChip(person.grade)}
+        ${noteToggle(person.note)}
+      </li>`).join('');
+    const basis = h.basis ? `<p class="res-basis">${escapeHtml(h.basis)}</p>` : '';
+    return `<div class="res-hh">
+      <p class="res-head"><strong>${escapeHtml(h.name)}</strong> — ${escapeHtml(h.relation)}
+        ${sourceList(h.sources)}${noteToggle(h.why)}</p>
+      ${basis}
+      <ul class="res-people">${people}</ul>
+    </div>`;
+  }).join('');
+
+  return `<section class="pop-sec pop-residents">
+    <h3>Who was here</h3>
+    <p class="res-lead">From <code>data/residents/</code>. Nobody is drawn: this is the
+      population as a dataset, and each person carries how much of them is reconstructed.</p>
+    ${blocks}
+  </section>`;
+}
+
+/**
  * Was this building here on the day you are standing in, and how do we know
  * where it stood?
  *
@@ -470,6 +525,8 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         ${presenceSection(s)}
 
         ${shapeSection(s)}
+
+        ${residentsSection(s)}
 
         ${openQuestionSection(openQuestions, record.id)}
 

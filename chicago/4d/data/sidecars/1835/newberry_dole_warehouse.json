@@ -105,6 +105,30 @@
       "note": "The partners are named together in the Democrat's advertisement and repeatedly in Andreas, who gives both first names in the packing-house chapter — 'Oliver Newberry and George W. Dole' (scan p. 1151). The value records whose business it was, not who was on the premises on any day."
     }
   },
+  "residents": [
+    {
+      "household": "hh_dole_george_w",
+      "name": "The Dole household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The forwarding and commission house of Newberry & Dole is the firm named in the Democrat of 26 November 1833 and on the schooner Napoleon's bill of lading. This dataset also holds dole_warehouse_south and newberry_dole_slaughterhouse_south_branch under the same partnership; the warehouse is named here as the principal place of business and the others are recorded in this note rather than by inventing a second link.",
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "George Washington Dole",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "forwarding_and_commission",
+          "note": "TOWN TREASURER TWICE AND TRUSTEE TWICE - the most continuously documented office-holder in the dataset. Elected trustee 10 August 1833 with 26 of 28 votes (tied top of the poll with Owen), appointed town treasurer at the board's first business meeting on 4 September 1833, and elected trustee AND treasurer again at the third town election of July 1835 (Andreas, scan pp. 273, 369). He is therefore in office on the scene date on the face of the record. Also a provision packer: this dataset holds two slaughtering and packing buildings under his name."
+        }
+      ],
+      "research_note": "THE BEST-DOCUMENTED BUSINESSMAN IN THE 1835 TOWN and the household that shows what the sources do and do not give. The trade, the partnership, the buildings and the public offices are all attested, some of them contemporaneously. The man's arrival year, his family, his origin and his address are not attested at all. THE NEWBERRY HALF OF THE FIRM IS NOT A CHICAGO HOUSEHOLD: the bill of lading Andreas prints names 'O. Newberry, Detroit', and Andreas describes him throughout as Oliver Newberry of Detroit, builder of the steamer Michigan. He is recorded in data/residents/index.json among the people researched and NOT made residents, which is the honest place for a partner whose home port was the other end of the route."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

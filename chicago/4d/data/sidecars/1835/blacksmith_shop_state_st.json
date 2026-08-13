@@ -103,6 +103,50 @@
       "note": "'David McKee was appointed Government blacksmith, his shop being situated near the Agency House, at the foot of State Street' — Andreas, opening his chapter on the town's early manufactories with it, since a blacksmith is where the manufacturing history of the place starts. WHO WAS WORKING IT ON THE SCENE DATE IS UNATTESTED: McKee had been carrying the mail since 1827-28, the 1830-31 agency staffing lists him as blacksmith with Joseph Porthier as striker, and nothing reached names a smith here in 1835. The record therefore carries no occupants block."
     }
   },
+  "residents": [
+    {
+      "household": "hh_mckee_david",
+      "name": "The McKee household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "The government blacksmith shop of the agency establishment, which is what this structure record IS. THE PARCEL'S BEST NEW OCCUPANT LINK: a building that had nobody in it now has the man the treaty paid for.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "David McKee",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "blacksmith",
+          "note": "HE IS THE NAMED OCCUPANT THIS DATASET'S GOVERNMENT SMITHY HAS BEEN MISSING. data/structures/blacksmith_shop_state_st.json describes 'a building known only as a clause in other people's sentences' with an empty occupants field; McKee is the man in the clause. Andreas's list of the settlement's residents puts 'small log buildings occupied by the blacksmith, Mr. McKee, and Billy Caldwell' in the vicinity of Cobweb Castle, and he signed the 1832 militia agreement."
+        }
+      ],
+      "research_note": "THE MAN THE 1821 TREATY PAID TO SHOE POTAWATOMI HORSES, AT AN ANVIL THIS PROJECT MODELS. This household exists to close a loop the structures layer left open, and the presence field is where the honesty is: the shop is in the scene and the smith may not have been. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to."
+    },
+    {
+      "household": "hh_porthier_joseph",
+      "name": "The Porthier household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "The same shop as McKee. Two named men at one anvil is the only documented workplace pairing in the parcel.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Joseph Porthier",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "blacksmith",
+          "note": "A WAGE-EARNING ASSISTANT, WHICH THIS DATASET HAS ALMOST NONE OF, and a member of a family the 1833 treaty names: the schedule of payments in lieu of reservations carries 'Victoire Porthier and her children, $700'. Andreas's chapter on the early settlement treats the Mirandeau and Porthier families together as part of the French and mixed-descent community at Chicago."
+        }
+      ],
+      "research_note": "THE ONLY DOCUMENTED STRIKER IN THE DATASET, and a reminder of how the documented population is skewed. Andreas names hundreds of proprietors and perhaps a dozen employees; this man is in the record only because the agency's payroll was a matter of federal accounting. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

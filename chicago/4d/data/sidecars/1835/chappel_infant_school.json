@@ -115,6 +115,7 @@
       "note": "Chappel's occupancy is attested for 1833-34 and is over before the scene date. No source reached names anyone in this building in 1835. Stated with its end date rather than carried forward, which is the opposite of what most occupancy fields in this dataset do and is deliberate."
     }
   },
+  "residents": [],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

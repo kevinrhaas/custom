@@ -1,0 +1,103 @@
+{
+ "id": "hh_kinzie_john_h",
+ "name": "The John H. Kinzie household",
+ "division": "north",
+ "head": "kinzie_john_h",
+ "arrival": {
+  "value": "1834",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A RETURN RATHER THAN AN ARRIVAL, AND THAT IS THE COMPLICATION. Kinzie was a child of the old Kinzie house on the north bank, went to Fort Winnebago as sub-agent, and is back at Chicago in business by 1834 when his advertisement runs and he is elected trustee. Nothing reached dates the return. 1834 is the earliest year the evidence forces.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": 2,
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1",
+   "kinzie_waubun_1856"
+  ],
+  "note": "Two named adults. Whether children were in the household in July 1835 is not established here; the Kinzie family's genealogy is in Andreas but was not worked for this parcel."
+ },
+ "origin": {
+  "value": "Chicago, by way of Fort Winnebago",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He was born into the Chicago settlement; his wife came from Connecticut by way of Fort Winnebago, which is where Wau-Bun begins. The compound origin is this record's summary."
+ },
+ "reason_for_coming": {
+  "value": "Family property and the forwarding trade",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The Kinzie heirs owned a quarter interest in the north fractional half of Section 10, on which Kinzie's Addition was laid out - the land Charles Butler and Arthur Bronson came west to buy in 1833. The motive is the obvious reading of a family returning to its own land in a boom."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED, AND ONE CANDIDATE IS EXPLICITLY RULED OUT. Charles Butler in 1833 recollected that the old Kinzie house on the north side 'had been previously destroyed by fire'; an 1830s list Andreas prints says it 'was then unoccupied and in a dilapidated state'. Either way it is not a residence for this household and this dataset does not model it."
+ },
+ "works_at": {
+  "value": "jh_kinzie_forwarding_store",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The building record is graded inferred for a name reason this household inherits: Andreas's list says 'Jim Kinzie's store' and the 1834 advertisement says J. H. Kinzie, and those are two different men of the same family. The record follows the advertisement. This dataset also holds kinzie_hunter_warehouse under 'John H. Kinzie and Lieut. David Hunter', which is a second premises and is not linked here."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Trustee and president through the 1834-35 municipal year and a delegate for District No. 3 in the city-charter conference of November 1836."
+ },
+ "persons": [
+  {
+   "id": "kinzie_john_h",
+   "name": "John Harris Kinzie",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "forwarding_and_commission",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "His own 1834 advertisement is for J. H. Kinzie, forwarding and commission merchant. He had been the Indian sub-agent at Fort Winnebago before returning to Chicago, and in 1835 became a member of the hardware firm of Kinzie, Davis & Hyde."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "kinzie_waubun_1856"
+   ],
+   "note": "PRESIDENT OF THE BOARD OF TRUSTEES FOR THE YEAR BEFORE THE SCENE DATE. He was elected a trustee at the second town election of 11 August 1834 and chosen president, and the 1834 roster is: 'J. H. Kinzie, President; Isaac Harmon, Clerk and Collector; J. S. C. Hogan, Treasurer.' Whether he was still president on 1 July 1835 depends on the date of the third election, which Andreas places only 'in July, 1835' - see the research note."
+  },
+  {
+   "id": "kinzie_juliette",
+   "name": "Juliette Augusta Magill Kinzie",
+   "relationship": "wife",
+   "grade": "documented",
+   "sex": "female",
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "conjectural",
+    "note": "No trade is recorded for her; she is the author of Wau-Bun, published in 1856, which is a tier-2 source in this dataset."
+   },
+   "sources": [
+    "andreas_1884_v1",
+    "kinzie_waubun_1856"
+   ],
+   "note": "THE ONLY PERSON IN THIS PARCEL WHO IS ALSO ONE OF ITS SOURCES. Wau-Bun's descriptions of the forks in 1831 - Wentworth's tavern, the log cabins occupied by Robinson, the small square log building meant for a school, the white Sauganash with bright blue shutters - are the evidence behind four structure records in data/structures/. That a household member of the 1835 town is also the eye behind a quarter of the west-bank model is worth stating plainly, and it cuts both ways: Wau-Bun is a memoir of 1856 describing 1831 and this project grades it accordingly."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE HOUSEHOLD THAT EXPOSES A DATE THE WHOLE OFFICER LAYER TURNS ON. Andreas says only that 'the third election was held in July, 1835' and then lists the officers it produced - H. Hugunin president, with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Loyd and George W. Dole as trustees. THIS PROJECT CANNOT SAY WHETHER THAT ELECTION HAD HAPPENED BY 1 JULY 1835. If it had not, the town's president on the scene date is John H. Kinzie and the 1834 board is in office; if it had, it is Hiram Hugunin. The town elections of 1833 and 1834 were both held on the tenth or eleventh of August, which is an argument that the 1835 one fell late in the month rather than at its start, but Andreas's own text says July. NO OFFICE-HOLDING CLAIM IN THIS PARCEL RESTS ON THE ANSWER, and the seven trustees of the 1835 board are deliberately not written as households on the strength of an election this project cannot date."
+}

@@ -109,6 +109,43 @@
       "note": "Beaubien is documented as the owner from 1817 and as the reservation's claimant in 1835. WHICH BUILDING OF THE HOMESTEAD GROUP HE ACTUALLY SLEPT IN ON THE SCENE DATE IS NOT ATTESTED — Andreas says he built a new residence, which is a different building from this one and is not modelled. Nothing further about the household is stated here; see review_required and the research note."
     }
   },
+  "residents": [
+    {
+      "household": "hh_beaubien_jean_baptiste",
+      "name": "The Jean Baptiste Beaubien household",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "data/structures/jb_beaubien_homestead.json carries 'Col. Jean Baptiste Beaubien and his household' as occupants and grades it inferred, because Andreas says he built a NEW residence which is a different building and is not modelled. This household inherits that grade and that doubt exactly.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Col. Jean Baptiste Beaubien",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "trader",
+          "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family."
+        },
+        {
+          "name": "Josette LaFramboise Beaubien",
+          "relationship": "wife",
+          "grade": "derived",
+          "occupation": "none_recorded",
+          "note": "NAMED AND DATED IN THE SOURCE - married to J. B. Beaubien in 1812, daughter of Francois LaFramboise - and nothing places her in the household on 1 July 1835. She is written because a named wife of a named head is exactly the person this layer exists to record, and graded derived because the presence on the day is the reconstruction. The LaFramboise family is separately in the 1833 treaty schedules, where 'Joseph Laframboise and children' receive $1,000."
+        },
+        {
+          "name": "The rest of the Beaubien household, unnamed",
+          "relationship": "household_member",
+          "grade": "derived",
+          "occupation": "none_recorded",
+          "note": "AN ADMISSION. J. B. Beaubien's family was large and is not enumerated in anything reached; two sons are named in Andreas and one of them, Madore, has his own household here. Carried as one placeholder rather than as invented individuals; do not count it as a person."
+        }
+      ],
+      "research_note": "THE OLDEST HOUSEHOLD IN THE 1835 TOWN AND THE ONE THAT MOST NEEDS THE REMOVAL FLAG. J. B. Beaubien's first wife was an Ottawa woman and his sons by her are among the town's merchants; his second wife's family is in the 1833 treaty's schedule of payments; his homestead stands on a military reservation he was claiming from the United States in the scene year. Every one of those facts touches the dispossession that was completed in August 1835, six weeks after the scene date. THE RECORD MAKES NO CLAIM ABOUT ANY PERSON'S IDENTITY, AFFILIATION OR STATUS beyond what Andreas states, and it is flagged for review under the project's standing constraint rather than treated as settled. Note also what this household is NOT: a Potawatomi household. It is a French-descended trading family with Native kin, which is a distinct and much better-documented category, and collapsing the two would be the first step towards exactly the improvisation AGENTS.md forbids."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

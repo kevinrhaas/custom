@@ -151,7 +151,45 @@
       "note": "A public crossing, the town's second bridge, and the link between the West Division's West Water Street frontage and the South Division's Lake and Randolph blocks. It superseded Beaubien's rope-worked canoe ferry from the Point, which docs/research/03-structures-north.md has running across the same water in 1831."
     }
   },
+  "residents": [
+    {
+      "household": "hh_taylor_anson",
+      "name": "The Anson Taylor household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "THIS IS A BUILT-BY LINK AND NOT A WORKPLACE, and the grade says so. Andreas credits the log bridge across the South Branch between Randolph and Lake to Anson H. Taylor and his brother in 1832; data/structures/south_branch_raft_bridge.json is this project's record of a crossing at that reach. Whether the raft bridge of 1835 is the same fabric as the log bridge of 1832 is a structures question this record does not settle.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Anson H. Taylor",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "carpenter",
+          "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge."
+        },
+        {
+          "name": "Charles H. Taylor",
+          "relationship": "brother",
+          "grade": "documented",
+          "occupation": "carpenter",
+          "note": "ONE OF THE TWENTY-EIGHT ELECTORS OF 10 AUGUST 1833, listed by Andreas as 'Charles Taylor'. This project's wolf_point_tavern record has 'Charles and Mary Taylor' keeping that house from 1831 to 1833, which would make him a tavern keeper before he was anything else and gives him a named wife; the identification is not made here because the Taylor surname is carried by at least four distinct men in this parcel's sources and merging them on a forename would be exactly the error the Isaac Harmon case was avoided for."
+        }
+      ],
+      "research_note": "THE TOWN'S BRIDGE-BUILDERS, AND A CAUTION ABOUT SURNAMES. This parcel's sources carry at least four Taylors - Anson H., Charles H., Augustine D. (a separate household here) and the 'Charles and Mary Taylor' who kept the Wolf Point tavern - plus a Mary Taylor among the First Presbyterian Church's nine founding villagers and an A. W. Taylor on the 1832 militia roll. NO TWO OF THEM ARE MERGED HERE. Merging on a surname is how a documented population quietly becomes a fictional one."
+    }
+  ],
   "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     {
       "source_id": "chicagology_lastwardance",
       "citation": "\"Chicago's Last Great War Dance.\" Chicagology, transcribing the Chicago Tribune of 14 August 1910, which prints John Dean Caton's written recollection of 18 August 1835, and, below it and unnamed, a first-person passage from an older book.",

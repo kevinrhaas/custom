@@ -1,0 +1,75 @@
+{
+ "id": "hh_haddock_edward",
+ "name": "The Mansion House keeper's household",
+ "division": "south",
+ "head": "haddock_edward",
+ "arrival": {
+  "value": "1835",
+  "confidence": "conjectural",
+  "note": "NOT ATTESTED AND VERY LIKELY EARLIER. Nothing dates Haddock's arrival at Chicago; what is dated is his tenancy of a tavern ending in 1835. A year-precision 1835 value would straddle the scene date, so the earliest year the evidence permits is used and the whole field is graded conjectural. TO RESOLVE: Dexter Graves's household and the marriage that made Haddock his son-in-law would date this properly.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "lives_at": {
+  "value": "mansion_house",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A landlord lived in his house, and Andreas has him keeping this one until some point in 1835. Both halves are reconstructed."
+ },
+ "works_at": {
+  "value": "mansion_house",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Derived rather than documented because the tenancy ENDS inside the scene year and the record cannot say on which side of 1 July."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "THE HONEST ANSWER. Andreas has the house passing to Abram A. Markle at some point in 1835 and gives no month. Haddock may have been keeping the Mansion House on 1 July 1835, or Markle may have been, or Haddock may have left the town. Recorded as uncertain rather than resolved by assumption."
+ },
+ "persons": [
+  {
+   "id": "haddock_edward",
+   "name": "Edward H. Haddock",
+   "relationship": "head",
+   "grade": "derived",
+   "sex": "male",
+   "occupation": {
+    "value": "tavern_keeper",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Andreas, printed p. 635: Dexter Graves 'sold it to a Mr. Haddock, his son-in-law, who kept it UNTIL 1835 when it passed into the hands of Abram A. Markle'. So he kept a tavern; whether he was still keeping it on 1 July 1835 is the open half."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE HOUSEHOLD THAT EXISTS TO CARRY AN UNRESOLVED HANDOVER RATHER THAN TO HIDE IT. The Mansion House had a keeper on 1 July 1835 and this project cannot say which of two named men it was. Writing no household would lose a documented tavern keeper; writing two would double-count a job only one man held; writing Markle would be a coin-flip stated as a fact. So one household is written, graded derived throughout, with presence recorded as uncertain and the alternative named in the notes. A LATER PARCEL SHOULD LOOK FOR THE MONTH - the Chicago American began publishing in June 1835 and a change of landlord is exactly the thing a new paper advertises."
+}

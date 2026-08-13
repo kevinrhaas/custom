@@ -155,7 +155,39 @@
       "note": "Both sources have Stow building and operating the house; the hotel chronology says outright that it was 'built and operated by W.H. Stow'. He came to Chicago about 1833, so he is present at the scene date on either build date."
     }
   },
+  "residents": [
+    {
+      "household": "hh_stow_william_h",
+      "name": "The Stow household",
+      "division": "south",
+      "relation": "lived and worked here",
+      "why": "A landlord lived in his house; not stated.",
+      "sources": [
+        "andreas_1884_v1",
+        "drloih_hotels"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "William H. Stow",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "hotel_keeper",
+          "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835."
+        }
+      ],
+      "research_note": "A BUILDER-LANDLORD, WHICH IS A COMMON EARLY-CHICAGO PATTERN AND ONE THE OCCUPATION FIELD CANNOT SHOW. Stow put the Western Hotel up and then ran it, and this dataset also holds western_hotel_stable under his name. The occupation vocabulary makes a single choice, so the building half of his life is in this note. NOTHING HERE ABOUT HIS FAMILY: a hotel of forty feet frontage with a wagon yard behind it was not run by one man alone, and every other person in it - servants, hostlers, cooks, his own household - is unattested and belongs to the inferred phase."
+    }
+  ],
   "citations": [
+    {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     {
       "source_id": "chicagology_prefire278",
       "citation": "\"Town of Chicago.\" Chicagology. Transcribing the Inter Ocean of 22 July 1883 — 'Old Chicago: The Town in 1833', which carries both the town's incorporation record and 'The Old Western Hotel', an interview feature with named old settlers who used the house.",

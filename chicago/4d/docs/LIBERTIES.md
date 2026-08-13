@@ -2159,6 +2159,138 @@ averaged away.
 
 ---
 
+### L84 — Eighty households nobody named, and the thirty-eight buildings they justify
+**Decision:** phase two of the inferred-residents programme (`docs/ROADMAP.md` K1) adds **80
+inferred households and 92 inferred person entries** to `data/residents/`, **adopts 83 of the
+108 anonymous roofs** already on the plat as their dwellings and workplaces, and raises **38 new
+structure records** — seven documented buildings that had no record, and 31 inferred buildings
+the occupation census requires. Every new record's existence, position and footprint is
+`conjectural`, and this entry is what admits it.
+**Why:** the 1835 town census counts **3,265 people in 398 dwellings**; this dataset could name
+about ninety of them and held 108 roofs with no occupant at all. A roof nobody lived in is
+massing, not a building. The layer reasons from ratios the project can check — the 1833 trade
+roster against the 1835 census, and the reconstruction specification's own roof schedule as a
+ceiling on each trade — so that the town reaches its density through argued households rather
+than through anonymous count-units.
+**What is invented, and how you can tell.** Three things, in descending order of how much they
+matter. **(1) That any of these people existed.** They are hypotheses about counts: a town of
+3,265 in 398 dwellings held at least this many households of this trade. **No inferred person
+has a name** — every one carries a designation (*A cooper (inferred resident, unnamed)*) and a
+note saying the record asserts a ratio and nothing about any individual. **(2) That the 31 new
+inferred buildings stood at all**, let alone where. Their `documented_range`, `position` and
+`footprint` are conjectural; the family band they are sized from is type-level evidence about
+buildings of that class and is not evidence about these. **(3) The dimensions and positions of
+the seven documented buildings.** Their existence, fabric and use are sourced; not one of them
+has an attested dimension, and three (`temple_lake_st_building`, `harmon_log_cabin`,
+`wright_building_to_let_a`/`_b`) have no attested position either — a documented street or no
+street at all.
+**What the adoptions do and do not claim.** An adopted anonymous roof keeps every one of its
+conjectural gradings; the adoption adds an argued occupant where there was none. It is not
+evidence that a building stood on that spot, and the roofs' own liberties (the two anonymous
+infill entries above) continue to cover them.
+**Heacock's house stands on nothing.** `heacock_house_monroe` is documented — built in the spring
+of 1835, moved a block on rollers — and Monroe Street lies about 215 m south of the modelled
+terrain box, so the phase declares `ground_contact: outside_modelled_ground`. This is the L40
+state again, for one building, and it resolves when a terrain epoch reaches south of Madison.
+**What we refused.** No name was invented. No trade ratio is cited to a source that does not
+exist: no period trade table for a comparable western town is in `data/sources/`, so every count
+is derived from the project's own five calibrations and the arithmetic is written out per trade
+in `data/reconstruction/1835_inferred_household_programme.json`. Nothing was graded `inferred` to
+avoid appearing here. No inferred household is Native and none is placed among the households
+that are.
+**Recorded:** 2026-08-13.
+**Covers:** `brown_boarding_house.documented_1835.footprint`,
+`harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`,
+`heacock_house_monroe.documented_1835.footprint`,
+`heacock_house_monroe.documented_1835.ground_contact`,
+`heacock_house_monroe.documented_1835.position`,
+`inf_artisan_dwelling_west_a.inferred_1835.documented_range`,
+`inf_artisan_dwelling_west_a.inferred_1835.footprint`,
+`inf_artisan_dwelling_west_a.inferred_1835.position`,
+`inf_artisan_dwelling_west_b.inferred_1835.documented_range`,
+`inf_artisan_dwelling_west_b.inferred_1835.footprint`,
+`inf_artisan_dwelling_west_b.inferred_1835.position`,
+`inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`,
+`inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`,
+`inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`,
+`inf_blacksmith_shop_west.inferred_1835.documented_range`,
+`inf_blacksmith_shop_west.inferred_1835.footprint`,
+`inf_blacksmith_shop_west.inferred_1835.position`,
+`inf_boatman_cabin_north.inferred_1835.documented_range`,
+`inf_boatman_cabin_north.inferred_1835.footprint`,
+`inf_boatman_cabin_north.inferred_1835.position`,
+`inf_brickmaker_dwelling_north.inferred_1835.documented_range`,
+`inf_brickmaker_dwelling_north.inferred_1835.footprint`,
+`inf_brickmaker_dwelling_north.inferred_1835.position`,
+`inf_butcher_market.inferred_1835.documented_range`,
+`inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`,
+`inf_carpenter_dwelling_north.inferred_1835.documented_range`,
+`inf_carpenter_dwelling_north.inferred_1835.footprint`,
+`inf_carpenter_dwelling_north.inferred_1835.position`,
+`inf_cooperage_south.inferred_1835.documented_range`,
+`inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`,
+`inf_cooperage_south_branch.inferred_1835.documented_range`,
+`inf_cooperage_south_branch.inferred_1835.footprint`,
+`inf_cooperage_south_branch.inferred_1835.position`,
+`inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`,
+`inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`,
+`inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`,
+`inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`,
+`inf_harness_shop.inferred_1835.position`,
+`inf_labourer_shanty_north_a.inferred_1835.documented_range`,
+`inf_labourer_shanty_north_a.inferred_1835.footprint`,
+`inf_labourer_shanty_north_a.inferred_1835.position`,
+`inf_labourer_shanty_north_b.inferred_1835.documented_range`,
+`inf_labourer_shanty_north_b.inferred_1835.footprint`,
+`inf_labourer_shanty_north_b.inferred_1835.position`,
+`inf_labourer_shanty_west_a.inferred_1835.documented_range`,
+`inf_labourer_shanty_west_a.inferred_1835.footprint`,
+`inf_labourer_shanty_west_a.inferred_1835.position`,
+`inf_labourer_shanty_west_b.inferred_1835.documented_range`,
+`inf_labourer_shanty_west_b.inferred_1835.footprint`,
+`inf_labourer_shanty_west_b.inferred_1835.position`,
+`inf_laundry_north.inferred_1835.documented_range`,
+`inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`,
+`inf_mason_dwelling_north.inferred_1835.documented_range`,
+`inf_mason_dwelling_north.inferred_1835.footprint`,
+`inf_mason_dwelling_north.inferred_1835.position`,
+`inf_packer_dwelling.inferred_1835.documented_range`,
+`inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`,
+`inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`,
+`inf_sawpit_shed.inferred_1835.position`,
+`inf_sawyer_dwelling_a.inferred_1835.documented_range`,
+`inf_sawyer_dwelling_a.inferred_1835.footprint`,
+`inf_sawyer_dwelling_a.inferred_1835.position`,
+`inf_sawyer_dwelling_b.inferred_1835.documented_range`,
+`inf_sawyer_dwelling_b.inferred_1835.footprint`,
+`inf_sawyer_dwelling_b.inferred_1835.position`,
+`inf_shoemaker_shop.inferred_1835.documented_range`,
+`inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`,
+`inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`,
+`inf_tailor_shop.inferred_1835.position`,
+`inf_teamster_dwelling_south.inferred_1835.documented_range`,
+`inf_teamster_dwelling_south.inferred_1835.footprint`,
+`inf_teamster_dwelling_south.inferred_1835.position`,
+`inf_teamster_dwelling_west.inferred_1835.documented_range`,
+`inf_teamster_dwelling_west.inferred_1835.footprint`,
+`inf_teamster_dwelling_west.inferred_1835.position`,
+`inf_teamster_stable_west.inferred_1835.documented_range`,
+`inf_teamster_stable_west.inferred_1835.footprint`,
+`inf_teamster_stable_west.inferred_1835.position`,
+`inf_wheelwright_shop_west.inferred_1835.documented_range`,
+`inf_wheelwright_shop_west.inferred_1835.footprint`,
+`inf_wheelwright_shop_west.inferred_1835.position`,
+`mason_blacksmith_shop.documented_1835.footprint`,
+`physicians_office.inferred_1835.documented_range`,
+`physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`,
+`temple_lake_st_building.documented_1835.footprint`,
+`temple_lake_st_building.documented_1835.position`,
+`wright_building_to_let_a.documented_1835.footprint`,
+`wright_building_to_let_a.documented_1835.position`,
+`wright_building_to_let_b.documented_1835.footprint`,
+`wright_building_to_let_b.documented_1835.position`
+---
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

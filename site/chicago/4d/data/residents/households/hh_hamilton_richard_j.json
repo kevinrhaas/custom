@@ -1,0 +1,78 @@
+{
+ "id": "hh_hamilton_richard_j",
+ "name": "The Hamilton household",
+ "division": "north",
+ "head": "hamilton_richard_j",
+ "arrival": {
+  "value": "1831",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Andreas's list of the town's lawyers gives the year and no month: 'Richard J. Hamilton, 1831'.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested. Hamilton had a family at Chicago - his daughter Mrs Ellen Hamilton Keenon has her own biographical entry in Andreas - but no source reached counts the party that travelled with him in 1831."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": "County office and a law practice in a new county seat",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Cook County was organised in 1831 and Hamilton is its clerk from that year, which is the ordinary reading of a lawyer arriving in the year the county is created. INFERRED: no source states his motive."
+ },
+ "lives_at": {
+  "value": "cobweb_castle",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "DOCUMENTED FOR 1832 AND NOT FOR THE SCENE DATE, which is why this is graded derived rather than documented. Andreas, on the founding of the first school: 'In the fall of 1832, Colonel Hamilton and Colonel Owen employed John Watkins to teach a small school in the North Division, near the old Indian agency-house in which Colonel Hamilton then resided.' That is a plain statement that he lived in the building this dataset records as cobweb_castle, and it is nearly three years before 1 July 1835. Nothing reached follows him out of it or keeps him in it. The link is made because it is the only attested residence for any named person in that building and because an unlinked household teaches a reader nothing; the grade is the warning."
+ },
+ "works_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "The county's business was done wherever the clerk kept his papers, and the brick court-house on the square was not finished until the autumn of 1835 - after the scene date. This dataset holds cook_county_courthouse_1835 as a building under way, not as an office in use on 1 July, so no work link is made."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "In office continuously through the period and named in Chicago business across 1833-36; no absence is recorded."
+ },
+ "persons": [
+  {
+   "id": "hamilton_richard_j",
+   "name": "Richard Jones Hamilton",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "county_clerk",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Clerk of the Cook County Commissioners' Court and, in 1833, commissioner for the sale of the school section; Andreas also lists him among the town's six lawyers at the close of 1833 (scan p. 281). The office is the better-attested of the two and is what this record carries; the practice is in the note."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "ONE OF THE SIX MEN ANDREAS COUNTS AS CHICAGO'S LAWYERS AT THE END OF 1833, and one of the twelve who voted for incorporation on 5 August 1833. Andreas, scan p. 281: 'It comprised six lawyers - Russel E. Heacock, who had come in 1827; Richard J. Hamilton, 1831; and Giles Spring, John Dean Caton, Edward W. Casey and Alexander N. Fullerton, who had put out their signs in 1833.' He administered the oath of office to the first board of trustees as a notary public and acted as its clerk pro tem, and he ran the auction of the school section in October 1833 with John Bates as auctioneer."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE COUNTY'S CLERK, AND THE ONE NAMED PERSON THIS PROJECT CAN PUT INSIDE COBWEB CASTLE. The residence link is the point of the record and it is also its weakness: the sentence that supplies it is about a schoolmaster's employment in 1832, and it is doing double duty here as evidence about a building and about a household. Graded derived on both counts. A SECOND THING THIS RECORD DOES NOT CLAIM: Hamilton appears constantly in the 1833-35 record as commissioner, notary, clerk pro tem and attorney, and it would be easy to write him a household of five and an origin. Nothing supports either."
+}

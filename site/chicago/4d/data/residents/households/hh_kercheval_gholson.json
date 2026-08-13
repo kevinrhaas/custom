@@ -1,0 +1,75 @@
+{
+ "id": "hh_kercheval_gholson",
+ "name": "The Kercheval household",
+ "division": "south",
+ "head": "kercheval_gholson",
+ "arrival": {
+  "value": "1831",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1831' - year precision, and corroborated by his acting as agent before Owen arrived in the spring of that year.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "works_at": {
+  "value": "cobweb_castle",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The agency's business was done at the agency house. Same inference and same weakness as the agent's own work link: no source puts this man in this building."
+ },
+ "present_on_scene_date": {
+  "value": "uncertain",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Documented at Chicago 1831-33 and then in the 1833 treaty's schedules. Andreas says he died in California and does not date his departure, and a sub-agency to a people who had ceded their land is a post with an end date this project does not know."
+ },
+ "persons": [
+  {
+   "id": "kercheval_gholson",
+   "name": "Gholson Kercheval",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "sub_agent",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "Sub-agent of the United States Indian agency at Chicago under Col. Owen, and before that acting agent: 'Colonel Owen was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831, the sub-agent, Mr. Kercheval, attending to the duties of the office until that time.' Andreas's 1833 roster calls him 'Gholson Kercheval, Government Agent and clerk, came in 1831'."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HE GUIDED THE MEN WHO BROUGHT EASTERN MONEY TO CHICAGO, and he commanded its militia. Charles Butler's 1881 letter: preparing to travel from Detroit in the summer of 1833 they 'arranged with a young man, named Gholson Kercheval, who was familiar with the route, having been connected with the Indian agency at Chicago, to accompany us all the way from Detroit to Chicago'. The 1832 militia agreement Andreas prints begins 'we, the undersigned, agree to submit ourselves, for the time being, to Gholson Kercheval, Captain, and George W. Dole and John S. C. Hogan, First and Second Lieutenants, as commanders of the Militia of the town of Chicago, until all apprehension of danger from the Indians may have subsided' and carries about forty signatures. He is trustee for three of the payments in the 1833 treaty's schedule - $800 each for Alexander and Paschal Muller. He was one of the twenty-eight electors of 10 August 1833 and died in California."
+  }
+ ],
+ "touches_removal": true,
+ "review_required": true,
+ "research_note": "THE SUB-AGENT, THE MILITIA CAPTAIN AND THE GUIDE - three roles that between them describe how a frontier agency actually worked, and none of which the single-value occupation field can carry. THE MILITIA ROLL IS THE MOST VALUABLE UNWORKED LIST THIS PARCEL FOUND: about forty men of the town signed it in 1832, several of whom appear nowhere else in this dataset, and it is a population census of the adult male settlement two years before the 1833 roster. Working it is derived-phase work. STANDING CONSTRAINT. AGENTS.md: the final removal of the Potawatomi from Chicago occurred in August 1835, inside this project's first target year and six weeks AFTER the scene date; Native presence, representation and depiction are not research gaps to be filled by inference, and v1 ships no human figures at all. This record is a dataset entry that states what named sources say about a named person and adds nothing. It carries review_required so that no scene containing it can be marked released before the consultation the project has committed to."
+}

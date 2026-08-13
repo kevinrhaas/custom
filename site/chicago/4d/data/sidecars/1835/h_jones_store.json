@@ -109,6 +109,30 @@
       "note": "THE INITIAL DISAGREES BETWEEN THE TWO SOURCES AND THE RECORD DOES NOT PICK ONE. Andreas writes 'H. Jones'. The advertisement in the Chicago Democrat of 26 November 1833 reads 'B. JONES'. A contemporary advertisement is the man's own word about his own name and would normally win outright, but the reading comes off a scan of a damaged sheet, the letters B and H are among the easiest to confuse in a display face of this period, and this project has been warned that the transcription accompanying the scan is imperfect elsewhere in the same issue. So the surname is carried, the initial is not, and the record id keeps the H that this project's dossier assigned it because renaming a record is worse than annotating one. Both readings are recorded in aka."
     }
   },
+  "residents": [
+    {
+      "household": "hh_jones_benjamin",
+      "name": "The Jones household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "data/structures/h_jones_store.json carries 'Jones, grocer and provision merchant' as its occupants and rests on the same advertisement.",
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Benjamin Jones",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "grocer",
+          "note": "APPOINTED THE TOWN'S FIRST STREET COMMISSIONER ON 7 NOVEMBER 1833 and resigned before his term expired: Andreas, 'It was during these days that Benjamin Jones was appointed Street Commissioner, but on account of ill-health resigned before his term expired, and was succeeded by O. Morrison and Silas W. Sherman.' His health is the only medical fact about any private resident in this parcel. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+        }
+      ],
+      "research_note": "THE TOWN'S FIRST STREET COMMISSIONER, WHICH IS A JOB THIS DATASET'S GROUND LAYER SHOULD CARE ABOUT: the ordinances of 7 November 1833 that he was appointed to enforce are the same ones that document timber, stone, brick, boxes and barrels stacked in the streets and hogs running at large. He is the man who was supposed to stop it, and he was ill."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

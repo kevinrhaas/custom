@@ -1,0 +1,80 @@
+{
+ "id": "hh_peck_philip",
+ "name": "The Peck household",
+ "division": "south",
+ "head": "peck_philip",
+ "arrival": {
+  "value": "1831-07-01",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Month precision. data/structures/peck_store.json records the arrival in July 1831 with a stock of goods in a schooner, from Andreas.",
+  "precision": "month"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested."
+ },
+ "reason_for_coming": {
+  "value": "To open a store with a shipped stock of goods",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "He came with the goods, which is the merchant's version of coming with a contract."
+ },
+ "lives_at": {
+  "value": "peck_store",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "A merchant of this period lived over or behind his store, and this one demonstrably housed a lodger in its loft. Not stated of Peck himself."
+ },
+ "works_at": {
+  "value": "peck_store",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ]
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "Continuous in the record from 1831."
+ },
+ "persons": [
+  {
+   "id": "peck_philip",
+   "name": "Philip F. W. Peck",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "merchant",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'P. F. W. Peck, merchant' in the 1833 roster. His two-storey frame store at the south-west corner of South Water and LaSalle is the anchor of the town's business street in this dataset."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "HIS UNFINISHED LOFT IS THE PARCEL'S BEST DOCUMENTED LODGING. Andreas: 'Among these was P. F. W. Peck, who invited Mr. Porter to make his temporary lodging place and study in the unfinished loft of his two-story store'; and 'The first building in the rear of this store was the log house of Rufus Brown, where Mr. Porter found table board.' Three households and two buildings meet in those two sentences. He arrived in July 1831 with a stock of goods carried by schooner, per this project's building record. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE HOUSEHOLD AT THE CENTRE OF A THREE-WAY LINK. Peck's store lodged the Presbyterian minister in its loft and Rufus Brown's log boarding house stood directly behind it - so a single corner of South Water and LaSalle carries a merchant, a minister and a boarding-house keeper, all documented, all in this parcel. That is the density the inferred phase should expect to find everywhere and can only demonstrate here."
+}

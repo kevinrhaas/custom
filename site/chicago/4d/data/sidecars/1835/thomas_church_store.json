@@ -108,6 +108,29 @@
       "note": "Named as the BUILDER, which is what the source says and all it says: 'was built by Thomas Church'. Whether he kept the store himself, and whether he or anyone was in it on 1835-07-01, is not stated. Tagged inferred for that reason rather than for a citation problem."
     }
   },
+  "residents": [
+    {
+      "household": "hh_church_thomas",
+      "name": "The Church household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "The building he built. Whether he traded in it is the reconstruction; data/structures/thomas_church_store.json makes the same move and grades it inferred.",
+      "sources": [
+        "chicagology_prefire275"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Thomas Church",
+          "relationship": "head",
+          "grade": "derived",
+          "occupation": "merchant",
+          "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here."
+        }
+      ],
+      "research_note": "A HOUSEHOLD WRITTEN ALMOST ENTIRELY TO KEEP A BUILDING FROM BEING ANONYMOUS, and graded so that a reader can see it. Every field but the name is derived or conjectural. It is kept because an empty building on Lake Street tells a visitor less than a named man with three warnings attached."
+    }
+  ],
   "citations": [
     {
       "source_id": "chicagology_prefire275",

@@ -1,0 +1,75 @@
+{
+ "id": "hh_clybourne_archibald",
+ "name": "The Clybourne household",
+ "division": "outside_town",
+ "head": "clybourne_archibald",
+ "arrival": {
+  "value": "1823",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "'Came in 1823' - the second-earliest Anglo-American arrival in the parcel after nobody, and twelve years before the scene date.",
+  "precision": "year"
+ },
+ "party_size_on_arrival": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "origin": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "reason_for_coming": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "Not attested in anything this project holds."
+ },
+ "lives_at": {
+  "value": null,
+  "confidence": "conjectural",
+  "note": "NOT LINKED ON PURPOSE. The Clybourne place is several miles up the North Branch, around the ground of the later North Chicago Rolling Mills, and data/structures/clybourn_cabins.json declares itself displaced from that position. Pointing a household at a building the dataset says is in the wrong place would launder a known error into a residence claim."
+ },
+ "works_at": {
+  "value": "clybourn_slaughterhouse",
+  "confidence": "documented",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "data/structures/clybourn_slaughterhouse.json carries him as its occupant. This dataset also holds newberry_dole_slaughterhouse_south_branch, which is a different firm's packing house."
+ },
+ "present_on_scene_date": {
+  "value": "present",
+  "confidence": "inferred",
+  "sources": [
+   "andreas_1884_v1"
+  ],
+  "note": "The family is continuous on the North Branch across the period."
+ },
+ "persons": [
+  {
+   "id": "clybourne_archibald",
+   "name": "Archibald Clybourne",
+   "relationship": "head",
+   "grade": "documented",
+   "sex": "male",
+   "occupation": {
+    "value": "butcher",
+    "confidence": "documented",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "'Archibald Clybourne, butcher, came in 1823, then living north of the town limits, and not a voter in the new village.' An earlier list Andreas prints has, under 'Butchers - Archibald Clybourne', the North Branch; he butchered for the garrison."
+   },
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "DOCUMENTED AND DELIBERATELY OUTSIDE THE TOWN, which is why this household's division is 'outside_town' and why it matters. Andreas's own roster explains the status in the same clause that gives the trade: he lived north of the limits and could not vote in the village. 'Julia K. Clark, half-brother of A. Clybourne, then living with him' is named in the next clause and is written into this household. The Clybourne family had been at Chicago since the 1820s and its assessment appears in the Peoria County taxpayer lists of 1825."
+  }
+ ],
+ "touches_removal": false,
+ "review_required": false,
+ "research_note": "THE BUTCHER WHO LIVED OUTSIDE THE CORPORATION, and the household that forces the schema's division field to have a value for people the town did not count. Chicago's population figures - 350 in 1833, 3,265 in the town census of 1835 - are figures for a corporate area with a boundary that moved twice in eighteen months, and households like this one fall outside it while supplying it with meat. ANY LATER COUNT MUST DECIDE WHETHER TO INCLUDE THEM and this field is where that decision gets made. THE FAMILY'S BUILDINGS ARE A KNOWN PROBLEM IN THIS DATASET: data/structures/clybourn_cabins.json says outright that it is DISPLACED - the attested ground is several miles up the North Branch, outside the modelled box - so lives_at is left null here rather than pointing at a record that admits it is in the wrong place."
+}

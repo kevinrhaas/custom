@@ -116,6 +116,37 @@
       "note": "A DISCREPANCY BETWEEN THE TWO SOURCES, RECORDED RATHER THAN SMOOTHED. Andreas names the concern 'Harmon's and Loomis's'. The advertisement in the Chicago Democrat of 26 November 1833 is headed 'C. & I. HARMON' and names no Loomis. Those are compatible — a firm styled by the Harmon brothers in its own advertising and remembered fifty years later as Harmon and Loomis, or a partnership formed between 1833 and 1835 — but they are not the same statement and the record should not pretend they are. A SECOND POINT ABOUT THE SOURCE ITSELF: the transcription supplied with the scan reads 'C. & L. HARMON'; the scan reads 'C. & I. HARMON'. The scan is cited, not the transcription, and the same transcription's attribution of another advertisement in the issue is treated with the same caution in chicago_democrat_office."
     }
   },
+  "residents": [
+    {
+      "household": "hh_harmon_brothers",
+      "name": "The Harmon brothers' household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "A DISCREPANCY CARRIED RATHER THAN SMOOTHED, and it is already on the building record: Andreas names the concern 'Harmon's and Loomis's' while the 1833 advertisement is headed 'C. & I. HARMON' and names no Loomis. Those are compatible - and note that Loomis is the brothers' own middle name and their mother's maiden name, Welthyan Loomis - but they are not the same statement.",
+      "sources": [
+        "andreas_1884_v1",
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Charles Loomis Harmon",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "dry_goods_merchant",
+          "note": "THE INITIALS ARE RESOLVED BY A SENTENCE IN ANOTHER CHAPTER, which is the find that makes this household possible. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' C. and I. are therefore the doctor's two eldest sons, and the firm in the town's first newspaper is a family partnership."
+        },
+        {
+          "name": "Isaac Dewey Harmon",
+          "relationship": "brother",
+          "grade": "documented",
+          "occupation": "dry_goods_merchant",
+          "note": "A SEPARATE MAN FROM 'ISAAC HARMON, TOWN CLERK', OR PERHAPS NOT, AND THE RECORD WILL NOT DECIDE. Andreas has an Isaac Harmon appointed clerk of the first board of trustees on 12 August 1833 and again as clerk and collector in 1834; he also prints an 1832 militia agreement signed by BOTH 'Isaac Harmon' AND 'Isaac D. Harmon', two lines apart, which is positive evidence that the town contained two men of that name. The town clerk is therefore NOT identified with this merchant and gets no person record here at all - writing him would risk creating a duplicate of a man already in this household."
+        }
+      ],
+      "research_note": "TWO BROTHERS IDENTIFIED BY CROSS-READING TWO CHAPTERS OF THE SAME BOOK, which is the kind of result this layer exists to produce: a newspaper masthead of initials becomes two named men with a father, a home town and a reason for being in Illinois. THE THIRD HARMON IS DELIBERATELY ABSENT. An Isaac Harmon was the town's clerk and collector in 1833-34 and is not written here, because Andreas's 1832 militia list carries two distinct Isaac Harmons and this project cannot tell which is which. That is a documented resident consciously left out of the count rather than guessed into it."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

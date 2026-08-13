@@ -615,6 +615,82 @@ def compile_streets(scene_id: str, target_date: str,
     return doc.get("surface_standard", ""), out
 
 
+def compile_residents() -> dict[str, list[dict]]:
+    """structure_id -> the households the residents layer attaches to it.
+
+    THE REASON THIS EXISTS. `data/residents/` is a dataset layer with no geometry
+    (docs/LIBERTIES.md L1: v1 draws no human figures), so nothing in the renderer
+    had any way to reach it and ninety-six researched Chicagoans were invisible on
+    the site — the exact complaint the owner made about work that had "landed".
+    A building is the only place a visitor meets a resident, so the household
+    travels in the building's own sidecar and the card shows who lived or worked
+    there, with each person's accuracy grade shown as plainly as an attribute's
+    confidence.
+
+    `basis` is the sentence the inferred-household programme owes the reader: a
+    building raised BECAUSE of a hypothesised household has to say so in the same
+    breath as it names them, or the card reads as evidence of a person.
+    """
+    index_path = DATA / "residents" / "index.json"
+    if not index_path.exists():
+        return {}
+    index = load(index_path)
+    programme_path = DATA / "reconstruction" / "1835_inferred_household_programme.json"
+    raised = {}
+    if programme_path.exists():
+        raised = {b["id"]: b for b in load(programme_path).get("buildings", [])}
+
+    out: dict[str, list[dict]] = {}
+    for entry in index.get("households", []):
+        hh = load(DATA / "residents" / entry["file"])
+        links = {}
+        for key in ("lives_at", "works_at"):
+            block = hh.get(key) or {}
+            if block.get("value"):
+                links.setdefault(block["value"], []).append((key, block))
+        for sid, pairs in links.items():
+            kinds = [k for k, _ in pairs]
+            relation = ("lived and worked here" if len(kinds) == 2
+                        else "lived here" if kinds[0] == "lives_at" else "worked here")
+            grades = sorted({p.get("grade") for p in hh.get("persons", [])})
+            building = raised.get(sid)
+            if building and building.get("kind") == "inferred":
+                basis = ("THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is "
+                         "documented: the household is inferred from the town's demonstrable "
+                         "needs and the roof was raised to house it. Its existence, position "
+                         "and size are all inventions, and the chips above say so.")
+            elif building:
+                basis = ("The building is documented and the household is the one the sources "
+                         "attach to it; this parcel built the record they had been waiting for.")
+            elif sid.startswith("recon_") and "inferred" in grades:
+                basis = ("An anonymous roof of the reconstruction programme, ADOPTED by this "
+                         "household rather than raised for it. The roof's own existence and "
+                         "position stay conjectural; what the adoption adds is an argued "
+                         "occupant instead of an anonymous count-unit.")
+            else:
+                basis = ""
+            out.setdefault(sid, []).append({
+                "household": hh["id"],
+                "name": hh["name"],
+                "division": hh.get("division", ""),
+                "relation": relation,
+                "why": pairs[0][1].get("note", ""),
+                "sources": sorted({s for _, b in pairs for s in (b.get("sources") or [])}),
+                "basis": basis,
+                "persons": [{
+                    "name": person.get("name", ""),
+                    "relationship": person.get("relationship", ""),
+                    "grade": person.get("grade", "inferred"),
+                    "occupation": (person.get("occupation") or {}).get("value", ""),
+                    "note": person.get("note", ""),
+                } for person in hh.get("persons", [])],
+                "research_note": hh.get("research_note", ""),
+            })
+    for households in out.values():
+        households.sort(key=lambda h: h["household"])
+    return out
+
+
 def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
     scene = load(DATA / "scenes" / f"{scene_id}.json")
     target = dt.date.fromisoformat(scene["target_date"])
@@ -624,6 +700,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
 
     written, skipped = 0, []
     index = []
+    residents = compile_residents()
     # id -> the phase that resolves into this scene, for the watch list below
     resolved: dict[str, dict] = {}
 
@@ -653,6 +730,8 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             collect(st.get(key, {}))
         if st.get("reconstruction", {}).get("source_id"):
             cited.add(st["reconstruction"]["source_id"])
+        for household in residents.get(st["id"], []):
+            cited.update(household["sources"])
 
         # `geometry` travels with the attribute because it qualifies the chip next
         # to it: a documented value the mesh does not contain is a true statement
@@ -752,9 +831,12 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "note": phase.get("footprint", {}).get("note", ""),
             },
             "attributes": attributes,
+            # Who was here. Empty on most buildings and never absent, so the card
+            # reads one shape everywhere and the sidecar contract can see the field.
+            "residents": residents.get(st["id"], []),
             "citations": cite(cited, sources),
             "research_note": st.get("research_note", ""),
-            "research_doc": ("docs/RESEARCH/recommended_infill_1835.md"
+            "research_doc": ("docs/RESEARCH/inferred_infill_1835.md"
                              if st.get("reconstruction")
                              else f"docs/RESEARCH/{st['id']}.md"),
             "review_required": st.get("review_required", False),

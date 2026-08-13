@@ -103,6 +103,29 @@
       "note": "Named as the builder and proprietor, arriving from Vermont on 8 October 1833 (scan p. 1161). Andreas gives his later Chicago career — alderman in 1843 and 1844, and two streets named after him (scan pp. 387, 411) — which corroborates the man and says nothing about who was at the anvil in July 1835."
     }
   },
+  "residents": [
+    {
+      "household": "hh_pierce_asahel",
+      "name": "The Pierce household",
+      "division": "south",
+      "relation": "worked here",
+      "why": "Named as both the builder and the proprietor of the shop.",
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Asahel Pierce",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "blacksmith",
+          "note": "ARRIVING FROM VERMONT ON 8 OCTOBER 1833 - a day-precise arrival WITH an origin, which is a combination no other household in this parcel has. Andreas gives his later Chicago career - alderman in 1837, 1838, 1843, 1844 and 1845 and two streets named after him - which corroborates the man's long residence and says nothing at all about who was at the anvil in July 1835. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
+        }
+      ],
+      "research_note": "ONE OF TWO BLACKSMITHS THIS DATASET CAN NAME AND PLACE, the other being David McKee at the agency. A third, Matthias Mason & Co., is documented by advertisement with no building, and Lemuel Brown is documented by roster with neither. FOUR NAMED SMITHS FOR A TOWN OF 3,265 IS PROBABLY CLOSE TO RIGHT for the documented layer and certainly short for the real one; the inferred phase should treat that ratio as its starting point rather than inventing from scratch."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",

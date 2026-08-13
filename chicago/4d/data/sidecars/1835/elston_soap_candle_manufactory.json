@@ -91,6 +91,29 @@
       "note": "The firm names itself in its own advertisement, which is the strongest form this evidence takes. Who else was in the partnership, and whether anyone was working the premises on 1835-07-01, is not attested."
     }
   },
+  "residents": [
+    {
+      "household": "hh_elston_daniel",
+      "name": "The Elston household",
+      "division": "north",
+      "relation": "worked here",
+      "why": "data/structures/elston_soap_candle_manufactory.json carries 'Daniel Elston & Co.' as its occupants on the same advertisement.",
+      "sources": [
+        "chicago_democrat_1833_11_26"
+      ],
+      "basis": "",
+      "persons": [
+        {
+          "name": "Daniel Elston",
+          "relationship": "head",
+          "grade": "documented",
+          "occupation": "soap_and_candle_maker",
+          "note": "A MANUFACTURER, WHICH THE 1835 TOWN HAS ALMOST NONE OF. Buying tallow and house ashes is buying the by-products of the packing trade and of every household fire in the town, which makes this one business a measure of how many households there were. Andreas has a Daniel Elston running the largest of the city's five brickyards by 1854 - two decades past the scene and evidence of nothing about 1835 except that the man stayed. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
+        }
+      ],
+      "research_note": "THE ONLY CHEMICAL WORKS IN THE 1835 DATASET, and the household that best shows what a single advertisement can imply about a population. A soap and candle manufactory buying tallow implies slaughtering (this dataset models three packing and slaughter buildings) and buying house ashes implies wood fires in a lot of houses, which is the population K1 is trying to count."
+    }
+  ],
   "citations": [
     {
       "source_id": "andreas_1884_v1",
