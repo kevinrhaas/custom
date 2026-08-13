@@ -454,7 +454,7 @@ def main() -> int:
                 "name": "Chicago River harbour reach, the 1834 cut, the old southward "
                         "channel and the lake margin",
                 "water_surface_ft_above_datum": 0.0,
-                "confidence": "inferred",
+                "confidence": "derived",
                 "note": "Planform traced from the Wright 1834 survey; one connected body of "
                         "water from the east edge of the forks box to the lake. The water "
                         "surface is flat at the datum because the pre-reversal river stood at "
@@ -472,7 +472,7 @@ def main() -> int:
             "properties": {
                 "kind": "bar",
                 "name": "The sand bar across the river mouth",
-                "confidence": "inferred",
+                "confidence": "derived",
                 "note": "Land, not water: the bar Wright labels SAND-BAR, traced as the island "
                         "the water goes round. Its planform is drafted on a cadastral plat, so "
                         "the same +/-20 m applies and the same 'inferred' the river polygon "
@@ -517,7 +517,7 @@ def main() -> int:
                 "kind": "shore",
                 "name": name,
                 "crest_ft_above_datum": None,
-                "confidence": "inferred",
+                "confidence": "derived",
                 "note": note + " Crest heights are carried in the terrain spec, not here: they "
                                 "come from narrative feet, not from the map.",
                 "length_m": round(length_m(line), 1),

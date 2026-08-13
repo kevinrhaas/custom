@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1827-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637690.0,
         "rotation_deg": 270.0,
         "symbolic_location": "DISPLACED. The attested site is the east (south) bank of the North Branch, south of the Bloomingdale Road and opposite the later North Chicago Rolling Mills — roughly 3 km north-north-west of the forks and far outside the modelled terrain. This coordinate stands at the northern edge of modelled ground on the east bank of the North Branch instead.",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "THIS COORDINATE IS NOT WHERE THE BUILDING STOOD AND THE RECORD SAYS SO IN AS MANY WORDS. The site is attested twice over and both statements agree: Andreas scan p. 1149, 'The first slaughter-house was built on the south bank of the North Branch of the Chicago River, south of the Bloomingdale Road and opposite the North Chicago Rolling Mills'; and scan p. 1151, 'his log slaughter-house on the east side of the North Branch'. The two banks named are the same bank — the North Branch runs north-west out of the forks, so its east side and its south bank are one and the same face along that reach. Andreas scan p. 215 puts the family in the same country: 'Jonas Clybourne and John K. Clark lived several miles up the North Branch, where now are the North Chicago rolling-mills.' Bloomingdale Road is modern Bloomingdale Avenue, 1800 north on the Chicago grid; carried through the modern street grid that puts the site somewhere around 3 km north-north-west of this project's datum origin at the forks, in the neighbourhood of modern Cortland and the river. That figure is an estimate off the grid, not a survey, and it is stated so a later parcel can go and place the building properly. THE MODELLED TERRAIN BOX IS 640 m SQUARE, local E and N -320 to +320 (data/terrain/epochs/e1834_harbor_cut/heightfield.json: 257 x 257 samples at 2.5 m from origin -320, -320), so the real site is roughly 2.8 km beyond its northern edge. Under the project owner's instruction of 2026-08-11 the building is placed at the edge of modelled ground rather than dropped, because a building nobody can see is a building nobody can correct. It is set on the correct BANK — the east side of the North Branch, about 14 m back from the traced bank line — at the northern limit of the modelled field, local N +294 to +306. Treat the coordinate as a placeholder with an error of kilometres, not metres, and the BANK and the setback as the only parts of it that carry evidence. Facade bearing 270, due west onto the branch: a slaughter-house works to the water, for the offal and for the boats, which is an argument from the trade and not a statement in any source. WHAT WOULD RESOLVE IT: extending the terrain epoch north up the North Branch, at which point this record moves to its attested reach and the position can be re-tagged.",
         "derivation": {
           "method": "not_derivable",
@@ -49,7 +49,7 @@
             9
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED, but unlike most of the invented footprints in this dataset this one has a CAPACITY behind it and the size was chosen against that capacity rather than freely. Andreas records 250 head of cattle and about 2,000 hogs packed here by Clybourne in 1833, plus 250 head of cattle and 1,000 hogs packed at the same place by George W. Dole (scan p. 1151) — a season's throughput on that scale needs a killing floor several beasts wide, hanging room, and a working yard beside it. 12 x 9 m is about 39 x 30 ft, which is a large log building by the standards of this town and a small one by the standards of that throughput; the 12 m runs along the bank and the 9 m is the depth. Every number is invented and the polygon cites no sources. WHAT IS NOT MODELLED IS ARGUABLY THE BIGGER HALF: the killing pens, the stock yard that later gave the trade the Bull's Head name, and the packing gear are all outside this footprint and outside this archetype, which builds a building and not a works. To resolve: Andreas vol. 1 at page-image level around scan pp. 1149-1151, or any Cook County or Fort Dearborn contract paper describing the premises."
       },
       "form": {
@@ -63,17 +63,17 @@
         },
         "wall_height_m": {
           "value": 2.8,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.8 m is about 9 ft: a hewn log wall a course or two higher than a dwelling's, which is what a killing floor needs if a beast is to be hoisted and dressed hanging. Stated rather than left to the archetype's size-aware default, which would put 3.55 m of wall on a footprint this size and read as a two-storey building. What is inferred is that the wall falls in this range, not that it is exactly 2.8 m."
         },
         "door": {
           "value": "stable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No source describes an opening. 'stable' is the archetype's term for a doorway a horse or a beast can be led through in hand — 1.35 m clear — and it is the smallest opening consistent with the documented trade: cattle came in on the hoof and 250 of them came in during 1833 alone. A man-door would be a claim that the killing was done outside, which nothing says."
         },
         "door_side": {
           "value": "front",
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOT ATTESTED. The door is put on the elevation facing the branch, which is the same face the facade bearing points at, because that is where the landing and the water were. Nothing says the beasts came from the water rather than overland from the prairie, and if they came overland the door belongs on the far side. Recorded conjectural rather than allowed to arrive as an archetype default."
         }
       },

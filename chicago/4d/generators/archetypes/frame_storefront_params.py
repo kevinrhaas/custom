@@ -98,7 +98,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute. See
 # docs/GLB-CONTRACT.md. Duplicated from the sibling params modules rather than
 # imported so that neither can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 # Gable is the type. Shed is allowed for a one-storey shop and refused above that,
 # because a two-storey shed-roofed store in 1835 Chicago would be a claim rather
@@ -557,7 +557,7 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     stories = int(val("stories", 2))
     sign = val("sign")

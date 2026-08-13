@@ -43,7 +43,7 @@ WIDE_RANGE_YEARS = 12
 # published tree holds plain binaries and has to stay reasonable.
 SITE_BUDGET_MB = 25
 
-CONFIDENCE = ("documented", "inferred", "conjectural")
+CONFIDENCE = ("documented", "derived", "inferred")
 SLUG = re.compile(r"^[a-z0-9_]+$")
 
 # The record's fixed attested blocks, in the order a claim reads best. Everything
@@ -162,16 +162,31 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    elif conf == "inferred":
+    elif conf == "derived":
+        # Reasoned FROM something, so it owes the reasoning; and it may cite the
+        # evidence it reasoned from, which is the ordinary case.
         if not note:
-            rep.error(where, f"{key}: inferred requires a note stating the reasoning")
+            rep.error(where, f"{key}: derived requires a note stating the reasoning")
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    else:  # conjectural
-        if srcs:
-            rep.warn(where, f"{key}: conjectural but cites sources — either the source "
-                            f"supports it (make it documented/inferred) or the citation is decorative")
+    else:  # inferred — invented to fill a demonstrable need of the town
+        # It owes its reasoning too: an invention nobody can defend is the thing
+        # this project exists not to ship. What it may NOT be is silent.
+        #
+        # It may also cite sources, and under the old vocabulary that was a
+        # warning — "conjectural but cites sources, so either it is not
+        # conjectural or the citation is decorative". That rule died with the
+        # rename: an inferred value is invented WITHIN a bound, and the source
+        # that establishes the bound (the reconstruction programme, a trade
+        # roster, a census total) is exactly what makes the invention defensible
+        # rather than arbitrary. Citing it is right, not suspicious.
+        if not note:
+            rep.error(where, f"{key}: inferred requires a note stating the reasoning — "
+                             f"an invention nobody can defend is not a reconstruction")
+        for sid in srcs:
+            if sid not in source_ids:
+                rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
     return conf
 
 
@@ -536,7 +551,7 @@ def terrain_claim_index(specs: dict[str, dict], rep: Report) -> dict[str, dict[s
             for epoch, spec in sorted(specs.items())}
 
 
-def terrain_conjectural_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
+def terrain_inferred_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
     """Every value the ground states without evidence.
 
     Returns `(epoch, claim_id, label, where)`. The ground invents as freely as a
@@ -549,7 +564,7 @@ def terrain_conjectural_values(index: dict[str, dict[str, dict]]) -> list[tuple]
     return [(epoch, cid, claim.get("label") or cid, f"terrain {epoch}/{cid}")
             for epoch, claims in sorted(index.items())
             for cid, claim in claims.items()
-            if claim.get("confidence") == "conjectural"]
+            if claim.get("confidence") == "inferred"]
 
 
 def check_terrain_claims(source_ids: set, rep: Report,
@@ -971,7 +986,7 @@ def graded_values(structures: dict) -> list[tuple]:
     return found
 
 
-def conjectural_values(structures: dict) -> list[tuple]:
+def inferred_values(structures: dict) -> list[tuple]:
     """Every value a structure record states without evidence.
 
     `(structure_id, phase_id|None, aspect, where)` — the `graded_values`
@@ -979,7 +994,7 @@ def conjectural_values(structures: dict) -> list[tuple]:
     """
     return [(sid, pid, aspect, where)
             for sid, pid, aspect, where, block in graded_values(structures)
-            if block.get("confidence") == "conjectural"]
+            if block.get("confidence") == "inferred"]
 
 
 def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
@@ -1920,7 +1935,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     is a coverage check that can be satisfied by an accident of phrasing.
 
     The claims are checked the other way too. A `Covers:` token that names no such
-    structure, no such phase, or an attribute that is not conjectural is an
+    structure, no such phase, or an attribute that is not inferred is an
     over-claim: the document says it admitted to something it did not, and that
     reads as diligence while providing none. Entries under **Resolved** are exempt
     from the last of those, because an append-only document has to be able to say
@@ -1967,7 +1982,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     # Two kinds of thing owe the document an entry, and they are opposites: a
     # value invented to fill a gap, and a value we have but did not build.
     owed: list[tuple] = [(sid, pid, aspect, where, "invented")
-                         for sid, pid, aspect, where in conjectural_values(structures)]
+                         for sid, pid, aspect, where in inferred_values(structures)]
     for sid, pid, aspect, where, attr in unbuilt_values(structures, consumed or {}):
         state = attr.get("geometry")
         if state in GEOMETRY_OWES_LIBERTY and attr.get("value"):
@@ -1997,7 +2012,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
             what = (f"a drawn {aspect}" if aspect in ("footprint", "position")
                     else "a stated " + re.sub(r"\bm\b", "(m)",
                                               aspect.split(".")[-1].replace("_", " ")))
-            why = (f"{aspect} is conjectural but no liberty in docs/LIBERTIES.md "
+            why = (f"{aspect} is inferred but no liberty in docs/LIBERTIES.md "
                    f"claims it — {what} nobody can defend is something we made up")
         elif kind == "unlanded":
             why = ("this structure does not reach the ground it stands over and no "
@@ -2019,7 +2034,7 @@ def check_liberties_coverage(structures: dict, liberties: dict, rep: Report,
     ground = ground or {}
     ground_honoured: set[tuple] = set()
     ground_owed = [(e, c, lab, w, "invented")
-                   for e, c, lab, w in terrain_conjectural_values(ground)]
+                   for e, c, lab, w in terrain_inferred_values(ground)]
     # And the ground's omissions, on the same terms as a building's. The claim is
     # per FIELD and the admission is per CLAIM, because `terrain.<epoch>.<claim>`
     # is the vocabulary the document already writes in and a soil profile is not

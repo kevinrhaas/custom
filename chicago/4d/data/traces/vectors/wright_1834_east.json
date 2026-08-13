@@ -9,7 +9,7 @@
       "kind": "line",
       "read_from": "IIIF region 2200,835,1955,1997 at native scale, 2026-08-10",
       "what_was_read": "the WEST edge of the grey coastal wash. Wright shades the lake as a band that fades east, so the wash edge is the shoreline and the pale ground beyond it is still lake, not land.",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 25,
       "px": [
         [
@@ -50,7 +50,7 @@
     },
     "harbour_north_pier": {
       "kind": "line",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 20,
       "what_was_read": "the inner of the two red pier lines running ENE from the river mouth.",
       "px": [
@@ -76,7 +76,7 @@
     },
     "fort_dearborn_label": {
       "kind": "point",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 40,
       "what_was_read": "centre of the FORT DEARBORN banner. Wright LABELS the reservation and does not draw the fort's plan, so this fixes the place, not the footprint \u2014 the palisade outline must come from elsewhere.",
       "px": [
@@ -94,7 +94,7 @@
     },
     "river_mouth_south_bank": {
       "kind": "point",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 25,
       "what_was_read": "south bank at the cut, where the channel meets the harbour works.",
       "px": [
@@ -114,7 +114,7 @@
       "kind": "line",
       "read_from": "IIIF region 3020,1400,720,1250 at 2x, 2026-08-10",
       "what_was_read": "the WESTERN of the three ink lines: the mainland bank of the decaying old channel that ran south behind the bar before the 1834 cut. The arrow drawn in the channel shows the flow still heading south.",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 30,
       "px": [
         [
@@ -181,7 +181,7 @@
       "kind": "line",
       "read_from": "IIIF region 3020,1400,720,1250 at 2x, 2026-08-10",
       "what_was_read": "the MIDDLE ink line: the bar's channel-facing side.",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 30,
       "px": [
         [
@@ -248,7 +248,7 @@
       "kind": "line",
       "read_from": "IIIF region 3020,1400,720,1250 at 2x, 2026-08-10",
       "what_was_read": "the EASTERN ink line: the bar's lake-facing side, i.e. the open-water shoreline south of the harbour works.",
-      "confidence": "inferred",
+      "confidence": "derived",
       "uncertainty_m": 30,
       "px": [
         [

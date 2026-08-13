@@ -50,7 +50,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from the other params modules rather than
 # imported so that neither can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 KINDS = ("quarters", "barracks", "blockhouse", "magazine", "store", "guard",
          "sutler", "artillery", "parade", "root_house", "tower")
@@ -263,7 +263,7 @@ def from_phase(phase: dict) -> FortStructureParams:
             f"re-anchor the polygon and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     kind = str(val("kind", "quarters"))
     stories = int(val("stories", 2 if kind == "blockhouse" else 1))

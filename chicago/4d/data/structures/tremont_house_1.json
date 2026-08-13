@@ -24,7 +24,7 @@
         "utm_n": 4637304.38,
         "rotation_deg": 180.0,
         "symbolic_location": "North-west corner of Lake Street and Dearborn Street (today West Lake Street at North Dearborn Street), fronting south onto Lake.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "chicagology_prefire021",
@@ -55,13 +55,13 @@
             9.14
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING ANY DIMENSION. 15.24 x 9.14 m is 50 x 30 ft, recorded converted with the original figures stated per data/datum.json's units rule. The size is chosen to sit between the two frame hotels this project can measure at all - the Green Tree's 40 x 25 ft, itself derived from a room module rather than measured, and the Western Hotel's attested 40 ft front with a 60 ft wing - because the Tremont was the principal house on the town's other main street and took stage passengers off the Lake and Dearborn crossing. Nothing about that reasoning is evidence. The rectangle is a rectangle because no source describes a plan, and the record carries no sources on this attribute because none supports it. TO RESOLVE: the 1839 fire losses printed in the Daily American, which Andreas quotes for the merchants burned out that night and which named insured sums building by building; or an 1830s Chicago American or Democrat advertisement of the house, which in the period habitually counted rooms."
       },
       "form": {
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1",
             "chicagology_prefire021"
@@ -70,37 +70,37 @@
         },
         "stories": {
           "value": 2,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "THE THREE-STOREY TREMONT OF 1833 RESTS ON ONE UNCREDITED MODERN SENTENCE, AND THIS RECORD DOES NOT ADOPT IT. data/sources/chicagology_prefire021.json sets the problem out from the page itself: the only storey count anywhere on it is the editorial 'Building Summary' paragraph, 'The first Tremont House, a three-story wooden building at the northwest corner of Lake and Dearborn streets, was built in 1833.' NEITHER PERIOD TEXT ON THAT PAGE COUNTS STOREYS. The 1874 Tribune letter says 'an unpretending frame structure'; Chicago Illustrated (1866) says 'a wooden structure'. Andreas, who gives this building a builder, a corner, four proprietors, a construction material and a death date, gives it no height at all. So the three-storey reading is one modern compilation and whatever copied it, and docs/research/04-structures-south.md line 155 - which records the height as contested, says 'chicagology and Wikipedia say three-story wooden', and adopts three - is weighing one sentence twice. TWO IS ADOPTED AND IS STILL A GUESS. What can be said for it, and it is an argument rather than evidence: Chicago in 1833 held about 350 people, and Wau-Bun has the Sauganash's TWO storeys and white paint as 'the admiration of all the little circle at Wolf Point' two years earlier; the Chicago American's own 'Improvements in 1836' list, quoted by Andreas, counts 'about twenty large two to three-story wooden buildings' among that year's NEW work, which places the three-storey wooden building in Chicago as a phenomenon of 1836 and not of 1833; and this project already excludes the Saloon Building of 1836 on the understanding that it was the town's first three-storey structure (data/exclusions.json), which the three-storey reading here would contradict. THE LIVE ALTERNATIVE WOULD RAISE THE BUILDING ABOUT 2.6 M and is recorded here so nobody has to rediscover it. TO RESOLVE: the 1839 fire coverage in the Daily American, or any period advertisement of the house."
         },
         "wall_height_m": {
           "value": 5.2,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOT ATTESTED. 5.2 m is about 17 ft - two storeys at period floor heights plus structure and a sill, the same figure this project uses for the Steamboat Hotel and the Miller house's two-storey range. It inherits the storey count above, which is itself a guess, and would be about 7.8 m if the three-storey reading is right. The one attested ceiling height in this dataset is the Green Tree's seven and a half feet, which its own source calls low for a hotel."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOT ATTESTED. Nothing describes a roof of any kind on this building. Gable is the ordinary roof for a frame block of this type and period, and it is what the archetype would default to in any case; it is stated rather than defaulted so the confidence view can show it as the invention it is."
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 38 degrees is this archetype's mid-range for period framing, inferred from construction practice rather than measured - the same value and the same reasoning as the other frame records here. It is an inference about how a roof of this kind was framed, sitting on a roof form the record has already tagged as a guess."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOT ATTESTED EITHER WAY, and this attribute is read by the archetype, so leaving it out would have painted the building white by default - which is a claim. Unpainted weathered clapboard is the cheaper reading and it is weakly supported by the one description anybody wrote down: Ira Couch 'found the house a mere shell, without any sidewalk around it, and poorly furnished, as none of the rooms were entirely carpeted' (chicagology_prefire021, Chicago Tribune, 2 February 1874). A man who itemised the missing carpets and the missing pillows did not mention paint. That is weak negative evidence at best, and the value is still a choice."
         },
         "gallery": {
           "value": false,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOT ATTESTED EITHER WAY. False is what the archetype falls back to, not a finding, and the consequence is the one docs/LIBERTIES.md L19 records for the Green Tree and the Western: a plain front reads as the answer while a drawn shape at least announces itself as a choice. A stage house on the town's principal crossing is exactly the type that often carried a porch - and the 1874 letter's complaint that around this corner in early spring 'it was impossible to drive the stage, and the passengers had to walk some two blocks' says stages came here without saying what they drew up under."
         },
         "chimneys": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Two is the count a frame block of this frontage carries if it is heating public rooms and lodging rooms through a Chicago winter, and it is what this project's other frame hotels record. The COUNT is the inference; position, size and material are the archetype's - docs/LIBERTIES.md L26."
         },
         "sidewalk": {

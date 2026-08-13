@@ -11,7 +11,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "harrison_1830_river_mouth"
@@ -23,7 +23,7 @@
         "utm_n": 4637596.71,
         "rotation_deg": 8.0,
         "symbolic_location": "Inside the south wall of Fort Dearborn, immediately west of the south gate, fronting north onto the parade.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "andreas_1884_v1"
@@ -53,7 +53,7 @@
             4.22
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth"
         ],
@@ -70,32 +70,32 @@
         },
         "construction": {
           "value": "log",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. Log by the same argument as the barracks."
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A guard-house is a guard room and a cell; single storey is the type and the 1830 plan draws it small."
         },
         "wall_height_m": {
           "value": 2.6,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No height attested. About eight and a half feet, one storey of log wall at period course counts."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested; gable is the type."
         },
         "roof_pitch_deg": {
           "value": 34.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A room occupied by a guard through the night in winter has a stack. The COUNT is the inference."
         }
       }

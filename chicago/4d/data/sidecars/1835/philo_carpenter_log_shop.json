@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1832-07-18",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "chicagology_prefire273"
@@ -25,7 +25,7 @@
     "local_e": 113.4,
     "local_n": -127.5,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "chicagology_prefire273",
@@ -73,32 +73,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not stated. A 16 x 20 ft single-pen log building is single-storey by type, and a two-storey building on that plan would be a tower. Inference from the documented dimensions, which is as close to derivation from evidence as this dataset's storey counts get."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. The same reading and the same number this project gives Hogan's store and the Walker meeting house."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region. A shed roof leaning on the Sauganash's east wall is the one plausible alternative — 'immediately adjacent' could describe a lean-to — and it is recorded here rather than built, because nothing in the sources describes the junction between the two buildings."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested, and nothing describes a stack on this building. One is the minimum for a shop kept through Chicago winters, and a druggist compounding in an unheated room in January is not a thing. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "drug_store",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26"
@@ -107,7 +107,7 @@
     },
     "occupants": {
       "value": "unattested at the scene date; Philo Carpenter from 1832",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],

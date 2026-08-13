@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1832-06-01",
         "to": "1839-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_kinzie_bridge",
           "chicagology_prefire252",
@@ -26,7 +26,7 @@
         "utm_n": 4637656.3,
         "rotation_deg": 0.0,
         "symbolic_location": "Across the North Branch on the Kinzie Street alignment, its west landing near the south-east corner of Kinzie and Canal Streets.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "derivation": {
           "method": "traced_waterline",
           "control": "kinzie_canal",
@@ -70,7 +70,7 @@
             3.048
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire252",
           "wright_1834"
@@ -140,12 +140,12 @@
         },
         "stringer_count": {
           "value": 4,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "THE 1835 READING OF A BRIDGE THAT CHANGED. Andreas describes the 1832 structure as 'formed of stringers and only fitted for foot passengers' and 'useless for teams' even in the summer of 1833; six and a half weeks after this scene's date a procession of hundreds crossed it, and Cleaver remembered driving over it. Something was rebuilt or widened between 1833 and 1835 and no source reached says what. Four stringers under a full-width deck is the later, load-carrying reading, chosen because the scene date is 1835-07-01 and the evidence for 1835 is a crowd on the deck. The alternative — the 1832 walkway, two stringers and a plank — is a defensible model of a different year and would be the right value in an 1833 scene."
         },
         "railing": {
           "value": false,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "old_settlers_bridges_1883"
           ],

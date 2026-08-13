@@ -71,7 +71,7 @@ def dumps(doc, indent: int) -> str:
 def arrival_block() -> dict:
     return {
         "value": SCENE_DATE,
-        "confidence": "inferred",
+        "confidence": "derived",
         "note": ("NOT AN ARRIVAL, A BOUND. Nothing dates a hypothesised household, and a year "
                  "would be a claim nobody made. `not_later_than` the scene date states the only "
                  "thing the inference carries: the town's need is measured on 1 July 1835, so "
@@ -82,13 +82,13 @@ def arrival_block() -> dict:
 
 
 def null_block(note: str) -> dict:
-    return {"value": None, "confidence": "conjectural", "note": note}
+    return {"value": None, "confidence": "inferred", "note": note}
 
 
 def link_block(sid, note: str) -> dict:
     if sid is None:
         return null_block(note)
-    return {"value": sid, "confidence": "inferred", "sources": [SPEC], "note": note}
+    return {"value": sid, "confidence": "derived", "sources": [SPEC], "note": note}
 
 
 def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = None) -> dict:
@@ -114,7 +114,7 @@ def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = 
         "grade": "inferred",
         "occupation": {
             "value": occ,
-            "confidence": "inferred",
+            "confidence": "derived",
             "sources": [ANDREAS, SPEC],
             "note": census[occ]["argument"],
         },
@@ -202,7 +202,7 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
         "works_at": link_block(works, works_note),
         "present_on_scene_date": {
             "value": "present",
-            "confidence": "inferred",
+            "confidence": "derived",
             "note": ("Presence on the scene date IS the hypothesis: this household exists in the "
                      "dataset because the town of 1 July 1835 demonstrably needed households of "
                      "this trade. It is not a finding about anybody's whereabouts."),
@@ -239,7 +239,7 @@ def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
 
 def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 9.0) -> dict:
     def a(v):
-        return {"value": v, "confidence": "inferred", "sources": [SPEC], "note": spec_note}
+        return {"value": v, "confidence": "derived", "sources": [SPEC], "note": spec_note}
 
     if archetype == "log_dwelling":
         return {"stories": a(1), "wall_height_m": a(2.5), "roof_type": a("gable"),
@@ -265,7 +265,7 @@ def inferred_form(archetype: str, family: str, spec_note: str, width_m: float = 
                 "roof_pitch_deg": a(33.0), "gable_front": a(True),
                 "construction": a("braced_frame"), "cladding": a("clapboard"),
                 "paint": a("unpainted"), "loft": a(family in ("C2", "C3")), "chimneys": a(1),
-                "shopfront": ({"value": False, "confidence": "inferred", "sources": [SPEC],
+                "shopfront": ({"value": False, "confidence": "derived", "sources": [SPEC],
                                "note": narrow_note} if not wide else a(True)),
                 "goods_door": a(wide), "goods_door_side": a("end")}
     door = "wagon" if family in ("W1", "W2", "W3", "W5", "F1", "A2") else (
@@ -318,14 +318,14 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         trade = label(b["occupation"])
         name = "Inferred " + b["function"].replace("_", " ") + " (" + trade + ")"
         function_value = b["function"]
-        exist_conf, exist_src = "conjectural", None
+        exist_conf, exist_src = "inferred", None
         exist_note = ("NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the "
                       "roof an inferred household requires - " + role_lc + " The argument for the "
                       "trade's presence in the town is in the household record and in the "
                       "occupation census at "
                       "data/reconstruction/1835_inferred_household_programme.json; the argument "
                       "for THIS BUILDING is only that the household needs somewhere to be.")
-        pos_conf, pos_src = "conjectural", None
+        pos_conf, pos_src = "inferred", None
         pos_note = ("INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. " + role + " The band follows "
                     "ROADMAP K1's placement rule - businesses toward the river and the built "
                     "streets, residences further out - using the same frontage bands the "
@@ -396,7 +396,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         },
         "footprint": {
             "polygon": [[0, 0], [w, 0], [w, d], [0, d]],
-            "confidence": "conjectural",
+            "confidence": "inferred",
             "note": foot_note,
         },
         "form": form,

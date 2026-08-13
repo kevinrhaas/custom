@@ -88,7 +88,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from the sibling params modules rather than
 # imported so that no one of them can break another's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 # What a viewer can see of how the thing was put together, and nothing more. The
 # framing method behind sawn boards is invisible at this LOD and unattested for every
@@ -596,7 +596,7 @@ def from_phase(phase: dict) -> OutbuildingParams:
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     open_sides = val("open_sides", ())
     if isinstance(open_sides, str):

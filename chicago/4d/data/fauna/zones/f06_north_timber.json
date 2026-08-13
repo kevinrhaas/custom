@@ -33,17 +33,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "'Western fox squirrel' is in the Chicago Academy of Sciences regional list; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it. Andreas full-text searches for 'squirrels' returned nothing, which the dossier warns is 'not found', not 'not present'."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The most visible mammal in oak timber by a wide margin, and the noisiest."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading; oak timber is prime fox-squirrel ground."
     },
     "max_group": 3,
@@ -52,7 +52,7 @@
     "appearance": "Big, heavy, rusty-bellied grey squirrel \u2014 larger and redder than a gray squirrel.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "'Western fox squirrel' is in the regional retrospective, which has no source record. Andreas full-text searches for 'squirrels' returned nothing, and the dossier warns that this scan's index is lossy enough that 'not found' is not 'not present'."
   },
   {
@@ -68,17 +68,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional retrospective only; see f05_gallery_timber \u2014 the Wau-Bun fur list does NOT name raccoon, contrary to the dossier's tag."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A female with kits, at night, near water or refuse."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional; no local count."
     },
     "max_group": 4,
@@ -87,7 +87,7 @@
     "appearance": "Grey, masked, ringed tail.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "See f05_gallery_timber for the citation correction: the Wau-Bun fur list does not name raccoon, so nothing in data/sources/ supports this animal and it is graded inferred."
   },
   {
@@ -112,12 +112,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Bedded in cover by day and out at the edges at dusk. Inside the platted grid on a July day a deer is unlikely; this zone is the timber, which is where they are."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Present but not numerous inside a 640 m box beside a boomtown of 3,265 people."
     },
     "max_group": 3,
@@ -146,17 +146,17 @@
    "july": {
     "status": {
      "value": "post_breeding_dispersal",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The species nested in huge colonies roughly March to May and the great flights were spring and autumn. On 1 July the birds are in small, loose, wandering post-breeding flocks and family groups feeding on early mast and grain."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Fast, direct, long-tailed birds crossing over the timber; seen as movement rather than as a settled flock."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Uncommon AS A JULY SIGHT, which is not a claim about the species' abundance in the region. See the note: the numbers this bird is famous for belong to other months."
     },
     "max_group": 40,
@@ -165,7 +165,7 @@
     "appearance": "Slim, long-tailed, blue-grey above with a wine-coloured breast on the male \u2014 nothing like a modern city pigeon in shape or speed.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "THE NUMBERS ARE THE WHOLE PROBLEM WITH THIS SPECIES, so here is exactly what the dossier's source says and no more. A Chicago newspaper of 17 SEPTEMBER 1836 reported that within the past several days 'our town was swarming with pigeons, the horizon in almost every direction was black with them.' That is the Chicago record: it is real, it is quantitative in the only way the period ever was, and it is MID-SEPTEMBER \u2014 a fall movement, fourteen months after this scene date. On 1 July the correct number is tens, not millions. The dossier's citations (Project Passenger Pigeon at the Chicago Academy of Sciences Nature Museum, and Greenberg's A Natural History of the Chicago Region) have no source record in data/sources/, so this record is graded inferred and the September 1836 quotation is carried here in full rather than resting on a citation the project cannot resolve. A sky-darkening flight over 1 July 1835 would be an anachronism of season, not of species."
   },
   {
@@ -181,17 +181,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The Forest Preserves of Cook County name the red-headed woodpecker among the species that require wild Cook County habitat; that is a modern land-manager's page and says nothing about 1835 or about savanna specifically."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Conspicuous: perches on dead snags in the open and sallies out after insects."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading; open oak timber with standing dead wood."
     },
     "max_group": 3,
@@ -200,7 +200,7 @@
     "appearance": "Solid crimson head, black back, and a huge white wing patch that flashes on every flight \u2014 the most immediately identifiable bird in the timber.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": [
     "fpdcc_ecosystems"
    ],
@@ -219,17 +219,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from open oak timber."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeds on the ground on ants and flushes conspicuously."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -238,7 +238,7 @@
     "appearance": "Brown barred back, black bib, white rump, yellow under the wings.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The long wick-wick-wick territorial call and the drumming are spring signals and are largely done by 1 July; single calls persist."
   },
   {
@@ -255,17 +255,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from oak timber; no 1830s Chicago bird list survives in anything the project can reach."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sings from mid-canopy and is rarely seen."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -274,7 +274,7 @@
     "appearance": "Plain grey-olive flycatcher on an exposed inner branch.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The pewee sings on through July and into August when almost everything else has stopped, which is why it carries this zone's July voice and most of the list does not."
   },
   {
@@ -291,17 +291,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from oak timber."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Loud, obvious, and the timber's alarm system."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 6,
@@ -310,7 +310,7 @@
     "appearance": "Blue, white and black, crested.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Jays have no song at all \u2014 calls are the whole vocabulary, in every month. Worth recording so that a renderer does not reach for jays to fill a 'chorus'."
   },
   {
@@ -327,17 +327,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "'One chickadee/titmouse' for northern Illinois is all the Academy retrospective's bird section gives; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Confiding and constantly calling in mixed flocks."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 8,
@@ -346,7 +346,7 @@
     "appearance": "Black cap and bib, white cheek, buff flanks.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The two-note fee-bee whistle is a late-winter and spring song and is essentially over by July; the scolding call is year-round."
   },
   {
@@ -363,17 +363,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from timber edge and open ground."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Both: the cooing carries and the wing whistle marks every flush."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 6,
@@ -382,7 +382,7 @@
     "appearance": "Slim, buff, long pointed tail with white edges.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Doves nest repeatedly through the summer and coo all July, so full song is correct here and is not a spring holdover."
   },
   {
@@ -398,17 +398,17 @@
    "july": {
     "status": {
      "value": "doubtful",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The regional retrospective lists 'red and grey fox' without separating them, so which fox was here in 1835 is not recoverable. Gray fox is the timber species of the pair and is placed here for that reason, with the uncertainty on the record."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A single animal at night, if at all."
     },
     "abundance": {
      "value": "sparse",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "One animal, at distance, not a population in view."
     },
     "max_group": 1,
@@ -417,7 +417,7 @@
     "appearance": "Grizzled grey with rusty flanks and a black-tipped tail; climbs trees, unlike the red fox.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The regional list names 'red and grey fox' together and separates neither by place or date, so which fox was here is not recoverable and the record says so."
   },
   {
@@ -433,17 +433,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Annual cicadas are on the wing July-September."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Loud from the canopy; almost never seen."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -452,7 +452,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Genus-level on purpose: which annual cicadas were at Chicago in 1835 is not recoverable, and naming a species would be a false precision. The July-to-September flight period is the whole of the claim."
   },
   {
@@ -467,17 +467,17 @@
    "july": {
     "status": {
      "value": "doubtful",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The dossier itself puts this species in the timber 'from ~mid-July'. The scene date is 1 July, which is BEFORE that, so the correct record is doubt rather than presence: the adults are probably not yet calling."
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Recorded as present in the landscape and not perceptible on this date. If a renderer ever wants the katydid night, it must move the scene date, not the record."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Unknown for 1 July; the July peak is two to six weeks later."
     },
     "max_group": 0,
@@ -486,7 +486,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "A two-week phenological gap made explicit rather than rounded away. This is the fauna equivalent of asking whether a plant is in flower on the day, not in the month."
   },
   {
@@ -501,17 +501,17 @@
    "july": {
     "status": {
      "value": "absent_anachronism",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1851, sixteen years after this scene. A hard anachronism check, not a judgement call."
     },
     "presence": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1851, sixteen years after this scene. A hard anachronism check, not a judgement call."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1851, sixteen years after this scene. A hard anachronism check, not a judgement call."
     },
     "max_group": 0,
@@ -520,7 +520,7 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Introduced to North America in 1851, sixteen years after this scene. A hard anachronism check, not a judgement call."
   },
   {
@@ -535,17 +535,17 @@
    "july": {
     "status": {
      "value": "absent_anachronism",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1890, fifty-five years after this scene."
     },
     "presence": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1890, fifty-five years after this scene."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Introduced to North America in 1890, fifty-five years after this scene."
     },
     "max_group": 0,
@@ -554,7 +554,7 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Introduced to North America in 1890, fifty-five years after this scene."
   },
   {
@@ -569,17 +569,17 @@
    "july": {
     "status": {
      "value": "absent_extirpated",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Chicago-area bear records end in the 1830s and are anecdotal; a bear wandering into the settlement is a 19th-century story that cannot be dated to 1835. Statewide the species persisted later, which is why this is an absence from the TOWN SITE rather than from Illinois."
     },
     "presence": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Chicago-area bear records end in the 1830s and are anecdotal; a bear wandering into the settlement is a 19th-century story that cannot be dated to 1835. Statewide the species persisted later, which is why this is an absence from the TOWN SITE rather than from Illinois."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Chicago-area bear records end in the 1830s and are anecdotal; a bear wandering into the settlement is a 19th-century story that cannot be dated to 1835. Statewide the species persisted later, which is why this is an absence from the TOWN SITE rather than from Illinois."
     },
     "max_group": 0,
@@ -588,7 +588,7 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Graded as an absence with the rare-vagrant possibility stated rather than silently dropped, because the dossier records it as [INF absent; CONJ rare vagrant]."
   },
   {
@@ -603,17 +603,17 @@
    "july": {
     "status": {
      "value": "absent_extirpated",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Probably exterminated in Illinois before 1870 and locally far earlier; no credible town-site presence in 1835."
     },
     "presence": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Probably exterminated in Illinois before 1870 and locally far earlier; no credible town-site presence in 1835."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Probably exterminated in Illinois before 1870 and locally far earlier; no credible town-site presence in 1835."
     },
     "max_group": 0,
@@ -622,7 +622,7 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Probably exterminated in Illinois before 1870 and locally far earlier; no credible town-site presence in 1835."
   }
  ],

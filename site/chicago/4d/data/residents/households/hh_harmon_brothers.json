@@ -5,7 +5,7 @@
  "head": "harmon_charles_l",
  "arrival": {
   "value": "1831",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,12 +14,12 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested. The doctor's family that followed him in 1831 comprised a wife and up to nine children, four of whom died in infancy, and no source counts who travelled."
  },
  "origin": {
   "value": "Burlington, Vermont",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -27,7 +27,7 @@
  },
  "reason_for_coming": {
   "value": "Following their father west after his business reverses",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -35,12 +35,12 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "works_at": {
   "value": "harmon_loomis_store",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -49,7 +49,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],

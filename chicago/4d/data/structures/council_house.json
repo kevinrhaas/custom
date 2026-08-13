@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1834-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "chicagology_lastwardance"
@@ -24,7 +24,7 @@
         "utm_n": 4637628.8,
         "rotation_deg": 180.0,
         "symbolic_location": "North side of the river, east of State Street and west of the Lake House site at the north-east corner of Rush and Water Streets.",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "THE COORDINATE IS A POINT CHOSEN INSIDE AN ATTESTED BAND, WHICH IS NOT A DERIVATION, so it is tagged conjectural and cites no sources — the rule this project applied to the Walker meeting house. THE BAND IS REAL AND IT IS WIDE. The Tribune: the dancers 'assembled at the \"Council House\" on the north side of the river, east of the present State street and west of the \"Lake House,\" a hotel which was at the northeast corner of Rush and Water streets'. State Street is local E +827 in this project's frame; Rush Street, from the modern OpenStreetMap intersection used as ground control for the 1834 sheets, is local E +1045. So the source bounds the building inside a 215 m stretch of the north bank and says nothing else about where in it. This record places it near the middle of that stretch, on the bank a little north of the drawn 1834 waterline, and the along-bank position is good to no better than ±110 m — five times the georeference's own uncertainty and the largest positional error in this dataset. The sidecar's flat uncertainty_m of 20 badly understates it; that is admitted in docs/LIBERTIES.md. Facade bearing 180, due south to the river, is the bank's orientation and nothing more; no source says which way the building faced. There is no modelled terrain under it — it stands about 620 m east of the terrain box.",
         "derivation": {
           "method": "not_derivable",
@@ -50,7 +50,7 @@
             7
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER — NOTHING WHATEVER IS ATTESTED ABOUT THIS BUILDING'S SIZE OR PLAN. 12 x 7 m is about 40 x 23 ft: one room long enough to seat a council and a congregation, since the two uses the sources record for it are a treaty council and Methodist services. Every number is invented and the rectangle is a rectangle because no source describes a plan."
       },
       "form": {
@@ -64,27 +64,27 @@
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A council house is a hall — one tall room — and every log building in this quarter is described as single-storey. Inference from the type and the use, not from a statement."
         },
         "wall_height_m": {
           "value": 2.6,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.6 m is about 8 ft 6 in: a single-storey log wall at the course counts this project uses elsewhere on this bank. A room built for assemblies might have been raised higher, which nothing says."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low log building roofed in riven shakes. Inferred from construction practice, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a room used for winter services and the normal number for a single-pen log building. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
         }
       },

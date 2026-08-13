@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1830-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire273",
       "andreas_1884_v1"
@@ -25,7 +25,7 @@
     "local_e": -68.7,
     "local_n": -62.8,
     "rotation_deg": 90.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "chicagology_prefire273",
@@ -56,14 +56,14 @@
         6
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION, PROPORTION OR PLAN FORM IS ATTESTED. 7 x 6 m is about 23 x 20 ft, a single-pen storehouse of the type and period; the 7 m runs north-south along the river frontage and the 6 m is the depth. Every number is invented and the polygon cites no sources. What the sources give is a TRADE and not a building: 'a storehouse dealing in groceries and Indian goods' names the stock, not the fabric, and Andreas's line names the trader and his neighbour, not his premises. To resolve: Andreas vol. 1 at page-image level around the Wolf Point material, or either of the retrospective Wolf Point views examined at plate level for the row's massing."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire273"
       ],

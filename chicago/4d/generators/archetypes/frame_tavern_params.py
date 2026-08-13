@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 ROOF_TYPES = ("gable", "hip", "shed", "gambrel")
 CONSTRUCTIONS = ("balloon_frame", "braced_frame", "log", "brick", "timber_crib")
@@ -179,7 +179,7 @@ def from_phase(phase: dict) -> FrameTavernParams:
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     p = FrameTavernParams(
         width_m=round(width, 3),

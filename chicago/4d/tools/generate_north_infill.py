@@ -48,7 +48,7 @@ def load(path: Path):
 
 
 def inferred(value, reason: str):
-    return {"value": value, "confidence": "inferred", "sources": [SOURCE_ID], "note": reason}
+    return {"value": value, "confidence": "derived", "sources": [SOURCE_ID], "note": reason}
 
 
 def archetype_for(family: str) -> str:
@@ -208,19 +208,19 @@ def make_record(row: list, datum: dict) -> dict:
         "phases": [{
             "id": PHASE_ID,
             "documented_range": {
-                "from": "1835-01-01", "to": "1835-12-31", "confidence": "conjectural",
+                "from": "1835-01-01", "to": "1835-12-31", "confidence": "inferred",
                 "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
             },
             "position": {
                 "utm_e": round(float(datum["origin_utm_e"]) + local_e, 3),
                 "utm_n": round(float(datum["origin_utm_n"]) + local_n, 3),
                 "rotation_deg": float(bearing), "symbolic_location": symbolic,
-                "confidence": "conjectural", "note": position_note,
+                "confidence": "inferred", "note": position_note,
                 "derivation": {"method": "not_derivable", "reason": "No parcel-by-parcel July 1835 North Division roof register survives in the supplied evidence."}
             },
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
-                "confidence": "conjectural",
+                "confidence": "inferred",
                 "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, int(seq), paint),

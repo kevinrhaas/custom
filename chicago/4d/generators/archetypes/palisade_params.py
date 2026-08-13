@@ -44,7 +44,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from the other params modules rather than
 # imported so that neither can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 WALL_KINDS = ("picket_stockade", "worm_fence")
 CONSTRUCTIONS = ("log", "hewn_log", "split_rail")
@@ -265,7 +265,7 @@ def from_phase(phase: dict) -> PalisadeParams:
             f"re-anchor the polygon and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     p = PalisadeParams(
         width_m=round(width, 3),

@@ -86,7 +86,7 @@ import { openQuestionsFor, uncertaintyEntryHtml } from './exclusions.js';
 // for the two states that deliberately get none, is in that file.
 import { geometryMark } from './geometry.js';
 
-const CONF_ORDER = { documented: 0, inferred: 1, conjectural: 2 };
+const CONF_ORDER = { documented: 0, derived: 1, inferred: 2 };
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -106,7 +106,7 @@ function prettyValue(v) {
 }
 
 function chip(confidence) {
-  const c = confidence || 'conjectural';
+  const c = confidence || 'inferred';
   return `<span class="conf conf-${escapeHtml(c)}">${escapeHtml(c)}</span>`;
 }
 

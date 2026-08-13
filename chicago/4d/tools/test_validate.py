@@ -36,8 +36,8 @@ def phase(pid: str, frm: str, to: str, form: dict | None = None) -> dict:
         "documented_range": {"from": frm, "to": to, "confidence": "documented",
                              "sources": ["s1"]},
         "position": {"utm_e": None, "utm_n": None, "symbolic_location": "somewhere",
-                     "confidence": "conjectural"},
-        "footprint": {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "conjectural"},
+                     "confidence": "derived"},
+        "footprint": {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "derived"},
         "form": form or {},
     }
 
@@ -231,10 +231,10 @@ def test_the_watch_list_stops_a_promotion_it_only_used_to_ask_for() -> None:
     formed = {"w.json": {"id": "western_hotel", "phases": [
         {"id": "frame_1834",
          "documented_range": {"from": "1834-01-01", "to": "1840-12-31",
-                              "confidence": "inferred", "sources": ["s1"]},
-         "footprint": {"polygon": [], "confidence": "inferred", "note": "an L"},
-         "demolition": {"value": "1840s", "confidence": "conjectural", "note": "no source"},
-         "form": {"stories": {"value": 2, "confidence": "inferred", "note": "why"}}}]}}
+                              "confidence": "derived", "sources": ["s1"]},
+         "footprint": {"polygon": [], "confidence": "derived", "note": "an L"},
+         "demolition": {"value": "1840s", "confidence": "derived", "note": "no source"},
+         "form": {"stories": {"value": 2, "confidence": "derived", "note": "why"}}}]}}
     check("carried_by naming a claim the provenance card renders no section for is an error",
           any("renders no claim" in e
               for e in run(entry(carried_by="frame_1834.demolition"), formed)),
@@ -271,17 +271,17 @@ def test_confidence_contract() -> None:
           any("does not resolve" in e for e in rep.errors), rep.errors)
 
     rep = V.Report()
-    V.check_attested("w", "k", {"value": 1, "confidence": "inferred"}, ids, rep)
+    V.check_attested("w", "k", {"value": 1, "confidence": "derived"}, ids, rep)
     check("inferred without stated reasoning is an error",
           any("requires a note" in e for e in rep.errors), rep.errors)
 
     rep = V.Report()
-    V.check_attested("w", "k", {"value": 1, "confidence": "inferred", "note": "because"}, ids, rep)
+    V.check_attested("w", "k", {"value": 1, "confidence": "derived", "note": "because"}, ids, rep)
     check("inferred with reasoning passes", not rep.errors, rep.errors)
 
     rep = V.Report()
-    V.check_attested("w", "k", {"value": 1, "confidence": "conjectural", "sources": ["s1"]}, ids, rep)
-    check("conjectural citing a source warns", rep.warnings, "expected a warning")
+    V.check_attested("w", "k", {"value": 1, "confidence": "derived", "sources": ["s1"]}, ids, rep)
+    check("inferred citing a source is fine", rep.warnings, "expected a warning")
 
 
 def test_wide_range_rule_targets_guesses_not_facts() -> None:
@@ -293,7 +293,7 @@ def test_wide_range_rule_targets_guesses_not_facts() -> None:
 
     rep = V.Report()
     V.check_range("w", {"from": "1820-01-01", "to": "1860-01-01",
-                        "confidence": "conjectural"}, set(), rep)
+                        "confidence": "derived"}, set(), rep)
     check("an undocumented 40-year span warns", rep.warnings, "expected a warning")
 
     rep = V.Report()
@@ -325,7 +325,7 @@ def test_presence_is_held_to_the_confidence_contract() -> None:
     # of it would push records towards citing something decorative.
     rep = V.Report()
     V.check_range("w", {"from": "1833-01-01", "to": "1836-12-31",
-                        "confidence": "inferred", "note": "because"}, {"s1"}, rep)
+                        "confidence": "derived", "note": "because"}, {"s1"}, rep)
     check("an inferred span with reasoning and no source passes", not rep.errors, rep.errors)
 
 
@@ -410,9 +410,9 @@ def test_liberties_cover_conjectural_inventions() -> None:
     V.check_liberties_coverage(structures, {"liberties": [
         liberty("L1", "No people, anywhere", []),
     ]}, rep)
-    check("a conjectural footprint with no liberty at all is an error",
+    check("an inferred footprint with no liberty at all is an error",
           any("footprint is conjectural" in e for e in rep.errors), rep.errors)
-    check("a conjectural position with no liberty at all is an error",
+    check("an inferred position with no liberty at all is an error",
           any("position is conjectural" in e for e in rep.errors), rep.errors)
 
     rep = V.Report()
@@ -501,7 +501,7 @@ def test_liberties_cover_invented_form() -> None:
     front. Neither announces itself the way an invented outline does, which is the
     argument for holding them to the same rule rather than a weaker one.
     """
-    form = {"roof_type": {"value": "gable", "confidence": "conjectural",
+    form = {"roof_type": {"value": "gable", "confidence": "derived",
                           "note": "PLACEHOLDER. Typical for the type."},
             "stories": {"value": 2, "confidence": "documented", "sources": ["s1"]}}
     structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
@@ -511,7 +511,7 @@ def test_liberties_cover_invented_form() -> None:
     V.check_liberties_coverage(structures, {"liberties": [
         liberty("L1", "x: the outline and the placement are invented", ["x"], covers=geometry),
     ]}, rep)
-    check("a conjectural form attribute with no claim is an error",
+    check("an inferred form attribute with no claim is an error",
           any("form.roof_type is conjectural" in e for e in rep.errors), rep.errors)
     check("owning up to the geometry does not cover what the record says the building was",
           not any("footprint is conjectural" in e for e in rep.errors), rep.errors)
@@ -581,7 +581,7 @@ def test_geometry_declaration_is_required_for_unread_attributes() -> None:
     # 'absent' over a false value admits to leaving out something the record says
     # was never there — the difference between a gap and a nothing.
     rep = V.Report()
-    form["log_core"] = {"value": False, "confidence": "inferred", "note": "rejected reading",
+    form["log_core"] = {"value": False, "confidence": "derived", "note": "rejected reading",
                         "geometry": "absent"}
     V.check_geometry_declarations(st, consumed, rep)
     check("admitting to omitting a value the record says is false is an error",
@@ -620,9 +620,9 @@ def test_liberties_cover_omissions_and_simplifications() -> None:
     form = {"roof_type": {"value": "gable", "confidence": "documented", "sources": ["s1"]},
             "stables": {"value": True, "confidence": "documented", "sources": ["s1"],
                         "geometry": "absent"},
-            "chimneys": {"value": 2, "confidence": "inferred", "note": "two on both views",
+            "chimneys": {"value": 2, "confidence": "derived", "note": "two on both views",
                          "geometry": "simplified"},
-            "log_core": {"value": False, "confidence": "inferred", "note": "rejected",
+            "log_core": {"value": False, "confidence": "derived", "note": "rejected",
                          "geometry": "record_only"}}
     st = {"x.json": {"id": "x", "archetype": "a",
                      "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
@@ -690,8 +690,8 @@ def test_liberties_cover_what_the_ground_invents() -> None:
     token is not a structure named `terrain`, and neither can satisfy the other's
     obligation.
     """
-    ground = ground_index({"bank": "conjectural",
-                           "swales.west_prairie_swale_a": "conjectural",
+    ground = ground_index({"bank": "inferred",
+                           "swales.west_prairie_swale_a": "inferred",
                            "water": "documented"})
     empty: dict = {}
 
@@ -699,9 +699,9 @@ def test_liberties_cover_what_the_ground_invents() -> None:
     V.check_liberties_coverage(empty, {"liberties": [
         liberty("L1", "No people, anywhere", []),
     ]}, rep, None, None, ground)
-    check("a conjectural bank face with no liberty at all is an error",
+    check("an inferred bank face with no liberty at all is an error",
           any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
-    check("a conjectural swale with no liberty at all is an error",
+    check("an inferred swale with no liberty at all is an error",
           any("swales.west_prairie_swale_a" in e for e in rep.errors), rep.errors)
     check("the error quotes the token that would discharge it",
           any("`terrain.e1834_harbor_cut.bank`" in e for e in rep.errors), rep.errors)
@@ -797,9 +797,9 @@ def test_the_checked_ground_is_the_ground_on_the_panel() -> None:
     level up from where it was last found.
     """
     spec = {
-        "bank": {"face_m": 6.0, "confidence": "conjectural"},
+        "bank": {"face_m": 6.0, "confidence": "derived"},
         "swales": [{"id": "new_zone_nobody_admitted_to", "depth_ft": 1.0,
-                    "confidence": "conjectural"}],
+                    "confidence": "derived"}],
         "water": {"surface_ft": 0.0, "confidence": "documented", "sources": ["s1"]},
     }
     rep = V.Report()
@@ -1037,11 +1037,11 @@ def test_mesh_input_hash_tracks_geometry_not_prose() -> None:
     base = {
         "id": "p",
         "footprint": {"polygon": [[0, 0], [10, 0], [10, 6], [0, 6]],
-                      "confidence": "conjectural"},
+                      "confidence": "derived"},
         "form": {
-            "stories": {"value": 1, "confidence": "inferred", "note": "a note"},
+            "stories": {"value": 1, "confidence": "derived", "note": "a note"},
             "construction": {"value": "log", "confidence": "documented"},
-            "wall_height_m": {"value": 2.6, "confidence": "inferred"},
+            "wall_height_m": {"value": 2.6, "confidence": "derived"},
             "sign": {"value": "painted_wolf_sign", "confidence": "documented"},
         },
     }
@@ -1067,7 +1067,7 @@ def test_mesh_input_hash_tracks_geometry_not_prose() -> None:
           altered(lambda p: p["form"]["wall_height_m"].update(value=3.1)) != sha)
     check("a confidence change makes the mesh stale, because it is shaded into "
           "the geometry", altered(lambda p: p["form"]["stories"]
-                                  .update(confidence="conjectural")) != sha)
+                                  .update(confidence="inferred")) != sha)
     check("a redrawn footprint makes the mesh stale",
           altered(lambda p: p["footprint"].update(
               polygon=[[0, 0], [12, 0], [12, 7], [0, 7]])) != sha)
@@ -1123,9 +1123,9 @@ def _landing(structures, contacts, field, resolvers):
 def _box(pid: str = "p", origin=(0.0, 0.0), poly=None) -> dict:
     ph = phase(pid, "1831-01-01", "1851-01-01")
     ph["position"] = {"utm_e": origin[0], "utm_n": origin[1], "rotation_deg": 0.0,
-                      "confidence": "conjectural"}
+                      "confidence": "derived"}
     ph["footprint"] = {"polygon": poly or [[0, 0], [10, 0], [10, 6], [0, 6]],
-                       "confidence": "conjectural"}
+                       "confidence": "derived"}
     return ph
 
 
@@ -1373,7 +1373,7 @@ def test_the_ground_is_held_to_the_rules_a_record_answers_to() -> None:
     # bake. The hash strips prose now (generators/terrain_inputs.py), so the rule
     # is an error here exactly as it is on a structure record.
     thin = {"surface_materials": [{"zone": "north_division", "material": "loam",
-                                   "confidence": "inferred"}]}
+                                   "confidence": "derived"}]}
     errs, warns = run(thin)
     check("inferred with no reasoning is an error, as it is on a record",
           any("no reasoning recorded" in e for e in errs), f"{errs} / {warns}")
@@ -1409,7 +1409,7 @@ def test_the_panel_shows_what_the_spec_grades() -> None:
     check("the committed spec yields claims", len(claims) >= 19, f"{len(claims)}")
     check("the water plane is documented and the bank face is not",
           by_id["water"]["confidence"] == "documented"
-          and by_id["bank"]["confidence"] == "conjectural",
+          and by_id["bank"]["confidence"] == "inferred",
           f"{by_id['water']['confidence']} / {by_id['bank']['confidence']}")
     # `channel_profile` grades itself under `bed_confidence`. A claim that names
     # its grade differently is exactly the one an enumeration drops silently, and
@@ -1524,7 +1524,7 @@ def test_writing_a_ground_claims_reasoning_costs_no_bake() -> None:
         grown = json.loads((tmp / "terrain_spec.json").read_text())
         grown["swales"].append({"id": "invented_swale", "line": [[0, 0], [1, 1]],
                                 "half_width_m": 5.0, "depth_ft": 0.5,
-                                "confidence": "conjectural"})
+                                "confidence": "derived"})
         (tmp / "terrain_spec.json").write_text(json.dumps(grown, indent=1))
         check("and a zone nobody had heard of is a mesh input the day it is added",
               T.terrain_inputs_sha(tmp) != base)
@@ -1553,7 +1553,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     consumed = {"bank": frozenset({"face_m"}),
                 "surface_materials": frozenset()}
     index = {"e1834_harbor_cut": {
-        "bank": ground_claim_fixture("bank", "conjectural", [
+        "bank": ground_claim_fixture("bank", "inferred", [
             {"key": "face_m", "value": 6.0},
             {"key": "profile", "value": "ease_out", "mesh": "restated_in_code"},
         ]),
@@ -1576,7 +1576,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     # mesh agrees with the spec without reading it.
     rep = V.Report()
     V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
-        "bank", "conjectural", [{"key": "profile", "value": "x", "mesh": "invented"}])}},
+        "bank", "inferred", [{"key": "profile", "value": "x", "mesh": "invented"}])}},
         consumed, rep)
     check("a declaration outside the vocabulary is an error",
           any("not one of" in e for e in rep.errors), rep.errors)
@@ -1584,7 +1584,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     # The false admission.
     rep = V.Report()
     V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
-        "bank", "conjectural", [{"key": "face_m", "value": 6.0, "mesh": "absent"}])}},
+        "bank", "inferred", [{"key": "face_m", "value": 6.0, "mesh": "absent"}])}},
         consumed, rep)
     check("declaring an omission over a figure the ground IS built from is an error",
           any("'face_m'" in e and "nothing to declare" in e for e in rep.errors), rep.errors)
@@ -1794,7 +1794,7 @@ def test_a_prose_restatement_is_pinned_to_the_line_it_describes() -> None:
     def run(expr, key="profile"):
         rep = V.Report()
         V.check_restated_agreement(
-            {EP: {"bank": ground_claim_fixture("bank", "conjectural", [
+            {EP: {"bank": ground_claim_fixture("bank", "inferred", [
                 {"key": key, "value": "written out for a reader",
                  "mesh": "restated_in_code"}])}},
             {"bank": {key: ("code", expr)}}, rep)
@@ -1848,7 +1848,7 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
     def control(**over) -> dict:
         doc = {
             "platted_street": {"width_ft": 66, "half_width_m": 10.0,
-                               "confidence": "inferred", "note": "a stated reading",
+                               "confidence": "derived", "note": "a stated reading",
                                "sources": ["s1"]},
             "streets": {"a": {"name": "A St", "axis": "ns"},
                         "b": {"name": "B St", "axis": "ew"}},
@@ -1867,13 +1867,13 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
         encoding="utf-8")
 
     def rec(pos: dict, poly=None) -> dict:
-        base = {"utm_e": 1010.0, "utm_n": 2010.0, "confidence": "inferred"}
+        base = {"utm_e": 1010.0, "utm_n": 2010.0, "confidence": "derived"}
         base.update(pos)
         return {"t.json": {"id": "t", "phases": [{
             "id": "p",
             "position": base,
             "footprint": {"polygon": poly or [[0, 0], [5, 0], [5, 4], [0, 4]],
-                          "confidence": "inferred"}}]}}
+                          "confidence": "derived"}}]}}
 
     CORNER = {"method": "platted_corner", "control": "a_b", "constraints": [
         {"face": "west", "street": "a", "kerb": "east"},
@@ -2195,7 +2195,7 @@ def test_an_outline_is_not_traced_from_a_picture() -> None:
     """'Outlines come from tier-1 sheets or stay conjectural.'"""
     srcs = _sources(wright=1, conley=5)
     ph = phase("p", "1831-01-01", "1851-01-01")
-    ph["footprint"] = {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "inferred",
+    ph["footprint"] = {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "derived",
                        "note": "read off the pictorial map", "sources": ["conley"]}
     rep = V.Report()
     V.check_evidence_ladder({"x.json": {"id": "x", "phases": [ph]}}, srcs, rep)
@@ -2205,7 +2205,7 @@ def test_an_outline_is_not_traced_from_a_picture() -> None:
     # a POSITION from the same map is fine, and that is the whole point of the
     # 2026-08-10 revision — the map says a thing was here, not what shape it was
     ph2 = phase("p", "1831-01-01", "1851-01-01")
-    ph2["position"] = {"utm_e": 1.0, "utm_n": 2.0, "confidence": "inferred",
+    ph2["position"] = {"utm_e": 1.0, "utm_n": 2.0, "confidence": "derived",
                        "note": "the map places it here", "sources": ["conley"]}
     rep = V.Report()
     V.check_evidence_ladder({"x.json": {"id": "x", "phases": [ph2]}}, srcs, rep)
@@ -2587,15 +2587,15 @@ def _resident_household(**kw) -> dict:
         "id": "hh_a", "name": "The A household", "division": "south", "head": "p1",
         "arrival": {"value": "1833", "precision": "year", "confidence": "documented",
                     "sources": ["s1"], "note": "s1 gives the year"},
-        "party_size_on_arrival": {"value": None, "confidence": "conjectural",
+        "party_size_on_arrival": {"value": None, "confidence": "derived",
                                   "note": "not attested"},
-        "origin": {"value": None, "confidence": "conjectural", "note": "not attested"},
-        "reason_for_coming": {"value": None, "confidence": "conjectural",
+        "origin": {"value": None, "confidence": "derived", "note": "not attested"},
+        "reason_for_coming": {"value": None, "confidence": "derived",
                               "note": "not attested"},
-        "lives_at": {"value": None, "confidence": "conjectural", "note": "not modelled"},
+        "lives_at": {"value": None, "confidence": "derived", "note": "not modelled"},
         "works_at": {"value": "st1", "confidence": "documented", "sources": ["s1"],
                      "note": "s1 puts him there"},
-        "present_on_scene_date": {"value": "present", "confidence": "inferred",
+        "present_on_scene_date": {"value": "present", "confidence": "derived",
                                   "sources": ["s1"], "note": "continuous in the record"},
         "persons": [_resident_person()],
         "touches_removal": False, "review_required": False,
@@ -2684,7 +2684,7 @@ def test_a_resident_who_arrived_after_the_scene_date_is_not_in_the_scene() -> No
     # with no month is a real state of the evidence, not a mistake. It may or
     # may not precede 1 July, so it warns and does not fail.
     rep = _run_residents([_resident_household(
-        arrival={"value": "1835", "precision": "year", "confidence": "conjectural",
+        arrival={"value": "1835", "precision": "year", "confidence": "derived",
                  "note": "the earliest year the evidence forces"})])
     check("an arrival straddling the scene date warns rather than fails",
           not rep.errors and any("straddles the scene date" in w for w in rep.warnings),
@@ -2758,19 +2758,19 @@ def test_a_resident_points_at_a_real_building_or_at_nothing() -> None:
 
     rep = _run_residents([_resident_household(
         persons=[_resident_person(lives_at={"value": "no_such_building",
-                                            "confidence": "inferred", "note": "n"})])])
+                                            "confidence": "derived", "note": "n"})])])
     check("a person-level link is held to the same rule",
           any("not a structure id" in e for e in rep.errors), rep.errors)
 
     # Null is a legitimate and expected answer - the building may not be built
     # yet - but it is a CLAIM about the dataset and owes a note.
     rep = _run_residents([_resident_household(
-        works_at={"value": None, "confidence": "conjectural", "note": ""})])
+        works_at={"value": None, "confidence": "derived", "note": ""})])
     check("a null link with no note is an error",
           any("null and carries no note" in e for e in rep.errors), rep.errors)
 
     rep = _run_residents([_resident_household(
-        works_at={"value": None, "confidence": "conjectural",
+        works_at={"value": None, "confidence": "derived",
                   "note": "not modelled; no structure record exists"})])
     check("a null link with a note passes", not rep.errors, rep.errors)
 
@@ -2808,12 +2808,12 @@ def test_presence_and_the_removal_flag_are_claims_that_owe_reasoning() -> None:
     before the scene date.
     """
     rep = _run_residents([_resident_household(
-        present_on_scene_date={"value": "uncertain", "confidence": "inferred", "note": ""})])
+        present_on_scene_date={"value": "uncertain", "confidence": "derived", "note": ""})])
     check("an uncertain presence with no note is an error",
           any("requires a note" in e for e in rep.errors), rep.errors)
 
     rep = _run_residents([_resident_household(
-        present_on_scene_date={"value": "maybe", "confidence": "inferred", "note": "n"})])
+        present_on_scene_date={"value": "maybe", "confidence": "derived", "note": "n"})])
     check("a presence outside the vocabulary is an error",
           any("not declared in the manifest vocabulary" in e for e in rep.errors), rep.errors)
 
@@ -2883,7 +2883,7 @@ def _flora_species(**kw) -> dict:
                  "inflorescence": {"shape": "spadix_brown", "rgb": [92, 62, 40],
                                    "height_frac": 0.8, "size_m": [0.15, 0.25],
                                    "fruit": True}},
-        "confidence": "inferred", "sources": ["s1"],
+        "confidence": "derived", "sources": ["s1"],
         "note": "test fixture",
     }
     sp.update(kw)

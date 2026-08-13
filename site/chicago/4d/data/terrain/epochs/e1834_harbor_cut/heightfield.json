@@ -74,7 +74,7 @@
     "cell_max": 65.027
    },
    "swales": {
-    "cells": 20536,
+    "cells": 5284,
     "cell_max": 75.555
    }
   },
@@ -84,5 +84,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "afe754f55a4b938694801cf3eb8041a2d31ac553f67709fa6db6f8e17588cbbe"
+ "inputs_sha256": "93118f5316009f94d99526cf10eea7be835e1c7416180469cf65a0c93a16c804"
 }

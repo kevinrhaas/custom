@@ -15,7 +15,7 @@
     "horizontal": "local East-North metres from data/datum.json",
     "utm_conversion": "utm_e = 447072.7 + local_e_m; utm_n = 4637395.8 + local_n_m",
     "bearing": "degrees clockwise from north; facade faces the named frontage",
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "position_uncertainty_m": 20,
     "note": "Street and lot geometry are measured from the 1834 Wright and Hathaway plats through the committed datum. Neither plat depicts buildings. Slot centers, setback, facade bearing and occupancy are interpretive. The 20 m value is the existing datum's working georeference uncertainty, not parcel evidence."
   },
@@ -82,11 +82,11 @@
       "basis": "The 1834 Wright survey and Hathaway plat supply streets, blocks and lots. Their committed affine georeference has 17.5 m RMS residual; neither map supplies a roof footprint."
     },
     "commercial_continuity": {
-      "confidence": "inferred",
+      "confidence": "derived",
       "basis": "Andreas preserves a South Water address described by doors and a 55 ft lot width; existing project dossiers interpret this as evidence of a legible run of premises, not proof of any anonymous slot."
     },
     "individual_slots": {
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "basis": "No supplied building census, tax improvement roll, fire-insurance plan or period footprint map identifies these roofs."
     }
   },

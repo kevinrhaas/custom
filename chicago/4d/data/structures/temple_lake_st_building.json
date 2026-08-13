@@ -19,7 +19,7 @@
         "utm_n": 4637259.618,
         "rotation_deg": 0.0,
         "symbolic_location": "South Division, local ENU E 299 N -131",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly.",
         "derivation": {
           "method": "not_derivable",
@@ -45,7 +45,7 @@
             10.363
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 34 ft is a two-storey frame building with a business room below and a habitable attic above, which is the minimum that answers a law office on the ground floor and a bed in the attic. Every number is invented."
       },
       "form": {
@@ -139,7 +139,7 @@
         },
         "goods_door": {
           "value": true,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -147,7 +147,7 @@
         },
         "goods_door_side": {
           "value": "end",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
