@@ -162,6 +162,16 @@ communities is the record's now; the absolute figure and the saturation anchor s
 and the near ring's *visible* radius is 0.6 m shorter than it was — that is the pop-in inset, and
 it is a coverage question for this half of the parcel to weigh.
 
+**The middle-distance ring seam is out, 2026-08-13 — S6a item 3.** The outer edge of the sward
+was a circle about the walker, and on ground with 4.30 ft of relief across the whole box a
+constant world radius is a constant screen ROW: measured at **1.4 px** of variation across the
+view before the change, which is the sweep's "razor straight across all 1280 columns" as a
+number. Every lattice slot now carries its own outer radius, offset by a world-anchored fringe of
+±3 m at full detail, and the boundary spans **5.9 px** at 1280×800 and **17.4 px** at 390×780.
+It costs nothing — triangles are paid for by the lattice and a slot pushed out of reach is
+dropped rather than drawn at zero height — and it takes nothing off the ring's mean reach, so it
+is not a coverage loss dressed as a fix. Full note and the traps in § S6a item 3.
+
 **Two findings that slice measured and did not fix — BOTH RESOLVED 2026-08-13.** (a) **S6a item 9
 named the wrong zone.** It read the `river_bank` shot against zone 1's cordgrass at 40–55 %, but
 ground within eight metres of water is the MARSH zone by extent (`z04`, priority 70) — measured at
@@ -1254,9 +1264,41 @@ in the **mid** field.
    with enough irregular contrast to suggest unresolved vegetation without asserting a second
    height or species silhouette. Re-measure the old high-pass target against the corrected
    renderer before reusing it; the prior 14.6 figure measured the removed sheet.
-3. **Kill the middle-distance ring seam.** `TUNE.mid.radius = 27.0` can map to a constant screen
-   row on flat ground. Widen the fade or make the boundary irregular in world space, while every
-   individual card remains rooted on the terrain.
+3. **Kill the middle-distance ring seam.** · **DONE 2026-08-13.** `TUNE.mid.radius = 27.0` did
+   map to a constant screen row on flat ground, and the measurement that says so is now in the
+   gate: bin the view by bearing, ask each bin how far its own sward reaches, convert to the row
+   it lands on. On the ring as it stood those rows spanned **1.4 px** — the finding's "razor
+   straight across all 1280 columns", in one number. Fixed the second way the item offers, not
+   the first: every lattice slot carries its own outer radius, `fade[0]` plus a world-anchored
+   offset of up to **±3 m** (±1.6 m on a phone — about an eighth of the ring at every detail
+   setting), from smooth 4 m value-noise lobes with a per-slot dither on top. Measured after:
+   **5.9 px** of spread at 1280×800 and **17.4 px** at 390×780, reaching 25.0–28.4 m about a
+   nominal 26.4. Every card is still rooted on the terrain and nothing moved vertically.
+   - **Widening the fade was the wrong half of the choice.** The band is already 7 m, which is
+     18 px of the frame at that distance; the line is not the ramp, it is where the ramp reaches
+     zero, and a wider ramp still reaches zero everywhere at once.
+   - **It is nearly free, and that is a property of the design rather than luck.** Triangles are
+     paid for by the LATTICE, not by the fade, so a slot the fringe pushes beyond reach is
+     dropped at rebuild instead of drawn at zero height; the lattice grew by the amplitude to
+     carry the ones it pushes in, and with a symmetric offset the mean cost is
+     `radius² + variance` rather than `(radius + amplitude)²`. Measured A/B at 1280×800 at three
+     fixed stations: open prairie **174 363 → 176 656** triangles (+1.3 %, 3 742 → 3 850 flora
+     instances), settled town **389 369 → 389 253** (−0.03 %), river bank **350 109 → 350 105**.
+     Draw calls unchanged at 37 / 66 / 72. Paying for the whole annulus instead — drawing the
+     pushed-out slots at zero height — would have been the amplitude twice over.
+   - **The offset is a function of world position only**, so the ragged edge is anchored to the
+     ground: it does not swim as the walker moves, and it is the same edge whichever way they
+     face. The gate asks the placer (`flora.fringeAt`) for it rather than re-deriving the noise,
+     and checks nine points answer identically from two cameras 40 m apart.
+   - **The forb ring ends within a metre of the mid ring**, so the flowers would have gone on
+     drawing the line the grass no longer does; it carries the same fringe. It is gated on its
+     RINGS rather than on its drawn edge — at 3.4 m cells a 3.75° bin holds one or two forbs, so
+     "the furthest one drawn" is a sampling statistic, and measured that way it reported a nine
+     metre hole in ground that has none.
+   - **The pop-in gate had to be made instance-aware to stay honest.** It asked the layer's
+     nominal ring how faded an arriving plant was, and the nominal ring answers *zero* — a free
+     pass — for exactly the plants the fringe pushes furthest out. It reads each instance's own
+     `aChiRing` now. Same bound, same measured 0.0 % arrival height.
 4. **Re-baseline the crown metrics.** The previous crown fine-detail, darkness and hue targets
    measured a surface that no longer exists. Establish new near/mid and far-terrain bands before
    tuning colour or contrast; never improve the score by closing the far field into a sheet.

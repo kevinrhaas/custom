@@ -2085,6 +2085,18 @@ built.
 heightfield and whose alpha silhouette never closes into a walk-through horizontal sheet. Any
 replacement must retain the one-surface root and building-anchor regression checks.
 **Recorded:** 2026-08-11.
+**Revised:** 2026-08-13 — where the detailed plants hand over to the terrain colour is no
+longer one distance. It had been a circle about the walker, and a constant world radius is a
+constant screen ROW on ground this flat: 27 m mapped to row 450 and held it, razor straight,
+across all 1280 columns. Each lattice slot now carries its own outer radius, the layer's
+nominal one plus a world-anchored offset of up to ±3 m at full detail (±1.6 m on a phone,
+about an eighth of the ring at every setting), drawn from smooth 4 m lobes with a per-slot
+dither on top. **The compression this entry admits to is unchanged in kind and in mean
+extent** — the offset is symmetric, so the sward reaches no further on average than it did,
+and the terrain texture still carries everything beyond it. What changes is that the join is
+a thinning rather than an edge, and that a visitor cannot mistake the end of the geometry
+budget for a line on the ground. The amplitude is a rendering constant like the radius it
+perturbs; nothing about it is a claim about where the prairie stopped.
 
 ### L81 — Forty-eight anonymous roofs begin the inferred inventory; none is a recovered building
 **Decision:** forty principal and eight ancillary roofs are added to five South Division mixed

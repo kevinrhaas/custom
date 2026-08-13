@@ -130,8 +130,8 @@ const SUN_FALLBACK = {
  */
 const TUNE = {
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2 },
-  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0 },
-  forb: { radius: 26.0, cell: 3.4, perCell: 4, band: 5.0 },
+  mid: { inner: 4.5, radius: 27.0, cell: 1.55, perCell: 4, band: 7.0, innerBand: 3.0, fringe: 3.0 },
+  forb: { radius: 26.0, cell: 3.4, perCell: 4, band: 5.0, fringe: 3.0 },
   /** Hard caps. The palette's `budget` is advisory; this is the ceiling. */
   cap: { near: 2400, mid: 4400, forb: 900, head: 820 },
   wind: { speedNear: 1.35, sway: 0.085, waveM: 9.0 },
@@ -167,13 +167,72 @@ const TUNE = {
  * inner annulus of the mid ring is 1.3% of its area and free, and because
  * moving that fade outward would thin the near/mid crossover where the change
  * of representation is supposed to be invisible.
+ *
+ * `fringe` is the outermost ring's own correction, and it is a different
+ * problem from the pop. A ring is a CIRCLE about the walker, so on flat ground
+ * its outer edge maps to a constant screen ROW — measured at row 450, razor
+ * straight across all 1280 columns, which is ROADMAP § S6a item 3. Each slot
+ * therefore carries its own outer radius, `fade[0] + fringeOf(e, n)`, drawn
+ * from a world-anchored field rather than from the camera: the boundary is
+ * ragged, it is ragged in the same places whichever way the walker faces, and
+ * it is a stochastic density ramp rather than an edge with a wobble in it.
  */
 function ringsFor(layer, step) {
   const inner = layer.inner ?? 0;
+  const fringe = layer.fringe ?? 0;
   return {
-    lattice: { outer: layer.radius, inner: Math.max(0, inner - step) },
+    // The lattice has to reach the furthest a slot's own boundary can stand,
+    // plus the step, or the outermost slots of the fringe would be placed for
+    // the first time already carrying height.
+    lattice: { outer: layer.radius + fringe, inner: Math.max(0, inner - step) },
     fade: [layer.radius - step, layer.band, inner, layer.innerBand ?? 0],
+    fringe,
   };
+}
+
+/** The world grid the ragged boundary lobes on, in metres. At 27 m in a
+ *  1280-wide frame a metre is about 69 px, so 4 m lobes put five or six of them
+ *  across the view — few enough to read as terrain rather than as noise, many
+ *  enough that no one of them is a straight line. */
+const LOBE_M = 4.0;
+
+function unitHash(a, b, salt) {
+  return hash3(a, b, salt) / 4294967296;
+}
+
+/** Value noise on the `LOBE_M` grid, in [0, 1] and continuous across cell
+ *  edges — a grid of independent cells would trade one straight line for a
+ *  field of short ones. */
+function lobeNoise(e, n) {
+  const ce = Math.floor(e / LOBE_M);
+  const cn = Math.floor(n / LOBE_M);
+  const te = e / LOBE_M - ce;
+  const tn = n / LOBE_M - cn;
+  const se = te * te * (3 - 2 * te);
+  const sn = tn * tn * (3 - 2 * tn);
+  const a = unitHash(ce, cn, 0x7f4a7c15);
+  const b = unitHash(ce + 1, cn, 0x7f4a7c15);
+  const c = unitHash(ce, cn + 1, 0x7f4a7c15);
+  const d = unitHash(ce + 1, cn + 1, 0x7f4a7c15);
+  return (a + (b - a) * se) * (1 - sn) + (c + (d - c) * se) * sn;
+}
+
+/**
+ * How far this slot's own outer boundary stands beyond the layer's nominal one,
+ * in metres, in `[-amp, +amp]`. A function of WORLD position only: two slots a
+ * metre apart get nearly the same answer and the same slot gets the same answer
+ * from every camera, which is what stops the ragged edge from swimming as the
+ * walker moves.
+ *
+ * Two scales, because either alone still draws a line. The lobes carry the
+ * shape; the per-slot dither turns each lobe's own edge into a thinning of the
+ * sward rather than the end of it.
+ */
+function fringeOf(e, n, amp) {
+  if (!amp) return 0;
+  const lobe = lobeNoise(e, n);
+  const dither = unitHash(Math.round(e * 64), Math.round(n * 64), 0x2f1b3c59);
+  return amp * (2 * (0.7 * lobe + 0.3 * dither) - 1);
 }
 
 /** Heads used to be gated at 35% of their plant's fade — a step in the middle
@@ -184,6 +243,18 @@ function ringsFor(layer, step) {
 const HEAD_FADE_AT = 0.35;
 function headRingOf(fade) {
   return [fade[0] - HEAD_FADE_AT * fade[1], (1 - HEAD_FADE_AT) * fade[1], fade[2], fade[3]];
+}
+
+/** A layer ring with this slot's own fringe on its outer radius, written into a
+ *  scratch array — `push` copies the four numbers out of it immediately, so one
+ *  buffer per rebuild loop is enough and a per-slot allocation would be a
+ *  million-a-second one. */
+function ringAt(base, off, out) {
+  out[0] = base[0] + off;
+  out[1] = base[1];
+  out[2] = base[2];
+  out[3] = base[3];
+  return out;
 }
 
 /** The ramp the vertex shader applies, in JS, so the two cannot disagree about
@@ -207,8 +278,12 @@ const LOW = {
   // sward is not scaled down here, it is a shallower field — tight near and
   // mid rings, with the terrain's prairie texture carrying the far field.
   near: { radius: 4.6, tuftsPerM2: 4.6 },
-  mid: { inner: 3.0, radius: 13.0 },
-  forb: { radius: 13.0 },
+  // The fringe scales with the ring it ragged-edges: it is about an eighth of
+  // the radius at every setting, so the boundary reads the same way on a phone
+  // as on a desktop rather than being a fixed number of metres on a ring half
+  // the size.
+  mid: { inner: 3.0, radius: 13.0, fringe: 1.6 },
+  forb: { radius: 13.0, fringe: 1.6 },
   cap: { near: 420, mid: 900, forb: 260, head: 240 },
 };
 
@@ -224,8 +299,8 @@ const LOW = {
  */
 const MID = {
   near: { radius: 6.2, tuftsPerM2: 6.4 },
-  mid: { inner: 4.0, radius: 18.0 },
-  forb: { radius: 17.5 },
+  mid: { inner: 4.0, radius: 18.0, fringe: 2.2 },
+  forb: { radius: 17.5, fringe: 2.2 },
   cap: { near: 1500, mid: 2700, forb: 580, head: 520 },
 };
 
@@ -442,6 +517,9 @@ export async function createFlora({
   // The lattice each layer is scattered on, and the ring the shader fades it
   // over — the second strictly inside the first by `step`. See `ringsFor`.
   const step = tune.step.near;
+  /** Scratch buffers for the per-slot rings. See `ringAt`. */
+  const _ring = [0, 0, 0, 0];
+  const _headRing = [0, 0, 0, 0];
   const rings = {};
   for (const layer of ['near', 'mid', 'forb']) {
     rings[layer] = ringsFor(tune[layer], step);
@@ -521,10 +599,17 @@ export async function createFlora({
 
     // MID: clump cards. The inner edge overlaps the near ring so the change of
     // representation happens inside the field rather than at a visible circle.
-    midSet.ring(mid.fade);
+    // The OUTER edge is the one that was a visible circle — a constant world
+    // radius is a constant screen row on flat ground — so every slot carries
+    // its own, offset by a world-anchored fringe. The slots the fringe pushes
+    // out of reach are dropped here rather than pushed at zero height: the
+    // lattice grew by `fringe` to carry the ones it pushes IN, and paying for
+    // the whole annulus would be paying for the amplitude twice.
     scatter(camE, camN, tune.mid.cell, tune.mid.perCell,
       mid.lattice.outer, mid.lattice.inner, 0x9e3779, cone,
       (e, n, r, rng) => {
+        const off = fringeOf(e, n, mid.fringe);
+        if (r > mid.fade[0] + off + step) return;
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
         // A clump card stands for the same matrix the near tufts do, so it is
@@ -537,6 +622,7 @@ export async function createFlora({
         if (!sp) return;
         const y = station(e, n, zone, sp, wet);
         if (y === null) return;
+        midSet.ring(ringAt(mid.fade, off, _ring));
         placeCard(midSet, sp, zone, e, y, n, rng);
       });
     stats.rebuilds++;
@@ -546,10 +632,13 @@ export async function createFlora({
     forbSet.reset();
     rosetteSet.reset();
     const f = rings.forb;
-    forbSet.ring(f.fade);
-    rosetteSet.ring(f.fade);
     scatter(camE, camN, tune.forb.cell, tune.forb.perCell,
       f.lattice.outer, f.lattice.inner, 0x2545f9, cone, (e, n, r, rng) => {
+        // The forb ring ends within a metre of the mid ring, so the two
+        // boundaries land on the same screen row and both have to be ragged or
+        // the flowers alone would draw the line the grass no longer does.
+        const off = fringeOf(e, n, f.fringe);
+        if (r > f.fade[0] + off + step) return;
         const zone = finder(e, n);
         if (!zone || !zone.forbs.length) return;
         // The forb layer's density is the zone's OWN summed density_per_ha, so a
@@ -564,9 +653,10 @@ export async function createFlora({
         if (y === null) return;
         if (crowdsTheWalker(sp, r)) return;
         const set = sp.form === 'forb_basal_scape' ? rosetteSet : forbSet;
+        set.ring(ringAt(f.fade, off, _ring));
         const h = placeForb(set, sp, e, y, n, rng);
-        if (h > 0 && r <= f.head[0] + step) {
-          maybeHead(heads, sp, e, y, n, rng, h, f.head);
+        if (h > 0 && r <= f.head[0] + off + step) {
+          maybeHead(heads, sp, e, y, n, rng, h, ringAt(f.head, off, _headRing));
         }
       });
   }
@@ -627,11 +717,28 @@ export async function createFlora({
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
      *  plant cannot arrive already grown. */
     rings: { step, layers: rings },
-    /** The height multiplier the vertex shader gives an instance of `setName`
-     *  standing `d` metres from the camera — the same ramp, in JS. */
-    fadeAt(setName, d) {
+    /**
+     * The height multiplier the vertex shader gives an instance of `setName`
+     * standing `d` metres from the camera — the same ramp, in JS.
+     *
+     * `outer` is that instance's OWN outer radius, off its `aChiRing`. Pass it:
+     * since the outer boundary carries a per-slot fringe, the layer's nominal
+     * ring answers for no particular plant, and it answers ZERO for one the
+     * fringe pushed out — which would report a pop-in gate green by not looking
+     * at the instances that can pop.
+     */
+    fadeAt(setName, d, outer) {
       const ring = ringOfSet[setName];
-      return ring ? fadeOf(ring.fade, d) : null;
+      if (!ring) return null;
+      return fadeOf(outer === undefined ? ring.fade
+        : [outer, ring.fade[1], ring.fade[2], ring.fade[3]], d);
+    },
+    /** Where this ground's own boundary stands relative to its layer's nominal
+     *  one, in metres. The gate asks the placer rather than re-deriving the
+     *  noise, which is the rule the substrate work set. */
+    fringeAt(layer, e, n) {
+      const r = rings[layer];
+      return r ? fringeOf(e, n, r.fringe) : null;
     },
 
     update(dt, camera) {

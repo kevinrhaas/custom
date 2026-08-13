@@ -195,6 +195,58 @@ project runs on a commit somebody wrote. Nothing ran on the commit git wrote.
   can still publish a union-corrupted changelog. The narrow version of that hazard is now loud
   the moment anyone runs the gate; the general version is recorded in ROADMAP § K12.
 
+## Fixed 2026-08-13 — the sward ended on a straight line, and the line was arithmetic
+
+**A ring is a circle about the walker, so its outer edge is a constant screen row.** The
+three-critic prairie sweep measured it and named the row: `TUNE.mid.radius = 27.0` predicted row
+448.8 and the frame showed one at 450, straight across all 1280 columns. That is ROADMAP § S6a
+item 3, and the reason it is arithmetic rather than a rendering artefact is the site: 4.30 ft of
+relief across the whole 640 m box, so a fixed distance really does land on a fixed row. The gate
+now measures it the way the finding was stated — bin the view by bearing, ask each bin how far
+its own sward reaches, convert the distance to the row it lands on. **On the ring as it stood
+those rows spanned 1.4 px.**
+
+Every lattice slot now carries its own outer radius: the layer's nominal one plus a
+world-anchored offset of up to **±3 m** at full detail (±1.6 m on a phone, about an eighth of the
+ring at every detail setting), from smooth 4 m value-noise lobes with a per-slot dither over
+them. Measured after: **5.9 px** of spread at 1280×800 and **17.4 px** at 390×780, the sward
+reaching 25.0–28.4 m about a nominal 26.4.
+
+- **Widening the fade would not have worked, and the reason is worth keeping.** The band is
+  already 7 m, which is 18 px of frame at that distance. The line is not the ramp — it is where
+  the ramp reaches zero, and a wider ramp still reaches zero everywhere at once. What removes a
+  line is a boundary that is in a different place in each direction.
+- **It is nearly free, by construction rather than by luck.** Triangles are paid for by the
+  LATTICE, not by the fade, so a slot the fringe pushes beyond reach is dropped at rebuild
+  instead of drawn at zero height, and the lattice grew by the amplitude to carry the ones it
+  pushes in — with a symmetric offset the mean cost is `radius² + variance`, not
+  `(radius + amplitude)²`. Measured A/B at 1280×800 at three fixed stations: open prairie
+  **174 363 → 176 656** triangles (+1.3 %, 3 742 → 3 850 flora instances), settled town
+  **389 369 → 389 253** (−0.03 %), river bank **350 109 → 350 105** (−4). Draw calls unchanged
+  at 37 / 66 / 72. The cost lands where the sward is dense and nowhere else, which is the right
+  shape for it.
+- **World position, not camera distance.** The offset is a function of the ground alone, so the
+  ragged edge does not swim as the walker moves and is the same edge whichever way they face —
+  the pop-in defect one ring further out, avoided rather than traded for. The gate asks the
+  placer (`flora.fringeAt`) instead of re-deriving the noise, and requires nine points to answer
+  identically from two cameras 40 m apart.
+- **The flowers had to come with the grass.** The forb ring ends within a metre of the mid ring,
+  so a fringe on the matrix alone would have left the brightest objects in the field drawing the
+  line the grass no longer does. It is gated on its RINGS rather than on its drawn edge: at
+  3.4 m cells a 3.75° bin holds one or two forbs, so "the furthest one drawn" is a sampling
+  statistic, and measured that way it reported a nine-metre hole in ground that has none.
+- **The pop-in gate had to be made instance-aware to stay honest.** It asked the layer's nominal
+  ring how faded an arriving plant was, and a nominal ring answers *zero* — a free pass — for
+  exactly the plants the fringe pushes furthest out. It reads each instance's own `aChiRing`
+  now. Same bound, same measured 0.0 % arrival height.
+- **Verified the gate bites**, by putting the fringe back to zero: the boundary spread falls to
+  **1.4 px** against a bar of 4, the forb rings span 0.00 m, and the world-anchoring check
+  reports no variation at all. Three failures, on the code that shipped yesterday.
+- **What this does not do.** It does not extend the sward. L80 still owns the compression — the
+  terrain's own colour carries everything past the ring — and the mid-field targets in S6a items
+  1, 2 and 4–7 are untouched. This removes a line the eye reads as an object in the world; it
+  does not put vegetation where there is none.
+
 ## Fixed 2026-08-13 — a fade function that was producing a step
 
 **The transition the owner asked for had been there all along, sampled once per stride.**

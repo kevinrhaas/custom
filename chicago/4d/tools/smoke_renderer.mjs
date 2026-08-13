@@ -1334,7 +1334,11 @@ for (const [label, viewport, touch] of [
       const rings = a.flora.rings;
       const inset = Object.entries(rings.layers).map(([id, r]) => ({
         id,
-        outer: r.lattice.outer - (r.fade[0] + rings.step),
+        // The outer boundary carries a per-slot fringe, so the lattice has to
+        // clear the FURTHEST a slot's own ring can stand, not the nominal one.
+        // Measuring against the nominal radius would report three metres of
+        // margin on the mid ring where a fringed slot has none.
+        outer: r.lattice.outer - (r.fade[0] + (r.fringe ?? 0) + rings.step),
         // Only the mid ring HAS an inner ramp; where there is none there is
         // nothing for a plant to grow across on its way past the walker.
         inner: r.fade[3] > 0 ? r.fade[2] - (r.lattice.inner + rings.step) : 0,
@@ -1352,11 +1356,17 @@ for (const [label, viewport, touch] of [
           const mesh = a.flora.group.getObjectByName(name);
           const m = mesh?.instanceMatrix?.array;
           if (!m) continue;
+          // Each instance's OWN outer radius, off the attribute the shader
+          // reads. The layer's nominal ring answers for no particular plant
+          // once the boundary is fringed, and it answers zero — a free pass —
+          // for exactly the plants the fringe pushed furthest out.
+          const ring = mesh.geometry.getAttribute('aChiRing')?.array;
           for (let i = 0; i < mesh.count; i++) {
             const o = i * 16;
             const e = m[o + 12];
             const n = -m[o + 14];
-            seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`, { name, e, n });
+            seen.set(`${name}|${e.toFixed(3)}|${n.toFixed(3)}`,
+              { name, e, n, outer: ring ? ring[i * 4] : undefined });
           }
         }
         return { seen, e: p.x, n: -p.z, fe: f.x / fl, fn: -f.z / fl };
@@ -1381,7 +1391,7 @@ for (const [label, viewport, touch] of [
           // the view-cone edge, which is 62 degrees wide against a frame that is
           // never more than 40 — off-screen, and not what the owner saw.
           if (((plant.e - now.e) * now.fe + (plant.n - now.n) * now.fn) / d < AHEAD) continue;
-          const fade = a.flora.fadeAt(plant.name, d);
+          const fade = a.flora.fadeAt(plant.name, d, plant.outer);
           arrivals++;
           if (fade > worst) { worst = fade; worstAt = { set: plant.name, d, fade }; }
         }
@@ -1402,6 +1412,172 @@ for (const [label, viewport, touch] of [
       `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst height `
       + `${(popIn.worst * 100).toFixed(1)}% of full`
       + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
+
+    // ROADMAP § S6a item 3: a ring is a circle about the walker, so on flat
+    // ground its outer edge maps to a CONSTANT SCREEN ROW — measured at row
+    // 450, razor straight across all 1280 columns. Measured the way the finding
+    // was stated: bin the view by bearing, ask each bin how far out its own
+    // sward reaches, and convert that distance to the row it lands on. The
+    // second half is the one that stops this being satisfiable by breaking the
+    // field — every bin's boundary has to lie inside the fringe's own range, so
+    // a hole in the sward reads as a failure rather than as raggedness.
+    const seam = await page.evaluate(() => {
+      const a = window.__chicago4d;
+      const SETS = { 'flora-mid': 'mid', 'flora-forb': 'forb' };
+      // The station is FOUND rather than written down, because the ring radius
+      // it has to be clear over is a detail setting: 27 m at full detail and
+      // 13 m on a phone. A hand-picked point in the settled town carried six
+      // mid cards at 390x780 — enough to look measured and not enough to
+      // measure anything. Wanted: ground where a dense-matrix community covers
+      // the whole disc the outer ring reaches over, so the boundary is drawn in
+      // every bearing and a thin bin means a defect rather than a hedgerow.
+      const dense = new Set(a.flora.communities()
+        .filter((c) => c.graminoids && c.matrixShare >= 0.7).map((c) => c.id));
+      const R = a.flora.rings.layers.mid.lattice.outer;
+      const clear = (e, n) => {
+        for (let k = 0; k < 12; k++) {
+          const t = (k / 12) * Math.PI * 2;
+          for (const rr of [R * 0.45, R * 0.75, R]) {
+            const pe = e + Math.cos(t) * rr;
+            const pn = n + Math.sin(t) * rr;
+            if (!dense.has(a.flora.zoneAt(pe, pn))) return false;
+            if (!a.flora.plantableAt(pe, pn)) return false;
+          }
+        }
+        return dense.has(a.flora.zoneAt(e, n)) && a.flora.plantableAt(e, n);
+      };
+      let station = null;
+      for (let e = -300; e <= 900 && !station; e += 8) {
+        for (let n = -300; n <= 500 && !station; n += 8) {
+          if (clear(e, n)) station = { e, n };
+        }
+      }
+      if (!station) return { station: null };
+      a.walker.teleport({ local_e: station.e, local_n: station.n, yaw_deg: 0 });
+      a.step();
+      a.step();
+      const cam = a.camera.position;
+      const f = cam.clone();
+      a.camera.getWorldDirection(f);
+      const fwd = Math.atan2(f.x, -f.z);
+      const H = a.renderer.domElement.height;
+      const halfTan = Math.tan((a.camera.fov * Math.PI / 180) / 2);
+      // Rows below the horizon for a point on the ground `d` away. The whole
+      // finding is in this arithmetic: the row goes as 1/d, so a constant d is
+      // a constant row whatever the ground does either side of it.
+      const rowOf = (d, groundY) => (H / 2) * ((cam.y - groundY) / d) / halfTan;
+
+      const BINS = 16;
+      const HALF = 30 * Math.PI / 180;
+      const out = {};
+      for (const [name, layer] of Object.entries(SETS)) {
+        const mesh = a.flora.group.getObjectByName(name);
+        const m = mesh?.instanceMatrix?.array;
+        const ring = mesh?.geometry.getAttribute('aChiRing')?.array;
+        const r = a.flora.rings.layers[layer];
+        const bins = new Array(BINS).fill(null);
+        let ringLo = Infinity;
+        let ringHi = -Infinity;
+        for (let i = 0; m && ring && i < mesh.count; i++) {
+          const o = i * 16;
+          const e = m[o + 12];
+          const n = -m[o + 14];
+          const y = m[o + 13];
+          const da = ((Math.atan2(e - cam.x, n + cam.z) - fwd + Math.PI * 3)
+            % (Math.PI * 2)) - Math.PI;
+          if (Math.abs(da) > HALF) continue;
+          ringLo = Math.min(ringLo, ring[i * 4]);
+          ringHi = Math.max(ringHi, ring[i * 4]);
+          // The furthest plant in this bearing that is actually DRAWN — the
+          // edge the eye sees, not the radius the placer assigned. A plant
+          // faded to nothing is not a boundary, and asking the attribute alone
+          // would report a ragged edge in a direction carrying no sward at all.
+          const d = Math.hypot(e - cam.x, n + cam.z);
+          if (a.flora.fadeAt(name, d, ring[i * 4]) <= 0.02) continue;
+          const b = Math.min(BINS - 1, Math.floor((da + HALF) / (2 * HALF / BINS)));
+          if (!bins[b] || d > bins[b].d) bins[b] = { d, y };
+        }
+        const used = bins.filter(Boolean);
+        const rows = used.map((b) => rowOf(b.d, b.y));
+        const reach = used.map((b) => b.d);
+        out[layer] = {
+          bins: used.length,
+          spreadPx: rows.length ? Math.max(...rows) - Math.min(...rows) : 0,
+          minReach: reach.length ? Math.min(...reach) : 0,
+          maxReach: reach.length ? Math.max(...reach) : 0,
+          meanReach: reach.length ? reach.reduce((s, v) => s + v, 0) / reach.length : 0,
+          ringLo: Number.isFinite(ringLo) ? ringLo : 0,
+          ringHi: Number.isFinite(ringHi) ? ringHi : 0,
+          nominal: r.fade[0],
+          fringe: r.fringe ?? 0,
+        };
+      }
+      // The placer's own answer, so the gate is not a second copy of the noise:
+      // the same ground must give the same fringe from a camera 40 m away.
+      const anchored = (() => {
+        const pts = [];
+        for (let k = 0; k < 9; k++) pts.push([station.e + k * 2.7, station.n - k * 1.9]);
+        const at = () => pts.map(([e, n]) => a.flora.fringeAt('mid', e, n));
+        const before = at();
+        a.walker.teleport({ local_e: station.e + 40, local_n: station.n + 25, yaw_deg: 200 });
+        a.step();
+        const after = at();
+        return {
+          same: before.every((v, i) => v === after[i]),
+          spread: Math.max(...before) - Math.min(...before),
+        };
+      })();
+      return { ...out, station, anchored };
+    });
+    check(`${label}: an open station exists to measure the sward's boundary from`,
+      !!seam.station,
+      'no dense-matrix community covers a whole ring radius anywhere in the box');
+    if (seam.station) {
+      const s = seam.mid;
+      // A boundary the eye reads as a line is one that holds the same row all
+      // the way across; four pixels of drawing buffer is a modest floor, and
+      // the measured figure is several times it at both viewports.
+      check(`${label}: the sward's outer boundary is not a constant screen row`,
+        s.bins >= 12 && s.spreadPx >= 4,
+        `${s.bins}/16 bearing bins from E ${seam.station.e} N ${seam.station.n}, boundary rows `
+        + `spread ${s.spreadPx.toFixed(1)} px, reach ${s.minReach.toFixed(2)}`
+        + `-${s.maxReach.toFixed(2)} m`);
+      // ...and it is the fringe doing it. A hole in the sward would satisfy the
+      // check above and would be a worse defect than the seam, so no bearing
+      // may fall short of what the fringe alone can take off the ring, and the
+      // raggedness may not be bought by shrinking the ring on average.
+      check(`${label}: the boundary's variation is the fringe, not a hole in the field`,
+        s.bins >= 12
+        && s.minReach >= s.nominal - s.fringe - 1.2
+        && s.meanReach >= s.nominal - 0.5 * s.fringe,
+        `reach ${s.minReach.toFixed(2)}-${s.maxReach.toFixed(2)} m, mean `
+        + `${s.meanReach.toFixed(2)} m against a nominal ${s.nominal.toFixed(2)} `
+        + `+/- ${s.fringe.toFixed(2)} m`);
+      // The forb ring ends within a metre of the mid ring, so if only the grass
+      // were fringed the flowers would go on drawing the line — and a flower is
+      // the brightest thing in the field. It is measured on its RINGS rather
+      // than on its drawn edge: at 3.4 m cells and its recorded densities a
+      // 3.75-degree bin holds one or two forbs, so "the furthest one drawn" is
+      // a sampling statistic and not a boundary. Measured that way it reported
+      // a nine-metre hole in ground that has none. A flat ring spans zero; the
+      // bar is half the fringe's own range, which no flat ring can reach and no
+      // fringed one has trouble with.
+      const fb = seam.forb;
+      check(`${label}: the flower layer's boundary is fringed too, not only the grass`,
+        fb.ringHi - fb.ringLo >= fb.fringe
+        && fb.ringLo >= fb.nominal - fb.fringe - 0.05
+        && fb.ringHi <= fb.nominal + fb.fringe + 0.05,
+        `forb rings span ${fb.ringLo.toFixed(2)}-${fb.ringHi.toFixed(2)} m about a nominal `
+        + `${fb.nominal.toFixed(2)} +/- ${fb.fringe.toFixed(2)} m`);
+    }
+    // A fringe that moved with the walker would be a boundary that swims — the
+    // pop-in defect over again, one ring further out. Nine points on the ground
+    // answer identically from two cameras 40 m apart, and they are not all the
+    // same answer, which is what says the field varies at all.
+    check(`${label}: the ragged boundary is anchored to the ground, not to the camera`,
+      seam.anchored.same && seam.anchored.spread > 0.5,
+      `same from 40 m away: ${seam.anchored.same}; `
+      + `spread over nine points ${seam.anchored.spread.toFixed(2)} m`);
     // Each flora zone record authors how much of the ground its matrix covers
     // — `cover.matrix_fraction`, with a `bare_soil_fraction` beside it that the
     // manifest even denormalises — and the renderer planted all ten communities
