@@ -74,14 +74,26 @@
  *     went up; they sit within half a year of the scene date and the age term
  *     adds at most 3 % of their finish's travel. The 69 whose ranges open
  *     earlier, back to 1816, are the ones it moves.
- *  3. **A documented finish is drawn as documented.** The two records whose
- *     `paint` is graded `documented` — the Sauganash's white and St Mary's — get
+ *  3. **An attested finish is drawn as attested.** The two records whose
+ *     `paint` is graded at the top level — the Sauganash's white and St Mary's — get
  *     neither treatment: no silvering, no tone offset. Where a source states the
  *     colour, the colour it states is what is drawn, and the variation exists to
  *     stop INVENTED buildings reading as clones.
  */
 
 import * as THREE from 'three';
+
+import { LEVELS } from './confidence.js';
+
+/**
+ * The most certain level, whatever it is currently called. Rule 3 below turns
+ * on it, and it was written as the literal 'documented' — which stopped being
+ * the word on 2026-08-13 when the vocabulary was renamed for the second time
+ * in a day. Nothing raised: the comparison simply went false for every record,
+ * so the two finishes a source actually states began to weather like the rest
+ * of the town. Derived from LEVELS so the next rename cannot repeat it.
+ */
+const ATTESTED = Object.keys(LEVELS).reduce((a, b) => (LEVELS[a] <= LEVELS[b] ? a : b));
 
 /**
  * How far each finish can travel toward its own greyscale. `unpainted` stops
@@ -148,7 +160,7 @@ export function weatheringFor(sidecar) {
   const attr = sidecar?.attributes?.paint ?? null;
   const paint = attr?.value ?? null;
   const paintConfidence = attr?.confidence ?? null;
-  const documented = paintConfidence === 'documented';          // rule 3
+  const documented = paintConfidence === ATTESTED;              // rule 3
   const travel = (paint == null || documented) ? 0 : (FINISH_WEATHERS[paint] ?? 0);
 
   const years = yearsStanding(sidecar?.documented_range?.from, sidecar?.target_date);

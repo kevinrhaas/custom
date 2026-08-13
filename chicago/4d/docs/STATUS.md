@@ -174,7 +174,50 @@ the merge commit itself. Two occurrences in two days is the argument for taking 
 candidate fixes — the subtree's gate on pushes to `main`, or a merge driver that understands the
 literal — rather than continuing to rely on the next agent to merge running the check by hand.
 
+## Fixed 2026-08-13 (third occurrence) — the union merge again, and a rename that went quiet
+
+**K12's hazard fired for the third time in two days, and this time it arrived with company.** The
+K17.1 merge and a second vocabulary rename — `documented`/`derived`/`inferred` becoming
+`attested`/`inferred`/`reconstructed` — landed within half an hour of each other. Both parents
+were green. The merge was not.
+
+- **The changelog, same mechanism as twice before.** `merge=union` kept both sides' lines, which
+  left the *"Three words for three different kinds of knowing"* entry as a header with no `items`
+  and no terminator, its body attributed to a duplicate of itself below. Repaired by deleting the
+  orphaned header and numbering the tangled top block by its own timestamps: the new
+  *"Attested, inferred, reconstructed"* entry (17:53) is **v76**, above *"Every building in the
+  town was the colour of new lumber"* (17:07); this slice is **v77**. **Nothing below v75 moved**,
+  and nothing anybody could read was renumbered — the file did not parse on `main` at all.
+- **A renamed word does not raise; it goes false.** `renderers/web/js/facade.js` decided whether a
+  finish was attested with `paintConfidence === 'documented'`. After the rename that comparison is
+  false for every record in the dataset, so **the Sauganash — the one building here whose white
+  paint and blue shutters a source actually records — began weathering and taking an invented tone
+  offset like the rest of the town.** That is K4's rule 3 inverted: a documented value overwritten
+  by an invented one, live on the deployed site. Two more copies of the same word sat in
+  `tools/smoke_renderer.mjs`, which is why the gate that exists to catch exactly this reported
+  *"0 documented finishes"* and passed.
+- **The lesson, applied in four places rather than argued.** Nothing now spells the vocabulary
+  twice: `facade.js` derives the top level from `confidence.js`'s own `LEVELS`, the per-structure
+  census in `buildings.js` takes its keys from the census it is summing, and the smoke reads the
+  words off `window.__chicago4d.confidenceLevels` instead of carrying its own copy. A gate holding
+  a private copy of a vocabulary is a gate that keeps passing after the vocabulary moves — and it
+  reports a count of zero while doing it, which reads like a clean bill.
+- **Verified after the repair, not only before it.** `./tools/check.sh` **PASS**;
+  `tools/smoke_renderer.mjs` **195 mobile + 192 desktop, 0 failed**, zero page errors at both
+  release viewports. The three K4 assertions and the four new K17 ones all pass, and the facade
+  fix is confirmed by *"the documented finish does not move when weathering does"* flipping from
+  fail to pass on a frame of the Sauganash.
+- **K12 is unchanged and still open.** Nothing runs on a merge commit. Three occurrences in two
+  days is now the argument its own entry already makes.
+
 ## New 2026-08-13 — a roof we were sure about, on a building that never existed
+
+> **Written in the vocabulary of the hour it shipped, and left in it.** This section says
+> `documented` / `derived` / `inferred`; while it was being written the words were renamed a
+> second time, to `attested` / `inferred` / `reconstructed`. Read `documented`→`attested`,
+> `derived`→`inferred` and `inferred`→`reconstructed` throughout. **No number below changed and
+> no encoded value ever did** — the three levels have always been 0.0, 0.5 and 1.0. See the
+> repair section above for how the two landed on top of each other.
 
 **K17 item 1.** In the confidence view the walls of an invented building dithered and its roof
 did not, so the view that exists to say which parts we made up said it about part of a building.

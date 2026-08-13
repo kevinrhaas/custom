@@ -102,15 +102,16 @@ confidence of the attribute that produced that geometry:
 
 | value | meaning |
 |---|---|
-| `0.0` | `documented` |
-| `0.5` | `derived` |
-| `1.0` | `inferred` |
+| `0.0` | `attested` |
+| `0.5` | `inferred` |
+| `1.0` | `reconstructed` |
 
-**The words moved 2026-08-13 (ROADMAP K16); the numbers did not.** What was written `inferred`
-here is now `derived` and what was written `conjectural` is now `inferred`. No encoded value
-changed, no asset needs rebaking, and nothing in this contract is renegotiated by the rename —
-this table and the worked example below are simply brought into line with the vocabulary the
-schema, the validator and the renderer already use.
+**The words moved twice on 2026-08-13 (ROADMAP K16); the numbers never did.** This table read
+`documented` / `inferred` / `conjectural` when it was written, then briefly
+`documented` / `derived` / `inferred`, and now says what the schema, the validator and the
+renderer say. **No encoded value has changed at any point and no asset needs rebaking** — the
+three levels have always been 0.0, 0.5 and 1.0. Read the worked example below in the current
+words, and older prose elsewhere in the repository in whichever words it was written in.
 
 **Why not `COLOR_0`** (revised 2026-08-09 after a Blender spike): glTF defines `COLOR_0` as a
 **multiplier on base colour**, so a documented value of 0.0 would render the building black in
@@ -133,12 +134,12 @@ Worked example, the Sauganash `frame_1831` phase:
 
 | geometry | driven by | value |
 |---|---|---|
-| wall massing, storey height | `stories` documented, `wall_height_m` inferred → **worst wins** | `1.0` |
-| clapboard cladding, white paint | `paint` documented | `0.0` |
-| shutters | `shutters` documented | `0.0` |
-| roof | `roof_type` inferred | `1.0` |
-| attached log wing | `log_wing` derived | `0.5` |
-| footprint outline | `footprint` inferred | `1.0` |
+| wall massing, storey height | `stories` attested, `wall_height_m` reconstructed → **worst wins** | `1.0` |
+| clapboard cladding, white paint | `paint` attested | `0.0` |
+| shutters | `shutters` attested | `0.0` |
+| roof | `roof_type` reconstructed | `1.0` |
+| attached log wing | `log_wing` inferred | `0.5` |
+| footprint outline | `footprint` reconstructed | `1.0` |
 
 **Rule when several attributes drive one piece of geometry: the least confident wins.** A wall
 whose height is invented is an invented wall, even if we know it was white.
@@ -150,9 +151,9 @@ correct and stays correct. But existence — `documented_range.confidence`, the 
 building was standing at the scene date — is a driver of NO part, so nothing in the file ever
 composed it with anything. `inf_cooperage_south` is a building whose own record says *"NO
 EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED"* and whose `roof_type` is graded
-`derived`, because a gable really is the near-universal form for the type and period. Both
-readings are right; together they painted a derived roof on an invented building, and 162 of the
-242 structures in the 1835 scene rendered part-solid for that reason.
+`inferred`, because a gable really is the near-universal form for the type and period. Both
+readings are right; together they painted a roof one grade better than the building under it,
+and 162 of the 242 structures in the 1835 scene rendered part-solid for that reason.
 
 So the same worst-wins rule is applied once more, **in the renderer, between the part and the
 record that owns it** — `renderers/web/js/confidence.js` `floorToExistence()`, called from
@@ -285,7 +286,7 @@ The renderer reads the index, never a directory listing.
 ## What the renderer must implement
 
 1. **Confidence view** — a toggle reading `_CONFIDENCE` through one shared material patch:
-   documented renders normally, inferred tints, conjectural renders as dithered translucent
+   attested renders normally, inferred tints, reconstructed renders as dithered translucent
    massing. Centralised so it cannot be forgotten per-building.
 2. **Pick → provenance** — raycast to a batch id, resolve `extras.structure_id`, show the
    sidecar's attributes and citations. The visual claim and the citable claim come from the same

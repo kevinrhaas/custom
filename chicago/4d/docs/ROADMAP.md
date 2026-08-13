@@ -560,7 +560,8 @@ are a record of what was said at the time.
 Depends on K16's vocabulary. Three things the owner asked for on 2026-08-13:
 
 1. ~~**The roofs do not dither.**~~ **DONE 2026-08-13, and it was neither of the two causes the
-   item proposed.** Audited first, because the item names two hypotheses and both are testable:
+   item proposed.** *(Written in the pre-rename vocabulary: read `documented`→`attested`,
+   `derived`→`inferred`, `inferred`→`reconstructed`. No number and no encoded value changed.)* Audited first, because the item names two hypotheses and both are testable:
    all 993 primitives in the 244 committed masters carry `_CONFIDENCE` (and all 836 in the
    published derivatives do too, so this was not the K4-shaped one-pipeline trap), and every
    material is patched — `buildings.js` patches per material bucket, which cannot miss one.
