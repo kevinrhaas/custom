@@ -52,8 +52,13 @@ text for those three, plus the things a later parcel should pick up.
 > refused, while 0.030 lands at 3.1 mm — and costs 247 527 triangles / 6.4 MB against the
 > previous 135 249 / 3.5 MB. The GLB now committed is the 0.030 one. Worth a look at whether
 > the planar decimate is the right operator here, or whether the fit should be enforced by a
-> quadric-error budget instead of a dihedral angle; the payload is inside the 25 MB budget but
-> the ground is now the largest single asset by a wide margin.
+> quadric-error budget instead of a dihedral angle; the payload is inside the 25 MB budget
+> (`tools/publish.sh` reports 19.16 MB) but the ground is now the largest single asset by a
+> wide margin. **The rendered-triangle budget is the tighter constraint**: the smoke measures
+> **564 681 tris at 1280×800 against a 600 000 budget** — 6 % of headroom, where before this
+> change there was roughly 25 %. The terrain is `frustumCulled = false`, so all 247 527 of its
+> triangles are in every frame. The next parcel that adds geometry will hit this ceiling
+> before it hits the payload one.
 
 ---
 

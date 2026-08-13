@@ -92,13 +92,19 @@ attested or typologically argued — the Kinzie piazza is the attested exemplar;
 the town; (e) **docks/wharves** at the forwarding houses (attested "with its dock along the
 river front"; needs a river-wharf mode of `pier_crib`). Everything invented gets its liberty.
 
-### K6 — The river bulge at Clark Street
-The owner reports a bulge in the river at Clark that contradicts the record. Re-examine the
-traced 1834 waterline through the central blocks against the Thompson plat block lines and
-Wright; the South Water georeference note already shows the Clark end sitting ~78–80 m off
-where Dearborn sits 15–19 — likely a tracing artifact from local paper stretch. Re-trace that
-reach, regenerate the heightfield (land outside the reach must stay bit-identical — prove it
-the way S2e did), re-run the gradient audit.
+### K6 — The river bulge at Clark Street · **DONE 2026-08-13**
+Not paper stretch and not a mis-traced stream: the traced south bank had been walked round
+the **outline capital G of "CHICAGO RIVER"**, which Wright letters across the channel, joined
+to the drawn bank by a brown foxing stain. `tools/trace_shoreline.py` gained a declared
+`LETTERING` window that reads the map's own type as type, spliced into the uncorrected ring
+so the declared box is the blast radius. Heightfield regenerated: **0 cells changed outside
+the corridor E +505 … +660, max |delta| 0.000000 m, 0 waterline crossings**; inside it 1 719
+cells, max 3.605 m, 620 crossings, all land → water. Gradient audit unchanged and passing
+(`plain_block_max` 0.468 ft / 300 ft). Memo:
+`docs/RESEARCH/clark_reach_bulge_1834.md`. The 78–80 m vs 15–19 m South Water discrepancy
+this item cited was this defect, so **`docs/RESEARCH/chicago_american_office.md` § 3 now
+overstates the Clark residual** and should be re-measured against the corrected trace.
+
 
 ### K7 — Thompson plat lot lines
 Generate block/lot geometry analytically from the plat module (80-ft streets, documented lot
@@ -129,11 +135,14 @@ ends — evidence: the 1883 settlers' statement (log abutments IN the shallow wa
 banks), deck heights already documented. Walkable end to end, wagon-plausible gradients;
 regrade `ground_contact` as each bridge actually lands; move the relevant liberty text.
 
-### K11 — Trees standing in the river
-Placement bug: trees render mid-channel. `trees.js` placement must reject any position whose
-ground sample is below the water surface (and the thicket screens must sit ON the point bars,
-not in the water). Add the check to the smoke suite — "no tree below the waterline" — so it
-cannot regress. Bank-edge willows stay; the fort views show timber ALONG the river, never in it.
+### K11 — Trees standing in the river · **DONE 2026-08-13**
+The river mask (`isWater`) begins 100 mm BELOW the water plane, so a stem could root in that
+band, pass the mask and render standing in open water — 36 of 618 stations were doing it.
+`trees.js` now requires every tree and thicket to stand `TREE_DRY_MARGIN_M` = 0.20 m clear of
+the epoch's own `water_surface_m` (0.15 m of sunk bole + the 0.03 m ground-mesh tolerance,
+plus 20 mm). 197 candidates rejected; lowest surviving station +0.201 m. New smoke assertion
+**"no tree stands below the waterline"**, alongside — not replacing — the river-mask check.
+
 
 ### K12 — Loop hygiene *(standing instruction to every steward run)*
 Every run that adds anything user-visible writes its changelog entry (v: null, ts: '') IN THE
@@ -141,6 +150,31 @@ SAME RUN — the overnight push of 2026-08-11 landed ~50 buildings with no chang
 the owner noticed before we did. Publish (`tools/publish.sh`) and merge to main so the deploy
 actually ships; main is the only branch Pages publishes.
 
+
+### K13 — The La Salle Street re-entrant, and the other Main Branch sloughs
+Wright draws a narrow watercourse dropping south off the main stem between plat blocks 19 and
+18, at local E +462 … +469 — La Salle Street. The waterline trace carries its mouth (that is
+as far as Wright washes it) and nothing beyond. The dossier records that the 1830 Thompson
+plat shows **three sloughs off the Main Branch**, and ROADMAP § S2e makes Conley/Stelzer 1833
+the primary guide for where the streams come in and where they terminate. Parcel: identify
+the three, and carry the ones that are attested as `hydrology.geojson` CENTRELINES in the
+form the north-side slough already takes — never as traced boundaries, because the bank wash
+is not there to trace. Cross-check the State Street slough mouth the trace already carries at
+E +850 … +856 against dossier zone 14.
+
+### K14 — The terrain decimator's tolerance cliff
+`generators/terrain_gen.py --decimate-deg` behaves as a cliff, not a dial, against
+`MESH_FIT_TOLERANCE_M`: after the K6 correction, 0.040 and 0.038 both land at 30 mm and are
+refused, while 0.030 lands at 3.1 mm — and costs 247 527 triangles / 6.4 MB against the
+previous 135 249 / 3.5 MB. The GLB now committed is the 0.030 one. Worth a look at whether
+the planar decimate is the right operator here, or whether the fit should be enforced by a
+quadric-error budget instead of a dihedral angle; the payload is inside the 25 MB budget
+(`tools/publish.sh` reports 19.16 MB) but the ground is now the largest single asset by a
+wide margin. **The rendered-triangle budget is the tighter constraint**: the smoke measures
+**564 681 tris at 1280×800 against a 600 000 budget** — 6 % of headroom, where before this
+change there was roughly 25 %. The terrain is `frustumCulled = false`, so all 247 527 of its
+triangles are in every frame. The next parcel that adds geometry will hit this ceiling
+before it hits the payload one.
 ---
 
 ## S1 — Georeference and verify the datum · **DONE 2026-08-09**

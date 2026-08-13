@@ -139,6 +139,30 @@ Structure positions still carry `symbolic_location` with null coordinates — th
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
 
+## Fixed 2026-08-13 — two defects the owner photographed, and what they taught
+
+**The Clark Street headland was the map's own lettering.** Fixed 2026-08-13. What makes it
+worth recording is that the trace had been *believed* against a measurement that disagreed
+with it: the South Water georeference note recorded 79.6 m of residual at Clark against
+18.7 m at Dearborn and attributed the swing to paper stretch. Both numbers were right and the
+explanation was wrong. A 60 m local disagreement between two independent methods is a defect
+report, not an error bar.
+
+**`generators/terrain_gen.py --glb` had been unrunnable since `terrain_inputs` was
+extracted.** `terrain_inputs_sha()` is called before `main()` inserted `generators/` on
+`sys.path`; run as `python3 generators/terrain_gen.py` that path is `sys.path[0]` by accident,
+run under `blender --python` it is not, and the GLB half died on `ModuleNotFoundError`. The
+insert moved to import time. Nothing caught it because `tools/bake.sh` does not build terrain
+and the terrain GLB is a rare, deliberate invocation. **The heightfield and the GLB are now
+back in step**; the committed GLB before this run was baked at `--decimate-deg 0.04` and the
+one after at `0.03` (see K14).
+
+**The tree-placement gate and the river mask are two different questions.** `isWater` asks
+"is this the river" and its threshold is 100 mm under the datum, which is correct for that
+question and was silently wrong for "may a stem stand here". The release gate had a green
+check on the first question while the owner had a photograph of the second failing. Both
+checks are now present.
+
 ## Known weaknesses, stated plainly
 
 0a. **The gate that exists to catch a building standing on nothing reported a perfect
