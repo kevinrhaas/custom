@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1835-06-08",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637389.2,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street immediately east of Dearborn Street (today the south side of West Wacker Drive just east of North Dearborn), near the south landing of the Dearborn Street drawbridge.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "osm_streets_2026"
@@ -53,18 +53,18 @@
             7.62
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, from the Green Tree Tavern's attested frontage and room module. No source gives this building a dimension. The documented South Water lot width of 55 ft is the one real constraint and 40 ft sits inside it. A CAVEAT LARGER THAN THE SIZE: nothing says the American's office occupied a building of its own rather than rooms in someone else's. Andreas is explicit when he means rooms — of the Democrat he writes that 'an office was secured IN a building' — and of the American he says only where the office was. This record draws a whole building on the strength of a premises, which is the single biggest liberty in it."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "NOTHING IS ATTESTED. A hand press, type cases and a compositor fit in one room, and a three-week-old weekly on a boom-town street is as likely to be in a single-storey shop as in a two-storey block. One is recorded because it is the smaller claim. Invention, tagged as such."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -72,22 +72,22 @@
         },
         "wall_height_m": {
           "value": 3.2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.2 m is about 10.5 ft, one commercial storey with a little more head-room than a dwelling's — a press is worked standing. It inherits the storey count's uncertainty, which is conjectural."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a printing office worked through Chicago winters — ink stiffens and paper has to be damped, so a press room is heated. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },

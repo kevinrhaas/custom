@@ -21,7 +21,7 @@
     "local_e": 245.952,
     "local_n": -275.963,
     "rotation_deg": 0.0,
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district.",
     "symbolic_location": "South Division, local ENU E 249 N -272",
@@ -48,7 +48,7 @@
         7.925
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 26 ft is the schedule's D1 older-log-cabin band: one room and a loft, which is what a doctor's residence-and-surgery would have been in a town this size. Every number is invented."
   },

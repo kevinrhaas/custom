@@ -111,7 +111,7 @@
       ]
     ],
     "priority": 20,
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire273",
       "white_1978_inai"
@@ -326,7 +326,7 @@
         "inflorescence": null,
         "appearance": "Upright leafy clumps; the airy panicle has not emerged."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -416,7 +416,7 @@
         },
         "appearance": "Deep red-purple flat-topped corymbs over narrow dark leaves."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -464,7 +464,7 @@
         },
         "appearance": "Huge sandpapery vertical basal leaves to 0.4 m and a near-leafless scape carrying yellow heads. The strongest vertical accent in the zone."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994",
         "idnr_tallgrass_plantlist"
@@ -671,7 +671,7 @@
         "inflorescence": null,
         "appearance": "Tall smooth green stems and coarse toothed leaves only — it flowers in August."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "white_1978_inai"
       ],
@@ -719,7 +719,7 @@
         },
         "appearance": "The only shrub standing in the matrix; fuzzy white terminal panicles."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -764,7 +764,7 @@
         },
         "appearance": "PAST BLOOM: green ribbed schizocarp umbels, not yellow flowers."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -808,7 +808,7 @@
         },
         "appearance": "Flat white compound umbels on a purple-mottled stem."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -840,7 +840,7 @@
         "inflorescence": null,
         "appearance": "Folded keeled leaves and a tight green bud cluster; it is a September flower."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],
@@ -872,7 +872,7 @@
         "inflorescence": null,
         "appearance": "Square stems in a dense leafy spike, the flower buds formed and stacked up the axis but not yet open."
       },
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "swink_wilhelm_1994"
       ],

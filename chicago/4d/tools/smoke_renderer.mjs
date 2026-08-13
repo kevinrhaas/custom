@@ -477,7 +477,7 @@ for (const [label, viewport, touch] of [
       /Wau-Bun/.test(picked.text) && /Kinzie, Juliette/.test(picked.text),
       `popup text did not contain the Wau-Bun citation: ${picked.text.slice(0, 160)}`);
     check(`${label}: popup shows per-attribute confidence`,
-      /documented/.test(picked.text) && /conjectural/.test(picked.text),
+      /documented/.test(picked.text) && /inferred/.test(picked.text),
       picked.text.slice(0, 160));
 
     // --- and what KIND of source each citation is ---------------------------
@@ -689,7 +689,7 @@ for (const [label, viewport, touch] of [
       presence.hogan?.span === '1831-03-31 → 1835-12-31',
       `span "${presence.hogan?.span}"`);
     check(`${label}: the presence claim is graded per building, not stamped`,
-      presence.hogan?.conf === 'inferred' && presence.saug?.conf === 'documented',
+      presence.hogan?.conf === 'derived' && presence.saug?.conf === 'documented',
       `hogan ${presence.hogan?.conf}, sauganash ${presence.saug?.conf}`);
     // The reasoning is the point: a span with a chip and no argument is what the
     // card already had everywhere else. Hogan's is the one that matters — the end
@@ -758,7 +758,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the card says how much of the shape is evidence`,
       shape.hogan.present && shape.saug.present
-      && shape.hogan.conf === 'documented' && shape.saug.conf === 'conjectural',
+      && shape.hogan.conf === 'documented' && shape.saug.conf === 'inferred',
       `hogan ${shape.hogan.conf}, sauganash ${shape.saug.conf}`);
     check(`${label}: the footprint's reasoning is the record's, verbatim`,
       shape.saug.shown === shape.saug.recorded && shape.saug.recorded.length > 300
@@ -2042,7 +2042,7 @@ for (const [label, viewport, touch] of [
       for (const row of rows) {
         if (row.dataset.jumpKind !== 'structure') continue;
         const want = registry.get(row.dataset.jumpId)?.sidecar?.placement?.position_confidence
-          || 'conjectural';
+          || 'inferred';
         const chip = row.querySelector('.conf');
         const shown = chip?.textContent?.trim();
         if (shown === want && chip.classList.contains(`conf-${want}`)) graded++;
@@ -2050,7 +2050,7 @@ for (const [label, viewport, touch] of [
       }
       // And the colour has to carry the distinction, which is exactly what a
       // bare `.jump-result small` rule took away from it once: it outranks
-      // `.conf-inferred` on specificity and painted all three grades the same
+      // `.conf-derived` on specificity and painted all three grades the same
       // dim grey — a legend that lies, in a project whose whole product is the
       // grading.
       const colourOf = (grade) => {
@@ -2067,14 +2067,14 @@ for (const [label, viewport, touch] of [
           && r.querySelector('.conf')).length,
       };
       const note = document.getElementById('jump-note')?.textContent ?? '';
-      const tally = { documented: 0, inferred: 0, conjectural: 0 };
+      const tally = { documented: 0, inferred: 0, inferred: 0 };
       for (const [, record] of registry) {
-        const grade = record?.sidecar?.placement?.position_confidence || 'conjectural';
+        const grade = record?.sidecar?.placement?.position_confidence || 'inferred';
         if (grade in tally) tally[grade]++;
       }
       const colours = {
+        derived: colourOf('derived'),
         inferred: colourOf('inferred'),
-        conjectural: colourOf('conjectural'),
         plain: getComputedStyle(document.querySelector('.jump-result span')).color,
       };
       input.value = 'Randolph Canal';
@@ -2099,15 +2099,15 @@ for (const [label, viewport, touch] of [
       jumps.all.chippedNonStructures === 0,
       `${jumps.all.chippedNonStructures} non-structure result(s) carry a confidence chip`);
     check(`${label}: the grades are told apart by colour, not only by their words`,
-      jumps.colours.inferred && jumps.colours.conjectural
-      && jumps.colours.inferred !== jumps.colours.conjectural
-      && jumps.colours.inferred !== jumps.colours.plain,
+      jumps.colours.derived && jumps.colours.inferred
+      && jumps.colours.derived !== jumps.colours.inferred
+      && jumps.colours.derived !== jumps.colours.plain,
       JSON.stringify(jumps.colours));
     check(`${label}: the tab counts its own list rather than quoting a written total`,
       jumps.note.includes(`${jumps.all.structures} structures`)
       && jumps.note.includes(`${jumps.tally.documented} are `)
       && jumps.note.includes(`${jumps.tally.inferred} inferred`)
-      && jumps.note.includes(`${jumps.tally.conjectural} conjectural`),
+      && jumps.note.includes(`${jumps.tally.inferred} inferred`),
       `${jumps.note} / ${JSON.stringify(jumps.tally)}`);
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
@@ -2499,7 +2499,7 @@ for (const [label, viewport, touch] of [
     // ground. A section that stamped one chip on all four would have passed any
     // check for "there is a chip" — and would be lying about the Western Hotel.
     check(`${label}: the standing one says it is standing and the unbuilt ones do not`,
-      /standing here/.test(open.western.chip) && /inferred/.test(open.western.chip)
+      /standing here/.test(open.western.chip) && /derived/.test(open.western.chip)
       && open.court.chip === 'not built' && open.caldwell.chip === 'not built',
       `western "${open.western.chip}" · court "${open.court.chip}"`);
     // …and the doubt is not restated here in this section's own words. It names
@@ -2590,8 +2590,8 @@ for (const [label, viewport, touch] of [
     // qualified the two differently is exactly the drift the shared renderer and
     // the `carried_by` gate exist to stop.
     check(`${label}: the card grades the doubt the same way the claim above it is graded`,
-      openCard.western.chip === 'inferred'
-      && openCard.western.presenceChip === 'inferred',
+      openCard.western.chip === 'derived'
+      && openCard.western.presenceChip === 'derived',
       `question "${openCard.western.chip}" · presence "${openCard.western.presenceChip}"`);
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
@@ -2654,7 +2654,7 @@ for (const [label, viewport, touch] of [
         landGrades: all.filter((e) => /divisions|the bank|marshy|swales|texture/.test(e.group))
           .map((e) => e.conf),
         inferredWithoutReason: all.filter(
-          (e) => e.conf === 'inferred' && /No reasoning is recorded/.test(e.body))
+          (e) => e.conf === 'derived' && /No reasoning is recorded/.test(e.body))
           .map((e) => `${e.group}/${e.label}`),
         scopeShown: mount.querySelector('.ground-scope')?.textContent
           .replace(/^\s*What these claims cover\s*—\s*/, '') ?? '',
@@ -2668,10 +2668,10 @@ for (const [label, viewport, touch] of [
       `${ground.rendered} rendered of ${ground.counted} (${ground.error})`);
     // THE discriminating pair, and the reason this section is worth having: the
     // water plane is documented and the bank face — the largest unsourced
-    // assumption in the build — is conjectural. A section that stamped one grade
+    // assumption in the build — is inferred. A section that stamped one grade
     // on the whole terrain would pass any check for "there is a chip".
     check(`${label}: the ground is graded per claim, not stamped`,
-      ground.water?.conf === 'documented' && ground.bank?.conf === 'conjectural',
+      ground.water?.conf === 'documented' && ground.bank?.conf === 'inferred',
       `water "${ground.water?.conf}" · bank "${ground.bank?.conf}"`);
     // The spec's own caveat, asserted where a visitor reads it rather than in the
     // file: no land elevation in this scene is better than inferred.
@@ -2749,7 +2749,7 @@ for (const [label, viewport, touch] of [
     // has some — the discriminating pair, one level down from the panel.
     const emptyState = await page.evaluate(async () => {
       const { groundClaimHtml } = await import('/renderers/web/js/ground.js');
-      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'inferred',
+      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'derived',
         fields: [], sources: [], citations: [], notes: [] };
       return {
         without: groundClaimHtml(claim),

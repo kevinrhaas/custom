@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1836-12-29",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "kinzie_waubun_1856"
@@ -24,7 +24,7 @@
         "utm_n": 4637502.36,
         "rotation_deg": 53.0,
         "symbolic_location": "On the reservation south-west of Fort Dearborn, between the fort and the bend of the river, west of the road.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth"
         ],
@@ -53,7 +53,7 @@
             77.0
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth"
         ],
@@ -62,7 +62,7 @@
       "form": {
         "wall_kind": {
           "value": "worm_fence",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "harrison_1830_river_mouth"
           ],
@@ -70,27 +70,27 @@
         },
         "construction": {
           "value": "split_rail",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. A worm fence is stacked split rails by construction - it has no posts and nothing is set in the ground, which is why it is drawn as a zigzag."
         },
         "fence_height_m": {
           "value": 1.3,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Unattested. About four and a half feet, the ordinary height of a worm fence that has to keep stock out of a garden."
         },
         "rail_courses": {
           "value": 3,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Unattested. Three courses is the light end of the type; a stock fence would carry more."
         },
         "panel_length_m": {
           "value": 3.0,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Unattested. Ten feet, which is a split rail's length."
         },
         "panel_offset_m": {
           "value": 0.9,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Unattested. How far each panel steps off the line, which is what makes the zigzag; three feet is the ordinary lay."
         },
         "planting": {

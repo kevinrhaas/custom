@@ -209,8 +209,8 @@ anti-vacuity half — a placer that refused everything on that bank would otherw
 ### K4 — Facades: weathered wood, not painted clones · **FINISH + PER-BUILDING TONE DONE 2026-08-13**
 
 **The first half is in, and the finding is that the dataset already held it.** `paint` is
-authored on 174 of the scene's 243 phases — **142 `unpainted`**, 14 whitewash, 12 red, 5 masonry,
-2 documented — `tools/validate.py` has gated it since the schema was written, and the dossiers say
+authored on 174 of the scene's 243 phases — **142 `unpainted`**, 14 whitewash, 12 red, 5 masonry;
+graded 163 `derived`, 9 `inferred`, 2 `documented` — `tools/validate.py` has gated it since the schema was written, and the dossiers say
 what it looked like: the fort *"serviceable, weathered, whitewashed/unpainted log-and-brick"*, the
 Dearborn Street bridge *"weathered, patched, sagging"*, and `docs/RESEARCH/green_tree_tavern.md`
 § 4 on the point that makes it matter — the Sauganash's white is remarkable in the sources

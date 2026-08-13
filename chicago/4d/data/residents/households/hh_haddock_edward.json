@@ -5,28 +5,28 @@
  "head": "haddock_edward",
  "arrival": {
   "value": "1835",
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "NOT ATTESTED AND VERY LIKELY EARLIER. Nothing dates Haddock's arrival at Chicago; what is dated is his tenancy of a tavern ending in 1835. A year-precision 1835 value would straddle the scene date, so the earliest year the evidence permits is used and the whole field is graded conjectural. TO RESOLVE: Dexter Graves's household and the marriage that made Haddock his son-in-law would date this properly.",
   "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "mansion_house",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -34,7 +34,7 @@
  },
  "works_at": {
   "value": "mansion_house",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -57,7 +57,7 @@
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],

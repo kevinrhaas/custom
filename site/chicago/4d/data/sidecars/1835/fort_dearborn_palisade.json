@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1849-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "kinzie_waubun_1856",
       "wentworth_1881_fort_dearborn",
@@ -28,7 +28,7 @@
     "local_e": 1122.07,
     "local_n": 198.45,
     "rotation_deg": 8.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "harrison_1830_river_mouth",
       "wright_1834",
@@ -59,7 +59,7 @@
         53.0
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "harrison_1830_river_mouth",
       "andreas_1884_v1",
@@ -79,22 +79,22 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not stated. 'Pickets' in this literature means split or roughly squared timber posts set upright, and the fort was built by soldiers out of local timber. The archetype builds squared posts, which is the commonest form and the one that matches the hewn work in the town across the river."
     },
     "picket_height_m": {
       "value": 3.7,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "THE SOURCE GIVES AN ADJECTIVE AND THIS RECORD NEEDS A NUMBER. Kinzie says 'high pickets' and nobody else says anything at all. 3.7 m is twelve feet, the common height for a frontier stockade of this class, and it is a guess dressed in a plausible number. A visitor looking at the height of this wall is looking at our arithmetic, not at evidence."
     },
     "picket_width_m": {
       "value": 0.24,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. Roughly a ten-inch face, which is what a split oak or cedar picket of that height needs to stand without racking."
     },
     "picket_spacing_m": {
       "value": 0.3,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. Set so the posts stand shoulder to shoulder with the narrow gap a hand-set picket line actually leaves, rather than touching perfectly, which reads as a fence panel."
     },
     "gate_sides": {
@@ -111,7 +111,7 @@
     },
     "gate_width_m": {
       "value": 3.6,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "'Large gates' is the whole attestation. 3.6 m is twelve feet, wide enough for a loaded team, which is what a fort gate has to pass. The leaves are built shut; nothing says how they hung or which way they swung."
     },
     "bastion_corners": {
@@ -129,12 +129,12 @@
     },
     "bastion_length_m": {
       "value": 7.0,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. The 1830 plan draws the corner works as shallow rectangular projections; this is that shape at a size the plate supports to about +/-40 percent, which is worse than the enclosure's own error bar because the works are small on the plate."
     },
     "bastion_projection_m": {
       "value": 3.2,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "Unattested. How far the work stands proud of the curtain, read off the same small marks on the same plate."
     },
     "posterns": {
@@ -157,7 +157,7 @@
     },
     "occupants": {
       "value": "United States 5th Infantry, Maj. John Greene commanding",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1",
         "drloih_fort_dearborn"

@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1831-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "kinzie_waubun_1856"
     ],
@@ -24,7 +24,7 @@
     "local_e": -92.0,
     "local_n": -24.0,
     "rotation_deg": 90.0,
-    "position_confidence": "conjectural",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "A POINT CHOSEN IN A ROW, NOT A DERIVATION, so it is tagged conjectural and cites no sources. What Wau-Bun gives is an ORDER along the west bank and no distances: 'Facing down the river from the west was, first a small tavern kept by Mr. Wentworth ... Near him were two or three log cabins occupied by Robinson ... A little remote from these residences was a small square log building, originally designed for a school-house.' So the cabins lie between this project's wolf_point_tavern (north face at local N -45) and its walker_meeting_house (south face at local N -10), and 'a little remote' says the meeting house stands clear of them. This coordinate splits that gap, about 20 m north of the tavern and 14 m south of the meeting house, and sets the cabin back from the water on the same frontage. THE UNCERTAINTY IS THE ROW'S, NOT A METRE FIGURE: both neighbours are themselves placed from bank geometry rather than from any surviving intersection — the Walker meeting house's own position is tagged conjectural and may be on the wrong bank entirely — so this record inherits two soft positions and adds a free choice between them. Treat it as good to about ±40 m along the bank and no better. Facade bearing 90, due east onto the river, follows Wau-Bun's 'facing down the river from the west' and the bearing this project gives the tavern and the meeting house in the same row.",
     "symbolic_location": "West bank at Wolf Point, near Wentworth's tavern (the Wolf Point Tavern), in the river-front row between the tavern and the log meeting house to the north.",
@@ -51,7 +51,7 @@
         5
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED. 6.5 x 5 m is about 21 x 16 ft, an ordinary single-pen log cabin of the type and period. Every number is invented. AND THE POLYGON IS ONE CABIN WHERE THE SOURCE COUNTS TWO OR THREE: see form.cabin_count, which records the number and declares that the model does not build it."
   },
@@ -75,27 +75,27 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A single-pen log cabin is single-storey by type, and everything else in this row is described as low."
     },
     "wall_height_m": {
       "value": 2.4,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.4 m is about 8 ft, a single-pen log wall — the same reading this project gives the Sauganash's 1829 cabin."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low log cabin roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the normal number for a single-pen log cabin lived in through Chicago winters. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
     },
     "function": {

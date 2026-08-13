@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 1,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -38,7 +38,7 @@
  },
  "lives_at": {
   "value": "st_marys_church",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -54,7 +54,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],

@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a smithy on the west side, on the road traffic, which is where a smith who lives off passing horses and wagons wants to be - the same argument this dataset already makes for Pierce's shop one block north. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637231.533,
         "rotation_deg": 0.0,
         "symbolic_location": "West Division, local ENU E -175 N -160",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A smithy on the west side, on the road traffic, which is where a smith who lives off passing horses and wagons wants to be - the same argument this dataset already makes for Pierce's shop one block north. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, against the platted street corridors of the K7 block grid so that no invented building stands in the roadway, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
         "derivation": {
           "method": "not_derivable",
@@ -42,13 +42,13 @@
             8.534
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "A 18 x 28 ft rectangle from the W1 family band in the reconstruction specification. NO DIMENSION IS DOCUMENTED for this building, which does not exist in any source; the band is type-level evidence about what buildings of this class measured and is not evidence about this one."
       },
       "form": {
         "wall_height_m": {
           "value": 3.42,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -56,7 +56,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -64,7 +64,7 @@
         },
         "roof_pitch_deg": {
           "value": 32.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -72,7 +72,7 @@
         },
         "construction": {
           "value": "light_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -80,7 +80,7 @@
         },
         "door": {
           "value": "wagon",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -88,7 +88,7 @@
         },
         "door_side": {
           "value": "front",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -96,7 +96,7 @@
         },
         "loft": {
           "value": false,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -104,7 +104,7 @@
         },
         "board_gap_m": {
           "value": 0.012,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -112,7 +112,7 @@
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],

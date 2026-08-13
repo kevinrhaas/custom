@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To start a second newspaper in the boom",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -32,7 +32,7 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "works_at": {

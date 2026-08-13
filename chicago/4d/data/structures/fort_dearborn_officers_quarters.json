@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "wentworth_1881_fort_dearborn",
@@ -25,7 +25,7 @@
         "utm_n": 4637628.0,
         "rotation_deg": 98.0,
         "symbolic_location": "Inside the west wall of Fort Dearborn, fronting east onto the parade.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "wright_1834",
@@ -56,7 +56,7 @@
             9.14
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "wentworth_1881_fort_dearborn",
           "harrison_1830_river_mouth"
@@ -84,32 +84,32 @@
         },
         "stories": {
           "value": 2,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Not attested anywhere. Two is chosen because this range and the commandant's quarters are the two buildings the 1855 photograph shows as 'the principal buildings of the Fort', and a single-storey log range would not read as one of two principal buildings beside a two-storey brick one. That is an argument from a photograph nobody in this project has measured, so it is a guess and it is graded as one."
         },
         "wall_height_m": {
           "value": 4.8,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No height is attested. 4.8 m is two storeys of log wall at period course counts. The number inherits the storey count's weakness above it."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal form for a log range of this period and plan."
         },
         "roof_pitch_deg": {
           "value": 34.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
         },
         "chimneys": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A 60 ft officers' range through Chicago winters needs a stack at each end by type. The COUNT is the inference; position, size and material are the archetype's, per docs/LIBERTIES.md."
         },
         "gallery": {
           "value": false,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "A NEGATIVE THAT IS ALSO A CHOICE. Captain Whistler's 1808 index to the FIRST fort says 'the Barracks are two storeys high with shingled Roofs and Galliaries fronting the parade' (Quaife), and galleries on the parade front are the type. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were 'differently constructed'. A plain front is rendered because nobody found evidence either way, which is itself a claim a visitor sees."
         }
       }
@@ -128,7 +128,7 @@
   "review_required": false,
   "occupants": {
     "value": "subordinate officers of the garrison",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1820-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "kinzie_waubun_1856"
@@ -25,7 +25,7 @@
         "utm_n": 4637517.8,
         "rotation_deg": 180.0,
         "symbolic_location": "South-west corner of Wolcott Street and North Water Street (today N State St and the north bank of the main stem), at the foot of State Street, north bank of the main stem east of the forks.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "kinzie_waubun_1856",
           "andreas_1884_v1",
@@ -121,7 +121,7 @@
             8
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER. THE SHAPE CARRIES EVIDENCE AND EVERY NUMBER IN IT IS INVENTED, and the two must not be confused — the same distinction miller_house's footprint note draws. What is attested is the composition, from the only description of this building anybody wrote: 'a substantial, compact little building of logs hewed and squared, with a centre, two wings, and, strictly speaking, two tails, since, when there was found no more room for additions at the sides, they were placed in the rear, whereon a vacant spot could be found. These appendages did not mar the symmetry of the whole, as viewed from the front.' This polygon is that sentence drawn: a centre block projecting one metre forward of two flanking wings, so the front reads symmetrical, and two tails running back from the rear of the centre. The dimensions — a 5 m centre, 4 m wings, 1.5 m tails, a 13 x 9 m envelope — are chosen to suit the words 'compact little building' and are supported by nothing. Mrs. Callis's 'two large rooms' describes the house in 1816, before the wings and tails, and is the only interior evidence of any kind. NOTE WHAT THE MESH DOES WITH THIS: the log_dwelling archetype masses the polygon's BOUNDING BOX, so the visitor sees a plain 13 x 9 m rectangle and the composition this polygon draws is not built — the re-entrant corners beside the tails and beside the wings are filled in. That is admitted in docs/LIBERTIES.md rather than hidden, and it is the same limitation L27 records for Miller's house. To resolve: any plan, any dimension, or the Chicago Democrat's advertisements for the agency's buildings."
       },
       "form": {
@@ -154,27 +154,27 @@
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. 'Compact little building' and 'two large rooms' both read as a single storey, and a building that grew by adding wings at the sides and tails at the rear is a building that could not grow upward — which is the argument. The counter-example is in the same book: the FIRST agency house, built beside old Fort Dearborn in 1803-4 on the south side, was 'a two-story log building, covered with split oak siding'. That is a different building and it is why this value is inference rather than type."
         },
         "wall_height_m": {
           "value": 2.6,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.6 m is about 8 ft 6 in: one storey of hewn-log wall at the course counts this project uses for the Miller house's log core, plus a sill. What is inferred is the range, not the centimetre."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "THE ONE THING WAU-BUN SAYS ABOUT THIS ROOF IS THAT IT WAS NOT ORDINARY: 'There were pleasant, happy hours passed under its odd-shaped roof.' Odd-shaped is what a centre with two wings and two tails produces — a roof of intersecting ridges, valleys and lean-tos that grew with the additions. The archetype builds one gable over one rectangle, so the model shows the opposite of what the source says, and the value is tagged conjectural because a gable here is a substitution rather than a reading. Left as `gable` rather than `shed` because a gable is the only one of the two forms this archetype offers that a log building of this size would carry."
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low log building roofed in riven shakes. Inferred from construction practice, not measured, and inherited by a roof form the record has already said is wrong (see roof_type)."
         },
         "chimneys": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Two is inferred from the plan the sources give rather than from the building: a centre with two wings, holding the agent's office and household — in 1831 that household was J. H. Kinzie's mother, two sisters and brother as well — is more rooms than one hearth heats through a Chicago winter. The COUNT is the inference; where the stacks stand, how big they are and what they are made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
         }
       },
@@ -183,7 +183,7 @@
   ],
   "function": {
     "value": "agency_house_residence",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

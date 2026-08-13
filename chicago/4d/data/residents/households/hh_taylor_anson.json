@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 2,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -22,22 +22,22 @@
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "south_branch_raft_bridge",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -79,7 +79,7 @@
    "sex": "male",
    "occupation": {
     "value": "carpenter",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],

@@ -14,12 +14,12 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Washington County, Vermont",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -27,12 +27,12 @@
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -80,7 +80,7 @@
    "sex": "male",
    "occupation": {
     "value": "saddler",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

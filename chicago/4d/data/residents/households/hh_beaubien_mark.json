@@ -1,87 +1,88 @@
 {
- "id": "hh_beaubien_mark",
- "name": "The Mark Beaubien household",
- "division": "south",
- "head": "beaubien_mark",
- "arrival": {
-  "value": "1826",
-  "confidence": "conjectural",
-  "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
-  "precision": "year"
- },
- "party_size_on_arrival": {
-  "value": null,
-  "confidence": "conjectural",
-  "note": "Not attested."
- },
- "origin": {
-  "value": "A French-descended trading family of the Detroit and Milwaukee country",
-  "confidence": "inferred",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about 1800 and the move to Chicago in 1812; Mark's own route is not traced."
- },
- "reason_for_coming": {
-  "value": "Trade and tavern keeping at the forks",
-  "confidence": "inferred",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "Inferred from what he did on arrival. No source states a motive."
- },
- "lives_at": {
-  "value": null,
-  "confidence": "conjectural",
-  "note": "NOT ATTESTED AT THE SCENE DATE, AND THAT IS THE FINDING. He had left the Sauganash by 1834 - the hotel chronology gives 'Davis (1835)' as its operator - and the Exchange Coffee House he built at Lake and Wells was in the hands of the Murphys from August 1834. Where Mark Beaubien slept on 1 July 1835 is simply not in the record, and this field says so rather than putting him back in a house he had left."
- },
- "works_at": {
-  "value": null,
-  "confidence": "conjectural",
-  "note": "Same problem as the residence. The ferry, the Sauganash and the Exchange are all attested for him at other dates and none of them is attested for this one."
- },
- "present_on_scene_date": {
-  "value": "present",
-  "confidence": "inferred",
-  "sources": [
-   "andreas_1884_v1"
-  ],
-  "note": "He is a continuous presence in the Chicago record from the 1820s to the 1850s and no absence is recorded around 1835; the inference is that he was here, not that a source says so."
- },
- "persons": [
-  {
-   "id": "beaubien_mark",
-   "name": "Mark Beaubien",
-   "relationship": "head",
-   "grade": "documented",
-   "sex": "male",
-   "occupation": {
-    "value": "tavern_keeper",
-    "confidence": "documented",
-    "sources": [
-     "andreas_1884_v1"
-    ],
-    "note": "He built and kept the Sauganash - Andreas calls him 'the original proprietor' - and built the Exchange Coffee House at Lake and Wells in 1834. He was also the licensed ferryman of Chicago from 6 June 1831 (bond filed, James Kinzie surety, $50 into the county treasury) and the last keeper of the old lighthouse, decades later. Tavern keeping is the trade the sources return to."
-   },
-   "sources": [
-    "andreas_1884_v1"
-   ],
-   "note": "THE MAN THE TOWN VOTED AT. The incorporation election of 10 August 1833 was held 'at the house of Mark Beaubien' by the clerk's own printed notice, and the board resolved that its meetings should be held there too. He voted for incorporation on 5 August and was one of the twenty-eight electors. He named the Sauganash after Billy Caldwell: asked to name the house after some great man, 'he could think of no greater personage than Billy Caldwell'."
+  "id": "hh_beaubien_mark",
+  "name": "The Mark Beaubien household",
+  "division": "south",
+  "head": "beaubien_mark",
+  "arrival": {
+    "value": "1826",
+    "confidence": "inferred",
+    "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
+    "precision": "year"
   },
-  {
-   "id": "beaubien_mark_household",
-   "name": "Mark Beaubien's family, unnamed",
-   "relationship": "household_member",
-   "grade": "derived",
-   "occupation": {
-    "value": "none_recorded",
-    "confidence": "conjectural"
-   },
-   "sources": [],
-   "note": "AN ADMISSION, NOT A PERSON. Mark Beaubien's large family is a commonplace of the Chicago literature and nothing this project holds names or counts them, so they are carried as one unnamed placeholder rather than as invented individuals. Do not count this entry as a person."
-  }
- ],
- "touches_removal": false,
- "review_required": false,
- "research_note": "THE MOST FAMOUS HOUSEHOLD IN THE TOWN AND ONE OF THE THINNEST RECORDS IN THIS PARCEL, which is worth stating plainly because it is the shape of the whole problem. Everything Mark Beaubien DID is documented - the tavern, the ferry licence, the election held in his house, the naming of the Sauganash. Everything about him as a RESIDENT on 1 July 1835 - his roof, his work, his family, his arrival year - is unattested. Three of the five household fields here are conjectural and one of the two persons is a placeholder. That is the honest state of the evidence and the confidence view should paint it that way."
+  "party_size_on_arrival": {
+    "value": null,
+    "confidence": "inferred",
+    "note": "Not attested."
+  },
+  "origin": {
+    "value": "A French-descended trading family of the Detroit and Milwaukee country",
+    "confidence": "derived",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about 1800 and the move to Chicago in 1812; Mark's own route is not traced."
+  },
+  "reason_for_coming": {
+    "value": "Trade and tavern keeping at the forks",
+    "confidence": "derived",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "Inferred from what he did on arrival. No source states a motive."
+  },
+  "lives_at": {
+    "value": null,
+    "confidence": "inferred",
+    "note": "NOT ATTESTED AT THE SCENE DATE, AND THAT IS THE FINDING. He had left the Sauganash by 1834 - the hotel chronology gives 'Davis (1835)' as its operator - and the Exchange Coffee House he built at Lake and Wells was in the hands of the Murphys from August 1834. Where Mark Beaubien slept on 1 July 1835 is simply not in the record, and this field says so rather than putting him back in a house he had left."
+  },
+  "works_at": {
+    "value": null,
+    "confidence": "inferred",
+    "note": "Same problem as the residence. The ferry, the Sauganash and the Exchange are all attested for him at other dates and none of them is attested for this one."
+  },
+  "present_on_scene_date": {
+    "value": "present",
+    "confidence": "derived",
+    "sources": [
+      "andreas_1884_v1"
+    ],
+    "note": "He is a continuous presence in the Chicago record from the 1820s to the 1850s and no absence is recorded around 1835; the inference is that he was here, not that a source says so."
+  },
+  "persons": [
+    {
+      "id": "beaubien_mark",
+      "name": "Mark Beaubien",
+      "relationship": "head",
+      "grade": "documented",
+      "sex": "male",
+      "occupation": {
+        "value": "tavern_keeper",
+        "confidence": "documented",
+        "sources": [
+          "andreas_1884_v1"
+        ],
+        "note": "He built and kept the Sauganash - Andreas calls him 'the original proprietor' - and built the Exchange Coffee House at Lake and Wells in 1834. He was also the licensed ferryman of Chicago from 6 June 1831 (bond filed, James Kinzie surety, $50 into the county treasury) and the last keeper of the old lighthouse, decades later. Tavern keeping is the trade the sources return to."
+      },
+      "sources": [
+        "andreas_1884_v1"
+      ],
+      "note": "THE MAN THE TOWN VOTED AT. The incorporation election of 10 August 1833 was held 'at the house of Mark Beaubien' by the clerk's own printed notice, and the board resolved that its meetings should be held there too. He voted for incorporation on 5 August and was one of the twenty-eight electors. He named the Sauganash after Billy Caldwell: asked to name the house after some great man, 'he could think of no greater personage than Billy Caldwell'."
+    },
+    {
+      "id": "beaubien_mark_household",
+      "name": "Mark Beaubien's family, unnamed",
+      "relationship": "household_member",
+      "grade": "derived",
+      "occupation": {
+        "value": "none_recorded",
+        "confidence": "inferred",
+        "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
+      },
+      "sources": [],
+      "note": "AN ADMISSION, NOT A PERSON. Mark Beaubien's large family is a commonplace of the Chicago literature and nothing this project holds names or counts them, so they are carried as one unnamed placeholder rather than as invented individuals. Do not count this entry as a person."
+    }
+  ],
+  "touches_removal": false,
+  "review_required": false,
+  "research_note": "THE MOST FAMOUS HOUSEHOLD IN THE TOWN AND ONE OF THE THINNEST RECORDS IN THIS PARCEL, which is worth stating plainly because it is the shape of the whole problem. Everything Mark Beaubien DID is documented - the tavern, the ferry licence, the election held in his house, the naming of the Sauganash. Everything about him as a RESIDENT on 1 July 1835 - his roof, his work, his family, his arrival year - is unattested. Three of the five household fields here are conjectural and one of the two persons is a placeholder. That is the honest state of the evidence and the confidence view should paint it that way."
 }

@@ -11,7 +11,7 @@
       "documented_range": {
         "from": "1835-06-08",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -22,7 +22,7 @@
         "utm_n": 4637389.2,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street, two lots east of the Chicago American's office and east of Dearborn Street (today the south side of West Wacker Drive between North Dearborn and North State).",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "CONJECTURAL, AND THE TAG IS THE POINT: THIS POSITION IS AN OFFSET FROM A POSITION THAT IS ITSELF INFERRED. What Andreas gives is a relation and nothing else — Thomas advertised from 'two doors from the American office' — and the American office's own position is inferred from 'on Water Street, near the draw-bridge'. Stacking one on the other produces a point on the ground that no source can be said to support, whatever the arithmetic. THE ARITHMETIC, STATED SO IT CAN BE CORRECTED: Andreas states that South Water Street lots were 55 ft wide, so two doors along the street is about 110 ft = 33.5 m. This record sits 33.5 m east of chicago_american_office's footprint origin (E 447784.0), on the same frontage, at E 447817.5. THE DIRECTION IS THE ONE PIECE OF REAL REASONING HERE, and it is worth stating because it is not arbitrary: two lots WEST of the American office would cross Dearborn Street, since that record's west wall stands on the Dearborn frontage, and 'two doors' describes premises on one block face rather than across a crossing. East is therefore the only reading that keeps the phrase meaning what it means. THAT ARGUMENT INHERITS THE AMERICAN OFFICE'S OWN GUESS about which side of Dearborn it stood on; if the American was west of Dearborn, this record could be either side of it and the direction argument evaporates. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus about 30 m carried in from the American office's 'near the draw-bridge', plus the direction. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
         "derivation": {
           "method": "not_derivable",
@@ -48,18 +48,18 @@
             6.096
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "INVENTED. Nothing whatever is attested about this building. 9.144 x 6.096 m is 30 x 20 ft — deliberately the smallest of the parcel's South Water rectangles, because the only thing the source implies about the premises is that they were one of several 'doors' along a frontage, i.e. a single shop rather than a corner block. The 20 ft depth is Hogan's store's documented depth, the one period depth this dataset holds; the 30 ft frontage sits well inside the documented 55 ft South Water lot width. Both numbers are borrowed; neither is evidence about this building."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "conjectural",
+          "confidence": "inferred",
           "note": "Nothing is attested. One is recorded because it is the smaller claim for premises described only as a door along a street. Invention, tagged as such."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -67,22 +67,22 @@
         },
         "wall_height_m": {
           "value": 3.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey. It inherits the storey count's uncertainty, which is conjectural."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for premises kept through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -91,7 +91,7 @@
   ],
   "function": {
     "value": "shop",
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "note": "NO SOURCE REACHED SAYS WHAT FREDERICK THOMAS SOLD. Andreas records only that he advertised, and gives the address he advertised from. 'Shop' is the weakest word that fits a street of stores and commission houses and it is a guess; the trade is genuinely unknown, and the Chicago Democrat and Chicago American files for 1835 would settle it in one line, because the advertisement Andreas is quoting from is in one of them."
   },
   "occupants": {

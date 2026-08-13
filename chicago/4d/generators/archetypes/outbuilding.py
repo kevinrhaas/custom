@@ -153,9 +153,9 @@ def build(params: OutbuildingParams, name: str):
     _roof(b, p, c_roof)
 
     if p.door != "none":
-        _doorway(b, p, p.door_side, p.door_size_m, p.conf("door", "conjectural"))
+        _doorway(b, p, p.door_side, p.door_size_m, p.conf("door", "inferred"))
     if p.loft and p.loft_side:
-        _loft_door(b, p, p.conf("loft", "conjectural"))
+        _loft_door(b, p, p.conf("loft", "inferred"))
     vent = _vent_rect(p)
     if vent:
         _vent(b, p, vent, c_fen)

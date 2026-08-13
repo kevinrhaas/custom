@@ -17,7 +17,7 @@ script writes the glTF binary by hand and satisfies the contract exactly:
   * one node per structure phase, named `<structure_id>__<phase_id>`, carrying
     `extras.structure_id` / `extras.phase_id` / `extras.scene_ids`;
   * a `_CONFIDENCE` SCALAR float attribute (componentType 5126) on every vertex,
-    exercising all three levels — 0.0 documented, 0.5 inferred, 1.0 conjectural;
+    exercising all three levels — 0.0 documented, 0.5 derived, 1.0 inferred;
   * one material, one primitive, so it drops into a `BatchedMesh` as a single
     geometry; flat per-part colours come from a 4x1 palette texture the way
     `gltf-transform palette` would produce them.
@@ -53,8 +53,8 @@ PHASE_ID = "frame_1831"
 SCENE_IDS = ["1835"]
 
 # docs/GLB-CONTRACT.md, "The confidence channel"
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
-WORST_FIRST = ("conjectural", "inferred", "documented")
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
+WORST_FIRST = ("inferred", "derived", "documented")
 
 # Which record attributes drive which piece of geometry. This mapping IS the
 # contract's worked example; the numbers come from the record, not from here.

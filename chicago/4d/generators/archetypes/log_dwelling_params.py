@@ -43,7 +43,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from frame_tavern_params rather than imported
 # so that neither params module can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"documented": 0.0, "inferred": 0.5, "conjectural": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 # Only the two roof forms this archetype actually builds. A log dwelling with a
 # gambrel roof in 1835 Chicago would be a claim, not a default, so the archetype
@@ -145,7 +145,7 @@ class LogDwellingParams:
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
 
-    def conf(self, attr: str, default: str = "conjectural") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         """The _CONFIDENCE float for one attribute."""
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
@@ -254,7 +254,7 @@ def from_phase(phase: dict) -> LogDwellingParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="conjectural"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -266,7 +266,7 @@ def from_phase(phase: dict) -> LogDwellingParams:
     width, depth = max(xs) - min(xs), max(ys) - min(ys)
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "conjectural")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     stories = int(val("stories", 1))
     sign = val("sign")

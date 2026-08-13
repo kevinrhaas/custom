@@ -5,7 +5,7 @@
  "head": "couch_ira",
  "arrival": {
   "value": "1834",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1",
    "chicagology_prefire021"
@@ -15,7 +15,7 @@
  },
  "party_size_on_arrival": {
   "value": 2,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -23,12 +23,12 @@
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To buy and run a hotel in a booming town",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -36,7 +36,7 @@
  },
  "lives_at": {
   "value": "tremont_house_1",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -87,7 +87,7 @@
    "sex": "male",
    "occupation": {
     "value": "hotel_keeper",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],

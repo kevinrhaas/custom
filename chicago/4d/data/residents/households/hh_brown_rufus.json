@@ -5,7 +5,7 @@
  "head": "brown_rufus",
  "arrival": {
   "value": "1833",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "conjectural",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "lives_at": {
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -60,7 +60,7 @@
    "sex": "male",
    "occupation": {
     "value": "boarding_house_keeper",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],

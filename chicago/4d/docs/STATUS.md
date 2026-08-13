@@ -152,10 +152,32 @@ Structure positions still carry `symbolic_location` with null coordinates — th
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
 
+## Fixed 2026-08-13 (second occurrence) — the changelog was union-corrupted by a merge again
+
+**The hazard K12 says is still open is not theoretical, and it recurred within the day.** `main`
+carried an unparseable `renderers/web/js/changelog.js` from the merge that landed K16: the v72
+entry *"The grass stopped in a straight line across the prairie"* had lost its `] },` and swallowed
+everything below it, and the K16 entry rode in with a duplicate `v: 72`. Same mechanism as the
+first occurrence — `.gitattributes` merges this path `merge=union`, the union driver runs DURING
+the merge, and **nothing in this subtree runs on a commit git wrote**. Both parents were green.
+
+Repaired inside the facade-weathering PR, which is the merge that found it: the terminator is
+restored, the K16 entry is renumbered **v74** and moved above v73 where its own `ts` (16:44,
+against v73's 16:03) says it belongs, and this slice's entry is **v75**. No entry anybody has read
+was renumbered — while the file was broken on `main`, none of them was readable.
+
+**What caught it was the standing instruction, working exactly as written**: `tools/check.sh` runs
+the contract check as a step, and running the gate AFTER the merge rather than only before it is
+what turned a silently broken `main` into a named failure (*"line 27: entry v72 opens at bracket
+depth 3, not 1"*). What did NOT catch it is unchanged and is still ROADMAP § K12: no gate runs on
+the merge commit itself. Two occurrences in two days is the argument for taking one of K12's two
+candidate fixes — the subtree's gate on pushes to `main`, or a merge driver that understands the
+literal — rather than continuing to rely on the next agent to merge running the check by hand.
+
 ## New 2026-08-13 — the town was the colour of new lumber, and its own records said otherwise
 
 **K4, first half.** `paint` is authored on **174 of the scene's 243 phases** — 142 `unpainted`, 14
-whitewash, 12 red, 5 masonry, 1 white — `tools/validate.py` has gated it since the schema was
+whitewash, 12 red, 5 masonry, 1 white; graded 163 `derived`, 9 `inferred`, 2 `documented` — `tools/validate.py` has gated it since the schema was
 written, and the dossiers say what it looked like: the fort *"serviceable, weathered,
 whitewashed/unpainted log-and-brick"*, the Dearborn Street bridge *"weathered, patched, sagging"*,
 and `docs/RESEARCH/green_tree_tavern.md` § 4 on the reading that makes it matter — the Sauganash's
@@ -199,8 +221,8 @@ lightness offset of up to ±7.5 % keyed on the structure id. Memo:
   treatment reaches the pixels" would be equally happy with a shader that weathered everything.
   This leaves St Mary's, whose documented finish is `unpainted`, as the one unweathered unpainted
   building in the town; accepted rather than special-cased.
-- **What it does NOT claim.** That any particular building was this colour. `paint` is `inferred`
-  on 168 of the 174 phases that state one and no grade moved; the treatment draws the finish the
+- **What it does NOT claim.** That any particular building was this colour. `paint` is `derived`
+  on 163 of the 174 phases that state one and `inferred` on 9, and no grade moved; the treatment draws the finish the
   record already claimed instead of overriding it with a default. Nothing here is a new reading of
   a source. Board tone and board width WITHIN a wall, hewn versus round logs, and weathering by
   elevation are the archetypes' half of K4 and all still open — they need a bake.

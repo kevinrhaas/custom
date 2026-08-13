@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1831-01-01",
         "to": "1838-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "kinzie_waubun_1856",
           "chicagology_prefire273",
@@ -26,7 +26,7 @@
         "utm_n": 4637392.8,
         "rotation_deg": 90.0,
         "symbolic_location": "West bank at the forks, north of the Wolf Point Tavern and a little apart from the river-front row of cabins; alternatively, on the north bank — see the note, the bank is disputed.",
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "derivation": {
           "method": "not_derivable",
           "reason": "Stacked on another inferred position rather than on control: the footprint is set 35 m north of the Wolf Point Tavern's north face, which is itself derived. Nothing here is checkable against a surveyed line, and the record's larger problem is a step change of about 150 m if the bank reading is wrong, which no tolerance would express."
@@ -52,13 +52,13 @@
             7
           ]
         ],
-        "confidence": "conjectural",
+        "confidence": "inferred",
         "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED. Only two adjectives are, and THEY CONFLICT: Wau-Bun calls it 'a small square log building', chicagology calls it 'an oblong building'. Square is adopted for the proportion because Wau-Bun is the earlier and nearer-primary witness and was describing what she saw, while chicagology's is a recollection transcribed at further remove — but a 7 x 7 m square is a guess at scale wearing an attested proportion, so the whole polygon is tagged conjectural and cites no sources. 7 m is about 23 ft, a single-pen log building large enough for ten founding members and a school. The disagreement over the shape is itself weak evidence for the two-buildings hypothesis in the position note: a square building and an oblong one may be two different buildings."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated by either source. A single-pen log meeting house and school of this date is single-storey by type; neither witness mentions a stair, a loft or an upper room, and Wau-Bun's 'small square log building' does not admit a second storey."
         },
         "construction": {
@@ -72,28 +72,28 @@
         },
         "wall_height_m": {
           "value": 2.5,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.5 m is about 8 ft: a single storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.5 m."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 40.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 40 degrees is mid-range for a log building roofed in riven shakes. Inferred from construction practice, not measured."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No source describes a finish. Unpainted weathered log is the default for the type, and a mission meeting house that doubled as a school is the last building at Wolf Point that would have carried paint when the taverns did not.",
           "geometry": "simplified"
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A building used for worship and schooling through Chicago winters needed heating; one stack is the minimum and the normal number for a single-pen log building. Inference, not evidence."
         }
       },

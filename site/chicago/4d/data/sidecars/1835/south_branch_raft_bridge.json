@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1833-03-01",
     "to": "1835-08-18",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire252",
       "chicagology_lastwardance"
@@ -26,7 +26,7 @@
     "local_e": 6.86,
     "local_n": -178.07,
     "rotation_deg": 0.292,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicagology_lastwardance",
       "wright_1834",
@@ -57,7 +57,7 @@
         3.048
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "old_settlers_bridges_1883",
       "chicagology_prefire252",
@@ -127,7 +127,7 @@
     },
     "stringer_count": {
       "value": 4,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -135,7 +135,7 @@
     },
     "railing": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "old_settlers_bridges_1883"
       ],

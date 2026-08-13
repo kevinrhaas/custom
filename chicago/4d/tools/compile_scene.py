@@ -590,7 +590,7 @@ def compile_streets(scene_id: str, target_date: str,
                 or not 0 < track < corridor:
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
         for key in ("geometry_confidence", "surface_confidence", "wear_confidence"):
-            if raw.get(key, "conjectural") not in ("documented", "inferred", "conjectural"):
+            if raw.get(key, "inferred") not in ("documented", "derived", "inferred"):
                 raise SystemExit(f"{path.relative_to(ROOT)}: {sid}.{key} is not a confidence grade")
         street_sources = sorted(set([*common_sources, *(raw.get("sources", []) or [])]))
         missing = [s for s in street_sources if s not in sources]
@@ -606,9 +606,9 @@ def compile_streets(scene_id: str, target_date: str,
             "track_width_m": track,
             "surface": raw["surface"],
             "traffic": raw["traffic"],
-            "geometry_confidence": raw.get("geometry_confidence", "conjectural"),
-            "surface_confidence": raw.get("surface_confidence", "conjectural"),
-            "wear_confidence": raw.get("wear_confidence", "conjectural"),
+            "geometry_confidence": raw.get("geometry_confidence", "inferred"),
+            "surface_confidence": raw.get("surface_confidence", "inferred"),
+            "wear_confidence": raw.get("wear_confidence", "inferred"),
             "note": raw.get("note", ""),
             "citations": cite(street_sources, sources),
         })
@@ -785,7 +785,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "documented_range": {
                 "from": rng.get("from", ""),
                 "to": rng.get("to", ""),
-                "confidence": rng.get("confidence", "conjectural"),
+                "confidence": rng.get("confidence", "inferred"),
                 "sources": rng.get("sources", []),
                 "note": rng.get("note", ""),
             },
@@ -798,7 +798,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
                 "local_e": local_e,
                 "local_n": local_n,
                 "rotation_deg": pos.get("rotation_deg", 0.0),
-                "position_confidence": pos.get("confidence", "conjectural"),
+                "position_confidence": pos.get("confidence", "inferred"),
                 "position_sources": pos.get("sources", []),
                 "position_note": pos.get("note", ""),
                 "symbolic_location": pos.get("symbolic_location", ""),
@@ -826,7 +826,7 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             # `documented_range` and `research_note` before it.
             "footprint": {
                 "polygon": phase.get("footprint", {}).get("polygon", []),
-                "confidence": phase.get("footprint", {}).get("confidence", "conjectural"),
+                "confidence": phase.get("footprint", {}).get("confidence", "inferred"),
                 "sources": phase.get("footprint", {}).get("sources", []),
                 "note": phase.get("footprint", {}).get("note", ""),
             },

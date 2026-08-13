@@ -18,7 +18,7 @@
   "documented_range": {
     "from": "1828-01-01",
     "to": "1836-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "drloih_wolf_point",
       "drloih_hotels",
@@ -31,7 +31,7 @@
     "local_e": -77.3,
     "local_n": -45.1,
     "rotation_deg": 90.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicagology_prefire273",
       "drloih_wolf_point",
@@ -63,14 +63,14 @@
         7
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSIONS ARE ATTESTED FOR THIS BUILDING IN ANY SOURCE REACHED. No period map shows building footprints (see data/sources/hathaway_1834.json and wright_1834.json), and the textual sources describe the tavern's materials, its sign, its rates and its landlords without ever measuring it. This 12 x 7 m rectangle is a plausible envelope for a log-and-frame tavern that lodged travellers at 12 1/2 cents a night and briefly housed Gen. Winfield Scott's Black Hawk War headquarters, and it carries no evidence whatsoever. The 12 m runs north-south along the river frontage and the 7 m is the depth. Sources are deliberately omitted from this attribute because none supports it. To resolve: Andreas vol. 1, 'Wharfs, Piers and Early Hotels' pp. 626-631, at page-image level."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source gives a storey count. One storey with a loft under the roof is the standard form for a log tavern of this date and region, and it is the conservative reading: the sources that do describe height at Wolf Point single out the Sauganash's two storeys and Miller's two-storey frame addition as remarkable, which they would not be if the Wolf Point Tavern had also been two storeys. Not attested either way. The Braunhold-style retrospective view 'Wolf Point from the south as it might have appeared in 1830' reproduced in Andreas shows this building and Miller's together and is the obvious next check — it has not been examined for this record, and it is a tier-5 retrospective in any case."
     },
     "construction": {
@@ -92,42 +92,42 @@
     },
     "frame_addition_side": {
       "value": "end",
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. No source says where on the building the frame part stood, so 'end' — a frame bay extending the building sideways from a gable, rather than a block across its river front — is a choice, not a finding. What can be said for it is weak and typological: a log pen is enlarged most easily along its ridge, since the log walls are not cut and the roof simply runs on, and Wau-Bun's 1831 sequence describes the tavern facing down the river without mentioning a frame front, where Miller's house across the water is specifically described as having its frame range 'fronting the river'. That is an argument from the absence of a phrase in one retrospective account, which is not evidence. Recorded conjectural and admitted in docs/LIBERTIES.md L24."
     },
     "frame_addition_stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source gives the frame part a height. One storey is inferred by the same argument as the storey count above: the sources that do describe height at Wolf Point single out the Sauganash's two storeys and Miller's two-storey frame addition as remarkable, which they would not be if the Wolf Point tavern's frame piece had also stood two storeys. Inference, not attestation."
     },
     "frame_addition_width_m": {
       "value": 4.0,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NO DIMENSION IS ATTESTED, and this one is invented outright. 4 m of the footprint's 12 m frontage leaves an 8 m log core, which keeps 'partly log and partly frame' reading as a log building with a frame piece rather than the reverse — the distinction that decides which archetype the record belongs to at all. The footprint it is carved out of is itself a placeholder, so this number inherits that and adds to it. Admitted in docs/LIBERTIES.md L24."
     },
     "frame_addition_depth_m": {
       "value": 7.0,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Set to the full 7 m depth of the footprint so the frame bay fills the end of the building; anything less would leave a notch at the back corner that no source describes and that would read as a modelled fact about the plan. The value is a consequence of the massing rule, not a finding. Admitted in docs/LIBERTIES.md L24."
     },
     "wall_height_m": {
       "value": 2.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.6 m is about 8 1/2 ft: a single storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.6 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Gable is the near-universal roof form for log construction of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 40.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 40 degrees is mid-range for a log building roofed in riven shakes or clapboards — steep enough to shed snow, shallow enough for the short rafters a log pen allows. Inferred from construction practice, not measured."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source describes a finish. Unpainted weathered log is the default reading, and it is positively supported by the contrast Wau-Bun draws: a painted white building at Wolf Point in 1831 was 'the admiration of all the little circle' precisely because the buildings around it were not painted. This tavern was one of those buildings.",
       "geometry": "simplified"
     },
@@ -141,12 +141,12 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed; a log pen of this size would rarely carry more. The number is inference."
     },
     "function": {
       "value": "tavern_inn",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "drloih_wolf_point",
         "drloih_hotels"
@@ -155,7 +155,7 @@
     },
     "occupants": {
       "value": "William Walters, landlord",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "drloih_wolf_point"
       ],

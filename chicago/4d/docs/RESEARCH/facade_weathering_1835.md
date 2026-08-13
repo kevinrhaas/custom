@@ -26,7 +26,7 @@ the scene's 243 phases**:
 | `white` | 1 |
 | *(absent)* | 69 |
 
-Graded: **168 `inferred`, 4 `conjectural`, 2 `documented`.** The two documented ones are the
+Graded: **163 `derived`, 9 `inferred`, 2 `documented`** (in the post-K16 vocabulary). The two documented ones are the
 Sauganash's white — Wau-Bun's white frame building with bright-blue shutters — and St Mary's.
 
 So the distribution the parcel asks for is not a research gap: the dataset already says this was
@@ -153,6 +153,6 @@ Against the 242 committed sidecars of the 1835 scene:
 
 It does not vary anything *within* a wall: board tone, board width, hewn-versus-round logs and
 weathering by elevation are all archetype work and all still open under K4. It does not repaint
-anything — the finish drawn is the finish the record already claimed, and no confidence grade
-moved. And it is not evidence: nothing in § 5's invented column is a reading of a source, which is
+anything — the finish drawn is the finish the record already claimed (`derived` on 163 of the 174
+phases that state one, `inferred` on 9), and no confidence grade moved. And it is not evidence: nothing in § 5's invented column is a reading of a source, which is
 what L91 exists to say.

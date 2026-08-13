@@ -1959,7 +1959,7 @@
     "DOCUMENTED THROUGH ITS TENANT. Andreas's account of the bar has John Dean Caton opening the town's first law office in Dr Temple's building on Lake Street in 1833 and sleeping in the attic of the same building. That is a building, a street, a use and an occupant. NOT THE TEMPLE BUILDING at Franklin and South Water, which is a different structure already in this dataset (temple_building) - the two must not be merged."
    ],
    "position": [
-    "conjectural",
+    "inferred",
     null,
     "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly."
    ],
@@ -1998,7 +1998,7 @@
     "'HIS RESIDENCE WAS A CABIN OF HEWN LOGS' - Andreas's medical chapter, in the passage that also gives Harmon's rusty instruments, his hundred books and his larder of flour, bacon and coffee. The fabric and the use are documented; the far end of the range is inferred, and note that the household's own presence on the scene date is recorded as UNCERTAIN because Harmon may have been in Texas. The cabin does not move when its owner does."
    ],
    "position": [
-    "conjectural",
+    "inferred",
     null,
     "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district."
    ],
@@ -2033,7 +2033,7 @@
     "'TWO BUILDINGS TO LET' - John Wright's own advertisement in the Chicago Democrat of 26 November 1833, offering them until 1 June 1834. Two buildings existed, they were his, and they were rental stock. This is one of the two. The advertisement's own term of 1 June 1834 is not the building's life: a building does not cease at the end of a tenancy, and the range runs to the end of 1835 as the last date this record needs."
    ],
    "position": [
-    "conjectural",
+    "inferred",
     null,
     "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
    ],
@@ -2068,7 +2068,7 @@
     "BUILT IN THE SPRING OF 1835, WHICH IS INSIDE THE SCENE YEAR AND BEFORE THE SCENE DATE. Andreas: 'In the spring of 1835, he built a house on what he supposed was his lot, only to find that he was on Monroe Street, not Adams, whither he proceeded to remove it on rollers.' The house, its season, its owner and the fact that it was moved a block are all documented. The range opens on 1835-03-01 as the earliest reading of 'the spring'."
    ],
    "position": [
-    "conjectural",
+    "inferred",
     null,
     "OUTSIDE THE MODELLED GROUND, AND THE DATE OF THE MOVE IS UNKNOWN. Two things are invented here. First, WHICH STREET IT STOOD ON on 1 July 1835: Andreas gives no date for the removal, so the house may have been on Monroe or already on Adams. This record puts it on Monroe, where it was built, because that is the position the source actually states. Second, WHERE ON MONROE: nothing says. The northing is estimated from the plat module - the block pitch implied by the reconstruction recipes' Randolph-to-Washington bands, carried two blocks further south - and lands about 215 m beyond the southern edge of the e1834_harbor_cut heightfield, so the phase declares ground_contact: outside_modelled_ground. THE BUILDING IS IN THE DATASET AND NOT UNDER THE WALKER'S FEET until the terrain extends south."
    ],
@@ -2109,7 +2109,7 @@
     "'TWO BUILDINGS TO LET' - John Wright's own advertisement in the Chicago Democrat of 26 November 1833, offering them until 1 June 1834. Two buildings existed, they were his, and they were rental stock. This is one of the two. The advertisement's own term of 1 June 1834 is not the building's life: a building does not cease at the end of a tenancy, and the range runs to the end of 1835 as the last date this record needs."
    ],
    "position": [
-    "conjectural",
+    "inferred",
     null,
     "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
    ],

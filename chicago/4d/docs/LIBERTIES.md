@@ -16,8 +16,7 @@ reader would otherwise have to reverse-engineer.
 An entry that admits to an invention says so in machine-readable form:
 
 ```
-**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.log_1829.form.roof_type`
-```
+**Covers:** `sauganash_hotel.log_1829.footprint`, `sauganash_hotel.log_1829.form.roof_type`, ```
 
 Each token is `structure_id[.phase_id].aspect`. The aspect is either one of the record's fixed
 blocks — `footprint`, `position`, `documented_range`, or the structure-level `function` and
@@ -176,8 +175,7 @@ as "a small square log building" — so the polygons carry an attested proportio
 scale. That distinction is stated in each footprint note.
 **How to resolve:** Andreas vol. 1, "Wharfs, Piers and Early Hotels", pp. 626–631, at page-image
 level.
-**Covers:** `wolf_point_tavern.footprint`, `miller_house.footprint`,
-`walker_meeting_house.footprint`.
+**Covers:** `wolf_point_tavern.footprint`, `miller_house.footprint`, `walker_meeting_house.footprint`.
 **Recorded:** 2026-08-09.
 
 ### L9 — Green Tree Tavern: the footprint is derived from a room, and the side additions are left off
@@ -207,8 +205,7 @@ archetype builds a building, not a parcel.
 **Consequence:** this understates the site more than any confidence tag can express — the yard
 *is* the west-side teamsters' house as a visitor experienced it, and the model shows a hotel
 standing in nothing. A parcel-level or yard archetype would fix it.
-**Covers:** `western_hotel.frame_1834.form.stables`,
-`western_hotel_stable.stable_1834.form.wagon_yard`.
+**Covers:** `western_hotel.frame_1834.form.stables`, `western_hotel_stable.stable_1834.form.wagon_yard`.
 **Revised:** 2026-08-11 — **narrowed, not resolved: the stable is now built and the yard still is
 not.** `data/structures/western_hotel_stable.json` stands the large stable behind the hotel on the
 attested relation — "In the rear was the large stable and the yard into which the trains were
@@ -395,9 +392,7 @@ the record's reading. Where evidence is thin, an unread attribute is a claim mad
 **How to resolve:** wire both attributes through `from_phase` and re-bake. Note the ordering
 this creates: the Sauganash's documented white paint IS read, so painted frame is already
 data-driven; it is the surface *texture* that is not.
-**Covers:** `green_tree_tavern.form.cladding`, `miller_house.form.cladding`,
-`sauganash_hotel.form.cladding`, `western_hotel.form.cladding`, `miller_house.form.paint`,
-`walker_meeting_house.form.paint`, `wolf_point_tavern.form.paint`.
+**Covers:** `green_tree_tavern.form.cladding`, `miller_house.form.cladding`, `sauganash_hotel.form.cladding`, `western_hotel.form.cladding`, `miller_house.form.paint`, `walker_meeting_house.form.paint`, `wolf_point_tavern.form.paint`.
 **Recorded:** 2026-08-10.
 
 ### L23 — One window arrangement, on every frame building
@@ -413,8 +408,7 @@ front and the Sauganash's five-bay rhythm is spread across it unchanged, which r
 finding about how the town was built and is instead an artefact of one archetype.
 **How to resolve:** a bay-count parameter derived from frontage, and records that state a rhythm
 rather than a glazing type. Both, then a re-bake.
-**Covers:** `green_tree_tavern.form.fenestration`, `sauganash_hotel.form.fenestration`,
-`western_hotel.form.fenestration`.
+**Covers:** `green_tree_tavern.form.fenestration`, `sauganash_hotel.form.fenestration`, `western_hotel.form.fenestration`.
 **Recorded:** 2026-08-10.
 
 ### L24 — Wolf Point Tavern: the frame bay's side, width and depth are invented
@@ -437,9 +431,7 @@ sidecar, where the popup shows it, rather than ghosting a building whose charact
 So the tint alone will not tell a visitor that the width is a guess. This entry does.
 **How to resolve:** Andreas vol. 1 pp. 626-631 at page-image level, or the Braunhold retrospective
 view of Wolf Point at plate level — the same two unopened sources that would settle the footprint.
-**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_addition_side`,
-`wolf_point_tavern.log_frame_1828.form.frame_addition_width_m`,
-`wolf_point_tavern.log_frame_1828.form.frame_addition_depth_m`.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_addition_side`, `wolf_point_tavern.log_frame_1828.form.frame_addition_width_m`, `wolf_point_tavern.log_frame_1828.form.frame_addition_depth_m`.
 **Recorded:** 2026-08-10.
 
 ### L25 — Wolf Point Tavern: the wolf on the sign is not drawn
@@ -511,8 +503,7 @@ that visible — before this slice the defaults left an inverted-T that matched 
 nor the sources.
 **How to resolve:** Andreas vol. 1, "Wharfs, Piers and Early Hotels" pp. 626-631 at page-image
 level — the same unopened source that would settle the footprint this inherits from.
-**Covers:** `miller_house.log_frame_1827.form.frame_addition_width_m`,
-`miller_house.log_frame_1827.form.frame_addition_depth_m`.
+**Covers:** `miller_house.log_frame_1827.form.frame_addition_width_m`, `miller_house.log_frame_1827.form.frame_addition_depth_m`.
 **Recorded:** 2026-08-10.
 
 ### L30 — The bridge lands on nothing, and no approach is modelled
@@ -851,18 +842,7 @@ attested corners, which is real; the buildings spanning it are not.
 **How to resolve:** a dimension for any single one of them upgrades that one and nothing else.
 The most likely source is the *Chicago Democrat* itself — an advertiser describing his own
 premises, or a to-let notice giving a size. The project holds one issue and more is expected.
-**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`,
-`harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`,
-`bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`,
-`dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`,
-`chicago_american_office.footprint`, `frederick_thomas_shop.footprint`,
-`old_bank_building.footprint`, `old_bank_building.position`,
-`pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`,
-`pruyne_kimball_drugstore.form.stories`,
-`old_bank_building.form.stories`,
-`chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`,
-`frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`,
-`frederick_thomas_shop.function`.
+**Covers:** `peck_store.footprint`, `chicago_democrat_office.footprint`, `harmon_loomis_store.footprint`, `madore_beaubien_house.footprint`, `bates_auction_room.footprint`, `jb_beaubien_homestead.footprint`, `dole_warehouse_south.footprint`, `carpenter_south_water_store.footprint`, `chicago_american_office.footprint`, `frederick_thomas_shop.footprint`, `old_bank_building.footprint`, `old_bank_building.position`, `pruyne_kimball_drugstore.footprint`, `pruyne_kimball_drugstore.position`, `pruyne_kimball_drugstore.form.stories`, `old_bank_building.form.stories`, `chicago_american_office.form.stories`, `dole_warehouse_south.form.stories`, `frederick_thomas_shop.form.stories`, `frederick_thomas_shop.position`, `frederick_thomas_shop.function`.
 **Recorded:** 2026-08-10.
 
 ### L37 — A shop placed by the phrase "two doors from"
@@ -934,14 +914,7 @@ dithers hardest.
 **How to resolve:** any description of the draw's framing or its hoist — a repair contract, a
 council order, an engraving. The bridge was repaired in 1835, so a repair record is the most
 likely thing to exist.
-**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`,
-`dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`,
-`dearborn_street_drawbridge.draw_1834.form.gallows_height_m`,
-`dearborn_street_drawbridge.draw_1834.form.overall_length_m`,
-`dearborn_street_drawbridge.draw_1834.form.pier_count`,
-`dearborn_street_drawbridge.draw_1834.form.pier_kind`,
-`dearborn_street_drawbridge.draw_1834.form.width_m`,
-`dearborn_street_drawbridge.draw_1834.ground_contact`.
+**Covers:** `dearborn_street_drawbridge.draw_1834.footprint`, `dearborn_street_drawbridge.draw_1834.form.draw_lifting_gear`, `dearborn_street_drawbridge.draw_1834.form.gallows_height_m`, `dearborn_street_drawbridge.draw_1834.form.overall_length_m`, `dearborn_street_drawbridge.draw_1834.form.pier_count`, `dearborn_street_drawbridge.draw_1834.form.pier_kind`, `dearborn_street_drawbridge.draw_1834.form.width_m`, `dearborn_street_drawbridge.draw_1834.ground_contact`.
 **Recorded:** 2026-08-10.
 
 ### L36a — Thomas Church's store: a building placed by a street and one sentence
@@ -969,8 +942,7 @@ outrank the addendum on this project's own grading; or a *Chicago Democrat* adve
 Church's address. A date is the more urgent half — **if the store is 1835 work it may not have
 stood on 1835-07-01, and the record then belongs in `data/exclusions.json` rather than in the
 scene.**
-**Covers:** `thomas_church_store.frame_1834.footprint`,
-`thomas_church_store.frame_1834.position`.
+**Covers:** `thomas_church_store.frame_1834.footprint`, `thomas_church_store.frame_1834.position`.
 **Evidence since, 2026-08-11:** the ground_contact token is withdrawn. This entry said the
 store stood beyond the modelled box on L17's radial skirt; S2e has since built the ground
 under it. The invented block, side of street and point along it are untouched.
@@ -999,13 +971,7 @@ gap between the posts, which decides whether you can see through the wall.
 **How to resolve:** any quartermaster return, repair estimate or engineer's report for the post
 between 1816 and 1836. A picket count or a quantity of timber would settle the height and the
 spacing together.
-**Covers:** `fort_dearborn_palisade.picket_1816.form.picket_height_m`,
-`fort_dearborn_palisade.picket_1816.form.picket_width_m`,
-`fort_dearborn_palisade.picket_1816.form.picket_spacing_m`,
-`fort_dearborn_palisade.picket_1816.form.gate_width_m`,
-`fort_dearborn_palisade.picket_1816.form.bastion_length_m`,
-`fort_dearborn_palisade.picket_1816.form.bastion_projection_m`,
-`fort_dearborn_palisade.picket_1816.form.posterns`.
+**Covers:** `fort_dearborn_palisade.picket_1816.form.picket_height_m`, `fort_dearborn_palisade.picket_1816.form.picket_width_m`, `fort_dearborn_palisade.picket_1816.form.picket_spacing_m`, `fort_dearborn_palisade.picket_1816.form.gate_width_m`, `fort_dearborn_palisade.picket_1816.form.bastion_length_m`, `fort_dearborn_palisade.picket_1816.form.bastion_projection_m`, `fort_dearborn_palisade.picket_1816.form.posterns`.
 **Recorded:** 2026-08-11.
 
 ### L42 — The fort's buildings stand at heights, under roofs and behind stacks nobody recorded
@@ -1031,25 +997,7 @@ because the evidence for the alternative belongs to a building that burned in 18
 and a two-storey barracks against a one-storey one changes the scene from across the river.
 **How to resolve:** the same records that would settle the stockade — returns, repair estimates,
 the Chicago Democrat's building notices — or any measured elevation of the fort before 1856.
-**Covers:** `fort_dearborn_officers_quarters.log_1816.form.stories`,
-`fort_dearborn_officers_quarters.log_1816.form.gallery`,
-`fort_dearborn_barracks.log_1816.form.stories`,
-`fort_dearborn_barracks.log_1816.form.gallery`,
-`fort_dearborn_blockhouse.log_1816.form.wall_height_m`,
-`fort_dearborn_blockhouse.log_1816.form.upper_overhang_m`,
-`fort_dearborn_blockhouse.log_1816.form.loopholes`,
-`fort_dearborn_blockhouse.log_1816.form.roof_type`,
-`fort_dearborn_blockhouse.log_1816.form.roof_pitch_deg`,
-`fort_dearborn_blockhouse.log_1816.form.chimneys`,
-`fort_dearborn_magazine.brick_1816.form.wall_height_m`,
-`fort_dearborn_magazine.brick_1816.form.roof_type`,
-`fort_dearborn_artillery_house.log_1816.form.construction`,
-`fort_dearborn_artillery_house.log_1816.form.stories`,
-`fort_dearborn_artillery_house.log_1816.form.wall_height_m`,
-`fort_dearborn_artillery_house.log_1816.form.roof_type`,
-`fort_dearborn_artillery_house.log_1816.form.roof_pitch_deg`,
-`fort_dearborn_root_house.cellar_1816.form.wall_height_m`,
-`fort_dearborn_root_house.cellar_1816.form.roof_type`.
+**Covers:** `fort_dearborn_officers_quarters.log_1816.form.stories`, `fort_dearborn_officers_quarters.log_1816.form.gallery`, `fort_dearborn_barracks.log_1816.form.stories`, `fort_dearborn_barracks.log_1816.form.gallery`, `fort_dearborn_blockhouse.log_1816.form.wall_height_m`, `fort_dearborn_blockhouse.log_1816.form.upper_overhang_m`, `fort_dearborn_blockhouse.log_1816.form.loopholes`, `fort_dearborn_blockhouse.log_1816.form.roof_type`, `fort_dearborn_blockhouse.log_1816.form.roof_pitch_deg`, `fort_dearborn_blockhouse.log_1816.form.chimneys`, `fort_dearborn_magazine.brick_1816.form.wall_height_m`, `fort_dearborn_magazine.brick_1816.form.roof_type`, `fort_dearborn_artillery_house.log_1816.form.construction`, `fort_dearborn_artillery_house.log_1816.form.stories`, `fort_dearborn_artillery_house.log_1816.form.wall_height_m`, `fort_dearborn_artillery_house.log_1816.form.roof_type`, `fort_dearborn_artillery_house.log_1816.form.roof_pitch_deg`, `fort_dearborn_root_house.cellar_1816.form.wall_height_m`, `fort_dearborn_root_house.cellar_1816.form.roof_type`.
 **Recorded:** 2026-08-11.
 
 ### L43 — Three things inside and beside the fort are placed by a sentence, a side, or nothing
@@ -1071,11 +1019,7 @@ artillery house is the one to distrust most: it is placed inside a documented en
 authority of a description written fifteen years after the army left.
 **How to resolve:** an inventory, a plan of the fort later than 1830, or the Chicago Democrat's
 notices. Any of the three would move at least one of these to `inferred`.
-**Covers:** `fort_dearborn_magazine.brick_1816.footprint`,
-`fort_dearborn_artillery_house.log_1816.footprint`,
-`fort_dearborn_artillery_house.log_1816.position`,
-`fort_dearborn_root_house.cellar_1816.footprint`,
-`fort_dearborn_root_house.cellar_1816.position`.
+**Covers:** `fort_dearborn_magazine.brick_1816.footprint`, `fort_dearborn_artillery_house.log_1816.footprint`, `fort_dearborn_artillery_house.log_1816.position`, `fort_dearborn_root_house.cellar_1816.footprint`, `fort_dearborn_root_house.cellar_1816.position`.
 **Recorded:** 2026-08-11.
 
 ### L44 — The 1832 lighthouse: one documented number and an invented tower
@@ -1103,10 +1047,7 @@ a distance we picked.
 **How to resolve:** the Light-House Board's annual reports, a keeper's return, or any of the
 several 1840s and 1850s views of the fort — the tower stands in the 1850 daguerreotype and the
 1855 photograph, and a measured reading of either would settle the shape at once.
-**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`,
-`chicago_lighthouse_1832.tower_1832.position`,
-`chicago_lighthouse_1832.tower_1832.form.roof_type`,
-`chicago_lighthouse_1832.tower_1832.form.paint`.
+**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.position`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
 **Recorded:** 2026-08-11.
 
 ### L45 — The garrison garden: a fence read from a drawing convention, and a planting not drawn
@@ -1131,11 +1072,7 @@ detail anyone recorded about this place — fruit trees in a garrison garden on 
 prairie — is in the data and invisible in the model.
 **How to resolve:** a cultivated-ground zone in `data/flora/`, which is a flora parcel rather
 than a structure one; the species are already named by the source.
-**Covers:** `fort_dearborn_garrison_garden.fence_1816.form.fence_height_m`,
-`fort_dearborn_garrison_garden.fence_1816.form.rail_courses`,
-`fort_dearborn_garrison_garden.fence_1816.form.panel_length_m`,
-`fort_dearborn_garrison_garden.fence_1816.form.panel_offset_m`,
-`fort_dearborn_garrison_garden.fence_1816.form.planting`.
+**Covers:** `fort_dearborn_garrison_garden.fence_1816.form.fence_height_m`, `fort_dearborn_garrison_garden.fence_1816.form.rail_courses`, `fort_dearborn_garrison_garden.fence_1816.form.panel_length_m`, `fort_dearborn_garrison_garden.fence_1816.form.panel_offset_m`, `fort_dearborn_garrison_garden.fence_1816.form.planting`.
 **Recorded:** 2026-08-11.
 
 ### L46 — The fort stands on a bank the model has no cut or fill for
@@ -1154,8 +1091,7 @@ slope on nothing. It is the honest picture of two things at once: a fort correct
 bank, and a model with no earthworks in it.
 **How to resolve:** a levelled section of the bank, which no source gives; or terrain work that
 models the platform the fort stood on, which is a terrain parcel rather than a structure one.
-**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`,
-`fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
+**Covers:** `fort_dearborn_palisade.picket_1816.ground_contact`, `fort_dearborn_commandants_quarters.brick_1816.ground_contact`.
 **Recorded:** 2026-08-11.
 **Revised:** 2026-08-11, hours after it was written, and the revision is the good kind. This
 entry was originally titled *"The fort stands 832 m beyond the modelled ground, and nothing
@@ -1217,8 +1153,7 @@ would replace the interpolated length with a figure (`docs/research/01-terrain-h
 already names them as the thing to find). For the width, J. D. Graham's 1857 and 1858
 hydrographic surveys of the Chicago bar draw the piers in plan at a usable scale, or any
 specification or voucher for the crib work.
-**Covers:** `north_pier.crib_1835.footprint`, `north_pier.crib_1835.form.width_m`,
-`south_pier.crib_1835.footprint`, `south_pier.crib_1835.form.width_m`.
+**Covers:** `north_pier.crib_1835.footprint`, `north_pier.crib_1835.form.width_m`, `south_pier.crib_1835.footprint`, `south_pier.crib_1835.form.width_m`.
 **Recorded:** 2026-08-11.
 
 ### L51 — The north bank is drawn at invented sizes, and the confidence view cannot say so
@@ -1253,14 +1188,7 @@ this entry is the only place a visitor can learn it.
 likeliest source is the *Chicago Democrat* and the *Chicago American* — Davis advertised the
 Steamboat Hotel in the latter, and hotel advertisements of the period describe premises. The
 archetype half is a one-line change plus a re-bake of every log building.
-**Covers:** `cobweb_castle.log_1820.footprint`,
-`blacksmith_shop_state_st.log_1823.footprint`,
-`miller_tannery.log_1831.footprint`,
-`north_side_school_1833.log_1833.footprint`,
-`north_side_school_1833.log_1833.form.construction`,
-`steamboat_hotel.frame_1835.footprint`,
-`council_house.log_1834.footprint`,
-`robinson_caldwell_cabins.log_1831.footprint`.
+**Covers:** `cobweb_castle.log_1820.footprint`, `blacksmith_shop_state_st.log_1823.footprint`, `miller_tannery.log_1831.footprint`, `north_side_school_1833.log_1833.footprint`, `north_side_school_1833.log_1833.form.construction`, `steamboat_hotel.frame_1835.footprint`, `council_house.log_1834.footprint`, `robinson_caldwell_cabins.log_1831.footprint`.
 **Recorded:** 2026-08-11.
 
 ### L54 — Cobweb Castle: the one building anybody described, built as a box
@@ -1287,9 +1215,7 @@ missing, and the tint cannot say which.
 **How to resolve:** an archetype that extrudes the polygon rather than its bounding box would
 build the plan this record already draws, from data already committed. That is a geometry change
 and a re-bake, not a research problem.
-**Covers:** `cobweb_castle.log_1820.form.plan_composition`,
-`cobweb_castle.log_1820.form.cladding`,
-`cobweb_castle.log_1820.form.roof_type`.
+**Covers:** `cobweb_castle.log_1820.form.plan_composition`, `cobweb_castle.log_1820.form.cladding`, `cobweb_castle.log_1820.form.roof_type`.
 **Recorded:** 2026-08-11.
 
 ### L53 — The Steamboat Hotel: a documented hotel with an entirely invented fabric
@@ -1318,12 +1244,7 @@ The record argues the case on `documented_range` and says that a dated advertise
 opening after 1 July sends it to `data/exclusions.json`.
 **How to resolve:** the *Chicago American* and the *Chicago Democrat*. An advertisement would
 plausibly settle the fabric, the size and the opening date in one document.
-**Covers:** `steamboat_hotel.frame_1835.form.construction`,
-`steamboat_hotel.frame_1835.form.stories`,
-`steamboat_hotel.frame_1835.form.wall_height_m`,
-`steamboat_hotel.frame_1835.form.roof_type`,
-`steamboat_hotel.frame_1835.form.paint`,
-`steamboat_hotel.frame_1835.form.gallery`.
+**Covers:** `steamboat_hotel.frame_1835.form.construction`, `steamboat_hotel.frame_1835.form.stories`, `steamboat_hotel.frame_1835.form.wall_height_m`, `steamboat_hotel.frame_1835.form.roof_type`, `steamboat_hotel.frame_1835.form.paint`, `steamboat_hotel.frame_1835.form.gallery`.
 **Recorded:** 2026-08-11.
 
 ### L52 — Two buildings placed inside bands, and two or three cabins built as one
@@ -1356,9 +1277,7 @@ flag holds the scene short of `released` until someone qualified has read the re
 *Chicago Democrat*'s notices of agency business, or the corrected 1835 Wabansia and Kinzie's
 Addition plat. For the cabins, any source that follows them past 1831: the 1833 treaty's
 schedules of improvements and claims are the likeliest.
-**Covers:** `council_house.log_1834.position`,
-`robinson_caldwell_cabins.log_1831.position`,
-`robinson_caldwell_cabins.log_1831.form.cabin_count`.
+**Covers:** `council_house.log_1834.position`, `robinson_caldwell_cabins.log_1831.position`, `robinson_caldwell_cabins.log_1831.form.cabin_count`.
 **Recorded:** 2026-08-11.
 
 ### L55 — The town's three worship buildings wear a dwelling's facade
@@ -1391,12 +1310,7 @@ the footprint note carries the orientation.
 gable-front option, a door in the gable end, a plain bench-lit side elevation — which would
 serve all three buildings and any later church. Failing that, any depiction or description of
 one of these elevations.
-**Covers:** `first_presbyterian_church.frame_1834.form.plan`,
-`first_presbyterian_church.frame_1834.form.bays`,
-`st_marys_church.frame_1833.form.plan`,
-`st_marys_church.frame_1833.form.bays`,
-`temple_building.frame_1833.form.plan`,
-`temple_building.frame_1833.form.bays`.
+**Covers:** `first_presbyterian_church.frame_1834.form.plan`, `first_presbyterian_church.frame_1834.form.bays`, `st_marys_church.frame_1833.form.plan`, `st_marys_church.frame_1833.form.bays`, `temple_building.frame_1833.form.plan`, `temple_building.frame_1833.form.bays`.
 **Recorded:** 2026-08-11.
 
 ### L56 — Four documented interiors, and no interior is modelled
@@ -1419,10 +1333,7 @@ size rather than a single pen. A number a human chose from a sentence is not the
 being built.
 **How to resolve:** interiors, or a popup that renders the interior description alongside the
 elevation. The second is much cheaper and would discharge most of what this entry admits.
-**Covers:** `first_presbyterian_church.frame_1834.form.seating`,
-`first_presbyterian_church.frame_1834.form.interior_finish`,
-`st_marys_church.frame_1833.form.seating`,
-`chappel_infant_school.log_1833.form.interior_division`.
+**Covers:** `first_presbyterian_church.frame_1834.form.seating`, `first_presbyterian_church.frame_1834.form.interior_finish`, `st_marys_church.frame_1833.form.seating`, `chappel_infant_school.log_1833.form.interior_division`.
 **Recorded:** 2026-08-11.
 
 ### L57 — The Temple Building is sized by arithmetic on its own cost
@@ -1464,9 +1375,7 @@ type sizes, not measurements, and a set of unrelated-looking numbers would hide 
 **How to resolve:** a county order or contract for the jail (which would carry a specification
 as well as a size); the Kinzie's Addition plat and its early conveyances for the Watkins house;
 Andreas at page-image level around scan pp. 305, 367 and 431 for all three.
-**Covers:** `log_jail.log_1833.footprint`,
-`chappel_infant_school.log_1833.footprint`,
-`watkins_school_house.house_1833.footprint`.
+**Covers:** `log_jail.log_1833.footprint`, `chappel_infant_school.log_1833.footprint`, `watkins_school_house.house_1833.footprint`.
 **Recorded:** 2026-08-11.
 
 ### L59 — Two buildings placed in the middle of a block face
@@ -1490,8 +1399,7 @@ the distribution the evidence describes. It is still a point where the record ha
 **How to resolve:** the Kinzie's Addition plat and its conveyances for the Watkins house; any
 1834–35 newspaper advertisement naming either address; Andreas at page-image level around scan
 pp. 305 and 431, read for a street number or a neighbour rather than for the school.
-**Covers:** `chappel_infant_school.log_1833.position`,
-`watkins_school_house.house_1833.position`.
+**Covers:** `chappel_infant_school.log_1833.position`, `watkins_school_house.house_1833.position`.
 **Recorded:** 2026-08-11.
 
 ### L60 — The estray pen is a fence, and the model gives it a roof
@@ -1520,12 +1428,7 @@ taking a perimeter rather than a footprint. It would serve this record, the fenc
 state of the public square itself, the garrison gardens and every yard in the town, and it is
 the honest fix. A town or county order establishing the pound would settle the size and the
 material at the same time.
-**Covers:** `estray_pen.pen_1833.footprint`,
-`estray_pen.pen_1833.form.construction`,
-`estray_pen.pen_1833.form.roof_type`,
-`estray_pen.pen_1833.form.roof_pitch_deg`,
-`estray_pen.pen_1833.form.wall_height_m`,
-`estray_pen.pen_1833.form.door`.
+**Covers:** `estray_pen.pen_1833.footprint`, `estray_pen.pen_1833.form.construction`, `estray_pen.pen_1833.form.roof_type`, `estray_pen.pen_1833.form.roof_pitch_deg`, `estray_pen.pen_1833.form.wall_height_m`, `estray_pen.pen_1833.form.door`.
 **Recorded:** 2026-08-11.
 
 ### L61 — The first court-house is built finished, on a date that may predate it
@@ -1561,13 +1464,7 @@ adopted anyway, with that stated, because the alternative is a placement with no
 **How to resolve:** the Cook County commissioners' records for 1834–35. A single dated order
 would carry a contract, a cost, a specification and a completion date, and would move four
 attributes and the date from conjectural to documented at once.
-**Covers:** `cook_county_courthouse_1835.wood_1835.footprint`,
-`cook_county_courthouse_1835.wood_1835.position`,
-`cook_county_courthouse_1835.wood_1835.form.construction`,
-`cook_county_courthouse_1835.wood_1835.form.wall_height_m`,
-`cook_county_courthouse_1835.wood_1835.form.roof_type`,
-`cook_county_courthouse_1835.wood_1835.form.roof_pitch_deg`,
-`cook_county_courthouse_1835.wood_1835.form.door`.
+**Covers:** `cook_county_courthouse_1835.wood_1835.footprint`, `cook_county_courthouse_1835.wood_1835.position`, `cook_county_courthouse_1835.wood_1835.form.construction`, `cook_county_courthouse_1835.wood_1835.form.wall_height_m`, `cook_county_courthouse_1835.wood_1835.form.roof_type`, `cook_county_courthouse_1835.wood_1835.form.roof_pitch_deg`, `cook_county_courthouse_1835.wood_1835.form.door`.
 **Recorded:** 2026-08-11.
 
 ### L62 — Watkins' school house: one unrecorded word decides the whole building
@@ -1589,9 +1486,7 @@ a choice made one level above them. This entry is where it is recorded.
 **How to resolve:** the Kinzie's Addition plat and its early conveyances; the 1833–35 *Chicago
 Democrat*, which carried school advertisements and would name the house or its owner; Andreas at
 page-image level around scan p. 305.
-**Covers:** `watkins_school_house.house_1833.form.stories`,
-`watkins_school_house.house_1833.form.construction`,
-`watkins_school_house.house_1833.form.plan`.
+**Covers:** `watkins_school_house.house_1833.form.stories`, `watkins_school_house.house_1833.form.construction`, `watkins_school_house.house_1833.form.plan`.
 **Recorded:** 2026-08-11.
 
 ### L63 — The Wolf Point row gains two buildings whose footprints are invented outright
@@ -1639,9 +1534,7 @@ Head is not modelled at all, and the door side of the slaughter-house — river 
 flip.
 **How to resolve:** extend the terrain epoch north up the North Branch, at which point both records
 move to their attested reach and this entry moves to Resolved.
-**Covers:** `clybourn_slaughterhouse.log_1827.position`, `clybourn_slaughterhouse.log_1827.footprint`,
-`clybourn_slaughterhouse.log_1827.form.door_side`, `clybourn_cabins.log_1824.position`,
-`clybourn_cabins.log_1824.footprint`, `clybourn_cabins.log_1824.form.cabin_count`.
+**Covers:** `clybourn_slaughterhouse.log_1827.position`, `clybourn_slaughterhouse.log_1827.footprint`, `clybourn_slaughterhouse.log_1827.form.door_side`, `clybourn_cabins.log_1824.position`, `clybourn_cabins.log_1824.footprint`, `clybourn_cabins.log_1824.form.cabin_count`.
 **Recorded:** 2026-08-11.
 
 ### L65 — The town's industry is modelled as sheds, and the works inside them are not built
@@ -1665,14 +1558,7 @@ on a reach and a bank of the South Branch that no source gives — Andreas says 
 Branch of the river" (scan p. 1151), a corridor kilometres long — and its door side is a coin flip.
 **How to resolve:** a `works` or `yard` archetype that can carry an enclosure, a fire and a stack. Any
 description of any of these four premises would help the footprints; nothing found describes one.
-**Covers:** `brickyard_north_side.yard_1833.footprint`,
-`brickyard_north_side.yard_1833.form.yard_works`,
-`elston_soap_candle_manufactory.works_1833.footprint`,
-`elston_soap_candle_manufactory.works_1833.form.plant`,
-`pierce_blacksmith_shop.shop_1833.footprint`, `pierce_blacksmith_shop.shop_1833.form.forge`,
-`newberry_dole_slaughterhouse_south_branch.works_1834.footprint`,
-`newberry_dole_slaughterhouse_south_branch.works_1834.position`,
-`newberry_dole_slaughterhouse_south_branch.works_1834.form.door_side`.
+**Covers:** `brickyard_north_side.yard_1833.footprint`, `brickyard_north_side.yard_1833.form.yard_works`, `elston_soap_candle_manufactory.works_1833.footprint`, `elston_soap_candle_manufactory.works_1833.form.plant`, `pierce_blacksmith_shop.shop_1833.footprint`, `pierce_blacksmith_shop.shop_1833.form.forge`, `newberry_dole_slaughterhouse_south_branch.works_1834.footprint`, `newberry_dole_slaughterhouse_south_branch.works_1834.position`, `newberry_dole_slaughterhouse_south_branch.works_1834.form.door_side`.
 **Recorded:** 2026-08-11.
 
 ### L66 — Two river warehouses stand on banks that are disputed or unattested, and neither has its dock
@@ -1702,10 +1588,7 @@ to surface. And one of the two warehouses is probably on the wrong side of the r
 **How to resolve:** identify the c. 1835 view the north-side dossier describes and give it a source
 record; or read further issues of the *Chicago Democrat*, whose advertising columns are where a
 forwarding house states its street.
-**Covers:** `newberry_dole_warehouse.frame_1833.position`, `newberry_dole_warehouse.frame_1833.footprint`,
-`newberry_dole_warehouse.frame_1833.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.position`,
-`kinzie_hunter_warehouse.warehouse_1834.footprint`, `kinzie_hunter_warehouse.warehouse_1834.form.dock`,
-`kinzie_hunter_warehouse.warehouse_1834.documented_range`.
+**Covers:** `newberry_dole_warehouse.frame_1833.position`, `newberry_dole_warehouse.frame_1833.footprint`, `newberry_dole_warehouse.frame_1833.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.position`, `kinzie_hunter_warehouse.warehouse_1834.footprint`, `kinzie_hunter_warehouse.warehouse_1834.form.dock`, `kinzie_hunter_warehouse.warehouse_1834.documented_range`.
 **Recorded:** 2026-08-11.
 
 ### L67 — A trade advertised in November 1833 becomes a building standing in July 1835
@@ -1729,8 +1612,7 @@ instruction of 2026-08-11 — and because the tallow trade belongs beside the sl
 also models.
 **How to resolve:** further issues of the *Chicago Democrat*. One line of an 1834 or 1835
 advertisement carrying a street would settle the position and narrow the range at once.
-**Covers:** `elston_soap_candle_manufactory.works_1833.documented_range`,
-`elston_soap_candle_manufactory.works_1833.position`.
+**Covers:** `elston_soap_candle_manufactory.works_1833.documented_range`, `elston_soap_candle_manufactory.works_1833.position`.
 **Recorded:** 2026-08-11.
 
 ### L68 — The slough crossing is invented at every dimension except its material
@@ -1831,12 +1713,7 @@ street existed on the unplatted reservation in 1835.
 **How to resolve:** Wright 1834 or Hathaway 1834 read at lot level for the Randolph-and-Canal
 block; Andreas "Wharfs, Piers and Early Hotels", scan pp. 626-631, at page-image level for the Wolf
 Point group; the 1839 land-sale plat of Block 5 with the lot numbers Andreas quotes.
-**Covers:** `western_hotel_stable.stable_1834.footprint`,
-`wolf_point_tavern_stable.stable_1831.footprint`,
-`wolf_point_tavern_stable.stable_1831.position`,
-`wolf_point_tavern_stable.stable_1831.form.door_side`,
-`beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`,
-`beaubien_barn.converted_1817.form.door_side`.
+**Covers:** `western_hotel_stable.stable_1834.footprint`, `wolf_point_tavern_stable.stable_1831.footprint`, `wolf_point_tavern_stable.stable_1831.position`, `wolf_point_tavern_stable.stable_1831.form.door_side`, `beaubien_barn.converted_1817.footprint`, `beaubien_barn.converted_1817.position`, `beaubien_barn.converted_1817.form.door_side`.
 **Recorded:** 2026-08-11.
 
 ### L73 — Every outbuilding in the town is detailed by the archetype, not by a source
@@ -1892,12 +1769,7 @@ it". This project builds no plank walks anywhere, so the record states `sidewalk
 quotes for the merchants' stock losses and which itemised insurance building by building; or any
 *Chicago American* or *Chicago Democrat* advertisement of the house, which in the period counted
 rooms.
-**Covers:** `tremont_house_1.frame_1833.footprint`,
-`tremont_house_1.frame_1833.form.stories`,
-`tremont_house_1.frame_1833.form.wall_height_m`,
-`tremont_house_1.frame_1833.form.roof_type`,
-`tremont_house_1.frame_1833.form.paint`,
-`tremont_house_1.frame_1833.form.gallery`.
+**Covers:** `tremont_house_1.frame_1833.footprint`, `tremont_house_1.frame_1833.form.stories`, `tremont_house_1.frame_1833.form.wall_height_m`, `tremont_house_1.frame_1833.form.roof_type`, `tremont_house_1.frame_1833.form.paint`, `tremont_house_1.frame_1833.form.gallery`.
 **Recorded:** 2026-08-11.
 
 ### L75 — Mansion House: an attested frame front, built on invented arms
@@ -1929,11 +1801,7 @@ other external trace.
 Haddock or Markle, which in the period counted rooms; or a Cook County deed on the lots that
 became Nos. 84 and 86 Lake Street, which would give the frontage from a document rather than from
 a street-number inference.
-**Covers:** `mansion_house.log_frame_1833.footprint`,
-`mansion_house.log_frame_1833.form.frame_addition_width_m`,
-`mansion_house.log_frame_1833.form.frame_addition_depth_m`,
-`mansion_house.log_frame_1833.form.frame_addition_stories`,
-`mansion_house.log_frame_1833.form.frame_paint`.
+**Covers:** `mansion_house.log_frame_1833.footprint`, `mansion_house.log_frame_1833.form.frame_addition_width_m`, `mansion_house.log_frame_1833.form.frame_addition_depth_m`, `mansion_house.log_frame_1833.form.frame_addition_stories`, `mansion_house.log_frame_1833.form.frame_paint`.
 **Recorded:** 2026-08-11.
 
 ### L76 — The Exchange Coffee House: five documented facts, and not one of them about the building
@@ -1963,13 +1831,7 @@ stage-office function for 1835. The exclusion of a separate stage-office BUILDIN
 **How to resolve:** the *Chicago Democrat* and the *Chicago American*, in both of which this
 house was a standing address; and the 1834-36 Cook County tavern licences, which would also
 settle whether Abram A. Markle held this house and the Mansion House at the same time.
-**Covers:** `exchange_coffee_house.frame_1834.footprint`,
-`exchange_coffee_house.frame_1834.form.construction`,
-`exchange_coffee_house.frame_1834.form.stories`,
-`exchange_coffee_house.frame_1834.form.wall_height_m`,
-`exchange_coffee_house.frame_1834.form.roof_type`,
-`exchange_coffee_house.frame_1834.form.paint`,
-`exchange_coffee_house.frame_1834.form.gallery`.
+**Covers:** `exchange_coffee_house.frame_1834.footprint`, `exchange_coffee_house.frame_1834.form.construction`, `exchange_coffee_house.frame_1834.form.stories`, `exchange_coffee_house.frame_1834.form.wall_height_m`, `exchange_coffee_house.frame_1834.form.roof_type`, `exchange_coffee_house.frame_1834.form.paint`, `exchange_coffee_house.frame_1834.form.gallery`.
 **Recorded:** 2026-08-11.
 
 ### L77 — The Lake House is a building site built with a fort's archetype, one storey up, on a corner nobody halved
@@ -2018,11 +1880,7 @@ first-course brickwork, part mortar-bed, scaffold and stacked material.
 **How to resolve:** the *Chicago American* (first issue 8 June 1835) and the *Chicago Democrat*
 for 1835-36 — a $100,000 hotel going up in a town of three thousand was news; and the Kinzie's
 Addition conveyances, which would give the lots, the plan and the side of Rush Street at once.
-**Covers:** `lake_house_construction.shell_1835.position`,
-`lake_house_construction.shell_1835.footprint`,
-`lake_house_construction.shell_1835.form.kind`,
-`lake_house_construction.shell_1835.form.stories`,
-`lake_house_construction.shell_1835.form.wall_height_m`.
+**Covers:** `lake_house_construction.shell_1835.position`, `lake_house_construction.shell_1835.footprint`, `lake_house_construction.shell_1835.form.kind`, `lake_house_construction.shell_1835.form.stories`, `lake_house_construction.shell_1835.form.wall_height_m`.
 **Recorded:** 2026-08-11.
 
 ### L78 — A saddler's corner survives nineteen months on nothing but a paid advertisement
@@ -2056,9 +1914,7 @@ the quadrant that is chosen — the doubt is written on the record rather than i
 of which would settle survival and might name a side; and the lot geometry on Wright 1834 or
 Hathaway 1834, which would settle Canal against West Water for this record and for the Green Tree
 at once.
-**Covers:** `goss_cobb_saddlery.shop_1833.documented_range`,
-`goss_cobb_saddlery.shop_1833.footprint`,
-`goss_cobb_saddlery.shop_1833.form.stories`.
+**Covers:** `goss_cobb_saddlery.shop_1833.documented_range`, `goss_cobb_saddlery.shop_1833.footprint`, `goss_cobb_saddlery.shop_1833.form.stories`.
 **Recorded:** 2026-08-11.
 
 ### L79 — The street corridors are measured; the travelled earth inside them is drawn by eye
@@ -2279,96 +2135,8 @@ in `data/reconstruction/1835_inferred_household_programme.json`. Nothing was gra
 avoid appearing here. No inferred household is Native and none is placed among the households
 that are.
 **Recorded:** 2026-08-13.
-**Covers:** `brown_boarding_house.documented_1835.footprint`,
-`harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`,
-`heacock_house_monroe.documented_1835.footprint`,
-`heacock_house_monroe.documented_1835.ground_contact`,
-`heacock_house_monroe.documented_1835.position`,
-`inf_artisan_dwelling_west_a.inferred_1835.documented_range`,
-`inf_artisan_dwelling_west_a.inferred_1835.footprint`,
-`inf_artisan_dwelling_west_a.inferred_1835.position`,
-`inf_artisan_dwelling_west_b.inferred_1835.documented_range`,
-`inf_artisan_dwelling_west_b.inferred_1835.footprint`,
-`inf_artisan_dwelling_west_b.inferred_1835.position`,
-`inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`,
-`inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`,
-`inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`,
-`inf_blacksmith_shop_west.inferred_1835.documented_range`,
-`inf_blacksmith_shop_west.inferred_1835.footprint`,
-`inf_blacksmith_shop_west.inferred_1835.position`,
-`inf_boatman_cabin_north.inferred_1835.documented_range`,
-`inf_boatman_cabin_north.inferred_1835.footprint`,
-`inf_boatman_cabin_north.inferred_1835.position`,
-`inf_brickmaker_dwelling_north.inferred_1835.documented_range`,
-`inf_brickmaker_dwelling_north.inferred_1835.footprint`,
-`inf_brickmaker_dwelling_north.inferred_1835.position`,
-`inf_butcher_market.inferred_1835.documented_range`,
-`inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`,
-`inf_carpenter_dwelling_north.inferred_1835.documented_range`,
-`inf_carpenter_dwelling_north.inferred_1835.footprint`,
-`inf_carpenter_dwelling_north.inferred_1835.position`,
-`inf_cooperage_south.inferred_1835.documented_range`,
-`inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`,
-`inf_cooperage_south_branch.inferred_1835.documented_range`,
-`inf_cooperage_south_branch.inferred_1835.footprint`,
-`inf_cooperage_south_branch.inferred_1835.position`,
-`inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`,
-`inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`,
-`inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`,
-`inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`,
-`inf_harness_shop.inferred_1835.position`,
-`inf_labourer_shanty_north_a.inferred_1835.documented_range`,
-`inf_labourer_shanty_north_a.inferred_1835.footprint`,
-`inf_labourer_shanty_north_a.inferred_1835.position`,
-`inf_labourer_shanty_north_b.inferred_1835.documented_range`,
-`inf_labourer_shanty_north_b.inferred_1835.footprint`,
-`inf_labourer_shanty_north_b.inferred_1835.position`,
-`inf_labourer_shanty_west_a.inferred_1835.documented_range`,
-`inf_labourer_shanty_west_a.inferred_1835.footprint`,
-`inf_labourer_shanty_west_a.inferred_1835.position`,
-`inf_labourer_shanty_west_b.inferred_1835.documented_range`,
-`inf_labourer_shanty_west_b.inferred_1835.footprint`,
-`inf_labourer_shanty_west_b.inferred_1835.position`,
-`inf_laundry_north.inferred_1835.documented_range`,
-`inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`,
-`inf_mason_dwelling_north.inferred_1835.documented_range`,
-`inf_mason_dwelling_north.inferred_1835.footprint`,
-`inf_mason_dwelling_north.inferred_1835.position`,
-`inf_packer_dwelling.inferred_1835.documented_range`,
-`inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`,
-`inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`,
-`inf_sawpit_shed.inferred_1835.position`,
-`inf_sawyer_dwelling_a.inferred_1835.documented_range`,
-`inf_sawyer_dwelling_a.inferred_1835.footprint`,
-`inf_sawyer_dwelling_a.inferred_1835.position`,
-`inf_sawyer_dwelling_b.inferred_1835.documented_range`,
-`inf_sawyer_dwelling_b.inferred_1835.footprint`,
-`inf_sawyer_dwelling_b.inferred_1835.position`,
-`inf_shoemaker_shop.inferred_1835.documented_range`,
-`inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`,
-`inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`,
-`inf_tailor_shop.inferred_1835.position`,
-`inf_teamster_dwelling_south.inferred_1835.documented_range`,
-`inf_teamster_dwelling_south.inferred_1835.footprint`,
-`inf_teamster_dwelling_south.inferred_1835.position`,
-`inf_teamster_dwelling_west.inferred_1835.documented_range`,
-`inf_teamster_dwelling_west.inferred_1835.footprint`,
-`inf_teamster_dwelling_west.inferred_1835.position`,
-`inf_teamster_stable_west.inferred_1835.documented_range`,
-`inf_teamster_stable_west.inferred_1835.footprint`,
-`inf_teamster_stable_west.inferred_1835.position`,
-`inf_wheelwright_shop_west.inferred_1835.documented_range`,
-`inf_wheelwright_shop_west.inferred_1835.footprint`,
-`inf_wheelwright_shop_west.inferred_1835.position`,
-`mason_blacksmith_shop.documented_1835.footprint`,
-`physicians_office.inferred_1835.documented_range`,
-`physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`,
-`temple_lake_st_building.documented_1835.footprint`,
-`temple_lake_st_building.documented_1835.position`,
-`wright_building_to_let_a.documented_1835.footprint`,
-`wright_building_to_let_a.documented_1835.position`,
-`wright_building_to_let_b.documented_1835.footprint`,
-`wright_building_to_let_b.documented_1835.position`
+**Covers:** `brown_boarding_house.documented_1835.footprint`,, `brown_boarding_house.documented_1835.form.chimneys`, `brown_boarding_house.documented_1835.form.construction`, `brown_boarding_house.documented_1835.form.loft`, `brown_boarding_house.documented_1835.form.roof_pitch_deg`, `brown_boarding_house.documented_1835.form.stories`, `brown_boarding_house.documented_1835.form.wall_height_m`, `brown_boarding_house.documented_1835.position`, `harmon_log_cabin.documented_1835.form.chimneys`, `harmon_log_cabin.documented_1835.form.construction`, `harmon_log_cabin.documented_1835.form.loft`, `harmon_log_cabin.documented_1835.form.roof_pitch_deg`, `harmon_log_cabin.documented_1835.form.roof_type`, `harmon_log_cabin.documented_1835.form.stories`, `harmon_log_cabin.documented_1835.form.wall_height_m`, `heacock_house_monroe.documented_1835.form.bays`, `heacock_house_monroe.documented_1835.form.chimneys`, `heacock_house_monroe.documented_1835.form.construction`, `heacock_house_monroe.documented_1835.form.paint`, `heacock_house_monroe.documented_1835.form.plan`, `heacock_house_monroe.documented_1835.form.roof_pitch_deg`, `heacock_house_monroe.documented_1835.form.roof_type`, `heacock_house_monroe.documented_1835.form.stories`, `heacock_house_monroe.documented_1835.form.wall_height_m`, `inf_artisan_dwelling_west_a.function`, `inf_artisan_dwelling_west_a.occupants`, `inf_artisan_dwelling_west_b.function`, `inf_artisan_dwelling_west_b.occupants`, `inf_bakery_lake.function`, `inf_bakery_lake.occupants`, `inf_barber_shop.function`, `inf_barber_shop.occupants`, `inf_blacksmith_shop_west.function`, `inf_blacksmith_shop_west.occupants`, `inf_boatman_cabin_north.function`, `inf_boatman_cabin_north.occupants`, `inf_brickmaker_dwelling_north.function`, `inf_brickmaker_dwelling_north.occupants`, `inf_butcher_market.function`, `inf_butcher_market.occupants`, `inf_carpenter_dwelling_north.function`, `inf_carpenter_dwelling_north.occupants`, `inf_cooperage_south.function`, `inf_cooperage_south.occupants`, `inf_cooperage_south_branch.function`, `inf_cooperage_south_branch.occupants`, `inf_grocery_west.function`, `inf_grocery_west.occupants`, `inf_gunsmith_shop.function`, `inf_gunsmith_shop.occupants`, `inf_harness_shop.function`, `inf_harness_shop.occupants`, `inf_labourer_shanty_north_a.function`, `inf_labourer_shanty_north_a.occupants`, `inf_labourer_shanty_north_b.function`, `inf_labourer_shanty_north_b.occupants`, `inf_labourer_shanty_west_a.function`, `inf_labourer_shanty_west_a.occupants`, `inf_labourer_shanty_west_b.function`, `inf_labourer_shanty_west_b.occupants`, `inf_laundry_north.function`, `inf_laundry_north.occupants`, `inf_mason_dwelling_north.function`, `inf_mason_dwelling_north.occupants`, `inf_packer_dwelling.function`, `inf_packer_dwelling.occupants`, `inf_sawpit_shed.function`, `inf_sawpit_shed.occupants`, `inf_sawyer_dwelling_a.function`, `inf_sawyer_dwelling_a.occupants`, `inf_sawyer_dwelling_b.function`, `inf_sawyer_dwelling_b.occupants`, `inf_shoemaker_shop.function`, `inf_shoemaker_shop.occupants`, `inf_tailor_shop.function`, `inf_tailor_shop.occupants`, `inf_teamster_dwelling_south.function`, `inf_teamster_dwelling_south.occupants`, `inf_teamster_dwelling_west.function`, `inf_teamster_dwelling_west.occupants`, `inf_teamster_stable_west.function`, `inf_teamster_stable_west.occupants`, `inf_wheelwright_shop_west.function`, `inf_wheelwright_shop_west.occupants`, `mason_blacksmith_shop.documented_1835.form.board_gap_m`, `mason_blacksmith_shop.documented_1835.form.construction`, `mason_blacksmith_shop.documented_1835.form.door`, `mason_blacksmith_shop.documented_1835.form.door_side`, `mason_blacksmith_shop.documented_1835.form.loft`, `mason_blacksmith_shop.documented_1835.form.paint`, `mason_blacksmith_shop.documented_1835.form.roof_pitch_deg`, `mason_blacksmith_shop.documented_1835.form.roof_type`, `mason_blacksmith_shop.documented_1835.form.wall_height_m`, `mason_blacksmith_shop.documented_1835.position`, `physicians_office.function`, `physicians_office.occupants`, `temple_lake_st_building.documented_1835.form.chimneys`, `temple_lake_st_building.documented_1835.form.cladding`, `temple_lake_st_building.documented_1835.form.construction`, `temple_lake_st_building.documented_1835.form.gable_front`, `temple_lake_st_building.documented_1835.form.loft`, `temple_lake_st_building.documented_1835.form.paint`, `temple_lake_st_building.documented_1835.form.roof_pitch_deg`, `temple_lake_st_building.documented_1835.form.roof_type`, `temple_lake_st_building.documented_1835.form.shopfront`, `temple_lake_st_building.documented_1835.form.stories`, `temple_lake_st_building.documented_1835.form.wall_height_m`, `wright_building_to_let_a.documented_1835.form.bays`, `wright_building_to_let_a.documented_1835.form.chimneys`, `wright_building_to_let_a.documented_1835.form.construction`, `wright_building_to_let_a.documented_1835.form.paint`, `wright_building_to_let_a.documented_1835.form.plan`, `wright_building_to_let_a.documented_1835.form.roof_pitch_deg`, `wright_building_to_let_a.documented_1835.form.roof_type`, `wright_building_to_let_a.documented_1835.form.stories`, `wright_building_to_let_a.documented_1835.form.wall_height_m`, `wright_building_to_let_a.occupants`, `wright_building_to_let_b.documented_1835.form.bays`, `wright_building_to_let_b.documented_1835.form.chimneys`, `wright_building_to_let_b.documented_1835.form.construction`, `wright_building_to_let_b.documented_1835.form.paint`, `wright_building_to_let_b.documented_1835.form.plan`, `wright_building_to_let_b.documented_1835.form.roof_pitch_deg`, `wright_building_to_let_b.documented_1835.form.roof_type`, `wright_building_to_let_b.documented_1835.form.stories`, `wright_building_to_let_b.documented_1835.form.wall_height_m`, `wright_building_to_let_b.occupants`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`, `heacock_house_monroe.documented_1835.footprint`, `heacock_house_monroe.documented_1835.ground_contact`, `heacock_house_monroe.documented_1835.position`, `inf_artisan_dwelling_west_a.inferred_1835.documented_range`, `inf_artisan_dwelling_west_a.inferred_1835.footprint`, `inf_artisan_dwelling_west_a.inferred_1835.position`, `inf_artisan_dwelling_west_b.inferred_1835.documented_range`, `inf_artisan_dwelling_west_b.inferred_1835.footprint`, `inf_artisan_dwelling_west_b.inferred_1835.position`, `inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`, `inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`, `inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`, `inf_blacksmith_shop_west.inferred_1835.documented_range`, `inf_blacksmith_shop_west.inferred_1835.footprint`, `inf_blacksmith_shop_west.inferred_1835.position`, `inf_boatman_cabin_north.inferred_1835.documented_range`, `inf_boatman_cabin_north.inferred_1835.footprint`, `inf_boatman_cabin_north.inferred_1835.position`, `inf_brickmaker_dwelling_north.inferred_1835.documented_range`, `inf_brickmaker_dwelling_north.inferred_1835.footprint`, `inf_brickmaker_dwelling_north.inferred_1835.position`, `inf_butcher_market.inferred_1835.documented_range`, `inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`, `inf_carpenter_dwelling_north.inferred_1835.documented_range`, `inf_carpenter_dwelling_north.inferred_1835.footprint`, `inf_carpenter_dwelling_north.inferred_1835.position`, `inf_cooperage_south.inferred_1835.documented_range`, `inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`, `inf_cooperage_south_branch.inferred_1835.documented_range`, `inf_cooperage_south_branch.inferred_1835.footprint`, `inf_cooperage_south_branch.inferred_1835.position`, `inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`, `inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`, `inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`, `inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`, `inf_harness_shop.inferred_1835.position`, `inf_labourer_shanty_north_a.inferred_1835.documented_range`, `inf_labourer_shanty_north_a.inferred_1835.footprint`, `inf_labourer_shanty_north_a.inferred_1835.position`, `inf_labourer_shanty_north_b.inferred_1835.documented_range`, `inf_labourer_shanty_north_b.inferred_1835.footprint`, `inf_labourer_shanty_north_b.inferred_1835.position`, `inf_labourer_shanty_west_a.inferred_1835.documented_range`, `inf_labourer_shanty_west_a.inferred_1835.footprint`, `inf_labourer_shanty_west_a.inferred_1835.position`, `inf_labourer_shanty_west_b.inferred_1835.documented_range`, `inf_labourer_shanty_west_b.inferred_1835.footprint`, `inf_labourer_shanty_west_b.inferred_1835.position`, `inf_laundry_north.inferred_1835.documented_range`, `inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`, `inf_mason_dwelling_north.inferred_1835.documented_range`, `inf_mason_dwelling_north.inferred_1835.footprint`, `inf_mason_dwelling_north.inferred_1835.position`, `inf_packer_dwelling.inferred_1835.documented_range`, `inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`, `inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`, `inf_sawpit_shed.inferred_1835.position`, `inf_sawyer_dwelling_a.inferred_1835.documented_range`, `inf_sawyer_dwelling_a.inferred_1835.footprint`, `inf_sawyer_dwelling_a.inferred_1835.position`, `inf_sawyer_dwelling_b.inferred_1835.documented_range`, `inf_sawyer_dwelling_b.inferred_1835.footprint`, `inf_sawyer_dwelling_b.inferred_1835.position`, `inf_shoemaker_shop.inferred_1835.documented_range`, `inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`, `inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`, `inf_tailor_shop.inferred_1835.position`, `inf_teamster_dwelling_south.inferred_1835.documented_range`, `inf_teamster_dwelling_south.inferred_1835.footprint`, `inf_teamster_dwelling_south.inferred_1835.position`, `inf_teamster_dwelling_west.inferred_1835.documented_range`, `inf_teamster_dwelling_west.inferred_1835.footprint`, `inf_teamster_dwelling_west.inferred_1835.position`, `inf_teamster_stable_west.inferred_1835.documented_range`, `inf_teamster_stable_west.inferred_1835.footprint`, `inf_teamster_stable_west.inferred_1835.position`, `inf_wheelwright_shop_west.inferred_1835.documented_range`, `inf_wheelwright_shop_west.inferred_1835.footprint`, `inf_wheelwright_shop_west.inferred_1835.position`, `mason_blacksmith_shop.documented_1835.footprint`, `physicians_office.inferred_1835.documented_range`, `physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`, `temple_lake_st_building.documented_1835.footprint`, `temple_lake_st_building.documented_1835.position`, `wright_building_to_let_a.documented_1835.footprint`, `wright_building_to_let_a.documented_1835.position`, `wright_building_to_let_b.documented_1835.footprint`, `wright_building_to_let_b.documented_1835.position`
+
 ### L91 — Every wall in the town is weathered by one rule, and no two by the same amount
 **Decision:** the renderer no longer draws a building the flat colour its archetype baked. Each
 structure's face is moved toward its own greyscale by an amount derived from the finish its record
@@ -2403,8 +2171,9 @@ ranges open earlier, back to 1816. And a `documented` finish gets neither treatm
 Sauganash's white and St Mary's are drawn exactly as their sources state, which leaves St Mary's
 as the one unweathered unpainted building in the town — accepted, because the alternative is a
 rule with a clause in it for a case nobody can see.
-**What it does NOT claim:** that any particular building was this colour. `paint` is `inferred` on
-168 of the 174 phases that state one, and this treatment changes none of those grades; it draws
+**What it does NOT claim:** that any particular building was this colour. `paint` is `derived` on
+163 of the 174 phases that state one and `inferred` on 9, and this treatment changes none of those
+grades; it draws
 the finish the record already claimed instead of overriding it with a default. Nothing here is a
 new reading of a source.
 **How to resolve:** per-building finish evidence — a description, an inventory, a paid painter's
@@ -2450,37 +2219,7 @@ channel already traced in `data/traces/vectors/wright_1834_east.json` and
 `shoreline.geojson`. That work is in progress. **When it lands, this entry moves to Resolved**
 rather than being edited, and any structure still floating afterwards — the North Branch
 industry sits well north of even the extended box — gets an entry of its own naming it.
-**Covers:** `bates_auction_room.frame_1834.ground_contact`,
-`carpenter_south_water_store.frame_1833.ground_contact`,
-`chicago_american_office.frame_1835.ground_contact`,
-`chicago_democrat_office.frame_1833.ground_contact`,
-`dole_warehouse_south.frame_1832.ground_contact`,
-`frederick_thomas_shop.frame_1835.ground_contact`,
-`h_jones_store.frame_1833.ground_contact`,
-`harmon_loomis_store.frame_1833.ground_contact`,
-`jb_beaubien_homestead.factory_1817.ground_contact`,
-`madore_beaubien_house.log_1831.ground_contact`,
-`old_bank_building.frame_1834.ground_contact`,
-`peck_store.frame_1833.ground_contact`,
-`pruyne_kimball_drugstore.frame_1830s.ground_contact`,
-`h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`,
-`h_jones_store.frame_1833.form.stories`,
-`jh_kinzie_forwarding_store.frame_1830s.footprint`,
-`jh_kinzie_forwarding_store.frame_1830s.position`,
-`jh_kinzie_forwarding_store.frame_1830s.form.stories`,
-`north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`,
-`cobweb_castle.log_1820.ground_contact`,
-`blacksmith_shop_state_st.log_1823.ground_contact`,
-`north_side_school_1833.log_1833.ground_contact`,
-`steamboat_hotel.frame_1835.ground_contact`,
-`council_house.log_1834.ground_contact`,
-`first_presbyterian_church.frame_1834.ground_contact`,
-`st_marys_church.frame_1833.ground_contact`,
-`log_jail.log_1833.ground_contact`,
-`estray_pen.pen_1833.ground_contact`,
-`cook_county_courthouse_1835.wood_1835.ground_contact`,
-`chappel_infant_school.log_1833.ground_contact`,
-`watkins_school_house.house_1833.ground_contact`.
+**Covers:** `bates_auction_room.frame_1834.ground_contact`, `carpenter_south_water_store.frame_1833.ground_contact`, `chicago_american_office.frame_1835.ground_contact`, `chicago_democrat_office.frame_1833.ground_contact`, `dole_warehouse_south.frame_1832.ground_contact`, `frederick_thomas_shop.frame_1835.ground_contact`, `h_jones_store.frame_1833.ground_contact`, `harmon_loomis_store.frame_1833.ground_contact`, `jb_beaubien_homestead.factory_1817.ground_contact`, `madore_beaubien_house.log_1831.ground_contact`, `old_bank_building.frame_1834.ground_contact`, `peck_store.frame_1833.ground_contact`, `pruyne_kimball_drugstore.frame_1830s.ground_contact`, `h_jones_store.frame_1833.footprint`, `h_jones_store.frame_1833.position`, `h_jones_store.frame_1833.form.stories`, `jh_kinzie_forwarding_store.frame_1830s.footprint`, `jh_kinzie_forwarding_store.frame_1830s.position`, `jh_kinzie_forwarding_store.frame_1830s.form.stories`, `north_pier.crib_1835.ground_contact`, `south_pier.crib_1835.ground_contact`, `cobweb_castle.log_1820.ground_contact`, `blacksmith_shop_state_st.log_1823.ground_contact`, `north_side_school_1833.log_1833.ground_contact`, `steamboat_hotel.frame_1835.ground_contact`, `council_house.log_1834.ground_contact`, `first_presbyterian_church.frame_1834.ground_contact`, `st_marys_church.frame_1833.ground_contact`, `log_jail.log_1833.ground_contact`, `estray_pen.pen_1833.ground_contact`, `cook_county_courthouse_1835.wood_1835.ground_contact`, `chappel_infant_school.log_1833.ground_contact`, `watkins_school_house.house_1833.ground_contact`.
 **Recorded:** 2026-08-10.
 
 **Resolved:** 2026-08-11. The ground was built. ROADMAP § S2e extended the heightfield east from a
@@ -2549,8 +2288,7 @@ painted wolf hung outside it. The chips were true about the evidence and false a
 **How to resolve:** rename the two attributes to the parameters the archetype reads and re-bake.
 That is a data change plus geometry, and the two have to land in one slice, so it is queued in
 `docs/ROADMAP.md` rather than half-done here. Until it lands the record admits the gap.
-**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`,
-`wolf_point_tavern.log_frame_1828.form.signage`.
+**Covers:** `wolf_point_tavern.log_frame_1828.form.frame_extension`, `wolf_point_tavern.log_frame_1828.form.signage`.
 **Recorded:** 2026-08-10.
 **Resolved:** 2026-08-10 — the two attributes are spelled `frame_addition` and `sign`, the
 names the archetype reads, and the tavern was re-baked in the same slice: a frame bay stands
@@ -2573,9 +2311,7 @@ that shows it: the record says two chimneys and the `log_dwelling` archetype bui
 change. For Miller's house the model already shows one stack fewer than the record claims.
 **How to resolve:** make the count a parameter in both archetypes and re-bake — a small change
 on the data side, a geometry change on the other, so it lands as one slice.
-**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`,
-`sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`,
-`western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
+**Covers:** `green_tree_tavern.form.chimneys`, `miller_house.form.chimneys`, `sauganash_hotel.form.chimneys`, `walker_meeting_house.form.chimneys`, `western_hotel.form.chimneys`, `wolf_point_tavern.form.chimneys`.
 **Recorded:** 2026-08-10.
 **Resolved:** 2026-08-10 — `chimneys` is a parameter of both archetypes and the number built is
 the number recorded. Miller's house has its second stack, on the frame range, which is where the

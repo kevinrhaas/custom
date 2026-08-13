@@ -5,7 +5,7 @@
  "head": "porter_jeremiah",
  "arrival": {
   "value": "1833-05-01",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 1,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -22,7 +22,7 @@
  },
  "origin": {
   "value": "New England, by way of the garrison church at Fort Brady, Sault Ste Marie",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],

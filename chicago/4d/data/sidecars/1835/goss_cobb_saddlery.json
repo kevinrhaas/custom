@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1833-11-26",
     "to": "1835-12-31",
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [
       "chicago_democrat_1833_11_26"
     ],
@@ -23,7 +23,7 @@
     "local_e": -138.33,
     "local_n": -120.58,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicago_democrat_1833_11_26",
       "osm_streets_2026"
@@ -53,39 +53,39 @@
         6.096
       ]
     ],
-    "confidence": "conjectural",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. The advertisement gives a trade, a corner and a stock list and no dimension. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule - the same size this project gives Frederick Thomas's shop on South Water Street, kept deliberately rather than replaced with a fresh guess, on the reasoning docs/LIBERTIES.md L29 states about the bridge's pier spacing: a new number would look like a finding and would not be one. WHAT THE ADVERTISEMENT DOES IMPLY, without measuring anything: the firm kept saddles, harness, bridles and trunks 'on hand', manufactured to order, and trimmed 'Coaches, Chaises and Waggons', which is a shop with a workroom behind it and enough door to get a waggon at least alongside. That argues for the larger end of a shop rather than a stall, and it is an argument, not a measurement."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "conjectural",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. One storey is the ordinary form for a village shop opened in 1833 and it is what this project gives the other trades advertised in the same issue. Chosen rather than derived."
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Frame is the reading for a shop 'opened' in the village in the autumn of 1833: the town had sawn lumber and carpenters by then, and Silas B. Cobb - who is almost certainly the Cobb of this firm - is named by DRLOIH as the carpenter who built the Green Tree Tavern at this very corner earlier the same year. Braced rather than balloon is the conservative reading for 1833, when balloon framing in Chicago was one or two years old. The distinction changes stud rhythm behind the sheathing and is not visible at this level of detail."
     },
     "wall_height_m": {
       "value": 3.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 3.0 m is about 10 ft to the plate - a single storey of shop with headroom over a counter, and a little more than the 8 1/2 ft this project gives a log dwelling of the same date. What is inferred is that the wall height falls in this range, not that it is exactly 3.0 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Gable is the near-universal roof form for a small frame building of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 33 degrees is this archetype's mid-range for a small frame shop, inferred from construction practice rather than measured - the same value this project uses for the other Democrat-advertised shops."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One stack is the minimum a workroom heated through a Chicago winter needed, and a saddler works with wax, thread and hot irons. The COUNT is the inference; position, size and material are the archetype's - docs/LIBERTIES.md L26."
     },
     "function": {
