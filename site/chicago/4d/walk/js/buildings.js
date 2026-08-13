@@ -113,7 +113,7 @@ function normalizeGeometry(src, matrix, confidence, facade, weathering, sidecar,
   const warning = confidence.ensureAttribute(geo, label);
   // Then compose the part's grade with the record's own existence grade, before
   // the geometry reaches a batch and stops being addressable. confidence.js says
-  // why a derived roof on an invented building is not a derived roof.
+  // why an inferred roof on a reconstructed building is not an inferred roof.
   const floored = confidence.floorToExistence(geo, sidecar, label);
   // The facade channel is written here rather than in the batch loop for the
   // reason the attribute list above exists: the FIRST geometry a BatchedMesh
@@ -197,14 +197,17 @@ export function createBuildings({ registry, confidence, terrain, facade = null }
 
       let tally = confidenceCensus.get(record.id);
       if (!tally) {
-        tally = { existence: prepared.floored.level, raised: 0,
-                  documented: 0, derived: 0, inferred: 0 };
+        // Levels come from the census itself rather than being spelled out
+        // again here. The vocabulary has been renamed twice in a day, and a
+        // second copy of it in this file is a copy that can be missed by the
+        // rename — which is exactly how it would go undetected, since a key
+        // that no longer exists adds `undefined` rather than raising.
+        tally = { existence: prepared.floored.level, raised: 0 };
+        for (const level of Object.keys(prepared.census)) tally[level] = 0;
         confidenceCensus.set(record.id, tally);
       }
       tally.raised += prepared.floored.raised;
-      for (const level of ['documented', 'derived', 'inferred']) {
-        tally[level] += prepared.census[level];
-      }
+      for (const [level, n] of Object.entries(prepared.census)) tally[level] += n;
 
       const key = materialKey(material);
       let bucket = groups.get(key);

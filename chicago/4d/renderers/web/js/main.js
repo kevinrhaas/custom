@@ -17,7 +17,7 @@ import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
 import { createTerrain, enuToWorld } from './terrain.js';
 import { createBuildings } from './buildings.js';
-import { createConfidenceView } from './confidence.js';
+import { createConfidenceView, LEVELS as CONFIDENCE_LEVELS } from './confidence.js';
 import { createFacadeView } from './facade.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
 import { createPointerLockBackend } from './controls/pointerlock.js';
@@ -593,6 +593,9 @@ async function boot() {
     // record and ask whether what it says reached the renderer — rather than
     // comparing the renderer against a copy of itself.
     dataBase: bases.dataBase,
+    // The confidence vocabulary itself, so a gate reads the words the
+    // renderer uses rather than carrying its own copy of them.
+    confidenceLevels: CONFIDENCE_LEVELS,
     detailLevels: DETAIL,
     detailOrder: DETAIL_ORDER,
     get detail() { return detailLevel; },

@@ -332,9 +332,9 @@ for (const [label, viewport, touch] of [
     // was not a missing attribute and not a missing patch — every primitive in
     // all 244 masters carries `_CONFIDENCE` and every material is patched. It
     // was that `_CONFIDENCE` grades the ATTRIBUTE a vertex came from, existence
-    // is not a driver of any part, and a gable really is derived reasoning even
-    // on a cooperage no source attests. So the roof was painted derived on a
-    // building that is invented.
+    // is not a driver of any part, and a gable really is reasoned form even
+    // on a cooperage no source attests. So the roof was painted one grade
+    // better than the building it sits on.
     //
     // The census is taken during the build, because the geometries are disposed
     // into the BatchedMesh and the channel stops being addressable afterwards.
@@ -343,7 +343,14 @@ for (const [label, viewport, touch] of [
     // own copy of it.
     const painted = await page.evaluate(async () => {
       const a = window.__chicago4d;
-      const rank = { documented: 0, derived: 1, inferred: 2 };
+      // The vocabulary is read from the renderer's own LEVELS rather than
+      // written out here. It has been renamed twice in a day, and a gate
+      // carrying its own copy of the words would go on passing against a
+      // renderer that had moved — counting keys that no longer exist as zero.
+      const LEVELS = a.confidenceLevels;
+      const order = Object.keys(LEVELS).sort((x, y) => LEVELS[x] - LEVELS[y]);
+      const [best, , worst] = order;
+      const rank = Object.fromEntries(order.map((k, i) => [k, i]));
       const index = await (await fetch(`${a.dataBase}sidecars/1835/index.json`)).json();
       const authored = new Map();
       await Promise.all(index.structures.map(async (s) => {
@@ -351,26 +358,26 @@ for (const [label, viewport, touch] of [
         authored.set(car.id, car.documented_range?.confidence ?? null);
       }));
       const out = { total: 0, ungraded: 0, overstated: [], raised: 0, raisedOn: 0,
-                    wholly: 0, invented: 0, keepsDocumented: 0, keepsDerived: 0,
-                    levels: { documented: 0, derived: 0, inferred: 0 } };
+                    wholly: 0, invented: 0, keepsBest: 0, keepsMiddle: 0,
+                    vocabulary: order, levels: {} };
+      for (const k of order) out.levels[k] = 0;
       for (const [id, tally] of a.buildings.confidenceCensus) {
         out.total += 1;
         out.raised += tally.raised;
         if (tally.raised) out.raisedOn += 1;
-        for (const k of ['documented', 'derived', 'inferred']) out.levels[k] += tally[k];
+        for (const k of order) out.levels[k] += tally[k];
         const grade = authored.get(id);
         if (!grade) { out.ungraded += 1; continue; }
         // Anything painted MORE certain than the building's own existence.
-        const over = ['documented', 'derived', 'inferred']
-          .filter((k) => rank[k] < rank[grade])
+        const over = order.filter((k) => rank[k] < rank[grade])
           .reduce((n, k) => n + tally[k], 0);
         if (over > 0) out.overstated.push({ id, grade, over });
-        if (grade === 'inferred') {
+        if (grade === worst) {
           out.invented += 1;
-          if (tally.documented === 0 && tally.derived === 0) out.wholly += 1;
+          if (over === 0 && tally[worst] > 0) out.wholly += 1;
         }
-        if (grade === 'documented' && tally.documented > 0) out.keepsDocumented += 1;
-        if (rank[grade] <= 1 && tally.derived > 0) out.keepsDerived += 1;
+        if (grade === best && tally[best] > 0) out.keepsBest += 1;
+        if (rank[grade] <= 1 && tally[order[1]] > 0) out.keepsMiddle += 1;
       }
       out.overstated.sort((x, y) => y.over - x.over);
       return out;
@@ -390,17 +397,17 @@ for (const [label, viewport, touch] of [
           + `on ${painted.raisedOn} of them`);
     check(`${label}: an invented building dithers all the way to its ridge`,
       painted.invented > 100 && painted.wholly === painted.invented,
-      `${painted.wholly} of ${painted.invented} existence-inferred structures `
-      + 'carry nothing but inferred geometry');
+      `${painted.wholly} of ${painted.invented} structures whose existence is `
+      + `'${painted.vocabulary[2]}' carry nothing better than it`);
     // The floor is a floor, not a flatten. Without this a shader that painted
     // the entire town inferred would satisfy everything above it.
     check(`${label}: the better-evidenced buildings keep what they know`,
-      painted.keepsDocumented > 0 && painted.keepsDerived > 0
-      && painted.levels.documented > 0 && painted.levels.derived > 0,
-      `${painted.keepsDocumented} documented structure(s) keep documented `
-      + `geometry, ${painted.keepsDerived} keep derived; painted vertices `
-      + `${painted.levels.documented} documented / ${painted.levels.derived} `
-      + `derived / ${painted.levels.inferred} inferred`);
+      painted.keepsBest > 0 && painted.keepsMiddle > 0
+      && painted.vocabulary.every((k) => painted.levels[k] > 0),
+      `${painted.keepsBest} ${painted.vocabulary[0]} structure(s) keep `
+      + `${painted.vocabulary[0]} geometry, ${painted.keepsMiddle} keep `
+      + `${painted.vocabulary[1]}; painted vertices `
+      + painted.vocabulary.map((k) => `${painted.levels[k]} ${k}`).join(' / '));
 
     // --- facade weathering (ROADMAP K4) -----------------------------------
     // Two questions, and answering only the first is how `cover.matrix_fraction`
@@ -436,10 +443,15 @@ for (const [label, viewport, touch] of [
       `${drawnRows.length} of ${facade.rows.length} structures`);
 
     // The contract, stated as the records state it — not as facade.js computes it.
-    const timber = drawnRows.filter((r) => r.paint === 'unpainted' && r.conf !== 'documented');
+    // The top level is read from the renderer's own vocabulary rather than
+    // spelled out: these two filters said 'documented' and went silently empty
+    // when the words were renamed, which is how three assertions about the one
+    // building whose colour a source records came to be measuring nothing.
+    const ATTESTED = painted.vocabulary[0];
+    const timber = drawnRows.filter((r) => r.paint === 'unpainted' && r.conf !== ATTESTED);
     const masonry = drawnRows.filter((r) => ['brick', 'stone', 'earth'].includes(r.paint));
     const silent = drawnRows.filter((r) => r.paint === null);
-    const documented = drawnRows.filter((r) => r.conf === 'documented');
+    const documented = drawnRows.filter((r) => r.conf === ATTESTED);
     const weathered = drawnRows.filter((r) => r.drawn.silvering > 0);
     check(`${label}: an unpainted wall weathers and a masonry one does not`,
       timber.length >= 130 && timber.every((r) => r.drawn.silvering > 0.4)
