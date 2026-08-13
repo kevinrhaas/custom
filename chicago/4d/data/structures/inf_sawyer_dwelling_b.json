@@ -12,12 +12,12 @@
         "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - the second sawyer's roof: a plank dwelling of the schedule's D2 shanty family, which is what the meanest end of the building trade lived in. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
-        "utm_e": 447260.567,
-        "utm_n": 4637134.752,
+        "utm_e": 447259.567,
+        "utm_n": 4637122.752,
         "rotation_deg": 0.0,
-        "symbolic_location": "South Division, local ENU E 190 N -258",
+        "symbolic_location": "South Division, local ENU E 189 N -270",
         "confidence": "conjectural",
-        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. The second sawyer's roof: a plank dwelling of the schedule's D2 shanty family, which is what the meanest end of the building trade lived in. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. The second sawyer's roof: a plank dwelling of the schedule's D2 shanty family, which is what the meanest end of the building trade lived in. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, against the platted street corridors of the K7 block grid so that no invented building stands in the roadway, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
         "derivation": {
           "method": "not_derivable",
           "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."

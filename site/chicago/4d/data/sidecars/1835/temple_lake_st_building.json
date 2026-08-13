@@ -18,13 +18,13 @@
   },
   "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
   "placement": {
-    "local_e": 296.647,
-    "local_n": -131.182,
+    "local_e": 295.647,
+    "local_n": -136.182,
     "rotation_deg": 0.0,
     "position_confidence": "conjectural",
     "position_sources": [],
     "position_note": "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly.",
-    "symbolic_location": "South Division, local ENU E 300 N -126",
+    "symbolic_location": "South Division, local ENU E 299 N -131",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"

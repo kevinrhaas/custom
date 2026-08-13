@@ -19,8 +19,8 @@
   },
   "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
   "placement": {
-    "local_e": 732.952,
-    "local_n": -130.572,
+    "local_e": 731.952,
+    "local_n": -137.572,
     "rotation_deg": 0.0,
     "position_confidence": "inferred",
     "position_sources": [
@@ -28,7 +28,7 @@
       "andreas_1884_v1"
     ],
     "position_note": "THE ADDRESS IS DOCUMENTED IN A STREET NAME NOBODY ELSE USES, AND THE CROSS-REFERENCE IS WHAT PLACES IT. 'Main-street' appears nowhere in data/traces/street_control.json, the Thompson plat module or either 1834 sheet. Graves' Tavern is Dexter Graves's log tavern, which this dataset models as mansion_house at what became 84-86 Lake Street, on the NORTH side of Lake near Dearborn. 'Nearly opposite' therefore puts the smithy on the SOUTH side of Lake Street facing north across it, and 'Main-street' in November 1833 is very probably Lake Street under a colloquial name. The northing is the Lake Street south frontage band this dataset's reconstruction recipes already use; the easting is set opposite mansion_house. WHAT IS INVENTED: the exact lot, the setback and the facade bearing.",
-    "symbolic_location": "South Division, local ENU E 736 N -126",
+    "symbolic_location": "South Division, local ENU E 735 N -133",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"

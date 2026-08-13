@@ -18,13 +18,13 @@
   },
   "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
   "placement": {
-    "local_e": 483.257,
-    "local_n": -261.963,
+    "local_e": 482.257,
+    "local_n": -277.963,
     "rotation_deg": 0.0,
     "position_confidence": "conjectural",
     "position_sources": [],
     "position_note": "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage.",
-    "symbolic_location": "South Division, local ENU E 486 N -258",
+    "symbolic_location": "South Division, local ENU E 485 N -274",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"

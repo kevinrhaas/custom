@@ -18,13 +18,13 @@
   },
   "change_note": "The building as this dataset can state it on the scene date. Where the sources give a size, a plan or a fabric, the record carries it; where they do not, the note says so attribute by attribute.",
   "placement": {
-    "local_e": 246.952,
-    "local_n": -261.963,
+    "local_e": 245.952,
+    "local_n": -275.963,
     "rotation_deg": 0.0,
     "position_confidence": "conjectural",
     "position_sources": [],
     "position_note": "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district.",
-    "symbolic_location": "South Division, local ENU E 250 N -258",
+    "symbolic_location": "South Division, local ENU E 249 N -272",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"

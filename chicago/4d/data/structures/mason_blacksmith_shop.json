@@ -16,10 +16,10 @@
         "note": "SELF-REPORTED IN THE ONLY CONTEMPORARY CHICAGO DOCUMENT THIS PROJECT HOLDS. Mason & Co. advertise as blacksmiths in the Chicago Democrat of 26 November 1833, on 'Main-street, nearly opposite Graves' Tavern'. The '& Co.' says the shop employed more than one man. The far end of the range is inferred: nothing follows the firm past 1833, and a working smithy in a town growing tenfold is far more likely to have continued than to have closed."
       },
       "position": {
-        "utm_e": 447805.652,
-        "utm_n": 4637265.228,
+        "utm_e": 447804.652,
+        "utm_n": 4637258.228,
         "rotation_deg": 0.0,
-        "symbolic_location": "South Division, local ENU E 736 N -126",
+        "symbolic_location": "South Division, local ENU E 735 N -133",
         "confidence": "inferred",
         "sources": [
           "chicago_democrat_1833_11_26",

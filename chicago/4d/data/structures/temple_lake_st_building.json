@@ -15,10 +15,10 @@
         "note": "DOCUMENTED THROUGH ITS TENANT. Andreas's account of the bar has John Dean Caton opening the town's first law office in Dr Temple's building on Lake Street in 1833 and sleeping in the attic of the same building. That is a building, a street, a use and an occupant. NOT THE TEMPLE BUILDING at Franklin and South Water, which is a different structure already in this dataset (temple_building) - the two must not be merged."
       },
       "position": {
-        "utm_e": 447369.347,
-        "utm_n": 4637264.618,
+        "utm_e": 447368.347,
+        "utm_n": 4637259.618,
         "rotation_deg": 0.0,
-        "symbolic_location": "South Division, local ENU E 300 N -126",
+        "symbolic_location": "South Division, local ENU E 299 N -131",
         "confidence": "conjectural",
         "note": "THE STREET IS DOCUMENTED AND NOTHING ELSE IS. 'On Lake Street' is the whole of the evidence: no cross street, no side, no block. This record sits on the Lake Street south frontage band the reconstruction recipes use, west of the Clark Street crossing, in the first free frontage the placement rule found. The position is an invention within a documented street and is graded accordingly.",
         "derivation": {

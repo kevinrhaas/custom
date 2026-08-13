@@ -12,12 +12,12 @@
         "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - a meat market on the built streets, because a town of 3,265 does not walk three kilometres up the North Branch to Clybourne's for its dinner. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
-        "utm_e": 447729.957,
-        "utm_n": 4637265.837,
+        "utm_e": 447728.957,
+        "utm_n": 4637259.837,
         "rotation_deg": 0.0,
-        "symbolic_location": "South Division, local ENU E 660 N -126",
+        "symbolic_location": "South Division, local ENU E 659 N -132",
         "confidence": "conjectural",
-        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A meat market on the built streets, because a town of 3,265 does not walk three kilometres up the North Branch to Clybourne's for its dinner. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
+        "note": "INTERPRETIVE PLACEMENT, NOT A RECOVERED LOT. A meat market on the built streets, because a town of 3,265 does not walk three kilometres up the North Branch to Clybourne's for its dinner. The band follows ROADMAP K1's placement rule - businesses toward the river and the built streets, residences further out - using the same frontage bands the reconstruction recipes already work in, which come from the 80 ft platted street module in data/traces/street_control.json. The centre was tested against every structure footprint in the dataset, against the reserved slots of the two uninstantiated phase-2 recipes, against the platted street corridors of the K7 block grid so that no invented building stands in the roadway, and against the committed heightfield for coverage, dry ground and step tolerance; it is free ground and nothing more. The dataset's 20 m working georeference uncertainty applies on top of an already invented position.",
         "derivation": {
           "method": "not_derivable",
           "reason": "No source gives this building a lot. The placement is a frontage-band assignment tested for clearance and buildable ground, which is a production control and not a derivation from any line in the dataset."

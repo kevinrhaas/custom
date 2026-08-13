@@ -118,6 +118,20 @@ heightfield for coverage, dry ground and the walker's step tolerance. `--check` 
 ROADMAP K7 generates lot geometry, these centres should be snapped to it and the placement rule
 in the recipe replaced.
 
+**Done 2026-08-13, and the snap found a systematic error rather than a rounding one.** K7's grid
+landed and the placement gate gained a corridor test (`tools/plat_corridors.py`, shared with
+`tools/generate_plat_lots.py --report` so the two cannot disagree). The recipe had been reading
+the frontage bands as centre-lines to sit ON rather than as edges to sit BEHIND: **23 of the 38
+buildings put part of a footprint inside a platted street corridor, and twelve stood with their
+CENTRE in the road.** All 23 centres moved — median 12.0 m, worst 21.9 m — to the nearest
+position that clears every corridor, every committed footprint by 3 m, the reserved phase-2
+slots, and the heightfield's dry covered ground. Three could not simply step back off the street:
+`physicians_office` would have landed in the First Presbyterian Church, `inf_packer_dwelling` in
+a reserved phase-2 slot, and `inf_cooperage_south` in the South Branch. Nothing else about these
+records changed — the positions were `conjectural` before the move and are `conjectural` after
+it, and clearing the roadway is not the same as standing on a recovered lot. Detail:
+`docs/RESEARCH/thompson_plat_grid.md` § 7a.
+
 ## 5. What this parcel refused to do
 
 - **It did not invent a name.** Not one. Where the documented layer says "Mrs Rufus Brown", this

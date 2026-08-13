@@ -156,6 +156,54 @@ cabin was found, after the 1830 plat was laid out, to be standing *in the middle
 street*, and Beaubien moved it. A building in the road is a thing that happened. What the check
 catches is a building put there by us.
 
+## 7a. The gate, the move, and the question the centre test was not asking
+
+**Landed 2026-08-13, K1 phase three (a).** `tools/plat_corridors.py` now carries the corridor
+geometry for both sides of this argument — the report above and the placement gate in
+`tools/generate_inferred_households.py` — so the check and the generator that has to satisfy it
+cannot answer differently. The gate refuses **any** generated footprint that reaches inside a
+platted corridor, and the 38 recipe centres in
+`data/reconstruction/1835_inferred_household_programme.json` were snapped clear of the roadway:
+23 moved, by a median 12.0 m and at most 21.9 m. Centres in a corridor fell **22 → 10**, and not
+one of the ten is a generated placement.
+
+**The centre test was the wrong shape of question, and switching to footprints is what showed
+it.** A centre is one point; a building is a rectangle up to 11 m across. Twenty-three recipe
+buildings had a centre outside the corridor and up to 6.5 m of their own depth inside it, because
+the recipe read the frontage bands as centre-lines to sit ON rather than as edges to sit BEHIND.
+The row of Lake Street shops is the clearest case: every one of them was centred within a metre
+of the corridor edge, so each stood with its front half in the street and its back half on the
+lot. Nothing in the centre report could see that, and 22 in-corridor centres understated the
+real count by more than half — the footprint pass finds **56** structures with some part inside a
+corridor before this slice and **33** after it.
+
+**Three of the moves had to go somewhere other than straight back.** `physicians_office` was
+snapped into the First Presbyterian Church, `inf_packer_dwelling` into a reserved phase-2 slot
+and `inf_cooperage_south` into the South Branch, so each was placed at the nearest position that
+clears the corridor, every committed footprint by 3 m, the two uninstantiated phase-2 recipes,
+and the heightfield's dry, covered, walkable ground. That is why the physician's office is 17.7 m
+from where it was: the free ground nearest its Lake Street frontage is a lot back from it.
+
+**What the 33 remaining footprints are, and why almost none of them is this slice's to move.**
+Four are anonymous roofs from the two infill generators (worst 4.3 m, `recon_1835_south_a5_044`),
+and they inherit the same gate when that parcel next runs — it is not added there in this slice
+because moving an anonymous roof re-derives the occupancy ledger those generators own. The rest
+are hand-placed records whose positions carry a frontage argument from a source, and **thirteen
+of them are on South Water Street**, which turns out to be a finding rather than a queue:
+
+> Walking north from South Water's committed centreline to the traced 1834 waterline, the
+> distance to water is **10.75 m at E +180** — against a platted half-corridor of 12.19 m. The
+> legal 80 ft street there reaches **1.4 m into the river**, and the spare falls under 3 m at
+> four more of the eleven stations. On the river reach a building on the north side of South
+> Water Street cannot be both outside the platted corridor and on dry land.
+
+So the South Water group is not thirteen misplaced buildings. It is the plat module and the drawn
+bank disagreeing on the reach where the town actually did business, and the resolution is a
+reading of what the *travelled* way was there (L79 has it at 5.8–10.5 m of an 80 ft corridor
+elsewhere) rather than a nudge to thirteen records. `slough_log_bridge` reaching 0.0 m into South
+Water is the other reminder in this list that the corridor is not a keep-out zone: a bridge in
+the roadway is a bridge doing its job.
+
 ## 8. What this is not
 
 - **Not rendered.** The grid is a dataset layer; the walkthrough does not draw it and no visitor
