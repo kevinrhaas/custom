@@ -218,6 +218,19 @@ export function createHud({
     tab.addEventListener('click', () => selectTab(tab.dataset.tab));
   });
 
+  /** G, and the one route the touch build reaches by tapping the tab. */
+  function openGoTo() {
+    setPanel(true);
+    selectTab('goto');
+    // Only for a visitor who came by keyboard: focusing this on a phone raises
+    // the on-screen keyboard over the list the tap was meant to open.
+    if (!isTouch) {
+      const input = $('jump-search');
+      input?.focus();
+      input?.select?.();
+    }
+  }
+
   // Show the control list that matches how this visitor is actually driving.
   $('keys-desktop')?.toggleAttribute('hidden', !!isTouch);
   $('keys-touch')?.toggleAttribute('hidden', !isTouch);
@@ -277,11 +290,20 @@ export function createHud({
   wireToggle('s-overview-map', 'overviewMap');
   wireToggle('s-street-names', 'streetNames');
 
-  // Every structure in the compiled scene and every verified street-control
-  // intersection.  The list is complete by construction: the registry and the
-  // scene index are the same two collections the renderer loaded, rather than a
-  // hand-maintained menu that becomes stale when the town grows.
+  // Every authored viewpoint, every verified street-control intersection and
+  // every structure in the compiled scene — one list, in the Go to tab.  It is
+  // complete by construction: the scene, the index and the registry are the
+  // same three collections the renderer loaded, rather than a hand-maintained
+  // menu that becomes stale when the town grows.  The viewpoints used to be a
+  // second, shorter list of the same ground a few rows below this one; a
+  // visitor had no way to know which of the two to reach for.
   const jumpTargets = [];
+  for (const a of scene?.anchors ?? []) {
+    jumpTargets.push({
+      kind: 'anchor', id: a.id, label: a.label || a.id,
+      search: [a.id, a.label].filter(Boolean).join(' '),
+    });
+  }
   for (const i of intersections) {
     jumpTargets.push({
       kind: 'intersection', id: i.id, label: i.label || i.id,
@@ -293,12 +315,23 @@ export function createHud({
     const structureSidecar = record.sidecar ?? {};
     jumpTargets.push({
       kind: 'structure', id, label: structureSidecar.name || id,
+      // How well the POSITION is attested, straight off the record the popup
+      // reads when the visitor arrives.  Not a summary of the building: most
+      // of this town is documented in character and placed by argument, and a
+      // menu that hid that difference would be the more flattering of the two
+      // available lies.
+      confidence: structureSidecar.placement?.position_confidence || null,
       search: [id, structureSidecar.name, ...(structureSidecar.aka ?? []),
         structureSidecar.placement?.symbolic_location]
         .filter(Boolean).join(' '),
     });
   }
-  jumpTargets.sort((a, b) => a.kind.localeCompare(b.kind) || a.label.localeCompare(b.label));
+  const KIND_ORDER = { anchor: 0, intersection: 1, structure: 2 };
+  const KIND_GROUP = {
+    anchor: 'Viewpoints', intersection: 'Intersections', structure: 'Structures',
+  };
+  jumpTargets.sort((a, b) => (KIND_ORDER[a.kind] ?? 9) - (KIND_ORDER[b.kind] ?? 9)
+    || a.label.localeCompare(b.label));
 
   const jumpSearch = $('jump-search');
   const jumpResults = $('jump-results');
@@ -325,7 +358,7 @@ export function createHud({
       if (target.kind !== lastKind) {
         const heading = document.createElement('p');
         heading.className = 'jump-group';
-        heading.textContent = target.kind === 'intersection' ? 'Intersections' : 'Structures';
+        heading.textContent = KIND_GROUP[target.kind] ?? target.kind;
         jumpResults.appendChild(heading);
         lastKind = target.kind;
       }
@@ -337,13 +370,46 @@ export function createHud({
       button.setAttribute('role', 'option');
       const name = document.createElement('span');
       name.textContent = target.label;
-      const kind = document.createElement('small');
-      kind.textContent = target.kind;
-      button.append(name, kind);
+      button.append(name);
+      // Structures carry their position grade into the menu; a viewpoint and a
+      // survey junction are not claims about the town and get no chip, because
+      // an empty chip would read as a missing grade rather than as a category
+      // that has none.
+      if (target.kind === 'structure') {
+        const grade = target.confidence || 'conjectural';
+        button.dataset.jumpConfidence = grade;
+        const conf = document.createElement('small');
+        conf.className = `conf conf-${grade}`;
+        conf.textContent = grade;
+        button.append(conf);
+      }
       button.addEventListener('click', () => { onGoTo?.(target); setPanel(false); });
       jumpResults.appendChild(button);
     }
   }
+
+  // What the chips add up to, counted from the same list they are painted from
+  // rather than typed into the prose beside them. It is not a flattering line
+  // and it is the honest summary of where this town stands: not one structure
+  // position in it is documented.
+  function paintJumpNote() {
+    const note = $('jump-note');
+    if (!note) return;
+    const tally = { documented: 0, inferred: 0, conjectural: 0 };
+    let structures = 0;
+    for (const target of jumpTargets) {
+      if (target.kind !== 'structure') continue;
+      structures++;
+      const grade = target.confidence || 'conjectural';
+      if (grade in tally) tally[grade]++;
+    }
+    const viewpoints = jumpTargets.filter((t) => t.kind === 'anchor').length;
+    const junctions = jumpTargets.filter((t) => t.kind === 'intersection').length;
+    note.textContent = `${viewpoints} viewpoints, ${junctions} verified junctions and `
+      + `${structures} structures. Of the structure positions, ${tally.documented} are `
+      + `documented, ${tally.inferred} inferred and ${tally.conjectural} conjectural.`;
+  }
+  paintJumpNote();
   jumpSearch?.addEventListener('input', () => paintJumpResults(jumpSearch.value));
   jumpSearch?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -352,19 +418,6 @@ export function createHud({
     }
   });
   paintJumpResults();
-
-  // Anchor jumps: the scene already names viewpoints for the smoke harness, so
-  // the visitor may as well have them too.
-  const anchors = $('anchors');
-  if (anchors && Array.isArray(scene?.anchors)) {
-    for (const a of scene.anchors) {
-      const b = document.createElement('button');
-      b.className = 'anchor-btn';
-      b.textContent = a.label || a.id;
-      b.addEventListener('click', () => { onGoTo?.({ kind: 'anchor', id: a.id }); setPanel(false); });
-      anchors.appendChild(b);
-    }
-  }
 
   window.addEventListener('keydown', (e) => {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) {
@@ -375,6 +428,7 @@ export function createHud({
     if (k === 'h' || k === '?') { e.preventDefault(); setPanel(!panelOpen()); }
     else if (k === 'c') { e.preventDefault(); setConfidence(!confidenceOn); }
     else if (k === 'n') { e.preventDefault(); setPanel(true); selectTab('whatsnew'); }
+    else if (k === 'g') { e.preventDefault(); openGoTo(); }
     else if (k === 'f') { e.preventDefault(); setFly(!flying); }
     else if (e.key === 'Escape' && panelOpen()) setPanel(false);
   });

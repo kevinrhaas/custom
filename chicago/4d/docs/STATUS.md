@@ -7,7 +7,7 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
 complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot
-grid) complete through phase one.**
+grid) complete through phase one; K9 (navigation UI) complete.**
 
 **Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
 188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
@@ -280,6 +280,48 @@ street control is what § S9 records as owed), no lot depth from any source — 
 residuals of the block — and nothing rendered. `blk_south_water_market`, one of the most built-up
 blocks in the town, is refused outright because the street layer does not carry South Water west
 of E +100. That refusal is the street control owed, arriving from a different direction.
+
+## New 2026-08-13 — one way to go somewhere, graded; and the half of the gate that was not running
+
+**K9.** Viewpoints and the place search were two lists of the same ground inside Settings.
+They are now one `Go to` tab, second in the strip after Controls, opened by <kbd>G</kbd>: 8
+authored viewpoints, 4 verified junctions, 222 structures, built from the scene, the index and
+the registry rather than from a menu somebody maintains. `#btn-help` is a hamburger.
+
+**The parcel asked for documented entries only, and that turned out to be the wrong list.**
+No structure position in this dataset is graded `documented` — **54 are `inferred` and 168
+`conjectural`** — so documented-only would have shipped four junctions. Every structure result
+instead carries its own `placement.position_confidence`, in the same three words and three
+colours the building card uses, and the tab's summary line counts the grades from the list it
+paints. What survives about a building is usually a street and a side of it, so a well-documented
+tavern with a conjectural position is the normal case here rather than a failure — and the menu
+now says which is which at the moment the visitor chooses where to go. The gate compares every
+chip against the record it jumps to; a menu that graded a position more kindly than the record
+does would be this project's worst kind of bug.
+
+**Two defects the new assertions caught in their own slice.** The five-tab strip fitted 360 px
+only by flex-shrinking labels out past their own buttons — one tidy row, measured, and a mess to
+look at; the desktop panel is 380 px now, tab padding is 6 px and mobile type 11.5 px, leaving
+about 20 px of slack at both viewports, and the gate measures rows, overflow and squeeze at both.
+A sixth tab does not fit and will fail there. The confidence chips also rendered identically
+grey, because a plain `.jump-result small` rule outranks `.conf-inferred` on specificity; the
+gate now requires the grades to differ by colour as well as by word.
+
+**The desktop half of `tools/smoke_renderer.mjs` had not been running, and it is not clear for
+how long.** It aborted every run at the first click on the menu button — on `main` as well as on
+this branch, reproducibly — and every desktop assertion after that point, roughly a third of the
+suite, simply never executed while the run reported a failure that read like a broken control.
+Nothing was covering the button: `elementFromPoint` returned the button itself at its own centre,
+with no pointer lock, the page visible and focused. The cause is the scene's own weight. At
+533 000 triangles on a software renderer one animation frame takes **0.46–1.10 s (measured)**,
+and Playwright's click waits for the element to hold still across frames before it will hit-test
+it, so 30 s of default action budget was being spent on frames rather than on the page. The
+budget is now 90 s — room for a slow machine, not permission for a broken control, since a click
+that never lands still fails. **This is a standing hazard, not a fixed one**: the same starvation
+will return as the town grows (ROADMAP K14 already records 6 % of triangle headroom), and the
+next symptom will again look like a UI bug rather than a budget. A full two-viewport pass now
+takes upwards of ten minutes here; `SMOKE_VIEWPORT=mobile|desktop` runs one half while
+iterating and prints that it is not the gate.
 
 ## Known weaknesses, stated plainly
 

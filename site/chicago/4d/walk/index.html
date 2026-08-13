@@ -75,7 +75,11 @@
         <span class="fly-glyph" aria-hidden="true">▲</span> <span class="chip-label" id="fly-label">Fly</span>
       </button>
       <button id="btn-theme" class="chip icon" title="Light / dark interface">◐</button>
-      <button id="btn-help" class="chip icon" title="Controls, settings and what's new (H)">?<span
+      <!-- A hamburger, not a "?". Behind it are the controls, every place you can
+           go, the settings and the release notes; a question mark promises help
+           and hides four fifths of the interface. -->
+      <button id="btn-help" class="chip icon" aria-label="Menu"
+        title="Menu — controls, places, settings and what's new (H)">☰<span
         class="chip-dot" id="help-dot" hidden aria-hidden="true"></span></button>
     </div>
   </div>
@@ -88,7 +92,8 @@
     <div id="control-help-desktop" class="control-help-grid">
       <kbd>W A S D</kbd><span>walk</span><kbd>mouse</kbd><span>look around</span>
       <kbd>Shift</kbd><span>run</span><kbd>click / E</kbd><span>inspect a building</span>
-      <kbd>F</kbd><span>fly or walk</span><kbd>H</kbd><span>controls and settings</span>
+      <kbd>F</kbd><span>fly or walk</span><kbd>H</kbd><span>the menu</span>
+      <kbd>G</kbd><span>go to a place</span>
     </div>
     <div id="control-help-touch" class="control-help-grid" hidden>
       <kbd>left stick</kbd><span>walk</span><kbd>drag right</kbd><span>look around</span>
@@ -122,6 +127,7 @@
   <div class="hud-panel" id="panel" hidden>
     <div class="panel-tabs" role="tablist">
       <button class="panel-tab is-on" data-tab="controls" role="tab">Controls</button>
+      <button class="panel-tab" data-tab="goto" role="tab">Go to</button>
       <button class="panel-tab" data-tab="settings" role="tab">Settings</button>
       <button class="panel-tab" data-tab="evidence" role="tab">Evidence</button>
       <button class="panel-tab" data-tab="whatsnew" role="tab">What's new<span
@@ -138,8 +144,9 @@
         <dt><kbd>C</kbd></dt><dd>confidence view</dd>
         <dt><kbd>F</kbd></dt><dd>free-fly — rise above the town</dd>
         <dt><kbd>Space</kbd> <kbd>Q</kbd></dt><dd>up / down <em>(while flying)</em></dd>
+        <dt><kbd>G</kbd></dt><dd>go to a viewpoint, a building or a street corner</dd>
         <dt><kbd>N</kbd></dt><dd>what's new</dd>
-        <dt><kbd>H</kbd></dt><dd>this panel</dd>
+        <dt><kbd>H</kbd></dt><dd>this menu</dd>
         <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
       </dl>
       <dl class="keys" id="keys-touch" hidden>
@@ -147,8 +154,31 @@
         <dt>push it fully</dt><dd>run</dd>
         <dt>drag right</dt><dd>look around</dd>
         <dt>tap</dt><dd>inspect a building</dd>
+        <dt>Go to</dt><dd>the tab beside this one — every viewpoint, building and corner</dd>
         <dt>Fly</dt><dd>rise above the town — ▲ ▼ appear bottom-right</dd>
       </dl>
+    </section>
+
+    <!-- Everywhere you can stand, in one list. The scene's viewpoints, the
+         verified street junctions and every structure the renderer loaded used
+         to sit in two different places inside Settings — a "Named viewpoints"
+         row of chips and, below it, a search that already contained the same
+         ground. Going somewhere is not a setting, so it is its own tab, next
+         to Controls, and the two lists are one. -->
+    <section class="panel-body" data-panel="goto" hidden>
+      <div class="field jump-field">
+        <span>Search every place <b id="jump-count"></b></span>
+        <input type="search" id="jump-search" placeholder="A viewpoint, a building, a corner…"
+          autocomplete="off" spellcheck="false" aria-controls="jump-results">
+        <div class="jump-results" id="jump-results" role="listbox"></div>
+      </div>
+      <p class="legend-note" id="jump-note"></p>
+      <p class="legend-note">The chip grades the POSITION, not the building: a tavern can be
+        documented down to its landlord and its sign and still stand where no source puts it,
+        because what survives is usually a street and a side of it rather than a corner. The
+        grade is the record's own — the same value the building card shows when you arrive —
+        so the two cannot drift apart. Viewpoints are authored camera positions, not claims
+        about the town, and junctions are the survey control this project georeferenced from.</p>
     </section>
 
     <section class="panel-body" data-panel="settings" hidden>
@@ -176,13 +206,6 @@
       <div class="field row"><span>Navigation help</span>
         <button class="setting-button" id="s-show-control-help" type="button">Show guide</button>
       </div>
-      <div class="field jump-field">
-        <span>Jump to a structure or intersection <b id="jump-count"></b></span>
-        <input type="search" id="jump-search" placeholder="Search every place…"
-          autocomplete="off" spellcheck="false" aria-controls="jump-results">
-        <div class="jump-results" id="jump-results" role="listbox"></div>
-      </div>
-      <div class="field"><span>Named viewpoints</span><div class="anchors" id="anchors"></div></div>
     </section>
 
     <section class="panel-body" data-panel="evidence" hidden>
