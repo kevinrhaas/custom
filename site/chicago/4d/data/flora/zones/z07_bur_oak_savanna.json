@@ -13,7 +13,7 @@
   "kind": "everywhere",
   "box": {"e":[-2600,-600],"n":[-6400,-4400]},
   "priority": 10,
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": ["chicagology_prefire273"],
   "note": "NOT PLANTABLE IN THIS SCENE. The box is a bounding rectangle for the grove up the South Branch at Hardscrabble (Lee's Place, later Bridgeport), the only West Side timber Andreas names, about 5.6 km SSW of the forks. It lies far outside the 640 m heightfield, so nothing matches it and the sward renderer plants nothing. The grove's real outline was never traced and this rectangle is not one; the horizon timber that this community actually supplies to the scene is placed by the tree renderer from the dossier's named-grove table by bearing and distance, not from this extent."
  },
@@ -33,7 +33,7 @@
     "inflorescence": null,
     "appearance": "Open-grown: short bole, huge horizontal limbs, wide flat crown, blackened fire-scarred bark to 1-2 m. This silhouette is the signature of the 1835 Chicago horizon."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007","bowles_mcbride_1994_barrens"],
    "note": "4-20 trees/ha in closed savanna, locally 1-4/ha in open savanna, spacing 25-50 m."
   },
@@ -52,7 +52,7 @@
     "inflorescence": null,
     "appearance": "Mixed into the bur oak, pale flaky bark."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -70,7 +70,7 @@
     "inflorescence": null,
     "appearance": "Blue-green bunches making a sunlit grassy floor under the canopy — not shaded leaf litter."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["white_1994_savanna_terms"]
   },
   {
@@ -87,7 +87,7 @@
     "inflorescence": {"shape":"spike","rgb":[178,180,138],"height_frac":0.9,"size_m":[0.1,0.18]},
     "appearance": "Thick nodding bristly spikes, green going straw — the one savanna grass that does head up in July."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier names Elymus in the savanna ground matrix without a species; E. canadensis is the regional member and the identification is this record's."
   },
@@ -106,7 +106,7 @@
     "inflorescence": {"shape":"spike","rgb":[126,126,92],"height_frac":0.7,"size_m":[0.015,0.03],"fruit":true},
     "appearance": "Fine soft sedge mat under the oaks, fruited and going lax."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["white_1994_savanna_terms"]
   },
   {
@@ -124,7 +124,7 @@
     "inflorescence": null,
     "appearance": "Leafy vegetative clumps in the sunnier openings."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["white_1994_savanna_terms"]
   },
   {
@@ -142,11 +142,11 @@
     "inflorescence": {"shape":"nut_husk","rgb":[162,178,108],"height_frac":0.7,"size_m":[0.03,0.05],"fruit":true},
     "appearance": "Patchy clumps repeatedly set back by fire; green husked nuts."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   }
  ],
- "confidence": "documented",
+ "confidence": "attested",
  "sources": ["chicagology_prefire273","white_1994_savanna_terms"],
  "note": "This silhouette is the signature of the 1835 Chicago horizon. Fire evidence belongs on 20-40 per cent of boles: blackened bark to 1-2 m, basal fire scars and charred stumps, which the surveyors noted repeatedly.",
  "review_required": false

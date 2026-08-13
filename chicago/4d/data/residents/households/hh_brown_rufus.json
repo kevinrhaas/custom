@@ -5,7 +5,7 @@
  "head": "brown_rufus",
  "arrival": {
   "value": "1833",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,22 +14,22 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "brown_boarding_house",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -37,7 +37,7 @@
  },
  "works_at": {
   "value": "brown_boarding_house",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,11 +56,11 @@
    "id": "brown_rufus",
    "name": "Rufus Brown",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "boarding_house_keeper",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -75,11 +75,11 @@
    "id": "brown_mrs_rufus",
    "name": "Mrs Rufus Brown",
    "relationship": "wife",
-   "grade": "derived",
+   "grade": "inferred",
    "sex": "female",
    "occupation": {
     "value": "boarding_house_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

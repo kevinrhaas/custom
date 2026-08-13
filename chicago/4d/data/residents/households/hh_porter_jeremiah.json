@@ -5,7 +5,7 @@
  "head": "porter_jeremiah",
  "arrival": {
   "value": "1833-05-01",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 1,
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -22,7 +22,7 @@
  },
  "origin": {
   "value": "New England, by way of the garrison church at Fort Brady, Sault Ste Marie",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -30,7 +30,7 @@
  },
  "reason_for_coming": {
   "value": "Sent as a home missionary with a transferred garrison",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -38,7 +38,7 @@
  },
  "lives_at": {
   "value": "peck_store",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -46,7 +46,7 @@
  },
  "works_at": {
   "value": "first_presbyterian_church",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -54,7 +54,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -65,11 +65,11 @@
    "id": "porter_jeremiah",
    "name": "Rev. Jeremiah Porter",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "minister",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -84,11 +84,11 @@
    "id": "porter_eliza_chappel",
    "name": "Eliza Chappel Porter",
    "relationship": "wife",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "female",
    "birth_year": {
     "value": 1807,
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -96,7 +96,7 @@
    },
    "age_on_scene_date": {
     "value": 27,
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -104,7 +104,7 @@
    },
    "occupation": {
     "value": "schoolteacher",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

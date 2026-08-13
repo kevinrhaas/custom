@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "harrison_1830_river_mouth"
@@ -25,7 +25,7 @@
     "local_e": 1152.34,
     "local_n": 199.09,
     "rotation_deg": 8.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "harrison_1830_river_mouth",
       "andreas_1884_v1"
@@ -55,7 +55,7 @@
         4.37
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "harrison_1830_river_mouth"
     ],
@@ -64,7 +64,7 @@
   "attributes": {
     "kind": {
       "value": "store",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -72,37 +72,37 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. Log by the same argument as the barracks."
     },
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested; single storey is the type for a provision store of this footprint and it is how the 1830 plan draws it."
     },
     "wall_height_m": {
       "value": 2.8,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No height attested. About nine feet: one storey with the head-room a stacked provision store wants."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested; gable is the type."
     },
     "roof_pitch_deg": {
       "value": 34.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
     },
     "chimneys": {
       "value": 0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "A COUNT OF ZERO IS A CLAIM, NOT AN ABSENCE. A provision store is the one building in a fort you do not want a fire in, and nothing describes a stack on this one. The record says none and the model builds none."
     },
     "function": {
       "value": "provision store",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],

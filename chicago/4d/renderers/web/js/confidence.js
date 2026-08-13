@@ -29,16 +29,16 @@
 import * as THREE from 'three';
 
 export const LEVELS = {
-  documented: 0.0,
-  derived: 0.5,
-  inferred: 1.0,
+  attested: 0.0,
+  inferred: 0.5,
+  reconstructed: 1.0,
 };
 
 /** Level name for a raw channel value — the inverse of LEVELS, band-wise. */
 export function levelOf(value) {
-  if (value >= 0.75) return 'inferred';
-  if (value >= 0.25) return 'derived';
-  return 'documented';
+  if (value >= 0.75) return 'reconstructed';
+  if (value >= 0.25) return 'inferred';
+  return 'attested';
 }
 
 const VERTEX_DECL = /* glsl */`
@@ -66,9 +66,9 @@ const VERTEX_ASSIGN = /* glsl */`
 const FRAGMENT_DECL = /* glsl */`
 varying float vConfidence;
 uniform float uConfMode;
-uniform float uInferredAlpha;
-uniform vec3 uDerivedTint;
+uniform float uReconAlpha;
 uniform vec3 uInferredTint;
+uniform vec3 uReconTint;
 
 // Ordered 4x4 Bayer matrix. Screen-door translucency: a stable per-pixel
 // threshold means no sorting, no blending, and no order dependence between the
@@ -89,17 +89,17 @@ float chicago_bayer4(vec2 fragXY) {
 
 // Crisp bands, because the contract's values are exactly 0.0 / 0.5 / 1.0 — but
 // they degrade sanely if a generator ever emits something in between.
-float chicago_wDerived(float c)  { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
-float chicago_wInferred(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
+float chicago_wInferred(float c)  { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
+float chicago_wRecon(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
 `;
 
 const FRAGMENT_DISCARD = /* glsl */`
   // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
   // bad value cannot reach the arithmetic at all when the view is switched off.
   if (uConfMode > 0.0) {
-    float inf = chicago_wInferred(vConfidence) * uConfMode;
+    float inf = chicago_wRecon(vConfidence) * uConfMode;
     if (inf > 0.0) {
-      float alpha = mix(1.0, uInferredAlpha, inf);
+      float alpha = mix(1.0, uReconAlpha, inf);
       if (chicago_bayer4(gl_FragCoord.xy) >= alpha) discard;
     }
   }
@@ -109,10 +109,10 @@ const FRAGMENT_TINT = /* glsl */`
   // Same guard as the discard: when the view is off, diffuseColor is not touched
   // by a single instruction. See VERTEX_ASSIGN for why that is load-bearing.
   if (uConfMode > 0.0) {
-    float wDer = chicago_wDerived(vConfidence) * uConfMode;
-    float wInf = chicago_wInferred(vConfidence) * uConfMode;
-    diffuseColor.rgb = mix(diffuseColor.rgb, uDerivedTint, wDer * 0.72);
-    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wInf * 0.80);
+    float wDer = chicago_wInferred(vConfidence) * uConfMode;
+    float wInf = chicago_wRecon(vConfidence) * uConfMode;
+    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wDer * 0.72);
+    diffuseColor.rgb = mix(diffuseColor.rgb, uReconTint, wInf * 0.80);
   }
 `;
 
@@ -127,7 +127,7 @@ export function createConfidenceView({
 } = {}) {
   const uniforms = {
     uConfMode: { value: 0 },
-    uInferredAlpha: { value: inferredAlpha },
+    uReconAlpha: { value: inferredAlpha },
     // ONE conversion, not two — and here it matters more than anywhere else in
     // the renderer, because these two colours are the confidence view itself.
     //
@@ -140,14 +140,14 @@ export function createConfidenceView({
     // 0.425 of its intended radiance — a quarter as bright in red, nearly half
     // in blue. The tint was both far too dark and visibly skewed toward blue.
     //
-    // What makes that a provenance bug rather than a cosmetic one: `inferred`
+    // What makes that a provenance bug rather than a cosmetic one: `reconstructed`
     // is the SAME hex as `--inf` in css/walk.css, which paints the legend
-    // swatch (`.sw-inf`) and the three-part gradient in the confidence key. The
+    // swatch (`.sw-rec`) and the three-part gradient in the confidence key. The
     // tint on the wall is supposed to be the colour of the chip the visitor is
     // reading it against. Double-converted, it could not be, so the one view
     // that exists to say which parts we made up disagreed with its own legend.
-    uDerivedTint: { value: new THREE.Color(derived) },
-    uInferredTint: { value: new THREE.Color(inferred) },
+    uInferredTint: { value: new THREE.Color(derived) },
+    uReconTint: { value: new THREE.Color(inferred) },
   };
 
   const patched = new Set();
@@ -193,7 +193,7 @@ export function createConfidenceView({
 
   /**
    * Guarantee the attribute exists. A geometry without `_CONFIDENCE` is a
-   * generator bug, not something to paper over — we fill it with `documented`
+   * generator bug, not something to paper over — we fill it with `attested`
    * so the scene still renders, and shout, because silently rendering unmarked
    * geometry as if it were attested is the one failure mode this whole view
    * exists to prevent.
@@ -212,7 +212,7 @@ export function createConfidenceView({
   /** Count vertices per level — the honest picture of what is on screen. */
   function census(geometry) {
     const attr = geometry.getAttribute('_confidence');
-    const out = { documented: 0, derived: 0, inferred: 0 };
+    const out = { attested: 0, inferred: 0, reconstructed: 0 };
     if (!attr) return out;
     for (let i = 0; i < attr.count; i++) out[levelOf(attr.getX(i))]++;
     return out;

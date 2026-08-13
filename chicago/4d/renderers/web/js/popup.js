@@ -4,7 +4,7 @@
  * This is the other half of the confidence view, and the reason the project
  * exists: the tint you see and the citation you can quote come from the SAME
  * sidecar record, so they cannot drift apart. If the shader says amber, the
- * table says `inferred`, and the note underneath says why.
+ * table says `reconstructed`, and the note underneath says why.
  *
  * The card shows, in order: what it is, where it stands and how sure we are of
  * that, whether it was here at all on the day you are standing in, whether it
@@ -53,7 +53,7 @@
  * whether you are looking at the thing at all. An attribute its archetype never
  * reads is marked — `not built` where the model contains nothing of it, `not
  * modelled from this` where a fixed default stands in its place — because a
- * `documented` chip over an unbuilt feature is true about the evidence and false
+ * `attested` chip over an unbuilt feature is true about the evidence and false
  * about the view, and the view is what a visitor is standing in.
  *
  * The record's own account is the newest section and the last of the compiled
@@ -86,7 +86,7 @@ import { openQuestionsFor, uncertaintyEntryHtml } from './exclusions.js';
 // for the two states that deliberately get none, is in that file.
 import { geometryMark } from './geometry.js';
 
-const CONF_ORDER = { documented: 0, derived: 1, inferred: 2 };
+const CONF_ORDER = { attested: 0, inferred: 1, reconstructed: 2 };
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -106,7 +106,7 @@ function prettyValue(v) {
 }
 
 function chip(confidence) {
-  const c = confidence || 'inferred';
+  const c = confidence || 'reconstructed';
   return `<span class="conf conf-${escapeHtml(c)}">${escapeHtml(c)}</span>`;
 }
 
@@ -172,16 +172,16 @@ function claimRow(label, value, claim) {
  * indistinguishable, from the street, from not having done the work.
  *
  * A person carries a GRADE, which is a different axis from an attribute's
- * confidence and must not be read as one: `documented` means a source names this
- * person, `derived` means a real named person whose details are partly
- * reconstructed, `inferred` means a hypothesised resident filling a demonstrable
+ * confidence and must not be read as one: `attested` means a source names this
+ * person, `inferred` means a real named person whose details are partly
+ * reconstructed, `reconstructed` means a hypothesised resident filling a demonstrable
  * need of the town — a claim about a ratio, not about anybody. The chip is
  * therefore rendered in its own class, and an inferred household on a building
  * this project RAISED for it says so in the same breath, because otherwise the
  * card reads as evidence that somebody lived here.
  */
 function gradeChip(grade) {
-  const g = grade || 'inferred';
+  const g = grade || 'reconstructed';
   return `<span class="grade grade-${escapeHtml(g)}">${escapeHtml(g)}</span>`;
 }
 
@@ -299,7 +299,7 @@ function shapeSection(s) {
  * entry for the standing one ends by saying that the doubt sits on the record's
  * own dated claim "and the provenance card shows it". The card showed the claim.
  * It never showed that the claim is a tracked open question, so a visitor reading
- * `1834-01-01 → 1840-12-31` with an `inferred` chip over it could learn that we
+ * `1834-01-01 → 1840-12-31` with an `reconstructed` chip over it could learn that we
  * are not certain, and could not learn that the uncertainty is a live dispute
  * between two sources, what settling it would change, or that this project is
  * holding the grade down on purpose until evidence arrives. The doubt reached
@@ -473,7 +473,7 @@ export function createPopup(root, { docBase = '../../' } = {}) {
         : '';
       // `inferred_anonymous`, not `recommended_anonymous`. The dataset's word for
       // these roofs changed with the merge of 2026-08-13 ("recommended" becomes
-      // "inferred", which is the vocabulary docs/PROVENANCE.md already uses) —
+      // "reconstructed", which is the vocabulary docs/PROVENANCE.md already uses) —
       // both generators, all 108 records and the GLB filenames moved, and this
       // line did not. The test on a value nothing carries is always false, so
       // every one of the 108 anonymous roofs was rendering with NO reconstruction

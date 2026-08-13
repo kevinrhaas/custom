@@ -33,7 +33,7 @@
    [340,340]
   ],
   "priority": 25,
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": ["chicagology_prefire273"],
   "note": "The polygon is the North Division inside the box: the land north of the main stem and east of the North Branch, traced off the waterline of the committed heightfield. Andreas documents the North Side as carrying 'a body of thrifty heavy growth of timber', excepting the sandy hills near the lake and the marshy places, which is why the whole division is timbered here. The 1821 surveyor's 'swampy timber thicket' note that gives the community its character is on the section 4-5 line about 2.5 km NORTH of this box, so the composition is carried down to this stand by inference, not by a survey of it."
  },
@@ -53,7 +53,7 @@
     "inflorescence": null,
     "appearance": "Canopy of the wet core; vase crown, medium bole."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007","chicagology_prefire273"]
   },
   {
@@ -71,7 +71,7 @@
     "inflorescence": null,
     "appearance": "Canopy; pinnate leaves, diamond-ridged bark."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -89,7 +89,7 @@
     "inflorescence": null,
     "appearance": "Narrow crown on the wettest muck."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "The dossier gives the ash row as D/I: F. pennsylvanica is on the PLS list, F. nigra is the inferred wet-site member."
   },
@@ -109,7 +109,7 @@
     "inflorescence": null,
     "appearance": "Canopy; silver leaf undersides."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -128,7 +128,7 @@
     "inflorescence": null,
     "appearance": "Broad crown on the better-drained flats."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier [I]: PLS list, not named on this stand."
   },
@@ -146,7 +146,7 @@
     "inflorescence": null,
     "appearance": "Clonal willow thickets filling the swales — sight-blocking below head height."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"],
    "note": "The willow thickets the survey recorded only in Cook County."
   },
@@ -165,7 +165,7 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[214,216,206],"height_frac":0.85,"size_m":[0.05,0.09],"fruit":true},
     "appearance": "Dense red-stemmed shrub layer with whitening berries."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier I/C row: regional wet-woods shrub."
   },
@@ -184,7 +184,7 @@
     "inflorescence": {"shape":"head_button","rgb":[236,232,214],"height_frac":0.8,"size_m":[0.03,0.045]},
     "appearance": "Creamy pincushion spheres in the standing water."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier I/C row."
   },
@@ -203,7 +203,7 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[128,148,92],"height_frac":0.7,"size_m":[0.01,0.02],"fruit":true},
     "appearance": "Green unripe berries tight to the twigs; it reddens only in autumn."
    },
-   "confidence": "inferred",
+   "confidence": "reconstructed",
    "note": "The dossier marks this shrub row I/C and winterberry is the conjectural member: a plausible Cook County wet-woods shrub that no source places on this stand."
   },
   {
@@ -220,7 +220,7 @@
     "inflorescence": {"shape":"panicle_open","rgb":[204,210,180],"height_frac":0.85,"size_m":[0.06,0.14]},
     "appearance": "A continuous mass of broad soft nettle leaves on the mucky floor, with thin greenish-white flower strings."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]. This is what a July woodland floor looks like here: the spring ephemerals are gone by 1 July."
   },
@@ -238,7 +238,7 @@
     "inflorescence": {"shape":"spike","rgb":[124,122,88],"height_frac":0.75,"size_m":[0.02,0.05],"fruit":true},
     "appearance": "Loose green sedge floor between the shrubs, fruited."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "The dossier names only the genus for the wet-woods floor. No species is recorded because none is attested; the gap is left visible rather than filled."
   },
@@ -257,7 +257,7 @@
     "inflorescence": {"shape":"cluster_terminal","rgb":[222,214,152],"height_frac":0.6,"size_m":[0.06,0.12]},
     "appearance": "Large heart-shaped leaves; pale flower clusters on their strap bracts, heavily bee-worked and just starting to set fruit."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier: D for the regional PLS list, I for this stand. Basswood is one of the fire-intolerant species the survey found concentrated east of watercourses, which is what this pocket is."
   },
@@ -276,7 +276,7 @@
     "inflorescence": null,
     "appearance": "Dense dark canopy casting the deepest shade here."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier: D for the list, I on site. The 'sugartree' of the survey notes."
   },
@@ -295,7 +295,7 @@
     "inflorescence": null,
     "appearance": "Tall straight canopy oak on the richest ground."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -313,7 +313,7 @@
     "inflorescence": {"shape":"cluster_terminal","rgb":[214,212,180],"height_frac":0.7,"size_m":[0.04,0.07],"fruit":true},
     "appearance": "Subcanopy: shreddy bark and pale hop-like fruit clusters."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -330,7 +330,7 @@
     "inflorescence": {"shape":"umbel_domed","rgb":[236,236,228],"height_frac":0.95,"size_m":[0.03,0.05]},
     "appearance": "LEAFLESS. Bare shaded ground with 20-40 cm scapes carrying white umbels or green three-lobed capsules. The leaves came up in April and withered before the flower stalk rose; green onion foliage in July is wrong."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swenson_1991","drloih_chicago_name"],
    "note": "The plant the city is named for. Documented as the etymology's referent (Joutel's 'ail sauvage' in the maple forests); its presence in THIS stand is inferred from the habitat, not attested. Dossier section 3 and its July phenology trap."
   },
@@ -348,7 +348,7 @@
     "inflorescence": null,
     "appearance": "Green buds only on the shaded floor; it whitens in late August."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I] and explicitly 'not yet in flower'."
   },
@@ -366,7 +366,7 @@
     "inflorescence": {"shape":"umbel_compound","rgb":[126,140,84],"height_frac":0.85,"size_m":[0.04,0.08],"fruit":true},
     "appearance": "Ferny leaves with bristly green fruit clubs; flowering finished in May."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: named for the July woodland floor."
   },
@@ -385,7 +385,7 @@
     "inflorescence": null,
     "appearance": "Thick corky fire-scarred bark, broad low crown, green fringed acorns."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -403,7 +403,7 @@
     "inflorescence": null,
     "appearance": "Pale flaky bark, rounded lobed leaves."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -421,7 +421,7 @@
     "inflorescence": null,
     "appearance": "Dark blocky bark on the driest sand of the ridges."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -439,7 +439,7 @@
     "inflorescence": null,
     "appearance": "Shaggy plate bark peeling in long strips — high visual value at close range."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -457,7 +457,7 @@
     "inflorescence": {"shape":"nut_husk","rgb":[162,178,108],"height_frac":0.7,"size_m":[0.03,0.05],"fruit":true},
     "appearance": "The dominant shrub layer: broad rounded leaves and green husked nuts."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007","bowles_mcbride_1994_barrens"],
    "note": "McBride and Bowles's headline finding: hazel was the most common shrub-layer plant in these woodlands at the time of the survey, and is uncommon now. Under-rendering hazel is the specific mistake this entry exists to prevent."
   },
@@ -476,7 +476,7 @@
     "inflorescence": null,
     "appearance": "Multi-stemmed low clonal oak sprouting from an old root system. These are grubs, not saplings: they do not grow into the canopy while fire keeps returning."
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": ["mcbride_bowles_2007","bowles_mcbride_1994_barrens"]
   },
   {
@@ -494,7 +494,7 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[124,146,84],"height_frac":0.75,"size_m":[0.02,0.04],"fruit":true},
     "appearance": "Thorny crown with hard green fruit."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "The survey notes record 'thorn' as an undergrowth term; the genus is documented, the species is not, so no species is named."
   },
@@ -513,7 +513,7 @@
     "inflorescence": {"shape":"panicle_dense","rgb":[140,158,88],"height_frac":0.85,"size_m":[0.1,0.18],"fruit":true},
     "appearance": "Green upright fruit pyramids over pinnate leaves."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "'Spewmake' in the survey notes is read as sumac; the species is inferred."
   },
@@ -532,7 +532,7 @@
     "inflorescence": {"shape":"cherry","rgb":[140,156,92],"height_frac":0.7,"size_m":[0.02,0.03],"fruit":true},
     "appearance": "Thicket-forming, with small hard green plums."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier: terms documented, species inferred."
   },
@@ -551,12 +551,12 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[176,96,82],"height_frac":0.7,"size_m":[0.015,0.03],"fruit":true},
     "appearance": "Arching prickly canes with reddening fruit."
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "sources": ["mcbride_bowles_2007"],
    "note": "'Briers' is documented as an undergrowth term; the genus is the inference."
   }
  ],
- "confidence": "documented",
+ "confidence": "attested",
  "sources": ["chicagology_prefire273"],
  "note": "Overall canopy 50-110 trees/ha with local pockets over 100/ha and more than 30 per cent of the area at savanna density; mean canopy tree about 30 cm dbh and 15-20 m. Medium timber, not monumental. Two gaps are left open rather than filled: the dossier names 'ferns' on the July floor without a species, and names only Carex spp. for the sedge floor, so no fern is recorded at all.",
  "review_required": false

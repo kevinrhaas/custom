@@ -5,33 +5,33 @@
  "head": "hubbard_gurdon",
  "arrival": {
   "value": "1818",
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "NOT ATTESTED IN ANYTHING WORKED FOR THIS PARCEL. Hubbard's arrival with the American Fur Company as a boy is a commonplace of the Chicago literature and Andreas's own chapter calls him the oldest living resident; the year could not be traced to a sentence here, so it is carried as a conjecture citing nothing and flagged for a later parcel to fix or delete.",
   "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "old_bank_building",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -39,7 +39,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -50,11 +50,11 @@
    "id": "hubbard_gurdon",
    "name": "Gurdon Saltonstall Hubbard",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "packer",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

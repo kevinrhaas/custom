@@ -5,7 +5,7 @@
  "head": "spring_giles",
  "arrival": {
   "value": "1833",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,32 +14,32 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "NOT MODELLED. He had desk-room in Caton's office from December 1833, in Dr Temple's Lake Street building, which has no structure record."
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -50,11 +50,11 @@
    "id": "spring_giles",
    "name": "Giles Spring",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "attorney",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1831-03-31",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "chicagology_first_post_office"
@@ -26,7 +26,7 @@
     "local_e": 120.1,
     "local_n": -92.1,
     "rotation_deg": 180.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "chicagology_first_post_office",
@@ -57,7 +57,7 @@
         6.096
       ]
     ],
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -66,7 +66,7 @@
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "chicagology_first_post_office"
@@ -75,32 +75,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not stated. Andreas calls it 'a small log building' and gives it a 20 ft depth, and the two passages describing its use divide it side by side — a post office on one side and a store on the other — rather than by floor. A single-pen log building of this depth is single-storey by type at the forks in 1835. Inference from the type and the description, not from a statement."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.5 m — the same reading, and the same number, this project gives the Walker meeting house, which is the other single-storey log building it models."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and it is the form a 45 ft building of this depth is roofed with unless something says otherwise."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested, and nothing describes a stack on this building at all. One is the minimum for a store kept through Chicago winters with a clerk sorting mail in half of it, and the normal number for a single-pen log building. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "store",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -123,7 +123,7 @@
         {
           "name": "John S. C. Hogan",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "postmaster",
           "note": "IN OFFICE ACROSS THE SCENE DATE AND DOCUMENTED RESIGNING FROM ANOTHER ONE IN THE SCENE MONTH'S NEIGHBOUR. He was one of the twelve who voted for incorporation on 5 August 1833, an elector on the 10th, a candidate who took three votes, a trustee elected in 1834 and the town's treasurer that year - and Andreas: 'John S. C. Hogan voluntarily ceased to act as Treasurer, in June, 1835, because the corporation was determined, as a sanitary measure, to borrow $2,000 in order to have the streets cleared up.' THAT IS THE MONTH BEFORE THE SCENE DATE and it is one of the sharpest dated acts by any named resident inside the scene season. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
         }

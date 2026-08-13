@@ -34,7 +34,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire273",
       "andreas_1884_v1"
@@ -43,7 +43,7 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire273"
      ],
@@ -51,7 +51,7 @@
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A trapped population is a present population; the density is not recorded."
     },
     "max_group": 3,
@@ -60,7 +60,7 @@
     "appearance": "Dark, low in the water, with a thin vertically flattened tail \u2014 not a beaver's paddle.",
     "trace": null
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": [
     "chicagology_prefire273",
     "andreas_1884_v1"
@@ -82,12 +82,12 @@
    "july": {
     "status": {
      "value": "flightless_moult",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Duck hunting on these ponds is documented, but hunting is an autumn activity. On 1 July the adults are entering eclipse plumage and the simultaneous wing moult that leaves them flightless or nearly so for several weeks."
     },
     "presence": {
      "value": "visible",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire273"
      ],
@@ -95,7 +95,7 @@
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Hens with broods and skulking moulting drakes, not the concentrations of autumn."
     },
     "max_group": 12,
@@ -104,7 +104,7 @@
     "appearance": "Drakes are in eclipse \u2014 brown, female-like, with only the yellow bill left to tell them by. The green head belongs to autumn and spring, not to 1 July.",
     "trace": null
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": [
     "chicagology_prefire273"
    ],
@@ -124,17 +124,17 @@
    "july": {
     "status": {
      "value": "flightless_moult",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The commonest breeding duck of the Illinois wet prairie, and in wing moult by early July like the mallard."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Hens with broods along the sedge edges."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading; no local count exists."
     },
     "max_group": 10,
@@ -143,7 +143,7 @@
     "appearance": "Small dull brown ducks; the drake's white facial crescent is lost in eclipse.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "The commonest breeding duck of the Illinois wet prairie by every modern account, but no period record names it at Chicago. The July wing moult is general duck biology, not a local observation."
   },
   {
@@ -160,17 +160,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A marsh breeder in the regional assemblage; no Chicago 1830s record reached."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Seen briefly and heard often; dives rather than flies."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -179,7 +179,7 @@
     "appearance": "Small, brown, thick-billed, tail-less looking; the black bill ring shows in summer.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Habitat inference from the regional marsh assemblage; no Chicago record of any date reached."
   },
   {
@@ -196,17 +196,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A marsh breeder in the regional assemblage."
     },
     "presence": {
      "value": "audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Present and effectively invisible: a bittern freezes bill-up in the reeds and disappears at ten paces."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -215,7 +215,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Habitat inference. The dossier lists bitterns in the cattails without a source that names them here."
   },
   {
@@ -232,17 +232,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A dense-cattail breeder in the regional assemblage."
     },
     "presence": {
      "value": "audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Climbs the stems inside the stand and is essentially never seen."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -251,7 +251,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Habitat inference from dense cattail stands; no Chicago record."
   },
   {
@@ -268,17 +268,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Named in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR wetlands publication; that source has no record in data/sources/."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The most conspicuous bird in any Illinois cattail marsh, and one of the few in this dataset that is genuinely easy to see."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "By July the territorial males are joined by fledged young; this is the one bird of the July list that is numerous."
     },
     "max_group": 30,
@@ -287,7 +287,7 @@
     "appearance": "Glossy black male with a red-and-buff shoulder; streaky brown female low in the reeds.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Song is falling away by 1 July as the second broods fledge \u2014 the konk-la-ree is still there and the wall of it is not."
   },
   {
@@ -304,17 +304,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Cranes probably bred fairly commonly in Illinois until about 1890, with the last state nest found in 1872 \u2014 so in 1835 they are breeding residents here, not migrants. The dossier's citations are Outdoor Illinois Journal and Illinois DNR, and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A pair with colts in an open marsh is visible at distance, and the unison call carries for miles."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A pair and their young hold a large territory. Two adults and two colts is the correct July group, and it is the whole population in view."
     },
     "max_group": 4,
@@ -323,7 +323,7 @@
     "appearance": "Tall grey birds with a red crown and a rusty stain on the back from preening with iron-rich mud; the colts are cinnamon and short-billed.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "ONE OF THE FEW 1 JULY SOUNDS THAT IS BOTH SPECTACULAR AND DEFENSIBLE. The huge staging flocks are October-November and February-March and must not appear: the July bird is a territorial pair."
   },
   {
@@ -340,17 +340,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Herons are named in the regional wet-prairie assemblage."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The most visible large bird in the scene's wetlands."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Singles, spread out; herons hunt alone."
     },
     "max_group": 2,
@@ -359,7 +359,7 @@
     "appearance": "Tall grey-blue heron; the neck is folded in flight, not extended.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Herons appear in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR publication, which has no source record. The species split between great blue and green heron is this record's."
   },
   {
@@ -377,17 +377,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A local breeder rather than a migrant, which is exactly why it is one of the very few shorebirds correct for 1 July."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Noisy and conspicuous on bare and muddy ground."
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading; wherever there is bare wet ground."
     },
     "max_group": 4,
@@ -396,7 +396,7 @@
     "appearance": "Brown above, white below, two black breast bands, rusty rump in flight.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "The July shorebird gate in positive form: killdeer are HERE in July because they nest here, unlike the migrant flocks, which are not."
   },
   {
@@ -413,7 +413,7 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire062"
      ],
@@ -421,7 +421,7 @@
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire062"
      ],
@@ -429,7 +429,7 @@
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The 1836 notice implies numbers; it does not count them."
     },
     "max_group": 10,
@@ -438,7 +438,7 @@
     "appearance": "Big green-brown frogs with a prominent eardrum and no dorsolateral ridges.",
     "trace": null
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": [
     "chicagology_prefire062"
    ],
@@ -458,7 +458,7 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "documented",
+     "confidence": "attested",
      "sources": [
       "chicagology_prefire062"
      ],
@@ -466,12 +466,12 @@
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Calls all July from the pond edge."
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 10,
@@ -480,7 +480,7 @@
     "appearance": "Green-headed brown frog with dorsolateral ridges running part-way down the back.",
     "trace": null
    },
-   "confidence": "documented",
+   "confidence": "attested",
    "sources": [
     "chicagology_prefire062"
    ],
@@ -499,17 +499,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Calls into July in Illinois, unlike the spring species."
     },
     "presence": {
      "value": "audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Calls from vegetation above the water and is almost never located."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -518,7 +518,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "One of the July callers in the dossier's frog list; the July chorus composition is regional herpetology, not a Chicago record."
   },
   {
@@ -535,17 +535,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "A July caller on open muddy margins."
     },
     "presence": {
      "value": "audible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Tiny and cryptic; the clicking is the only evidence."
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -554,7 +554,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "As for the gray treefrog: a July caller in the dossier's list, placed on regional grounds."
   },
   {
@@ -569,17 +569,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The Chicago area supports about a dozen turtle species; the dossier's citations are Friends of the Chicago River and the Shedd Aquarium, both modern, and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Basking on logs is the animatable behaviour, and July is nesting season, so females cross open ground to dig."
     },
     "abundance": {
      "value": "common",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 8,
@@ -588,7 +588,7 @@
     "appearance": "Smooth dark shell with red edge markings and yellow head stripes.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "The turtle assemblage comes from modern Chicago-river surveys with no source record. Basking and July nesting are general biology; the presence here in 1835 is inference."
   },
   {
@@ -605,17 +605,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Occurs throughout Illinois; same modern citations, The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Almost never hauls out to bask; seen as a submerged shape or a nostril at the surface."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 1,
@@ -624,7 +624,7 @@
     "appearance": "Massive rough-shelled turtle with a long saw-toothed tail.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Occurs throughout Illinois in every modern account; no period Chicago record reached."
   },
   {
@@ -639,17 +639,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Breeding at the sloughs through the summer."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Hawking low over open water; the most animatable insect in the scene."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -658,7 +658,7 @@
     "appearance": "Green thorax, blue abdomen in the male; the size carries at distance.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "The dossier lists dragonflies and damselflies over the sloughs with no source. The genus is chosen as the commonest large darner of Illinois still water and is not attested here."
   },
   {
@@ -675,17 +675,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "The slough beside the town 'produced clouds of mosquitoes carrying the ague to nearby homesteads' in the dossier's 1834 Chicago description, and Jerry Church in 1830 had to 'fight the musquitoes all night' at the portage. Both quotes come from a page that returned HTTP 403, so the wording is unverified, and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Not renderable at scale. The visible signal is human behaviour, which liberty L1 puts out of scope for v1."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Maximal. Ague was endemic to this landscape."
     },
     "max_group": 0,
@@ -694,7 +694,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Andreas is NOT a source for this and never will be: full-text searches for mosquito, mosquitoes and the period spelling musquitoes all return zero hits. It is a business-and-civic history and does not record the nuisance."
   },
   {
@@ -709,17 +709,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Pond margins and damp ground are core habitat."
     },
     "presence": {
      "value": "visible",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Dusk only."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Denser here than anywhere else in the scene."
     },
     "max_group": 0,
@@ -728,7 +728,7 @@
     "appearance": "Pale yellow-green flash on a J-shaped upsweep, about every five or six seconds.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "The species, the month and the city are all in modern natural-history sources; 1835 is the inference, and it runs the safe way \u2014 the pre-drainage landscape would have supported more fireflies than the modern one, not fewer."
   },
   {
@@ -743,17 +743,17 @@
    "july": {
     "status": {
      "value": "absent_seasonal",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Spring peeper and chorus frog call from March to May and are finished by 1 July. The species is present in the landscape; its VOICE is not, and the voice is the whole of what a scene would show."
     },
     "presence": {
      "value": "absent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Spring peeper and chorus frog call from March to May and are finished by 1 July. The species is present in the landscape; its VOICE is not, and the voice is the whole of what a scene would show."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Spring peeper and chorus frog call from March to May and are finished by 1 July. The species is present in the landscape; its VOICE is not, and the voice is the whole of what a scene would show."
     },
     "max_group": 0,
@@ -762,7 +762,7 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Recorded as an explicit seasonal absence because a peeper chorus is the single easiest wrong sound to put over a marsh at any date."
   },
   {
@@ -777,17 +777,17 @@
    "july": {
     "status": {
      "value": "absent_seasonal",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "presence": {
      "value": "absent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "derived",
+     "confidence": "inferred",
      "note": "Marquette in 1675 found these waters 'full of bustards, geese, ducks, cranes and other birds', and the autumn and spring movements were enormous \u2014 but they are autumn and spring. On 1 July there is no migration at all, and the resident waterfowl are moulting."
     },
     "max_group": 0,
@@ -796,11 +796,11 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "derived",
+   "confidence": "inferred",
    "note": "Recorded so the negative is explicit: the skein of geese is the most reflexive wrong image available for an early-Illinois wetland."
   }
  ],
- "confidence": "documented",
+ "confidence": "attested",
  "note": "The two documented anchors are both inside the platted grid: the Public Square pond where muskrat were trapped and settlers hunted ducks, and the frog pond at Lake and LaSalle described in the Chicago American of 9 July 1836 \u2014 the same season, one year on.",
  "sources": [
   "chicagology_prefire062",

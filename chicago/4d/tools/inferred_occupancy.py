@@ -74,7 +74,7 @@ def occupancy() -> dict[str, dict]:
                          f"({ordinal} of {of} this layer infers)")
         blocks[sid] = {
             "value": "An inferred household; no name is claimed",
-            "confidence": "derived",
+            "confidence": "inferred",
             "sources": ["andreas_1884_v1", "owner_chicago_1835_reconstruction_spec_2026"],
             "note": ("ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase "
                      "two). This anonymous roof is " + " and ".join(parts) + ": "

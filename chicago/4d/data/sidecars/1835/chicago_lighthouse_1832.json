@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1832-12-31",
     "to": "1859-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "lighthousefriends_chicago"
@@ -25,7 +25,7 @@
     "local_e": 1105.2,
     "local_n": 229.2,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "ADJACENCY IS DOCUMENTED AND THE OFFSET IS INVENTED. Andreas puts the two together at the bend: 'Fort Dearborn and the light-house are placed at the angle thus formed'. Wentworth, disposing of the reservation in 1839, says the land left over 'upon which the old light-house was located' was lots near the Rush Street bridge, which is at the river north of the fort, and Fergus's 1850 note has River Street running between the block-house and the light-keeper's. All of that says close, and north or west, and near the water. This point is about 65 m north-west of the fort's centre on the river bank; the distance and the bearing are ours, and the uncertainty is nearer 60 m than the 20 m the rest of the complex carries. Rotation is zero and means nothing: a round tower has no facade. MOVED 2026-08-11, AND THE REASON IS THE GROUND RATHER THAN THE SOURCES. This point was first set about 65 m north-west of the fort centre while the terrain stopped 832 m short of here and nothing could check it. S2e parcel (b) landed the heightfield the same day, and that first point turned out to be below the top of the river bank - in the water. The tower is now at local E +1108, N +232, about 48 m west-north-west of the fort centre on the bank top, which satisfies every source statement as well as the first point did and satisfies the modelled ground too. The offset is still invention; it is now invention constrained by a surface.",
     "symbolic_location": "On the Fort Dearborn Reservation at the mouth of the river, close north-west of the fort, on the river bank.",
@@ -52,14 +52,14 @@
         5.6
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "INVENTED. No source reached gives this tower a diameter, a plan or a wall thickness. 5.6 m - about eighteen feet - is the base a forty-foot masonry tower of the period needs, and the square polygon is the archetype's convention for a round shaft: the generator refuses a tower whose footprint is not square and builds a twelve-sided tapering shaft inside it. What a visitor sees of this outline is entirely ours."
   },
   "attributes": {
     "kind": {
       "value": "tower",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "lighthousefriends_chicago"
@@ -68,7 +68,7 @@
     },
     "wall_height_m": {
       "value": 12.19,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "lighthousefriends_chicago"
@@ -77,7 +77,7 @@
     },
     "construction": {
       "value": "stone",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -85,12 +85,12 @@
     },
     "roof_type": {
       "value": "none",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. The shaft carries a gallery and a lantern rather than a roof; the cap over the lantern is the archetype's."
     },
     "lantern": {
       "value": true,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "lighthousefriends_chicago"
       ],
@@ -98,12 +98,12 @@
     },
     "paint": {
       "value": "stone",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Unattested. Bare masonry rather than whitewash, which is the commoner finish for an early Great Lakes tower - but nothing says which this was, and a whitewashed tower would read very differently across the river."
     },
     "function": {
       "value": "harbour light",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "lighthousefriends_chicago"

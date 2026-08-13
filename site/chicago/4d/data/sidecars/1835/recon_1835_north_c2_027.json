@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 903.048,
     "local_n": 304.877,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
@@ -46,14 +46,14 @@
         9.754
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 20 × 32 ft rectangle assigned by the reconstruction recipe within the C2 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "wall_height_m": {
       "value": 3.25,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "gable_front": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "cladding": {
       "value": "clapboard",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "loft": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -133,7 +133,7 @@
     },
     "shopfront": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -141,7 +141,7 @@
     },
     "goods_door": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -149,7 +149,7 @@
     },
     "goods_door_side": {
       "value": "end",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -157,7 +157,7 @@
     },
     "function": {
       "value": "store-residence",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -165,7 +165,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -188,7 +188,7 @@
         {
           "name": "A grocer (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "reconstructed",
           "occupation": "grocer",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE THIRD OF 4 GROCER HOUSEHOLDS THIS LAYER INFERS. One grocer is documented against fifty-two store and mixed-use roofs in the building schedule. Groceries - flour, salt, whisky, tea, candles - are the commonest small trade in a supply town. Four grocer households are inferred, placed toward the river and the built streets where the schedule puts its C-family store roofs, and three of them live over the shop, which is what the schedule's C2 'store-residence' family means."
         }

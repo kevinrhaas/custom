@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-01-01",
         "to": "1880-12-31",
-        "confidence": "documented",
+        "confidence": "attested",
         "sources": [
           "chicagology_prefire127",
           "drloih_hotels",
@@ -25,7 +25,7 @@
         "utm_n": 4637299.6,
         "rotation_deg": 270.0,
         "symbolic_location": "North-east corner of Lake Street and Canal Street (historically Lake and West Water), one block west of the river on the west bank; front on Canal, long side on Lake.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "derivation": {
           "method": "platted_corner",
           "control": "lake_canal",
@@ -71,7 +71,7 @@
             12.19
           ]
         ],
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire127"
         ],
@@ -80,7 +80,7 @@
       "form": {
         "stories": {
           "value": 2,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "chicagology_prefire127",
             "drloih_hotels"
@@ -89,7 +89,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire127",
             "drloih_hotels",
@@ -99,7 +99,7 @@
         },
         "log_core": {
           "value": false,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire278"
           ],
@@ -108,13 +108,13 @@
         },
         "cladding": {
           "value": "clapboard",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not directly attested for this building. Clapboard is the standard cladding for a frame building of this type and period, and the competing log-core account calls the covering 'weatherboarding', which is the same thing under another name — so both readings of the construction converge on a lapped horizontal board exterior.",
           "geometry": "simplified"
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire127"
           ],
@@ -122,7 +122,7 @@
         },
         "wall_height_m": {
           "value": 5.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire127"
           ],
@@ -130,7 +130,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "chicagology_prefire127"
           ],
@@ -138,12 +138,12 @@
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No pitch is attested. 38 degrees is mid-range for period gable framing and leaves an attic tall enough to lodge people in, which the sources say it did."
         },
         "fenestration": {
           "value": "small_paned_sash",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire127"
           ],
@@ -152,12 +152,12 @@
         },
         "gallery": {
           "value": false,
-          "confidence": "inferred",
+          "confidence": "reconstructed",
           "note": "NO EVIDENCE EITHER WAY, and unlike the Sauganash there is no retrospective depiction in the project's hands to reason from. The witnesses describe two entrances — the front on Canal and one 'about the middle of the long side' on Lake — without mentioning a porch, veranda or gallery, which is weak negative evidence at best, since they were correcting a drawing rather than inventorying the elevation. False is the default, not a finding. The c. 1859 photograph (chm_green_tree_1859) settles this the moment anyone opens it."
         },
         "side_additions": {
           "value": true,
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire127"
           ],
@@ -166,7 +166,7 @@
         },
         "chimneys": {
           "value": 2,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference."
         }
       },
@@ -175,7 +175,7 @@
   ],
   "function": {
     "value": "tavern_inn",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "chicagology_prefire127",
       "drloih_hotels"
@@ -184,7 +184,7 @@
   },
   "occupants": {
     "value": "Chester Ingersoll, landlord",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "chicagology_prefire127"
     ],

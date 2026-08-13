@@ -21,9 +21,9 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
       "note": "The curved west approach follows the dry south bank resolved by the committed heightfield; east of Franklin the line follows the modern Wacker control used by the structure placements but is shifted into the dry half of the platted riverfront corridor. The street stops at the United States Reservation, matching the 1833 order. Track width and ruts are visual interpretation, not measurements."
     },
@@ -36,9 +36,9 @@
       "track_width_m": 10.5,
       "surface": "graded_earth",
       "traffic": "principal",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026"],
       "note": "The two verified Lake intersections fix the line. The official chronology calls Lake one of the two principal early turnpiked and graded streets, but separately dates its western extension to Desplaines to fall 1836; the 1835 visual treatment therefore stays earth and does not imply that every western block had already received the later work."
     },
@@ -51,9 +51,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
       "note": "The fall-1836 turnpiking recorded for Randolph is deliberately not backdated."
     },
@@ -66,9 +66,9 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -80,9 +80,9 @@
       "track_width_m": 8.0,
       "surface": "worn_earth",
       "traffic": "principal",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -94,9 +94,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -108,9 +108,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -122,9 +122,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"],
       "note": "Hubbard's petition says he had graded and thrown up the short South Water-to-Lake segment, but is dated 13 July 1835. On the scene date twelve days earlier this path therefore receives no special improved treatment."
     },
@@ -137,9 +137,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "wright_1834", "osm_streets_2026"]
     },
     {
@@ -151,9 +151,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -165,9 +165,9 @@
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["wright_1834", "osm_streets_2026"]
     },
     {
@@ -179,9 +179,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "wright_1834", "osm_streets_2026"],
       "note": "The line uses the road-only Kinzie control already adopted by the North Branch bridge rather than the queued five-node bikeway-inclusive GCP. Its recorded turnpiking belongs to fall 1836 and is not backdated."
     },
@@ -194,9 +194,9 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
     },
     {
@@ -208,9 +208,9 @@
       "track_width_m": 7.0,
       "surface": "worn_earth",
       "traffic": "ordinary",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
     },
     {
@@ -222,9 +222,9 @@
       "track_width_m": 6.0,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "inferred",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "reconstructed",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"],
       "note": "A schematic bank-following path used for orientation and readout. The 1834 sheets and surviving name establish the corridor, but the committed street module does not yet carry enough control to claim this curve as a trace."
     },
@@ -237,9 +237,9 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["chicago_dpw_1891_streets", "hathaway_1834", "osm_streets_2026"]
     },
     {
@@ -251,9 +251,9 @@
       "track_width_m": 5.8,
       "surface": "light_worn_earth",
       "traffic": "light",
-      "geometry_confidence": "derived",
-      "surface_confidence": "derived",
-      "wear_confidence": "inferred",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "reconstructed",
       "sources": ["hathaway_1834", "wright_1834", "osm_streets_2026"]
     }
   ]

@@ -61,7 +61,7 @@ def load(path: Path):
 
 
 def inferred(value, reason: str):
-    return {"value": value, "confidence": "derived", "sources": [SOURCE_ID], "note": reason}
+    return {"value": value, "confidence": "inferred", "sources": [SOURCE_ID], "note": reason}
 
 
 def archetype_for(family: str) -> str:
@@ -242,7 +242,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
         "phases": [{
             "id": PHASE_ID,
             "documented_range": {
-                "from": "1835-01-01", "to": "1835-12-31", "confidence": "inferred",
+                "from": "1835-01-01", "to": "1835-12-31", "confidence": "reconstructed",
                 "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
             },
             "position": {
@@ -250,7 +250,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                 "utm_n": round(float(datum["origin_utm_n"]) + local_n, 3),
                 "rotation_deg": bearing,
                 "symbolic_location": f"Anonymous inferred roof on {where}",
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": ("Interpretive placement within the reviewed West Division cluster "
                          f"{row['cluster']}. The recipe coordinate is a production-layout "
                          "control, not a recovered lot." + setback),
@@ -258,7 +258,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
             },
             "footprint": {
                 "polygon": [[0, 0], [width, 0], [width, depth], [0, depth]],
-                "confidence": "inferred",
+                "confidence": "reconstructed",
                 "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, seq, paint),

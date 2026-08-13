@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1830-01-01",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicagology_prefire273",
       "andreas_1884_v1"
@@ -25,7 +25,7 @@
     "local_e": -68.7,
     "local_n": -62.8,
     "rotation_deg": 90.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "chicagology_prefire273",
@@ -56,14 +56,14 @@
         6
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION, PROPORTION OR PLAN FORM IS ATTESTED. 7 x 6 m is about 23 x 20 ft, a single-pen storehouse of the type and period; the 7 m runs north-south along the river frontage and the 6 m is the depth. Every number is invented and the polygon cites no sources. What the sources give is a TRADE and not a building: 'a storehouse dealing in groceries and Indian goods' names the stock, not the fabric, and Andreas's line names the trader and his neighbour, not his premises. To resolve: Andreas vol. 1 at page-image level around the Wolf Point material, or either of the retrospective Wolf Point views examined at plate level for the row's massing."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "chicagology_prefire273"
       ],
@@ -71,7 +71,7 @@
     },
     "function": {
       "value": "store",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_prefire273",
         "andreas_1884_v1"
@@ -94,7 +94,7 @@
         {
           "name": "Robert Allen Kinzie",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "merchant",
           "note": "HE IS THE REASON CHARLES BUTLER AND ARTHUR BRONSON CAME WEST, which is the best-documented chain of causation in the whole 1833-35 record. Butler's letter of 1881: Bronson called on the New York Indian-goods merchant Daniel Jackson for information about Chicago, and Jackson 'said that he would then introduce him to a man from Chicago, who at that moment happened to be in his store making purchases of Indian goods. This was Robert A. Kinzie.' Kinzie offered them his quarter interest in the north fractional half of Section 10 - the ground Kinzie's Addition was laid out on. He was also a candidate at the first town election of 10 August 1833 and took nine votes, the highest of any unsuccessful candidate."
         }

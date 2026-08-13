@@ -8,7 +8,7 @@
     "width_ft": 80,
     "width_m": 24.384,
     "half_width_m": 12.192,
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": ["hathaway_1834", "thompson_plat_1830"],
     "note": "80 ft is the street width annotated on Hathaway 1834 and read off the sheet during the datum work; this project applies it town-wide to Lake, Market, Canal, Randolph and Kinzie. MEASURED 2026-08-10, AND THE RIVAL FIGURE IS OUT: eleven platted corridors have now been measured off the two 1834 sheets, block boundary line to block boundary line, and every one of them falls between 75.7 and 92.8 ft. None comes within 9 ft of 66. Eight of the eleven were N-S streets; the three E-W corridors added 2026-08-11 read 79.4, 81.5 and 86.5 ft, so the figure no longer rests on one axis of the grid. See `measured` below; the gate is check_street_module in tools/validate.py, which re-derives every one of those metres from its committed pixels, offline, on every commit. It stays INFERRED rather than documented and the reason has CHANGED. It is no longer that the sheet was never read street by street; it is that what has now been read is the corridor these draughtsmen DREW in 1834 — median about 4 ft wide of 80 on both sheets — while this figure claims what Thompson PLATTED in 1830. Between those two sit 3.7-4.5% of paper stretch and the placement of a pen line, so the measurement settles WHICH candidate and not the platted figure to the foot. Alleys read 17.1-18.7 ft on the same traverses, which is consistent with 18 ft and NOT conclusive against 16: two feet is inside this method's error, and a reading that cannot separate two figures does not get to pick one.",
     "measured": {

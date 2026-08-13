@@ -5,7 +5,7 @@
  "head": "caldwell_billy",
  "arrival": {
   "value": "1820",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,12 +14,12 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Detroit; his father an Irish officer in the British army, his mother Potawatomi",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -27,17 +27,17 @@
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Left null for the same reason as the Robinson household: 'why they came' is a question shaped for emigrants, and filling it here would import a frame the sources do not support."
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "TWO CANDIDATE LOCATIONS AND NO WAY TO CHOOSE, so the field is null. (1) Andreas: 'There was also a house built for him by the Department for Indian Affairs on the North Side near where is now the corner of State Street and Chicago Avenue' - and elsewhere calls it probably the first frame building in Chicago after Robert Kinzie's store, erected in 1828. That house is not in data/structures/ and is well north of the modelled blocks. (2) A list of the settlement's residents Andreas prints puts 'small log buildings occupied by the blacksmith, Mr. McKee, and Billy Caldwell, an Indian chief, who was also interpreter for the agency' in the vicinity of Cobweb Castle at the foot of State Street. Those are two different houses in two different places and neither is dated to 1835. Linking him to robinson_caldwell_cabins would be worse than either: that record's evidence is Wau-Bun's sentence about ROBINSON, and Caldwell's name reached its filename by a different route."
  },
  "works_at": {
   "value": "cobweb_castle",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,11 +56,11 @@
    "id": "caldwell_billy",
    "name": "Billy Caldwell (Sauganash)",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "birth_year": {
     "value": 1780,
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -68,7 +68,7 @@
    },
    "age_on_scene_date": {
     "value": 55,
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -76,7 +76,7 @@
    },
    "occupation": {
     "value": "interpreter",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

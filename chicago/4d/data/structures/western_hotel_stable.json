@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1834-01-01",
         "to": "1840-12-31",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire278"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637090.8,
         "rotation_deg": 0.0,
         "symbolic_location": "In the rear of the Western Hotel at the south-east corner of Randolph and Canal Streets — that is, south of the hotel block, across the wagon yard, with the stable's long side parallel to Randolph.",
-        "confidence": "derived",
+        "confidence": "inferred",
         "sources": [
           "chicagology_prefire278"
         ],
@@ -52,13 +52,13 @@
             7.0
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "INVENTED. The only dimensional word in the record is 'large', and it is a comparison rather than a measurement. 13.0 x 7.0 m is about 43 x 23 ft: a single range of stalls down each side of a central drive, which is about eight horses, with the 13 m along Randolph and the 7 m as the depth. The size answers the documented TRADE rather than being chosen freely — this was the west-side wagon house, 'the stopping place for all the farmers town from the west', whose teams the source says 'were as numerous as were the guests' — so it is drawn as the largest outbuilding in this dataset and still smaller than the hotel it served. Every number is invented and this polygon cites no sources. It is also the footprint the outbuilding archetype's own golden 'hotel_stable' case uses (generators/preview.py), which is not evidence about this building; it is the same convention twice."
       },
       "form": {
         "construction": {
           "value": "plank",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire278"
           ],
@@ -66,12 +66,12 @@
         },
         "wall_height_m": {
           "value": 3.4,
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No figure is attested. 3.4 m is about 11 ft, and the number is set by what has to happen inside rather than by a convention: a horse is led in and out under a header, hay is forked over the stalls, and a wall much under 3 m makes a stable a shed. It is a little over the archetype's own size-aware default for this footprint (3.32 m) and well under its 4.5 m ceiling. What is inferred is the range, not the number."
         },
         "door": {
           "value": "stable",
-          "confidence": "derived",
+          "confidence": "inferred",
           "sources": [
             "chicagology_prefire278"
           ],
@@ -79,17 +79,17 @@
         },
         "door_side": {
           "value": "front",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "Not attested. The door is put on the north elevation, the one facing the yard and the back of the hotel, because that is the side the source populates: the yard is where the teams stood and where the entrances from both streets led. A stable door on any other elevation would open onto the neighbouring lots. Inference from the yard, not a statement about the building."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "derived",
+          "confidence": "inferred",
           "note": "No source describes a finish on this or any other outbuilding here. Unpainted weathered board is the default for a working stable behind a teamsters' house, and this dataset already reads the hotel's own clapboard as unpainted on the same reasoning. Not attested either way."
         },
         "wagon_yard": {
           "value": true,
-          "confidence": "documented",
+          "confidence": "attested",
           "sources": [
             "chicagology_prefire278"
           ],
@@ -102,7 +102,7 @@
   ],
   "function": {
     "value": "hotel_stable",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "chicagology_prefire278"
     ],
@@ -110,7 +110,7 @@
   },
   "occupants": {
     "value": "W. H. Stow, builder and proprietor of the Western Hotel",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicagology_prefire278",
       "drloih_hotels"

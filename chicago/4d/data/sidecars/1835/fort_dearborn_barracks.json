@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "wentworth_1881_fort_dearborn",
@@ -26,7 +26,7 @@
     "local_e": 1172.62,
     "local_n": 203.41,
     "rotation_deg": 278.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "harrison_1830_river_mouth",
       "wright_1834",
@@ -57,7 +57,7 @@
         11.01
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "harrison_1830_river_mouth"
     ],
@@ -66,7 +66,7 @@
   "attributes": {
     "kind": {
       "value": "barracks",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -74,7 +74,7 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -82,37 +82,37 @@
     },
     "stories": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Not attested for this fort. Whistler's 1808 index says the FIRST fort's barracks were 'two storeys high with shingled Roofs' (Quaife) and two companies do not fit on one floor of a 90 ft range with their stores. Both are arguments; neither is a statement about the 1816 fort."
     },
     "wall_height_m": {
       "value": 5.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No height is attested. 5.0 m is two storeys of log wall at period course counts, and it inherits the storey count's weakness."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the form for a long range of this period."
     },
     "roof_pitch_deg": {
       "value": 34.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
     },
     "chimneys": {
       "value": 3,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. A 90 ft barracks divided into squad rooms carries a stack per group of rooms; three is the minimum that heats a range this long. The COUNT is the inference and everything else about the stacks is the archetype's."
     },
     "gallery": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "Same reasoning as the officers' quarters: galleries fronting the parade are documented for the FIRST fort and for no building in this one, and a plain front is a claim the visitor sees."
     },
     "function": {
       "value": "enlisted men's barracks",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -120,7 +120,7 @@
     },
     "occupants": {
       "value": "enlisted men of the 5th Infantry garrison",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "drloih_fort_dearborn"

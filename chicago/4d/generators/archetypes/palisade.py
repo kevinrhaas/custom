@@ -77,8 +77,8 @@ def _stockade(b: MeshBuilder, p: PalisadeParams) -> None:
     can never leave a picket standing inside either of them.
     """
     c_wall = p.worst_conf("wall_kind", "picket_height_m", "construction")
-    c_gate = p.conf("gate_sides", "inferred")
-    c_bast = p.conf("bastion_corners", "inferred")
+    c_gate = p.conf("gate_sides", "reconstructed")
+    c_bast = p.conf("bastion_corners", "reconstructed")
     w, d = p.width_m, p.depth_m
 
     # (side, along-axis run length, the two endpoints in plan)

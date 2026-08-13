@@ -94,18 +94,18 @@ def build(params: LogDwellingParams, name: str):
                       params.conf("loft"))
 
     _core_openings(b, params, cx0, cy0, cx1, cy1, wall_z,
-                   params.conf("fenestration", "inferred"))
+                   params.conf("fenestration", "reconstructed"))
 
     addition_ridge_z = _frame_addition(b, params) if params.frame_addition else None
 
     _chimneys(b, params, cx0, cy0, cx1, cy1, ridge_z, addition_ridge_z,
-              params.conf("chimneys", "inferred"))
+              params.conf("chimneys", "reconstructed"))
 
     if params.sign:
         # The BOARD's confidence is the confidence that a sign hung there. Its size
         # and its bracket are invented, but those are dimensional, and by the
         # convention above dimensions do not drag an object's character down.
-        _sign(b, params, params.conf("sign", "inferred"))
+        _sign(b, params, params.conf("sign", "reconstructed"))
 
     mats = [
         simple_material("log", HEWN_RGBA, roughness=0.92),
@@ -325,8 +325,8 @@ def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> float:
     through.
     """
     c = p.worst_conf("frame_addition", "frame_addition_stories")
-    c_clad = p.conf("frame_addition", "inferred")
-    c_fen = p.conf("fenestration", "inferred")
+    c_clad = p.conf("frame_addition", "reconstructed")
+    c_fen = p.conf("fenestration", "reconstructed")
     ax0, ay0, ax1, ay1 = _addition_extent(p)
     az = p.addition_height_m
 

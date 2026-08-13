@@ -985,7 +985,7 @@
     "kind": "water",
     "name": "Chicago River harbour reach, the 1834 cut, the old southward channel and the lake margin",
     "water_surface_ft_above_datum": 0.0,
-    "confidence": "derived",
+    "confidence": "inferred",
     "note": "Planform traced from the Wright 1834 survey; one connected body of water from the east edge of the forks box to the lake. The water surface is flat at the datum because the pre-reversal river stood at lake level through the whole downtown reach. The interior ring is the sand bar. The EASTERN boundary of this polygon is the traced window, not a shore \u2014 see provenance.not_traced.",
     "sources": [
      "wright_1834",
@@ -1216,7 +1216,7 @@
    "properties": {
     "kind": "bar",
     "name": "The sand bar across the river mouth",
-    "confidence": "derived",
+    "confidence": "inferred",
     "note": "Land, not water: the bar Wright labels SAND-BAR, traced as the island the water goes round. Its planform is drafted on a cadastral plat, so the same +/-20 m applies and the same 'inferred' the river polygon carries. NO ELEVATION IS CLAIMED HERE \u2014 a bar is a surface a few feet of lake stage moves, no source gives its height, and the terrain spec is where any such number would have to be argued for. Wright shows it already cut through by the 1834 harbour works, with the old southward channel behind it drawn narrowing and its arrow still running south.",
     "sources": [
      "wright_1834"
@@ -1637,7 +1637,7 @@
     "kind": "shore",
     "name": "South shore of the harbour reach: south bank of the main stem east of the forks box, the Fort Dearborn reservation's lake shore, and the west bank of the old southward channel behind the bar",
     "crest_ft_above_datum": null,
-    "confidence": "derived",
+    "confidence": "inferred",
     "note": "Continuous from the forks box eastward: the same waterline the forks trace ends on, picked up again at local E +314. Beyond about N -580 it leaves the traced window; the shore and the old channel continue south of there and are not traced. Crest heights are carried in the terrain spec, not here: they come from narrative feet, not from the map.",
     "length_m": 2331.8,
     "anchor_distance_m": 21.4,
@@ -1886,7 +1886,7 @@
     "kind": "shore",
     "name": "North shore of the harbour reach: north bank of the main stem, the inner face of the north pier, and the lake shore north of the harbour",
     "crest_ft_above_datum": null,
-    "confidence": "derived",
+    "confidence": "inferred",
     "note": "BETWEEN THE PIERS THIS IS NOT A NATURAL SHORE. Wright draws the 1834 cut as a straight channel between two pier lines, and the traced boundary there follows the pier's inner face as drafted. The piers are structures with phases (see docs/EPOCHS.md), so they are not modelled here and their alignment is not a terrain claim; this run says only where the drawn water ended. Crest heights are carried in the terrain spec, not here: they come from narrative feet, not from the map.",
     "length_m": 1568.3,
     "anchor_distance_m": 20.7,

@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1831-04-13",
     "to": "1836-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "drloih_wolf_point"
@@ -25,7 +25,7 @@
     "local_e": -97.0,
     "local_n": -60.0,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "NOTHING PLACES THIS BUILDING AND THIS COORDINATE IS A CHOICE. No source reached mentions a stable at the Wolf Point Tavern at all, let alone where it stood; the building is inferred from a priced service (see function), and its position is inferred from nothing. METHOD, such as it is: data/structures/wolf_point_tavern.json faces east onto the river at bearing 90, so the landward side of the house is west, and this coordinate puts the stable about 11 m west of the tavern's back wall and offset 3 m south of its south end — clear of the tavern, clear of robinson_caldwell_cabins 36 m to the north, and off the river frontage, which at a house whose whole trade came by water and by the Lake Street crossing is where the yard work would go. EVERY ONE OF THOSE IS AN ARGUMENT FROM THE TRADE AND NOT FROM A SOURCE. It also inherits the tavern's own placement, which docs/LIBERTIES.md records as one of three Wolf Point buildings placed on relative descriptions rather than on a map. WORKING UNCERTAINTY: the tavern's own, roughly 40 m along the bank and 20 m across it, plus the whole of the offset recorded here, which is invention. Facade bearing 0, north, chosen so the stable's long side runs along the back of the tavern; nothing states it, and no bearing here would be better evidenced than any other.",
     "symbolic_location": "West bank of the river at the forks, behind (west of) the Wolf Point Tavern, on the landward side away from the river frontage.",
@@ -52,14 +52,14 @@
         6.0
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "INVENTED. No dimension of any kind is attested. 9.0 x 6.0 m is about 30 x 20 ft — a single range of four or five stalls with room to lead a horse past them, which is the smallest building that answers the documented service and the largest that a house of this size on this bank can be argued into. It is drawn deliberately smaller than western_hotel_stable, whose source at least calls it 'large', so that the two stables in this scene are not the same building twice at different addresses. Every number is invented and this polygon cites no sources."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "drloih_wolf_point"
       ],
@@ -67,22 +67,22 @@
     },
     "wall_height_m": {
       "value": 2.8,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 2.8 m is about 9 ft: a log wall of about nine courses, built a course or two above a dwelling's because a horse has to be led in under a header and something has to be stored over it. It sits just under the archetype's size-aware default for this footprint (3.0 m). What is inferred is the range, not the number."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and a notched log pen 6 m deep is past the run a shed roof covers well. The archetype would have chosen gable for this depth in any case; it is stated so that the value carries its reasoning rather than arriving as a default."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested. 35 degrees is this project's figure for a low log building roofed in riven shakes, carried by every other log structure in this dataset. Inferred from construction practice, not measured."
     },
     "door": {
       "value": "stable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -90,17 +90,17 @@
     },
     "door_side": {
       "value": "front",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED. Placed on the north elevation because this record's invented bearing puts the tavern's back yard there. Nothing states which way the building faced, and no reading is better than another. Recorded conjectural rather than allowed to arrive as the archetype's default."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No source describes a finish. Unpainted weathered log is what this project reads for every building at Wolf Point in these years, including the tavern this one stood behind. Not attested either way."
     },
     "function": {
       "value": "tavern_stable",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1",
         "drloih_wolf_point"
@@ -109,7 +109,7 @@
     },
     "occupants": {
       "value": "the tavern's keeper of the day — Elijah Wentworth in 1831, William Walters on the scene date",
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "drloih_wolf_point"
       ],

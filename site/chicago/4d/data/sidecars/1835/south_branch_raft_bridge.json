@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1833-03-01",
     "to": "1835-08-18",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicagology_prefire252",
       "chicagology_lastwardance"
@@ -26,7 +26,7 @@
     "local_e": 6.86,
     "local_n": -178.07,
     "rotation_deg": 0.292,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "chicagology_lastwardance",
       "wright_1834",
@@ -57,7 +57,7 @@
         3.048
       ]
     ],
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "old_settlers_bridges_1883",
       "chicagology_prefire252",
@@ -68,7 +68,7 @@
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883",
         "chicagology_prefire252"
@@ -77,7 +77,7 @@
     },
     "width_m": {
       "value": 3.048,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883",
         "chicagology_prefire252"
@@ -86,7 +86,7 @@
     },
     "clearance_m": {
       "value": 1.83,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -94,7 +94,7 @@
     },
     "abutments": {
       "value": true,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883",
         "chicagology_prefire252"
@@ -103,7 +103,7 @@
     },
     "pier_kind": {
       "value": "bent",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -111,7 +111,7 @@
     },
     "pier_count": {
       "value": 2,
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -119,7 +119,7 @@
     },
     "deck_kind": {
       "value": "puncheon",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -127,7 +127,7 @@
     },
     "stringer_count": {
       "value": 4,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -135,7 +135,7 @@
     },
     "railing": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "inferred",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -143,7 +143,7 @@
     },
     "function": {
       "value": "river_crossing",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicagology_lastwardance",
         "chicagology_prefire252"
@@ -166,14 +166,14 @@
         {
           "name": "Anson H. Taylor",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "carpenter",
           "note": "THE MAN WHO BUILT THE ONLY BRIDGE TEAMS COULD CROSS. Andreas: the log bridge across the South Branch between Randolph and Lake 'was, prior to 1834, the only bridge across the river or its branches over which teams could pass', and its total cost was $486.20, 'of which sum the Pottawatomie Indians contributed $200'. That last clause is a documented fact about who paid for the town's first serious piece of infrastructure and it is recorded here because it belongs to the population question as much as to the bridge."
         },
         {
           "name": "Charles H. Taylor",
           "relationship": "brother",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "carpenter",
           "note": "ONE OF THE TWENTY-EIGHT ELECTORS OF 10 AUGUST 1833, listed by Andreas as 'Charles Taylor'. This project's wolf_point_tavern record has 'Charles and Mary Taylor' keeping that house from 1831 to 1833, which would make him a tavern keeper before he was anything else and gives him a named wife; the identification is not made here because the Taylor surname is carried by at least four distinct men in this parcel's sources and merging them on a forename would be exactly the error the Isaac Harmon case was avoided for."
         }

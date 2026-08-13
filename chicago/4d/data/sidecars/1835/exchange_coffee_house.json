@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1836-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "drloih_hotels"
@@ -25,7 +25,7 @@
     "local_e": 319.12,
     "local_n": -90.66,
     "rotation_deg": 180.0,
-    "position_confidence": "derived",
+    "position_confidence": "inferred",
     "position_sources": [
       "andreas_1884_v1",
       "drloih_hotels",
@@ -56,54 +56,54 @@
         9.0
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING ANY DIMENSION, a plan, or a room count. 14 x 9 m is about 46 x 30 ft, sized between the Green Tree's 40 x 25 ft - itself derived from a room module rather than measured - and the Western Hotel's attested 40 ft front, on the reasoning that this was Mark Beaubien's second and later house, built in the boom rather than at the forks in 1831, and that it was carrying a hotel and a public room. None of that is evidence about this building. The rectangle is a rectangle because no source describes a plan, and no sources are cited on this attribute because none supports it. TO RESOLVE: the Chicago Democrat and the Chicago American, in both of which this house was a standing address - Dr. Temple's stage line advertised that seats could be taken here - and where a hotel advertisement of the ordinary period kind would count its rooms."
   },
   "attributes": {
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED, AND IT ALSO CHOSE THE ARCHETYPE, so if it is wrong the building is wrong in kind and not merely in detail. Andreas says Beaubien 'built' and 'completed' a house and never says what of. THE ARGUMENT FOR FRAME: every Chicago hotel this dataset can date to 1833 or later is frame - the Green Tree of 1833, the Tremont of 1833, the Western of 1834-35 - while the log taverns at the forks all belong to the 1828-31 generation; by 1834 the town had sawn lumber, carpenters and a building boom. THE ARGUMENT AGAINST TREATING THAT AS EVIDENCE is this project's own line, docs/LIBERTIES.md L18: the ordinary reading of a TYPE is not evidence about a BUILDING - and the man who built this one had built his last hotel by adding a frame block onto a log cabin. Braced rather than balloon is a second guess inside the first: balloon framing was developed in Chicago in 1832-33, so an 1834 building could be either, and braced is the conservative reading. Both are declared and tagged rather than defaulted."
     },
     "stories": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED. Two storeys is what a town hotel of 1834 carried and no source says it of this one. Chosen rather than derived. The comparison worth keeping in view is the Tremont, where the one storey count in circulation turns out to be a modern editor's sentence; here there is not even that."
     },
     "wall_height_m": {
       "value": 5.2,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED. 5.2 m is about 17 ft - two storeys at period floor heights plus structure and a sill, the same figure this project uses for the Steamboat Hotel and the Miller house's two-storey range. It inherits the storey count above, which is itself a guess."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED. Gable is the ordinary roof for a frame block of this type and period and nothing says it of this building."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No pitch is attested. 38 degrees is this archetype's mid-range for period framing, inferred from construction practice rather than measured - the same value and the same reasoning as the other frame records here. It is an inference about how a roof of this kind was framed, sitting on a roof form the record has already tagged as a guess."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED EITHER WAY, and this attribute is read by the archetype, so leaving it out would have painted the building white by default - which is a claim. THERE IS ONE REASON TO WONDER, and it is not enough to act on: the man who built this house had built the white two-storey Sauganash with bright blue shutters that Wau-Bun calls 'the admiration of all the little circle at Wolf Point', so a painted front would be in character. Nothing says he painted this one, and unpainted is the cheaper reading for a speculative-boom house. Still a choice."
     },
     "gallery": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "reconstructed",
       "note": "NOT ATTESTED EITHER WAY. False is what the archetype falls back to, not a finding - the consequence docs/LIBERTIES.md L19 records for the Green Tree and the Western, that a plain front reads as the answer while a drawn shape at least announces itself as a choice. A coffee house on a main-street corner at which stage seats were booked is exactly the type that often carried a porch over its door."
     },
     "chimneys": {
       "value": 2,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested. Two is the count a frame block of this frontage carries if it is heating a public room, a dining room and lodging rooms through a Chicago winter, and it is what this project's other frame hotels record. The COUNT is the inference; position, size and material are the archetype's - docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "tavern_inn",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "drloih_hotels"
@@ -112,7 +112,7 @@
     },
     "occupants": {
       "value": "John and Harriet Murphy, keepers",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -134,14 +134,14 @@
         {
           "name": "John Murphy",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "tavern_keeper",
           "note": "Attested twice in Andreas, in two different chapters, with dates on both sides of the scene date: 'In August of 1834, Mr. and Mrs. Murphy took charge of this new hotel, which they christened the Exchange Coffee House. They remained there until 1836, when they removed to the old Sauganash'; and, in the life of Mark Beaubien, the house was 'first kept by Mr. and Mrs. John Murphy'. THIS IS THE BEST-ATTESTED OCCUPANCY OF A NAMED BUILDING BY A NAMED HOUSEHOLD IN THE DATASET."
         },
         {
           "name": "Harriet Murphy",
           "relationship": "wife",
-          "grade": "derived",
+          "grade": "inferred",
           "occupation": "tavern_keeper",
           "note": "DOCUMENTED AS A PERSON, DERIVED AS A NAME. Andreas calls her only 'Mrs. Murphy'. The forename Harriet reaches this project through data/structures/exchange_coffee_house.json, whose occupants field carries 'John and Harriet Murphy, keepers', and it could not be traced back to a sentence in Andreas. The woman is documented; the forename is the reconstructed part, and that is exactly what the derived grade is for."
         }

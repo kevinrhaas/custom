@@ -5,33 +5,33 @@
  "head": "porthier_joseph",
  "arrival": {
   "value": "1830",
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "NOT ATTESTED. He is a member of the agency establishment under Owen, whose agency runs from 1831; the Porthier family is at Chicago earlier. 1830 is the earliest year this project can argue and it cites nothing.",
   "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "blacksmith_shop_state_st",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -39,7 +39,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -50,11 +50,11 @@
    "id": "porthier_joseph",
    "name": "Joseph Porthier",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "blacksmith",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-11-01",
     "to": "1835-12-31",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
@@ -25,7 +25,7 @@
     "local_e": 200.3,
     "local_n": -4.8,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "THE BANK IS CONFLICTED IN THIS PROJECT'S OWN DOSSIERS AND THIS RECORD DOES NOT PRETEND TO SETTLE IT. READING A, THE SOUTH BANK, ADOPTED HERE: docs/research/03-structures-north.md section 3.10 reports 'a square frame building on South Water Street, \"Newberry and Dole's Forwarding and Commission House\", in views of c. 1835 — i.e., the south bank at that date', tagged [DOC]; that dossier names no source record for the views, which is why this record cannot cite them and why the reading is carried as inference rather than attestation. READING B, THE NORTH BANK: Andreas, 'It was made by Newberry & Dole, whose warehouse was on the North Side, immediately east of where Rush-street bridge now stands' (scan p. 1139), and docs/research/04-structures-south.md turns that into an explicit instruction — 'Do not put it on South Water Street.' WHY THE SOUTH BANK IS ADOPTED, STATED AS REASONING AND NOT AS PROOF: Andreas's sentence is not about 1835. Read in place it describes the warehouse from which a named grain shipment was made — the paragraph runs 'The history of the next shipment, in 1839, of three thousand six hundred and seventy-eight bushels, on board the brig \"Osceola\" ... It was made by Newberry & Dole, whose warehouse was on the North Side' — so the building it locates is the firm's warehouse in 1839, four years after the scene date, in a decade when the firm plainly moved and grew. The c. 1835 view evidence is contemporaneous with the scene and the Andreas sentence is not, so the south bank is the better reading FOR THIS DATE while remaining the weaker citation. A READER SHOULD KNOW THE MODELLING CONSEQUENCE TOO, AND THAT IT IS NOT A REASON: the Rush Street site lies about 1 km east of the datum origin and some 700 m beyond the modelled terrain box, so reading B would have put the building outside modelled ground. That did not decide the choice and is recorded so nobody has to wonder whether it did. THE BLOCK IS UNATTESTED UNDER EITHER READING. South Water Street ran the length of the south bank and nothing says where on it this house stood, so the coordinate is a point chosen on a street: local E +200 to +211, at the west end of the frontage, clear of the seven South Water buildings this dataset already places between local E +257 and +724, with the north face about 8 m back from the traced bank to leave the dock its ground. That is free choice within a documented street, and it is why this position is conjectural and not inferred. Facade bearing 0, due north onto the river and its dock — a forwarding house faces its wharf — which is an argument from the trade, not a source.",
     "symbolic_location": "South bank of the main stem, on the South Water Street river frontage west of the built-up blocks, with its dock on the water. THE BANK IS DISPUTED — see the note; the north bank is the other reading and is not adopted here.",
@@ -52,34 +52,34 @@
         11
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "THE SHAPE CARRIES EVIDENCE AND THE SIZE DOES NOT, which is the same distinction miller_house's footprint note draws and it should not be blurred. What is reported is a SQUARE frame building (docs/research/03-structures-north.md section 3.10, from views of c. 1835), so the polygon is square on purpose rather than by chance; the 11 m, about 36 ft on a side, is invented outright. The polygon cites no sources because the dossier's description of the views names none. To resolve: identify and read the c. 1835 view the dossier is describing — the candidates are the Blanchard & Shober 1867 'Wolf's Point in 1833' chromolithograph, the Chicago History Museum's early South Water Street drawings, and the Edgar S. Cameron painting of South Water Street; every one of them is retrospective, so even a positive identification gives a proportion rather than a measurement."
   },
   "attributes": {
     "construction": {
       "value": "light_frame",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "'a square FRAME building' in the c. 1835 views reported by docs/research/03-structures-north.md section 3.10. The dossier tags that [DOC] and names no source record, so this project cannot cite it and carries the reading as inference until the view is identified. `light_frame` is the archetype's term for boards laid horizontally on a stick frame, which is what a frame building looks like at this level of detail; what is behind the boards is not visible and is not claimed."
     },
     "wall_height_m": {
       "value": 3.4,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No figure is attested. 3.4 m is about 11 ft at the eave — a tall single storey with storage in the roof, which is the working arrangement of a forwarding and commission house: goods in at ground level off the dock, stored above. Stated rather than left to the archetype's size-aware default of 4.1 m for a footprint this size, which would read as a full two storeys and would be a claim. The firm's LATER warehouse is described hoisting wheat 'to the upper story by Irish power, with rope and pully' (Andreas scan p. 1139) — that is the 1839 building, so it supports the practice and says nothing about this one."
     },
     "door": {
       "value": "wagon",
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "No source describes an opening. 'wagon' is the archetype's widest doorway, a clear 2.9 m for a loaded team, and it is what a forwarding and commission business needs: the whole trade is taking goods off wagons and boats and putting them back on. A narrower door would say the house was a shop."
     },
     "loft": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "note": "Not attested for this building. A forwarding warehouse stores above the floor it loads on, and the archetype builds exactly one external trace of that — the door goods are hoisted through, high in a gable end — and nothing else: no dormer, no floor line, no second range of windows. Andreas's description of the firm's 1839 warehouse hoisting wheat to the upper storey is the practice this infers from, four years the wrong side of the scene date."
     },
     "dock": {
       "value": true,
-      "confidence": "derived",
+      "confidence": "inferred",
       "geometry": "absent",
       "sources": [
         "andreas_1884_v1"
@@ -88,7 +88,7 @@
     },
     "function": {
       "value": "forwarding_commission_warehouse",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "chicago_democrat_1833_11_26",
         "andreas_1884_v1"
@@ -97,7 +97,7 @@
     },
     "occupants": {
       "value": "Oliver Newberry and George W. Dole",
-      "confidence": "documented",
+      "confidence": "attested",
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26"
@@ -121,7 +121,7 @@
         {
           "name": "George Washington Dole",
           "relationship": "head",
-          "grade": "documented",
+          "grade": "attested",
           "occupation": "forwarding_and_commission",
           "note": "TOWN TREASURER TWICE AND TRUSTEE TWICE - the most continuously documented office-holder in the dataset. Elected trustee 10 August 1833 with 26 of 28 votes (tied top of the poll with Owen), appointed town treasurer at the board's first business meeting on 4 September 1833, and elected trustee AND treasurer again at the third town election of July 1835 (Andreas, scan pp. 273, 369). He is therefore in office on the scene date on the face of the record. Also a provision packer: this dataset holds two slaughtering and packing buildings under his name."
         }
