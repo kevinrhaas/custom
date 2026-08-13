@@ -49,6 +49,40 @@ jobs:
           done
           [ "$fail" -eq 0 ] || exit 1
           echo "JS OK"
+      # Restamp the 4D Chicago gate with the commit that is ACTUALLY being
+      # deployed. tools/publish.sh writes a stamp too, but it runs before the
+      # commit it belongs to exists, so `git rev-parse HEAD` there names the
+      # PARENT — and the stamp went live reading one commit behind itself. The
+      # point of the stamp is to answer "which build am I looking at", so being
+      # off by one defeats it entirely and, worse, sends whoever is debugging
+      # after the wrong commit. Here the answer is knowable, so it is written
+      # here. Central Time, matching every other date in the project.
+      - name: Stamp the deployed build
+        run: |
+          set -e
+          f=site/chicago/4d/walk/index.html
+          [ -f "$f" ] || { echo "no gate to stamp, skipping"; exit 0; }
+          SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
+          WHEN=$(TZ=America/Chicago date +"%b %-d, %Y, %-I:%M %p CT")
+          python3 - "$f" "build $SHORT · $WHEN" <<'PY'
+          import re, sys, pathlib
+          p, stamp = pathlib.Path(sys.argv[1]), sys.argv[2]
+          s = p.read_text()
+          # Matches both forms: the published one publish.sh already filled in,
+          # and the source one that still carries `hidden` and the placeholder.
+          # The rewrite drops `hidden`, so a tree that reached deploy without
+          # being published still shows a true stamp rather than nothing.
+          new, n = re.subn(
+              r'<p class="gate-build" id="gate-build"[^>]*>.*?</p>',
+              lambda m: f'<p class="gate-build" id="gate-build">{stamp}</p>', s, flags=re.S)
+          if n == 0:
+              # Nothing to rewrite is a real problem — the gate would show the
+              # publish-time stamp, or the raw placeholder, and both lie.
+              print("WARNING: no gate-build element found; stamp not applied")
+          else:
+              p.write_text(new)
+              print(f"stamped: {stamp}")
+          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
