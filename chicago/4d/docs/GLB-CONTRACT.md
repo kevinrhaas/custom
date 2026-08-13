@@ -103,8 +103,14 @@ confidence of the attribute that produced that geometry:
 | value | meaning |
 |---|---|
 | `0.0` | `documented` |
-| `0.5` | `inferred` |
-| `1.0` | `conjectural` |
+| `0.5` | `derived` |
+| `1.0` | `inferred` |
+
+**The words moved 2026-08-13 (ROADMAP K16); the numbers did not.** What was written `inferred`
+here is now `derived` and what was written `conjectural` is now `inferred`. No encoded value
+changed, no asset needs rebaking, and nothing in this contract is renegotiated by the rename —
+this table and the worked example below are simply brought into line with the vocabulary the
+schema, the validator and the renderer already use.
 
 **Why not `COLOR_0`** (revised 2026-08-09 after a Blender spike): glTF defines `COLOR_0` as a
 **multiplier on base colour**, so a documented value of 0.0 would render the building black in
@@ -127,15 +133,38 @@ Worked example, the Sauganash `frame_1831` phase:
 
 | geometry | driven by | value |
 |---|---|---|
-| wall massing, storey height | `stories` documented, `wall_height_m` conjectural → **worst wins** | `1.0` |
+| wall massing, storey height | `stories` documented, `wall_height_m` inferred → **worst wins** | `1.0` |
 | clapboard cladding, white paint | `paint` documented | `0.0` |
 | shutters | `shutters` documented | `0.0` |
-| roof | `roof_type` conjectural | `1.0` |
-| attached log wing | `log_wing` inferred | `0.5` |
-| footprint outline | `footprint` conjectural | `1.0` |
+| roof | `roof_type` inferred | `1.0` |
+| attached log wing | `log_wing` derived | `0.5` |
+| footprint outline | `footprint` inferred | `1.0` |
 
 **Rule when several attributes drive one piece of geometry: the least confident wins.** A wall
-whose height is a guess is a guessed wall, even if we know it was white.
+whose height is invented is an invented wall, even if we know it was white.
+
+### Existence is the renderer's floor, and it is deliberately not baked
+
+The generator resolves this channel **per part, from the drivers that part reads**, and that is
+correct and stays correct. But existence — `documented_range.confidence`, the claim that the
+building was standing at the scene date — is a driver of NO part, so nothing in the file ever
+composed it with anything. `inf_cooperage_south` is a building whose own record says *"NO
+EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED"* and whose `roof_type` is graded
+`derived`, because a gable really is the near-universal form for the type and period. Both
+readings are right; together they painted a derived roof on an invented building, and 162 of the
+242 structures in the 1835 scene rendered part-solid for that reason.
+
+So the same worst-wins rule is applied once more, **in the renderer, between the part and the
+record that owns it** — `renderers/web/js/confidence.js` `floorToExistence()`, called from
+`buildings.js` before a geometry reaches its batch. What the view paints is
+`max(part value, existence value)`.
+
+**Nothing about the file format changes and no asset is rebaked.** The per-part grade is a real
+fact about where the geometry came from and is worth keeping in the GLB; the composition is a
+property of the *view*, which is why it lives with the view. A generator-side floor would
+overwrite the first fact with the second and lose it. Any renderer implementing this contract
+should apply the same floor, and a renderer that does not is understating nothing — it is
+overstating.
 
 `COLOR_0` stays free for actual colour, and is currently unused.
 

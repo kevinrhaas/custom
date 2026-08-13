@@ -174,6 +174,64 @@ the merge commit itself. Two occurrences in two days is the argument for taking 
 candidate fixes — the subtree's gate on pushes to `main`, or a merge driver that understands the
 literal — rather than continuing to rely on the next agent to merge running the check by hand.
 
+## New 2026-08-13 — a roof we were sure about, on a building that never existed
+
+**K17 item 1.** In the confidence view the walls of an invented building dithered and its roof
+did not, so the view that exists to say which parts we made up said it about part of a building.
+**162 of the 242 structures in the 1835 scene are graded `inferred` on existence, and not one of
+them was wholly dithered.**
+
+**Both hypotheses the item named are false, and the audit is why this is a composition bug rather
+than a wiring one.** All **993 primitives in the 244 committed masters carry `_CONFIDENCE`**, and
+so do all 836 in the published derivatives — so this was NOT the shape of the K4 finding below,
+where a treatment would have been gated on one pipeline and shipped on another. Every material is
+patched, because `buildings.js` patches per material bucket and cannot miss one. The channel was
+reaching the roof and the roof was painting exactly what it said.
+
+**What it said was right about the roof and silent about the building.** `_CONFIDENCE` grades the
+ATTRIBUTE a vertex came from: `generators/placeholder.py` resolves `roof` from `roof_type` and
+`walls` from `stories` + `wall_height_m`, worst-wins within each part. `documented_range` —
+*was there anything here at all* — is a driver of NO part, so it was never composed with anything.
+On `inf_cooperage_south`, whose own record reads *"NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR
+BUILDING EXISTED"*, `roof_type` is `derived` because a gable really is the near-universal form for
+the type and period. That reading is sound. It is reasoning about the shape of a roof on a
+building nobody can show was there. Across the scene, **70 structures had `inferred` walls under a
+roof painted better than `inferred`**.
+
+- **The fix is the generators' own rule applied once more, one level up.** Worst-wins already runs
+  ACROSS the drivers of a part; it now also runs BETWEEN the part and the record that owns it —
+  `confidence.floorToExistence()`, called from `buildings.js` before a geometry reaches its batch,
+  so what the view paints is `max(part, existence)`. **97 184 of 355 478 vertices (27.3 %) raised
+  on 170 of 242 structures; all 162 invented buildings now dither to the ridge.**
+- **Composed at paint time, deliberately, and no asset is rebaked.** The per-part grade is a real
+  fact about where the geometry came from and is worth keeping in the GLB; a generator-side floor
+  would overwrite it with the composition and lose it. `docs/GLB-CONTRACT.md` gains the rule as a
+  renderer obligation rather than a format change — and its confidence table, still written in the
+  pre-K16 words, is brought into line: `0.5` is `derived` and `1.0` is `inferred`, the numbers
+  untouched.
+- **It is a floor, not a flatten, and the gate would not pass a shader that dimmed the town.**
+  Two documented-existence structures keep `documented` geometry — the Sauganash's white paint and
+  blue shutters, the Mansion House — and 61 structures keep `derived`. An assertion requires both,
+  because everything else in this block is equally satisfied by painting all 242 buildings
+  inferred. Four assertions at both viewports, taken from a per-structure census built during the
+  batch (the geometries are disposed into the `BatchedMesh`, so afterwards there is nothing left
+  to count) and compared against existence grades **re-fetched from the authored sidecars**, not
+  against the renderer's own copy of them.
+- **Existence grades are load-bearing now, and three records show it hardest.**
+  `fort_dearborn_palisade` (5 264 vertices raised) and both bridges are graded `derived` on
+  existence for reasons their own notes state — an upper bound on how long the pickets stood, a
+  build date disputed by a year — so the details on them that a source DOES describe now paint at
+  that lower grade. **Nothing was regraded.** If any of those three existence grades understates
+  its evidence, that is a question for the records and needs a source, not a change to the view.
+- **What it does NOT claim.** No grade in the dataset moved, no record changed, no building was
+  added, moved or resized, and the scene with the confidence view switched off is byte-identical
+  in behaviour — the floor only ever moves a vertex toward LESS certainty, and the off path still
+  does not read the channel at all.
+- **Still open in K17**: the hide mode and the per-level toggles (items 2 and 3), and the owner's
+  alternative suggestion of a distinct roof treatment so a dithered roof and a dithered wall stay
+  legible against each other — a better question now that whole buildings dither than it was
+  when only walls did.
+
 ## New 2026-08-13 — the town was the colour of new lumber, and its own records said otherwise
 
 **K4, first half.** `paint` is authored on **174 of the scene's 243 phases** — 142 `unpainted`, 14
