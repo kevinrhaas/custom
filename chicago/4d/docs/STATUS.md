@@ -73,7 +73,7 @@ this building by twenty months.
 | **Renderer** | **WALKABLE AND NAVIGABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup, live compass and a north-up overview derived from the loaded heightfield and structure footprints |
 | **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. A fourth persistent setting switches every visitor-facing navigation measurement between Imperial (the default: ft, mi, mph) and Metric (m, km, km/h) without changing the metric scene data. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m / 230 ft ahead. |
 | **Smoke** | **PASS 2026-08-11.** `tools/check.sh` and changelog checks pass. `node tools/smoke_renderer.mjs` passed all **273 assertions** in foreground Chromium at both release viewports (390×780 and 1280×800), with zero page errors. The suite rejects a second flora surface, compares every detailed plant root and every structure anchor — including Exchange Coffee House — to the authoritative terrain/water sampler, and exercises both unit systems. Mobile: 49 draw calls / 378,647 triangles / 5 fps; desktop: 53 / 499,343 / 2 fps, both under the 80 / 600,000 release budgets. |
-| **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). |
+| **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). **Since 2026-08-13 each community is planted at its own recorded `cover.matrix_fraction`** — a field the records carried, the validator gated and the renderer had never asked for. |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on* reads graded claims off `terrain_spec.json`, derived per scene by `compile_scene.py` and re-derived by `check.sh`; the same slice added reasoning and geometry-state checks so those rows are no longer silent promises. |
 | **What a source is, in the app** | **done** (2026-08-11) — citations now carry the document a modern page reprints (`transcribes`) or the reading that it reprints none, plus each source's own `what_it_supplies` / `what_it_does_not_supply`, so the ladder a visitor sees includes the reason it is the ladder. |
 | **Liberties, in the app** | **done** — the Evidence panel lists the liberties derived from `docs/LIBERTIES.md` by `tools/compile_liberties.py` and re-derived by `check.sh`; the provenance popup shows the ones taken with the building you are inspecting; and the gate checks the document *for gaps* in both directions — refusing any conjectural value (footprint, position, a terrain claim, or a stated form attribute) that no liberty admits to, and equally any attested value the archetype or terrain generator never reads and no liberty owns up to leaving out |
@@ -399,6 +399,54 @@ will return as the town grows (ROADMAP K14 already records 6 % of triangle headr
 next symptom will again look like a UI bug rather than a budget. A full two-viewport pass now
 takes upwards of ten minutes here; `SMOKE_VIEWPORT=mobile|desktop` runs one half while
 iterating and prints that it is not the gate.
+
+## New 2026-08-13 — a number that was written, validated, shipped and never read
+
+**K3, coverage.** Every flora zone record authors `cover.matrix_fraction` — how much of the
+ground that community's matrix covers — with a `bare_soil_fraction` beside it. `tools/validate.py`
+has gated both since the records were written, and `index.json` denormalises the bare-soil figure
+specifically so the ground shader can fetch it once. **`renderers/web/js/flora.js` had never asked
+for either.** All ten communities were planted at the single lattice density L32 tuned on closed
+wet prairie, so a settled town whose own record says **45 % of its ground is bare** was drawn with
+the ground closed, and so were the shaded riverbank understory (0.45), the forest floor (0.35) and
+the lakeshore sand (0.35).
+
+The fraction is now the probability that a matrix lattice slot carries a plant — near tufts and
+mid cards alike, because thinning one and not the other would put a seam exactly at the crossover
+where the change of representation is meant to be invisible. It is the same rule the forb layer
+has always applied to its own recorded densities, on the field the matrix layer ignored.
+
+- **Wet prairie is untouched**, because it records 1.00 and 1.00 is the anchor. Nothing the
+  three-critic prairie sweep tuned has moved, and the change can only ever *remove* instances.
+  Measured at 1280×800 against `main` at three fixed stations: wet prairie **360 979 tris against
+  360 863** (+0.03 %, which is the reshuffled random draw, not new geometry), settled town
+  **429 281 against 441 683** (−2.8 %, 3 278 flora instances against 3 842), marsh edge
+  **299 161 against 308 235** (−2.9 %). The scene gets lighter exactly where a record says the
+  ground is bare.
+- **Measured, across the eight communities that have a clean sampling station**: planted density
+  now spans **2.21–6.90 tufts per m²** where it was one figure everywhere, and the implied
+  full-cover density agrees at **6.31–8.15** against a lattice carrying 7.30.
+- **The gate asks both halves**, because answering only the first is how this went unnoticed:
+  that each community's authored number reaches the renderer (re-fetched from the records, not
+  compared against a copy of the renderer), and that the sward on the ground follows it. The
+  second assertion fails in the other direction too — if every community went back to one
+  density, the per-m² spread would collapse toward 1 and the implied figures would fan out
+  across the 0.35–1.00 the records give.
+- **One anti-vacuity guard moved and the tolerance did not.** *"detailed flora roots share the
+  terrain and water surfaces"* requires a minimum sample so that planting nothing cannot report a
+  perfect worst error; its station stands in the settled town, and the mobile cone there now holds
+  67 rooted plants against about 150 before. The guard is 50; the 1e-5 m root tolerance is
+  untouched. That number is a property of the dataset now rather than of the renderer.
+
+**Two findings measured on the way, and not fixed.** S6a item 9 reads the `river_bank` shot
+against zone 1's cordgrass — but ground within eight metres of water is the MARSH zone by extent,
+and the shot's sward is entirely `z04`/`z10` with no `z01` in it at all. And the "~25 cm sprigs"
+are better explained by species than by density: `nuphar_advena` and `nymphaea_odorata` are
+floating-leaved aquatics recorded at 0.01–0.10 m whose own `appearance` text says they float in
+open water, and they are **7 % of the tufts standing on that dry bank**, because `role: emergent`
+is all the renderer can see. Fixing that is a data field in the published vocabulary before it is
+a line in the renderer — a renderer that decided which plants float by reading their heights would
+be guessing at exactly the point this project refuses to.
 
 ## Known weaknesses, stated plainly
 

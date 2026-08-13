@@ -487,6 +487,10 @@ async function boot() {
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
     backends, streets, flora, trees, navigation,
+    // Where the dataset was loaded from, so a gate can re-read an authored
+    // record and ask whether what it says reached the renderer — rather than
+    // comparing the renderer against a copy of itself.
+    dataBase: bases.dataBase,
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },

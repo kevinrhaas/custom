@@ -669,6 +669,19 @@ negative control rather than July.
 model if a modern remnant survey of a comparable community is adopted as a proxy and recorded
 as such.
 **Recorded:** 2026-08-10.
+**Revised:** 2026-08-13 — the sentence above saying the records set the MIX and this constant
+sets the density was true of the renderer and false of the records. Every zone record also
+authors `cover.matrix_fraction`, how much of the ground its own matrix covers — 1.00 in wet
+prairie, 0.60 on the sand prairie, 0.45 in the settled town and on the shaded riverbank, 0.35
+on the lakeshore — with a `bare_soil_fraction` beside it, and `tools/validate.py` has gated
+both since the zone records were written. Nothing read either one: all ten communities were
+planted at the single density tuned on closed wet prairie, so a town record stating that
+45 % of its ground is bare was drawn with the ground covered. That fraction is now the
+probability that a lattice slot carries a plant, which means **the density ratio between two
+communities is the record's and is no longer a liberty**. What remains one is exactly what
+this entry was always about: the absolute figure, and the choice that full recorded cover
+saturates the lattice at 7.3 tufts per square metre. A community recording full cover is drawn
+exactly as it was before this revision, and no community can ask for more.
 
 ### L33 — Beyond about ten metres the prairie is a canopy surface, not plants
 **Decision:** vegetation is drawn as individual geometry only within about 27 m of the

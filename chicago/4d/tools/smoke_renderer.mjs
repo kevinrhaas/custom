@@ -1152,8 +1152,17 @@ for (const [label, viewport, touch] of [
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
+    // The count is an anti-vacuity guard — a run that plants nothing would
+    // otherwise report a perfect worst error — and the tolerance below it is
+    // the actual assertion. The guard moved from 100 to 50 on 2026-08-13, and
+    // the reason is a dataset property rather than a weaker gate: this station
+    // stands in the settled town, whose own record says 45 % of its ground is
+    // bare and 45 % carries matrix, and that number now reaches the renderer.
+    // The mobile cone here holds 67 rooted plants where it held about 150 while
+    // every community was planted at prairie density. The 1e-5 m tolerance is
+    // untouched.
     check(`${label}: detailed flora roots share the terrain and water surfaces`,
-      streetLayer.rootedPlants > 100 && streetLayer.worstPlantRoot < 1e-5,
+      streetLayer.rootedPlants > 50 && streetLayer.worstPlantRoot < 1e-5,
       `${streetLayer.rootedPlants} roots, worst error ${streetLayer.worstPlantRoot}`);
     check(`${label}: emergent flora stays within eight metres of a riverbank`,
       streetLayer.deepWaterPlants === 0,
@@ -1253,6 +1262,93 @@ for (const [label, viewport, touch] of [
       `${popIn.arrivals} arrivals over ${(20 * popIn.pace).toFixed(2)} m; worst height `
       + `${(popIn.worst * 100).toFixed(1)}% of full`
       + (popIn.worstAt ? ` (${popIn.worstAt.set} at ${popIn.worstAt.d.toFixed(2)} m)` : ''));
+    // Each flora zone record authors how much of the ground its matrix covers
+    // — `cover.matrix_fraction`, with a `bare_soil_fraction` beside it that the
+    // manifest even denormalises — and the renderer planted all ten communities
+    // at the one lattice density L32 tuned on closed wet prairie. Two questions,
+    // because answering only the first is exactly how a written, validated,
+    // shipped field went unread: does the authored number reach the renderer,
+    // and does the sward on the ground actually follow it?
+    const swardCover = await page.evaluate(async () => {
+      const a = window.__chicago4d;
+      const index = await (await fetch(`${a.dataBase}flora/index.json`)).json();
+      const authored = {};
+      for (const z of index.zones) {
+        const rec = await (await fetch(`${a.dataBase}flora/${z.file}`)).json();
+        authored[z.id] = { matrix: rec.cover?.matrix_fraction, bare: rec.cover?.bare_soil_fraction };
+      }
+      const compiled = a.flora.communities();
+      const drift = compiled.filter((c) => authored[c.id]?.matrix !== c.matrixShare
+        || authored[c.id]?.bare !== c.bareSoil);
+
+      // A station is a point whose whole sampling disc is ONE community and all
+      // of it plantable ground, so the instance count and the area answer for
+      // the same zone — the track, the buildings and the water are out of both.
+      // Inside CONE_KEEP_M the lattice is complete in every direction, so a
+      // disc of this size needs no knowledge of the view cone to be unbiased.
+      const R = 3.2;
+      const clean = (want, e, n) => {
+        for (let k = 0; k < 16; k++) {
+          const t = (k / 16) * Math.PI * 2;
+          for (const rr of [R * 0.6, R]) {
+            const pe = e + Math.cos(t) * rr;
+            const pn = n + Math.sin(t) * rr;
+            if (a.flora.zoneAt(pe, pn) !== want) return false;
+            if (!a.flora.plantableAt(pe, pn)) return false;
+          }
+        }
+        return a.flora.plantableAt(e, n);
+      };
+      const rows = [];
+      for (const c of compiled) {
+        if (!c.graminoids || !(c.matrixShare > 0)) continue;
+        let station = null;
+        for (let e = -300; e <= 900 && !station; e += 6) {
+          for (let n = -300; n <= 500 && !station; n += 6) {
+            if (a.flora.zoneAt(e, n) === c.id && clean(c.id, e, n)) station = { e, n };
+          }
+        }
+        if (!station) continue;
+        a.walker.teleport({ local_e: station.e, local_n: station.n, yaw_deg: 0 });
+        a.step();
+        a.step();
+        const mesh = a.flora.group.getObjectByName('flora-near');
+        const m = mesh.instanceMatrix.array;
+        let instances = 0;
+        for (let i = 0; i < mesh.count; i++) {
+          const e = m[i * 16 + 12];
+          const n = -m[i * 16 + 14];
+          if (Math.hypot(e - station.e, n - station.n) <= R) instances++;
+        }
+        const area = Math.PI * R * R;
+        rows.push({ id: c.id, share: c.matrixShare, instances,
+          perM2: instances / area, implied: instances / area / c.matrixShare });
+      }
+      return { drift, rows, capped: a.flora.stats.capped ?? [] };
+    });
+    check(`${label}: every community's recorded ground cover reaches the renderer`,
+      swardCover.drift.length === 0,
+      swardCover.drift.map((d) => `${d.id} compiled ${d.matrixShare}/${d.bareSoil}`).join(', '));
+    {
+      const rows = swardCover.rows;
+      const implied = rows.map((r) => r.implied).sort((x, y) => x - y);
+      const median = implied[Math.floor(implied.length / 2)] || 0;
+      const worst = rows.reduce((w, r) => (
+        Math.abs(r.implied - median) > Math.abs(w?.implied - median || -1) ? r : w), null);
+      const spread = Math.max(...rows.map((r) => r.perM2)) / Math.min(...rows.map((r) => r.perM2));
+      // The second half is the discriminating case: with one density for every
+      // community the per-square-metre counts would be equal — a spread near 1 —
+      // and it is the IMPLIED figures that would then fan out across the 0.35 …
+      // 1.00 the records give. This assertion fails in that direction too.
+      check(`${label}: the sward is planted at each community's own recorded cover`,
+        rows.length >= 5 && median > 0 && spread >= 2
+        && rows.every((r) => Math.abs(r.implied - median) <= 0.25 * median),
+        `${rows.length} communities, densities spread ${spread.toFixed(2)}x, implied full-cover `
+        + `median ${median.toFixed(2)}/m²`
+        + (worst ? `, worst ${worst.id} ${worst.perM2.toFixed(2)}/m² at a recorded `
+          + `${worst.share} = ${worst.implied.toFixed(2)}` : ''));
+    }
+
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
       && streetLayer.worstBuildingAnchor < 1e-6
