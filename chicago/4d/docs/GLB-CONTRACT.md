@@ -162,6 +162,32 @@ The master is the source of truth; derivatives regenerate from it. Meshopt over 
 decodes far faster with no per-file WASM cold start, which matters more than bytes for ~150
 small meshes.
 
+### Quantised geometry: float before you transform
+
+`gltf-transform optimize --compress meshopt` also applies `KHR_mesh_quantization`. Under it a
+POSITION arrives as a **normalized `Int16Array`** — the stored integer divided by 32767, so the
+attribute can only represent values in `[-1, 1]` — and the real metres come from a
+dequantisation **scale and translation carried on the node** (6.25 on the Sauganash).
+
+Two consequences, and this project has shipped a broken town for each of them:
+
+1. **The node transform is encoding, not placement.** Discarding it, or taking geometry
+   relative to the node that carries it, cancels the dequantisation and renders everything at a
+   fraction of its size.
+2. **Never `applyMatrix4` into a normalized integer attribute.** `BufferAttribute.applyMatrix4`
+   reads denormalised floats, transforms them, and writes the result *back into the same
+   normalized `Int16Array`*, where everything past one metre is clamped to 1. A twelve-metre
+   tavern becomes a two-metre box — and because the clamp is per-axis and a building is not
+   centred on its origin, its parts are pulled apart on the way. Convert to float **first**
+   (`toFloatAttribute` / `dequantizeGeometry` in `renderers/web/js/terrain.js`), then transform.
+
+**Only the published tree can catch either of these.** A sidecar's `gltf/<name>.glb` resolves
+against `assets/` in the source tree — the *uncompressed masters* — and against `data/` on the
+site, which `tools/publish.sh` fills from `assets/web/`. So a renderer bug that only exists in
+the quantised path is invisible to anything run against the source tree, which is exactly how
+both regressions passed a fully green gate. `tools/smoke_renderer.mjs --published` serves the
+mirror and is the run that sees the bytes a visitor downloads; `tools/bake.sh` runs it.
+
 ## The sidecar
 
 One JSON per structure per scene, compiled by `tools/compile_scene.py`, published alongside the

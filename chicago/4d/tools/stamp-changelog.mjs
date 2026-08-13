@@ -30,8 +30,16 @@ src = src.replace(/ts:\s*(['"])\1/g, () => { stamped = true; return `ts: '${nowI
 
 // 2) Regenerate every `date:` from the ts on the same entry. We walk entries by
 //    matching each `ts: '<iso>'` and rewriting the `date: '...'` that follows it.
+//
+//    An entry written the way the contract describes it — `ts: ''`, no date, let
+//    the stamper do the rest — has no `date:` to rewrite, so this used to skip it
+//    and hand back a file the contract check then rejected for a missing date.
+//    An author following the documented rule got a failure and no hint which
+//    half of the rule was wrong, so the key is created when it is absent.
 src = src.replace(/ts:\s*'([^']*)'(\s*,\s*)date:\s*'[^']*'/g,
   (_, iso, sep) => `ts: '${iso}'${sep}date: '${ctAlias(iso)}'`);
+src = src.replace(/ts:\s*'([^']*)'(?!\s*,\s*date:)/g,
+  (_, iso) => `ts: '${iso}', date: '${ctAlias(iso)}'`);
 
 
 // ---- version assignment (fleet contract, 2026-08-10) ----------------------

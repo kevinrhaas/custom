@@ -456,6 +456,52 @@ function tileGround(mesh, cols, rows) {
   return tiles;
 }
 
+/**
+ * A plain float copy of an attribute, whatever it was stored as.
+ *
+ * This is not tidiness. It is the fix for the bug that made the whole town
+ * knee-high, twice, and it belongs anywhere geometry is transformed after it is
+ * loaded.
+ *
+ * Under `KHR_mesh_quantization` a POSITION arrives as a *normalized*
+ * `Int16Array`: the stored integer divided by 32767, so the attribute can only
+ * represent values in [-1, 1], and the real metres come from the node's
+ * dequantisation scale — 6.25 on the Sauganash. `BufferAttribute.applyMatrix4`
+ * reads denormalised floats, transforms them, and writes the result *back into
+ * the same normalized Int16Array*. So the moment the dequantisation matrix is
+ * applied, every coordinate past one metre is clamped to 1: a twelve-metre
+ * tavern becomes a two-metre box, and because the clamp is per-axis and the
+ * building is not centred, its parts are pulled apart on the way.
+ *
+ * That single write-back is what both of this project's scale regressions were.
+ * Discarding the node transform gave two-metre buildings; applying it gave
+ * two-metre buildings in pieces. Float first, transform second — the quantised
+ * form has already done its job by the time the bytes are off the wire.
+ *
+ * The terrain GLBs are float today, so this is prevention there rather than
+ * repair; the day the bake starts compressing them, the ground would collapse
+ * the same way and look like a flood, which is exactly how it read the first
+ * time.
+ */
+export function toFloatAttribute(attr, itemSize = attr.itemSize) {
+  const out = new Float32Array(attr.count * itemSize);
+  const read = [attr.getX, attr.getY, attr.getZ, attr.getW];
+  for (let i = 0; i < attr.count; i += 1) {
+    for (let k = 0; k < itemSize; k += 1) out[i * itemSize + k] = read[k].call(attr, i);
+  }
+  return new THREE.BufferAttribute(out, itemSize);
+}
+
+/** Every attribute of a geometry in plain float form, ready to be transformed. */
+export function dequantizeGeometry(geo) {
+  for (const [name, attr] of Object.entries(geo.attributes)) {
+    if (attr.normalized || !(attr.array instanceof Float32Array)) {
+      geo.setAttribute(name, toFloatAttribute(attr));
+    }
+  }
+  return geo;
+}
+
 /** Load a GLB and hand back its first mesh, detached from the loaded scene. */
 async function loadGlbMesh(url) {
   const buffer = await (await fetchOk(url)).arrayBuffer();
@@ -474,7 +520,10 @@ async function loadGlbMesh(url) {
   // size and drops it under the water plane. Applying it first keeps the mesh
   // exactly where the file says while still handing back something at identity.
   found.updateWorldMatrix(true, false);
-  found.geometry = found.geometry.clone();
+  // Float BEFORE the transform: a normalized integer attribute cannot hold a
+  // metre, so applying the matrix into one clamps the mesh to a 2 m cube. See
+  // toFloatAttribute above.
+  found.geometry = dequantizeGeometry(found.geometry.clone());
   found.geometry.applyMatrix4(found.matrixWorld);
   found.removeFromParent();
   found.position.set(0, 0, 0);

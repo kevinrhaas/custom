@@ -94,3 +94,22 @@ tools/publish.sh
 echo
 echo "== gate"
 tools/check.sh
+
+# The smoke runs against the PUBLISHED mirror, not the source tree, and it runs
+# here because this is the step that just produced the compressed derivatives.
+#
+# The two trees do not load the same geometry: a sidecar's `gltf/<name>.glb`
+# resolves to the uncompressed masters in the source tree and to the meshopt +
+# quantised derivatives on the site. For as long as the smoke only ran against
+# the source tree it never loaded a compressed asset, and a bug that collapsed
+# every building to a two-metre box shipped past a fully green gate — twice.
+# Whatever else is true, the bytes a visitor downloads have to be the bytes
+# something tested.
+if [ "${SKIP_SMOKE:-0}" = "1" ]; then
+  echo
+  echo "== smoke (skipped: SKIP_SMOKE=1)"
+else
+  echo
+  echo "== smoke (published mirror)"
+  node tools/smoke_renderer.mjs --published
+fi

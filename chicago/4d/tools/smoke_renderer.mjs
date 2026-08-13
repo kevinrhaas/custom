@@ -62,10 +62,38 @@ async function loadPlaywright() {
 const { chromium } = await loadPlaywright();
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = process.env.SMOKE_ROOT || path.resolve(HERE, '..');
 const PORT = Number(process.env.SMOKE_PORT || 4187);
 const YEAR = process.env.SMOKE_YEAR || '1835';
 const KEEP = process.env.SMOKE_SHOTS || '';
+
+/**
+ * WHICH TREE gets tested, and why it is a question at all.
+ *
+ * The source tree and the published mirror do not load the same geometry. A
+ * sidecar names its asset as `gltf/<name>.glb`, and that path resolves against
+ * a different base in each: in the source tree to `assets/gltf/` — the
+ * UNCOMPRESSED masters — and on the site to `data/gltf/`, which publish.sh
+ * fills from `assets/web/`, the meshopt + `KHR_mesh_quantization` derivatives.
+ *
+ * So for as long as this only ever ran against the source tree, it never once
+ * loaded a compressed asset. Every check was green while the deployed town was
+ * a field of two-metre boxes, because the defect lived in a code path — the
+ * dequantisation of normalized integer attributes — that the gate could not
+ * reach. A gate that cannot see the bytes that ship is not a gate.
+ *
+ * `--published` (or SMOKE_TARGET=published) serves the mirror and enters at
+ * /walk/, which is the visitor's exact layout. It also catches the other class
+ * of bug this project keeps hitting: a file that exists in the source tree and
+ * was never copied, which 404s only once it is live.
+ */
+const wantPublished = process.argv.includes('--published')
+  || process.env.SMOKE_TARGET === 'published';
+const ROOT = process.env.SMOKE_ROOT
+  || (wantPublished
+    ? path.resolve(HERE, '../../../site/chicago/4d')
+    : path.resolve(HERE, '..'));
+const ENTRY = process.env.SMOKE_ENTRY || (wantPublished ? '/walk/' : '/renderers/web/index.html');
+const MODULE_BASE = wantPublished ? '/walk/js/' : '/renderers/web/js/';
 
 const TYPES = {
   '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript',
@@ -95,8 +123,13 @@ const server = http.createServer((req, res) => {
 });
 
 await new Promise((r) => server.listen(PORT, r));
-const base = `http://127.0.0.1:${PORT}/renderers/web/index.html?year=${YEAR}`;
-console.log(`serving ${ROOT} on ${PORT}\n`);
+const base = `http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`;
+console.log(`serving ${ROOT} on ${PORT} — ${wantPublished ? 'PUBLISHED mirror '
+  + '(compressed assets, visitor layout)' : 'source tree (uncompressed masters)'}\n`);
+if (wantPublished && !fs.existsSync(path.join(ROOT, 'walk', 'index.html'))) {
+  console.error(`no published mirror at ${ROOT} — run tools/publish.sh first`);
+  process.exit(2);
+}
 
 const launchBrowser = () => chromium.launch({
   executablePath: process.env.PW_EXECUTABLE || undefined,
@@ -142,6 +175,10 @@ for (const [label, viewport, touch] of [
     deviceScaleFactor: touch ? 2 : 1,
   });
   const page = await ctx.newPage();
+  // A few checks import an app module directly to exercise a pure function. The
+  // path to those modules differs between the source tree and the published
+  // mirror, so it is handed to the page rather than written into each call.
+  await page.addInitScript((b) => { window.__MODULE_BASE = b; }, MODULE_BASE);
   // Playwright's default 30 s action timeout is not an assertion, and on this
   // scene it had quietly become one. A click waits for the element to be stable
   // across animation frames and then hit-tests it, and every one of those steps
@@ -964,14 +1001,23 @@ for (const [label, viewport, touch] of [
       // knowable range rather than a magic number.
       const rec = a.registry.get('sauganash_hotel');
       const wall = rec?.sidecar?.attributes?.wall_height_m?.value ?? null;
-      let tallest = 0;
-      a.buildings.group.traverse((o) => {
-        if (!o.geometry) return;
-        if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
-        tallest = Math.max(tallest, o.geometry.boundingBox.max.y - o.geometry.boundingBox.min.y);
-      });
+
+      // EVERY structure, measured against what its own record claims — not the
+      // tallest one in the scene. See the note on the assertions below.
+      const bounds = a.buildings.instanceBounds();
+      const perStructure = [];
+      for (const [id, box] of Object.entries(bounds)) {
+        const r = a.registry.get(id);
+        const attrs = r?.sidecar?.attributes ?? {};
+        perStructure.push({
+          id,
+          size: box.size,
+          wallHeight: attrs.wall_height_m?.value ?? null,
+          footprint: [attrs.footprint_w_m?.value ?? null, attrs.footprint_d_m?.value ?? null],
+        });
+      }
       return { terrainMeshes, gotW: maxX - minX, gotD: maxZ - minZ, wantW, wantD,
-        wall, tallest };
+        wall, perStructure, structureCount: a.registry.size };
     });
     // The ground is deliberately LARGER than the heightfield — it carries a
     // far-field skirt past the modelled box, which is what you see on the horizon
@@ -987,9 +1033,56 @@ for (const [label, viewport, touch] of [
       `${scale.gotW?.toFixed(0)}x${scale.gotD?.toFixed(0)} m rendered against `
       + `${scale.wantW?.toFixed(0)}x${scale.wantD?.toFixed(0)} m of heightfield `
       + `(${scale.terrainMeshes} mesh(es))`);
-    check(`${label}: buildings are rendered at human size`,
-      scale.tallest > 3 && scale.tallest < 30,
-      `tallest rendered building geometry ${scale.tallest?.toFixed(2)} m`);
+    // EVERY structure is measured, not the tallest one.
+    //
+    // The assertion this replaces read the largest bounding box in the whole
+    // group and asked whether it was between 3 and 30 m. That passes with one
+    // correct building and two hundred and forty-one collapsed ones — which is
+    // precisely the town that shipped, twice. Quantised POSITION attributes were
+    // being clamped to a 2 m cube, and the single uncompressed asset in the
+    // scene kept the number green while the visitor stood in a field of boxes.
+    //
+    // A rendered size only means something against a claim, so the floor here is
+    // the smallest thing the dataset actually contains — a privy, not a house —
+    // and anything at or under the quantisation clamp is called out by name.
+    const collapsed = scale.perStructure.filter((s) => Math.max(...s.size) <= 2.05);
+    check(`${label}: no structure is collapsed to the quantisation clamp`,
+      collapsed.length === 0,
+      collapsed.length
+        ? `${collapsed.length}/${scale.perStructure.length} at or under 2.05 m: `
+          + collapsed.slice(0, 5).map((s) => s.id).join(', ')
+        : `all ${scale.perStructure.length} structures larger than the 2 m clamp`);
+
+    const absurd = scale.perStructure.filter((s) => {
+      const m = Math.max(...s.size);
+      // Piers and bridges are legitimately long; nothing is legitimately taller
+      // than the courthouse cupola or smaller than a privy in every dimension.
+      return m < 1.5 || s.size[1] > 30;
+    });
+    check(`${label}: every structure is rendered at a believable size`,
+      absurd.length === 0,
+      absurd.length
+        ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
+        : `${scale.perStructure.length} structures within range`);
+
+    // Where a record states a wall height, the render has to honour it. This is
+    // the provenance check hiding inside the scale check: a documented number
+    // that the geometry ignores is a claim the walkthrough cannot support.
+    const claimed = scale.perStructure.filter((s) => typeof s.wallHeight === 'number');
+    const offClaim = claimed.filter((s) => {
+      // The box includes the roof, so height must be at least the walls and at
+      // most the walls plus a steep roof and a chimney.
+      const h = s.size[1];
+      return h < s.wallHeight * 0.9 || h > s.wallHeight * 2.6 + 3;
+    });
+    check(`${label}: rendered height matches the documented wall height`,
+      claimed.length > 0 && offClaim.length === 0,
+      claimed.length === 0
+        ? 'no structure carried a wall_height_m to check against'
+        : offClaim.length
+          ? offClaim.slice(0, 5).map((s) => `${s.id} rendered ${s.size[1].toFixed(1)} m `
+            + `against a documented ${s.wallHeight} m wall`).join('; ')
+          : `${claimed.length} structures agree with their documented wall height`);
 
     // --- scene detail -------------------------------------------------------
     //
@@ -1796,7 +1889,7 @@ for (const [label, viewport, touch] of [
       };
       const metric = choose('metric');
       const imperial = choose('imperial');
-      const { formatDistance } = await import('/renderers/web/js/units.js');
+      const { formatDistance } = await import(window.__MODULE_BASE + 'units.js');
       return {
         metric, imperial,
         mile: formatDistance(1609.344, 'imperial'),
@@ -2593,7 +2686,7 @@ for (const [label, viewport, touch] of [
     // still say so for a claim with no reasoning, and must not say it for one that
     // has some — the discriminating pair, one level down from the panel.
     const emptyState = await page.evaluate(async () => {
-      const { groundClaimHtml } = await import('/renderers/web/js/ground.js');
+      const { groundClaimHtml } = await import(window.__MODULE_BASE + 'ground.js');
       const claim = { id: 'x', group: 'g', label: 'l', confidence: 'derived',
         fields: [], sources: [], citations: [], notes: [] };
       return {
@@ -2624,7 +2717,7 @@ for (const [label, viewport, touch] of [
     // repaired: the day S6 colours the ground by zone, the declaration comes off
     // the spec and the committed panel stops carrying this case.
     const marking = await page.evaluate(async () => {
-      const { groundClaimHtml } = await import('/renderers/web/js/ground.js');
+      const { groundClaimHtml } = await import(window.__MODULE_BASE + 'ground.js');
       const claim = { id: 'x', group: 'g', label: 'l', confidence: 'documented',
         sources: [], citations: [], notes: ['because'] };
       const html = (mesh) => groundClaimHtml({ ...claim,

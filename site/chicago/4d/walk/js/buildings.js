@@ -27,7 +27,7 @@
  */
 
 import * as THREE from 'three';
-import { enuToWorld, bearingToYaw } from './terrain.js';
+import { enuToWorld, bearingToYaw, toFloatAttribute } from './terrain.js';
 
 /** Walk up until something claims a structure_id. Returns null if nothing does. */
 export function structureIdOf(object) {
@@ -93,14 +93,16 @@ function normalizeGeometry(src, matrix, confidence, label) {
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
 
-  geo.setAttribute('position', position.clone());
-  geo.setAttribute('normal', (src.getAttribute('normal') ?? null)?.clone()
-    ?? new THREE.BufferAttribute(new Float32Array(position.count * 3), 3));
-  geo.setAttribute('uv', (src.getAttribute('uv') ?? null)?.clone()
-    ?? new THREE.BufferAttribute(new Float32Array(position.count * 2), 2));
+  geo.setAttribute('position', toFloatAttribute(position, 3));
+  geo.setAttribute('normal', src.getAttribute('normal')
+    ? toFloatAttribute(src.getAttribute('normal'), 3)
+    : new THREE.BufferAttribute(new Float32Array(position.count * 3), 3));
+  geo.setAttribute('uv', src.getAttribute('uv')
+    ? toFloatAttribute(src.getAttribute('uv'), 2)
+    : new THREE.BufferAttribute(new Float32Array(position.count * 2), 2));
 
   const conf = src.getAttribute('_confidence');
-  if (conf) geo.setAttribute('_confidence', conf.clone());
+  if (conf) geo.setAttribute('_confidence', toFloatAttribute(conf, conf.itemSize));
 
   geo.setIndex(src.getIndex()
     ? src.getIndex().clone()
@@ -222,6 +224,8 @@ export function createBuildings({ registry, confidence, terrain }) {
   }));
 
   const batches = [];
+  /** structure id -> its union bounding box, in the structure's own frame. */
+  const localBoxes = new Map();
   for (const [, bucket] of groups) {
     const verts = bucket.entries.reduce((a, e) => a + e.geo.getAttribute('position').count, 0);
     const idx = bucket.entries.reduce((a, e) => a + e.geo.getIndex().count, 0);
@@ -238,6 +242,14 @@ export function createBuildings({ registry, confidence, terrain }) {
       batch.setMatrixAt(instanceId, placements.get(record.id));
       batch.userData.batchIndex[instanceId] = record.id;
       record.instanceId = instanceId;
+      // Measure BEFORE dispose, and union across every material a structure
+      // uses: a building is walls plus roof plus trim, and any one of those
+      // alone is not the building. This is what `instanceBounds()` reports and
+      // what the size gate reads — see the note on that method.
+      geo.computeBoundingBox();
+      let box = localBoxes.get(record.id);
+      if (!box) { box = new THREE.Box3(); localBoxes.set(record.id, box); }
+      box.union(geo.boundingBox);
       geo.dispose();
     }
     batch.computeBoundingBox();
@@ -256,6 +268,32 @@ export function createBuildings({ registry, confidence, terrain }) {
     triangles: totalTris,
     /** Draw calls these buildings cost in the colour pass. */
     get drawCalls() { return batches.length; },
+
+    /**
+     * Every structure's rendered size, in metres, keyed by structure id.
+     *
+     * This exists because the gate that was supposed to catch a broken town
+     * measured the TALLEST building in the scene and stopped. That assertion
+     * passes with one correct building and two hundred and forty-one collapsed
+     * ones, which is exactly the scene that shipped: every wall clamped into a
+     * two-metre box by a quantised attribute (see `toFloatAttribute`), while the
+     * one uncompressed asset kept the check green.
+     *
+     * A size is only meaningful against a claim, so this reports the rendered
+     * box and leaves the comparison to the caller, which holds the records.
+     */
+    instanceBounds() {
+      const out = {};
+      for (const [id, box] of localBoxes) {
+        const size = box.getSize(new THREE.Vector3());
+        out[id] = {
+          size: [size.x, size.y, size.z],
+          min: box.min.toArray(),
+          max: box.max.toArray(),
+        };
+      }
+      return out;
+    },
 
     /**
      * Raycast into the batches.
