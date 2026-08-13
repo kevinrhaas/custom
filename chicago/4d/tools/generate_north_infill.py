@@ -286,6 +286,21 @@ def validate(records: list[dict], inventory: dict, recipe: dict, datum: dict) ->
             if polygons_overlap(poly, other):
                 raise SystemExit(f"North recipe collision: {sid} overlaps {other_sid}")
 
+    # No anonymous roof may stand in a platted street (ROADMAP K7 phase two), asked
+    # through the module the grid report and the other two generators read, on the
+    # FOOTPRINT rather than the centre. It binds nothing today and is wired anyway: the
+    # K7 grid covers 19 South and West Division blocks and no North Division block,
+    # because the North's street control is what ROADMAP S9 still records as owed. The
+    # day that control arrives, this parcel is already inside the rule rather than
+    # waiting to be found in the road by a report.
+    from plat_corridors import corridors, intrusion  # noqa: PLC0415
+    lanes = corridors()
+    for sid, poly in polygons:
+        street, depth = intrusion(poly, lanes)
+        if street:
+            raise SystemExit(f"{sid} reaches {depth:.1f} m inside the platted "
+                             f"{lanes[street]['name']} corridor")
+
     # Use the same committed surface the walker uses: every perimeter must be on
     # covered, dry ground and stay within its 0.35 m step-height contract.
     from heightfield import Heightfield  # noqa: PLC0415

@@ -34,13 +34,15 @@
       "id": "rear_yards",
       "local_n": -175.0,
       "yard_group": "lake_front_rear_yards",
-      "placements": [[314, "A3"], [438, "A4"], [560, "A3"], [687, "A5"], [810, "A3"]]
+      "note": "REVISED 2026-08-13 (ROADMAP K7 phase two). These eight ancillary placements were originally spaced on the block PITCH - 314, 438, 560, 687, 810 - which put one of them at the eastern edge of every block, a building's width from the next platted street. Four of the eight reached into the roadway and the other four cleared it by 1.4-2.1 m, which is nothing against this dataset's own 20 m georeference: the four that passed were the three privies and a small shed, and they passed by being small rather than by being placed. Each now stands directly behind the easternmost principal roof of its own block - the same local E as that roof, 24 m behind it - because a rear yard belongs to a lot and a lot belongs to a house. Positions were conjectural before and are conjectural after; clearing the roadway is not standing on a recovered lot.",
+      "placements": [[292, "A3"], [418, "A4"], [542, "A3"], [668, "A5"], [793, "A3"]]
     },
     {
       "id": "deep_yards",
       "local_n": -215.0,
       "yard_group": "block_interior_service_yards",
-      "placements": [[315, "A1"], [559, "A2"], [809, "A4"]]
+      "note": "REVISED 2026-08-13 with the rear yards above, by the same rule and for the same reason: each of the three service buildings stands behind the easternmost principal roof of the block_interior row in its own block, 21 m behind it, rather than at the block's edge. The stable and the barn are the two largest ancillary footprints in the parcel and were the two deepest intrusions here.",
+      "placements": [[283, "A1"], [533, "A2"], [780, "A4"]]
     }
   ]
 }

@@ -7,7 +7,9 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
 complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot
-grid) complete through phase one; K9 (navigation UI) complete.**
+grid) complete through phase one, and phase two's placement gate is closed — every generated
+placement in the dataset is out of the platted roadway and all three generators enforce it;
+K9 (navigation UI) complete.**
 
 **Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
 188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
@@ -320,6 +322,41 @@ there runs 1.4 m into the river, and the spare is under 3 m at four more of elev
 that reach a building on the north side of South Water cannot be both outside the legal corridor
 and on dry land — so the disagreement is between the plat module and the drawn bank, and it wants
 a reading of the travelled way rather than thirteen nudged records.
+
+## New 2026-08-13 — the last four out of the road, and the row that was aimed at the streets
+
+**K7 phase two (b).** The four anonymous roofs the previous slice deliberately left in a platted
+corridor are out of it, and both infill generators now ask the corridor question through the same
+`tools/plat_corridors.py` the household generator and the grid report read. **No generated
+placement anywhere in this dataset stands in a platted street corridor.** Footprints with some
+part inside one: **33 → 29**; the 29 are hand-placed records with a frontage argument and are not
+this slice's to move. Verified the gate bites by putting one record back where it was: it fails
+with the record named and the depth measured.
+
+**The four were one row's spacing.** The parcel's eight ancillary buildings had local E values of
+314, 438, 560, 687, 810 and 315, 559, 809 — a **123 m pitch, which is the block pitch** — so one
+yard building stood at the eastern edge of every block, a building's width from the next street,
+eight times over. The generator that wrote them tested nothing: not overlap, not water, not
+ground, not the street.
+
+**Half of them passed, and why they passed is the part worth keeping.** The four that intruded
+(−1.03 to −4.32 m inside the roadway) are the four largest ancillary footprints in the parcel; the
+four that cleared it are three privies and a small shed, clear by **1.4–2.1 m against this
+dataset's own ±20 m georeference**. They were not placed clear of the street, they were too small
+to reach it — so a fix aimed only at the four failures would have corrected four numbers and left
+the rule that produced them. All eight moved instead, by one argument: each now stands directly
+behind the easternmost principal roof of its own block, 24 m back for the rear yards and 21 m for
+the service yards, because a rear yard belongs to a lot and a lot belongs to a house. 17–32 m of
+movement.
+
+**Nothing was regraded and nothing was adopted.** These positions were `conjectural` before and
+are `conjectural` after; clearing the roadway is not standing on a recovered lot, and standing
+behind an anonymous roof is not evidence of serving it. The household ledger keys on structure id
+rather than on position, so the 83 adopted roofs kept their households across the move — which is
+what made the coupling the previous slice cited a re-derivation rather than a re-argument. The
+North parcel carries the same gate and it binds nothing today: the grid covers no North Division
+block, because that street control is what § S9 still records as owed. Detail:
+`docs/RESEARCH/thompson_plat_grid.md` § 7b.
 
 ## New 2026-08-13 — one way to go somewhere, graded; and the half of the gate that was not running
 
