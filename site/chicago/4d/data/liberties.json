@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 90,
+  "count": 91,
   "liberties": [
     {
       "id": "L1",
@@ -7628,6 +7628,43 @@
         {
           "label": "Covers",
           "text": "`brown_boarding_house.documented_1835.footprint`, `harmon_log_cabin.documented_1835.footprint`, `harmon_log_cabin.documented_1835.position`, `heacock_house_monroe.documented_1835.footprint`, `heacock_house_monroe.documented_1835.ground_contact`, `heacock_house_monroe.documented_1835.position`, `inf_artisan_dwelling_west_a.inferred_1835.documented_range`, `inf_artisan_dwelling_west_a.inferred_1835.footprint`, `inf_artisan_dwelling_west_a.inferred_1835.position`, `inf_artisan_dwelling_west_b.inferred_1835.documented_range`, `inf_artisan_dwelling_west_b.inferred_1835.footprint`, `inf_artisan_dwelling_west_b.inferred_1835.position`, `inf_bakery_lake.inferred_1835.documented_range`, `inf_bakery_lake.inferred_1835.footprint`, `inf_bakery_lake.inferred_1835.position`, `inf_barber_shop.inferred_1835.documented_range`, `inf_barber_shop.inferred_1835.footprint`, `inf_barber_shop.inferred_1835.position`, `inf_blacksmith_shop_west.inferred_1835.documented_range`, `inf_blacksmith_shop_west.inferred_1835.footprint`, `inf_blacksmith_shop_west.inferred_1835.position`, `inf_boatman_cabin_north.inferred_1835.documented_range`, `inf_boatman_cabin_north.inferred_1835.footprint`, `inf_boatman_cabin_north.inferred_1835.position`, `inf_brickmaker_dwelling_north.inferred_1835.documented_range`, `inf_brickmaker_dwelling_north.inferred_1835.footprint`, `inf_brickmaker_dwelling_north.inferred_1835.position`, `inf_butcher_market.inferred_1835.documented_range`, `inf_butcher_market.inferred_1835.footprint`, `inf_butcher_market.inferred_1835.position`, `inf_carpenter_dwelling_north.inferred_1835.documented_range`, `inf_carpenter_dwelling_north.inferred_1835.footprint`, `inf_carpenter_dwelling_north.inferred_1835.position`, `inf_cooperage_south.inferred_1835.documented_range`, `inf_cooperage_south.inferred_1835.footprint`, `inf_cooperage_south.inferred_1835.position`, `inf_cooperage_south_branch.inferred_1835.documented_range`, `inf_cooperage_south_branch.inferred_1835.footprint`, `inf_cooperage_south_branch.inferred_1835.position`, `inf_grocery_west.inferred_1835.documented_range`, `inf_grocery_west.inferred_1835.footprint`, `inf_grocery_west.inferred_1835.position`, `inf_gunsmith_shop.inferred_1835.documented_range`, `inf_gunsmith_shop.inferred_1835.footprint`, `inf_gunsmith_shop.inferred_1835.position`, `inf_harness_shop.inferred_1835.documented_range`, `inf_harness_shop.inferred_1835.footprint`, `inf_harness_shop.inferred_1835.position`, `inf_labourer_shanty_north_a.inferred_1835.documented_range`, `inf_labourer_shanty_north_a.inferred_1835.footprint`, `inf_labourer_shanty_north_a.inferred_1835.position`, `inf_labourer_shanty_north_b.inferred_1835.documented_range`, `inf_labourer_shanty_north_b.inferred_1835.footprint`, `inf_labourer_shanty_north_b.inferred_1835.position`, `inf_labourer_shanty_west_a.inferred_1835.documented_range`, `inf_labourer_shanty_west_a.inferred_1835.footprint`, `inf_labourer_shanty_west_a.inferred_1835.position`, `inf_labourer_shanty_west_b.inferred_1835.documented_range`, `inf_labourer_shanty_west_b.inferred_1835.footprint`, `inf_labourer_shanty_west_b.inferred_1835.position`, `inf_laundry_north.inferred_1835.documented_range`, `inf_laundry_north.inferred_1835.footprint`, `inf_laundry_north.inferred_1835.position`, `inf_mason_dwelling_north.inferred_1835.documented_range`, `inf_mason_dwelling_north.inferred_1835.footprint`, `inf_mason_dwelling_north.inferred_1835.position`, `inf_packer_dwelling.inferred_1835.documented_range`, `inf_packer_dwelling.inferred_1835.footprint`, `inf_packer_dwelling.inferred_1835.position`, `inf_sawpit_shed.inferred_1835.documented_range`, `inf_sawpit_shed.inferred_1835.footprint`, `inf_sawpit_shed.inferred_1835.position`, `inf_sawyer_dwelling_a.inferred_1835.documented_range`, `inf_sawyer_dwelling_a.inferred_1835.footprint`, `inf_sawyer_dwelling_a.inferred_1835.position`, `inf_sawyer_dwelling_b.inferred_1835.documented_range`, `inf_sawyer_dwelling_b.inferred_1835.footprint`, `inf_sawyer_dwelling_b.inferred_1835.position`, `inf_shoemaker_shop.inferred_1835.documented_range`, `inf_shoemaker_shop.inferred_1835.footprint`, `inf_shoemaker_shop.inferred_1835.position`, `inf_tailor_shop.inferred_1835.documented_range`, `inf_tailor_shop.inferred_1835.footprint`, `inf_tailor_shop.inferred_1835.position`, `inf_teamster_dwelling_south.inferred_1835.documented_range`, `inf_teamster_dwelling_south.inferred_1835.footprint`, `inf_teamster_dwelling_south.inferred_1835.position`, `inf_teamster_dwelling_west.inferred_1835.documented_range`, `inf_teamster_dwelling_west.inferred_1835.footprint`, `inf_teamster_dwelling_west.inferred_1835.position`, `inf_teamster_stable_west.inferred_1835.documented_range`, `inf_teamster_stable_west.inferred_1835.footprint`, `inf_teamster_stable_west.inferred_1835.position`, `inf_wheelwright_shop_west.inferred_1835.documented_range`, `inf_wheelwright_shop_west.inferred_1835.footprint`, `inf_wheelwright_shop_west.inferred_1835.position`, `mason_blacksmith_shop.documented_1835.footprint`, `physicians_office.inferred_1835.documented_range`, `physicians_office.inferred_1835.footprint`, `physicians_office.inferred_1835.position`, `temple_lake_st_building.documented_1835.footprint`, `temple_lake_st_building.documented_1835.position`, `wright_building_to_let_a.documented_1835.footprint`, `wright_building_to_let_a.documented_1835.position`, `wright_building_to_let_b.documented_1835.footprint`, `wright_building_to_let_b.documented_1835.position`"
+        }
+      ]
+    },
+    {
+      "id": "L91",
+      "title": "Every wall in the town is weathered by one rule, and no two by the same amount",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern"
+      ],
+      "covers": [],
+      "recorded": "2026-08-13",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the renderer no longer draws a building the flat colour its archetype baked. Each structure's face is moved toward its own greyscale by an amount derived from the finish its record states (`attributes.paint`) and the earliest date that record claims the phase existed (`documented_range.from`), and is then given a per-building lightness offset of up to ±7.5 % keyed on the structure id. Both live in `renderers/web/js/facade.js`. The record's finish and its date are evidence; the travel per finish (`unpainted` 0.80, `whitewash` 0.35, painted 0.18, masonry 0.00), the 0.55 floor, the eight-year saturation and the ±7.5 % spread are invented."
+        },
+        {
+          "label": "Why",
+          "text": "142 of the 174 phases that state a finish state `unpainted`, and `generators/common/mesh.py` resolves every one of them through a single warm fresh-sawn tan — so a town the dossiers describe as weathered was drawn the colour of new lumber, identically, 242 times over. `docs/research/04-structures-south.md` models the fort as \"serviceable, weathered, whitewashed/unpainted log-and-brick\" and the Dearborn Street bridge as \"weathered, patched, sagging\"; `docs/RESEARCH/green_tree_tavern.md` § 4 turns on the same distinction — \"a weathered one standing a block from the Sauganash, whose white paint was remarkable precisely because its neighbours were not\". Every one of those readings was already in the dataset and none of them reached a pixel. **Why it is arithmetic and not a colour anybody chose.** Weathering here REMOVES colour: each fragment is mixed toward its own luminance rather than toward an invented grey. That was picked for honesty and kept for a pipeline reason — `tools/bake.sh` runs gltf-transform over `assets/web/`, whose palette pass merges materials and renames the survivors `PaletteMaterial001…`, so 38 of the published building assets no longer carry the `wall` / `glass` / `chinking` names the masters do. A rule keyed on material names would behave one way under the smoke gate, which loads the masters, and another way on the live site, which loads the derivatives. A rule that reads nothing cannot."
+        },
+        {
+          "label": "Consequence",
+          "text": "three things a visitor should know. The variation between two neighbouring buildings is invented and carries no evidence whatever — it exists to stop invented buildings reading as clones, and a darker wall means nothing but a different id. The age term does almost nothing to the 173 structures whose record opens inside 1835 itself — they sit within half a year of the scene date, which is the honest answer for a roof nobody dated — and moves the 69 whose ranges open earlier, back to 1816. And a `documented` finish gets neither treatment: the Sauganash's white and St Mary's are drawn exactly as their sources state, which leaves St Mary's as the one unweathered unpainted building in the town — accepted, because the alternative is a rule with a clause in it for a case nobody can see."
+        },
+        {
+          "label": "What it does NOT claim",
+          "text": "that any particular building was this colour. `paint` is `inferred` on 168 of the 174 phases that state one, and this treatment changes none of those grades; it draws the finish the record already claimed instead of overriding it with a default. Nothing here is a new reading of a source."
+        },
+        {
+          "label": "How to resolve",
+          "text": "per-building finish evidence — a description, an inventory, a paid painter's bill — replaces the invented spread on that building with a stated one. Board-width and board-tone irregularity WITHIN a wall (ROADMAP K4) stays open and belongs to the archetypes, not here."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-13."
         }
       ]
     },

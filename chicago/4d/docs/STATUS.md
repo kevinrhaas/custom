@@ -152,6 +152,59 @@ Structure positions still carry `symbolic_location` with null coordinates — th
 footprints are traced through the fitted transforms in S2+, each carrying the ±20 m working
 uncertainty of the 1834 sheets in its note.
 
+## New 2026-08-13 — the town was the colour of new lumber, and its own records said otherwise
+
+**K4, first half.** `paint` is authored on **174 of the scene's 243 phases** — 142 `unpainted`, 14
+whitewash, 12 red, 5 masonry, 1 white — `tools/validate.py` has gated it since the schema was
+written, and the dossiers say what it looked like: the fort *"serviceable, weathered,
+whitewashed/unpainted log-and-brick"*, the Dearborn Street bridge *"weathered, patched, sagging"*,
+and `docs/RESEARCH/green_tree_tavern.md` § 4 on the reading that makes it matter — the Sauganash's
+white paint is remarkable in the sources *precisely because its neighbours were not*, which only
+holds if the town around it is not white either. **`generators/common/mesh.py` resolves all 142
+through one warm fresh-sawn tan.** The owner's finding — *the buildings read as freshly painted and
+identical* — is those two facts, and neither of them is a bug.
+
+`renderers/web/js/facade.js` now moves each building toward its own greyscale by an amount derived
+from its own stated finish and its own `documented_range.from`, and gives it a per-building
+lightness offset of up to ±7.5 % keyed on the structure id. Memo:
+`docs/RESEARCH/facade_weathering_1835.md`; admission: `docs/LIBERTIES.md` **L91**.
+
+- **It reads no material names, and that is a pipeline finding rather than a preference.**
+  `tools/bake.sh` runs gltf-transform over `assets/web/`, whose palette pass MERGES materials and
+  renames the survivors `PaletteMaterial001…`: the Sauganash master carries
+  `wall / roof / log / shutter / glass` and the file a visitor downloads carries three paletted
+  materials with the colours in a texture. **38 of the published building assets are in that
+  state.** `tools/smoke_renderer.mjs` loads the masters from `assets/gltf/` and the live site loads
+  the derivatives from `data/gltf/`, so a name-keyed treatment would have been gated on one
+  pipeline and shipped on another — which is the shape of the nightly-bake failure recorded below.
+  Weathering here is therefore the REMOVAL of colour: each fragment is mixed toward its own
+  luminance, so a tan board greys and a near-neutral window void barely moves. The surfaces that
+  would have needed protecting protect themselves, arithmetically, in both pipelines. **Any future
+  per-surface facade treatment is blocked until the derivative carries surface identity** — a
+  change to `tools/bake.sh` and to `docs/GLB-CONTRACT.md`, and so a proposal, not a slice.
+- **The gate could not see it, and the first version of the assertion failed against a working
+  shader.** `readbackSignature()` reduced a frame to a grid of LUMINANCES, and mixing toward
+  luminance is very nearly luminance-preserving by construction: on a frame of the Green Tree the
+  luminance grid moved **0.09 mean / 1 worst** while chroma moved **0.97 / 11.9**. It now carries a
+  chroma grid beside the luminance one and the smoke compares that.
+- **Measured across the 242 committed sidecars.** 141 unpainted, undocumented phases silver
+  **0.462–0.800**; 167 structures carry a non-zero silvering; 5 masonry and 68 finish-less
+  structures carry none. Tone spread **0.1406**, peak **0.0715** against the ±0.075 bound. The 128
+  generated roofs — the ids that would betray a weak hash, sharing 22 leading characters — take
+  **127 distinct tones**. Draw calls unchanged: **35 building batches for 242 structures**, because
+  the channel is two floats per vertex inside the existing batches.
+- **The two documented finishes are untouched, and the frame is checked for it.** The Sauganash's
+  white and St Mary's get neither the silvering nor the tone offset, and an assertion frames the
+  Sauganash and requires it not to move when the treatment is switched off — without which "the
+  treatment reaches the pixels" would be equally happy with a shader that weathered everything.
+  This leaves St Mary's, whose documented finish is `unpainted`, as the one unweathered unpainted
+  building in the town; accepted rather than special-cased.
+- **What it does NOT claim.** That any particular building was this colour. `paint` is `inferred`
+  on 168 of the 174 phases that state one and no grade moved; the treatment draws the finish the
+  record already claimed instead of overriding it with a default. Nothing here is a new reading of
+  a source. Board tone and board width WITHIN a wall, hewn versus round logs, and weathering by
+  elevation are the archetypes' half of K4 and all still open — they need a bake.
+
 ## Fixed 2026-08-13 — the changelog was broken BY A MERGE, and both parents were green
 
 **`renderers/web/js/changelog.js` did not parse on `main`, and neither did its published

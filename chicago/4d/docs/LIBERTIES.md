@@ -2369,6 +2369,50 @@ that are.
 `wright_building_to_let_a.documented_1835.position`,
 `wright_building_to_let_b.documented_1835.footprint`,
 `wright_building_to_let_b.documented_1835.position`
+### L91 — Every wall in the town is weathered by one rule, and no two by the same amount
+**Decision:** the renderer no longer draws a building the flat colour its archetype baked. Each
+structure's face is moved toward its own greyscale by an amount derived from the finish its record
+states (`attributes.paint`) and the earliest date that record claims the phase existed
+(`documented_range.from`), and is then given a per-building lightness offset of up to ±7.5 %
+keyed on the structure id. Both live in `renderers/web/js/facade.js`. The record's finish and its
+date are evidence; the travel per finish (`unpainted` 0.80, `whitewash` 0.35, painted 0.18,
+masonry 0.00), the 0.55 floor, the eight-year saturation and the ±7.5 % spread are invented.
+**Why:** 142 of the 174 phases that state a finish state `unpainted`, and
+`generators/common/mesh.py` resolves every one of them through a single warm fresh-sawn tan — so
+a town the dossiers describe as weathered was drawn the colour of new lumber, identically, 242
+times over. `docs/research/04-structures-south.md` models the fort as "serviceable, weathered,
+whitewashed/unpainted log-and-brick" and the Dearborn Street bridge as "weathered, patched,
+sagging"; `docs/RESEARCH/green_tree_tavern.md` § 4 turns on the same distinction — "a weathered
+one standing a block from the Sauganash, whose white paint was remarkable precisely because its
+neighbours were not". Every one of those readings was already in the dataset and none of them
+reached a pixel.
+**Why it is arithmetic and not a colour anybody chose.** Weathering here REMOVES colour: each
+fragment is mixed toward its own luminance rather than toward an invented grey. That was picked
+for honesty and kept for a pipeline reason — `tools/bake.sh` runs gltf-transform over
+`assets/web/`, whose palette pass merges materials and renames the survivors
+`PaletteMaterial001…`, so 38 of the published building assets no longer carry the `wall` / `glass`
+/ `chinking` names the masters do. A rule keyed on material names would behave one way under the
+smoke gate, which loads the masters, and another way on the live site, which loads the
+derivatives. A rule that reads nothing cannot.
+**Consequence:** three things a visitor should know. The variation between two neighbouring
+buildings is invented and carries no evidence whatever — it exists to stop invented buildings
+reading as clones, and a darker wall means nothing but a different id. The age term does almost
+nothing to the 173 structures whose record opens inside 1835 itself — they sit within half a year
+of the scene date, which is the honest answer for a roof nobody dated — and moves the 69 whose
+ranges open earlier, back to 1816. And a `documented` finish gets neither treatment: the
+Sauganash's white and St Mary's are drawn exactly as their sources state, which leaves St Mary's
+as the one unweathered unpainted building in the town — accepted, because the alternative is a
+rule with a clause in it for a case nobody can see.
+**What it does NOT claim:** that any particular building was this colour. `paint` is `inferred` on
+168 of the 174 phases that state one, and this treatment changes none of those grades; it draws
+the finish the record already claimed instead of overriding it with a default. Nothing here is a
+new reading of a source.
+**How to resolve:** per-building finish evidence — a description, an inventory, a paid painter's
+bill — replaces the invented spread on that building with a stated one. Board-width and
+board-tone irregularity WITHIN a wall (ROADMAP K4) stays open and belongs to the archetypes, not
+here.
+**Recorded:** 2026-08-13.
+
 ---
 
 ## Resolved

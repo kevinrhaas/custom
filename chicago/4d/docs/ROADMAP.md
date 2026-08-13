@@ -206,7 +206,52 @@ control station is identical to the byte. New gate: three assertions in `smoke_r
 ask the placer itself (`flora.stationOf`) rather than re-deriving its rules, including the
 anti-vacuity half — a placer that refused everything on that bank would otherwise read as a pass.
 
-### K4 — Facades: weathered wood, not painted clones
+### K4 — Facades: weathered wood, not painted clones · **FINISH + PER-BUILDING TONE DONE 2026-08-13**
+
+**The first half is in, and the finding is that the dataset already held it.** `paint` is
+authored on 174 of the scene's 243 phases — **142 `unpainted`**, 14 whitewash, 12 red, 5 masonry,
+2 documented — `tools/validate.py` has gated it since the schema was written, and the dossiers say
+what it looked like: the fort *"serviceable, weathered, whitewashed/unpainted log-and-brick"*, the
+Dearborn Street bridge *"weathered, patched, sagging"*, and `docs/RESEARCH/green_tree_tavern.md`
+§ 4 on the point that makes it matter — the Sauganash's white is remarkable in the sources
+*because* its neighbours were not. `generators/common/mesh.py` resolves all 142 through one warm
+fresh-sawn tan, so the town was drawn the colour of new lumber. `renderers/web/js/facade.js` now
+moves each building toward its own greyscale by an amount derived from its stated finish and its
+own `documented_range.from`, and gives it a per-building lightness offset of up to ±7.5 % keyed on
+the structure id. Memo: `docs/RESEARCH/facade_weathering_1835.md`. Admission: LIBERTIES **L91**.
+
+**Two constraints decided the implementation, and the second is a standing one for this project.**
+Per-building colour in the bake is per-building materials and therefore per-building draw calls —
+242 against a budget of 80 — so variation has to be a per-vertex channel inside the shared batch,
+the shape `_CONFIDENCE` already has. And it cannot key on material NAMES: `tools/bake.sh` runs
+gltf-transform over `assets/web/`, whose palette pass merges materials and renames the survivors
+`PaletteMaterial001…`, so the Sauganash master's `wall / roof / log / shutter / glass` reaches the
+visitor as three paletted materials. **38 of the published building assets are in that state**, the
+smoke loads the masters from `assets/gltf/` and the live site loads the derivatives from
+`data/gltf/`, so a name-keyed treatment would be gated on one pipeline and shipped on another.
+The rule therefore reads no names: weathering is the REMOVAL of colour, each fragment mixed toward
+its own luminance, so a tan board greys and a near-neutral window void barely moves — the surfaces
+that would have needed protecting protect themselves, arithmetically, in both pipelines. **Any
+future per-surface facade treatment is blocked until the derivative carries surface identity**,
+which is a change to `tools/bake.sh` and to `docs/GLB-CONTRACT.md` and therefore a proposal rather
+than a slice.
+
+**The gate had to learn to see it.** The capture signature was a grid of LUMINANCES, and
+desaturation is very nearly luminance-preserving by construction — the first version of the
+assertion failed against a shader that was working perfectly, measuring 0.09 mean / 1 worst on a
+frame where chroma had moved 0.97 / 11.9. `readbackSignature()` now carries a chroma grid beside
+the luminance one and the smoke compares that. Ten assertions: the record's finish reaches the
+treatment (masonry and finish-less records get zero, 141 unpainted span **0.462–0.800**, 167
+weathered — the anti-vacuity half, since a treatment that silvered nothing would satisfy every
+"is not weathered" clause), silvering is monotonic in years standing, **128 generated roofs take
+127 distinct tones** with a spread of 0.1406 against a ±0.075 bound, the treatment costs no draw
+calls (**35 batches for 242 structures**), it reaches the frame in chroma, off-and-on restores it
+exactly, and the documented Sauganash does not move when the treatment does.
+
+**Still open, and it is the archetypes' half rather than the renderer's**: board tone and
+board-width irregularity WITHIN a wall, hewn versus round logs per record, and weathering by
+elevation. All need a bake. The original item follows.
+
 The buildings read as freshly painted and identical. Research first, then implement: most 1835
 Chicago frame buildings were UNPAINTED weatherboard or whitewashed — paint was expensive; keep
 the documented exceptions exactly as documented (Wau-Bun's white Sauganash with bright-blue

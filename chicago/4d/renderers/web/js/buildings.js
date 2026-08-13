@@ -88,7 +88,7 @@ function collectMeshes(structureNode) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
-function normalizeGeometry(src, matrix, confidence, label) {
+function normalizeGeometry(src, matrix, confidence, facade, weathering, label) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
@@ -111,6 +111,11 @@ function normalizeGeometry(src, matrix, confidence, label) {
   if (!src.getAttribute('normal')) geo.computeVertexNormals();
 
   const warning = confidence.ensureAttribute(geo, label);
+  // The facade channel is written here rather than in the batch loop for the
+  // reason the attribute list above exists: the FIRST geometry a BatchedMesh
+  // receives fixes that batch's attributes for good, so every geometry has to
+  // carry every channel before any of them is added.
+  if (facade) facade.applyTo(geo, weathering);
   return { geo, warning };
 }
 
@@ -131,8 +136,9 @@ function materialKey(m) {
  * @param {Map<string,object>} o.registry   from scene-loader
  * @param {object} o.confidence             from createConfidenceView
  * @param {object} o.terrain                from createTerrain (for ground height)
+ * @param {object} [o.facade]               from createFacadeView (optional)
  */
-export function createBuildings({ registry, confidence, terrain }) {
+export function createBuildings({ registry, confidence, terrain, facade = null }) {
   const group = new THREE.Group();
   group.name = 'structures';
   const problems = [];
@@ -161,23 +167,32 @@ export function createBuildings({ registry, confidence, terrain }) {
       continue;
     }
 
+    // What this building's face does, from its own record: the finish it
+    // states and the first date it claims to have existed. See facade.js.
+    const weathering = facade ? facade.weatheringFor(record.sidecar) : null;
+
     for (const { mesh, matrix } of meshes) {
       const label = `${record.id}/${mesh.name || 'mesh'}`;
+      const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       let prepared;
       try {
-        prepared = normalizeGeometry(mesh.geometry, matrix, confidence, label);
+        prepared = normalizeGeometry(mesh.geometry, matrix, confidence, facade, weathering, label);
       } catch (err) {
         problems.push(`${label}: ${err.message}`);
         continue;
       }
       if (prepared.warning) problems.push(prepared.warning);
 
-      const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       const key = materialKey(material);
       let bucket = groups.get(key);
       if (!bucket) {
         material.side = material.side ?? THREE.FrontSide;
+        // Confidence FIRST, facade SECOND — the order is load-bearing and
+        // facade.js says why: the later patch lands nearer the shared
+        // `#include <color_fragment>` anchor, so this puts weathering under the
+        // confidence tint rather than over it.
         confidence.patch(material);
+        facade?.patch(material);
         bucket = { material, entries: [] };
         groups.set(key, bucket);
       }
