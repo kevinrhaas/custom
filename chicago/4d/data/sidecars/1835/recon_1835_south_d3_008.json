@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 417.545,
     "local_n": -151.476,
     "rotation_deg": -0.12,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in the South Division block between Wells and LaSalle, south of Lake Street",
@@ -46,14 +46,14 @@
         6.52
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "A 5.00 × 6.52 m rectangle sampled deterministically inside the D3 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "wall_height_m": {
       "value": 2.78,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "plan": {
       "value": "single_pen",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "bays": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "porch": {
       "value": "stoop",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -133,7 +133,7 @@
     },
     "function": {
       "value": "one-room frame cottage",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -141,7 +141,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -164,14 +164,14 @@
         {
           "name": "A carpenter (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "reconstructed",
+          "grade": "inferred",
           "occupation": "carpenter",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE SECOND OF 10 CARPENTER HOUSEHOLDS THIS LAYER INFERS. THE TRADE THE TOWN NEEDED MOST AND THE ONE THE DOCUMENTED LAYER UNDER-COUNTS WORST. The 1835 town census counts 3,265 people in 398 dwellings; Andreas's roster of the fall of 1833 describes a settlement of a few dozen buildings, and the reconstruction specification puts 665 roofs on the ground by July 1835. Several hundred of those roofs went up inside eighteen months. Even at a crew of three raising a one-room frame cottage in three weeks, that is on the order of forty carpenter-years of work in a year and a half. Andreas names four carpenters and one ship carpenter in the whole of the 1833 town. Ten carpenter households are inferred against the schedule's eight W2 carpenter-or-joiner shops, because a house carpenter worked on the frame in the street and not in a shop: the shop count is a floor under the trade, not a measure of it."
         },
         {
           "name": "A journeyman carpenter (inferred resident, unnamed)",
           "relationship": "journeyman",
-          "grade": "reconstructed",
+          "grade": "inferred",
           "occupation": "carpenter",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). A journeyman in the same shop. The trade's own argument: THE TRADE THE TOWN NEEDED MOST AND THE ONE THE DOCUMENTED LAYER UNDER-COUNTS WORST. The 1835 town census counts 3,265 people in 398 dwellings; Andreas's roster of the fall of 1833 describes a settlement of a few dozen buildings, and the reconstruction specification puts 665 roofs on the ground by July 1835. Several hundred of those roofs went up inside eighteen months. Even at a crew of three raising a one-room frame cottage in three weeks, that is on the order of forty carpenter-years of work in a year and a half. Andreas names four carpenters and one ship carpenter in the whole of the 1833 town. Ten carpenter households are inferred against the schedule's eight W2 carpenter-or-joiner shops, because a house carpenter worked on the frame in the street and not in a shop: the shop count is a floor under the trade, not a measure of it."
         }

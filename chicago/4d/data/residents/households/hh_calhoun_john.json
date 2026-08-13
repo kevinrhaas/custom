@@ -5,7 +5,7 @@
  "head": "calhoun_john",
  "arrival": {
   "value": "1833-11-01",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To found a newspaper in a newly incorporated town",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -33,12 +33,12 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "works_at": {
   "value": "chicago_democrat_office",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -46,7 +46,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -57,11 +57,11 @@
    "id": "calhoun_john",
    "name": "John Calhoun",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "editor",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

@@ -32,17 +32,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Open-grown oaks with standing dead limbs are this bird's habitat; see the north-timber record for what the cited page actually says."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Conspicuous on open snags."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Savanna is the species' optimum, so it should be commoner here than in closed timber."
     },
     "max_group": 3,
@@ -51,7 +51,7 @@
     "appearance": "Crimson head, black back, big white wing patches.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": [
     "fpdcc_ecosystems"
    ],
@@ -70,17 +70,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Open oak ground with ant nests is flicker habitat."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeds on the ground in the open."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -89,7 +89,7 @@
     "appearance": "Brown barred back, black bib, white rump.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Habitat inference from open oak ground; no Chicago bird record of this period exists."
   },
   {
@@ -106,17 +106,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A bird of savanna and timber edge in the dossier's defensible July list; regional inference, since no 1830s Chicago bird list survives."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sings from the highest exposed twig, in the open."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading; edge and opening specialist."
     },
     "max_group": 2,
@@ -125,7 +125,7 @@
     "appearance": "The male looks black except in direct sun, when it is hard blue.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "THE POSITIVE HALF OF THE JULY SONG GATE. Indigo buntings sing straight through July and into August, later than almost anything else, so recording this species silent on 1 July would be as wrong as recording an oriole in full song."
   },
   {
@@ -141,17 +141,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Brushy savanna understorey; regional inference."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Scratching in leaf litter under cover, heard before seen."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -160,7 +160,7 @@
     "appearance": "Black hood, rufous sides, white belly; white tail corners on the flush.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Towhee song falls away through July; the chewink call persists."
   },
   {
@@ -176,17 +176,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Savanna shrub layer and thicket; regional inference."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeds on the ground in the open between shrubs."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 1,
@@ -195,7 +195,7 @@
     "appearance": "Rufous above, heavily streaked below, long tail, yellow eye.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "THE JULY GATE ON THIS SPECIES IS THE SONG. Thrasher song is an April to June performance and is essentially finished by 1 July \u2014 recording one in full doubled phrase song would date the scene to spring."
   },
   {
@@ -210,17 +210,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Savanna with open-grown trees is prime kingbird habitat."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Hunts from exposed perches over open ground."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 3,
@@ -229,7 +229,7 @@
     "appearance": "Black above, white below, white tail band.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Habitat inference from open-grown trees over grass; no Chicago record."
   },
   {
@@ -246,7 +246,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -254,12 +254,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeding between the open-grown oaks at first and last light."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Grove and edge, not the open prairie."
     },
     "max_group": 4,
@@ -268,7 +268,7 @@
     "appearance": "Red summer coat, velvet antlers, spotted fawns.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -286,17 +286,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Mid-summer emergence in original prairie and savanna."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sound only."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -305,7 +305,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "See f01_wet_prairie: the timbre of this sound is not recoverable, because the habitat was destroyed before anyone recorded it."
   },
   {
@@ -322,17 +322,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional list; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Open-grown oaks are the fox squirrel's optimum."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 3,
@@ -341,10 +341,10 @@
     "appearance": "Large, rusty-bellied, heavy-tailed.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "'Western fox squirrel' is in the regional retrospective, which has no source record. Andreas full-text searches for 'squirrels' returned nothing, and the dossier warns that this scan's index is lossy enough that 'not found' is not 'not present'."
   }
  ],
- "confidence": "inferred",
+ "confidence": "derived",
  "note": "This zone inherits flora zone z07_bur_oak_savanna, the grove up the South Branch at Hardscrabble, about 5.6 km SSW of the forks and far outside the modelled heightfield \u2014 the flora record marks it not plantable for exactly that reason, and this record reads that answer rather than restating it. Nothing here is placed in the 1835 scene; the record exists because the dataset, not the render, is the durable artifact."
 }

@@ -133,7 +133,7 @@ def build(params: OutbuildingParams, name: str):
     # had to mention, so they are what the walls answer to.
     c_mass = p.worst_conf("construction", "open_sides")
     c_roof = p.worst_conf("roof_type", "roof_pitch_deg")
-    c_fen = p.conf("fenestration", "reconstructed")
+    c_fen = p.conf("fenestration", "inferred")
 
     holes = _openings(p)
 
@@ -153,9 +153,9 @@ def build(params: OutbuildingParams, name: str):
     _roof(b, p, c_roof)
 
     if p.door != "none":
-        _doorway(b, p, p.door_side, p.door_size_m, p.conf("door", "reconstructed"))
+        _doorway(b, p, p.door_side, p.door_size_m, p.conf("door", "inferred"))
     if p.loft and p.loft_side:
-        _loft_door(b, p, p.conf("loft", "reconstructed"))
+        _loft_door(b, p, p.conf("loft", "inferred"))
     vent = _vent_rect(p)
     if vent:
         _vent(b, p, vent, c_fen)

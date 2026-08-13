@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "chicago_democrat_1833_11_26"
     ],
@@ -21,7 +21,7 @@
     "local_e": 482.257,
     "local_n": -277.963,
     "rotation_deg": 0.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage.",
     "symbolic_location": "South Division, local ENU E 485 N -274",
@@ -48,14 +48,14 @@
         7.925
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -63,7 +63,7 @@
     },
     "wall_height_m": {
       "value": 2.78,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -71,7 +71,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -79,7 +79,7 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -87,7 +87,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -95,7 +95,7 @@
     },
     "plan": {
       "value": "hall_parlour",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -103,7 +103,7 @@
     },
     "bays": {
       "value": 3,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -111,7 +111,7 @@
     },
     "chimneys": {
       "value": 1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -119,7 +119,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -127,7 +127,7 @@
     },
     "function": {
       "value": "dwelling_to_let",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -135,7 +135,7 @@
     },
     "occupants": {
       "value": "To let - the tenant is not named",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "TO LET, AND THE TENANT IS NOT NAMED. The advertisement documents rental housing stock and nobody in it. This building is deliberately left without an occupant household: the honest reading of 'to let' is a building whose tenant this project cannot name."
     }
   },

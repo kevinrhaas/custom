@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1820-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "kinzie_waubun_1856"
@@ -26,7 +26,7 @@
     "local_e": 814.0,
     "local_n": 122.0,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "kinzie_waubun_1856",
       "andreas_1884_v1",
@@ -122,14 +122,14 @@
         8
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER. THE SHAPE CARRIES EVIDENCE AND EVERY NUMBER IN IT IS INVENTED, and the two must not be confused — the same distinction miller_house's footprint note draws. What is attested is the composition, from the only description of this building anybody wrote: 'a substantial, compact little building of logs hewed and squared, with a centre, two wings, and, strictly speaking, two tails, since, when there was found no more room for additions at the sides, they were placed in the rear, whereon a vacant spot could be found. These appendages did not mar the symmetry of the whole, as viewed from the front.' This polygon is that sentence drawn: a centre block projecting one metre forward of two flanking wings, so the front reads symmetrical, and two tails running back from the rear of the centre. The dimensions — a 5 m centre, 4 m wings, 1.5 m tails, a 13 x 9 m envelope — are chosen to suit the words 'compact little building' and are supported by nothing. Mrs. Callis's 'two large rooms' describes the house in 1816, before the wings and tails, and is the only interior evidence of any kind. NOTE WHAT THE MESH DOES WITH THIS: the log_dwelling archetype masses the polygon's BOUNDING BOX, so the visitor sees a plain 13 x 9 m rectangle and the composition this polygon draws is not built — the re-entrant corners beside the tails and beside the wings are filled in. That is admitted in docs/LIBERTIES.md rather than hidden, and it is the same limitation L27 records for Miller's house. To resolve: any plan, any dimension, or the Chicago Democrat's advertisements for the agency's buildings."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "kinzie_waubun_1856",
         "andreas_1884_v1"
@@ -138,7 +138,7 @@
     },
     "cladding": {
       "value": "clapboard_part_way_up",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -147,7 +147,7 @@
     },
     "plan_composition": {
       "value": "centre, two wings, two rear tails",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "kinzie_waubun_1856"
       ],
@@ -156,32 +156,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. 'Compact little building' and 'two large rooms' both read as a single storey, and a building that grew by adding wings at the sides and tails at the rear is a building that could not grow upward — which is the argument. The counter-example is in the same book: the FIRST agency house, built beside old Fort Dearborn in 1803-4 on the south side, was 'a two-story log building, covered with split oak siding'. That is a different building and it is why this value is inference rather than type."
     },
     "wall_height_m": {
       "value": 2.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.6 m is about 8 ft 6 in: one storey of hewn-log wall at the course counts this project uses for the Miller house's log core, plus a sill. What is inferred is the range, not the centimetre."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "THE ONE THING WAU-BUN SAYS ABOUT THIS ROOF IS THAT IT WAS NOT ORDINARY: 'There were pleasant, happy hours passed under its odd-shaped roof.' Odd-shaped is what a centre with two wings and two tails produces — a roof of intersecting ridges, valleys and lean-tos that grew with the additions. The archetype builds one gable over one rectangle, so the model shows the opposite of what the source says, and the value is tagged conjectural because a gable here is a substitution rather than a reading. Left as `gable` rather than `shed` because a gable is the only one of the two forms this archetype offers that a log building of this size would carry."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low log building roofed in riven shakes. Inferred from construction practice, not measured, and inherited by a roof form the record has already said is wrong (see roof_type)."
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Two is inferred from the plan the sources give rather than from the building: a centre with two wings, holding the agent's office and household — in 1831 that household was J. H. Kinzie's mother, two sisters and brother as well — is more rooms than one hearth heats through a Chicago winter. The COUNT is the inference; where the stacks stand, how big they are and what they are made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "agency_house_residence",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -203,7 +203,7 @@
         {
           "name": "Billy Caldwell (Sauganash)",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "interpreter",
           "note": "THE MAN THE SAUGANASH HOTEL IS NAMED AFTER, which is how this dataset first met him: 'It was suggested to Mark that he should name his house after some great man. He could think of no greater personage than Billy Caldwell and so his tavern became celebrated as the \"Sauganash.\"' Andreas: son of a Colonel Caldwell, an Irish officer in the British army at Detroit, and a Potawatomi mother; born about 1780; educated at the Jesuit schools of Detroit and fluent in French and English besides several Indian languages; secretary to Tecumseh from about 1807 until Tecumseh's death and present at the Thames on 5 October 1813; a captain in the British Indian Department as late as 1816. By the treaty of Prairie du Chien of 1829 he was granted two and a half sections on the Chicago River, about six miles up the North Branch, and by the treaties of 1832 and 1833 annuities aggregating $1,000; he sold the land early. When John Watkins started his school in 1832 Caldwell offered to pay the tuition and buy books and clothes for any Indian children who would attend."
         }
@@ -224,7 +224,7 @@
         {
           "name": "Richard Jones Hamilton",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "county_clerk",
           "note": "ONE OF THE SIX MEN ANDREAS COUNTS AS CHICAGO'S LAWYERS AT THE END OF 1833, and one of the twelve who voted for incorporation on 5 August 1833. Andreas, scan p. 281: 'It comprised six lawyers - Russel E. Heacock, who had come in 1827; Richard J. Hamilton, 1831; and Giles Spring, John Dean Caton, Edward W. Casey and Alexander N. Fullerton, who had put out their signs in 1833.' He administered the oath of office to the first board of trustees as a notary public and acted as its clerk pro tem, and he ran the auction of the school section in October 1833 with John Bates as auctioneer."
         }
@@ -245,7 +245,7 @@
         {
           "name": "Gholson Kercheval",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "sub_agent",
           "note": "HE GUIDED THE MEN WHO BROUGHT EASTERN MONEY TO CHICAGO, and he commanded its militia. Charles Butler's 1881 letter: preparing to travel from Detroit in the summer of 1833 they 'arranged with a young man, named Gholson Kercheval, who was familiar with the route, having been connected with the Indian agency at Chicago, to accompany us all the way from Detroit to Chicago'. The 1832 militia agreement Andreas prints begins 'we, the undersigned, agree to submit ourselves, for the time being, to Gholson Kercheval, Captain, and George W. Dole and John S. C. Hogan, First and Second Lieutenants, as commanders of the Militia of the town of Chicago, until all apprehension of danger from the Indians may have subsided' and carries about forty signatures. He is trustee for three of the payments in the 1833 treaty's schedule - $800 each for Alexander and Paschal Muller. He was one of the twenty-eight electors of 10 August 1833 and died in California."
         }
@@ -266,14 +266,14 @@
         {
           "name": "Thomas Jefferson Vance Owen",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "indian_agent",
           "note": "BORN IN KENTUCKY, 5 APRIL 1801, AND DIED AT CHICAGO ON 15 OCTOBER 1835 - fifteen weeks after the scene date, which is why this household is one of the few in the dataset whose presence on 1 July 1835 is settled at both ends. Andreas, scan p. 195: 'Colonel Owen was born in Kentucky, April 5, 1801. He was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831 ... When the Town of Chicago was incorporated in 1833, Colonel Owen was chosen President of its first board of trustees. He died at Chicago, October 15, 1835.'"
         },
         {
           "name": "Owen's household, unnamed",
           "relationship": "household_member",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "A PLACEHOLDER FOR PEOPLE WHO CERTAINLY EXISTED AND WHOM NO SOURCE REACHED NAMES. Owen was a married man with children - his family is referred to in the Chicago literature and his son-in-law's line is traced in later chapters - but nothing this project holds names his wife or counts his children, so no person record is written for them and the household size is left as an admission rather than a number. This entry exists so that a reader of the dataset sees the gap instead of a household of one. It carries no age, no sex and no name, and it must not be counted as a person for any purpose but that."
         }

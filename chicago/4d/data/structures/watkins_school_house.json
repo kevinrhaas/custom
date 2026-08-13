@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637782.51,
         "rotation_deg": 180.0,
         "symbolic_location": "North side of Michigan Street between Cass Street and Rush Street (today the north side of West Hubbard Street between North Wabash Avenue and North Rush Street), on the north bank in Kinzie's Addition; fronting south onto Michigan.",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED WITHIN AN ATTESTED BLOCK FACE. Andreas gives a street, two cross streets and, per this project's dossier, the north side - which is a block face about 110 m long and no more. NO SOURCE PLACES THIS HOUSE ON A LOT, so the coordinate is the middle of that face and the confidence says so. METHOD, and the street names have all changed: Michigan Street on the north side is today's Hubbard Street, Cass Street is today's North Wabash Avenue, and Rush Street is unchanged - the equivalences this project's own ground control uses in data/traces/gcp/wright_1834_gcps.json, where GCP G6 is 'Cass St & Illinois St ... Cass is today's North Wabash Avenue'. The modern Hubbard Street / North Rush Street intersection centre was read from OpenStreetMap at EPSG:26916 E 448121.71, N 4637764.21 (OSM node 261149251, fetched 2026-08-11), which fixes both Rush's line and Michigan Street's; Cass/Wabash's line comes from the committed GCP G6 at E 448010.33. The mid-point of the block is E 448066.02; the north frontage line is 12.2 m north of Michigan Street's centre, half of an 80 ft street per Hathaway 1834; the footprint is centred on the block face and its south face set on that frontage. UNCERTAINTY: about 20 m from the georeference, plus about 55 m either way ALONG the block from the mid-block choice, plus an unknown setback. Facade bearing 180, due south onto Michigan Street, inferred from the street rather than from any statement. THIS IS A NORTH-SIDE BUILDING and is well outside the modelled terrain box; it stands on ground this project has not built.",
         "derivation": {
           "method": "not_derivable",
@@ -49,48 +49,48 @@
             6.096
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION, A MATERIAL OR A FORM - Andreas says 'a house' and nothing else. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule: an ordinary two-room house of the period, large enough that a schoolmaster could take a class in one room of it, which is the only functional constraint the evidence supplies. Everything about the shape is this record's."
       },
       "form": {
         "stories": {
           "value": 1.5,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED, AND IT IS THE ARCHETYPE'S OWN DEFAULT KEPT DELIBERATELY. Nothing attests a storey count. The frame_dwelling module argues that the story-and-a-half - a full storey with chambers in the roof lit from the gable ends over a low knee wall - 'is the characteristic form of these years', and defaults to it for that reason. Taking that default rather than inventing a fresh number is the same discipline docs/LIBERTIES.md L29 records about the bridge's pier spacing: a new figure would look like a finding and would not be one. The knee wall is left at the archetype's default too."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED, AND THE ARCHETYPE CHOICE RESTS ON IT. Andreas says 'a house'. Nothing says frame and nothing says log, and this project's dossier records the town's stock as 'overwhelmingly frame and log' without splitting it by division. Frame is adopted because the house stood in Kinzie's Addition, platted and selling in 1833, where the building going up was new building rather than the older log stock at the forks - which is an argument about a neighbourhood, not evidence about a house. Braced rather than balloon is the conservative reading for a building of unfixed date, the same argument peck_store makes. IF A SOURCE SAYS LOG, THIS RECORD MOVES TO THE log_dwelling ARCHETYPE, which is a bigger change than a value: the walls, the corners and the openings would all be different. That is stated here because the archetype is not itself a graded attribute and this is the only place the choice can be argued with."
         },
         "wall_height_m": {
           "value": 3.6,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.6 m is about 11 ft 10 in to the plate for a story-and-a-half: a full storey built up from the Green Tree Tavern's attested 7 1/2 ft ceiling plus floor structure, with the knee wall above it. It is this archetype's own default for the storey count, kept for the reason the storey count itself is. What is inferred is that the height falls in this range, not that it is exactly 3.6 m."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for a frame house of this period and region, and the archetype refuses any other over a story-and-a-half, since the half storey IS the roof and its chambers are lit from the gable ends. Typological derivation."
         },
         "roof_pitch_deg": {
           "value": 40.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 40 degrees is this archetype's default and is steeper than the 38 the project uses elsewhere for exactly the reason the module gives: the chambers are in the roof and a shallow pitch puts the ridge too low to stand under. Inferred from construction practice, not measured."
         },
         "plan": {
           "value": "hall_parlour",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED, and it is the archetype's default kept deliberately. hall_parlour is the commonest vernacular plan of the period and produces the plainest and least regular front the archetype builds - the door two thirds of the way along the wall, openings unevenly spaced. Nothing about this house's plan is attested. The bay count is left to the archetype to derive from the frontage rather than stated, which at 30 ft gives three openings."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Unpainted weathered clapboard is the reading this project adopts for frame buildings whose finish is unrecorded, and it is positively supported nearby: white paint was remarkable enough at Chicago in 1831 to be worth recording of the Sauganash. Not attested either way."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a house lived in and taught in through Chicago winters. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's - docs/LIBERTIES.md L26."
         }
       },
@@ -99,7 +99,7 @@
   ],
   "function": {
     "value": "dwelling; used as John Watkins' school in 1833, use on the scene date unattested",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -107,7 +107,7 @@
   },
   "occupants": {
     "value": "John Watkins, schoolmaster, teaching here in 1833; occupants on the scene date unattested",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

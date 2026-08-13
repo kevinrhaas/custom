@@ -5,7 +5,7 @@
  "head": "elston_daniel",
  "arrival": {
   "value": "1833-11-26",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -14,27 +14,27 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "elston_soap_candle_manufactory",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -53,11 +53,11 @@
    "id": "elston_daniel",
    "name": "Daniel Elston",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "soap_and_candle_maker",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "chicago_democrat_1833_11_26"
     ],

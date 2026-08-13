@@ -5,7 +5,7 @@
  "head": "wright_john",
  "arrival": {
   "value": "1832",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 2,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -22,27 +22,27 @@
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "works_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "NOT MODELLED. Wright's store is documented by his own advertisement of November 1833 and has no record in data/structures/, so there is nothing to link to. A second gap from the same advertisement: the TWO BUILDINGS he had to let are two more documented structures with no records, and they are evidence about the town's rental housing stock, which is otherwise invisible."
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -53,11 +53,11 @@
    "id": "wright_john",
    "name": "John Wright",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "merchant",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
@@ -74,11 +74,11 @@
    "id": "wright_john_s",
    "name": "John S. Wright",
    "relationship": "son",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "clerk",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],

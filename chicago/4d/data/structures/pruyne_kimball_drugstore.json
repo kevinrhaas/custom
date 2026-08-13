@@ -11,7 +11,7 @@
       "documented_range": {
         "from": "1834-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -22,7 +22,7 @@
         "utm_n": 4637391.1,
         "rotation_deg": 0.0,
         "symbolic_location": "South side of South Water Street between Clark Street and Dearborn Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "CONJECTURAL, AND THE STREET IS THE ONLY PART OF IT THAT IS EVIDENCE. Andreas places the drug store 'on South Water Street' and nothing narrower; this project's own dossier records the block as unattested. The point recorded here is on the south side of the Clark-to-Dearborn block, roughly mid-face, and NOTHING WHATEVER SUPPORTS THAT CHOICE OF BLOCK — it is a lot on the right street, chosen because that block had an unbuilt stretch between harmon_loomis_store and madore_beaubien_house wide enough to take a building without overlapping either. Placing a record where there is room is a rendering decision, not a research finding, and it is written here so a visitor can recover it. THE STREET RUNS ABOUT 630 M from Market to State, so the along-street uncertainty is of that order: this building could be anywhere on it. THE SIDE OF THE STREET IS THE ONE REASONED PART: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), so a store is on the south side. METHOD, for the cross-street position only: the modern West Upper Wacker Drive centreline was interpolated between the intersection centres at North Clark (EPSG:26916 E 447648.5, N 4637409.7) and North Dearborn (E 447771.8, N 4637409.0), read from OpenStreetMap 2026-08-11, and the south kerb taken 12.2 m south of it as half an 80 ft platted street. Working uncertainty about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS) and effectively the whole street along it. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
         "derivation": {
           "method": "not_derivable",
@@ -48,18 +48,18 @@
             6.096
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED. Nothing is attested about this building. 7.62 x 6.096 m is 25 x 20 ft, the parcel's small-shop rectangle: 20 ft is the documented depth of Hogan's store and 25 ft is the depth derived from the Green Tree Tavern's room module, used here as a frontage. A druggist's shop is the smallest kind of store on the street, which is the only reason the small rectangle rather than the 40 x 25 ft one is used. The documented South Water lot width of 55 ft is a cap and this sits well inside it."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "Nothing is attested. One is recorded because it is the smaller claim. Invention, tagged as such."
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -67,22 +67,22 @@
         },
         "wall_height_m": {
           "value": 3.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.0 m is about 10 ft, one commercial storey. It inherits the storey count's uncertainty, which is conjectural."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
         },
         "roof_pitch_deg": {
           "value": 33.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One is the minimum for a shop kept through Chicago winters, and compounding needs heat. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
         }
       },
@@ -91,7 +91,7 @@
   ],
   "function": {
     "value": "drug_store",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -99,7 +99,7 @@
   },
   "occupants": {
     "value": "Pruyne and Kimball, druggists",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

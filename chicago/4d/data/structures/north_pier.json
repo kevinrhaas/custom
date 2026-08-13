@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1835-06-01",
         "to": "1835-07-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "wikipedia_chicago_river"
@@ -24,7 +24,7 @@
         "utm_n": 4637707.73,
         "rotation_deg": 13.36,
         "symbolic_location": "The north side of the 1834 cut through the sand bar, running from the north bank at the river mouth east-south-east into Lake Michigan.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "wright_1834"
         ],
@@ -53,13 +53,13 @@
             7.62
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "ONE AXIS IS AN INTERPOLATION AND THE OTHER IS AN INVENTION, SO THE DRAWN SHAPE IS CONJECTURAL. The length, 274.32 m, is 900 ft, interpolated between the two year-end figures and argued on form.length_m — `inferred`, with reasoning. The width, 7.62 m, is 25 ft and is nobody's measurement: see form.width_m. Least-confident wins over a polygon exactly as it does over a mesh, so the outline a visitor sees is graded by its weaker axis, and the confidence view renders the whole pier as massing. THAT IS THE CORRECT PICTURE. A reader should take from this shape that the harbour works ran out into the lake from here on this line, and should take nothing at all from how far or how wide it is drawn. The polygon runs from v = 0 to v = +7.62 because the measured line is the pier's CHANNEL face and the structure stands on the far side of it; building the other way would put a 25-ft crib inside a 200-ft entrance. NO SOURCE IS CITED ON THIS BLOCK, DELIBERATELY. The measured axis is argued in this note and cited on the position, which is where the survey reading belongs; a conjectural block carrying a source_id would claim Wright supports a shape he cannot."
       },
       "form": {
         "length_m": {
           "value": 274.32,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1",
             "wikipedia_chicago_river"
@@ -68,17 +68,17 @@
         },
         "width_m": {
           "value": 7.62,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "TWENTY-FIVE FEET, AND NOBODY MEASURED IT. Not one source reached states how wide either Chicago pier was in the 1830s. THE MASTER SURVEY CANNOT SUPPLY IT EITHER, and that is worth stating precisely because the same sheet supplies this record's bearing and root. Wright 1834 is drawn at about 1:7,200. At that scale a 25-ft crib is 0.13 mm on the paper, about a fifth of the width of the pen that drew the pier line; the red bands on the sheet are line weight and nothing else, so the drafted pier carries a direction and a position and no thickness at all. Measuring the drawn band would be measuring the draughtsman's nib. THE VALUE IS THE ARCHETYPE'S CONSTANT, kept in one place so that both piers in this dataset inherit the same invention and a reader can find it once. The only argument behind it is that a gravity crib standing in up to twelve feet of water and carrying a working deck cannot be narrow, which is an argument for 'not narrow' and not an argument for twenty-five feet. Graded conjectural, and the footprint it draws is graded with it. WHAT WOULD SETTLE IT: the Chief Engineer's reports, a harbour survey of the 1840s or 1850s showing the piers in plan at a usable scale — J. D. Graham's 1857 and 1858 hydrographic surveys of the bar are named in docs/research/01-terrain-hydrology.md and are the best candidate — or any specification for the crib work."
         },
         "deck_height_m": {
           "value": 1.524,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "FIVE FEET ABOVE THE WATER, FROM A BAND WITH NO CITATION UNDER IT. docs/research/01-terrain-hydrology.md zone 24 gives the north pier's deck as '~+4 to +6' ft above the datum water surface, and the dossier cites nothing for it. The value is the middle of that band, and it is recorded inferred rather than documented for exactly that reason: this project could not trace the figure to a source, and the honest state in the meantime is the weaker tag. It is retained rather than replaced because it is the dossier's, because a crib pier's deck sits a course or two above the waterline by the nature of the thing, and because the alternative is having no height at all for a structure whose whole visible form is a horizontal line above the lake. WHAT HANGS ON IT: everything a visitor sees of this pier is the band between the waterline and this number, so an error of a foot is an error of a fifth in the only dimension the eye can check. A period view of the harbour mouth would settle it faster than any document."
         },
         "construction": {
           "value": "timber_crib",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "LOG CRIBS SUNK AND FILLED WITH STONE. NO SOURCE RECORD IN THIS PROJECT STATES IT IN SO MANY WORDS. docs/research/01-terrain-hydrology.md zone 24 names the structure 'North pier (timber crib)' and gives no citation for the construction; the texts this project does hold give the harbour works' chronology, appropriations, supervisors and lengths, and never say what the piers were made of. The value is an inference from period and regional practice, which is what the inferred tag is for: timber cribbing sunk and stone-filled was how every Great Lakes harbour pier of the 1830s was built, it is what was available to a works run out of a frontier garrison town with unlimited timber and no cement, and the same technique is what the town's own bridge builders used for their abutments. It is nevertheless a reading and not a report. WHAT WOULD SETTLE IT: the Chief Engineer's annual reports, or the 1833-35 contracts and vouchers for the Chicago harbour appropriation."
         }
       },
@@ -91,7 +91,7 @@
   ],
   "function": {
     "value": "harbour_works",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1",
       "wikipedia_chicago_river",

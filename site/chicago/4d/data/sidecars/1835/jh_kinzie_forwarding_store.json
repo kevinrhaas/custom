@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 257.3,
     "local_n": -6.6,
     "rotation_deg": 0.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "CONJECTURAL, AND ONLY THE STREET IS EVIDENCE. Andreas puts this store 'on South Water Street' and no closer; this project's dossier records the block as unattested. The point recorded here is on the south side of the Franklin-to-Wells block, and the choice of block carries ONE weak argument and no more: a forwarding and commission house wants wharfage, and the west end of South Water was the wharf and landing end nearest the forks and the South Branch, so the west end is a slightly better guess than the east. That is a reason, not evidence, and it is the difference between this record and a coin toss rather than the difference between a guess and a finding. THE ALONG-STREET UNCERTAINTY IS THE WHOLE STREET, about 630 m from Market to State. THE SIDE OF THE STREET IS REASONED: the north side of South Water was the river bank, wharves and landings (docs/research/04-structures-south.md § 12), so a store building is on the south side, however much its trade faced the water. METHOD, for the cross-street position only: the modern West Upper Wacker Drive centreline was interpolated between the intersection centres at North Franklin (EPSG:26916 E 447281.2, N 4637407.2) and North Wells (E 447402.5, N 4637411.6), read from OpenStreetMap 2026-08-11, and the south kerb taken 12.2 m south of it as half an 80 ft platted street. Working uncertainty about 20 m across the street from the georeference (data/datum.json, 17.5 m RMS) and the length of the street along it. Facade bearing 0, north onto South Water, inferred from the street rather than from any statement.",
     "symbolic_location": "South side of South Water Street between Franklin Street and Wells Street (today the south side of West Wacker Drive) — the street is attested, the block is not.",
@@ -51,19 +51,19 @@
         7.62
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED — the parcel's borrowed rectangle, 12.192 x 7.62 m = 40 x 25 ft, from the Green Tree Tavern's attested frontage and room module. Nothing is attested about this building. The larger rather than the smaller rectangle is used because a forwarding and commission house handles other men's goods and needs floor for them, which is an argument about the trade and not about the building. The documented South Water lot width of 55 ft is a cap and 40 ft sits inside it."
   },
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Nothing is attested. One is recorded because it is the smaller claim, though a forwarding house with a loft over would be as likely. Invention, tagged as such."
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -71,27 +71,27 @@
     },
     "wall_height_m": {
       "value": 3.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 3.6 m is about 12 ft: one storey built taller than a dwelling's, which is what stacked goods and a cart door need. It inherits the storey count's uncertainty, which is conjectural."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for premises worked through Chicago winters. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "forwarding_and_commission_store",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -99,7 +99,7 @@
     },
     "occupants": {
       "value": "J. H. Kinzie, forwarding and commission merchant",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -121,14 +121,14 @@
         {
           "name": "John Harris Kinzie",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "forwarding_and_commission",
           "note": "PRESIDENT OF THE BOARD OF TRUSTEES FOR THE YEAR BEFORE THE SCENE DATE. He was elected a trustee at the second town election of 11 August 1834 and chosen president, and the 1834 roster is: 'J. H. Kinzie, President; Isaac Harmon, Clerk and Collector; J. S. C. Hogan, Treasurer.' Whether he was still president on 1 July 1835 depends on the date of the third election, which Andreas places only 'in July, 1835' - see the research note."
         },
         {
           "name": "Juliette Augusta Magill Kinzie",
           "relationship": "wife",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "none_recorded",
           "note": "THE ONLY PERSON IN THIS PARCEL WHO IS ALSO ONE OF ITS SOURCES. Wau-Bun's descriptions of the forks in 1831 - Wentworth's tavern, the log cabins occupied by Robinson, the small square log building meant for a school, the white Sauganash with bright blue shutters - are the evidence behind four structure records in data/structures/. That a household member of the 1835 town is also the eye behind a quarter of the west-bank model is worth stating plainly, and it cuts both ways: Wau-Bun is a memoir of 1856 describing 1831 and this project grades it accordingly."
         }

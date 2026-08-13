@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 600.5,
     "local_n": 116.0,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "wright_1834",
@@ -55,44 +55,44 @@
         5.5
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED FOR THIS BUILDING. 7.3 x 5.5 m is 24 x 18 ft: a one-room schoolhouse large enough for the thirty scholars Watkins's subscription was written for. Every number is invented. BEWARE THE ONE DIMENSION THE SOURCE DOES GIVE, BECAUSE IT BELONGS TO A DIFFERENT BUILDING: Watkins's FIRST schoolroom, in the autumn of 1832, was Colonel Hamilton's horse stable — 'The building belonged to Colonel Hamilton, was erected for a horse stable and had been used as such. It was twelve feet square.' That is not this house, and a 12 ft square building is not what the second passage means by 'the first house built for a school in Chicago'."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOT ATTESTED, AND THE EVIDENCE POINTS BOTH WAYS AT THIS DATE. For log: everything standing on the north bank in the 1820s was log — Andreas, of 1823, 'All these houses were of logs' — and Wau-Bun's 1831 north bank is a ring of log buildings. Against it: 1833 is the year the town began building in frame, and the nearest comparable building we can date is frame — the Methodist meeting house put up at the corner of North Water and Clark Streets, one block away, on a contract signed 30 June 1834, 'a frame building twenty-six by thirty-eight feet; twelve-foot posts; sheeted and shingled roof'. A subscription schoolhouse built by two colonels in 1833 could be either. Log is recorded because it keeps this building with the older north-bank fabric it stood among, and it is tagged conjectural because that is a preference between two readings and not a derivation from evidence. THE CHOICE ALSO CHOSE THE ARCHETYPE: `log_dwelling` builds log by definition, so a frame reading would change the record's kind."
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A one-room subscription school of 1833 is a single-storey building by type, and nothing in the accounts of Watkins's schools suggests otherwise."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.5 m is about 8 ft — one storey of wall plus a sill, the figure this project uses for its other single-storey log buildings. Compare the Methodist meeting house's contracted 'twelve-foot posts' a block away, which is a different and taller building and is why this number is inference rather than borrowed."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for a building of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for a schoolroom kept through Chicago winters and the normal number for a single-pen building. The COUNT is the inference; where the stack stands and what it is made of are the archetype's — docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "school",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -114,7 +114,7 @@
         {
           "name": "John Watkins",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "schoolteacher",
           "note": "THE ONLY TEACHER IN THIS PARCEL DOCUMENTED AT WORK IN THE SCENE YEAR ITSELF, and the only person in it who contradicts Andreas in his own book. Of the purpose-built schoolhouse Andreas says 'it is stated in Mr. Wells's report that these gentlemen afterwards built a house on the north bank of the river, just east of Clark Street, in which Mr. Watkins continued his school, and that it was the first house built for a school in Chicago. But this does not recur to Mr. Watkins's recollection.' Watkins wrote to the Calumet Club from Joliet in later life and Andreas quotes him directly on his first quarter: thirty scholars subscribed for but only twelve attending, 'only four of them were white: the others were quarter, half, and three-quarters Indians', and after the first quarter he moved the school into a double log house on the West Side owned by the Rev. Jesse Walker, who lived in one end while Watkins taught in the other and preached in the schoolroom on Sundays. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact. It is the densest population passage this project holds and it is a retrospective, so a YEAR off it is documented and a MONTH is not."
         }

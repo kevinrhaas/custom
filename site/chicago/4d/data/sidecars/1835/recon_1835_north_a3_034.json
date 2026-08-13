@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 835.762,
     "local_n": 235.914,
     "rotation_deg": 180.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in North Division cluster wolcott_kinzie_core; between the north bank and Michigan Street",
@@ -46,14 +46,14 @@
         1.829
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "A 5 × 6 ft rectangle assigned by the reconstruction recipe within the A3 family band; no individual dimensions are documented."
   },
   "attributes": {
     "wall_height_m": {
       "value": 2.05,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "roof_type": {
       "value": "shed",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_pitch_deg": {
       "value": 18.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "construction": {
       "value": "plank",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "door": {
       "value": "man",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "door_side": {
       "value": "front",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "loft": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "board_gap_m": {
       "value": 0.012,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "function": {
       "value": "privy",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],

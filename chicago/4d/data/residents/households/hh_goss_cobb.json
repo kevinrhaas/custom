@@ -5,7 +5,7 @@
  "head": "goss_o",
  "arrival": {
   "value": "1833-06-01",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,12 +14,12 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Washington County, Vermont",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -27,17 +27,17 @@
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "goss_cobb_saddlery",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -56,11 +56,11 @@
    "id": "goss_o",
    "name": "O. Goss",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "derived",
    "sex": "male",
    "occupation": {
     "value": "saddler",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "chicago_democrat_1833_11_26"
     ],
@@ -76,11 +76,11 @@
    "id": "cobb_silas_b",
    "name": "Silas B. Cobb",
    "relationship": "partner",
-   "grade": "inferred",
+   "grade": "derived",
    "sex": "male",
    "occupation": {
     "value": "saddler",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

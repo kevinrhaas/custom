@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1833-08-16",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "baptisthistoryhomepage",
       "andreas_1884_v1"
@@ -26,7 +26,7 @@
     "local_e": 220.66,
     "local_n": -8.41,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "baptisthistoryhomepage",
       "andreas_1884_v1",
@@ -57,14 +57,14 @@
         7.62
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED, AND THE ARITHMETIC BEHIND IT IS STATED SO IT CAN BE ARGUED WITH. No source reached gives this building a dimension. What IS documented is its cost, about $900, and its storey count, two - and this dataset now holds two contemporary buildings whose cost AND area are both attested: the First Presbyterian Church at $600 for 1,000 sq ft ($0.60/sq ft) and St Mary's at $400 for 875 sq ft ($0.46/sq ft). Two storeys at the midpoint of that range, about $0.55 per square foot, buys roughly 1,600 sq ft of floor, i.e. about 800 sq ft per storey. 30 x 25 ft is 750 sq ft, which at $0.55 gives $825 against the attested $900 - close, and on the conservative side. 9.144 x 7.62 m is 30 x 25 ft, recorded converted with the original figures stated. THIS IS STILL AN INVENTION AND IT IS TAGGED AS ONE. The cost-per-square-foot of a two-storey building is not the cost-per-square-foot of a single-storey one (a second floor is cheap relative to a roof and a foundation, which would make the real building BIGGER than this), and both reference figures rest on the citation problem set out in the Presbyterian record's research note. The 25 ft depth is additionally borrowed - it is the depth of both churches and of the rectangle four other records in this dataset use - so the shape is a claim about the type and not about this building."
   },
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "baptisthistoryhomepage"
       ],
@@ -72,7 +72,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "baptisthistoryhomepage"
       ],
@@ -80,42 +80,42 @@
     },
     "wall_height_m": {
       "value": 4.9,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 4.9 m is about 16 ft: two storeys built up from the Green Tree Tavern's attested 7 1/2 ft ceiling plus floor structure and a sill course, which is the reading and very nearly the number this project gives its other two-storey frame buildings. What is inferred is that the height falls in this range, not that it is exactly 4.9 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for a two-storey frame building of this period and region, and this archetype refuses a shed roof over a range this deep. Typological derivation."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is the mid-range this project uses for period gable framing across the dataset. Inferred from construction practice, not measured."
     },
     "plan": {
       "value": "centre_passage",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "INVENTED, and it is the archetype's vocabulary rather than the building's - the same admission the two church records make. A building with a worship room below and a school room above has no hall-and-parlour behind its front wall. centre_passage is chosen because it produces a symmetrical front with a centred door, which is what a plain public building looked like and what a stair to a separate upper storey implies. Nothing about the real door position, or about whether the school had its own outside stair, is attested."
     },
     "bays": {
       "value": 3,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "INVENTED. No source describes an opening on this building. Three - a centred door with one window either side, repeated above - is the plainest symmetrical front the archetype will build, and the archetype would otherwise derive three from the 30 ft frontage anyway, so the number is at least not inflated. It is still a guess about a facade nobody described."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Unpainted weathered clapboard is the reading this project adopts for frame buildings whose finish is unrecorded, and it is positively supported nearby: the one 1833 Chicago church whose exterior finish IS attested, St Mary's, was expressly not painted, and the Sauganash's white paint was remarkable enough to be worth recording. Not attested either way."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for a building holding a school through Chicago winters, which this one demonstrably did - Grenville T. Sproat opened his boys' school in the upper storey on 17 December 1833. THE RESIDUAL UNCERTAINTY IS THE KIND OF HEATING, NOT THE FACT OF IT: a box stove with a sheet-iron pipe is as likely as a masonry stack, and this archetype builds only the stack. The COUNT is the inference; the stack's position, size and material are the archetype's - docs/LIBERTIES.md L26."
     },
     "storey_uses": {
       "value": "upper storey for school, lower storey for religious worship",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "baptisthistoryhomepage"
       ],
@@ -124,7 +124,7 @@
     },
     "cost_usd": {
       "value": 900,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "baptisthistoryhomepage"
       ],
@@ -133,7 +133,7 @@
     },
     "function": {
       "value": "meeting_house_and_school",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "baptisthistoryhomepage",
         "andreas_1884_v1"
@@ -142,7 +142,7 @@
     },
     "occupants": {
       "value": "First Baptist Church Society; Grenville T. Sproat's English and Classical School for Boys in the upper storey",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "baptisthistoryhomepage",
         "andreas_1884_v1"
@@ -165,7 +165,7 @@
         {
           "name": "Grenville Temple Sproat",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "schoolteacher",
           "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date."
         }
@@ -187,28 +187,28 @@
         {
           "name": "Dr John Taylor Temple",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "physician",
           "note": "THE BEST-DOCUMENTED ARRIVAL IN THE WHOLE PARCEL, and the only one that gives a month, a party size, an origin AND a reason in a single sentence. Andreas, scan p. 281: 'Dr. John T. Temple, who had arrived early in July, 1833, with his family, consisting of a wife and four children. He was a pious and earnest Baptist Christian, and came to Chicago from Washington, D. C., armed with a contract to carry the mails from Chicago to Fort Howard, Green Bay.' He then headed the subscription for the Temple Building with $100."
         },
         {
           "name": "Mrs Temple",
           "relationship": "wife",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "DOCUMENTED AS A PERSON AND UNNAMED IN THE SOURCE. Andreas counts her - 'his family, consisting of a wife and four children' - and never gives her name. She is written as a person because the source counts her; the record carries no forename because inventing one would be the exact failure this grade exists to prevent."
         },
         {
           "name": "The four Temple children",
           "relationship": "child",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "FOUR CHILDREN, COUNTED AND NOT NAMED. Andreas gives the number and nothing else - no names, no sexes, no ages. They are carried as one entry with a count in its name rather than as four invented individuals; the count is the evidence and the individuation is not. A later parcel with a church register or a school list would split this into four person records."
         },
         {
           "name": "Dr Peter Temple",
           "relationship": "brother",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "dentist",
           "note": "DOCUMENTED IN THE TOWN, DERIVED INTO THIS HOUSEHOLD. His own advertisement of 7 July 1834 places him 'adjacent to the dwelling of Dr. J. T. Temple' - i.e. NEXT DOOR, not in the same house - so grouping him here is a reconstruction and the note has to say so. He is also documented at Chicago after the scene date: on the executive committee of the Chicago Bible Society on 23 August 1835 and a secretary of the canal meeting of 7 November 1835. The brotherhood is Andreas's word ('through the influence of his brother') in a later passage."
         }

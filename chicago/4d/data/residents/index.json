@@ -5,9 +5,9 @@
  "dossier": "docs/RESEARCH/residents_1835.md",
  "vocabulary": {
   "grades": [
-   "attested",
-   "inferred",
-   "reconstructed"
+   "documented",
+   "derived",
+   "inferred"
   ],
   "relationships": [
    "head",
@@ -131,9 +131,9 @@
   "households": 152,
   "persons": 188,
   "by_grade": {
-   "attested": 76,
-   "inferred": 20,
-   "reconstructed": 92
+   "documented": 76,
+   "derived": 20,
+   "inferred": 92
   }
  },
  "households": [
@@ -144,7 +144,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "bates_auction_room",
@@ -158,8 +158,8 @@
    "division": "south",
    "persons": 3,
    "grades": {
-    "attested": 1,
-    "inferred": 2
+    "documented": 1,
+    "derived": 2
    },
    "lives_at": "jb_beaubien_homestead",
    "works_at": "jb_beaubien_homestead",
@@ -173,7 +173,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "madore_beaubien_house",
    "works_at": "madore_beaubien_house",
@@ -187,8 +187,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -202,7 +202,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "brickyard_north_side",
@@ -216,7 +216,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -230,8 +230,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": "brown_boarding_house",
    "works_at": "brown_boarding_house",
@@ -245,7 +245,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "cobweb_castle",
@@ -259,7 +259,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "chicago_democrat_office",
@@ -273,7 +273,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "carpenter_south_water_store",
@@ -287,7 +287,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -301,7 +301,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -315,7 +315,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "temple_lake_st_building",
@@ -329,7 +329,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "derived": 1
    },
    "lives_at": null,
    "works_at": "thomas_church_store",
@@ -343,7 +343,7 @@
    "division": "outside_town",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "clybourn_slaughterhouse",
@@ -357,7 +357,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -371,8 +371,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": "tremont_house_1",
    "works_at": "tremont_house_1",
@@ -386,7 +386,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "steamboat_hotel",
    "works_at": "steamboat_hotel",
@@ -400,7 +400,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "chicago_american_office",
@@ -414,7 +414,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "inferred": 2
+    "derived": 2
    },
    "lives_at": null,
    "works_at": "chicago_democrat_office",
@@ -428,7 +428,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "newberry_dole_warehouse",
@@ -442,7 +442,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": null,
@@ -456,7 +456,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "elston_soap_candle_manufactory",
@@ -470,7 +470,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -484,7 +484,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -498,7 +498,7 @@
    "division": "west",
    "persons": 2,
    "grades": {
-    "inferred": 2
+    "derived": 2
    },
    "lives_at": null,
    "works_at": "goss_cobb_saddlery",
@@ -512,7 +512,7 @@
    "division": "fort",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "fort_dearborn_commandants_quarters",
    "works_at": "fort_dearborn_palisade",
@@ -526,7 +526,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "derived": 1
    },
    "lives_at": "mansion_house",
    "works_at": "mansion_house",
@@ -540,7 +540,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "cobweb_castle",
    "works_at": null,
@@ -554,7 +554,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -568,7 +568,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "harmon_loomis_store",
@@ -582,7 +582,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "harmon_log_cabin",
    "works_at": null,
@@ -596,8 +596,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": "heacock_house_monroe",
    "works_at": null,
@@ -611,7 +611,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "hogan_store",
@@ -625,7 +625,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "old_bank_building",
@@ -639,7 +639,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d5_004",
    "works_at": "inf_bakery_lake",
@@ -653,7 +653,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d6_012",
    "works_at": "inf_barber_shop",
@@ -667,7 +667,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d6_021",
    "works_at": "recon_1835_north_w1_018",
@@ -681,7 +681,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d5_016",
    "works_at": "recon_1835_south_w1_023",
@@ -695,7 +695,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_artisan_dwelling_west_a",
    "works_at": "inf_blacksmith_shop_west",
@@ -709,7 +709,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_h1_007",
    "works_at": "recon_1835_north_h1_007",
@@ -723,7 +723,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_h2_030",
    "works_at": "recon_1835_north_h2_030",
@@ -737,7 +737,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_h3_045",
    "works_at": "recon_1835_north_h3_045",
@@ -751,7 +751,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d2_003",
    "works_at": null,
@@ -765,7 +765,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d2_014",
    "works_at": null,
@@ -779,7 +779,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_boatman_cabin_north",
    "works_at": null,
@@ -793,7 +793,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_brickmaker_dwelling_north",
    "works_at": null,
@@ -807,7 +807,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d5_011",
    "works_at": "inf_butcher_market",
@@ -821,7 +821,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_north_d3_002",
    "works_at": "recon_1835_north_w2_005",
@@ -835,7 +835,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_north_d3_006",
    "works_at": null,
@@ -849,7 +849,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_north_d3_016",
    "works_at": null,
@@ -863,7 +863,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_north_d3_024",
    "works_at": null,
@@ -877,7 +877,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_north_d3_038",
    "works_at": null,
@@ -891,7 +891,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_carpenter_dwelling_north",
    "works_at": null,
@@ -905,7 +905,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d3_001",
    "works_at": "recon_1835_south_w2_026",
@@ -919,7 +919,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d3_008",
    "works_at": null,
@@ -933,7 +933,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d3_013",
    "works_at": null,
@@ -947,7 +947,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d3_017",
    "works_at": null,
@@ -961,7 +961,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_041",
    "works_at": "recon_1835_north_f1_022",
@@ -975,7 +975,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d5_028",
    "works_at": "recon_1835_south_c3_015",
@@ -989,7 +989,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d5_034",
    "works_at": "recon_1835_south_c3_037",
@@ -1003,7 +1003,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_026",
    "works_at": "recon_1835_north_c1_020",
@@ -1017,7 +1017,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d4_025",
    "works_at": "recon_1835_south_w3_029",
@@ -1031,7 +1031,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "reconstructed": 2
+    "inferred": 2
    },
    "lives_at": "recon_1835_south_d4_030",
    "works_at": "inf_cooperage_south",
@@ -1045,7 +1045,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_cooperage_south_branch",
    "works_at": "inf_cooperage_south_branch",
@@ -1059,7 +1059,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d3_042",
    "works_at": null,
@@ -1073,7 +1073,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d3_055",
    "works_at": null,
@@ -1087,7 +1087,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_043",
    "works_at": null,
@@ -1101,7 +1101,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_056",
    "works_at": null,
@@ -1115,7 +1115,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d2_005",
    "works_at": null,
@@ -1129,7 +1129,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_037",
    "works_at": "recon_1835_north_c2_027",
@@ -1143,7 +1143,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_c2_007",
    "works_at": "recon_1835_south_c2_007",
@@ -1157,7 +1157,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_c2_036",
    "works_at": "recon_1835_south_c2_036",
@@ -1171,7 +1171,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_grocery_west",
    "works_at": "inf_grocery_west",
@@ -1185,7 +1185,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d6_031",
    "works_at": "inf_gunsmith_shop",
@@ -1199,7 +1199,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d6_020",
    "works_at": "inf_harness_shop",
@@ -1213,7 +1213,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_004",
    "works_at": null,
@@ -1227,7 +1227,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d3_022",
    "works_at": "recon_1835_south_w4_032",
@@ -1241,7 +1241,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_001",
    "works_at": null,
@@ -1255,7 +1255,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_013",
    "works_at": null,
@@ -1269,7 +1269,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_023",
    "works_at": null,
@@ -1283,7 +1283,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_053",
    "works_at": null,
@@ -1297,7 +1297,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_054",
    "works_at": null,
@@ -1311,7 +1311,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d1_060",
    "works_at": null,
@@ -1325,7 +1325,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_labourer_shanty_north_a",
    "works_at": null,
@@ -1339,7 +1339,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_labourer_shanty_north_b",
    "works_at": null,
@@ -1353,7 +1353,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d1_021",
    "works_at": null,
@@ -1367,7 +1367,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d1_033",
    "works_at": null,
@@ -1381,7 +1381,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_labourer_shanty_west_a",
    "works_at": null,
@@ -1395,7 +1395,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_labourer_shanty_west_b",
    "works_at": null,
@@ -1409,7 +1409,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d2_029",
    "works_at": "inf_laundry_north",
@@ -1423,7 +1423,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d2_046",
    "works_at": null,
@@ -1437,7 +1437,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d2_024",
    "works_at": null,
@@ -1451,7 +1451,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_012",
    "works_at": null,
@@ -1465,7 +1465,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_mason_dwelling_north",
    "works_at": null,
@@ -1479,7 +1479,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d4_002",
    "works_at": null,
@@ -1493,7 +1493,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d4_006",
    "works_at": null,
@@ -1507,7 +1507,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_packer_dwelling",
    "works_at": "recon_1835_south_f2_039",
@@ -1521,7 +1521,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_057",
    "works_at": "recon_1835_north_c1_047",
@@ -1535,7 +1535,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d7_035",
    "works_at": "physicians_office",
@@ -1549,7 +1549,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d3_027",
    "works_at": null,
@@ -1563,7 +1563,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_sawyer_dwelling_a",
    "works_at": "inf_sawpit_shed",
@@ -1577,7 +1577,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_sawyer_dwelling_b",
    "works_at": "inf_sawpit_shed",
@@ -1591,7 +1591,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d5_019",
    "works_at": "recon_1835_north_w5_040",
@@ -1605,7 +1605,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d4_009",
    "works_at": "inf_shoemaker_shop",
@@ -1619,7 +1619,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d4_014",
    "works_at": "recon_1835_south_c1_003",
@@ -1633,7 +1633,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d6_044",
    "works_at": null,
@@ -1647,7 +1647,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_south_d4_019",
    "works_at": "inf_tailor_shop",
@@ -1661,7 +1661,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d7_031",
    "works_at": "recon_1835_north_t1_028",
@@ -1675,7 +1675,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_017",
    "works_at": "recon_1835_north_a1_008",
@@ -1689,7 +1689,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_025",
    "works_at": "recon_1835_north_a1_032",
@@ -1703,7 +1703,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "recon_1835_north_d4_039",
    "works_at": "recon_1835_north_a1_036",
@@ -1717,7 +1717,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_teamster_dwelling_south",
    "works_at": "recon_1835_south_a1_046",
@@ -1731,7 +1731,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_teamster_dwelling_west",
    "works_at": "inf_teamster_stable_west",
@@ -1745,7 +1745,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "reconstructed": 1
+    "inferred": 1
    },
    "lives_at": "inf_artisan_dwelling_west_b",
    "works_at": "inf_wheelwright_shop_west",
@@ -1759,7 +1759,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "green_tree_tavern",
    "works_at": "green_tree_tavern",
@@ -1773,7 +1773,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "h_jones_store",
@@ -1787,7 +1787,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "cobweb_castle",
@@ -1801,7 +1801,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "chicago_democrat_office",
@@ -1815,7 +1815,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "james_kinzie_house",
    "works_at": null,
@@ -1829,7 +1829,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "jh_kinzie_forwarding_store",
@@ -1843,7 +1843,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "robert_kinzie_store",
@@ -1857,7 +1857,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "derived": 1
    },
    "lives_at": null,
    "works_at": "mason_blacksmith_shop",
@@ -1871,7 +1871,7 @@
    "division": "fort",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "fort_dearborn_officers_quarters",
    "works_at": null,
@@ -1885,7 +1885,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "blacksmith_shop_state_st",
@@ -1899,7 +1899,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -1913,7 +1913,7 @@
    "division": "north",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "miller_tannery",
@@ -1927,7 +1927,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -1941,8 +1941,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": "exchange_coffee_house",
    "works_at": "exchange_coffee_house",
@@ -1956,7 +1956,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "dearborn_street_drawbridge",
@@ -1970,8 +1970,8 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "documented": 1,
+    "derived": 1
    },
    "lives_at": null,
    "works_at": "cobweb_castle",
@@ -1985,7 +1985,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -1999,7 +1999,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "peck_store",
    "works_at": "peck_store",
@@ -2013,7 +2013,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "pierce_blacksmith_shop",
@@ -2027,7 +2027,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": "peck_store",
    "works_at": "first_presbyterian_church",
@@ -2041,7 +2041,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "blacksmith_shop_state_st",
@@ -2055,7 +2055,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "pruyne_kimball_drugstore",
@@ -2069,8 +2069,8 @@
    "division": "west",
    "persons": 3,
    "grades": {
-    "attested": 2,
-    "inferred": 1
+    "documented": 2,
+    "derived": 1
    },
    "lives_at": "robinson_caldwell_cabins",
    "works_at": "robinson_caldwell_cabins",
@@ -2084,7 +2084,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2098,7 +2098,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2112,7 +2112,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "temple_building",
@@ -2126,7 +2126,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "st_marys_church",
    "works_at": "st_marys_church",
@@ -2140,7 +2140,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2154,7 +2154,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": "western_hotel",
    "works_at": "western_hotel",
@@ -2168,7 +2168,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -2182,7 +2182,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": "south_branch_raft_bridge",
@@ -2196,7 +2196,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "st_marys_church",
@@ -2210,8 +2210,8 @@
    "division": "south",
    "persons": 4,
    "grades": {
-    "attested": 1,
-    "inferred": 3
+    "documented": 1,
+    "derived": 3
    },
    "lives_at": null,
    "works_at": "temple_building",
@@ -2225,7 +2225,7 @@
    "division": "south",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "frederick_thomas_shop",
@@ -2239,7 +2239,7 @@
    "division": "west",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "derived": 1
    },
    "lives_at": "wolf_point_tavern",
    "works_at": "wolf_point_tavern",
@@ -2253,7 +2253,7 @@
    "division": "north",
    "persons": 1,
    "grades": {
-    "attested": 1
+    "documented": 1
    },
    "lives_at": null,
    "works_at": "north_side_school_1833",
@@ -2267,7 +2267,7 @@
    "division": "south",
    "persons": 2,
    "grades": {
-    "attested": 2
+    "documented": 2
    },
    "lives_at": null,
    "works_at": null,

@@ -44,7 +44,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute.
 # See docs/GLB-CONTRACT.md. Duplicated from the other params modules rather than
 # imported so that neither can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 WALL_KINDS = ("picket_stockade", "worm_fence")
 CONSTRUCTIONS = ("log", "hewn_log", "split_rail")
@@ -135,7 +135,7 @@ class PalisadeParams:
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
 
-    def conf(self, attr: str, default: str = "reconstructed") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         """The _CONFIDENCE float for one attribute."""
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
@@ -245,7 +245,7 @@ def from_phase(phase: dict) -> PalisadeParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="reconstructed"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -265,7 +265,7 @@ def from_phase(phase: dict) -> PalisadeParams:
             f"re-anchor the polygon and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     p = PalisadeParams(
         width_m=round(width, 3),

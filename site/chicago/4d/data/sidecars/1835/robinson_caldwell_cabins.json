@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1831-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "kinzie_waubun_1856"
     ],
@@ -24,7 +24,7 @@
     "local_e": -92.0,
     "local_n": -24.0,
     "rotation_deg": 90.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "A POINT CHOSEN IN A ROW, NOT A DERIVATION, so it is tagged conjectural and cites no sources. What Wau-Bun gives is an ORDER along the west bank and no distances: 'Facing down the river from the west was, first a small tavern kept by Mr. Wentworth ... Near him were two or three log cabins occupied by Robinson ... A little remote from these residences was a small square log building, originally designed for a school-house.' So the cabins lie between this project's wolf_point_tavern (north face at local N -45) and its walker_meeting_house (south face at local N -10), and 'a little remote' says the meeting house stands clear of them. This coordinate splits that gap, about 20 m north of the tavern and 14 m south of the meeting house, and sets the cabin back from the water on the same frontage. THE UNCERTAINTY IS THE ROW'S, NOT A METRE FIGURE: both neighbours are themselves placed from bank geometry rather than from any surviving intersection — the Walker meeting house's own position is tagged conjectural and may be on the wrong bank entirely — so this record inherits two soft positions and adds a free choice between them. Treat it as good to about ±40 m along the bank and no better. Facade bearing 90, due east onto the river, follows Wau-Bun's 'facing down the river from the west' and the bearing this project gives the tavern and the meeting house in the same row.",
     "symbolic_location": "West bank at Wolf Point, near Wentworth's tavern (the Wolf Point Tavern), in the river-front row between the tavern and the log meeting house to the north.",
@@ -51,14 +51,14 @@
         5
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED. 6.5 x 5 m is about 21 x 16 ft, an ordinary single-pen log cabin of the type and period. Every number is invented. AND THE POLYGON IS ONE CABIN WHERE THE SOURCE COUNTS TWO OR THREE: see form.cabin_count, which records the number and declares that the model does not build it."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "kinzie_waubun_1856"
       ],
@@ -66,7 +66,7 @@
     },
     "cabin_count": {
       "value": "two or three",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "kinzie_waubun_1856"
       ],
@@ -75,32 +75,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A single-pen log cabin is single-storey by type, and everything else in this row is described as low."
     },
     "wall_height_m": {
       "value": 2.4,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.4 m is about 8 ft, a single-pen log wall — the same reading this project gives the Sauganash's 1829 cabin."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low log cabin roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the normal number for a single-pen log cabin lived in through Chicago winters. The COUNT is the inference; position, size and material are the archetype's — docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "dwelling",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "kinzie_waubun_1856"
       ],
@@ -123,21 +123,21 @@
         {
           "name": "Alexander Robinson (Che-che-pin-qua)",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "trader",
           "note": "A CHIEF, A LICENSED TRADER AND A RECORDED VOTER OF THE SETTLEMENT. Andreas: born at Mackinaw about 1762, his father a Scots trader who had been an officer in the British army and his mother an Ottawa woman; he sheltered the Kinzie family after the 1812 massacre and carried Captain and Mrs Heald three hundred miles by bark canoe to Mackinaw. His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830. He married Catherine Chevalier, daughter of the chief Francois Chevalier, on 28 September 1826, John Kinzie officiating as justice of the peace, and became chief of her father's band at his death. By the treaty of Prairie du Chien of July 1829 he was granted two sections on the Des Plaines; by Camp Tippecanoe in 1832 a life annuity of $200; and by the Chicago treaty of September 1833 a further $300 a year for life."
         },
         {
           "name": "Catherine Chevalier Robinson",
           "relationship": "wife",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "none_recorded",
           "note": "NAMED, WITH A MARRIAGE DATE, A FATHER AND A DEATH DATE - which makes her one of only four women in this parcel documented in her own right rather than as 'Mrs'. Andreas: married 28 September 1826 by John Kinzie, J.P.; daughter of Francois and Mary Ann Chevalier, her father chief of a united band of Potawatomi, Ottawa and Chippewa with his village at the Calumet; she died 7 August 1860 and is buried with her husband on the bank of the Des Plaines."
         },
         {
           "name": "The rest of the Robinson household, unnamed",
           "relationship": "household_member",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "AN ADMISSION, NOT A PERSON. Wau-Bun describes 'two or three log cabins occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions' - so the household extended beyond the couple and the source neither names nor counts it. Andreas has him settling on the Des Plaines reservation 'with his family' after the removal, and two sons and a daughter-in-law buried beside him. Do not count this entry as a person."
         }

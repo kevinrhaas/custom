@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1840-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire278",
       "drloih_hotels"
@@ -24,7 +24,7 @@
     "local_e": -143.05,
     "local_n": -281.67,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicagology_prefire278",
       "drloih_hotels",
@@ -63,7 +63,7 @@
         18.29
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire278"
     ],
@@ -72,7 +72,7 @@
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire278"
       ],
@@ -80,7 +80,7 @@
     },
     "construction": {
       "value": "balloon_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire278"
       ],
@@ -88,44 +88,44 @@
     },
     "cladding": {
       "value": "clapboard",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not directly attested. Clapboard is the standard cladding for a frame building of this type and period.",
       "geometry": "simplified"
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source describes a finish. Unpainted weathered clapboard is the default for a working teamsters' house on the west side; by 1834-35 painted siding was becoming less remarkable in Chicago than it had been in 1831, so this is a weaker inference here than for the Wolf Point log buildings. Not attested either way."
     },
     "wall_height_m": {
       "value": 5.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested for this building. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course. What is inferred is that the wall height falls in this range, not that it is exactly 5.5 m. Compare the Green Tree, where an attested 7 1/2 ft ceiling gives a firmer 5.0 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Gable is the near-universal roof form for frame buildings of this type, period and region. An L in plan implies two intersecting gables, which the archetype does not yet build."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is mid-range for period gable framing. Inferred from construction practice, not measured."
     },
     "fenestration": {
       "value": "regular_bays",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source describes the elevation. A regularly fenestrated front is the standard disposition for a two-storey hotel of this size, and that it was regularly fenestrated is safe; the bay COUNT and SPACING are inference.",
       "geometry": "simplified"
     },
     "gallery": {
       "value": false,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "No evidence either way, and no depiction of this building is held by the project. False is the default, not a finding. Worth flagging as genuinely open: a wagon house with entrances to the yard from both streets is exactly the building type that often carried a porch over the front door, and nothing here rules one out."
     },
     "stables": {
       "value": true,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire278"
       ],
@@ -134,12 +134,12 @@
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A two-storey hotel of this size needed several fireplaces; two stacks is the normal minimum for an L of these proportions. The number is inference."
     },
     "function": {
       "value": "tavern_inn",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire278"
       ],
@@ -147,7 +147,7 @@
     },
     "occupants": {
       "value": "W. H. Stow, builder and proprietor",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire278",
         "drloih_hotels"
@@ -171,7 +171,7 @@
         {
           "name": "William H. Stow",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "hotel_keeper",
           "note": "Both sources have him building and operating the house, and he came to Chicago about 1833, so he is present at the scene date on either build date this project holds for the Western. Andreas's later city rosters carry a William H. Stow as an alderman in 1839, which corroborates the man's continuing residence and says nothing about 1835."
         }

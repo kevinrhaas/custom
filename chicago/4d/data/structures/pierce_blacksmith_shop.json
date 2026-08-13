@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-10-08",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637264.8,
         "rotation_deg": 0.0,
         "symbolic_location": "Lake Street at the corner of Canal Street (historically Lake and West Water), west side, one block west of the river — modelled on the SOUTH-EAST corner. Which of the four corners is not attested.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "osm_streets_2026"
@@ -53,13 +53,13 @@
             7
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "PLACEHOLDER — NO DIMENSION IS ATTESTED, AND THE BUILDING IS MODELLED AT ITS ENLARGED SIZE. Andreas records that Pierce 'was soon obliged to enlarge his shop' and gives no date for it and no size at either stage (scan p. 1161), so this polygon is the shop as it stood after that enlargement, which is the state the scene date needs. 9 x 7 m is about 30 x 23 ft: room for a forge, an anvil, a horse standing in to be shod, and the plough work he took up in the spring of 1834. The 9 m fronts Lake Street and the 7 m is the depth. Every number is invented and the polygon cites no sources."
       },
       "form": {
         "construction": {
           "value": "light_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -67,17 +67,17 @@
         },
         "wall_height_m": {
           "value": 3.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.0 m is about 10 ft at the eave: headroom to swing a sledge and to stand a horse under, with air over a forge. Stated rather than left to the archetype's size-aware default of 3.14 m for this footprint, which is close enough that the difference is not the point — the point is that the number is the record's and its reasoning is on the record."
         },
         "door": {
           "value": "stable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No source describes an opening. 'stable' is the archetype's 1.35 m clear doorway, sized for a horse led through in hand, and shoeing is half of what a frontier smith did. The wider 'wagon' opening is tempting because Pierce ironed wagons and stage gear, but that work is done to the ironwork rather than to the assembled vehicle, and a 2.9 m opening would need a taller wall than this record claims."
         },
         "forge": {
           "value": "forge, bellows and chimney",
-          "confidence": "inferred",
+          "confidence": "derived",
           "geometry": "absent",
           "sources": [
             "andreas_1884_v1"
@@ -90,7 +90,7 @@
   ],
   "function": {
     "value": "blacksmith_shop",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -98,7 +98,7 @@
   },
   "occupants": {
     "value": "Asahel Pierce",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],

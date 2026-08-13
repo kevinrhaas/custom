@@ -5,7 +5,7 @@
  "head": "thomas_frederick",
  "arrival": {
   "value": "1835-06-08",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,27 +14,27 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "frederick_thomas_shop",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -53,11 +53,11 @@
    "id": "thomas_frederick",
    "name": "Frederick Thomas",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "barber_surgeon",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],

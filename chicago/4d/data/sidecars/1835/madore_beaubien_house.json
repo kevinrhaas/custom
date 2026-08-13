@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1831-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 677.8,
     "local_n": -4.5,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -54,14 +54,14 @@
         5.486
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED, but invented inside a described plan rather than freely: Andreas says two rooms and says log, so the building is a double pen, and 9.144 x 5.486 m is 30 x 18 ft, two rooms of about 15 x 18 ft. THE NUMBER IS DELIBERATELY SMALLER THAN THE ONE COMPARABLE BUILDING THIS DATASET HAS EVIDENCE FOR. Hogan's store, the only log footprint here that is documented, is 45 x 20 ft and held a store and a post office side by side, and Andreas offers that size as an example of how LITTLE room the town needed. A house Andreas describes only as 'a two roomed log house' should not be modelled as large as that, so the frontage is cut by a third and the depth by two feet. The reasoning is about the type; nothing in it is about this building. The 55 ft South Water lot width is a documented cap and this sits well inside it."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -69,32 +69,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not stated. Andreas divides the building by ROOMS and not by floors — 'two roomed' — which is how a single-storey double pen is described, and a two-storey log house at Chicago in 1831 would be remarkable enough to say. Inference from the description and the type, not from a statement."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the height falls in this range, not that it is exactly 2.5 m — the same reading and the same number this project gives Hogan's store and the Walker meeting house, its other single-storey log buildings."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and it is what a double pen of this plan is roofed with unless something says otherwise."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested, and nothing describes a stack on this building at all. One is the minimum for a two-room house lived in and traded from through Chicago winters. A double pen commonly carried a stack at each gable and the count could as easily be two; one is recorded because it is the smaller claim. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "dwelling_and_store",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -102,7 +102,7 @@
     },
     "occupants": {
       "value": "Madore Beaubien",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -124,7 +124,7 @@
         {
           "name": "Madore Benjamin Beaubien",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "merchant",
           "note": "ELECTED ONE OF THE FIVE FIRST TRUSTEES OF THE TOWN on 10 August 1833 with 23 of 28 votes - the third-highest poll. He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman, which makes him the only person in this parcel who is both a documented office-holder of the incorporated town and a documented member of a Native family. THE RECORD STATES THAT AND STOPS THERE."
         }

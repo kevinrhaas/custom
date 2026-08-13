@@ -18,7 +18,6 @@ import { createWorld } from './world.js';
 import { createTerrain, enuToWorld } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
-import { createFacadeView } from './facade.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
 import { createPointerLockBackend } from './controls/pointerlock.js';
 import { createTouchBackend, prefersTouch } from './controls/touch.js';
@@ -137,9 +136,6 @@ async function boot() {
   });
 
   const confidence = createConfidenceView();
-  // What five years of Chicago weather did to a wall, from each record's own
-  // finish and its own earliest claimed date. See facade.js.
-  const facade = createFacadeView();
 
   // The ground, the river, and the heightfield the walker stands on, all from
   // the scene's terrain epoch. Awaited: everything after this asks it how high
@@ -153,7 +149,7 @@ async function boot() {
   });
   scene3d.add(terrain.group);
 
-  const buildings = createBuildings({ registry: loaded.registry, confidence, terrain, facade });
+  const buildings = createBuildings({ registry: loaded.registry, confidence, terrain });
   problems.push(...buildings.problems);
   scene3d.add(buildings.group);
 
@@ -588,7 +584,7 @@ async function boot() {
 
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
-    backends, streets, flora, trees, navigation, facade,
+    backends, streets, flora, trees, navigation,
     // Where the dataset was loaded from, so a gate can re-read an authored
     // record and ask whether what it says reached the renderer — rather than
     // comparing the renderer against a copy of itself.
@@ -598,10 +594,6 @@ async function boot() {
     get detail() { return detailLevel; },
     setDetail(level) { return applyDetail(level); },
     setConfidenceView(on) { return hud.setConfidence(!!on, { announce: false }); },
-    /** Harness-only: switch the facade weathering off, so a gate can prove the
-     *  channel reaches pixels rather than only reaching the uniform. Never a
-     *  visitor-facing control — what a building's face did is not a preference. */
-    setFacadeView(on) { return facade.set(!!on); },
     setFly(on) { return hud.setFly(!!on, { announce: false }); },
     get flying() { return walker.state.flying; },
     get altitude() { return walker.state.altitude; },
@@ -703,12 +695,6 @@ function readbackSignature(renderer, grid) {
   gl.readPixels(0, 0, w, h, gl.RGBA, gl.UNSIGNED_BYTE, px);
 
   const cells = new Array(grid * grid).fill(0);
-  // Chroma alongside luminance, because a luminance grid is blind to the one
-  // thing facade.js does: weathering there is the REMOVAL of colour, mixing each
-  // fragment toward its own luminance, which by construction moves luminance
-  // almost not at all. A gate that could only see brightness would report that
-  // treatment as no change at all and pass a shader that never ran.
-  const chroma = new Array(grid * grid).fill(0);
   const counts = new Array(grid * grid).fill(0);
   let sum = 0;
   let lit = 0;
@@ -723,10 +709,6 @@ function readbackSignature(renderer, grid) {
       if (lum > 8) lit++;
       const c = row * grid + Math.min(grid - 1, (x * grid / w) | 0);
       cells[c] += lum;
-      // Chroma as max-minus-min of the three channels: cheap, display-space, and
-      // exactly the quantity desaturation takes away.
-      chroma[c] += Math.max(px[i], px[i + 1], px[i + 2])
-                 - Math.min(px[i], px[i + 1], px[i + 2]);
       counts[c]++;
     }
   }
@@ -736,7 +718,6 @@ function readbackSignature(renderer, grid) {
     mean: sum / (n || 1),
     litFraction: lit / (n || 1),
     cells: cells.map((v, i) => Math.round(v / (counts[i] || 1))),
-    chroma: chroma.map((v, i) => Math.round((v / (counts[i] || 1)) * 10) / 10),
   };
 }
 

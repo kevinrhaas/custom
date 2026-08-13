@@ -17,7 +17,7 @@
  * How each level renders when the view is on:
  *
  *   documented   unchanged
- *   derived      lerped toward amber
+ *   inferred     lerped toward amber
  *   inferred     screen-door dithered translucent massing — an ordered 4x4
  *                Bayer threshold against gl_FragCoord with a `discard`, IN THE
  *                OPAQUE PASS. No blending, no depth sorting, no per-object
@@ -29,33 +29,16 @@
 import * as THREE from 'three';
 
 export const LEVELS = {
-  attested: 0.0,
-  inferred: 0.5,
-  reconstructed: 1.0,
+  documented: 0.0,
+  derived: 0.5,
+  inferred: 1.0,
 };
 
 /** Level name for a raw channel value — the inverse of LEVELS, band-wise. */
 export function levelOf(value) {
-  if (value >= 0.75) return 'reconstructed';
-  if (value >= 0.25) return 'inferred';
-  return 'attested';
-}
-
-/**
- * The record's own EXISTENCE grade: the confidence of `documented_range`, which
- * is the claim that this building was standing at the scene date. It is a
- * different question from every other grade on the record — `footprint` says how
- * sure we are of a size, `placement.position_confidence` how sure we are of a
- * spot, and this one says whether there was anything there at all.
- *
- * Absent is not `documented`. A record that never states the grade is a record
- * that never made the claim, so the honest reading is the worst one — and the
- * caller shouts, because silently painting unmarked geometry as attested is the
- * failure this whole view exists to prevent.
- */
-export function existenceLevelOf(sidecar) {
-  const level = sidecar?.documented_range?.confidence;
-  return Object.hasOwn(LEVELS, level) ? level : null;
+  if (value >= 0.75) return 'inferred';
+  if (value >= 0.25) return 'derived';
+  return 'documented';
 }
 
 const VERTEX_DECL = /* glsl */`
@@ -83,9 +66,9 @@ const VERTEX_ASSIGN = /* glsl */`
 const FRAGMENT_DECL = /* glsl */`
 varying float vConfidence;
 uniform float uConfMode;
-uniform float uReconAlpha;
+uniform float uInferredAlpha;
+uniform vec3 uDerivedTint;
 uniform vec3 uInferredTint;
-uniform vec3 uReconTint;
 
 // Ordered 4x4 Bayer matrix. Screen-door translucency: a stable per-pixel
 // threshold means no sorting, no blending, and no order dependence between the
@@ -106,17 +89,17 @@ float chicago_bayer4(vec2 fragXY) {
 
 // Crisp bands, because the contract's values are exactly 0.0 / 0.5 / 1.0 — but
 // they degrade sanely if a generator ever emits something in between.
-float chicago_wInferred(float c)  { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
-float chicago_wRecon(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
+float chicago_wDerived(float c)  { return 1.0 - min(abs(c - 0.5) * 4.0, 1.0); }
+float chicago_wInferred(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
 `;
 
 const FRAGMENT_DISCARD = /* glsl */`
   // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
   // bad value cannot reach the arithmetic at all when the view is switched off.
   if (uConfMode > 0.0) {
-    float inf = chicago_wRecon(vConfidence) * uConfMode;
+    float inf = chicago_wInferred(vConfidence) * uConfMode;
     if (inf > 0.0) {
-      float alpha = mix(1.0, uReconAlpha, inf);
+      float alpha = mix(1.0, uInferredAlpha, inf);
       if (chicago_bayer4(gl_FragCoord.xy) >= alpha) discard;
     }
   }
@@ -126,10 +109,10 @@ const FRAGMENT_TINT = /* glsl */`
   // Same guard as the discard: when the view is off, diffuseColor is not touched
   // by a single instruction. See VERTEX_ASSIGN for why that is load-bearing.
   if (uConfMode > 0.0) {
-    float wDer = chicago_wInferred(vConfidence) * uConfMode;
-    float wInf = chicago_wRecon(vConfidence) * uConfMode;
-    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wDer * 0.72);
-    diffuseColor.rgb = mix(diffuseColor.rgb, uReconTint, wInf * 0.80);
+    float wDer = chicago_wDerived(vConfidence) * uConfMode;
+    float wInf = chicago_wInferred(vConfidence) * uConfMode;
+    diffuseColor.rgb = mix(diffuseColor.rgb, uDerivedTint, wDer * 0.72);
+    diffuseColor.rgb = mix(diffuseColor.rgb, uInferredTint, wInf * 0.80);
   }
 `;
 
@@ -144,7 +127,7 @@ export function createConfidenceView({
 } = {}) {
   const uniforms = {
     uConfMode: { value: 0 },
-    uReconAlpha: { value: inferredAlpha },
+    uInferredAlpha: { value: inferredAlpha },
     // ONE conversion, not two — and here it matters more than anywhere else in
     // the renderer, because these two colours are the confidence view itself.
     //
@@ -157,14 +140,14 @@ export function createConfidenceView({
     // 0.425 of its intended radiance — a quarter as bright in red, nearly half
     // in blue. The tint was both far too dark and visibly skewed toward blue.
     //
-    // What makes that a provenance bug rather than a cosmetic one: `reconstructed`
+    // What makes that a provenance bug rather than a cosmetic one: `inferred`
     // is the SAME hex as `--inf` in css/walk.css, which paints the legend
-    // swatch (`.sw-rec`) and the three-part gradient in the confidence key. The
+    // swatch (`.sw-inf`) and the three-part gradient in the confidence key. The
     // tint on the wall is supposed to be the colour of the chip the visitor is
     // reading it against. Double-converted, it could not be, so the one view
     // that exists to say which parts we made up disagreed with its own legend.
-    uInferredTint: { value: new THREE.Color(derived) },
-    uReconTint: { value: new THREE.Color(inferred) },
+    uDerivedTint: { value: new THREE.Color(derived) },
+    uInferredTint: { value: new THREE.Color(inferred) },
   };
 
   const patched = new Set();
@@ -210,7 +193,7 @@ export function createConfidenceView({
 
   /**
    * Guarantee the attribute exists. A geometry without `_CONFIDENCE` is a
-   * generator bug, not something to paper over — we fill it with `attested`
+   * generator bug, not something to paper over — we fill it with `documented`
    * so the scene still renders, and shout, because silently rendering unmarked
    * geometry as if it were attested is the one failure mode this whole view
    * exists to prevent.
@@ -226,58 +209,10 @@ export function createConfidenceView({
     return msg;
   }
 
-  /**
-   * Raise a geometry's channel to its record's EXISTENCE grade, and report what
-   * that moved.
-   *
-   * The file is right and the picture was wrong, which is why this composes at
-   * paint time rather than being fixed in the bake. `_CONFIDENCE` encodes the
-   * grade of the ATTRIBUTE that produced each vertex (docs/GLB-CONTRACT.md), and
-   * the generators resolve it per part from the drivers that part reads — the
-   * roof from `roof_type`, the walls from `stories` + `wall_height_m`. Every one
-   * of those readings is correct on its own terms.
-   *
-   * Existence is not among those drivers, for ANY part, and that is the hole.
-   * `inf_cooperage_south` is a building no source attests — its own record says
-   * "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED" — but its
-   * `roof_type` is graded `derived`, because a gable really is the near-universal
-   * form for the type and period. So the walls dithered and the roof did not, and
-   * an invented building rendered half-solid: a derived claim about the shape of
-   * a roof that is not known to have existed.
-   *
-   * A grade for an attribute of a thing cannot outrank the thing. The worst-wins
-   * rule the generators already apply ACROSS the drivers of a part is applied
-   * here once more, between the part and the record that owns it. Nothing is
-   * regraded and nothing in the GLB is rewritten in place on disk: this raises
-   * the working copy the batch is built from, so what the view paints is
-   * min(certainty of the part, certainty of the building).
-   *
-   * It can only ever move a vertex toward LESS certainty. A documented building
-   * with a conjectural roof pitch is untouched, which is the case that proves
-   * this is not just painting the town inferred.
-   */
-  function floorToExistence(geometry, sidecar, label = 'geometry') {
-    const attr = geometry.getAttribute('_confidence');
-    const level = existenceLevelOf(sidecar);
-    const warning = level ? null
-      : `${label}: the record states no documented_range.confidence, so nothing `
-        + 'says whether this building existed — painting it as inferred, which '
-        + 'is the worst reading and may understate it.';
-    const value = LEVELS[level ?? 'inferred'];
-    let raised = 0;
-    if (attr) {
-      for (let i = 0; i < attr.count; i++) {
-        if (attr.getX(i) < value) { attr.setX(i, value); raised += 1; }
-      }
-      if (raised) attr.needsUpdate = true;
-    }
-    return { level: level ?? 'inferred', value, raised, warning };
-  }
-
   /** Count vertices per level — the honest picture of what is on screen. */
   function census(geometry) {
     const attr = geometry.getAttribute('_confidence');
-    const out = { attested: 0, inferred: 0, reconstructed: 0 };
+    const out = { documented: 0, derived: 0, inferred: 0 };
     if (!attr) return out;
     for (let i = 0; i < attr.count; i++) out[levelOf(attr.getX(i))]++;
     return out;
@@ -288,7 +223,6 @@ export function createConfidenceView({
     uniforms,
     patch,
     ensureAttribute,
-    floorToExistence,
     census,
     get enabled() { return enabled; },
     /** @param {boolean} on */

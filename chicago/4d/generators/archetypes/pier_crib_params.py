@@ -93,7 +93,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 # What a pier of this decade was made of. One value, and the shortness of the list is
 # deliberate: `timber_crib` is a log box sunk on the bed and filled with stone, which
@@ -190,7 +190,7 @@ class PierCribParams:
 
     confidence: dict = field(default_factory=dict)
 
-    def conf(self, attr: str, default: str = "reconstructed") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
     def worst_conf(self, *attrs: str) -> float:
@@ -270,7 +270,7 @@ def from_phase(phase: dict) -> PierCribParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="reconstructed"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -282,7 +282,7 @@ def from_phase(phase: dict) -> PierCribParams:
     length, width = max(us) - min(us), max(vs) - min(vs)
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
     # A record that draws a width but never grades it is graded by the polygon it drew.
     confidences.setdefault("width_m", confidences["footprint"])
     confidences.setdefault("length_m", confidences["footprint"])

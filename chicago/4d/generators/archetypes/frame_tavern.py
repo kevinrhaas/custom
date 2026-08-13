@@ -79,7 +79,7 @@ def build(params: FrameTavernParams, name: str):
     # windows: five bays upper, four plus a centred door below — the arrangement
     # both surviving depictions show. Fenestration is not separately attested, so
     # it inherits the massing's confidence at best.
-    c_fen = params.conf("fenestration", "reconstructed")
+    c_fen = params.conf("fenestration", "inferred")
     _fenestration(b, params, w, d, wall_z, c_fen)
 
     if params.log_wing:
@@ -144,7 +144,7 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
     """
     story_h = wall_z / max(params.stories, 1)
     win_w, win_h, depth = 0.85, 1.35, 0.06
-    c_shut = params.conf("shutters", "reconstructed")
+    c_shut = params.conf("shutters", "inferred")
 
     for story in range(params.stories):
         z0 = story * story_h + story_h * 0.30
@@ -192,7 +192,7 @@ def _log_wing(b: MeshBuilder, params: FrameTavernParams, main_d: float) -> None:
     later composition follows the earlier — so this is `inferred`, and the wing
     carries that confidence rather than the main block's.
     """
-    c = params.conf("log_wing", "reconstructed")
+    c = params.conf("log_wing", "inferred")
     ww, wd, wh = params.log_wing_width_m, params.log_wing_depth_m, params.log_wing_height_m
 
     # Projects forward from the facade, which is +y in Blender (north once

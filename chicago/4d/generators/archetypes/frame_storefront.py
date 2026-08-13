@@ -112,8 +112,8 @@ def build(params: FrameStorefrontParams, name: str):
     c_clad = p.worst_conf("cladding", "paint")
     # The trim and the corner boards are the framing system made visible, so they
     # take the confidence of `construction` and nothing else.
-    c_frame = p.conf("construction", "reconstructed")
-    c_fen = p.conf("fenestration", "reconstructed")
+    c_frame = p.conf("construction", "inferred")
+    c_fen = p.conf("fenestration", "inferred")
 
     mx0, my0, mx1, my1 = _main_extent(p)
     wall_z = p.wall_height_m
@@ -140,7 +140,7 @@ def build(params: FrameStorefrontParams, name: str):
             # size and its mounting are the archetype's, but those are dimensional
             # and by the convention above dimensions do not drag an object's
             # character down.
-            _sign(b, p, shop, my1, p.conf("sign", "reconstructed"))
+            _sign(b, p, shop, my1, p.conf("sign", "inferred"))
     else:
         _plain_door(b, p, mx0, mx1, my1, c_fen)
 

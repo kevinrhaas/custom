@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-01",
     "to": "1835-12-31",
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "NEITHER END OF THIS RANGE IS ATTESTED AND THE CONFIDENCE SAYS SO. The dossier lists the Kinzie & Hunter warehouse among the river warehouses — 'Kinzie & Hunter and Dole & Newberry each had a warehouse with its dock along the river front' — and then records the gap explicitly: 'Kinzie & Hunter: bank and date unattested in sources reached [GAP]' (docs/research/03-structures-north.md section 3.10, and again in its list of highest-priority remaining gaps, item 4: 'Kinzie & Hunter warehouse — bank, date, size'). Nothing found in this slice fills it. 1834 is chosen as the opening year because it is the year the harbour cut let vessels into the river and the year river warehousing became a business worth building for, and because John H. Kinzie and Lieutenant Hunter had come to Chicago in February 1833 to lay out lots and open streets through their North Side property — so a partnership of those two names doing river trade belongs to 1833-34 and not earlier. THAT IS A GUESS WITH A REASON, WHICH IS WHAT CONJECTURAL MEANS. The range closes at the end of 1835 as the last date this record needs to claim. A firm of Kinzie, Hunter & Co. is separately attested in the lumber trade a couple of years after the first cargo of pine was landed on the south bank between LaSalle and Wells (Andreas scan p. 1139), which corroborates the partnership doing river business in this decade and does not date this building."
   },
@@ -21,7 +21,7 @@
     "local_e": 115.3,
     "local_n": 66.2,
     "rotation_deg": 180.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "EVERYTHING ABOUT THIS COORDINATE IS INVENTED EXCEPT THAT THE BUILDING WAS ON THE RIVER. The dossier's sentence gives the warehouse a dock 'along the river front' and its section on gaps says the bank is unattested; the only argument for the north side is the one the dossier itself offers and tags [CONJ] — 'Given John H. Kinzie's north-side landholdings, a north-bank location is plausible' — and this record takes that reading while keeping the confidence honest. THE ALTERNATIVE IS ENTIRELY LIVE: the south bank was where the town's mercantile frontage was in 1835, this dataset already places seven South Water Street businesses along it, and Andreas puts a Kinzie forwarding and commission store on South Water Street (scan pp. 295, 755) — which this project models separately as jh_kinzie_forwarding_store and which may or may not be the same concern's town premises. So the bank is a coin flip with a reason. METHOD, such as it is: the building is set on the north bank at local E +103 to +115, about 14 m back from the traced bank line, so the strip between it and the water can carry the dock that is recorded and not built; that is about 90 m east of miller_house on the same bank and clear of it. The point within the north-bank frontage is free choice inside a bank that is itself a guess. WORKING UNCERTAINTY: not expressible as a radius. Treat the whole placement as a proposal. Facade bearing 180, due south onto the river and its dock, which follows the trade and not a source. WHAT WOULD RESOLVE IT: any Chicago Democrat advertisement carrying the firm's address — the paper's advertising columns are exactly where a forwarding house states where to find it — or Andreas at page-image level on the early river trade.",
     "symbolic_location": "North bank of the main stem east of the forks, with its dock on the water. THE BANK IS NOT ATTESTED — the north side is a plausibility, not a finding.",
@@ -48,29 +48,29 @@
         10
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER — NOTHING ABOUT THIS BUILDING'S SIZE, SHAPE OR PLAN IS ATTESTED, and unlike newberry_dole_warehouse there is not even a reported 'square' to hang a proportion on. 12 x 10 m is about 39 x 33 ft, a river warehouse of ordinary size for the town and the decade, drawn with its long side to the water. Every number is invented and the polygon cites no sources. To resolve: the dossier's own item 4 in its list of highest-priority gaps — 'Kinzie & Hunter warehouse: bank, date, size'."
   },
   "attributes": {
     "wall_height_m": {
       "value": 3.4,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 3.4 m is about 11 ft at the eave — a tall single storey with storage in the roof, the working arrangement of a river warehouse, and the same height this dataset gives newberry_dole_warehouse so that two buildings of the same trade and the same evidence level are not silently different sizes. Stated rather than left to the archetype's size-aware default of 3.69 m, which for a building of this footprint edges toward reading as two full storeys."
     },
     "door": {
       "value": "wagon",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source describes an opening. A warehouse whose business is moving goods between a dock and the road needs a doorway a loaded team can pass, which is what the archetype's 'wagon' names — a clear 2.9 m. Inference from the trade, not from this building."
     },
     "loft": {
       "value": true,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A warehouse stores above the floor it loads on; the archetype's only external trace of that is the hoist door in a gable end, and it builds nothing else. Same inference, same strength, as the corresponding attribute on newberry_dole_warehouse."
     },
     "dock": {
       "value": true,
-      "confidence": "attested",
+      "confidence": "documented",
       "geometry": "absent",
       "sources": [
         "andreas_1884_v1"
@@ -79,7 +79,7 @@
     },
     "function": {
       "value": "forwarding_commission_warehouse",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -87,7 +87,7 @@
     },
     "occupants": {
       "value": "John H. Kinzie and Lieut. David Hunter",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],

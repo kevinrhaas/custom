@@ -5,7 +5,7 @@
  "head": "pratt_oscar",
  "arrival": {
   "value": "1833",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "Employment at the town's first printing office",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -32,12 +32,12 @@
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested. Journeymen printers of this period often boarded and often slept in the office; neither is claimed here."
  },
  "works_at": {
   "value": "chicago_democrat_office",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,11 +56,11 @@
    "id": "pratt_oscar",
    "name": "Oscar Pratt",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "derived",
    "sex": "male",
    "occupation": {
     "value": "printer",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -75,10 +75,10 @@
    "id": "beckford_printer",
    "name": "Beckford",
    "relationship": "partner",
-   "grade": "inferred",
+   "grade": "derived",
    "occupation": {
     "value": "printer",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],

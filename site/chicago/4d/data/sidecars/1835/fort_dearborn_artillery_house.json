@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "wentworth_1881_fort_dearborn",
       "andreas_1884_v1"
@@ -24,7 +24,7 @@
     "local_e": 1171.68,
     "local_n": 194.41,
     "rotation_deg": 278.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "INVENTED WITHIN A DOCUMENTED SIDE. Fergus puts the artillery house on the east of the parade with the barracks and the storehouse; the 1830 plan draws only one range on that side and this project reads that range as the barracks, because Hubbard's 1827 sentence fixes the barracks there and the sutler's north of it. So there is no drawn building for this record to sit on. It is placed inside the east curtain at the south end - the one part of that side the plan leaves empty - clear of the barracks by about a metre and of the south wall by about three. Every one of those numbers is ours.",
     "symbolic_location": "Inside the south-east of Fort Dearborn, at the south end of the east side of the parade, below the soldiers' barracks.",
@@ -51,14 +51,14 @@
         5.0
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. No source gives this building a dimension. 8.0 x 5.0 m is about 26 x 16 ft, which is a shed that will hold the three field pieces a post of this class carried and their carriages, and it is sized to fit the gap the plan leaves rather than from any evidence."
   },
   "attributes": {
     "kind": {
       "value": "artillery",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "wentworth_1881_fort_dearborn"
       ],
@@ -66,37 +66,37 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Unattested. Log, by the same argument as the rest of the fort's timber buildings, but with nothing at all behind it for this one."
     },
     "stories": {
       "value": 1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Unattested. A gun shed is a single open storey."
     },
     "wall_height_m": {
       "value": 3.1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Unattested. About ten feet, enough to run a field piece under the plate."
     },
     "roof_type": {
       "value": "shed",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Unattested. A shed roof against the curtain is what a lean-to gun house is; gable would be an equally arbitrary choice."
     },
     "roof_pitch_deg": {
       "value": 18.0,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Unattested. A shallow fall, which is what a shed roof of this span carries."
     },
     "chimneys": {
       "value": 0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "A COUNT OF ZERO IS A CLAIM. An artillery shed is unheated; there is no stack."
     },
     "function": {
       "value": "artillery house",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "wentworth_1881_fort_dearborn"
       ],

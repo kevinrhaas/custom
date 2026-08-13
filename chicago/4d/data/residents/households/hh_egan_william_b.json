@@ -5,7 +5,7 @@
   "head": "egan_william_b",
   "arrival": {
     "value": "1833-10-01",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -14,7 +14,7 @@
   },
   "party_size_on_arrival": {
     "value": 2,
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -22,7 +22,7 @@
   },
   "origin": {
     "value": "County Kerry, Ireland, by way of Lancashire, Dublin, Quebec, Montreal, New York, Virginia and Newark",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -30,7 +30,7 @@
   },
   "reason_for_coming": {
     "value": "Confidence in the future of a new western town",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -38,17 +38,17 @@
   },
   "lives_at": {
     "value": null,
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "note": "Not attested. Egan's Row on the Tremont block is his own building work and is later than the scene date's evidence; nothing places him in a house on 1 July 1835."
   },
   "works_at": {
     "value": null,
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "note": "Not attested. This dataset holds no physician's office as a structure, which is itself a finding: the town had eight doctors at the end of 1833 and not one of their premises is in data/structures/."
   },
   "present_on_scene_date": {
     "value": "present",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -59,11 +59,11 @@
       "id": "egan_william_b",
       "name": "Dr William Bradshaw Egan",
       "relationship": "head",
-      "grade": "attested",
+      "grade": "documented",
       "sex": "male",
       "birth_year": {
         "value": 1808,
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -71,7 +71,7 @@
       },
       "age_on_scene_date": {
         "value": 26,
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -79,7 +79,7 @@
       },
       "occupation": {
         "value": "physician",
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -94,11 +94,11 @@
       "id": "egan_emeline",
       "name": "Emeline Egan",
       "relationship": "wife",
-      "grade": "attested",
+      "grade": "documented",
       "sex": "female",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
       },
       "sources": [

@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-05-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 428.1,
     "local_n": -7.5,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -54,14 +54,14 @@
         7.62
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION. What IS documented is a cap on one of them: Andreas states that South Water Street lots were 55 ft wide (docs/research/04-structures-south.md § 5), so a store on a single lot on this street cannot have had more than 55 ft of frontage, and this rectangle's 40 ft frontage sits comfortably inside that. The two numbers are borrowed rather than freshly invented, and that is deliberate: 40 ft is the frontage attested for the Green Tree Tavern and for the Western Hotel's front, and 25 ft is the depth derived from the Green Tree's attested room module — the only period figures for a commercial building this dataset actually holds. So the shape is a claim about the TYPE and not about this building. 12.192 x 7.62 m is 40 x 25 ft, recorded converted with the original figures stated, per data/datum.json's units rule. The same rectangle is used on four records in this parcel; that repetition is the honest form of the admission, not an accident."
   },
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -69,7 +69,7 @@
     },
     "loft": {
       "value": true,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -77,7 +77,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -85,27 +85,27 @@
     },
     "wall_height_m": {
       "value": 5.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course, the same reading and the same number this project gives the Sauganash, which is the other two-storey frame building it models. What is inferred is that the height falls in this range, not that it is exactly 5.5 m. It excludes the unfinished loft, which would add a knee wall of unknown height under the roof."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region, and a building with a habitable loft under the roof is gabled by type. Typological derivation, not a measurement."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested, and nothing describes a stack on this building at all. One is the minimum for a store kept through Chicago winters with its owner living in it. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "store_and_dwelling",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -113,7 +113,7 @@
     },
     "occupants": {
       "value": "Philip F. W. Peck, merchant, and his household",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -135,7 +135,7 @@
         {
           "name": "Philip F. W. Peck",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "merchant",
           "note": "HIS UNFINISHED LOFT IS THE PARCEL'S BEST DOCUMENTED LODGING. Andreas: 'Among these was P. F. W. Peck, who invited Mr. Porter to make his temporary lodging place and study in the unfinished loft of his two-story store'; and 'The first building in the rear of this store was the log house of Rufus Brown, where Mr. Porter found table board.' Three households and two buildings meet in those two sentences. He arrived in July 1831 with a stock of goods carried by schooner, per this project's building record. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named'."
         }
@@ -156,14 +156,14 @@
         {
           "name": "Rev. Jeremiah Porter",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "minister",
           "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
         },
         {
           "name": "Eliza Chappel Porter",
           "relationship": "wife",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "schoolteacher",
           "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
         }

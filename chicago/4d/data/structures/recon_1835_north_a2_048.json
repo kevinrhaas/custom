@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637720.677,
         "rotation_deg": 180.0,
         "symbolic_location": "Anonymous inferred roof in North Division cluster rush_east_fringe; between the north bank and Michigan Street",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
           "method": "not_derivable",
@@ -42,13 +42,13 @@
             9.754
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "A 20 × 32 ft rectangle assigned by the reconstruction recipe within the A2 family band; no individual dimensions are documented."
       },
       "form": {
         "wall_height_m": {
           "value": 3.42,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -56,7 +56,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -64,7 +64,7 @@
         },
         "roof_pitch_deg": {
           "value": 32.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -72,7 +72,7 @@
         },
         "construction": {
           "value": "light_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -80,7 +80,7 @@
         },
         "door": {
           "value": "wagon",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -88,7 +88,7 @@
         },
         "door_side": {
           "value": "front",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -96,7 +96,7 @@
         },
         "loft": {
           "value": true,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -104,7 +104,7 @@
         },
         "board_gap_m": {
           "value": 0.012,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -112,7 +112,7 @@
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -124,7 +124,7 @@
   ],
   "function": {
     "value": "barn or carriage shed",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
     ],

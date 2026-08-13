@@ -125,11 +125,11 @@ def _building(b: MeshBuilder, p: FortStructureParams) -> None:
     else:
         _openings(b, p, lower_z, over)
     if p.loopholes:
-        _loopholes(b, p, lower_z, over, p.conf("loopholes", "reconstructed"))
+        _loopholes(b, p, lower_z, over, p.conf("loopholes", "inferred"))
     if p.gallery:
-        _gallery(b, p, p.conf("gallery", "reconstructed"))
+        _gallery(b, p, p.conf("gallery", "inferred"))
     if p.chimneys:
-        _chimneys(b, p, ridge, p.conf("chimneys", "reconstructed"))
+        _chimneys(b, p, ridge, p.conf("chimneys", "inferred"))
 
 
 def _roof(b: MeshBuilder, p: FortStructureParams, x0, y0, x1, y1,
@@ -239,7 +239,7 @@ def _openings(b: MeshBuilder, p: FortStructureParams, lower_z: float,
     `inferred` otherwise. A range gets a door at its centre and windows spaced
     along the front; the back gets windows only.
     """
-    conf = p.conf("fenestration", "reconstructed")
+    conf = p.conf("fenestration", "inferred")
     w, d, wz = p.width_m, p.depth_m, p.wall_height_m
     bays = max(2, min(8, int(round(w / 3.4))))
     sh = p.storey_height_m
@@ -340,7 +340,7 @@ def _parade(b: MeshBuilder, p: FortStructureParams) -> None:
     w, d = p.width_m, p.depth_m
     b.add_box(0.0, 0.0, 0.0, w, d, 0.06, conf, M_WALL, skip=("bottom",))
     if p.sun_dial:
-        _sun_dial(b, p, p.conf("sun_dial", "reconstructed"))
+        _sun_dial(b, p, p.conf("sun_dial", "inferred"))
 
 
 def _sun_dial(b: MeshBuilder, p: FortStructureParams, conf: float) -> None:
@@ -411,7 +411,7 @@ def _tower(b: MeshBuilder, p: FortStructureParams) -> None:
         b.add_poly(list(reversed(up)), c, M_ROOF)
         return
 
-    c_l = p.conf("lantern", "reconstructed")
+    c_l = p.conf("lantern", "inferred")
     gal = ring(r1 * 1.34, shaft)
     for i in range(n):
         j = (i + 1) % n

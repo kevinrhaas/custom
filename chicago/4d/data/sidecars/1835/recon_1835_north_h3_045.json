@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 940.123,
     "local_n": 357.685,
     "rotation_deg": 0.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in North Division cluster rush_east_fringe; between the north bank and Michigan Street",
@@ -46,14 +46,14 @@
         14.63
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "A 32 × 48 ft rectangle assigned by the reconstruction recipe within the H3 family band; no individual dimensions are documented."
   },
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -61,7 +61,7 @@
     },
     "wall_height_m": {
       "value": 5.2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -69,7 +69,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -77,7 +77,7 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -85,7 +85,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -93,7 +93,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -101,7 +101,7 @@
     },
     "gallery": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -109,7 +109,7 @@
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -117,7 +117,7 @@
     },
     "function": {
       "value": "large boarding house",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
@@ -125,7 +125,7 @@
     },
     "occupants": {
       "value": "An inferred household; no name is claimed",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1",
         "owner_chicago_1835_reconstruction_spec_2026"
@@ -148,7 +148,7 @@
         {
           "name": "A boarding-house keeper (inferred resident, unnamed)",
           "relationship": "head",
-          "grade": "reconstructed",
+          "grade": "inferred",
           "occupation": "boarding_house_keeper",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE THIRD OF 3 BOARDING-HOUSE KEEPER HOUSEHOLDS THIS LAYER INFERS. THE BUILDING TYPE THAT BRIDGES THE GAP BETWEEN 3,265 PEOPLE AND 398 DWELLINGS. The schedule carries forty-two boarding houses; the documented layer names two keepers. Andreas: the houses 'were always full; and full meant three in a bed sometimes, with the floor covered besides', with emigrants living in their covered wagons outside. Three keeper households are inferred, and each adopts one of the three anonymous H-family boarding-house roofs already on the plat."
         }

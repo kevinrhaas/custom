@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "harrison_1830_river_mouth"
@@ -24,7 +24,7 @@
         "utm_n": 4637636.32,
         "rotation_deg": 188.0,
         "symbolic_location": "Inside the north-east of Fort Dearborn, east of the north gate and north of the soldiers' barracks.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "andreas_1884_v1"
@@ -54,7 +54,7 @@
             6.35
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth"
         ],
@@ -63,7 +63,7 @@
       "form": {
         "kind": {
           "value": "sutler",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1",
             "wentworth_1881_fort_dearborn"
@@ -72,32 +72,32 @@
         },
         "construction": {
           "value": "log",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. Log by the same argument as the barracks: everything in this fort except the commandant's quarters and the magazine is described as timber where it is described at all."
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. A sutler's store is a shop and a store-room; single storey is the type, and the 1830 plan draws it with the same footprint depth as the small south buildings rather than the ranges."
         },
         "wall_height_m": {
           "value": 2.9,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No height attested. About nine and a half feet: one storey of log wall with the extra height a store needs over a dwelling."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested; gable is the form for a range of this plan."
         },
         "roof_pitch_deg": {
           "value": 34.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. One stack is the minimum for a shop kept through a Chicago winter. The COUNT is the inference; everything else about the stack is the archetype's."
         }
       }
@@ -105,7 +105,7 @@
   ],
   "function": {
     "value": "sutler's store",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1",
       "wentworth_1881_fort_dearborn"

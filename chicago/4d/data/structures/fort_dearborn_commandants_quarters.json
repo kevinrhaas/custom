@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "wentworth_1881_fort_dearborn",
@@ -26,7 +26,7 @@
         "utm_n": 4637640.78,
         "rotation_deg": 188.0,
         "symbolic_location": "Inside the north wall of Fort Dearborn, west of the north gate, fronting south onto the parade.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "wright_1834",
@@ -57,7 +57,7 @@
             7.62
           ]
         ],
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "wentworth_1881_fort_dearborn",
           "harrison_1830_river_mouth"
@@ -67,7 +67,7 @@
       "form": {
         "kind": {
           "value": "quarters",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1",
             "wentworth_1881_fort_dearborn"
@@ -76,7 +76,7 @@
         },
         "construction": {
           "value": "brick",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1",
             "wentworth_1881_fort_dearborn"
@@ -85,27 +85,27 @@
         },
         "stories": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. A 50 x 25 ft brick building housing the commanding officer of a two-company post, standing tall enough to be one of the 'two of the principal buildings of the Fort' identified in a photograph taken from across the river, is two storeys by type. The inference is from the building's size and its prominence, not from a statement."
         },
         "wall_height_m": {
           "value": 5.4,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No height is attested for any building in this fort. 5.4 m is two storeys at about nine feet of interior height each plus floor structure, which is the ordinary figure for officers' quarters of this class. What is inferred is that the wall falls in this range, not that it is exactly 5.4 m."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for a rectangular range of this period, and it is what the building silhouetted in the 1855 photograph reads as. Inferred from type."
         },
         "roof_pitch_deg": {
           "value": 34.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
         },
         "chimneys": {
           "value": 2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "wentworth_1881_fort_dearborn"
           ],
@@ -113,7 +113,7 @@
         },
         "paint": {
           "value": "brick",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Bare brick. Nothing says this building was rendered, painted or whitewashed; the whitewash in the sources belongs to the board fence of the 1850s compound and to John H. Kinzie's boyhood memory of the FIRST fort's blockhouses."
         }
       },
@@ -125,7 +125,7 @@
   ],
   "function": {
     "value": "commanding officer's quarters",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1",
       "wentworth_1881_fort_dearborn"

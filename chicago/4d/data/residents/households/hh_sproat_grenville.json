@@ -5,7 +5,7 @@
  "head": "sproat_grenville",
  "arrival": {
   "value": "1833-11-26",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -14,12 +14,12 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Boston",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -27,17 +27,17 @@
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "temple_building",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -45,7 +45,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,11 +56,11 @@
    "id": "sproat_grenville",
    "name": "Grenville Temple Sproat",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

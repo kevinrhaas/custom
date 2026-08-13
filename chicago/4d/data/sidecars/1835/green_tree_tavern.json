@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-01-01",
     "to": "1880-12-31",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "chicagology_prefire127",
       "drloih_hotels",
@@ -26,7 +26,7 @@
     "local_e": -135.3,
     "local_n": -96.2,
     "rotation_deg": 270.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicagology_prefire127",
       "drloih_hotels",
@@ -57,7 +57,7 @@
         12.19
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire127"
     ],
@@ -66,7 +66,7 @@
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire127",
         "drloih_hotels"
@@ -75,7 +75,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire127",
         "drloih_hotels",
@@ -85,7 +85,7 @@
     },
     "log_core": {
       "value": false,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire278"
       ],
@@ -94,13 +94,13 @@
     },
     "cladding": {
       "value": "clapboard",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not directly attested for this building. Clapboard is the standard cladding for a frame building of this type and period, and the competing log-core account calls the covering 'weatherboarding', which is the same thing under another name — so both readings of the construction converge on a lapped horizontal board exterior.",
       "geometry": "simplified"
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -108,7 +108,7 @@
     },
     "wall_height_m": {
       "value": 5.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -116,7 +116,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -124,12 +124,12 @@
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is mid-range for period gable framing and leaves an attic tall enough to lodge people in, which the sources say it did."
     },
     "fenestration": {
       "value": "small_paned_sash",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -138,12 +138,12 @@
     },
     "gallery": {
       "value": false,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NO EVIDENCE EITHER WAY, and unlike the Sauganash there is no retrospective depiction in the project's hands to reason from. The witnesses describe two entrances — the front on Canal and one 'about the middle of the long side' on Lake — without mentioning a porch, veranda or gallery, which is weak negative evidence at best, since they were correcting a drawing rather than inventorying the elevation. False is the default, not a finding. The c. 1859 photograph (chm_green_tree_1859) settles this the moment anyone opens it."
     },
     "side_additions": {
       "value": true,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -152,12 +152,12 @@
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A tavern with a bar-room at one end, a parlour, a dining room clearable for dancing and chambers above needed more than one fireplace, and two stacks is the normal disposition for a 40 ft block with a central hall. The number is inference."
     },
     "function": {
       "value": "tavern_inn",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire127",
         "drloih_hotels"
@@ -166,7 +166,7 @@
     },
     "occupants": {
       "value": "Chester Ingersoll, landlord",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicagology_prefire127"
       ],
@@ -189,7 +189,7 @@
         {
           "name": "Chester Ingersoll",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "tavern_keeper",
           "note": "A DOCUMENTED RESIDENT IN A CONTEMPORARY NEWSPAPER, which is worth more than any amount of Andreas. Two further things fix him in the town in this period: his house was the district polling place on 9 December 1833, and a travelling ventriloquist named Kenworthy advertised in the Democrat of 10 June 1834 the close of an engagement at 'the Travelers' Home, a hotel kept by Chester Ingersoll, on Wolf Point'."
         }

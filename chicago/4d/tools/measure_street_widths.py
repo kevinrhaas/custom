@@ -792,7 +792,7 @@ def main() -> int:
         "sources": ["hathaway_1834", "wright_1834"],
         "tool": "tools/measure_street_widths.py",
         "read_on": "2026-08-10",
-        "confidence": "attested",
+        "confidence": "documented",
         "confidence_note": (
             "A corridor width is measured at a stated place by a stated method that anyone can "
             "re-run, which is what documented means here. What it is documented ABOUT is the "

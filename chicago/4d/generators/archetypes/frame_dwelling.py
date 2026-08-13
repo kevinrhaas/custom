@@ -129,12 +129,12 @@ def build(params: FrameDwellingParams, name: str):
     # The trim IS the construction argument — corner boards, the girt band, the module
     # the openings sit on — so it carries the confidence of the attribute that decides
     # it rather than the massing's.
-    c_trim = params.conf("construction", "reconstructed")
+    c_trim = params.conf("construction", "inferred")
     # The arrangement of the front comes from `plan` and `bays`; where a record states
     # neither, the archetype's own default plan is doing the talking and the geometry
     # says so.
-    c_fen = max(params.conf("fenestration", "reconstructed"),
-                params.conf("plan", "reconstructed"), params.conf("bays", "reconstructed"))
+    c_fen = max(params.conf("fenestration", "inferred"),
+                params.conf("plan", "inferred"), params.conf("bays", "inferred"))
 
     # main range — omit the bottom, it is never seen and costs two triangles per
     # building across the whole town
@@ -156,10 +156,10 @@ def build(params: FrameDwellingParams, name: str):
         else None
 
     _chimneys(b, params, w, y0, d, wall_z, ridge_z, ell_ridge_z,
-              params.conf("chimneys", "reconstructed"))
+              params.conf("chimneys", "inferred"))
 
     if params.porch:
-        _porch(b, params, openings, d, wall_z, params.conf("porch", "reconstructed"))
+        _porch(b, params, openings, d, wall_z, params.conf("porch", "inferred"))
 
     wall_rgba = PAINT_RGBA.get(params.paint, PAINT_RGBA["unpainted"])
     mats = [
@@ -489,7 +489,7 @@ def _facade(b: MeshBuilder, p: FrameDwellingParams, openings: list, w: float,
     """
     story_h = wall_z / 2.0 if p.stories >= 2.0 else wall_z
     sill = min(0.95, story_h * 0.36)
-    c_shut = p.conf("shutters", "reconstructed")
+    c_shut = p.conf("shutters", "inferred")
     # everything on this wall stops under the frieze board
     top_head = wall_z - 0.28
     h = _sash(sill, story_h - 0.14 if p.stories >= 2.0 else top_head)
@@ -631,7 +631,7 @@ def _ell(b: MeshBuilder, p: FrameDwellingParams, w: float, y0: float,
     what keeps the two roofs from fighting: the ell's roof is inset by the eave
     overhang at the junction, so no plane is driven into the wall behind it.
     """
-    c = p.conf("ell", "reconstructed")
+    c = p.conf("ell", "inferred")
     ex0, ex1 = _ell_extent(p, w)
     ez = p.ell_height_m
 

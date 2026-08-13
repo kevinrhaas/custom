@@ -43,7 +43,7 @@ WIDE_RANGE_YEARS = 12
 # published tree holds plain binaries and has to stay reasonable.
 SITE_BUDGET_MB = 25
 
-CONFIDENCE = ("attested", "inferred", "reconstructed")
+CONFIDENCE = ("documented", "derived", "inferred")
 SLUG = re.compile(r"^[a-z0-9_]+$")
 
 # The record's fixed attested blocks, in the order a claim reads best. Everything
@@ -156,13 +156,13 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
     srcs = att.get("sources") or []
     note = (att.get("note") or "").strip()
 
-    if conf == "attested":
+    if conf == "documented":
         if not srcs:
             rep.error(where, f"{key}: documented requires at least one source_id")
         for sid in srcs:
             if sid not in source_ids:
                 rep.error(where, f"{key}: source '{sid}' does not resolve in data/sources/")
-    elif conf == "inferred":
+    elif conf == "derived":
         # Reasoned FROM something, so it owes the reasoning; and it may cite the
         # evidence it reasoned from, which is the ordinary case.
         if not note:
@@ -215,14 +215,14 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
     # A wide range is only suspicious when it is a guess. A building that demonstrably
     # stood for twenty years and burned on a recorded date is not the failure mode this
     # rule exists to catch — a vague range widened until the date gate stopped complaining is.
-    if (to - frm).days > WIDE_RANGE_YEARS * 365.25 and rng.get("confidence") != "attested":
+    if (to - frm).days > WIDE_RANGE_YEARS * 365.25 and rng.get("confidence") != "documented":
         rep.warn(where, f"documented_range spans {(to - frm).days // 365} years and is not "
                         f"documented — Chicago changed fast in this period; narrow it to what "
                         f"is attested rather than widening it to pass")
     for sid in rng.get("sources") or []:
         if sid not in source_ids:
             rep.error(where, f"documented_range: source '{sid}' does not resolve")
-    if rng.get("confidence") == "reconstructed" and not (rng.get("note") or "").strip():
+    if rng.get("confidence") == "inferred" and not (rng.get("note") or "").strip():
         rep.error(where, "documented_range: inferred requires a note")
     # The confidence contract applied to the claim the whole scene rests on. Every
     # other `documented` value in this dataset owes a resolving source (see
@@ -230,7 +230,7 @@ def check_range(where: str, rng: dict, source_ids: set, rep: Report) -> tuple:
     # order the checks were written in, and it is the claim that decides whether a
     # building is in the town at all. It reaches the provenance card now, which is
     # the argument for holding it to the same standard as a roof pitch.
-    if rng.get("confidence") == "attested" and not (rng.get("sources") or []):
+    if rng.get("confidence") == "documented" and not (rng.get("sources") or []):
         rep.error(where, "documented_range: documented requires at least one source_id")
     return frm, to
 
@@ -493,8 +493,8 @@ def check_watch_list(exclusions: dict, structures: dict, source_ids: set,
                                  f"carries no confidence — an uncertainty has to sit on a "
                                  f"claim that is graded, or there is nothing to hold down")
                 continue
-            if claim.get("confidence") == "attested":
-                rep.error(where, f"{ref} is `attested` while this entry says its 1835 "
+            if claim.get("confidence") == "documented":
+                rep.error(where, f"{ref} is `documented` while this entry says its 1835 "
                                  f"status is open — the watch list exists to stop exactly "
                                  f"that promotion, so either the evidence arrived and the "
                                  f"entry retires, or the grade is wrong")
@@ -564,7 +564,7 @@ def terrain_inferred_values(index: dict[str, dict[str, dict]]) -> list[tuple]:
     return [(epoch, cid, claim.get("label") or cid, f"terrain {epoch}/{cid}")
             for epoch, claims in sorted(index.items())
             for cid, claim in claims.items()
-            if claim.get("confidence") == "reconstructed"]
+            if claim.get("confidence") == "inferred"]
 
 
 def check_terrain_claims(source_ids: set, rep: Report,
@@ -620,18 +620,18 @@ def check_terrain_claims(source_ids: set, rep: Report,
                 if s not in source_ids:
                     rep.error(where, f"source '{s}' does not resolve in data/sources/ — "
                                      f"the ground quotes these ids to a visitor")
-            if conf == "attested" and not srcs:
+            if conf == "documented" and not srcs:
                 rep.error(where, "documented with no source — the ground is held to the "
                                  "same rule as a structure record, and the strongest "
                                  "grade this project has is the one that needs evidence")
-            if conf == "reconstructed" and not any(n.strip() for n in claim["notes"]):
+            if conf == "inferred" and not any(n.strip() for n in claim["notes"]):
                 unreasoned += 1
                 rep.error(where, "inferred with no reasoning recorded — that is what "
                                  "separates an inference from a guess, and the ground is "
                                  "held to it exactly as a structure record is. Write the "
                                  "reasoning in terrain_spec.json; prose there is stripped "
                                  "from the terrain's staleness hash, so it costs no bake")
-            if conf == "attested" and claim["id"].split(".")[0] in LAND_ELEVATION_GROUPS:
+            if conf == "documented" and claim["id"].split(".")[0] in LAND_ELEVATION_GROUPS:
                 rep.error(where, "a land elevation marked documented — the spec's own "
                                  "caveat says no land elevation in it is better than "
                                  "inferred, and that sentence is now shown to visitors")
@@ -994,7 +994,7 @@ def inferred_values(structures: dict) -> list[tuple]:
     """
     return [(sid, pid, aspect, where)
             for sid, pid, aspect, where, block in graded_values(structures)
-            if block.get("confidence") == "reconstructed"]
+            if block.get("confidence") == "inferred"]
 
 
 def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
@@ -1070,7 +1070,7 @@ def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
     for where, aspect, block in claims:
         conf = block.get("confidence")
         got = rungs(block)
-        if conf == "attested" and got:
+        if conf == "documented" and got:
             if min(got) > SOLE_EVIDENCE_MAX_TIER:
                 rep.error(where, f"{aspect}: documented on {named(min(got))} alone — tiers "
                                  f"{SOLE_EVIDENCE_MAX_TIER + 1} and up inform inventory and "
@@ -1079,7 +1079,7 @@ def check_evidence_ladder(structures: dict, sources: dict, rep: Report,
             elif min(got) > TESTIMONY_MAX_TIER:
                 thin.append(f"{where} {aspect}")
         # an outline is the one thing a pictorial source cannot give you
-        if aspect == "footprint" and conf in ("attested", "reconstructed") and got:
+        if aspect == "footprint" and conf in ("documented", "inferred") and got:
             off = sorted({t for t in got if t > TRACEABLE_MAX_TIER})
             if off:
                 rep.error(where, f"footprint: graded {conf} while citing "
@@ -1748,7 +1748,7 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
     if module.get("confidence") not in CONFIDENCE:
         rep.error("street control", "the platted street width carries no confidence, and every "
                                     "figure this dataset stands on is graded")
-    if module.get("confidence") != "attested" and not (module.get("note") or "").strip():
+    if module.get("confidence") != "documented" and not (module.get("note") or "").strip():
         rep.error("street control", "the street width is not documented and states no reasoning")
     for key, node in (("platted_street", module), ("platted_street.dissent", module.get("dissent") or {})):
         for s in node.get("sources") or []:
@@ -3508,7 +3508,7 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
     for z in zones.values():
         for sp in z.get("species") or []:
             srcs = sp.get("sources") or []
-            if sp.get("confidence") == "attested" and srcs and set(srcs) <= unverified:
+            if sp.get("confidence") == "documented" and srcs and set(srcs) <= unverified:
                 resting += 1
     total_sp = sum(len(z.get("species") or []) for z in zones.values())
     if total_sp:
@@ -3879,8 +3879,8 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
                                  f"them: no migration, silent leks, moulting waterfowl. Say it "
                                  f"in the note if it needs saying; it may not be a render "
                                  f"instruction")
-    if status == "doubtful" and sp.get("confidence") == "attested":
-        rep.error(where, "july.status 'doubtful' with confidence 'attested' — if the July "
+    if status == "doubtful" and sp.get("confidence") == "documented":
+        rep.error(where, "july.status 'doubtful' with confidence 'documented' — if the July "
                          "presence is in doubt the record cannot also be documented. Record the "
                          "doubt rather than resolving it by preference")
 
@@ -3889,7 +3889,7 @@ def check_fauna_species(zid: str, sp: dict, source_ids: set, vocab: dict,
     conf = check_attested(where, "species", sp, source_ids, rep)
     if conf:
         tally[conf] = tally.get(conf, 0) + 1
-    if conf == "reconstructed" and not (sp.get("note") or "").strip():
+    if conf == "inferred" and not (sp.get("note") or "").strip():
         rep.error(where, "conjectural requires a note saying what the belief rests on and that "
                          "it is not evidence. Unknown is recorded as unknown, never left blank")
 
@@ -4096,7 +4096,7 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 
 RESIDENTS = DATA / "residents"
 
-RESIDENT_GRADES = ("attested", "inferred", "reconstructed")
+RESIDENT_GRADES = ("documented", "derived", "inferred")
 
 # The term this programme was renamed away from. Anything mapping to a grade
 # gets a message naming the rename rather than a generic "unknown value", so the
@@ -4150,21 +4150,21 @@ def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
     """The accuracy vocabulary, and what each rung owes the reader."""
     if isinstance(grade, str) and grade.strip().lower() in RETIRED_GRADE_TERMS:
         rep.error(where, f"grade '{grade}' uses the term this programme was RENAMED AWAY FROM "
-                         f"on 2026-08-13. The word is 'reconstructed' - inferred residents and "
+                         f"on 2026-08-13. The word is 'inferred' - inferred residents and "
                          f"inferred structures. See data/residents/index.json and "
                          f"docs/ROADMAP.md K1")
         return
     if grade not in RESIDENT_GRADES:
         rep.error(where, f"grade '{grade}' is not one of {RESIDENT_GRADES}")
         return
-    if grade == "attested":
+    if grade == "documented":
         if not sources:
             rep.error(where, "a documented person must cite at least one source_id - "
-                             "'attested' means a source NAMES this person")
+                             "'documented' means a source NAMES this person")
         for sid in sources or []:
             if sid not in source_ids:
                 rep.error(where, f"source '{sid}' does not resolve in data/sources/")
-    elif grade == "inferred":
+    elif grade == "derived":
         if not note:
             rep.error(where, "a derived person requires a note stating WHICH details are "
                              "reconstructed and from what - a real person with invented "
@@ -4453,8 +4453,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                      if (h.get("present_on_scene_date") or {}).get("value") != "present")
         flagged = sum(1 for h in households.values() if h.get("review_required"))
         rep.note(f"residents: {len(households)} household(s), {n_persons} person(s) "
-                 f"({grade_totals['attested']} documented, {grade_totals['inferred']} derived, "
-                 f"{grade_totals['reconstructed']} inferred); {linked} linked to a structure, "
+                 f"({grade_totals['documented']} documented, {grade_totals['derived']} derived, "
+                 f"{grade_totals['inferred']} inferred); {linked} linked to a structure, "
                  f"{unsure} NOT recorded as certainly present on the scene date, "
                  f"{flagged} flagged review_required")
     return households

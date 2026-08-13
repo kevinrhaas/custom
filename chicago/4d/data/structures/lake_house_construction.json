@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1836-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire112",
           "andreas_1884_v1"
@@ -24,7 +24,7 @@
         "utm_n": 4637737.01,
         "rotation_deg": 0.0,
         "symbolic_location": "North side of the river in Kinzie's Addition, on the block between Kinzie Street and Michigan Street east of Rush Street (today between East Kinzie Street and East Hubbard Street east of North Rush Street), fronting north onto Michigan Street.",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "THE THREE STREETS ARE DOCUMENTED TWICE IN ANDREAS; WHICH SIDE OF RUSH STREET IS NOT DOCUMENTED AT ALL, AND THAT IS WHY THIS POSITION IS CONJECTURAL RATHER THAN INFERRED. Andreas in the hotel chapter: 'located on the corners of Kinzie, Rush and Michigan streets, fronting on the latter'. Andreas in his account of the First Unitarian Society, whose first Chicago service was held in the unfinished building in June 1836: 'The services were held in the Lake House, WHICH STOOD AT THE CORNER OF RUSH AND MICHIGAN STREETS.' Two chapters, one corner, and no side. A block between Kinzie and Michigan has two faces on Rush, about 110 m apart, and nothing reached says which one this is; the east side is adopted because the backers' own ground - Kinzie's Addition - and the north-bank commercial group Bonnell describes east of Rush lie that way, which is an argument about a neighbourhood and not evidence about a building. IF IT IS WRONG THE BUILDING BELONGS ABOUT 110 M WEST. A SECOND AND LARGER TRAP IS IN THE STREET NAME ITSELF. 'Michigan Street' on the north side in 1835 is the east-west street one block north of Kinzie - today's East Hubbard Street - and it is NOT Michigan Avenue, which did not cross the river until 1920. chicagology_prefire112's uncredited paragraph glosses the site as 'near where the Wrigley Building stands today', and the Wrigley Building stands on Michigan AVENUE at the river, about 150 m south-east of the block Andreas's three streets describe and on the wrong side of Kinzie. docs/research/03-structures-north.md section 3.8 carries the same gloss and additionally renders the third street as 'Michigan (Water)', equating it with North Water Street, which no source reached supports. This record follows Andreas's street names and records the gloss as the error it appears to be. METHOD: the modern East Hubbard Street / North Rush Street intersection centre was read from OpenStreetMap at EPSG:26916 E 448121.71, N 4637764.21 (OSM node 261149251, fetched 2026-08-11); the building's north face is set on the Michigan Street frontage 12.2 m south of it and its west face on the Rush frontage 12.2 m east of it, 12.2 m being half of an 80 ft street as annotated on Hathaway 1834. Facade bearing 0, due north onto Michigan Street, which is the one orientation Andreas does state - 'fronting on the latter'. WORKING UNCERTAINTY ABOUT 20 M from the georeference (data/datum.json, 17.5 m RMS), plus the block width if the side of Rush is wrong, plus whatever a building site's outline means when the building is not finished. NO SOURCES ARE CITED ON THIS ATTRIBUTE, deliberately: the streets are quoted in this note and are Andreas's, but the COORDINATE turns on a side of Rush Street that no source states, and a citation on a conjectural position would be decorative. THE GROUND UNDER IT IS MODELLED - the e1834_harbor_cut heightfield now runs local E -320..+1700 and N -400..+400, and this footprint at E +1061.2..+1085.2, N +341.2..+356.2 lands on it within the walker's 0.35 m step-up rule, so the phase carries no ground_contact declaration. WHAT IS STILL NOT MODELLED is the excavation: a construction site is a hole in the ground before it is anything else, and this project has no way to cut a cellar into the terrain, so the shell sits ON the surface rather than in it.",
         "derivation": {
           "method": "not_derivable",
@@ -50,18 +50,18 @@
             15.0
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED, AND IT IS THE FOOTPRINT OF A BUILDING SITE RATHER THAN OF A BUILDING, WHICH MAKES IT WORSE THAN THE USUAL GUESS. No source gives the Lake House a dimension of any kind - not a frontage, not a depth, not a room count - and no source says how much of its plan had been built by 1 July 1835. 24 x 15 m is about 79 x 49 ft: the largest footprint in this dataset, sized from the one quantity Andreas does give, a cost of nearly $100,000 for three storeys and a basement of brick, against the Temple Building's two frame storeys for about $900 and the First Presbyterian Church's 40 x 25 ft for $600. That is arithmetic on an order of magnitude, not a measurement. THE POLYGON ALSO ASSERTS SOMETHING THE EVIDENCE CANNOT: that the whole plan was staked and walled to the same height on the scene date. A real site of that date would be part cellar, part first-course brickwork, part mortar-bed and scaffold and stacked material. This is a rectangle. TO RESOLVE: the Chicago American and Chicago Democrat for 1835-36 - a $100,000 hotel going up in a town of three thousand was news, and the papers carried building notices; or the Kinzie's Addition conveyances, which would give the lots and therefore the maximum plan."
       },
       "form": {
         "kind": {
           "value": "magazine",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "THIS IS AN ARCHETYPE SELECTOR AND NOT A CLAIM ABOUT THE BUILDING. It emphatically does not say the Lake House was a powder magazine. `kind` chooses which of the fort_structure archetype's eleven builders draws the mesh, and 'magazine' is the only one that produces what an unfinished masonry shell looks like: a plain walled rectangle with a single opening and NO WINDOWS. Every other kind cuts a regular window rhythm into both long faces, which would render a building site as a finished hotel - the exact thing data/exclusions.json's lake_house_finished entry exists to prevent. WHY THIS ARCHETYPE AT ALL, since the building is a hotel on Lake Street's opposite bank and not a fort building: it is the only archetype in this project whose vocabulary admits `construction: brick` AND `roof_type: none`, and brick is the single documented fact about this structure's fabric while rooflessness is the single most important fact about its state. frame_tavern would build a windowed, roofed, five-bay hotel; outbuilding cannot build brick and cannot build a roofless structure - the constraint docs/LIBERTIES.md L60 records for the estray pen. The archetype's own docstring already extends it past the fort once, to the 1832 lighthouse, on the ground that a government structure on the reservation 'has no other archetype it could belong to'. The same reasoning is used here and it is a stretch, which is why the value is conjectural and why it is argued on the record rather than left to be discovered."
         },
         "construction": {
           "value": "brick",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1",
             "chicagology_prefire112"
@@ -70,27 +70,27 @@
         },
         "stories": {
           "value": 1,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "THE MOST INTERESTING GUESS IN THIS RECORD AND THE ONE THE BRIEF SINGLED OUT. The finished hotel was three storeys and a basement, documented. HOW FAR THE WORK HAD RISEN ON 1 JULY 1835 IS UNATTESTED BY EVERY SOURCE REACHED - chicagology_prefire112's own what_it_does_not_supply list says so in terms: no storey reached, no walls up, no foundation depth, and no month for the groundbreaking either. What can be reasoned, and it is a schedule argument rather than a source: ground was broken at some point in 1835, the house opened in the autumn of 1836, and a brick building of three storeys and a basement in a town whose brickyard was two years old could not have been raised in a single season. If the work began in the spring of 1835 and finished by September 1836, roughly eighteen months, then 1 July 1835 is somewhere in the first quarter of it - cellar dug, footings in, and the first storey of brickwork at most. ONE STOREY IS THEREFORE THE CHOICE, and the honest range is zero to two. The value carries the whole massing with it: at three storeys this structure would stand about 12 m and be the tallest thing in the scene, which is precisely the misreading the exclusion exists to prevent. Reasoned rather than assumed, and still conjectural."
         },
         "wall_height_m": {
           "value": 4.0,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "NOT ATTESTED. 4.0 m is about 13 ft, read as a basement wall standing clear of grade plus a first storey of brickwork part-raised - which is what the storey count above describes. It inherits that guess entirely. The finished building's wall would have been roughly 11 to 12 m to the plate for three storeys and a basement, so this figure is about a third of the building that eventually stood there, and nothing measures either."
         },
         "roof_type": {
           "value": "none",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "NO ROOF, AND THIS IS THE ONE PIECE OF THE MESH THAT IS ARGUED RATHER THAN INVENTED. The hotel 'was completed and thrown open to the public in the autumn of 1836' (Andreas), and Harriet Martineau, in Chicago in June 1836, was still describing 'the large room of the Lake House, A NEW HOTEL THEN BUILDING', with the congregation seated on 'a few chairs, and benches, and planks laid on trestles'. A building still being finished a year after the scene date did not have its roof on in July 1835. The archetype's `none` is what makes this record read as a site rather than as a house, and it is the reason this archetype was chosen at all - see form.kind."
         },
         "paint": {
           "value": "brick",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "The archetype's `paint` names the wall's surface finish, not a coat of paint, and 'brick' is the value that lets the documented brick fabric read as brick. It is inferred rather than documented because nothing describes the surface of this building at any date: bare brick is the ordinary finish and the alternative - stuccoed or whitewashed - is not excluded by anything, though it would be an odd thing to do to an unfinished shell."
         },
         "chimneys": {
           "value": 0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "NOT A COUNT OF THE FINISHED HOTEL'S STACKS, which nobody records, but a consequence of the state: a shell one storey up has no chimneys standing above it. The archetype places stacks against the ridge, and this structure has no ridge. Inferred from the construction state rather than from any statement."
         }
       },
@@ -99,7 +99,7 @@
   ],
   "function": {
     "value": "hotel_under_construction",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1",
       "chicagology_prefire112"

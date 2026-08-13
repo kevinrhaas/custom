@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1833-03-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -24,7 +24,7 @@
         "utm_n": 4637018.49,
         "rotation_deg": 0.0,
         "symbolic_location": "South-west corner of the public square (the block bounded by Randolph, Clark, Washington and LaSalle), at the Washington and LaSalle end.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "osm_streets_2026"
@@ -54,33 +54,33 @@
             6.096
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED. NO SOURCE REACHED GIVES THIS ENCLOSURE A DIMENSION. 9.144 x 6.096 m is 30 x 20 ft, recorded converted with the original figures stated per data/datum.json's units rule. The reasoning behind the scale is a use rather than a measurement: a town pound had to hold several head of stray cattle or horses at once and, for the first months of its life, prisoners as well, which puts it well above a shed and well below a stock yard. Everything about the shape - the rectangle, the proportion, the size - is this record's."
       },
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED. Nothing says what the pen was made of. Log is chosen because it is the material every other 1833 structure in this dataset is built of, because a notched log pen is stock-proof and prisoner-proof in a way a nailed fence is not, and because it is the value this archetype offers that is closest to a heavy enclosure. THE LIVE ALTERNATIVE IS A SPLIT-RAIL OR POST-AND-RAIL FENCE, which is what most frontier pounds actually were, and which would look completely different - open, horizontal, see-through - from what this record builds. That reading is recorded here rather than lost."
         },
         "roof_type": {
           "value": "shed",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "THE LARGEST SINGLE INVENTION ON THIS RECORD, AND IT IS THE MODEL'S RATHER THAN THE RECORD'S. A pound is an enclosure and there is no reason to think this one was roofed at all; nothing in any source mentions a roof. The outbuilding archetype - the only one in the project that will build a low walled enclosure - cannot build a roofless structure, so a roof is unavoidable if the pen is to appear in the scene at all. shed at the shallowest pitch the archetype accepts is the nearest thing to no roof that can be built here. THIS IS A CONSTRAINT OF THE TOOL, NOT A CLAIM ABOUT THE BUILDING, and it is claimed in docs/LIBERTIES.md. What the town actually had at this corner is, on the balance of type, a stout open pen."
         },
         "roof_pitch_deg": {
           "value": 6.0,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED, and deliberately at the floor of what the archetype accepts. 6 degrees over the pen's 6.096 m run rises 0.64 m, which is as close to flat as this generator will go. See roof_type: the number exists to minimise a feature that probably was not there, not to describe one that was."
         },
         "wall_height_m": {
           "value": 2.4,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED. 2.4 m is about 8 ft - high enough that a horse will not clear it and a man will not climb out easily, which is what the pen's two attested uses require between them. Nothing attests a height. It is also the minimum this archetype will accept with a gate a beast can be led through, so the two numbers are coupled: a lower pen forces a smaller opening."
         },
         "door": {
           "value": "stable",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED. door in this archetype names what has to get through the opening. A pound gate has to pass a horse or a cow led in hand, which is the stable class; a wagon-width gate would need a 3 m wall to carry it and is not what a pound needs. Nothing attests a gate, its width, its position or its fastening. What this builds is a doorway in a wall, where the real thing was probably a hung rail gate."
         }
       },
@@ -89,7 +89,7 @@
   ],
   "function": {
     "value": "livestock pound",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],

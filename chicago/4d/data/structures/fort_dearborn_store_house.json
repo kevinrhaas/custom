@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1856-08-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "harrison_1830_river_mouth"
@@ -24,7 +24,7 @@
         "utm_n": 4637594.89,
         "rotation_deg": 8.0,
         "symbolic_location": "Inside the south wall of Fort Dearborn, immediately east of the south gate, fronting north onto the parade.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth",
           "andreas_1884_v1"
@@ -54,7 +54,7 @@
             4.37
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "harrison_1830_river_mouth"
         ],
@@ -63,7 +63,7 @@
       "form": {
         "kind": {
           "value": "store",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -71,32 +71,32 @@
         },
         "construction": {
           "value": "log",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. Log by the same argument as the barracks."
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested; single storey is the type for a provision store of this footprint and it is how the 1830 plan draws it."
         },
         "wall_height_m": {
           "value": 2.8,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No height attested. About nine feet: one storey with the head-room a stacked provision store wants."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested; gable is the type."
         },
         "roof_pitch_deg": {
           "value": 34.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, inferred from construction practice rather than measured."
         },
         "chimneys": {
           "value": 0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "A COUNT OF ZERO IS A CLAIM, NOT AN ABSENCE. A provision store is the one building in a fort you do not want a fire in, and nothing describes a stack on this one. The record says none and the model builds none."
         }
       }
@@ -104,7 +104,7 @@
   ],
   "function": {
     "value": "provision store",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],

@@ -98,7 +98,7 @@ from dataclasses import dataclass, field
 # Confidence values as they are written into the _CONFIDENCE glTF attribute. See
 # docs/GLB-CONTRACT.md. Duplicated from the sibling params modules rather than
 # imported so that neither can break the other's import in the commit gate.
-CONFIDENCE_VALUE = {"attested": 0.0, "inferred": 0.5, "reconstructed": 1.0}
+CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
 
 # Gable is the type. Shed is allowed for a one-storey shop and refused above that,
 # because a two-storey shed-roofed store in 1835 Chicago would be a claim rather
@@ -242,7 +242,7 @@ class FrameStorefrontParams:
     # per-attribute confidence, keyed by the attribute name in the record
     confidence: dict = field(default_factory=dict)
 
-    def conf(self, attr: str, default: str = "reconstructed") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         """The _CONFIDENCE float for one attribute."""
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
@@ -532,7 +532,7 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="reconstructed"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
@@ -557,7 +557,7 @@ def from_phase(phase: dict) -> FrameStorefrontParams:
             f"Re-anchor the polygon at the origin and put the offset in position.")
 
     confidences = {a: conf(a) for a in form}
-    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "reconstructed")
+    confidences["footprint"] = phase.get("footprint", {}).get("confidence", "inferred")
 
     stories = int(val("stories", 2))
     sign = val("sign")

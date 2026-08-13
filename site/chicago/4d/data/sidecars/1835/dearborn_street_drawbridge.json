@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1834-08-01",
     "to": "1839-07-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "chicagology_dearborn_st_bridges"
@@ -26,7 +26,7 @@
     "local_e": 699.17,
     "local_n": 20.72,
     "rotation_deg": 269.419,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "wright_1834",
@@ -57,14 +57,14 @@
         3.048
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "ONE AXIS IS MEASURED AND THE OTHER IS INVENTED, AND THE LEAST CONFIDENT WINS. The length, 76.33 m, is the distance between the two traced 1834 waterlines along the Dearborn alignment, read off shoreline.geojson at the crossing station (south bank local E +699.17, north bank local E +698.39, 76.33 m apart along the street line). That is 250.4 ft of water, and what it is worth is argued on form.overall_length_m, because it is the first independent evidence this project has been able to put against a hundred-and-ninety-year-old disagreement about how long this bridge was. The width, 3.048 m, is not evidence of anything — see form.width_m — so the polygon as a drawn shape is conjectural even though half of it was measured, on the same least-confident-wins rule the mesh uses. WHAT THE MEASUREMENT'S ERROR BAR ACTUALLY IS, and it is smaller than the georeference's headline number. The 20 m stated for anything traced from the 1834 sheets is dominated by a common-mode shift: an affine that puts the whole neighbourhood 20 m north puts both banks 20 m north and the distance between them does not move. What survives into a WIDTH is the sheet's local scale error — the fit records a 3.7 per cent difference between its two axis scales, which is real paper stretch — and the tracing tolerance of 1.78 m. Even a generous ten per cent leaves the water gap above 225 ft. NO SOURCE IS CITED ON THIS BLOCK, DELIBERATELY. The measured axis is argued in this note and cited on form.overall_length_m; a conjectural block carrying a source_id would claim the survey supports a shape it cannot."
   },
   "attributes": {
     "construction": {
       "value": "timber_crib",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -72,7 +72,7 @@
     },
     "overall_length_m": {
       "value": 91.44,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "chicagology_dearborn_st_bridges"
@@ -82,7 +82,7 @@
     },
     "draw_span_m": {
       "value": 18.288,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "chicagology_dearborn_st_bridges"
@@ -91,7 +91,7 @@
     },
     "gallows_frames": {
       "value": 2,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "chicagology_dearborn_st_bridges"
@@ -100,23 +100,23 @@
     },
     "gallows_height_m": {
       "value": 6.4,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "HOW TALL THE GALLOWS STOOD IS THE MOST VISIBLE UNKNOWN IN THIS DATASET. No source gives the height, the section, the bracing or the tackle of these frames; what survives is that they were tall enough to be frightening at night and strong enough to hold a sixty-foot draw suspended for forty-eight hours. 6.4 m above the deck — about twenty-one feet — is the archetype's own number, chosen so that a frame is unmistakably a gallows against the sky and not a gatepost, and it is not a finding. THE REASON IT IS BUILT AT ALL, rather than declared absent: the confidence view exists exactly for this. A dithered translucent frame says 'this shape is ours' in a way no footnote can, and leaving the frames out would tell a visitor the town's one piece of engineering was a plain causeway, which is a stronger false claim than a tagged guess. The alternative reading was on this record for a few hours on 2026-08-11 and is recorded here because it is a real argument: build nothing, declare it, and let the liberties document carry the frames in prose. WHAT WOULD SETTLE IT: the February 1834 proposals Andreas mentions, the trustees' specification, the twenty-five-dollar premium drawing, or any period view of the river mouth looking west."
     },
     "draw_lifting_gear": {
       "value": false,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "geometry": "record_only",
       "note": "A NEGATIVE FINDING, AND A CORRECTION TO THIS PROJECT'S OWN RESEARCH. The draw is repeatedly described in modern retellings, including in docs/research/03-structures-north.md section 5, as DOUBLE-LEAF and as 'opened manually with chains'. NEITHER WORD IS IN ANY UNDERLYING TEXT. Andreas gives 'gallows pattern', the frames 'one at either end', the draw 'hoisted', and the frames holding it 'suspended in mid-air' — which establishes that it lifted rather than swung, and nothing whatever about leaves, chains, ropes or windlasses. On the chicagology page that transcribes him, 'leaves' and 'double-leaf' appear only in descriptions of the 1890s bascule and the 1907 and 1963 bridges, sixty to a hundred and thirty years later; the one windlass on the page belongs to the State Street FERRY rope. Two of the project's own dossiers glossed the same silence in incompatible ways — 03 says double-leaf and chains, 04 models a single hoisted leaf at midstream. THREE READINGS FIT EVERY WORD OF THE EVIDENCE and this record refuses to choose between them: one leaf hinged at one end and hoisted from both frames; two leaves, each hoisted by the frame at its own end; or the whole sixty-foot section lifted bodily between the two frames, which is the most natural reading of 'suspended in mid-air' and the least often repeated. THE MESH IS BUILT TO BE AGNOSTIC. The deck runs continuously across the opening — the draw closed, which is what it was for all but a few minutes at a time — and there is no leaf, no hinge, no chain and no tackle anywhere in it. A raised leaf would have to pick one of the three readings, in the most conspicuous position on the bridge. So the value here is false in the sense that matters: there is no lifting gear in this model, and its form is not evidenced."
     },
     "width_m": {
       "value": 3.048,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOBODY EVER WROTE DOWN HOW WIDE THIS BRIDGE WAS. Andreas gives its length, its draw, its pattern, its frames, its repairs and its destruction, and not its width; the 1902 text gives length and draw and nothing else; the 1883 old-settlers statement that supplies ten feet for both BRANCH bridges is explicitly about those two and not about this one. THE VALUE IS THE ARCHETYPE'S DEFAULT, KEPT DELIBERATELY RATHER THAN REPLACED WITH A FRESH GUESS — the same choice docs/LIBERTIES.md L29 made about the North Branch bridge's pier spacing, and for the same reason: a new number chosen to look sensible would read as a finding and would not be one. bridge_timber's default is the branch bridges' documented ten feet, which is almost certainly too narrow for the main crossing of the town's principal street, carrying teams, on a structure a shipwright framed to a premium design. It is kept because being visibly the neighbour's number is more honest than being plausibly nobody's. The chip on this row is conjectural and the whole footprint inherits it. WHAT WOULD SETTLE IT: the town trustees' specification, the February 1834 proposals Andreas mentions, or the 1834-35 repair vouchers — the corporation paid $166.67 for repairs in September 1834 and the bridge was repaired again in 1835, and a repair account is the kind of document that states a deck width."
     },
     "clearance_m": {
       "value": 1.83,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "old_settlers_bridges_1883"
       ],
@@ -124,7 +124,7 @@
     },
     "deck_kind": {
       "value": "plank",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -132,17 +132,17 @@
     },
     "pier_count": {
       "value": 16,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "SIXTEEN SUPPORTS IN THE RIVER, AND NOT ONE OF THEM IS ATTESTED. Nothing anybody wrote describes the middle of this bridge. Something had to hold up 76 m of crossing, so intermediate supports are not the invention; their number, their spacing and their form are. THE VALUE IS THE ARCHETYPE'S FALLBACK MADE VISIBLE. bridge_timber divides a span whose middle nobody described by a 4.5 m default spacing, which over 76.33 m gives seventeen bays and sixteen supports. That fallback exists because of docs/LIBERTIES.md L29, where the same arithmetic put fifteen cribs under the North Branch bridge and the number went unnoticed for a slice because it was hidden in the generator instead of stated on the record. Writing it here as a conjectural count is the repair L29 earned: the same invention, in the open, with a chip on it. Sixteen bents at 4.5 m under a low timber causeway is not an unreasonable trestle for 1834 — which is exactly what makes it dangerous, because a plausible invention is the kind a visitor believes. TWELVE OF THE SIXTEEN ARE ACTUALLY BUILT: four of the evenly spaced stations fall inside the sixty-foot draw and are dropped, because an opening for the passage of craft with a pier in it is not an opening. So the number on this chip is the count the arithmetic produced and not the count in the mesh, and the difference is documented evidence removing an invented support rather than a discrepancy. WHAT WOULD SETTLE IT: the February 1834 proposals, the trustees' specification, or the repair accounts of September 1834 and 1835."
     },
     "pier_kind": {
       "value": "crib",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOBODY SAID. The branch bridges' supports are documented as bents of four heavy logs resting on the bottom, because four men who used them wrote it down; nothing equivalent exists for this crossing, and the sentence that would have settled it is the one Andreas did not write. Crib is chosen over the archetype's other two readings — bent and pile — on the ground that it is the archetype's own default and that the harbour works at the mouth of the same river were at that moment being built of timber cribs by federal engineers, in a town whose one shipwright had just framed this bridge. That is a reason to prefer it and not evidence for it, so the tag is conjectural rather than inferred, and the count beside it carries the same chip for the same reason."
     },
     "function": {
       "value": "river_crossing",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -164,7 +164,7 @@
         {
           "name": "Nelson R. Norton",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "ship_carpenter",
           "note": "AN ARRIVAL DATED TO THE DAY - 16 NOVEMBER 1833 - which only four households in this parcel have, and a trade that ties a person to two dated artefacts. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one."
         }

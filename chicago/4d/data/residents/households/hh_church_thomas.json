@@ -5,33 +5,33 @@
  "head": "church_thomas",
  "arrival": {
   "value": "1834",
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
   "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "thomas_church_store",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "chicagology_prefire275"
   ],
@@ -39,7 +39,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "chicagology_prefire275"
   ],
@@ -50,11 +50,11 @@
    "id": "church_thomas",
    "name": "Thomas Church",
    "relationship": "head",
-   "grade": "inferred",
+   "grade": "derived",
    "sex": "male",
    "occupation": {
     "value": "merchant",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "chicagology_prefire275"
     ],

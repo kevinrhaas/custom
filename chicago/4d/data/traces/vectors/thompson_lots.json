@@ -15,14 +15,14 @@
  "module": {
   "street_width_m": 24.384,
   "street_width_ft": 80,
-  "street_confidence": "inferred",
+  "street_confidence": "derived",
   "alley_width_m": 5.4864,
   "alley_width_ft": 18.0,
-  "alley_confidence": "reconstructed",
+  "alley_confidence": "inferred",
   "alley_note": "18 ft is the module the Thompson plat source record carries and the figure the 1834 traverses read (17.1-18.7 ft), so the WIDTH is as well attested as the street. Everything else about it is not: nothing in data/sources/ says which blocks were alleyed, or whether the alley ran with the long axis of a block or across it. The mid-block east-west alley generated here is the arrangement the lot rows on Wright's block 18 imply, and it is a conjecture in exactly the way its confidence says. The 16 ft dissent recorded in data/traces/street_control.json is not settled by the traverses: two feet is inside that method's error.",
   "lot_frontage_m": 24.384,
   "lot_frontage_ft": 80.0,
-  "lot_confidence": "reconstructed",
+  "lot_confidence": "inferred",
   "lot_note": "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's crop of Wright's sheet at the Clark reach carries block 18's north row numbered 4 3 2 1 and its south row 5 6 7 (docs/RESEARCH/clark_reach_bulge_1834.md § 8), which is four lots across a block of about 320 ft. Applying it to the other blocks is inference from a single instance and it is graded as the conjecture it is. Lots are NOT numbered here — the crop reads block 18's numbering and nothing fixes the other blocks', and a numbering invented to look complete is exactly what this project does not do."
  },
  "method": {
@@ -33,7 +33,7 @@
   "water_rule": "a block with a corner on water or beyond the modelled ground is omitted rather than drawn over the river",
   "lot_subdivision": "the block's north and south faces divided in the same proportion, joined station to station, with a centred alley taken out of the middle"
  },
- "confidence": "inferred",
+ "confidence": "derived",
  "confidence_note": "The blocks are arithmetic on inferred inputs — street lines whose own geometry confidence is `inferred`, offset by a module width the street control also grades `inferred` — so `inferred` is the most this grid can carry. The lots and the alleys inside those blocks are `conjectural` and are recorded separately for that reason: a visitor is entitled to know that the block face is a defensible position and the line dividing it is not.",
  "summary": {
   "blocks": 19,

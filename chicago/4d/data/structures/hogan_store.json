@@ -13,7 +13,7 @@
       "documented_range": {
         "from": "1831-03-31",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1",
           "chicagology_first_post_office"
@@ -25,7 +25,7 @@
         "utm_n": 4637303.7,
         "rotation_deg": 180.0,
         "symbolic_location": "South bank of the main stem at the west end of the Lake Street / South Water Street block, near where the two streets converge east of Market Street; the north side of Lake Street, diagonally across it from the Sauganash.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "derivation": {
           "method": "platted_corner",
           "control": "lake_market",
@@ -71,7 +71,7 @@
             6.096
           ]
         ],
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -80,7 +80,7 @@
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "andreas_1884_v1",
             "chicagology_first_post_office"
@@ -89,27 +89,27 @@
         },
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. Andreas calls it 'a small log building' and gives it a 20 ft depth, and the two passages describing its use divide it side by side — a post office on one side and a store on the other — rather than by floor. A single-pen log building of this depth is single-storey by type at the forks in 1835. Inference from the type and the description, not from a statement."
         },
         "wall_height_m": {
           "value": 2.5,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. What is inferred is that the wall height falls in this range, not that it is exactly 2.5 m — the same reading, and the same number, this project gives the Walker meeting house, which is the other single-storey log building it models."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and it is the form a 45 ft building of this depth is roofed with unless something says otherwise."
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 35 degrees is the archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested, and nothing describes a stack on this building at all. One is the minimum for a store kept through Chicago winters with a clerk sorting mail in half of it, and the normal number for a single-pen log building. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
         }
       },
@@ -118,7 +118,7 @@
   ],
   "function": {
     "value": "store",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

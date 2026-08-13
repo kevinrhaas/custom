@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1817-01-01",
         "to": "1835-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637523.8,
         "rotation_deg": 0.0,
         "symbolic_location": "On the Fort Dearborn reservation, in the Beaubien homestead group at what Andreas calls the corner of South Water Street and Michigan Avenue — modelled about 11 m behind (south of) the factory building, which is where this dataset puts the principal house.",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "PLACED BY EYE INSIDE A GROUP, WHICH IS THE HONEST DESCRIPTION OF IT. NOTHING LOCATES THIS BUILDING. Andreas says only that it was 'the old cabin' Beaubien had lived in before 1817, and the sentence immediately before it puts an earlier cabin 'on the south side of the river, not far from Beaubien's place' — a locator that names a river bank and nothing finer. The 1839 sale passage (scan p. 339) puts 'Beaubien's house, out-buildings, and garden' together on Lots 6 to 10 of Block 5, on the east side of Michigan Avenue between South Water Street and the reserved lots, which is a group of five lots rather than a point, and which sits on the OPPOSITE side of Michigan Avenue from the corner Andreas gives for the homestead itself on scan p. 185 — a contradiction inside one book that data/structures/jb_beaubien_homestead.json already argues over and that this record inherits whole. METHOD: this coordinate shares the homestead record's easting and stands 16.3 m south of its origin, so the barn's north face is about 11 m behind the house's south wall, in the position a farmyard building takes behind a dwelling. THE DIRECTION AND THE DISTANCE ARE BOTH INVENTED; south was chosen because the homestead record faces its building north toward the river, so the yard is behind it. TWO CAVEATS TRAVEL WITH THE PARENT RECORD AND APPLY HERE UNCHANGED. First, neither street existed on the reservation in 1835 — it was unplatted and no street crossed it — so Andreas is locating an 1817 building by the grid of 1884. Second, the two corners Andreas gives for the homestead are about 45 m apart, which is more than twice the georeference's own error and is the largest single uncertainty on both records. WORKING UNCERTAINTY: about 20 m from the georeference, plus about 45 m for the contested corner, plus an unquantified allowance for placing an undescribed building beside a building located by a retrospective address. Facade bearing 0, north toward the house, inherited from the parent record and attested nowhere.",
         "derivation": {
           "method": "not_derivable",
@@ -49,13 +49,13 @@
             4.88
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED, AND INVENTED AS A CABIN RATHER THAN AS A BARN, which is the one thing about this footprint that is not free. Andreas gives no dimension. 6.1 x 4.88 m is 20 x 16 ft — a single-pen log cabin, the smallest unit of dwelling this settlement built — because what the source describes is a house that stopped being a house: Beaubien did not build a barn, he moved out and left one. Drawing this as a barn-sized building would assert a rebuilding nobody records. 20 ft is borrowed from Hogan's store, the one log footprint in this dataset with a documented dimension, and 16 ft is the shallower of the two common single-pen depths. Every number is invented and this polygon cites no sources."
       },
       "form": {
         "construction": {
           "value": "log",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -63,22 +63,22 @@
         },
         "wall_height_m": {
           "value": 2.5,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill — the same reading and the same number this project gives Hogan's store, the Walker meeting house and this building's own parent record. NOTE THE CONSEQUENCE, WHICH IS A FEATURE OF THE CONVERSION AND NOT AN ERROR: a 2.3 m stable door cut into a 2.5 m cabin wall leaves only 0.2 m of header. That tightness is what converting a dwelling into a barn actually looks like — the wall was built for a person and the opening was cut for a horse — and it is why this record states the wall height rather than letting the archetype's size-aware default (2.71 m) quietly buy the door more room than the building had."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable rather than the archetype's shallow-building default of shed, and the reason is again the conversion: this was a cabin before it was a barn, and a cabin at Chicago in this period carried a gable roof over a loft. A shed roof here would draw a purpose-built outbuilding, which is the one thing the source rules out."
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 35 degrees is this project's mid-range for a low single-storey log building roofed in riven shakes, and is the figure carried by the parent record and by every other log structure in this dataset; the outbuilding archetype's own default for a gable is the shallower 32, which is a secondary building's pitch and not a dwelling's. Inferred from construction practice and from the building's first life, not measured."
         },
         "door": {
           "value": "stable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -86,12 +86,12 @@
         },
         "door_side": {
           "value": "front",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "NOT ATTESTED. Placed on the north elevation, facing the house, because that is the side this record's invented placement makes into the yard. If the barn stood the other way about, or the group was arranged along Michigan Avenue rather than about a yard, the door belongs elsewhere. Recorded conjectural rather than allowed to arrive as the archetype's default."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No source describes a finish. Unpainted weathered log is the default for a converted cabin doing farm work on the reservation, and it is what this project reads for every other log building of the period at Chicago. Not attested either way."
         }
       },
@@ -100,7 +100,7 @@
   ],
   "function": {
     "value": "barn",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -108,7 +108,7 @@
   },
   "occupants": {
     "value": "Col. Jean Baptiste Beaubien's household",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],

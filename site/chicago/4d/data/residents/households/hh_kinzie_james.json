@@ -5,7 +5,7 @@
  "head": "kinzie_james",
  "arrival": {
   "value": "1831",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,22 +14,22 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": "james_kinzie_house",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -38,12 +38,12 @@
  },
  "works_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "NOT ATTESTED AT THE SCENE DATE. He built the Green Tree and Chester Ingersoll kept it; he built a tavern on the west side of the South Branch and a Mr Crook kept it. This dataset holds james_kinzie_house as his residence and that is a lives_at, not a works_at."
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -54,11 +54,11 @@
    "id": "kinzie_james",
    "name": "James Kinzie",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "merchant",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],

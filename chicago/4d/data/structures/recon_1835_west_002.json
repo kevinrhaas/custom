@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
       },
       "position": {
@@ -16,7 +16,7 @@
         "utm_n": 4637344.447,
         "rotation_deg": 0.0,
         "symbolic_location": "Anonymous inferred roof on west of Canal and Lake, behind the Wolf Point sequence",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "Interpretive placement within the reviewed West Division cluster w1_canal_lake_mixed. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
           "method": "not_derivable",
@@ -42,13 +42,13 @@
             6.706
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "A 16 × 22 ft rectangle assigned by the reconstruction recipe within the D3 family band; no individual dimensions are documented."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -56,7 +56,7 @@
         },
         "wall_height_m": {
           "value": 2.78,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -64,7 +64,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -72,7 +72,7 @@
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -80,7 +80,7 @@
         },
         "construction": {
           "value": "braced_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -88,7 +88,7 @@
         },
         "plan": {
           "value": "single_pen",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -96,7 +96,7 @@
         },
         "bays": {
           "value": 3,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -104,7 +104,7 @@
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -112,7 +112,7 @@
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "owner_chicago_1835_reconstruction_spec_2026"
           ],
@@ -124,7 +124,7 @@
   ],
   "function": {
     "value": "one-room frame cottage",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "owner_chicago_1835_reconstruction_spec_2026"
     ],

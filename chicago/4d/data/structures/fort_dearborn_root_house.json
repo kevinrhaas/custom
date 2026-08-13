@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1816-07-01",
         "to": "1836-12-29",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "kinzie_waubun_1856"
         ],
@@ -23,7 +23,7 @@
         "utm_n": 4637631.24,
         "rotation_deg": 188.0,
         "symbolic_location": "On the south bank of the Chicago River west of Fort Dearborn, between the fort and the bend.",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "A BANK, NOT A POINT. Kinzie, of 1831: 'The bank of the river which stretches to the west, now covered by the light-house buildings, and inclosed by docks, was then occupied by the root-houses of the garrison.' That names a stretch of riverbank and gives no position on it, and the 1830 plan - which labels the wash house, the well, the shop and the barn - does not draw them. This point is on that bank about 45 m north-west of the fort's centre and it is ours. THE PLURAL IS NOT MODELLED EITHER: Kinzie says root-houses and this record builds one, because a count invented would be a second invention on top of a position invented. MOVED 2026-08-11 FOR THE SAME REASON AS THE LIGHTHOUSE. The first point sat on the face of the river bank the newly extended heightfield draws, so the mound straddled a 0.85 m fall. It now stands at local E +1115, N +234, on the bank top west-north-west of the fort. Kinzie's 'bank of the river which stretches to the west' is satisfied either way; a cellar dug INTO the face of a bank is what she is describing and what this project cannot model, since the archetype banks earth over a level floor.",
         "derivation": {
           "method": "not_derivable",
@@ -49,14 +49,14 @@
             3.6
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "sources": [],
         "note": "INVENTED. No source gives a size. 5.0 x 3.6 m is a cellar big enough to hold a garrison's roots through a winter and it is nothing more than that."
       },
       "form": {
         "kind": {
           "value": "root_house",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "kinzie_waubun_1856"
           ],
@@ -64,22 +64,22 @@
         },
         "construction": {
           "value": "earth",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not stated. Earth banked over a timber-framed cellar is what the type is; what is inferred is the type, not this example."
         },
         "wall_height_m": {
           "value": 1.9,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "Unattested. The height of the bank above the surrounding ground."
         },
         "roof_type": {
           "value": "flat",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "Unattested. The archetype builds the mound as a banked truncated pyramid with a plank door in one end; 'flat' names the top of the bank rather than a roof."
         },
         "chimneys": {
           "value": 0,
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "kinzie_waubun_1856"
           ],
@@ -87,7 +87,7 @@
         },
         "paint": {
           "value": "earth",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "The colour of turf and soil. No source describes it."
         }
       }
@@ -95,7 +95,7 @@
   ],
   "function": {
     "value": "root cellar",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "kinzie_waubun_1856"
     ],

@@ -91,7 +91,7 @@
   "$defs": {
     "confidence": {
       "type": "string",
-      "enum": ["attested", "inferred", "reconstructed"]
+      "enum": ["documented", "derived", "inferred"]
     },
 
     "attested": {

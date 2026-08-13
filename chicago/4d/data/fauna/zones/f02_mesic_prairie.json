@@ -33,12 +33,12 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The Chicago record is 1837 \u2014 a visitor stepping onto a plank sidewalk saw 'a flock of quail on the plank' \u2014 which is two years after this scene and inside the town. Presence on the prairie in 1835 follows from that, but is not itself attested."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -46,7 +46,7 @@
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "By July the winter coveys have broken into pairs with chicks, so the birds are spread thin and the groups are small."
     },
     "max_group": 10,
@@ -55,7 +55,7 @@
     "appearance": "Small, round, cryptic quail; the male's white throat and eyebrow are the only pattern that carries at distance.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -75,17 +75,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A dry-prairie breeder in the regional assemblage; no Chicago 1830s record reached."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Heard far more often than seen \u2014 a small brown bird in tall grass."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -94,7 +94,7 @@
     "appearance": "Small streaked sparrow with white outer tail feathers that flash on the flush.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Vesper sparrows sing into late July and are at their most vocal at dusk, so full song on 1 July is correct rather than a spring holdover."
   },
   {
@@ -111,17 +111,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A breeder of grassy openings and prairie edge in the regional assemblage."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The song is the encounter; the bird stays low."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -130,7 +130,7 @@
     "appearance": "Plain grey-faced sparrow with a pink bill and a rusty cap.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Field sparrows are among the very last species still singing hard in July, which is why this one is graded full song where most of the passerine list is not."
   },
   {
@@ -146,17 +146,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A short-grass prairie breeder; regional inference."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "An insect-like buzz from a grass stem; the bird is almost never seen."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Wants shorter, sparser grass than most of this zone carries."
     },
     "max_group": 1,
@@ -165,7 +165,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Graded reduced rather than full: song output falls through July as second broods start."
   },
   {
@@ -182,17 +182,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A near-ubiquitous breeder of damp edges."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sings from an exposed perch on a shrub or fence-less rise."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -201,7 +201,7 @@
     "appearance": "Heavily streaked brown sparrow with a central breast spot.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Song sparrows sing into late summer but the July output is well below the May peak."
   },
   {
@@ -216,17 +216,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A breeder of prairie edge and scattered trees in the regional assemblage."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Conspicuous: hunts from exposed perches and attacks anything larger."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -235,7 +235,7 @@
     "appearance": "Black above, white below, with a white tail band.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Kingbirds have no song in any ordinary sense \u2014 a sputtering electric call is the whole vocabulary, and calling all July is correct for them."
   },
   {
@@ -252,17 +252,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "'Grey rabbit' is in the Chicago Academy of Sciences regional list the dossier quotes; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it, so this is graded inferred at the record level."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeding on grassy edges at first and last light."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional list; no local count."
     },
     "max_group": 2,
@@ -271,7 +271,7 @@
     "appearance": "Grey-brown with a white tail flash.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Graded inferred because the regional retrospective that lists it has no source record and is in any case a post-1870 compilation of what the region 'once' held."
   },
   {
@@ -288,17 +288,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "'Woodchuck/groundhog' is in the same regional retrospective; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Feeding near the burrow mouth in the morning and evening."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional; wants drier, firmer ground than the wet prairie."
     },
     "max_group": 1,
@@ -307,7 +307,7 @@
     "appearance": "Heavy grizzled brown rodent; the burrow spoil mound is bare soil in unbroken grass.",
     "trace": "Bare-earth spoil mounds and burrow mouths on the drier rises."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Regional retrospective only. The Chicago Academy of Sciences list the dossier quotes is a post-1870 compilation of what the region once held, it has no source record in data/sources/, and it names no date. The animal is placed on habitat reasoning."
   },
   {
@@ -322,17 +322,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "'Striped and grey gophers' are in the regional retrospective; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Active in the hottest part of the day, unlike most of this list."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional; wants short, dry, disturbed turf."
     },
     "max_group": 3,
@@ -341,7 +341,7 @@
     "appearance": "Small, low, striped and spotted along the back.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The one prairie mammal reliably out in the middle of a hot July day."
   },
   {
@@ -358,17 +358,17 @@
    "july": {
     "status": {
      "value": "doubtful",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The regional retrospective lists 'red and grey fox' together, and which of the two was at the Chicago town site in 1835 is not recoverable from it. Red fox expanded across the Midwest with settlement, so its 1835 status here is genuinely uncertain and is recorded as uncertain rather than resolved by preference."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A single animal at distance, if at all."
     },
     "abundance": {
      "value": "sparse",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "One animal on the prairie margin, not a population in view."
     },
     "max_group": 1,
@@ -377,7 +377,7 @@
     "appearance": "Slight, red, black-legged, white tail tip.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The gray fox Urocyon cinereoargenteus is the timber counterpart and is recorded in the north-side timber zone. Neither is attested at the town site; both are carried at low abundance so that a renderer showing one is showing an inference."
   },
   {
@@ -393,17 +393,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Annual cicadas on the wing July-September."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Heard from scattered trees and the timber edge."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading; fewer than in the timber."
     },
     "max_group": 0,
@@ -412,7 +412,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Genus-level on purpose: which annual cicadas were at Chicago in 1835 is not recoverable, and naming a species would be a false precision. The July-to-September flight period is the whole of the claim."
   },
   {
@@ -427,17 +427,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "On the wing through July; listed by the dossier among the July butterflies."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Patrolling and nectaring over the July bloom."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A woodland-edge butterfly out on the prairie, not a prairie species."
     },
     "max_group": 2,
@@ -446,10 +446,10 @@
     "appearance": "Yellow with black tiger stripes; the size is what reads at distance.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Named by the dossier among the July prairie butterflies with no source attached. Placed on flight-period reasoning alone."
   }
  ],
- "confidence": "inferred",
+ "confidence": "derived",
  "note": "No source distinguishes wet from mesic prairie at the forks; this zone follows the flora dataset's reading of the terrain and inherits its extent. The fauna split between the two is ecological reasoning, not evidence."
 }

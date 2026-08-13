@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1833-10-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 465.55,
     "local_n": -269.59,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -54,14 +54,14 @@
         4.572
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. NO SOURCE REACHED GIVES THIS BUILDING A DIMENSION, a plan, or a number of cells. 6.096 x 4.572 m is 20 x 15 ft, recorded converted with the original figures stated per data/datum.json's units rule. The only constraint the evidence offers is relative and it runs in both directions: the jail was built because something more metropolitan was required than the estray pen, so it is a more substantial thing than a stock pound; and it was itself superseded within a few years, so it was small. A 20 x 15 ft log box is a two-cell lock-up and is the smallest thing that answers both. Nothing else about the shape is a finding: the plain rectangle, the proportion and the scale are all this record's."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -69,27 +69,27 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region, and it is what this project's other log buildings carry. The archetype would default a building this shallow to a shed roof, which is a covering appropriate to a lean-to; a purpose-built county jail is stated as gabled rather than left to that default. Typological derivation, not a measurement."
     },
     "roof_pitch_deg": {
       "value": 32.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 32 degrees is this archetype's own default for a gable and is kept deliberately rather than replaced with a fresh guess - a new number would look like a finding and would not be one. It is lower than the 35-38 the dwelling archetypes use, which is the right direction: nobody framed a secondary building steeper than its covering required, and there is no loft under this roof."
     },
     "wall_height_m": {
       "value": 2.66,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.66 m is about 8 ft 9 in to the plate: a man's standing height with a header over the door and a course or two above it, which is what a lock-up needs and no more. It is also, to the centimetre, what this archetype's own size-aware default computes for a 20 x 15 ft footprint, and it is kept deliberately for the reason the roof pitch is. What is inferred is that the height falls in this range, not that it is exactly 2.66 m."
     },
     "door": {
       "value": "man",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. `door` in this archetype names what has to get through the opening rather than whether there was one. A jail takes a person through in hand and nothing else - no horse, no wagon - so the man-door class is the reading, and it is the only one whose 1.88 m clear height fits under this wall. Where the door stood, what it was made of, and whether it was barred or grated is not attested and is the archetype's default."
     },
     "function": {
       "value": "jail",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],

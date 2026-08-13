@@ -57,7 +57,7 @@
    ]
   ],
   "priority": 30,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": ["chicagology_prefire273"],
   "note": "Andreas: 'On the South Side, a body of timber grew along the river, extending east as far as Wells Street, and following the bend of the river, crossed Clark Street, and extending south two or three miles', and the North Side carried a thrifty heavy growth of timber. Wells Street is about 440 m east of this box's east edge, so the whole South Division frontage inside the box is inside that belt. The West Division is excluded by polygon because Andreas documents it as entirely free from timber; the one exception he names, the grove up the South Branch, is about 5 km away. The North Division is excluded too, not because it carries no timber but because the dossier treats the timber north-east of the forks as its own community (ZONE 6) with its own composition, and two records must not both claim the same ground. The 8-90 m band implements the dossier's '30-120 m wide irregular gallery' and is an inference; it is measured from the waterline, so it also keeps the gallery off the 7 m north-side slough, which is not a river."
  },
@@ -78,7 +78,7 @@
     "inflorescence": null,
     "appearance": "Massive open crown emergent above the gallery; glossy triangular leaves that flash and rattle in wind. Cotton release is finished by mid-July."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"],
    "note": "60-100 cm dbh. Cottonwood is on the PLS species list and is the timber the 1833 lumber trade shipped in as boards, which is why the dossier tags it [D]."
   },
@@ -97,7 +97,7 @@
     "inflorescence": null,
     "appearance": "Multi-stemmed and leaning out over the water; narrow bright-green leaves, dark furrowed bark."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -114,7 +114,7 @@
     "inflorescence": null,
     "appearance": "Dense clonal screens on the point bars; fine silvery-green linear leaves."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"],
    "note": "Cook County held the only willow thickets the Public Land Survey recorded anywhere in the seven-county area."
   },
@@ -133,7 +133,7 @@
     "inflorescence": null,
     "appearance": "Yellowish twigs and drooping paler leaves at the water's edge."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier [I]: on the PLS list, not named here."
   },
@@ -153,7 +153,7 @@
     "inflorescence": null,
     "appearance": "Deeply cut leaves whose silver undersides flash white when the wind turns them."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"],
    "note": "The 'soft maple' of the survey notes; 50-90 cm dbh."
   },
@@ -172,7 +172,7 @@
     "inflorescence": null,
     "appearance": "Vase form with an arching crown over the bank."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -190,7 +190,7 @@
     "inflorescence": null,
     "appearance": "Pinnate leaves and diamond-ridged bark; upright oval crown."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -209,7 +209,7 @@
     "inflorescence": null,
     "appearance": "Two-tone leaves, dark above and white-felted below; peeling twig bark."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier [I]: on the PLS list, not named here."
   },
@@ -228,7 +228,7 @@
     "inflorescence": null,
     "appearance": "Warty corky bark and asymmetric rough leaves."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["mcbride_bowles_2007"]
   },
   {
@@ -246,7 +246,7 @@
     "inflorescence": null,
     "appearance": "Long pinnate leaves on a high open crown; occasional, not a component."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier tags it D for the regional PLS list and C for this site. Recorded as inferred from the list at the bottom of its density band; nothing attests a walnut in the gallery at the forks."
   },
@@ -265,7 +265,7 @@
     "inflorescence": null,
     "appearance": "Rare, at its northern edge; white mottled bark flashing on the upper limbs."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["mcbride_bowles_2007"],
    "note": "Dossier D for the list, C on site. Inferred at the bottom of the band."
   },
@@ -284,7 +284,7 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[214,216,206],"height_frac":0.85,"size_m":[0.05,0.09],"fruit":true},
     "appearance": "Red stems under the gallery with flat clusters of whitening berries."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional floodplain shrub."
   },
@@ -303,7 +303,7 @@
     "inflorescence": {"shape":"panicle_dense","rgb":[230,228,212],"height_frac":0.85,"size_m":[0.05,0.09]},
     "appearance": "Grey twigs and loose creamy flower clusters at the gallery edge."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional floodplain shrub."
   },
@@ -322,7 +322,7 @@
     "inflorescence": {"shape":"umbel_flat","rgb":[240,240,226],"height_frac":0.88,"size_m":[0.15,0.25]},
     "appearance": "Flat white elder umbels in full bloom over coarse pinnate leaves — one of the loudest July markers in the shrub layer."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional floodplain shrub."
   },
@@ -341,7 +341,7 @@
     "inflorescence": {"shape":"cluster_terminal","rgb":[178,118,92],"height_frac":0.85,"size_m":[0.04,0.07],"fruit":true},
     "appearance": "Shredding bark and clusters of inflating reddish seed pods."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]: regional floodplain shrub."
   },
@@ -359,7 +359,7 @@
     "inflorescence": {"shape":"berry_cluster","rgb":[110,132,84],"height_frac":0.6,"size_m":[0.06,0.12],"fruit":true},
     "appearance": "Heavy curtain vine on the river-facing edge trees, hard green fruit."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]. Drapes 10-20% of the edge trees. form 'vine_drape' is outside the renderer's implemented list on purpose: a vine is neither sward nor tree, and the modules are expected to record it as an unimplemented form and draw nothing rather than substitute a shrub."
   },
@@ -377,7 +377,7 @@
     "inflorescence": null,
     "appearance": "Five-fingered leaves climbing the trunks on the shaded side."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": ["swink_wilhelm_1994"],
    "note": "Dossier [I]. See vitis_riparia on the form."
   },
@@ -395,7 +395,7 @@
     "inflorescence": {"shape":"spike","rgb":[124,122,88],"height_frac":0.75,"size_m":[0.02,0.05],"fruit":true},
     "appearance": "The sedge grass of the shore, between the gallery trees and the water, fruited and going lax."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["chicagology_prefire273"],
    "note": "Andreas puts wild onions 'among sedge grass' on the river shores, so a sedge ground layer here is documented; WHICH sedges is not, and no species is named."
   },
@@ -413,12 +413,12 @@
     "inflorescence": {"shape":"bulbil_umbel","rgb":[206,190,160],"height_frac":0.9,"size_m":[0.03,0.06]},
     "appearance": "Patches on the sedge-grass shore: umbels of green-purple bulbils with a few pink flowers among them. This is the onion that is actually visible in July."
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": ["chicagology_prefire273"],
    "note": "Andreas: wild onions grew in great abundance along the river shores among the sedge grass. A. canadense, not A. tricoccum, which is leafless and out of the open by July."
   }
  ],
- "confidence": "attested",
+ "confidence": "documented",
  "sources": ["chicagology_prefire273","mcbride_bowles_2007"],
  "note": "Canopy 30-80 trees/ha, the open-to-closed savanna range: this is a thin grassy gallery of medium trees, not a closed eastern hardwood forest. The 'vine_drape' form on the two vines is deliberately outside the renderer's implemented list.",
  "review_required": false

@@ -5,7 +5,7 @@
  "head": "hamilton_richard_j",
  "arrival": {
   "value": "1831",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,17 +14,17 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested. Hamilton had a family at Chicago - his daughter Mrs Ellen Hamilton Keenon has her own biographical entry in Andreas - but no source reached counts the party that travelled with him in 1831."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": "County office and a law practice in a new county seat",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -32,7 +32,7 @@
  },
  "lives_at": {
   "value": "cobweb_castle",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -40,12 +40,12 @@
  },
  "works_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "The county's business was done wherever the clerk kept his papers, and the brick court-house on the square was not finished until the autumn of 1835 - after the scene date. This dataset holds cook_county_courthouse_1835 as a building under way, not as an office in use on 1 July, so no work link is made."
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,11 +56,11 @@
    "id": "hamilton_richard_j",
    "name": "Richard Jones Hamilton",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "county_clerk",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],

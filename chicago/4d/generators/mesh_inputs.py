@@ -104,7 +104,7 @@ def _params_doc(params) -> dict:
         # the floats that reach the _CONFIDENCE attribute, not the labels that
         # name them — the mapping between the two is itself an input
         "confidence": {a: params.conf(a) for a in sorted(confidence)},
-        "inferred": derived,
+        "derived": derived,
     }
 
 

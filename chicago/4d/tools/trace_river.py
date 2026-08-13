@@ -497,7 +497,7 @@ def main() -> int:
             "name": "Chicago River — the forks",
             "reaches": ["main_stem", "north_branch", "south_branch"],
             "water_surface_ft_above_datum": 0.0,
-            "confidence": "inferred",
+            "confidence": "derived",
             "note": "Planform traced from the Wright 1834 survey; the water surface is flat at "
                     "the datum because the pre-reversal river had a near-zero surface gradient "
                     "and stood at lake level through the whole downtown reach. Planform is as "
@@ -518,7 +518,7 @@ def main() -> int:
                 "kind": "bank",
                 "name": label,
                 "crest_ft_above_datum": None,
-                "confidence": "inferred",
+                "confidence": "derived",
                 "note": "Bank line is the water polygon's boundary where it is not the edge of "
                         "the traced window. Crest heights are carried in the heightfield spec, "
                         "not here, because they come from narrative feet and not from the map.",
@@ -551,7 +551,7 @@ def main() -> int:
             "properties": {
                 "kind": "watercourse_centreline",
                 "name": "Unnamed slough, north side",
-                "confidence": "attested",
+                "confidence": "documented",
                 "note": "Wright 1834 draws a narrow winding watercourse running north out of "
                         "the main stem, across Kinzie Street, ending at Michigan Street. Its "
                         "existence and course are documented by the map; this is a CENTRELINE "
@@ -561,7 +561,7 @@ def main() -> int:
                         "fiction. Probably one of the three sloughs off the Main Branch shown "
                         "on the 1830 Thompson plat. Depth is conjectural: no source gives one.",
                 "drafted_width_m": slough_w,
-                "width_confidence": "reconstructed",
+                "width_confidence": "inferred",
                 "assumed_depth_ft_below_datum": 1.0,
                 "depth_confidence": "conjectural",
                 "sources": ["wright_1834", "thompson_plat_1830"],

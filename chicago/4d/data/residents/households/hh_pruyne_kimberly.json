@@ -5,7 +5,7 @@
  "head": "pruyne_peter",
  "arrival": {
   "value": "1832",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,27 +14,27 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested for either man. Note that this is a BUSINESS household rather than a domestic one - see the research note."
  },
  "works_at": {
   "value": "pruyne_kimball_drugstore",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -53,11 +53,11 @@
    "id": "pruyne_peter",
    "name": "Peter Pruyne",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "druggist",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -72,11 +72,11 @@
    "id": "kimberly_edmund_s",
    "name": "Dr Edmund Stoughton Kimberly",
    "relationship": "partner",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "birth_year": {
     "value": 1802,
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -84,7 +84,7 @@
    },
    "age_on_scene_date": {
     "value": 32,
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -92,7 +92,7 @@
    },
    "occupation": {
     "value": "physician",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1"
     ],

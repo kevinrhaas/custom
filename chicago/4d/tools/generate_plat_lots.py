@@ -213,7 +213,7 @@ def street_lines(streets: dict) -> dict:
             "points": points,
             "mean_e": sum(p[0] for p in points) / len(points),
             "mean_n": sum(p[1] for p in points) / len(points),
-            "confidence": street.get("geometry_confidence", "reconstructed"),
+            "confidence": street.get("geometry_confidence", "inferred"),
         }
     return lines
 
@@ -417,7 +417,7 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
             "street_confidence": module["confidence"],
             "alley_width_m": alley_m,
             "alley_width_ft": ALLEY_FT,
-            "alley_confidence": "reconstructed",
+            "alley_confidence": "inferred",
             "alley_note": (
                 "18 ft is the module the Thompson plat source record carries and the figure "
                 "the 1834 traverses read (17.1-18.7 ft), so the WIDTH is as well attested as "
@@ -430,7 +430,7 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
                 "inside that method's error."),
             "lot_frontage_m": frontage_m,
             "lot_frontage_ft": LOT_FRONTAGE_FT,
-            "lot_confidence": "reconstructed",
+            "lot_confidence": "inferred",
             "lot_note": (
                 "Four lots to a block face, 80 ft each, is a reading of ONE block: the owner's "
                 "crop of Wright's sheet at the Clark reach carries block 18's north row "
@@ -459,7 +459,7 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines) -> di
                                 "proportion, joined station to station, with a centred "
                                 "alley taken out of the middle"),
         },
-        "confidence": "inferred",
+        "confidence": "derived",
         "confidence_note": (
             "The blocks are arithmetic on inferred inputs — street lines whose own geometry "
             "confidence is `inferred`, offset by a module width the street control also grades "

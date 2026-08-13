@@ -37,7 +37,7 @@
       ]
     },
     "priority": 45,
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [],
     "note": "PRIORITY RAISED 12 -> 45, 2026-08-11. Planting this zone did nothing until now: at 12 it lost everywhere to z02_mesic_prairie (22) and z01_wet_prairie (20), which are ELEVATION BANDS matching the general plain, so the beach and the foredune were being rendered as mesic prairie. A zone defined by a specific geography and a specific SUBSTRATE has to outrank a band defined by height alone — the same reasoning that already puts the settled town (60) and the marsh (70) above both prairies. 45 keeps it below the marsh, the town and the sedge meadow, which is right: where the river mouth is marsh it is marsh, and where the fort stands it is settled ground, beach or no beach. PLANTABLE SINCE 2026-08-11. This community was written and then withheld: the ground it describes did not exist in the model. ROADMAP S2e has since extended the heightfield east from a 640 m square to E -320..+1700, and this zone's extent now matches 7,353 samples of the committed terrain, so it is planted. Nothing about the species, the July phenology or the confidence has changed — the records were always ready and the ground was not. WHAT THE ORIGINAL NOTE SAID, kept because it was correct when it was written: PLANTABLE SINCE 2026-08-11, when ROADMAP S2e parcel (b) carried the heightfield east to E +1700: the lake shore, the beach face and the sand bar are modelled ground now, so this community has something to stand on. The box is the belt east of the sand-ridge crest, bounded north and south by the scene's own span; the beach continues well beyond it. NOT FIXED HERE, for the flora parcel: at priority 12 this zone loses everywhere to z02_mesic_prairie (priority 22), whose 1.18-3.0 m elevation band now covers the whole sand belt, so the beach and the bar are currently planted as mesic prairie. The priorities were set when nothing east of E +320 had ground under it and the question could not arise."
   },
@@ -84,7 +84,7 @@
         },
         "appearance": "Succulent grey-green sprawling rosettes on the strandline with tiny pale-lilac flowers. Almost the only thing growing on the beach."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "cowles_1901"
@@ -132,7 +132,7 @@
         },
         "appearance": "Flat reddish mats pressed to the sand."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "cowles_1901"
@@ -180,7 +180,7 @@
         },
         "appearance": "Blue-green rolled blades in clumps 0.3-0.8 m apart with sand showing between; stiff pale spike-like panicles ARE present in July. Each clump sits in its own sand shadow."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "cowles_1901"
@@ -217,7 +217,7 @@
         "inflorescence": null,
         "appearance": "Coarser and more upright than marram; the panicle comes in August."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -252,7 +252,7 @@
         "inflorescence": null,
         "appearance": "Blue-green bunches on the back slope."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -287,7 +287,7 @@
         "inflorescence": null,
         "appearance": "Finely dissected silver-green foliage; the flower spike is inconspicuous and not yet open."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -334,7 +334,7 @@
         },
         "appearance": "Sprawling glaucous leaflets in patches 1-3 m across with purple-blue pea flowers."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "dollard_2018_beach_pea"
@@ -378,7 +378,7 @@
         },
         "appearance": "Thread stems with nodding blue bells, in bloom now."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -425,7 +425,7 @@
         },
         "appearance": "Silver-white deeply cut leaves and cream-coloured heads."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "dollard_2018_beach_pea"
@@ -469,7 +469,7 @@
         },
         "appearance": "Past peak: the orange-yellow is fading out on hairy grey foliage."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -512,7 +512,7 @@
         },
         "appearance": "Broad grey-green leaves and dusty-mauve globes."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -560,7 +560,7 @@
         },
         "appearance": "Low sprawling mats 1-3 m across; fruit turning green to dark purple-red on grey-green narrow leaves."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -595,7 +595,7 @@
         "inflorescence": null,
         "appearance": "Silvery low willow scrub holding the back slope."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -626,7 +626,7 @@
         "inflorescence": null,
         "appearance": "Clonal silvery screens in the damp dune hollows."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -674,7 +674,7 @@
         },
         "appearance": "Red stems and whitening berry clusters."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -722,7 +722,7 @@
         },
         "appearance": "Dark prickly sprawling mats with glaucous berries."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -762,7 +762,7 @@
         "inflorescence": null,
         "appearance": "Isolated, half-buried and leaning, with a sand mound at the base and adventitious sprouts up the buried trunk — the classic Lake Michigan dune pioneer."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes",
         "cowles_1901"
@@ -803,7 +803,7 @@
         "inflorescence": null,
         "appearance": "Clonal patches of fluttering pale foliage."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
@@ -838,13 +838,13 @@
         "inflorescence": null,
         "appearance": "Narrow crowns in the damper back-dune hollows."
       },
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "mnfi_open_dunes"
       ]
     }
   ],
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
     "chicagology_prefire273"
   ],

@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1817-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
     "local_e": 1090.5,
     "local_n": 144.3,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -54,14 +54,14 @@
         6.096
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. No source reached gives the factory building a dimension. 12.192 x 6.096 m is 40 x 20 ft, and both numbers are borrowed from attested buildings in this dataset rather than freshly guessed: 20 ft is the depth of Hogan's store, the one log footprint here that is documented, and 40 ft is the frontage attested for the Green Tree Tavern. A fur company's factory building is a trade house — a store room and a counter — so a long shallow rectangle of that order is the right kind of shape for the type. THIS POLYGON IS ONE BUILDING AND THE HOMESTEAD WAS FOUR. Andreas describes the factory building bought in 1817, a new residence Beaubien built, a small trading post, and an earlier cabin he converted to a barn. Only the factory building is modelled; the other three are recorded in this record's research_note and in docs/RESEARCH/jb_beaubien_homestead.md and are not built."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -69,32 +69,32 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not stated. A single-storey trade house with a loft is the type; a two-storey log building at Chicago in 1817 would be notable enough to record. Inference from the type and the date."
     },
     "wall_height_m": {
       "value": 2.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.5 m is about 8 ft: one storey of hewn log wall at typical period course counts, plus a sill. The same reading and the same number this project gives Hogan's store and the Walker meeting house."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for log construction of this type, period and region."
     },
     "roof_pitch_deg": {
       "value": 35.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 35 degrees is this archetype's mid-range for a low single-storey log building roofed in riven shakes. Inferred from construction practice, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for a building lived in through Chicago winters and the archetype's default. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "dwelling_and_trading_house",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -102,7 +102,7 @@
     },
     "occupants": {
       "value": "Col. Jean Baptiste Beaubien and his household",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -124,21 +124,21 @@
         {
           "name": "Col. Jean Baptiste Beaubien",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "trader",
           "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family."
         },
         {
           "name": "Josette LaFramboise Beaubien",
           "relationship": "wife",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "NAMED AND DATED IN THE SOURCE - married to J. B. Beaubien in 1812, daughter of Francois LaFramboise - and nothing places her in the household on 1 July 1835. She is written because a named wife of a named head is exactly the person this layer exists to record, and graded derived because the presence on the day is the reconstruction. The LaFramboise family is separately in the 1833 treaty schedules, where 'Joseph Laframboise and children' receive $1,000."
         },
         {
           "name": "The rest of the Beaubien household, unnamed",
           "relationship": "household_member",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "none_recorded",
           "note": "AN ADMISSION. J. B. Beaubien's family was large and is not enumerated in anything reached; two sons are named in Andreas and one of them, Madore, has his own household here. Carried as one placeholder rather than as invented individuals; do not count it as a person."
         }

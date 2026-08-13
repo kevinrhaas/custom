@@ -32,17 +32,17 @@
    "july": {
     "status": {
      "value": "flightless_moult",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A timbered-river-margin breeder, and like the other ducks in simultaneous wing moult by early July."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Slipping along under overhanging timber rather than out in the open."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 10,
@@ -51,7 +51,7 @@
     "appearance": "The drake is in eclipse and drab; the hen's white eye-ring is the reliable mark.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Same July gate as the other waterfowl: the birds are here, they are dull, and they do not fly."
   },
   {
@@ -68,17 +68,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Herons are named in the regional wet-prairie assemblage."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Hunts the shaded shallows and announces itself when flushed."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 1,
@@ -87,7 +87,7 @@
     "appearance": "Small, dark, chestnut-necked, with orange legs.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Habitat inference from the shaded river margin; the regional assemblage names herons without separating the species."
   },
   {
@@ -103,17 +103,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Raccoon is in the Chicago Academy of Sciences regional retrospective, which has no source record in data/sources/."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "One of the two mammals the dossier calls most likely to be seen in town, and it is seen at night, at the water's edge and at refuse."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Regional; no local count."
     },
     "max_group": 4,
@@ -122,7 +122,7 @@
     "appearance": "Grey, masked, ringed tail.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "A CORRECTION MADE WHILE WRITING THIS RECORD. Wau-Bun's list of the Chicago fur trade names 'beaver, otter, marten, mink, silver-gray and red fox, wolf, bear, and wild-cat, musk-rat, and smoked deer-skins' \u2014 and raccoon is NOT in it. The only support is the regional retrospective, which has no source record, so this animal is graded inferred and cites nothing, even though the dossier tags it [DOC, regional]."
   },
   {
@@ -139,7 +139,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "kinzie_waubun_1856"
      ],
@@ -147,12 +147,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A single animal bounding the bank line and slipping into the water; seen briefly if at all."
     },
     "abundance": {
      "value": "sparse",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Mink hold long linear territories along a bank, so one animal per long stretch is the correct density."
     },
     "max_group": 1,
@@ -161,7 +161,7 @@
     "appearance": "Small, dark chocolate-brown, long-bodied, with a white chin patch.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "kinzie_waubun_1856"
    ],
@@ -180,17 +180,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The Academy retrospective's bird section is a bare taxonomic count \u2014 nine thrushes, one bluebird, three warblers, one chickadee for northern Illinois \u2014 so no 1830s Chicago bird list survives in anything the project can reach. This is a habitat inference from the oak and floodplain timber, not a record."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sings from inside the canopy and is seldom seen."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 1,
@@ -199,7 +199,7 @@
     "appearance": "Warm brown above, boldly spotted below; the bird stays in shade.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "One of the small set still in full song on 1 July \u2014 wood thrushes sing into late July, and the dawn and dusk song periods are the correct July window rather than all day."
   },
   {
@@ -216,17 +216,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from the gallery timber, as for wood thrush."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Sings from mid-canopy through the middle of the day."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -235,7 +235,7 @@
     "appearance": "Plain grey-olive flycatcher on an exposed inner branch.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The pewee is the July bird par excellence: it sings on through midday and into August when almost everything else has stopped, which is exactly why it is graded full song here and most of the list is not."
   },
   {
@@ -251,17 +251,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from the timber."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Loud and high in the canopy; heard far more than seen."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -270,7 +270,7 @@
     "appearance": "Grey-throated, yellow-bellied, rufous in the tail.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Habitat inference from the timber. No 1830s Chicago bird list survives in anything the project can reach, so every passerine in this dataset rests on habitat reasoning rather than on a record."
   },
   {
@@ -287,17 +287,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from timber edge and dooryards."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Constant and invisible in the tangle."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -306,7 +306,7 @@
     "appearance": "Tiny, brown, cocked tail.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Wrens sing into July for second broods but the output is falling; graded reduced."
   },
   {
@@ -323,17 +323,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from dense shrubby river-edge growth."
     },
     "presence": {
      "value": "audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Skulks in thickets; the mewing call is the encounter."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -342,7 +342,7 @@
     "appearance": "Slate grey with a black cap and a rusty vent.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Catbird song thins sharply through July; the mew persists all summer, so calls rather than song is the correct July state."
   },
   {
@@ -358,17 +358,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat inference from the tall riverside elms and cottonwoods."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The colour carries where the song no longer does \u2014 an oriole in July is seen rather than heard."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 2,
@@ -377,7 +377,7 @@
     "appearance": "Male fire-orange and black; female duller olive-orange.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "THE JULY GATE ON THIS SPECIES IS THE SONG. Oriole song largely stops by early July as the young fledge \u2014 a whistling oriole in this scene would be a May bird."
   },
   {
@@ -394,17 +394,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Shaded, still, wet river margin is the worst of it; see the marsh record for the sourcing problem."
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Not renderable at scale; the human response is out of scope under L1."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Maximal."
     },
     "max_group": 0,
@@ -413,11 +413,11 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The only Chicago-specific mosquito testimony the dossier found sits on a page that returned HTTP 403, so the wording is unverified and it has no source record. Andreas is not and never will be a source for it: full-text searches for mosquito, mosquitoes and musquitoes all return zero hits."
   }
  ],
- "confidence": "attested",
+ "confidence": "documented",
  "note": "Wau-Bun's list of the furs taken at Chicago \u2014 'beaver, otter, marten, mink, silver-gray and red fox, wolf, bear, and wild-cat, musk-rat, and smoked deer-skins' \u2014 is the one near-contemporary species list for this place, and mink is the species it supports here. The bird list is habitat inference: no 1830s Chicago bird list survives in anything the project can reach.",
  "sources": [
   "kinzie_waubun_1856"

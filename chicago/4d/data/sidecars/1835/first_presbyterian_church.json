@@ -12,7 +12,7 @@
   "documented_range": {
     "from": "1834-01-04",
     "to": "1837-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -23,7 +23,7 @@
     "local_e": 552.64,
     "local_n": -132.19,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -53,7 +53,7 @@
         7.62
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -62,7 +62,7 @@
   "attributes": {
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -70,7 +70,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -78,42 +78,42 @@
     },
     "wall_height_m": {
       "value": 3.35,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 3.35 m is about 11 ft to the plate. The reasoning is the room rather than the type: the one attested ceiling height in this dataset is the Green Tree Tavern's 7 1/2 ft, which its own source calls 'rather low for a hotel ceiling', and a room holding 200 people on benches needed more air over them than a tavern chamber. 11 ft is also the ceiling of what the frame_dwelling archetype accepts for a single storey, so a taller church would have to be recorded as something else. What is inferred is that the height falls in this range, not that it is exactly 3.35 m."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for a frame building of this type, period and region, and the only alternative this archetype offers - a shed roof - is refused by it over a range this deep. Typological derivation, not a measurement."
     },
     "roof_pitch_deg": {
       "value": 38.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 38 degrees is the mid-range this project uses for period gable framing across the dataset - steep enough to shed snow, shallow enough for the timber spans available. Inferred from construction practice, not measured."
     },
     "plan": {
       "value": "centre_passage",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "INVENTED, AND IT IS THE ARCHETYPE'S VOCABULARY RATHER THAN THE BUILDING'S. `plan` in frame_dwelling names the room arrangement behind the facade because that is what decides where a HOUSE'S door goes; a meeting house has no rooms behind its facade at all, it has one room. `centre_passage` is chosen because it is the only value that produces a symmetrical front with a centred door, which is what a plain meeting house looked like; `hall_parlour`, the archetype's default, would put the door two thirds of the way along the wall and make the front of a church look like the front of a farmhouse. Nothing about the door's real position is attested."
     },
     "bays": {
       "value": 5,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "INVENTED. No source describes a window on this building. Five openings across 40 ft is 8 ft per bay, which is an ordinary period rhythm and is what the archetype's own frontage rule would give at this width if it were allowed an odd number; the archetype derives four from the frontage, and four is refused with a centre-passage front because a centred door needs an odd count. So the number is a consequence of the archetype's grammar and of the choice of `plan` above, not a finding. A depiction or a description of the elevation would settle it."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. The attested finishes are INTERIOR - plastered walls and bare puncheon floors - and nothing describes the outside. Unpainted weathered clapboard is the reading adopted, on the same grounds the Green Tree record gives: white paint was remarkable enough at Chicago in 1831 to be worth recording of the Sauganash, and the one 1833 church whose exterior finish IS attested, St Mary's, was expressly 'not painted'. Not attested either way."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested, and nothing describes a stack or a stove on this building. One is the minimum for a room used through Chicago winters, and it is the number this project's other worship building of the period, the Walker meeting house, carries on the same reasoning. THE RESIDUAL UNCERTAINTY IS THE KIND OF HEATING, NOT THE FACT OF IT: a meeting house of these years was as likely warmed by a box stove with a sheet-iron pipe through the wall or roof, which this archetype does not build, as by a masonry fireplace, which it does. The COUNT is the inference; where the stack stands, how big it is and what it is made of are the archetype's, which is the standing admission in docs/LIBERTIES.md L26."
     },
     "seating": {
       "value": "pine-board benches seating about 200",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -122,7 +122,7 @@
     },
     "interior_finish": {
       "value": "plastered walls, bare puncheon floors",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -131,7 +131,7 @@
     },
     "tower": {
       "value": false,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -140,7 +140,7 @@
     },
     "cost_usd": {
       "value": 600,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -149,7 +149,7 @@
     },
     "function": {
       "value": "church",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -157,7 +157,7 @@
     },
     "occupants": {
       "value": "First Presbyterian Church of Chicago",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -179,14 +179,14 @@
         {
           "name": "Rev. Jeremiah Porter",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "minister",
           "note": "THE HOUSEHOLD THAT TURNED UP THE PARCEL'S SHARPEST DATE PROBLEM. Andreas: 'In the spring of 1835, Mr. Porter was chosen by the Presbytery of Ottawa its first delegate to the General Assembly which met that spring in Pittsburgh. After the adjournment of the Assembly, Mr. Porter was married, at Rochester, N. Y., to Miss Eliza Chappel, then late of Chicago, and with his wife visited his parents who were living in Massachusetts.' The marriage is dated elsewhere in the same volume to 15 June 1835 - SIXTEEN DAYS BEFORE THE SCENE DATE, at Rochester, New York. Andreas also says he stayed 'until Mr. Porter left Chicago, in September, 1835'. So he is the town's Presbyterian minister on 1 July 1835 and may well have been eight hundred miles away that morning."
         },
         {
           "name": "Eliza Chappel Porter",
           "relationship": "wife",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "schoolteacher",
           "note": "MARRIED SIXTEEN DAYS BEFORE THE SCENE DATE AND DESCRIBED BY ANDREAS AS 'THEN LATE OF CHICAGO' AT THE TIME OF THE WEDDING - which is a statement that she had already left the town. Her school had moved out of the State Street log house in 1834. She is carried in this household under her married name because that is her status on 1 July 1835, and the household's presence field records what follows from it."
         }

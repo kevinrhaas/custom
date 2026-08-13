@@ -13,7 +13,7 @@
   "documented_range": {
     "from": "1816-07-01",
     "to": "1856-08-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "wentworth_1881_fort_dearborn",
@@ -26,7 +26,7 @@
     "local_e": 1131.83,
     "local_n": 232.2,
     "rotation_deg": 98.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "harrison_1830_river_mouth",
       "wright_1834",
@@ -57,7 +57,7 @@
         9.14
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "wentworth_1881_fort_dearborn",
       "harrison_1830_river_mouth"
@@ -67,7 +67,7 @@
   "attributes": {
     "kind": {
       "value": "quarters",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -76,7 +76,7 @@
     },
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -85,37 +85,37 @@
     },
     "stories": {
       "value": 2,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "Not attested anywhere. Two is chosen because this range and the commandant's quarters are the two buildings the 1855 photograph shows as 'the principal buildings of the Fort', and a single-storey log range would not read as one of two principal buildings beside a two-storey brick one. That is an argument from a photograph nobody in this project has measured, so it is a guess and it is graded as one."
     },
     "wall_height_m": {
       "value": 4.8,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No height is attested. 4.8 m is two storeys of log wall at period course counts. The number inherits the storey count's weakness above it."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal form for a log range of this period and plan."
     },
     "roof_pitch_deg": {
       "value": 34.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for any building in this fort. 34 degrees is the archetype's mid-range for a shingled or riven-shake roof of this period and span, and it is inferred from construction practice rather than measured."
     },
     "chimneys": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. A 60 ft officers' range through Chicago winters needs a stack at each end by type. The COUNT is the inference; position, size and material are the archetype's, per docs/LIBERTIES.md."
     },
     "gallery": {
       "value": false,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "A NEGATIVE THAT IS ALSO A CHOICE. Captain Whistler's 1808 index to the FIRST fort says 'the Barracks are two storeys high with shingled Roofs and Galliaries fronting the parade' (Quaife), and galleries on the parade front are the type. Nothing says the 1816 fort's ranges had them, and John H. Kinzie says the two forts were 'differently constructed'. A plain front is rendered because nobody found evidence either way, which is itself a claim a visitor sees."
     },
     "function": {
       "value": "officers' quarters",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "wentworth_1881_fort_dearborn"
@@ -124,7 +124,7 @@
     },
     "occupants": {
       "value": "subordinate officers of the garrison",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -146,7 +146,7 @@
         {
           "name": "Dr Philip Maxwell",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "army_surgeon",
           "note": "A GARRISON OFFICER WHOSE TOUR BRACKETS THE SCENE DATE AT BOTH ENDS - 3 February 1833 to 29 December 1836 - which makes him one of the few people in the dataset whose presence on 1 July 1835 is a matter of record rather than of inference. Born at Guilford, Windham Co., Vt., 3 April 1799; practised at Sackett's Harbor, N.Y., and sat in the New York legislature before his appointment. He was a witness to the Indian treaty of 26 September 1833."
         }

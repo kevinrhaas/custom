@@ -5,7 +5,7 @@
   "head": "robinson_alexander",
   "arrival": {
     "value": "1816",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -14,12 +14,12 @@
   },
   "party_size_on_arrival": {
     "value": null,
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "note": "Not attested in anything this project holds."
   },
   "origin": {
     "value": "Mackinaw; his father a Scots trader, his mother an Ottawa woman",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -27,12 +27,12 @@
   },
   "reason_for_coming": {
     "value": null,
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "note": "NOT ATTESTED, and the question is differently shaped for this household than for the emigrant ones. Robinson was here before the town was; asking why he 'came' imports a frame that fits a New England merchant and not a man whose people the land belonged to. The field is left null on purpose rather than filled with a trader's motive."
   },
   "lives_at": {
     "value": "robinson_caldwell_cabins",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "kinzie_waubun_1856"
     ],
@@ -40,7 +40,7 @@
   },
   "works_at": {
     "value": "robinson_caldwell_cabins",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "kinzie_waubun_1856"
@@ -49,7 +49,7 @@
   },
   "present_on_scene_date": {
     "value": "present",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "andreas_1884_v1",
       "kinzie_waubun_1856"
@@ -61,11 +61,11 @@
       "id": "robinson_alexander",
       "name": "Alexander Robinson (Che-che-pin-qua)",
       "relationship": "head",
-      "grade": "attested",
+      "grade": "documented",
       "sex": "male",
       "birth_year": {
         "value": 1762,
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -73,7 +73,7 @@
       },
       "age_on_scene_date": {
         "value": 72,
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -81,7 +81,7 @@
       },
       "occupation": {
         "value": "trader",
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1",
           "kinzie_waubun_1856"
@@ -98,11 +98,11 @@
       "id": "robinson_catherine",
       "name": "Catherine Chevalier Robinson",
       "relationship": "wife",
-      "grade": "attested",
+      "grade": "documented",
       "sex": "female",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
       },
       "sources": [
@@ -114,10 +114,10 @@
       "id": "robinson_household_unnamed",
       "name": "The rest of the Robinson household, unnamed",
       "relationship": "household_member",
-      "grade": "inferred",
+      "grade": "derived",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
       },
       "sources": [

@@ -206,52 +206,7 @@ control station is identical to the byte. New gate: three assertions in `smoke_r
 ask the placer itself (`flora.stationOf`) rather than re-deriving its rules, including the
 anti-vacuity half — a placer that refused everything on that bank would otherwise read as a pass.
 
-### K4 — Facades: weathered wood, not painted clones · **FINISH + PER-BUILDING TONE DONE 2026-08-13**
-
-**The first half is in, and the finding is that the dataset already held it.** `paint` is
-authored on 174 of the scene's 243 phases — **142 `unpainted`**, 14 whitewash, 12 red, 5 masonry;
-graded 163 `derived`, 9 `inferred`, 2 `documented` — `tools/validate.py` has gated it since the schema was written, and the dossiers say
-what it looked like: the fort *"serviceable, weathered, whitewashed/unpainted log-and-brick"*, the
-Dearborn Street bridge *"weathered, patched, sagging"*, and `docs/RESEARCH/green_tree_tavern.md`
-§ 4 on the point that makes it matter — the Sauganash's white is remarkable in the sources
-*because* its neighbours were not. `generators/common/mesh.py` resolves all 142 through one warm
-fresh-sawn tan, so the town was drawn the colour of new lumber. `renderers/web/js/facade.js` now
-moves each building toward its own greyscale by an amount derived from its stated finish and its
-own `documented_range.from`, and gives it a per-building lightness offset of up to ±7.5 % keyed on
-the structure id. Memo: `docs/RESEARCH/facade_weathering_1835.md`. Admission: LIBERTIES **L91**.
-
-**Two constraints decided the implementation, and the second is a standing one for this project.**
-Per-building colour in the bake is per-building materials and therefore per-building draw calls —
-242 against a budget of 80 — so variation has to be a per-vertex channel inside the shared batch,
-the shape `_CONFIDENCE` already has. And it cannot key on material NAMES: `tools/bake.sh` runs
-gltf-transform over `assets/web/`, whose palette pass merges materials and renames the survivors
-`PaletteMaterial001…`, so the Sauganash master's `wall / roof / log / shutter / glass` reaches the
-visitor as three paletted materials. **38 of the published building assets are in that state**, the
-smoke loads the masters from `assets/gltf/` and the live site loads the derivatives from
-`data/gltf/`, so a name-keyed treatment would be gated on one pipeline and shipped on another.
-The rule therefore reads no names: weathering is the REMOVAL of colour, each fragment mixed toward
-its own luminance, so a tan board greys and a near-neutral window void barely moves — the surfaces
-that would have needed protecting protect themselves, arithmetically, in both pipelines. **Any
-future per-surface facade treatment is blocked until the derivative carries surface identity**,
-which is a change to `tools/bake.sh` and to `docs/GLB-CONTRACT.md` and therefore a proposal rather
-than a slice.
-
-**The gate had to learn to see it.** The capture signature was a grid of LUMINANCES, and
-desaturation is very nearly luminance-preserving by construction — the first version of the
-assertion failed against a shader that was working perfectly, measuring 0.09 mean / 1 worst on a
-frame where chroma had moved 0.97 / 11.9. `readbackSignature()` now carries a chroma grid beside
-the luminance one and the smoke compares that. Ten assertions: the record's finish reaches the
-treatment (masonry and finish-less records get zero, 141 unpainted span **0.462–0.800**, 167
-weathered — the anti-vacuity half, since a treatment that silvered nothing would satisfy every
-"is not weathered" clause), silvering is monotonic in years standing, **128 generated roofs take
-127 distinct tones** with a spread of 0.1406 against a ±0.075 bound, the treatment costs no draw
-calls (**35 batches for 242 structures**), it reaches the frame in chroma, off-and-on restores it
-exactly, and the documented Sauganash does not move when the treatment does.
-
-**Still open, and it is the archetypes' half rather than the renderer's**: board tone and
-board-width irregularity WITHIN a wall, hewn versus round logs per record, and weathering by
-elevation. All need a bake. The original item follows.
-
+### K4 — Facades: weathered wood, not painted clones
 The buildings read as freshly painted and identical. Research first, then implement: most 1835
 Chicago frame buildings were UNPAINTED weatherboard or whitewashed — paint was expensive; keep
 the documented exceptions exactly as documented (Wau-Bun's white Sauganash with bright-blue
@@ -555,46 +510,15 @@ are re-derived byte for byte · `renderers/web/js/confidence.js` · the Evidence
 **Do not rewrite the historical prose in `docs/STATUS.md` or shipped changelog entries** — they
 are a record of what was said at the time.
 
-### K17 — Confidence view: dither the roofs, and let a level be switched off · **ITEM 1 DONE 2026-08-13; ITEMS 2–3 OPEN**
+### K17 — Confidence view: dither the roofs, and let a level be switched off · **SPECIFIED, unclaimed**
 
 Depends on K16's vocabulary. Three things the owner asked for on 2026-08-13:
 
-1. ~~**The roofs do not dither.**~~ **DONE 2026-08-13, and it was neither of the two causes the
-   item proposed.** Audited first, because the item names two hypotheses and both are testable:
-   all 993 primitives in the 244 committed masters carry `_CONFIDENCE` (and all 836 in the
-   published derivatives do too, so this was not the K4-shaped one-pipeline trap), and every
-   material is patched — `buildings.js` patches per material bucket, which cannot miss one.
-   The channel was reaching the roof and painting it correctly.
-
-   **The cause is that `_CONFIDENCE` grades the ATTRIBUTE a vertex came from, and existence
-   drives no part.** `generators/placeholder.py` resolves `roof` from `roof_type` and `walls`
-   from `stories` + `wall_height_m`, worst-wins within each part; `documented_range.confidence` —
-   *was this building here at all* — is not in any part's driver list, so it was never composed
-   with anything. On the 70 structures whose walls were `inferred` and whose roof was not, the
-   roof's `derived` grade is a defensible reading of the form (a gable IS the near-universal
-   type) about a building that is invented. Measured across the scene: **162 of 242 structures
-   have `inferred` existence and NOT ONE of them was wholly dithered.**
-
-   Fixed by applying the generators' own worst-wins rule once more, between the part and the
-   record: `confidence.floorToExistence()` in `renderers/web/js/confidence.js`, called from
-   `buildings.js` before a geometry reaches its batch. **97 184 of 355 478 vertices (27.3 %)
-   raised on 170 of 242 structures; all 162 invented buildings now dither to the ridge.** The
-   floor is a floor and not a flatten, and the gate requires that: 2 documented-existence
-   structures keep `documented` geometry (the Sauganash's white paint, the Mansion House) and 61
-   keep `derived`. Four assertions at both viewports; the rule is documented in
-   `docs/GLB-CONTRACT.md` § *Existence is the renderer's floor*, which also explains why it is
-   composed at paint time rather than baked — the per-part grade is a real fact about where the
-   geometry came from and a generator-side floor would overwrite it.
-
-   **What it inherits.** (a) The rule makes existence grades LOAD-BEARING for the first time, and
-   three records show it hardest: `fort_dearborn_palisade` (5 264 vertices raised) and both
-   bridges are graded `derived` on existence for good reasons stated in their own notes — an
-   upper bound on the pickets, a build date disputed by a year — so their documented details now
-   paint at that lower grade. Nothing was regraded and nothing should be without a source; if any
-   of those three existence grades is understated, that is a records question, not a view one.
-   (b) The owner's alternative suggestion — a *distinct* treatment for a dithered roof against a
-   dithered wall, so the two stay legible — was not built and is still open. It is a design
-   question worth asking now that whole buildings dither, and it belongs with item 2's control.
+1. **The roofs do not dither.** In the confidence view the walls take the dithered treatment and
+   the roof planes do not, so a building that is entirely invented still reads as half-solid.
+   Find out whether the roof material misses the `_confidence` attribute or the patch, and either
+   dither it or — the owner's own suggestion — give the roof a distinct treatment so a dithered
+   wall and a dithered roof stay legible against each other.
 2. **A hide mode.** *"I would like to be able to toggle that view to make the buildings objects
    items disappear altogether based on those levels."* So the confidence view gains a mode: COLOUR
    (today's behaviour) or HIDE, where a level's geometry is removed from the scene rather than

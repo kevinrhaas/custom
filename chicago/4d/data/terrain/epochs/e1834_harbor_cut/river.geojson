@@ -308,7 +308,7 @@
      "south_branch"
     ],
     "water_surface_ft_above_datum": 0.0,
-    "confidence": "inferred",
+    "confidence": "derived",
     "note": "Planform traced from the Wright 1834 survey; the water surface is flat at the datum because the pre-reversal river had a near-zero surface gradient and stood at lake level through the whole downtown reach. Planform is as drafted on a cadastral plat, not a hydrographic survey \u2014 see drafted_width_m below and docs/RESEARCH/terrain_forks.md.",
     "drafted_width_m": {
      "north_branch": 72.9,
@@ -451,7 +451,7 @@
     "kind": "bank",
     "name": "North Division shore: east bank of the North Branch and north bank of the main stem",
     "crest_ft_above_datum": null,
-    "confidence": "inferred",
+    "confidence": "derived",
     "note": "Bank line is the water polygon's boundary where it is not the edge of the traced window. Crest heights are carried in the heightfield spec, not here, because they come from narrative feet and not from the map.",
     "sources": [
      "wright_1834"
@@ -566,7 +566,7 @@
     "kind": "bank",
     "name": "West Division shore at Wolf Point: west bank of the North Branch and west bank of the South Branch",
     "crest_ft_above_datum": null,
-    "confidence": "inferred",
+    "confidence": "derived",
     "note": "Bank line is the water polygon's boundary where it is not the edge of the traced window. Crest heights are carried in the heightfield spec, not here, because they come from narrative feet and not from the map.",
     "sources": [
      "wright_1834"
@@ -665,7 +665,7 @@
     "kind": "bank",
     "name": "South Division shore: south bank of the main stem and east bank of the South Branch",
     "crest_ft_above_datum": null,
-    "confidence": "inferred",
+    "confidence": "derived",
     "note": "Bank line is the water polygon's boundary where it is not the edge of the traced window. Crest heights are carried in the heightfield spec, not here, because they come from narrative feet and not from the map.",
     "sources": [
      "wright_1834"

@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1833-01-01",
     "to": "1850-12-31",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -25,7 +25,7 @@
     "local_e": 724.22,
     "local_n": -91.56,
     "rotation_deg": 180.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "andreas_1884_v1",
       "osm_streets_2026"
@@ -55,14 +55,14 @@
         9.0
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED. NO SOURCE GIVES THIS BUILDING A DIMENSION. 12 x 9 m is about 39 x 30 ft; the whole rectangle is the log core plus the 1833 frame addition in front of it, because that is what a footprint polygon means to the log_dwelling archetype. TWO WEAK ARGUMENTS SHAPED IT AND NEITHER IS EVIDENCE: it took two street numbers, 84 and 86 Lake Street, when Lake Street was numbered, which suggests a frontage of about two lots rather than one; and it held a room big enough for the Circuit Court to sit in - in the unfinished loft - at the May 1834 term. The 9 m depth is the log core plus the 4 m the frame addition needed to reach the street from 'some little distance back'. All three numbers are chosen. TO RESOLVE: the Chicago Democrat and Chicago American advertisements of the house under Haddock or Markle, which in the period habitually counted rooms; or a Cook County deed on lots 84-86."
   },
   "attributes": {
     "construction": {
       "value": "log",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -70,17 +70,17 @@
     },
     "stories": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No source gives a storey count. One storey with a loft under the roof is the standard form for a log tavern of this date and region, and it is what the attested loft implies: Caton's court sat 'in the unfinished loft', which is a roof space and not a second storey. It is also the conservative reading - the sources that do describe height in this town single out the Sauganash's two storeys and Miller's two-storey frame range as remarkable, which they would not be if every tavern had two. Not attested either way."
     },
     "wall_height_m": {
       "value": 2.6,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 2.6 m is about 8 1/2 ft: a single storey of hewn log wall at typical period course counts, plus a sill - the same figure and the same reasoning as data/structures/wolf_point_tavern.json. What is inferred is that the wall height falls in this range, not that it is exactly 2.6 m."
     },
     "loft": {
       "value": true,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -88,17 +88,17 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested for this building. Gable is the near-universal roof form for log construction of this type, period and region, and a loft that people sat in wants a ridge over it."
     },
     "roof_pitch_deg": {
       "value": 40.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested. 40 degrees is mid-range for a log building roofed in riven shakes or clapboards - steep enough to shed snow, shallow enough for the short rafters a log pen allows, and tall enough to give the attested loft headroom. Inferred from construction practice, not measured."
     },
     "frame_addition": {
       "value": true,
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -106,7 +106,7 @@
     },
     "frame_addition_side": {
       "value": "front",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -114,32 +114,32 @@
     },
     "frame_addition_width_m": {
       "value": 12.0,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Set to the full 12 m frontage of the footprint, so the frame block spans the whole front of the log core and presents one continuous face to Lake Street. That is what 'came out to a line with the street' implies about the RESULT and not about the width, and a narrower block would leave a notch at one end that no source describes and that would read as a modelled fact about the plan. The value is a consequence of the massing rule, not a finding, and the footprint it is measured against is itself invented."
     },
     "frame_addition_depth_m": {
       "value": 4.0,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOT ATTESTED, AND IT IS THE NUMBER THAT STANDS FOR 'SOME LITTLE DISTANCE BACK FROM THE STREET'. Andreas says the log tavern stood back and the frame addition reached the frontage; he does not say how far back, so the depth of the new block is the size of an unmeasured setback. 4 m is about 13 ft, which leaves 5 m of log core behind it inside the 9 m footprint - enough to still be a building, which the archetype checks. Anything from a two-metre porch-depth to a full second range is compatible with the sentence."
     },
     "frame_addition_stories": {
       "value": 1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOT ATTESTED. Andreas gives the addition a material, a side and a year and no height. One storey is chosen because the building it was added to is modelled at one storey with a loft, and a two-storey front on a one-storey log tavern would be the more remarkable thing and would probably have been said. That is an argument from silence, so the tag is conjectural rather than inferred."
     },
     "frame_paint": {
       "value": "unpainted",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "note": "NOT ATTESTED EITHER WAY, and the archetype reads it, so leaving it out would have chosen a finish silently. Unpainted weathered clapboard is the default reading for a frontier tavern's addition and it is weakly supported by the contrast Wau-Bun draws at Wolf Point in 1831, where a painted white building was 'the admiration of all the little circle' precisely because the buildings around it were not painted. Still a choice."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One stack is the minimum a tavern with a public room and cooking needed through a Chicago winter, and it is what this project's other log taverns record. The COUNT is the inference; where it stands, how big it is and what it is made of are the archetype's - docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "tavern_inn",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1",
         "drloih_hotels"
@@ -148,7 +148,7 @@
     },
     "occupants": {
       "value": "Edward Haddock or Abram A. Markle, keeper",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -170,7 +170,7 @@
         {
           "name": "Edward H. Haddock",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "tavern_keeper",
           "note": "THE HANDOVER FALLS INSIDE THE SCENE YEAR AND NO SOURCE GIVES A MONTH. On a flat prior a transfer somewhere in 1835 is about as likely to be after 1 July as before it, so this household names Haddock, records Markle in this note, and declines to choose - exactly as data/structures/mansion_house.json does. He was Dexter Graves's son-in-law, which is the only family relation in this parcel that reaches across two households."
         }

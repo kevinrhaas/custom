@@ -12,7 +12,7 @@
       "documented_range": {
         "from": "1833-10-01",
         "to": "1836-12-31",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire216",
           "andreas_1884_v1"
@@ -24,7 +24,7 @@
         "utm_n": 4637262.69,
         "rotation_deg": 0.0,
         "symbolic_location": "The south-west quadrant of Lake Street and State Street - south side of Lake, west of State - on a canal lot beside the military reservation; fronting north onto Lake.",
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire216",
           "andreas_1884_v1",
@@ -55,7 +55,7 @@
             7.62
           ]
         ],
-        "confidence": "inferred",
+        "confidence": "derived",
         "sources": [
           "chicagology_prefire216"
         ],
@@ -64,7 +64,7 @@
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -72,7 +72,7 @@
         },
         "construction": {
           "value": "balloon_frame",
-          "confidence": "inferred",
+          "confidence": "derived",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -80,32 +80,32 @@
         },
         "wall_height_m": {
           "value": 3.2,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No figure is attested. 3.2 m is about 10 1/2 ft to the plate - a little under the Presbyterian church's, because this building is smaller, cheaper by a third per square foot, and was described as rough. The one attested ceiling in this dataset is the Green Tree Tavern's 7 1/2 ft; a room of 875 sq ft holding a congregation needed more than that. What is inferred is that the height falls in this range, not that it is exactly 3.2 m."
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested. Gable is the near-universal roof form for a frame building of this type, period and region. Typological derivation, not a measurement. Note that the absence of a steeple IS attested (see `tower`), so the roof is a plain one with nothing on it."
         },
         "roof_pitch_deg": {
           "value": 38.0,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "No pitch is attested. 38 degrees is the mid-range this project uses for period gable framing across the dataset. Inferred from construction practice, not measured."
         },
         "plan": {
           "value": "centre_passage",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED, AND IT IS THE ARCHETYPE'S VOCABULARY RATHER THAN THE BUILDING'S - the same admission the Presbyterian record makes, for the same reason. `plan` names the room arrangement behind a HOUSE'S facade; this building had one room. centre_passage is chosen only because it is the value that produces a symmetrical front with a centred door. Nothing about the real door position is attested."
         },
         "bays": {
           "value": 3,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "note": "INVENTED. No source describes an opening on this building. Three - a centred door with one window either side - is the plainest front the archetype will build with a centred door, and plainness is the one thing the sources do support: not plastered, rough benches, a table for an altar, no steeple, unpainted outside. The archetype would derive four from the 35 ft frontage, and four is refused with a centred door. So the number follows from the grammar and from `plan`, not from evidence."
         },
         "paint": {
           "value": "unpainted",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -113,12 +113,12 @@
         },
         "chimneys": {
           "value": 1,
-          "confidence": "inferred",
+          "confidence": "derived",
           "note": "Not attested, and nothing on the page describes heating. One is the minimum for a room used through Chicago winters and is the number this project's other worship buildings carry on the same reasoning. THE RESIDUAL UNCERTAINTY IS THE KIND OF HEATING, NOT THE FACT OF IT: a box stove with a sheet-iron pipe is as likely as a masonry stack in a building this rough, and this archetype builds only the stack. The COUNT is the inference; the stack's position, size and material are the archetype's - docs/LIBERTIES.md L26."
         },
         "tower": {
           "value": false,
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -127,7 +127,7 @@
         },
         "interior_plaster": {
           "value": false,
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -136,7 +136,7 @@
         },
         "seating": {
           "value": "rough benches for pews and the simplest of tables for altar and pulpit",
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -145,7 +145,7 @@
         },
         "cost_usd": {
           "value": 400,
-          "confidence": "attested",
+          "confidence": "documented",
           "sources": [
             "chicagology_prefire216"
           ],
@@ -158,7 +158,7 @@
   ],
   "function": {
     "value": "church",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "chicagology_prefire216",
       "andreas_1884_v1"
@@ -167,7 +167,7 @@
   },
   "occupants": {
     "value": "Rev. John Mary Irenaeus St. Cyr, pastor, and the Catholic congregation of Chicago",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicagology_prefire216"
     ],

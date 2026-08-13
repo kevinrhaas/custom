@@ -8,7 +8,7 @@
       "documented_range": {
         "from": "1835-01-01",
         "to": "1835-12-31",
-        "confidence": "attested",
+        "confidence": "documented",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -19,7 +19,7 @@
         "utm_n": 4637119.837,
         "rotation_deg": 0.0,
         "symbolic_location": "South Division, local ENU E 249 N -272",
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "INVENTED. No source places Harmon's cabin. What is known is negative: he pre-empted a hundred and forty acres whose northern boundary was near Sixteenth Street, which is two kilometres south of the modelled ground and is a farm rather than a residence. This record sits in the South Division outer band where the reconstruction recipes put older log dwellings, at the first free position the placement rule found. It is a guess inside the right district.",
         "derivation": {
           "method": "not_derivable",
@@ -45,13 +45,13 @@
             7.925
           ]
         ],
-        "confidence": "reconstructed",
+        "confidence": "inferred",
         "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 26 ft is the schedule's D1 older-log-cabin band: one room and a loft, which is what a doctor's residence-and-surgery would have been in a town this size. Every number is invented."
       },
       "form": {
         "stories": {
           "value": 1,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -59,7 +59,7 @@
         },
         "wall_height_m": {
           "value": 2.6,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -67,7 +67,7 @@
         },
         "roof_type": {
           "value": "gable",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -75,7 +75,7 @@
         },
         "roof_pitch_deg": {
           "value": 35.0,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -83,7 +83,7 @@
         },
         "construction": {
           "value": "log",
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -91,7 +91,7 @@
         },
         "loft": {
           "value": true,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -99,7 +99,7 @@
         },
         "chimneys": {
           "value": 1,
-          "confidence": "reconstructed",
+          "confidence": "inferred",
           "sources": [
             "andreas_1884_v1"
           ],
@@ -111,7 +111,7 @@
   ],
   "function": {
     "value": "dwelling",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -119,7 +119,7 @@
   },
   "occupants": {
     "value": "Dr Elijah Dewey Harmon",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "andreas_1884_v1"
     ],

@@ -34,7 +34,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "chicagology_prefire273",
       "andreas_1884_v1"
@@ -43,7 +43,7 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "chicagology_prefire273"
      ],
@@ -51,7 +51,7 @@
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The signature small mammal of this site; density unrecorded."
     },
     "max_group": 3,
@@ -60,7 +60,7 @@
     "appearance": "Dark, low in the water, thin flattened tail.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "chicagology_prefire273",
     "andreas_1884_v1"
@@ -82,7 +82,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -90,7 +90,7 @@
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -98,7 +98,7 @@
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "One animal at a time on the bank. 'Numerous' in the source is a period judgement about the district, not a density inside the platted grid."
     },
     "max_group": 2,
@@ -107,7 +107,7 @@
     "appearance": "Buff and grizzled, narrow-muzzled, tail carried low.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -127,7 +127,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "kinzie_waubun_1856"
      ],
@@ -135,12 +135,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A brief sighting along the bank; mink do not linger in the open."
     },
     "abundance": {
      "value": "sparse",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "One animal per long stretch of bank."
     },
     "max_group": 1,
@@ -149,7 +149,7 @@
     "appearance": "Chocolate-brown, long-bodied, white chin.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "kinzie_waubun_1856"
    ],
@@ -167,17 +167,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Modern Chicago-river herp surveys; The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Basking on half-sunk logs and pilings is the animatable behaviour."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 8,
@@ -186,7 +186,7 @@
     "appearance": "Smooth dark shell with red edge markings.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The turtle assemblage comes from modern Chicago-river surveys with no source record. Basking and July nesting are general biology; the presence here in 1835 is inference."
   },
   {
@@ -204,17 +204,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Long harvested in the Great Lakes region for food, tools and ornament, and later over-harvested for the pearl-button trade; the dossier's citation is the Shedd Aquarium and The dossier's citation for this has no record in data/sources/, so nothing here is graded documented on it."
     },
     "presence": {
      "value": "trace_only",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Live beds are on the bottom and invisible from the bank; the visible element is the shell scatter along the shore."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading; a slow prairie stream with a soft bottom."
     },
     "max_group": 0,
@@ -223,7 +223,7 @@
     "appearance": "Thick brown and cream shells, often half buried.",
     "trace": "Shell scatter and old shell middens along the banks."
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Button-cutting is a much later industry and no shell-working of that kind belongs here."
   },
   {
@@ -240,17 +240,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Andreas p. 1219 lists 'two pikes' among the fishes of the waters adjacent to Chicago. That compilation is 1884 \u2014 AFTER fifty years of degradation \u2014 so it is a conservative FLOOR for 1835, not a ceiling."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A long shape holding in weedy shallows, then gone."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading from a slow weedy prairie stream."
     },
     "max_group": 2,
@@ -259,7 +259,7 @@
     "appearance": "Long olive fish with pale bean-shaped spots.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -279,7 +279,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -287,12 +287,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Visible gliding and darting in clear shallows; the fish a walker actually sees."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Eight species in the list; abundance is a habitat reading."
     },
     "max_group": 20,
@@ -301,7 +301,7 @@
     "appearance": "Round-bodied, banded and iridescent in low sun.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -322,7 +322,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -330,12 +330,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Working the bottom in slow water."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 10,
@@ -344,7 +344,7 @@
     "appearance": "Brassy, thick-lipped, bottom-oriented.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -363,7 +363,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -371,12 +371,12 @@
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Bottom-dwelling and nocturnal in turbid water: present, and not visible from the bank at any hour a walker is likely to be there."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading for a soft-bottomed prairie stream."
     },
     "max_group": 0,
@@ -385,7 +385,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -406,7 +406,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -414,12 +414,12 @@
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A deep-water bottom fish; not seen from a bank."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -428,7 +428,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -446,7 +446,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -454,12 +454,12 @@
     },
     "presence": {
      "value": "not_perceptible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A cold-water, deep, nocturnal fish; invisible in a July river."
     },
     "abundance": {
      "value": "rare",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "At the warm edge of its tolerance in a shallow July prairie stream."
     },
     "max_group": 0,
@@ -468,7 +468,7 @@
     "appearance": "Not shown.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -488,7 +488,7 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "attested",
+     "confidence": "documented",
      "sources": [
       "andreas_1884_v1"
      ],
@@ -496,12 +496,12 @@
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Shoals in the shallows are the most animatable fish in the scene."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 60,
@@ -510,7 +510,7 @@
     "appearance": "Silver, small, quick.",
     "trace": null
    },
-   "confidence": "attested",
+   "confidence": "documented",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -530,17 +530,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Herons are named in the regional wet-prairie assemblage."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Still-hunting the shallows in the open."
     },
     "abundance": {
      "value": "frequent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Singles."
     },
     "max_group": 2,
@@ -549,7 +549,7 @@
     "appearance": "Tall grey-blue; neck folded in flight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Herons appear in the regional wet-prairie assemblage the dossier quotes from an Illinois DNR publication, which has no source record. The species split between great blue and green heron is this record's."
   },
   {
@@ -566,17 +566,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "The dossier places crows and turkey vultures at the slaughter-house offal on the North Branch and at the river's dead-animal dumping; it cites no source for either, so this is inference from the documented waste."
     },
     "presence": {
      "value": "visible_and_audible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Loud and obvious at any carcass."
     },
     "abundance": {
      "value": "common",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Wherever there is offal, which the 1833 ordinance proves there was."
     },
     "max_group": 12,
@@ -585,7 +585,7 @@
     "appearance": "All black, heavy-billed, square-tailed.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The 1833 town code prohibited throwing dead animals in the river, which is direct evidence that people did it. The scavengers follow from the waste, not from a record of the birds."
   },
   {
@@ -600,17 +600,17 @@
    "july": {
     "status": {
      "value": "year_round_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Inference from the documented carcass load, as for the crow; no Chicago record reached."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Circling high over the river and the killing yards; silent."
     },
     "abundance": {
      "value": "uncommon",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "A few birds circling, not a committee on the ground."
     },
     "max_group": 4,
@@ -619,7 +619,7 @@
     "appearance": "All dark with a small bare red head and silvery flight feathers from below.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "Vultures are effectively voiceless \u2014 no call belongs to them in any soundscape."
   },
   {
@@ -634,17 +634,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Follows from the documented waste: the 1833 code forbade throwing dead animals in the river, and the slaughter yards on the branches worked all summer for local consumption."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Individually invisible; correct as a shimmering mass over offal and hides, and as the reason every animal in the scene is twitching."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Maximal in July heat around slaughter waste."
     },
     "max_group": 0,
@@ -653,7 +653,7 @@
     "appearance": "Metallic blue and green; only the mass reads at any distance.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "sources": [
     "chicagology_prefire278"
    ],
@@ -671,17 +671,17 @@
    "july": {
     "status": {
      "value": "breeding_resident",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Breeding along the slow river all summer."
     },
     "presence": {
      "value": "visible",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Hawking low over the water and perching on reeds."
     },
     "abundance": {
      "value": "abundant",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "Habitat reading."
     },
     "max_group": 0,
@@ -690,7 +690,7 @@
     "appearance": "Green thorax, blue abdomen; the size is what carries.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "The dossier lists dragonflies and damselflies over the sloughs with no source. The genus is chosen as the commonest large darner of Illinois still water and is not attested here."
   },
   {
@@ -705,17 +705,17 @@
    "july": {
     "status": {
      "value": "absent_extirpated",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "No Chicago-proper 1830s beaver record surfaced, and the regional retrospective places beaver 'particularly in the Calumet region', twelve or more miles south. Statewide the species was becoming rare in Illinois by the mid-1800s. The beaver-hat market had already collapsed to silk by the 1830s, which reduced trapping pressure but did not restore local populations."
     },
     "presence": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "No Chicago-proper 1830s beaver record surfaced, and the regional retrospective places beaver 'particularly in the Calumet region', twelve or more miles south. Statewide the species was becoming rare in Illinois by the mid-1800s. The beaver-hat market had already collapsed to silk by the 1830s, which reduced trapping pressure but did not restore local populations."
     },
     "abundance": {
      "value": "absent",
-     "confidence": "inferred",
+     "confidence": "derived",
      "note": "No Chicago-proper 1830s beaver record surfaced, and the regional retrospective places beaver 'particularly in the Calumet region', twelve or more miles south. Statewide the species was becoming rare in Illinois by the mid-1800s. The beaver-hat market had already collapsed to silk by the 1830s, which reduced trapping pressure but did not restore local populations."
     },
     "max_group": 0,
@@ -724,11 +724,11 @@
     "appearance": "Recorded so the absence is a finding rather than an oversight.",
     "trace": null
    },
-   "confidence": "inferred",
+   "confidence": "derived",
    "note": "THE OPERATIVE INSTRUCTION IS ABOUT GEOMETRY, NOT ONLY ANIMATION: no beaver, no lodges, and no beaver-cut stumps at the forks. Wau-Bun does list beaver among the Chicago fur trade's species, which is evidence of a trade REACHING Chicago, not of animals at the forks."
   }
  ],
- "confidence": "attested",
+ "confidence": "documented",
  "note": "Two documented anchors: Andreas p. 1219's list of the fishes 'found in the waters adjacent to Chicago', compiled in 1884 and therefore a conservative FLOOR for 1835 rather than a ceiling; and the 1833 town code's prohibition on throwing dead animals in the river, which is direct evidence that people were doing it and is the basis for the whole scavenging economy in this zone.",
  "sources": [
   "andreas_1884_v1",

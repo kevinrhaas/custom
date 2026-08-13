@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
@@ -22,7 +22,7 @@
     "local_e": 731.952,
     "local_n": -137.572,
     "rotation_deg": 0.0,
-    "position_confidence": "reconstructed",
+    "position_confidence": "inferred",
     "position_sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
@@ -52,14 +52,14 @@
         9.144
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 20 x 30 ft is a two-fire shop: room for two hearths, an anvil each and a horse standing in, which is what '& Co.' implies. Every number is invented."
   },
   "attributes": {
     "wall_height_m": {
       "value": 3.1,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -67,7 +67,7 @@
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -75,7 +75,7 @@
     },
     "roof_pitch_deg": {
       "value": 32.0,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -83,7 +83,7 @@
     },
     "construction": {
       "value": "light_frame",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -91,7 +91,7 @@
     },
     "door": {
       "value": "stable",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -99,7 +99,7 @@
     },
     "door_side": {
       "value": "front",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -107,7 +107,7 @@
     },
     "loft": {
       "value": false,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -115,7 +115,7 @@
     },
     "board_gap_m": {
       "value": 0.012,
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -123,7 +123,7 @@
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "reconstructed",
+      "confidence": "inferred",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -131,7 +131,7 @@
     },
     "function": {
       "value": "blacksmith_shop",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -139,7 +139,7 @@
     },
     "occupants": {
       "value": "Matthias Mason & Co., blacksmiths",
-      "confidence": "attested",
+      "confidence": "documented",
       "sources": [
         "chicago_democrat_1833_11_26"
       ],
@@ -161,7 +161,7 @@
         {
           "name": "Matthias Mason",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "blacksmith",
           "note": "HIS ADDRESS NAMES A STREET THIS PROJECT DOES NOT OTHERWISE HOLD. 'Main-street' appears nowhere in this dataset's street control, the Thompson plat module or either 1834 sheet, and it is a real 1833 Chicagoan's own word for where his shop was. The cross-reference is usable: Graves' Tavern is Dexter Graves's house, the log tavern on Lake Street that became the Mansion House at what are now 84-86 Lake Street. So 'Main-street' in November 1833 is very probably Lake Street or a stretch of it under a colloquial name. THAT IS A FINDING FOR THE STREETS LAYER, NOT A PLACEMENT, and it is recorded here rather than acted on. The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
         }

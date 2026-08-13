@@ -5,7 +5,7 @@
  "head": "greene_john",
  "arrival": {
   "value": "1833-12-18",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -15,7 +15,7 @@
  },
  "party_size_on_arrival": {
   "value": 1,
-  "confidence": "inferred",
+  "confidence": "derived",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -23,12 +23,12 @@
  },
  "origin": {
   "value": null,
-  "confidence": "reconstructed",
+  "confidence": "inferred",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "Ordered to command the post",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -36,7 +36,7 @@
  },
  "lives_at": {
   "value": "fort_dearborn_commandants_quarters",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -45,7 +45,7 @@
  },
  "works_at": {
   "value": "fort_dearborn_palisade",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -54,7 +54,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "attested",
+  "confidence": "documented",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -66,11 +66,11 @@
    "id": "greene_john",
    "name": "Major John Greene",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "documented",
    "sex": "male",
    "occupation": {
     "value": "army_officer",
-    "confidence": "attested",
+    "confidence": "documented",
     "sources": [
      "andreas_1884_v1",
      "drloih_fort_dearborn"

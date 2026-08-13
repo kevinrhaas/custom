@@ -14,7 +14,7 @@
   "documented_range": {
     "from": "1833-11-26",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "derived",
     "sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1"
@@ -26,7 +26,7 @@
     "local_e": 551.4,
     "local_n": -5.9,
     "rotation_deg": 0.0,
-    "position_confidence": "inferred",
+    "position_confidence": "derived",
     "position_sources": [
       "chicago_democrat_1833_11_26",
       "andreas_1884_v1",
@@ -57,14 +57,14 @@
         7.62
       ]
     ],
-    "confidence": "reconstructed",
+    "confidence": "inferred",
     "sources": [],
     "note": "INVENTED, and the same borrowed rectangle this parcel uses on every South Water store whose size nobody recorded: 12.192 x 7.62 m is 40 x 25 ft, the frontage attested for the Green Tree Tavern and the Western Hotel's front, and the depth derived from the Green Tree's attested room module. Andreas gives this building no dimension; the 26 November 1833 issue gives none either. The one documented constraint is the street's: South Water lots were 55 ft wide (Andreas), so a single-lot building here cannot have fronted more than 55 ft, and 40 ft sits inside that. IT IS SIZED AS A WHOLE BUILDING, NOT AS AN OFFICE, and that is a decision the evidence supports rather than a default: Andreas says Calhoun 'secured an office IN a building', so the press occupied part of a larger structure, and the same first issue advertises 'the New Store on the corner of South Water and Clark-streets' — see this record's occupants block. A building holding a store and a printing office is not a shed."
   },
   "attributes": {
     "stories": {
       "value": 2,
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -72,7 +72,7 @@
     },
     "construction": {
       "value": "braced_frame",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "andreas_1884_v1"
       ],
@@ -80,27 +80,27 @@
     },
     "wall_height_m": {
       "value": 5.5,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No figure is attested. 5.5 m is about 18 ft: two 8 ft storeys plus floor structure and a low sill course, the number this project uses for its other two-storey frame buildings. It inherits the storey count's uncertainty — if the building was single-storey this is nearly twice too tall — and that is why the confidence view should be trusted over the silhouette here."
     },
     "roof_type": {
       "value": "gable",
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. Gable is the near-universal roof form for frame buildings of this type, period and region. Typological derivation, not a measurement."
     },
     "roof_pitch_deg": {
       "value": 33.0,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "No pitch is attested for this building. 33 degrees is the frame_storefront archetype's own figure for a store, and it is adopted here rather than the 38 this project uses for taverns because the archetype argues the case from the dataset's one attested store footprint: a store's frontage is long and its plan shallow, so a tavern's pitch puts more roof above the eave than there is wall below it and the building stops reading as a shop. Inferred from construction practice and from the type, not measured."
     },
     "chimneys": {
       "value": 1,
-      "confidence": "inferred",
+      "confidence": "derived",
       "note": "Not attested. One is the minimum for a building holding a store and a printing office through a Chicago winter — a press room needs heat as much as a shop does, because ink stiffens and paper has to be damped. The COUNT is the inference; the stack's position, size and material are the archetype's, per docs/LIBERTIES.md L26."
     },
     "function": {
       "value": "printing_office_and_store",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicago_democrat_1833_11_26",
         "andreas_1884_v1"
@@ -109,7 +109,7 @@
     },
     "occupants": {
       "value": "John Calhoun's Chicago Democrat printing office; and, on the reading argued here, W. Kimball's new dry-goods store",
-      "confidence": "inferred",
+      "confidence": "derived",
       "sources": [
         "chicago_democrat_1833_11_26",
         "andreas_1884_v1"
@@ -132,7 +132,7 @@
         {
           "name": "John Calhoun",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "editor",
           "note": "THE ONLY MAN IN THIS PARCEL WHOSE ADDRESS IS SELF-REPORTED IN PRINT IN THE TOWN'S OWN WEEK. The Democrat was designated the official newspaper of the town in November 1833. Note precisely what the imprint settles: the JUNCTION, not the corner - 'on the corner of' leaves which of the four unsaid, and the pencilled 'S. W.' in the margin of the scan is a later reader's gloss that this project quarantines."
         }
@@ -153,14 +153,14 @@
         {
           "name": "Oscar Pratt",
           "relationship": "head",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "printer",
           "note": "A REAL, NAMED MAN WITH A TRADE AND AN EMPLOYER, and nothing else. Andreas vol. 1, printed p. 132 (scan p. 281), 'an imperfect list of the denizens of the town in the fall of 1833, not before named' - a name, a trade and usually an arrival year, compiled fifty years after the fact."
         },
         {
           "name": "Beckford",
           "relationship": "partner",
-          "grade": "inferred",
+          "grade": "derived",
           "occupation": "printer",
           "note": "SURNAME ONLY, NO FORENAME, NO SEX RECORDED. Andreas prints 'Oscar Pratt and Bcckford, printers' with the first letters damaged in the scan. The sex field is omitted rather than assumed: a compositor in 1833 was overwhelmingly likely to be a man, but 'overwhelmingly likely' is not what documented means and this record has no other information about the person at all."
         }
@@ -181,7 +181,7 @@
         {
           "name": "W. Kimball",
           "relationship": "head",
-          "grade": "attested",
+          "grade": "documented",
           "occupation": "dry_goods_merchant",
           "note": "A SECOND, INDEPENDENTLY ATTESTED OCCUPANT OF THE DEMOCRAT'S OWN JUNCTION in the same issue of the same paper - which is why this project reads the printing office and the new store as sharing a building. Andreas's 1835 town officers list has a 'W. Kimball' among the nine trustees elected at the third town election of July 1835, and if that is this man he holds office on or about the scene date. THE IDENTIFICATION IS NOT MADE HERE: the surname is common in this record, and this project already keeps a separate Kimball (Dr E. S. Kimberly's partner is Pruyne, but a druggist 'Kimball & Porter' occupied the same corner later, and Andreas spells both Kimball and Kimberly loosely). The Chicago Democrat of 26 November 1833 is the only contemporary Chicago document this project holds; an advertiser in it was paying to be found, which makes it strong evidence of existence and address in November 1833 and weak evidence of survival to 1 July 1835, nineteen months and about 2,400 people later."
         }
