@@ -1,7 +1,7 @@
 /* Wau-Bun — Part 1: Journey West (September 1830 – March 1831).
    Chapters I–XVII of Juliette Kinzie's narrative, broken into scenes.
    Each scene records where it happens, what happens, the pivotal turns, and
-   exactly who is on stage: `cast` = present in the scene, `offstage` = spoken
+   exactly who appears: `cast` = present in the scene, `offstage` = spoken
    of, remembered, or acting at a distance. The chart derives first/last
    appearances from these lists — nothing is hand-numbered. */
 var WAUBUN_PART1 = {

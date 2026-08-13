@@ -119,7 +119,7 @@
       var c = CH[id], rec = idx.byChar[id];
       if (state.factions.indexOf(c.faction) < 0) return false;
       if (q && (c.name + ' ' + (c.alias || '') + ' ' + c.role).toLowerCase().indexOf(q) < 0) return false;
-      // with scenes selected, only the people on stage (or spoken of) in them
+      // with scenes selected, only the people who appear in them (or are spoken of)
       if (sel.length) return sel.some(function (sid) { return !!rec.at[sceneNo(sid)]; });
       var any = false;
       (part().scenes || []).forEach(function (sc, i) { if (inCol[sc.id] && rec.at[i]) any = true; });
@@ -296,7 +296,7 @@
     var chars = visibleChars();
 
     var fig = el('figure', 'wb-figure');
-    fig.appendChild(el('figcaption', 'wb-figtitle', 'Who is on stage, scene by scene'));
+    fig.appendChild(el('figcaption', 'wb-figtitle', 'Who appears, scene by scene'));
     fig.appendChild(el('p', 'wb-fignote',
       'Every character in Part ' + p.number + ' against every scene, in the order the narrative tells them. ' +
       'A filled mark means the character is present; a ringed mark is their first appearance; a dashed mark means they are spoken of, remembered, or acting at a distance. ' +
@@ -477,7 +477,8 @@
     });
     var head = el('div', 'wb-selhead');
     head.innerHTML = '<b>' + sel.length + ' scene' + (sel.length === 1 ? '' : 's') + ' selected</b>' +
-      '<span>' + Object.keys(present).length + ' on stage · ' + Object.keys(spoken).length + ' spoken of · ' +
+      '<span>' + Object.keys(present).length + (Object.keys(present).length === 1 ? ' appears' : ' appear') +
+      ' · ' + Object.keys(spoken).length + ' spoken of · ' +
       chars.length + ' row' + (chars.length === 1 ? '' : 's') + ' shown</span>';
     wrap.appendChild(head);
 
