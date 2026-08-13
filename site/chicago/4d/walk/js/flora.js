@@ -434,6 +434,10 @@ export async function createFlora({
     'flora-forb': rings.forb, 'flora-rosette': rings.forb,
   };
 
+  /** A community that stands in no water, for the plantable-ground question the
+   *  gate asks without naming a species. */
+  const NO_COMMUNITY = { standsInWater: false };
+
   /** Ground the plant stands on, or null if it may not stand here. */
   function station(e, n, zone, species) {
     if (growthBlocked(e, n)) return null;
@@ -467,6 +471,10 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
+        // The community's own recorded matrix cover decides whether this slot
+        // carries a plant — the same rule the forb layer has always applied to
+        // its own recorded densities, on the field the matrix layer ignored.
+        if (rng() > zone.matrixShare) return;
         const sp = pick(zone.graminoids, rng());
         const y = station(e, n, zone, sp);
         if (y === null) return;
@@ -490,6 +498,11 @@ export async function createFlora({
       (e, n, r, rng) => {
         const zone = finder(e, n);
         if (!zone || !zone.graminoids.length) return;
+        // A clump card stands for the same matrix the near tufts do, so it is
+        // thinned by the same recorded cover. Applying it to one layer and not
+        // the other would put a seam at the near/mid crossover exactly where
+        // the change of representation is supposed to be invisible.
+        if (rng() > zone.matrixShare) return;
         const sp = pick(zone.graminoids, rng());
         const y = station(e, n, zone, sp);
         if (y === null) return;
@@ -545,6 +558,20 @@ export async function createFlora({
     stats,
     zoneAt(e, n) { return finder(e, n)?.id ?? null; },
     shoreDistance(e, n) { return water.distance(e, n); },
+    /** May a rooted plant stand here at all — the travelled track, the
+     *  building footprints and the water answered in one call. A gate
+     *  measuring how densely a community was planted has to divide by the
+     *  ground that was actually available to it, not by the disc it sampled. */
+    plantableAt(e, n) { return station(e, n, NO_COMMUNITY, null) !== null; },
+    /** What each compiled community carries out of its record, so the gate can
+     *  ask whether the authored number reached the renderer rather than
+     *  trusting that it did. */
+    communities() {
+      return zones.map((z) => ({
+        id: z.id, matrixShare: z.matrixShare, bareSoil: z.bareSoil,
+        graminoids: z.graminoids.length,
+      }));
+    },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
      *  plant cannot arrive already grown. */
     rings: { step, layers: rings },
@@ -784,6 +811,31 @@ function compileZones({ index, files }, terrain, problems, stats) {
     if (coverSum > 0) for (const g of graminoids) g.weight /= coverSum;
     if (forbPerM2 > 0) for (const f of forbs) f.weight /= forbPerM2;
 
+    // How much of the ground a community's matrix actually covers is AUTHORED,
+    // per zone, in the record's own `cover` block — and nothing in this
+    // renderer had ever asked for it. Every one of the ten communities was
+    // planted at the single lattice density L32 tuned on the closed
+    // wet-prairie sward, so the settled town (`bare_soil_fraction: 0.45` by
+    // its own record), the shaded riverbank understory (`matrix_fraction`
+    // 0.45) and the lakeshore sand (0.35) were all drawn as densely as prairie
+    // that covers the ground completely. `tools/validate.py` gates this field
+    // on every run and `index.json` denormalises `bare_soil_fraction` so the
+    // ground shader can fetch it once: the number was written, checked and
+    // shipped to the browser, and then never read.
+    //
+    // It is a probability directly, and that is the whole reason 1.0 is the
+    // anchor rather than some scaling: a zone recording full matrix cover is
+    // planted exactly as it was before, so the density tuned against the
+    // reference photographs is untouched, and no zone can ask for more
+    // geometry than the lattice already carries.
+    const cover = rec.cover ?? {};
+    let matrixShare = cover.matrix_fraction;
+    if (typeof matrixShare !== 'number' || !(matrixShare >= 0)) {
+      problems.push(`flora: zone ${entry.id} records no cover.matrix_fraction — its sward `
+        + 'falls back to a fully closed one, which is a claim its record does not make');
+      matrixShare = 1;
+    }
+
     const cell = TUNE.forb.cell;
     out.push({
       id: entry.id,
@@ -794,6 +846,11 @@ function compileZones({ index, files }, terrain, problems, stats) {
         && rec.species.some((sp) => sp.role === 'emergent'),
       graminoids,
       forbs,
+      /** Chance a matrix lattice slot is used at all: the record's own
+       *  `cover.matrix_fraction`. Clamped only because a fraction over 1 would
+       *  be a bookkeeping error the validator already refuses. */
+      matrixShare: clamp01(matrixShare),
+      bareSoil: typeof cover.bare_soil_fraction === 'number' ? cover.bare_soil_fraction : null,
       /** Chance a forb lattice slot is used, from the record's own densities. */
       forbShare: Math.min(1, forbPerM2 * cell * cell / TUNE.forb.perCell),
       matColor: meanColor(graminoids, palette),

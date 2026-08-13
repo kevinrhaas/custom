@@ -131,10 +131,40 @@ Three things came with it:
   paces at both viewports and requires every plant arriving in front of the walker to be under
   10 % of full; measured 0.0 %.
 
-**Still open: COVERAGE.** `river_bank`'s underfill is already measured (zone says cordgrass
-40–55 % cover, `bare_soil_fraction: 0.0`; render shows bare soil), and the mid-field targets from
-the prairie sweep stand in § S6a. Note that the near ring's *visible* radius is 0.6 m shorter than
-it was — that is the inset, and it is a coverage question for this half of the parcel to weigh.
+**Coverage, part one, DONE 2026-08-13: the sward reads each community's own recorded cover.**
+The zone records author `cover.matrix_fraction` per community and a `bare_soil_fraction` beside
+it; `tools/validate.py` gates both and `index.json` denormalises the second so the ground shader
+can fetch it once. **`flora.js` had never asked for either.** All ten communities were planted at
+the one lattice density L32 tuned on closed wet prairie, so the settled town (0.45 matrix, 0.45
+bare by its own record), the shaded riverbank understory (0.45), the lakeshore sand (0.35) and
+the forest floor (0.35) were drawn as densely as prairie that covers the ground completely. The
+fraction is now the probability a matrix lattice slot carries a plant, in the near layer and the
+mid cards alike — the rule the forb layer has always applied to its own recorded densities.
+Measured across the eight communities with a clean sampling station: planted density spans
+**2.21–6.90 per m²** where it was one number, and the implied full-cover density agrees at
+**6.31–8.15** against a lattice that carries 7.30. **Wet prairie is untouched** (it records 1.00),
+so nothing the prairie sweep tuned moved, and the change can only ever remove instances: measured
+against `main` at 1280×800, wet prairie is 360 979 tris against 360 863 (the reshuffled draw), the
+settled town 429 281 against 441 683 and the marsh edge 299 161 against 308 235. L32 carries a Revised line: the density RATIO between two
+communities is the record's now; the absolute figure and the saturation anchor stay liberties.
+
+**Still open: COVERAGE, part two.** The mid-field targets from the prairie sweep stand in § S6a,
+and the near ring's *visible* radius is 0.6 m shorter than it was — that is the pop-in inset, and
+it is a coverage question for this half of the parcel to weigh.
+
+**Two findings this slice measured and did not fix.** (a) **S6a item 9 names the wrong zone.** It
+reads the `river_bank` shot against zone 1's cordgrass at 40–55 %, but ground within eight metres
+of water is the MARSH zone by extent (`z04`, priority 70) — measured at the shot's own bank, the
+sward there is 100 % z04 and z10, and none of it is z01. The marsh's own record says 0.75 matrix
+and 0.0 bare, which is what it is now planted at. (b) **Two floating-leaved aquatics are rooted on
+dry land.** `nuphar_advena` and `nymphaea_odorata` are `role: emergent`, `form: mat_prostrate`,
+0.01–0.10 m tall, and their own `appearance` says "floating pads in open water" — but that is
+prose, and nothing machine-readable distinguishes a water lily from a cattail, so both are planted
+on the dry marsh edge like any other emergent. They are **7 % of the tufts** on that bank: pads at
+ankle height standing on soil, which is the better explanation of the "~25 cm sprigs" in item 9
+than any density is. The fix is a data field (a substrate or habit value in the published
+vocabulary, gated by `validate.py`) and then one line in `station()`; it is not a renderer guess
+about which heights float.
 
 ### K4 — Facades: weathered wood, not painted clones
 The buildings read as freshly painted and identical. Research first, then implement: most 1835
@@ -1049,6 +1079,14 @@ in the **mid** field.
 9. **`river_bank` is not honouring its own dataset.** Zone 1 specifies cordgrass at 1.2–2.0 m
    and 40–55 % cover with `bare_soil_fraction: 0.0`; the frame shows ~25 cm sprigs on bare
    soil in near-rows. The data is right; the renderer is not reading it.
+   **The general half is DONE 2026-08-13** — see K3: every community is now planted at its own
+   recorded `cover.matrix_fraction`, which nothing had read. **The item's own reading is wrong
+   in two ways, both measured rather than argued.** The bank is not zone 1: within eight metres
+   of water the extent is the marsh (`z04`, priority 70), and the shot's sward is entirely z04
+   and z10. And the sprigs are not a density problem — `nuphar_advena` and `nymphaea_odorata`,
+   floating-leaved aquatics recorded 0.01–0.10 m tall, are 7 % of the tufts planted on that dry
+   bank, because `role: emergent` is all the renderer can see and nothing in the vocabulary says
+   a lily floats. That is the open half, and it is a data field before it is a renderer change.
 10. **Adaptive budget.** Thin the sward automatically when measured frame time exceeds a
     threshold, so a slow device degrades instead of stuttering. Mobile is a release gate and
     the low-spec field is currently a fixed, hand-tuned reduction.
