@@ -54,7 +54,7 @@ SCENE_IDS = ["1835"]
 
 # docs/GLB-CONTRACT.md, "The confidence channel"
 CONFIDENCE_VALUE = {"documented": 0.0, "derived": 0.5, "inferred": 1.0}
-WORST_FIRST = ("conjectural", "inferred", "documented")
+WORST_FIRST = ("inferred", "derived", "documented")
 
 # Which record attributes drive which piece of geometry. This mapping IS the
 # contract's worked example; the numbers come from the record, not from here.

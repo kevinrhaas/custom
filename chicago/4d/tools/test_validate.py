@@ -36,8 +36,8 @@ def phase(pid: str, frm: str, to: str, form: dict | None = None) -> dict:
         "documented_range": {"from": frm, "to": to, "confidence": "documented",
                              "sources": ["s1"]},
         "position": {"utm_e": None, "utm_n": None, "symbolic_location": "somewhere",
-                     "confidence": "derived"},
-        "footprint": {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "derived"},
+                     "confidence": "inferred"},
+        "footprint": {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "inferred"},
         "form": form or {},
     }
 
@@ -272,16 +272,29 @@ def test_confidence_contract() -> None:
 
     rep = V.Report()
     V.check_attested("w", "k", {"value": 1, "confidence": "derived"}, ids, rep)
-    check("inferred without stated reasoning is an error",
+    check("derived without stated reasoning is an error",
           any("requires a note" in e for e in rep.errors), rep.errors)
 
     rep = V.Report()
     V.check_attested("w", "k", {"value": 1, "confidence": "derived", "note": "because"}, ids, rep)
-    check("inferred with reasoning passes", not rep.errors, rep.errors)
+    check("derived with reasoning passes", not rep.errors, rep.errors)
+
+    # Under the old vocabulary the third tier was `conjectural` and citing a source
+    # was suspicious enough to warn. It is not any more: an INFERRED value is
+    # invented within a bound, and the source that establishes the bound is what
+    # makes the invention defensible rather than arbitrary. So citing is fine, and
+    # what it still owes is its reasoning.
+    rep = V.Report()
+    V.check_attested("w", "k", {"value": 1, "confidence": "inferred",
+                                "note": "the town demonstrably needed one",
+                                "sources": ["s1"]}, ids, rep)
+    check("inferred citing the source that bounds it is fine",
+          not rep.errors and not rep.warnings, (rep.errors, rep.warnings))
 
     rep = V.Report()
-    V.check_attested("w", "k", {"value": 1, "confidence": "derived", "sources": ["s1"]}, ids, rep)
-    check("inferred citing a source is fine", rep.warnings, "expected a warning")
+    V.check_attested("w", "k", {"value": 1, "confidence": "inferred", "sources": ["s1"]}, ids, rep)
+    check("inferred without stated reasoning is still an error",
+          any("requires a note" in e for e in rep.errors), rep.errors)
 
 
 def test_wide_range_rule_targets_guesses_not_facts() -> None:
@@ -395,7 +408,7 @@ def ground_index(claims: dict, epoch: str = "e1834_harbor_cut") -> dict:
                     for cid, conf in claims.items()}}
 
 
-def test_liberties_cover_conjectural_inventions() -> None:
+def test_liberties_cover_inferred_inventions() -> None:
     """A drawn shape nobody can defend has to be admitted somewhere a visitor reads.
 
     The load-bearing case is the third one: a liberty whose prose is all about
@@ -411,9 +424,9 @@ def test_liberties_cover_conjectural_inventions() -> None:
         liberty("L1", "No people, anywhere", []),
     ]}, rep)
     check("an inferred footprint with no liberty at all is an error",
-          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+          any("footprint is inferred" in e for e in rep.errors), rep.errors)
     check("an inferred position with no liberty at all is an error",
-          any("position is conjectural" in e for e in rep.errors), rep.errors)
+          any("position is inferred" in e for e in rep.errors), rep.errors)
 
     rep = V.Report()
     V.check_liberties_coverage(structures, {"liberties": [
@@ -430,8 +443,8 @@ def test_liberties_cover_conjectural_inventions() -> None:
                 "The outline drawn under it and its position were both discussed at length."),
     ]}, rep)
     check("prose about footprints and placement does not cover them — only a claim does",
-          any("footprint is conjectural" in e for e in rep.errors)
-          and any("position is conjectural" in e for e in rep.errors), rep.errors)
+          any("footprint is inferred" in e for e in rep.errors)
+          and any("position is inferred" in e for e in rep.errors), rep.errors)
     check("the error says which liberties do name the building",
           any("L4" in e for e in rep.errors), rep.errors)
     check("the error shows the Covers token that would fix it",
@@ -450,7 +463,7 @@ def test_liberties_cover_conjectural_inventions() -> None:
           any("x/q" in e and "footprint" in e for e in rep.errors)
           and not any("x/p" in e and "footprint" in e for e in rep.errors), rep.errors)
     check("a structure-scoped claim covers every phase that drew that aspect",
-          not any("position is conjectural" in e for e in rep.errors), rep.errors)
+          not any("position is inferred" in e for e in rep.errors), rep.errors)
 
     # The claims answer for themselves: over-claiming is as much a
     # misrepresentation as under-claiming.
@@ -473,7 +486,7 @@ def test_liberties_cover_conjectural_inventions() -> None:
         liberty("L7", "x: the footprint was invented", ["x"], covers=[covers("x", "footprint")]),
     ]}, rep)
     check("claiming an invention that the data no longer contains is an error",
-          any("neither conjectural, nor declared" in e and "L7" in e
+          any("neither inferred, nor declared" in e and "L7" in e
               for e in rep.errors), rep.errors)
 
     rep = V.Report()
@@ -496,12 +509,12 @@ def test_liberties_cover_conjectural_inventions() -> None:
 def test_liberties_cover_invented_form() -> None:
     """The requirement reaches past the drawn geometry to what the record states.
 
-    A conjectural `roof_type` builds a gable and a visitor sees a gable; a
-    conjectural `gallery: false` renders a plain front and a visitor sees a plain
+    An inferred `roof_type` builds a gable and a visitor sees a gable; a
+    inferred `gallery: false` renders a plain front and a visitor sees a plain
     front. Neither announces itself the way an invented outline does, which is the
     argument for holding them to the same rule rather than a weaker one.
     """
-    form = {"roof_type": {"value": "gable", "confidence": "derived",
+    form = {"roof_type": {"value": "gable", "confidence": "inferred",
                           "note": "PLACEHOLDER. Typical for the type."},
             "stories": {"value": 2, "confidence": "documented", "sources": ["s1"]}}
     structures = {"x.json": {"id": "x", "phases": [phase("p", "1831-01-01", "1851-01-01", form)]}}
@@ -512,9 +525,9 @@ def test_liberties_cover_invented_form() -> None:
         liberty("L1", "x: the outline and the placement are invented", ["x"], covers=geometry),
     ]}, rep)
     check("an inferred form attribute with no claim is an error",
-          any("form.roof_type is conjectural" in e for e in rep.errors), rep.errors)
+          any("form.roof_type is inferred" in e for e in rep.errors), rep.errors)
     check("owning up to the geometry does not cover what the record says the building was",
-          not any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+          not any("footprint is inferred" in e for e in rep.errors), rep.errors)
     check("the error shows the form token that would fix it",
           any("`x.p.form.roof_type`" in e for e in rep.errors), rep.errors)
 
@@ -537,8 +550,8 @@ def test_liberties_cover_invented_form() -> None:
                 covers=geometry + [covers("x", "form.roof_type", "p"),
                                    covers("x", "form.stories", "p")]),
     ]}, rep)
-    check("claiming an attribute that is not conjectural is an error",
-          any("form.stories" in e and "neither conjectural, nor declared" in e
+    check("claiming an attribute that is not inferred is an error",
+          any("form.stories" in e and "neither inferred, nor declared" in e
               for e in rep.errors), rep.errors)
 
 
@@ -547,7 +560,7 @@ def test_geometry_declaration_is_required_for_unread_attributes() -> None:
 
     This is the omission half of the standard, and it is harder than the
     invention half for a reason worth stating: an invention leaves a mark in the
-    record — a `conjectural` tag — and an omission leaves none at all. A
+    record — an `inferred` tag — and an omission leaves none at all. A
     `documented` attested value the archetype never reads looks exactly like a
     `documented` value it builds. The only thing that can tell them apart is the
     generator's own declaration of what it consumes, which is why the rule is
@@ -662,7 +675,7 @@ def test_liberties_cover_omissions_and_simplifications() -> None:
                                    covers("x", "form.roof_type", "p")]),
     ]}, rep, consumed)
     check("claiming to have omitted something that is built is an error",
-          any("form.roof_type" in e and "neither conjectural, nor declared" in e
+          any("form.roof_type" in e and "neither inferred, nor declared" in e
               for e in rep.errors), rep.errors)
 
     # Without the archetype map the omission rule cannot run at all, and must not
@@ -740,7 +753,7 @@ def test_liberties_cover_what_the_ground_invents() -> None:
                         ground_covers("e1834_harbor_cut", "water")]),
     ]}, rep, None, None, ground)
     check("claiming to have invented a documented ground claim is an error",
-          any("terrain.e1834_harbor_cut.water" in e and "neither conjectural" in e
+          any("terrain.e1834_harbor_cut.water" in e and "neither inferred" in e
               for e in rep.errors), rep.errors)
 
     rep = V.Report()
@@ -776,7 +789,7 @@ def test_liberties_cover_what_the_ground_invents() -> None:
                         ground_covers("e1834_harbor_cut", "swales.west_prairie_swale_a")]),
     ]}, rep, None, None, ground)
     check("a ground admission does not cover a building's invented outline",
-          any("footprint is conjectural" in e for e in rep.errors), rep.errors)
+          any("footprint is inferred" in e for e in rep.errors), rep.errors)
     check("and the ground's own claims stay discharged while it fails",
           not any("terrain e1834_harbor_cut/bank" in e for e in rep.errors), rep.errors)
 
@@ -797,9 +810,9 @@ def test_the_checked_ground_is_the_ground_on_the_panel() -> None:
     level up from where it was last found.
     """
     spec = {
-        "bank": {"face_m": 6.0, "confidence": "derived"},
+        "bank": {"face_m": 6.0, "confidence": "inferred"},
         "swales": [{"id": "new_zone_nobody_admitted_to", "depth_ft": 1.0,
-                    "confidence": "derived"}],
+                    "confidence": "inferred"}],
         "water": {"surface_ft": 0.0, "confidence": "documented", "sources": ["s1"]},
     }
     rep = V.Report()
@@ -809,7 +822,7 @@ def test_the_checked_ground_is_the_ground_on_the_panel() -> None:
           == {"bank", "swales.new_zone_nobody_admitted_to", "water"},
           sorted(index.get("e1834_harbor_cut", {})))
 
-    owed = V.terrain_conjectural_values(index)
+    owed = V.terrain_inferred_values(index)
     check("a zone added to the spec is owed an admission the day it appears",
           sorted(cid for _e, cid, _l, _w in owed)
           == ["bank", "swales.new_zone_nobody_admitted_to"], owed)
@@ -832,9 +845,9 @@ def test_the_committed_ground_admits_to_everything_it_invents() -> None:
     """
     rep = V.Report()
     index = V.terrain_claim_index(V.load_terrain_specs(rep), rep)
-    owed = V.terrain_conjectural_values(index)
+    owed = V.terrain_inferred_values(index)
     check("the committed terrain states inventions a visitor walks on",
-          len(owed) >= 6, f"{len(owed)} conjectural ground claim(s)")
+          len(owed) >= 6, f"{len(owed)} inferred ground claim(s)")
 
     liberties = V.load_json(V.DATA / "liberties.json", rep) or {}
     claimed = {(c.get("epoch"), c.get("claim"))
@@ -1373,7 +1386,7 @@ def test_the_ground_is_held_to_the_rules_a_record_answers_to() -> None:
     # bake. The hash strips prose now (generators/terrain_inputs.py), so the rule
     # is an error here exactly as it is on a structure record.
     thin = {"surface_materials": [{"zone": "north_division", "material": "loam",
-                                   "confidence": "derived"}]}
+                                   "confidence": "inferred"}]}
     errs, warns = run(thin)
     check("inferred with no reasoning is an error, as it is on a record",
           any("no reasoning recorded" in e for e in errs), f"{errs} / {warns}")
@@ -1553,7 +1566,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     consumed = {"bank": frozenset({"face_m"}),
                 "surface_materials": frozenset()}
     index = {"e1834_harbor_cut": {
-        "bank": ground_claim_fixture("bank", "inferred", [
+        "bank": ground_claim_fixture("bank", "derived", [
             {"key": "face_m", "value": 6.0},
             {"key": "profile", "value": "ease_out", "mesh": "restated_in_code"},
         ]),
@@ -1576,7 +1589,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     # mesh agrees with the spec without reading it.
     rep = V.Report()
     V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
-        "bank", "inferred", [{"key": "profile", "value": "x", "mesh": "invented"}])}},
+        "bank", "derived", [{"key": "profile", "value": "x", "mesh": "invented"}])}},
         consumed, rep)
     check("a declaration outside the vocabulary is an error",
           any("not one of" in e for e in rep.errors), rep.errors)
@@ -1584,7 +1597,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     # The false admission.
     rep = V.Report()
     V.check_ground_geometry({"e1834_harbor_cut": {"bank": ground_claim_fixture(
-        "bank", "inferred", [{"key": "face_m", "value": 6.0, "mesh": "absent"}])}},
+        "bank", "derived", [{"key": "face_m", "value": 6.0, "mesh": "absent"}])}},
         consumed, rep)
     check("declaring an omission over a figure the ground IS built from is an error",
           any("'face_m'" in e and "nothing to declare" in e for e in rep.errors), rep.errors)
@@ -1594,7 +1607,7 @@ def test_the_ground_must_say_what_it_does_not_build() -> None:
     # applies to an archetype with no params module.
     rep = V.Report()
     V.check_ground_geometry({"e1834_harbor_cut": {"lagoons.x": ground_claim_fixture(
-        "lagoons.x", "inferred", [{"key": "depth_ft", "value": 2.0}])}}, consumed, rep)
+        "lagoons.x", "derived", [{"key": "depth_ft", "value": 2.0}])}}, consumed, rep)
     check("a graded block CONSUMED says nothing about is an error, not a pass",
           any("'lagoons'" in e for e in rep.errors), rep.errors)
 
@@ -1613,7 +1626,7 @@ def test_an_unbuilt_ground_figure_owes_the_document_an_admission() -> None:
         "surface_materials.south": ground_claim_fixture(
             "surface_materials.south", "documented",
             [{"key": "material", "value": "loam", "mesh": "simplified"}]),
-        "bank": ground_claim_fixture("bank", "inferred", [
+        "bank": ground_claim_fixture("bank", "derived", [
             {"key": "face_m", "value": 6.0},
             {"key": "dossier_zone", "value": 13, "mesh": "record_only"},
         ]),
@@ -1644,7 +1657,7 @@ def test_an_unbuilt_ground_figure_owes_the_document_an_admission() -> None:
                 covers=[ground_covers("e1834_harbor_cut", "bank")]),
     ]}, rep, None, None, index, consumed)
     check("claiming a block that is neither invented nor unbuilt is still an error",
-          any("terrain.e1834_harbor_cut.bank" in e and "neither conjectural" in e
+          any("terrain.e1834_harbor_cut.bank" in e and "neither inferred" in e
               for e in rep.errors), rep.errors)
 
 
@@ -1728,7 +1741,7 @@ def test_a_restatement_is_held_to_the_half_it_restates() -> None:
     EP = "e1834_harbor_cut"
 
     def idx(cid, fields):
-        return {EP: {cid: ground_claim_fixture(cid, "inferred", fields)}}
+        return {EP: {cid: ground_claim_fixture(cid, "derived", fields)}}
 
     # (1) figure — the restatement and the build instruction disagree.
     restates = {"divisions": {"bank_crest_ft": ("figure", "near_ft")}}
@@ -1794,7 +1807,7 @@ def test_a_prose_restatement_is_pinned_to_the_line_it_describes() -> None:
     def run(expr, key="profile"):
         rep = V.Report()
         V.check_restated_agreement(
-            {EP: {"bank": ground_claim_fixture("bank", "inferred", [
+            {EP: {"bank": ground_claim_fixture("bank", "derived", [
                 {"key": key, "value": "written out for a reader",
                  "mesh": "restated_in_code"}])}},
             {"bank": {key: ("code", expr)}}, rep)
@@ -2195,7 +2208,7 @@ def test_an_outline_is_not_traced_from_a_picture() -> None:
     """'Outlines come from tier-1 sheets or stay conjectural.'"""
     srcs = _sources(wright=1, conley=5)
     ph = phase("p", "1831-01-01", "1851-01-01")
-    ph["footprint"] = {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "derived",
+    ph["footprint"] = {"polygon": [[0, 0], [1, 0], [1, 1]], "confidence": "inferred",
                        "note": "read off the pictorial map", "sources": ["conley"]}
     rep = V.Report()
     V.check_evidence_ladder({"x.json": {"id": "x", "phases": [ph]}}, srcs, rep)

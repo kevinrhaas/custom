@@ -50,7 +50,7 @@ from archetypes.outbuilding_params import OutbuildingParams  # noqa: E402
 
 DOCUMENTED = "documented"
 INFERRED = "inferred"
-CONJ = "conjectural"
+CONJ = "inferred"
 
 
 # The documented buildings, written out as parameters. These are golden cases for

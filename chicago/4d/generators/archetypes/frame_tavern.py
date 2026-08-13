@@ -144,7 +144,7 @@ def _fenestration(b: MeshBuilder, params: FrameTavernParams, w: float, d: float,
     """
     story_h = wall_z / max(params.stories, 1)
     win_w, win_h, depth = 0.85, 1.35, 0.06
-    c_shut = params.conf("shutters", "conjectural")
+    c_shut = params.conf("shutters", "inferred")
 
     for story in range(params.stories):
         z0 = story * story_h + story_h * 0.30

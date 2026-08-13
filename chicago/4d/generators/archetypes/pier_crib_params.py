@@ -190,7 +190,7 @@ class PierCribParams:
 
     confidence: dict = field(default_factory=dict)
 
-    def conf(self, attr: str, default: str = "conjectural") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
     def worst_conf(self, *attrs: str) -> float:
@@ -270,7 +270,7 @@ def from_phase(phase: dict) -> PierCribParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="conjectural"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 

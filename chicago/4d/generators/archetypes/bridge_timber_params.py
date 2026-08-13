@@ -277,7 +277,7 @@ class BridgeTimberParams:
             self.deck_height_m = round(
                 self.clearance_m + self.stringer_d_m + self.plank_t_m, 4)
 
-    def conf(self, attr: str, default: str = "conjectural") -> float:
+    def conf(self, attr: str, default: str = "inferred") -> float:
         return CONFIDENCE_VALUE[self.confidence.get(attr, default)]
 
     def worst_conf(self, *attrs: str) -> float:
@@ -416,7 +416,7 @@ def from_phase(phase: dict) -> BridgeTimberParams:
         a = form.get(attr)
         return default if a is None else a.get("value", default)
 
-    def conf(attr, default="conjectural"):
+    def conf(attr, default="inferred"):
         a = form.get(attr)
         return default if a is None else a.get("confidence", default)
 
