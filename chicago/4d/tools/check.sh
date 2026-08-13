@@ -51,6 +51,13 @@ step "inferred households, adoptions and their buildings match the programme" \
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 
+# The platted block and lot grid is generated from the Thompson module and the
+# committed street lines, never traced off the 1834 sheets. Re-deriving it here is
+# what keeps it a derivation: a hand-nudged block face would otherwise sit in the
+# repo looking exactly like a surveyed one.
+step "the platted block and lot grid re-derives from the module" \
+  python3 tools/generate_plat_lots.py --check
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

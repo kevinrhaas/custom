@@ -1,0 +1,171 @@
+# The platted block and lot grid, generated from the module
+
+**Record:** none — this is a memo about a *derivation*, not about a building ·
+**Data:** `data/traces/vectors/thompson_lots.json` ·
+**Inputs:** `data/traces/street_control.json`, `data/streets/1835.json`,
+`data/sources/thompson_plat_1830.json` ·
+**Gate:** `tools/generate_plat_lots.py --check`, in `tools/check.sh` ·
+**Roadmap:** K7
+
+---
+
+## 1. Why this is generated and not traced
+
+`data/sources/thompson_plat_1830.json` is a **parameter source**. No open high-resolution
+archival scan of the 1830 plat has been located, the surviving artifact is a Canal
+Commissioners' working copy dated to at least 1836, and the original burned in 1871. What the
+record is good for is the module — the original town at roughly 0.375 sq mi, 80-ft streets,
+18-ft alleys — and the source note has said since it was written that street and alley geometry
+should be generated from those figures rather than traced from pixels.
+
+The 1834 sheets would be the alternative, and § S9 of the roadmap already measured what tracing
+them would cost. Both carry 3.7–4.5 % anisotropic paper stretch; the eleven corridors measured
+off them read 75.7–92.8 ft with a median 3.7 ft above the adopted 80. That excess is stretch and
+the placement of a pen line, not a wider street. A grid fitted to those readings would arrive in
+the dataset with 4 % of paper distortion baked into every block face, and a street that is
+straight because a surveyor made it straight would come out bent because we traced a folded
+sheet.
+
+So the grid here is arithmetic on two committed things: the street centrelines this project
+already stands on, and the module width beside them.
+
+## 2. The construction, in one paragraph
+
+A block edge is a street centreline from `data/streets/1835.json` offset by half the platted
+corridor (12.192 m); the four offsets are intersected to give the block. Lots divide the block's
+north and south faces in the same proportion and join station to station, so a block with a
+curved face (South Water follows the river) subdivides without anything having to be straight.
+The alley is a centred 18-ft strip taken out of the middle. A block is emitted only where the
+committed centrelines of all four bounding streets actually reach it — at most half a corridor
+of extension is allowed, for a line drawn *to* a junction rather than *through* it — and a block
+with a corner on water or beyond the modelled ground is refused outright.
+
+**19 blocks, 152 lots, 5 refused.** Four to a block face throughout.
+
+## 3. What each part is entitled to claim
+
+| element | confidence | why |
+|---|---|---|
+| block boundary | `inferred` | arithmetic on inferred inputs: street lines whose own `geometry_confidence` is `inferred`, offset by a module width `street_control.json` also grades `inferred`. Arithmetic does not upgrade its inputs. |
+| alley width (18 ft) | as attested as the street | the module figure, and the 1834 traverses read 17.1–18.7 ft on the same passes that settled the street |
+| alley **position** | `conjectural` | nothing in `data/sources/` says which blocks were alleyed, or whether the alley ran with a block's long axis or across it |
+| lot lines | `conjectural` | four to a face is a reading of **one** block (§ 4). Applying it to eighteen others is inference from a single instance |
+| lot **numbers** | not emitted | the one crop that carries numbering carries block 18's. Nothing fixes the rest, and a numbering invented to look complete is the thing this project does not do |
+| block **numbers** | not emitted | this project has never read Thompson's block numbers off a sheet. Blocks here are named for the streets that bound them, which is a description, not a claim |
+
+## 4. The single reading behind four lots to a face
+
+`docs/RESEARCH/clark_reach_bulge_1834.md` § 8 records the owner's crop of Wright's sheet at the
+Clark reach, read at 3×: block numbers 19, 18 and 17, the lot numbers **4 3 2 1** along block
+18's north row and **5 6 7** along its south row, and the platted **80** written in each street.
+That is four lots across a block face of about 320 ft, in two rows, which is exactly the
+arrangement generated here — and it is one block. It is enough to choose the arrangement and not
+enough to document it, which is what `conjectural` is for.
+
+The same crop is the reason the alley is drawn east–west: two rows of lots facing opposite ways
+require something between them.
+
+## 5. What the grid corroborates, and where it disagrees
+
+The block pitches here come from **modern street control** (OpenStreetMap junctions carried
+through `street_control.json`), and the pitches in `street_corridors_1834.json` come from
+**traverses across two 1834 sheets**. They are independent measurements of the same grid, so
+they are worth putting side by side:
+
+| | this grid | the 1834 traverses |
+|---|---|---|
+| N–S street pitch (E–W spacing) | 118.8, 122.0, 122.0, 123.4, 123.0, 128.0 m | 116.6–123.2 m |
+| E–W street pitch, Randolph→Washington | 135.3 m | 134–136 m |
+| E–W street pitch, Lake→Randolph | 142.8 m | — (outside the two spacings measured) |
+
+Five of the six N–S pitches and the Randolph–Washington spacing land inside the traverse bands.
+The Dearborn–State pitch of 128.0 m does not, and neither does Lake–Randolph at 142.8 m. Both are
+recorded rather than averaged away, and neither is explained here: a modern alignment is a
+nineteenth- and twentieth-century artefact as much as a survivor of the plat, and the traverses
+read two E–W spacings on one sheet, which the roadmap already flags as too thin a base to
+generate a grid from. Two independent methods agreeing on five readings and disagreeing on two
+is a result to state, not to reconcile with a third number nobody measured.
+
+**Derived lot depths, by row** — these are residuals of the block, not readings:
+
+| row | block depth | lot depth |
+|---|---|---|
+| South Water → Lake | 93.9–98.5 m (308–323 ft) | 144–153 ft |
+| Lake → Randolph | 118.4 m (388 ft) | 185 ft |
+| Randolph → Washington | 110.9 m (364 ft) | 173 ft |
+
+The north tier lands within a few feet of 150 ft either side of its alley, which is a figure a
+reader may recognise from later Chicago plats. **This dataset does not cite it**, and a
+coincidence is not a corroboration: no source in `data/sources/` gives a Thompson lot depth at
+all, which is why the depths above are described as what is left over once the block is divided.
+Finding a stated lot depth is the research errand that would move these lines off conjecture.
+
+## 6. What the grid refuses to build, and what that tells us
+
+Five candidate blocks are in `omitted` with their reason, and the reasons are the useful part:
+
+- **Three** would have spanned 258 m between Canal and Market — the South Branch. The rule that
+  refuses them (`max_pitch_m` 200) exists so a "block" can never be generated across the river.
+- **`blk_south_water_market`** is refused because South Water's committed centreline stops 24 m
+  short of it, and **`blk_south_water_clinton`** because it stops 878 m short (South Water is a
+  South Division street and does not cross into the West Division at all).
+
+That first one is a real gap rather than an artefact: the block between Market and Franklin, on
+the river front, is one of the most built-up in the 1835 town, and the reason it cannot be
+generated is that the street layer does not yet carry South Water west of E +100. It is the same
+control § S9 records as owed, arriving from a different direction.
+
+## 7. The cross-check: where the town's buildings actually stand
+
+`tools/generate_plat_lots.py --report` puts every placed structure in the 1835 scene against the
+grid. As of 2026-08-13:
+
+- **80** stand inside a generated block.
+- **120** stand outside the grid altogether — the North Division, the fort, the West Division
+  beyond Clinton, and the five refused blocks. The grid covers 19 blocks, not the town.
+- **22 stand inside a platted street corridor.**
+
+The 22 need reading with their depth, because a centre 0.5 m inside a corridor edge says nothing
+at all against a georeference carrying ±20 m. Sorted by how far in they lie, **seven are 6.5 m
+or deeper** — a building in the middle of the road rather than one whose centre rounds across a
+kerb line:
+
+| record | street | depth into corridor | position confidence |
+|---|---|---|---|
+| `inf_packer_dwelling` | Randolph | 12.1 m | conjectural |
+| `inf_sawpit_shed` | South Water | 11.5 m | conjectural |
+| `inf_cooperage_south` | South Water | 10.5 m | conjectural |
+| `inf_cooperage_south_branch` | Randolph | 10.4 m | conjectural |
+| `inf_harness_shop` | Randolph | 8.6 m | conjectural |
+| `inf_gunsmith_shop` | Randolph | 7.9 m | conjectural |
+| `newberry_dole_warehouse` | South Water | 7.0 m | conjectural |
+
+Every one of them is a `conjectural` placement from the inferred-structure programme, and that
+is the finding: the placement gate in `tools/generate_inferred_households.py` tests for overlap
+with other buildings, for water and for modelled ground, and it has never tested for the street.
+Nothing documented is in the road — which is the outcome that makes the seven above worth
+fixing rather than explaining away.
+
+**Nothing was moved in this slice, deliberately.** Repositioning a generated structure re-derives
+the household programme and its ledger, and that belongs in the parcel that owns those files
+(K1 phase three) rather than being smuggled into the slice that discovered it. The gate to add
+there is a corridor test using this grid.
+
+There is one historical case that the check must never be taught to "fix": the Sauganash's first
+cabin was found, after the 1830 plat was laid out, to be standing *in the middle of a platted
+street*, and Beaubien moved it. A building in the road is a thing that happened. What the check
+catches is a building put there by us.
+
+## 8. What this is not
+
+- **Not rendered.** The grid is a dataset layer; the walkthrough does not draw it and no visitor
+  can see it, which is why this slice adds nothing to `docs/LIBERTIES.md` — a liberty is a
+  record of something invented that a visitor is looking at. When the lot lines reach the screen
+  (the confidence view would paint them dithered, as conjecture), that entry comes with them.
+- **Not the whole plat.** The dossier table in `docs/research/02-flora.md` records the platted
+  town as 58 blocks between Kinzie, Madison, State and Desplaines; 19 are generated here, bounded by
+  the streets this project has committed. The North Division is absent on purpose — its street
+  control is the work § S9 still records as owed, and a block generated between two lines that
+  are not yet fixed would look exactly like one that is.
+- **Not a cadastre.** No lot is numbered, no lot is owned, and no lot is claimed to be the lot a
+  particular building stood on.

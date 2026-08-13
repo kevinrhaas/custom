@@ -48,6 +48,27 @@ baked, confidence-graded — this is how the town reaches its true 1835 density.
 DOCUMENTED people (mayors-to-be, Ogden, Hubbard, the clergy, every advertiser already in
 `chicago_democrat_1833_11_26`), then derive, then infer to fill the count by occupation census.
 
+**Phase one DONE 2026-08-13** — the documented and derived layer: 72 households, 96 persons,
+`tools/validate.py check_residents()`, and the rename that retired "recommended" from the
+vocabulary and from the code. **Phase two DONE 2026-08-13** — 80 inferred households and 92
+person entries (152 / 188 in all: 76 documented, 20 derived, 92 inferred), **38 new structures**
+(7 documented buildings the sources describe and the model lacked, 31 inferred workplaces and
+dwellings), and **83 of the 108 anonymous roofs adopted** into argued occupancy. 222 structures;
+162 name a household on the card. `docs/LIBERTIES.md` L84 admits the lot; the recipe and its
+re-runnable gates are `data/reconstruction/1835_inferred_household_programme.json` +
+`tools/generate_inferred_households.py --check`; reasoning in
+`docs/RESEARCH/residents_1835_inferred.md`.
+
+**What phase three inherits.** (a) No inferred person is named and none should be — an inferred
+resident is a claim about a ratio. (b) **No period trade table for a comparable western town is
+in `data/sources/`**; every ratio is derived from five in-dataset calibrations and the arithmetic
+is written out per trade. Finding a real trade table is the single highest-value research errand
+left in this programme, because it would move the occupation census off derived arithmetic.
+(c) 25 anonymous roofs are deliberately unadopted (privies, sheds, stables, the schoolhouse).
+(d) The 55 reserved West-Division slots and 84 South phase-2 slots are untouched and the
+placement gate now actively avoids them. (e) Two households arrive at `year` precision straddling
+1835-07-01 (`hh_davis_john`, `hh_haddock_edward`) and are still warnings.
+
 ### K2 — Image-accuracy loops on the landmark buildings
 Reference set: `data/sources/assets/prefire_views_kevin_2026_08/` (12 plates; READ ITS README —
 the Doric-portico courthouse plate is the 1837+ building and is a NEGATIVE reference). Also
@@ -141,11 +162,36 @@ this item cited was this defect, so **`docs/RESEARCH/chicago_american_office.md`
 overstates the Clark residual** and should be re-measured against the corrected trace.
 
 
-### K7 — Thompson plat lot lines
+### K7 — Thompson plat lot lines · **PHASE ONE DONE 2026-08-13**
 Generate block/lot geometry analytically from the plat module (80-ft streets, documented lot
 widths), snapped to the datum — the S1 carry-forward note already prescribes exactly this.
 Commit as `data/traces/vectors/thompson_lots.json`. It becomes the placement grid for K1's
 inferred structures and the check on every "corner of X and Y" position in the dataset.
+
+**Shipped**: 19 blocks, 152 lots, generated from the module and this project's committed street
+lines by `tools/generate_plat_lots.py`, re-derived byte for byte in `tools/check.sh`. Block edges
+are `inferred` (arithmetic on inferred street lines and an inferred module width); the lot lines
+and the alley POSITION are `conjectural` and say so — four lots to a face is a reading of one
+block, block 18 on the owner's Clark-reach crop. No lot or block is numbered: this project has
+never read Thompson's numbering off a sheet. Five candidate blocks are refused with their
+reasons, three of them because a block there would span the South Branch. Memo:
+`docs/RESEARCH/thompson_plat_grid.md`.
+
+**What phase two inherits.** (a) **Seven structures stand 6.5–12.1 m inside a platted street
+corridor**, all of them `conjectural` placements from the inferred programme
+(`tools/generate_plat_lots.py --report` lists them with their depth) — the placement gate in
+`tools/generate_inferred_households.py` tests overlap, water and modelled ground and has never
+tested for the street. Fixing them re-derives the household ledger, so it belongs to K1 phase
+three, not to the slice that found them. Nothing documented is in the road, and the Sauganash's
+first cabin is the reminder that a building in the street is sometimes a fact. (b) The grid
+covers 19 of the plat's 58 blocks; the North Division is absent because its street control is
+what § S9 still records as owed, and `blk_south_water_market` — one of the most built-up blocks
+in town — is refused only because the street layer does not carry South Water west of E +100.
+(c) Two pitches disagree with the 1834 traverses (Dearborn→State 128.0 m, Lake→Randolph 142.8 m)
+and are recorded rather than averaged. (d) No source in `data/sources/` gives a Thompson LOT
+DEPTH; the depths here are residuals of the block, and finding a stated one is what would move
+the lot lines off conjecture. (e) Nothing draws the grid — when the lot lines reach the screen
+they need a liberty and a confidence treatment with them.
 
 ### K8 — River bank heights *(research first, then terrain)*
 The owner: banks look too low against the fort views (10–20 ft with graduated slopes). The

@@ -5,15 +5,24 @@ was skipped is recorded as skipped. Updated in the same commit as the work it de
 
 **Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
-street layer), S10-partial (665-roof ledger + first 48 anonymous roofs) and R1 (renderer)
-complete.
+street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
+complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot
+grid) complete through phase one.**
 
-**Current expansion:** the 1835 scene now resolves **184 structure records**. The 76 pre-existing
-records are preserved; 48 South Division and 60 North Division records are explicitly tagged
-`recommended_anonymous` and display as flagged review massings. They begin—rather than complete—
-the owner specification's 665-roof target. Exact anonymous presence, footprint and lot position
-remain conjectural. The 76 earlier records now have an explicit physical-roof reconciliation;
-the remaining North expansion is still gated behind unified terrain and hydrology coverage.
+**Current expansion:** the 1835 scene resolves **222 structure records**, and **152 households /
+188 persons** stand behind them (76 documented, 20 derived, 92 inferred). 108 records are tagged
+`inferred_anonymous` and display as flagged review massings; **83 of those now have an argued
+occupant** rather than being anonymous count-units, and 162 structures name a household on the
+building card. They begin—rather than complete—the owner specification's 665-roof target. Exact
+anonymous presence, footprint and lot position remain conjectural, and the adoption changes none
+of that: what it adds is a reason for the roof, not evidence for it. **No inferred person has a
+name, and none should**; no figure is drawn (L1). The remaining North expansion is still gated
+behind unified terrain and hydrology coverage.
+
+**The weakest joint in the population layer, stated plainly:** no period trade table for a
+comparable western town exists in `data/sources/`. Every occupation ratio is therefore derived
+from five in-dataset calibrations rather than cited, and the arithmetic is written out per trade
+in `docs/RESEARCH/residents_1835_inferred.md`. That is a real gap, not a rounding error.
 
 **Water vegetation correction:** emergent plants now use true distance to shoreline and are
 limited to the shallow eight-metre marsh edge. Non-emergent flora and every woody placement are
@@ -185,6 +194,38 @@ bar **tightened** from mean 0.5 / worst 8 to mean 0.1 / worst 3, and the asserti
 (*confidence view changes the render*) got strictly harder, because sway can no longer supply any
 of the difference it has to find. Two consecutive full runs green at both viewports.
 
+That closes the debt the bake-gate entry below records as owed: the flora clock is frozen during
+capture, and the bound was tightened rather than widened.
+
+## Fixed 2026-08-13 — the nightly bake had been red for days, and nobody could see it
+
+**The placeholder gate forbade the upgrade the bake exists to perform.** `generators/build.py`
+writes `assets/gltf/<id>__<phase>.glb` for any record whose archetype has a generator, and every
+`recon_*` record has one — so the canonical Blender bake lands on exactly the filename
+`generators/inferred_placeholder.py` claims, and the gate then rejected the real bake for not
+being the pure-Python placeholder it was built to replace. A second conflict rode along:
+`tools/bake.sh` runs gltf-transform over `assets/web/`, so demanding byte-equality with the
+master asserted that compression never happens. **What made it invisible is the shape worth
+remembering** — the gate passed on every developer machine and failed on every CI runner, because
+the difference was whether `npx` could reach the network. A green local gate was reporting on a
+pipeline it was not running. The gate now compares only the master against the record, requires
+the derivative merely to exist, and stands aside for any asset whose manifest entry says
+`kind: generated`, leaving that to the ordinary staleness check.
+
+**`tools/publish.sh` was an accumulator, not a mirror.** It copied files in and never took any
+out, so a retired asset shipped forever: 108 `__recommended_1835.glb` placeholders, orphaned when
+the programme was renamed, were still being served to visitors long after nothing referenced
+them. Deleting a file from the source tree was not a thing the published site could express.
+Fixed by clearing the published `data/gltf` before copying; payload 19.16 → 18.55 MB at the time.
+
+**Known flaky gate, deliberately not silenced.** `mobile 390x780: turning it off restores the
+render` compares a frame captured before the confidence toggle with one captured after, while the
+flora is still swaying. Observed failing twice at worst-cell delta 11 against a bound of 8 and
+passing on the third run with no code change. The bound has NOT been widened — a release gate
+loosened until it stops complaining is not a gate. The fix is to freeze the flora clock during
+capture, and it is owed. **Paid 2026-08-13** — see the flora-fade entry above: captures now run
+under `setAnimationHold` and the bound tightened to a worst cell of 3.
+
 ## Fixed 2026-08-13 — two defects the owner photographed, and what they taught
 
 **The Clark Street headland was the map's own lettering.** Fixed 2026-08-13. What makes it
@@ -208,6 +249,37 @@ one after at `0.03` (see K14).
 question and was silently wrong for "may a stem stand here". The release gate had a green
 check on the first question while the owner had a photograph of the second failing. Both
 checks are now present.
+
+## New 2026-08-13 — the platted grid exists, and it found seven buildings in the road
+
+**K7 phase one.** The block and lot grid is generated rather than traced:
+`tools/generate_plat_lots.py` offsets this project's committed street centrelines by half the
+platted corridor, intersects them, and divides the result into lots — 19 blocks, 152 lots,
+re-derived byte for byte by `tools/check.sh`. Tracing the 1834 sheets instead would have baked
+their 3.7–4.5 % paper stretch into every block face. The blocks are `inferred` because their
+inputs are; the lot lines and the alley position are `conjectural` and stay that way, because
+four lots to a face is a reading of ONE block (block 18 on the owner's Clark-reach crop). No lot
+and no block is numbered — this project has never read Thompson's numbering off a sheet.
+
+**The grid immediately paid for itself as a check.** Of 222 placed structures, 80 stand inside a
+generated block, 120 stand outside the 19 blocks it covers, and 22 stand inside a platted street
+corridor. Most of those 22 are within a metre or two of a corridor edge, which says nothing
+against a ±20 m georeference — but **seven sit 6.5 to 12.1 m in, which is the middle of the
+road**, and every one of them is a `conjectural` placement from the inferred-structure
+programme. The placement gate that put them there tests for overlap with other buildings, for
+water, and for modelled ground; it has never tested for the street. Nothing documented is in the
+road.
+
+**Nothing was moved in this slice, on purpose.** Repositioning generated structures re-derives
+the household ledger, so it belongs to the parcel that owns those files (ROADMAP K1 phase three)
+rather than to the slice that discovered the problem. The finding is recorded with the seven
+records named, in `docs/RESEARCH/thompson_plat_grid.md` § 7 and ROADMAP K7.
+
+**What the grid is honest about not being**: 19 blocks of the plat's 58, no North Division (its
+street control is what § S9 records as owed), no lot depth from any source — the depths are
+residuals of the block — and nothing rendered. `blk_south_water_market`, one of the most built-up
+blocks in the town, is refused outright because the street layer does not carry South Water west
+of E +100. That refusal is the street control owed, arriving from a different direction.
 
 ## Known weaknesses, stated plainly
 
