@@ -19,6 +19,11 @@ No build step, no framework, no dependencies.
   that character is in.
 - Each scene reads three ways: **Summary**, the **Modern** text in full, or the
   **1856** original in full.
+- **Fit width** shrinks the columns until every scene is on screen; **Fit all**
+  squeezes both axes until the whole chart is in view at once; **−** / **+**
+  zoom by hand; **⛶ Full screen** hands the chart the entire display. Below
+  ~9px the scene labels and names stop being legible, so those axes switch to
+  an overview: thin header, colour-chip rows, identity on hover.
 - Every move is a history entry, so **Back** always undoes exactly one step —
   including returning from the reader to the panel you opened it from — and the
   URL is shareable (`#/part1/story/s25/original`).
