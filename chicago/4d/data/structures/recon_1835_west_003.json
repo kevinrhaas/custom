@@ -1,0 +1,147 @@
+{
+  "id": "recon_1835_west_003",
+  "name": "Inferred D4 two-room frame cottage #003",
+  "archetype": "frame_dwelling",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 446800.227,
+        "utm_n": 4637345.48,
+        "rotation_deg": -1.0,
+        "symbolic_location": "Anonymous inferred roof on west of Canal and Lake, behind the Wolf Point sequence",
+        "confidence": "conjectural",
+        "note": "Interpretive placement within the reviewed West Division cluster w1_canal_lake_mixed. The recipe coordinate is a production-layout control, not a recovered lot. Set back 4.5 m from the recipe coordinate, which placed it inside a platted street corridor; the move is well inside the ±20 m uncertainty the recipe states for its own layout controls.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 West Division roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            6.096,
+            0
+          ],
+          [
+            6.096,
+            8.534
+          ],
+          [
+            0,
+            8.534
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 20 × 28 ft rectangle assigned by the reconstruction recipe within the D4 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "stories": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "wall_height_m": {
+          "value": 2.78,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "roof_type": {
+          "value": "gable",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "roof_pitch_deg": {
+          "value": 38.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "construction": {
+          "value": "balloon_frame",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "plan": {
+          "value": "hall_parlour",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "bays": {
+          "value": 3,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "chimneys": {
+          "value": 1,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the D4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        }
+      },
+      "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+    }
+  ],
+  "function": {
+    "value": "two-room frame cottage",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the D4 family to satisfy the aggregate West Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "D4",
+    "district": "west",
+    "inventory_class": "principal_functional",
+    "programme_phase": "phase2_west_wolf_point_approaches",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 3,
+    "finish_key": "fresh_timber",
+    "roof_condition": "darkened",
+    "age_state": "established"
+  },
+  "research_note": "INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

@@ -40,6 +40,9 @@ step "inferred infill records match the 665-roof programme" \
 step "North Division initial parcel matches its reviewed recipe" \
   python3 tools/generate_north_infill.py --check
 
+step "West Division approaches parcel matches its recipe" \
+  python3 tools/generate_west_infill.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also

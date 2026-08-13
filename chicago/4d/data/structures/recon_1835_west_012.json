@@ -1,0 +1,147 @@
+{
+  "id": "recon_1835_west_012",
+  "name": "Inferred A4 woodshed or storage shed #011",
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "inferred_1835",
+      "documented_range": {
+        "from": "1835-01-01",
+        "to": "1835-12-31",
+        "confidence": "conjectural",
+        "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
+      },
+      "position": {
+        "utm_e": 446801.449,
+        "utm_n": 4637305.993,
+        "rotation_deg": 1.0,
+        "symbolic_location": "Anonymous inferred roof on west of Canal and Lake, behind the Wolf Point sequence",
+        "confidence": "conjectural",
+        "note": "Interpretive placement within the reviewed West Division cluster w1_canal_lake_mixed. The recipe coordinate is a production-layout control, not a recovered lot. Set back 10.0 m from the recipe coordinate, which placed it inside a platted street corridor; the move is well inside the ±20 m uncertainty the recipe states for its own layout controls.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "No parcel-by-parcel July 1835 West Division roof register survives in the supplied evidence."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            2.438,
+            0
+          ],
+          [
+            2.438,
+            3.658
+          ],
+          [
+            0,
+            3.658
+          ]
+        ],
+        "confidence": "conjectural",
+        "note": "A 8 × 12 ft rectangle assigned by the reconstruction recipe within the A4 family band; no individual dimensions are documented."
+      },
+      "form": {
+        "wall_height_m": {
+          "value": 2.05,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "roof_pitch_deg": {
+          "value": 18.0,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "construction": {
+          "value": "plank",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "door": {
+          "value": "man",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "loft": {
+          "value": false,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "board_gap_m": {
+          "value": 0.012,
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "inferred",
+          "sources": [
+            "owner_chicago_1835_reconstruction_spec_2026"
+          ],
+          "note": "Type-level choice within the A4 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
+        }
+      },
+      "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+    }
+  ],
+  "function": {
+    "value": "woodshed or storage shed",
+    "confidence": "inferred",
+    "sources": [
+      "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "Assigned from the A4 family to satisfy the aggregate West Division mix; no occupant or individual use is known."
+  },
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "A4",
+    "district": "west",
+    "inventory_class": "ancillary",
+    "programme_phase": "phase2_west_wolf_point_approaches",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 11,
+    "finish_key": "fresh_timber",
+    "roof_condition": "darkened",
+    "age_state": "established"
+  },
+  "research_note": "INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false
+}

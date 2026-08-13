@@ -405,9 +405,23 @@ originally written, which is now about PAYLOAD rather than frame cost and is muc
 since the published tree fell to 10.78 MB (see the meshopt fix of the same day).
 **The payload figure quoted above is stale** — 19.16 MB was measured when the anonymous roofs
 were placeholder massing and every web derivative was an uncompressed copy of its master.
-### K15 — The two reserved anonymous parcels, 139 roofs · **CLAIMED 2026-08-13 — DO NOT PICK UP**
+### K15 — The two reserved anonymous parcels · **WEST PART DONE 2026-08-13 · SOUTH STILL CLAIMED**
 
-> **CLAIM — steward, skip this parcel.** Taken by the interactive session on 2026-08-13 after
+> **WEST: DONE.** `tools/generate_west_infill.py` emits **20 of the 55** and is re-derived by
+> `tools/check.sh`. The other **35 are held by the recipe's own terrain gate** — their centres lie
+> west of local E -300 m and the committed ground stops at E -320 m. They are not lost: ids and
+> family allocation are kept, and extending the terrain box west releases them without
+> re-authoring. Admission: `docs/LIBERTIES.md` **L90**. **Eight of the twenty stood inside a
+> platted street** by 2.2–11.7 m and were set back (largest move 12.5 m, inside the recipe's own
+> ±20 m); the recipe predates K7's plat grid, so nothing could have caught it before. Frozen
+> constants in the generator, not a search at generation time.
+>
+> **SOUTH: still claimed, and it is the harder half** — the recipe has `clusters` and a
+> `placement_schema` but NO `placements`, so its 84 slots must be AUTHORED against the cluster
+> overlap-controls (reserve envelopes around every named South Water and Lake Street record, keep
+> out of the Public Square, respect the estray-pen envelope) and then generated the same way.
+>
+> **CLAIM — steward, skip the South half.** Taken by the interactive session on 2026-08-13 after
 > K14 freed the triangle headroom it needs. It is a large, single, indivisible unit (two
 > generators, ~139 records, one liberties block) and two runs building it concurrently would
 > collide on `data/structures/` and on the 665-roof ledger, which is exactly the kind of

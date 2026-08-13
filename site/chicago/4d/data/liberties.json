@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 89,
+  "count": 90,
   "liberties": [
     {
       "id": "L1",
@@ -5308,6 +5308,419 @@
         {
           "label": "Recorded",
           "text": "2026-08-11."
+        }
+      ]
+    },
+    {
+      "id": "L90",
+      "title": "Twenty West Division roofs, and thirty-five held back for want of ground",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_001",
+        "recon_1835_west_002",
+        "recon_1835_west_003",
+        "recon_1835_west_005",
+        "recon_1835_west_006",
+        "recon_1835_west_007",
+        "recon_1835_west_008",
+        "recon_1835_west_009",
+        "recon_1835_west_010",
+        "recon_1835_west_011",
+        "recon_1835_west_012",
+        "recon_1835_west_014",
+        "recon_1835_west_015",
+        "recon_1835_west_016",
+        "recon_1835_west_018",
+        "recon_1835_west_019",
+        "recon_1835_west_021",
+        "recon_1835_west_022",
+        "recon_1835_west_023",
+        "recon_1835_west_024"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_001",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_001",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_001",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_002",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_002",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_002",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_003",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_003",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_003",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_005",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_005",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_005",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_006",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_006",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_006",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_007",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_007",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_007",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_008",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_008",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_008",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_009",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_009",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_009",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_010",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_010",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_010",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_011",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_011",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_011",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_012",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_012",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_012",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_014",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_014",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_014",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_015",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_015",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_015",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_016",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_016",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_016",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_018",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_018",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_018",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_019",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_019",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_019",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_021",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_021",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_021",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_022",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_022",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_022",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_023",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_023",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_023",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_024",
+          "phase": "inferred_1835",
+          "aspect": "documented_range"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_024",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_west_024",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-13",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "instantiate the West Division approaches parcel from `data/reconstruction/1835_phase2_west_wolf_point_approaches.json` — but only the 20 placements (15 principal or functional, 5 ancillary) whose centres fall inside the modelled terrain. The other 35 are NOT built. Aggregate mix follows the reconstruction specification; every individual presence, position, footprint, finish and detail remains conjectural. **Why 35 are missing, which is the more interesting half.** The recipe's own `terrain_and_hydrology_gate` blocks any placement west of local E -300 m until the heightfield, collision surface, vegetation sampler, minimap and water mask share a box extended to E -700 m. The committed ground still stops at E -320 m. A roof beyond it would stand on nothing, sample no terrain, and the ground-contact gate would have no surface to test it against — so the honest West Division is a partial one until the ground is extended. The held slots keep their ids and their family allocation and instantiate unchanged the day it is. **What else moved, and why.** Eight of the twenty stood inside a platted street corridor, by 2.2 to 11.7 m. That is the recipe's date rather than its judgement: it was authored before ROADMAP K7 generated the Thompson block and lot geometry, so nothing could check a layout against a street until now. Each is set back to the nearest position clearing the corridor that still passes every other gate; the largest move is 12.5 m, inside the ±20 m working uncertainty the recipe states for its own coordinates, so no slot leaves its allocated block. The shifts are frozen constants in `tools/generate_west_infill.py`, not a search run at generation time, because a placement that moves when an unrelated gate changes is not reproducible."
+        },
+        {
+          "label": "Consequence",
+          "text": "the west bank reads as approached and worked rather than empty, while remaining inspectably interpretive. No numbered roof identifies an owner, address, use or observed building. A later named discovery substitutes for a compatible anonymous slot rather than increasing the 665-roof programme. H2 boarding-house massing uses a flagged generic frame block pending a canonical archetype."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-specific tax, deed, assessment or surveyed building evidence for any individual roof; extending the terrain box west releases the other 35 without re-authoring them."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_west_001.inferred_1835.documented_range`, `recon_1835_west_001.inferred_1835.position`, `recon_1835_west_001.inferred_1835.footprint`, `recon_1835_west_002.inferred_1835.documented_range`, `recon_1835_west_002.inferred_1835.position`, `recon_1835_west_002.inferred_1835.footprint`, `recon_1835_west_003.inferred_1835.documented_range`, `recon_1835_west_003.inferred_1835.position`, `recon_1835_west_003.inferred_1835.footprint`, `recon_1835_west_005.inferred_1835.documented_range`, `recon_1835_west_005.inferred_1835.position`, `recon_1835_west_005.inferred_1835.footprint`, `recon_1835_west_006.inferred_1835.documented_range`, `recon_1835_west_006.inferred_1835.position`, `recon_1835_west_006.inferred_1835.footprint`, `recon_1835_west_007.inferred_1835.documented_range`, `recon_1835_west_007.inferred_1835.position`, `recon_1835_west_007.inferred_1835.footprint`, `recon_1835_west_008.inferred_1835.documented_range`, `recon_1835_west_008.inferred_1835.position`, `recon_1835_west_008.inferred_1835.footprint`, `recon_1835_west_009.inferred_1835.documented_range`, `recon_1835_west_009.inferred_1835.position`, `recon_1835_west_009.inferred_1835.footprint`, `recon_1835_west_010.inferred_1835.documented_range`, `recon_1835_west_010.inferred_1835.position`, `recon_1835_west_010.inferred_1835.footprint`, `recon_1835_west_011.inferred_1835.documented_range`, `recon_1835_west_011.inferred_1835.position`, `recon_1835_west_011.inferred_1835.footprint`, `recon_1835_west_012.inferred_1835.documented_range`, `recon_1835_west_012.inferred_1835.position`, `recon_1835_west_012.inferred_1835.footprint`, `recon_1835_west_014.inferred_1835.documented_range`, `recon_1835_west_014.inferred_1835.position`, `recon_1835_west_014.inferred_1835.footprint`, `recon_1835_west_015.inferred_1835.documented_range`, `recon_1835_west_015.inferred_1835.position`, `recon_1835_west_015.inferred_1835.footprint`, `recon_1835_west_016.inferred_1835.documented_range`, `recon_1835_west_016.inferred_1835.position`, `recon_1835_west_016.inferred_1835.footprint`, `recon_1835_west_018.inferred_1835.documented_range`, `recon_1835_west_018.inferred_1835.position`, `recon_1835_west_018.inferred_1835.footprint`, `recon_1835_west_019.inferred_1835.documented_range`, `recon_1835_west_019.inferred_1835.position`, `recon_1835_west_019.inferred_1835.footprint`, `recon_1835_west_021.inferred_1835.documented_range`, `recon_1835_west_021.inferred_1835.position`, `recon_1835_west_021.inferred_1835.footprint`, `recon_1835_west_022.inferred_1835.documented_range`, `recon_1835_west_022.inferred_1835.position`, `recon_1835_west_022.inferred_1835.footprint`, `recon_1835_west_023.inferred_1835.documented_range`, `recon_1835_west_023.inferred_1835.position`, `recon_1835_west_023.inferred_1835.footprint`, `recon_1835_west_024.inferred_1835.documented_range`, `recon_1835_west_024.inferred_1835.position`, `recon_1835_west_024.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-13."
         }
       ]
     },
