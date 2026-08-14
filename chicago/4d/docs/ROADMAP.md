@@ -968,7 +968,7 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-BUG2 — the town's roads vanish in places, and from the air · **UNCLAIMED · NEXT UP**
+### R-BUG2 — the town's roads vanish in places, and from the air · **CLAIMED 2026-08-14 · lane 1**
 
 Reported by the owner 2026-08-14: *"the town roads seem to disappear in places and when you
 fly over them you lose them, they should be on the surface and be seen."*
