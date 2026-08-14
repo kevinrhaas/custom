@@ -42,9 +42,10 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
-| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
-| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
+| 1 | RENDERING | **R-BUG2** | owner-reported and currently INVISIBLE to the gate: the roads vanish from the air |
+| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
+| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
+| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
 | 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
 | 2 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 3 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
@@ -766,6 +767,55 @@ lost result.
 (#117, based on the current `dev`) is current; the rest are stale and conflict with it. Closing
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
+
+### R-BUG2 — the town's roads vanish in places, and from the air · **UNCLAIMED · NEXT UP**
+
+Reported by the owner 2026-08-14: *"the town roads seem to disappear in places and when you
+fly over them you lose them, they should be on the surface and be seen."*
+
+**The gate cannot see this, and that is the first thing to fix.** `tools/smoke_renderer.mjs`
+asserts the streets are *populated and draped* — record count, vertex count, drape error,
+no wet vertices — and every one of those passes while the roads are invisible. Draped is not
+seen. There is no assertion anywhere that a road reaches the screen.
+
+**Three candidate mechanisms, all in `renderers/web/js/streets.js`, and they compound.
+Measure before choosing — do not fix all three blind.**
+
+**1. Mip-averaged alpha falling under `alphaTest`. The most likely, and this project has
+already been bitten by it once.** The road texture's alpha is built as
+`255 * edge * body`, where `edge` ramps to zero across the outer 12 % of the width and `body`
+for an unimproved track is `0.08 + ruts*0.54 - crown*0.04` — so away from the wheel ruts the
+alpha is about **20/255**. With `minFilter: LinearMipmapLinearFilter`, climbing away averages
+that thin, low-alpha ribbon against its own transparent edges; once the averaged alpha drops
+under `alphaTest: 0.025` the fragments are **discarded outright**. That is the same failure
+family as changelog **v74** — *"The distant treeline had holes in it that were not sky"*, where
+crown modulation cut a one-pixel silhouette out of existence. The fix pattern that worked there
+is the one to reach for: never let a modulation take a feature below one pixel of the viewer's
+own screen. `trees.js` carries the precedent.
+
+**2. Insufficient polygon offset at altitude.** The material sets
+`polygonOffsetFactor: -1, polygonOffsetUnits: -1` against a coplanar terrain. One unit is
+tiny, and depth-buffer resolution degrades sharply with distance, so from the air the terrain
+can win the depth test in patches — which is exactly the reported *"in places"*, rather than a
+clean all-or-nothing fade. Note the mesh is `depthWrite: false` but still depth-**tests**.
+
+**3. The transparent queue is sorting a town-wide mesh by one centre point.**
+`transparent: true` puts the streets in the back-to-front pass, where a merged
+mesh-per-surface sorts on its bounding-sphere centre — a meaningless point for a road network
+spanning the whole town. `alphaTest` with `transparent: true` is a smell in itself: an
+alpha-tested surface usually belongs in the opaque queue, writing depth, where the sort is
+per-fragment and free.
+
+**Files:** `renderers/web/js/streets.js` · `tools/smoke_renderer.mjs`
+
+**Acceptance:** a new gate that would FAIL today — sample the rendered frame along known street
+centrelines from the walker's eye AND from the aerial anchor, at both viewports, and assert the
+road is distinguishable from the ground beside it. Quote the measured numbers, and put the
+fault back to prove the check names it. RENDERING §5's method applies: measure, do not assert an
+adjective. The roads must read *on the surface* — this is not licence to lift them off the
+terrain, which would break the drape assertion that already passes and is correct.
+
+**Runner:** lane 1. It touches no data and no generator, so it may run beside any town parcel.
 
 ### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
 
