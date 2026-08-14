@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_painter_north_01",
- "name": "The Metcalf household — an inferred painter (north division)",
+ "name": "The Nash household — an inferred painter (north division)",
  "division": "north",
  "head": "inf_painter_north_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_painter_north_01",
-   "name": "Hiram Metcalf",
+   "name": "Chauncey Nash",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 155,
-  "persons": 191,
+  "households": 156,
+  "persons": 192,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 95
+   "reconstructed": 96
   }
  },
  "households": [
@@ -964,6 +964,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_randolph_wells_d3_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_12",
+   "file": "households/hh_inf_carpenter_south_12.json",
+   "head": "inf_carpenter_south_12",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_market_d3_04",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_labourer_west_14",
- "name": "The Lyman household — an inferred labourer (west division)",
+ "name": "The Metcalf household — an inferred labourer (west division)",
  "division": "west",
  "head": "inf_labourer_west_14",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_labourer_west_14",
-   "name": "Reuben Lyman",
+   "name": "Hiram Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

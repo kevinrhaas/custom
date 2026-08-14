@@ -1,5 +1,66 @@
 # STATUS
 
+## New 2026-08-14 — the block where two layers of this reconstruction met on the same ground, and the adoption rule grew a third test
+
+**T-A5.** `blk_randolph_market` — Randolph, Franklin, Washington, Market — is the first South
+Division block of the Randolph row and now carries **eight anonymous roofs**: four dwellings, one
+per lot on four of the six free lots, and four yard buildings off the block alley. **Standing roofs
+258 → 266; remaining 407 → 399, 71 of them on ground the project has coverage for.** Households
+**155 → 156**, persons **191 → 192**. Recorded in **L97**. The parcel authors no coordinates: every
+metre is read off the committed K7 lot polygons, which is what has made every block since T-A2 a
+recipe entry rather than a geometry argument. The recipe cleared every one of the generator's
+placement gates on its first run — no lot-line, separation, corridor, relief or occupancy failure
+to iterate against — which is what the accumulated gates of T-A2 through T-A4 were for.
+
+**The block was already built on by THIS project's other half.** L95 recorded the first
+partly-built block and the roofs in its way came from the pre-plat West Division density recipe.
+Here the two standing roofs are `inf_sawyer_dwelling_a` and `_b` — the dwellings of the occupation
+census's own two sawyer households, placed from typed local-ENU coordinates before the plat module
+existed. The layer that argues who the town held and the layer that fills its blocks have now
+collided, and the T-A4 machinery absorbed it without a change: occupancy derived from the committed
+footprints, lots 4 and 6 refused a second principal roof, headroom spent on the six free lots.
+
+**Where the vacancy falls was decided by arithmetic, and the parcel says so rather than dressing it
+up.** Both standing roofs sit on the Randolph face, so the two lots free there are exactly the two
+the frontage-value typology wants for the better cottages, and the programme's alternating vacancy
+has nowhere to fall but Washington. Had the schedule dealt one roof fewer the pattern would have
+read as deliberate. `arrangement_note` and L97 both state it.
+
+### The third adoption test — the question T-A4 left open, settled
+
+T-A2h's rule 6 had **two** tests: the trade's committed argument must call its count a floor, and
+the roof's family must be one this layer already houses that trade in. T-A4 met a case neither
+covered — a D3 carpenter roof on the first West Division block, when all eleven carpenter
+households stood north or south — and refused it **by hand**, leaving the question to T-A5.
+
+**Rule 6 now has three tests**, the third being the roof's **division**. It is the family test made
+about the other axis of the same table: where a trade lived is as much a claim about the town as
+what it lived in. **It was checked against every adoption decision taken before it and recovers all
+four** — T-A2h's carpenter adopted, T-A2h's labourer adopted, T-A4's labourer adopted, T-A4's
+carpenter refused. A test that had to be told those answers would be a preference; one that
+recovers them is a rule. This block's D3 on lot 7 passes all three, so a twelfth carpenter household
+is inferred (carpenter 11 → 12) and the other seven roofs stay anonymous count-units.
+
+### What the test cannot answer, and it is not about the trades — **K21**
+
+The sawyers whose two roofs stand on this very block **pass test 1** — their argument reads "two
+sawyer households are inferred, **the smallest number that answers the demand**" — and fail test 2
+for a reason that has nothing to do with sawyers: their dwellings are bespoke
+`inf_sawyer_dwelling_*` records carrying no `reconstruction.family` at all, so the question "which
+family does this layer house that trade in" has nothing to read. **Four trades of twenty-nine are
+housed that way and only that way** — brickmaker, packer, sawyer, wheelwright — and eight more are
+partly so. For those four the second test is **silent, not negative**, and silence is currently
+being read as refusal. That is the conservative direction and it is not the same thing. Opened as
+ROADMAP K21.
+
+### K20 measured again, from a one-household insertion
+
+Inserting a single household renamed **17 of the 33** carried-over invented persons in the touched
+household files, because the name allocator deals by index. T-A2h's two-person insertion renamed
+25 of 94; this is the same defect at the same rate and it is still open. Nothing about anybody's
+argued history changed — only the invented name attached to it. The churn is why this parcel's diff
+touches 24 household files for one addition.
+
 ## Fixed 2026-08-14 — the roads were invisible, every street check was green, and the prime suspect was innocent
 
 R-BUG2, owner-reported: *"the town roads seem to disappear in places and when you fly over them

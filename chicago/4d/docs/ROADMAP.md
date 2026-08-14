@@ -45,11 +45,12 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
 | 3 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
-| 1 | TOWN | **T-A5…** | one open block per run until the 79 are placed; adopt in the same run, and settle the division question T-A4 left open |
+| 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
-| 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
+| 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
+| 6 | TOWN | **K21** | the adoption tests are silent, not negative, for four trades — a refusal nobody can distinguish from an unanswered question |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
 
@@ -58,6 +59,14 @@ and the parcel's prime suspect was **refuted by measurement**. The gate could no
 now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at range and **1.1 L\* /
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
+
+**T-A5 is DONE (2026-08-14)** — `blk_randolph_market` carries eight roofs, so **266 stand and 399
+remain**, 71 of them on covered ground. It is the first block whose standing roofs this project's
+*own inferred-residents layer* had put there, and it **settles the division question T-A4 left
+open**: rule 6 takes three tests, the third being the roof's division, and the written test recovers
+all four adoption decisions made before it. It also found what the tests cannot answer — four trades
+are housed only in family-less bespoke records, so test 2 is silent rather than negative for them
+(**K21**). Full findings under T-A5 below.
 
 **T-A4 is DONE (2026-08-14)** — `blk_randolph_clinton`, the first West Division block, carries
 seven roofs and one adopted household, so **258 stand and 407 remain**, 79 of them on covered
@@ -348,8 +357,10 @@ Carries the town toward its documented late-1835 density — the **665-roof prog
 through the existing generators. **This lane touches no file lane 1 touches**, which is what
 makes the two safe to run at once.
 
-**Where the count stands today: 242 structures · 152 households · 188 persons**
-(76 source-attested, 20 reasoned-from-evidence, 92 invented-to-fill-a-need).
+**Where the count stands after T-A5 (2026-08-14): 266 roofs · 156 households · 192 persons**
+(76 source-attested, 20 reasoned-from-evidence, 96 invented-to-fill-a-need). 399 roofs remain of
+the 665-roof programme, **71 of them on ground the project has coverage for** — the binding
+constraint is coverage, not recipes, which is what lane 3 exists to move.
 
 **The rules, every parcel:**
 - Recipe → structure records + household records via the existing generators
@@ -540,6 +551,50 @@ along with a block.
 demonstrated by measurement in the PR; `tools/check.sh` green; no grade moves and no `name_basis`
 loses its pool citation.
 
+**Measured a second time by T-A5 (2026-08-14):** a **one**-household insertion renamed **17 of the
+33** carried-over invented persons in the household files it touched, and dragged 24 files into a
+diff whose real content is one addition. Two independent measurements at the same rate; the "buries
+the parcel's real diff" paragraph above is now demonstrated rather than predicted.
+
+### K21 — the adoption tests are silent, not negative, for four trades · **UNCLAIMED · from T-A5 · Effort: S**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
+
+Rule 6 of the household programme's `method` list now has three tests, and the second asks whether
+the roof's family is one this layer already houses that trade in. **For four trades that question
+has no answer.** `brickmaker`, `packer`, `sawyer` and `wheelwright` are housed exclusively in
+bespoke `inf_*_dwelling_*` records raised by the inferred-residents parcel, which carry no
+`reconstruction.family` field at all — they were built to order against the census rather than
+dealt off the roof programme. Eight further trades (blacksmith, boatman, carpenter, cooper, grocer,
+labourer, mason, teamster) are partly so, and for those the test can still be answered from the
+households that do stand on a family-bearing roof.
+
+**Why it is not merely tidiness.** T-A5 met the case head on: the two sawyer households stand on
+`blk_randolph_market` itself, and the sawyer argument's *"the smallest number that answers the
+demand"* passes test 1 cleanly. The trade was refused adoption because test 2 could not be
+evaluated, not because it was evaluated and failed. **A refusal this project cannot distinguish
+from an unanswerable question is the same defect T-A4's `deferred` gate was written to close**, one
+level up.
+
+**What is owed.** Decide which of two things is true and say so: either each bespoke inferred
+dwelling can be assigned the crosswalk family its committed footprint and form already sit inside —
+in which case assign them and the test answers itself — or those records are deliberately outside
+the family typology, in which case rule 6 needs a fourth clause naming the silent case and stating
+what happens in it. **Do not simply grant the silent trades a pass**: that would let a census grow
+on the strength of a missing field.
+
+**Watch:** `inf_sawyer_dwelling_b` resolves through the `outbuilding` archetype while `_a` resolves
+through `frame_dwelling` — two dwellings of one trade massed as different kinds of thing. Worth
+looking at while in the file; it may be the same root cause and it may be a second finding.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` ·
+`tools/generate_inferred_households.py` · `data/structures/inf_*_dwelling_*.json` ·
+`docs/LIBERTIES.md` · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+**Acceptance:** every trade in the occupation census either resolves test 2 or is named as a case
+rule 6 explicitly handles; `tools/check.sh` green; `tools/audit_confidence.py --strict` green; no
+household is added by this parcel.
+
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
 **The parcel shape did repeat, and that is the finding.** Appending a block to
@@ -720,21 +775,46 @@ string) · `tools/reconcile_665.py` (counting by programme phase) ·
 `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md` (L95) ·
 `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A5 — `blk_randolph_market` · **CLAIMED 2026-08-14, expires 2026-08-16**
+### T-A5 — `blk_randolph_market`, and the division test · **DONE 2026-08-14**
 
-The first South Division block of the Randolph row west of the river's bend, bounded by
-Randolph, Franklin, Washington and Market. The schedule deals it **eight roofs on eight
-lots of which two already carry a roof** — four principal dwellings (D3, D4, D5, D6) and
-four yard buildings (A1, A2, A3, A4) — and **no institutional family**, so nothing here
-is deferred and the parcel is the T-A4 shape with one question added.
+**Standing roofs 258 → 266; remaining 407 → 399, 71 of them on covered ground.** Four dwellings on
+four of the six free lots and four yard buildings off the alley, on the block bounded by Randolph,
+Franklin, Washington and Market. One carpenter household adopted; households **155 → 156**, persons
+**191 → 192**. Recorded in L97. **The recipe cleared every placement gate on its first run** — no
+lot-line, separation, corridor, relief or occupancy failure to iterate against, which is what the
+gates T-A2 through T-A4 accumulated were for. **No tool changed**: the parcel is a recipe entry and
+a census edit, which is the shape T-A2 said these would settle into.
 
-**It also carries the division question T-A4 left open** (below), because the block deals
-a D3 in the South Division and that is exactly the roof T-A4's refusal turned on.
+**The block was already built on, by this project's OTHER layer.** T-A4 met a block occupied by the
+pre-plat West density recipe; this one is occupied by `inf_sawyer_dwelling_a` and `_b`, the
+dwellings of the occupation census's own two sawyer households, placed from typed coordinates
+before the plat module existed. The layer that argues who the town held and the layer that fills its
+blocks have met on the same ground, and T-A4's derived-occupancy machinery absorbed it unchanged.
 
-Files: `data/reconstruction/1835_platted_block_parcels.json` ·
-`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` ·
-`data/residents/` · `data/sidecars/1835/` · `docs/LIBERTIES.md` · `docs/ROADMAP.md` ·
-`docs/STATUS.md`. **No renderer file, no tool outside `tools/generate_block_infill.py`.**
+**The vacancy's position is arithmetic, not argument, and the parcel says so.** Both standing roofs
+are on the Randolph face, so the two lots free there are exactly the two the frontage-value typology
+wants, and the programme's alternating vacancy has nowhere to fall but Washington. Had the schedule
+dealt one roof fewer it would have looked deliberate.
+
+**THE DIVISION QUESTION IS SETTLED: rule 6 takes three tests, and the third is the division.** It is
+the family test made about the other axis of the same table — where a trade lived is as much a claim
+about the town as what it lived in — and T-A4 had already applied it by hand when it refused a D3
+carpenter west of the river. Written into the household programme's `method` list rather than
+re-argued per parcel, **it recovers all four adoption decisions taken before it**: T-A2h's carpenter
+and labourer adopted, T-A4's labourer adopted, T-A4's carpenter refused. A test that has to be told
+those answers is a preference; one that recovers them is a rule. This block's D3 passes all three.
+
+**What it could not decide, and did not fudge: K21 (above).** The sawyers standing on this very
+block pass test 1 — *"the smallest number that answers the demand"* — and fail test 2 because their
+bespoke dwellings carry no `reconstruction.family` for it to read. Four trades of twenty-nine are
+housed that way and only that way. The test is **silent, not negative**, for them; silence is being
+read as refusal, which is the cautious answer and not the same answer.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
+`data/reconstruction/1835_inferred_household_programme.json` (rule 6, the carpenter census, one
+household) · `data/structures/recon_1835_blk_randolph_market_*.json` (8, derived) ·
+`data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md`
+(L97) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
 ### T-A6…T-An — the remaining blocks · **UNCLAIMED**
 
@@ -743,9 +823,22 @@ prefix in its claim heading so two runs cannot take the same one. **Read the sch
 arrival date** — it is derived from what stands, so every block parcel that lands re-apportions
 the families of every block that has not. A parcel that meets an institutional family defers it
 per T-A3 rather than reaching for a shape, and a block that is already partly built has its taken
-lots derived rather than authored per T-A4. **T-A5 also owns the division question T-A4 left
-open:** whether the household adoption rule takes a division test, decided once in the household
-programme's `method` list instead of by each parcel.
+lots derived rather than authored per T-A4.
+
+**The rules are now complete enough that a block parcel should need no argument of its own beyond
+its arrangement note.** Deferral (T-A3), derived occupancy with its five refusals (T-A4) and the
+three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `method` list, and
+T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
+met something genuinely new and should say what it was in its ROADMAP entry.
+
+**Open immediately after T-A5, on ground the project has coverage for — 71 roofs across ten
+entries:** `blk_randolph_franklin` 9 · `blk_randolph_clark` 9 · `blk_randolph_lasalle` 7 ·
+`blk_south_water_franklin` 8 · `blk_south_water_wells` 8 · `blk_south_water_lasalle` 8 (**carries
+the one I3 in the whole open set — defer it per T-A3 unless T-I3 has landed**) ·
+`blk_south_water_clark` 8 · `blk_south_water_dearborn` 6 · `blk_lake_market` 7 ·
+`blk_randolph_dearborn` 1 (an A4 backfill). **This list is a convenience and goes stale the moment
+the next parcel lands** — the schedule re-apportions every open block each time one closes, and it
+moved the I3 between blocks on this very run. Re-derive it, do not trust it.
 
 ---
 
