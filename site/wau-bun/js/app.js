@@ -12,8 +12,9 @@
    panel) is a history entry, so the browser Back button always undoes exactly
    one step and the URL is shareable.
 
-   The full text of each scene lives in js/data-text-part1.js and is fetched
-   only when the reader first needs it — first paint stays light. */
+   The full text of each scene lives in js/data-text-part<N>.js — one file per
+   part, each fetched only when the reader first needs that part's text, so
+   first paint stays light. */
 (function () {
   'use strict';
 
@@ -170,25 +171,33 @@
     if (m[3] && MODES.some(function (x) { return x.id === m[3]; })) state.mode = m[3];
   }
 
-  /* ---------------- full text, fetched on demand ---------------- */
-  var textState = 'idle';   // idle | loading | ready | failed
-  var textWaiters = [];
+  /* ---------------- full text, fetched on demand, one file per part ------- */
+  var text = {};   // part id -> { state: idle|loading|ready|failed, waiters: [] }
+  function textSlot(partId) {
+    return text[partId] || (text[partId] = { state: 'idle', waiters: [] });
+  }
+  function textStore(partId) { return window['WAUBUN_TEXT_PART' + partId.slice(4)]; }
+  function textState(partId) {
+    var t = textSlot(partId);
+    return textStore(partId) ? 'ready' : t.state;
+  }
   function ensureText(cb) {
-    if (window.WAUBUN_TEXT_PART1) { textState = 'ready'; return cb(); }
-    if (textState === 'failed') return cb();
-    textWaiters.push(cb);
-    if (textState === 'loading') return;
-    textState = 'loading';
+    var partId = state.part, t = textSlot(partId);
+    if (textStore(partId)) { t.state = 'ready'; return cb(); }
+    if (t.state === 'failed') return cb();
+    t.waiters.push(cb);
+    if (t.state === 'loading') return;
+    t.state = 'loading';
     var s = document.createElement('script');
-    s.src = 'js/data-text-part1.js';
-    s.onload = function () { textState = 'ready'; flush(); };
-    s.onerror = function () { textState = 'failed'; flush(); };
+    s.src = 'js/data-text-' + partId + '.js';
+    s.onload = function () { t.state = 'ready'; flush(); };
+    s.onerror = function () { t.state = 'failed'; flush(); };
     document.head.appendChild(s);
-    function flush() { var w = textWaiters; textWaiters = []; w.forEach(function (f) { f(); }); }
+    function flush() { var w = t.waiters; t.waiters = []; w.forEach(function (f) { f(); }); }
   }
   function passage(sceneId, mode) {
-    var store = window.WAUBUN_TEXT_PART1;
-    if (state.part !== 'part1' || !store || !store[sceneId]) return null;
+    var store = textStore(state.part);
+    if (!store || !store[sceneId]) return null;
     return store[sceneId][mode] || null;
   }
 
@@ -727,7 +736,7 @@
         try { localStorage.setItem('waubun.mode', m.id); } catch (e) {}
         if (m.id === 'summary') return go({ mode: m.id });
         ensureText(function () { go({ mode: m.id }); });
-        if (textState === 'loading') { state.mode = m.id; render(); }
+        if (textState(state.part) === 'loading') { state.mode = m.id; render(); }
       });
       seg.appendChild(b);
     });
@@ -743,12 +752,7 @@
       box.innerHTML = summaryHTML(sc);
       return box;
     }
-    if (state.part !== 'part1') {
-      box.appendChild(el('div', 'wb-note', 'The full text is wired up for Part 1 so far. Summaries are available for every part that has scenes.'));
-      box.innerHTML += summaryHTML(sc);
-      return box;
-    }
-    if (textState === 'loading' || (textState === 'idle' && !window.WAUBUN_TEXT_PART1)) {
+    if (textState(state.part) === 'loading' || textState(state.part) === 'idle') {
       ensureText(function () { render(); });
       box.appendChild(el('div', 'wb-note', 'Fetching the text…'));
       return box;
@@ -763,7 +767,7 @@
     var pr = el('div', 'wb-prose wb-fulltext');
     pr.innerHTML = paras.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
     box.appendChild(pr);
-    var store = window.WAUBUN_TEXT_PART1;
+    var store = textStore(state.part);
     var isRetold = !!(store && store[sc.id] && store[sc.id].retold);
     box.appendChild(el('div', 'wb-source',
       (state.mode === 'original'
