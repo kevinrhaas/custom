@@ -1,5 +1,68 @@
 # STATUS
 
+## New 2026-08-14 — a block filled in, and the table nothing had ever read
+
+**T-A2.** `blk_randolph_wells` — Randolph, LaSalle, Washington, Wells — stood empty and now
+carries **ten anonymous roofs**: seven principal buildings on seven of its eight lots, three yard
+buildings off the alley, to the family mix the 665-roof schedule apportioned it. The town stands
+at **242 roofs of 665**; 423 remain and **95 of those have modelled ground**. One lot is left
+bare on purpose, and which lot is arbitrary — recorded as such in **L92**, with the frontage
+argument (larger houses to Randolph, rougher dwellings to Washington) written down so it can be
+disagreed with.
+
+**The parcel authors no coordinates, and that is the durable half.** The three earlier infill
+parcels each hand-wrote their own eastings and northings, because the plat module did not exist
+when they were written. `tools/generate_block_infill.py` reads every metre off the committed lot
+polygons of the K7 grid: the recipe says which family stands on which lot, whether it fronts the
+street or the alley, and how far back. The defect class K7 exposed — seven buildings standing in
+the middle of the road, put there by a recipe that had never asked where the road was — is now
+retired by construction rather than by a gate catching it afterwards. The gate still runs: the
+generator tests every footprint against its own lot lines, the platted corridors, every other
+footprint in the dataset, the heightfield and the archetype, before it writes a file.
+
+**A table this project had been carrying and never reading.** `family_bands_ft` in the building
+inventory has bands for 21 of the programme's 35 families. The other 14 — **H1, H2, H3, C4,
+T1-T3, W5, F3, F4, I1-I3, M1** — had none, so the earlier generators could only build the
+families somebody had separately retyped into Python, while the schedule went on apportioning H1
+and H2 to blocks. `1835_family_archetype_crosswalk.json` has held the footprint band, storey
+count, eave height and placeholder archetype for **all 35** the whole time, and agrees with
+`family_bands_ft` on every one of the 21 they share. The generator reads the crosswalk. **H1 and
+H2 stand for the first time**, and no band is retyped anywhere.
+
+**One number was moved to fit an archetype, and it is written down.** The A3 privy's authored
+eave band runs 6-7 ft and its bottom is below what the outbuilding archetype needs to carry its
+own door plus a header — refused by name at 1.891 m. The sample is now drawn from the part of the
+authored band the archetype can build (2.07 m, beside phase one's privies at 2.05), and a family
+whose whole band sits under that floor fails loudly rather than being quietly raised out of its
+typology.
+
+**And a command that quietly destroyed a night's Blender work, found by running it.**
+`generators/inferred_placeholder.py` builds the flagged placeholder massing for a new anonymous
+record. Its `--check` path has stood aside since 2026-08-13 for any asset the canonical bake has
+superseded — `kind: generated` in the manifest — for the stated reason that demanding the
+placeholder bytes back would forbid the upgrade the bake exists to perform. **Its BUILD path did
+not.** Run once for ten new records, it also rewrote the 128 already-baked ones: 113 KB of
+canonical archetype geometry down to a 4.9 KB flagged box each, with their manifest entries
+stamped back to `kind: placeholder` so nothing downstream could tell the difference. It reproduces
+on a clean `dev` checkout, so it is not a local accident.
+
+**Every gate stayed green through it**, which is the part worth keeping. A placeholder that
+matches its record is precisely what the gates check for, so 128 buildings collapsing to boxes is
+a state the whole suite regards as correct — and the published smoke passed against it, 204 and
+201 assertions, before anyone noticed. What caught it was reading a `git status` that had 461
+files in it when the parcel touched ten. The build path now asks the same question the check path
+asks and reports `built 10 … 128 superseded by a canonical bake`; the asymmetry between a check
+and the build it checks was the whole defect. The four gate runs above were then re-run from
+scratch against the restored bake.
+
+**What did NOT ship, stated plainly: the households.** T-A2 as written also called for household
+records. Adopting these ten roofs means restating the occupation census — the household generator
+gates the census and the households against each other in both directions — and that census is
+the population layer's weakest joint, derived from five in-dataset calibrations rather than
+cited. Re-arguing it as a side effect of a block parcel would be exactly the kind of silent
+re-decision this project refuses. **The ten roofs are unoccupied**, no household names them, and
+the work is queued as **ROADMAP T-A2h**. No human figure is drawn (L1), unchanged.
+
 ## New 2026-08-14 — 232 roofs stand of 665, and only 105 of the rest have anywhere to go
 
 **T-A1.** The 665-roof programme has been subtracted from for the first time. The target was

@@ -45,15 +45,19 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
 | 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
 | 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
-| 1 | TOWN | **T-A2** | first block of roofs through the reconciled schedule |
-| 2 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
-| 3 | TOWN | **T-A4…** | one open block per run until the 105 are placed |
+| 1 | TOWN | **T-A3** | second block; proves the parcel shape repeats — and it is now a recipe entry, not a geometry argument |
+| 2 | TOWN | **T-A2h** | the ten new roofs' households, which T-A2 deliberately left |
+| 3 | TOWN | **T-A4…** | one open block per run until the 95 are placed |
 
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
 quotes the two tables rather than an adjective.
 
-**T-A1 is DONE (2026-08-14)** — 232 roofs stand, 433 remain, and
+**T-A2 is DONE (2026-08-14)** — `blk_randolph_wells` carries ten roofs, so **242 stand and 423
+remain**, 95 of them on covered ground. The parcel authors no coordinates: block parcels are now
+a recipe entry read against the committed lot polygons, which is what makes T-A3 onward cheap.
+
+**T-A1 is DONE (2026-08-14)** — 232 roofs stood, 433 remained, and
 `data/reconstruction/1835_665_roof_programme.json` schedules them per block. Only **105 of
 the 433** have modelled ground to stand on, so lane 2 has about ten block parcels of work in
 it and then it is blocked on S9 street control and the terrain extensions, not on recipes.
@@ -262,27 +266,81 @@ the invented family with the most slack (D4, the two-storey frame dwellings).
 `1835_family_archetype_crosswalk.json` (stale statuses corrected) · `docs/ROADMAP.md` (S10) ·
 `docs/STATUS.md`
 
-### T-A2 — the first refreshed block · **UNCLAIMED · NEXT UP**
+### T-A2 — the first refreshed block · **DONE 2026-08-14 (`blk_randolph_wells`)**
 
-One block from T-A1's schedule: recipe → records → households → placeholder massing. Take a
-block the schedule marks `state: open` and read its `families` for the mix —
-`blk_randolph_wells` and `blk_randolph_dearborn` carry the most headroom at 10 roofs each
-and stand empty today. **Do not take a `gated` unit**: its ground is not modelled, and the
-schedule says what each is waiting on.
+Ten anonymous roofs on the block bounded by Randolph, LaSalle, Washington and Wells: seven
+principal buildings on seven of its eight lots and three yard buildings off the alley, to the
+family mix the schedule apportioned it (A1 A3 A4 D1 D2 D3 D4 D5 H1 H2). Standing roofs
+**232 → 242**; remaining **433 → 423**, of which **95** still have modelled ground.
 
-**Files:** `data/structures/<block>_*.json` · `data/residents/households/<block>_*.json` ·
-`data/residents/index.json` · `data/sidecars/1835/<block>_*.json` · `docs/LIBERTIES.md`
+**The parcel shape that repeats, and it is not the one T-A2 was written expecting.** The three
+earlier parcels authored their own coordinates — a row northing and a list of eastings, or a
+centre per slot — because the plat module did not exist when they were written. This one
+authors **no coordinates at all**: the recipe says which family stands on which lot, whether it
+fronts the street or the alley, and how far back, and `tools/generate_block_infill.py` reads
+every metre off the committed lot polygons. That is what makes T-A3…T-An a recipe entry rather
+than a new geometry argument each time, and it retires by construction the defect class K7 found
+(seven buildings in the middle of the road, from a recipe that never asked where the road was).
 
-**Acceptance:** `tools/check.sh` green including `audit_confidence.py --strict` and the
-liberties coverage gate in both directions; every new value at the invented tier with a
-reasoning note; the smoke's per-structure size and no-hover gates green.
+**Two findings came out of it that are not the block.**
+
+- **`family_bands_ft` in the building inventory has no H1, H2, H3, C4, T1-T3, W5, F3, F4, I1-I3
+  or M1 band** — 14 of the programme's 35 families — so the earlier generators could only build
+  the families somebody had retyped into Python, and the schedule was apportioning H1 and H2 to
+  this very block. **The crosswalk had them all along**: `1835_family_archetype_crosswalk.json`
+  carries the footprint band, the storey count, the eave height and the placeholder archetype for
+  every family, and agrees with `family_bands_ft` on all 21 both of them hold. This generator
+  reads the crosswalk, so every family the programme can name is now buildable and no band is
+  retyped anywhere. **H1 and H2 stand for the first time.**
+- **The A3 privy's authored eave band (6-7 ft) dips below what the outbuilding archetype needs**
+  to carry its own man door plus a header — refused by name at 1.891 m. The sample is now drawn
+  from the part of the authored band the archetype can build (2.07 m here, beside phase one's
+  privies at 2.05), and a family whose whole band sits under that floor fails loudly rather than
+  being quietly raised out of its typology. Recorded in L92.
+
+**Deferred, deliberately, and it is the one part of the parcel as written that did not ship:**
+the **household layer**. Adopting these ten roofs as dwellings means restating
+`1835_inferred_household_programme.json`'s occupation census — the generator gates the census and
+the households against each other in both directions — and that is the K1 programme's own
+argument about who the town's tradesmen were, not something a block parcel should re-decide as a
+side effect. **T-A2h below owns it.**
+
+**Files:** `tools/generate_block_infill.py` (new) ·
+`data/reconstruction/1835_platted_block_parcels.json` (new, authored) ·
+`data/structures/recon_1835_blk_randolph_wells_*.json` (10, derived) ·
+`data/structures.schema.json` (four lot-provenance fields) · `data/sidecars/1835/` ·
+`assets/…` placeholder massing · `docs/LIBERTIES.md` (L92) · `tools/check.sh` (one step)
+
+### T-A2h — the ten roofs' households · **UNCLAIMED · NEXT UP**
+
+Adopt some or all of `blk_randolph_wells`'s ten roofs into the inferred-household layer:
+occupation census, household records, invented names, occupancy blocks on the structures. Data
+only, and disjoint from every other block parcel.
+
+**Why it is its own parcel:** `tools/generate_inferred_households.py` requires the census and the
+households to agree exactly in both directions, so adding households means arguing about the
+town's trade mix — the weakest joint in the population layer, and the one STATUS names as derived
+from five in-dataset calibrations rather than cited. That argument deserves a run, not a footnote.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` ·
+`data/residents/households/*.json` · `data/residents/index.json` ·
+`data/structures/recon_1835_blk_randolph_wells_*.json` (occupancy only, via the generator)
+
+**Acceptance:** `tools/check.sh` green; no inferred person carries a name that is not re-derived
+by `generate_inferred_names.py`; the census reconciles; **no human figure is drawn** (L1).
 
 ### T-A3 — the second refreshed block · **UNCLAIMED · NEXT UP**
 
-As T-A2, different block. Its purpose is to prove the parcel shape repeats cleanly so the
-remaining blocks can be worked one per run without re-deciding anything.
+As T-A2, different block, and now genuinely a recipe entry: append a block to
+`data/reconstruction/1835_platted_block_parcels.json` naming its lots, families and setbacks,
+then `python3 tools/generate_block_infill.py`. `blk_randolph_dearborn` carries the most headroom
+of the remaining open units at 10 roofs and stands empty — note it schedules H3 as well, which
+resolves through `frame_tavern` and has no form rule in the generator yet, so that block wants
+the rule adding (the generator refuses an unknown family by name rather than guessing).
 
-**Files:** as T-A2, different block prefix — disjoint from T-A2 by construction.
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
+`data/structures/recon_1835_blk_<block>_*.json` · `docs/LIBERTIES.md` — disjoint from T-A2 by
+construction.
 
 ### T-A4…T-An — the remaining blocks · **UNCLAIMED**
 
