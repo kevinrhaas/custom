@@ -19,6 +19,11 @@ No build step, no framework, no dependencies.
   that character is in.
 - Each scene reads three ways: **Summary**, the **Modern** text in full, or the
   **1856** original in full.
+- **Fit width** shrinks the columns until every scene is on screen; **Fit all**
+  squeezes both axes until the whole chart is in view at once; **−** / **+**
+  zoom by hand; **⛶ Full screen** hands the chart the entire display. Below
+  ~9px the scene labels and names stop being legible, so those axes switch to
+  an overview: thin header, colour-chip rows, identity on hover.
 - Every move is a history entry, so **Back** always undoes exactly one step —
   including returning from the reader to the panel you opened it from — and the
   URL is shareable (`#/part1/story/s25/original`).
@@ -28,8 +33,8 @@ No build step, no framework, no dependencies.
 | Part | Title | Chapters | Status |
 |------|-------|----------|--------|
 | 1 | Journey West (1830 – March 1831) | I–XVII | **complete** — 49 scenes, 83 characters |
-| 2 | The Early Frontier (c. 1770s–1816) | XVIII–XXIII | chapter outline |
-| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | chapter outline |
+| 2 | The Early Frontier (1779–1816) | XVIII–XXIII | **complete** — 40 scenes, 61 characters |
+| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | **in progress** — 13 scenes (ch. XXIV–XXVI), 12 chapters to come |
 
 ## The data model
 
@@ -71,13 +76,17 @@ the 1856 text by rare-word overlap within the same chapter, printing the match
 score for every boundary (all of Part 1 lands at 0.88–1.00). Sources are not
 committed — see that script's docstring for what to drop in `wau-bun/sources/`.
 
-## Adding Part 2 or Part 3
+## Finishing Part 3
 
-Fill in `acts` and `scenes` on `WAUBUN_PART2` / `WAUBUN_PART3` in
-`js/data-parts23.js` using the same shape as `js/data-part1.js`, add any new
-people to `js/data-characters.js`, and delete that part's `outline` array. The
-app switches from the outline view to the four full views as soon as a part
-has scenes.
+Keep appending to `acts` and `scenes` on `WAUBUN_PART3` in `js/data-part3.js`
+using the same shape as Parts 1 and 2, add any new people to
+`js/data-characters.js`, and drop each chapter out of that part's `outline`
+array as it is broken into scenes. A part may hold both at once: the app
+renders the finished scenes in every view and then lists the chapters still to
+come underneath, so a part under construction never pretends to be complete. The app
+switches from the outline view to the four full views as soon as a part has
+scenes. Then extend `wau-bun/build-text.py` with that part's line ranges to
+give it the two full texts.
 
 ## Colour
 

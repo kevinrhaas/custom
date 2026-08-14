@@ -38,7 +38,9 @@
     panel: null,          // { kind:'scene'|'character', id }
     factions: FAC_ORDER.slice(),
     query: '',
-    pivotalOnly: false
+    pivotalOnly: false,
+    cell: 22,             // chart square size in px
+    fit: 'none'           // none | width | all
   };
   try {
     var savedMode = localStorage.getItem('waubun.mode');
@@ -222,6 +224,7 @@
       stat(idx.order.length, 'characters');
       stat(p.scenes.filter(function (s) { return s.pivotal; }).length, 'pivotal turns');
       stat(uniquePlaces(p).length, 'places');
+      if ((p.outline || []).length) stat(p.outline.length, 'chapters to come');
     } else {
       stat((p.outline || []).length, 'chapters');
       stat('Outline', 'status');
@@ -295,7 +298,9 @@
     var scenes = visibleScenes();
     var chars = visibleChars();
 
-    var fig = el('figure', 'wb-figure');
+    var fig = el('figure', 'wb-figure wb-chartwrap');
+    fig.id = 'wbChartWrap';
+    fig.appendChild(chartTools(scenes.length, chars.length));
     fig.appendChild(el('figcaption', 'wb-figtitle', 'Who appears, scene by scene'));
     fig.appendChild(el('p', 'wb-fignote',
       'Every character in Part ' + p.number + ' against every scene, in the order the narrative tells them. ' +
@@ -319,7 +324,7 @@
 
     var scroll = el('div', 'wb-scroll');
     var grid = el('div', 'wb-grid');
-    grid.style.gridTemplateColumns = 'var(--namew) repeat(' + scenes.length + ', var(--cell))';
+    grid.style.gridTemplateColumns = 'var(--namew) repeat(' + scenes.length + ', var(--cellw))';
     var anySel = state.selected.length > 0;
 
     // row 1 — act bands
@@ -437,6 +442,118 @@
     });
     strip.appendChild(row2);
     host.appendChild(strip);
+    applySize();
+  }
+
+  /* ---- size & full screen -------------------------------------------------
+     The chart is a grid of --cell-sized squares, so zooming is one variable.
+     "Fit width" puts every scene on screen and lets the rows scroll; "Fit all"
+     squeezes both axes until the whole thing is in view at once, which is what
+     full screen is for. Names and marks scale with the cell so nothing has to
+     be re-laid-out. */
+  var MINCELL = 5, MAXCELL = 34;
+  function applySize() {
+    var wrap = $('#wbChartWrap');
+    if (!wrap) return;
+    // below this the vertical scene labels and the names cannot be read at all,
+    // so the chart drops to an overview: thin header, colour-chip rows, tooltips
+    var TINY = 9;
+    var cw = state.cell, ch = state.cell, nameW = 210;
+    var cols = visibleScenes().length, rows = visibleChars().length;
+    var groups = 0, vis = visibleChars();
+    FAC_ORDER.forEach(function (fid) {
+      if (vis.some(function (id) { return CH[id].faction === fid; })) groups++;
+    });
+    var scroll = $('.wb-scroll');
+    if (state.fit !== 'none' && cols) {
+      var availW = (scroll ? scroll.clientWidth : wrap.clientWidth) - 2;
+      var guess = Math.floor((availW - 96) / cols);
+      if (state.fit === 'all' && guess < TINY) nameW = 44;
+      cw = Math.max(MINCELL, Math.min(MAXCELL, Math.floor((availW - nameW) / cols)));
+      ch = cw;
+      if (state.fit === 'all') {
+        // act band + scene labels (or a thin band when they cannot be read)
+        // plus one line per faction heading
+        var chromeH = 44 + (cw < TINY ? 26 : 152) + groups * 30 + 8;
+        var top = scroll ? scroll.getBoundingClientRect().top : 0;
+        var availH = (isFullscreen() ? window.innerHeight - 24
+                                     : window.innerHeight - Math.max(0, top) - 24) - chromeH;
+        // rows and columns are sized independently — squeezing the height must
+        // not also squeeze the width, or the chart shrinks into a corner
+        ch = Math.max(MINCELL, Math.min(MAXCELL, Math.floor(availH / Math.max(1, rows))));
+      }
+    }
+    paint(cw, ch, nameW);
+    if (state.fit === 'all' && scroll) {
+      for (var i = 0; i < 5 && ch > MINCELL; i++) {
+        if (scroll.scrollHeight <= scroll.clientHeight + 1) break;
+        ch = Math.max(MINCELL, ch - 1);
+        paint(cw, ch, nameW);
+        scroll.getBoundingClientRect();   // force reflow before re-measuring
+      }
+    }
+    function paint(w, h, nw) {
+      // columns and rows go "too small to letter" independently
+      wrap.classList.toggle('wb-tinycols', w < TINY);
+      wrap.classList.toggle('wb-tinyrows', h < TINY);
+      wrap.style.setProperty('--cellw', w + 'px');
+      wrap.style.setProperty('--cellh', h + 'px');
+      wrap.style.setProperty('--namew', nw + 'px');
+      wrap.style.setProperty('--namefs', Math.max(6.5, Math.min(12, h * 0.62)) + 'px');
+      wrap.style.setProperty('--dot', Math.max(3, Math.min(12, Math.round(Math.min(w, h) * 0.55))) + 'px');
+      var sc = $('.wb-scroll');
+      if (sc) sc.style.maxHeight = (isFullscreen() || state.fit === 'all') ? 'calc(100vh - 132px)' : '78vh';
+    }
+  }
+
+  function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement);
+  }
+  function toggleFullscreen() {
+    var wrap = $('#wbChartWrap');
+    if (!wrap) return;
+    if (isFullscreen()) {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    } else {
+      var req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
+      if (req) req.call(wrap);
+      else { state.fit = 'all'; applySize(); }   // no API (older iOS): fit instead
+    }
+  }
+  function chartTools(nCols, nRows) {
+    var bar = el('div', 'wb-charttools');
+    bar.appendChild(el('span', 'wb-toolnote', nRows + ' characters × ' + nCols + ' scenes'));
+    function btn(label, title, fn, pressed) {
+      var b = el('button', 'wb-toggle', label);
+      b.type = 'button'; b.title = title;
+      if (pressed !== undefined) b.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      b.addEventListener('click', fn);
+      bar.appendChild(b);
+      return b;
+    }
+    btn('Fit width', 'Shrink the columns until every scene is on screen', function () {
+      state.fit = state.fit === 'width' ? 'none' : 'width'; applySize(); syncTools();
+    }, state.fit === 'width');
+    btn('Fit all', 'Shrink both axes until the whole chart is on screen at once', function () {
+      state.fit = state.fit === 'all' ? 'none' : 'all'; applySize(); syncTools();
+    }, state.fit === 'all');
+    btn('−', 'Smaller', function () {
+      state.fit = 'none'; state.cell = Math.max(MINCELL, state.cell - 3); applySize(); syncTools();
+    });
+    btn('+', 'Bigger', function () {
+      state.fit = 'none'; state.cell = Math.min(MAXCELL, state.cell + 3); applySize(); syncTools();
+    });
+    btn(isFullscreen() ? '✕ Exit full screen' : '⛶ Full screen',
+      'Give the chart the whole screen', toggleFullscreen);
+    return bar;
+  }
+  function syncTools() {
+    var bar = $('.wb-charttools');
+    if (!bar) return;
+    var b = bar.querySelectorAll('.wb-toggle');
+    b[0].setAttribute('aria-pressed', state.fit === 'width' ? 'true' : 'false');
+    b[1].setAttribute('aria-pressed', state.fit === 'all' ? 'true' : 'false');
+    b[4].textContent = isFullscreen() ? '✕ Exit full screen' : '⛶ Full screen';
   }
 
   // one click selects, two opens — a short timer keeps the two apart
@@ -847,6 +964,19 @@
     host.appendChild(box);
   }
 
+  function renderRemaining(host, p) {
+    var box = el('div', 'wb-outline');
+    box.appendChild(el('div', 'wb-subhead', 'Chapters still to be broken into scenes'));
+    box.appendChild(el('div', 'wb-note', p.outlineNote ||
+      'These chapters are next; they are listed exactly as they stand in the narrative.'));
+    var ol = el('ol');
+    p.outline.forEach(function (row) {
+      ol.appendChild(el('li', '', '<b>CH. ' + esc(row.chapter) + '</b><span>' + esc(row.title) + '</span>'));
+    });
+    box.appendChild(ol);
+    host.appendChild(box);
+  }
+
   /* ---------------- the detail panel ---------------- */
   function paintPanel() {
     var pn = $('#wbPanel'), body = $('#wbPanelBody');
@@ -952,10 +1082,14 @@
     host.innerHTML = '';
     var p = part();
     if (!(p.scenes || []).length) renderOutline(host);
-    else if (state.view === 'chart') renderChart(host);
-    else if (state.view === 'story') renderStory(host);
-    else if (state.view === 'cast') renderCast(host);
-    else renderTable(host);
+    else {
+      if (state.view === 'chart') renderChart(host);
+      else if (state.view === 'story') renderStory(host);
+      else if (state.view === 'cast') renderCast(host);
+      else renderTable(host);
+      // a part part-way through its build still shows what is coming
+      if ((p.outline || []).length) renderRemaining(host, p);
+    }
     paintPanel();
   }
 
@@ -985,6 +1119,22 @@
         if (e.key === 'ArrowRight' && pos >= 0 && pos < scenes.length - 1) go({ scene: scenes[pos + 1].id });
         if (e.key === 'ArrowLeft' && pos > 0) go({ scene: scenes[pos - 1].id });
       }
+    });
+
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (ev) {
+      document.addEventListener(ev, function () {
+        document.body.classList.toggle('wb-isfs', isFullscreen());
+        if (isFullscreen() && state.fit === 'none') state.fit = 'all';
+        syncTools();
+        // the element is not at its new size until after the next paint
+        requestAnimationFrame(function () { requestAnimationFrame(applySize); });
+        setTimeout(applySize, 120);
+      });
+    });
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { if (state.fit !== 'none') applySize(); }, 120);
     });
 
     readHash();

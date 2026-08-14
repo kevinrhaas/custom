@@ -119,6 +119,32 @@ body { padding-bottom: 40px; }
 .wb-key.first { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--text-3); }
 .wb-key.ghost { background: transparent; border: 1.5px dashed var(--text-3); }
 
+/* ---------- chart size + full screen ---------- */
+.wb-charttools {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  float: right; margin-left: 16px;
+}
+.wb-toolnote { font-size: 12px; color: var(--text-3); font-weight: 700; }
+.wb-charttools .wb-toggle { padding: 5px 11px; font-size: 12px; }
+.wb-chartwrap { --dot: 12px; --namefs: 12px; --cellw: var(--cell); --cellh: var(--cell); }
+.wb-chartwrap:fullscreen {
+  background: var(--bg); padding: 14px 18px; overflow: auto; margin: 0;
+}
+.wb-chartwrap:-webkit-full-screen { background: var(--bg); padding: 14px 18px; overflow: auto; margin: 0; }
+.wb-chartwrap:fullscreen .wb-fignote, .wb-chartwrap:-webkit-full-screen .wb-fignote { display: none; }
+.wb-chartwrap:fullscreen .wb-scroll, .wb-chartwrap:-webkit-full-screen .wb-scroll { max-height: calc(100vh - 150px); }
+body.wb-isfs .wb-bar, body.wb-isfs .wb-head, body.wb-isfs .wb-toolbar { display: none; }
+
+/* overview density: too small to letter, so show the pattern and let hover
+   (and the group headings) carry identity */
+.wb-tinycols .wb-colhead { height: 26px; }
+.wb-tinycols .wb-colhead > div { display: none; }
+.wb-tinycols .wb-actband em { display: none; }
+.wb-tinycols .wb-actband { padding: 6px 8px; }
+.wb-tinyrows .wb-name { padding: 0 6px; }
+.wb-tinyrows .wb-name span { display: none; }
+.wb-tinyrows .wb-grouphead { font-size: 9px; letter-spacing: .6px; padding: 5px 8px 3px; }
+
 /* ---------- selection bar ---------- */
 .wb-selbar {
   border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface);
@@ -201,21 +227,21 @@ body { padding-bottom: 40px; }
   border-right: 1px solid var(--border); padding: 0 10px;
   display: flex; align-items: center; gap: 8px; cursor: pointer;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  height: var(--cell); font-size: 12px;
+  height: var(--cellh, var(--cell)); font-size: var(--namefs, 12px);
 }
-.wb-name i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: none; font-style: normal; }
+.wb-name i { width: min(8px, var(--dot, 8px)); height: min(8px, var(--dot, 8px)); border-radius: 2px; background: var(--c); flex: none; font-style: normal; }
 .wb-name span { overflow: hidden; text-overflow: ellipsis; }
 .wb-name:hover { background: var(--surface-2); }
 .wb-name.on { background: color-mix(in srgb, var(--leaf) 14%, var(--surface)); font-weight: 700; }
 
 .wb-cell {
-  height: var(--cell); display: flex; align-items: center; justify-content: center;
+  height: var(--cellh, var(--cell)); display: flex; align-items: center; justify-content: center;
   border: 0; background: transparent; padding: 0; cursor: pointer; position: relative;
 }
 .wb-cell::before { content: ''; position: absolute; inset: 0; background: transparent; }
 .wb-cell.rowon::before, .wb-cell.colon::before { background: color-mix(in srgb, var(--leaf) 9%, transparent); }
-.wb-dot { width: 12px; height: 12px; border-radius: 3px; background: var(--c); position: relative; z-index: 1; }
-.wb-cell.mention .wb-dot { background: transparent; border: 1.5px dashed var(--c); width: 11px; height: 11px; }
+.wb-dot { width: var(--dot, 12px); height: var(--dot, 12px); border-radius: 3px; background: var(--c); position: relative; z-index: 1; }
+.wb-cell.mention .wb-dot { background: transparent; border: 1.5px dashed var(--c); width: calc(var(--dot, 12px) - 1px); height: calc(var(--dot, 12px) - 1px); }
 .wb-cell.first .wb-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--c); }
 .wb-cell.empty { cursor: default; }
 .wb-cell.empty .wb-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-2); }
