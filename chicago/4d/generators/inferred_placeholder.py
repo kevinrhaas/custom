@@ -209,7 +209,22 @@ def main() -> int:
     drift = []
     superseded = 0
     for name, data in files.items():
+        # The build path stands aside for a superseded asset for exactly the reason
+        # the --check path below does, and it did not, which made this command a
+        # quiet way to destroy a night's Blender work: run once for a new record and
+        # it also rewrote all 128 already-baked ones with placeholder massing —
+        # 113 KB of canonical archetype back down to a 4.9 KB flagged box — and
+        # stamped their manifest entries `kind: placeholder` so nothing downstream
+        # could tell. Every gate stayed green, because a placeholder that matches
+        # its record is what the gates are checking for. Asymmetry between a check
+        # and the build it checks is the whole bug; the two now ask the same question.
+        entry = manifest["assets"].get(name)
+        superseded_here = entry is not None and entry.get("kind") != "placeholder"
+
         if not args.check:
+            if superseded_here:
+                superseded += 1
+                continue
             for folder in (MASTER, WEB):
                 (folder / name).write_bytes(data)
             manifest["assets"][name] = entries[name]
@@ -222,8 +237,7 @@ def main() -> int:
         # forbid the upgrade the bake exists to perform.  Hand off to the ordinary
         # staleness gate in tools/validate.py, which hashes a generated asset
         # against its own recorded inputs.
-        entry = manifest["assets"].get(name)
-        if entry is not None and entry.get("kind") != "placeholder":
+        if superseded_here:
             superseded += 1
             continue
 

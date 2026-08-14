@@ -2190,6 +2190,63 @@ notes say so in those words.
 `temple_lake_st_building.documented_1835.form.goods_door_side`
 **Recorded:** 2026-08-13.
 
+### L92 — A block of the plat filled in: seven houses on generated lots, and a lot left empty
+
+**Decision:** `blk_randolph_wells` — the platted block bounded by Randolph, LaSalle, Washington
+and Wells — stood empty in this dataset and now carries **ten anonymous roofs**: seven principal
+buildings, one per lot on seven of its eight lots, and three yard buildings off the block alley.
+The block, its ten-roof ceiling and its family mix come from the 665-roof programme's own
+schedule. **Everything below that is invented**: which family stands on which lot, which lot is
+left open, how far each building stands back from its frontage, and how far it sits to one side
+of its lot.
+
+**Why the lots are the improvement and still not evidence.** The three parcels before this one
+authored their own coordinates — a row northing and a list of eastings — because the plat module
+did not exist when they were written. It does now, so this parcel authors no coordinates at all:
+every metre comes from the committed lot polygons of the K7 grid. That removes a whole class of
+defect (the K7 slice found seven buildings standing in the middle of the road, put there by a
+recipe that had never asked where the road was) and it removes nothing from the uncertainty. The
+block face is derived from committed street control; **the side lot lines and the alley inside it
+are conjectural**, four lots to a face being a reading of ONE block. So a building here stands on
+a generated lot, which is not the same thing as a recovered one, and no lot is numbered: this
+project has never read Thompson's numbering off a sheet and will not start by implying one.
+
+**The frontage argument, stated so it can be disagreed with.** The two larger houses (H2, H1)
+are put on the Randolph face and the rougher dwellings (D1 log, D2 plank) on the Washington face,
+because Randolph is the through street of the pair in the module's own street hierarchy. That is
+a typology of frontage value, not a finding about this block, and it is the kind of claim that
+would be quietly persuasive if it were not written down here. The three yard buildings — a stable
+behind the merchant's house, a privy behind the other Randolph house, a woodshed behind the log
+dwelling — are reasons for a roof, not evidence for one.
+
+**The empty lot is a claim too.** One south-tier lot is left with nothing on it. Which lot is
+arbitrary; that a block of the 1835 town is not a completed terrace is the programme's own
+assumption of alternating vacancy, and filling all eight would have been the more confident and
+less defensible choice. The schedule's capacity is a ceiling, not a target.
+
+**One number moved to fit an archetype rather than a source.** The A3 privy's authored eave band
+runs 6–7 ft, and the bottom of it is below the height the implemented outbuilding needs to carry
+its own door plus a header — the generator is refused by name at 1.891 m. The sample is therefore
+taken from the part of the authored band the archetype can build, which puts this privy at
+2.07 m, inside its own band and beside the phase-one parcel's privies at 2.05 m. Nothing was
+raised out of its typology to make a check pass, and a family whose whole band sits under that
+floor fails loudly instead.
+
+**Consequence:** the town gains a block that reads as inhabited on two street faces, and ten more
+roofs whose presence, lot, position and footprint a visitor can see are interpretive — flagged
+massing in the confidence view, with the reasoning on the building card. The count moves 232 → 242
+standing against the 665-roof target; nothing about the remaining 423 changes, and the binding
+constraint stays coverage rather than recipes.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this
+block; a reading of Thompson's lot numbering from the sheets themselves would settle the lot
+lines and the alley, at which point the placements become measurable rather than merely legal.
+A named discovery substitutes for a compatible anonymous roof and never increases the total.
+
+**Covers:** `recon_1835_blk_randolph_wells_*.inferred_1835.position`,
+`recon_1835_blk_randolph_wells_*.inferred_1835.footprint`
+**Recorded:** 2026-08-14.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

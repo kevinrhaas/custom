@@ -59,6 +59,16 @@
         "source_id": { "type": "string" },
         "sequence": { "type": "integer", "minimum": 1 },
         "yard_group": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+
+        "block_id": { "type": "string", "pattern": "^blk_[a-z0-9_]+$",
+                      "description": "The platted block of the K7 grid this roof stands in. A GENERATED block, not a numbered one: the block face is derived from committed street control, and the side lot lines and the alley inside it are conjectural." },
+        "lot_index": { "type": "integer", "minimum": 0,
+                       "description": "Position in that block's generated lot list. It is an index into a derivation, NOT a lot number — this project has never read Thompson's numbering off a sheet, and writing one here would be inventing a citation." },
+        "stands_on": { "enum": ["street", "alley"],
+                       "description": "Which edge of its lot the building was placed off, and therefore which way it faces." },
+        "fronts": { "type": "string", "pattern": "^[a-z0-9_]+$",
+                    "description": "The street the lot fronts. A yard building off the alley still records its lot's frontage, because the yard belongs to that lot." },
+
         "finish_key": { "enum": ["fresh_timber", "weathered_timber", "whitewash", "ochre", "red_oxide", "mixed_patch"] },
         "roof_condition": { "enum": ["fresh", "darkened", "patched", "weathered"] },
         "age_state": { "enum": ["new", "recent", "established", "older_frontier"] }

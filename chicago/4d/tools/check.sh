@@ -43,6 +43,13 @@ step "North Division initial parcel matches its reviewed recipe" \
 step "West Division approaches parcel matches its recipe" \
   python3 tools/generate_west_infill.py --check
 
+# The block parcels are the same shape of derivation with one difference worth the
+# extra step: they author no coordinates at all. Every metre comes from the committed
+# lot polygons, so a hand-nudged building would show up here as drift rather than as a
+# plausible-looking number sitting beside a derived grid.
+step "platted block parcels match their recipe and the committed lots" \
+  python3 tools/generate_block_infill.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
