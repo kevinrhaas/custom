@@ -88,6 +88,101 @@ this building by twenty months.
 
 ---
 
+## The critic baseline — 2026-08-14
+
+**RENDERING G0.1 is in and G0.2's numeric half with it.** `tools/critic_shots.mjs` stands at
+eleven fixed stations — the eight scene anchors from `data/scenes/1835.json`, driven by the
+walkthrough's own `goTo` so the rig cannot drift from the viewpoints a visitor is offered,
+plus three re-established prairie-sweep stands — at both release viewports, with the animation
+clock held from before the render loop's second tick and the DOM chrome hidden.
+`tools/critic_metrics.mjs` reads the PNGs with no dependencies at all, which means the same
+code can measure a reference photograph and one of our frames. **That has never been true
+here before**, and it is the reason the numbers below are worth recording.
+
+**Read these as a baseline, not as a scoreboard.** Four things have to be said before the
+tables, or they will be quoted wrongly:
+
+1. **They are not comparable to the 2026-08-10 prairie sweep's figures.** That harness was
+   never committed and neither were its station coordinates, so both the code and the camera
+   positions are new. Where a §5 target was set from the sweep's implementation, the target
+   needs re-anchoring by measuring a reference photograph through THIS code — which is now a
+   one-line job and is not yet done.
+2. **The measurement conventions are the harness's own** and are stated in the head of
+   `tools/critic_metrics.mjs`: what counts as sky, how the land/sky line is found, the band
+   the horizon timber is looked for in, and how a crown pixel is identified. They are fixed so
+   that two rounds are comparable; they are not claims about 1835.
+3. **Flower load is only meaningful at the open-prairie stations.** In a frame with streets,
+   walls and roofs in it the denominator is not vegetation.
+4. **The crown metrics need a crown.** `from_above` reports them because the harness reports
+   everything, but 1,142 crown pixels in an aerial frame is not a canopy measurement.
+
+Both baseline runs were **11/11 byte-identical between two separate browser processes** at
+both viewports, and every station's pitch matched its declaration.
+
+**desktop 1280×800**
+
+| station | timber all | timber centre | crown fine | crown G−B | decile L | literal black px | RMS far/mid/near | flower load | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|
+| `sauganash` | 0.637 | 0.666 | 0.579 | 44.9 | 5.76 | 0 | 10.4 / 7.5 / 0.8 | 0.0301 | 65 / 332,455 |
+| `sauganash_wing` | 0.493 | 0.475 | 0.566 | 17.4 | 1.73 | 61 | 11.8 / 7.0 / 0.9 | 0.0383 | 66 / 376,563 |
+| `lake_market` | 0.518 | 0.588 | 0.550 | 24.6 | 3 | 0 | 12.0 / 5.8 / 1.1 | 0.0327 | 78 / 484,554 |
+| `first_post_office` | 0.847 | 0.937 | 0.552 | 12.2 | 5.35 | 11015 | 9.7 / 8.8 / 9.9 | 0.0004 | 66 / 393,698 |
+| `forks` | 0.739 | 0.784 | 0.725 | 35.1 | 25.58 | 0 | 10.0 / 7.1 / 11.4 | 0.0013 | 87 / 596,618 |
+| `green_tree` | 0.731 | 0.735 | 0.670 | 20.3 | 30.88 | 0 | 12.9 / 5.3 / 0.9 | 0.0017 | 91 / 553,498 |
+| `south_water` | 0.889 | 0.903 | 1.004 | 27.4 | 2.95 | 0 | 17.0 / 26.7 / 30.1 | 0.0575 | 85 / 570,718 |
+| `from_above` | 0.212 | 0.180 | 0.830 | 0.2 | 28.24 | 0 | 3.8 / 6.7 / 9.7 | 0.0019 | 67 / 433,090 |
+| `prairie_south` | 0.364 | 0.340 | 0.682 | 27.8 | 3.27 | 2315 | 14.8 / 5.0 / 8.7 | 0.0031 | 73 / 512,018 |
+| `prairie_west` | 0.832 | 0.850 | 0.629 | 24.1 | 13.67 | 0 | 14.4 / 21.8 / 27.7 | 0.0012 | 97 / 618,686 |
+| `river_bank` | 0.641 | 0.719 | 0.740 | 47.9 | 0.93 | 12063 | 13.2 / 23.9 / 29.9 | 0.0022 | 56 / 371,691 |
+
+**mobile 390×780**
+
+| station | timber all | timber centre | crown fine | crown G−B | decile L | literal black px | RMS far/mid/near | flower load | draws / triangles |
+|---|---|---|---|---|---|---|---|---|---|
+| `sauganash` | 0.756 | 0.823 | 0.572 | 26.3 | 19.49 | 0 | 13.5 / 1.6 / 0.3 | 0.0042 | 62 / 330,283 |
+| `sauganash_wing` | 0.667 | 0.592 | 0.625 | 22.5 | 18.78 | 0 | 13.4 / 1.6 / 0.4 | 0.0092 | 63 / 323,946 |
+| `lake_market` | 0.697 | 0.719 | 0.597 | 15.9 | 15.21 | 0 | 13.3 / 2.0 / 0.4 | 0.0177 | 66 / 377,012 |
+| `first_post_office` | 0.919 | 0.989 | 0.541 | 21.1 | 5.26 | 1763 | 14.7 / 9.4 / 0.4 | 0.0001 | 60 / 386,536 |
+| `forks` | 0.749 | 0.731 | 1.337 | 37.5 | 23.42 | 0 | 11.6 / 11.8 / 10.6 | 0 | 82 / 573,840 |
+| `green_tree` | 0.767 | 0.746 | 0.740 | 23.6 | 39.46 | 0 | 6.2 / 1.2 / 0.5 | 0.0002 | 88 / 537,659 |
+| `south_water` | 0.836 | 0.811 | 0.755 | 35.9 | 7.54 | 0 | 24.1 / 33.9 / 25.1 | 0.0128 | 83 / 550,065 |
+| `from_above` | 0.156 | 0.192 | 0.774 | 4.2 | 25.33 | 0 | 6.3 / 11.9 / 10.5 | 0.0012 | 61 / 377,201 |
+| `prairie_south` | 0.467 | 0.492 | 0.612 | 30.8 | 13.76 | 267 | 10.3 / 12.9 / 8.1 | 0.0018 | 71 / 476,074 |
+| `prairie_west` | 0.679 | 0.696 | 0.772 | 24.1 | 10.65 | 0 | 21.0 / 30.8 / 19.6 | 0.0003 | 94 / 605,366 |
+| `river_bank` | 0.713 | 0.773 | 0.814 | 40.3 | 2.77 | 2154 | 21.9 / 33.2 / 6.0 | 0.0004 | 49 / 365,353 |
+
+**What the baseline says, against the RENDERING §5 targets.**
+
+- **Horizon timber coverage is short of 90 % nearly everywhere** — 0.21 to 0.89 desktop, best
+  at `first_post_office` (0.847) and worst looking down at the town from the air. § 1 item 5
+  stands, and R-W4 owns it.
+- **Shadows still clip to literal black.** 12,063 pure `(0,0,0)` pixels at `river_bank`,
+  11,015 at `first_post_office`, 2,315 at `prairie_south` on desktop, and the darkest decile
+  runs as low as **L 0.93** against the § 5 floor of **L ≥ 14**. § 1 item 7 stands, and R-W1
+  owns it.
+- **Sunlit crowns are no longer blue.** G−B is positive at every station (+0.2 to +47.9), well
+  clear of the ≥ +10 target at nine of eleven, where the sweep measured −19 to −26. The colour
+  bugs fixed on 2026-08-11 are the reason; this is the first measurement that says so.
+- **Grain still collapses with depth, but not uniformly** — `sauganash` reads 10.4 / 7.5 / 0.8
+  far/mid/near on desktop, `river_bank` 13.2 / 23.9 / 29.9. The stations that look down a
+  street or across water hold their grain; the ones looking over open sward lose it. § 1 item
+  4 stands.
+- **Flower load at the prairie stations is 0.0031 and 0.0012** against the honest 4–6 %
+  target. Two orders of magnitude short, and the number is now on the record rather than in an
+  argument.
+- **Draw calls exceed the ≤ 80 budget at four stations** — `prairie_west` 97 desktop / 94
+  mobile, `green_tree` 91/88, `forks` 87/82, `south_water` 85/83. **This is new information,
+  not a new fault**: the budget has only ever been measured at the spawn station, where it
+  passes at 65/62, so nobody had stood anywhere else with the counter running. Recorded in
+  ROADMAP against R-W5, which owns the draw-call work.
+
+**What is NOT in this baseline, stated plainly.** The 8-axis rubric score G0.2 also asks for is
+**not run**. The protocol requires a critic that did not write the code under review, and the
+run that built the harness cannot be that critic without making the score meaningless. It is
+parcelled as ROADMAP **R-G1** and the baseline is incomplete until it lands.
+
+---
+
 ## What exists and works
 
 | thing | state |
