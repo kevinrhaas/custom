@@ -1078,3 +1078,60 @@ kbd {
      map into sliders and search results. Desktop keeps both columns visible. */
   .hud.panel-open .navigation-stack { visibility: hidden; }
 }
+
+/* ---- the confidence control's second half ------------------------------- */
+/* Colouring by evidence and hiding a level are one enquiry at two depths, so
+   they share a control: the chip toggles the colour, the caret opens this. The
+   two buttons are welded into one pill so the pair reads as a single thing
+   rather than as a chip that grew a neighbour. */
+.chip-group { position: relative; display: flex; align-items: stretch; }
+.chip-group > .chip:first-child { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.chip-group > .chip-more {
+  border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 0;
+  width: 26px; min-width: 26px; padding: 8px 0; font-size: 11px;
+}
+.chip-group > .chip-more[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+/* A dot on the caret when a level is hidden. Hiding changes what the town IS,
+   and a control that quietly removes two thirds of the buildings has to say so
+   while the panel is shut. */
+.chip-group.has-hidden > .chip-more::after {
+  content: ''; position: absolute; top: 5px; right: 5px; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--accent);
+}
+
+.confidence-menu {
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
+  width: 268px; padding: 12px; border-radius: 12px;
+  background: var(--panel-solid); border: 1px solid var(--edge);
+  box-shadow: var(--shadow); color: var(--ink);
+}
+.confidence-menu[hidden] { display: none; }
+.cm-title {
+  margin: 0 0 8px; font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent);
+}
+.cm-row {
+  display: grid; grid-template-columns: 16px 12px 1fr auto; gap: 8px;
+  align-items: center; padding: 5px 0; cursor: pointer; font-size: 13px;
+}
+.cm-sw { width: 12px; height: 12px; border-radius: 3px; display: block; }
+.sw-att { background: var(--doc); }
+.cm-count { color: var(--ink-dim); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.cm-row input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; }
+/* An unticked row is what is NOT in the view, so it reads as absent. */
+.cm-row:has(input:not(:checked)) .cm-label,
+.cm-row:has(input:not(:checked)) .cm-count { color: var(--ink-dim); opacity: .55; }
+.cm-row:has(input:not(:checked)) .cm-sw { opacity: .3; }
+.cm-note { margin: 8px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--ink-dim); }
+.cm-reset {
+  margin-top: 10px; width: 100%; padding: 7px 10px; border-radius: 8px;
+  background: transparent; border: 1px solid var(--edge); color: var(--ink);
+  font: inherit; font-size: 12.5px; cursor: pointer;
+}
+.cm-reset:hover { border-color: var(--accent); color: var(--accent); }
+
+/* On a phone the panel is nearly as wide as the screen, so it anchors to the
+   viewport rather than to a 26 px caret hanging off the right edge. */
+@media (max-width: 520px) {
+  .confidence-menu { width: min(280px, calc(100vw - 24px)); right: -8px; }
+}

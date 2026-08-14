@@ -125,6 +125,11 @@ PY
 # and NOTHING on an invented structure may outrank the invention that put it
 # there. That last rule is the one that mattered: without it, 158 buildings that
 # never existed graded their wall heights as evidence and rendered solid.
+# The invented names, re-derived. Deterministic from each person's id, so a name
+# that changed without the pools or the generator changing is a real finding.
+step "the reconstructed residents' invented names re-derive" \
+  python3 tools/generate_inferred_names.py --check
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

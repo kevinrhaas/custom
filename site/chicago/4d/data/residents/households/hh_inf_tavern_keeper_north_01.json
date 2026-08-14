@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_tavern_keeper_north_01",
- "name": "An inferred tavern keeper's household (north division)",
+ "name": "The Dufresne household — an inferred tavern keeper (north division)",
  "division": "north",
  "head": "inf_tavern_keeper_north_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_tavern_keeper_north_01",
-   "name": "A tavern keeper (inferred resident, unnamed)",
+   "name": "Louis Dufresne",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -60,7 +60,16 @@
     ],
     "note": "Seven tavern and hotel keepers are documented and the schedule allows ten inn or tavern roofs. One further keeper is inferred, for the single anonymous T1 roof the North Division parcel placed - a small inn on the north side, which the documented layer does not reach."
    },
-   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 TAVERN KEEPER HOUSEHOLDS THIS LAYER INFERS. Seven tavern and hotel keepers are documented and the schedule allows ten inn or tavern roofs. One further keeper is inferred, for the single anonymous T1 roof the North Division parcel placed - a small inn on the north side, which the documented layer does not reach."
+   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 TAVERN KEEPER HOUSEHOLDS THIS LAYER INFERS. Seven tavern and hotel keepers are documented and the schedule allows ten inn or tavern roofs. One further keeper is inferred, for the single anonymous T1 roof the North Division parcel placed - a small inn on the north side, which the documented layer does not reach.",
+   "name_basis": {
+    "value": "invented from the French colonial and metis of the Detroit and Milwaukee country pool",
+    "confidence": "reconstructed",
+    "sources": [
+     "andreas_1884_v1",
+     "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "THE NAME IS INVENTED. No source names this resident, and this field is not a finding about anybody — it is a label so that a reconstructed household reads as a household rather than as a row in a table. It was drawn from the French colonial and metis of the Detroit and Milwaukee country pool in data/reconstruction/1835_invented_name_pools.json, which is seeded from the names of the 76 ATTESTED residents this project holds — real people, named from cited sources — so that an invented resident is named the way this town's documented residents were actually named rather than the way a story would name one. The community was drawn WITHOUT a weighting that any source supports. The proportions of the documented layer, which is overwhelmingly New England and New York with an older French colonial presence and a small Irish one. Applied to every trade for which no source speaks to who did the work. The evidence for the pool itself: The oldest continuously present community in this dataset and among the best attested. Beaubien appears three times among the named residents; recorded origins include 'Detroit and the Milwaukee trade, of a French colonial family', 'a French-descended trading family of the Detroit and Milwaukee country', and 'Detroit; his father an Irish officer in the British army, his mother Potawatomi'. The river and lake carrying trade of this place was worked by this community, which is why the boatman weighting below cites evidence rather than asserting a guess."
+   }
   }
  ],
  "touches_removal": false,

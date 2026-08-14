@@ -4178,7 +4178,7 @@ def arrival_bounds(value, precision: str):
 
 
 def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
-                         rep: Report) -> None:
+                         rep: Report, person: dict | None = None) -> None:
     """The accuracy vocabulary, and what each rung owes the reader."""
     if isinstance(grade, str) and grade.strip().lower() in RETIRED_GRADE_TERMS:
         rep.error(where, f"grade '{grade}' uses the term this programme was RENAMED AWAY FROM "
@@ -4204,14 +4204,45 @@ def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
         for sid in sources or []:
             if sid not in source_ids:
                 rep.error(where, f"source '{sid}' does not resolve in data/sources/")
-    else:  # inferred
+    else:  # reconstructed
         if not note:
-            rep.error(where, "an inferred person requires a note arguing the demonstrable need "
-                             "of the town that this resident fills")
+            rep.error(where, "a reconstructed person requires a note arguing the demonstrable "
+                             "need of the town that this resident fills")
         if sources:
-            rep.warn(where, "an inferred person is HYPOTHESISED and no source names them; "
+            rep.warn(where, "a reconstructed person is HYPOTHESISED and no source names them; "
                             "cite the evidence for the NEED in the note instead of attaching "
-                            "source_ids to the person, or promote the grade to derived")
+                            "source_ids to the person, or promote the grade to inferred")
+
+    # --- an invented name may never outrank the invention ---------------------
+    #
+    # The reconstructed residents carry invented names now, so that a
+    # reconstructed household reads as a household rather than as a row in a
+    # table. That is a real risk and this is what contains it: a made-up name is
+    # the single easiest way for an invention to be mistaken for a finding,
+    # because a name LOOKS like a fact in a way that "wall height 3.25 m" does
+    # not. So the name has to declare itself, at the bottom tier, always.
+    basis = (person or {}).get("name_basis")
+    if grade == "reconstructed":
+        if not isinstance(basis, dict):
+            rep.error(where, "a reconstructed person carries an INVENTED name and must carry a "
+                             "name_basis block saying so and naming the pool it came from "
+                             "(tools/generate_inferred_names.py writes it)")
+        else:
+            if basis.get("confidence") != "reconstructed":
+                rep.error(where, f"name_basis is graded '{basis.get('confidence')}' on an "
+                                 f"invented name. An invented name can never grade above "
+                                 f"reconstructed - that is the whole point of recording it")
+            if not (basis.get("note") or "").strip():
+                rep.error(where, "name_basis requires a note stating that the name is invented "
+                                 "and what bounds the invention")
+            for sid in basis.get("sources") or []:
+                if sid not in source_ids:
+                    rep.error(where, f"name_basis source '{sid}' does not resolve in "
+                                     f"data/sources/")
+    elif basis is not None:
+        rep.error(where, "name_basis belongs only on a reconstructed person. On an attested or "
+                         "inferred one the name comes from a source, and marking it as invented "
+                         "would understate what is known about a real person")
 
 
 def check_resident_link(where: str, key: str, node, structure_ids: set, rep: Report) -> None:
@@ -4336,7 +4367,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                                   f"vocabulary; omit the key where the sources do not say")
             grade = p.get("grade")
             check_resident_grade(pwhere, grade, p.get("sources") or [],
-                                 (p.get("note") or "").strip(), source_ids, rep)
+                                 (p.get("note") or "").strip(), source_ids, rep, p)
             if grade in grade_totals:
                 grade_totals[grade] += 1
                 local_grades[grade] = local_grades.get(grade, 0) + 1

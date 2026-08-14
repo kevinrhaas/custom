@@ -15,6 +15,7 @@ import { formatHeight, formatSpeed, formatStature, normalUnitSystem } from './un
 
 const THEME_KEY = 'chicago4d.theme';
 const CONF_KEY = 'chicago4d.confidence';
+const HIDE_KEY = 'chicago4d.confidence.hidden';
 const SET_KEY = 'chicago4d.settings';
 const CONTROL_HELP_KEY = 'chicago4d.controlHelpDismissed';
 
@@ -44,7 +45,7 @@ function store(key, value) {
 
 export function createHud({
   root, scene, registry, intersections = [], onConfidence, onFly, onHelp,
-  onSetting, onGoTo, isTouch, resolvedDetail = 'full',
+  onSetting, onGoTo, onHideLevel, isTouch, resolvedDetail = 'full',
 }) {
   const $ = (id) => root.querySelector(`#${id}`);
   const badgeYear = root.querySelector('.badge-year');
@@ -93,6 +94,95 @@ export function createHud({
   }
 
   btnConf?.addEventListener('click', () => setConfidence(!confidenceOn));
+
+  // ---- hiding a level ------------------------------------------------------
+  //
+  // The other half of the same control. Colouring answers "how sure are we";
+  // hiding answers "what is left if you keep only what somebody wrote down",
+  // and the second is the more searching question — turning off `reconstructed`
+  // empties most of this town. That is the honest picture of how much of 1835
+  // Chicago is recoverable, and it should be one click away rather than
+  // something only the dataset knows.
+  const LEVELS = ['attested', 'inferred', 'reconstructed'];
+  const confGroup = $('confidence-group');
+  const confMenu = $('confidence-menu');
+  const btnConfMore = $('btn-confidence-more');
+  let hiddenLevels = readHidden();
+
+  function readHidden() {
+    try {
+      const raw = JSON.parse(window.localStorage.getItem(HIDE_KEY) || '[]');
+      return new Set(Array.isArray(raw) ? raw.filter((l) => LEVELS.includes(l)) : []);
+    } catch { return new Set(); }
+  }
+
+  // How many structures sit at each level, counted from the loaded registry.
+  // A checkbox that says "Attested 12" and "Reconstructed 190" tells a visitor
+  // the shape of this dataset before they have clicked anything, and it is a
+  // number this project should lead with rather than bury.
+  function paintCounts() {
+    const tally = { attested: 0, inferred: 0, reconstructed: 0 };
+    for (const record of registry?.values?.() ?? []) {
+      const grade = record?.sidecar?.documented_range?.confidence;
+      if (grade in tally) tally[grade] += 1;
+    }
+    for (const level of LEVELS) {
+      const el = $(`cm-count-${level}`);
+      if (el) el.textContent = String(tally[level]);
+    }
+    return tally;
+  }
+
+  function paintHidden() {
+    for (const level of LEVELS) {
+      const box = $(`cm-${level}`);
+      if (box) box.checked = !hiddenLevels.has(level);
+    }
+    confGroup?.classList.toggle('has-hidden', hiddenLevels.size > 0);
+    store(HIDE_KEY, JSON.stringify([...hiddenLevels]));
+  }
+
+  function setHidden(level, hide, { announce = true } = {}) {
+    if (!LEVELS.includes(level)) return null;
+    if (hide) hiddenLevels.add(level); else hiddenLevels.delete(level);
+    paintHidden();
+    onHideLevel?.(level, hide);
+    if (announce) {
+      // Name what is GONE, not what was clicked: a visitor who has hidden two
+      // levels needs to know the town in front of them is partial.
+      const gone = LEVELS.filter((l) => hiddenLevels.has(l));
+      say(gone.length
+        ? `Hiding ${gone.join(' and ')} — what stands is only what the rest of the evidence supports`
+        : 'Showing every level again');
+    }
+    return hide;
+  }
+
+  function setConfMenu(open) {
+    if (!confMenu) return;
+    confMenu.toggleAttribute('hidden', !open);
+    btnConfMore?.setAttribute('aria-expanded', String(!!open));
+    if (open && document.pointerLockElement) document.exitPointerLock?.();
+  }
+
+  btnConfMore?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setConfMenu(confMenu?.hasAttribute('hidden'));
+  });
+  for (const level of LEVELS) {
+    $(`cm-${level}`)?.addEventListener('change', (e) => setHidden(level, !e.target.checked));
+  }
+  $('cm-reset')?.addEventListener('click', () => {
+    for (const level of LEVELS) setHidden(level, false, { announce: false });
+    say('Showing every level again');
+  });
+  // Click-away, but not click-inside: the panel holds three checkboxes a visitor
+  // will often want to toggle in one visit.
+  document.addEventListener('click', (e) => {
+    if (!confMenu || confMenu.hasAttribute('hidden')) return;
+    if (confGroup?.contains(e.target)) return;
+    setConfMenu(false);
+  });
 
   // ---- free-fly -----------------------------------------------------------
 
@@ -474,6 +564,15 @@ export function createHud({
     dismissControlHelp,
     get confidenceOn() { return confidenceOn; },
     setConfidence,
+    get hiddenLevels() { return [...hiddenLevels]; },
+    setHidden,
+    /** Push the stored choice into the renderer at boot, without announcing it. */
+    applyHidden() {
+      paintCounts();
+      paintHidden();
+      for (const level of LEVELS) onHideLevel?.(level, hiddenLevels.has(level));
+      return [...hiddenLevels];
+    },
     get flying() { return flying; },
     setFly,
     setAltitude,

@@ -128,9 +128,12 @@ def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = 
         "note": ("HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is "
                  "claimed to: the record asserts that a town of 3,265 people in 398 dwellings "
                  "held at least this many households of this trade, and asserts nothing whatever "
-                 "about any individual. The name field carries a designation because inventing a "
-                 "surname would make this record indistinguishable at a glance from the "
-                 "documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). " + why),
+                 "about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says "
+                 "so and says which pool it came from: this record used to carry a bare "
+                 "designation instead, on the reasoning that a surname would make it look like "
+                 "the documented layer, but a town of designations does not read as a town and "
+                 "the grade, this note and name_basis all say plainly which layer this is. "
+                 "No figure is drawn (docs/LIBERTIES.md L1). " + why),
     }
     if occ in ("laundress", "domestic"):
         p["sex"] = "female"
@@ -752,6 +755,21 @@ def main() -> int:
                         help="report missing, changed, or extra outputs")
     args = parser.parse_args()
     files, records, households = build_all()
+
+    # The naming pass runs AFTER this programme and edits the same household
+    # files: it gives every reconstructed resident an invented name and a
+    # name_basis (tools/generate_inferred_names.py, roadmap K18). Comparing this
+    # programme's raw output against the tree would therefore report all eighty
+    # households as drift on every run, which would train everyone to ignore a
+    # real drift report. So the pipeline is modelled as it actually is — build,
+    # then name — and the comparison is made against the end of it.
+    if args.check:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "gen_names", Path(__file__).with_name("generate_inferred_names.py"))
+        gen_names = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gen_names)
+        files = gen_names.overlay(files)
 
     drift = []
     for path, text in sorted(files.items()):

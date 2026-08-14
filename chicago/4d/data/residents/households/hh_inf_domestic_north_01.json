@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_domestic_north_01",
- "name": "An inferred domestic's household (north division)",
+ "name": "The Brady household — an inferred domestic (north division)",
  "division": "north",
  "head": "inf_domestic_north_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_domestic_north_01",
-   "name": "A domestic (inferred resident, unnamed)",
+   "name": "Bridget Brady",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -57,8 +57,17 @@
     ],
     "note": "The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one."
    },
-   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 DOMESTIC HOUSEHOLDS THIS LAYER INFERS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her.",
-   "sex": "female"
+   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 4 DOMESTIC HOUSEHOLDS THIS LAYER INFERS. The same argument and the same silence. Four domestic households are inferred as households in their own right rather than as servants attached to named families, because attaching an invented servant to a documented household would put a fabricated person inside a real one. SEX IS STATED HERE AND NOWHERE ELSE IN THIS LAYER: the argument for the trade is explicitly an argument about women's work, so recording the person as male would contradict the reasoning that produced her.",
+   "sex": "female",
+   "name_basis": {
+    "value": "invented from the Irish pool",
+    "confidence": "reconstructed",
+    "sources": [
+     "andreas_1884_v1",
+     "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "THE NAME IS INVENTED. No source names this resident, and this field is not a finding about anybody — it is a label so that a reconstructed household reads as a household rather than as a row in a table. It was drawn from the Irish pool in data/reconstruction/1835_invented_name_pools.json, which is seeded from the names of the 76 ATTESTED residents this project holds — real people, named from cited sources — so that an invented resident is named the way this town's documented residents were actually named rather than the way a story would name one. The community was drawn WITHOUT a weighting that any source supports. Same reasoning as labourer: the association is real later and not yet established here. The evidence for the pool itself: Present in the documented layer but thinly: one attested resident's origin is given as 'County Kerry, Ireland, by way of Lancashire, Dublin, Quebec, Montreal, New York, Virginia and Newark', and the attested surnames Egan and Casey belong to this stock. THE WEIGHTING TOWARD LABOURING TRADES IS ITSELF AN INFERENCE and is marked as such wherever it is applied: the Illinois and Michigan Canal contracts were not let until 1836, so the large Irish labouring population of the later 1830s is arriving around and after the scene date rather than established by it. What the pool claims is that Irish names belong in this town on 1 July 1835, which the documented layer supports; it does not claim any particular trade was Irish."
+   }
   }
  ],
  "touches_removal": false,

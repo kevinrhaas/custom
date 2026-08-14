@@ -415,6 +415,61 @@ originally written, which is now about PAYLOAD rather than frame cost and is muc
 since the published tree fell to 10.78 MB (see the meshopt fix of the same day).
 **The payload figure quoted above is stale** — 19.16 MB was measured when the anonymous roofs
 were placeholder massing and every web derivative was an uncompressed copy of its master.
+### K18 — The invented residents have names · **DONE 2026-08-14**
+
+Every reconstructed resident used to read "A baker (inferred resident, unnamed)", and the record
+argued for it: an invented surname would make the entry indistinguishable at a glance from the
+documented layer beside it. That is sound about the DATA and wrong about the TOWN — a place
+where most households are called "an inferred cooper's household" reads as a spreadsheet, not a
+town. The owner asked for names.
+
+**What bounds the invention.** The pools in `data/reconstruction/1835_invented_name_pools.json`
+are seeded from the **76 ATTESTED residents this project already holds** — real people, named
+from cited sources — so an invented cooper is named the way this town's real coopers were named
+rather than the way a novel would name one. Three communities, each with the evidence that puts
+it here: New England and New York (the documented origins run Vermont, Connecticut, New York),
+French colonial and metis of the Detroit and Milwaukee country (Beaubien appears three times
+among the named residents), and Irish (one attested origin in County Kerry; Egan and Casey).
+
+**Where a weighting is itself a guess, it says so.** Boatmen draw French colonial ON EVIDENCE —
+the carrying trade of this river was worked by that community. Labourers draw EVENLY, and the
+note explains why: the Irish labouring Chicago of popular memory arrives with the canal
+contracts of **1836**, after this scene, so weighting 1835 labourers Irish would be importing a
+later decade into this one.
+
+**What stops it becoming a laundering route.** A name looks like a fact in a way "wall height
+3.25 m" does not, which makes it the easiest way for an invention to be mistaken for a finding.
+So: every reconstructed person carries a `name_basis` block, graded `reconstructed`, whose note
+opens "THE NAME IS INVENTED"; `validate.py` **errors** if a reconstructed person lacks one, if
+its grade is anything better, or if an attested person carries one at all (their name comes from
+a source and marking it invented would understate what is known about a real person). Three
+self-tests hold all three directions. Assignment is deterministic from the person's id and
+`check.sh` re-derives it, so a name that moved without the pools moving is a finding.
+
+Names are **dealt** round each pool rather than drawn independently: independent draws put four
+unrelated households under "Lyman" and four under "Gilbert", and a shared surname reads as
+kinship this layer claims nothing about. 61 distinct surnames across 92 people.
+
+### K17 — Hiding a level, folded into the confidence control · **DONE 2026-08-14**
+
+The confidence chip coloured the town by evidence. It now also has a caret, and behind it three
+checkboxes: **Attested 11 · Inferred 69 · Reconstructed 162**, counted from the loaded registry
+rather than written down. Turning one off removes it from the view outright.
+
+**Hiding is deliberately independent of the colouring.** They are two questions and the second
+is the more searching one: colouring asks how sure we are, hiding asks *what is left if you keep
+only what somebody wrote down*. Tying it to the colour mode would mean you could only ask it
+while the whole town was amber and dithered, and the answer reads far better in daylight. Turn
+off `reconstructed` and most of the town vanishes. That is the honest picture of how much of
+1835 Chicago is recoverable, it is not a comfortable thing for this project to show, and it is
+now one click away.
+
+Implemented as one `uHideLevel` uniform banded from the same thresholds as `levelOf()`, so the
+shader and the labels cannot disagree about which level a fragment is in. The choice persists,
+is applied before the first frame (a returning visitor should not watch the hidden town flash
+in), and the caret carries a dot while anything is hidden — a control that quietly removes two
+thirds of the buildings has to say so while its panel is shut.
+
 ### K19 — The town shipped as 242 two-metre boxes, and the gate was green · **DONE 2026-08-13**
 
 > **DONE.** Fixed in `buildings.js` + `terrain.js`; new gates in `smoke_renderer.mjs`; the trap
@@ -554,7 +609,13 @@ are re-derived byte for byte · `renderers/web/js/confidence.js` · the Evidence
 **Do not rewrite the historical prose in `docs/STATUS.md` or shipped changelog entries** — they
 are a record of what was said at the time.
 
-### K17 — Confidence view: dither the roofs, and let a level be switched off · **SPECIFIED, unclaimed**
+### K17 (spec) — Confidence view: dither the roofs, and let a level be switched off · **DISCHARGED 2026-08-14**
+
+> Built. The roof half landed with K20b, which made the whole of a reconstructed building
+> dither together — walls, roof, trim and chimney — rather than leaving a ghost with a solid
+> chimney on it. The switch-a-level-off half is the K17 entry above. The original spec is kept
+> below because it is what was asked for and the entry above is what was built.
+
 
 Depends on K16's vocabulary. Three things the owner asked for on 2026-08-13:
 
@@ -576,7 +637,11 @@ individual attributes — a building whose position is derived but whose roof pi
 one building, and it has to be somewhere. Decide and write down which attribute governs an
 object's visibility (existence, surely) before building the control.
 
-### K18 — Invent period-appropriate names for inferred residents · **SPECIFIED, unclaimed**
+### K18 (spec) — Invent period-appropriate names for inferred residents · **DISCHARGED 2026-08-14**
+
+> Built — see the K18 entry above for the pools, the weighting and the validator rule that
+> keeps an invented name from ever grading above the invention. Spec kept for the record.
+
 
 The owner, 2026-08-13: *"for inferred people you can invent/create period appropriate names for
 them… of course it's one of the inferences so I'm sure it will be clear… use whatever historical

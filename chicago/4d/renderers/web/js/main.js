@@ -279,6 +279,8 @@ async function boot() {
     onConfidence: (on) => confidence.set(on),
     onFly: (on) => { intent.flying = !!on; },
     onGoTo: (target) => goToTarget(target),
+    // Hiding a level removes it from the view outright — see confidence.setHidden.
+    onHideLevel: (level, hide) => confidence.setHidden(level, hide),
     onSetting: (key, value) => {
       if (key === 'speed') {
         // Keep the run multiplier the walker was tuned with rather than pinning
@@ -362,6 +364,10 @@ async function boot() {
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.
+  // The visitor's stored level choices, before the first frame — otherwise a
+  // returning visitor who had hidden the reconstructed town sees it flash in.
+  hud.applyHidden();
+
   WALK.speed = hud.settings.speed;
   WALK.sprintSpeed = hud.settings.speed * 2.28;
   WALK.eyeHeight = hud.settings.eyeHeight;
@@ -616,6 +622,7 @@ async function boot() {
 
   Object.assign(api, {
     renderer, camera, scene3d, world, terrain, buildings, walker, intent, popup, hud,
+    confidence,
     backends, streets, flora, trees, navigation,
     // Where the dataset was loaded from, so a gate can re-read an authored
     // record and ask whether what it says reached the renderer — rather than

@@ -2592,6 +2592,13 @@ def _resident_person(**kw) -> dict:
          "occupation": {"value": "cooper", "confidence": "attested",
                         "sources": ["s1"], "note": "s1 names the trade"}}
     p.update(kw)
+    # A reconstructed person's NAME is invented, and the validator requires the
+    # record to say so. The fixture supplies it by default so that tests about
+    # other things are not all about this one; the tests that are about it pass
+    # name_basis explicitly.
+    if p.get("grade") == "reconstructed" and "name_basis" not in kw:
+        p["name_basis"] = {"value": "invented from a pool", "confidence": "reconstructed",
+                           "sources": ["s1"], "note": "THE NAME IS INVENTED."}
     return p
 
 
@@ -2729,6 +2736,32 @@ def test_the_accuracy_grade_is_a_closed_vocabulary_and_recommended_is_gone() -> 
             persons=[_resident_person(grade=g, sources=["s1"] if g == "attested" else [],
                                       note="the reasoning")])])
         check(f"grade '{g}' is accepted", not rep.errors, rep.errors)
+
+    # --- an invented name may never outrank the invention --------------------
+    #
+    # The reconstructed residents carry invented names so the town reads as a
+    # town. A name looks like a fact in a way a wall height does not, so it is
+    # the easiest route by which an invention could be mistaken for a finding.
+    # These three hold that shut.
+    rep = _run_residents([_resident_household(persons=[
+        _resident_person(grade="reconstructed", sources=[], note="the town needed one",
+                         name_basis=None)])])
+    check("a reconstructed person without a name_basis is an error",
+          any("name_basis" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(persons=[
+        _resident_person(grade="reconstructed", sources=[], note="the town needed one",
+                         name_basis={"value": "x", "confidence": "attested",
+                                     "sources": ["s1"], "note": "invented"})])])
+    check("an invented name cannot claim to be attested",
+          any("can never grade above" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents([_resident_household(persons=[
+        _resident_person(grade="attested",
+                         name_basis={"value": "x", "confidence": "reconstructed",
+                                     "sources": ["s1"], "note": "invented"})])])
+    check("an attested person may not carry a name_basis",
+          any("belongs only on a reconstructed person" in e for e in rep.errors), rep.errors)
 
 
 def test_each_grade_owes_what_it_claims() -> None:

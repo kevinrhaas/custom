@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_packer_south_01",
- "name": "An inferred packer's household (south division)",
+ "name": "The Newell household — an inferred packer (south division)",
  "division": "south",
  "head": "inf_packer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_packer_south_01",
-   "name": "A packer (inferred resident, unnamed)",
+   "name": "Erastus Newell",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -60,7 +60,16 @@
     ],
     "note": "One packer is documented. The two slaughter-houses in this dataset killed and packed several thousand animals between them in two seasons, work done by gangs and not by one man; one further packing household is inferred beside the South Branch plant."
    },
-   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. The name field carries a designation because inventing a surname would make this record indistinguishable at a glance from the documented layer beside it. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 PACKER HOUSEHOLDS THIS LAYER INFERS. One packer is documented. The two slaughter-houses in this dataset killed and packed several thousand animals between them in two seasons, work done by gangs and not by one man; one further packing household is inferred beside the South Branch plant."
+   "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 1 PACKER HOUSEHOLDS THIS LAYER INFERS. One packer is documented. The two slaughter-houses in this dataset killed and packed several thousand animals between them in two seasons, work done by gangs and not by one man; one further packing household is inferred beside the South Branch plant.",
+   "name_basis": {
+    "value": "invented from the New England and New York pool",
+    "confidence": "reconstructed",
+    "sources": [
+     "andreas_1884_v1",
+     "owner_chicago_1835_reconstruction_spec_2026"
+    ],
+    "note": "THE NAME IS INVENTED. No source names this resident, and this field is not a finding about anybody — it is a label so that a reconstructed household reads as a household rather than as a row in a table. It was drawn from the New England and New York pool in data/reconstruction/1835_invented_name_pools.json, which is seeded from the names of the 76 ATTESTED residents this project holds — real people, named from cited sources — so that an invented resident is named the way this town's documented residents were actually named rather than the way a story would name one. The community was drawn WITHOUT a weighting that any source supports. The proportions of the documented layer, which is overwhelmingly New England and New York with an older French colonial presence and a small Irish one. Applied to every trade for which no source speaks to who did the work. The evidence for the pool itself: The dominant documented group in this dataset by a wide margin. Attested origins among the named residents include Vermont (three households), Washington County Vermont, Burlington, Connecticut by way of Detroit, Sackett's Harbor New York, Guilford Vermont, and 'New England'. Attested surnames of this stock in the town include Harmon, Taylor, Brown, Davis, Porter, Wright, Blodgett, Carpenter, Carver, Caton, Calhoun, Peck, Dole, Newberry and Bates."
+   }
   }
  ],
  "touches_removal": false,

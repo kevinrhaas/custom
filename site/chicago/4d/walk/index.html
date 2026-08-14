@@ -58,7 +58,7 @@
     <p class="gate-keys gate-touch">
       Left thumb to walk · drag the right side to look · tap a building to inspect
     </p>
-    <p class="gate-build" id="gate-build">build 96eb30a · Aug 13, 2026, 7:24 PM CT</p>
+    <p class="gate-build" id="gate-build">build 9b625ff · Aug 13, 2026, 8:38 PM CT</p>
   </div>
 </div>
 <div id="hud" class="hud" hidden>
@@ -66,9 +66,34 @@
     <div class="badge" id="year-badge"><span class="badge-year">1835</span><span class="badge-sub">1 July</span><span
       class="badge-alt" id="badge-alt" hidden></span></div>
     <div class="hud-actions">
-      <button id="btn-confidence" class="chip" aria-pressed="false" title="Recolour the scene by evidence quality">
-        <span class="dot dot-conf"></span> <span class="chip-label">Confidence</span>
-      </button>
+      <!-- One control, two questions. The chip toggles the colouring; the caret
+           opens the panel where a whole level can be removed from the view.
+           They belong together: "how sure are we" and "what is left if you keep
+           only what somebody wrote down" are the same enquiry at two depths. -->
+      <div class="chip-group" id="confidence-group">
+        <button id="btn-confidence" class="chip" aria-pressed="false" title="Recolour the scene by evidence quality (C)">
+          <span class="dot dot-conf"></span> <span class="chip-label">Confidence</span>
+        </button>
+        <button id="btn-confidence-more" class="chip icon chip-more" aria-expanded="false"
+          aria-controls="confidence-menu" title="Choose which levels of evidence to show">▾</button>
+        <div class="confidence-menu" id="confidence-menu" role="group"
+          aria-label="Which levels of evidence to show" hidden>
+          <p class="cm-title">Show only what is</p>
+          <label class="cm-row"><input type="checkbox" id="cm-attested" checked>
+            <span class="cm-sw sw-att"></span><span class="cm-label">Attested</span>
+            <span class="cm-count" id="cm-count-attested"></span></label>
+          <label class="cm-row"><input type="checkbox" id="cm-inferred" checked>
+            <span class="cm-sw sw-inf"></span><span class="cm-label">Inferred</span>
+            <span class="cm-count" id="cm-count-inferred"></span></label>
+          <label class="cm-row"><input type="checkbox" id="cm-reconstructed" checked>
+            <span class="cm-sw sw-rec"></span><span class="cm-label">Reconstructed</span>
+            <span class="cm-count" id="cm-count-reconstructed"></span></label>
+          <p class="cm-note" id="cm-note">Turning a level off removes it from the view
+            entirely. It works with the colouring off too — that is how you see what is
+            left of the town when only the recorded parts stand.</p>
+          <button type="button" class="cm-reset" id="cm-reset">Show everything</button>
+        </div>
+      </div>
       <button id="btn-fly" class="chip" aria-pressed="false" title="Free-fly — rise above the town (F)">
         <span class="fly-glyph" aria-hidden="true">▲</span> <span class="chip-label" id="fly-label">Fly</span>
       </button>

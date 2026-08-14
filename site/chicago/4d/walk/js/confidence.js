@@ -67,6 +67,9 @@ const FRAGMENT_DECL = /* glsl */`
 varying float vConfidence;
 uniform float uConfMode;
 uniform float uReconAlpha;
+// One component per level — x attested, y inferred, z reconstructed — 1.0 to
+// hide. See setHidden() for why hiding is independent of the colour mode.
+uniform vec3 uHideLevel;
 uniform vec3 uInferredTint;
 uniform vec3 uReconTint;
 
@@ -94,6 +97,24 @@ float chicago_wRecon(float c) { return clamp((c - 0.75) * 4.0, 0.0, 1.0); }
 `;
 
 const FRAGMENT_DISCARD = /* glsl */`
+  // HIDING A LEVEL, and it is deliberately not conditional on uConfMode.
+  //
+  // Colouring by evidence and removing what is not evidenced are two different
+  // questions, and the second is the more searching one: it answers "show me
+  // only the Chicago somebody actually wrote down", which is this dataset's
+  // strongest claim about itself. Tying it to the colour mode would mean you
+  // could only ask it while the whole town was amber and dithered, and the
+  // answer is far more legible in ordinary daylight.
+  //
+  // Banded from the same thresholds as levelOf() so the shader and the labels
+  // cannot disagree about which level a fragment is in.
+  float lvlI = step(0.25, vConfidence);
+  float lvlR = step(0.75, vConfidence);
+  float hide = uHideLevel.x * (1.0 - lvlI)
+             + uHideLevel.y * lvlI * (1.0 - lvlR)
+             + uHideLevel.z * lvlR;
+  if (hide > 0.0) discard;
+
   // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
   // bad value cannot reach the arithmetic at all when the view is switched off.
   if (uConfMode > 0.0) {
@@ -128,6 +149,7 @@ export function createConfidenceView({
   const uniforms = {
     uConfMode: { value: 0 },
     uReconAlpha: { value: inferredAlpha },
+    uHideLevel: { value: new THREE.Vector3(0, 0, 0) },
     // ONE conversion, not two — and here it matters more than anywhere else in
     // the renderer, because these two colours are the confidence view itself.
     //
@@ -219,6 +241,9 @@ export function createConfidenceView({
   }
 
   let enabled = false;
+  const hidden = { attested: false, inferred: false, reconstructed: false };
+  const AXIS = { attested: 'x', inferred: 'y', reconstructed: 'z' };
+
   return {
     uniforms,
     patch,
@@ -232,5 +257,31 @@ export function createConfidenceView({
       return enabled;
     },
     toggle() { return this.set(!enabled); },
+
+    /**
+     * Remove everything at one level from the view.
+     *
+     * The other half of the confidence control, and the half that answers the
+     * harder question. Colouring says how sure we are; hiding says what is left
+     * if you keep only what somebody wrote down. Turning off `reconstructed`
+     * empties most of the town, which is the honest picture of how much of 1835
+     * Chicago is recoverable and is not a comfortable thing for this project to
+     * show — which is exactly why it should be one click away.
+     *
+     * It works with the colour mode off, on purpose: the answer reads far better
+     * in ordinary daylight than through an amber filter.
+     */
+    setHidden(level, on) {
+      if (!(level in hidden)) return null;
+      hidden[level] = !!on;
+      uniforms.uHideLevel.value[AXIS[level]] = hidden[level] ? 1 : 0;
+      return hidden[level];
+    },
+    get hidden() { return { ...hidden }; },
+    /** Everything visible again — what the reset affordance calls. */
+    showAll() {
+      for (const level of Object.keys(hidden)) this.setHidden(level, false);
+      return this.hidden;
+    },
   };
 }

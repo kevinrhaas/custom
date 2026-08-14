@@ -343,6 +343,127 @@ for (const [label, viewport, touch] of [
       dBack.mean <= 0.1 && dBack.worst <= 3,
       `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
 
+    // --- the invented residents have names now (K18) ------------------------
+    //
+    // Every reconstructed resident used to be "A baker (inferred resident,
+    // unnamed)". They carry invented names so a reconstructed household reads
+    // as a household — and a name LOOKS like a fact in a way a wall height does
+    // not, so the record has to declare it. What is pinned here is that the
+    // walkthrough SHOWS the declaration: a visitor who reads a name must be able
+    // to see, in the same card, that we made it up.
+    const invented = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const res = await fetch(new URL('residents/index.json', api.dataBase));
+      const index = await res.json();
+      const row = index.households.find((h) => h.id.startsWith('hh_inf_'));
+      const hh = await (await fetch(new URL(`residents/${row.file}`, api.dataBase))).json();
+      const person = hh.persons.find((p) => p.grade === 'reconstructed');
+      return {
+        household: hh.name,
+        name: person?.name,
+        basisGrade: person?.name_basis?.confidence,
+        basisNote: (person?.name_basis?.note || '').slice(0, 60),
+        grades: index.vocabulary.grades,
+      };
+    });
+    check(`${label}: a reconstructed resident has an invented period name`,
+      /^[A-Z][a-z]+ [A-Z]/.test(invented.name ?? '')
+      && !/unnamed|inferred resident/i.test(invented.name ?? ''),
+      `name "${invented.name}"`);
+    check(`${label}: the invented name is graded as invented and says so`,
+      invented.basisGrade === 'reconstructed'
+      && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
+      `name_basis ${invented.basisGrade} — "${invented.basisNote}"`);
+    check(`${label}: the household is named for its head and still says which layer it is`,
+      /household/.test(invented.household ?? '')
+      && /inferred/.test(invented.household ?? ''),
+      `household "${invented.household}"`);
+
+    // --- hiding a level (K17) ----------------------------------------------
+    //
+    // The other half of the confidence control. Colouring asks how sure we are;
+    // hiding asks what is left if you keep only what somebody wrote down, and
+    // turning off `reconstructed` empties most of this town — which is the true
+    // shape of the evidence and the least comfortable thing the project can
+    // show. Three things have to hold: it must actually REMOVE geometry (not
+    // recolour it), it must work with the colouring OFF (the answer reads far
+    // better in daylight than through an amber filter), and it must survive a
+    // reload, because a visitor who hid a level and came back to a full town
+    // would reasonably conclude the control did nothing.
+    // Measured from ABOVE, because the difference has to be visible to be
+    // measurable: at eye level the frame is mostly prairie and one or two
+    // roofs, so removing 162 buildings barely moves a pixel signature. From the
+    // aerial anchor the reconstructed town IS the picture.
+    await page.evaluate(() => window.__chicago4d.setConfidenceView(false));
+    await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.goTo('from_above');
+      await new Promise((r) => setTimeout(r, 400));
+    });
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
+    const fullTown = await page.evaluate(() => window.__chicago4d.capture());
+    const hiddenState = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.hud.setHidden('reconstructed', true, { announce: false });
+      await new Promise((r) => setTimeout(r, 120));
+      const u = api.confidence.uniforms.uHideLevel.value;
+      return { uniform: [u.x, u.y, u.z], hidden: api.hud.hiddenLevels,
+               colouring: api.confidenceView,
+               marked: !!document.getElementById('confidence-group')
+                 ?.classList.contains('has-hidden'),
+               stored: window.localStorage.getItem('chicago4d.confidence.hidden') };
+    });
+    const thinnedTown = await page.evaluate(() => window.__chicago4d.capture());
+    const dHide = signatureDistance(fullTown, thinnedTown);
+    // Thresholds calibrated against this suite's own measured noise floor, not
+    // guessed: the "turning it off restores the render" check two blocks up
+    // treats mean <= 0.1 with worst <= 3 as readback noise on an unchanged
+    // frame. So worst >= 6 and mean >= 0.25 is comfortably a real change. The
+    // mean bar is lower than the colour test's because the shapes of the two
+    // effects differ — a tint moves every lit cell a little, while removing
+    // buildings moves the cells that HAD buildings a lot and leaves sky and
+    // prairie untouched. At 390x780 the frame is proportionally more sky, which
+    // is why a bar set for the desktop frame failed a mobile run that was
+    // showing the feature working perfectly.
+    check(`${label}: hiding a level removes it from the view`,
+      dHide.worst >= 6 && dHide.mean >= 0.25,
+      `cell delta mean ${dHide.mean?.toFixed(2)}, worst ${dHide.worst}`);
+    check(`${label}: hiding works with the colouring switched off`,
+      hiddenState.colouring === false
+      && JSON.stringify(hiddenState.uniform) === JSON.stringify([0, 0, 1]),
+      `colouring ${hiddenState.colouring}, uHideLevel ${hiddenState.uniform}`);
+    check(`${label}: a hidden level is marked on the control and remembered`,
+      hiddenState.marked === true
+      && /reconstructed/.test(hiddenState.stored ?? ''),
+      `marked ${hiddenState.marked}, stored ${hiddenState.stored}`);
+
+    // The panel says how much of the town each level is, counted from the
+    // registry rather than written down — this dataset's own shape, stated
+    // before a visitor clicks anything.
+    const levelCounts = await page.evaluate(() => {
+      const read = (l) => Number(document.getElementById(`cm-count-${l}`)?.textContent || -1);
+      return { attested: read('attested'), inferred: read('inferred'),
+               reconstructed: read('reconstructed'),
+               structures: window.__chicago4d.registry.size };
+    });
+    check(`${label}: the control counts each level against the loaded town`,
+      levelCounts.attested + levelCounts.inferred + levelCounts.reconstructed
+        === levelCounts.structures
+      && levelCounts.reconstructed > levelCounts.attested,
+      JSON.stringify(levelCounts));
+
+    await page.evaluate(() => window.__chicago4d.hud.setHidden('reconstructed', false,
+      { announce: false }));
+    await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
+    // Back on the ground where the rest of the suite expects to be standing.
+    await page.evaluate(() => {
+      const api = window.__chicago4d;
+      api.setFly(false);
+      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+    });
+    await page.waitForTimeout(300);
+
+
     // --- pick -> provenance ----------------------------------------------
     const picked = await page.evaluate(() => {
       const hit = window.__chicago4d.pick('sauganash_hotel');
