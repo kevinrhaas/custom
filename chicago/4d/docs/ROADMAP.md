@@ -48,6 +48,8 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
 | 2 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 3 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
+| 1 | GROUND | **T-E1** | LANE 3 is blocked on it; nothing may cite the 1830 sheet until it resolves in `data/sources/` |
+| 2 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 
 **T-A2h is DONE (2026-08-14)** — two of `blk_randolph_wells`'s ten roofs carry an argued
 household and eight stay anonymous, under a **two-test rule now written into the household
@@ -56,6 +58,16 @@ argument calls its count a floor rather than a bound, AND the roof's family is o
 already houses that trade in. **The adoption is no longer a parcel of its own.** The generator
 carries the gate in both directions, so T-A4 onward applies the rule in the same run as the
 block — `T-A3h` is the one outstanding backfill because its block landed first.
+
+**LANE 3 (ground) is a THIRD lane, opened 2026-08-14** — it touches terrain, sources and the
+infill generator's eligibility rule. It is **disjoint from lane 1** (renderer) but **overlaps
+lane 2** at `tools/generate_block_infill.py` and the inventory, so **a lane-2 block parcel and
+a lane-3 parcel may not run at the same time.** Lane 1 may always run alongside either.
+
+**Why it matters now:** only 86 of the 414 remaining roofs sit on covered ground. Lane 2
+exhausts them in roughly a day and a half and then has nowhere to build. Lane 3 is what keeps
+the town growing after that — and the owner's condition on opening it is that the geography be
+real, not convenient.
 
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
@@ -507,6 +519,123 @@ prefix in its claim heading so two runs cannot take the same one. **Read the sch
 arrival date** — it is derived from what stands, so every block parcel that lands re-apportions
 the families of every block that has not. A parcel that meets an institutional family defers it
 per T-A3 rather than reaching for a shape.
+
+---
+
+## LANE 3 — THE EASTERN AND SOUTHERN GROUND · opened 2026-08-14 on the owner's instruction
+
+> *"If you need to extend the town east to add population that is fine … but you must make
+> sure that the extension of the city matches the real geographic maps of the city, like where
+> the peninsula comes down with the sand bars should be accurate. But I don't think houses are
+> in much of it because of Fort Dearborn. You should be able to define further south from
+> accurate maps."* — Kevin, 2026-08-14, supplying two scans of **Map of Chicago in 1830**.
+
+**Why this lane exists.** The roof programme is out of room. 251 roofs stand and 414 remain,
+but only **86 sit on ground the heightfield currently covers**; the other **328 have nowhere
+to go**. Lane 2 hits that wall in about a day and a half. This lane makes the ground, and it
+is the owner's instruction that making it is licensed *provided the geography is real*.
+
+### THE TRAP, and it will catch a runner who skims
+
+**The supplied sheet is dated 1830. The scene is 1835-07-01, and the harbour was cut in
+between.** `data/terrain/epochs/e1834_harbor_cut/` exists precisely because that cut moved the
+river's mouth: before it, the Chicago River turned south behind a sand bar and entered the lake
+well below the fort; after it, a straight channel and piers went through the bar. A runner who
+traces the 1830 outlet into the 1835 scene will have moved the river's mouth by several hundred
+metres and will have done it confidently, from a real map.
+
+Worse, the sheet carries a label reading **"present outlet of river"**. *Present* means the
+publication's present, not 1830 and certainly not 1835. It is a retrospective annotation on a
+retrospective map. The same goes for its 1812 markings (the camp, the surrender, the massacre
+site): those are memorial labels placed by a later hand, not features standing in 1835, and
+nothing in this lane may render them as such.
+
+**So the division of labour is fixed, and is not a runner's choice:**
+
+| element | driver | the 1830 sheet's role |
+|---|---|---|
+| lake shore, sand bar, harbour cut, piers, the old southward channel | **Wright 1834** (already S2e's driver) | corroboration only |
+| land claims, owners, and where settlement actually reached | **the 1830 sheet** | primary |
+| street and block geometry | **Thompson plat 1830** + **Hathaway 1834** | corroboration only |
+| the fort's reservation extent | **the 1830 sheet** + Andreas prose | primary |
+
+The bar's *form* comes from Wright because Wright is a survey five years closer to the target
+date and is already the master warping raster. The 1830 sheet says who held which ground — the
+thing Wright does not say, and the thing this lane actually needs.
+
+### T-E1 — register the 1830 sheet as a source · **UNCLAIMED · NEXT UP · do this first**
+
+Nothing else in this lane may cite the map until it resolves in `data/sources/`. **Never invent
+a source** — that rule is not relaxed because the owner supplied the image.
+
+The identification is expected to be cheap: `andreas_1884_v1` is already registered
+(public domain, tier 3, `archive.org/details/historyofchicago01andr`) and
+`harrison_1830_river_mouth` already cites p. `n242` of that same volume. The plate is very
+likely in it. **Verify that; do not assume it.** If it is, this is a plate citation within a
+source already held, and rights are settled. If it is not, find the actual publication and
+record it with a Wayback snapshot like any other.
+
+Two editions are in hand and they are not the same document: a plain line-art version and a
+coloured version carrying substantially more detail (timber stipple, the Canal Land and School
+Section blocks, the 1812 annotations, additional claim names). Record **which** is cited for
+each reading, because they do not agree on everything.
+
+**Files:** `data/sources/<id>.json` (new) · `docs/RESEARCH/chicago_1830_claims.md` (new)
+**Acceptance:** `tools/check.sh` green; the record states plate, page and edition; a
+`what_it_does_not_supply` list that names the 1830-vs-1835 problem and the "present outlet"
+label explicitly.
+
+### T-E2 — the ground that must stay empty · **UNCLAIMED · NEXT UP · after T-E1**
+
+The owner's read — *"I don't think houses are in much of it because of Fort Dearborn"* — is
+the substance of this parcel, and it is a claim to be evidenced, not assumed.
+
+The **military reservation** east of the town is not ordinary building ground, and the **sand
+bar** is not building ground at all. Both must become polygons the infill generator refuses,
+in the same way `REFUSED_FAMILIES` already refuses civic roofs: an anonymous roof placed on the
+reservation or on the bar is not a plausible inference, it is an error the schedule made
+because nothing stopped it.
+
+**This parcel may not simply shrink the buildable area and call it done.** Where a named
+structure genuinely stood on or near the reservation, the 1830 sheet names several — the Kinzie
+house, Beaubien's store, the Baptiste Beaubien field, the Crafts house — and those are
+*records*, not anonymous infill. Whether each was still standing on 1835-07-01 is a per-record
+question with an answer or an exclusion, never a guess.
+
+**Files:** `data/terrain/…/no_build.json` (new) · `tools/generate_block_infill.py` ·
+`data/exclusions.json` · `docs/LIBERTIES.md`
+**Acceptance:** `tools/check.sh` green; the generator refuses the reservation and the bar and
+says why; every named claim from the sheet is either a structure record, an exclusion with a
+citation, or listed as an open question — nothing silently dropped.
+
+### T-E3 — finish the heightfield east · **UNCLAIMED · after T-E1 · NEEDS THE BAKE**
+
+**This is `S2e` below, not a new parcel — read it before starting.** Parcel (a) is done and it
+already measured the answer off Wright: the box must reach about **E +1700**, roughly
+2.0 km × 0.7 km, ~224k samples at the current 2.5 m cell. Use a coarser cell east of the built
+blocks, where the evidence does not support 2.5 m detail anyway.
+
+New geometry arrives via `chicago-4d-bake.yml` as a PR into `dev`. The data half ships here and
+says so.
+
+### T-E4 — the southern buildable ground, and the re-apportioned schedule · **UNCLAIMED · after T-E2**
+
+The owner is right that south is where the room is: the sheet shows the town's platted blocks,
+then Canal Land and the School Section below Madison, with named claims scattered through. That
+is a real, mapped distinction between ground that was subdivided and ground that was not, and it
+should govern where the remaining 328 roofs may go.
+
+**The schedule is derived, not authored** — `tools/reconcile_665.py` recomputes the remainder
+from what stands — so this parcel's job is to widen the *eligible ground*, then let the
+apportionment fall out. A roof may be placed only where the ground is **covered by the
+heightfield AND historically plausible**. Widening the first without the second is exactly the
+failure this lane was opened to prevent.
+
+**Files:** `data/reconstruction/1835_building_inventory.json` ·
+`tools/generate_block_infill.py` · `docs/RESEARCH/chicago_1830_claims.md`
+**Acceptance:** `tools/check.sh` green; the eligible-ground rule is stated in the programme and
+enforced by the generator; the reconciliation still balances; no roof stands on the bar, the
+reservation, water, or unmodelled ground.
 
 ---
 
