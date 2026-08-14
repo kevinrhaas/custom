@@ -42,10 +42,9 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-BUG2** | owner-reported and currently INVISIBLE to the gate: the roads vanish from the air |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
-| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
+| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
+| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
+| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
 | 1 | TOWN | **T-A5…** | one open block per run until the 79 are placed; adopt in the same run, and settle the division question T-A4 left open |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -53,6 +52,12 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**R-BUG2 is DONE (2026-08-14)** — the owner-reported vanishing roads were **two** faults, not one,
+and the parcel's prime suspect was **refuted by measurement**. The gate could not see any of it and
+now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at range and **1.1 L\* /
+0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
+R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
 **T-A4 is DONE (2026-08-14)** — `blk_randolph_clinton`, the first West Division block, carries
 seven roofs and one adopted household, so **258 stand and 407 remain**, 79 of them on covered
@@ -968,7 +973,74 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-BUG2 — the town's roads vanish in places, and from the air · **CLAIMED 2026-08-14 · lane 1**
+### R-BUG2 — the town's roads vanish in places, and from the air · **DONE 2026-08-14 · two faults, and the third suspect refuted**
+
+**Shipped:** the gate first, then the fix, in that order and for that reason.
+
+**The gate — `roadContrast()` in `tools/smoke_renderer.mjs`.** Three frames of one held scene at
+each of two anchors, at both viewports: the real render **R**, the same geometry as an opaque
+marker with a deliberately DEEPER polygon offset **M**, and the scene with the street group
+hidden **O**. **M is the denominator and it is what makes this work** — a probe counts only where
+the marker reached the screen, so a road behind a building, a tree or a rise drops out of the
+sample instead of being scored as a fault, while a road that loses the depth fight to the terrain
+stays in it and shows up as a road that covers a pixel and does not change it. The number is
+`|L*(R) − L*(O)|` at each surviving probe, on `critic_metrics.mjs`'s own `labL` — the same scale
+the critic harness measures reference photographs with. Bars: median **ΔL\* ≥ 1.8** and **≥ 55 %**
+of probes at ΔL\* ≥ 2, per distance band, bands needing ≥ 8 probes, gated to ≤ 600 m and reported
+beyond.
+
+**What it measured with the fault in — both bars failed, which is the acceptance:**
+
+| station | band | median ΔL\* | perceptible |
+|---|---|---|---|
+| `south_water` (eye) | 250–600 m | **0.3** | **14 %** |
+| `from_above` (aerial) | 100–250 m | **1.1** | **0 %** |
+
+**And with the fix in, desktop:**
+
+| station | 40–100 m | 100–250 m | 250–600 m | 600 m+ (ungated) |
+|---|---|---|---|---|
+| `south_water` | 4.2 / 70 % | 3.9 / 89 % | 4.0 / 92 % | — |
+| `from_above` | — | 2.9 / 91 % | 2.4 / 63 % | 3.3 / 100 % |
+
+**FAULT 1 — the depth fight, and it is the "in places".** `polygonOffsetFactor: -1,
+polygonOffsetUnits: -1` against a coplanar terrain is a fraction of a depth unit, and depth
+precision degrades with distance, so past ~250 m the terrain won in patches. Deepening the offset
+to **−4 / −8** ALONE took `south_water` 250–600 m from 0.3 / 14 % to **3.3 / 71 %**. No vertex
+moved and `worstDrape` still gates at 1e-5 m.
+
+**FAULT 2 — the road was 4 % opaque, and it is the "from the air".** At the aerial anchor the
+ribbon is wide, unoccluded and wins depth, and it STILL scored 1.1 / 0 %: neither the offset nor
+the thin-ribbon rule moved that band at all. The cause was the authored alpha — a lightly worn
+track was `0.08 + ruts*0.54 − crown*0.04`, so 8 % earth over 92 % prairie away from the ruts and
+4 % at the crown. Baselines raised to **0.54 / 0.38 / 0.28** (graded / worn / light), modulation
+shape and class ordering untouched. Recorded as **L96** in `docs/LIBERTIES.md` as an amendment to
+L79, which already recorded these numbers as invention.
+
+**REFUTED — mip-averaged alpha falling under `alphaTest`, the parcel's own prime suspect.** It is
+the right shape and it is the v74 treeline family, and it is not what is happening: turning
+mipmaps OFF made every band WORSE (`south_water` 250–600 m, share of probes reaching the screen:
+**22 % with mips, 6 % without**). The mip chain is holding a sub-pixel ribbon together, not
+erasing it. `minFilter` is unchanged. **Measure before choosing was the right instruction and it
+saved a fix that would have made this worse.**
+
+**Also shipped, and it is not what fixed either fault:** a sub-pixel floor in the street shader.
+`u` runs 0→1 exactly across the track, so `1/fwidth(vMapUv.x)` IS the ribbon's width in screen
+pixels — no uniform, no viewport to keep in sync. Under 2 px the alpha scales up in proportion,
+capped at 6× and 0.92. Same principle as `MIN_SILHOUETTE_PX` in `trees.js`. It binds only at the
+thin end, which is why it did nothing from the air.
+
+**Third suspect, NOT acted on.** `transparent: true` with `alphaTest` does put a town-wide mesh in
+the back-to-front pass sorted on a meaningless bounding-sphere centre. Moving it to the opaque
+queue measured as a small, consistent improvement — and it makes every road SOLID, because an
+unblended alpha-tested fragment draws at full strength. That would delete the graded/worn/light
+distinction the dataset carries. Left as it is, deliberately; if the sort ever bites, the fix is a
+per-record renderOrder, not opacity.
+
+**One thing the gate had to learn about itself:** `from_above` is an aerial anchor, and leaving
+the camera there broke the horizon-timber check further down the file, which reads the band the
+tree solver builds around the camera and found nought of nought covered bearings. A measurement
+that moves the camera owes the next one its pose back. It does now.
 
 Reported by the owner 2026-08-14: *"the town roads seem to disappear in places and when you
 fly over them you lose them, they should be on the surface and be seen."*

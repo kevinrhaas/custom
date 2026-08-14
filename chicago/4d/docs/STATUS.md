@@ -1,5 +1,59 @@
 # STATUS
 
+## Fixed 2026-08-14 — the roads were invisible, every street check was green, and the prime suspect was innocent
+
+R-BUG2, owner-reported: *"the town roads seem to disappear in places and when you fly over them
+you lose them."* True at both viewports. **Two independent faults**, and the mechanism the parcel
+named as most likely turned out to be the one thing that was helping.
+
+**The gate could not see any of it, and that is the first thing that was wrong.**
+`tools/smoke_renderer.mjs` asserted seventeen street records, ~100 000 vertices, drape error under
+1e-5 m, no vertex over water — all true, all green, all beside the point. **Draped is not seen.**
+Nothing in this repository asked whether a road reached the screen.
+
+**What the new check does.** `roadContrast()` holds the scene at two anchors a visitor is offered —
+`south_water` at eye height down an open street, `from_above` at the aerial anchor — and takes
+three frames: the real render **R**, the same geometry drawn as an opaque marker with a
+deliberately deeper polygon offset **M**, and the scene with the streets hidden **O**. A probe on a
+committed centreline counts only where **M** reached the screen, so roads genuinely hidden behind a
+building, a tree or a rise leave the sample rather than scoring as faults, while a road losing the
+depth fight to the terrain stays in it. The score is `|L*(R) − L*(O)|` on the critic harness's own
+`labL`. Bars: median **ΔL\* ≥ 1.8** and **≥ 55 %** of probes at ΔL\* ≥ 2 per band, gated to 600 m.
+
+**Measured with the fault in — both bars fail, which is the acceptance:** `south_water` 250–600 m
+**0.3 L\*, 14 % perceptible**; `from_above` 100–250 m **1.1 L\*, 0 % of eleven probes**. With the
+fix, desktop: `south_water` **4.2 / 3.9 / 4.0** across 40–100, 100–250, 250–600 m at 70 / 89 / 92 %,
+`from_above` **2.9 / 2.4** at 91 / 63 %.
+
+**Fault 1 — the depth fight, and it is the reported "in places".** A road is earth painted flat on
+the terrain at the same height, held in front by one unit of polygon offset. Depth precision
+degrades with distance, so past ~250 m the terrain won in patches. `−4 / −8` alone took the failing
+band to **3.3 L\* / 71 %**. No vertex moved; `worstDrape` still gates at 1e-5 m.
+
+**Fault 2 — the road was 4 % opaque, and it is the reported loss from the air.** At the aerial
+anchor the ribbon is wide, unoccluded and wins depth, and it still scored 1.1 / 0 % — *neither* the
+offset *nor* the thin-ribbon rule moved that band at all. A lightly worn track's alpha was
+`0.08 + ruts*0.54 − crown*0.04`: 8 % earth over 92 % prairie away from the ruts, 4 % at the crown.
+Baselines raised to **0.54 / 0.38 / 0.28**, modulation shape and class ordering untouched, recorded
+as **L96** amending L79 — which already recorded these numbers as invention rather than measurement.
+
+**Refuted — mip-averaged alpha falling under `alphaTest`.** The parcel's prime suspect, and the
+shape of the v74 treeline bug. Turning mipmaps off made **every** band worse (`south_water`
+250–600 m: 22 % of probes reaching the screen with mips, **6 %** without). The mip chain is holding
+a sub-pixel ribbon together, not erasing it. `minFilter` is unchanged, and the instruction to
+measure before choosing is what stopped a "fix" that would have made this worse.
+
+**Not acted on:** `transparent: true` with `alphaTest` does sort a town-wide mesh on a meaningless
+bounding-sphere centre, and the opaque queue measured slightly better — but an unblended
+alpha-tested fragment draws at full strength, which would make every road solid and delete the
+graded/worn/light distinction the dataset carries. If the sort ever bites, the answer is
+per-record `renderOrder`, not opacity.
+
+**What this cost the gate to learn:** `from_above` is an aerial anchor, and leaving the camera
+there broke the horizon-timber check downstream — it reads the band the tree solver builds around
+the camera and reported nought of nought covered bearings. A measurement that moves the camera owes
+the next one its pose back.
+
 ## New 2026-08-14 — the first block across the river, on ground that was already partly built
 
 **T-A4.** `blk_randolph_clinton` — Randolph, Canal, Washington, Clinton — is the first West

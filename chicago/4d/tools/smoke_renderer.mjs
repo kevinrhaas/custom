@@ -24,6 +24,10 @@
  *   walk moves the camera ....... input intent reaches the walker
  *   one terrain surface ......... walker, structures and flora share the rendered land
  *   streets drape + identify .... earth tracks share the heightfield and dated names
+ *   the roads reach the screen .. and are distinguishable from the ground they
+ *                                 occupy, on foot and from the air — draped is
+ *                                 not seen, and every check above passed while
+ *                                 the roads were invisible
  *   the horizon reads as timber . the band meets the fogged ground in one colour,
  *                                 and the crown modulation never cuts a silhouette
  *                                 below the pixel it needs to be seen at all
@@ -44,6 +48,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+
+// The critic harness's PNG reader and its CIE L*, so a road's contrast is
+// measured on the same scale as everything else this project quotes.
+import { decodePng, labL } from './critic_metrics.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -101,6 +109,194 @@ const TYPES = {
   '.bin': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml', '.wasm': 'application/wasm', '.md': 'text/markdown',
 };
+
+/**
+ * R-BUG2 — CAN A ROAD BE SEEN? The gate that did not exist.
+ *
+ * Everything this file asserted about the streets was about the DATA reaching
+ * the geometry: seventeen records, a hundred thousand vertices, drape error
+ * under 1e-5 m, no vertex over water. All of it passed while the roads were
+ * invisible from the air. Draped is not seen, and nothing anywhere asked
+ * whether a road reaches the screen.
+ *
+ * The measurement, per station and per viewport, is three frames of one held
+ * scene:
+ *
+ *   R  the real render
+ *   M  the same geometry drawn as an opaque marker with a DEEP polygon offset
+ *   O  the same scene with the street group hidden
+ *
+ * M is the denominator and it is the reason this works. A probe point counts
+ * only where the marker reached the screen — which is to say where a road is
+ * present, in front of the camera, and not hidden behind a building, a tree or
+ * a rise in the ground. Roads that are genuinely occluded drop out of the
+ * sample instead of being scored as faults. The marker's offset is deliberately
+ * DEEPER than the real material's: losing the depth fight to the terrain is the
+ * failure being hunted, so it must stay inside the denominator and show up as a
+ * road that covers the pixel and does not change it.
+ *
+ * The number is then |L*(R) - L*(O)| at each surviving probe — how much the
+ * road changed what a visitor sees at the spot it occupies, in CIE L* units on
+ * the same `labL` the critic harness measures reference photographs with. It is
+ * the "distinguishable from the ground beside it" of the parcel's acceptance,
+ * with the ground beside it read at the same pixel rather than a few metres
+ * across, so a road crossing grass and a road crossing mud are held to the same
+ * standard.
+ *
+ * WHAT THE FAULT MEASURED, before the fix, at desktop (mobile in the same
+ * direction, smaller n): South Water Street at 250-600 m, unoccluded, scored
+ * **0.3 L\* with 14 % of probes perceptible**; the aerial anchor at 100-250 m
+ * scored **1.1 L\* with 0 %**. Both are FAILURES under the thresholds below,
+ * which is the point — the check names the fault when the fault is put back.
+ */
+const ROAD_MIN_DELTA_L = 1.8;
+const ROAD_MIN_PERCEPTIBLE = 0.55;
+const ROAD_MIN_PROBES = 8;
+/**
+ * Two stations because the report was two symptoms: roads that go "in places"
+ * on foot, and roads you "lose" when you fly over them. `south_water` looks
+ * east down an open street from eye height; `from_above` is the scene's own
+ * aerial anchor. Both are anchors a visitor is offered, driven through `goTo`,
+ * so the gate cannot drift from what is shipped.
+ *
+ * Bands beyond 600 m are measured and printed but not gated: at eye height a
+ * road that far off is a couple of pixels tall through a mile of haze, and a
+ * threshold there would be a claim about fog, not about roads.
+ */
+const ROAD_STATIONS = [
+  { id: 'south_water', what: 'from the walker’s eye, down an open street', minBands: 2 },
+  { id: 'from_above', what: 'from the air, at the aerial anchor', minBands: 2 },
+];
+const ROAD_BANDS = [[40, 100], [100, 250], [250, 600], [600, 4000]];
+const ROAD_GATED_BEYOND_M = 600;
+
+/** Project the street centrelines, then read R, M and O. Restores what it moved. */
+async function roadContrast(page, station) {
+  const shot = await page.evaluate((st) => {
+    const a = window.__chicago4d;
+    a.setAnimationHold(true);
+    for (const id of ['hud', 'popup']) {
+      const el = document.getElementById(id);
+      if (el) { el.dataset.roadHidden = el.style.visibility; el.style.visibility = 'hidden'; }
+    }
+    a.goTo(st);
+    a.step();
+    a.step();
+    const cam = a.camera;
+    cam.updateMatrixWorld(true);
+    const w = a.renderer.domElement.clientWidth;
+    const h = a.renderer.domElement.clientHeight;
+    const v = new cam.position.constructor();
+    const out = [];
+    // Every four metres along every committed centreline. The lift matches
+    // streets.js so the probe reads the ribbon and not the ground under it.
+    for (const rec of a.streets.records) {
+      const p = rec.path;
+      for (let i = 1; i < p.length; i++) {
+        const A = p[i - 1];
+        const B = p[i];
+        const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
+        const steps = Math.max(1, Math.round(d / 4));
+        for (let s = 0; s <= steps; s++) {
+          const t = s / steps;
+          const e = A[0] + (B[0] - A[0]) * t;
+          const n = A[1] + (B[1] - A[1]) * t;
+          if (a.terrain.isWater(e, n)) continue;
+          v.set(e, a.terrain.surfaceHeight(e, n) + 0.022, -n);
+          const dist = v.distanceTo(cam.position);
+          v.project(cam);
+          const x = (v.x * 0.5 + 0.5) * w;
+          const y = (-v.y * 0.5 + 0.5) * h;
+          if (v.z < -1 || v.z > 1 || x < 2 || x >= w - 2 || y < 2 || y >= h - 2) continue;
+          out.push({ dist, x, y });
+        }
+      }
+    }
+    // The CSS width these coordinates are in. The mobile context runs at
+    // deviceScaleFactor 2, so a screenshot is twice this wide and every probe
+    // lands in the wrong half of the frame unless it is scaled — which read as
+    // "no road is anywhere" rather than as a broken probe, because a mask that
+    // matches nothing and a road that paints nothing look identical from here.
+    return { probes: out, cssWidth: w };
+  }, station);
+
+  const shotR = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    a.__roadMarkers = [];
+    a.streets.group.traverse((o) => {
+      if (!o.material) return;
+      a.__roadMarkers.push([o, o.material]);
+      const marker = new o.material.constructor();
+      marker.color.setHex(0x000000);
+      marker.emissive?.setHex?.(0xff00ff);
+      marker.side = o.material.side;
+      marker.transparent = false;
+      marker.depthWrite = true;
+      marker.polygonOffset = true;
+      marker.polygonOffsetFactor = -8;
+      marker.polygonOffsetUnits = -32;
+      o.material = marker;
+    });
+    a.step();
+  });
+  const shotM = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    for (const [o, m] of a.__roadMarkers) { o.material.dispose(); o.material = m; }
+    delete a.__roadMarkers;
+    a.streets.group.visible = false;
+    a.step();
+  });
+  const shotO = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    a.streets.group.visible = true;
+    for (const id of ['hud', 'popup']) {
+      const el = document.getElementById(id);
+      if (el) { el.style.visibility = el.dataset.roadHidden ?? ''; delete el.dataset.roadHidden; }
+    }
+    a.step();
+    a.setAnimationHold(false);
+  });
+
+  const R = decodePng(shotR);
+  const M = decodePng(shotM);
+  const O = decodePng(shotO);
+  const scale = R.width / shot.cssWidth;
+  const probes = shot.probes.map((p) => ({
+    dist: p.dist,
+    x: Math.min(R.width - 1, Math.max(0, Math.round(p.x * scale))),
+    y: Math.min(R.height - 1, Math.max(0, Math.round(p.y * scale))),
+  }));
+  // Magenta survives tone mapping as a strongly red-and-blue, weakly green
+  // pixel; nothing else in this scene is.
+  const marked = (x, y) => {
+    const i = (y * M.width + x) * 4;
+    return M.data[i] > 140 && M.data[i + 2] > 140 && M.data[i + 1] < 110;
+  };
+  const deltaL = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return Math.abs(labL(R.data[i], R.data[i + 1], R.data[i + 2])
+      - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
+  };
+  const median = (xs) => {
+    const s = xs.slice().sort((a, b) => a - b);
+    return s.length ? s[Math.floor(s.length / 2)] : 0;
+  };
+  const bands = ROAD_BANDS.map(([lo, hi]) => {
+    const ds = probes
+      .filter((p) => p.dist >= lo && p.dist < hi && marked(p.x, p.y))
+      .map((p) => deltaL(p.x, p.y));
+    return {
+      lo, hi, n: ds.length,
+      medianDeltaL: median(ds),
+      perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
+      gated: ds.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
+    };
+  });
+  return { station, bands };
+}
 
 const failures = [];
 const passes = [];
@@ -1651,6 +1847,33 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
+
+    // R-BUG2. Draped is not seen: every assertion above passed while the roads
+    // were invisible. See `roadContrast()` for what this measures and why.
+    for (const station of ROAD_STATIONS) {
+      const road = await roadContrast(page, station.id);
+      const bands = road.bands.filter((b) => b.gated);
+      const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
+        || b.perceptible < ROAD_MIN_PERCEPTIBLE);
+      const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
+        + (b.n < ROAD_MIN_PROBES ? `n=${b.n} (not gated)`
+          : `ΔL* ${b.medianDeltaL.toFixed(1)}, ${(b.perceptible * 100).toFixed(0)} % `
+            + `perceptible, n=${b.n}${b.gated ? '' : ' (reported only)'}`)).join(' · ');
+      check(`${label}: the roads reach the screen ${station.what}`,
+        bands.length >= station.minBands && bad.length === 0, report);
+      console.log(`        ${station.id}: ${report}`);
+    }
+    // Put the visitor back where the street checks left them. `from_above` is
+    // an AERIAL anchor, and the horizon-timber check further down reads the
+    // band the tree solver builds around the camera — from 175 m up there is no
+    // band to read, and it reported nought of nought covered bearings. A
+    // measurement that moves the camera owes the next one its pose back.
+    await page.evaluate(() => {
+      const a = window.__chicago4d;
+      a.setFly(false);
+      a.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+      for (let i = 0; i < 3; i++) a.step();
+    });
     // The count is an anti-vacuity guard — a run that plants nothing would
     // otherwise report a perfect worst error — and the tolerance below it is
     // the actual assertion. The guard moved from 100 to 50 on 2026-08-13, and
