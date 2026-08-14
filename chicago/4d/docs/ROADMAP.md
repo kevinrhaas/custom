@@ -206,9 +206,14 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 **What it did not do:** re-anchor the §5 targets by measuring a reference plate through
 `tools/critic_metrics.mjs`. That is still a one-line job and still not done.
 
-### R-W1 — calibrated light and environment · **CLAIMED 2026-08-14, expires 2026-08-16 — DO NOT PICK UP**
+### R-W1 — calibrated light and environment · **PARKED on PR #125 (`hold`) — DO NOT REDO**
 
-Held by the improve-runner lane-1 slice that opened this claim. Lane 1's other parcels
+**The work is done and measured; it is one assertion short of green.** Take the branch
+`steward/r-w1-calibrated-light`, not a blank sheet. What it needs is the aerial half of
+R-BUG2's road-contrast gate settled — `south_water` still passes, only `from_above` fails,
+and the gate must not be weakened. The parcel's findings, its numbers and the two candidate
+causes are in the PR and in `docs/STATUS.md` § "the town was lit by a sky that does not
+exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
 (R-W4, R-W5, R-W2, R-W3) are untouched by it and R-W4 is the one to take instead; any
 lane-2 or lane-3 parcel may run alongside it, since this one touches only
 `renderers/web/js/world.js`, `tools/smoke_renderer.mjs` and the vendor manifest.
