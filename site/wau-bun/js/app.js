@@ -30,6 +30,12 @@
     { id: 'original', label: '1856',     note: 'Juliette Kinzie\'s original text, in full.' }
   ];
 
+  var MINCELL = 5, MAXCELL = 34;      // chart square, px
+  var MINHEAD = 56, MAXHEAD = 560;    // scene-title header, px
+  function autoCap() {                // how tall auto-fit goes on its own
+    return window.innerWidth <= 900 ? 190 : 260;
+  }
+
   var state = {
     part: 'part1',
     view: 'chart',
@@ -41,11 +47,15 @@
     query: '',
     pivotalOnly: false,
     cell: 22,             // chart square size in px
+    head: 152,            // scene-title header height in px — draggable
+    headAuto: true,       // until the reader sets one themselves
     fit: 'none'           // none | width | all
   };
   try {
     var savedMode = localStorage.getItem('waubun.mode');
     if (savedMode && MODES.some(function (m) { return m.id === savedMode; })) state.mode = savedMode;
+    var savedHead = parseInt(localStorage.getItem('waubun.headh'), 10);
+    if (savedHead >= MINHEAD && savedHead <= MAXHEAD) { state.head = savedHead; state.headAuto = false; }
   } catch (e) {}
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
@@ -356,7 +366,9 @@
     // row 2 — scene headers
     var corner2 = el('div', 'wb-corner');
     corner2.style.gridRow = '2'; corner2.style.gridColumn = '1'; corner2.style.top = '44px';
+    corner2.classList.add('wb-corner2');
     corner2.appendChild(el('div', '', '<span style="display:block;padding:8px 10px;font-size:10.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--text-3)">Character ↓ &nbsp; Scene →</span>'));
+    corner2.appendChild(headGrip());
     grid.appendChild(corner2);
     scenes.forEach(function (sc, c) {
       var sel = isSelected(sc.id);
@@ -451,6 +463,7 @@
     });
     strip.appendChild(row2);
     host.appendChild(strip);
+    autoHead();      // must run after the labels are in the DOM to be measurable
     applySize();
   }
 
@@ -460,7 +473,79 @@
      squeezes both axes until the whole thing is in view at once, which is what
      full screen is for. Names and marks scale with the cell so nothing has to
      be re-laid-out. */
-  var MINCELL = 5, MAXCELL = 34;
+
+  /* ---- the header is draggable ---------------------------------------------
+     Scene titles are set vertically in a fixed-height band, so a long one used
+     to be clipped — and the ★ that marked a pivotal scene was clipped with it.
+     The ★ now leads the label instead of trailing it, and this grip drags the
+     header/body boundary so a whole title can be read. Double-click fits the
+     longest one. */
+  function setHead(px, save) {
+    state.head = Math.max(MINHEAD, Math.min(MAXHEAD, Math.round(px)));
+    var wrap = $('#wbChartWrap');
+    if (wrap) wrap.style.setProperty('--headh', state.head + 'px');
+    if (save !== false) {
+      state.headAuto = false;
+      try { localStorage.setItem('waubun.headh', state.head); } catch (e) {}
+    }
+    if (state.fit === 'all') applySize();
+  }
+  // in vertical writing mode the label runs along the header's height, so the
+  // content's own scrollHeight is exactly the room it wants
+  function labelRoom() {
+    var need = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('.wb-colhead > div'), function (n) {
+      need = Math.max(need, n.scrollHeight);
+    });
+    return need ? need + 6 : 0;
+  }
+  function fitLabels() {
+    var need = labelRoom();
+    if (need) setHead(need);
+  }
+  // Until the reader drags the handle or asks for a fit, the header sizes
+  // itself to the scene titles — capped, so a part with one very long title
+  // does not hand the whole screen to the header.
+  function autoHead() {
+    if (!state.headAuto) return;
+    var need = labelRoom();
+    if (!need) return;
+    var want = Math.max(MINHEAD, Math.min(autoCap(), need));
+    if (Math.abs(want - state.head) > 1) setHead(want, false);
+  }
+  function headGrip() {
+    var g = el('div', 'wb-headgrip');
+    g.title = 'Drag to give the scene titles more room · double-click to fit the longest one';
+    g.setAttribute('role', 'separator');
+    g.setAttribute('aria-orientation', 'horizontal');
+    g.setAttribute('aria-label', 'Resize the scene-title header');
+    g.tabIndex = 0;
+    g.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      var y0 = e.clientY, h0 = state.head;
+      try { g.setPointerCapture(e.pointerId); } catch (err) {}
+      document.body.classList.add('wb-resizing');
+      function move(ev) { setHead(h0 + (ev.clientY - y0), false); }
+      function up() {
+        g.removeEventListener('pointermove', move);
+        g.removeEventListener('pointerup', up);
+        g.removeEventListener('pointercancel', up);
+        document.body.classList.remove('wb-resizing');
+        setHead(state.head);   // persist once, at the end of the drag
+      }
+      g.addEventListener('pointermove', move);
+      g.addEventListener('pointerup', up);
+      g.addEventListener('pointercancel', up);
+    });
+    g.addEventListener('dblclick', function (e) { e.preventDefault(); fitLabels(); });
+    g.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowUp') { e.preventDefault(); setHead(state.head - 12); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); setHead(state.head + 12); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fitLabels(); }
+    });
+    return g;
+  }
+
   function applySize() {
     var wrap = $('#wbChartWrap');
     if (!wrap) return;
@@ -483,7 +568,7 @@
       if (state.fit === 'all') {
         // act band + scene labels (or a thin band when they cannot be read)
         // plus one line per faction heading
-        var chromeH = 44 + (cw < TINY ? 26 : 152) + groups * 30 + 8;
+        var chromeH = 44 + (cw < TINY ? 26 : state.head) + groups * 30 + 8;
         var top = scroll ? scroll.getBoundingClientRect().top : 0;
         var availH = (isFullscreen() ? window.innerHeight - 24
                                      : window.innerHeight - Math.max(0, top) - 24) - chromeH;
@@ -508,6 +593,7 @@
       wrap.style.setProperty('--cellw', w + 'px');
       wrap.style.setProperty('--cellh', h + 'px');
       wrap.style.setProperty('--namew', nw + 'px');
+      wrap.style.setProperty('--headh', state.head + 'px');
       wrap.style.setProperty('--namefs', Math.max(6.5, Math.min(12, h * 0.62)) + 'px');
       wrap.style.setProperty('--dot', Math.max(3, Math.min(12, Math.round(Math.min(w, h) * 0.55))) + 'px');
       var sc = $('.wb-scroll');
@@ -552,6 +638,7 @@
     btn('+', 'Bigger', function () {
       state.fit = 'none'; state.cell = Math.min(MAXCELL, state.cell + 3); applySize(); syncTools();
     });
+    btn('↕ Fit titles', 'Make the header tall enough for the longest scene title (or drag the handle above the character names)', fitLabels);
     btn(isFullscreen() ? '✕ Exit full screen' : '⛶ Full screen',
       'Give the chart the whole screen', toggleFullscreen);
     return bar;
@@ -562,7 +649,7 @@
     var b = bar.querySelectorAll('.wb-toggle');
     b[0].setAttribute('aria-pressed', state.fit === 'width' ? 'true' : 'false');
     b[1].setAttribute('aria-pressed', state.fit === 'all' ? 'true' : 'false');
-    b[4].textContent = isFullscreen() ? '✕ Exit full screen' : '⛶ Full screen';
+    b[5].textContent = isFullscreen() ? '✕ Exit full screen' : '⛶ Full screen';
   }
 
   // one click selects, two opens — a short timer keeps the two apart
@@ -591,7 +678,8 @@
     if (!sel.length) {
       wrap.classList.add('hint');
       wrap.innerHTML = '<span class="wb-selhint"><b>Click</b> a scene to focus it — the other scenes fade and the chart keeps only the people in it. ' +
-        'Click more scenes to build a set. <b>Double-click</b> opens a scene; clicking a name opens that character.</span>';
+        'Click more scenes to build a set. <b>Double-click</b> opens a scene; clicking a name opens that character. ' +
+        '<b>Drag the handle</b> under “Character ↓ Scene →” to give long scene titles more room.</span>';
       return wrap;
     }
     var idx = INDEX[state.part];

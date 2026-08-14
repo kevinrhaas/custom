@@ -143,7 +143,24 @@ body.wb-isfs .wb-bar, body.wb-isfs .wb-head, body.wb-isfs .wb-toolbar { display:
 .wb-tinycols .wb-actband { padding: 6px 8px; }
 .wb-tinyrows .wb-name { padding: 0 6px; }
 .wb-tinyrows .wb-name span { display: none; }
-.wb-tinyrows .wb-grouphead { font-size: 9px; letter-spacing: .6px; padding: 5px 8px 3px; }
+.wb-tinyrows /* drag the header/body boundary to give long scene titles more room */
+.wb-corner2 { position: relative; }
+.wb-headgrip {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 12px;
+  cursor: ns-resize; display: flex; align-items: center; justify-content: center;
+  gap: 4px; background: var(--surface-2); border-top: 1px solid var(--border);
+  touch-action: none; z-index: 7;
+}
+.wb-headgrip::before, .wb-headgrip::after {
+  content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--border-2);
+}
+.wb-headgrip:hover::before, .wb-headgrip:hover::after,
+.wb-headgrip:focus-visible::before, .wb-headgrip:focus-visible::after { background: var(--leaf); }
+.wb-headgrip:focus-visible { outline: 2px solid var(--leaf-2); outline-offset: -2px; }
+body.wb-resizing { cursor: ns-resize; user-select: none; }
+.wb-tinycols .wb-headgrip { display: none; }
+
+.wb-grouphead { font-size: 9px; letter-spacing: .6px; padding: 5px 8px 3px; }
 
 /* ---------- selection bar ---------- */
 .wb-selbar {
@@ -190,7 +207,7 @@ body.wb-isfs .wb-bar, body.wb-isfs .wb-head, body.wb-isfs .wb-toolbar { display:
 .wb-actband b { font-size: 12px; }
 .wb-actband em { font-style: normal; display: block; font-size: 10.5px; color: var(--text-3); letter-spacing: .4px; }
 .wb-colhead {
-  top: 44px; z-index: 3; height: 152px; border-bottom: 1px solid var(--border);
+  top: 44px; z-index: 3; height: var(--headh, 152px); border-bottom: 1px solid var(--border);
   cursor: pointer; padding: 0;
 }
 .wb-colhead > div {
@@ -201,7 +218,7 @@ body.wb-isfs .wb-bar, body.wb-isfs .wb-head, body.wb-isfs .wb-toolbar { display:
 }
 .wb-colhead b { color: var(--text); font-size: 10.5px; }
 .wb-colhead:hover { background: var(--surface-2); }
-.wb-colhead.pivotal b::after { content: '★'; margin-left: 4px; color: var(--honey); }
+.wb-colhead.pivotal b::before { content: '★ '; color: var(--honey); }
 .wb-colhead.on, .wb-colhead.on > div { background: color-mix(in srgb, var(--leaf) 14%, var(--surface)); }
 
 /* selected / faded scenes */
@@ -405,7 +422,7 @@ table.wb-table { border-collapse: collapse; width: 100%; font-size: 13px; }
   .wb-reader { grid-template-columns: 1fr; }
   .wb-rail { position: static; max-height: 260px; }
   .wb-panel { width: 100vw; }
-  .wb-colhead { height: 128px; }
+  .wb-colhead { height: var(--headh, 128px); }   /* narrower default; JS still owns --headh */
 }
 @media (prefers-reduced-motion: reduce) {
   .wb-panel, .wb-scrim, .wb-progress i { transition: none; }
