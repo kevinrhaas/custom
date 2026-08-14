@@ -2387,6 +2387,62 @@ an inferred one; it never adds a household to the census.
 `recon_1835_blk_randolph_wells_d3_05.occupants`
 **Recorded:** 2026-08-14.
 
+### L95 — A West Division block that was already partly built, and four lots taken as read
+
+**Decision:** `blk_randolph_clinton` — bounded by Randolph, Canal, Washington and Clinton, and the
+first West Division block the plat module reaches — now carries **seven anonymous roofs**: four
+dwellings, one per lot on four of its eight lots, and three yard buildings off the block alley.
+As with the two blocks before it, the ceiling and the family mix come from the 665-roof
+programme's own schedule and **everything below that is invented** — which family stands on which
+lot, which lot is left open, how far each building stands back from its frontage and how far it
+sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot
+polygons of the K7 grid.
+
+**What is new here is that the block was not empty.** Both blocks before this one stood vacant in
+the dataset, so a parcel could treat all eight lots as available and be right. Three roofs of the
+phase-two West Division parcel — `recon_1835_west_018`, `_019` and `_021` — already stand inside
+this block's boundary, placed from typed coordinates months before the plat module existed, and
+**no record of theirs names a lot**, because there were no lots when they were written. Which lots
+they occupy is therefore derived here from their own committed footprints rather than authored,
+and the three are refused to this parcel: four principal roofs stand on four of the five lots that
+were free, and the fifth is left open.
+
+**The invention this entry admits is that those three roofs are read as standing on lots at all.**
+They were placed against a density recipe, not against a parcel, so saying that `_019` occupies
+"lot 0" is this project's grid speaking about a building that predates it — the lot lines and the
+alley remain `conjectural` (K7: four lots to a face is a reading of ONE block), and a footprint's
+centre falling inside a generated polygon is not evidence that anybody in 1835 held that parcel.
+What the derivation buys is a real constraint rather than a claim: a lot that already carries a
+roof cannot be dealt another, so the block's ten-roof capacity is spent as three plus seven and
+never as three plus ten.
+
+**The frontage argument, stated so it can be disagreed with.** The deep-plan and two-room cottages
+take the Randolph face and the log dwelling and one-room cottage take Washington, on the same
+frontage-value typology both Randolph-tier blocks before this one recorded — Randolph is the
+through street of the pair in the module's own street hierarchy and carries the crossing toward
+the west side. The stable and the privy stand behind cottages on their own lots, because a rear
+yard belongs to a lot and a lot belongs to a house. The barn or carriage shed takes the **western**
+end lot, where the block backs onto ground beyond Clinton that has no committed street control and
+the town gives out — the block at Randolph and Dearborn applied that same typology at its
+*eastern* end, and the geography here reverses it, which is the only test available of whether it
+was a typology or a habit. None of it is a finding about this block.
+
+**Consequence:** the town gains its first West Division block on the plat, whose presence, lots,
+positions and footprints a visitor can see are interpretive — flagged massing in the confidence
+view, with the reasoning on the building card. Standing roofs move **251 → 258** against the
+665-roof target; **407 remain**, 79 of them on ground the project has coverage for. Three roofs
+that had stood in the West Division since before the grid existed are now, for the first time,
+counted against the lots they sit on.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this
+block, and a reading of Thompson's lot numbering from the sheets themselves — which would also
+settle, rather than derive, which lots the three earlier West roofs stand on. A named discovery
+substitutes for a compatible anonymous roof and never increases the total.
+
+**Covers:** `recon_1835_blk_randolph_clinton_*.inferred_1835.position`,
+`recon_1835_blk_randolph_clinton_*.inferred_1835.footprint`
+**Recorded:** 2026-08-14.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

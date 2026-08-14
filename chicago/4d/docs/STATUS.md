@@ -1,5 +1,55 @@
 # STATUS
 
+## New 2026-08-14 — the first block across the river, on ground that was already partly built
+
+**T-A4.** `blk_randolph_clinton` — Randolph, Canal, Washington, Clinton — is the first West
+Division block the plat module reaches and now carries **seven anonymous roofs**: four dwellings on
+four lots, three yard buildings off the alley. The town stands at **258 roofs of 665**; 407 remain
+and **79 of those have modelled ground**. One lot is left bare on purpose. The geometry half was a
+recipe entry and nothing else, exactly as T-A2 predicted for the third time running — what this
+block cost was in the gates, and it is the first one that could have found this.
+
+**Three roofs were already standing on it, and nothing could see them.** Every block parcel so far
+arrived at empty ground, so treating all eight lots as free was correct twice and would have been
+wrong here: `recon_1835_west_018`, `_019` and `_021` sit inside this block, placed from typed
+coordinates months before the plat module existed, and **no record of theirs names a lot** because
+there were no lots to name. The one-principal-per-lot check reads only the records the parcel
+builds, so an occupied lot and a free one were the same thing to it, and **the separation gate does
+not close the difference: two principal roofs twelve metres apart on one twenty-five-metre lot pass
+every test in the file.** A second house on somebody's lot would not have looked like a defect from
+any direction — the town would simply have been slightly denser than the ground it stands on.
+
+**The fix derives the answer rather than asking for it.** Which lots are taken is read off the
+committed footprints of the records that stand there; a recipe that had to be told would be a
+second opinion about the same ground, which is the defect the plat module was built to retire. Two
+gates ride with it. A yard building must stand on a lot this parcel gave a principal roof, because
+a yard building behind somebody else's house is a claim about their household. And **every lot of
+the block must now be built on, already occupied, or named open with its reasoning** — those three
+were counted in three places and nothing made them meet, so a lot could have been called open in
+the recipe with a house standing on it, which is a false statement about the town in the file that
+documents the town. All five refusals were verified by committing each one deliberately.
+
+**Two things this block exposed by not being South.** The visitor-facing location line on every
+generated record read *"South Division"* as a literal — true of every record that had ever existed
+and wrong on all seven of these, which is the shape of defect only a first case finds. And the
+665-roof ledger attributed **every anonymous roof in the West Division to the Wolf Point recipe**,
+because until today that was the same set: it read the seven new roofs as seven of that recipe's
+own placements emitted out of order and refused to derive at all. It counts by the programme phase
+each record names now, and the West recipe's remainder holds at **35**, unchanged, with seven West
+roofs standing beside it.
+
+**One household adopted, one refused, and the refusal is about the rule rather than the roof.** The
+block deals a D1 and a D3 — the two families T-A2h's rule admits. The D1 log cabin is adopted: the
+labourer's count is a floor by its own committed text, D1 is the family this layer houses nine of
+its eleven housed labourers in, and this layer **already places two labouring households in the
+West Division**, so nothing crosses a division line the programme had not already argued.
+Households **154 → 155**, persons **190 → 191**. The D3 carpenter is refused: rule 6's two tests
+are silent on division and all eleven carpenter households stand north or south, so a twelfth west
+of the river would be a new claim about where the town's carpenters lived, arriving as a side
+effect of a block parcel — the exact failure mode rule 6 exists to prevent. **Whether the rule
+takes a division test is now ROADMAP T-A5's to settle**, once, rather than each parcel's to decide
+again. No human figure is drawn (L1), unchanged.
+
 ## New 2026-08-14 — the baseline scored: **4.18 of 10**, and two of the three headline numbers were measuring the wrong thing
 
 **R-G1.** The scored half of G0.2 is in, and the bar it was measured against is the one §0 says

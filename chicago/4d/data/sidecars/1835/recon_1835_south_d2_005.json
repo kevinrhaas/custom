@@ -144,7 +144,7 @@
   "residents": [
     {
       "household": "hh_inf_drover_south_01",
-      "name": "The Metcalf household — an inferred drover (south division)",
+      "name": "The Nash household — an inferred drover (south division)",
       "division": "south",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_south_d2_005 is an anonymous inferred roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -154,7 +154,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Hiram Metcalf",
+          "name": "Chauncey Nash",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "drover",

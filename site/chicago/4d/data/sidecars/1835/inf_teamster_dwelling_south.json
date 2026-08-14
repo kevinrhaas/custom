@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_teamster_south_01",
-      "name": "The Newell household — an inferred teamster (south division)",
+      "name": "The Nichols household — an inferred teamster (south division)",
       "division": "south",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_teamster_dwelling_south is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Erastus Newell",
+          "name": "Alanson Nichols",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "teamster",

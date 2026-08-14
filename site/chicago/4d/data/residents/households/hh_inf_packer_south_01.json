@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_packer_south_01",
- "name": "The Parmelee household — an inferred packer (south division)",
+ "name": "The Pratt household — an inferred packer (south division)",
  "division": "south",
  "head": "inf_packer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_packer_south_01",
-   "name": "Orrin Parmelee",
+   "name": "Elisha Pratt",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

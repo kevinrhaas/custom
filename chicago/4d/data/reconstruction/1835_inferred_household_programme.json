@@ -129,9 +129,9 @@
   {
    "occupation": "labourer",
    "documented_persons": 0,
-   "inferred_households": 13,
-   "planned_households": 13,
-   "argument": "THE LARGEST TRADE IN ANY WESTERN TOWN AND THE ONE NO ROSTER RECORDS, because a labourer advertises nothing, holds no office and joins no church committee - the three ways almost every documented person in this dataset became documented. The harbour works were under construction through 1834 and 1835 (both piers are structure records here), the streets were being graded, and several hundred buildings were being raised. Twelve labouring households are inferred - the largest single group in this layer and still a small fraction of what 3,265 people implies - and every one of them is housed in the meanest roof the schedule carries: a D1 log cabin or a D2 plank shanty. ONE FURTHER LABOURING HOUSEHOLD, 2026-08-14, ON THE SAME TERMS AND FOR THE SAME REASON. The count above calls itself a small fraction of what 3,265 people implies, so it is a floor by its own text, and twelve was where method rule 5 stopped it: another household needed another roof. The Randolph and Wells block parcel has since put a D1 log cabin on the plat in the South Division, which is the family this layer houses every one of its eight adopted labourers in and the meanest roof the schedule carries. Thirteen labouring households are inferred. The arithmetic against the 1835 census is unchanged; what changed is that a roof exists to hold one more of the households that arithmetic already implied."
+   "inferred_households": 14,
+   "planned_households": 14,
+   "argument": "THE LARGEST TRADE IN ANY WESTERN TOWN AND THE ONE NO ROSTER RECORDS, because a labourer advertises nothing, holds no office and joins no church committee - the three ways almost every documented person in this dataset became documented. The harbour works were under construction through 1834 and 1835 (both piers are structure records here), the streets were being graded, and several hundred buildings were being raised. Twelve labouring households are inferred - the largest single group in this layer and still a small fraction of what 3,265 people implies - and every one of them is housed in the meanest roof the schedule carries: a D1 log cabin or a D2 plank shanty. ONE FURTHER LABOURING HOUSEHOLD, 2026-08-14, ON THE SAME TERMS AND FOR THE SAME REASON. The count above calls itself a small fraction of what 3,265 people implies, so it is a floor by its own text, and twelve was where method rule 5 stopped it: another household needed another roof. The Randolph and Wells block parcel has since put a D1 log cabin on the plat in the South Division, which is the family this layer houses every one of its eight adopted labourers in and the meanest roof the schedule carries. Thirteen labouring households are inferred. The arithmetic against the 1835 census is unchanged; what changed is that a roof exists to hold one more of the households that arithmetic already implied. ONE FURTHER LABOURING HOUSEHOLD, 2026-08-14, ON THE TERMS METHOD RULE 6 SETS AND FOR THE SAME REASON AS THE THIRTEENTH. The count above calls itself a small fraction of what 3,265 people implies, so it is a floor by its own text, and thirteen was where method rule 5 stopped it: another household needed another roof. The block parcel at Randolph and Clinton has since put a D1 log cabin on the plat in the WEST Division - the meanest roof the schedule carries, the family this layer houses nine of its eleven housed labourers in, and the first anonymous roof of that family to stand west of the river. This layer already places two labouring households in the West Division, in raised D2 plank shanties, so the adoption moves no trade across a division line that this programme had not already argued: it houses the fourteenth labourer in a roof the 665-roof programme had already counted instead of raising a fifteenth building. Fourteen labouring households are inferred. The arithmetic against the 1835 census is unchanged."
   },
   {
    "occupation": "laundress",
@@ -528,7 +528,7 @@
    "occupation": "labourer",
    "division": "south",
    "ordinal": 1,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_south_d1_021",
    "works_at": null,
    "extras": []
@@ -538,7 +538,7 @@
    "occupation": "labourer",
    "division": "south",
    "ordinal": 2,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_south_d1_033",
    "works_at": null,
    "extras": []
@@ -733,7 +733,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 3,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_001",
    "works_at": null,
    "extras": []
@@ -743,7 +743,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 4,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_013",
    "works_at": null,
    "extras": []
@@ -753,7 +753,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 5,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_023",
    "works_at": null,
    "extras": []
@@ -763,7 +763,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 6,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_053",
    "works_at": null,
    "extras": []
@@ -773,7 +773,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 7,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_054",
    "works_at": null,
    "extras": []
@@ -783,7 +783,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 8,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_north_d1_060",
    "works_at": null,
    "extras": []
@@ -1053,7 +1053,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 9,
-   "of": 13,
+   "of": 14,
    "lives_at": "inf_labourer_shanty_north_a",
    "works_at": null,
    "extras": []
@@ -1063,7 +1063,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 10,
-   "of": 13,
+   "of": 14,
    "lives_at": "inf_labourer_shanty_north_b",
    "works_at": null,
    "extras": []
@@ -1073,7 +1073,7 @@
    "occupation": "labourer",
    "division": "west",
    "ordinal": 11,
-   "of": 13,
+   "of": 14,
    "lives_at": "inf_labourer_shanty_west_a",
    "works_at": null,
    "extras": []
@@ -1083,7 +1083,7 @@
    "occupation": "labourer",
    "division": "west",
    "ordinal": 12,
-   "of": 13,
+   "of": 14,
    "lives_at": "inf_labourer_shanty_west_b",
    "works_at": null,
    "extras": []
@@ -1143,8 +1143,18 @@
    "occupation": "labourer",
    "division": "south",
    "ordinal": 13,
-   "of": 13,
+   "of": 14,
    "lives_at": "recon_1835_blk_randolph_wells_d1_06",
+   "works_at": null,
+   "extras": []
+  },
+  {
+   "id": "hh_inf_labourer_west_14",
+   "occupation": "labourer",
+   "division": "west",
+   "ordinal": 14,
+   "of": 14,
+   "lives_at": "recon_1835_blk_randolph_clinton_d1_03",
    "works_at": null,
    "extras": []
   }
