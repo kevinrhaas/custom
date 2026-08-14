@@ -61,6 +61,13 @@ step "inferred placeholder GLBs match their records" \
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
 
+# The 665-roof programme's remainder is a function of what has been built, and the town
+# grows most nights. Left as an authored number it goes stale silently — the crosswalk
+# called 617 roofs remaining while 232 were standing — and the next block parcel schedules
+# against a figure that is wrong by a third of the programme.
+step "the 665-roof programme reconciles with the town that stands" \
+  python3 tools/reconcile_665.py --check
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
