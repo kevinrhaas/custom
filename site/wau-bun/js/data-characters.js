@@ -484,3 +484,37 @@ WAUBUN_CHARACTERS.push(
     role: 'Itinerant workman',
     bio: 'An odd little travelling genius who fenced the Agency garden — the pride and wonder of the surrounding settlement and wigwams — and left the spare palisades that ended up weatherproofing the kitchen chimney.' }
 );
+
+/* ---------------- Part 3, chapters XXVII–XXVIII ---------------- */
+WAUBUN_CHARACTERS.push(
+  { id: 'cutnose', name: 'The Cut-Nose', alias: 'Elizabeth', faction: 'native',
+    role: 'Daughter of Day-kau-ray',
+    bio: 'Fair-complexioned and soft-haired from a French cross some generations back, with a noble forehead and fine teeth, and — but for one feature — beautiful. Her Fox husband, unable to make her leave her own people, bit off the end of her nose to mark her so that no other man could marry her, and fled. Day-kau-ray was too respected for the disgrace to stick. Crippled with rheumatism and relieved by a remedy the Kinzies gave her, she walked the ten miles from the Barribault every two or three weeks simply to sit and look at them, laugh at whatever was strange, and kiss their hands.' },
+  { id: 'musquakee', name: 'The Mus-qua-kee', alias: null, faction: 'native',
+    role: 'Her husband, a Fox',
+    bio: 'Married into his wife\'s family and lived among the Ho-Chunk for years, as custom required. Childless and homesick for the Mississippi, he begged her to come away, and when she would not, told her that if she would not go with him she should never be another man\'s wife — and marked her.' },
+  { id: 'littlepriest', name: 'The Little Priest', alias: null, faction: 'native',
+    role: 'Rock River chief',
+    bio: 'Rides in with White Crow and the other principal Rock River chiefs to bring the Agency the news about Black Hawk, and to promise that they will keep their own young men quiet.' },
+  { id: 'blackhawk', name: 'Black Hawk', alias: null, faction: 'native',
+    role: 'Sauk chief',
+    bio: 'Having moved west of the Mississippi under treaty, he has come back to the old homes and hunting grounds and means to keep them and drive the white settlers off — which he has already begun to do. The chiefs who bring the news fear he will draw the Ho-Chunk in after the Potawatomi.' },
+  { id: 'julian', name: 'Julian Magill', alias: null, faction: 'kinzie',
+    role: 'Juliette\'s young brother',
+    bio: 'Sent west by her parents at the Kinzies\' request and met by John at Fort Gratiot. Edwin, who had been very solitary, is overjoyed to have a companion at last.' },
+  { id: 'granddaykauray', name: 'The elder Day-kau-ray\'s mother', alias: null, faction: 'native',
+    role: 'The oldest woman of the nation',
+    bio: 'Nobody can put a number on her age, but all agree on upwards of a hundred winters: eyes almost white, face dark and withered like a baked apple, a voice that only rises when her graceless grandsons torment her. She goes on all fours, having no strength to stand, and comes crawling to the doorstep on payment day to count her silver — and cannot come to her Father without begging something more to give the same grandsons.' },
+  { id: 'mrspawneeblanc', name: 'Mrs. Pawnee Blanc', alias: null, faction: 'native',
+    role: 'Nearest surviving relative of the graves on the esplanade',
+    bio: 'Through her intimacy in Paquette\'s family she has acquired something of a taste for civilization, and is pleased to have the worn black pickets round her family\'s graves replaced with a neat low platform — where the old women come at sunset to sit and gossip over the ashes of their people.' },
+  { id: 'oldboilvinind', name: '"Old Boilvin"', alias: null, faction: 'native',
+    role: 'The man who attended his own wake',
+    bio: 'Named by the French for his resemblance to the Agent at Prairie du Chien. Reported drowned in Swan Lake with nothing found but his blanket on the bank, he turns up muddy and staggering in the middle of the mourning to ask who is dead — is told that he is — and sits down to cry and drink with the rest.' },
+  { id: 'therese', name: 'Thérèse Paquette', alias: null, faction: 'settler',
+    role: 'Sunday-school scholar',
+    bio: 'One of the girls at the little Sunday school at the Agency; she eventually goes to Mr. Cadle\'s mission school at Green Bay with the Manaigre children.' },
+  { id: 'florence', name: 'Florence Courville', alias: null, faction: 'settler',
+    role: 'Sunday-school scholar, fifteen',
+    bio: 'A pretty girl who speaks only the Canadian patois and does not know her letters, and who is kept at home on Sundays to mind the house while her sister visits the Roys on the Wisconsin — until she stops coming altogether.' }
+);
