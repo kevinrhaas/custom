@@ -55,6 +55,31 @@ jobs:
 
       - run: pip install --quiet jsonschema pyproj
 
+      # Playwright, because the LAST thing tools/bake.sh does is run the renderer
+      # smoke against the mirror it has just published — and that step is the
+      # whole reason the bake is trustworthy: the source tree and the published
+      # tree do not load the same geometry, and a bug that collapsed every
+      # building to a two-metre box once shipped past a fully green gate twice
+      # because nothing had ever loaded the compressed derivatives.
+      #
+      # It was never installed here. So the bake did all of it — fetch Blender,
+      # generate, bake AO, compress, publish, gate green — and then died on
+      # `Cannot find module .../playwright/index.js`, one step from the finish,
+      # which meant the "push a bake branch and open a PR" step never ran and
+      # every night's output was discarded. Observed on runs 31761814117 and
+      # 31771193146.
+      #
+      # Installed GLOBALLY on purpose: smoke_renderer.mjs resolves it through
+      # `npm root -g` (ESM does not honour NODE_PATH), same as every other repo
+      # in the fleet. The browser install is pinned to the same version as the
+      # library so the two cannot drift, and to chromium alone — the smoke drives
+      # nothing else, and the other engines are ~300 MB of download per run.
+      - name: Install Playwright (the bake smoke-tests the mirror it publishes)
+        run: |
+          set -e
+          npm install -g playwright@1.56.1
+          node "$(npm root -g)/playwright/cli.js" install --with-deps chromium
+
       # KTX-Software, so gltf-transform can actually compress textures.
       # APPROVED BY THE OWNER 2026-08-14 (docs/RENDERING.md §8, W2).
       #

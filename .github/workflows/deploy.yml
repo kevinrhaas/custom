@@ -140,8 +140,13 @@ jobs:
         run: |
           if git fetch origin dev 2>/dev/null; then
             sha="$(git rev-parse --short FETCH_HEAD)"
+            # The dev HEAD's own commit date, so the preview gate can say how
+            # old the build is. NOT `date` here: this job also runs on deploys
+            # of main that leave dev untouched, and an assembly time would age
+            # the stamp on a branch that never moved.
+            when="$(git show -s --format=%cI FETCH_HEAD)"
             git worktree add _dev-src FETCH_HEAD
-            node .github/chicago-4d-dev-preview.mjs _dev-src "$sha"
+            node .github/chicago-4d-dev-preview.mjs _dev-src "$sha" "$when"
             git worktree remove --force _dev-src
           else
             echo "dev-preview: no 'dev' ref yet — skipping /chicago/4d/dev/"
