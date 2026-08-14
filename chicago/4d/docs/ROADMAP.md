@@ -45,9 +45,17 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
 | 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
 | 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
-| 1 | TOWN | **T-A2h** | the ten new roofs' households, which T-A2 deliberately left |
-| 2 | TOWN | **T-A4…** | one open block per run until the 86 are placed |
-| 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
+| 2 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| 3 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
+
+**T-A2h is DONE (2026-08-14)** — two of `blk_randolph_wells`'s ten roofs carry an argued
+household and eight stay anonymous, under a **two-test rule now written into the household
+programme's own `method` list**: a block roof may be adopted only where the trade's committed
+argument calls its count a floor rather than a bound, AND the roof's family is one this layer
+already houses that trade in. **The adoption is no longer a parcel of its own.** The generator
+carries the gate in both directions, so T-A4 onward applies the rule in the same run as the
+block — `T-A3h` is the one outstanding backfill because its block landed first.
 
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
@@ -316,23 +324,101 @@ side effect. **T-A2h below owns it.**
 `data/structures.schema.json` (four lot-provenance fields) · `data/sidecars/1835/` ·
 `assets/…` placeholder massing · `docs/LIBERTIES.md` (L92) · `tools/check.sh` (one step)
 
-### T-A2h — the ten roofs' households · **UNCLAIMED · NEXT UP**
+### T-A2h — the ten roofs' households · **DONE 2026-08-14 (two adopted, eight refused)**
 
-Adopt some or all of `blk_randolph_wells`'s ten roofs into the inferred-household layer:
-occupation census, household records, invented names, occupancy blocks on the structures. Data
-only, and disjoint from every other block parcel.
+**Two of the ten roofs are adopted and the other eight are not, and the ratio is the finding.**
+The parcel was written expecting an argument about the town's trade mix. The argument it actually
+produced is about who is allowed to start one: a block parcel appends ten dwellings to the plat in
+the time it takes to write a recipe entry, and an occupation census that grows to match is a
+census driven by what has been drawn rather than by the town. The 3,265-people-in-398-dwellings
+calibration is a claim about Chicago; letting a drawn cottage raise it is fitting the evidence to
+the model.
 
-**Why it is its own parcel:** `tools/generate_inferred_households.py` requires the census and the
-households to agree exactly in both directions, so adding households means arguing about the
-town's trade mix — the weakest joint in the population layer, and the one STATUS names as derived
-from five in-dataset calibrations rather than cited. That argument deserves a run, not a footnote.
+**So the rule, now written into the household programme's own `method` list where the next parcel
+reads it.** A block roof may be adopted only where BOTH tests pass: the trade's own committed
+argument states in its text that its count is a **floor rather than a bound**, and the roof's
+family is one this layer **already houses that trade in**.
 
-**Files:** `data/reconstruction/1835_inferred_household_programme.json` ·
+- **Test one passes for exactly two of twenty-nine trades.** The carpenter — *"the shop count is a
+  floor under the trade, not a measure of it"* — and the labourer — *"still a small fraction of
+  what 3,265 people implies"*. Every other entry states a ceiling (the plasterer's and the
+  drover's say *"and no more"* outright) or is bounded by a workshop or store family's roof target
+  under method rule 2. Two apparent third and fourth matches are a false positive worth naming:
+  the laundress and the boarding-house keeper entries contain the word *floor* only inside the
+  Andreas quotation *"with the floor covered besides"*.
+- **Test two, measured against the layer as it stood, picks the same two families.** All 8 of the
+  layer's adopted labouring households live in a D1 and 9 of its 10 carpenters in a D3 — and a D1
+  and a D3 are two of the seven dwellings this block deals. The tests were derived independently
+  and agreed on the first block they were applied to, which is the only reason to trust either.
+- **The result:** `hh_inf_labourer_south_13` in the D1 log cabin and `hh_inf_carpenter_south_11`
+  in the D3 cottage. Households **152 → 154**, persons **188 → 190**, adopted anonymous roofs
+  **83 → 85**. Standing roofs unchanged at **251** — this parcel built nothing.
+
+**Three kinds of refusal, and only one of them is the rule.** The stable, privy and woodshed are
+refused because a yard building has no occupant to argue about, and the generator now says so by
+name. D2, D4 and D5 are refused by the rule: this layer houses laundresses, boatmen, masons,
+clerks and shoemakers in those families and every one of those counts was argued to a number.
+**H1 and H2 are refused for the strongest reason** — 18 larger houses and 14 merchant or
+professional houses in the whole town, whose occupants are the most likely people here to be
+nameable, so inventing an anonymous merchant into one would break the programme's own rule never
+to infer a person where a documented one is available. They want T-I3's treatment, not a census
+draw.
+
+**The adoption is data, in one place, gated in both directions.** `tools/generate_block_infill.py`
+now reads `tools/inferred_occupancy.py` exactly as the three earlier anonymous parcels do, so the
+adoption is authored once in the household ledger and handed to whichever generator owns the roof
+— hand-editing a generated record would have failed the drift check that makes these parcels
+trustworthy. The new gate refuses an adoption that lands on an ancillary roof, and refuses a roof
+the ledger names that no recipe builds. Both verified by doing each: the privy adoption fails by
+name, and a household pointed at a non-existent block roof fails by name.
+
+**One thing this parcel churned and did not fix — see K20.** Adding two people renamed **25 of the
+94** reconstructed residents, because the invented-name allocator deals names round each pool by
+index within a bucket, so an insertion shifts everyone after it. No grade moved and every name
+re-derives, but the file's own docstring claims the assignment is a function of a person's id, and
+it is a function of the whole population.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` (census, two households,
+method rule 6) · `tools/generate_block_infill.py` (occupancy + the adoption gate) ·
 `data/residents/households/*.json` · `data/residents/index.json` ·
-`data/structures/recon_1835_blk_randolph_wells_*.json` (occupancy only, via the generator)
+`data/structures/recon_*.json` (occupancy only, via the generators) · `data/sidecars/1835/` ·
+`assets/manifest.json` · `docs/LIBERTIES.md` (L94) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-**Acceptance:** `tools/check.sh` green; no inferred person carries a name that is not re-derived
-by `generate_inferred_names.py`; the census reconciles; **no human figure is drawn** (L1).
+### T-A3h — the second block's households · **UNCLAIMED**
+
+The same rule applied to `blk_randolph_dearborn`, which landed before the rule existed. Its
+schedule deals it a D1 and a D3, so the answer is very likely the same two adoptions and a
+one-line recipe change; the point of running it is to confirm that and to leave no block behind
+the rule. **T-A4 onward does this in the same run as the block** — the generator carries the gate
+now, and a separate parcel per block would be bookkeeping rather than an argument.
+
+### K20 — the invented-name allocator is not stable under insertion · **UNCLAIMED**
+
+`tools/generate_inferred_names.py` says of itself: *"Assignment is DETERMINISTIC, from a hash of
+the person's id. Re-running produces the same town… nobody has to wonder whether a name drifted."*
+The first clause is what the code was built for and the second is not what it does. Pass two deals
+each `(community, sex)` bucket round its pool **by index** — deliberately, to stop four unrelated
+households sharing a surname — so a person inserted into a bucket shifts every name after them.
+Measured on T-A2h: **two new people renamed 25 of the 94** reconstructed residents.
+
+Nothing about that is a provenance failure — every name is invented, graded `reconstructed`, and
+re-derives under `--check`. It is a churn and a documentation defect, and it compounds: every
+future block parcel will rewrite a quarter of the town's invented names as a side effect, which
+buries the parcel's real diff and makes a genuine drift harder to see.
+
+**The likely fix** is to keep the anti-collision property while making it insertion-local: give
+each person a deterministic permutation of the pool from their own id and, walking people in
+stable hash order, take the first pair not already claimed. An insertion then only bumps the
+people it actually collides with. That is a **one-time rename of the whole layer** in the PR that
+does it, which is why it belongs in its own parcel with its own liberty note rather than riding
+along with a block.
+
+**Files:** `tools/generate_inferred_names.py` · `data/residents/households/*.json` ·
+`data/residents/index.json` · `docs/ROADMAP.md`
+
+**Acceptance:** adding one household to the programme renames only the people who collide with it,
+demonstrated by measurement in the PR; `tools/check.sh` green; no grade moves and no `name_basis`
+loses its pool citation.
 
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 

@@ -1,5 +1,57 @@
 # STATUS
 
+## New 2026-08-14 — two roofs of ten given an occupant, and the rule that refused the other eight
+
+**T-A2h.** The parcel was expected to argue about the town's trade mix. What it found is that a
+block parcel puts ten dwellings on the plat faster than any such argument can move, so the
+question that mattered was **who is allowed to start one**. The occupation census is a claim about
+Chicago — 3,265 people in 398 dwellings, calibrated against Andreas's 1833 roster — and a census
+that grows every time somebody draws a cottage is a census fitted to the model. Two of
+`blk_randolph_wells`'s ten roofs are adopted into the inferred-household layer; the other eight
+stay anonymous count-units, which is what they already were.
+
+**The rule now lives in the household programme's own `method` list**, where the next parcel will
+read it. A block roof may be adopted only where BOTH tests pass: the trade's committed argument
+states in its own text that its count is a **floor rather than a bound**, and the roof's family is
+one this layer **already houses that trade in**.
+
+- **Two of twenty-nine trades pass the first test** — the carpenter (*"the shop count is a floor
+  under the trade, not a measure of it"*) and the labourer (*"still a small fraction of what 3,265
+  people implies"*). Everything else states a ceiling — the plasterer's and the drover's say *"and
+  no more"* outright — or is bounded by a workshop or store family's roof target. Two apparent
+  further matches are a false positive worth naming: *floor* appears in the laundress and
+  boarding-house-keeper entries only inside the Andreas quotation *"with the floor covered
+  besides"*.
+- **The second test, measured against the layer as it stands, picks the same two families.** All 8
+  of the layer's adopted labouring households live in a D1 and 9 of its 10 carpenters in a D3 —
+  and a D1 log cabin and a D3 one-room cottage are two of the seven dwellings this block deals.
+  The tests were derived independently and agreed on the first block they were applied to, which
+  is the only reason to trust either of them.
+- **Households 152 → 154, persons 188 → 190, adopted anonymous roofs 83 → 85, standing roofs
+  unchanged at 251.** This parcel built nothing, moved nothing and regraded nothing. The two
+  roofs' presence, position and footprint are exactly as invented after the adoption as before it;
+  what they gain is an argued occupant instead of a blank. Recorded as **L94**.
+- **The H1 and H2 houses are the refusal worth keeping.** The schedule allows 18 larger houses and
+  14 merchant or professional houses in the whole town, and their occupants are the most likely
+  people in this dataset to be nameable. Inventing an anonymous merchant into one would break the
+  programme's own rule never to infer a person where a documented one is available. Those two want
+  T-I3's treatment — a reading of the record — and not a draw from a census.
+- **The adoption is authored once and gated in both directions.** `tools/generate_block_infill.py`
+  now reads the household ledger through `tools/inferred_occupancy.py`, exactly as the three
+  earlier anonymous parcels do, so no generated record is hand-edited and the drift check that
+  makes these parcels trustworthy still binds. A household pointed at an ancillary roof fails by
+  name — a yard building serves the lot it stands behind, and nobody lives in a privy — and a roof
+  the ledger names that no recipe builds fails by name. **Verified by doing each.**
+- **What it churned and did not fix, recorded as ROADMAP K20.** Adding two people renamed **25 of
+  the 94** reconstructed residents. The invented-name allocator deals names round each pool by
+  index within a bucket, so an insertion shifts everyone after it. No grade moved and every name
+  re-derives under `--check`, but the generator's own docstring says the assignment is a function
+  of a person's id when it is a function of the whole population — and every future block parcel
+  will rewrite a quarter of the town's invented names as a side effect until that is fixed.
+
+**Gates:** `tools/check.sh` green; `node tools/smoke_renderer.mjs` green at 390×780 and 1280×800,
+zero page errors, run against the source tree and again with `--published`.
+
 ## New 2026-08-14 — a block filled in, and the table nothing had ever read
 
 **T-A2.** `blk_randolph_wells` — Randolph, LaSalle, Washington, Wells — stood empty and now
@@ -179,10 +231,10 @@ collide** (`docs/ROADMAP.md` → "THE OVERNIGHT LANES"): lane 1 RENDERING touche
 tool files, lane 2 TOWN COMPLETION touches data only. **R-G0** (the critic harness), **T-A1**
 (the 665-roof reconciliation) and the first two blocks off the reconciled schedule (**T-A2**,
 **T-A3**) are all in, so the NEXT UP picks are **R-W1** (light) and **R-W4** (atmosphere) in
-lane 1; **T-A2h** (the ten new roofs' households), **T-A4…** (one open block per run) and
-**T-I3** (the civic roofs T-A3 refused — research, not massing) in lane 2. Today's count is
-**261 structure records — 251 physical roofs of a 665 target — 152 households, 188 persons**.
-Everything arrives as a PR into `dev` and waits there.
+lane 1; **T-A4…** (one open block per run, now adopting in the same run) and **T-I3** (the
+civic roofs T-A3 refused — research, not massing) in lane 2. **T-A2h** is in too. Today's
+count is **261 structure records — 251 physical roofs of a 665 target — 154 households, 190
+persons**. Everything arrives as a PR into `dev` and waits there.
 
 
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that

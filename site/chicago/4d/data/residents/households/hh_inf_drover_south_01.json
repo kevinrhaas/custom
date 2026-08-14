@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_drover_south_01",
- "name": "The Leland household — an inferred drover (south division)",
+ "name": "The Metcalf household — an inferred drover (south division)",
  "division": "south",
  "head": "inf_drover_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_drover_south_01",
-   "name": "Eli Leland",
+   "name": "Hiram Metcalf",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

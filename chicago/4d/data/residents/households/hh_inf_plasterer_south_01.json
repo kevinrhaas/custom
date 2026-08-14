@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_plasterer_south_01",
- "name": "The Nichols household — an inferred plasterer (south division)",
+ "name": "The Pratt household — an inferred plasterer (south division)",
  "division": "south",
  "head": "inf_plasterer_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_plasterer_south_01",
-   "name": "Alanson Nichols",
+   "name": "Elisha Pratt",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

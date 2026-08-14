@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_south_01",
- "name": "The Chapin household — an inferred mason (south division)",
+ "name": "The Crandall household — an inferred mason (south division)",
  "division": "south",
  "head": "inf_mason_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_south_01",
-   "name": "Samuel Chapin",
+   "name": "James Crandall",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_joiner_south_01",
- "name": "The Ingalls household — an inferred joiner (south division)",
+ "name": "The Leland household — an inferred joiner (south division)",
  "division": "south",
  "head": "inf_joiner_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_joiner_south_01",
-   "name": "Amos Ingalls",
+   "name": "Eli Leland",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

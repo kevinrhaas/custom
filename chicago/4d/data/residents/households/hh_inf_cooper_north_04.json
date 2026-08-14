@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_north_04",
- "name": "The Lyman household — an inferred cooper (north division)",
+ "name": "The Nash household — an inferred cooper (north division)",
  "division": "north",
  "head": "inf_cooper_north_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_north_04",
-   "name": "Reuben Lyman",
+   "name": "Chauncey Nash",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
