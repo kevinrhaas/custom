@@ -733,6 +733,14 @@ Build against synthetic geometry and flat ground. Contract in `docs/PLAN.md`. Mo
 (390×780) is a release gate from the first walkable commit — retrofitting touch into a 3D
 walkthrough later is the expensive way to do it.
 
+## R2 — Rendering program (futures) · **PROPOSAL — owner review pending**
+
+The phased plan for higher-fidelity rendering — Track 1 (`walk/` improved in place: light,
+textures, AO, cascades, atmosphere, water, content), Track 2 (a second high-fidelity web
+renderer at `walk-hd/`), Track 3 (a native-engine renderer) — lives in `docs/RENDERING.md`,
+with per-phase gates, acceptance numbers and runner routing. Phases there are parcels;
+nothing in that document is claimed or scheduled until the owner reviews it.
+
 ## S3 — Milestone 0: the Sauganash, end to end
 
 Definition of done in `docs/PLAN.md`. The record, the sources, and the dossier are already
