@@ -45,13 +45,18 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
 | 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
 | 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
-| 1 | TOWN | **T-A3** | second block; proves the parcel shape repeats — and it is now a recipe entry, not a geometry argument |
-| 2 | TOWN | **T-A2h** | the ten new roofs' households, which T-A2 deliberately left |
-| 3 | TOWN | **T-A4…** | one open block per run until the 95 are placed |
+| 1 | TOWN | **T-A2h** | the ten new roofs' households, which T-A2 deliberately left |
+| 2 | TOWN | **T-A4…** | one open block per run until the 86 are placed |
+| 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
 quotes the two tables rather than an adjective.
+
+**T-A3 is DONE (2026-08-14)** — `blk_randolph_dearborn` carries **nine of the ten roofs the
+schedule dealt it**, so **251 stand and 414 remain**, 86 of them on covered ground. The tenth was
+a civic roof and is deferred with its reasoning: the parcel shape repeated exactly as T-A2
+predicted, and what it found was that one family cannot be massed at all. See T-I3.
 
 **T-A2 is DONE (2026-08-14)** — `blk_randolph_wells` carries ten roofs, so **242 stand and 423
 remain**, 95 of them on covered ground. The parcel authors no coordinates: block parcels are now
@@ -329,23 +334,93 @@ from five in-dataset calibrations rather than cited. That argument deserves a ru
 **Acceptance:** `tools/check.sh` green; no inferred person carries a name that is not re-derived
 by `generate_inferred_names.py`; the census reconciles; **no human figure is drawn** (L1).
 
-### T-A3 — the second refreshed block · **UNCLAIMED · NEXT UP**
+### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
-As T-A2, different block, and now genuinely a recipe entry: append a block to
-`data/reconstruction/1835_platted_block_parcels.json` naming its lots, families and setbacks,
-then `python3 tools/generate_block_infill.py`. `blk_randolph_dearborn` carries the most headroom
-of the remaining open units at 10 roofs and stands empty — note it schedules H3 as well, which
-resolves through `frame_tavern` and has no form rule in the generator yet, so that block wants
-the rule adding (the generator refuses an unknown family by name rather than guessing).
+**The parcel shape did repeat, and that is the finding.** Appending a block to
+`data/reconstruction/1835_platted_block_parcels.json` and running the generator is the whole of
+the geometry work — no coordinate is authored, no family band is retyped, and the recipe entry
+took minutes. Two things came out of the repeat that a single block could not have shown, and
+both are worth more than the nine roofs.
+
+**One roof of the ten was refused, and the generator now refuses its whole family by name.** The
+schedule dealt this block an I3 — civic or public-service. (The parcel as written expected H3;
+the schedule is derived from what stands, so T-A2 re-apportioned it. Read the schedule, never
+this entry's memory of it.) I3 resolves through the `fort_structure` placeholder, whose entire
+vocabulary of building kinds is garrison words — quarters, barracks, blockhouse, magazine, store,
+guard, sutler, artillery — with nothing in it for the adapted office or engine house the
+crosswalk says the family spans. Massing it would have stood a garrison building in the platted
+town, 750 m from the fort. The crosswalk had already written the precondition on its own entry:
+the six-roof aggregate *"spans unlike functions; they must reconcile to named public records
+before selecting construction"*. So `REFUSED_FAMILIES` in `tools/generate_block_infill.py` now
+refuses I1, I2 and I3 by name with the committed sentence each refusal enforces, instead of the
+generic *"add a form rule before a recipe uses it"* — which was an instruction to step over the
+precondition. **The deferral is gated in both directions**: a roof the schedule dealt and the
+parcel did not build must be named in the recipe's `deferred` list with its reasoning, and a slot
+may only be deferred for a refusal the code states. A family cannot be dropped for being awkward,
+and a deferral cannot be used to hide one. Both directions verified by reintroducing them.
+
+**The lot frame was being chosen by a two-centimetre margin, and on this block it chose wrong.**
+`lot_frame()` identified a lot's alley edge as the edge nearest the alley's CENTROID — and a
+block's alley centroid sits at the block's own centre, so for an END lot the side lot line
+running back toward that centre is nearly as close as the alley edge. On `blk_randolph_dearborn`
+the two came out **38.93 m against 38.95 m**, and two of the four end lots picked the side lot
+line: a building framed broadside to its own street, hanging over the neighbour. What reported it
+was the lot-margin gate, at **1.44 m against a 1.5 m bound** — a millimetre-scale complaint about
+a ninety-degree error, which is the shape of this defect worth remembering. Measuring to the
+alley STRIP instead separates the same two edges by 0.2 m and 26.3 m. A structural check rides
+with it: a lot's front and rear are its two block-face-parallel edges and are the same length to
+within the plat's skew, so a 20 % disagreement means one of them is a side line and fails loudly.
+**`blk_randolph_wells` cleared the old tie by 1.3 m in 37 — a 3 % margin — so nothing T-A2
+committed moves**, and it was never more than the block's proportions away from the same failure.
+Verified by framing this block's lots under the old rule against the new check: 2 of 8 rejected,
+the two that were wrong.
+
+**Standing roofs 242 → 251; remaining 423 → 414, 86 of them on covered ground.** Five dwellings
+on five of eight lots and four yard buildings off the alley; three lots open, two on the
+programme's alternating-vacancy assumption and one because the parcel refused its roof. Recorded
+in L93.
 
 **Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
-`data/structures/recon_1835_blk_<block>_*.json` · `docs/LIBERTIES.md` — disjoint from T-A2 by
-construction.
+`tools/generate_block_infill.py` (`REFUSED_FAMILIES`, the deferral gate, `lot_frame`) ·
+`data/structures/recon_1835_blk_randolph_dearborn_*.json` (9, derived) · `data/sidecars/1835/` ·
+`assets/…` placeholder massing · `docs/LIBERTIES.md` (L93) · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+### T-I3 — the civic roofs, reconciled to named records · **UNCLAIMED · NEXT UP**
+
+**Research, not massing, and it is the parcel T-A3 refused to do by hand.** The programme
+schedules six I3 roofs — civic or public-service — across the town, and the generator now refuses
+every one of them until this parcel runs. What is owed is what the crosswalk asks for: which
+civic and public-service buildings Chicago actually had in July 1835, where they stood, and what
+they were built of. The estray pen, the jail, an engine house, an adapted office are the kinds of
+thing at stake, and each is nameable or is not there.
+
+**The rule that makes this different from a block parcel:** a named record substitutes for a
+compatible anonymous roof and never increases the total, so this parcel can only ever move roofs
+from the anonymous column into the named one. **Never invent a source.** A civic building for
+which no source record resolves does not become `conjectural` here — it stays absent, and the
+absence is recorded in `data/exclusions.json` with its citation the way every other
+researched-and-excluded structure is.
+
+**Whether an anonymous I3 may ever stand is itself part of the parcel.** If the research shows
+the town's public buildings are enumerable, then the family's six-roof target is the thing that
+is wrong and the programme should be corrected rather than filled. Say which, with the reasoning.
+
+**Files:** `data/sources/*` (new, with Wayback snapshots) · `docs/RESEARCH/<id>.md` ·
+`data/structures/*` or `data/exclusions.json` · `data/reconstruction/1835_building_inventory.json`
+(only if the target is what moves) · `tools/generate_block_infill.py` (`REFUSED_FAMILIES`, only
+once a named record exists) · `docs/LIBERTIES.md`
+
+**Acceptance:** `tools/check.sh` green; every new attribute graded `documented` resolves to a
+source record; nothing anonymous gains a civic function; L93's *How to resolve* answered in
+whichever direction the evidence points.
 
 ### T-A4…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
-prefix in its claim heading so two runs cannot take the same one.
+prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
+arrival date** — it is derived from what stands, so every block parcel that lands re-apportions
+the families of every block that has not. A parcel that meets an institutional family defers it
+per T-A3 rather than reaching for a shape.
 
 ---
 

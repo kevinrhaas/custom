@@ -174,6 +174,51 @@ def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0) -> fl
     return round(lo + (hi - lo) * stable_fraction(key, 8), 3)
 
 
+# --------------------------------------------------------------------------
+# the families this generator refuses to mass, and why each one
+# --------------------------------------------------------------------------
+#
+# A family with no form rule is ordinarily a gap: somebody adds the rule and the
+# next recipe uses it. The three institutional families are NOT that, and the
+# generic message ("add one before a recipe uses it") is the wrong instruction for
+# them, because each carries a precondition the crosswalk already wrote down and
+# adding a form rule would step straight over it. They are refused by name, with
+# the precondition quoted, so a parcel that meets one of these slots has to defer
+# it and say so rather than reach for a shape.
+#
+# The distinction that makes this more than caution: an anonymous DWELLING is the
+# ordinary case in a town of 3,000 whose householders were never enumerated
+# roof by roof. An anonymous PUBLIC building is a different claim — that an
+# institution stood here and left no record at all — and 1835 Chicago's public
+# buildings are few enough to be nameable.
+REFUSED_FAMILIES = {
+    "I1": (
+        "worship or meeting buildings. The crosswalk schedules four of them and says "
+        "the schedule 'explicitly calls for four custom assets' which the placeholder "
+        "'must not genericize'. Each is a named congregation with its own dossier, so "
+        "an anonymous one is not a count-unit toward them — it is a fifth."
+    ),
+    "I2": (
+        "schools and community-use structures. The crosswalk gives the family two "
+        "roofs and says each 'needs named-record reconciliation'. (One anonymous I2 "
+        "stands in the North Division from an earlier parcel, written before this rule "
+        "and before this generator existed; it is recorded in docs/LIBERTIES.md rather "
+        "than quietly removed, and it is not a precedent this generator extends.)"
+    ),
+    "I3": (
+        "civic or public-service structures. The family resolves through the "
+        "fort_structure placeholder, whose whole vocabulary of building kinds is "
+        "garrison words — quarters, barracks, blockhouse, magazine, store, guard, "
+        "sutler, artillery — and none of them names the adapted office or the engine "
+        "house the crosswalk says this family spans. Massing an anonymous town civic "
+        "building through it would stand a garrison building in the middle of the "
+        "platted town. The crosswalk states the precondition itself: the six-roof "
+        "aggregate 'spans unlike functions; they must reconcile to named public "
+        "records before selecting construction'."
+    ),
+}
+
+
 FUNCTIONS = {
     "D1": "older log dwelling", "D2": "rough plank dwelling or shanty",
     "D3": "one-room frame cottage", "D4": "two-room frame cottage",
@@ -285,19 +330,43 @@ def _mid(a, b):
     return ((a[0] + b[0]) / 2.0, (a[1] + b[1]) / 2.0)
 
 
-def lot_frame(lot: dict, alley_centre: tuple[float, float]) -> dict:
+def lot_frame(lot: dict, alley: list[tuple[float, float]]) -> dict:
     """The lot's street edge, its alley edge and the axes a building stands on.
 
     Which edge fronts the street is asked of the geometry rather than of the vertex
-    order, because the lot polygons do not wind consistently: on this block the north
-    tier lists its street edge first and the south tier lists its alley edge first.
-    The frontage is the edge furthest from the block's own alley.
+    order, because the lot polygons do not wind consistently: on the first block the
+    north tier listed its street edge first and the south tier listed its alley edge
+    first.
+
+    **The rear edge is the one nearest the alley STRIP, not the alley's centroid,
+    and the second block is what proved the difference matters.** A block's alley
+    centroid sits at the block's own centre, so for an END lot the side lot line
+    running back toward that centre is very nearly as close to it as the lot's alley
+    edge is: on `blk_randolph_dearborn` the two came out 38.93 m and 38.95 m apart —
+    two centimetres over a thirty-nine metre lever — and two of that block's four end
+    lots picked the side lot line. A building framed off a side line stands broadside
+    to its own street and hangs over the neighbouring lot; the margin gate caught it
+    at 1.44 m against a 1.5 m bound, which is a millimetre-scale complaint about a
+    ninety-degree error. Measuring to the strip separates the same two edges by
+    0.2 m and 26.3 m. `blk_randolph_wells` cleared the centroid tie by 1.3 m in 37 —
+    a 3 % margin — so nothing it committed moves, but it was never more than the
+    block's proportions away from the same failure.
     """
     poly = [tuple(p) for p in lot["polygon"]]
     edges = [(poly[i], poly[(i + 1) % len(poly)]) for i in range(len(poly))]
-    ranked = sorted(edges, key=lambda e: math.dist(_mid(*e), alley_centre))
-    rear, front = ranked[0], ranked[-1]
-    fm, rm = _mid(*front), _mid(*rear)
+    rear = min(edges, key=lambda e: distance_to_edges(_mid(*e), alley))
+    rm = _mid(*rear)
+    front = max(edges, key=lambda e: math.dist(_mid(*e), rm))
+    fm = _mid(*front)
+    # Front and rear are the two block-face-parallel edges of the same lot, so they
+    # are the same length to within the plat's own skew. A side lot line is twice
+    # that on these blocks, which makes this a cheap structural check on the choice
+    # above rather than a tolerance anybody has to tune.
+    front_len, rear_len = math.dist(*front), math.dist(*rear)
+    if abs(front_len - rear_len) > .20 * max(front_len, rear_len):
+        raise SystemExit(f"lot frame is not square to the block: a {front_len:.1f} m "
+                         f"frontage against a {rear_len:.1f} m rear edge — one of them "
+                         f"is a side lot line")
     span = math.dist(fm, rm)
     if span <= 0:
         raise SystemExit("degenerate lot polygon")
@@ -475,9 +544,7 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
     if grid is None:
         raise SystemExit(f"{block['block_id']} is not a block of the committed plat grid")
     alley = [tuple(p) for p in grid["alley_local_enu_m"]]
-    alley_centre = (sum(p[0] for p in alley) / len(alley),
-                    sum(p[1] for p in alley) / len(alley))
-    frames = [lot_frame(lot, alley_centre) for lot in grid["lots"]]
+    frames = [lot_frame(lot, alley) for lot in grid["lots"]]
 
     records = []
     for seq, slot in enumerate(block["slots"], start=1):
@@ -485,6 +552,11 @@ def build_block(block: dict, table: dict[str, dict], lots_by_id: dict[str, dict]
         if not 0 <= lot_index < len(frames):
             raise SystemExit(f"{block['block_id']} has no lot {lot_index}")
         family = slot["family"]
+        if family in REFUSED_FAMILIES:
+            raise SystemExit(
+                f"{block['block_id']}: this generator refuses to mass {family} — "
+                f"{REFUSED_FAMILIES[family]} Defer the slot in the recipe's `deferred` "
+                f"list with the reason, or reconcile it to a named record first.")
         spec = table.get(family)
         if spec is None:
             raise SystemExit(f"family {family} is not in the crosswalk")
@@ -520,6 +592,37 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     if len(records) > claimed["headroom"]:
         raise SystemExit(f"{block['block_id']}: {len(records)} roofs exceed the block's "
                          f"{claimed['headroom']} of headroom")
+
+    # A parcel may build FEWER roofs than the schedule dealt it, but only by naming
+    # each missing slot and the refusal it rests on. Without this, "the block carries
+    # nine roofs" and "the schedule dealt it ten" are two numbers in two files and
+    # nothing makes them meet — which is how a slot gets dropped for being awkward
+    # rather than for being wrong, and the ledger reads as though it were never dealt.
+    deferred = block.get("deferred") or []
+    dealt_p = claimed.get("dealt_principal", claimed["principal"])
+    dealt_a = claimed.get("dealt_ancillary", claimed["ancillary"])
+    shortfall = (dealt_p - claimed["principal"]) + (dealt_a - claimed["ancillary"])
+    if shortfall < 0:
+        raise SystemExit(f"{block['block_id']}: the parcel claims to build more roofs "
+                         f"than the schedule dealt it")
+    if shortfall != len(deferred):
+        raise SystemExit(f"{block['block_id']}: the schedule dealt {dealt_p + dealt_a} "
+                         f"roofs and the parcel builds {len(records)}, but "
+                         f"{len(deferred)} slot(s) are deferred — every roof dealt and "
+                         f"not built must be named in `deferred` with its reason")
+    for entry in deferred:
+        family = entry.get("family")
+        if family not in REFUSED_FAMILIES:
+            raise SystemExit(f"{block['block_id']}: {family} is deferred, but this "
+                             f"generator does not refuse {family} by name. A slot may "
+                             f"only be deferred for a refusal the code states; "
+                             f"anything else is a roof quietly dropped")
+        if family in block["families"]:
+            raise SystemExit(f"{block['block_id']}: {family} is both built and deferred")
+        if len((entry.get("why") or "").split()) < 40:
+            raise SystemExit(f"{block['block_id']}: the deferral of {family} does not "
+                             f"state its reasoning. A refusal this project cannot read "
+                             f"back is indistinguishable from an omission")
 
     # one principal roof per lot, and no lot carries two
     used = [r["reconstruction"]["lot_index"] for r in records

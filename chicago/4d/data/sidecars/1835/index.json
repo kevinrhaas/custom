@@ -2263,6 +2263,60 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_dearborn_a1_07",
+      "name": "Inferred A1 stable #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a1_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a1_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_a2_08",
+      "name": "Inferred A2 barn or carriage shed #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a2_08.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a2_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_a3_09",
+      "name": "Inferred A3 privy #09",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a3_09.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_a4_06",
+      "name": "Inferred A4 woodshed or storage shed #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a4_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d1_04",
+      "name": "Inferred D1 older log dwelling #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d1_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d2_05",
+      "name": "Inferred D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d3_01",
+      "name": "Inferred D3 one-room frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d3_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d4_03",
+      "name": "Inferred D4 two-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d4_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d4_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_dearborn_d5_02",
+      "name": "Inferred D5 deep-plan frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d5_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_wells_a1_08",
       "name": "Inferred A1 stable #08",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_a1_08.json",
