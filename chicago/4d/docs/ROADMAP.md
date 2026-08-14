@@ -48,8 +48,13 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
 | 2 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 3 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
-| 1 | GROUND | **T-E1** | LANE 3 is blocked on it; nothing may cite the 1830 sheet until it resolves in `data/sources/` |
-| 2 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
+| 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
+| 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**T-E1 is DONE (2026-08-14)** — the 1830 sheet is registered and read, and it is a **land-title
+map, not a settlement map**: a name on a tract is who took title between 1828 and **1836**, not
+who lived there and not that anything was built. A named tract may never license an anonymous
+roof. Full findings under T-E1 below; read them before T-E2 or T-E4.
 
 **T-A2h is DONE (2026-08-14)** — two of `blk_randolph_wells`'s ten roofs carry an argued
 household and eight stay anonymous, under a **two-test rule now written into the household
@@ -563,7 +568,38 @@ The bar's *form* comes from Wright because Wright is a survey five years closer 
 date and is already the master warping raster. The 1830 sheet says who held which ground — the
 thing Wright does not say, and the thing this lane actually needs.
 
-### T-E1 — register the 1830 sheet as a source · **UNCLAIMED · NEXT UP · do this first**
+### T-E1 — register the 1830 sheet as a source · **DONE 2026-08-14**
+
+`data/sources/andreas_1884_chicago_1830_map.json` + `docs/RESEARCH/chicago_1830_claims.md`.
+
+**Identified by opening the page, not by inference:** Andreas vol. 1 (1884), fold-out inset
+facing pp. 112–113 = Internet Archive leaf **`n240`**. Cross-fixed because leaf `n242` is p. 113
+carrying the Harrison harbour map already registered here, which pins the leaf-to-page offset.
+Rights were already settled — the volume is `andreas_1884_v1`, public domain.
+
+**What the parcel found, and it changes lane 3's shape:**
+
+1. **It is a land-title map. A name is not a house.** The plate's own printed note says the
+   names are "primary patentees, or persons by whom entry was made, entered or patented". So a
+   named tract may **never** license an anonymous roof, and T-E4's eligibility rule must not
+   read "named ⇒ buildable". The handful of structures the plate actually draws is a far better
+   guide to where building had happened than the wall of names is — which supports the owner's
+   instinct that houses were not spread across this ground.
+2. **The entry window is 1828–1836 — past the scene date.** Some names belong to people who had
+   not entered the land on 1835-07-01, and the sheet does not date individual entries.
+3. **It is an 1884 compilation that labels its anachronisms "present."** `PRESENT CANAL` is the
+   Illinois & Michigan Canal, **not completed until 1848**. Also `Present Court House Square`,
+   `present outlet of river`, and a street grid the note itself disclaims as post-1830. Every
+   "present" on this plate is a fifty-four-year anachronism.
+4. **Two plates in the volume share the name** — a map (inset, pp. 112–113) and a pictorial view
+   (p. 164). Cite the leaf, never the name.
+5. **The owner's two scans are not the same document.** The line-art issue is a different
+   rendering, unidentified, and **may not be cited** until it is.
+6. **T-E2 may need no new evidence for the bar.** `harrison_1830_river_mouth` — already held —
+   draws the sand bar, the "Sand and Gravel" ground and the old southward channel in plan.
+   Check it before going looking.
+
+### T-E1 (spec) — the original parcel definition
 
 Nothing else in this lane may cite the map until it resolves in `data/sources/`. **Never invent
 a source** — that rule is not relaxed because the owner supplied the image.
