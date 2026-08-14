@@ -19,6 +19,12 @@ No build step, no framework, no dependencies.
   that character is in.
 - Each scene reads three ways: **Summary**, the **Modern** text in full, or the
   **1856** original in full — all three, for every scene in every part.
+- Scene titles are set vertically in the header band. The band **sizes itself
+  to the titles** on first paint (capped at 260px, 190px on a phone), and you
+  can **drag the handle** under “Character ↓ Scene →” to give them more room —
+  or press **↕ Fit titles** to make every title fit at once. Double-clicking
+  the handle does the same; ↑/↓ nudge it when focused. Your height is
+  remembered, and from then on it stops auto-sizing.
 - **Fit width** shrinks the columns until every scene is on screen; **Fit all**
   squeezes both axes until the whole chart is in view at once; **−** / **+**
   zoom by hand; **⛶ Full screen** hands the chart the entire display. Below
@@ -53,7 +59,8 @@ sync by hand:
   points: ['…'],                // the pivotal turns, as bullets
   cast:     ['juliette','john'],// PRESENT in the scene  → solid mark
   offstage: ['fourlegs'],       // spoken of / acting at a distance → dashed mark
-  pivotal: true                 // ★ in the chart, filterable
+  pivotal: true                 // ★ in the chart (at the foot of the column,
+                                //   where no long title can clip it), filterable
 }
 ```
 
