@@ -2443,6 +2443,43 @@ substitutes for a compatible anonymous roof and never increases the total.
 `recon_1835_blk_randolph_clinton_*.inferred_1835.footprint`
 **Recorded:** 2026-08-14.
 
+### L96 — The travelled earth is drawn more strongly than it was, because it could not be seen at all
+
+**Decision:** the opacity with which a street's travelled earth is blended over the prairie under
+it is raised. The three traffic classes keep their order and keep the shape of their modulation —
+paired ruts up, a grassy crown between them down — but the baseline each starts from moves:
+principal graded earth is unchanged at 0.54, ordinary worn earth goes 0.20 → 0.38, and lightly
+travelled earth goes 0.08 → 0.28. The faintest point on the faintest street was 4 % earth over
+96 % grass and is now 24 %. A separate rule scales opacity up where the ribbon has narrowed to
+under two screen pixels, capped at six times and at 0.92, so a street receding toward the horizon
+fades rather than dropping out of the picture in patches.
+
+**Why:** this is a correction to a liberty, not a new claim. **L79** already records that the
+ruts, the crown, the colour and "the relative amount of bare soil assigned to the three traffic
+classes" are visual interpretation and not measurement — and the numbers chosen there were wrong
+on their own terms. Measured at the aerial anchor, where a road is unoccluded, many pixels wide
+and winning the depth test, the streets changed the rendered picture by **1.1 L\*** at 100–250 m,
+with **not one** probe of eleven crossing the threshold of perceptibility. A distinction a visitor
+cannot see is not a subtle distinction; it is an absent one, and the visual interpretation L79
+admits to was failing to deliver the only thing it exists to deliver. The owner reported it as
+roads that disappear in places and are lost from the air.
+
+**Consequence:** the three traffic classes are now legible as three, at a distance and from the
+air, and the same reading L79 licenses — principal graded against lesser worn earth, grass
+surviving across most of an 80 ft corridor — is now actually available to the eye. A lightly
+travelled street reads as more worn than it did, and nothing in the dataset says it should not:
+no source states how much bare soil any Chicago street carried in July 1835, which is precisely
+what L79 records. The numbers are still invention; they are invention that can be seen. The
+sub-pixel rule is a rendering compensation and makes no claim at all — it prevents a road from
+being deleted by the arithmetic of its own thinness, the same failure `trees.js` fixed on the
+horizon timber.
+
+**How to resolve:** the same evidence L79 asks for — a dated street-improvement specification or
+town-surveyor section giving a cross-section and a state of wear. Any such finding replaces these
+numbers outright rather than adjusting them.
+
+**Recorded:** 2026-08-14.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
