@@ -42,6 +42,7 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
+| 1 | TOWN | **K23** | owner-reported: 193 invented buildings are NAMED "Inferred" while every grade on them reads reconstructed — the largest text on the card claims a level better than its own record |
 | 1 | RENDERING | **R-BUG3** | owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
@@ -1375,6 +1376,74 @@ instead, and **pushes that to `main` before starting the work** — a claim that
 a branch protects nothing. Respect any claim you find. Claims carry an expiry, and an expired
 one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
 Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
+
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
+
+Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
+inferred right? Like if it was totally invented based on our population household program it was
+probably recreated not inferred. Can you check those description cards. And when you say what we
+made up, say what we included in the recreation, or what we included in the inferred building, or
+what we included in the attested building."*
+
+**They are right, and the card contradicts itself on screen.** The title reads
+**"Inferred A2 barn or carriage shed #08"** while the chip directly beneath it reads
+**RECONSTRUCTED**, and so does every other chip on the card.
+
+**Verified, not assumed.** `data/structures/recon_1835_blk_randolph_market_a1_07.json` contains
+the string `"reconstructed"` **thirteen times** and `"inferred"` **zero** times — and its `name`
+is `"Inferred A1 stable #07"`. **193 structure records** are named this way.
+
+**Why it happened, and it is the residue of a fix that worked.** Changelog **v76** moved 9,076
+values onto the current three levels and re-graded 1,694 that had claimed to be reasoning when
+they were invention. It moved the DATA. It did not move the generated PROSE, which is hardcoded:
+
+```
+tools/generate_block_infill.py:522    "name": f"Inferred {family} {function} #{seq:02d}"
+tools/generate_block_infill.py:543    "change_note": "Inferred anonymous July 1835 block infill…"
+tools/generate_inferred_infill.py:229 "name": f"Inferred {family} {function} #{seq:03d}"
+tools/generate_inferred_infill.py:251 "change_note": "Inferred anonymous July 1835 infill…"
+```
+
+Under the OLD vocabulary `inferred` was the BOTTOM tier and those names were honest. Under the
+current one it is the MIDDLE tier — *reasoned from evidence about this particular thing* — which
+is exactly what an anonymous roof dealt by the household programme is **not**. So every one of
+the 193 names now claims a grade **better than its own record**, in the largest text on the card.
+This is the v76 fault surviving in the most visible place in the app.
+
+**Part A — make the prose agree with the grade.** Fix it in the GENERATORS, not the records:
+they are `--check` gated, so the records must re-derive rather than be hand-edited. Sweep the
+`name`, `change_note` and `research_note` prose, and `data/residents/` too. Then check whether
+any OTHER user-visible string still uses a level-word in its old sense.
+
+**Part B — say what we actually did, per level.** This is the substantive half, and the owner's
+own framing is the specification: for each building the card should say **what was included and
+where it came from** —
+
+- **attested** — which attributes the source states, and which source;
+- **inferred** — what was reasoned, and *from what specific evidence about this thing*;
+- **reconstructed** — what we invented, and what bounded the invention (the archetype table,
+  the household programme, the 665-roof schedule).
+
+The card already carries per-attribute chips and `why` disclosures, so the parts exist; what is
+missing is the plain summary a visitor reads first. *"A yard building off the block alley"* does
+not tell them the footprint, the height, the roof form and the position were all invented and
+only the block was reasoned.
+
+**The trap.** `K16` below is **STALE and must not be followed** — it describes a rename to
+`documented/derived/inferred` that was superseded by what actually shipped in v76
+(`attested/inferred/reconstructed`). Whoever takes this should close K16 out with a line saying
+so. The standing instruction to stay vocabulary-agnostic while K16 was in flight is spent: the
+vocabulary landed, and this parcel is about making the words on screen match it.
+
+**Files:** `tools/generate_block_infill.py` · `tools/generate_inferred_infill.py` ·
+`tools/generate_inferred_households.py` · `renderers/web/js/popup.js` · regenerated
+`data/structures/*` · `docs/PROVENANCE.md` · `docs/ROADMAP.md` (close K16)
+
+**Acceptance:** `tools/check.sh` green with every generator's `--check` re-deriving; **no
+user-visible string names a level it is not**; a smoke assertion that a record's displayed name
+never contradicts its own existence grade — put the fault back and it must name it; the card
+states what was included at each level for one attested, one inferred and one reconstructed
+building. Mobile is where it was reported.
 
 ### K1 — The inferred-residents programme *(the big one; multi-session; carve into districts)*
 Chicago went from ~350 people (1833) to ~3,265 (late 1835). Build the POPULATION as a dataset,
