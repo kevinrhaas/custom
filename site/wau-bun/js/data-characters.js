@@ -518,3 +518,31 @@ WAUBUN_CHARACTERS.push(
     role: 'Sunday-school scholar, fifteen',
     bio: 'A pretty girl who speaks only the Canadian patois and does not know her letters, and who is kept at home on Sundays to mind the house while her sister visits the Roys on the Wisconsin — until she stops coming altogether.' }
 );
+
+/* ---------------- Part 3, chapters XXIX–XXXII ---------------- */
+WAUBUN_CHARACTERS.push(
+  { id: 'brush', name: 'Miss Brush', alias: null, faction: 'settler',
+    role: 'Visitor from Detroit',
+    bio: 'Came up with the Whitneys and Miss Frances Henshaw on an excursion to the Mississippi, and — tired of travelling, or daunted by eight inches of snow on the 4th of October — stayed on at the Agency instead, which made the Kinzies public benefactors in the eyes of every unmarried lieutenant at the post.' },
+  { id: 'arthur', name: 'Arthur Magill', alias: null, faction: 'kinzie',
+    role: 'Juliette\'s brother',
+    bio: 'Arrives from Kentucky by way of the Mississippi at the end of April 1832 carrying the news that Black Hawk has recrossed the river with the flower of his nation.' },
+  { id: 'winnosheek', name: 'Win-no-sheek', alias: null, faction: 'native',
+    role: 'Rock River chief',
+    bio: 'Every Rock River band but his declares for peace and moves north, abandoning villages and corn-fields so that their Great Father shall have no cause for dissatisfaction. For Win-no-sheek and his people the chiefs in council will not answer.' },
+  { id: 'crely', name: 'Old Crély', alias: null, faction: 'settler',
+    role: 'Express rider; Madame Paquette\'s father',
+    bio: 'Rode express from Galena with the news of the attack on Apple Fort, and swore he had passed a bush with Sauks hiding behind it — his horse smelling the sweet-scented grass they wear on a war party and setting off at a gallop he could not stop until the Portage.' },
+  { id: 'follett', name: 'Mr. Follett', alias: null, faction: 'settler',
+    role: 'Bearer of news',
+    bio: 'A young man who came in from the war country with his eyes so protruded and set from watching for the enemy that it took days in a place of safety before they went back to their ordinary size and expression.' },
+  { id: 'stambaugh', name: 'Colonel Stambaugh', alias: null, faction: 'settler',
+    role: 'Indian Agent at Green Bay',
+    bio: 'One of the households that made the Kinzies\' long, vexatious wait at Green Bay for a boat pass pleasantly.' },
+  { id: 'atkinson', name: 'General Atkinson', alias: null, faction: 'military',
+    role: 'Commanding the regular force',
+    bio: 'Pursues the Sauks through a country they refuse to give battle in, arriving by toilsome marches at the place they were expected to be and finding them scampered off to another part of the country entirely.' },
+  { id: 'stvrain', name: 'M. St Vrain', alias: null, faction: 'settler',
+    role: 'Agent to the Sauks and Foxes',
+    bio: 'Murdered at Kellogg\'s Grove by the very people who should have protected him — the news that decided the council at the Four Lakes.' }
+);

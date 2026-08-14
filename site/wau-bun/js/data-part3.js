@@ -11,7 +11,7 @@ var WAUBUN_PART3 = {
   chapters: 'Chapters XXIV–XXXVIII',
   status: 'partial',
   blurb: 'Juliette\'s story resumes in Chicago. She returns to Fort Winnebago and develops deeper relationships with Ho-Chunk people including Day-kau-ray, Four-Legs, Cut-Nose and White Crow. The Black Hawk War transforms the region, followed by displacement, hunger and upheaval. The series ends with Juliette and John leaving Fort Winnebago, closing the "early day" of the Northwest.',
-  outlineNote: 'Scenes so far cover chapters XXIV–XXVIII. The chapters below are next, and are listed here exactly as they stand in the narrative.',
+  outlineNote: 'Scenes so far cover chapters XXIV–XXXII. The chapters below are next, and are listed here exactly as they stand in the narrative.',
   acts: [
     { id: 'c1', title: 'The Road Home', sub: 'Chicago → the Portage', note: 'Spring 1831' },
     { id: 'c2', title: 'The Agency', sub: 'Fort Winnebago', note: '1831' }
@@ -263,13 +263,86 @@ var WAUBUN_PART3 = {
         'He did not wait for a second invitation, and wept and drank as bitterly as any of them for as long as anyone could still articulate or any of the whiskey was left.'
       ],
       cast: ['oldboilvinind', 'john'], offstage: ['juliette'], pivotal: false
+    },
+    {
+      id: 'p3s23', act: 'c2', chapter: 'XXIX', chapterTitle: 'Story of the Red Fox',
+      title: 'How the fox got his black legs', date: 'Told at the Agency',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'The Indians of every tribe love telling and hearing stories, and keep professional storytellers who go from village to village with matter everyone already knows by heart — which is how the traditions come down unimpaired. Juliette has watched a man sit in his lodge and draw the whole Northwest in the ashes, lakes and rivers and distances in days\' journeys, accurate as far as Kentucky. The women prefer fiction, and she sets down two tales as specimens. In the first, a chief invites all the animals to a feast. The Red Fox, told the supper is corn porridge, turns up his sharp nose — he can get plenty of that at home. Told instead that there will be a fresh body cooked most delicately, he accepts warmly. The company, making common cause with their insulted friend, greet him at the door and pass him politely from seat to seat, each nearer the fire and the post of honour, until a dexterous shove puts him into the seething kettle.',
+      points: [
+        'His grandmother, dressing his scalded legs, gives him two reproofs: he returned insult for civility, and he was far too forward in taking the place of honour. Had he kept modestly to the seat by the door, none of it would have happened.',
+        'The burns heal, but the legs stay black, and the fox — vain of his legs like many another brave — laments that the young girls will despise him.',
+        'His revenge is to bark at the chief\'s lodge in the night, which foretells death; the chief\'s beautiful daughter sickens and dies, and he had loved her. He watches under the tree where she is hung night after night, leaving before dawn, until her beauty returns — and when the village comes to take her back for the Hart she slips off the Hart\'s back unnoticed and returns to him. "By his watchfulness and care he caressed her into life again, so she rightfully belongs to him."'
+      ],
+      cast: ['juliette'], offstage: [], pivotal: false
+    },
+    {
+      id: 'p3s24', act: 'c2', chapter: 'XXX', chapterTitle: 'Story of Shee-shee-banze',
+      title: 'Why those ducks fly in threes', date: 'Told at the Agency',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'The second specimen. A young man called Shee-shee-banze — the Little Duck — is paddling along the shore when two sisters call him over for a sail. In every Indian story with two sisters the elder is silly and disgusting and the younger wise and beautiful, and it is the elder who does the calling. Asked who he is, he claims to be Way-gee-mar-kin, the great chief — a fairy who, when he wishes to favour his followers, coughs slightly and sends silver brooches and ear-bobs flying from his mouth for them to scramble after. Told to cough, he produces a few he has stowed in his cheeks from scrambling. An elk comes down to drink and he calls it his hunting dog; a bear, and he calls it his servant; and when neither will come at his call he explains that the sight of her fills them with disgust.',
+      points: [
+        'The imposture runs on through murder, pursuit, and a taunting song — "Come, pretty widows, come and catch me" — sung to the women sent to lure him into the village.',
+        'Cornered at last with two brides, he reaches his canoe; the pursuers overturn it in the river, and the moment they touch the water all three are turned into ducks and fly quacking away.',
+        'Which is why water-fowl of that species are always found in companies of three, two females and a male — while the mallard and the wood duck fly in pairs, the wood duck being so constant that if he loses his mate he never takes another and goes mourning to the end of his days.'
+      ],
+      cast: ['juliette'], offstage: [], pivotal: false
+    },
+    {
+      id: 'p3s25', act: 'c2', chapter: 'XXXI', chapterTitle: 'A visit to Green Bay',
+      title: 'The mail that brought the wrong news', date: 'October 1831',
+      place: 'Green Bay', placeShort: 'Green Bay',
+      summary: 'Word comes that John\'s accounts as Agent never reached Washington. With the vouchers for past expenditure and the recent $15,000 annuity unaccounted for, his position could become awkward, so he decides to carry the duplicates east himself — and asks Juliette whether she would like to see her father and mother and show them how the West agrees with her. After a year\'s separation it is a joyful suggestion. Miss Brush comes with them to Green Bay, where the whole place from Fort Howard to Dickenson\'s is waiting on one of Mr. Newbery\'s schooners: friends for some, supplies for others, the fashions for the ladies, the news for the gentlemen, and the mail for the entire upper country. As Postmaster, John opens the bag himself. One letter says the missing accounts have turned up satisfactorily. Another says her parents have gone to Kentucky for the winter.',
+      points: [
+        'Not to any city or reachable place, but "up the Sandy" and over among the mountains of Virginia, hunting old land-claims of her grandfather\'s estate.',
+        'Following them was hopeless, even with the directions an old settler once gave her father: "You must go up Tug, and down Troublesome, and fall over on to Kingdom-come."'
+      ],
+      cast: ['john', 'juliette', 'brush', 'stambaugh'], offstage: ['eleanor'], pivotal: false
+    },
+    {
+      id: 'p3s26', act: 'c2', chapter: 'XXXI', chapterTitle: 'Ma-zhee-gaw-gaw swamp',
+      title: '"No mortal woman has ever gone that road"', date: 'November 1831',
+      place: 'Green Bay → the Portage', placeShort: 'Ma-zhee-gaw-gaw',
+      summary: 'With the eastern journey abandoned, they must get home — and no boat is ready to ascend the river. Their old friend Hamilton promises one at once, and time passes, and none appears. It is the beginning of November. The days pass pleasantly enough with the Irwins, the Whitneys and Colonel Stambaugh, but the delay is vexatious. Juliette suggests riding home overland instead, and gets the same answer every time she raises it: no mortal woman has ever gone that road, unless some native on foot, nor ever could. The road in question runs through the Ma-zhee-gaw-gaw swamp.',
+      points: ['The woman who had already been dumped into Duck Creek in March, lost on the prairie in a blizzard, and ferried across the Fox lying flat in the bottom of a canoe was not much impressed by the argument.'],
+      cast: ['juliette', 'john', 'brush'], offstage: ['arndt'], pivotal: true
+    },
+    {
+      id: 'p3s27', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'Black Hawk recrosses the Mississippi', date: 'April 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Juliette\'s brother Arthur arrives from Kentucky by way of the Mississippi at the end of April with uncomfortable news: Black Hawk has recrossed the river with the flower of his nation to take back the old homes and corn-fields. The Ho-Chunk come flocking in to confirm it and to promise they will stay faithful friends of the Americans. Then the Illinois Rangers reach the Rock River country and General Atkinson\'s regulars begin a pursuit of an enemy who will not stand and fight: the Sauks scatter through the country and wait for the lucky accident, and the army makes toilsome marches to the place they were expected to be and finds them gone to somewhere else entirely.',
+      points: [
+        'Wherever the war parties go, the course is marked by atrocities — though the worst of it has not reached the Portage yet.',
+        'Juliette sets down plainly why young Ho-Chunk men might want white scalps: they had been dispossessed of the broad and beautiful country of their forefathers and hunted from place to place, and what they got in exchange was a few thousand a year in silver and presents, "together with the pernicious example, the debasing influence, and the positive ill treatment of too many of the new settlers upon their lands."'
+      ],
+      cast: ['arthur', 'juliette', 'john', 'eleanor'], offstage: ['blackhawk', 'atkinson'], pivotal: true
+    },
+    {
+      id: 'p3s28', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'Fifty lodges around the house', date: 'Spring 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'About fifty lodges come and camp around the house at the beginning of the disturbances, saying that if the Sauks attack, it must be after killing them first — and, knowing these people, the household has perfect confidence in the assurance. But being surrounded by them is also being plugged into a channel of daily news, brought in by runners as the theatre of operations moves closer: that Captain Barney\'s head has been recognised in the Sauk camp, brought there the day before; that the Sauks are carrying Lieutenant Beall\'s head on a pole in front of them as they march. Some of it turns out to be true — among it the murder of M. St Vrain, the Sauks\' own Agent, at Kellogg\'s Grove, by the people who ought to have protected him.',
+      points: [
+        'Protection and terror arrive in the same bundle, which is the exact condition of that summer.',
+        'Old Crély, Madame Paquette\'s father, rides express from Galena with news of the attack on Apple Fort, swearing he passed a bush with Sauks behind it and was saved by his horse smelling the sweet-scented grass they wear on a war party.'
+      ],
+      cast: ['juliette', 'john', 'eleanor', 'margaret', 'crely', 'follett'], offstage: ['stvrain', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s29', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'Seventy miles, and a council at the Four Lakes', date: 'Summer 1832',
+      place: 'The Four Lakes', placeShort: 'Four Lakes',
+      summary: 'After St Vrain\'s murder, John calls a council with every principal Ho-Chunk chief he can reach — at the Four Lakes, thirty-five miles off. He knows the Sauks will work on his people, and he is sure only of the older men. The household pleads with him not to go. It is his duty to assemble his people and talk to them, he says, and he must run the risk if there is one; he has perfect confidence in the Ho-Chunk, and the enemy by every account are far off at Kosh-ko-nong. He will leave early with Paquette, hold his council and be back the same evening. The day is impossible to describe; by night a drunken shout or a barking dog fills them with terror. Then, late, at the open window, the tramp of horses — Griffin and Jerry coming up the hill, and a cheerful shout to say all is well.',
+      points: [
+        'He and his interpreter had ridden seventy miles that day, on top of holding a long talk.',
+        'The council promised to do their utmost to keep their young men quiet, and reported that every Rock River band but Win-no-sheek\'s was determined to stay clear of the Sauks — abandoning villages and corn-fields and moving north so that their Great Father should have no cause for dissatisfaction. For Win-no-sheek they could not answer.',
+        'Then the murders of Auberry, Green and Force at Blue Mound, and the attack on Apple Fort.'
+      ],
+      cast: ['john', 'paquette', 'juliette', 'eleanor', 'margaret'], offstage: ['winnosheek', 'whitecrow', 'daykauray'], pivotal: true
     }
   ],
   outline: [
-    { chapter: 'XXIX', title: 'Story of the Red Fox' },
-    { chapter: 'XXX', title: 'Story of Shee-shee-banze' },
-    { chapter: 'XXXI', title: 'A visit to Green Bay — Ma-zhee-gaw-gaw swamp' },
-    { chapter: 'XXXII', title: 'Commencement of the Sauk war' },
     { chapter: 'XXXIII', title: 'Fleeing from the Indians' },
     { chapter: 'XXXIV', title: 'Fort Howard — our return home' },
     { chapter: 'XXXV', title: 'Surrender of Winnebago prisoners' },
