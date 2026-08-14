@@ -720,7 +720,23 @@ string) · `tools/reconcile_665.py` (counting by programme phase) ·
 `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md` (L95) ·
 `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A5…T-An — the remaining blocks · **UNCLAIMED**
+### T-A5 — `blk_randolph_market` · **CLAIMED 2026-08-14, expires 2026-08-16**
+
+The first South Division block of the Randolph row west of the river's bend, bounded by
+Randolph, Franklin, Washington and Market. The schedule deals it **eight roofs on eight
+lots of which two already carry a roof** — four principal dwellings (D3, D4, D5, D6) and
+four yard buildings (A1, A2, A3, A4) — and **no institutional family**, so nothing here
+is deferred and the parcel is the T-A4 shape with one question added.
+
+**It also carries the division question T-A4 left open** (below), because the block deals
+a D3 in the South Division and that is exactly the roof T-A4's refusal turned on.
+
+Files: `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` ·
+`data/residents/` · `data/sidecars/1835/` · `docs/LIBERTIES.md` · `docs/ROADMAP.md` ·
+`docs/STATUS.md`. **No renderer file, no tool outside `tools/generate_block_infill.py`.**
+
+### T-A6…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
