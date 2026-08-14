@@ -55,11 +55,34 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   # flag silently turned every derivative into an uncompressed copy of its master,
   # in every environment, since this step was written. Nothing has a texture yet,
   # so ask for KTX2 only where it can actually run.
+  # KTX2 IS OFF, AND THE `ktx` BINARY BEING PRESENT IS NOT ENOUGH TO TURN IT ON.
+  #
+  # This used to read `if command -v ktx; then --texture-compress ktx2`, which
+  # asks the wrong question. Whether the TOOL can write KTX2 says nothing about
+  # whether the RENDERER can read it — and it cannot: the vendored GLTFLoader
+  # only handles KHR_texture_basisu after `setKTX2Loader()` is called, nothing
+  # calls it, and no Basis transcoder is vendored (it would need to be, since
+  # renderers/web/ takes no CDN).
+  #
+  # Observed the moment `ktx` was installed on the runner (bake run
+  # 31773216178): three derivatives came back with KTX2 textures, and the smoke
+  # got `THREE.GLTFLoader: setKTX2Loader must be called before loading KTX2
+  # textures` for each of them. An asset that throws in the loader is an asset
+  # that is not in the scene, so it also took out the raycast, inspection and
+  # ground-contact checks downstream. The bake never reached its push step, so
+  # none of it left the runner.
+  #
+  # Turning this on is part of W2 (docs/RENDERING.md), and the order is: wire
+  # KTX2Loader + a vendored transcoder into the renderer FIRST, prove it loads a
+  # textured asset, and only then set BAKE_KTX2=1 here.
   compress=(--compress meshopt)
-  if command -v ktx >/dev/null 2>&1; then
-    compress+=(--texture-compress ktx2)
-  else
-    echo "   no ktx binary; meshopt only (nothing in this scene is textured)"
+  if [ "${BAKE_KTX2:-0}" = "1" ]; then
+    if command -v ktx >/dev/null 2>&1; then
+      echo "   BAKE_KTX2=1 — asking for KTX2 textures (the renderer MUST have setKTX2Loader wired)"
+      compress+=(--texture-compress ktx2)
+    else
+      echo "   BAKE_KTX2=1 but no ktx binary on PATH; meshopt only"
+    fi
   fi
 
   # NEVER SIMPLIFY. `optimize` runs mesh simplification BY DEFAULT, and on this

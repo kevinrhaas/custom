@@ -251,6 +251,40 @@ different toolchains — a dev container that has Playwright and a runner that d
 a step added to the script is only really added once the runner can execute it. Check the
 workflow in the same commit as the script.
 
+### B-BUG2 — installing `ktx` turned on textures the renderer cannot read · **FIXED 2026-08-14**
+
+The immediate sequel to B-BUG1, and the reason that fix was worth making: the moment the
+bake could run its smoke again, the smoke found something.
+
+`tools/bake.sh` asked for `--texture-compress ktx2` whenever a `ktx` binary was on PATH. That
+is the wrong precondition. Whether the TOOL can write KTX2 says nothing about whether the
+RENDERER can read it — and it cannot. The vendored `GLTFLoader` handles `KHR_texture_basisu`
+only after `setKTX2Loader()` is called, nothing calls it, and no Basis transcoder is vendored
+(it would have to be: `renderers/web/` takes no CDN).
+
+So when the KTX-Software install landed on the runner, three derivatives came back with KTX2
+textures — `blacksmith_shop_state_st__log_1823`, `brown_boarding_house__documented_1835`,
+`beaubien_barn__converted_1817` — and each threw `THREE.GLTFLoader: setKTX2Loader must be
+called before loading KTX2 textures`.
+
+**All eleven failures in bake run `31773216178` are that one cause.** An asset that throws in
+the loader is an asset that is not in the scene, so the count guard on the ground-contact
+check (`n > 200`) saw 198 and tripped, and the raycast, click-to-inspect and inspect-from-the-air
+checks had less town to hit. Nothing floated — the worst corner was 0.077 m, well inside the
+0.15 m tolerance. Reading the failure list as eleven problems would have sent someone a long
+way in the wrong direction.
+
+**None of it left the runner.** The bake fails before its push step, so no branch, no PR, and
+production was never touched: the published mirror as shipped carries zero KTX2 textures and
+runs `403 passed, 0 failed`.
+
+**Fixed** by gating the flag on an explicit `BAKE_KTX2=1` instead of on the binary's presence.
+The `ktx` install stays — W2 needs it and it costs nothing idle.
+
+**Turning it on is part of W2, in this order:** wire `KTX2Loader` plus a vendored transcoder
+into the renderer, prove it loads a textured asset at both viewports, and only then set
+`BAKE_KTX2=1`.
+
 ### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
 
 Found 2026-08-14 while gating the black-wedge fix. **79 of the terrain's 742,581 vertices
