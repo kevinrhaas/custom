@@ -846,6 +846,96 @@
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"
     },
+    "recon_1835_blk_randolph_dearborn_a1_07__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4980,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "6fd2167a586939e99a9e61ab0366ba85127d77cd497eac384015b611727f43a9",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_a1_07.json"
+    },
+    "recon_1835_blk_randolph_dearborn_a2_08__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 5008,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "fe66499cf6133322e9733f21aa89800d030df57d79ee440cde877dec9ef4f790",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_a2_08.json"
+    },
+    "recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4292,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "bb601e6cfa9fa43c7b5643176f06e64e5b51bd5db7109e79865159b8673345b5",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_a3_09.json"
+    },
+    "recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4308,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "a3d93518f0fdbcbaee2b9db9cc43c60c6fcedc2bef3e26616a9c1eed600c9542",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_a4_06.json"
+    },
+    "recon_1835_blk_randolph_dearborn_d1_04__inferred_1835.glb": {
+      "archetype": "log_dwelling",
+      "bytes": 6512,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "b43438520f73581a72e5ab502b449fafab408fe1e4daefb8a712a7bfaecce909",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_d1_04.json"
+    },
+    "recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb": {
+      "archetype": "outbuilding",
+      "bytes": 4636,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "e3b111c98959cde373ce6508478d69654211c7b09226a2193fff396e450b1978",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_d2_05.json"
+    },
+    "recon_1835_blk_randolph_dearborn_d3_01__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6512,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "0bacf8dff174359f0beb798f085666d61e65a9456b8c06b0dea6602709535ab0",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_d3_01.json"
+    },
+    "recon_1835_blk_randolph_dearborn_d4_03__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6540,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "882bdc57c1b31e3b0d7dc09a8f3acc846722f6bf1045e83e907ba05489b77764",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_d4_03.json"
+    },
+    "recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb": {
+      "archetype": "frame_dwelling",
+      "bytes": 6520,
+      "generator": "generators/inferred_placeholder.py",
+      "inputs_sha256": "18e889eceab6a0343a8a0b98bb202a5f514de6e72949273f14bd92f1d068487a",
+      "kind": "placeholder",
+      "phase_id": "inferred_1835",
+      "placeholder": true,
+      "source_record": "data/structures/recon_1835_blk_randolph_dearborn_d5_02.json"
+    },
     "recon_1835_blk_randolph_wells_a1_08__inferred_1835.glb": {
       "archetype": "outbuilding",
       "bytes": 4976,

@@ -2247,6 +2247,84 @@ A named discovery substitutes for a compatible anonymous roof and never increase
 `recon_1835_blk_randolph_wells_*.inferred_1835.footprint`
 **Recorded:** 2026-08-14.
 
+### L93 — A second block, nine roofs of the ten dealt, and the tenth refused for being a public building
+
+**Decision:** `blk_randolph_dearborn` — the easternmost block the plat module reaches on the
+Randolph tier, bounded by Randolph, State, Washington and Dearborn — stood empty and now carries
+**nine anonymous roofs**: five dwellings, one per lot on five of its eight lots, and four yard
+buildings off the block alley. The schedule dealt it **ten**. The tenth is not built, and this is
+the entry that says so. As with the block before it, the ceiling and the family mix come from the
+665-roof programme's own schedule and **everything below that is invented** — which family stands
+on which lot, which lots are left open, how far each building stands back from its frontage and
+how far it sits to one side of its lot. No coordinate is authored: every metre is read off the
+committed lot polygons of the K7 grid.
+
+**The tenth roof was a civic building, and an anonymous public building is a different claim from
+an anonymous house.** The schedule apportions this block one I3 — civic or public-service — out of
+six in the town. A dwelling nobody named is the ordinary case here: Chicago in July 1835 held
+some three thousand people whose houses were never enumerated roof by roof, so an invented
+dwelling is a count-unit toward a documented aggregate. A public building nobody named is the
+assertion that an institution stood on this ground and left no record at all, and 1835 Chicago's
+public buildings are few enough to be listed. The crosswalk had already written the precondition
+on its own I3 entry — the six-roof aggregate *"spans unlike functions; they must reconcile to
+named public records before selecting construction"* — and this parcel is the first one to arrive
+at a slot that precondition covers.
+
+**What made it a refusal rather than a caution is the archetype.** I3 resolves through the
+`fort_structure` placeholder, and every building kind that archetype offers is a garrison word:
+quarters, barracks, blockhouse, magazine, store, guard, sutler, artillery. There is no word in it
+for the adapted office or the engine house the crosswalk says the family spans. Massing this slot
+would therefore not merely have guessed at a function nobody recorded — it would have stood a
+garrison building in the middle of the platted town, three quarters of a kilometre from the fort
+that owns the vocabulary. So the slot is deferred in the recipe with its reasoning, and
+`tools/generate_block_infill.py` now refuses all three institutional families by name rather than
+falling through the generic *"add a form rule"* message, which was the wrong instruction: the next
+run would have added a shape and stepped straight over a precondition the data already carried.
+The deferral is gated in both directions — a roof the schedule dealt and the parcel did not build
+must be named with its reason, and a slot may only be deferred for a refusal the code states, so
+a family cannot be dropped for being awkward and a refusal cannot be used to hide one.
+
+**One anonymous I2 already stands** in the North Division from a parcel written before any of this
+existed, massed as a generic frame block. It is recorded here rather than quietly removed, and it
+is not a precedent the block generator extends.
+
+**The frontage argument, stated so it can be disagreed with.** The schedule dealt this block no
+house and no commercial family at all — five dwellings across the rough end of the range. The
+three better-built of them (the deep-plan cottage, the two-room cottage, the one-room cottage)
+take the Randolph face and the log cabin and plank shanty take Washington, on the same
+frontage-value typology the block before recorded: Randolph is the through street of the pair in
+the module's own street hierarchy. That is a reading of the street module, not a finding about
+this block. The four yard buildings each stand behind a principal roof on its own lot, because a
+rear yard belongs to a lot and a lot belongs to a house — a reason for a roof, never evidence for
+one. The barn or carriage shed takes the eastern end lot, where the block backs onto ground the
+plat module does not reach: a typology of where a town keeps a large animal shelter, and not a
+claim that this lot held one.
+
+**Three lots are open, and only two of them are an argument.** Lots 4 and 5 are left bare on the
+programme's own assumption of alternating vacancy — a block this far east of the river read as a
+completed terrace would be the more confident and less defensible picture, and the schedule's
+capacity is a ceiling rather than a target. Lot 1 is open for a different reason and the
+difference is worth keeping visible: it is empty because the parcel refused the roof that would
+have stood on it. That is recorded in the recipe's `deferred` list, not as a vacancy claim.
+
+**Consequence:** the town gains a block at its eastern platted edge whose presence, lots,
+positions and footprints a visitor can see are interpretive — flagged massing in the confidence
+view, with the reasoning on the building card. Standing roofs move **242 → 251** against the
+665-roof target; **414 remain**, 86 of them on ground the project has coverage for. The binding
+constraint stays coverage rather than recipes, and the civic slot is now a named piece of research
+owed rather than a roof that quietly appeared.
+
+**How to resolve:** for the nine, parcel-level tax, deed, assessment or surveyed building evidence
+for this block, and a reading of Thompson's lot numbering from the sheets themselves. For the
+tenth, the named public records the crosswalk asks for — what civic and public-service buildings
+the town actually had in July 1835, where they stood and what they were built of — at which point
+the slot is filled by a record rather than by a family. A named discovery substitutes for a
+compatible anonymous roof and never increases the total.
+
+**Covers:** `recon_1835_blk_randolph_dearborn_*.inferred_1835.position`,
+`recon_1835_blk_randolph_dearborn_*.inferred_1835.footprint`
+**Recorded:** 2026-08-14.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

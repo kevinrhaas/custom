@@ -139,6 +139,144 @@
           "lateral_m": 5.0
         }
       ]
+    },
+    {
+      "block_id": "blk_randolph_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_randolph_dearborn",
+      "claimed": "2026-08-14",
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 0,
+        "headroom": 10,
+        "dealt_roofs": 10,
+        "dealt_principal": 6,
+        "dealt_ancillary": 4,
+        "principal": 5,
+        "ancillary": 4
+      },
+      "families": {
+        "A1": 1,
+        "A2": 1,
+        "A3": 1,
+        "A4": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1
+      },
+      "deferred": [
+        {
+          "family": "I3",
+          "inventory_class": "principal_functional",
+          "why": "The schedule deals this block one civic or public-service roof and the parcel refuses it rather than massing it. I3 resolves through the fort_structure placeholder, whose entire vocabulary of building kinds is garrison words — quarters, barracks, blockhouse, magazine, store, guard, sutler, artillery — and none of them names the adapted office or the engine house the crosswalk says this family spans. Massing an anonymous town civic building through that archetype would not merely guess at a function; it would stand a garrison building in the middle of the platted town, three quarters of a kilometre from the fort. The crosswalk already states the precondition on its own entry: the six-roof aggregate spans unlike functions and they must reconcile to named public records before construction is selected. A dwelling nobody named is the ordinary case in this town; a public building nobody named is a claim that an institution existed and left no record, and the two are not the same kind of anonymity."
+        }
+      ],
+      "arrangement_note": "The easternmost block the plat module covers on the Randolph tier, bounded by Randolph, State, Washington and Dearborn, and empty in this dataset before this parcel. The schedule dealt it ten roofs and no house or commercial family at all — five dwellings across the rough end of the range, four yard buildings and the civic roof this parcel defers. Five principal roofs on eight lots leaves three lots open. What is argued here and not found: the three better-built dwellings (the deep-plan and two-room cottages and the one-room cottage) take the Randolph face because Randolph is the through street of the pair in the module's own street hierarchy, which is the same frontage-value typology the Randolph and Wells block recorded, and the log cabin and the plank shanty take Washington. The four yard buildings each stand behind a principal roof on its own lot, because a rear yard belongs to a lot and a lot belongs to a house. The barn or carriage shed takes the eastern end lot, where the block backs onto ground the plat module does not reach and the town gives out; that is a typology of where a town keeps a large animal shelter, not evidence about this block.",
+      "open_lots": [
+        {
+          "lot": 4,
+          "why": "A north-tier interior lot on the Randolph face, left open. Which lot is arbitrary within the tier; that a block this far east of the river is not a completed terrace is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
+        },
+        {
+          "lot": 1,
+          "why": "A south-tier lot the schedule left nothing to stand on once the civic roof was deferred. It is open because the parcel refused a slot, and the record of why is in `deferred` rather than in an argument about vacancy."
+        },
+        {
+          "lot": 5,
+          "why": "A south-tier interior lot, left open on the same alternating-vacancy assumption as lot 4."
+        }
+      ],
+      "slots": [
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 0,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.5,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": 1.0
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 6,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 6.0,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 4.0,
+          "lateral_m": 2.0
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 7,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 5.0,
+          "lateral_m": -2.5
+        },
+        {
+          "family": "A4",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": 5.0
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": -5.0
+        },
+        {
+          "family": "A2",
+          "inventory_class": "ancillary",
+          "lot": 6,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.0,
+          "lateral_m": 3.0
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 3,
+          "stands_on": "alley",
+          "fronts": "washington",
+          "setback_m": 5.5,
+          "lateral_m": -5.5
+        }
+      ]
     }
   ]
 }

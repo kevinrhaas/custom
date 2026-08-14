@@ -137,14 +137,52 @@ ROADMAP T-BUG2, distinct from the black wedge that was fixed today), and **the r
 flickers when flying** (ROADMAP R-BUG1, almost certainly depth-buffer fighting between the
 water plane and the ground crossing it, owned by the R-W5 parcel).
 
+## The second block repeated the shape, and refused one of its roofs
+
+**2026-08-14.** `blk_randolph_dearborn` — the easternmost block the plat module reaches on the
+Randolph tier — carries **nine of the ten roofs the schedule dealt it**. Standing roofs
+**242 → 251**, remaining **423 → 414**, 86 of them on ground the project has coverage for. The
+geometry half of T-A3 was a recipe entry and nothing else, which is exactly what T-A2 said it
+would be. The two things worth reading are what the repeat exposed.
+
+**The tenth roof was civic, and it is deferred rather than built.** I3 resolves through the
+`fort_structure` placeholder, and every building kind that archetype offers is a garrison word —
+quarters, barracks, blockhouse, magazine, guard, sutler, artillery. Massing an anonymous town
+civic building through it would have stood a garrison building 750 m from the fort. The crosswalk
+had already written the condition on its own entry: the family *"spans unlike functions; they must
+reconcile to named public records before selecting construction"*. So the generator now refuses
+I1, I2 and I3 **by name**, quoting the committed sentence each refusal enforces, and a roof the
+schedule dealt but the parcel did not build must be named in the recipe with its reasoning — a
+gate that bites in both directions, so a family cannot be quietly dropped and a deferral cannot
+be used to hide one. The distinction being drawn: an anonymous *dwelling* is a count-unit toward
+a documented aggregate; an anonymous *public building* asserts that an institution stood here and
+left no record, and this town's public buildings are few enough to be listed. **One anonymous I2
+still stands in the North Division** from a parcel written before any of this, massed as a generic
+frame block; it is recorded in L93 rather than removed, and it is not a precedent that extends.
+ROADMAP **T-I3** now owns the research the refusal is waiting on.
+
+**A latent defect from the first block, caught by the second, on a two-centimetre margin.**
+`lot_frame()` chose a lot's alley edge as the edge nearest the alley's CENTROID — which sits at
+the block's centre, so on an END lot the side lot line running back toward it is nearly as close
+as the alley edge. Measured on this block: **38.93 m against 38.95 m**, and two of its four end
+lots picked the side line, framing a building broadside to its own street and over the
+neighbouring lot. **What reported it was the lot-margin gate at 1.44 m against a 1.5 m bound** —
+a millimetre-scale complaint about a ninety-degree error, which is the part to remember. Measuring
+to the alley strip separates the same two edges by 0.2 m and 26.3 m, and a structural check now
+rides with it (front and rear are the same length to within the plat's skew; a 20 % disagreement
+means one is a side line). **`blk_randolph_wells` cleared the old tie by 1.3 m in 37, so nothing
+T-A2 committed moves** — it was one block's proportions away from the same failure, and it had
+been green.
+
 Tonight's loop is expected to produce **one parcel per run from two lanes that cannot
 collide** (`docs/ROADMAP.md` → "THE OVERNIGHT LANES"): lane 1 RENDERING touches renderer and
-tool files, lane 2 TOWN COMPLETION touches data only. **R-G0** (the critic harness) and
-**T-A1** (the 665-roof reconciliation) are both in, so the NEXT UP picks are **R-W1** (light)
-and **R-W4** (atmosphere) in lane 1; **T-A2** and **T-A3**, the first two blocks off the
-reconciled schedule, in lane 2. Today's count is **242 structures — 232 physical roofs of a
-665 target — 152 households, 188 persons**. Everything arrives as a PR into `dev` and waits
-there.
+tool files, lane 2 TOWN COMPLETION touches data only. **R-G0** (the critic harness), **T-A1**
+(the 665-roof reconciliation) and the first two blocks off the reconciled schedule (**T-A2**,
+**T-A3**) are all in, so the NEXT UP picks are **R-W1** (light) and **R-W4** (atmosphere) in
+lane 1; **T-A2h** (the ten new roofs' households), **T-A4…** (one open block per run) and
+**T-I3** (the civic roofs T-A3 refused — research, not massing) in lane 2. Today's count is
+**261 structure records — 251 physical roofs of a 665 target — 152 households, 188 persons**.
+Everything arrives as a PR into `dev` and waits there.
 
 
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
@@ -316,7 +354,7 @@ parcelled as ROADMAP **R-G1** and the baseline is incomplete until it lands.
 | **South Water Street** | **BUILT 2026-08-11** — sixteen commercial records land the town's business street, which the model held none of: Peck's store, both newspaper offices, Harmon & Loomis, Madore Beaubien's log house, Bates's auction room, the Beaubien homestead, Dole's warehouse, both Carpenter shops, Frederick Thomas, the old bank building, Pruyne & Kimball, J. H. Kinzie, Jones, and Thomas Church on Lake. One footprint is evidence (Carpenter's 16 x 20 ft log shop — the dataset's SECOND real footprint); fifteen are invented inside the documented 55 ft South Water lot cap. **What this street knows is *who* and *where*, and almost never *how big*.** Two records carry `review_required` (the Beaubiens, whose history runs straight into the August 1835 removal and the reservation pre-emption) — which blocks the 1835 scene from `released` until consultation happens. Two unresolved reads are flagged on the records themselves: whether Harmon & Loomis's building IS the *Chicago Democrat*'s building (they sit 37 m apart and Andreas gives no side), and whether Philo Carpenter's Lake Street log shop still stood after he built on South Water in 1833 |
 | **Renderer** | **WALKABLE AND NAVIGABLE** — three.js r0.185.1 vendored, pointer-lock + touch, confidence view, provenance popup, live compass and a north-up overview derived from the loaded heightfield and structure footprints |
 | **Navigation index** | **COMPLETE FOR COMMITTED DATA** — Settings searches all 76 scene structures and all four verified intersections, with aliases and recorded location text; intersection positions are compiled from `data/traces/street_control.json` rather than copied into renderer code. Compass, overview map and the live 1835/current street-name readout are independently persistent toggles. A fourth persistent setting switches every visitor-facing navigation measurement between Imperial (the default: ft, mi, mph) and Metric (m, km, km/h) without changing the metric scene data. The readout reports the corridor underfoot, an intersection when two centrelines are near, and the next cross street up to 70 m / 230 ft ahead. |
-| **Smoke** | **PASS 2026-08-13, and for the first time against the files that actually ship.** `tools/check.sh` is green, and `node tools/smoke_renderer.mjs` passes **361 assertions** at both release viewports (390x780 and 1280x800) with zero page errors — run twice, once against the source tree and once with `--published` against the mirror. **The second run is the one that matters and it did not exist until now.** A sidecar's `gltf/<name>.glb` resolves to the UNCOMPRESSED masters in the source tree and to the meshopt + quantised derivatives on the site, so nothing that ran had ever loaded a compressed asset — and a renderer bug that only exists in the quantised path collapsed all 242 structures to 2 m boxes on the live site for several days, through two attempted fixes, with the gate fully green the whole time. The size assertion was also measuring the TALLEST building in the scene, which passes with one correct building and 241 broken ones; it now measures every structure against its own record, including its documented wall height. Reintroducing the fault fails the new checks by name on all 242. `tools/bake.sh` runs the published smoke after publish. Draw calls and triangles at the spawn station: **59 / 332,455** desktop, inside the 80 / 1,000,000 Full-detail budget. The two halves still run as separate foreground commands, because a full pass exceeds ten minutes. |
+| **Smoke** | **PASS 2026-08-14** — `tools/check.sh` green, and `node tools/smoke_renderer.mjs` green at both release viewports in all four combinations the gate asks for: source tree **204 mobile / 201 desktop**, published mirror **204 / 201**, zero page errors throughout, with the town at 261 records. Run as four separate foreground commands because a full pass exceeds ten minutes. The history below is the record of how those assertions were earned. **PASS 2026-08-13, and for the first time against the files that actually ship.** `tools/check.sh` is green, and `node tools/smoke_renderer.mjs` passes **361 assertions** at both release viewports (390x780 and 1280x800) with zero page errors — run twice, once against the source tree and once with `--published` against the mirror. **The second run is the one that matters and it did not exist until now.** A sidecar's `gltf/<name>.glb` resolves to the UNCOMPRESSED masters in the source tree and to the meshopt + quantised derivatives on the site, so nothing that ran had ever loaded a compressed asset — and a renderer bug that only exists in the quantised path collapsed all 242 structures to 2 m boxes on the live site for several days, through two attempted fixes, with the gate fully green the whole time. The size assertion was also measuring the TALLEST building in the scene, which passes with one correct building and 241 broken ones; it now measures every structure against its own record, including its documented wall height. Reintroducing the fault fails the new checks by name on all 242. `tools/bake.sh` runs the published smoke after publish. Draw calls and triangles at the spawn station: **59 / 332,455** desktop, inside the 80 / 1,000,000 Full-detail budget. The two halves still run as separate foreground commands, because a full pass exceeds ten minutes. |
 | **Flora** | **the sward is in; the false far-field surface is out** (2026-08-11) — `renderers/web/js/flora.js` plants the graminoid matrix, forbs, emergents and low shrubs from `data/flora/`. July phenology remains enforced in renderer and data. Near/middle plants root on the exact terrain surface and water emergents on the water surface. The former solid canopy at plant-top height was the apparent second ground seen on real devices; it is removed, and unresolved distant prairie colour now stays on the sole terrain surface (L80). **Since 2026-08-13 each community is planted at its own recorded `cover.matrix_fraction`** — a field the records carried, the validator gated and the renderer had never asked for — and each is split by the published `substrate` of its species, so a floating-leaved aquatic is planted over water and never on the bank it was standing on. |
 | **The ground's claims, in the app** | **done** (2026-08-10) — the Evidence panel's *The ground you are standing on* reads graded claims off `terrain_spec.json`, derived per scene by `compile_scene.py` and re-derived by `check.sh`; the same slice added reasoning and geometry-state checks so those rows are no longer silent promises. |
 | **What a source is, in the app** | **done** (2026-08-11) — citations now carry the document a modern page reprints (`transcribes`) or the reading that it reprints none, plus each source's own `what_it_supplies` / `what_it_does_not_supply`, so the ladder a visitor sees includes the reason it is the ladder. |
