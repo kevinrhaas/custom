@@ -34,7 +34,7 @@ a queue with nobody in it.
 | `.github/workflows/deploy.yml` | the single deploy authority. Assembles ONE Pages artifact: `main` at the root, plus the `dev` branch's `site/chicago/4d/` folded in at `site/chicago/4d/dev/`. |
 | `.github/chicago-4d-dev-preview.mjs` | assembles that preview — copy, `noindex`, banner, dev build stamp, `build.json`, robots disallow. |
 | `.github/workflows/chicago-4d-check.yml` | **the dev gate.** Runs on PRs into `dev` and pushes to `dev` (no branch filter, deliberately). |
-| `.github/workflows/chicago-4d-promote-to-prod.yml` | **dispatch-only.** Back-merges `main`→`dev`, then merges `dev`→`main` `--no-ff`, then dispatches the deploy. |
+| `.github/workflows/chicago-4d-promote-to-prod.yml` | **dispatch-only.** Back-merges `main`→`dev`, merges `dev`→`main` `--no-ff`, tags `release-vNNN`, then dispatches the deploy. |
 | `.github/workflows/chicago-4d-bake.yml` | the nightly content bake. Branches off `dev` and PRs **into `dev`**. |
 | `.github/pipeline.json` | the manifest. Declares the shape — tiers, publish paths, workflow names — to anything that reads it. A **data file**: editing it is a sanctioned direct commit to `main`, same as the pilot's. |
 
@@ -105,6 +105,26 @@ launcher. The promotion workflow runs the contract check after both of its merge
 reason.
 
 ---
+
+## Where the releases are
+
+**A release is a promotion, and nothing else makes one.** The loop merging into `dev` writes
+changelog entries, but those entries are not released — they are queued. Everything that
+displays this project's releases (the walkthrough's What's-new tab, Manager's ingest, the
+polecat.live launcher) reads the **deployed** copy, which is `main`. So while `dev` runs
+ahead, the release feed sits still at whatever was last promoted, and that is the design
+working, not a fault: *overnight work must not ship straight to production.*
+
+The cost is worth stating plainly, because it surprised the owner once already: **a day of
+green, productive loop output looks like a dead release feed** until the promotion is
+dispatched. `dev` ahead of `main` by N commits is the number to watch — Manager's Pipeline
+card shows it, and `git rev-list --count origin/main..origin/dev` is the same answer.
+
+Each promotion tags **`release-vNNN`**, where `NNN` is the changelog's top version — the same
+number the What's-new tab shows, deliberately, so a tag names something a reader can find. A
+promotion that carries no new changelog entry reuses the existing number and is left untagged
+with a notice rather than inventing a second sequence. Tagging failures never fail the
+promotion: by then the ship has already landed, and a missing label is not a bad deploy.
 
 ## Running it
 

@@ -111,6 +111,36 @@ jobs:
           git push origin main
           echo "Promoted $COUNT commit(s) to main."
 
+          # 4. Tag the release. The pilot does this and this workflow did not,
+          #    which meant a promoted production had no name and no anchor: the
+          #    repo's tag list was empty, so "which build is live" could only be
+          #    answered with a commit sha, and there was nothing to `git diff`
+          #    the last release against or to roll back to by name.
+          #
+          #    The number is the CHANGELOG's top version, not a counter of our
+          #    own. That is already the number Manager, the launcher and the
+          #    walkthrough's What's-new tab all show, so a release called
+          #    release-v83 is the one a reader can actually find; a second,
+          #    independent sequence would be a number nobody could cross-check.
+          VER="$(cd chicago/4d && node -e "
+            const m = require('fs').readFileSync('renderers/web/js/changelog.js','utf8').match(/v:\s*(\d+)/);
+            process.stdout.write(m ? m[1] : '');
+          ")"
+          if [ -z "$VER" ]; then
+            # Not fatal: the promotion has already landed and is live. Losing the
+            # tag is a missing label, not a bad deploy, and failing here would
+            # report a successful ship as a failure.
+            echo "::warning::could not read a changelog version; promotion is live but untagged"
+          elif git rev-parse -q --verify "refs/tags/release-v$VER" >/dev/null \
+            || git ls-remote --exit-code --tags origin "refs/tags/release-v$VER" >/dev/null 2>&1; then
+            # A promotion that ships no new changelog entry reuses the number.
+            echo "::notice::release-v$VER already exists — promotion carried no new changelog entry"
+          else
+            git tag -a "release-v$VER" -m "chicago/4d release v$VER ($COUNT commit(s) promoted)"
+            git push origin "release-v$VER"
+            echo "Tagged release-v$VER"
+          fi
+
       - name: Publish (GITHUB_TOKEN pushes don't trigger deploy — dispatch it)
         if: steps.survey.outputs.count != '0'
         env:
