@@ -42,12 +42,16 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-G0** | everything else measures through it |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
+| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
+| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
+| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
 | 1 | TOWN | **T-A1** | the recipe every later block parcel reads |
 | 2 | TOWN | **T-A2** | first block of roofs through the refreshed recipe |
 | 3 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
+
+**R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
+opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
+quotes the two tables rather than an adjective.
 
 ---
 
@@ -57,24 +61,59 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
-### R-G0 — the critic harness · **UNCLAIMED · NEXT UP**
+### R-G0 — the critic harness · **DONE 2026-08-14 (G0.1 + the numeric half of G0.2)**
 
 **Phase:** RENDERING §4 G0 · **Runner:** improve-runner (no Blender) · **Effort:** S
 
-Everything later measures through this, which is why it is first. One reproducible loop so a
+Everything later measures through this, which is why it was first. One reproducible loop so a
 phase proves its delta in numbers rather than adjectives.
 
-**Files:** `tools/critic_shots.mjs` (new) · `tools/critic_metrics.mjs` (new) ·
-`docs/STATUS.md` (baseline numbers) · `docs/ROADMAP.md`
+**Shipped:** `tools/critic_shots.mjs` — eleven stations (the eight scene anchors, driven by
+`goTo` so they cannot drift from what a visitor is offered, plus three re-established
+prairie-sweep stands), both release viewports at device scale 1, the clock held from before
+the render loop's second tick, the DOM chrome hidden, pitch printed and asserted per station.
+`tools/critic_metrics.mjs` — a dependency-free PNG reader and the six Appendix B recipes, so
+the SAME code can measure a reference photograph and one of our frames, which has never been
+true here before. Baseline for both viewports in `docs/STATUS.md` § "The critic baseline".
 
-**Acceptance:** captures byte-stable across two runs at BOTH viewports; prints its pitch
-(the prairie sweep's pitch-matching correction is inherited and not optional); a baseline
-recorded in STATUS for every RENDERING §1 metric — horizon timber column coverage, crown
-fine-detail ratio, sunlit crown G−B, shadowed darkest decile L, depth-band high-pass RMS,
-flower load. Both gates green.
+**Two things came out of it that are not the harness**, both recorded rather than fixed:
 
-**Trap:** the harness must use the existing `window.__chicago4d` API (`goTo`,
-`setAnimationHold(true)`, `capture`) and must not add a second way to drive the scene.
+- **Draw calls exceed the ≤ 80 budget at four of the eleven stations** — `prairie_west` 97
+  desktop / 94 mobile, `green_tree` 91/88, `forks` 87/82, `south_water` 85/83. The budget was
+  only ever measured at the spawn station, where it passes at 65/62. Not a regression; a
+  measurement nobody had taken. R-W5 owns the draw-call work and should take it.
+- **Captures are byte-identical within a browser process and near-identical across
+  processes.** Both baseline runs came out 11/11 byte-identical at both viewports, but an
+  earlier pair of rounds had four desktop stations alternating between two variants differing
+  in 1, 2, 11 and 43 pixels of 1,024,000 — on the horizon row and on alpha-blended surfaces.
+  So the acceptance line "byte-stable" is now a stated stability CONTRACT in the harness
+  (≤ 0.05 % of pixels may differ AND every reported metric must repeat within 1 %), it is
+  checked by `--stability`, and the byte-identical count is reported alongside it. See
+  RENDERING §4 G0 for the amendment.
+
+**Still open from G0.2:** the baseline **8-axis rubric score**. The protocol requires a critic
+that did not write the code under review, and the same run cannot both build the harness and
+be that critic. It is a parcel of its own — **R-G1** below.
+
+**Trap (kept for the record):** the harness must use the existing `window.__chicago4d` API
+(`goTo`, `setAnimationHold(true)`, `capture`) and must not add a second way to drive the
+scene. It does not: non-anchor stands use the same `walker.teleport` `tools/shoot.mjs`
+already uses, and nothing in `renderers/` changed.
+
+### R-G1 — the baseline scored pass · **UNCLAIMED**
+
+**Phase:** RENDERING §4 G0.2 · **Runner:** improve-runner · **Effort:** S · **After:** R-G0
+
+Run the Joliet protocol against the R-G0 shot set and record the baseline score: independent
+critic, eight axes, written justification, a specific fix per axis below 8, compared against
+the §0 reference set and never against commercial game frames. The critic must not be the
+agent that wrote the harness or the renderer code under review.
+
+**Files:** `docs/STATUS.md` · `docs/ROADMAP.md` (no code)
+
+**Acceptance:** eight axes scored with written justification at five named stations, the fixes
+each routed to the phase that owns them, and the mean recorded in STATUS as the number later
+phases have to beat.
 
 ### R-W1 — calibrated light and environment · **UNCLAIMED · NEXT UP**
 
