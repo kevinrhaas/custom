@@ -1,5 +1,185 @@
 # STATUS
 
+## New 2026-08-14 — the baseline scored: **4.18 of 10**, and two of the three headline numbers were measuring the wrong thing
+
+**R-G1.** The scored half of G0.2 is in, and the bar it was measured against is the one §0 says
+can actually be held: eight axes, 1–10, five named stations, written justification, a specific
+fix for every axis under 8, against this project's own reference set — the twelve pre-fire
+pictorial plates and the verified tallgrass photographs — and never against a commercial game
+frame. Pass is **mean ≥ 8.0 with no axis below 7**. The baseline is **4.18**, and **every one of
+the eight axes is below 7**. That is the number later phases have to beat, and it is recorded
+before W1 touches the renderer precisely so that there is something to beat.
+
+**The protocol's independence condition is satisfied and worth stating.** This parcel wrote no
+code at all — `git diff --stat` for it is three documents and a changelog entry — and the run
+that built `tools/critic_shots.mjs` and `tools/critic_metrics.mjs` was a different one. The
+scorer read the frames.
+
+### The scores
+
+| station | light | material | texture | geometry | atmosphere | post | composition | history | mean |
+|---|---|---|---|---|---|---|---|---|---|
+| `sauganash` | 3 | 3 | 1 | 5 | 4 | 4 | 6 | 7 | **4.13** |
+| `first_post_office` | 3 | 4 | 1 | 6 | 4 | 4 | 7 | 8 | **4.63** |
+| `south_water` | 3 | 3 | 1 | 3 | 4 | 4 | 4 | 5 | **3.38** |
+| `prairie_west` | 5 | 5 | 2 | 5 | 4 | 4 | 6 | 7 | **4.75** |
+| `river_bank` | 2 | 3 | 2 | 4 | 5 | 3 | 6 | 7 | **4.00** |
+| **axis mean** | **3.2** | **3.6** | **1.4** | **4.6** | **4.2** | **3.8** | **5.8** | **6.8** | **4.18** |
+
+Desktop 1280×800. The mobile set was captured and measured in the same run and is **not
+scored** — the rubric is a reading of frames and five stations at one viewport is what the
+protocol asks for; a second viewport would double the reading without changing which phase owns
+anything. Six stations (`sauganash_wing`, `lake_market`, `forks`, `green_tree`, `from_above`,
+`prairie_south`) were read for context and deliberately not scored.
+
+**Texture at 1.4 is the floor of the whole exercise and it is not a surprise** — §1 item 9 says
+there are zero texture maps on 244 assets, and the frames show it: clapboard is *geometry*, a
+roof is one flat value, chinking is a second flat value, and the only texture in a town frame is
+the ground. **Historical accuracy at 6.8 is the ceiling**, and it is the axis this project is
+actually good at: at `first_post_office` the footprint is Andreas twice over, the position is
+surveyed, and the unresolved reads are carried on the record instead of being resolved into the
+geometry. The gap between 1.4 and 6.8 is the shape of this project — the research is ahead of
+the rendering by five points on a ten-point scale.
+
+### Why each axis scored what it did, and the one fix that moves it
+
+Every axis is below 8, so every axis carries a fix and a phase. The fixes are written into
+`docs/ROADMAP.md` against the parcel that owns them.
+
+**Lighting & shadow — 3.2 → W1.** The only cast shadow legible in the five frames is each
+chimney's, on the roof beside it. The directional light casts and the ground receives, so the
+shadow map is not switched off — it is geometry: at 12:30 on 1 July at
+41.89° N the sun stands **70.5°** up and a shadow is **0.354 ×** the height of what throws it, so
+a house's shadow lies under its own eaves and a walker's frame carries almost no shadow
+information. The scene note chose that hour deliberately, to light the south elevation the
+records call white, and the trade is sound — but its cost has never been written down, and it is
+this: **form has to be carried by something other than shadow, and the two candidates are both
+switched off** (AO is `baked_ao: false` on all 244 assets, §1 item 10; environment lighting is
+built and not installed, §1 item 11). Against that, `HemisphereLight` at **2.4** under a
+`DirectionalLight` at **3.0** is a 0.44 fill ratio, which flattens what little modelling the
+angle leaves. *Fix: W1 installs the exposed HDRI, and the hemisphere and bounce come DOWN in the
+same change — the trap already written on the parcel. Nothing here argues for moving the hour.*
+
+**Material realism — 3.6 → W2 (no-Blender half).** Every surface is one flat colour. A roof, a
+whitewashed clapboard wall, a hewn log and its chinking, and a chimney differ only in hue —
+there is no roughness variation anywhere in the town, so nothing reads as painted, weathered or
+wet. The Wau-Bun blue shutters at `sauganash` sit at the same value as the glazing beside them.
+*Fix: the material sheet W2's no-Blender half is already scoped to write — which surfaces exist,
+what each is made of, and which archetype parameter selects it.*
+
+**Texture detail & tiling — 1.4 → W2.** Zero texture maps on 244 assets; the ground is the only
+textured surface in a town frame and its near field is a grazing-angle smear. The axis cannot
+rise until W2's bake half lands. *Fix: W2, both halves; nothing else moves this.*
+
+**Geometric detail & silhouette — 4.6 → W2/W3, and one item for lane 2.** Massing is good — the
+`sauganash` ell and knee wall, `first_post_office`'s eave overhang and log ends, `river_bank`'s
+cordgrass — and openings are where the silhouette fails: no reveal, no sill, no sash, no muntin
+anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. The
+worse failure is at `south_water`, and it is a **data** failure rather than a rendering one: the
+horizon row of the business street is one gable stamped a dozen times at even spacing, where the
+research knows a store, an auction room, two newspaper offices and a warehouse. *Fix: openings to
+W3's cage work and W2's params; the repeated stamp to lane 2 — the anonymous placeholder massing
+needs per-record variation in width, pitch and eave height drawn from the family band it already
+carries.*
+
+**Atmosphere — 4.2 → W4.** The sky is a cloudless gradient at every station, and the 200–1500 m
+band holds nothing for the haze to act on, so the far treeline meets its sky with no separation
+at four of the five. The one place it works is `river_bank`, where the far shore genuinely
+recedes — the 2026-08-13 far-timber fix is visible in the frame. *Fix: W4, items 1–6, plus a sky
+that is not a single gradient.*
+
+**Post-processing — 3.8 → W5.** Tone mapping and nothing else. Visible stair-stepping on the
+`sauganash` ridge and along the water/vegetation boundary at `river_bank`, where the water plane
+also shows rectangular stepping against the emergent stand. *Fix: W5's SMAA pass, and R-BUG1 is
+in the same frame.*
+
+**Composition — 5.8 → the anchors, not a phase.** Four of the five stations frame their subject
+honestly. `south_water` does not: 60 % of its frame is foreground grass and the business street
+it is named for is a 40-pixel band on the horizon. An anchor a visitor is offered should show the
+thing it is named after. *Fix: `south_water`'s anchor in `data/scenes/1835.json` wants a position
+on the street rather than in the field south of it — one record, no code, and it is the cheapest
+point on this whole table.*
+
+**Historical accuracy — 6.8 → mostly earned, one real deduction.** `first_post_office` scores 8:
+evidence footprint, surveyed position, unresolved reads carried on the record. The deduction is
+at `south_water` (5) for the same repeated stamp — uniformity that no source claims, understating
+what the research knows — and at `prairie_west` (7) for a flower load of **0.0012** against the
+honest 4–6 % target, an under-representation of a July prairie by two orders of magnitude that is
+recorded but not yet fixed. *Fix: W4 for the flower load; lane 2 for the stamp.*
+
+### The three findings that are not scores
+
+**1. Two of the three numbers §1 item 7 rests on are measuring the canopy, not shadow.** The
+baseline recorded "shadows still clip to literal black — 12,063 pure `(0,0,0)` pixels at
+`river_bank`, 11,015 at `first_post_office`" and a darkest ground decile as low as **L 0.93**.
+Both are real measurements and both are attributed to the wrong surface. Connected components of
+the literal-black mask, with their bounding boxes:
+
+| station | literal black | components | of it in components lying **entirely above** the median land/sky row |
+|---|---|---|---|
+| `first_post_office` | 11,015 | 9 | **100 %** (largest 8,376 px, x957–1144 y42–117 — the crown at top right) |
+| `river_bank` | 12,063 | 14 | **94 %** (six crown clusters, all y ≤ 230, boundary row 369) |
+| `prairie_south` | 2,315 | 10 | **99.7 %** (all y ≤ 261, boundary row 395) |
+| `sauganash_wing` | 61 | 1 | **100 %** (one crown edge) |
+
+Not one literal-black pixel in the desktop set is on shaded ground. They are the shaded side of
+the near-tree canopy — the `timber` `MeshStandardMaterial`, vertex-coloured, quantising to zero
+where a leaf faces away from a 70.5° sun. The darkest-decile figure is the same surface reached
+a second way: the metric finds "ground" as everything below the per-column land/sky line, and in
+a column carrying a tree that line is the *top of the crown*, so the crown counts as ground.
+Measured at `river_bank`: **63,711 pixels at L < 2, of which 95.7 % lie above the median land/sky
+row**; the decile pool is ~55,000, so the L 0.93 reading is a canopy measurement end to end.
+`south_water` 92.7 %, `first_post_office` 88.6 %. **`sauganash_wing` and `lake_market` are the
+exceptions** — their near-black is 90–94 % *below* that row and is a different population, not
+diagnosed here.
+
+Consequence, and it changes what W1 does: **raising the shadow floor will not move either
+number.** What lights a leaf facing away from the sun is the environment term W1 exists to
+install, or a floor on the crown's darkest albedo. The fix stays in W1; the mechanism named in
+§1 item 7 does not survive.
+
+**2. The horizon-timber metric cannot tell a treeline from a townscape, and the town just moved
+it.** The recipe counts a horizon column as timbered if any pixel in the band above the land/sky
+line falls 3 luma below, or 3 G−B above, the sky extrapolated from the 20 rows over it. A gable
+end breaking the skyline satisfies that as surely as an oak. Re-running the harness on today's
+`dev` — with **no renderer change since the baseline** (`git diff --stat 282dd9a..HEAD --
+renderers/` is `changelog.js`, 41 lines, and nothing else) — nine stations reproduce their timber
+figures and **`prairie_south` moves from 0.364 to 0.436 all / 0.340 to 0.441 centre**, a 20 %
+gain. What changed between the two runs is 19 anonymous roofs (T-A2 and T-A3), and the frame
+shows them: the left third of `prairie_south`'s skyline is grey gable ends. **The § 5 target of
+≥ 90 % horizon timber coverage can therefore be satisfied by building the town**, which is not
+what item 5 was ever about. R-W4 owns the target; it needs a discriminator, or a second metric
+that measures only columns with no structure in them, before its acceptance number means
+anything.
+
+**3. Lane 2 is spending the draw-call budget faster than lane 1 can recover it.** Same two runs,
+same renderer, +19 structure records (242 → 261, +7.9 %):
+
+| | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop baseline | 65 | 66 | 78 | 66 | 87 | 91 | 85 | 67 | 73 | 97 | 56 |
+| desktop today | 65 | 77 | 89 | 66 | 98 | 102 | 96 | 67 | 84 | 108 | 56 |
+| mobile baseline | 62 | 63 | 66 | 60 | 82 | 88 | 83 | 61 | 71 | 94 | 49 |
+| mobile today | 62 | 72 | 77 | 60 | 82 | 99 | 94 | 61 | 82 | 105 | 49 |
+
+**Exactly +11 desktop at seven of eleven stations and exactly 0 at the other four** — and
+triangles rose by only 244–562, so this is per-object cost, not geometry. Stations over the
+**≤ 80** budget go **4 → 6** on desktop and **4 → 5** on mobile; the worst goes 97 → 108. The
+uniformity is the part nobody has explained: +11 at bearings 150° apart, and +0 at `from_above`,
+which sees the whole town. **Straight-line extrapolation on the remaining 414 roofs is about
++240 draw calls** against a budget of 80. That is not a reason to slow lane 2 down — the roofs
+are the product — but the budget cannot be met by tuning after the fact, and R-W5 should treat
+batching as its first question rather than its last. The `from_above` zero is a lead: something
+already drops these objects at distance.
+
+### What this does not do
+
+It changes no code, moves no building and re-measures no reference photograph. The §5 targets
+that were set from the uncommitted 2026-08-10 sweep still need re-anchoring by measuring a
+reference plate through `tools/critic_metrics.mjs`, which is still a one-line job and is still
+not done. And a rubric score is one reader's judgement with its reasoning attached — the fixes
+below are the durable half, not the number.
+
 ## New 2026-08-14 — two roofs of ten given an occupant, and the rule that refused the other eight
 
 **T-A2h.** The parcel was expected to argue about the town's trade mix. What it found is that a
