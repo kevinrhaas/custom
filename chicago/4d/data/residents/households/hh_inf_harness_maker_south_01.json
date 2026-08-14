@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_harness_maker_south_01",
- "name": "The Dickinson household — an inferred harness maker (south division)",
+ "name": "The Fairbanks household — an inferred harness maker (south division)",
  "division": "south",
  "head": "inf_harness_maker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_harness_maker_south_01",
-   "name": "Henry Dickinson",
+   "name": "Joseph Fairbanks",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

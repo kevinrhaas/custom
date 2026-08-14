@@ -54,7 +54,8 @@
   "Where the reconstruction specification gives a workshop or store family a roof target, treat that target as the ceiling on the trade's household count and subtract the documented practitioners already in data/residents/.",
   "Where no roof family bounds the trade (carpenters, labourers, laundresses, teamsters), argue the count from the town's own building rate and from documented volumes - the packing figures, the brickyard, the harbour works - and say so in the argument field.",
   "Never infer a person where a documented one is available: every count here is stated net of the documented layer.",
-  "House every household. A household that justifies no roof is a household this programme has no use for: adopt an anonymous roof already on the plat where one of the right family and district exists, and raise a new record only where it does not."
+  "House every household. A household that justifies no roof is a household this programme has no use for: adopt an anonymous roof already on the plat where one of the right family and district exists, and raise a new record only where it does not.",
+  "A NEW ANONYMOUS ROOF DOES NOT ENTITLE THIS CENSUS TO A NEW HOUSEHOLD. The platted-block parcels (docs/ROADMAP.md T-A2 onward) put dwellings of known families on the plat faster than any argument about the town's trade mix can move, and the mix is a claim about the TOWN rather than about what has been drawn: letting a drawn roof raise a trade's count would be fitting the evidence to the model. A block roof may therefore be adopted only where BOTH tests pass - the trade's own argument above states in its committed text that its count is a floor rather than a bound, and the roof's family is one this layer already houses that trade in. Everything else on the block stays an anonymous count-unit, which is what it was. The two tests are independent and they agreed on the first block they were applied to, which is the only reason to trust either of them."
  ],
  "placement_rule": [
   "Businesses toward the river and the built streets; residences further out, exactly as ROADMAP K1 directs. The new shop roofs sit on the South Water and Lake Street frontages and on the Canal Street approach at Wolf Point; the new dwellings sit in the outer bands and on the fringes.",
@@ -65,9 +66,9 @@
   {
    "occupation": "carpenter",
    "documented_persons": 4,
-   "inferred_households": 10,
-   "planned_households": 10,
-   "argument": "THE TRADE THE TOWN NEEDED MOST AND THE ONE THE DOCUMENTED LAYER UNDER-COUNTS WORST. The 1835 town census counts 3,265 people in 398 dwellings; Andreas's roster of the fall of 1833 describes a settlement of a few dozen buildings, and the reconstruction specification puts 665 roofs on the ground by July 1835. Several hundred of those roofs went up inside eighteen months. Even at a crew of three raising a one-room frame cottage in three weeks, that is on the order of forty carpenter-years of work in a year and a half. Andreas names four carpenters and one ship carpenter in the whole of the 1833 town. Ten carpenter households are inferred against the schedule's eight W2 carpenter-or-joiner shops, because a house carpenter worked on the frame in the street and not in a shop: the shop count is a floor under the trade, not a measure of it."
+   "inferred_households": 11,
+   "planned_households": 11,
+   "argument": "THE TRADE THE TOWN NEEDED MOST AND THE ONE THE DOCUMENTED LAYER UNDER-COUNTS WORST. The 1835 town census counts 3,265 people in 398 dwellings; Andreas's roster of the fall of 1833 describes a settlement of a few dozen buildings, and the reconstruction specification puts 665 roofs on the ground by July 1835. Several hundred of those roofs went up inside eighteen months. Even at a crew of three raising a one-room frame cottage in three weeks, that is on the order of forty carpenter-years of work in a year and a half. Andreas names four carpenters and one ship carpenter in the whole of the 1833 town. Ten carpenter households are inferred against the schedule's eight W2 carpenter-or-joiner shops, because a house carpenter worked on the frame in the street and not in a shop: the shop count is a floor under the trade, not a measure of it. ONE FURTHER CARPENTER HOUSEHOLD, 2026-08-14, AND THE ROOF IS THE REASON RATHER THAN A NEW FINDING ABOUT THE TRADE. The count above is stated as a floor in its own last clause, and what held it at ten was method rule 5: every household must be housed, and housing one where no anonymous roof of the right family and district stands means raising an invented building. The block parcel at Randolph and Wells has since put a D3 one-room frame cottage on the plat in the South Division - a roof the 665-roof programme had already counted, in the family this layer houses nine of its ten carpenters in. Adopting it raises no building, invents no position and moves no other record; it puts an argued occupant under a roof that was standing anonymously. Eleven carpenter households are inferred, still against eight W2 shops and still a floor."
   },
   {
    "occupation": "joiner",
@@ -128,9 +129,9 @@
   {
    "occupation": "labourer",
    "documented_persons": 0,
-   "inferred_households": 12,
-   "planned_households": 12,
-   "argument": "THE LARGEST TRADE IN ANY WESTERN TOWN AND THE ONE NO ROSTER RECORDS, because a labourer advertises nothing, holds no office and joins no church committee - the three ways almost every documented person in this dataset became documented. The harbour works were under construction through 1834 and 1835 (both piers are structure records here), the streets were being graded, and several hundred buildings were being raised. Twelve labouring households are inferred - the largest single group in this layer and still a small fraction of what 3,265 people implies - and every one of them is housed in the meanest roof the schedule carries: a D1 log cabin or a D2 plank shanty."
+   "inferred_households": 13,
+   "planned_households": 13,
+   "argument": "THE LARGEST TRADE IN ANY WESTERN TOWN AND THE ONE NO ROSTER RECORDS, because a labourer advertises nothing, holds no office and joins no church committee - the three ways almost every documented person in this dataset became documented. The harbour works were under construction through 1834 and 1835 (both piers are structure records here), the streets were being graded, and several hundred buildings were being raised. Twelve labouring households are inferred - the largest single group in this layer and still a small fraction of what 3,265 people implies - and every one of them is housed in the meanest roof the schedule carries: a D1 log cabin or a D2 plank shanty. ONE FURTHER LABOURING HOUSEHOLD, 2026-08-14, ON THE SAME TERMS AND FOR THE SAME REASON. The count above calls itself a small fraction of what 3,265 people implies, so it is a floor by its own text, and twelve was where method rule 5 stopped it: another household needed another roof. The Randolph and Wells block parcel has since put a D1 log cabin on the plat in the South Division, which is the family this layer houses every one of its eight adopted labourers in and the meanest roof the schedule carries. Thirteen labouring households are inferred. The arithmetic against the 1835 census is unchanged; what changed is that a roof exists to hold one more of the households that arithmetic already implied."
   },
   {
    "occupation": "laundress",
@@ -272,7 +273,7 @@
    "occupation": "carpenter",
    "division": "south",
    "ordinal": 1,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_south_d3_001",
    "works_at": "recon_1835_south_w2_026",
    "extras": [
@@ -287,7 +288,7 @@
    "occupation": "carpenter",
    "division": "south",
    "ordinal": 2,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_south_d3_008",
    "works_at": null,
    "extras": [
@@ -302,7 +303,7 @@
    "occupation": "carpenter",
    "division": "south",
    "ordinal": 3,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_south_d3_013",
    "works_at": null,
    "extras": [
@@ -317,7 +318,7 @@
    "occupation": "carpenter",
    "division": "south",
    "ordinal": 4,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_south_d3_017",
    "works_at": null,
    "extras": [
@@ -527,7 +528,7 @@
    "occupation": "labourer",
    "division": "south",
    "ordinal": 1,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_south_d1_021",
    "works_at": null,
    "extras": []
@@ -537,7 +538,7 @@
    "occupation": "labourer",
    "division": "south",
    "ordinal": 2,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_south_d1_033",
    "works_at": null,
    "extras": []
@@ -637,7 +638,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 5,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_north_d3_002",
    "works_at": "recon_1835_north_w2_005",
    "extras": [
@@ -652,7 +653,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 6,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_north_d3_006",
    "works_at": null,
    "extras": [
@@ -667,7 +668,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 7,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_north_d3_016",
    "works_at": null,
    "extras": [
@@ -682,7 +683,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 8,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_north_d3_024",
    "works_at": null,
    "extras": [
@@ -697,7 +698,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 9,
-   "of": 10,
+   "of": 11,
    "lives_at": "recon_1835_north_d3_038",
    "works_at": null,
    "extras": [
@@ -732,7 +733,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 3,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_001",
    "works_at": null,
    "extras": []
@@ -742,7 +743,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 4,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_013",
    "works_at": null,
    "extras": []
@@ -752,7 +753,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 5,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_023",
    "works_at": null,
    "extras": []
@@ -762,7 +763,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 6,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_053",
    "works_at": null,
    "extras": []
@@ -772,7 +773,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 7,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_054",
    "works_at": null,
    "extras": []
@@ -782,7 +783,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 8,
-   "of": 12,
+   "of": 13,
    "lives_at": "recon_1835_north_d1_060",
    "works_at": null,
    "extras": []
@@ -1012,7 +1013,7 @@
    "occupation": "carpenter",
    "division": "north",
    "ordinal": 10,
-   "of": 10,
+   "of": 11,
    "lives_at": "inf_carpenter_dwelling_north",
    "works_at": null,
    "extras": []
@@ -1052,7 +1053,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 9,
-   "of": 12,
+   "of": 13,
    "lives_at": "inf_labourer_shanty_north_a",
    "works_at": null,
    "extras": []
@@ -1062,7 +1063,7 @@
    "occupation": "labourer",
    "division": "north",
    "ordinal": 10,
-   "of": 12,
+   "of": 13,
    "lives_at": "inf_labourer_shanty_north_b",
    "works_at": null,
    "extras": []
@@ -1072,7 +1073,7 @@
    "occupation": "labourer",
    "division": "west",
    "ordinal": 11,
-   "of": 12,
+   "of": 13,
    "lives_at": "inf_labourer_shanty_west_a",
    "works_at": null,
    "extras": []
@@ -1082,7 +1083,7 @@
    "occupation": "labourer",
    "division": "west",
    "ordinal": 12,
-   "of": 12,
+   "of": 13,
    "lives_at": "inf_labourer_shanty_west_b",
    "works_at": null,
    "extras": []
@@ -1125,6 +1126,26 @@
    "of": 4,
    "lives_at": "inf_grocery_west",
    "works_at": "inf_grocery_west",
+   "extras": []
+  },
+  {
+   "id": "hh_inf_carpenter_south_11",
+   "occupation": "carpenter",
+   "division": "south",
+   "ordinal": 11,
+   "of": 11,
+   "lives_at": "recon_1835_blk_randolph_wells_d3_05",
+   "works_at": null,
+   "extras": []
+  },
+  {
+   "id": "hh_inf_labourer_south_13",
+   "occupation": "labourer",
+   "division": "south",
+   "ordinal": 13,
+   "of": 13,
+   "lives_at": "recon_1835_blk_randolph_wells_d1_06",
+   "works_at": null,
    "extras": []
   }
  ],

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_tailor_south_01",
- "name": "The Crandall household — an inferred tailor (south division)",
+ "name": "The Eastman household — an inferred tailor (south division)",
  "division": "south",
  "head": "inf_tailor_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_tailor_south_01",
-   "name": "James Crandall",
+   "name": "Charles Eastman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

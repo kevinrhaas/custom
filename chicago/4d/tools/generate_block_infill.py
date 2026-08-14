@@ -55,6 +55,15 @@ PREFIX = "recon_1835_blk_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+# An adopted roof's `occupants` block is authored ONCE, in the household programme's
+# ledger, and handed to whichever generator owns the roof — the arrangement the three
+# earlier anonymous parcels already use. Writing the adoption here as well would put it
+# in two places and let them disagree, and hand-editing a generated record would fail
+# the drift check that makes these parcels trustworthy in the first place.
+from inferred_occupancy import occupancy  # noqa: E402
+
+OCCUPANCY = occupancy()
+
 # The same separation the household parcel enforces. A generated building that lands
 # three metres from another one is not a dense town, it is two records occupying one
 # yard, and nothing downstream can tell them apart.
@@ -529,6 +538,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
             "change_note": "Inferred anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
+        **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
         "research_note": ("RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
@@ -724,6 +734,25 @@ def records_from_inputs() -> list[dict]:
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):
         raise SystemExit("two block slots produced the same record id")
+
+    # The adoption gate, in both directions. A household may name a roof this generator
+    # owns, but only a PRINCIPAL one: an A-family roof is a stable, a privy or a woodshed
+    # standing behind somebody's lot, and housing a household in one would be inventing an
+    # occupant for a shed. The other direction — a roof the ledger names and no recipe
+    # builds — would leave an adoption pointing at nothing, which is how a household
+    # quietly loses its dwelling when a recipe is edited.
+    by_id = {r["id"]: r for r in records}
+    for sid in sorted(sid for sid in OCCUPANCY if sid.startswith(PREFIX)):
+        record = by_id.get(sid)
+        if record is None:
+            raise SystemExit(f"the inferred-household programme adopts {sid}, which no "
+                             f"block recipe builds")
+        recon = record["reconstruction"]
+        if recon["inventory_class"] != "principal_functional":
+            raise SystemExit(f"{sid} is an ancillary {recon['family']} roof and cannot be "
+                             f"adopted: a yard building serves the lot it stands behind, "
+                             f"and an adoption is a claim about who lived or worked in a "
+                             f"building")
     return records
 
 
