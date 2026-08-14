@@ -9,12 +9,13 @@ var WAUBUN_PART3 = {
   title: 'Wau Bun',
   range: '1831 – 1833',
   chapters: 'Chapters XXIV–XXXVIII',
-  status: 'partial',
+  status: 'complete',
   blurb: 'Juliette\'s story resumes in Chicago. She returns to Fort Winnebago and develops deeper relationships with Ho-Chunk people including Day-kau-ray, Four-Legs, Cut-Nose and White Crow. The Black Hawk War transforms the region, followed by displacement, hunger and upheaval. The series ends with Juliette and John leaving Fort Winnebago, closing the "early day" of the Northwest.',
-  outlineNote: 'Scenes so far cover chapters XXIV–XXXIII. The chapters below are next, and are listed here exactly as they stand in the narrative.',
   acts: [
     { id: 'c1', title: 'The Road Home', sub: 'Chicago → the Portage', note: 'Spring 1831' },
-    { id: 'c2', title: 'The Agency', sub: 'Fort Winnebago', note: '1831' }
+    { id: 'c2', title: 'The Agency', sub: 'Fort Winnebago', note: '1831' },
+    { id: 'c3', title: 'The War\'s End', sub: 'Green Bay \u2192 the Portage', note: 'July\u2013December 1832' },
+    { id: 'c4', title: 'The Dawn', sub: 'Fort Winnebago', note: '1833' }
   ],
   scenes: [
     /* ---------------- Act 1 — The Road Home ---------------- */
@@ -27,7 +28,7 @@ var WAUBUN_PART3 = {
         'Billy Caldwell, Robert Kinzie and Gholson Kercheval ride out with them as far as the Aux Plaines.',
         'Their mother, at sixty, gives her place in the carriage to anyone who wants it — she has travelled so many years on horseback that any other way tires her — and mounts a pacer with the activity of a girl of sixteen.'
       ],
-      cast: ['juliette', 'john', 'eleanor', 'margaret', 'josettegirl', 'harry', 'edwin', 'billycaldwell', 'robert', 'gholson', 'petaille', 'lecuyer'], offstage: ['ouilmette'], pivotal: true
+      cast: ['juliette', 'john', 'eleanor', 'margaret', 'josettegirl', 'harry', 'edwin', 'billycaldwell', 'robert', 'petaille', 'lecuyer'], offstage: ['ouilmette'], pivotal: true
     },
     {
       id: 'p3s2', act: 'c1', chapter: 'XXIV', chapterTitle: 'Return to Fort Winnebago',
@@ -43,7 +44,7 @@ var WAUBUN_PART3 = {
       place: 'A wooded knoll on the prairie', placeShort: 'The prairie',
       summary: 'They camp on a knoll so covered in flowers that nobody can bear to fell a tree among them, with the hickory and sassafras in bud and the birds going at full strength. The children are in ecstasies and make themselves useful piling saddles and breaking boughs. In the morning the Frenchmen go for the horses and do not come back; the day wears on, searchers return wet to the knees with dew and no news. Could the Indians have stolen them? Hardly — these people rarely rob in peacetime, and never this family. A council sends Grignon back to Chicago for fresh horses. An hour after he leaves, the missing animals come hopping demurely out of a point of woods every searcher swore he had been through twice, and seem rather surprised to be scolded instead of patted.',
       points: ['Half an hour to strike the tent, pack the mats and kettles and saddle up — the camp routine of Part 1, now second nature.'],
-      cast: ['juliette', 'john', 'harry', 'josettegirl', 'edwin', 'petaille', 'lecuyer', 'eleanor', 'margaret', 'foster'], offstage: ['gholson'], pivotal: false
+      cast: ['juliette', 'john', 'harry', 'josettegirl', 'edwin', 'petaille', 'lecuyer', 'eleanor', 'margaret', 'foster'], offstage: [], pivotal: false
     },
     {
       id: 'p3s4', act: 'c1', chapter: 'XXIV', chapterTitle: 'Return to Fort Winnebago',
@@ -364,14 +365,314 @@ var WAUBUN_PART3 = {
         'At Powell\'s at the Butte des Morts there is not a loaf to be had and their own store is gone. All they can get is a bag of dark, bitter flour — and they leave the Hillock of the Dead feeling it has been the grave of their hopes.'
       ],
       cast: ['oldsmoker', 'juliette', 'arthur', 'mata', 'eleanor', 'margaret', 'edwin', 'julian'], offstage: [], pivotal: true
+    },
+    /* ---------------- Act 3 — The War's End ---------------- */
+    {
+      id: 'p3s32', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: 'The man the Sauks nearly ate', date: 'July 1832',
+      place: 'Green Bay', placeShort: 'Green Bay',
+      summary: 'They arrive into a full-blown panic. Green Bay has convinced itself that the Sauks will come through on their way to Canada to put themselves under British protection — how they would get there, whether by stopping to build bark canoes or by chartering one of Mr. Newbery\'s schooners, nobody has troubled to work out. A portion of the citizens are nearly frightened to death and certain there is no safety outside the walls of the old dilapidated fort, from which nearly all the troops had been withdrawn and sent to Fort Winnebago some time before.',
+      points: [
+        'The fear is stoked by a traveller\'s report that he slept at night on the very spot where the Sauks breakfasted next morning — and since the Sauks were known to be on very short commons, he is held to have made a wonderful escape.',
+        'The Kinzies\' own friends do not join in it: anyone who considers the country to be crossed and the numerous whites who would meet them there can see the movement is impossible.'
+      ],
+      cast: ['juliette', 'eleanor', 'margaret', 'arthur', 'edwin', 'julian'], offstage: ['blackhawk', 'john'], pivotal: false
+    },
+    {
+      id: 'p3s33', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: 'The Mariner', date: 'Early one morning',
+      place: 'Green Bay', placeShort: 'Green Bay',
+      summary: 'The schooner everyone has been waiting for comes in at last, and within an hour her news has run the whole length of the settlement: the cholera is in the country. It is in Detroit; it is among the troops on their way to the seat of war; whole companies have died of it in the river St. Clair and the survivors were put ashore at Port Gratiot to save their lives as best they might. They are shut in between the savage foe on one hand and the pestilence on the other.',
+      points: [
+        'The man who brings the news to the Kinzies is an officer of distinguished courage in the field and in private enterprises demanding unequalled daring. Having told them, he laid his head against the window-sill and wept like a child.',
+        'Those with friends near and dear to the east leave in the Mariner. Everyone else decides their present home is the safest — and so it proves: the scourge does not visit Green Bay that season.'
+      ],
+      cast: ['juliette', 'eleanor', 'margaret'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s34', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: 'Tapping on the bars', date: 'Summer 1832',
+      place: 'Fort Howard', placeShort: 'Fort Howard',
+      summary: 'Crossing the parade, their attention is sometimes drawn by a tapping on the bars of a dungeon. It is the murderer of Lieutenant Foster — the amiable young officer who had been their travelling companion from Chicago the year before. Some months after reaching Fort Howard, Foster had a soldier named Doyle confined for drunkenness. Doyle talked the sergeant of the guard into walking him up to the lieutenant\'s quarters to speak with him, asked what he was confined for, was told he knew his offence well enough and should return to his place of confinement — ran downstairs, wrenched the gun out of the sergeant\'s hands and discharged it into Foster\'s heart. Foster turned toward his inner room, said "Ah me!" and fell dead in the doorway.',
+      points: [
+        'Tried by a civil court, Doyle is now under sentence and shows not the slightest compunction. Asked by Major Clark whether he wants anything for his comfort, he would like a light and a copy of Byron\'s Works.',
+        'Fearing he will make away with himself first, they take away everything that could serve as a weapon and serve his food in a wooden bowl in case a shard of crockery is used. He sends the commanding officer a present: a strong rope woven from strips of his blanket with a stout spike at the end, and the message that if he chose to put an end to himself he could find the means in spite of him.',
+        'Led out past a stack of lumber for a new warehouse, he asks Captain Scott what they are going to build there. Told he has but a few moments to live and had better think about something else: "It is for that very reason, captain, that I am inquiring — as my time is short, I wish to gain all the information I can while it lasts."'
+      ],
+      cast: ['juliette', 'doyle', 'majorclark', 'captscott'], offstage: ['foster'], pivotal: true
+    },
+    {
+      id: 'p3s35', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: 'A lady at the front door', date: 'Two weeks later',
+      place: 'Fort Howard', placeShort: 'Fort Howard',
+      summary: 'They are not left long in suspense about the people they left behind. Old Smoker appears again inside a fortnight with letters: Generals Dodge, Henry and Alexander are all at Fort Winnebago recruiting men and horses worn out with scouring the country, and will march again for the head-waters of the Rock River as soon as they are fit. Not long after, Juliette is told a lady wishes to see her at the front door, and finds Madame Four-Legs — who puts both hands together over her forehead and parts them in a waving gesture, laughs, pats her arms, and draws a letter out of her bosom.',
+      points: [
+        'The letter reports the battle of the Wisconsin on the 21st: upwards of fifty of the enemy killed, one American killed and eight wounded, and the citizens well pleased it was done without any help from Old White Beaver.',
+        '"The war must be near its close, for the militia and regulars together will soon finish the remaining handful of fugitives."'
+      ],
+      cast: ['juliette', 'oldsmoker', 'mmefourlegs'], offstage: ['john', 'gendodge', 'genhenry', 'genalexander', 'paquette', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s36', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: 'The Grande Chûte', date: 'Late July 1832',
+      place: 'The Grande Chûte, Fox River', placeShort: 'Grande Chûte',
+      summary: 'Lieutenant Hunter takes leave of absence to escort them home. No Mackinac boat is to be had, so a Durham boat is got — longer, shallower, no way to rig an awning — and a party of eleven or twelve makes up its mind to close quarters. At the Grande Chûte the custom is to land at the foot of the rapids and walk round while the men haul the boat up through the foam. Juliette and one of the other ladies decide to stay aboard and be pulled up the Chûte. At the head of the cordel is a merry simpleton of a Frenchman, Robineau, who keeps turning his head to grin at their enjoyment — and, more occupied with the ladies than his duty, walks the boat straight into a sharp projecting tree hanging from the bank.',
+      points: [
+        'The first tug rips the side out of the boat. The two women jump for the nearest rocks showing above the foam and are carried ashore in the arms of Lieutenant Hunter and some Indians who came down the bank at a run.',
+        'From the top of the bank: "Oh! my husband\'s new uniform!" — "Oh! the miniatures in the bottom of my trunk!" — "Oh! the silk dresses, and the ribbons, and the finery!" Nobody thinks of the provisions, though they had watched the barrel of bread and the tub of ice sail away on the waves.',
+        'A box of loaf sugar splits and oozes white at the corners. Juliette points at the young Indian\'s hatchet, he does not need asking twice, and the scramble that follows — bowls, dippers, hands, the stoutest fragments of the blue sugar-paper — puts them all, the boys especially, into fits of laughter.',
+        'Rain comes on; every bush is hung with mottled blue, green, red and black; the tent is pitched wet and the blankets wrung out and spread on the ground, and a Hamburg cheese is voted to Juliette for a pillow.'
+      ],
+      cast: ['juliette', 'hunter', 'mrshunter', 'missforsyth', 'eleanor', 'margaret', 'robineau', 'edwin', 'julian', 'arthur'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s37', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
+      title: '"There is John!"', date: 'The next morning',
+      place: 'The Fox River → the Portage', placeShort: 'Fox River',
+      summary: 'The morning is hot and sultry, the mosquitoes making up for the night, the boat sunk halfway up the rapids and no way of getting anyone anywhere. In the middle of the consultation a whoop comes from beyond the hill — it is John, who, never having been told their plans, has come down with a boat to fetch them. They are transferred and pulling for Winnebago Lake in an incredibly short time.',
+      points: [
+        'They stop near the Little Butte to dry the wardrobe again, and have barely got the last ribbon spread when twenty-five horsemen ride into the middle of it — Colonel Stambaugh and Alexander Irwin with a company of young volunteers and a whooping band of Menomonee, bound for the war. They are comforted with the assurance that the victories are all won and the scalps taken, and ride on hoping for a few laurels left.',
+        'Lake Winnebago is crossed by summer moonlight with just enough air to swell the sail; the whole company is packed into the centre of the boat in an arrangement nobody could have reassembled if it had once been disturbed.',
+        'At Powell\'s there is nothing to be had, the wet bread has fermented in the July sun and the tea gone musty; at Gleason\'s, La Grosse Américaine cuts bread-and-butter for them like a parcel of children, and Mâtâ appears with the old calèche and a provident load of tea, coffee, fresh butter and eggs — "Good-morning, Madame Johns! How do you dos?"',
+        'Margaret goes ahead with Josette to open the house, which has been headquarters for militia, Indians and stragglers all summer. They reach it at sunset to find it whitewashed roof to door-sill, scrubbed, carpets down, and a noble supper smoking on the board.'
+      ],
+      cast: ['john', 'juliette', 'hunter', 'mata', 'mrsarmstrong', 'stambaugh', 'irwin', 'margaret', 'josettegirl', 'eleanor', 'manaigre', 'edwin', 'julian', 'missforsyth', 'mrshunter'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s38', act: 'c3', chapter: 'XXXV', chapterTitle: 'Surrender of Winnebago prisoners',
+      title: 'Three bottles of cologne-water', date: 'August 1832',
+      place: 'Fort Winnebago', placeShort: 'Fort Winnebago',
+      summary: 'News of the battle of the Bad Axe — regulars, militia and the steamboat Warrior together making an end of the remaining handful of Sauks — reaches them and restores tranquillity to the frontier. Juliette sets down why so small and ill-resourced an enemy required so vast a force: the difficulty was never in beating them but in finding them, and the training needed to pursue and catch Indians was something few even of the frontier militia could boast. The other difficulty was the want of concert between the two branches of the service — the regulars contemptuous of the militia\'s unprofessional movements, the militia scornful of the regulars\' dilatory formalities, each convinced things would go better without the other.',
+      points: [
+        'General Brady had spoken for every military man at the outset: "Give me two infantry companies mounted, and I will engage to whip the Sauks out of the country in one week!"',
+        'The militia, being prompt to act, sometimes took matters into their own hands and brought on defeat and disgrace, as at Stillman\'s Run.',
+        'The contempt ran all the way down. Asked to account for three bottles of cologne-water in the month\'s mess bill, little Yellow David answered respectfully that it was to sweeten up the dining-room and quarters after them milish\' officers were here visiting.'
+      ],
+      cast: ['juliette', 'yellowdavid'], offstage: ['brady', 'blackhawk'], pivotal: false
+    },
+    {
+      id: 'p3s39', act: 'c3', chapter: 'XXXV', chapterTitle: 'Surrender of Winnebago prisoners',
+      title: 'The canoes that were tied together', date: 'August 1832',
+      place: 'Prairie du Chien', placeShort: 'Prairie du Chien',
+      summary: 'Black Hawk and a few warriors who escaped north are captured shortly after by the One-eyed Day-kau-ray and his party and brought as prisoners to General Street at Prairie du Chien. The women and children of the band had been put into canoes and sent down the Mississippi in hopes of being allowed to cross and reach the rest of the tribe. The canoes had been tied together; many upset, and the children drowned, their mothers too weak and exhausted to save them. The survivors were taken prisoner and brought in starving.',
+      points: [
+        'The Kinzies\' mother is at the fort when they arrive, and describes their condition as more wretched and reduced than anything she has ever seen.',
+        'One woman who spoke a little Chippewa gave her the account: after eating such horses as could be spared they had lived on acorns, elm-bark and grass, and the dead were found lying in their trail by the pursuing whites. She had lost her husband in battle and all her children in the upset canoe, and her only wish now was to go and join them.',
+        'Juliette\'s comment is one line long: "Poor Indians! who can wonder that they don\'t love the whites?"'
+      ],
+      cast: ['eleanor', 'saukmother', 'oneeyeddaykauray', 'blackhawk'], offstage: ['juliette'], pivotal: true
+    },
+    {
+      id: 'p3s40', act: 'c3', chapter: 'XXXV', chapterTitle: 'Surrender of Winnebago prisoners',
+      title: '"Bad news, madam! Have you heard it?"', date: 'Autumn 1832',
+      place: 'Fort Winnebago / Rock Island', placeShort: 'Fort Winnebago',
+      summary: 'John is summoned to collect the principal chiefs and meet General Scott and Governor Reynolds at Rock Island, where a treaty is proposed for the purchase of all the land east and south of the Wisconsin. He has been gone a fortnight when Juliette, crossing the hall of the quarters to visit her sister, meets Lieutenant Lacy coming the other way. "Bad news, madam! Have you heard it? The cholera has broken out at Rock Island, and they are dying by five hundred a day." He vanishes without waiting for a question. She cannot get the sentinel to leave his post, and Mrs. Lacy\'s servant girl does not like to go to the young officers\' quarters — until Dr. Finley appears of his own accord: on his way home, madam, safe and sound.',
+      points: [
+        'He was in fact seized with cholera on the journey, and recovered by the care of Paquette and the chicken-broth of the poor woman at whose cabin he stopped — coming home by way of Prairie du Chien and bringing his mother back with him.',
+        'The nation consented to the sale. Juliette explains why they generally do: hold the land and you end up surrounded and hemmed in by white settlers, which is worse than giving it up, so you give it up and take care to make the best bargain you can. The price was a tract reaching into the interior of Iowa and ten thousand dollars a year.',
+        'One stipulation of the treaty was that the Ho-Chunk surrender certain of their own people accused of joining the Sauks in murders on the frontier, to be tried by American law.'
+      ],
+      cast: ['juliette', 'lacy', 'finley', 'margaret'], offstage: ['john', 'genscott', 'reynolds', 'paquette', 'eleanor'], pivotal: true
+    },
+    {
+      id: 'p3s41', act: 'c3', chapter: 'XXXV', chapterTitle: 'Surrender of Winnebago prisoners',
+      title: 'The hostage, and two kegs of whiskey', date: 'Autumn 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Persuading the seven accused men to put themselves into white hands takes time: the trial of Red Bird and his lingering death in prison are still fresh, and it needs resolution as well as a strong conviction of innocence. Nothing is forced — the nation would never have used force to fulfil its own stipulation. Meanwhile Wau-kaun-kah, the Little Snake, gives himself voluntarily as a hostage until the seven appear to redeem him, and is marched over and confined at the fort. A solemn talk is held at the Agency with the principal chiefs, most of the nation being camped nearby on Governor Porter\'s notice that he will bring the annuity money himself this year instead of leaving it to the Agent.',
+      points: [
+        'Those who had not been at Rock Island are loud in their condemnation of the sale. Foremost is Wild-Cat, weeping over the loss of his home on the blue waters of Winnebago Lake, and certain that if he had not been accidentally stopped on his way to the treaty he would never have permitted the bargain.',
+        'Their Father, who knows the stopping was a desperate frolic, replies gravely that he had heard of the chief\'s misfortune: ascending the Fox, a couple of kegs of whiskey came floating down the stream and ran foul of his canoe with such force that he was obliged to lay up several days at the Mee-kan to repair damages. The laughter is contagious enough that Wild-Cat joins in and treats his own misfortune as a joke.',
+        'Every time the Kinzies come inside the walls they are hailed from the guard-room window: "Do you hear anything of those Indians? When are they coming, that I may be let out?"'
+      ],
+      cast: ['john', 'juliette', 'waukaunkah', 'wildcat', 'paquette'], offstage: ['redbird', 'porter', 'doty', 'prisoners'], pivotal: true
+    },
+    {
+      id: 'p3s42', act: 'c3', chapter: 'XXXV', chapterTitle: 'Surrender of Winnebago prisoners',
+      title: 'White cotton, and a death-song', date: 'A bright autumn morning',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'At ten o\'clock a moving concourse can be made out along the Portage road — brilliant colour, glittering arms, and, closer, white objects of unusual appearance. General Dodge, Major Plympton and one or two other officers take seats with John on the platform in front of the door; the women watch from the window. First come the principal chiefs in their most brilliant array. Then the prisoners, all in white cotton in token of their innocence, girdled at the waist, wearing no paint and no ornament, chanting their death-song to the drum and the shee-shee-qua, their faces grave and thoughtful. Behind them a long train of the nation in holiday garb. It is a grand and solemn sight.',
+      points: [
+        'The chiefs shake hands; the prisoners shake hands with the officers; and when they offer their hands to their Father he declines. "You have come here accused of great crimes. When you have been tried by the laws of the land, and been proved innocent, then your Father will give you his hand." They look more serious still, step back, and seat themselves in a row on the ground.',
+        'White Crow, deputed to deliver them, says that although his countrymen assert their innocence they are quite willing to be tried by the laws of white men — and hopes they will not be detained long, but will come out of it clear and white.',
+        'He then asks leave to transfer the President\'s medal from his own neck to his son\'s, the nation having chosen the young man to fill the office he wishes to resign. Juliette thinks no one could have witnessed it unmoved.',
+        'She watches the prisoners\' faces throughout. With one exception they are open and calm; one is remarkably fine-looking; one is a boy of certainly not more than seventeen, who follows the business of the medal with an air of childlike interest and satisfaction. When it is over they are marched off by a file of soldiers to the dungeon of the guard-house.'
+      ],
+      cast: ['john', 'juliette', 'prisoners', 'whitecrow', 'whitecrowson', 'gendodge', 'plympton', 'paquette', 'eleanor', 'margaret'], offstage: ['waukaunkah'], pivotal: true
+    },
+    {
+      id: 'p3s43', act: 'c3', chapter: 'XXXVI', chapterTitle: 'Escape of the prisoners',
+      title: 'Waiting for the silver', date: 'September–October 1832',
+      place: 'The Portage', placeShort: 'The Portage',
+      summary: 'The nation does not disperse after the surrender: they stay near the Portage expecting the annuity money they were summoned for, and Governor Porter puts off the journey to fetch it from week to week. Had he foreseen what the delay would cause he might have been prompter. Having abandoned their homes that spring to avoid any appearance of fraternising with the Sauks, they had planted no gardens and no corn-fields, and had nothing in hand for the winter but a scant supply of wild rice — which now goes on being eaten during the detention. The rations the Agent had sometimes been permitted to issue are cut off by scarcity in the Commissary\'s department, drained by the summer\'s levies and the troops brought up from Fort Howard.',
+      points: [
+        'John saw it coming and, the moment the war ended, commissioned Mr. Kercheval at Fort Howard to buy two boat-loads of corn for distribution. There was none to be had in Michigan; it had to come from Ohio; and by the time it reached Green Bay the navigation of the Fox had closed for the winter.',
+        'Advised at last to disperse to their hunting grounds and be summoned back the moment the silver arrives, they go.',
+        'While they were near, they more than once asked leave to dance the scalp-dance before the door — the most heart-curdling exhibition imaginable, scalps stretched on hoops and brandished on poles, the women rushing in to seize and toss them with the screams of demons. Juliette has seen forty or fifty scalps in one dance; one carried near her had long fair hair, evidently a woman\'s; another man carried the skin of a human hand, stretched and prepared as carefully as a costly jewel. By moonlight they are peculiarly horrid.'
+      ],
+      cast: ['john', 'juliette'], offstage: ['porter', 'cutler'], pivotal: true
+    },
+    {
+      id: 'p3s44', act: 'c3', chapter: 'XXXVI', chapterTitle: 'Escape of the prisoners',
+      title: 'Guns toward the Wisconsin', date: 'One evening at tea',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Amid so much of a painful character there is occasionally something that borders on the ludicrous. Firing is heard from the direction of the Wisconsin; everyone starts up and prepares instinctively for the garrison. Outside, the whole bluff and meadow are in commotion — Indians running with guns and spears toward the sound, women and children standing in front of their lodges looking anxiously that way, groups of French and half-breeds fleeing for the bridge and the new pickets. As one company hurries past, a carelessly carried weapon catches one of the party on the side of the head: "Oh! I am killed! an Indian has tomahawked me!" — she is reassured on discovering she can still run as fast as the best of them.',
+      points: [
+        'On the parade-ground they cannot help laughing at the figure they cut: some without hats or shawls, some clutching valuables snatched up at the door, one still holding the bread-and-butter she had not had the presence of mind to put down.',
+        'The alarm turns out to be a party from one of the Barribault villages, leaving home for a season and going through the ceremony of burying the scalps they and their fathers had taken — closing the solemnity, like a military funeral, with volleys over the grave of their trophies.'
+      ],
+      cast: ['juliette', 'john', 'margaret', 'eleanor', 'edwin', 'julian'], offstage: [], pivotal: false
+    },
+    {
+      id: 'p3s45', act: 'c3', chapter: 'XXXVI', chapterTitle: 'Escape of the prisoners',
+      title: 'The badgers', date: 'December 1832',
+      place: 'Fort Winnebago', placeShort: 'Fort Winnebago',
+      summary: 'Governor Porter arrives with the annuity money at the beginning of November, two months after the appointed time; the payment is made, the people lay in more ammunition than usual against a winter they know they must hunt hard in, and go. The Kinzies move into the new Agency House at last. They have been settled a few weeks when Lieutenant Davies appears at breakfast with a face full of consternation: the prisoners have escaped from the black-hole, and Colonel Cutler wants Mr. Kinzie to come over and counsel with him.',
+      points: [
+        'They had begun almost at once. Meals came three times a day and the rest of the time they were left alone; they dug with their knives, spread the earth on the floor, and kept a blanket over the hole with one man sitting on it — so that the soldier in charge always found them seated and smoking in the most orderly and quiet manner.',
+        'They had never read the memoirs of Baron Trenck, but they had watched badgers. Working the shaft spirally, they came out beyond the walls of the fort in about six weeks — leaving their blankets behind so as not to be encumbered, and taking to the woods in bitter December in nothing but calico shirts and leggings.',
+        'Juliette declines, on grounds of her own reputation as a loyal and patriotic citizen, to say how the news was received in her house.',
+        'Asked to help get them back, the chiefs assembled on New-Year\'s Day answer that if they see the young men they will tell them what the officers would like; they can do nothing themselves. They fulfilled their engagement by bringing them once and putting them into the officers\' hands. "The Government had had them in its power once and could not keep them — it must now go and catch them itself." The Government, having had some experience that summer in catching Indians, wisely dropped the matter.'
+      ],
+      cast: ['john', 'juliette', 'davies', 'prisoners'], offstage: ['porter', 'cutler', 'daykauray'], pivotal: true
+    },
+    {
+      id: 'p3s46', act: 'c3', chapter: 'XXXVI', chapterTitle: 'Escape of the prisoners',
+      title: 'Ten days in the snow', date: 'Winter 1832–33',
+      place: 'Toward Sugar Creek', placeShort: 'Sugar Creek',
+      summary: 'Robineau arrives on a very cold day to get medical aid for Mâtâ\'s eldest daughter Sophy, who fell on the ice at Sugar Creek and has been feverish and suffering for two or three days with her father away at Prairie du Chien. The commanding officer will not spare the surgeon but cheerfully grants leave to Currie, the hospital steward; Madame Bellaire is engaged as nurse and Agathe, Day-kau-ray\'s daughter, goes as aid and companion. Forty miles, a horse packed with rice, crackers, tea and sugar for the invalid, and two days expected. On the fourth day Turcotte walks in from Sugar Creek to ask why no help has come.',
+      points: [
+        'Robineau had guided them as ill as he guided the boat at the Grande Chûte, keeping doggedly to a track Agathe had known from the first was wrong until it brought them out at the Rock River.',
+        'Ten days later a searching party finds them at Hastings\'s Woods, twelve miles out, feeble and on the right road at last; their provisions had given out two days before, and they had seriously discussed killing and eating the horse — deterred only by Currie\'s inability to walk and the dread of leaving him in the woods to perish.',
+        'Agathe had carried her hatchet, as her people do, so they had a fire every night and boughs against the storms. Without that they must have perished.',
+        'Two things stir more than sympathy: Robineau demanding of Currie first his money and then his watch as the price of leading them back into a path he claimed to know perfectly well, and Bellaire giving his kind, excellent wife a hearty flogging for going off on such a fool\'s errand. The second culprit is out of the Agency\'s jurisdiction; the first is discharged on the spot and told he may think himself happy to escape a prosecution for swindling.',
+        'Sophy is quite recovered by the time her father gets back from the Prairie.'
+      ],
+      cast: ['robineau', 'currie', 'mmebellaire', 'agathe', 'turcotte', 'john', 'juliette'], offstage: ['sophy', 'mata', 'cutler', 'bellaire'], pivotal: false
+    },
+    /* ---------------- Act 4 — The Dawn ---------------- */
+    {
+      id: 'p3s47', act: 'c4', chapter: 'XXXVII', chapterTitle: 'Agathe — Tomah',
+      title: 'What was done to Agathe', date: 'Some years earlier',
+      place: 'Fort Winnebago', placeShort: 'Fort Winnebago',
+      summary: 'Agathe is the daughter of the man known as Rascal Day-kau-ray, brother to the grand old chief and as unlike him as men of one blood can be. The Day-kau-rays are a handsome family and she is remarkable even among them — tall, a round sweet face, the soft melodious voice of the women of her people, and a pensive expression that makes strangers want her history. Mrs. Paquette tells it to Juliette. A young officer at the fort saw her and set his mind on her, and applied to Paquette to negotiate what he called a marriage. Paquette knew perfectly well the sin of the false representations he was making to her family and the misery he was bringing on her, and did it anyway.',
+      points: [
+        'She had been betrothed to a young man of her own people, and the attachment on both sides was very strong. Juliette explains why that matters more here than a white reader may assume: with few objects to spend feeling on, all feeling is concentrated, and among the women family ties engross the whole of it. Marriage is a sacred and indissoluble tie, female propriety the strictest trait of the nation — a woman who transgresses is said to have "forgotten herself," and is cast off and forgotten in return.',
+        'She rejects outright the notion, then being written into a historical report, that temporary marriages between white men and native women were common and carried no scandal: investigate such cases, she says, and you will generally find deceit and misrepresentation added to the other sins, and the woman a victim rather than a willing participant.',
+        'The father would not have exposed himself to the contempt of his whole nation by selling a daughter to be any man\'s mistress. The connection was understood to be true and lasting; he was moved as much by the honour he thought it carried as by the presents.',
+        'There were no ladies in the garrison at that time. Had there been, Juliette observes, the step would hardly have been ventured.',
+        'The girl was torn from her lover and transferred from her father\'s lodge to the officer\'s quarters. Then he left the post, as he said, on furlough. Word came in time that he was married, and when he rejoined his regiment it was at another post.'
+      ],
+      cast: ['agathe', 'youngofficer', 'mmepaquette', 'juliette', 'paquette', 'rascaldaykauray'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s48', act: 'c4', chapter: 'XXXVII', chapterTitle: 'Agathe — Tomah',
+      title: 'Her little brother', date: '1833',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Every tie was broken for her but the one to her child. She never went back to her father\'s lodge — being deserted, she felt she was dishonoured — and her whole ambition became to bring the child up like a white child, dressing it in the costume of the French children, bright calico with a matching cap trimmed in narrow black lace. It was a fine child, and the only time Juliette ever saw her smile was when someone praised or petted it. Even that she had to give up: while the family was at Green Bay and the Sauks were in the neighbourhood, the child was taken violently ill. Paquette\'s house, which was her home, was thronged with people and noisy, so John had a place prepared under the Agency roof where she could be quiet and the post physician could attend. Nothing could save it.',
+      points: [
+        'Her agony over it was described to Juliette as truly heart-rending, and the parting almost more than nature could bear. There were friends, not of her own nation or colour, who tried to comfort her.',
+        'Did the father ever send a thought or an inquiry after the fate of his child, or of the young being whose life he had made dark and desolate? "We will hope that he did."',
+        'Months after the child\'s death she came with several of the half-breed women to pay a visit of congratulation on the birth of the young Shaw-nee-aw-kee. Taking her "little brother\'s" soft tiny hand in her own, the tears stood in her eyes and she said some little words of tenderness that showed her heart was full — and Juliette could scarcely keep from mingling her own tears with them, thinking on all the sorrow and desolation that one man\'s selfishness had occasioned.'
+      ],
+      cast: ['agathe', 'juliette', 'babykinzie', 'agathechild', 'john'], offstage: ['youngofficer', 'mazzuchelli', 'mmepaquette'], pivotal: true
+    },
+    {
+      id: 'p3s49', act: 'c4', chapter: 'XXXVII', chapterTitle: 'Agathe — Tomah',
+      title: '"Stick!" "Stuck!"', date: 'February 1833',
+      place: 'Chicago', placeShort: 'Chicago',
+      summary: 'John and Lieutenant Hunter go down to Chicago with one or two others: the place has become so much of a town — it contains maybe fifty inhabitants — that the proprietors of Kinzie\'s Addition must lay out lots and open streets through their property, and this is done during the visit. Out on the ground with the surveyor, John\'s attention is caught by a very bright-looking boy in Indian costume hopping along beside the chainman and mimicking his cries of "Stick!" "Stuck!" Asking who he is, he learns to his surprise that the lad is the brother of the old family servants Victoire, Genevieve and Baptiste. Tomah has never worn anything but blanket and leggings and has always lived in a wigwam. Would he like to go to Fort Winnebago and learn to be a white boy? The idea pleases him very much; his mother gives her sanction; and he is packed into the wagon with the two gentlemen and their travelling gear.',
+      points: [
+        'Near the Aux Plaines, approaching Glode Laframboise\'s where he knows he will meet acquaintances, Tomah asks leave to get out and walk a little way.',
+        'When the gentlemen next see him he is in full Pottawatomie costume. It is bitter winter weather, and he has put his uncomfortable native dress back on rather than let his old friends see him in a state of transformation.'
+      ],
+      cast: ['john', 'hunter', 'tomah'], offstage: ['juliette', 'laframboise', 'victoire', 'genevieve'], pivotal: true
+    },
+    {
+      id: 'p3s50', act: 'c4', chapter: 'XXXVII', chapterTitle: 'Agathe — Tomah',
+      title: 'Ask Tomah — he will tell you', date: 'Spring 1833',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Their first care is a complete wardrobe, put in a box in his sleeping room and placed under his own charge; words cannot express his delight, and every spare moment goes to contemplating it. Now and then Tomah is missing, and is invariably found sitting beside his little trunk folding and refolding the clothes, laying them now lengthwise, now crosswise, the happiest of mortals. The next step is to teach him to be useful — at which point it is noticed that whenever there is anything in the shape of work, Tomah slips off to bed, even before supper.',
+      points: [
+        'Given fish to scale at dusk he retires as usual, and has to be sent for. Told in Pottawatomie that there are some fish and they want him to scale them: "Now? It is very late." Miss Rolette, who understands the language, bursts out laughing at the simplicity of it and the rest join in; Tomah looks a little indignant, then, learning that it is the white custom to scale fish at night and put salt and pepper on them, is soon reconciled to his duty.',
+        'The best china is used only for company, and the best teaspoons live in a locked bureau drawer upstairs with the key under a small clock on the mantelpiece. The next time visitors are expected Juliette explains that the good china must be used — and walks through the dining-room to find the company silver already on the table. He got it where it was kept. Was the drawer open? No, he opened it with a key. Was the key in the drawer? No, it was under that thing on the shelf. How did he know? That Mr. Tomah declined to say.',
+        'Nobody ever saw him in that part of the house, and yet there was hardly an article he did not know the whereabouts of. If anyone was puzzled to find a thing it was always "Ask Tomah — he will tell you."',
+        'At the tea-party for all the families and young officers he is given a white apron with long sleeves and acquits himself to perfection, never having any difficulty in imitating what he sees another do. Afterwards Lieutenant Van Cleve tells Juliette to look behind her: there sits Tom between two of the company, apron smoothed down, hands clasped, listening to the music on the best possible terms with himself and all around him. It is voted unanimously that he may stay and enjoy the pleasures of society for one evening — and, with characteristic restlessness, he gets tired the moment the music stops and takes his leave unceremoniously.'
+      ],
+      cast: ['tomah', 'juliette', 'john', 'missrolette', 'vancleve', 'eleanor', 'josettegirl', 'mary', 'julian', 'edwin'], offstage: [], pivotal: false
+    },
+    {
+      id: 'p3s51', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: 'The road to the Portage', date: 'Spring 1833',
+      place: 'The Portage', placeShort: 'The Portage',
+      summary: 'What they had long anticipated of the sufferings of the Indians begins to show itself as spring draws on, and they learn its extent from the little parties who come in begging for food. The Agent issues occasional rations as long as it is possible, but the Commissary\'s stores are so reduced that Colonel Cutler cannot justify anything beyond a scanty relief in extreme cases. The household has used the greatest economy all winter, even buying sour flour condemned by the commissary and making a very palatable bread of it with plenty of saleratus and a due proportion of potatoes. But having given to party after party as they came, the time arrives when they have nothing to give.',
+      points: [
+        'The half-breed families, who shared as long as their own stock lasted, are obliged to refuse too, and come instead to lament with the Kinzies over the accounts from the wintering grounds.',
+        'It had been a very open winter with scarcely enough snow at any time to track deer — and the game had all been driven off by troops and war-parties scouring the country the preceding summer.',
+        'They hear of people dying by companies of pure starvation, and lying stretched in the road to the Portage as they tried to drag their exhausted frames toward it. Soup made of slippery-elm bark, or stewed acorns, is all many have had for weeks.',
+        'The Agency itself is now drawing daily rations from the garrison — there is no possibility of obtaining a barrel of flour at a time. After every meal Juliette goes into the pantry and carefully collects every remaining particle of food to set aside for the applicants who constantly throng the house.'
+      ],
+      cast: ['juliette', 'john'], offstage: ['cutler', 'mmepaquette'], pivotal: true
+    },
+    {
+      id: 'p3s52', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: 'The dish that came back untasted', date: 'Spring 1833',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'One day, while Juliette is at that work in the pantry, a face she once knew well appears at the window: the pretty daughter of the elder Day-kau-ray, who used to visit often and watch with great interest whatever was being done — the sewing, the weeding and cultivating of the garden, the reading. Juliette had tried many times to give her some idea of reading, showing her the plates in the Family Bible and doing her best to explain them; but she had quite lost sight of her lately. Now she is changed and wan. To the ordinary greeting — "Tshah-ko-zhah?", what is it — she gives a sigh that is almost a sob. She does not beg. Her face speaks volumes.',
+      points: [
+        'Juliette hands her the dish, expecting her to devour it eagerly. Instead she takes it, makes a sign that she will soon return, and walks away.',
+        'When she brings it back, Juliette is almost sure she has not tasted a morsel herself.'
+      ],
+      cast: ['juliette', 'daykauraydaughter'], offstage: ['daykauray'], pivotal: true
+    },
+    {
+      id: 'p3s53', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: '"If his people could not be relieved"', date: 'Spring 1833',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'They are soon obliged to keep the doors and windows fast to shut out a misery they cannot relieve. If a door is opened to let a member of the family in, some wretched mother rushes in with it, takes the hand of Juliette\'s infant, places her own famishing child\'s hand inside it and tells them pleadingly that he is imploring his little brother for food. It is in vain that they screen the lower half of the windows with curtains: they climb up outside, and tier upon tier of gaunt faces peer in over the top to watch and see whether the family really is as ill provided as it says.',
+      points: [
+        'The noble old Day-kau-ray comes down from the Barribault to report his village: more than forty of his people have now gone many days on nothing but bark and roots. John takes him to the commanding officer to tell it himself and find out what can be had.',
+        'The result is the promise of a small allowance of flour, enough to relieve the cravings of his own family. When this is explained to him the chief turns away. If his people could not be relieved, he said, he and his family would starve with them — and he refuses, for those nearest and dearest to him, until all can share alike.'
+      ],
+      cast: ['daykauray', 'john', 'juliette', 'babykinzie'], offstage: ['cutler'], pivotal: true
+    },
+    {
+      id: 'p3s54', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: 'The boats are in sight', date: 'Spring 1833',
+      place: 'The Portage', placeShort: 'The Portage',
+      summary: 'The announcement that the boats are in sight is a thrilling and most joyful sound. Hundreds of people assemble on the bank to watch them come, and their slow approach by the winding course of the river through the open prairie is torture to everyone looking on. As the first boat touches the land, the watchers at the house can scarcely keep from laughing: old Wild-Cat — somewhat fallen off in his huge amount of flesh — seizes the Washington Woman in his arms and hugs and dances with her in the ecstasy of his delight.',
+      points: [
+        'Their Father signs to them all to fall to with the hatchets they have long held ready, and in an incredibly short time barrel after barrel of corn is broken open and emptied, the little children carrying off pans and kettles full to the fires blazing round about to parch and cook what they have seized.',
+        'From that time forward there is no more destitution. Supplies for the Commissary\'s department arrive immediately after, and, refreshed and invigorated, the people go back to their villages to get their crops ready for the coming season.'
+      ],
+      cast: ['wildcat', 'washingtonwoman', 'john', 'juliette'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s55', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: 'Coffee, and the man in the doorway', date: 'Spring 1833',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'In the course of the spring the Rev. Mr. Kent and Mrs. Kent visit from Galena, and the large parlour of the hospital is fitted up for the first service ever preached at Fort Winnebago according to the Protestant faith — after nearly three years without a public service of praise and thanksgiving, they say gladly to one another, "Let us go to the house of the Lord!" They take it as an omen of better times, and the little sewing society works with renewed industry toward a fund that might one day secure a missionary permanently. Not long after, on a fine spring morning at breakfast, a party of Indians comes into the parlour. Two pass through onto the portico; the third stands in the doorway nearly opposite Juliette, and, in spite of his changed dress and the paint covering him, she knows him at once.',
+      points: [
+        'She goes on pouring the coffee and says to her husband, "The one behind you, with whom you are speaking, is one of the escaped prisoners."',
+        'Without turning his head John goes on listening to their directions about the guns and traps they want left for the blacksmith, then turns carelessly toward the door and answers the man speaking to him. When he addresses her again it is to say: "You are right, but it is no affair of ours. We are none of us to look so as to give him notice that we suspect anything. They are undoubtedly innocent, and have suffered enough already."',
+        'Contrary to his usual custom their Father does not ask their names. He writes out their directions, ties them to their implements, and sends them to deliver them to M. Morrin themselves.',
+        'The rest of the circle are greatly pleased at the young fellow\'s audacity, and quite long to tell the officers that they could have caught one of their fugitives for them if they had had a mind.'
+      ],
+      cast: ['juliette', 'john', 'escapedprisoner', 'kent', 'mrskent'], offstage: ['morrin', 'prisoners'], pivotal: true
+    },
+    {
+      id: 'p3s56', act: 'c4', chapter: 'XXXVIII', chapterTitle: 'Conclusion',
+      title: '"I never, never, never shall I find such friends again"', date: '1 July 1833',
+      place: 'The Portage', placeShort: 'The Portage',
+      summary: 'The time comes when they begin to think seriously of leaving their pleasant home and taking up residence at Detroit while arrangements are made for a permanent settlement at Chicago. The news brings out great lamentations from their Winnebago children, who come flocking in from the surrounding country to ask whether the tidings are true and to petition earnestly that the Kinzies will go on living and dying among them.',
+      points: [
+        'No one seems so overwhelmed as Elizabeth, the Cut-Nose, who sits for hours in one spot wiping the tears down her cheeks with the corner of the chintz shawl pinned across her bosom. "No! I never, never, never shall I find such friends again. You will go away, and I shall be left here all alone."',
+        'Wild-Cat — the fat, jolly Wild-Cat — gives way to the most audible lamentations, insisting on taking the baby on his fat dirty knee on the morning of the departure: "Oh, my little brother, you will never come back to see your poor brother again!" Having taken an extra glass on the occasion, he weeps like an infant.',
+        'On the morning of the 1st of July they bid adieu to the long train that follows them down to the boat waiting to take them to Green Bay, where they are to meet Governor Porter and Mr. Brush and go on under their escort to Detroit.',
+        'The farewells finished, the crowd turns to walk with their Father across the Portage on his road to Chicago — and long afterwards the Kinzies can still see them winding along the road, and hear their loud lamentations at a parting they foresee will be forever.'
+      ],
+      cast: ['juliette', 'john', 'cutnose', 'wildcat', 'babykinzie', 'eleanor', 'margaret', 'edwin', 'julian'], offstage: ['porter', 'daykauray', 'tomah', 'agathe'], pivotal: true
     }
   ],
-  outline: [
-    { chapter: 'XXXIV', title: 'Fort Howard — our return home' },
-    { chapter: 'XXXV', title: 'Surrender of Winnebago prisoners' },
-    { chapter: 'XXXVI', title: 'Escape of the prisoners' },
-    { chapter: 'XXXVII', title: 'Agathe — Tomah' },
-    { chapter: 'XXXVIII', title: 'Conclusion' }
-  ],
+  outline: [],
   leads: ['juliette', 'john', 'daykauray', 'whitecrow', 'youngfourlegs']
 };

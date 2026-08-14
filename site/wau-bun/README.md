@@ -34,7 +34,10 @@ No build step, no framework, no dependencies.
 |------|-------|----------|--------|
 | 1 | Journey West (1830 – March 1831) | I–XVII | **complete** — 49 scenes, 83 characters |
 | 2 | The Early Frontier (1779–1816) | XVIII–XXIII | **complete** — 40 scenes, 61 characters |
-| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | **in progress** — 31 scenes (ch. XXIV–XXXIII), 5 chapters to come |
+| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | **complete** — 56 scenes, 110 characters |
+
+All thirty-eight chapters are broken into scenes: 145 scenes and 212 named
+people in total.
 
 ## The data model
 
@@ -76,17 +79,22 @@ the 1856 text by rare-word overlap within the same chapter, printing the match
 score for every boundary (all of Part 1 lands at 0.88–1.00). Sources are not
 committed — see that script's docstring for what to drop in `wau-bun/sources/`.
 
-## Finishing Part 3
+## Building a part
 
-Keep appending to `acts` and `scenes` on `WAUBUN_PART3` in `js/data-part3.js`
-using the same shape as Parts 1 and 2, add any new people to
-`js/data-characters.js`, and drop each chapter out of that part's `outline`
-array as it is broken into scenes. A part may hold both at once: the app
-renders the finished scenes in every view and then lists the chapters still to
-come underneath, so a part under construction never pretends to be complete. The app
-switches from the outline view to the four full views as soon as a part has
-scenes. Then extend `wau-bun/build-text.py` with that part's line ranges to
-give it the two full texts.
+Every part is finished, but the machinery for building one is still here and is
+what any further work uses. Append to `acts` and `scenes` on the part object in
+`js/data-partN.js`, add any new people to `js/data-characters.js`, and drop each
+chapter out of that part's `outline` array as it is broken into scenes. A part
+may hold both at once: the app renders the finished scenes in every view and
+then lists the chapters still to come underneath, so a part under construction
+never pretends to be complete. It shows the outline-only view until a part has
+scenes, the four full views once it does, and stops advertising leftovers when
+`outline` empties.
+
+Parts 2 and 3 do not yet carry the two full texts — extend
+`wau-bun/build-text.py` with their line ranges (the modern source is chapter-
+delimited by `[Heading1] CHAPTER …`) to generate `data-text-part2.js` and
+`data-text-part3.js`. Until then the reader offers those parts the summary only.
 
 ## Colour
 
