@@ -110,3 +110,13 @@ gh pr create --base dev
 gh workflow run chicago-4d-promote-to-prod.yml -f dry_run=true   # what would move
 gh workflow run chicago-4d-promote-to-prod.yml                   # move it
 ```
+
+---
+
+## Proof of life
+
+**2026-08-14** — this line was added on `dev` and nowhere else, as the pipeline's first
+end-to-end proof: it must appear at `/custom/chicago/4d/dev/` while production at
+`/custom/chicago/4d/walk/` is byte-for-byte unchanged. If you are reading it in a file that
+also exists on `main`, the first promotion has since carried it across, which is the other
+half of the proof.
