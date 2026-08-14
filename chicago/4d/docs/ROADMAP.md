@@ -42,9 +42,10 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
-| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
+| 1 | RENDERING | **R-BUG3** | owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
+| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
+| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
+| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
 | 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -1091,6 +1092,58 @@ lost result.
 (#117, based on the current `dev`) is current; the rest are stale and conflict with it. Closing
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
+
+### R-BUG3 — the road is invisible AT YOUR FEET · **UNCLAIMED · NEXT UP · owner-reported**
+
+Reported by the owner 2026-08-14, on mobile, on the **dev preview** — so **with the R-BUG2 fix
+already in**: standing on Franklin Street approaching Randolph, the wheel ruts read clearly in
+the mid-distance and **the road is simply not there in the near field**. *"It should not be
+invisible when I am standing on it."*
+
+**R-BUG2 is working. This is the band it never measured.** Its gate is
+`ROAD_BANDS = [[40, 100], [100, 250], [250, 600], [600, 4000]]` — **the nearest band starts at
+40 metres.** Everything from the walker's feet out to 40 m was outside the sample, so the road
+could be perfectly invisible underfoot while every gated band passed at 3.6–14.3 ΔL\*. The
+measurement was sound and the fix was real; the window was wrong.
+
+**That is the lesson worth taking, and it is the second time on this same bug:** the first gate
+measured the geometry and never asked whether the road reached the screen; the second asked, but
+only past 40 m. A gate answers exactly the question it was pointed at.
+
+**First move — extend the bands to the near field**, e.g. a `[2, 40]` band (below ~2 m the
+surface is under the camera and degenerate). `roadContrast()` already has the machinery: the
+opaque-marker denominator **M** works identically here, and a road occluded by grass stays in
+the sample and scores as a road that covers a pixel and does not change it — exactly the
+signature wanted. Expect it to FAIL on the current build; that failure is the acceptance.
+
+**Candidate mechanisms — measure before choosing.** That instruction is what saved R-BUG2 from
+a fix that would have made things worse, and it applies again:
+
+1. **Near-field sward occlusion, and this is the prime suspect.** At eye height the grass
+   nearest the camera is enormous in screen space and stacks, so the road can be completely
+   hidden within a few metres even at a *correct* planting density. The existing check —
+   `street clearing removes travel-track plants but preserves the block` — is a boolean on one
+   street and one block. It cannot see this.
+2. **The clearing corridor is narrower than the drawn track**, so the ribbon's edges are
+   planted over even where the centre is clear.
+3. **Alpha under magnification.** R-BUG2 raised the baselines to 0.54/0.38/0.28 and added a
+   sub-pixel floor that *scales alpha up* below 2 px — which by design does nothing up close,
+   where the ribbon is widest. A worn track at 0.38 seen through near-field grass may simply
+   not be enough.
+
+**The non-licence, and it is a real constraint.** Do **not** fix this by clearing grass around
+every road. Each community's ground cover is a dataset claim with its own gate — *"the sward is
+planted at each community's own recorded cover"* — and widening a clearing corridor to win a
+contrast score would be falsifying a recorded figure to pass a test. If the corridor genuinely
+should be wider, that is a change to the record with its reasoning, not a tuning constant.
+
+**Files:** `tools/smoke_renderer.mjs` (the near band) · `renderers/web/js/flora.js` (clearing) ·
+`renderers/web/js/streets.js` (alpha) · `docs/LIBERTIES.md` if a recorded cover or corridor moves
+
+**Acceptance:** the near band gated and green at both viewports, with the fault put back to prove
+the check names it; every existing road band still green; the per-community sward cover check
+untouched and still passing. **Mobile is the report and mobile is the gate** — 390×780 is where
+it was seen.
 
 ### B-A1 — does the AO bake earn its nightly? · **UNCLAIMED · NEXT UP (lane 1 or standalone)**
 
