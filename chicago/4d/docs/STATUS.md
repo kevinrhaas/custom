@@ -1,5 +1,54 @@
 # STATUS
 
+## New 2026-08-14 — 232 roofs stand of 665, and only 105 of the rest have anywhere to go
+
+**T-A1.** The 665-roof programme has been subtracted from for the first time. The target was
+authored in `data/reconstruction/1835_building_inventory.json` on 2026-08-11 and never moved
+against what was built; the family crosswalk still called **617 roofs remaining** while
+**232** were standing, a figure wrong by more than a third of the programme, and the next
+block parcel was going to schedule against it. The remainder is now DERIVED —
+`tools/reconcile_665.py` → `data/reconstruction/1835_665_roof_programme.json`, re-derived by
+`tools/check.sh` like the plat grid and the liberties. A ledger about a town that grows most
+nights cannot be a number somebody typed.
+
+**242 records are 232 physical roofs.** Twelve records are a drawbridge, three bridges, two
+piers, a palisade, a parade ground, a garrison garden, an open livestock pound, a courthouse
+the production chronology puts in the autumn and a hotel still a construction shell — the
+physical-roof
+reconciliation credits them with no roof, which is what it is for. One record is two cabins
+and the ledger counts the low reading. By district: **South 100, West 41, North 81, Fort 10**
+against targets of 370 / 135 / 150 / 10. **433 remain.**
+
+**The number that changes what lane 2 does is 105.** The plat module reaches 19 blocks
+holding 152 lots. At the reviewed phase-1 parcel's own density — one principal roof per lot,
+ancillary at the programme's own 154:511 — those blocks have **105 roofs of headroom**, and
+seven of them, the whole Lake Street belt, are already at or over it. The other **328 roofs
+have no modelled ground to stand on**: 20 in `blk_south_water_market` and
+`blk_south_water_clinton`, which the plat module refuses because South Water's committed
+centreline stops 24 m and 878 m short of them; 35 held by the West recipe's own gate at local
+E −700 m; and 273 in ground with no committed street control at all — east of State, south of
+Washington, west of Clinton, and the entire North Division, which the grid covers by not a
+single block. **The 665-roof programme is coverage-bound, not recipe-bound.** Lane 2 has
+roughly ten block parcels in it before § S9 street control and the terrain extensions are the
+only thing left to do.
+
+**Six family targets are already exceeded, by nine roofs, and that is reported rather than
+hidden.** C1 stores, I2 and T2, W1, W4 and W5 all carry more roofs than the 2026-08-11 target
+allows, every one of them evidence the research placed after the target was written. A
+documented roof is not removable, so the nine come out of the invented family with the most
+slack (D4). The same rule runs inside each district against the group matrix — North holds
+three institutional roofs and two warehouses more than its share, all of them attested.
+
+**What this does not do.** It builds nothing and moves nothing: every count here is a
+function of records that were already committed. The per-block family mix is an
+apportionment of the district's remainder, not a claim that any block held those families —
+it exists so the schedule adds up, and the block parcels that consume it grade every value
+they emit at the invented tier as they always have. Two authored files were corrected where
+they stated something untrue about what has been built: the West parcel's status
+(`reviewed_recipe_not_rendered`, when 20 of its 55 roofs stand), the roof reconciliation's
+status (`planned`, when it is done and this ledger reads it), the North recipe's "remaining
+90 roofs" (69 after reconciliation), and the crosswalk's superseded 617.
+
 ## The rendering program is live, and overnight work no longer ships to production
 
 **2026-08-14.** Two things changed on the owner's instruction, and together they set what
@@ -27,17 +76,18 @@ water plane and the ground crossing it, owned by the R-W5 parcel).
 
 Tonight's loop is expected to produce **one parcel per run from two lanes that cannot
 collide** (`docs/ROADMAP.md` → "THE OVERNIGHT LANES"): lane 1 RENDERING touches renderer and
-tool files, lane 2 TOWN COMPLETION touches data only. The NEXT UP picks are **R-G0** (the
-critic harness — everything later measures through it), **R-W1** (light) and **R-W4**
-(atmosphere) in lane 1; **T-A1** (refresh the 665-roof recipe), **T-A2** and **T-A3** (the
-first two blocks through it) in lane 2. Today's count is **242 structures, 152 households,
-188 persons**. Everything arrives as a PR into `dev` and waits there.
+tool files, lane 2 TOWN COMPLETION touches data only. **R-G0** (the critic harness) and
+**T-A1** (the 665-roof reconciliation) are both in, so the NEXT UP picks are **R-W1** (light)
+and **R-W4** (atmosphere) in lane 1; **T-A2** and **T-A3**, the first two blocks off the
+reconciled schedule, in lane 2. Today's count is **242 structures — 232 physical roofs of a
+665 target — 152 households, 188 persons**. Everything arrives as a PR into `dev` and waits
+there.
 
 
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 
-**Last updated:** 2026-08-13 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
+**Last updated:** 2026-08-14 · **Phase:** S0, S1 (datum), S2-partial (terrain + river at the
 forks), S4-partial (frame_tavern, log_dwelling, bridge_timber), S9-partial (dated visible
 street layer), S10-partial (665-roof ledger + 108 anonymous roofs) and R1 (renderer)
 complete. **K1 (inferred residents) complete through phase two; K7 (the platted block and lot

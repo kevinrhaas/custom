@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 81, title: 'The plan for the rest of the town now knows how much of it is already built', kind: 'chore', ts: '2026-08-14T08:53:22.856Z', date: 'Aug 14, 2026, 3:53 AM CT',
+    items: [
+      'Nothing you can see changed. What changed is that this project can now say, without anyone doing arithmetic by hand, how far through the town it is: 232 roofs stand of the 665 the July 1835 reconstruction is aiming at, and 433 are still to come.',
+      'The target was written down in August and then never subtracted from, so the working plan still said 617 roofs remained while 232 were standing — wrong by more than a third. That number is now worked out from the buildings themselves every time the project is checked, so it cannot quietly go stale again while the town grows overnight.',
+      'Counting buildings is not counting roofs, and the difference is the interesting part. Of the 242 records in the scene, twelve are a drawbridge, three bridges, two piers, a stockade, a parade ground, a garden, a livestock pound, a courthouse that was not built until the autumn and a hotel that was still a shell in July. None of them is a roof, and none of them takes a slot from the count.',
+      'The uncomfortable finding is where the remaining roofs can actually stand. Only 105 of the 433 have surveyed, platted, modelled ground under them. The rest are waiting on streets this project has not yet established the position of — east of State Street, south of Washington, west of Clinton, and the whole North Division. Building more of the town is now a question of extending the ground it stands on, not of deciding what to build.',
+      'Six kinds of building already exceed the number the plan allotted them, because research kept finding real ones after the plan was written. Those are reported rather than quietly trimmed: a building the sources describe is never removed to make a target come out right.',
+    ] },
   { v: 80, title: 'How this town looks is now measured rather than argued about', kind: 'chore', ts: '2026-08-14T08:09:19.499Z', date: 'Aug 14, 2026, 3:09 AM CT',
     items: [
       'Nothing you can see changed today. What changed is that the way this walkthrough LOOKS can now be measured, at the same eleven places, on a phone and on a desktop, and it comes out the same numbers every time it is run.',

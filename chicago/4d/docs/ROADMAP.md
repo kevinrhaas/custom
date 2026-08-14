@@ -45,13 +45,18 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
 | 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
 | 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
-| 1 | TOWN | **T-A1** | the recipe every later block parcel reads |
-| 2 | TOWN | **T-A2** | first block of roofs through the refreshed recipe |
-| 3 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
+| 1 | TOWN | **T-A2** | first block of roofs through the reconciled schedule |
+| 2 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
+| 3 | TOWN | **T-A4…** | one open block per run until the 105 are placed |
 
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
 quotes the two tables rather than an adjective.
+
+**T-A1 is DONE (2026-08-14)** — 232 roofs stand, 433 remain, and
+`data/reconstruction/1835_665_roof_programme.json` schedules them per block. Only **105 of
+the 433** have modelled ground to stand on, so lane 2 has about ten block parcels of work in
+it and then it is blocked on S9 street control and the terrain extensions, not on recipes.
 
 ---
 
@@ -223,22 +228,47 @@ makes the two safe to run at once.
 - **Residents are RECORDS and Evidence/popup content only.** The no-human-figures constraint
   (AGENTS.md standing constraint, L1) is untouched by this lane and is not negotiable.
 
-### T-A1 — refresh the 665-roof recipe · **UNCLAIMED · NEXT UP**
+### T-A1 — refresh the 665-roof recipe · **DONE 2026-08-14**
 
-Every later block parcel reads this, so it goes first. Reconcile
-`data/reconstruction/*.json` against what has actually been built (242 structures), restate
-the remaining blocks as a per-block schedule with counts and families, and record what the
-gap is between today and the documented density.
+Every later block parcel reads this, so it went first. The programme is now
+`data/reconstruction/1835_665_roof_programme.json`, **derived** by `tools/reconcile_665.py`
+and re-derived by `tools/check.sh` — a ledger about a town that grows most nights cannot be
+an authored number, which is exactly how the crosswalk came to call 617 roofs remaining
+while 232 were standing.
 
-**Files:** `data/reconstruction/1835_665_roof_programme.json` (refresh or create) ·
-`docs/ROADMAP.md` (S10) · `docs/STATUS.md`
+**232 physical roofs stand** (242 records: 12 of them are bridges, piers, a palisade, a
+parade ground, a garden and a construction site that the reconciliation credits with no
+roof, and one record is two cabins). **433 remain.** By district: South 270, West 94,
+North 69, Fort 0 — the fort is complete.
 
-**Acceptance:** the schedule names every remaining block, its family mix and its count; the
-arithmetic reconciles with the 242 already standing; `tools/check.sh` green.
+**The finding that matters is not the count, it is where the count can go.** The plat module
+reaches 19 blocks holding 152 lots. At the phase-1 parcel's own density — one principal roof
+per lot, ancillary at the programme's 154:511 — those blocks have **105 roofs of headroom**.
+The other **328 of the 433 have nowhere to stand**: 20 in the two blocks the module refuses
+for want of South Water street control, 35 in the West recipe's own extension-gated set, and
+273 in ground with no committed street control at all (east of State, south of Washington,
+west of Clinton, and the whole North Division, which the grid does not cover by a single
+block). **The binding constraint on the 665-roof programme is coverage, not recipes** — S9
+street control and the terrain extensions are now what the town is waiting on, and T-A2
+onward can only work the 105.
+
+Six families are already **over** their target — C1, I2, T2, W1, W4, W5, nine roofs in all,
+every one of them evidence the research placed after the target was written. A documented
+roof is never removed to protect a family cap, so the excess is reported and taken out of
+the invented family with the most slack (D4, the two-storey frame dwellings).
+
+**Files:** `tools/reconcile_665.py` (new) · `data/reconstruction/1835_665_roof_programme.json`
+(new, derived) · `tools/check.sh` (one step) · `1835_building_inventory.json` and
+`1835_family_archetype_crosswalk.json` (stale statuses corrected) · `docs/ROADMAP.md` (S10) ·
+`docs/STATUS.md`
 
 ### T-A2 — the first refreshed block · **UNCLAIMED · NEXT UP**
 
-One block from T-A1's schedule: recipe → records → households → placeholder massing.
+One block from T-A1's schedule: recipe → records → households → placeholder massing. Take a
+block the schedule marks `state: open` and read its `families` for the mix —
+`blk_randolph_wells` and `blk_randolph_dearborn` carry the most headroom at 10 roofs each
+and stand empty today. **Do not take a `gated` unit**: its ground is not modelled, and the
+schedule says what each is waiting on.
 
 **Files:** `data/structures/<block>_*.json` · `data/residents/households/<block>_*.json` ·
 `data/residents/index.json` · `data/sidecars/1835/<block>_*.json` · `docs/LIBERTIES.md`
@@ -2340,13 +2370,28 @@ Three things worth carrying:
   re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
   `tools/check.sh`.
 
-## S10 — Complete July 1835 building inventory · **PHASE 1 IN 2026-08-11**
+## S10 — Complete July 1835 building inventory · **RECONCILED 2026-08-14**
 
 The owner-supplied reconstruction specification establishes a production target of **665 roofs**:
 511 principal/functional and 154 ancillary, distributed South 370 / West 135 / North 150 / Fort
 10. The durable master ledger is `data/reconstruction/1835_building_inventory.json`; it preserves
 the independently reconcilable family and district matrices and explicitly separates aggregate
-moderate confidence from interpretive per-instance placement.
+moderate confidence from interpretive per-instance placement. **That file is the TARGET and does
+not move.** What has been built against it, what is left and where it can go are derived —
+`tools/reconcile_665.py` → `data/reconstruction/1835_665_roof_programme.json`, re-derived by
+`tools/check.sh` on every commit (T-A1).
+
+**Standing 2026-08-14: 232 physical roofs from 242 records. Remaining: 433** — South 270,
+West 94, North 69, Fort 0. Of those 433, **105 have modelled, platted ground to stand on** and
+328 do not: 20 in the two blocks the plat module refuses for want of South Water street control,
+35 held by the West recipe's own extension gate, and 273 in ground with no committed street
+control at all — east of State, south of Washington, west of Clinton, and the whole North
+Division, which the grid covers by not one block. The 665-roof programme is **coverage-bound,
+not recipe-bound**; § S9 is what stands between it and the next two hundred roofs.
+
+Six family targets are already exceeded by evidence — C1, I2, T2, W1, W4 and W5, nine roofs —
+which the ledger reports rather than hides. A documented roof is never removed to protect a
+family cap, so the nine come out of the invented family with the most slack.
 
 - **Phase 1 done:** 48 visibly tagged anonymous South Division roofs in five mixed blocks—40
   principal/functional and eight ancillary. Reproducible records and flagged review GLBs are
