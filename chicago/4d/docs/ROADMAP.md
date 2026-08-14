@@ -42,7 +42,7 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-BUG3** | owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
+| 1 | RENDERING | **R-BUG3** | **CLAIMED 2026-08-14 — DO NOT PICK UP** (steward, `steward/r-bug3-near-road`); owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
 | 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
@@ -1093,7 +1093,13 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-BUG3 — the road is invisible AT YOUR FEET · **UNCLAIMED · NEXT UP · owner-reported**
+### R-BUG3 — the road is invisible AT YOUR FEET · **CLAIMED 2026-08-14 · NEXT UP · owner-reported**
+
+> **CLAIM — steward, branch `steward/r-bug3-near-road` off `dev`, 2026-08-14.** Taking the
+> near-field band into `roadContrast()` first, expecting it to fail, then measuring the three
+> candidate mechanisms before touching any of them. Another run should take R-W4 or a lane-2
+> parcel instead.
+
 
 Reported by the owner 2026-08-14, on mobile, on the **dev preview** — so **with the R-BUG2 fix
 already in**: standing on Franklin Street approaching Randolph, the wheel ruts read clearly in
