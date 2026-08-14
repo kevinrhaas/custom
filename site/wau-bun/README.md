@@ -34,7 +34,7 @@ No build step, no framework, no dependencies.
 |------|-------|----------|--------|
 | 1 | Journey West (1830 – March 1831) | I–XVII | **complete** — 49 scenes, 83 characters |
 | 2 | The Early Frontier (1779–1816) | XVIII–XXIII | **complete** — 40 scenes, 61 characters |
-| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | **in progress** — 29 scenes (ch. XXIV–XXXII), 6 chapters to come |
+| 3 | Wau Bun (1831–1833) | XXIV–XXXVIII | **in progress** — 31 scenes (ch. XXIV–XXXIII), 5 chapters to come |
 
 ## The data model
 

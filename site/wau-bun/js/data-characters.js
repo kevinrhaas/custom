@@ -546,3 +546,13 @@ WAUBUN_CHARACTERS.push(
     role: 'Agent to the Sauks and Foxes',
     bio: 'Murdered at Kellogg\'s Grove by the very people who should have protected him — the news that decided the council at the Four Lakes.' }
 );
+
+/* ---------------- Part 3, chapter XXXIII ---------------- */
+WAUBUN_CHARACTERS.push(
+  { id: 'mata', name: 'Mâtâ', alias: null, faction: 'settler',
+    role: 'The Agency blacksmith',
+    bio: 'Tall and gaunt and freckled, with a profusion of crisp sandy hair and an inveterate determination to speak English, which he burlesques by adding an s to nearly every word and jerking out each phrase. "Davids, clear away the tables and the glasses, and play fishes-hornspikes." A kind, affectionate creature whose devotion to Monsieur Johns and Madame Johns knows no bounds — and one of the two men trusted with the family when they are sent away down the river.' },
+  { id: 'oldsmoker', name: 'Old Smoker', alias: null, faction: 'native',
+    role: 'Ho-Chunk chief of the escort',
+    bio: 'Squatting on the bench of the foremost rowers as the boat comes up on the point where the Sauks would be if they were anywhere, nostrils dilated and eyes almost glaring — until he springs to his feet with a long shrill whoop: "Hoh! hoh! hoh! Neechee Muh-no-mo-nee!"' }
+);

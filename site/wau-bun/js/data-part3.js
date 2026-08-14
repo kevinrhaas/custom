@@ -11,7 +11,7 @@ var WAUBUN_PART3 = {
   chapters: 'Chapters XXIV–XXXVIII',
   status: 'partial',
   blurb: 'Juliette\'s story resumes in Chicago. She returns to Fort Winnebago and develops deeper relationships with Ho-Chunk people including Day-kau-ray, Four-Legs, Cut-Nose and White Crow. The Black Hawk War transforms the region, followed by displacement, hunger and upheaval. The series ends with Juliette and John leaving Fort Winnebago, closing the "early day" of the Northwest.',
-  outlineNote: 'Scenes so far cover chapters XXIV–XXXII. The chapters below are next, and are listed here exactly as they stand in the narrative.',
+  outlineNote: 'Scenes so far cover chapters XXIV–XXXIII. The chapters below are next, and are listed here exactly as they stand in the narrative.',
   acts: [
     { id: 'c1', title: 'The Road Home', sub: 'Chicago → the Portage', note: 'Spring 1831' },
     { id: 'c2', title: 'The Agency', sub: 'Fort Winnebago', note: '1831' }
@@ -340,10 +340,33 @@ var WAUBUN_PART3 = {
         'Then the murders of Auberry, Green and Force at Blue Mound, and the attack on Apple Fort.'
       ],
       cast: ['john', 'paquette', 'juliette', 'eleanor', 'margaret'], offstage: ['winnosheek', 'whitecrow', 'daykauray'], pivotal: true
+    },
+    {
+      id: 'p3s30', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: 'The Fourth of July, and the parting', date: '4 July 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'The danger becomes imminent enough that John determines to send his family to Fort Howard, believed to be well out of the enemy\'s range. Juliette pleads to stay and he will not have it. He must not leave his post while there is danger — his going might be the signal for the Ho-Chunk to join the Sauks, and while he is here his presence restrains them. As for sharing his danger: alone, with friends in both tribes, he could hope to save his own life; surrounded by his family it would be impossible and they would all fall together. His plain duty is to send them somewhere safe. Paquette has a boat of furs going down to Green Bay, and it is fitted out as comfortably as an open boat can be — tent-cloth on a frame of hoop-poles, lined with a dark-green blanket — and they are committed to Juliette\'s brother Arthur and the blacksmith Mâtâ, with three trusted Ho-Chunk under Old Smoker as escort and six gay-hearted French engagés at the oars.',
+      points: [
+        'They leave on the Fourth of July. Nobody knows whether they will meet again, and some of that circle have experience of Indian warfare enough to justify the worst.',
+        'Nor does the step guarantee anything: the Sauks might be on the other side of them, and this route might carry them into the middle of it.',
+        'Only the Frenchmen are cheerful, laughing and cracking jokes and assuring Monsieur John that they will take Madame John and Madame Alum safe to the Bay in spite of Sauks or wind or weather.'
+      ],
+      cast: ['john', 'juliette', 'eleanor', 'margaret', 'arthur', 'mata', 'oldsmoker', 'edwin', 'julian'], offstage: ['paquette', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s31', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: 'Three men step out on the bank', date: '6 July 1832',
+      place: 'The Fox River', placeShort: 'The Fox',
+      summary: 'At the noon pipe they discover that no bread was put aboard for the crew — everyone certain a quantity came from the garrison bakery that morning, one man having seen the sacks standing in Paquette\'s kitchen. Going back is out of the question, so their own oversupply is rationed out to the six Frenchmen as far as Powell\'s. They travel in silence from then on; a song or a loud laugh is forbidden until they are past the limits of country where the enemy might be. On the second forenoon they approach the point where the marshy meadows rise into firmer ground — the border of the Menomonee country, and exactly where the Sauks would be if they had fled north of the Wisconsin. Old Smoker is squatting in the bow staring at the wooded point. Three Indians step out and stand on the bank. If they are Sauks, the whole body is in that thicket. Nobody speaks; there is only the dip of the paddle.',
+      points: [
+        'Then he springs to his feet with a long shrill whoop — "Hoh! hoh! hoh! Neechee Muh-no-mo-nee!" — and everyone is forward to shake hands with men who are Menomonee and not Sauk.',
+        'Later, told the woods are alive with pigeons they could almost knock down with sticks, the young people beg to shoot enough for supper and are refused: a gunshot would tell friend and foe alike where they are.',
+        'At Powell\'s at the Butte des Morts there is not a loaf to be had and their own store is gone. All they can get is a bag of dark, bitter flour — and they leave the Hillock of the Dead feeling it has been the grave of their hopes.'
+      ],
+      cast: ['oldsmoker', 'juliette', 'arthur', 'mata', 'eleanor', 'margaret', 'edwin', 'julian'], offstage: [], pivotal: true
     }
   ],
   outline: [
-    { chapter: 'XXXIII', title: 'Fleeing from the Indians' },
     { chapter: 'XXXIV', title: 'Fort Howard — our return home' },
     { chapter: 'XXXV', title: 'Surrender of Winnebago prisoners' },
     { chapter: 'XXXVI', title: 'Escape of the prisoners' },
