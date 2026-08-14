@@ -24,6 +24,27 @@ const KEYS = {
   KeyD: 'right', ArrowRight: 'right',
 };
 
+/**
+ * Is the visitor typing rather than driving?
+ *
+ * W, A, S, D, E, F, G and Q are movement keys AND ordinary letters. The Go-to
+ * search asks for a building by name, so typing "Sauganash" walked the camera
+ * forward, sidestepped, inspected twice and toggled free-fly — behind the open
+ * panel, where none of it was visible until the panel closed and the visitor was
+ * somewhere else entirely. Every keyboard handler in the app has to stand down
+ * while a text field has focus.
+ *
+ * `isContentEditable` is in here for the same reason as the input check: it is
+ * the other way a browser can be receiving text.
+ */
+export function isTyping(target) {
+  const el = target instanceof HTMLElement ? target : null;
+  if (!el) return false;
+  if (el.isContentEditable) return true;
+  const tag = el.tagName;
+  return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+}
+
 export function createPointerLockBackend({ intent, domElement, onLockChange }) {
   // PointerLockControls connects its document listeners in the constructor, so
   // enabling and disabling this backend flips `controls.enabled` rather than
@@ -41,8 +62,29 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
   let prevPitch = 0;
   let enabled = false;
 
+  /**
+   * Click inspects, in both modes.
+   *
+   * On foot a visitor learns Space. In free-fly Space is ascend — the flycam
+   * convention, and the right call — so the key they learned stops answering in
+   * the one view that shows them the whole town, and it reads as inspect being
+   * switched off up there. E has always worked and nobody guesses E.
+   *
+   * A click under the crosshair is the gesture everyone already has, it means
+   * the same thing in both modes, and while the pointer is locked it is
+   * otherwise unused: the canvas click handler only takes the lock, and once
+   * locked it never fires again.
+   */
+  function onMouseDown(e) {
+    if (!controls.isLocked || e.button !== 0) return;
+    intent.interactPoint = null;
+    intent.interact = true;
+  }
+
   function onKeyDown(e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    // Typing a building name is not a walk instruction. See isTyping.
+    if (isTyping(e.target)) return;
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') { held.add('sprint'); return; }
     // Vertical, free-fly only. Space is overloaded — it inspects on foot and
     // ascends in the air — which is why the backend has to see intent.flying.
@@ -93,6 +135,7 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
       if (enabled) return;
       enabled = true;
       window.addEventListener('keydown', onKeyDown);
+      window.addEventListener('mousedown', onMouseDown);
       window.addEventListener('keyup', onKeyUp);
       window.addEventListener('blur', onBlur);
       controls.addEventListener('lock', onLock);
@@ -107,6 +150,7 @@ export function createPointerLockBackend({ intent, domElement, onLockChange }) {
       enabled = false;
       held.clear();
       window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('keyup', onKeyUp);
       window.removeEventListener('blur', onBlur);
       controls.removeEventListener('lock', onLock);

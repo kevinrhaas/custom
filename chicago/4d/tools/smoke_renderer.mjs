@@ -359,7 +359,7 @@ for (const [label, viewport, touch] of [
       /Wau-Bun/.test(picked.text) && /Kinzie, Juliette/.test(picked.text),
       `popup text did not contain the Wau-Bun citation: ${picked.text.slice(0, 160)}`);
     check(`${label}: popup shows per-attribute confidence`,
-      /documented/.test(picked.text) && /inferred/.test(picked.text),
+      /attested/.test(picked.text) && /reconstructed/.test(picked.text),
       picked.text.slice(0, 160));
 
     // --- and what KIND of source each citation is ---------------------------
@@ -571,7 +571,7 @@ for (const [label, viewport, touch] of [
       presence.hogan?.span === '1831-03-31 → 1835-12-31',
       `span "${presence.hogan?.span}"`);
     check(`${label}: the presence claim is graded per building, not stamped`,
-      presence.hogan?.conf === 'derived' && presence.saug?.conf === 'documented',
+      presence.hogan?.conf === 'inferred' && presence.saug?.conf === 'attested',
       `hogan ${presence.hogan?.conf}, sauganash ${presence.saug?.conf}`);
     // The reasoning is the point: a span with a chip and no argument is what the
     // card already had everywhere else. Hogan's is the one that matters — the end
@@ -640,7 +640,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the card says how much of the shape is evidence`,
       shape.hogan.present && shape.saug.present
-      && shape.hogan.conf === 'documented' && shape.saug.conf === 'inferred',
+      && shape.hogan.conf === 'attested' && shape.saug.conf === 'reconstructed',
       `hogan ${shape.hogan.conf}, sauganash ${shape.saug.conf}`);
     check(`${label}: the footprint's reasoning is the record's, verbatim`,
       shape.saug.shown === shape.saug.recorded && shape.saug.recorded.length > 300
@@ -803,15 +803,15 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: a building names the household the sources put in it`,
       who.brown.present && /Mrs Rufus Brown/.test(who.brown.text)
-      && who.brown.grades.some((c) => c.includes('grade-documented')),
+      && who.brown.grades.some((c) => c.includes('grade-attested')),
       `present ${who.brown.present}, grades ${who.brown.grades.join('|')}`);
     check(`${label}: a person's grade is shown, and it is not a confidence chip`,
-      who.brown.grades.some((c) => c.includes('grade-derived'))
+      who.brown.grades.some((c) => c.includes('grade-inferred'))
       && !who.brown.grades.some((c) => c.includes('conf-')),
       who.brown.grades.join('|'));
     check(`${label}: a building raised for an inferred household says so`,
       who.inferred.present
-      && who.inferred.grades.every((c) => c.includes('grade-inferred'))
+      && who.inferred.grades.every((c) => c.includes('grade-reconstructed'))
       && /BECAUSE OF THIS HOUSEHOLD/.test(who.inferred.basis),
       `basis "${who.inferred.basis.slice(0, 80)}"`);
     check(`${label}: a building with no household gets no section at all`,
@@ -1971,6 +1971,46 @@ for (const [label, viewport, touch] of [
       eye.min <= 1.5 && eye.max >= 2.0 && eye.max <= 3.0,
       `${eye.min}–${eye.max} m`);
 
+    // --- typing is not driving ---------------------------------------------
+    //
+    // W, A, S, D, E, F, G and Q are movement keys AND ordinary letters. Typing a
+    // building name into the Go-to search walked the camera, inspected twice and
+    // toggled free-fly, all behind the open panel where none of it showed until
+    // the panel closed and the visitor was somewhere else. Reported from use.
+    const typed = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.setFly(false);
+      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+      await new Promise((r) => setTimeout(r, 60));
+      const before = { e: api.player.e, n: api.player.n, flying: api.flying };
+      // Open the Go-to tab first: the field is in a hidden panel until then,
+      // and a hidden field cannot take focus, which is not what this is testing.
+      window.__chicago4d.hud.setPanel(true);
+      document.querySelector('.panel-tab[data-tab="goto"]')?.click();
+      await new Promise((r) => setTimeout(r, 120));
+      const box = document.getElementById('jump-search');
+      box.focus();
+      // "sauganash" is w/a/s/d/g-rich on purpose: every letter here is bound.
+      for (const ch of 'sauganash wafd') {
+        const code = ch === ' ' ? 'Space' : `Key${ch.toUpperCase()}`;
+        for (const type of ['keydown', 'keyup']) {
+          box.dispatchEvent(new KeyboardEvent(type, { key: ch, code, bubbles: true }));
+        }
+      }
+      await new Promise((r) => setTimeout(r, 300));
+      api.step();
+      return { before, after: { e: api.player.e, n: api.player.n, flying: api.flying },
+               focused: document.activeElement?.id };
+    });
+    check(`${label}: typing in the search box does not walk the camera`,
+      Math.abs(typed.after.e - typed.before.e) < 0.01
+      && Math.abs(typed.after.n - typed.before.n) < 0.01,
+      `moved from ${typed.before.e.toFixed(2)},${typed.before.n.toFixed(2)} `
+      + `to ${typed.after.e.toFixed(2)},${typed.after.n.toFixed(2)}`);
+    check(`${label}: typing an 'f' does not take off`,
+      typed.after.flying === false && typed.focused === 'jump-search',
+      `flying ${typed.after.flying}, focus ${typed.focused}`);
+
     // --- the Go to tab ------------------------------------------------------
     //
     // Going somewhere is not a setting, and it used to be two settings: a
@@ -2039,7 +2079,7 @@ for (const [label, viewport, touch] of [
       for (const row of rows) {
         if (row.dataset.jumpKind !== 'structure') continue;
         const want = registry.get(row.dataset.jumpId)?.sidecar?.placement?.position_confidence
-          || 'inferred';
+          || 'reconstructed';
         const chip = row.querySelector('.conf');
         const shown = chip?.textContent?.trim();
         if (shown === want && chip.classList.contains(`conf-${want}`)) graded++;
@@ -2047,7 +2087,7 @@ for (const [label, viewport, touch] of [
       }
       // And the colour has to carry the distinction, which is exactly what a
       // bare `.jump-result small` rule took away from it once: it outranks
-      // `.conf-derived` on specificity and painted all three grades the same
+      // `.conf-inferred` on specificity and painted all three grades the same
       // dim grey — a legend that lies, in a project whose whole product is the
       // grading.
       const colourOf = (grade) => {
@@ -2064,14 +2104,14 @@ for (const [label, viewport, touch] of [
           && r.querySelector('.conf')).length,
       };
       const note = document.getElementById('jump-note')?.textContent ?? '';
-      const tally = { documented: 0, inferred: 0, inferred: 0 };
+      const tally = { attested: 0, inferred: 0, reconstructed: 0 };
       for (const [, record] of registry) {
-        const grade = record?.sidecar?.placement?.position_confidence || 'inferred';
+        const grade = record?.sidecar?.placement?.position_confidence || 'reconstructed';
         if (grade in tally) tally[grade]++;
       }
       const colours = {
-        derived: colourOf('derived'),
         inferred: colourOf('inferred'),
+        reconstructed: colourOf('reconstructed'),
         plain: getComputedStyle(document.querySelector('.jump-result span')).color,
       };
       input.value = 'Randolph Canal';
@@ -2096,15 +2136,19 @@ for (const [label, viewport, touch] of [
       jumps.all.chippedNonStructures === 0,
       `${jumps.all.chippedNonStructures} non-structure result(s) carry a confidence chip`);
     check(`${label}: the grades are told apart by colour, not only by their words`,
-      jumps.colours.derived && jumps.colours.inferred
-      && jumps.colours.derived !== jumps.colours.inferred
-      && jumps.colours.derived !== jumps.colours.plain,
+      jumps.colours.inferred && jumps.colours.reconstructed
+      && jumps.colours.inferred !== jumps.colours.reconstructed
+      && jumps.colours.inferred !== jumps.colours.plain,
       JSON.stringify(jumps.colours));
     check(`${label}: the tab counts its own list rather than quoting a written total`,
+      // All THREE levels, each against the tally counted from the same list the
+      // chips are painted from. This previously checked `inferred` twice and the
+      // top level under a name that no longer existed, so it was asserting two
+      // things about one level and nothing about the other two.
       jumps.note.includes(`${jumps.all.structures} structures`)
-      && jumps.note.includes(`${jumps.tally.documented} are `)
+      && jumps.note.includes(`${jumps.tally.attested} are attested`)
       && jumps.note.includes(`${jumps.tally.inferred} inferred`)
-      && jumps.note.includes(`${jumps.tally.inferred} inferred`),
+      && jumps.note.includes(`${jumps.tally.reconstructed} reconstructed`),
       `${jumps.note} / ${JSON.stringify(jumps.tally)}`);
     check(`${label}: jump search finds an intersection by both street names`,
       jumps.filtered.some((r) => r.id === 'randolph_canal' && r.kind === 'intersection'),
@@ -2496,7 +2540,7 @@ for (const [label, viewport, touch] of [
     // ground. A section that stamped one chip on all four would have passed any
     // check for "there is a chip" — and would be lying about the Western Hotel.
     check(`${label}: the standing one says it is standing and the unbuilt ones do not`,
-      /standing here/.test(open.western.chip) && /derived/.test(open.western.chip)
+      /standing here/.test(open.western.chip) && /inferred/.test(open.western.chip)
       && open.court.chip === 'not built' && open.caldwell.chip === 'not built',
       `western "${open.western.chip}" · court "${open.court.chip}"`);
     // …and the doubt is not restated here in this section's own words. It names
@@ -2587,8 +2631,8 @@ for (const [label, viewport, touch] of [
     // qualified the two differently is exactly the drift the shared renderer and
     // the `carried_by` gate exist to stop.
     check(`${label}: the card grades the doubt the same way the claim above it is graded`,
-      openCard.western.chip === 'derived'
-      && openCard.western.presenceChip === 'derived',
+      openCard.western.chip === 'inferred'
+      && openCard.western.presenceChip === 'inferred',
       `question "${openCard.western.chip}" · presence "${openCard.western.presenceChip}"`);
     check(`${label}: it starts collapsed like every other disclosure on the card`,
       openCard.western.collapsed === true, `collapsed ${openCard.western.collapsed}`);
@@ -2651,7 +2695,7 @@ for (const [label, viewport, touch] of [
         landGrades: all.filter((e) => /divisions|the bank|marshy|swales|texture/.test(e.group))
           .map((e) => e.conf),
         inferredWithoutReason: all.filter(
-          (e) => e.conf === 'derived' && /No reasoning is recorded/.test(e.body))
+          (e) => e.conf === 'inferred' && /No reasoning is recorded/.test(e.body))
           .map((e) => `${e.group}/${e.label}`),
         scopeShown: mount.querySelector('.ground-scope')?.textContent
           .replace(/^\s*What these claims cover\s*—\s*/, '') ?? '',
@@ -2668,12 +2712,12 @@ for (const [label, viewport, touch] of [
     // assumption in the build — is inferred. A section that stamped one grade
     // on the whole terrain would pass any check for "there is a chip".
     check(`${label}: the ground is graded per claim, not stamped`,
-      ground.water?.conf === 'documented' && ground.bank?.conf === 'inferred',
+      ground.water?.conf === 'attested' && ground.bank?.conf === 'reconstructed',
       `water "${ground.water?.conf}" · bank "${ground.bank?.conf}"`);
     // The spec's own caveat, asserted where a visitor reads it rather than in the
     // file: no land elevation in this scene is better than inferred.
     check(`${label}: no land elevation claims to be documented`,
-      ground.landGrades.length >= 6 && !ground.landGrades.includes('documented'),
+      ground.landGrades.length >= 6 && !ground.landGrades.includes('attested'),
       `${ground.landGrades.length} land claim(s): ${[...new Set(ground.landGrades)].join(', ')}`);
     // WHICH ground these twenty claims are about. The spec has stated its own
     // extent since it was written, `compile_scene.py` has compiled it into every
@@ -2729,11 +2773,11 @@ for (const [label, viewport, touch] of [
     const marshNotes = ground.recordedNotes?.['surface_materials.south_division_marsh'] ?? [];
     const overGraded = southNotes.find((n) => /over-graded/.test(n)) ?? '';
     check(`${label}: the soil claim that is graded too high says so where it is graded`,
-      ground.southMaterialWest?.conf === 'documented'
+      ground.southMaterialWest?.conf === 'attested'
       && overGraded.length > 200
       && (ground.southMaterialWest?.body ?? '').replace(/\s+/g, ' ').includes(overGraded)
-      && ground.southMaterialEast?.conf === 'documented'
-      && ground.marshMaterial?.conf === 'documented'
+      && ground.southMaterialEast?.conf === 'attested'
+      && ground.marshMaterial?.conf === 'attested'
       && !marshNotes.some((n) => /over-graded/.test(n))
       && !/over-graded/.test(ground.marshMaterial?.body ?? ''),
       `south-west "${ground.southMaterialWest?.conf}" carries ${overGraded.length} chars · `
@@ -2746,7 +2790,7 @@ for (const [label, viewport, touch] of [
     // has some — the discriminating pair, one level down from the panel.
     const emptyState = await page.evaluate(async () => {
       const { groundClaimHtml } = await import(window.__MODULE_BASE + 'ground.js');
-      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'derived',
+      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'inferred',
         fields: [], sources: [], citations: [], notes: [] };
       return {
         without: groundClaimHtml(claim),
@@ -2777,7 +2821,7 @@ for (const [label, viewport, touch] of [
     // the spec and the committed panel stops carrying this case.
     const marking = await page.evaluate(async () => {
       const { groundClaimHtml } = await import(window.__MODULE_BASE + 'ground.js');
-      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'documented',
+      const claim = { id: 'x', group: 'g', label: 'l', confidence: 'attested',
         sources: [], citations: [], notes: ['because'] };
       const html = (mesh) => groundClaimHtml({ ...claim,
         fields: [{ key: 'material', value: 'loam', ...(mesh ? { mesh } : {}) }] });
@@ -2816,6 +2860,8 @@ for (const [label, viewport, touch] of [
     check(`${label}: the view from above renders`,
       aboveShot.mean > 12 && aboveShot.litFraction > 0.5,
       `mean luminance ${aboveShot.mean?.toFixed(1)}`);
+
+
 
     // Terrain is a floor even in free-fly. Driven by pushing the eye under the
     // ground and stepping once, NOT by flying into it: tick() uses wall-clock
@@ -2865,6 +2911,72 @@ for (const [label, viewport, touch] of [
     check(`${label}: Space inspects on foot instead of lifting off`,
       spaceOnFoot.flying === false && Math.abs(spaceOnFoot.alt) < 0.2 && spaceOnFoot.inspected,
       `flying ${spaceOnFoot.flying}, ${spaceOnFoot.alt?.toFixed(2)} m up, inspected ${spaceOnFoot.inspected}`);
+
+    // --- inspecting from the air --------------------------------------------
+    //
+    // Reported from use: "would be nice to be able to inspect something... i get
+    // the dot and hit space and can see it when walking but cant do that when
+    // flying because of the role of the space bar". Space is ascend up here, and
+    // that is the right call — every flycam does it — so the fix is that CLICK
+    // inspects, in both modes, which is the gesture everyone already has.
+    //
+    // The aim points are swept rather than fixed. From 200 m a roof is a small
+    // target and most of the view is ground; pinning one aim point would make
+    // this a test of the camera's heading rather than of whether inspecting
+    // works at all from up there.
+    const aerialPick = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.goTo('from_above');
+      await new Promise((r) => setTimeout(r, 400));
+      api.walker.teleport({ local_e: 110, local_n: -125, yaw_deg: 180,
+                            altitude_m: 120, pitch_deg: -88 });
+      await new Promise((r) => setTimeout(r, 400));
+      let hits = 0;
+      let first = null;
+      for (let x = -0.9; x <= 0.9; x += 0.1) {
+        for (let y = -0.9; y <= 0.9; y += 0.1) {
+          const h = api.pick({ x, y });
+          if (h) { hits += 1; first = first ?? h.id; }
+        }
+      }
+      return { altitude: Math.round(api.player.altitude), hits, id: first,
+               flying: api.player.flying };
+    });
+    check(`${label}: a building can be inspected from the air`,
+      aerialPick.flying === true && aerialPick.altitude > 50
+      && aerialPick.hits > 0 && aerialPick.id !== null,
+      `at ${aerialPick.altitude} m up, ${aerialPick.hits} aim point(s) resolved a `
+      + `structure (first: ${aerialPick.id ?? 'nothing'})`);
+
+    // And the gesture that makes it discoverable: a click under the crosshair,
+    // which means the same thing on foot and in the air. Driven through the same
+    // mousedown a visitor's mouse sends, not by calling pick() — the point is
+    // that the EVENT is wired, which is exactly what was missing.
+    const clickPick = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      api.setFly(false);
+      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+      await new Promise((r) => setTimeout(r, 250));
+      const before = document.querySelector('#popup')?.textContent ?? '';
+      // The backend only listens while the pointer is locked, which is the state
+      // a walking visitor is in.
+      const locked = api.controlBackend;
+      // PointerLockControls tracks isLocked from the pointerlockchange event, so
+      // setting the property is not enough on its own — the event has to fire.
+      Object.defineProperty(document, 'pointerLockElement',
+        { value: document.getElementById('view'), configurable: true });
+      document.dispatchEvent(new Event('pointerlockchange'));
+      await new Promise((r) => setTimeout(r, 60));
+      window.dispatchEvent(new MouseEvent('mousedown', { button: 0, bubbles: true }));
+      await new Promise((r) => setTimeout(r, 400));
+      api.step();
+      await new Promise((r) => setTimeout(r, 200));
+      return { locked, before: before.slice(0, 40),
+               after: (document.querySelector('#popup')?.textContent ?? '').slice(0, 80) };
+    });
+    check(`${label}: a click under the crosshair inspects`,
+      /Sauganash/i.test(clickPick.after),
+      `popup after click: "${clickPick.after}"`);
     await page.evaluate(() => window.__chicago4d.popup.close());
     await page.evaluate(() => window.__chicago4d.frame('sauganash_hotel', 26));
 

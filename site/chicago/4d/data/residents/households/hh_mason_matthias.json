@@ -5,7 +5,7 @@
  "head": "mason_matthias",
  "arrival": {
   "value": "1833-11-26",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -14,27 +14,27 @@
  },
  "party_size_on_arrival": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "mason_blacksmith_shop",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -42,7 +42,7 @@
  },
  "present_on_scene_date": {
   "value": "uncertain",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -53,11 +53,11 @@
    "id": "mason_matthias",
    "name": "Matthias Mason",
    "relationship": "head",
-   "grade": "derived",
+   "grade": "inferred",
    "sex": "male",
    "occupation": {
     "value": "blacksmith",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "chicago_democrat_1833_11_26"
     ],

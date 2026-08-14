@@ -49,7 +49,7 @@
 import * as THREE from 'three';
 
 /** docs/PROVENANCE.md's three levels, as the shader reads them. */
-const LEVEL = { documented: 0.0, inferred: 0.5, conjectural: 1.0 };
+const LEVEL = { attested: 0.0, inferred: 0.5, reconstructed: 1.0 };
 
 /**
  * July midday light ON A LEAF, which is not the same problem as light on a wall.

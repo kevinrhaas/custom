@@ -586,7 +586,7 @@ const FORM_OF = {
   thicket_clonal: 'thicket',
 };
 
-const CONFIDENCE_VALUE = { documented: 0.0, inferred: 0.5, conjectural: 1.0 };
+const CONFIDENCE_VALUE = { attested: 0.0, inferred: 0.5, reconstructed: 1.0 };
 
 /**
  * Read the timber zones and hand back one render spec per species. The record

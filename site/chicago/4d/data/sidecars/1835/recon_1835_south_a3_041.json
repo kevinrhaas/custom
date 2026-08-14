@@ -10,7 +10,7 @@
   "documented_range": {
     "from": "1835-01-01",
     "to": "1835-12-31",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "This is an anonymous count-unit created to begin the July 1835 aggregate roof target. No evidence establishes that this particular building existed."
   },
@@ -19,7 +19,7 @@
     "local_e": 292.021,
     "local_n": -174.597,
     "rotation_deg": -0.07,
-    "position_confidence": "inferred",
+    "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive lot placement inside a measured street grid. It preserves mixed-block spacing and open lots but is not a recovered parcel position. The whole footprint - not its centre - is tested against the platted street corridors of the K7 block grid, so no invented building of this parcel stands in the roadway; clearing the roadway is not the same as standing on a recovered lot.",
     "symbolic_location": "Anonymous inferred roof in the South Division block between Franklin and Wells, south of Lake Street",
@@ -46,90 +46,90 @@
         1.98
       ]
     ],
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "sources": [],
     "note": "A 1.67 × 1.98 m rectangle sampled deterministically inside the A3 family band; no individual dimensions are documented."
   },
   "attributes": {
     "wall_height_m": {
       "value": 2.05,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "roof_type": {
       "value": "shed",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "roof_pitch_deg": {
       "value": 18.0,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "construction": {
       "value": "plank",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "door": {
       "value": "man",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "door_side": {
       "value": "front",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "loft": {
       "value": false,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "board_gap_m": {
       "value": 0.012,
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "paint": {
       "value": "unpainted",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Type-level choice within the A3 band in the 2026 reconstruction specification; it is not evidence for this anonymous instance."
     },
     "function": {
       "value": "privy",
-      "confidence": "derived",
+      "confidence": "reconstructed",
       "sources": [
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
-      "note": "Assigned from the A3 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
+      "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Assigned from the A3 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
     }
   },
   "residents": [],

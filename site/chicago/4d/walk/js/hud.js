@@ -10,6 +10,7 @@
  */
 
 import { markSeen, renderWhatsNew, unseenCount } from './whatsnew.js';
+import { isTyping } from './controls/pointerlock.js';
 import { formatHeight, formatSpeed, formatStature, normalUnitSystem } from './units.js';
 
 const THEME_KEY = 'chicago4d.theme';
@@ -110,8 +111,11 @@ export function createHud({
         // Said on entry because it is the honest frame for the view they are
         // about to get: from above, the edge of what has been built is visible,
         // and the ground beyond it is a skirt rather than a claim.
-        ? (isTouch ? 'Flying — ▲ ▼ to rise and descend. The modelled town ends where the detail does.'
-          : 'Flying — Space and Q to rise and descend. The modelled town ends where the detail does.')
+        // Say that inspect still works up here, and which key. Space is taken by
+        // ascend in this mode, so a visitor who learned Space on foot finds the
+        // one view that shows the whole town is the one where nothing answers.
+        ? (isTouch ? 'Flying — ▲ ▼ to rise and descend, tap a building to inspect it.'
+          : 'Flying — Space and Q to rise and descend, E or click to inspect a building.')
         : 'Back on foot');
     }
     return flying;
@@ -402,7 +406,7 @@ export function createHud({
       // an empty chip would read as a missing grade rather than as a category
       // that has none.
       if (target.kind === 'structure') {
-        const grade = target.confidence || 'conjectural';
+        const grade = target.confidence || 'reconstructed';
         button.dataset.jumpConfidence = grade;
         const conf = document.createElement('small');
         conf.className = `conf conf-${grade}`;
@@ -421,19 +425,19 @@ export function createHud({
   function paintJumpNote() {
     const note = $('jump-note');
     if (!note) return;
-    const tally = { documented: 0, inferred: 0, conjectural: 0 };
+    const tally = { attested: 0, inferred: 0, reconstructed: 0 };
     let structures = 0;
     for (const target of jumpTargets) {
       if (target.kind !== 'structure') continue;
       structures++;
-      const grade = target.confidence || 'conjectural';
+      const grade = target.confidence || 'reconstructed';
       if (grade in tally) tally[grade]++;
     }
     const viewpoints = jumpTargets.filter((t) => t.kind === 'anchor').length;
     const junctions = jumpTargets.filter((t) => t.kind === 'intersection').length;
     note.textContent = `${viewpoints} viewpoints, ${junctions} verified junctions and `
-      + `${structures} structures. Of the structure positions, ${tally.documented} are `
-      + `documented, ${tally.inferred} inferred and ${tally.conjectural} conjectural.`;
+      + `${structures} structures. Of the structure positions, ${tally.attested} are `
+      + `attested, ${tally.inferred} inferred and ${tally.reconstructed} reconstructed.`;
   }
   paintJumpNote();
   jumpSearch?.addEventListener('input', () => paintJumpResults(jumpSearch.value));
@@ -446,7 +450,10 @@ export function createHud({
   paintJumpResults();
 
   window.addEventListener('keydown', (e) => {
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) {
+    // One shared test, so the panel's shortcuts and the walker's movement keys
+    // cannot come to disagree about what counts as typing. This one missed
+    // <textarea> and contenteditable.
+    if (isTyping(e.target)) {
       if (e.key === 'Escape' && panelOpen()) setPanel(false);
       return;
     }

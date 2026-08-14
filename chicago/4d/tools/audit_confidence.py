@@ -118,12 +118,27 @@ def audit():
                     errors.append(f"{sid} {where}: attested with no source. "
                                   f"Attested means a source states it; name the source "
                                   f"or drop the grade.")
-                if SILENCE.search(note):
-                    m = SILENCE.search(note)
-                    errors.append(f"{sid} {where}: attested, but its own note says "
-                                  f"'{m.group(0)}' — the record contradicts its chip.")
+                # ADVISORY, not an error, and the distinction was earned. This
+                # fired on 25 values and every one was a false positive, because
+                # the notes in this dataset are long and careful: Peck's store
+                # says its loft is "THE SINGLE MOST VIVID DOCUMENTED FACT ABOUT
+                # THIS BUILDING" and then declines to claim what the loft was
+                # floored with. A phrase saying some ADJACENT detail is unrecorded
+                # is exactly the honesty this project is for, and no regex can
+                # tell which attribute a clause 200 words into a note refers to.
+                # So it prompts a human to look; it does not return a verdict.
+                m = SILENCE.search(note)
+                if m:
+                    warnings.append(f"{sid} {where}: attested, and its note contains "
+                                    f"'{m.group(0)}' — worth checking that the phrase is "
+                                    f"about some other detail and not about this value.")
 
-            if conf == INFERRED and not note.strip():
+            # Reasoning lives under `note` on a structure attribute and under
+            # `notes` (a list) on a terrain claim. Checking only the first
+            # reported all twelve reasoned river reaches as unreasoned.
+            reasoning = note.strip() or " ".join(
+                str(n) for n in (block.get("notes") or []) if n).strip()
+            if conf == INFERRED and not reasoning:
                 # An inference with no stated reasoning is indistinguishable from
                 # an invention, and this project's whole claim is that it can tell
                 # the difference.

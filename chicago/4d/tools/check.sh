@@ -121,6 +121,13 @@ print(f"   {n} data file(s) parsed")
 sys.exit(bad)
 PY
 }
+# Attested must cite a source, an inference must record what it reasoned from,
+# and NOTHING on an invented structure may outrank the invention that put it
+# there. That last rule is the one that mattered: without it, 158 buildings that
+# never existed graded their wall heights as evidence and rendered solid.
+step "the three levels mean what they say" \
+  python3 tools/audit_confidence.py --strict
+
 step "data JSON parses" check_json
 
 printf '\n'

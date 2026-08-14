@@ -5,18 +5,18 @@
   "head": "beaubien_mark",
   "arrival": {
     "value": "1826",
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
     "precision": "year"
   },
   "party_size_on_arrival": {
     "value": null,
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "Not attested."
   },
   "origin": {
     "value": "A French-descended trading family of the Detroit and Milwaukee country",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -24,7 +24,7 @@
   },
   "reason_for_coming": {
     "value": "Trade and tavern keeping at the forks",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -32,17 +32,17 @@
   },
   "lives_at": {
     "value": null,
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "NOT ATTESTED AT THE SCENE DATE, AND THAT IS THE FINDING. He had left the Sauganash by 1834 - the hotel chronology gives 'Davis (1835)' as its operator - and the Exchange Coffee House he built at Lake and Wells was in the hands of the Murphys from August 1834. Where Mark Beaubien slept on 1 July 1835 is simply not in the record, and this field says so rather than putting him back in a house he had left."
   },
   "works_at": {
     "value": null,
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "Same problem as the residence. The ferry, the Sauganash and the Exchange are all attested for him at other dates and none of them is attested for this one."
   },
   "present_on_scene_date": {
     "value": "present",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -53,11 +53,11 @@
       "id": "beaubien_mark",
       "name": "Mark Beaubien",
       "relationship": "head",
-      "grade": "documented",
+      "grade": "attested",
       "sex": "male",
       "occupation": {
         "value": "tavern_keeper",
-        "confidence": "documented",
+        "confidence": "attested",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -72,10 +72,10 @@
       "id": "beaubien_mark_household",
       "name": "Mark Beaubien's family, unnamed",
       "relationship": "household_member",
-      "grade": "derived",
+      "grade": "inferred",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
       },
       "sources": [],

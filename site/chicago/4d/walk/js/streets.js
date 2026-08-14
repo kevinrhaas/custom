@@ -19,7 +19,7 @@ import * as THREE from 'three';
 
 const STEP_M = 2.25;
 const LIFT_M = 0.022;
-const LEVEL = { documented: 0, inferred: 0.5, conjectural: 1 };
+const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
 
 function pointSegment(e, n, a, b) {
   const dx = b[0] - a[0];

@@ -82,13 +82,6 @@ function collectMeshes(structureNode) {
 }
 
 /**
- * Reduce a geometry to exactly the attribute set a batch can hold, in a fixed
- * order, indexed. Anything else (tangents, a stray COLOR_0) is dropped: the
- * first geometry added to a BatchedMesh defines the batch's attributes for
- * good, and a later geometry carrying an extra one has it silently ignored.
- * Normalising up front means the batch never depends on load order.
- */
-/**
  * Rewrite a structure's confidence channel so the MASSING answers "was this
  * building here", not "do we know its exact wall height".
  *
@@ -133,6 +126,13 @@ function applyExistence(geo, rule) {
   attr.needsUpdate = true;
 }
 
+/**
+ * Reduce a geometry to exactly the attribute set a batch can hold, in a fixed
+ * order, indexed. Anything else (tangents, a stray COLOR_0) is dropped: the
+ * first geometry added to a BatchedMesh defines the batch's attributes for
+ * good, and a later geometry carrying an extra one has it silently ignored.
+ * Normalising up front means the batch never depends on load order.
+ */
 function normalizeGeometry(src, matrix, confidence, label) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
@@ -274,6 +274,8 @@ export function createBuildings({ registry, confidence, terrain }) {
   const batches = [];
   /** structure id -> its union bounding box, in the structure's own frame. */
   const localBoxes = new Map();
+  /** structure id -> the confidence channel the shader will actually read. */
+  const channels = new Map();
   for (const [, bucket] of groups) {
     const verts = bucket.entries.reduce((a, e) => a + e.geo.getAttribute('position').count, 0);
     const idx = bucket.entries.reduce((a, e) => a + e.geo.getIndex().count, 0);
@@ -298,6 +300,21 @@ export function createBuildings({ registry, confidence, terrain }) {
       let box = localBoxes.get(record.id);
       if (!box) { box = new THREE.Box3(); localBoxes.set(record.id, box); }
       box.union(geo.boundingBox);
+      // The confidence the SHADER will see, after the existence floor, recorded
+      // per structure so a gate can ask the question a visitor asked: does this
+      // building dither, and does it dither all over?
+      const conf = geo.getAttribute('_confidence');
+      if (conf) {
+        let seen = channels.get(record.id);
+        if (!seen) { seen = { min: Infinity, max: -Infinity, dithered: 0, total: 0 }; channels.set(record.id, seen); }
+        for (let i = 0; i < conf.array.length; i += 1) {
+          const v = conf.array[i];
+          seen.min = Math.min(seen.min, v);
+          seen.max = Math.max(seen.max, v);
+          seen.total += 1;
+          if (v > 0.75) seen.dithered += 1;
+        }
+      }
       geo.dispose();
     }
     batch.computeBoundingBox();
@@ -334,10 +351,13 @@ export function createBuildings({ registry, confidence, terrain }) {
       const out = {};
       for (const [id, box] of localBoxes) {
         const size = box.getSize(new THREE.Vector3());
+        const c = channels.get(id);
         out[id] = {
           size: [size.x, size.y, size.z],
           min: box.min.toArray(),
           max: box.max.toArray(),
+          // What the confidence view will show for this building.
+          confidence: c ? { min: c.min, max: c.max, ditheredShare: c.dithered / c.total } : null,
         };
       }
       return out;
@@ -350,6 +370,18 @@ export function createBuildings({ registry, confidence, terrain }) {
      */
     pickAt(ndc, camera) {
       raycaster.setFromCamera(ndc ?? new THREE.Vector2(0, 0), camera);
+      // The ray reaches as far as you can see, and how far that is depends on
+      // how high you are.
+      //
+      // A fixed 400 m is generous at eye level and short from the air along any
+      // shallow sightline: from the aerial anchor at 175 m looking out at -30°,
+      // a roof on the far side of the town is past 400 m and simply cannot be
+      // picked. Straight down it was never the limit — measured, not assumed:
+      // 200 m of altitude at -80° is only ~203 m of ray — so this is not the
+      // reason inspecting from the air felt broken. It is a real ceiling on a
+      // real sightline, and lifting it costs nothing at eye level, where
+      // camera.position.y * 4 stays well under the old constant.
+      raycaster.far = Math.max(400, camera.position.y * 4);
       const hits = raycaster.intersectObjects(batches, false);
       if (!hits.length) return null;
       const hit = hits[0];

@@ -5,7 +5,7 @@
  "head": "murphy_john",
  "arrival": {
   "value": "1834-08-01",
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -14,7 +14,7 @@
  },
  "party_size_on_arrival": {
   "value": 2,
-  "confidence": "derived",
+  "confidence": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -22,12 +22,12 @@
  },
  "origin": {
   "value": null,
-  "confidence": "inferred",
+  "confidence": "reconstructed",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To keep a new hotel on Lake Street",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -35,7 +35,7 @@
  },
  "lives_at": {
   "value": "exchange_coffee_house",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -43,7 +43,7 @@
  },
  "works_at": {
   "value": "exchange_coffee_house",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -51,7 +51,7 @@
  },
  "present_on_scene_date": {
   "value": "present",
-  "confidence": "documented",
+  "confidence": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -62,11 +62,11 @@
    "id": "murphy_john",
    "name": "John Murphy",
    "relationship": "head",
-   "grade": "documented",
+   "grade": "attested",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels"
@@ -82,11 +82,11 @@
    "id": "murphy_harriet",
    "name": "Harriet Murphy",
    "relationship": "wife",
-   "grade": "derived",
+   "grade": "inferred",
    "sex": "female",
    "occupation": {
     "value": "tavern_keeper",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

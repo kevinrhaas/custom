@@ -61,7 +61,7 @@ function fieldValue(value) {
 }
 
 function chip(confidence) {
-  const c = confidence || 'conjectural';
+  const c = confidence || 'reconstructed';
   return `<span class="conf conf-${escapeHtml(c)}">${escapeHtml(c)}</span>`;
 }
 

@@ -19,7 +19,7 @@ import { createTerrain, enuToWorld } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
-import { createPointerLockBackend } from './controls/pointerlock.js';
+import { createPointerLockBackend, isTyping } from './controls/pointerlock.js';
 import { createTouchBackend, prefersTouch } from './controls/touch.js';
 import { createWalker, footprintsFrom, WALK } from './walker.js';
 import { createFlora } from './flora.js';
@@ -412,6 +412,11 @@ async function boot() {
     else if (e.pointerType === 'mouse') backends.activate(pointerlock);
   }, { capture: true });
   window.addEventListener('keydown', (e) => {
+    // Not while typing. This capture handler switches the whole control backend
+    // to keyboard-and-mouse, and the first keystroke into the Go-to search box
+    // was doing exactly that — taking a visitor who had been tapping their way
+    // around a phone and handing them a control scheme with no on-screen stick.
+    if (isTyping(e.target)) return;
     if (!e.metaKey && !e.ctrlKey) backends.activate(pointerlock);
   }, { capture: true });
 

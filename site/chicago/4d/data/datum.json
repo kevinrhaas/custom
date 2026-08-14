@@ -35,7 +35,7 @@
     "internal": "Z = 0.0 ft at the summer-1835 lake and river water surface",
     "export_offset_ft_asl": 580.0,
     "export_note": "ASL = Z + 580.0. Do not mix Chicago City Datum (1847 low-water mark, on the obsolete mean-tide-New-York reference) with NAVD88 figures; the discrepancy is most of a foot in a landscape whose entire natural relief is under fifteen feet. See docs/EPOCHS.md.",
-    "lake_stage_confidence": "inferred",
+    "lake_stage_confidence": "reconstructed",
     "lake_stage_note": "No 1835 Lake Michigan stage record located. The mid-1830s fall in a high-water phase; 580 +/- 1.5 ft ASL is the working assumption. Check NOAA/GLERL historical Michigan-Huron reconstructions to narrow it."
   },
 

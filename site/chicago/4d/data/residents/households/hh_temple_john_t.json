@@ -5,7 +5,7 @@
   "head": "temple_john_t",
   "arrival": {
     "value": "1833-07-04",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1",
       "baptisthistoryhomepage"
@@ -15,7 +15,7 @@
   },
   "party_size_on_arrival": {
     "value": 6,
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -23,7 +23,7 @@
   },
   "origin": {
     "value": "Washington, D. C.",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -31,7 +31,7 @@
   },
   "reason_for_coming": {
     "value": "A federal mail contract, Chicago to Fort Howard at Green Bay",
-    "confidence": "documented",
+    "confidence": "attested",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -39,12 +39,12 @@
   },
   "lives_at": {
     "value": null,
-    "confidence": "inferred",
+    "confidence": "reconstructed",
     "note": "NOT ATTESTED, AND ONE NEAR MISS WORTH RECORDING. Peter Temple's advertisement of July 1834 puts 'the dwelling of Dr. J. T. Temple' on Franklin Street near Lake. This dataset holds no structure at that address, and the Temple Building at Franklin and South Water is a different building on the same street - a meeting house and school, not a residence. Linking the two would be wrong by a block and by a use."
   },
   "works_at": {
     "value": "temple_building",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1",
       "baptisthistoryhomepage"
@@ -53,7 +53,7 @@
   },
   "present_on_scene_date": {
     "value": "present",
-    "confidence": "derived",
+    "confidence": "inferred",
     "sources": [
       "andreas_1884_v1"
     ],
@@ -64,11 +64,11 @@
       "id": "temple_john_t",
       "name": "Dr John Taylor Temple",
       "relationship": "head",
-      "grade": "documented",
+      "grade": "attested",
       "sex": "male",
       "occupation": {
         "value": "physician",
-        "confidence": "documented",
+        "confidence": "attested",
         "sources": [
           "andreas_1884_v1"
         ],
@@ -84,11 +84,11 @@
       "id": "temple_mrs_john_t",
       "name": "Mrs Temple",
       "relationship": "wife",
-      "grade": "derived",
+      "grade": "inferred",
       "sex": "female",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "No trade is recorded for her. The absence is the ordinary one for a married woman in this literature and is not evidence that she did no work."
       },
       "sources": [
@@ -100,10 +100,10 @@
       "id": "temple_children_four",
       "name": "The four Temple children",
       "relationship": "child",
-      "grade": "derived",
+      "grade": "inferred",
       "occupation": {
         "value": "none_recorded",
-        "confidence": "inferred",
+        "confidence": "reconstructed",
         "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
       },
       "sources": [
@@ -115,11 +115,11 @@
       "id": "temple_peter",
       "name": "Dr Peter Temple",
       "relationship": "brother",
-      "grade": "derived",
+      "grade": "inferred",
       "sex": "male",
       "occupation": {
         "value": "dentist",
-        "confidence": "documented",
+        "confidence": "attested",
         "sources": [
           "andreas_1884_v1"
         ],
