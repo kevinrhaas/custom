@@ -224,6 +224,33 @@ prefix in its claim heading so two runs cannot take the same one.
 
 ## Bugs found and not yet fixed
 
+### B-BUG1 — the nightly bake died at the finish line · **FIXED 2026-08-14**
+
+Recorded because the shape of it will recur, not because it is still open.
+
+The published-mirror smoke was added to the end of `tools/bake.sh` on 2026-08-13 21:00 UTC
+(commit `7645be6`), and it was the right thing to add: the source tree and the published
+tree do not load the same geometry, and a bug that flattened every building to a two-metre
+box had already shipped past a green gate twice because nothing had ever loaded the
+compressed derivatives.
+
+`chicago-4d-bake.yml` does not install Playwright. So from that commit onward the nightly
+did all of it — fetched Blender, generated, baked AO, compressed, published, gated **green**
+— and then died on `Cannot find module …/playwright/index.js`, one step short of the step
+that pushes the bake branch and opens the PR. Every night's output was discarded. Runs
+`31761814117` (01:49Z) and `31771193146` (04:52Z) both read as a failed content build with
+no clue in the summary that everything of substance had succeeded.
+
+**Fixed** by installing `playwright@1.56.1` globally plus the matching Chromium in the bake
+workflow. Nothing was skipped and no assertion was weakened — `SKIP_SMOKE=1` exists and was
+deliberately not used, because a nightly that publishes without loading what it published is
+the exact hole this smoke was added to close.
+
+**The general lesson, for whoever adds the next gate:** `bake.sh` runs in two places with
+different toolchains — a dev container that has Playwright and a runner that does not — and
+a step added to the script is only really added once the runner can execute it. Check the
+workflow in the same commit as the script.
+
 ### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
 
 Found 2026-08-14 while gating the black-wedge fix. **79 of the terrain's 742,581 vertices

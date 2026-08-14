@@ -36,6 +36,20 @@ a queue with nobody in it.
 | `.github/workflows/chicago-4d-check.yml` | **the dev gate.** Runs on PRs into `dev` and pushes to `dev` (no branch filter, deliberately). |
 | `.github/workflows/chicago-4d-promote-to-prod.yml` | **dispatch-only.** Back-merges `main`→`dev`, then merges `dev`→`main` `--no-ff`, then dispatches the deploy. |
 | `.github/workflows/chicago-4d-bake.yml` | the nightly content bake. Branches off `dev` and PRs **into `dev`**. |
+| `.github/pipeline.json` | the manifest. Declares the shape — tiers, publish paths, workflow names — to anything that reads it. A **data file**: editing it is a sanctioned direct commit to `main`, same as the pilot's. |
+
+`pipeline.json` earns its keep on the fleet console. Manager's Pipeline view
+(`manager.polecat.live/app/#pipeline`) probes every fleet repo for that file and
+draws a release card for each one it finds, so **adopting the pipeline is what
+lights up the tile** — there is no per-repo entry to add on the Manager side.
+The card then reads its shape from the manifest instead of assuming the pilot's:
+two tiers rather than three, a publish path under `/chicago/4d/` rather than a
+domain root, `chicago-4d-`-prefixed workflow names (this monorepo's
+`.github/workflows/` is shared with every other tenant, so the bare
+`promote-to-prod.yml` name was never available), and a `null` for each verb this
+repo does not have, which draws no button rather than one that 404s.
+It is `main` that gets probed, so a manifest that only ever exists on `dev` shows
+nothing.
 
 ---
 

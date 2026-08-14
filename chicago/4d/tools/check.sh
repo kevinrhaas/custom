@@ -102,6 +102,17 @@ step "renderer modules parse" check_js
 step "changelog contract" \
   node tools/check-changelog.mjs
 
+# The integration preview's assembler. It lives at the repo root because the
+# deploy workflow does, but nothing else tests it, and it is the only thing that
+# marks the preview as a preview — the noindex, the banner, the build stamp. A
+# preview that quietly stops saying "DEV PREVIEW" is one screenshot away from
+# being reported as a production bug. Skipped rather than failed when the script
+# is absent, so a checkout of chicago/4d alone still gates cleanly.
+if [ -f ../../.github/chicago-4d-dev-preview.mjs ]; then
+  step "dev preview assembles, marked and stamped" \
+    node tools/test_dev_preview.mjs
+fi
+
 # Every JSON in data/ must be loadable — a stray comma here breaks the whole build
 # in a place far from the edit that caused it.
 check_json() {
