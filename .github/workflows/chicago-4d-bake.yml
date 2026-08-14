@@ -31,7 +31,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # Bake from dev when it exists: the PR's base is dev, so branching off
+      # main would put every commit already promoted-past into the diff.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Bake from dev when the pipeline is active
+        run: |
+          if git ls-remote --exit-code --heads origin dev >/dev/null 2>&1; then
+            git checkout -B dev origin/dev
+            echo "baking from dev"
+          else
+            echo "no dev ref — baking from the default branch"
+          fi
 
       - uses: actions/setup-python@v5
         with:
@@ -42,6 +54,31 @@ jobs:
           node-version: '22'
 
       - run: pip install --quiet jsonschema pyproj
+
+      # KTX-Software, so gltf-transform can actually compress textures.
+      # APPROVED BY THE OWNER 2026-08-14 (docs/RENDERING.md §8, W2).
+      #
+      # `tools/bake.sh` asks for `--texture-compress ktx2` only when a `ktx`
+      # binary is on PATH, because gltf-transform aborts the WHOLE optimize when
+      # it is missing — meshopt included — and for months that silently meant NO
+      # compression at all on the derivatives. ubuntu-latest does not ship it.
+      # Installing it here is what makes W2's textures shippable; until W2 lands
+      # there is nothing textured in the scene, so this is a no-op that changes
+      # no bytes today and unblocks the phase that needs it.
+      - name: Install KTX-Software (ktx binary for gltf-transform)
+        run: |
+          set -e
+          VER=4.3.2
+          DEB="KTX-Software-${VER}-Linux-x86_64.deb"
+          URL="https://github.com/KhronosGroup/KTX-Software/releases/download/v${VER}/${DEB}"
+          if curl -fsSL --retry 3 -o "/tmp/${DEB}" "$URL"; then
+            sudo dpkg -i "/tmp/${DEB}" || sudo apt-get -y -f install
+            ktx --version || echo "::warning::ktx installed but not runnable"
+          else
+            # A missing release asset must not fail the nightly: bake.sh already
+            # degrades to meshopt-only and says so.
+            echo "::warning::could not fetch ${URL} — bake will run meshopt-only"
+          fi
 
       - name: Read the Blender pin
         id: pin
@@ -81,8 +118,12 @@ jobs:
           git add -A chicago/4d site/chicago/4d
           git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
           git push -u origin "$BRANCH"
+          # BASE IS dev, NOT main (chicago/4d/docs/PIPELINE.md). Overnight output
+          # lands on the integration branch and reaches production only when the
+          # owner dispatches chicago-4d-promote-to-prod.yml.
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
-            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake." \
+            --base dev \
+            --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. The gate ran green at the end of the bake. Targets \`dev\`: merging this publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
             --head "$BRANCH" 2>&1); then
             # GitHub reports this org/repo policy failure as a GraphQL error string.
             # Match it exactly so other gh failures still stop the workflow.

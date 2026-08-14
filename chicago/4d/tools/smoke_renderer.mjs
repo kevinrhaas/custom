@@ -395,6 +395,69 @@ const terrainLoad = await page.evaluate(() => {
         ? `water ${terrainLoad.box.w} x ${terrainLoad.box.d} m across `
           + `(the fallback is 2400 x 2400), ${terrainLoad.groundTiles} ground tile(s)`
         : 'no water mesh in the scene at all');
+    // --- the ground faces the sky ------------------------------------------
+    //
+    // `gltf-transform optimize` SIMPLIFIES BY DEFAULT, and on this dataset that
+    // is damage rather than optimisation. The terrain was the one asset it had
+    // never been run over, so nobody had seen what it does to a large, low-relief
+    // surface: the ground came back at ~100 vertices per tile instead of 56,463,
+    // with 33 of one tile's 99 remaining vertices facing straight DOWN — a
+    // hard-edged black polygon across the south-east of the town, visible only
+    // from the air, and only in the published tree.
+    //
+    // A downward normal on the ground is never right, at any level of detail, so
+    // this asserts the surface rather than the toolchain. It also protects the
+    // measured promise generators/terrain_gen.py makes: it ray-casts its
+    // decimated mesh against the heightfield and refuses to export past 30 mm of
+    // drift, and a second blind simplification pass silently voids that.
+    const groundNormals = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      let downward = 0;
+      let verts = 0;
+      const tiles = [];
+      api.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
+        const n = o.geometry.getAttribute('normal');
+        if (!n) return;
+        let tileDown = 0;
+        for (let i = 0; i < n.count; i += 1) {
+          const y = n.getY(i);
+          if (!Number.isFinite(y) || y < 0.1) tileDown += 1;
+        }
+        verts += n.count;
+        downward += tileDown;
+        tiles.push({ name: o.name, verts: n.count, down: tileDown,
+                     share: n.count ? tileDown / n.count : 0 });
+      });
+      tiles.sort((a, b) => b.share - a.share);
+      return { tiles: tiles.length, verts, downward, worstTile: tiles[0] ?? null };
+    });
+    // TWO assertions, because there are two different things here and only one
+    // of them is the bug this was written for.
+    //
+    // (a) NO TILE IS SUBSTANTIALLY DOWNWARD-FACING. That is the simplifier's
+    //     signature and what a visitor actually sees: the wedge was 33 of one
+    //     tile's 99 vertices — a third of it — and it read as a black polygon.
+    //     One per cent of a tile is already far outside anything the terrain
+    //     generator produces.
+    check(`${label}: no ground tile faces away from the sky`,
+      groundNormals.tiles > 1 && groundNormals.verts > 1000
+      && (groundNormals.worstTile?.share ?? 1) < 0.01,
+      `${groundNormals.tiles} tiles, worst ${groundNormals.worstTile?.name}: `
+      + `${groundNormals.worstTile?.down}/${groundNormals.worstTile?.verts} down `
+      + `(${((groundNormals.worstTile?.share ?? 0) * 100).toFixed(2)}%)`);
+    // (b) THE SCATTERED ONES CANNOT GROW. 79 of 742,581 vertices — 0.011 % —
+    //     come out of the terrain generator facing down, in isolated points
+    //     inside the town rather than in any contiguous patch, which is why they
+    //     produce no visible artefact. They are a real defect (ROADMAP T-BUG2)
+    //     and they are NOT this gate's bug, so this pins the measured number
+    //     rather than pretending it is zero or quietly allowing any figure.
+    //     Fixing them lowers this constant; nothing else may raise it.
+    check(`${label}: no new downward ground normals beyond the known 79`,
+      groundNormals.downward <= 79,
+      `${groundNormals.downward} of ${groundNormals.verts} vertices face down `
+      + `(baseline 79 — see ROADMAP T-BUG2)`);
+
     // And the renderer's OWN account of it, which is the part that was ignored:
     // it pushed the fallback to `problems` every single load and nothing read it.
     check(`${label}: the terrain and river report no load problems`,

@@ -5,12 +5,27 @@ name: Deploy to GitHub Pages
 # ~2 GB of CAD source (.blend/.stl/.3mf) that must stay OUT of the Pages
 # artifact. Mirrors the Polecat platform deploy pattern (upload-pages-artifact
 # path: site) — the fleet's single-deploy-authority convention.
+#
+# ONE artifact, TWO tiers, and only for the 4D app (chicago/4d/docs/PIPELINE.md):
+#   /                     production = main, every tenant, untouched, indexed
+#   /chicago/4d/dev/      integration = the `dev` branch's site/chicago/4d/,
+#                         noindex, banner-marked, assembled by
+#                         .github/chicago-4d-dev-preview.mjs
+#
+# The dev tier is SCOPED TO chicago/4d ALONE. Every other tenant in this monorepo
+# is main-only and must never appear under a 4D preview. The artifact path stays
+# `site` regardless, so the CAD source can never enter it.
+#
+# The dev step no-ops while the `dev` ref does not exist, so this file is safe to
+# merge before the pipeline is activated — chicago-4d-pipeline-setup.yml creates
+# the branch. Whichever ref triggers a run, MAIN is always assembled at the root.
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - 'site/**'
       - '.github/workflows/deploy.yml'
+      - '.github/chicago-4d-dev-preview.mjs'
   workflow_dispatch:
 
 permissions:
@@ -23,13 +38,48 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Pages deployments can only run from main. The `github-pages` environment
+  # carries a deployment-branch policy, so a deploy job on a dev ref is REJECTED
+  # before a runner is even assigned — a 1-second failure with no steps and no
+  # logs, which reads as "nothing ran" while the preview silently stays frozen at
+  # the last main deploy. Inherited verbatim from the jobtracker pilot, which
+  # paid for this lesson.
+  #
+  # A push to dev therefore does not deploy itself: it re-enters this workflow ON
+  # MAIN, which rebuilds the whole artifact — production from main plus the /dev/
+  # preview assembled from the dev ref. workflow_dispatch is a documented
+  # GITHUB_TOKEN-triggerable event and the dispatched run is on main, so it never
+  # re-dispatches itself.
+  refresh-previews:
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-run this deploy on main (rebuilds the /chicago/4d/dev/ preview)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "push to ${GITHUB_REF#refs/heads/} — dispatching deploy.yml on main to refresh the preview"
+          gh workflow run deploy.yml --ref main
+
   deploy:
+    # Pages deploys run from main ONLY (see refresh-previews above).
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main (production is always the artifact root)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Sanity-check JS parses
         run: |
           set -e
@@ -83,6 +133,20 @@ jobs:
               p.write_text(new)
               print(f"stamped: {stamp}")
           PY
+      # The /chicago/4d/dev/ integration preview. No-ops until the `dev` ref
+      # exists, so this workflow is safe on a repo that has never activated the
+      # pipeline. Scoped to the 4D app: the script copies only site/chicago/4d/.
+      - name: Assemble the 4D dev preview (no-op until the dev ref exists)
+        run: |
+          if git fetch origin dev 2>/dev/null; then
+            sha="$(git rev-parse --short FETCH_HEAD)"
+            git worktree add _dev-src FETCH_HEAD
+            node .github/chicago-4d-dev-preview.mjs _dev-src "$sha"
+            git worktree remove --force _dev-src
+          else
+            echo "dev-preview: no 'dev' ref yet — skipping /chicago/4d/dev/"
+          fi
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

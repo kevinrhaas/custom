@@ -3,6 +3,14 @@ name: Chicago 4D — gate
 # The fast half of the two-speed build: schema, provenance, date gates,
 # referential integrity, licences, staleness, datum re-derivation, JS parse.
 # Seconds, and no Blender — the content build lives in chicago-4d-bake.yml.
+#
+# THIS IS THE DEV GATE (chicago/4d/docs/PIPELINE.md). Neither trigger carries a
+# branch filter, which is deliberate and worth stating so nobody "tidies" it into
+# `branches: [main]`: the pipeline needs this to run on PRs INTO dev and on
+# pushes TO dev, and an unfiltered trigger covers steward branches too. Merging
+# into dev is STAGE, not ship — it publishes only the /chicago/4d/dev/ preview,
+# and production moves only when the owner dispatches
+# chicago-4d-promote-to-prod.yml.
 on:
   push:
     paths:

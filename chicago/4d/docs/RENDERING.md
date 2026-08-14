@@ -1,9 +1,14 @@
 # RENDERING — the phased program toward AAA-class graphics
 
-**Status: PROPOSAL — awaiting owner review.** Nothing in this document is claimed, scheduled,
-or sanctioned for building until the owner has read it. Three framing decisions were put to
-the owner on 2026-08-14 and are recorded as RESOLVED in §8; the rest are open. When a phase
-below is picked up, it is claimed the way ROADMAP parcels are claimed (see §7).
+**Status: ACTIVE — owner reviewed and merged 2026-08-14 (PR #106).** The program is
+sanctioned and its phases are buildable. Claim a phase the way ROADMAP parcels are claimed
+(§7) before starting it.
+
+Two things bound that sanction and are not negotiable by an agent. **Phases land on `dev`,
+never on `main`** — `docs/PIPELINE.md`; production moves only when the owner dispatches
+`chicago-4d-promote-to-prod.yml`. And the **H and N tracks, plus every item still boxed
+`OWNER DECISION`, remain gated exactly as written**: activation covers the W track and the
+G0 harness, not the tracks whose cost the owner has not yet ruled on.
 
 Prerequisite reading, in order: `AGENTS.md` (the contract), `docs/GLB-CONTRACT.md` (the
 portability promise every renderer inherits), the one phase you intend to execute (§4), and
@@ -729,6 +734,22 @@ set at the G0 anchors.
    preset gets a liberty entry when implemented.
 3. **HD budget**: raising `SITE_BUDGET_MB` deliberately (order of 100 MB) when `walk-hd`
    ships is approved in principle; `walk/` stays lean regardless.
+
+**RESOLVED — owner, 2026-08-14** (second set, recorded from direct instruction):
+
+4. **The program is ACTIVE.** Reviewed and merged as PR #106. The W track and G0 are
+   buildable now; H and N stay gated behind the open decisions below.
+5. **KTX-Software on the bake runner is APPROVED.** `.github/workflows/chicago-4d-bake.yml`
+   installs the `ktx` binary so `gltf-transform` can run `--texture-compress ktx2` (W2).
+   Until W2 lands there is nothing textured in the scene, so this changes no bytes today —
+   it removes the blocker from the phase that needs it. Note the failure mode it fixes:
+   `tools/bake.sh` asks for KTX only when the binary is present, because gltf-transform
+   aborts the WHOLE optimize when it is absent — meshopt included — which silently meant no
+   compression at all on the derivatives for months.
+6. **Overnight integration targets `dev`.** Neither the hourly steward lane nor the nightly
+   bake may write to `main`. The bake branches off `dev` and PRs into `dev`; promotion to
+   production is owner-dispatch only. Recorded because it changes where every phase in this
+   document lands, not merely how it is reviewed.
 
 **OPEN** (no agent acts on these without a ruling recorded here):
 

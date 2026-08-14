@@ -17,6 +17,259 @@ not need coordinates is deliberately structured to proceed in parallel.
 
 ---
 
+## THE OVERNIGHT LANES — 2026-08-14 · **START HERE**
+
+Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activation of
+`docs/RENDERING.md` and the `dev` → `main` pipeline. Everything below:
+
+- **targets `dev`.** Branch `steward/<topic>` off `dev`, PR into `dev`, merge when the dev
+  gate is green. Production moves only when the owner dispatches
+  `chicago-4d-promote-to-prod.yml`. See `docs/PIPELINE.md`.
+- **is ONE parcel per run.** Claim it first (the K16-style heading below), check `git log`
+  and open PRs, then work only inside your parcel's file list.
+- **is disjoint by construction.** Lane 1 touches renderer and tool files; lane 2 touches
+  data and docs. **They cannot collide**, so one of each may run at the same time. Two
+  parcels from the SAME lane may not.
+- **stays vocabulary-agnostic on confidence names while K16 is in flight.** Name the three
+  levels by function — source-attested, reasoned-from-specific-evidence,
+  invented-to-fill-a-need — and read `docs/PROVENANCE.md` at your arrival date for the
+  current strings.
+- **never installs Blender.** Geometry arrives via the nightly `chicago-4d-bake.yml`, which
+  now branches off `dev` and PRs into `dev`. A parcel needing new geometry ships the
+  data/archetype half and says so.
+
+### NEXT UP — the unambiguous picks
+
+| # | lane | parcel | why first |
+|---|---|---|---|
+| 1 | RENDERING | **R-G0** | everything else measures through it |
+| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" |
+| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
+| 1 | TOWN | **T-A1** | the recipe every later block parcel reads |
+| 2 | TOWN | **T-A2** | first block of roofs through the refreshed recipe |
+| 3 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
+
+---
+
+## LANE 1 — RENDERING · phases from `docs/RENDERING.md`
+
+Acceptance numbers are copied from RENDERING §5 so a builder does not have to hold two
+documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
+can and say so.
+
+### R-G0 — the critic harness · **UNCLAIMED · NEXT UP**
+
+**Phase:** RENDERING §4 G0 · **Runner:** improve-runner (no Blender) · **Effort:** S
+
+Everything later measures through this, which is why it is first. One reproducible loop so a
+phase proves its delta in numbers rather than adjectives.
+
+**Files:** `tools/critic_shots.mjs` (new) · `tools/critic_metrics.mjs` (new) ·
+`docs/STATUS.md` (baseline numbers) · `docs/ROADMAP.md`
+
+**Acceptance:** captures byte-stable across two runs at BOTH viewports; prints its pitch
+(the prairie sweep's pitch-matching correction is inherited and not optional); a baseline
+recorded in STATUS for every RENDERING §1 metric — horizon timber column coverage, crown
+fine-detail ratio, sunlit crown G−B, shadowed darkest decile L, depth-band high-pass RMS,
+flower load. Both gates green.
+
+**Trap:** the harness must use the existing `window.__chicago4d` API (`goTo`,
+`setAnimationHold(true)`, `capture`) and must not add a second way to drive the scene.
+
+### R-W1 — calibrated light and environment · **UNCLAIMED · NEXT UP**
+
+**Phase:** RENDERING §4 W1 · **Runner:** improve-runner · **Effort:** M · **After:** R-G0
+
+Retires RENDERING §1 items 7, 8 and 11.
+
+**Files:** `tools/gen_sky_env.py` (new) · `assets/env/` (new, with `assets/LICENSES.md`) ·
+`renderers/web/js/world.js` · `renderers/web/vendor/MANIFEST` (+ `RGBELoader`) ·
+`tools/smoke_renderer.mjs`
+
+**Acceptance (RENDERING §5):** shadowed darkest decile **L ≥ 14**, no literal `(0,0,0)`;
+sunlit crown **G−B ≥ +10**; a documented white wall reads white and a brown log wall keeps
+**R/B ≈ 1.75** (measured 1.08 at the failure). Sun disc EXCLUDED from the HDRI — the direct
+sun stays on the directional light; `world.js` documents why a five-figure-radiance disc
+destroys the PMREM.
+
+**Trap:** this is the change that failed before. Tune environment intensity until materials
+keep their hue, THEN rebalance the hemisphere fill and ground bounce DOWN — otherwise total
+illuminance doubles instead of being redistributed.
+
+### R-W4 — atmosphere and the mid-field · **UNCLAIMED · NEXT UP**
+
+**Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **Effort:** L · **After:** R-G0
+
+The largest single visual gap: RENDERING §1 items 1–6.
+
+**Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` ·
+`renderers/web/js/world.js` (horizon band) · `data/flora/` (tuning only) ·
+`tools/smoke_renderer.mjs`
+
+**Acceptance (RENDERING §5):** vegetated pixels present to the fog-90 % distance; horizon
+timber column coverage **≥ 90 %**; crown fine-detail ratio **≥ 0.6**; depth-band high-pass
+RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %**; the ring seam gone
+(no constant screen row across all columns). Fog still total by 1500 m (**L17**), and
+`HAZE_MAX = 0.82` on the horizon band is **L35** — a technique that changes what either
+claims gets an appended **Revised** line in `docs/LIBERTIES.md` in the same PR.
+
+**Trap:** the ring seam is a circle of constant radius drawn on flat ground, which is why it
+lands on one screen row. Varying the radius per patch is the fix that worked for the sward;
+the same shape of fix is wanted here, not a bigger radius.
+
+### R-W5 — water, post-lite, dynamic resolution · **UNCLAIMED**
+
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **Effort:** M · **After:** R-W1
+
+**Files:** `renderers/web/js/terrain.js` (water material) · `renderers/web/js/world.js` ·
+`renderers/web/vendor/MANIFEST` (+ EffectComposer/SMAA) · `tools/smoke_renderer.mjs`
+
+**Acceptance:** RENDERING §1 item 13 retired; draw calls still **≤ 80** in the main pass with
+extra passes accounted separately; triangles within the per-tier ceilings; zero page errors
+at both viewports. **Carries R-BUG1 below** — the river edge flickers when flying, and this
+is the parcel that owns the water surface.
+
+### R-W2 — texture the town · **UNCLAIMED · SPLIT**
+
+**Phase:** RENDERING §4 W2 · **Effort:** L · **After:** R-W1
+
+**The no-Blender half (improve-runner, claimable now):** the material sheet — which surfaces
+exist, what each is made of, tiling rates, and which archetype parameter selects it — plus
+the records and archetype params that name them. **Files:** `docs/RESEARCH/materials.md`
+(new) · `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only).
+
+**The bake half (nightly bake, arrives as a dev-targeted PR):** UV layout, atlas generation
+and the actual textured GLBs. The `ktx` binary is installed on the bake runner as of
+2026-08-14 (RENDERING §8 decision 5), so `--texture-compress ktx2` can finally run.
+
+**Do not** attempt the bake half on the improve runner.
+
+### R-W3 — ambient occlusion and cascaded shadows · **UNCLAIMED · SPLIT**
+
+**Phase:** RENDERING §4 W3 · **Effort:** M · **After:** R-W2
+
+**The no-Blender half:** the AO cage specification — RENDERING §1 item 10 says the bake works
+end to end and fails because clapboard courses and window reveals a centimetre off the wall
+occlude each other (measured mean 0.265, 69 % of texels below half). It needs a **low-poly AO
+cage**, not tuning. Write the cage rule into the archetype params. **Files:**
+`generators/archetypes/*.py` (cage emission) · `docs/RESEARCH/ao-cage.md` (new).
+
+**The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.
+
+**Also here, improve-runner:** cascaded shadows in `renderers/web/js/world.js` — today one
+1024² map on a ±60 m follow ortho, nothing beyond 60 m.
+
+---
+
+## LANE 2 — TOWN COMPLETION · data only, no renderer files
+
+Carries the town toward its documented late-1835 density — the **665-roof programme** —
+through the existing generators. **This lane touches no file lane 1 touches**, which is what
+makes the two safe to run at once.
+
+**Where the count stands today: 242 structures · 152 households · 188 persons**
+(76 source-attested, 20 reasoned-from-evidence, 92 invented-to-fill-a-need).
+
+**The rules, every parcel:**
+- Recipe → structure records + household records via the existing generators
+  (`tools/generate_*_infill.py`, `tools/generate_inferred_households.py`,
+  `tools/generate_inferred_names.py`), then `tools/compile_scene.py --all`.
+- Placeholder massing from `generators/inferred_placeholder.py`. **No Blender.**
+- **Every invention grades at the invented-to-fill-a-need tier with its reasoning note.**
+  `tools/audit_confidence.py --strict` enforces the rule that nothing on an invented
+  structure may outrank the invention that put it there.
+- **Liberties appended** where a recipe embodies a compression — `docs/LIBERTIES.md` is
+  append-only, and L91 shows the class-token form for a whole programme.
+- `review_required: true` is honoured, not cleared. It blocks a scene from `released`.
+- **Residents are RECORDS and Evidence/popup content only.** The no-human-figures constraint
+  (AGENTS.md standing constraint, L1) is untouched by this lane and is not negotiable.
+
+### T-A1 — refresh the 665-roof recipe · **UNCLAIMED · NEXT UP**
+
+Every later block parcel reads this, so it goes first. Reconcile
+`data/reconstruction/*.json` against what has actually been built (242 structures), restate
+the remaining blocks as a per-block schedule with counts and families, and record what the
+gap is between today and the documented density.
+
+**Files:** `data/reconstruction/1835_665_roof_programme.json` (refresh or create) ·
+`docs/ROADMAP.md` (S10) · `docs/STATUS.md`
+
+**Acceptance:** the schedule names every remaining block, its family mix and its count; the
+arithmetic reconciles with the 242 already standing; `tools/check.sh` green.
+
+### T-A2 — the first refreshed block · **UNCLAIMED · NEXT UP**
+
+One block from T-A1's schedule: recipe → records → households → placeholder massing.
+
+**Files:** `data/structures/<block>_*.json` · `data/residents/households/<block>_*.json` ·
+`data/residents/index.json` · `data/sidecars/1835/<block>_*.json` · `docs/LIBERTIES.md`
+
+**Acceptance:** `tools/check.sh` green including `audit_confidence.py --strict` and the
+liberties coverage gate in both directions; every new value at the invented tier with a
+reasoning note; the smoke's per-structure size and no-hover gates green.
+
+### T-A3 — the second refreshed block · **UNCLAIMED · NEXT UP**
+
+As T-A2, different block. Its purpose is to prove the parcel shape repeats cleanly so the
+remaining blocks can be worked one per run without re-deciding anything.
+
+**Files:** as T-A2, different block prefix — disjoint from T-A2 by construction.
+
+### T-A4…T-An — the remaining blocks · **UNCLAIMED**
+
+One block per run, same shape, until the schedule is exhausted. Each names its own block
+prefix in its claim heading so two runs cannot take the same one.
+
+---
+
+## Bugs found and not yet fixed
+
+### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
+
+Found 2026-08-14 while gating the black-wedge fix. **79 of the terrain's 742,581 vertices
+(0.011 %) come out of the generator with normals facing DOWN** — scattered isolated points
+inside the town at ordinary elevations (e 90 n −310, e 213 n −135, e 228 n 133), not a
+contiguous patch and not at the box edge, which is why they produce no visible artefact.
+
+Distinct from the wedge that prompted the search: that was 33 of ONE tile's 99 vertices — a
+third of it — caused by `gltf-transform optimize` simplifying the ground, and it is fixed.
+These 79 are in the master and predate it. Most likely degenerate triangles or a
+normal-averaging artefact in the decimator.
+
+**Pinned, not ignored.** `tools/smoke_renderer.mjs` asserts the count cannot exceed 79, so
+the number can only go down. Fixing this lowers the constant in the same PR.
+
+**Files:** `generators/terrain_gen.py` · a terrain rebake (nightly bake lane) ·
+`tools/smoke_renderer.mjs` (lower the constant)
+
+**Runner:** the no-Blender half is diagnosis — find the 79 in the generator's own output and
+say what makes them. The rebake arrives via `chicago-4d-bake.yml`.
+
+### R-BUG1 — the river edge flickers when flying · **UNCLAIMED**
+
+Reported by the owner 2026-08-14: flying over the river, its edges flicker. Almost certainly
+**z-fighting between the water plane at the datum (y = 0) and the terrain crossing it** — the
+waterline is drawn by the depth buffer rather than by a traced outline, which is deliberate
+(`terrain.js` header: the bank line IS where the ground crosses y = 0, so the waterline can
+never drift out of step with the trace) and is exactly the configuration that co-planar
+surfaces fight in at depth-buffer precision, worse the further the camera is from the
+surface — hence "when flying".
+
+**Owned by R-W5**, which is the parcel that touches the water surface. Do not fix it in a
+lane-2 parcel or in passing.
+
+**Candidate fixes, in the order worth trying:** a small `polygonOffset` on the water material;
+raising the camera's `near` plane (a large near/far ratio is what starves depth precision at
+altitude); or a logarithmic depth buffer. Whichever is chosen, the acceptance is that **the
+waterline stays exactly where the ground crosses the datum** — a fix that moves the
+waterline has broken the thing the current design exists to guarantee, and would need a
+liberty entry.
+
+**Reproduce:** fly to the `from_above` anchor, then descend slowly toward the forks; the
+edges shimmer along the bank line.
+
+---
+
 ## K — Kevin's punch list of 2026-08-13 · **THE PRIORITY QUEUE — steward, work these first**
 
 Thirteen directions from the project owner, written up as parcels an agent can pick up cold.
@@ -798,13 +1051,20 @@ Build against synthetic geometry and flat ground. Contract in `docs/PLAN.md`. Mo
 (390×780) is a release gate from the first walkable commit — retrofitting touch into a 3D
 walkthrough later is the expensive way to do it.
 
-## R2 — Rendering program (futures) · **PROPOSAL — owner review pending**
+## R2 — Rendering program · **ACTIVE — owner reviewed and merged 2026-08-14 (PR #106)**
 
 The phased plan for higher-fidelity rendering — Track 1 (`walk/` improved in place: light,
 textures, AO, cascades, atmosphere, water, content), Track 2 (a second high-fidelity web
 renderer at `walk-hd/`), Track 3 (a native-engine renderer) — lives in `docs/RENDERING.md`,
-with per-phase gates, acceptance numbers and runner routing. Phases there are parcels;
-nothing in that document is claimed or scheduled until the owner reviews it.
+with per-phase gates, acceptance numbers and runner routing.
+
+**The W track and G0 are buildable now. H and N stay gated** behind the `OWNER DECISION`
+items in RENDERING §8, as do the open budget and distribution questions. The claimable
+parcels are the **RENDERING lane** below; each one names its RENDERING phase, its file list,
+its acceptance numbers and its runner.
+
+**Everything lands on `dev`** (`docs/PIPELINE.md`). Production moves only when the owner
+dispatches `chicago-4d-promote-to-prod.yml`.
 
 ## S3 — Milestone 0: the Sauganash, end to end
 

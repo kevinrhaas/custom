@@ -61,6 +61,30 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
   else
     echo "   no ktx binary; meshopt only (nothing in this scene is textured)"
   fi
+
+  # NEVER SIMPLIFY. `optimize` runs mesh simplification BY DEFAULT, and on this
+  # dataset that is not an optimisation, it is damage:
+  #
+  #   • The terrain is already decimated, deliberately, by generators/terrain_gen.py
+  #     at a tolerance it MEASURES — it ray-casts the decimated mesh against the
+  #     heightfield and refuses to export past 30 mm of drift. That number is the
+  #     promise that the ground you stand on is the ground you see. A second,
+  #     blind simplification pass with its own error budget breaks the promise
+  #     silently and leaves nothing to measure it against.
+  #   • Observed, not theorised: the ground went from 56,463 vertices per tile to
+  #     about 100, and 33 of one tile's 99 remaining vertices came back with
+  #     normals pointing DOWNWARD (normal.y = -1) — a hard-edged black polygon
+  #     across the south-east of the town, visible from the air. The terrain had
+  #     never been through this step before (it was the one asset gltf-transform
+  #     had never run over), so nobody had seen what it does to a large, low-relief
+  #     surface.
+  #   • The buildings are authored low-poly from archetype parameters. There is no
+  #     fat here for a simplifier to find, and the same class of normal damage on a
+  #     clapboard wall would be far harder to spot.
+  #
+  # meshopt still does the compression work; simplification was never what made
+  # the payload small.
+  compress+=(--simplify false)
   fellback=0
   for f in assets/gltf/*.glb; do
     [ -e "$f" ] || continue

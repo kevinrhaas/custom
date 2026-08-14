@@ -72,47 +72,58 @@ Agents consume committed GLBs. A stale committed GLB is a check failure, not a w
 
 ## How work ships
 
-This project runs on the Polecat fleet's continuous improvement loop —
-`kevinrhaas/polecat-platform`, focus lane `custom`, hourly, one unit of work per run. The
-steward's prompt is that repo's `.github/steward/improve.md`; its CUSTOM / CHICAGO 4D rule
-is the authority and this section is the local restatement.
+**Read `docs/PIPELINE.md` first.** Since 2026-08-14 this app runs a two-tier
+**`dev` → `main`** pipeline on the owner's instruction: *overnight work must not ship
+straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live` →
+`docs/PIPELINE.md`; ours is the two-tier form of it.
 
+- **Branch `steward/<topic>` off `dev`. PR into `dev`. Merge when the dev gate is green.**
+  Never push to `dev` or `main` directly. Ambiguous or unverified work stays an open PR
+  with the `hold` label and a written explanation.
+- **Merging into `dev` is STAGE, not ship.** It publishes only the integration preview at
+  `/custom/chicago/4d/dev/walk/?year=1835` — noindex, banner-marked, `build.json` says
+  `tier: dev`. Production is untouched.
+- **Production moves ONLY when the owner dispatches `chicago-4d-promote-to-prod.yml`.**
+  No schedule, no agent. `walk/` changes reach `main` by that dispatch and no other route.
+  The hotfix exception stands: a production emergency PRs straight into `main`, and the
+  next promotion's back-merge folds it into `dev`.
 - **Scope is `chicago/4d/` and its published mirror `site/chicago/4d/`. Nothing else.**
-  `kevinrhaas/custom` is a monorepo of unrelated personal projects — CAD, print models, the
-  Joliet game, a landing site. A run that edits any of them is out of bounds.
-- **Branch `steward/<topic>` off `main`, PR into `main`, merge your own PR when green.**
-  Never push to main. Ambiguous or unverified work stays an open PR with the `hold` label
-  and a written explanation.
-- **Both gates, in the foreground, before merging**: `tools/check.sh` (needs
-  `jsonschema` + `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND
-  1280×800, zero page errors). Mobile is a release gate. Never weaken an assertion to pass.
+  `kevinrhaas/custom` is a monorepo of unrelated personal projects — CAD, print models,
+  the Joliet game, a landing site. A run that edits any of them is out of bounds, and the
+  workflow files are outside scope too: changing one needs an interactive, owner-visible PR.
+- **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
+  `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
+  page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The
+  `--published` run is the one that matters: the source tree loads uncompressed masters and
+  the site loads compressed derivatives, and bugs have shipped in the gap twice.
 - **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
-  `site/chicago/4d/` is a generated mirror and the repo's `deploy.yml` only fires on
-  `site/**`, so skipping it ships nothing while looking merged.
+  `site/chicago/4d/` is a generated mirror and `deploy.yml` only fires on `site/**`, so
+  skipping it ships nothing while looking merged.
 - **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with all three
   authored fields blank — `v: null, ts: '', date: ''` — then run
-  `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`.
-  - `date: ''` must be *present*: the stamper fills an empty `ts` but only
-    *regenerates* a `date` that already exists, so an entry authored without the key
-    fails the contract check.
+  `node tools/stamp-changelog.mjs` and `node tools/check-changelog.mjs`. **Stamp BEFORE
+  merging to `dev`; nothing stamps later in the pipeline.**
+  - `date: ''` must be *present*: the stamper fills an empty `ts` but only *regenerates* a
+    `date` that already exists, so an entry authored without the key fails the contract check.
   - `v: null` because the number is not yours to guess. Two branches that each compute
-    "top + 1" both get it wrong, and the second to merge ships a duplicate — that cost
-    three manual renumbers on 2026-08-10 alone. The stamper assigns it after the merge;
-    `.gitattributes` (`merge=union`) keeps the merge itself conflict-free.
+    "top + 1" both get it wrong, and the second to merge ships a duplicate — that cost three
+    manual renumbers on 2026-08-10 alone. The stamper assigns it; `.gitattributes`
+    (`merge=union`) keeps the merge itself conflict-free.
   - **Re-run `check-changelog.mjs` AFTER any merge that touches this file, not only before.**
     `merge=union` runs during the merge, so both parents can be green and the result broken —
     that is exactly how `main` shipped an unparseable changelog on 2026-08-13, killing the
-    What's-new tab and this project's release feed to Manager and the launcher. `tools/check.sh`
-    now runs the contract check as a step, so a plain `./tools/check.sh` after merging covers it.
-  - Nothing stamps after merge. The file is authored inside the app because the
-    What's-new tab imports it; `publish.sh` mirrors it to
-    `site/chicago/4d/js/changelog.js`, the URL Manager and the polecat.live launcher
-    parse live, which must not move.
+    What's-new tab and this project's release feed to Manager and the launcher.
+    `tools/check.sh` runs the contract check as a step, so a plain `./tools/check.sh` after
+    merging covers it.
+  - Nothing stamps after merge. The file is authored inside the app because the What's-new
+    tab imports it; `publish.sh` mirrors it to `site/chicago/4d/js/changelog.js`, the URL
+    Manager and the polecat.live launcher parse live, which must not move.
 - **No Blender on the improve runner, and do not install one.** Geometry comes from the
-  nightly `chicago-4d-bake.yml`, which opens its own PR. A unit that needs new geometry
-  ships the data/archetype half and says so.
+  nightly `chicago-4d-bake.yml`, which branches off `dev` and **opens its PR into `dev`**.
+  A unit that needs new geometry ships the data/archetype half and says so.
 - **`docs/ROADMAP.md` is the backlog and `docs/STATUS.md` is the honest state** — update
-  both in the same PR as the work.
+  both in the same PR as the work. `docs/RENDERING.md` is the active rendering program;
+  its phases are claimed the way ROADMAP parcels are.
 
 ## Honesty rules
 

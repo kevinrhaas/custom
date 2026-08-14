@@ -1,5 +1,39 @@
 # STATUS
 
+## The rendering program is live, and overnight work no longer ships to production
+
+**2026-08-14.** Two things changed on the owner's instruction, and together they set what
+tonight's loop does.
+
+`docs/RENDERING.md` is **ACTIVE** (reviewed and merged, PR #106). The W track and the G0
+critic harness are buildable now; the H (`walk-hd`) and N (native engine) tracks and every
+remaining `OWNER DECISION` stay gated exactly as written. The approved KTX-Software install
+landed on the bake runner, which unblocks W2's textures — note what it fixes: `bake.sh` asks
+for `--texture-compress ktx2` only when the `ktx` binary is present, because gltf-transform
+aborts the *whole* optimize when it is absent, meshopt included.
+
+This app is now on a **two-tier `dev` → `main` pipeline** (`docs/PIPELINE.md`), the two-tier
+form of the fleet pilot in `kevinrhaas/jobtracker.polecat.live`. Steward parcels and the
+nightly bake branch off `dev` and PR into `dev`; merging there publishes only the integration
+preview at **`/custom/chicago/4d/dev/walk/?year=1835`** — noindex, banner-marked,
+`build.json` reporting `tier: dev`. **Production moves only when the owner dispatches
+`chicago-4d-promote-to-prod.yml`.** Promotion is gated; deploy is not, and never will be.
+
+Two defects are recorded rather than fixed, both pinned by gates so they cannot grow:
+**79 of 742,581 terrain vertices face downward** (0.011 %, isolated, no visible artefact —
+ROADMAP T-BUG2, distinct from the black wedge that was fixed today), and **the river edge
+flickers when flying** (ROADMAP R-BUG1, almost certainly depth-buffer fighting between the
+water plane and the ground crossing it, owned by the R-W5 parcel).
+
+Tonight's loop is expected to produce **one parcel per run from two lanes that cannot
+collide** (`docs/ROADMAP.md` → "THE OVERNIGHT LANES"): lane 1 RENDERING touches renderer and
+tool files, lane 2 TOWN COMPLETION touches data only. The NEXT UP picks are **R-G0** (the
+critic harness — everything later measures through it), **R-W1** (light) and **R-W4**
+(atmosphere) in lane 1; **T-A1** (refresh the 665-roof recipe), **T-A2** and **T-A3** (the
+first two blocks through it) in lane 2. Today's count is **242 structures, 152 households,
+188 persons**. Everything arrives as a PR into `dev` and waits there.
+
+
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that
 was skipped is recorded as skipped. Updated in the same commit as the work it describes.
 

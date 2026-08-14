@@ -1,0 +1,118 @@
+name: Chicago 4D — promote dev to prod
+
+# Ship the integration branch to production (chicago/4d/docs/PIPELINE.md).
+#
+# DISPATCH-ONLY, NEVER SCHEDULED. This is the owner's switch and nothing else
+# throws it. Overnight runs land on `dev` and stay there until it is thrown,
+# which is the whole reason the tier exists: main is what the public walks
+# through, and nothing reaches it while nobody is looking.
+#
+# Order matters. Main is back-merged into dev FIRST, so a hotfix that went
+# straight to main during an emergency is folded into the integration branch
+# before dev is merged forward — otherwise the promotion would silently revert
+# it. Then dev merges into main with --no-ff, so the promotion is one reviewable
+# commit and `git revert -m 1` undoes exactly it.
+#
+# Fleet doctrine, kept: PROMOTION is gated, DEPLOY is not. deploy.yml has no
+# `needs: test` and never will — a hard test gate on deploy once froze a fleet
+# site for ~21 hours. The hotfix exception stands: a production emergency PRs
+# straight into main and the next promotion's back-merge collects it.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Report what would be promoted, then stop
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: chicago-4d-promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install --quiet jsonschema pyproj
+
+      - name: What is on dev
+        id: survey
+        run: |
+          set -e
+          if ! git fetch origin dev 2>/dev/null; then
+            echo "::error::dev branch missing — dispatch chicago-4d-pipeline-setup.yml first."
+            exit 1
+          fi
+          COUNT="$(git rev-list --count main..origin/dev)"
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "$COUNT commit(s) on dev ahead of main:"
+          git log --oneline main..origin/dev | head -40
+          # Anything outside the 4D app's scope is a red flag on a promotion
+          # whose whole purpose is the 4D app. Reported, not blocked — the owner
+          # dispatched this and may have a reason.
+          OUT="$(git diff --name-only main..origin/dev -- . ':(exclude)chicago/4d' ':(exclude)site/chicago/4d' | head -20)"
+          if [ -n "$OUT" ]; then
+            echo "::warning::dev touches paths outside chicago/4d:"
+            printf '%s\n' "$OUT"
+          fi
+
+      - name: Stop here on a dry run
+        if: inputs.dry_run
+        run: |
+          echo "dry_run — nothing promoted."
+          exit 0
+
+      - name: Back-merge main into dev, then merge dev into main
+        if: steps.survey.outputs.count != '0'
+        run: |
+          set -e
+          git config user.name  "polecat-ci"
+          git config user.email "ci@polecat.live"
+
+          # 1. main → dev, so a hotfix is never lost by the forward merge.
+          git checkout -B dev origin/dev
+          if ! git merge --no-edit main -m "Back-merge main into dev before promotion"; then
+            echo "::error::main does not merge cleanly into dev. Resolve on a branch and re-dispatch."
+            exit 1
+          fi
+          git push origin dev
+
+          # 2. The changelog contract is checked AFTER the merge, not only
+          #    before: `merge=union` runs during the merge, so both parents can
+          #    be green and the result broken. That is exactly how main once
+          #    shipped an unparseable changelog and killed the release feed.
+          (cd chicago/4d && node tools/check-changelog.mjs)
+
+          # 3. dev → main, one reviewable commit.
+          git checkout main
+          COUNT="$(git rev-list --count main..dev)"
+          if [ "$COUNT" = "0" ]; then
+            echo "Nothing to promote after the back-merge."
+            exit 0
+          fi
+          git merge --no-ff dev -m "Promote chicago/4d dev→prod: $COUNT commit(s)"
+          (cd chicago/4d && node tools/check-changelog.mjs)
+          git push origin main
+          echo "Promoted $COUNT commit(s) to main."
+
+      - name: Publish (GITHUB_TOKEN pushes don't trigger deploy — dispatch it)
+        if: steps.survey.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
