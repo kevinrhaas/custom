@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build per-scene passages of BOTH texts for Wau-Bun Part 1.
+"""Build per-scene passages of BOTH texts for every part of Wau-Bun.
 
-Writes site/wau-bun/js/data-text-part1.js — one modern and one 1856 passage
-per scene id in js/data-part1.js.
+Writes site/wau-bun/js/data-text-part{1,2,3}.js — one modern and one 1856
+passage per scene id in the matching js/data-part{1,2,3}.js.
 
     python3 wau-bun/build-text.py [SOURCE_DIR]
 
@@ -17,22 +17,27 @@ the epub is a 500 KB public-domain artefact better fetched than vendored.
 How the two texts get aligned: scene boundaries are hand-checked LINE RANGES
 in waubun.txt (below). For the 1856 text, each scene's opening paragraph is
 matched against the paragraphs of the same chapter by rare-word overlap, and
-the scene runs from there to the next scene's match. Every boundary in Part 1
-matched at 0.88-1.0; the script prints the score for each so a bad boundary
-cannot pass silently.
+the scene runs from there to the NEXT MATCH IN THE CHAPTER — scenes are sorted
+by where they landed, not by scene order, because a couple of scenes (Nelly
+Lytle's captivity in ch. XXII) are told out of narrative order. The script
+prints the match score for every boundary so a bad one cannot pass silently.
+
+The Part 2 and 3 ranges were proposed by a monotonic alignment of each scene's
+own summary against its chapter's paragraphs, then corrected by hand.
 """
 import json, re, sys, zipfile
 from html.parser import HTMLParser
 
 SRC = (sys.argv[1] if len(sys.argv) > 1 else 'wau-bun/sources').rstrip('/') + '/'
-OUT = 'site/wau-bun/js/data-text-part1.js'
+OUT = 'site/wau-bun/js/data-text-part%d.js'
 RETOLD = 'wau-bun/modern/'   # hand-written retellings, one <scene-id>.txt per scene
 
 # ---------- modern text ----------
 mod = open(SRC + 'waubun.txt').read().split('\n')
 
-# scene id -> (chapter, first line, last line) in waubun.txt — hand-checked
-RANGES = [
+# scene id -> (chapter, first line, last line) in waubun.txt — hand-checked.
+# One list per part; a part's list must cover its chapters with no gaps.
+PART1 = [
     ('s1',  'I',    194, 198), ('s2',  'I',    199, 200), ('s3',  'I',    201, 205),
     ('s4',  'II',   209, 213), ('s5',  'II',   214, 226), ('s6',  'II',   227, 240), ('s7', 'II', 241, 241),
     ('s8',  'III',  245, 254), ('s9',  'III',  255, 287), ('s10', 'III',  288, 291),
@@ -52,6 +57,57 @@ RANGES = [
     ('s42', 'XVI',  890, 907), ('s43', 'XVI',  908, 921), ('s44', 'XVI', 922, 924), ('s45', 'XVI', 925, 932),
     ('s46', 'XVII', 936, 955), ('s47', 'XVII', 956, 961), ('s48', 'XVII', 962, 980), ('s49', 'XVII', 981, 1010),
 ]
+
+PART2 = [
+    ('p2s1',  'XVIII', 1014, 1023), ('p2s2',  'XVIII', 1024, 1034), ('p2s3',  'XVIII', 1035, 1041),
+    ('p2s4',  'XVIII', 1042, 1050), ('p2s5',  'XVIII', 1051, 1057), ('p2s6',  'XVIII', 1058, 1067),
+    ('p2s7',  'XVIII', 1068, 1077), ('p2s8',  'XVIII', 1078, 1082), ('p2s9',  'XVIII', 1083, 1089),
+    ('p2s10', 'XVIII', 1090, 1096), ('p2s11', 'XVIII', 1097, 1101),
+    ('p2s12', 'XIX',   1105, 1110), ('p2s13', 'XIX',   1111, 1111), ('p2s14', 'XIX',   1112, 1125),
+    ('p2s15', 'XIX',   1126, 1135), ('p2s16', 'XIX',   1136, 1140), ('p2s17', 'XIX',   1141, 1145),
+    ('p2s18', 'XIX',   1146, 1157), ('p2s19', 'XIX',   1158, 1173), ('p2s20', 'XIX',   1174, 1184),
+    ('p2s21', 'XIX',   1185, 1188), ('p2s22', 'XIX',   1189, 1198), ('p2s23', 'XIX',   1199, 1212),
+    ('p2s24', 'XX',    1216, 1221), ('p2s25', 'XX',    1222, 1226), ('p2s26', 'XX',    1227, 1232),
+    ('p2s27', 'XX',    1233, 1238), ('p2s28', 'XX',    1239, 1267),
+    ('p2s29', 'XXI',   1271, 1292),
+    # ch. XXII tells the captivity out of order: the village (s33) is narrated
+    # before the flashback to the two hiding children (s32), so these two ranges
+    # run backwards on purpose.
+    ('p2s30', 'XXII',  1296, 1311), ('p2s31', 'XXII',  1312, 1321), ('p2s33', 'XXII',  1322, 1326),
+    ('p2s32', 'XXII',  1327, 1342), ('p2s34', 'XXII',  1343, 1348), ('p2s35', 'XXII',  1349, 1352),
+    ('p2s36', 'XXII',  1353, 1367), ('p2s37', 'XXII',  1368, 1388),
+    ('p2s38', 'XXIII', 1393, 1417), ('p2s39', 'XXIII', 1418, 1435), ('p2s40', 'XXIII', 1436, 1446),
+]
+
+PART3 = [
+    ('p3s1',  'XXIV',    1450, 1455), ('p3s2',  'XXIV',    1456, 1461), ('p3s3',  'XXIV',    1462, 1473),
+    ('p3s4',  'XXIV',    1474, 1502), ('p3s5',  'XXIV',    1503, 1515),
+    ('p3s6',  'XXV',     1519, 1530), ('p3s7',  'XXV',     1531, 1547), ('p3s8',  'XXV',     1548, 1574),
+    ('p3s9',  'XXV',     1575, 1602),
+    ('p3s10', 'XXVI',    1606, 1611), ('p3s11', 'XXVI',    1612, 1628), ('p3s12', 'XXVI',    1629, 1641),
+    ('p3s13', 'XXVI',    1642, 1648),
+    ('p3s14', 'XXVII',   1652, 1659), ('p3s15', 'XXVII',   1660, 1664), ('p3s16', 'XXVII',   1665, 1670),
+    ('p3s17', 'XXVII',   1671, 1676), ('p3s18', 'XXVII',   1677, 1682),
+    ('p3s19', 'XXVIII',  1686, 1697), ('p3s20', 'XXVIII',  1698, 1706), ('p3s21', 'XXVIII',  1707, 1723),
+    ('p3s22', 'XXVIII',  1724, 1732),
+    ('p3s23', 'XXIX',    1736, 1784),
+    ('p3s24', 'XXX',     1788, 1860),
+    ('p3s25', 'XXXI',    1864, 1875), ('p3s26', 'XXXI',    1876, 1923),
+    ('p3s27', 'XXXII',   1927, 1938), ('p3s28', 'XXXII',   1939, 1940), ('p3s29', 'XXXII',   1941, 1983),
+    ('p3s30', 'XXXIII',  1987, 1997), ('p3s31', 'XXXIII',  1998, 2042),
+    ('p3s32', 'XXXIV',   2047, 2049), ('p3s33', 'XXXIV',   2050, 2055), ('p3s34', 'XXXIV',   2056, 2072),
+    ('p3s35', 'XXXIV',   2073, 2075), ('p3s36', 'XXXIV',   2076, 2096), ('p3s37', 'XXXIV',   2097, 2125),
+    ('p3s38', 'XXXV',    2129, 2135), ('p3s39', 'XXXV',    2136, 2138), ('p3s40', 'XXXV',    2139, 2152),
+    ('p3s41', 'XXXV',    2153, 2164), ('p3s42', 'XXXV',    2165, 2178),
+    ('p3s43', 'XXXVI',   2182, 2188), ('p3s44', 'XXXVI',   2189, 2195), ('p3s45', 'XXXVI',   2196, 2208),
+    ('p3s46', 'XXXVI',   2209, 2224),
+    ('p3s47', 'XXXVII',  2228, 2239), ('p3s48', 'XXXVII',  2240, 2244), ('p3s49', 'XXXVII',  2245, 2247),
+    ('p3s50', 'XXXVII',  2248, 2264),
+    ('p3s51', 'XXXVIII', 2268, 2273), ('p3s52', 'XXXVIII', 2274, 2277), ('p3s53', 'XXXVIII', 2278, 2280),
+    ('p3s54', 'XXXVIII', 2281, 2284), ('p3s55', 'XXXVIII', 2285, 2293), ('p3s56', 'XXXVIII', 2294, 2302),
+]
+
+PARTS = [(1, PART1), (2, PART2), (3, PART3)]
 
 STRAY = 'The Project Gutenberg eBook of Wau-Bun'
 SEP = re.compile(r'^[\*\s\u2022]+$')
@@ -101,7 +157,12 @@ orig_ch = {}
 for n, (name, i) in enumerate(starts):
     end = starts[n + 1][1] if n + 1 < len(starts) else len(blocks)
     roman = re.match(r'^CHAPTER\s+([IVXL]+)', name, re.I).group(1).upper()
-    orig_ch[roman] = [s for (t, s) in blocks[i + 2:end]]
+    body = []
+    for (t, s) in blocks[i + 2:end]:
+        if t in ('h1', 'h2', 'h3'): break   # the last chapter runs straight into APPENDIX
+        if s.startswith(STRAY) or SEP.match(s): continue   # page headers, scene rules
+        body.append(s)
+    orig_ch[roman] = body
 
 def norm(s):
     return re.sub(r'[^a-z ]', ' ', s.lower())
@@ -123,70 +184,86 @@ def retold(sid):
     paras = [' '.join(b.split()) for b in re.split(r'\n\s*\n', raw) if b.strip()]
     return paras or None
 
-out = {}
-report = []
-for k, (sid, roman, a, b) in enumerate(RANGES):
-    mp = modern_paras(a, b)
-    ops = orig_ch[roman]
-    # locate the original paragraph that best matches this scene's opening paragraph
-    anchor = ' '.join(mp[:2])
-    best_i, best_s = 0, -1.0
-    for i, op in enumerate(ops):
-        sc = max(score(mp[0], op), score(anchor, ' '.join(ops[i:i + 2])))
-        if sc > best_s: best_i, best_s = i, sc
-    rt = retold(sid)
-    out[sid] = {'roman': roman, 'modern': rt or mp, 'retold': bool(rt),
-                '_ostart': best_i, '_oscore': round(best_s, 3)}
-    report.append((sid, roman, len(out[sid]['modern']), best_i, round(best_s, 3), bool(rt)))
+def build(ranges):
+    """Align one part: modern paragraphs by line range, 1856 paragraphs by
+    matching each scene's opening against its chapter."""
+    out, report = {}, []
+    for sid, roman, a, b in ranges:
+        mp = modern_paras(a, b)
+        if not mp:
+            sys.exit('empty modern range for %s (%d-%d)' % (sid, a, b))
+        ops = orig_ch[roman]
+        # locate the original paragraph that best matches this scene's opening
+        anchor = ' '.join(mp[:2])
+        best_i, best_s = 0, -1.0
+        for i, op in enumerate(ops):
+            sc = max(score(mp[0], op), score(anchor, ' '.join(ops[i:i + 2])))
+            if sc > best_s: best_i, best_s = i, sc
+        rt = retold(sid)
+        out[sid] = {'roman': roman, 'modern': rt or mp, 'retold': bool(rt),
+                    '_ostart': best_i, '_oscore': round(best_s, 3)}
+        report.append((sid, roman, len(out[sid]['modern']), best_i, round(best_s, 3), bool(rt)))
 
-# original ranges = from this scene's start to the next scene's start in the same chapter
-ids = [r[0] for r in RANGES]
-for i, sid in enumerate(ids):
-    rec = out[sid]
-    nxt = out[ids[i + 1]] if i + 1 < len(ids) else None
-    end = nxt['_ostart'] if (nxt and nxt['roman'] == rec['roman']) else len(orig_ch[rec['roman']])
-    rec['original'] = orig_ch[rec['roman']][rec['_ostart']:end]
+    # 1856 ranges: each scene runs to the NEXT MATCH within its chapter. Sort by
+    # where the scenes landed rather than by scene order — ch. XXII narrates two
+    # of its scenes out of story order, and their ranges legitimately run back.
+    by_ch = {}
+    for sid, roman, _, _ in ranges:
+        by_ch.setdefault(roman, []).append(sid)
+    for roman, sids in by_ch.items():
+        sids = sorted(sids, key=lambda x: out[x]['_ostart'])
+        for i, sid in enumerate(sids):
+            st = out[sid]['_ostart']
+            end = out[sids[i + 1]]['_ostart'] if i + 1 < len(sids) else len(orig_ch[roman])
+            out[sid]['original'] = orig_ch[roman][st:end]
+    return out, report
 
 def words(paras): return len(' '.join(paras).split())
 
-print(f"{'scene':6} {'ch':6} {'mod¶':>5} {'orig¶':>6} {'match':>6} {'words':>13} {'len%':>5}  src")
-short, thin = [], []
-for sid, roman, nm, oi, sc, rt in report:
-    rec = out[sid]
-    wm, wo = words(rec['modern']), words(rec['original'])
-    pct = round(100 * wm / wo) if wo else 0
-    print(f"{sid:6} {roman:6} {nm:>5} {len(rec['original']):>6} {sc:>6} "
-          f"{wm:>6}/{wo:<6} {pct:>4}%  {'retold' if rt else 'docx'}")
-    if sc < 0.15: short.append(sid)
-    # the retellings must not quietly shed detail
-    if rt and pct < 90: thin.append((sid, pct))
+fail = False
+for number, ranges in PARTS:
+    out, report = build(ranges)
+    ids = [r[0] for r in ranges]
+    print('\n=== PART %d ===' % number)
+    print(f"{'scene':6} {'ch':8} {'mod¶':>5} {'orig¶':>6} {'match':>6} {'words':>13} {'len%':>5}  src")
+    short, thin, empty = [], [], []
+    for sid, roman, nm, oi, sc, rt in report:
+        rec = out[sid]
+        wm, wo = words(rec['modern']), words(rec['original'])
+        pct = round(100 * wm / wo) if wo else 0
+        print(f"{sid:6} {roman:8} {nm:>5} {len(rec['original']):>6} {sc:>6} "
+              f"{wm:>6}/{wo:<6} {pct:>4}%  {'retold' if rt else 'docx'}")
+        if sc < 0.15: short.append(sid)
+        if not rec['original']: empty.append(sid)
+        if rt and pct < 90: thin.append((sid, pct))   # retellings must not shed detail
 
-done = sum(1 for r in report if r[5])
-print(f"\nretold: {done}/{len(report)} scenes · "
-      f"{words([p for r in report if r[5] for p in out[r[0]]['modern']]):,} of "
-      f"{words([p for r in report for p in out[r[0]]['original']]):,} words")
-if short:
-    print('WEAK ANCHOR MATCHES (check these):', ', '.join(short))
-if thin:
-    print('RETELLINGS THAT LOST LENGTH (fix these):',
-          ', '.join(f'{s} at {p}%' for s, p in thin))
-    sys.exit(1)
+    done = sum(1 for r in report if r[5])
+    print(f"part {number}: {len(report)} scenes · retold {done} · "
+          f"{words([p for r in report for p in out[r[0]]['modern']]):,} modern words vs "
+          f"{words([p for r in report for p in out[r[0]]['original']]):,} of 1856")
+    if short: print('  WEAK ANCHOR MATCHES (check these):', ', '.join(short)); fail = True
+    if empty: print('  EMPTY 1856 PASSAGE (check these):', ', '.join(empty)); fail = True
+    if thin:
+        print('  RETELLINGS THAT LOST LENGTH (fix these):',
+              ', '.join(f'{s} at {p}%' for s, p in thin)); fail = True
 
-# ---------- emit ----------
-js = ['/* Wau-Bun — Part 1 full text, one passage per scene.',
-      '   modern:   contemporary English. retold:true = rewritten for this app in a',
-      '             plain modern voice, nothing cut; retold:false = the earlier, lighter',
-      '             modernization, still awaiting its rewrite',
-      '   original: the 1856 first-edition text (Project Gutenberg #12183, public domain)',
-      '   Generated — do not hand-edit. Loaded on demand by the reader, never on first paint. */',
-      'var WAUBUN_TEXT_PART1 = {']
-for sid in ids:
-    rec = out[sid]
-    js.append('  %s: {' % sid)
-    js.append('    retold: %s,' % ('true' if rec['retold'] else 'false'))
-    js.append('    modern: %s,' % json.dumps(rec['modern'], ensure_ascii=False))
-    js.append('    original: %s' % json.dumps(rec['original'], ensure_ascii=False))
-    js.append('  },')
-js.append('};')
-open(OUT, 'w').write('\n'.join(js) + '\n')
-print('\nwrote ' + OUT)
+    # ---------- emit ----------
+    js = ['/* Wau-Bun — Part %d full text, one passage per scene.' % number,
+          '   modern:   contemporary English. retold:true = rewritten for this app in a',
+          '             plain modern voice, nothing cut; retold:false = the earlier, lighter',
+          '             modernization, still awaiting its rewrite',
+          '   original: the 1856 first-edition text (Project Gutenberg #12183, public domain)',
+          '   Generated — do not hand-edit. Loaded on demand by the reader, never on first paint. */',
+          'var WAUBUN_TEXT_PART%d = {' % number]
+    for sid in ids:
+        rec = out[sid]
+        js.append('  %s: {' % sid)
+        js.append('    retold: %s,' % ('true' if rec['retold'] else 'false'))
+        js.append('    modern: %s,' % json.dumps(rec['modern'], ensure_ascii=False))
+        js.append('    original: %s' % json.dumps(rec['original'], ensure_ascii=False))
+        js.append('  },')
+    js.append('};')
+    open(OUT % number, 'w').write('\n'.join(js) + '\n')
+    print('  wrote ' + OUT % number)
+
+if fail: sys.exit(1)
