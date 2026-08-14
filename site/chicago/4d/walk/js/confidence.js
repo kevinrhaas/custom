@@ -108,12 +108,24 @@ const FRAGMENT_DISCARD = /* glsl */`
   //
   // Banded from the same thresholds as levelOf() so the shader and the labels
   // cannot disagree about which level a fragment is in.
-  float lvlI = step(0.25, vConfidence);
-  float lvlR = step(0.75, vConfidence);
-  float hide = uHideLevel.x * (1.0 - lvlI)
-             + uHideLevel.y * lvlI * (1.0 - lvlR)
-             + uHideLevel.z * lvlR;
-  if (hide > 0.0) discard;
+  // GUARD FIRST, exactly as the mode check below does, and for the reason
+  // written there: off must mean UNTOUCHED. The first version of this ran the
+  // step()/discard arithmetic on every fragment of every patched material
+  // whenever the page was open, with the uniform at (0,0,0) — and the river
+  // disappeared. The whole town rendered one flat olive: the water surface was
+  // gone and you were looking at the riverbed. Nothing was being hidden and the
+  // uniform proved it; the cost was in having the branch there at all.
+  //
+  // So the hide path is entered only when something is actually hidden, and a
+  // visitor who never opens the panel gets the shader that existed before it.
+  if (uHideLevel.x + uHideLevel.y + uHideLevel.z > 0.0) {
+    float lvlI = step(0.25, vConfidence);
+    float lvlR = step(0.75, vConfidence);
+    float hide = uHideLevel.x * (1.0 - lvlI)
+               + uHideLevel.y * lvlI * (1.0 - lvlR)
+               + uHideLevel.z * lvlR;
+    if (hide > 0.0) discard;
+  }
 
   // Off must mean untouched. Guard on the mode BEFORE reading the channel, so a
   // bad value cannot reach the arithmetic at all when the view is switched off.

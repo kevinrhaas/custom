@@ -343,6 +343,70 @@ for (const [label, viewport, touch] of [
       dBack.mean <= 0.1 && dBack.worst <= 3,
       `residual mean ${dBack.mean?.toFixed(2)}, worst-cell delta ${dBack.worst}`);
 
+    // --- the confidence machinery is INERT when nothing is switched on -------
+    //
+    // This is the assertion I owed after shipping a regression the whole suite
+    // waved through. Adding the hide-a-level branch to the shared fragment
+    // patch made the RIVER DISAPPEAR: the water surface stopped drawing and the
+    // town rendered one flat olive from the air, with nothing hidden and the
+    // uniform provably at (0,0,0). Every existing check passed, because they
+    // all compare a frame against another frame taken the same way — and both
+    // were equally wrong.
+    //
+    // What catches it is a claim about the WORLD rather than about a delta: the
+    // river is there, it is much darker than the prairie, and from above it
+    // occupies a large part of the frame. If the water stops drawing, the
+    // contrast between the darkest and the median cell collapses.
+const terrainLoad = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      let water = null;
+      let groundTiles = 0;
+      api.scene3d.traverse((o) => {
+        if (!o.isMesh) return;
+        if (/^water__/.test(o.name || '')) water = o;
+        if (/^terrain__/.test(o.name || '')) groundTiles += 1;
+      });
+      let box = null;
+      if (water) {
+        water.geometry.computeBoundingBox();
+        const b = water.geometry.boundingBox;
+        box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
+      }
+      return { box, groundTiles,
+               terrainProblems: api.problems.filter((t) => /terrain|water/i.test(t)) };
+    });
+    // The authored water surface spans the whole modelled box — about 5.4 km by
+    // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere
+    // near each other, which makes this a reliable test of "did the real river
+    // load" rather than a test of how the river looks.
+    //
+    // It exists because the answer was NO on the published site and every check
+    // passed: terrain.js built its own GLTFLoader without the meshopt decoder,
+    // which was harmless for as long as the terrain GLBs were the only assets
+    // gltf-transform had never been run over. The moment they were rebaked, the
+    // ground quietly fell back to a grid rebuilt from the heightfield — which
+    // looks right — and the water fell back to a flat square laid over the whole
+    // town. The river vanished and the place read as flooded.
+    check(`${label}: the traced river loaded, rather than the flat fallback plane`,
+      terrainLoad.box !== null
+      && terrainLoad.box.w > 3000 && terrainLoad.box.d > 3000
+      && terrainLoad.groundTiles > 1,
+      terrainLoad.box
+        ? `water ${terrainLoad.box.w} x ${terrainLoad.box.d} m across `
+          + `(the fallback is 2400 x 2400), ${terrainLoad.groundTiles} ground tile(s)`
+        : 'no water mesh in the scene at all');
+    // And the renderer's OWN account of it, which is the part that was ignored:
+    // it pushed the fallback to `problems` every single load and nothing read it.
+    check(`${label}: the terrain and river report no load problems`,
+      terrainLoad.terrainProblems.length === 0,
+      terrainLoad.terrainProblems.slice(0, 2).join(' | '));
+    await page.evaluate(() => {
+      const api = window.__chicago4d;
+      api.setFly(false);
+      api.walker.teleport({ local_e: 107, local_n: -103, yaw_deg: 180 });
+    });
+    await page.waitForTimeout(250);
+
     // --- the invented residents have names now (K18) ------------------------
     //
     // Every reconstructed resident used to be "A baker (inferred resident,

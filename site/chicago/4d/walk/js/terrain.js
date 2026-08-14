@@ -49,6 +49,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { HORIZON_HAZE } from './world.js';
+import { loadMeshoptDecoder } from './scene-loader.js';
 
 export const DEG = Math.PI / 180;
 
@@ -293,7 +294,15 @@ export async function createTerrain({
   let water = null;
   const waterPath = meta?.glb?.water;
   if (waterPath && assetBase) {
-    water = await loadGlbMesh(new URL(waterPath, assetBase)).catch(() => null);
+    // NOT swallowed. The fallback below is a flat square the size of the town,
+    // and substituting it silently for the traced river is the difference
+    // between a reconstruction and a flood — the failure has to reach the
+    // problems list where the gate and the Evidence panel can see it.
+    water = await loadGlbMesh(new URL(waterPath, assetBase)).catch((err) => {
+      problems.push(`water: ${waterPath} did not load (${err.message}) — falling back to a `
+        + 'flat plane at the datum, which is NOT the traced river');
+      return null;
+    });
   }
   if (!water) {
     const g = new THREE.PlaneGeometry(2400, 2400, 1, 1);
@@ -506,6 +515,21 @@ export function dequantizeGeometry(geo) {
 async function loadGlbMesh(url) {
   const buffer = await (await fetchOk(url)).arrayBuffer();
   const loader = new GLTFLoader();
+  // THE GROUND AND THE RIVER ARE COMPRESSED TOO, and this loader is not the one
+  // scene-loader.js configures for the buildings.
+  //
+  // It went unnoticed because it was true and harmless for months: the terrain
+  // GLBs were the only assets gltf-transform had never been run over, so a bare
+  // loader could read them. The moment they were rebaked they came back
+  // meshopt-compressed, this loader threw `setMeshoptDecoder must be called
+  // before loading compressed files`, and both meshes fell back — the ground to
+  // a grid rebuilt from the heightfield, which looks perfectly right, and the
+  // WATER to a flat 2400 m square laid over the whole town. The river vanished
+  // and the town read as flooded, which is exactly what a visitor reported.
+  //
+  // The decoder is shared with scene-loader's, so there is one instance and one
+  // place that decides how compressed assets are read.
+  loader.setMeshoptDecoder(await loadMeshoptDecoder());
   const gltf = await new Promise((resolve, reject) => {
     loader.parse(buffer, String(url), resolve, reject);
   });
