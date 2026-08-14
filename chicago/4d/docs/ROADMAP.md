@@ -487,6 +487,35 @@ The `ktx` install stays — W2 needs it and it costs nothing idle.
 into the renderer, prove it loads a textured asset at both viewports, and only then set
 `BAKE_KTX2=1`.
 
+### B-BUG3 — the revived bake fired on every merge and piled up PRs · **FIXED 2026-08-14**
+
+The third and last consequence of the bake never having worked: nobody had ever seen what it
+does when it *succeeds* in a repo whose loop is running.
+
+`chicago-4d-bake.yml` triggered on pushes touching `chicago/4d/data/**`, and carried no
+`concurrency` group (both `deploy.yml` and the promotion have one). That was sound when data
+changed rarely. It is not sound now — the steward loop's entire job this week is adding
+structures, so nearly every merge into `dev` touches `data/**`. Between 06:42 and 12:19 the
+bake opened **seven** PRs — #107, #110, #111, #113, #114, #116, #117 — each a full
+regeneration of the same binary assets, each ~20 minutes of Blender, all mutually conflicting,
+and all but the newest already stale against a `dev` that had moved on. Two pairs
+(`31786785408`/`31786796289`, `31793910650`/`31793926909`) were racing runs seconds apart.
+
+The workflow's own header said "never on every commit". The trigger list quietly stopped
+honouring it once the loop changed what a typical commit looks like.
+
+**Fixed** by dropping `data/**` from the push trigger — a change to a GENERATOR or to
+`bake.sh` alters how everything is built and earns an immediate rebake, while a data change is
+exactly what the nightly is for — and by adding `concurrency: { group: chicago-4d-bake,
+cancel-in-progress: true }`. A superseded bake has nothing to offer: its output is measured
+against a `dev` that has already moved, so cancelling it is the correct outcome rather than a
+lost result.
+
+**Left for the owner:** the seven open PRs. They hold real baked geometry and only the newest
+(#117, based on the current `dev`) is current; the rest are stale and conflict with it. Closing
+six and merging one is a judgement call about content, not a workflow defect, so it has not
+been made here.
+
 ### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
 
 Found 2026-08-14 while gating the black-wedge fix. **79 of the terrain's 742,581 vertices
