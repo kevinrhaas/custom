@@ -1250,6 +1250,53 @@ const terrainLoad = await page.evaluate(() => {
         ? absurd.slice(0, 5).map((s) => `${s.id} ${s.size.map((v) => v.toFixed(1)).join('x')}`).join('; ')
         : `${scale.perStructure.length} structures within range`);
 
+    // --- nothing hovers -----------------------------------------------------
+    //
+    // Reported from use: "the building is hovering above the ground". Buildings
+    // were stood on the ground sampled at ONE point — their origin — which is
+    // right on flat land and wrong exactly where it shows. This town is nearly
+    // flat, so it was right for 221 of 236 structures and wrong for the fifteen
+    // on the riverbank and the fort mound, where the land falling away IS the
+    // point. The Wolf Point Tavern hung 1.84 m in the air on its river side.
+    //
+    // Measured through the REAL instance matrix, at the four base corners, in
+    // world space. My first pass at this measurement re-derived the placement
+    // instead of reading it and sampled an unrotated box, which reported eight
+    // failures that did not exist — a gate that guesses at what the renderer did
+    // is worth nothing.
+    const hover = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const bounds = api.buildings.instanceBounds();
+      const rows = [];
+      for (const [id, rec] of api.registry) {
+        const p = rec?.sidecar?.placement;
+        if (!p || typeof p.local_e !== 'number') continue;
+        if (p.vertical_anchor === 'water') continue;   // bridges sit at the datum
+        const b = bounds[id];
+        const m = api.buildings.matrixOf(id);
+        if (!b || !m) continue;
+        let gap = -Infinity;
+        for (const cx of [b.min[0], b.max[0]]) {
+          for (const cz of [b.min[2], b.max[2]]) {
+            const e = m.elements;
+            const wx = e[0] * cx + e[4] * b.min[1] + e[8] * cz + e[12];
+            const wy = e[1] * cx + e[5] * b.min[1] + e[9] * cz + e[13];
+            const wz = e[2] * cx + e[6] * b.min[1] + e[10] * cz + e[14];
+            gap = Math.max(gap, wy - api.terrain.surfaceHeight(wx, -wz));
+          }
+        }
+        rows.push({ id, gap: +gap.toFixed(3) });
+      }
+      rows.sort((a, b2) => b2.gap - a.gap);
+      return { n: rows.length, floating: rows.filter((r) => r.gap > 0.15), worst: rows[0] };
+    });
+    check(`${label}: no building hovers above the ground beneath it`,
+      hover.n > 200 && hover.floating.length === 0,
+      hover.floating.length
+        ? `${hover.floating.length}/${hover.n} float: `
+          + hover.floating.slice(0, 4).map((r) => `${r.id} ${r.gap} m`).join(', ')
+        : `${hover.n} structures, worst corner ${hover.worst?.gap} m`);
+
     // Where a record states a wall height, the render has to honour it. This is
     // the provenance check hiding inside the scale check: a documented number
     // that the geometry ignores is a claim the walkthrough cannot support.
@@ -1465,17 +1512,30 @@ const terrainLoad = await page.evaluate(() => {
 
       let anchoredBuildings = 0;
       let worstBuildingAnchor = 0;
+      let deepestBedding = 0;
       let exchangeAnchor = null;
       for (const [id, record] of a.registry.entries()) {
         const p = record.sidecar?.placement;
         const at = a.buildings.positionOf(id);
         if (!p || !at) continue;
+        // The anchor is the LOWEST ground under the footprint, not the ground at
+        // the origin — see buildings.groundUnder(). So the origin sample is a
+        // CEILING here, not an equality: a building on a slope beds down to its
+        // downhill corner and sits below its own origin by up to the relief
+        // beneath it. What this still pins is that the anchor comes from the
+        // terrain sampler at all, and never floats above it; the companion check
+        // "no building hovers above the ground beneath it" measures the corners
+        // through the real instance matrix.
         const expected = p.vertical_anchor === 'water'
           ? waterY : a.terrain.surfaceHeight(p.local_e ?? 0, p.local_n ?? 0);
+        // Signed: above the origin's ground is a fault, below it is bedding.
+        worstBuildingAnchor = Math.max(worstBuildingAnchor, at.y - expected);
+        deepestBedding = Math.max(deepestBedding, expected - at.y);
         const error = Math.abs(at.y - expected);
-        worstBuildingAnchor = Math.max(worstBuildingAnchor, error);
         anchoredBuildings++;
         if (id === 'exchange_coffee_house') {
+          // Flat ground here, so the origin sample and the footprint minimum
+          // agree and the equality is still the right assertion for this one.
           exchangeAnchor = { y: at.y, expected, error };
         }
       }
@@ -1513,7 +1573,8 @@ const terrainLoad = await page.evaluate(() => {
         drownedTreeStations: drownedTreeStations.length,
         lowestTreeStation, waterY,
         treeRejectedBelowWaterline: a.trees.stats?.rejectedBelowWaterline ?? null,
-        anchoredBuildings, worstBuildingAnchor, exchangeAnchor, worstDrySurfaceAlias,
+        anchoredBuildings, worstBuildingAnchor, deepestBedding, exchangeAnchor,
+        worstDrySurfaceAlias,
         clearsLake: a.streets.blocksGrowth(452.5, -110.4),
         keepsBlockGreen: !a.streets.blocksGrowth(510, -180),
         crossing, approaching,
@@ -2010,10 +2071,16 @@ const terrainLoad = await page.evaluate(() => {
 
     check(`${label}: every structure, including Exchange Coffee House, shares the terrain surface`,
       streetLayer.anchoredBuildings > 20
+      // Never ABOVE the origin's ground; below it only as far as the terrain
+      // actually falls away under the building (the box is ~4 ft of relief, and
+      // the fort mound is the deepest at about 2.4 m).
       && streetLayer.worstBuildingAnchor < 1e-6
+      && streetLayer.deepestBedding < 3
       && streetLayer.exchangeAnchor?.error < 1e-6
       && streetLayer.worstDrySurfaceAlias < 1e-6,
-      `${streetLayer.anchoredBuildings} structures, worst ${streetLayer.worstBuildingAnchor}, `
+      `${streetLayer.anchoredBuildings} structures, worst above-ground `
+      + `${streetLayer.worstBuildingAnchor?.toFixed?.(4)}, deepest bedding `
+      + `${streetLayer.deepestBedding?.toFixed?.(2)} m, `
       + `Exchange ${JSON.stringify(streetLayer.exchangeAnchor)}, `
       + `dry alias ${streetLayer.worstDrySurfaceAlias}`);
     check(`${label}: street clearing removes travel-track plants but preserves the block`,

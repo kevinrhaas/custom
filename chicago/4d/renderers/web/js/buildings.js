@@ -186,6 +186,10 @@ export function createBuildings({ registry, confidence, terrain }) {
 
   // material key -> { material, entries: [{ record, geo }] }
   const groups = new Map();
+  /** structure id -> its footprint extent in its own local frame, so a building
+   *  can be stood on the lowest ground UNDER it rather than under its origin.
+   *  Filled in the load loop because placement needs it. */
+  const localXZ = new Map();
   let totalTris = 0;
 
   for (const record of registry.values()) {
@@ -233,7 +237,61 @@ export function createBuildings({ registry, confidence, terrain }) {
       }
       bucket.entries.push({ record, geo: prepared.geo });
       totalTris += prepared.geo.getIndex().count / 3;
+
+      // Grow this structure's local footprint as its parts arrive — see
+      // groundUnder(), which samples the terrain across it.
+      prepared.geo.computeBoundingBox();
+      const gb = prepared.geo.boundingBox;
+      const seen = localXZ.get(record.id);
+      localXZ.set(record.id, seen ? {
+        minX: Math.min(seen.minX, gb.min.x), maxX: Math.max(seen.maxX, gb.max.x),
+        minZ: Math.min(seen.minZ, gb.min.z), maxZ: Math.max(seen.maxZ, gb.max.z),
+      } : { minX: gb.min.x, maxX: gb.max.x, minZ: gb.min.z, maxZ: gb.max.z });
     }
+  }
+
+  /**
+   * The height to stand a building at: the LOWEST ground under its footprint,
+   * not the ground under its origin.
+   *
+   * A single sample is only right on flat ground. This town is nearly flat, so
+   * it was right for 221 of 236 structures and wrong for the fifteen that
+   * matter most — the ones on the riverbank and the fort mound, where the whole
+   * point is that the land falls away. The Wolf Point Tavern hung 1.84 m in the
+   * air on its river side and the fort palisade 2.82 m, and in both cases the
+   * gap was almost exactly the relief under the footprint, which is the
+   * signature of anchoring at one point on a slope.
+   *
+   * The minimum is the right choice rather than the mean or the origin. Bedding
+   * to the lowest corner buries a little of the uphill side, which is what a
+   * sill on a slope actually does and what any builder would have done; the
+   * alternative leaves daylight under the downhill wall, which nothing does.
+   *
+   * The footprint is sampled in the building's own rotated frame, because a
+   * long building across a slope and the same building along it meet quite
+   * different ground.
+   */
+  function groundUnder(record, e, n, rotationDeg) {
+    if (!terrain) return 0;
+    const box = localXZ.get(record.id);
+    if (!box) return terrain.surfaceHeight(e, n);
+    // Local +x is east and local +z is SOUTH (world -z is north), before the
+    // building's own rotation is applied.
+    const th = bearingToYaw(rotationDeg);
+    const cos = Math.cos(th);
+    const sin = Math.sin(th);
+    let lowest = Infinity;
+    const STEPS = 4;
+    for (let i = 0; i <= STEPS; i += 1) {
+      const lx = box.minX + ((box.maxX - box.minX) * i) / STEPS;
+      for (let j = 0; j <= STEPS; j += 1) {
+        const lz = box.minZ + ((box.maxZ - box.minZ) * j) / STEPS;
+        const ee = e + lx * cos + lz * sin;
+        const nn = n + lx * sin - lz * cos;
+        lowest = Math.min(lowest, terrain.surfaceHeight(ee, nn));
+      }
+    }
+    return Number.isFinite(lowest) ? lowest : terrain.surfaceHeight(e, n);
   }
 
   // Placement matrix per structure, from the sidecar and nothing else.
@@ -250,7 +308,7 @@ export function createBuildings({ registry, confidence, terrain }) {
     // the bed, so a bridge left on the terrain anchor does not sink — it hangs
     // four metres above the river, which is the harder failure to read.
     const onWater = p.vertical_anchor === 'water';
-    const y = onWater ? 0 : (terrain ? terrain.surfaceHeight(e, n) : 0);
+    const y = onWater ? 0 : groundUnder(record, e, n, p.rotation_deg ?? 0);
     placements.set(record.id, new THREE.Matrix4().compose(
       enuToWorld(e, n, y),
       new THREE.Quaternion().setFromEuler(
@@ -390,6 +448,10 @@ export function createBuildings({ registry, confidence, terrain }) {
       if (!id) return null;
       return { id, record: registry.get(id), point: hit.point.clone(), distance: hit.distance };
     },
+
+    /** The instance matrix a structure was placed with — for gates that need to
+     *  measure the RENDERED result rather than re-derive it. */
+    matrixOf(id) { return placements.get(id) ?? null; },
 
     /** Where a structure stands, in world space — for framing and popups. */
     positionOf(id) {
