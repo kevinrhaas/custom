@@ -2263,6 +2263,48 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_clinton_a1_06",
+      "name": "Inferred A1 stable #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a1_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_a2_05",
+      "name": "Inferred A2 barn or carriage shed #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_a3_07",
+      "name": "Inferred A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a3_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d1_03",
+      "name": "Inferred D1 older log dwelling #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d1_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d1_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d3_04",
+      "name": "Inferred D3 one-room frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d3_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d3_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d4_02",
+      "name": "Inferred D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d4_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d5_01",
+      "name": "Inferred D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d5_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_a1_07",
       "name": "Inferred A1 stable #07",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a1_07.json",

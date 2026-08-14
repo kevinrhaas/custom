@@ -46,13 +46,18 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
 | 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
-| 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
+| 1 | TOWN | **T-A5…** | one open block per run until the 79 are placed; adopt in the same run, and settle the division question T-A4 left open |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**T-A4 is DONE (2026-08-14)** — `blk_randolph_clinton`, the first West Division block, carries
+seven roofs and one adopted household, so **258 stand and 407 remain**, 79 of them on covered
+ground. It is the first block parcel to arrive at ground that was already partly built, and the
+gates that assumed an empty block are what it fixed. Full findings under T-A4 below.
 
 **T-E1 is DONE (2026-08-14)** — the 1830 sheet is registered and read, and it is a **land-title
 map, not a settlement map**: a name on a tract is who took title between 1828 and **1836**, not
@@ -660,13 +665,66 @@ once a named record exists) · `docs/LIBERTIES.md`
 source record; nothing anonymous gains a civic function; L93's *How to resolve* answered in
 whichever direction the evidence points.
 
-### T-A4…T-An — the remaining blocks · **UNCLAIMED**
+### T-A4 — the first West Division block · **DONE 2026-08-14 (`blk_randolph_clinton`)**
+
+**Standing roofs 251 → 258; remaining 414 → 407, 79 of them on covered ground.** Four dwellings
+on four lots and three yard buildings off the alley, on the block bounded by Randolph, Canal,
+Washington and Clinton. One labouring household adopted under the T-A2h rule; households
+**154 → 155**, persons **190 → 191**. Recorded in L95.
+
+**The block was not empty, and every gate here assumed it would be.** Both blocks before this one
+stood vacant, so a parcel could treat all eight lots as free and be right. Three roofs of the
+phase-two West parcel already stand inside this one — placed from typed coordinates before the
+plat module existed, so **no record of theirs names a lot**. The generator's one-principal-per-lot
+check reads only the records the parcel builds, and the three-metre separation gate does not close
+the difference: **two principal roofs can stand twelve metres apart on one twenty-five-metre lot
+and pass every test in the file.** Occupancy is now DERIVED from the committed footprints — a
+recipe that had to be told which lots were taken would be the second opinion about the same ground
+that the plat module exists to retire — and a principal slot on an occupied lot is refused by name.
+Two gates ride with it: an ancillary roof must stand on a lot this parcel gave a principal roof
+(a yard building behind somebody else's house is a claim about their yard), and **every lot must
+be built on, already occupied, or named open with its reasoning** — the three classes were counted
+in three places and nothing made them meet, so a lot could be called open in the recipe with a
+house standing on it. All five refusals verified by doing each.
+
+**Two smaller defects the first non-South block exposed.** The record's visitor-facing location
+line said *"South Division"* as a literal — correct on every record that had ever existed, and
+wrong on all seven of these. And `reconcile_665.py` attributed **every anonymous West Division
+roof to the Wolf Point recipe**, which was the same set until this parcel: the ledger read seven
+new roofs as seven of that recipe's own placements emitted out of order and refused to derive
+(*"28 placements left to emit but 35 standing beyond its instantiation block"*). It counts by the
+programme phase each record names now — the recipe's `id` IS that phase string — so the West
+recipe's remainder holds at 35 with seven West roofs added beside it.
+
+**The adoption, and the one it refused.** The block deals a D1 and a D3, which are exactly the two
+families T-A2h's rule admits. The D1 is adopted: the labourer's count is a floor by its own text,
+D1 is the family this layer houses nine of its eleven housed labourers in, and **this layer
+already places two labouring households in the West Division**, so nothing crosses a division line
+the programme had not already argued. **The D3 carpenter is refused, and the reason is a gap in
+the rule rather than in the roof.** Rule 6's two tests are silent on division, and all eleven
+carpenter households stand north or south — a twelfth placed west of the river would be a new
+claim about where the town's carpenters lived, arriving as a side effect of a block parcel, which
+is the exact failure mode rule 6 was written to prevent. **T-A5 should settle whether rule 6 takes
+a division test rather than each parcel deciding it again.**
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
+`tools/generate_block_infill.py` (lot occupancy, the ancillary and partition gates, the district
+string) · `tools/reconcile_665.py` (counting by programme phase) ·
+`data/reconstruction/1835_inferred_household_programme.json` (census, one household) ·
+`data/structures/recon_1835_blk_randolph_clinton_*.json` (7, derived) · `data/residents/` ·
+`data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md` (L95) ·
+`docs/ROADMAP.md` · `docs/STATUS.md`
+
+### T-A5…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
 arrival date** — it is derived from what stands, so every block parcel that lands re-apportions
 the families of every block that has not. A parcel that meets an institutional family defers it
-per T-A3 rather than reaching for a shape.
+per T-A3 rather than reaching for a shape, and a block that is already partly built has its taken
+lots derived rather than authored per T-A4. **T-A5 also owns the division question T-A4 left
+open:** whether the household adoption rule takes a division test, decided once in the household
+programme's `method` list instead of by each parcel.
 
 ---
 

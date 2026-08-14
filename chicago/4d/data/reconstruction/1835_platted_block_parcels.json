@@ -277,6 +277,109 @@
           "lateral_m": -5.5
         }
       ]
+    },
+    {
+      "block_id": "blk_randolph_clinton",
+      "district": "west",
+      "programme_phase": "phase3_platted_block_randolph_clinton",
+      "claimed": "2026-08-14",
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "clinton",
+        "east": "canal"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 3,
+        "headroom": 7,
+        "dealt_roofs": 7,
+        "dealt_principal": 4,
+        "dealt_ancillary": 3,
+        "principal": 4,
+        "ancillary": 3
+      },
+      "families": {
+        "A1": 1,
+        "A2": 1,
+        "A3": 1,
+        "D1": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1
+      },
+      "arrangement_note": "The first West Division block this module reaches, bounded by Randolph, Canal, Washington and Clinton, and the first block off the reconciled schedule that was NOT empty when the parcel arrived. Three anonymous roofs from the pre-plat West approaches parcel already stand inside it — recon_1835_west_018, _019 and _021, placed from typed coordinates months before the plat module existed, so no record of theirs names a lot. The generator now derives which lots they hold from their own committed footprints rather than being told, and refuses a principal roof on any of them; the schedule's headroom of seven is the block's headroom and never a licence to stand a second house on an occupied lot. That leaves five free lots for the four principal roofs the schedule deals, and one is left open. What is argued here and not found: the deep-plan and two-room cottages take the Randolph face, because Randolph is the through street of the pair in the module's own street hierarchy and carries the crossing to the west side, which is the same frontage-value typology both Randolph-tier blocks before this one recorded; the log dwelling and the one-room cottage take Washington. The barn or carriage shed takes the western end lot, where the block backs onto ground beyond Clinton that has no committed street control and the town gives out — the same typology of where a town keeps a large animal shelter that the Randolph and Dearborn block applied at its eastern end, and the geography here reverses it, which is the test of whether it was a typology or a habit. The stable and the privy stand behind the cottages on their own lots. None of it is evidence about this block.",
+      "open_lots": [
+        {
+          "lot": 5,
+          "why": "A south-tier interior lot between an already-built lot and the Washington end lot, left open. Which lot is arbitrary within the tier; that a West Division block a bridge's distance from the business street is not a completed terrace is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
+        }
+      ],
+      "slots": [
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 6,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.5,
+          "lateral_m": 2.0
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 1,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 6.0,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 7,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 4.5,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "A2",
+          "inventory_class": "ancillary",
+          "lot": 1,
+          "stands_on": "alley",
+          "fronts": "washington",
+          "setback_m": 5.0,
+          "lateral_m": 5.0
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": -5.5
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 7,
+          "stands_on": "alley",
+          "fronts": "washington",
+          "setback_m": 5.5,
+          "lateral_m": 4.5
+        }
+      ]
     }
   ]
 }

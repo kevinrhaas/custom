@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 154,
-  "persons": 190,
+  "households": 155,
+  "persons": 191,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 94
+   "reconstructed": 95
   }
  },
  "households": [
@@ -1426,6 +1426,20 @@
     "reconstructed": 1
    },
    "lives_at": "inf_labourer_shanty_west_b",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_west_14",
+   "file": "households/hh_inf_labourer_west_14.json",
+   "head": "inf_labourer_west_14",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_clinton_d1_03",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

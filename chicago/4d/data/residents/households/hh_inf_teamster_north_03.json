@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_03",
- "name": "The Rice household — an inferred teamster (north division)",
+ "name": "The Sawyer household — an inferred teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_03",
-   "name": "Rufus Rice",
+   "name": "Lemuel Sawyer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
