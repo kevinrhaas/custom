@@ -43,12 +43,14 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 | # | lane | parcel | why first |
 |---|---|---|---|
 | 1 | RENDERING | **R-BUG2** | owner-reported and currently INVISIBLE to the gate: the roads vanish from the air |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
-| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
+| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
+| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
+| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
 | 1 | TOWN | **T-A4…** | one open block per run until the 86 are placed; adopt in the same run |
-| 2 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
-| 3 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
+| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
+| 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
+| 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
 
@@ -78,6 +80,24 @@ real, not convenient.
 **R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
 opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
 quotes the two tables rather than an adjective.
+
+**R-G1 is DONE (2026-08-14) — the baseline scores 4.18 of 10, every axis below 7.** Texture
+**1.4** is the floor, historical accuracy **6.8** the ceiling, and the five-point gap between
+them is the shape of this project. Full tables and per-axis justification in `docs/STATUS.md`
+§ "The baseline scored". **Three findings came out of it that are not scores**, and each is
+written into the parcel that owns it below:
+
+- **§1 item 7's mechanism does not survive.** 94–100 % of the literal-black pixels lie in
+  components entirely above the land/sky row — they are the shaded near canopy, not a shadow —
+  and the darkest-decile figure reaches the same surface a second way, because the metric's
+  per-column "ground" starts at the top of a crown. **R-W1** owns it; raising a shadow floor
+  will not move either number.
+- **The horizon-timber metric counts a gable as a tree.** `prairie_south` gained 20 % on that
+  metric between two runs with no renderer change, from 19 new roofs. **R-W4** owns the target
+  and needs a discriminator before its ≥ 90 % acceptance number means anything.
+- **19 roofs cost +11 draw calls at seven of eleven stations**, taking the over-budget count
+  from 4 to 6 desktop. Extrapolated over the 414 remaining roofs that is about +240 against a
+  budget of 80. **R-W5** owns it and should treat batching as its first question.
 
 **T-A3 is DONE (2026-08-14)** — `blk_randolph_dearborn` carries **nine of the ten roofs the
 schedule dealt it**, so **251 stand and 414 remain**, 86 of them on covered ground. The tenth was
@@ -140,20 +160,32 @@ be that critic. It is a parcel of its own — **R-G1** below.
 scene. It does not: non-anchor stands use the same `walker.teleport` `tools/shoot.mjs`
 already uses, and nothing in `renderers/` changed.
 
-### R-G1 — the baseline scored pass · **UNCLAIMED**
+### R-G1 — the baseline scored pass · **DONE 2026-08-14 · mean 4.18 of 10**
 
 **Phase:** RENDERING §4 G0.2 · **Runner:** improve-runner · **Effort:** S · **After:** R-G0
 
-Run the Joliet protocol against the R-G0 shot set and record the baseline score: independent
-critic, eight axes, written justification, a specific fix per axis below 8, compared against
-the §0 reference set and never against commercial game frames. The critic must not be the
-agent that wrote the harness or the renderer code under review.
+Scored at five named stations — `sauganash`, `first_post_office`, `south_water`, `prairie_west`,
+`river_bank` — desktop 1280×800, against the §0 reference set and never against a commercial
+game frame. **Mean 4.18; no axis reaches 7**, against a pass bar of mean ≥ 8.0 with no axis
+below 7. Axis means: texture **1.4**, lighting **3.2**, material **3.6**, post **3.8**,
+atmosphere **4.2**, geometry **4.6**, composition **5.8**, historical accuracy **6.8**.
 
-**Files:** `docs/STATUS.md` · `docs/ROADMAP.md` (no code)
+**The independence condition held**: this parcel changed no code — three documents and a
+changelog entry — and the run that wrote the harness was a different one. The mobile set was
+captured and measured in the same run and deliberately **not** scored; six of the eleven
+stations were read for context and not scored. Both facts are on the record in STATUS rather
+than left to be inferred.
 
-**Acceptance:** eight axes scored with written justification at five named stations, the fixes
-each routed to the phase that owns them, and the mean recorded in STATUS as the number later
-phases have to beat.
+**Where the fixes went** — R-W1 (lighting, and the corrected mechanism for §1 item 7), R-W2
+(material and texture, both halves), R-W3 (openings and the AO cage that has to carry form the
+sun angle does not), R-W4 (atmosphere, the flower load, and a horizon-timber metric that cannot
+tell a gable from an oak), R-W5 (post-processing and the draw-call growth), and two new lane-2
+parcels, **T-V1** and **T-V2**, for the two failures that are data rather than rendering.
+
+**Files:** `docs/STATUS.md` · `docs/ROADMAP.md` · `renderers/web/js/changelog.js` (no code)
+
+**What it did not do:** re-anchor the §5 targets by measuring a reference plate through
+`tools/critic_metrics.mjs`. That is still a one-line job and still not done.
 
 ### R-W1 — calibrated light and environment · **UNCLAIMED · NEXT UP**
 
@@ -174,6 +206,22 @@ destroys the PMREM.
 **Trap:** this is the change that failed before. Tune environment intensity until materials
 keep their hue, THEN rebalance the hemisphere fill and ground bounce DOWN — otherwise total
 illuminance doubles instead of being redistributed.
+
+**From R-G1 (scored 3.2, the second-worst axis) — the acceptance number needs re-reading before
+you start.** "No literal `(0,0,0)`" and "darkest decile L ≥ 14" were both written believing they
+measured shadow. They do not, at any station measured: 94–100 % of the literal-black pixels lie
+in connected components entirely above the median land/sky row, on the shaded side of the near
+canopy, and the darkest-decile metric reaches the same pixels because its per-column "ground"
+begins at the top of a crown. **Raising a shadow floor moves neither number.** What lights a leaf
+facing away from the sun is the environment term this parcel installs — so the two numbers are
+still W1's to earn, by the IBL rather than by the shadow path, plus a floor on the crown's
+darkest albedo if the IBL alone does not clear it. Verify by locating the dark pixels — connected
+components and their bounding boxes against the land/sky row — and not by the aggregate alone: an
+aggregate that moves for the wrong reason is how this got mis-stated once already. Second, the
+sun stands **70.5°** up at the scene's 12:30 and a
+shadow is 0.354 × the height of what casts it, so the frame carries almost no shadow information
+and form must come from the IBL and from W3's AO — the hour is a recorded, reasoned choice and
+this is not an argument to move it, but W1 should not expect the shadow map to help it.
 
 ### R-W4 — atmosphere and the mid-field · **UNCLAIMED · NEXT UP**
 
@@ -196,6 +244,21 @@ claims gets an appended **Revised** line in `docs/LIBERTIES.md` in the same PR.
 lands on one screen row. Varying the radius per patch is the fix that worked for the sward;
 the same shape of fix is wanted here, not a bigger radius.
 
+**From R-G1 (scored 4.2) — the ≥ 90 % horizon-timber target does not currently measure timber.**
+The recipe counts a column as timbered if any pixel in the band above the land/sky line falls
+3 luma below, or 3 G−B above, the sky extrapolated from the 20 rows over it. A gable end breaking
+the skyline satisfies that as surely as an oak, and it has already happened: with **no renderer
+change** between two runs (`git diff --stat 282dd9a..HEAD -- renderers/` is `changelog.js` and
+nothing else), `prairie_south` moved **0.364 → 0.436** all and **0.340 → 0.441** centre on the
+strength of 19 new anonymous roofs, whose grey gable ends occupy the left third of that station's
+skyline. **A town-completion parcel can therefore hand W4 a pass it did not earn.** Before the
+acceptance number is quoted again, either the metric excludes columns carrying a structure
+silhouette or a second figure reports timber-only coverage; the crown-hue channel the recipe
+already computes (G−B) is the obvious discriminator, since a whitewashed gable is not green.
+Two further reads from the scored pass: the sky is a single cloudless gradient at all five
+stations, and the flower load at `prairie_west` is **0.0012** against the honest 4–6 % target —
+the largest single accuracy deduction on the historical axis outside the town itself.
+
 ### R-W5 — water, post-lite, dynamic resolution · **UNCLAIMED**
 
 **Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **Effort:** M · **After:** R-W1
@@ -207,6 +270,18 @@ the same shape of fix is wanted here, not a bigger radius.
 extra passes accounted separately; triangles within the per-tier ceilings; zero page errors
 at both viewports. **Carries R-BUG1 below** — the river edge flickers when flying, and this
 is the parcel that owns the water surface.
+
+**From R-G1 (scored 3.8) — the draw-call budget is moving away from you, and lane 2 is what
+moves it.** Re-measured on the same renderer with 19 more structure records (242 → 261):
+**exactly +11 draw calls at seven of eleven desktop stations, exactly 0 at the other four**,
+triangles up by only 244–562, so this is per-object cost and not geometry. Stations over the
+≤ 80 budget go **4 → 6** desktop and **4 → 5** mobile; the worst goes 97 → 108. Straight-line
+over the 414 roofs still to come is roughly **+240 draw calls against a budget of 80**. That is
+not an argument for slowing lane 2 — the roofs are the product — it means **batching is this
+parcel's first question, not its last**, and that a budget met by tuning after the fact will not
+stay met overnight. Two leads: `from_above`, which sees the whole town, gained **0**, so
+something already drops these objects at distance; and the +11 is suspiciously uniform across
+bearings 150° apart, which no one has explained.
 
 ### R-W2 — texture the town · **UNCLAIMED · SPLIT**
 
@@ -223,6 +298,14 @@ and the actual textured GLBs. The `ktx` binary is installed on the bake runner a
 
 **Do not** attempt the bake half on the improve runner.
 
+**From R-G1 — this parcel owns the two worst axes on the board**, texture **1.4** and material
+**3.6**, and nothing else can move them. The scored reading: every surface in the town is one
+flat colour, so a roof, a whitewashed clapboard wall, a hewn log, its chinking and a chimney
+differ only in hue; there is no roughness variation anywhere, so nothing reads as painted,
+weathered or wet; and the Wau-Bun blue shutters at `sauganash` sit at the same value as the
+glazing beside them. The material sheet should name a roughness per surface, not only a colour
+and a tiling rate.
+
 ### R-W3 — ambient occlusion and cascaded shadows · **UNCLAIMED · SPLIT**
 
 **Phase:** RENDERING §4 W3 · **Effort:** M · **After:** R-W2
@@ -237,6 +320,15 @@ cage**, not tuning. Write the cage rule into the archetype params. **Files:**
 
 **Also here, improve-runner:** cascaded shadows in `renderers/web/js/world.js` — today one
 1024² map on a ±60 m follow ortho, nothing beyond 60 m.
+
+**From R-G1 (geometry scored 4.6) — AO is carrying more than it looks like it is.** At the
+scene's 70.5° sun a shadow is 0.354 × the height that casts it, so the only cast shadow legible
+in the five scored frames is each chimney's on the roof beside it. Form in this scene therefore
+has to come from the environment term (W1) and from this parcel's AO, and both are currently
+off. Separately, the silhouette failure the score names is **openings**: no reveal, no sill, no
+sash and no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents
+does not exist. The cage rule and the opening geometry are the same conversation about the same
+few centimetres of wall.
 
 ---
 
@@ -488,6 +580,56 @@ in L93.
 `tools/generate_block_infill.py` (`REFUSED_FAMILIES`, the deferral gate, `lot_frame`) ·
 `data/structures/recon_1835_blk_randolph_dearborn_*.json` (9, derived) · `data/sidecars/1835/` ·
 `assets/…` placeholder massing · `docs/LIBERTIES.md` (L93) · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+### T-V1 — the anonymous town reads as one gable stamped a dozen times · **UNCLAIMED · NEXT UP · from R-G1**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender) · **Effort:** M
+
+R-G1's lowest station is `south_water` at **3.38**, and the reason is not the renderer. The
+business street's horizon row is one gable form, at one width, one pitch and one eave height,
+repeated at even spacing along the block — while the research behind those records knows a store,
+an auction room, two newspaper offices and a warehouse. It cost points on **geometry (3)** and,
+more seriously, on **historical accuracy (5)**: uniformity is itself a claim, and no source makes
+it. The same stamp is visible on the horizon at `prairie_west` and `prairie_south`.
+
+**The fix is a sampling question, not a modelling one.** Each anonymous record already carries a
+family, and `1835_family_archetype_crosswalk.json` already carries that family's footprint band,
+storey count and eave height — the same table T-A2 taught the generators to read. The placeholder
+massing takes one value per family where the committed band is a **range**. Draw each record's
+footprint, eave height and roof pitch from within its own authored band, deterministically from
+the record id so a re-run reproduces it, and the row stops being a stamp without a single new
+claim being made. **This must not widen any band, and must not invent a band for a family that
+has none** — the A3 privy precedent (T-A2) stands: a family whose authored band cannot carry its
+archetype fails loudly rather than being quietly raised out of its typology.
+
+**Do not** vary orientation off the lot frame — T-A3 found what happens when a building's facing
+is chosen by anything other than the lot line.
+
+**Files:** `generators/inferred_placeholder.py` and/or `tools/generate_block_infill.py` ·
+`data/structures/inf_*.json` (dimension fields only) · `docs/LIBERTIES.md` (the sampling rule is
+a compression and gets its own entry) · `docs/STATUS.md`
+
+**Acceptance:** no two anonymous roofs of the same family share a footprint and eave height
+unless their bands are degenerate; every emitted value inside its committed band; the confidence
+tier of every dimension unchanged (this adds variety, not knowledge); `tools/audit_confidence.py
+--strict` green; and the `south_water`, `prairie_west` and `prairie_south` critic frames re-shot
+and quoted. **Needs the bake for the massing to reach the site** — ship the data half and say so.
+
+### T-V2 — the `south_water` anchor points at a field · **UNCLAIMED · NEXT UP · from R-G1**
+
+**Phase:** lane 2, data only · **Effort:** XS — one record, no code
+
+R-G1 scored composition **4** at `south_water`: about 60 % of the frame is foreground grass and
+the business street the anchor is named for is a 40-pixel band on the horizon. An anchor a
+visitor is offered from the navigation menu should show the thing it is named after. Move the
+anchor in `data/scenes/1835.json` onto the street — the surveyed corners the sixteen South Water
+records already carry are the coordinates to use — keep the pitch at 0, and re-shoot. **This
+moves a camera, not a building**, and it is the cheapest point on R-G1's whole table.
+
+**Watch:** `tools/critic_shots.mjs` drives the eight scene anchors through `goTo`, so moving this
+one moves a baseline station. Re-shoot the full desktop and mobile sets and restate the
+`south_water` row in the STATUS baseline table rather than leaving two incomparable numbers
+under one name — the whole point of the harness is that two rounds can be compared.
 
 ### T-I3 — the civic roofs, reconciled to named records · **UNCLAIMED · NEXT UP**
 
