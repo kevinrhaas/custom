@@ -15,12 +15,33 @@ on:
         required: false
   schedule:
     - cron: '17 6 * * *'
+  # NO `chicago/4d/data/**` HERE, DELIBERATELY — see the note below.
   push:
     paths:
-      - 'chicago/4d/data/**'
       - 'chicago/4d/generators/**'
       - 'chicago/4d/tools/bake.sh'
       - '.github/workflows/chicago-4d-bake.yml'
+
+# Why data/** was removed, 2026-08-14. The trigger list above used to include it,
+# and the intent in the header — "never on every commit" — was true when data
+# changed rarely. It is not true now: the steward loop's whole job is adding
+# structures, so nearly every merge into dev touches data/**, and each one fired
+# a full ~20-minute Blender bake that opened its own PR. Seven accumulated in one
+# morning (#107, #110, #111, #113, #114, #116, #117), each a complete
+# regeneration of the same binary assets, mutually conflicting, and all but the
+# newest stale the moment dev moved again.
+#
+# A change to a GENERATOR or to bake.sh changes how everything is built and
+# earns an immediate rebake. A change to data is picked up by the nightly, which
+# is what the nightly is for. Dispatch covers the impatient case.
+#
+# One at a time, and the newest wins. A bake superseded by a later push has
+# nothing to offer: its output is measured against a dev that has already moved,
+# so finishing it costs twenty minutes of runner time to produce a PR that is
+# stale on arrival. Cancelling is the correct outcome, not a lost result.
+concurrency:
+  group: chicago-4d-bake
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -54,6 +75,31 @@ jobs:
           node-version: '22'
 
       - run: pip install --quiet jsonschema pyproj
+
+      # Playwright, because the LAST thing tools/bake.sh does is run the renderer
+      # smoke against the mirror it has just published — and that step is the
+      # whole reason the bake is trustworthy: the source tree and the published
+      # tree do not load the same geometry, and a bug that collapsed every
+      # building to a two-metre box once shipped past a fully green gate twice
+      # because nothing had ever loaded the compressed derivatives.
+      #
+      # It was never installed here. So the bake did all of it — fetch Blender,
+      # generate, bake AO, compress, publish, gate green — and then died on
+      # `Cannot find module .../playwright/index.js`, one step from the finish,
+      # which meant the "push a bake branch and open a PR" step never ran and
+      # every night's output was discarded. Observed on runs 31761814117 and
+      # 31771193146.
+      #
+      # Installed GLOBALLY on purpose: smoke_renderer.mjs resolves it through
+      # `npm root -g` (ESM does not honour NODE_PATH), same as every other repo
+      # in the fleet. The browser install is pinned to the same version as the
+      # library so the two cannot drift, and to chromium alone — the smoke drives
+      # nothing else, and the other engines are ~300 MB of download per run.
+      - name: Install Playwright (the bake smoke-tests the mirror it publishes)
+        run: |
+          set -e
+          npm install -g playwright@1.56.1
+          node "$(npm root -g)/playwright/cli.js" install --with-deps chromium
 
       # KTX-Software, so gltf-transform can actually compress textures.
       # APPROVED BY THE OWNER 2026-08-14 (docs/RENDERING.md §8, W2).

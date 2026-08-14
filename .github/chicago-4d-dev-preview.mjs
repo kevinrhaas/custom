@@ -1,7 +1,7 @@
 // chicago-4d-dev-preview.mjs — fold the dev branch's 4D app into the production
 // Pages artifact as a subdirectory.
 //
-//   node .github/chicago-4d-dev-preview.mjs <devWorktree> <sha>
+//   node .github/chicago-4d-dev-preview.mjs <devWorktree> <sha> <committedIso>
 //
 // Adapted from kevinrhaas/jobtracker.polecat.live `.github/stage-preview.mjs`
 // (the fleet pilot, docs/PIPELINE.md there). Three of the pilot's four jobs turn
@@ -30,10 +30,29 @@ import { readFile, writeFile, cp, rm, readdir, stat, mkdir } from 'node:fs/promi
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const [srcRoot, sha = ''] = process.argv.slice(2);
+const [srcRoot, sha = '', committedIso = ''] = process.argv.slice(2);
 if (!srcRoot) {
-  console.error('usage: node .github/chicago-4d-dev-preview.mjs <devWorktree> [sha]');
+  console.error('usage: node .github/chicago-4d-dev-preview.mjs <devWorktree> [sha] [committedIso]');
   process.exit(2);
+}
+
+/**
+ * Central Time, the clock every date in this project is quoted in — same
+ * format string the production stamp uses (`Aug 13, 2026, 11:59 PM CT`) so the
+ * two gates read alike.
+ *
+ * Intl emits U+202F before AM/PM on current ICU where the shell's `date` emits
+ * a plain space, and the two stamps sitting side by side in a screenshot should
+ * not differ by an invisible character; both narrow and non-breaking spaces are
+ * flattened.
+ */
+function ct(iso) {
+  const d = new Date(iso);
+  if (!iso || isNaN(d)) return '';
+  return `${d.toLocaleString('en-US', {
+    timeZone: 'America/Chicago', month: 'short', day: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: '2-digit',
+  }).replace(/[  ]/g, ' ')} CT`;
 }
 
 const APP = 'site/chicago/4d';
@@ -59,6 +78,20 @@ for (const item of await readdir(SRC)) {
 
 const stamp = `dev${sha ? `@${sha}` : ''}`;
 
+// The gate's stamp answers "which build am I looking at, and how old is it" —
+// production shows `build <sha> · <when>`, so the preview shows the same pair.
+//
+// `when` is the DEV COMMIT'S OWN date, not the moment this script ran, and the
+// difference matters: the preview is reassembled on every deploy of main, so an
+// assembly time would tick forward on builds where dev did not change at all,
+// and "the preview is three minutes old" would be a lie told about a
+// day-old branch. The commit date moves only when dev does, which is the
+// question the line is being asked. Production's stamp uses its deploy time,
+// but there main is deployed within seconds of the commit, so the two readings
+// agree; here they would not.
+const when = ct(committedIso);
+const gateStamp = `DEV PREVIEW · ${stamp}${when ? ` · ${when}` : ''}`;
+
 for (const file of await htmlFiles(OUT)) {
   let html = await readFile(file, 'utf8');
 
@@ -76,7 +109,7 @@ for (const file of await htmlFiles(OUT)) {
   // the same element; this overwrites the dev copy's with a dev-flagged one.
   html = html.replace(
     /<p class="gate-build" id="gate-build"[^>]*>.*?<\/p>/s,
-    `<p class="gate-build" id="gate-build">DEV PREVIEW · ${stamp}</p>`);
+    `<p class="gate-build" id="gate-build">${gateStamp}</p>`);
 
   if (!html.includes('id="__dev"')) {
     html = html.replace(/<\/body>/i, `${banner(stamp)}\n</body>`);
@@ -91,6 +124,11 @@ await writeFile(join(OUT, 'build.json'), `${JSON.stringify({
   app: 'chicago/4d',
   ref: 'refs/heads/dev',
   sha,
+  // When the dev HEAD was committed, machine-readable beside the CT rendering
+  // the gate shows. `assembledAt` is deliberately absent: it would differ from
+  // this on every main deploy and there is no question it answers.
+  committedAt: committedIso || null,
+  committedCT: when || null,
   note: 'Integration preview. Production is at ../walk/ and is promoted only on '
     + 'owner dispatch (chicago-4d-promote-to-prod.yml).',
 }, null, 2)}\n`);

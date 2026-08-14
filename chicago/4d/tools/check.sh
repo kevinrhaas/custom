@@ -43,6 +43,13 @@ step "North Division initial parcel matches its reviewed recipe" \
 step "West Division approaches parcel matches its recipe" \
   python3 tools/generate_west_infill.py --check
 
+# The block parcels are the same shape of derivation with one difference worth the
+# extra step: they author no coordinates at all. Every metre comes from the committed
+# lot polygons, so a hand-nudged building would show up here as drift rather than as a
+# plausible-looking number sitting beside a derived grid.
+step "platted block parcels match their recipe and the committed lots" \
+  python3 tools/generate_block_infill.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
@@ -60,6 +67,13 @@ step "inferred placeholder GLBs match their records" \
 # repo looking exactly like a surveyed one.
 step "the platted block and lot grid re-derives from the module" \
   python3 tools/generate_plat_lots.py --check
+
+# The 665-roof programme's remainder is a function of what has been built, and the town
+# grows most nights. Left as an authored number it goes stale silently — the crosswalk
+# called 617 roofs remaining while 232 were standing — and the next block parcel schedules
+# against a figure that is wrong by a third of the programme.
+step "the 665-roof programme reconciles with the town that stands" \
+  python3 tools/reconcile_665.py --check
 
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
@@ -101,6 +115,17 @@ step "renderer modules parse" check_js
 # A hand-run check cannot cover a file that a merge rewrites; this one can.
 step "changelog contract" \
   node tools/check-changelog.mjs
+
+# The integration preview's assembler. It lives at the repo root because the
+# deploy workflow does, but nothing else tests it, and it is the only thing that
+# marks the preview as a preview — the noindex, the banner, the build stamp. A
+# preview that quietly stops saying "DEV PREVIEW" is one screenshot away from
+# being reported as a production bug. Skipped rather than failed when the script
+# is absent, so a checkout of chicago/4d alone still gates cleanly.
+if [ -f ../../.github/chicago-4d-dev-preview.mjs ]; then
+  step "dev preview assembles, marked and stamped" \
+    node tools/test_dev_preview.mjs
+fi
 
 # Every JSON in data/ must be loadable — a stray comma here breaks the whole build
 # in a place far from the edit that caused it.

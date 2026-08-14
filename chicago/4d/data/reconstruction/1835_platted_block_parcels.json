@@ -1,0 +1,282 @@
+{
+  "$schema_note": "AUTHORED, and deliberately small. One entry per platted block claimed from the 665-roof programme's schedule (data/reconstruction/1835_665_roof_programme.json, derived by tools/reconcile_665.py). Expanded into ordinary one-file-per-structure records by tools/generate_block_infill.py, which tools/check.sh re-derives. This file authors NO coordinates: every metre comes from the committed lot polygons in data/traces/vectors/thompson_lots.json, and every dimension from the family bands in 1835_family_archetype_crosswalk.json. What is authored here is which family stands on which lot, whether it fronts the street or the alley, and how far back it stands.",
+  "id": "platted_block_parcels_1835",
+  "target_date": "1835-07-01",
+  "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+  "confidence": "reconstructed",
+  "why_the_schedule_is_copied_here": "The schedule is DERIVED from what stands, so a block's family mix is erased the moment the block is built — it becomes at_capacity with no mix at all. A generator reading the live schedule would therefore write ten records on its first run and none on its second, and the re-derivation gate would fail on the commit that shipped it. `drawn_from_schedule` and `families` are the claim a parcel made against the schedule at the moment it claimed it, frozen so the expansion stays reproducible. tools/generate_block_infill.py checks the slots against them; tools/reconcile_665.py re-derives the schedule from the result.",
+  "placement_rule": {
+    "principal": "One principal roof per lot, standing back from its own street frontage, its facade to the street and its walls parallel to the block face. The setback is a period typology and not a measurement of this lot.",
+    "ancillary": "A yard building off the block alley, behind a principal roof on the same lot, facing the alley.",
+    "open_lots": "Alternating open lots are intentional and are what the phase-one parcel already assumes. A block at capacity is a claim about 1835 that the evidence does not support; the schedule's capacity is a ceiling.",
+    "what_is_invented": "All of it. Which family stands where, which lot is left open, the setbacks and the lateral offsets are inventions bounded by the programme, not readings of a source. No lot is numbered: this project has never read Thompson's numbering off a sheet, and the side lot lines and the alley are conjectural even where the block face is not."
+  },
+  "blocks": [
+    {
+      "block_id": "blk_randolph_wells",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_randolph_wells",
+      "claimed": "2026-08-14",
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "wells",
+        "east": "lasalle"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 0,
+        "headroom": 10,
+        "principal": 7,
+        "ancillary": 3
+      },
+      "families": {
+        "A1": 1,
+        "A3": 1,
+        "A4": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1,
+        "H1": 1,
+        "H2": 1
+      },
+      "arrangement_note": "The block stood empty. Seven of its eight lots take a principal roof and the eighth is left open. The two larger houses take Randolph, which is the through street of the pair, and the rougher dwellings take Washington: that is a typology of frontage value, argued from the street hierarchy the plat module measures, and it is not evidence about this block. The three yard buildings serve the lots they stand behind — a stable behind the merchant's house because that is the household with a horse, a privy behind the other Randolph house, a woodshed behind the log dwelling on Washington. Each of those is a reason for the roof, not evidence for it.",
+      "open_lot": {
+        "lot": 5,
+        "why": "A south-tier interior lot, left open so the block does not read as a completed terrace. Which lot is arbitrary within the block; that one is open at all is the programme's own assumption of alternating vacancy."
+      },
+      "slots": [
+        {
+          "family": "H2",
+          "inventory_class": "principal_functional",
+          "lot": 0,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": 0.0
+        },
+        {
+          "family": "H1",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 6.0,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 4,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": 2.0
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 6,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.5,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 1,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 4.0,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 6.5,
+          "lateral_m": -1.0
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 7,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 5.0,
+          "lateral_m": 2.5
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": 5.5
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": -6.0
+        },
+        {
+          "family": "A4",
+          "inventory_class": "ancillary",
+          "lot": 3,
+          "stands_on": "alley",
+          "fronts": "washington",
+          "setback_m": 5.0,
+          "lateral_m": 5.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_randolph_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_randolph_dearborn",
+      "claimed": "2026-08-14",
+      "bounded_by": {
+        "north": "randolph",
+        "south": "washington",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 0,
+        "headroom": 10,
+        "dealt_roofs": 10,
+        "dealt_principal": 6,
+        "dealt_ancillary": 4,
+        "principal": 5,
+        "ancillary": 4
+      },
+      "families": {
+        "A1": 1,
+        "A2": 1,
+        "A3": 1,
+        "A4": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1
+      },
+      "deferred": [
+        {
+          "family": "I3",
+          "inventory_class": "principal_functional",
+          "why": "The schedule deals this block one civic or public-service roof and the parcel refuses it rather than massing it. I3 resolves through the fort_structure placeholder, whose entire vocabulary of building kinds is garrison words — quarters, barracks, blockhouse, magazine, store, guard, sutler, artillery — and none of them names the adapted office or the engine house the crosswalk says this family spans. Massing an anonymous town civic building through that archetype would not merely guess at a function; it would stand a garrison building in the middle of the platted town, three quarters of a kilometre from the fort. The crosswalk already states the precondition on its own entry: the six-roof aggregate spans unlike functions and they must reconcile to named public records before construction is selected. A dwelling nobody named is the ordinary case in this town; a public building nobody named is a claim that an institution existed and left no record, and the two are not the same kind of anonymity."
+        }
+      ],
+      "arrangement_note": "The easternmost block the plat module covers on the Randolph tier, bounded by Randolph, State, Washington and Dearborn, and empty in this dataset before this parcel. The schedule dealt it ten roofs and no house or commercial family at all — five dwellings across the rough end of the range, four yard buildings and the civic roof this parcel defers. Five principal roofs on eight lots leaves three lots open. What is argued here and not found: the three better-built dwellings (the deep-plan and two-room cottages and the one-room cottage) take the Randolph face because Randolph is the through street of the pair in the module's own street hierarchy, which is the same frontage-value typology the Randolph and Wells block recorded, and the log cabin and the plank shanty take Washington. The four yard buildings each stand behind a principal roof on its own lot, because a rear yard belongs to a lot and a lot belongs to a house. The barn or carriage shed takes the eastern end lot, where the block backs onto ground the plat module does not reach and the town gives out; that is a typology of where a town keeps a large animal shelter, not evidence about this block.",
+      "open_lots": [
+        {
+          "lot": 4,
+          "why": "A north-tier interior lot on the Randolph face, left open. Which lot is arbitrary within the tier; that a block this far east of the river is not a completed terrace is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
+        },
+        {
+          "lot": 1,
+          "why": "A south-tier lot the schedule left nothing to stand on once the civic roof was deferred. It is open because the parcel refused a slot, and the record of why is in `deferred` rather than in an argument about vacancy."
+        },
+        {
+          "lot": 5,
+          "why": "A south-tier interior lot, left open on the same alternating-vacancy assumption as lot 4."
+        }
+      ],
+      "slots": [
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 0,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 5.5,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": 1.0
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 6,
+          "stands_on": "street",
+          "fronts": "randolph",
+          "setback_m": 6.0,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 4.0,
+          "lateral_m": 2.0
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 7,
+          "stands_on": "street",
+          "fronts": "washington",
+          "setback_m": 5.0,
+          "lateral_m": -2.5
+        },
+        {
+          "family": "A4",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.5,
+          "lateral_m": 5.0
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 5.0,
+          "lateral_m": -5.0
+        },
+        {
+          "family": "A2",
+          "inventory_class": "ancillary",
+          "lot": 6,
+          "stands_on": "alley",
+          "fronts": "randolph",
+          "setback_m": 4.0,
+          "lateral_m": 3.0
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 3,
+          "stands_on": "alley",
+          "fronts": "washington",
+          "setback_m": 5.5,
+          "lateral_m": -5.5
+        }
+      ]
+    }
+  ]
+}

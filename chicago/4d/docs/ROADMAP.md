@@ -42,12 +42,30 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-G0** | everything else measures through it |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
-| 1 | TOWN | **T-A1** | the recipe every later block parcel reads |
-| 2 | TOWN | **T-A2** | first block of roofs through the refreshed recipe |
-| 3 | TOWN | **T-A3** | second block; proves the parcel shape repeats |
+| 1 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G0 now exists to prove it moved |
+| 2 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline |
+| 3 | RENDERING | **R-W5** | after W1; carries R-BUG1 |
+| 1 | TOWN | **T-A2h** | the ten new roofs' households, which T-A2 deliberately left |
+| 2 | TOWN | **T-A4…** | one open block per run until the 86 are placed |
+| 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+
+**R-G0 is DONE (2026-08-14)** — the harness and the baseline are in, so every parcel below
+opens with `node tools/critic_shots.mjs --metrics` and closes with the same command, and
+quotes the two tables rather than an adjective.
+
+**T-A3 is DONE (2026-08-14)** — `blk_randolph_dearborn` carries **nine of the ten roofs the
+schedule dealt it**, so **251 stand and 414 remain**, 86 of them on covered ground. The tenth was
+a civic roof and is deferred with its reasoning: the parcel shape repeated exactly as T-A2
+predicted, and what it found was that one family cannot be massed at all. See T-I3.
+
+**T-A2 is DONE (2026-08-14)** — `blk_randolph_wells` carries ten roofs, so **242 stand and 423
+remain**, 95 of them on covered ground. The parcel authors no coordinates: block parcels are now
+a recipe entry read against the committed lot polygons, which is what makes T-A3 onward cheap.
+
+**T-A1 is DONE (2026-08-14)** — 232 roofs stood, 433 remained, and
+`data/reconstruction/1835_665_roof_programme.json` schedules them per block. Only **105 of
+the 433** have modelled ground to stand on, so lane 2 has about ten block parcels of work in
+it and then it is blocked on S9 street control and the terrain extensions, not on recipes.
 
 ---
 
@@ -57,24 +75,59 @@ Acceptance numbers are copied from RENDERING §5 so a builder does not have to h
 documents open. Where a phase has a bake-dependent half, it is marked — ship the half you
 can and say so.
 
-### R-G0 — the critic harness · **UNCLAIMED · NEXT UP**
+### R-G0 — the critic harness · **DONE 2026-08-14 (G0.1 + the numeric half of G0.2)**
 
 **Phase:** RENDERING §4 G0 · **Runner:** improve-runner (no Blender) · **Effort:** S
 
-Everything later measures through this, which is why it is first. One reproducible loop so a
+Everything later measures through this, which is why it was first. One reproducible loop so a
 phase proves its delta in numbers rather than adjectives.
 
-**Files:** `tools/critic_shots.mjs` (new) · `tools/critic_metrics.mjs` (new) ·
-`docs/STATUS.md` (baseline numbers) · `docs/ROADMAP.md`
+**Shipped:** `tools/critic_shots.mjs` — eleven stations (the eight scene anchors, driven by
+`goTo` so they cannot drift from what a visitor is offered, plus three re-established
+prairie-sweep stands), both release viewports at device scale 1, the clock held from before
+the render loop's second tick, the DOM chrome hidden, pitch printed and asserted per station.
+`tools/critic_metrics.mjs` — a dependency-free PNG reader and the six Appendix B recipes, so
+the SAME code can measure a reference photograph and one of our frames, which has never been
+true here before. Baseline for both viewports in `docs/STATUS.md` § "The critic baseline".
 
-**Acceptance:** captures byte-stable across two runs at BOTH viewports; prints its pitch
-(the prairie sweep's pitch-matching correction is inherited and not optional); a baseline
-recorded in STATUS for every RENDERING §1 metric — horizon timber column coverage, crown
-fine-detail ratio, sunlit crown G−B, shadowed darkest decile L, depth-band high-pass RMS,
-flower load. Both gates green.
+**Two things came out of it that are not the harness**, both recorded rather than fixed:
 
-**Trap:** the harness must use the existing `window.__chicago4d` API (`goTo`,
-`setAnimationHold(true)`, `capture`) and must not add a second way to drive the scene.
+- **Draw calls exceed the ≤ 80 budget at four of the eleven stations** — `prairie_west` 97
+  desktop / 94 mobile, `green_tree` 91/88, `forks` 87/82, `south_water` 85/83. The budget was
+  only ever measured at the spawn station, where it passes at 65/62. Not a regression; a
+  measurement nobody had taken. R-W5 owns the draw-call work and should take it.
+- **Captures are byte-identical within a browser process and near-identical across
+  processes.** Both baseline runs came out 11/11 byte-identical at both viewports, but an
+  earlier pair of rounds had four desktop stations alternating between two variants differing
+  in 1, 2, 11 and 43 pixels of 1,024,000 — on the horizon row and on alpha-blended surfaces.
+  So the acceptance line "byte-stable" is now a stated stability CONTRACT in the harness
+  (≤ 0.05 % of pixels may differ AND every reported metric must repeat within 1 %), it is
+  checked by `--stability`, and the byte-identical count is reported alongside it. See
+  RENDERING §4 G0 for the amendment.
+
+**Still open from G0.2:** the baseline **8-axis rubric score**. The protocol requires a critic
+that did not write the code under review, and the same run cannot both build the harness and
+be that critic. It is a parcel of its own — **R-G1** below.
+
+**Trap (kept for the record):** the harness must use the existing `window.__chicago4d` API
+(`goTo`, `setAnimationHold(true)`, `capture`) and must not add a second way to drive the
+scene. It does not: non-anchor stands use the same `walker.teleport` `tools/shoot.mjs`
+already uses, and nothing in `renderers/` changed.
+
+### R-G1 — the baseline scored pass · **UNCLAIMED**
+
+**Phase:** RENDERING §4 G0.2 · **Runner:** improve-runner · **Effort:** S · **After:** R-G0
+
+Run the Joliet protocol against the R-G0 shot set and record the baseline score: independent
+critic, eight axes, written justification, a specific fix per axis below 8, compared against
+the §0 reference set and never against commercial game frames. The critic must not be the
+agent that wrote the harness or the renderer code under review.
+
+**Files:** `docs/STATUS.md` · `docs/ROADMAP.md` (no code)
+
+**Acceptance:** eight axes scored with written justification at five named stations, the fixes
+each routed to the phase that owns them, and the mean recorded in STATUS as the number later
+phases have to beat.
 
 ### R-W1 — calibrated light and environment · **UNCLAIMED · NEXT UP**
 
@@ -184,45 +237,284 @@ makes the two safe to run at once.
 - **Residents are RECORDS and Evidence/popup content only.** The no-human-figures constraint
   (AGENTS.md standing constraint, L1) is untouched by this lane and is not negotiable.
 
-### T-A1 — refresh the 665-roof recipe · **UNCLAIMED · NEXT UP**
+### T-A1 — refresh the 665-roof recipe · **DONE 2026-08-14**
 
-Every later block parcel reads this, so it goes first. Reconcile
-`data/reconstruction/*.json` against what has actually been built (242 structures), restate
-the remaining blocks as a per-block schedule with counts and families, and record what the
-gap is between today and the documented density.
+Every later block parcel reads this, so it went first. The programme is now
+`data/reconstruction/1835_665_roof_programme.json`, **derived** by `tools/reconcile_665.py`
+and re-derived by `tools/check.sh` — a ledger about a town that grows most nights cannot be
+an authored number, which is exactly how the crosswalk came to call 617 roofs remaining
+while 232 were standing.
 
-**Files:** `data/reconstruction/1835_665_roof_programme.json` (refresh or create) ·
-`docs/ROADMAP.md` (S10) · `docs/STATUS.md`
+**232 physical roofs stand** (242 records: 12 of them are bridges, piers, a palisade, a
+parade ground, a garden and a construction site that the reconciliation credits with no
+roof, and one record is two cabins). **433 remain.** By district: South 270, West 94,
+North 69, Fort 0 — the fort is complete.
 
-**Acceptance:** the schedule names every remaining block, its family mix and its count; the
-arithmetic reconciles with the 242 already standing; `tools/check.sh` green.
+**The finding that matters is not the count, it is where the count can go.** The plat module
+reaches 19 blocks holding 152 lots. At the phase-1 parcel's own density — one principal roof
+per lot, ancillary at the programme's 154:511 — those blocks have **105 roofs of headroom**.
+The other **328 of the 433 have nowhere to stand**: 20 in the two blocks the module refuses
+for want of South Water street control, 35 in the West recipe's own extension-gated set, and
+273 in ground with no committed street control at all (east of State, south of Washington,
+west of Clinton, and the whole North Division, which the grid does not cover by a single
+block). **The binding constraint on the 665-roof programme is coverage, not recipes** — S9
+street control and the terrain extensions are now what the town is waiting on, and T-A2
+onward can only work the 105.
 
-### T-A2 — the first refreshed block · **UNCLAIMED · NEXT UP**
+Six families are already **over** their target — C1, I2, T2, W1, W4, W5, nine roofs in all,
+every one of them evidence the research placed after the target was written. A documented
+roof is never removed to protect a family cap, so the excess is reported and taken out of
+the invented family with the most slack (D4, the two-storey frame dwellings).
 
-One block from T-A1's schedule: recipe → records → households → placeholder massing.
+**Files:** `tools/reconcile_665.py` (new) · `data/reconstruction/1835_665_roof_programme.json`
+(new, derived) · `tools/check.sh` (one step) · `1835_building_inventory.json` and
+`1835_family_archetype_crosswalk.json` (stale statuses corrected) · `docs/ROADMAP.md` (S10) ·
+`docs/STATUS.md`
 
-**Files:** `data/structures/<block>_*.json` · `data/residents/households/<block>_*.json` ·
-`data/residents/index.json` · `data/sidecars/1835/<block>_*.json` · `docs/LIBERTIES.md`
+### T-A2 — the first refreshed block · **DONE 2026-08-14 (`blk_randolph_wells`)**
 
-**Acceptance:** `tools/check.sh` green including `audit_confidence.py --strict` and the
-liberties coverage gate in both directions; every new value at the invented tier with a
-reasoning note; the smoke's per-structure size and no-hover gates green.
+Ten anonymous roofs on the block bounded by Randolph, LaSalle, Washington and Wells: seven
+principal buildings on seven of its eight lots and three yard buildings off the alley, to the
+family mix the schedule apportioned it (A1 A3 A4 D1 D2 D3 D4 D5 H1 H2). Standing roofs
+**232 → 242**; remaining **433 → 423**, of which **95** still have modelled ground.
 
-### T-A3 — the second refreshed block · **UNCLAIMED · NEXT UP**
+**The parcel shape that repeats, and it is not the one T-A2 was written expecting.** The three
+earlier parcels authored their own coordinates — a row northing and a list of eastings, or a
+centre per slot — because the plat module did not exist when they were written. This one
+authors **no coordinates at all**: the recipe says which family stands on which lot, whether it
+fronts the street or the alley, and how far back, and `tools/generate_block_infill.py` reads
+every metre off the committed lot polygons. That is what makes T-A3…T-An a recipe entry rather
+than a new geometry argument each time, and it retires by construction the defect class K7 found
+(seven buildings in the middle of the road, from a recipe that never asked where the road was).
 
-As T-A2, different block. Its purpose is to prove the parcel shape repeats cleanly so the
-remaining blocks can be worked one per run without re-deciding anything.
+**Two findings came out of it that are not the block.**
 
-**Files:** as T-A2, different block prefix — disjoint from T-A2 by construction.
+- **`family_bands_ft` in the building inventory has no H1, H2, H3, C4, T1-T3, W5, F3, F4, I1-I3
+  or M1 band** — 14 of the programme's 35 families — so the earlier generators could only build
+  the families somebody had retyped into Python, and the schedule was apportioning H1 and H2 to
+  this very block. **The crosswalk had them all along**: `1835_family_archetype_crosswalk.json`
+  carries the footprint band, the storey count, the eave height and the placeholder archetype for
+  every family, and agrees with `family_bands_ft` on all 21 both of them hold. This generator
+  reads the crosswalk, so every family the programme can name is now buildable and no band is
+  retyped anywhere. **H1 and H2 stand for the first time.**
+- **The A3 privy's authored eave band (6-7 ft) dips below what the outbuilding archetype needs**
+  to carry its own man door plus a header — refused by name at 1.891 m. The sample is now drawn
+  from the part of the authored band the archetype can build (2.07 m here, beside phase one's
+  privies at 2.05), and a family whose whole band sits under that floor fails loudly rather than
+  being quietly raised out of its typology. Recorded in L92.
+
+**Deferred, deliberately, and it is the one part of the parcel as written that did not ship:**
+the **household layer**. Adopting these ten roofs as dwellings means restating
+`1835_inferred_household_programme.json`'s occupation census — the generator gates the census and
+the households against each other in both directions — and that is the K1 programme's own
+argument about who the town's tradesmen were, not something a block parcel should re-decide as a
+side effect. **T-A2h below owns it.**
+
+**Files:** `tools/generate_block_infill.py` (new) ·
+`data/reconstruction/1835_platted_block_parcels.json` (new, authored) ·
+`data/structures/recon_1835_blk_randolph_wells_*.json` (10, derived) ·
+`data/structures.schema.json` (four lot-provenance fields) · `data/sidecars/1835/` ·
+`assets/…` placeholder massing · `docs/LIBERTIES.md` (L92) · `tools/check.sh` (one step)
+
+### T-A2h — the ten roofs' households · **UNCLAIMED · NEXT UP**
+
+Adopt some or all of `blk_randolph_wells`'s ten roofs into the inferred-household layer:
+occupation census, household records, invented names, occupancy blocks on the structures. Data
+only, and disjoint from every other block parcel.
+
+**Why it is its own parcel:** `tools/generate_inferred_households.py` requires the census and the
+households to agree exactly in both directions, so adding households means arguing about the
+town's trade mix — the weakest joint in the population layer, and the one STATUS names as derived
+from five in-dataset calibrations rather than cited. That argument deserves a run, not a footnote.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` ·
+`data/residents/households/*.json` · `data/residents/index.json` ·
+`data/structures/recon_1835_blk_randolph_wells_*.json` (occupancy only, via the generator)
+
+**Acceptance:** `tools/check.sh` green; no inferred person carries a name that is not re-derived
+by `generate_inferred_names.py`; the census reconciles; **no human figure is drawn** (L1).
+
+### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
+
+**The parcel shape did repeat, and that is the finding.** Appending a block to
+`data/reconstruction/1835_platted_block_parcels.json` and running the generator is the whole of
+the geometry work — no coordinate is authored, no family band is retyped, and the recipe entry
+took minutes. Two things came out of the repeat that a single block could not have shown, and
+both are worth more than the nine roofs.
+
+**One roof of the ten was refused, and the generator now refuses its whole family by name.** The
+schedule dealt this block an I3 — civic or public-service. (The parcel as written expected H3;
+the schedule is derived from what stands, so T-A2 re-apportioned it. Read the schedule, never
+this entry's memory of it.) I3 resolves through the `fort_structure` placeholder, whose entire
+vocabulary of building kinds is garrison words — quarters, barracks, blockhouse, magazine, store,
+guard, sutler, artillery — with nothing in it for the adapted office or engine house the
+crosswalk says the family spans. Massing it would have stood a garrison building in the platted
+town, 750 m from the fort. The crosswalk had already written the precondition on its own entry:
+the six-roof aggregate *"spans unlike functions; they must reconcile to named public records
+before selecting construction"*. So `REFUSED_FAMILIES` in `tools/generate_block_infill.py` now
+refuses I1, I2 and I3 by name with the committed sentence each refusal enforces, instead of the
+generic *"add a form rule before a recipe uses it"* — which was an instruction to step over the
+precondition. **The deferral is gated in both directions**: a roof the schedule dealt and the
+parcel did not build must be named in the recipe's `deferred` list with its reasoning, and a slot
+may only be deferred for a refusal the code states. A family cannot be dropped for being awkward,
+and a deferral cannot be used to hide one. Both directions verified by reintroducing them.
+
+**The lot frame was being chosen by a two-centimetre margin, and on this block it chose wrong.**
+`lot_frame()` identified a lot's alley edge as the edge nearest the alley's CENTROID — and a
+block's alley centroid sits at the block's own centre, so for an END lot the side lot line
+running back toward that centre is nearly as close as the alley edge. On `blk_randolph_dearborn`
+the two came out **38.93 m against 38.95 m**, and two of the four end lots picked the side lot
+line: a building framed broadside to its own street, hanging over the neighbour. What reported it
+was the lot-margin gate, at **1.44 m against a 1.5 m bound** — a millimetre-scale complaint about
+a ninety-degree error, which is the shape of this defect worth remembering. Measuring to the
+alley STRIP instead separates the same two edges by 0.2 m and 26.3 m. A structural check rides
+with it: a lot's front and rear are its two block-face-parallel edges and are the same length to
+within the plat's skew, so a 20 % disagreement means one of them is a side line and fails loudly.
+**`blk_randolph_wells` cleared the old tie by 1.3 m in 37 — a 3 % margin — so nothing T-A2
+committed moves**, and it was never more than the block's proportions away from the same failure.
+Verified by framing this block's lots under the old rule against the new check: 2 of 8 rejected,
+the two that were wrong.
+
+**Standing roofs 242 → 251; remaining 423 → 414, 86 of them on covered ground.** Five dwellings
+on five of eight lots and four yard buildings off the alley; three lots open, two on the
+programme's alternating-vacancy assumption and one because the parcel refused its roof. Recorded
+in L93.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
+`tools/generate_block_infill.py` (`REFUSED_FAMILIES`, the deferral gate, `lot_frame`) ·
+`data/structures/recon_1835_blk_randolph_dearborn_*.json` (9, derived) · `data/sidecars/1835/` ·
+`assets/…` placeholder massing · `docs/LIBERTIES.md` (L93) · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+### T-I3 — the civic roofs, reconciled to named records · **UNCLAIMED · NEXT UP**
+
+**Research, not massing, and it is the parcel T-A3 refused to do by hand.** The programme
+schedules six I3 roofs — civic or public-service — across the town, and the generator now refuses
+every one of them until this parcel runs. What is owed is what the crosswalk asks for: which
+civic and public-service buildings Chicago actually had in July 1835, where they stood, and what
+they were built of. The estray pen, the jail, an engine house, an adapted office are the kinds of
+thing at stake, and each is nameable or is not there.
+
+**The rule that makes this different from a block parcel:** a named record substitutes for a
+compatible anonymous roof and never increases the total, so this parcel can only ever move roofs
+from the anonymous column into the named one. **Never invent a source.** A civic building for
+which no source record resolves does not become `conjectural` here — it stays absent, and the
+absence is recorded in `data/exclusions.json` with its citation the way every other
+researched-and-excluded structure is.
+
+**Whether an anonymous I3 may ever stand is itself part of the parcel.** If the research shows
+the town's public buildings are enumerable, then the family's six-roof target is the thing that
+is wrong and the programme should be corrected rather than filled. Say which, with the reasoning.
+
+**Files:** `data/sources/*` (new, with Wayback snapshots) · `docs/RESEARCH/<id>.md` ·
+`data/structures/*` or `data/exclusions.json` · `data/reconstruction/1835_building_inventory.json`
+(only if the target is what moves) · `tools/generate_block_infill.py` (`REFUSED_FAMILIES`, only
+once a named record exists) · `docs/LIBERTIES.md`
+
+**Acceptance:** `tools/check.sh` green; every new attribute graded `documented` resolves to a
+source record; nothing anonymous gains a civic function; L93's *How to resolve* answered in
+whichever direction the evidence points.
 
 ### T-A4…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
-prefix in its claim heading so two runs cannot take the same one.
+prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
+arrival date** — it is derived from what stands, so every block parcel that lands re-apportions
+the families of every block that has not. A parcel that meets an institutional family defers it
+per T-A3 rather than reaching for a shape.
 
 ---
 
 ## Bugs found and not yet fixed
+
+### B-BUG1 — the nightly bake died at the finish line · **FIXED 2026-08-14**
+
+Recorded because the shape of it will recur, not because it is still open.
+
+The published-mirror smoke was added to the end of `tools/bake.sh` on 2026-08-13 21:00 UTC
+(commit `7645be6`), and it was the right thing to add: the source tree and the published
+tree do not load the same geometry, and a bug that flattened every building to a two-metre
+box had already shipped past a green gate twice because nothing had ever loaded the
+compressed derivatives.
+
+`chicago-4d-bake.yml` does not install Playwright. So from that commit onward the nightly
+did all of it — fetched Blender, generated, baked AO, compressed, published, gated **green**
+— and then died on `Cannot find module …/playwright/index.js`, one step short of the step
+that pushes the bake branch and opens the PR. Every night's output was discarded. Runs
+`31761814117` (01:49Z) and `31771193146` (04:52Z) both read as a failed content build with
+no clue in the summary that everything of substance had succeeded.
+
+**Fixed** by installing `playwright@1.56.1` globally plus the matching Chromium in the bake
+workflow. Nothing was skipped and no assertion was weakened — `SKIP_SMOKE=1` exists and was
+deliberately not used, because a nightly that publishes without loading what it published is
+the exact hole this smoke was added to close.
+
+**The general lesson, for whoever adds the next gate:** `bake.sh` runs in two places with
+different toolchains — a dev container that has Playwright and a runner that does not — and
+a step added to the script is only really added once the runner can execute it. Check the
+workflow in the same commit as the script.
+
+### B-BUG2 — installing `ktx` turned on textures the renderer cannot read · **FIXED 2026-08-14**
+
+The immediate sequel to B-BUG1, and the reason that fix was worth making: the moment the
+bake could run its smoke again, the smoke found something.
+
+`tools/bake.sh` asked for `--texture-compress ktx2` whenever a `ktx` binary was on PATH. That
+is the wrong precondition. Whether the TOOL can write KTX2 says nothing about whether the
+RENDERER can read it — and it cannot. The vendored `GLTFLoader` handles `KHR_texture_basisu`
+only after `setKTX2Loader()` is called, nothing calls it, and no Basis transcoder is vendored
+(it would have to be: `renderers/web/` takes no CDN).
+
+So when the KTX-Software install landed on the runner, three derivatives came back with KTX2
+textures — `blacksmith_shop_state_st__log_1823`, `brown_boarding_house__documented_1835`,
+`beaubien_barn__converted_1817` — and each threw `THREE.GLTFLoader: setKTX2Loader must be
+called before loading KTX2 textures`.
+
+**All eleven failures in bake run `31773216178` are that one cause.** An asset that throws in
+the loader is an asset that is not in the scene, so the count guard on the ground-contact
+check (`n > 200`) saw 198 and tripped, and the raycast, click-to-inspect and inspect-from-the-air
+checks had less town to hit. Nothing floated — the worst corner was 0.077 m, well inside the
+0.15 m tolerance. Reading the failure list as eleven problems would have sent someone a long
+way in the wrong direction.
+
+**None of it left the runner.** The bake fails before its push step, so no branch, no PR, and
+production was never touched: the published mirror as shipped carries zero KTX2 textures and
+runs `403 passed, 0 failed`.
+
+**Fixed** by gating the flag on an explicit `BAKE_KTX2=1` instead of on the binary's presence.
+The `ktx` install stays — W2 needs it and it costs nothing idle.
+
+**Turning it on is part of W2, in this order:** wire `KTX2Loader` plus a vendored transcoder
+into the renderer, prove it loads a textured asset at both viewports, and only then set
+`BAKE_KTX2=1`.
+
+### B-BUG3 — the revived bake fired on every merge and piled up PRs · **FIXED 2026-08-14**
+
+The third and last consequence of the bake never having worked: nobody had ever seen what it
+does when it *succeeds* in a repo whose loop is running.
+
+`chicago-4d-bake.yml` triggered on pushes touching `chicago/4d/data/**`, and carried no
+`concurrency` group (both `deploy.yml` and the promotion have one). That was sound when data
+changed rarely. It is not sound now — the steward loop's entire job this week is adding
+structures, so nearly every merge into `dev` touches `data/**`. Between 06:42 and 12:19 the
+bake opened **seven** PRs — #107, #110, #111, #113, #114, #116, #117 — each a full
+regeneration of the same binary assets, each ~20 minutes of Blender, all mutually conflicting,
+and all but the newest already stale against a `dev` that had moved on. Two pairs
+(`31786785408`/`31786796289`, `31793910650`/`31793926909`) were racing runs seconds apart.
+
+The workflow's own header said "never on every commit". The trigger list quietly stopped
+honouring it once the loop changed what a typical commit looks like.
+
+**Fixed** by dropping `data/**` from the push trigger — a change to a GENERATOR or to
+`bake.sh` alters how everything is built and earns an immediate rebake, while a data change is
+exactly what the nightly is for — and by adding `concurrency: { group: chicago-4d-bake,
+cancel-in-progress: true }`. A superseded bake has nothing to offer: its output is measured
+against a `dev` that has already moved, so cancelling it is the correct outcome rather than a
+lost result.
+
+**Left for the owner:** the seven open PRs. They hold real baked geometry and only the newest
+(#117, based on the current `dev`) is current; the rest are stale and conflict with it. Closing
+six and merging one is a judgement call about content, not a workflow defect, so it has not
+been made here.
 
 ### T-BUG2 — 79 ground vertices face downward · **UNCLAIMED**
 
@@ -2240,13 +2532,28 @@ Three things worth carrying:
   re-fetches the recorded node ids; it needs the network, so it is on-demand and not in
   `tools/check.sh`.
 
-## S10 — Complete July 1835 building inventory · **PHASE 1 IN 2026-08-11**
+## S10 — Complete July 1835 building inventory · **RECONCILED 2026-08-14**
 
 The owner-supplied reconstruction specification establishes a production target of **665 roofs**:
 511 principal/functional and 154 ancillary, distributed South 370 / West 135 / North 150 / Fort
 10. The durable master ledger is `data/reconstruction/1835_building_inventory.json`; it preserves
 the independently reconcilable family and district matrices and explicitly separates aggregate
-moderate confidence from interpretive per-instance placement.
+moderate confidence from interpretive per-instance placement. **That file is the TARGET and does
+not move.** What has been built against it, what is left and where it can go are derived —
+`tools/reconcile_665.py` → `data/reconstruction/1835_665_roof_programme.json`, re-derived by
+`tools/check.sh` on every commit (T-A1).
+
+**Standing 2026-08-14: 232 physical roofs from 242 records. Remaining: 433** — South 270,
+West 94, North 69, Fort 0. Of those 433, **105 have modelled, platted ground to stand on** and
+328 do not: 20 in the two blocks the plat module refuses for want of South Water street control,
+35 held by the West recipe's own extension gate, and 273 in ground with no committed street
+control at all — east of State, south of Washington, west of Clinton, and the whole North
+Division, which the grid covers by not one block. The 665-roof programme is **coverage-bound,
+not recipe-bound**; § S9 is what stands between it and the next two hundred roofs.
+
+Six family targets are already exceeded by evidence — C1, I2, T2, W1, W4 and W5, nine roofs —
+which the ledger reports rather than hides. A documented roof is never removed to protect a
+family cap, so the nine come out of the invented family with the most slack.
 
 - **Phase 1 done:** 48 visibly tagged anonymous South Division roofs in five mixed blocks—40
   principal/functional and eight ancillary. Reproducible records and flagged review GLBs are

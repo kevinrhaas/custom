@@ -3,7 +3,7 @@
   "id": "chicago_1835_family_archetype_crosswalk",
   "target_date": "1835-07-01",
   "source_id": "owner_chicago_1835_reconstruction_spec_2026",
-  "count_basis": "Remaining means the 665-roof family target less the 48 phase1 South Division anonymous roofs already instantiated. Reviewed but unrendered phase2 recipes are not subtracted.",
+  "count_basis": "SUPERSEDED FOR COUNTING PURPOSES 2026-08-14 — the live remainder is derived in data/reconstruction/1835_665_roof_programme.json by tools/reconcile_665.py, and 433 roofs remain against the 617 below. The per-family remaining_roofs here were computed when only the phase1 parcel stood; they are kept because the crosswalk's VALUE is the family-to-archetype mapping and its geometry contract, neither of which the count affects. Remaining below means the 665-roof family target less the 48 phase1 South Division anonymous roofs already instantiated. Reviewed but unrendered phase2 recipes are not subtracted.",
   "roof_totals": {"target": 665, "phase1_instantiated": 48, "remaining": 617},
   "priority_rule": {
     "order": "descending remaining_roofs, then family id",
