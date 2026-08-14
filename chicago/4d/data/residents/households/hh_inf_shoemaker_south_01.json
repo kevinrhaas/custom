@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_south_01",
- "name": "The Hubbard household — an inferred shoemaker (south division)",
+ "name": "The Ingalls household — an inferred shoemaker (south division)",
  "division": "south",
  "head": "inf_shoemaker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_south_01",
-   "name": "Asa Hubbard",
+   "name": "Amos Ingalls",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

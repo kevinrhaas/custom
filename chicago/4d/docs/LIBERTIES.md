@@ -2480,6 +2480,84 @@ numbers outright rather than adjusting them.
 
 **Recorded:** 2026-08-14.
 
+### L97 — A block whose standing roofs this project had put there itself, and the third test that let one of them be occupied
+
+**Decision:** `blk_randolph_market` — bounded by Randolph, Franklin, Washington and Market, the
+first South Division block of the Randolph row — now carries **eight anonymous roofs**: four
+dwellings, one per lot on four of its eight lots, and four yard buildings off the block alley. The
+ceiling and the family mix are the 665-roof programme's schedule and **everything below that is
+invented** — which family stands on which lot, which two lots are left open, how far each building
+stands back from its frontage and how far it sits to one side of its lot. No coordinate is
+authored: every metre is read off the committed lot polygons of the K7 grid. One of the eight, the
+D3 one-room cottage on lot 7, is adopted as the dwelling of a twelfth inferred carpenter
+household; the other seven stay anonymous count-units.
+
+**What is new here is WHO had already built on it.** L95 recorded the first partly-built block, and
+the roofs in its way came from the phase-two West Division density recipe. This block's two
+standing roofs are `inf_sawyer_dwelling_a` and `_b` — the dwellings of the occupation census's own
+two sawyer households, placed from typed local-ENU coordinates by the inferred-residents parcel
+before the plat module existed. So the layer that argues who the town held and the layer that fills
+its blocks have now collided on the same ground, and the collision is resolved the way L95 resolved
+the first one: occupancy is derived from the committed footprints, lots 4 and 6 are refused a
+second principal roof, and the schedule's headroom of eight is spent on the six lots that were
+free. **The same caveat L95 entered applies unchanged and is not weakened by repetition** — reading
+those two dwellings as standing on "lot 4" and "lot 6" is this project's generated grid speaking
+about buildings that predate it, and a footprint centre falling inside a conjectural polygon is not
+evidence that anybody in 1835 held that parcel.
+
+**Where the vacancy falls was decided by arithmetic, not by argument, and that is worth admitting.**
+The programme's alternating-vacancy assumption says a block is not a completed terrace. On this
+block both already-standing roofs sit on the Randolph face, so the two lots left free there are
+exactly the two the frontage-value typology wants for the better cottages — and the two open lots
+have nowhere to fall but the Washington face. Lot 1 is named first because it is the
+Washington-and-Market corner and Market is the river edge of the South Division here; lot 5 is
+named in alternation with the two built on. Neither choice is a finding about this block, and had
+the schedule dealt one roof fewer the pattern would have looked deliberate.
+
+**The third adoption test, which is a rule about the census rather than about this block.** L94
+recorded the two tests that decide whether a block roof may be given an occupant: the trade's own
+committed argument must call its count a floor, and the roof's family must be one the layer already
+houses that trade in. T-A4 met a case neither test covered — a D3 carpenter roof on a West Division
+block, when all eleven carpenter households stood north or south — and refused it by hand, on the
+reasoning that a carpenter west of the river would be a new claim about where the town's trades
+lived arriving as a side effect of drawing a cottage. That reasoning is now the **third test**,
+written into the household programme's `method` list: the roof's DIVISION must be one this layer
+already houses that trade in. It was checked against every adoption decision made before it and
+recovers all four — the T-A2h carpenter and labourer adopted, the T-A4 labourer adopted, the T-A4
+carpenter refused. **The invention it admits is the twelfth carpenter household itself**: no source
+names him, no source counts him, and the argument that carries him is the same building-rate
+arithmetic L83 records for the whole layer. What the three tests buy is that the census cannot grow
+merely because somebody drew a roof.
+
+**A trade the tests refuse, recorded because the refusal is not obvious.** The sawyers pass the
+first test — their argument says two households are "the smallest number that answers the demand",
+which is a floor — and their two roofs stand on this very block. They fail the second, and not for
+a reason about sawyers: their dwellings are bespoke `inf_sawyer_dwelling_*` records that carry no
+`reconstruction.family` at all, so "the family this layer houses that trade in" has no answer to
+give. **Four trades of the twenty-nine** are housed that way and only that way — brickmaker,
+packer, sawyer and wheelwright — and eight more are partly so, where the test can still be answered
+from the households that do stand on a family-bearing roof. For those four the second test is
+silent rather than negative, and silence is being read as refusal: the conservative direction, but
+not the same thing. Opened as ROADMAP **K21**.
+
+**Consequence:** the town gains its fourth platted block and its first on the Randolph row's South
+Division side, whose presence, lots, positions and footprints a visitor can see are interpretive —
+flagged massing in the confidence view, with the reasoning on the building card. Standing roofs
+move **258 → 266** against the 665-roof target; **399 remain**, 71 of them on ground the project has
+coverage for. Inferred households move 83 → 84 and inferred persons 95 → 96; one more anonymous
+roof stops being anonymous.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this
+block, and a reading of Thompson's lot numbering from the sheets themselves — which would also
+settle, rather than derive, which lots the two sawyer dwellings stand on. A named discovery
+substitutes for a compatible anonymous roof and never increases the total. The third adoption test
+is discharged by any evidence that places a trade in a division this layer does not yet house it
+in; until then it is a bound on invention and not a claim about Chicago.
+
+**Covers:** `recon_1835_blk_randolph_market_*.inferred_1835.position`,
+`recon_1835_blk_randolph_market_*.inferred_1835.footprint`
+**Recorded:** 2026-08-14.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

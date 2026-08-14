@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_west_05",
- "name": "The Hastings household — an inferred teamster (west division)",
+ "name": "The Hubbard household — an inferred teamster (west division)",
  "division": "west",
  "head": "inf_teamster_west_05",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_west_05",
-   "name": "Ezra Hastings",
+   "name": "Asa Hubbard",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
