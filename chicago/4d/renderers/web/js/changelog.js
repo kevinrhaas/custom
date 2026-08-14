@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 157, title: 'The town is lit by its own sky at last', kind: 'feature', ts: '2026-08-17T02:46:24.660Z', date: 'Aug 16, 2026, 9:46 PM CT',
+    items: [
+      'Until today the sky over this reconstruction and the light falling on it were two different skies. Overhead was a sky model calibrated against a verified July photograph of Illinois prairie. What actually lit the buildings was a pair of plain coloured lamps \u2014 one tinted blue for the sky, one for the ground \u2014 and nobody had ever measured the two against each other.',
+      'They did not agree. The old lamps put out nearly twice the light of the sky they stood for, and nearly three times the red. Every wall in town was lit by a sky that does not exist, at an exposure calibrated for one that does. The light now comes from the sky you can see, and the lamps are gone.',
+      'The visible result: there is no longer a single pure-black pixel in the standard views. At the river bank twelve thousand pixels used to be absolute black \u2014 leaves facing away from a high sun, lit by nothing. Now none are. Two other viewpoints did the same, eleven thousand and two thousand.',
+      'The catch, plainly: the scene is about a sixth dimmer than yesterday. That is what happens when you stop over-lighting a town. Scaling the sky back up to match the old total was built, measured and thrown away \u2014 a real sky is blue, and brightening it to carry a warm lamp\u2019s output washes the colour out of the walls, which is the fault this was meant to fix.',
+      'What it did not fix matters more than what it did. The darkest parts of a picture are better everywhere \u2014 nearly twice as good at the river bank \u2014 and still well short of a real photograph. The reason is not the light: the tree crowns are painted dark, so no lamp can reach them. That is written down and queued.',
+      'Behind all of it is a new instrument, and it is why the above are numbers rather than opinions. It puts a plain white card in the scene, points it six ways, and reads the light landing on it before any of the processing that turns a rendering into a picture \u2014 so it can tell a pale wall from a blue light.',
+    ] },
   { v: 156, title: 'The animals of July 1835 are in the Evidence panel', kind: 'feature', ts: '2026-08-17T02:24:29.867Z', date: 'Aug 16, 2026, 9:24 PM CT',
     items: [
       'Open the menu, then Evidence, and there is a new section: What was living here. Ten habitats — wet prairie, marsh, the timber, the river, the town itself — and inside each one every animal researched into it, 139 of them.',

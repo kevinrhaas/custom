@@ -919,9 +919,27 @@ function sunFromScene(group, uniforms, problems) {
   uniforms.uChiSun.value.copy(from).sub(to).normalize();
   const i = sun.intensity;
   uniforms.uChiSunCol.value.set(sun.color.r * i, sun.color.g * i, sun.color.b * i);
-  if (sky) {
+  // The sky fill, from the scene's published value rather than from a light.
+  //
+  // world.js used to deliver the fill as a HemisphereLight, which this could
+  // read; since W1 it delivers it as an environment map, which a Lambert
+  // material cannot see at all — three applies `scene.environment` to the
+  // physical materials only. Sniffing the light list would therefore have found
+  // nothing and left the sward on its default, lighting the prairie by one sky
+  // and the town beside it by another: the same class of error the sun above is
+  // traversed for rather than invented. `scene.userData.chiSkyFill` is the
+  // contract, the hemisphere light stays a fallback for any scene that still
+  // ships one, and a scene offering neither says so instead of guessing.
+  const fill = root.userData?.chiSkyFill;
+  if (Array.isArray(fill) && fill.length === 3) {
+    uniforms.uChiSky.value.set(fill[0], fill[1], fill[2]);
+  } else if (sky) {
     const j = sky.intensity;
     uniforms.uChiSky.value.set(sky.color.r * j, sky.color.g * j, sky.color.b * j);
+  } else {
+    problems.push('flora: the scene publishes no sky fill and carries no hemisphere '
+      + "light — the sward is lit by flora.js's own default ambient and may not "
+      + 'agree with the rest of the frame');
   }
   return true;
 }

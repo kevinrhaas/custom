@@ -1,5 +1,170 @@
 # STATUS
 
+## Landed on `dev` 2026-08-16 — the town was lit by a sky that does not exist, and the honest sky costs the roads
+
+> **⛔ NOT FOR PROMOTION.** `dev` may carry this; `main` may not, until the owner has walked the
+> `/dev/` preview and approved the look, or **R-W2** has bought the road contrast back. The next
+> promotion reads ROADMAP § R-W1's release-condition box first and reverts this parcel rather than
+> shipping it unreviewed. One number is why: **`south_water` 250–600 m, 71 % → 16 %.**
+
+**Built 2026-08-14, parked three days on one smoke assertion, rebased onto `dev` at 836fa84 and
+re-measured tonight.** `world.js` and `flora.js` auto-merged with everything that landed in between,
+and `main.js` is untouched, so R-BUG1's altitude near-plane is intact.
+
+### The finding stands, and it is worse than "one assertion short"
+
+The sky over this reconstruction and the light falling on it were two different skies. Measured on
+an upward-facing white Lambertian card, sun excluded, on the rebased branch:
+
+| fill | luminance | R/B retention, white card facing north |
+|---|---|---|
+| the old `HemisphereLight` rig | **1.4047** | 85 % |
+| this sky's own PMREM | **0.7484** | 78 % |
+
+**1.9× the luminance and about 2.9× the red of its own sky.** Every calibration this project has
+made — the sward's density, the wall colours, the crown contrast — was taken under a fill that
+contradicted its own backdrop. Scaling the sky up to hold the old total was built and measured
+before being rejected: it takes retention to **62 %**, which is the documented failure reached from
+the other side.
+
+### What it buys
+
+Literal black pixels reach **zero at all three metric stations** — `river_bank` 12,063 → 0,
+`first_post_office` 11,015 → 0, `prairie_south` 2,315 → 0 — and the decile L\* rises everywhere,
+nearly doubling at `river_bank` (0.93 → 1.78). §1 item 11 retired, item 7's "no literal (0,0,0)"
+half with it.
+
+### What it costs, in the place that is already sore
+
+The scene is ~16 % dimmer, so road contrast falls almost everywhere. Mobile, published mirror,
+honest denominator (R-M1c):
+
+| station · band | `dev` | R-W1 | |
+|---|---|---|---|
+| `south_water` 40–100 m | 87 % | 80 % | −7 |
+| `south_water` 100–250 m | 52 % ✗ | 33 % ✗ | −19 |
+| **`south_water` 250–600 m** | **71 % ✓** | **16 % ✗** | **−55** |
+| `from_above` 100–250 m | 85 % | 78 % | −7 |
+| `from_above` 250–600 m | 53 % ✗ | 50 % ✗ | −3 |
+| `lake_market` 40–100 m | 100 % | 93 % | −7 |
+
+### The third instrument finding of the evening, and the suite handed it over silently
+
+**229 passed / 2 failed before. 229 passed / 2 failed after.** Identical, because `south_water` was
+already red on its *100–250 m* band, so a band collapsing from 71 % to 16 % **crossed no bar and
+appears nowhere in the summary**. A reader comparing tallies would have concluded this parcel cost
+nothing. The gate is per station; the measurement is per band. Opened as **R-M1d**.
+
+That is three in one evening — R-M1c (an occluder could raise a score), R-M1d (a band can collapse
+in silence), and R-BUG7's finding that four repairs to a drawing have never been asserted at all.
+
+### The conclusion, stated rather than deferred
+
+**R-W1 is correct and premature.** It belongs with or after **R-W2**'s textured coverage, which is
+what buys the contrast back. Landing it ahead of R-W2 trades a documented, owner-reported defect —
+the far road down a street — for a less-visible correctness win. It is on `dev` and out of
+production so that trade is visible to the person entitled to make it, rather than sitting a fourth
+day on a branch nobody can look at.
+
+### Desktop, measured — the assertion this was parked on in the first place
+
+`desktop 1280×800`, published mirror: **226 passed, 2 failed**, and it is the same two stations.
+`from_above` 250–600 m reads **54 %** — the assertion that parked this parcel on 2026-08-14 is
+still the one that fails.
+
+| desktop · band | R-W1 |
+|---|---|
+| `south_water` 2–40 m | 70 % ✓ |
+| `south_water` 40–100 m | 67 % ✓ |
+| `south_water` 100–250 m | 52 % ✗ |
+| `south_water` 250–600 m | 37 % ✗ |
+| `from_above` 100–250 m | 81 % ✓ |
+| `from_above` 250–600 m | **54 % ✗** |
+| `lake_market` (all five) | 70 / 87 / 95 / 100 / 100 ✓ |
+
+**The desktop DELTA is not claimed.** `dev`'s own desktop baseline was not taken, so these are
+R-W1's absolute figures and not a before/after. Only the mobile comparison above is a delta.
+
+**Not claimed:** the mobile critic set, the other eight stations, and the `--published` critic run.
+`docs/RESEARCH` still has no committed reference photograph for RENDERING §5 note 1, so these
+numbers are internally consistent and not anchored to a photograph.
+
+**The finding.** `renderers/web/js/world.js` calibrates its sky twice over — an exposure and
+a horizon fit, both least-squared against a verified July photograph of Illinois prairie —
+and then lit the town with something else entirely: a `HemisphereLight(0xa8c4e0, 0x7a6b4e,
+2.4)` plus a second at 0.20, colours and intensities nobody had ever checked against the sky
+they stood for. Measured with the new instrument, on an upward-facing white Lambertian card,
+sun excluded:
+
+| fill | R | G | B | luminance |
+|---|---|---|---|---|
+| the old hemisphere rig | 1.0440 | 1.4565 | 1.9535 | **1.4047** |
+| this sky's own PMREM | 0.3663 | 0.7916 | 1.5492 | **0.7558** |
+
+**1.86x the luminance and 2.85x the red of its own sky.** Not a tuning error — a fill and a
+backdrop that had never been in the same measurement.
+
+**The instrument.** `tools/light_probe.mjs` (new, ~9 s) borrows the live page's renderer and
+lights, renders white and documented-colour Lambertian cards on six axes into a LINEAR float
+target with tone mapping off, and reports irradiance and albedo retention. It measures the
+RIG, upstream of ACES, the sRGB encode and the sky — a frame cannot tell you whether a wall
+is pale because the light is blue or because the wall is. This is the white-card harness
+RENDERING §4 W1 asks for, and it restores the page's renderer state and asserts that it did.
+
+**What the environment fixed, desktop, at the three worst stations.**
+
+| station | literal black px | decile L\* | crown G−B |
+|---|---|---|---|
+| `river_bank` | 12,063 → **0** | 0.93 → 1.78 | 47.8 → 33.7 |
+| `first_post_office` | 11,015 → **0** | 5.35 → 6.20 | 12.2 → 15.7 |
+| `prairie_south` | 2,315 → **0** | 7.09 → 7.97 | 19.9 → 10.7 |
+
+RENDERING §1 **item 11 is retired** and **item 7's "no literal (0,0,0)" half with it**; item 8
+holds at every station. Downward-facing fill is up 30 %, because the ground half of the
+environment is derived from the light actually falling on the ground rather than being a
+colour with an intensity beside it.
+
+**What it cost, stated rather than discovered later: the scene is 16 % dimmer.** Holding the
+old total illuminance was built and measured before being rejected — it needs the sky scaled
+1.858x, and a real sky is blue (the calibrated zenith is B/R 4.2), so scaling it until it
+carries a warm lamp's luminance collapses albedo retention:
+
+| rig | log wall R/B retained against a white card in the same light |
+|---|---|
+| the old hemisphere fill | 85 % |
+| this environment, own magnitude | 76 % |
+| this environment, scaled to hold illuminance | **62 %** |
+
+62 % is the 2026-08 failure arrived at from the other direction, so the environment is
+installed at its own magnitude and there is no invented scalar anywhere in the fill.
+
+**What did not clear, and it is not the light.** The decile target of L\* ≥ 14 is out of
+reach of any rig. `CROWN_SHADE_FLOOR = 0.060` in `trees.js` folds a crown's self-shadowing
+into its own vertex colour, so an interior leaf's albedo is the record's foliage green times
+0.06 — **0.24 % reflectance**. At a floor of 1.0, meaning no self-shadowing at all, that
+surface still reaches only L\* ≈ 12 here. R-G1 established the metric reads canopy rather
+than shadow; this adds that the canopy is dark in the ALBEDO, where light cannot reach it.
+The lever is `CROWN_SHADE_FLOOR`, and it is a separate calibration: that constant's committed
+check is the Weber contrast the reference photograph's tree mass holds, 0.625 against 0.655
+here.
+
+**Why it is parked.** `tools/smoke_renderer.mjs` reports **403 passed, 4 failed**. Three were
+an unstamped changelog and are stamped. The fourth is real and is named in ROADMAP R-W1:
+**`the roads reach the screen from the air, at the aerial anchor`**, R-BUG2's own gate from
+yesterday. `south_water` still passes. The gate was not weakened and will not be.
+
+**Also on the branch.** `tools/critic_shots.mjs` takes `--stations a,b,c` so a phase can see
+a number in three minutes instead of twelve; unknown ids fail loudly, and the baseline runs
+pass no filter. `flora.js` now reads the sky fill from `scene.userData.chiSkyFill` rather
+than by sniffing the light list — three applies `scene.environment` to physical materials
+only, so the Lambert sward would otherwise have been left lit by a fill the town no longer
+has, which is the same class of error flora.js already traverses for the sun to avoid.
+
+**Not attempted, and not measured:** the mobile viewport's critic set, and the eight other
+critic stations. Only the three named above were re-shot. The published `--published` critic
+run was not taken either. Nothing here should be quoted as a whole-scene result.
+
+
 ## Shipped 2026-08-17 — the town's animals were researched, graded, cited, and read by nothing
 
 **ROADMAP K51**, from K42 finding 2. `data/fauna/` holds **139 animal records across ten habitat
