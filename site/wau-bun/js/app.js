@@ -224,6 +224,7 @@
       stat(idx.order.length, 'characters');
       stat(p.scenes.filter(function (s) { return s.pivotal; }).length, 'pivotal turns');
       stat(uniquePlaces(p).length, 'places');
+      if ((p.outline || []).length) stat(p.outline.length, 'chapters to come');
     } else {
       stat((p.outline || []).length, 'chapters');
       stat('Outline', 'status');
@@ -963,6 +964,19 @@
     host.appendChild(box);
   }
 
+  function renderRemaining(host, p) {
+    var box = el('div', 'wb-outline');
+    box.appendChild(el('div', 'wb-subhead', 'Chapters still to be broken into scenes'));
+    box.appendChild(el('div', 'wb-note', p.outlineNote ||
+      'These chapters are next; they are listed exactly as they stand in the narrative.'));
+    var ol = el('ol');
+    p.outline.forEach(function (row) {
+      ol.appendChild(el('li', '', '<b>CH. ' + esc(row.chapter) + '</b><span>' + esc(row.title) + '</span>'));
+    });
+    box.appendChild(ol);
+    host.appendChild(box);
+  }
+
   /* ---------------- the detail panel ---------------- */
   function paintPanel() {
     var pn = $('#wbPanel'), body = $('#wbPanelBody');
@@ -1068,10 +1082,14 @@
     host.innerHTML = '';
     var p = part();
     if (!(p.scenes || []).length) renderOutline(host);
-    else if (state.view === 'chart') renderChart(host);
-    else if (state.view === 'story') renderStory(host);
-    else if (state.view === 'cast') renderCast(host);
-    else renderTable(host);
+    else {
+      if (state.view === 'chart') renderChart(host);
+      else if (state.view === 'story') renderStory(host);
+      else if (state.view === 'cast') renderCast(host);
+      else renderTable(host);
+      // a part part-way through its build still shows what is coming
+      if ((p.outline || []).length) renderRemaining(host, p);
+    }
     paintPanel();
   }
 
