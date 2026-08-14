@@ -973,6 +973,55 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
+### B-A1 — does the AO bake earn its nightly? · **UNCLAIMED · NEXT UP (lane 1 or standalone)**
+
+Opened 2026-08-14 after nine bake PRs (#107, #110, #111, #113, #114, #116, #117, #118, #120)
+were closed unmerged in a batch. **B-BUG3 stopped them accumulating; this parcel asks whether
+they should be produced at all.**
+
+**What closing them revealed.** Every GLB in the newest PR was **modified, none added** — 57
+modified, 0 new — against a `dev` that already carried all 270, including the nine
+`randolph_dearborn` roofs from that morning's block. A block parcel lands complete: the infill
+generators emit placeholder geometry deterministically without Blender
+(`generators/inferred_placeholder.py`, gated by `check.sh`), so the nightly is **re-baking what
+already exists rather than supplying anything missing**. And a re-bake rewrites bytes even when
+nothing changed, because `tools/bake.sh` says so on its own face: determinism is defined on
+INPUTS, "because Cycles AO is not bit-reproducible across hardware".
+
+So a bake PR is, byte for byte, mostly churn — and it goes stale within hours. #120 would have
+**deleted eleven lines from the published changelog** and rewritten `walk/index.html`, because
+it branched five commits back and re-published a mirror that predated the work since, including
+the R-BUG2 fix.
+
+**The question, and it is answerable rather than a matter of taste:** what does the AO bake
+visibly buy over the placeholder geometry? `R-G0` merged that morning precisely so "did this
+change how it looks" stops being an adjective. Use it.
+
+**Method.** Take one block that has both forms available, shoot it through
+`tools/critic_shots.mjs --metrics` as placeholder-only and as baked, and quote the two tables.
+Then say which of these the evidence supports:
+
+- **It earns the nightly** — the difference is visible at the anchors a visitor is offered.
+  Keep the cadence; the fix is that the bake should close its own superseded PRs when it opens
+  a new one, so exactly one is open and it is always current.
+- **It earns a cadence, but not a nightly** — visible but slow-moving. Move to weekly or to
+  dispatch, and say what the trigger should be.
+- **It does not earn either** — the placeholders are what ships and the bake is refining
+  something nobody sees at the distances the app is walked at. Then the honest outcome is to
+  stop running it on a schedule, keep it on dispatch for when geometry genuinely changes, and
+  record that in `docs/RENDERING.md`.
+
+**Do not answer this by preference.** Nine PRs a day of runner time is a real cost and so is
+throwing away a refinement that matters; the tables decide it.
+
+**Files:** `docs/RENDERING.md` · `.github/workflows/chicago-4d-bake.yml` (cadence and/or the
+supersede step) · `docs/ROADMAP.md`. Measurement only — no data record changes.
+
+**Note:** the bake PRs' gate runs also sit in `action_required` (GitHub holding
+bot-branch workflows for manual approval), so they could never have gone green unattended
+anyway. If the outcome keeps PRs in the picture, that needs solving too, or every bake PR
+arrives permanently ungated.
+
 ### R-BUG2 — the town's roads vanish in places, and from the air · **DONE 2026-08-14 · two faults, and the third suspect refuted**
 
 **Shipped:** the gate first, then the fix, in that order and for that reason.
