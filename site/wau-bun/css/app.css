@@ -218,7 +218,10 @@ body.wb-resizing { cursor: ns-resize; user-select: none; }
 }
 .wb-colhead b { color: var(--text); font-size: 10.5px; }
 .wb-colhead:hover { background: var(--surface-2); }
-.wb-colhead.pivotal b::before { content: '★ '; color: var(--honey); }
+/* every column reserves the star's width so the numbers line up; only a
+   pivotal scene inks it in */
+.wb-colhead b::before { content: '★ '; color: transparent; }
+.wb-colhead.pivotal b::before { color: var(--honey); }
 .wb-colhead.on, .wb-colhead.on > div { background: color-mix(in srgb, var(--leaf) 14%, var(--surface)); }
 
 /* selected / faded scenes */

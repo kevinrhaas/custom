@@ -309,6 +309,55 @@ var WAUBUN_PART3 = {
       cast: ['juliette', 'john', 'brush'], offstage: ['arndt'], pivotal: true
     },
     {
+      id: 'p3s26a', act: 'c2', chapter: 'XXXI', chapterTitle: 'Ma-zhee-gaw-gaw swamp',
+      title: 'Wish-tay-yun goes first', date: 'November 1831',
+      place: 'Green Bay → the Kakalin', placeShort: 'The Kakalin',
+      summary: 'Dr. Finley, the post surgeon at Fort Howard, hears the thing being argued out and settles it by lending Juliette his own favourite horse: sure-footed, and he will carry her anywhere. So by land it is, as soon as Wish-tay-yun — as good a guide over ground as he is on water — can be sent for. They wait late on the morning of departure for their fellow-travellers, Mr. Wing of Monroe and Dr. Philleo of Galena, and set off without them. Across the river, in the wild unsettled country on the west bank, the road becomes a succession of wooded hills so steep that the horses climb and slide rather than walk.',
+      points: [
+        'Wish-tay-yun takes the lead on a horse used to the country. He scrambles ahead and keeps turning half round to see how she is faring — and every time she comes up panting and laughing at the bottom of another descent, there he is, delighted with her.',
+        'The Grignons at the Kakalin are frankly astonished that she has attempted it at all: they have lived on that river for years and never once tried the road.',
+        'The gentlemen turn up at supper. They had stopped to take dinner with Colonel Stambaugh, and had a delightful gallop up from the Bay.'
+      ],
+      cast: ['juliette', 'john', 'wishtayyun', 'wing', 'philleo', 'grignons'], offstage: ['finley', 'stambaugh'], pivotal: true
+    },
+    {
+      id: 'p3s26b', act: 'c2', chapter: 'XXXI', chapterTitle: 'Ma-zhee-gaw-gaw swamp',
+      title: 'A bear-skin on the boards', date: 'The second night',
+      place: 'Knaggs\'s, the Butte des Morts', placeShort: 'Knaggs\'s',
+      summary: 'Forty miles of rough country brings them to Knaggs\'s at the Butte des Morts, cold and tired enough that Mrs. Knaggs\'s little room and her supper are very welcome. Then comes the question of where to sleep. The room they have eaten in holds a bed, a table against the wall and the chairs they are sitting on, and there is no floor left for a shakedown. Asked where he can put them, Mr. Knaggs can think of nowhere but the old building outside.',
+      points: [
+        'It is one bare, dirty room with a huge chimney at one end, a rickety bunk against another wall, and mud thick on the floor — in the middle of which sits an old blind man with a pan of boiled corn on his lap, scooping it up in both hands.',
+        'Hearing strangers he pulls the dish close and grumbles; told it is Shaw-nee-aw-kee speaking, his face relaxes and he holds the dish out for them to share.',
+        'Could they not sleep outdoors? No tent, and too cold to risk it. Could she sit up in a chair by the fire? Then she would not be fit to ride to Bellefontaine tomorrow.',
+        'All Knaggs can furnish is a small bear-skin. The bunk being marginally less filthy than the floor, the skin goes on the boards, the saddle-blankets on the skin, the saddle-bags for a bolster — and between the old man\'s snoring, the companions who join him, and his querulous complaints at being crowded in the dark, she does not sleep at all.'
+      ],
+      cast: ['juliette', 'john', 'knaggs', 'mrsknaggs', 'blindman', 'wishtayyun'], offstage: ['wing', 'philleo'], pivotal: false
+    },
+    {
+      id: 'p3s26c', act: 'c2', chapter: 'XXXI', chapterTitle: 'Ma-zhee-gaw-gaw swamp',
+      title: 'The Slough of Despond', date: 'Nine in the morning',
+      place: 'Ma-zhee-gaw-gaw swamp', placeShort: 'The swamp',
+      summary: 'The bugbear of the road is reached at nine: half a mile of morass across, of interminable length, partly under water, with black knobs breaking the surface here and there to give a horse somewhere to put a foot, and between them a bed of oozy black mud that looks ready to swallow anything set on it. All three men go ahead of her, each meaning to pick out the surest path — which in practice means finding the soft places by sinking into them.',
+      points: [
+        'She declines to follow any of them. Trusting the horse instead, she lets him take his own time: pausing on one little hillock, then another, turning aside from a bad patch, and never once going in.',
+        'Three hours of it and they are still not across. At the far verge runs a stream, and the men are on the near bank consulting how to get her over it. "Jump off, jump off, madam" — and instead she chirps to the horse, raises the bridle, and he clears it in a bound onto firm ground.',
+        'Mr. Wing has fared worst: his heavy animal takes the view that once it is in a difficulty it has nothing more to do but lie still and wait to be pulled out. Reaching the stream, it plunges in and wades, washing off what it can.'
+      ],
+      cast: ['juliette', 'john', 'wing', 'philleo', 'wishtayyun'], offstage: [], pivotal: true
+    },
+    {
+      id: 'p3s26d', act: 'c2', chapter: 'XXXI', chapterTitle: 'Ma-zhee-gaw-gaw swamp',
+      title: 'That could not have been the two-mile creek', date: 'The third day',
+      place: 'Bellefontaine → the Portage', placeShort: 'Bellefontaine',
+      summary: 'They do not stop long on the rising ground past the morass: it is forty-five miles to Bellefontaine and none of it good going. The horses do admirably all afternoon, hers keeping a canter the whole way, but the light goes and none of the expected landmarks appear. She asks to rest a few minutes under a tree — she is nearly done, and it has begun to rain — and is told that if they lose the road it will be worse than being wet and tired. So they keep on.',
+      points: [
+        'At dark they cross a clear stream. That, says her husband, is about two miles from Bellefontaine; cheer up. Some time later: "We have certainly travelled more than six miles now." — "Yes. That could not have been the two-mile creek."',
+        'They reach it at eight, and a huge blazing fire; Wing and Philleo are already there. Their hostess\'s welcome does not extend to giving up her only bed, so she spreads what she can muster on the hard floor in front of the fire.',
+        'They reach the Portage safely, and so ends the first journey overland from Green Bay to Fort Winnebago made by any white woman — which, she notes, raised her a good deal in her own estimation.'
+      ],
+      cast: ['juliette', 'john', 'wing', 'philleo', 'wishtayyun'], offstage: [], pivotal: true
+    },
+    {
       id: 'p3s27', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
       title: 'Black Hawk recrosses the Mississippi', date: 'April 1832',
       place: 'The Agency', placeShort: 'The Agency',
@@ -343,6 +392,70 @@ var WAUBUN_PART3 = {
       cast: ['john', 'paquette', 'juliette', 'eleanor', 'margaret'], offstage: ['winnosheek', 'whitecrow', 'daykauray'], pivotal: true
     },
     {
+      id: 'p3s29a', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: '"Never fear"', date: 'Summer 1832',
+      place: 'Fort Winnebago', placeShort: 'Fort Winnebago',
+      summary: 'Among the rumours comes one that the Sauks mean to attack Fort Winnebago — and the Ho-Chunk know perfectly well that it is in no state to be attacked. Every effective man has been withdrawn on General Atkinson\'s requisition to join him at his new fort at Kosh-ko-nong. The place is not picketed in. The barracks and officers\' quarters have nothing between them and the outside but light panelled doors and Venetian blinds, which would not hold long against clubs or hatchets. There is no artillery, and the Commissary\'s store stands outside the bounds of the fort, under the hill. John has been pointing this out from the first and generally gets laughed at for it.',
+      points: [
+        '"Never fear. The Sauks aren\'t coming here to attack us."',
+        'Visiting the ladies in the garrison one afternoon, with several officers present, Juliette asks a blustering young officer whether it would not be wiser to be prepared against a possible danger. Not against these fellows, he says; he would not take the trouble even to fasten his blinds.',
+        'Then at least, she tells him, if he ever wakes to find a tomahawk raised over his skull, he will have the consolation of remembering that he was not one of those foolish men who keep on the safe side.',
+        'He is nettled, and more so when Margaret adds that she is of Governor Cass\'s opinion. He was at Chicago in the Winnebago war, with some of the company wanting to be brave and delay: hurry into the fort as fast as possible, he told them — there is no merit in being brave with the Indians, and it is the height of folly to stay and meet a danger you might avoid by prudence.'
+      ],
+      cast: ['juliette', 'john', 'margaret', 'blusteringofficer'], offstage: ['atkinson', 'cass', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s29b', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'Posts assigned, and pistols by the pillow', date: 'Summer 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Within a few days their friends wake up to the conviction that something must be done at once. The first step is to forbid any Ho-Chunk to come inside the garrison, in case they should find out what they have known as well as anybody for three months — how feeble the means of resistance are. The second is to send fatigue parties into the woods under guard to cut pickets. The runners keep bringing the same story: the Sauks mean to fall on the whites at the Portage and the fort and massacre all of them except the families of the Agent and the Interpreter.',
+      points: [
+        'Plante and Pillon left with their families at the first word of danger. The men who stay are Manaigre, whose wife is half Ho-Chunk, Isidore Morrin, and the two blacksmiths from Sugar Creek, Mâtâ and Turcotte.',
+        'At night everyone is armed and given a post. If the house is attacked, Juliette and Margaret are to take the children to the rooms above while John and his men hold the ground floor as long as they can.',
+        'Having once brought down a blackbird on the wing — accidentally — she reckons she could do some execution with her little pistols, which are laid beside her pillow every night, and she is entirely resolved to use them.'
+      ],
+      cast: ['john', 'juliette', 'margaret', 'manaigre', 'morrin', 'mata', 'turcotte'], offstage: ['plante', 'pillon', 'paquette', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s29c', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: '"Chon! Chon!"', date: 'Late one night',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Ringed by lodges that are never quite quiet, and with nerves worked on by everything they hear all day, nobody in the house sleeps soundly. One night, well after they have settled, there is a tap on the window at the head of the bed and a call of "Chon! Chon!" — John! John! It is Hoo-wau-ne-kah, the Little Elk, speaking fast and badly frightened. Juliette cannot follow him and lies there dreading the interpretation, catching only Sau-kee and shoonk-hat-tay-rah — Sauks, and horses.',
+      points: [
+        'A fresh trail has been found near the Petit Rocher on the Wisconsin, with the marks of a hundred horses or more, and the Barribault villages are in alarm. He has been sent straight to their Father to ask what to make of it.',
+        'John hears him out and tells him it is certainly General Henry\'s troops, said to have come north looking for the enemy: by his own account the horses were shod, and that alone settles that they are not Sauk. The villages need not be uneasy.',
+        '"Very well, Father. I will go back and tell my people what you say. They will believe you, for you always tell them the truth. You are not like us Indians, who sometimes deceive each other."',
+        'With the picketing finished and a detachment arriving from Fort Howard under Lieutenant Hunter, the fort becomes the safer place: every evening just before dusk the household now marches across the river to quarters inside the garrison, leaving the house and everything in it to the Frenchmen and the Ho-Chunk.'
+      ],
+      cast: ['hoowaunekah', 'john', 'juliette', 'margaret'], offstage: ['genhenry', 'hunter', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s29d', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'A sword in the wrong hands', date: 'Summer 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Their whole occupation now is sitting at the windows that look over the Portage to see what is coming next. One of those days a long shrill news-halloo carries up the road, and at the far end of it they make out a body of horsemen in full costume, scarlet streamers fluttering from their lances. Their hearts stop — it must be the enemy. At that moment John appears from the direction of the Interpreter\'s house, and though they call to him to stop he walks straight on toward them.',
+      points: [
+        'To their infinite relief the leader dismounts and every man behind him follows and comes forward to shake hands.',
+        'A space is cleared around the chief and John, and the chief makes an oration flourishing a sword — the first time Juliette has seen one in such hands. Every sweep of it looks from the window as though it is about to take her husband\'s head off, and she remembers what happened at Mackinac and at Detroit.',
+        'The stranger is Man-Eater, principal chief of the Rock River bands, come to hold a talk and bring news; it is Henry Gratiot\'s judicious and unremitting work that has kept the good feeling of the most dangerous portion of the nation. What he confirms is what they already feared — the Sauks are drawing north, toward the Portage.'
+      ],
+      cast: ['maneater', 'john', 'juliette', 'margaret'], offstage: ['gratiot', 'paquette', 'blackhawk'], pivotal: true
+    },
+    {
+      id: 'p3s29e', act: 'c2', chapter: 'XXXII', chapterTitle: 'Commencement of the Sauk war',
+      title: 'The dancer with the green boughs', date: 'Summer 1832',
+      place: 'The Agency', placeShort: 'The Agency',
+      summary: 'Soon after Man-Eater takes his leave another party arrives and asks leave to dance for their Father. The compliment is accepted and they assemble on the esplanade in front of the house; the women and children take the open windows as usual and John sits on the broad step of the door that opens straight into the parlour. As the dancers come round, Margaret says quietly: look at that small dark one with the green boughs on him — that is a Sauk. They mark themselves with white clay like that and dress in leaves to dance.',
+      points: [
+        'Juliette has never seen the costume on their own people: green chaplets round his head and his legs and even his gun wreathed in them, no paint but the white bars.',
+        'Every circuit brings him directly in front of the window, where he turns his gaze full on them and clubs his gun before him. They sit as still as death, knowing it would not do to show fear. "I have always thought that I was to lose my life by the hands of the Indians. This is the third Indian war I have gone through, and now, I think, it will be the last."',
+        'It is the only time Juliette ever sees her sister lose her self-possession — she is always remarkably calm and resolute, and now she is trembling.',
+        'Rain starts. The dancers keep on a few minutes, then rush the house all together with whoops, and the two women shut themselves in the bedroom while the dance carries on in the parlour, leaping and yelling fit to bring the roof down. The children are far too delighted to leave it; John comes in for a moment to reassure her and then judges it wisest to go back and show himself pleased at the compliment.',
+        'He will never admit the man was a Sauk. It may simply have been good fun to a young man to go home and tell how he frightened the white squaws — a trick that would surprise nobody in a white youth, and human nature being everywhere the same, perhaps not out of the way in an Indian either.'
+      ],
+      cast: ['saukdancer', 'juliette', 'margaret', 'john', 'edwin', 'julian'], offstage: ['maneater'], pivotal: true
+    },
+    {
       id: 'p3s30', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
       title: 'The Fourth of July, and the parting', date: '4 July 1832',
       place: 'The Agency', placeShort: 'The Agency',
@@ -367,6 +480,60 @@ var WAUBUN_PART3 = {
       cast: ['oldsmoker', 'juliette', 'arthur', 'mata', 'eleanor', 'margaret', 'edwin', 'julian'], offstage: [], pivotal: true
     },
     /* ---------------- Act 3 — The War's End ---------------- */
+    {
+      id: 'p3s31a', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: 'Buying a wind', date: 'Third day out',
+      place: 'Winnebago Lake', placeShort: 'Winnebago Lake',
+      summary: 'Good rowing brings them to where the river opens into Winnebago Lake. There is barely any wind, but the Frenchmen hoist the sail anyway in hopes of being spared the oars, and whistle for a breeze with all the force of their lungs, and appeal to La Vierge with a comical mixture of fun and reverence. Nothing. Someone finally suggests the only remaining remedy: throw a spare article of clothing overboard as a purchase.',
+      points: [
+        'Guardapié takes up the collection and finds that not one of the crew owns a spare anything. A few old rags are turned out of the bow and cast in. The sail flutters, swells a little, and flaps idly back against the mast.',
+        'A whispered consultation produces a better offering, and once the men have shaken it and satisfied themselves it is worth less than they had supposed, over it goes with shouts and laughter — and a breeze does spring up, and carries them beautifully half the way to Garlic Island before the charm wears off.',
+        'Two or three canoes of Ho-Chunk arrive at the same moment and at once offer some sturgeon they have caught, which promises a welcome change at the noon meal, so they land and make a fire. The boys are sent to bathe off the pebbly beach on the far side.',
+        'The pleasure is cut short by the discovery that the island — vines, shrubs and apparently the ground itself — is alive with wood-ticks, which burrow into the flesh and leave a painful swelling. The boys are called in, and the party spends the rest of the day picking them off.'
+      ],
+      cast: ['juliette', 'margaret', 'guardapie', 'arthur', 'mata', 'edwin', 'julian', 'josettegirl', 'oldsmoker'], offstage: ['fourlegs'], pivotal: false
+    },
+    {
+      id: 'p3s31b', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: 'A corner of somebody\'s fire', date: 'Toward evening',
+      place: 'The Little Chûte', placeShort: 'Little Chûte',
+      summary: 'The run down the rapids and over the Grand Chûte — a fall of several feet — is exciting and something more than exciting, and safely made. Toward evening the boat reaches the settlement of the Waubanakees at the head of the Little Chûte: the Stockbridge and Brothertown people, what remains of the old Mohicans, lately moved from Oneida County to a grant on the Fox. All that is asked of them is the loan of a corner of a fire to boil the kettle and bake the short-cake that has stood in for bread for two days.',
+      points: [
+        'The cake\'s manufacture has been the standing joke of the voyage: Powell\'s black flour, salt and a little butter mixed in the tin meat-box, which is then turned over and scoured to serve as the dough-board.',
+        'They prove so kind and hospitable that the crew ask for lodging ashore, glad of relief after three nights crowded into the boat, and Arthur and Mâtâ do the same; the houses, they are assured, are extremely neat and orderly.',
+        'Juliette and Margaret prefer to stay aboard with Edwin and Josette — it is a fine night and everything is comfortably arranged. The boat is moored tight, the little Chûte being just below and a drift over it a serious matter.',
+        'It is calm and moonlit, the air just warm enough, and the murmur of the rapids puts them to sleep. Then a rushing wind bends the poles of the awning and snaps them, a second gust takes tent and blanket away downstream, and a flash of lightning shows them sailing off like a spectre.'
+      ],
+      cast: ['juliette', 'margaret', 'waubanakees', 'arthur', 'mata', 'edwin', 'josettegirl', 'guardapie', 'vitelle'], offstage: [], pivotal: false
+    },
+    {
+      id: 'p3s31c', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: '"Don\'t wait for the Virgin"', date: 'That night',
+      place: 'The Little Chûte', placeShort: 'Little Chûte',
+      summary: 'The storm builds, the rain comes down in torrents and the thunder and lightning follow each other so fast that it is like the sustained discharge of a park of artillery. Margaret springs to wake the Frenchman left with the boat: get up, Vitelle, quick, run up the bank for Mâtâ and Mr. Arthur, tell them to come and get us instantly. He does not answer her. He goes down on his knees and calls on the Virgin at the top of his voice.',
+      points: [
+        '"Don\'t wait for the Virgin, but go as quickly as possible. Do you not see we shall all be killed?" — "Oh, not for the world, madame, not for the world," and he buries his head in a pack of furs and starts crying out to all the saints in turn.',
+        'Juliette gets her cloak out with difficulty and wraps herself and Josette in it; Margaret does the same with Edwin. Josette, teeth chattering: won\'t we be drowned?',
+        'What finally moves him is Margaret\'s: very well — you see Madame John is at the last agony, and if you will not go for help I must, and Monsieur John shall know that you left his wife to perish. "If I must, I must," and he is over the side and up the hill at a run.',
+        'In minutes, though it feels like ages, a whole posse comes flying down the hill, everything lit like day by the lightning. Mâtâ\'s hair is standing on end and his eyes are rolling. "Oh, my God, Madame Johns! what would Monsieur Johns say, to see you nows?" — and he picks her up and carries her up the bank, Arthur following with Margaret and two more with the children.',
+        'A fire is got going in the cabin with some difficulty, the trunks are brought up, and they change out of their drenched clothes and sleep on a clean, homely bed until daylight.'
+      ],
+      cast: ['margaret', 'vitelle', 'juliette', 'mata', 'arthur', 'josettegirl', 'edwin', 'waubanakees'], offstage: ['john'], pivotal: true
+    },
+    {
+      id: 'p3s31d', act: 'c2', chapter: 'XXXIII', chapterTitle: 'Fleeing from the Indians',
+      title: 'The place we always stop at', date: 'The next day',
+      place: 'The Fox → Fort Howard', placeShort: 'Shanty-town',
+      summary: 'They start early to find out how badly the cargo of furs has suffered, and the scene at the boat answers the question: bedding, cloaks, trunks, mess-basket and fur packs all marked by a complete deluge, and the boat ankle-deep, with nowhere aboard to stand or sit. After bailing, the least ruined packs are arranged into a sort of divan amidships, and there is nothing to do but re-embark and endure what cannot be cured. Water bubbles up wherever a hand or foot is put down. There is no breakfast to be had.',
+      points: [
+        'The worst of it comes with the sun. As the July heat climbs, the steam coming off an old boat full of soaked skins is very nearly suffocating.',
+        'They spend the whole long day on that odoriferous couch under a single umbrella held over the entire party. There are no songs from the Frenchmen: music and fasting do not go together.',
+        'At Shanty-town the cargo is carried into the Fur Company warehouse, everyone working heartily — and then the whole crew prepares to leave. Mâtâ storms and Arthur remonstrates, in vain: they had brought the boat and cargo to the warehouse, and that was the whole of their job.',
+        'So Juliette asks Guardapié directly whether he means to leave them there. It is the place they always stop at, madame. Does Monsieur John pay them for bringing his family down? Oh yes — an order on the sutler at the fort below. To be paid, she points out, when they deliver the family safe at the fort below; it seems she will be there first, and will settle the matter herself.',
+        'The Frenchmen consult, and Guardapié and two others get back into the boat, take their oars, and row them the remaining two miles to Fort Howard — rather sulkily.'
+      ],
+      cast: ['juliette', 'guardapie', 'mata', 'arthur', 'margaret', 'edwin', 'josettegirl', 'julian'], offstage: ['john'], pivotal: true
+    },
     {
       id: 'p3s32', act: 'c3', chapter: 'XXXIV', chapterTitle: 'Fort Howard — our return home',
       title: 'The man the Sauks nearly ate', date: 'July 1832',

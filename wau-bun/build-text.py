@@ -92,9 +92,13 @@ PART3 = [
     ('p3s22', 'XXVIII',  1724, 1732),
     ('p3s23', 'XXIX',    1736, 1784),
     ('p3s24', 'XXX',     1788, 1860),
-    ('p3s25', 'XXXI',    1864, 1875), ('p3s26', 'XXXI',    1876, 1923),
-    ('p3s27', 'XXXII',   1927, 1938), ('p3s28', 'XXXII',   1939, 1940), ('p3s29', 'XXXII',   1941, 1983),
-    ('p3s30', 'XXXIII',  1987, 1997), ('p3s31', 'XXXIII',  1998, 2042),
+    ('p3s25',  'XXXI',   1864, 1875), ('p3s26',  'XXXI',   1876, 1882), ('p3s26a', 'XXXI',   1883, 1887),
+    ('p3s26b', 'XXXI',   1888, 1901), ('p3s26c', 'XXXI',   1902, 1912), ('p3s26d', 'XXXI',   1913, 1923),
+    ('p3s27',  'XXXII',  1927, 1938), ('p3s28',  'XXXII',  1939, 1940), ('p3s29',  'XXXII',  1941, 1947),
+    ('p3s29a', 'XXXII',  1948, 1958), ('p3s29b', 'XXXII',  1959, 1963), ('p3s29c', 'XXXII',  1964, 1969),
+    ('p3s29d', 'XXXII',  1970, 1976), ('p3s29e', 'XXXII',  1977, 1983),
+    ('p3s30',  'XXXIII', 1987, 1997), ('p3s31',  'XXXIII', 1998, 2005), ('p3s31a', 'XXXIII', 2006, 2011),
+    ('p3s31b', 'XXXIII', 2012, 2017), ('p3s31c', 'XXXIII', 2018, 2028), ('p3s31d', 'XXXIII', 2029, 2042),
     ('p3s32', 'XXXIV',   2047, 2049), ('p3s33', 'XXXIV',   2050, 2055), ('p3s34', 'XXXIV',   2056, 2072),
     ('p3s35', 'XXXIV',   2073, 2075), ('p3s36', 'XXXIV',   2076, 2096), ('p3s37', 'XXXIV',   2097, 2125),
     ('p3s38', 'XXXV',    2129, 2135), ('p3s39', 'XXXV',    2136, 2138), ('p3s40', 'XXXV',    2139, 2152),
@@ -184,6 +188,46 @@ def retold(sid):
     paras = [' '.join(b.split()) for b in re.split(r'\n\s*\n', raw) if b.strip()]
     return paras or None
 
+CHAP = {}
+for _i, _l in enumerate(mod):
+    # two of the real headings (II and VIII) have no trailing period, and the
+    # table of contents up front repeats every one of them — so match loosely
+    # and let the later, real heading win
+    _m = re.match(r'\[Heading1\] CHAPTER ([IVXLivxl]+)\.?$', _l.strip())
+    if _m: CHAP[_m.group(1).upper()] = _i + 1        # 1-based line of the heading
+CHAP_ORDER = [k for k, v in sorted(CHAP.items(), key=lambda kv: kv[1])]
+APPENDIX = next(i + 1 for i, l in enumerate(mod) if l.startswith('[Heading1] APPENDIX'))
+
+def chapter_lines(roman):
+    """Every content line of a chapter in waubun.txt (1-based), headings, page
+    headers and * * * * * rules excluded."""
+    a = CHAP[roman] + 1
+    k = CHAP_ORDER.index(roman)
+    b = (CHAP[CHAP_ORDER[k + 1]] if k + 1 < len(CHAP_ORDER) else APPENDIX) - 1
+    out = []
+    for i in range(a, b + 1):
+        t = mod[i - 1].strip()
+        if not t or t.startswith('[Heading') or t.startswith(STRAY) or SEP.match(t): continue
+        out.append(i)
+    return out
+
+def check_coverage(number, ranges):
+    """The whole point of this app is that no part of the book is left out, so
+    prove it: every paragraph of every chapter must land in exactly one scene,
+    in both texts."""
+    bad = []
+    seen = {}
+    for sid, roman, a, b in ranges:
+        for i in range(a, b + 1):
+            if seen.get(i): bad.append('line %d is in both %s and %s' % (i, seen[i], sid))
+            seen[i] = sid
+    for roman in dict.fromkeys(r[1] for r in ranges):
+        missing = [i for i in chapter_lines(roman) if i not in seen]
+        if missing:
+            bad.append('ch. %s: %d paragraph(s) in no scene, first at line %d'
+                       % (roman, len(missing), missing[0]))
+    return bad
+
 def build(ranges):
     """Align one part: modern paragraphs by line range, 1856 paragraphs by
     matching each scene's opening against its chapter."""
@@ -224,6 +268,7 @@ fail = False
 for number, ranges in PARTS:
     out, report = build(ranges)
     ids = [r[0] for r in ranges]
+    gaps = check_coverage(number, ranges)
     print('\n=== PART %d ===' % number)
     print(f"{'scene':6} {'ch':8} {'mod¶':>5} {'orig¶':>6} {'match':>6} {'words':>13} {'len%':>5}  src")
     short, thin, empty = [], [], []
@@ -241,6 +286,12 @@ for number, ranges in PARTS:
     print(f"part {number}: {len(report)} scenes · retold {done} · "
           f"{words([p for r in report for p in out[r[0]]['modern']]):,} modern words vs "
           f"{words([p for r in report for p in out[r[0]]['original']]):,} of 1856")
+    if gaps:
+        print('  BOOK NOT FULLY COVERED:'); fail = True
+        for g in gaps: print('    ' + g)
+    else:
+        print('  coverage: every paragraph of ch. %s lands in exactly one scene'
+              % '-'.join([ranges[0][1], ranges[-1][1]]))
     if short: print('  WEAK ANCHOR MATCHES (check these):', ', '.join(short)); fail = True
     if empty: print('  EMPTY 1856 PASSAGE (check these):', ', '.join(empty)); fail = True
     if thin:
