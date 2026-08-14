@@ -206,7 +206,12 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 **What it did not do:** re-anchor the §5 targets by measuring a reference plate through
 `tools/critic_metrics.mjs`. That is still a one-line job and still not done.
 
-### R-W1 — calibrated light and environment · **UNCLAIMED · NEXT UP**
+### R-W1 — calibrated light and environment · **CLAIMED 2026-08-14, expires 2026-08-16 — DO NOT PICK UP**
+
+Held by the improve-runner lane-1 slice that opened this claim. Lane 1's other parcels
+(R-W4, R-W5, R-W2, R-W3) are untouched by it and R-W4 is the one to take instead; any
+lane-2 or lane-3 parcel may run alongside it, since this one touches only
+`renderers/web/js/world.js`, `tools/smoke_renderer.mjs` and the vendor manifest.
 
 **Phase:** RENDERING §4 W1 · **Runner:** improve-runner · **Effort:** M · **After:** R-G0
 
