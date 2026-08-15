@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 100,
+  "count": 101,
   "liberties": [
     {
       "id": "L1",
@@ -8866,6 +8866,52 @@
         {
           "label": "Covers",
           "text": "`recon_1835_blk_south_water_wells_*.inferred_1835.position`, `recon_1835_blk_south_water_wells_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L101",
+      "title": "Five invented dwellings on the business front's third block, and the name churn that came with them",
+      "section": "per_subject",
+      "subjects": [
+        "recon_1835_west_018"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_lasalle_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_lasalle` — bounded by South Water, Clark, Lake and LaSalle — now carries **seven anonymous roofs**: five dwellings, one per lot on five of its six free lots, and two yard buildings off the block alley. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the seven are adopted — the D3 one-room cottage on lot 0 as a fifteenth inferred carpenter household, the D1 log cabin on lot 7 as a seventeenth labouring one — and the other five stay anonymous count-units. Lot 6, the South Water and Clark corner, is held by the Chicago Democrat's office and lot 5 by Thomas Church's store; neither is touched. **This is the first block of the row that arrived with a documented roof on BOTH faces, and it changes what the frontage argument is being tested against.** L99 and L100 admitted that the programme deals ordinary dwellings onto South Water Street because it apportions families by DISTRICT and has no notion of what a street was for; that admission stands unchanged and is now tripled. What is new is the Lake face. The two blocks before this one had an empty back street to put their meanest roofs on, so the \"best roofs to the business front\" arrangement cost nothing to apply. Here Thomas Church's store already stands on the Lake frontage, and the arrangement was applied anyway — the log cabin and the plank shanty went to Lake, one of them beside a documented store. That is the same invention as before and not a larger one, but it is being made with less room, and the parcel says so rather than letting the pattern look automatic. **The measurement this block owes its reader, and it is bigger than either of L100's.** Church's store is seated on lot 5 by T-A7's first test — **59.3 m² of its 92.9 m²** is there against **33.6 m² on lot 3** — but **22.1 m² of that lot 3 lap falls inside lot 3's buildable inset**, so a lot the schedule reads as free carries a documented building across its Clark-end frontage corner. That is the third and by far the largest instance of the case T-A7 measured and deliberately declined to call occupancy (J. H. Kinzie's store at 9.7 m² and none of it buildable; `recon_1835_west_018` at 11.9 m²). It is 2.4 % of lot 3's buildable area, so the lot is still worth a roof, and the parcel does not pretend the lot is empty: the shanty is offset **west** of its lot centre, away from the store, and clears it by **7.56 m** against a 3 m separation gate. That 7.56 m is the closest any roof of this parcel comes to anything already standing; the deep-plan cottage is 20.55 m from the Democrat's office and every other new roof is 25 m or better. The recipe cleared every placement gate on its first run and **no tool changed**. **Both adoptable trades were offered a second roof again, and the repetition is the finding.** Rule 6 admits a roof only where the trade's committed argument calls its own count a floor, the roof's family is one this layer already houses that trade in, and the roof's division is too. Read literally, four of this block's five dwellings pass for one trade or the other: the D3 and the D4 for carpenters, the D1 and the D2 for labourers — **exactly the pair of double candidacies T-A9 met**. One roof per trade was adopted and the other two refused, on T-A9's reading and recorded here as **a choice, not a rule**. What T-A9 could not know, being the first block to meet the case, is that the case is not a one-off: two consecutive blocks have now dealt both floor trades both of the families they are housed in, which is what a block of five or six dwellings in this division looks like when the schedule deals it. Rule 6's silence is therefore a defect rather than an edge case, and **ROADMAP K28** — already open — now has a second block of evidence rather than a single precedent."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its seventh platted block and its third on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive — flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **281 → 288** against the 665-roof target; **377 remain**, 39 of them on ground the project has coverage for. Inferred households move 88 → 90 and inferred persons 100 → 102; two more anonymous roofs stop being anonymous. **AND THE FIFTH MEASUREMENT OF K20 IS THE WORST ONE YET, BY A FACTOR OF THREE.** Inserting two households renamed **72 of the 100 carried-over invented persons** — against 19-of-98 at T-A9, 32-of-96 at T-A8, 25-of-94 at T-A2h and 17-of-33-touched at T-A5. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 102, so this is churn and not a provenance failure. But the earlier entries described it as a fifth of the layer being rewritten as a side effect, and that description no longer holds: on this parcel it was nearly three quarters. The cause is visible in `tools/generate_inferred_names.py` and is not randomness — names are dealt round-robin through each community-and-sex pool in a stable hash order of person id, so a single new person landing early in a large bucket shifts every name after it. The variance between 19 and 72 is which bucket position the new ids happened to hash into. K20's own text says the fix belongs in its own parcel rather than riding along with a block; it is left riding along, visibly, for the fifth time, and this entry is the number that should retire the argument that the churn is small."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. The commercial-frontage question (K29) is discharged by any evidence that states what stood on South Water Street between LaSalle and Clark in July 1835 — a directory, an assessment roll or a fire-insurance sheet would settle it — and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_lasalle_*.inferred_1835.position`, `recon_1835_blk_south_water_lasalle_*.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",

@@ -1,5 +1,57 @@
 # STATUS
 
+## New 2026-08-15 — the third business-front block, and the name churn is three times worse than reported
+
+**T-A10.** `blk_south_water_lasalle` — South Water, Clark, Lake, LaSalle — now carries **seven
+anonymous roofs**, five principal and two yard buildings, on five of its six free lots, with lot 1
+(the Lake-and-LaSalle corner) left open, lot 6 held by the Chicago Democrat's office and lot 5 by
+Thomas Church's store. **Standing roofs 281 → 288; remaining 384 → 377, 39 of them on covered
+ground** (was 46). Inferred households 88 → 90, inferred persons 100 → 102. Recorded in L101. **The
+recipe cleared every placement gate on its first run and no tool changed** — the third block in a
+row.
+
+**THE FIRST BLOCK OF THE ROW THAT ARRIVED WITH A DOCUMENTED ROOF ON BOTH FACES.** The frontage
+argument T-A8 opened and T-A9 tested — best dwellings to South Water, meanest to Lake — has so far
+been free to apply, because the back street was empty on both earlier blocks. Church's store stands
+on this one's Lake frontage. The arrangement was applied anyway, so a log cabin and a plank shanty
+now stand on a frontage that already carries a documented store. Same invention, less room; L101
+says so rather than letting the pattern read as automatic.
+
+**T-A7's `west_018` case has a third and much larger instance, measured here.** Church's store is
+seated on lot 5 by test one — **59.3 m² of 92.9 m² there against 33.6 m² on lot 3** — but **22.1 m²
+of the lot 3 lap is inside lot 3's buildable inset**, so a lot the schedule reads as free carries a
+documented building across its frontage corner. Against 9.7 m² (Kinzie, none of it buildable) and
+11.9 m² (`recon_1835_west_018`), this is the biggest yet, and unlike Kinzie's it is *inside* the
+buildable part. It is 2.4 % of the lot's buildable area, so the lot still took a roof: the shanty is
+offset west, away from the store, and clears it by **7.56 m** against a 3 m gate — the closest
+approach anywhere in this parcel. No rule changed and nothing was moved; the number is recorded so
+the next parcel to meet the case has three data points instead of two.
+
+**K28 IS NO LONGER A ONE-OFF, WHICH IS THE ARGUMENT FOR SETTLING IT.** T-A9 found rule 6 silent on
+how many roofs of one block a trade may take and reported it as a case no block had offered before.
+This block offered the identical case: four of its five dwellings pass all three tests for one trade
+or the other, the D3 *and* the D4 for carpenters, the D1 *and* the D2 for labourers. Two consecutive
+blocks have now dealt both floor trades both of the families they are housed in, so this is what a
+five-or-six-dwelling block in the South Division looks like rather than a coincidence. One adoption
+per trade was taken again, on T-A9's reading and recorded as a choice.
+
+**AND THE K28 ID IS USED TWICE IN THIS REPOSITORY.** ROADMAP `K28` is the rule-6 question above;
+the published-mirror gate that landed as PR #147 also shipped under the name K28 and has no ROADMAP
+entry of its own. Both are real work and neither is wrong — the collision is in the label. A
+disambiguation line is added at the ROADMAP heading so every existing citation resolves; renumbering
+landed work is not a block parcel's call. This is the same defect T-A9 found in L99's pointer, in the
+opposite direction.
+
+**THE FIFTH K20 MEASUREMENT IS THE ONE THAT BREAKS THE "A FIFTH OF THE LAYER" DESCRIPTION.**
+Inserting two households renamed **72 of the 100 carried-over invented persons**, against 19-of-98
+(T-A9), 32-of-96 (T-A8), 25-of-94 (T-A2h) and 17-of-33-touched (T-A5). No grade moved, every
+`name_basis` kept its pool citation, and `check.sh` re-derives all 102 — this is churn, not a
+provenance failure. The mechanism is not random: `tools/generate_inferred_names.py` deals names
+round-robin through each community-and-sex pool in a stable hash order of person id, so one new
+person landing early in a large bucket renames everything after it. The spread from 19 to 72 is
+purely where the new ids hashed. K20's fix still belongs in its own parcel; this is the fifth block
+to ride along on it, and the first where the side effect is larger than the parcel.
+
 ## Fixed 2026-08-15 — the general case behind R-BUG3c-b: nothing checked what actually ships
 
 **K28.** #145 fixed the terrain quantiser and ended on one line: *do not measure the file you built,

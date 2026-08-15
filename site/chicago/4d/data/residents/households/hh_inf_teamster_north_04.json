@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_04",
- "name": "The Dickinson household — a reconstructed teamster (north division)",
+ "name": "The Eastman household — a reconstructed teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_04",
-   "name": "Henry Dickinson",
+   "name": "Charles Eastman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

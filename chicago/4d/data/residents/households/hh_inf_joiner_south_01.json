@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_joiner_south_01",
- "name": "The Metcalf household — a reconstructed joiner (south division)",
+ "name": "The Nash household — a reconstructed joiner (south division)",
  "division": "south",
  "head": "inf_joiner_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_joiner_south_01",
-   "name": "Hiram Metcalf",
+   "name": "Chauncey Nash",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

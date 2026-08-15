@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_north_03",
- "name": "The Gilbert household — a reconstructed mason (north division)",
+ "name": "The Goodrich household — a reconstructed mason (north division)",
  "division": "north",
  "head": "inf_mason_north_03",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_north_03",
-   "name": "David Gilbert",
+   "name": "George Goodrich",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
