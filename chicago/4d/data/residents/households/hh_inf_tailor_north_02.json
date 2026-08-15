@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_tailor_north_02",
- "name": "The Hastings household — a reconstructed tailor (north division)",
+ "name": "The Ingalls household — a reconstructed tailor (north division)",
  "division": "north",
  "head": "inf_tailor_north_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_tailor_north_02",
-   "name": "Amos Hastings",
+   "name": "Eli Ingalls",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

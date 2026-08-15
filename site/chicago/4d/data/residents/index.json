@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 171,
-  "persons": 207,
+  "households": 173,
+  "persons": 209,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 111
+   "reconstructed": 113
   }
  },
  "households": [
@@ -1081,6 +1081,20 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_20",
+   "file": "households/hh_inf_carpenter_south_20.json",
+   "head": "inf_carpenter_south_20",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_dearborn_d3_01",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1622,6 +1636,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_randolph_clark_d1_06",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_23",
+   "file": "households/hh_inf_labourer_south_23.json",
+   "head": "inf_labourer_south_23",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_dearborn_d1_04",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

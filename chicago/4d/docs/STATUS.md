@@ -1,5 +1,45 @@
 # STATUS
 
+## New 2026-08-15 — sixteen refusals were made against candidacies this layer never actually had
+
+**T-A3h**, the backfill of `blk_randolph_dearborn` — the one block that landed before rule 6 had its
+third test, and so the one block never asked who lived on it. The adoptions are the two the parcel
+predicted: the **D3** on lot 0 to a twentieth carpenter's household, the **D1** on lot 3 to a
+twenty-third labouring one. Inferred households **99 → 101**, persons **111 → 113**, adopted
+anonymous roofs **102 → 104**, and **standing roofs unchanged at 322** — nothing was built, moved or
+regraded. Recorded in **L109**.
+
+**THE FINDING IS ABOUT THE ROOFS IT REFUSED.** The block also deals a **D4** and a **D2**, and both
+print ADOPTABLE — the carpenters' "second roof" and the labourers', exactly as at eight blocks
+before it. Nobody had asked what those verdicts are made of. This layer houses **one** carpenter in
+a D4 and that household stands in the **North** Division; it houses **four** labourers in a D2 and
+all four stand in the **North** or the **West**. Every carpenter and every labourer it houses in the
+**South** Division lives in a D3 or a D1. **Neither second roof is a (family, division) pair this
+layer has ever housed.**
+
+**It passes because rule 6 says its three tests are independent, in as many words.** Test 2 reads
+the set of families and test 3 the set of divisions, so a roof is admitted on a family taken out of
+one division and a division taken out of another family. `tools/measure_adoption_tests.py --pairs`,
+added here, prints the cost: **20 pairs across 8 trades are admitted by the projections and housed by
+nothing**, and test 1 leaves exactly **two** of them adoptable — the carpenters' D4/south and the
+labourers' D2/south, which are precisely the two roofs every second-roof refusal has been about.
+Sixteen refusals across nine blocks were refusals of a candidacy assembled from evidence that is
+never about the same roof twice.
+
+**THE STRICTER READING IS NOT TAKEN, AND THE REASON IS COMMITTED RATHER THAN ASSERTED.** Requiring
+the pair would refuse the **fourteenth labouring household** — T-A4's D1 in the West Division,
+adopted when this layer housed labourers west of the river only in D2 shanties, and argued in
+exactly the projected form. Rule 6 names that adoption as one of the four its third test *recovers*,
+so a pair reading breaks the calibration the rule rests on. The tool reports a `pair housed` column
+and gates nothing; **ROADMAP K28 now has three things to settle rather than two**, and the cap
+question it was opened for may be a question about an empty set.
+
+**What is unverified here:** the desktop half of `tools/smoke_renderer.mjs` was not run — the
+harness caps a single command at ten minutes and the desktop half needs about thirteen (ROADMAP,
+"the run budget"). `tools/check.sh` and the mobile half both passed. This parcel changes no renderer
+code and no geometry; what a browser loads that is new is two `occupants` blocks and the names on
+67 invented persons.
+
 ## Fixed 2026-08-15 — a quarter of the modelled land was never open to a builder, and nothing said so
 
 **T-E2**, lane 3's first parcel after T-E1 registered the 1830 sheet. Two grounds outside the plat

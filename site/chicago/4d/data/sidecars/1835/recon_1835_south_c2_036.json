@@ -176,7 +176,7 @@
   "residents": [
     {
       "household": "hh_inf_grocer_south_02",
-      "name": "The Ingalls household — a reconstructed grocer (south division)",
+      "name": "The Leland household — a reconstructed grocer (south division)",
       "division": "south",
       "relation": "lived and worked here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. recon_1835_south_c2_036 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -186,7 +186,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Eli Ingalls",
+          "name": "Hiram Leland",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "grocer",

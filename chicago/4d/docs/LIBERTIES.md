@@ -3499,6 +3499,78 @@ The refusal itself is unlikely to move; the boundary is what wants better eviden
 **Recorded:** 2026-08-15.
 
 
+### L109 — Two more roofs given an occupant, and the discovery that the roofs refused beside them were never candidates in the first place
+
+**Decision:** two of the nine anonymous roofs `blk_randolph_dearborn` put on the plat are **adopted
+by the inferred-household layer** — the D3 one-room frame cottage on lot 0 becomes the dwelling of a
+twentieth carpenter's household and the D1 log cabin on lot 3 the dwelling of a twenty-third
+labouring one — and the other seven stay anonymous count-units. **Nothing is built, moved or
+regraded.** The roofs' presence, position and footprint were invented before the adoption and are
+invented after it; what each gains is an argued occupant instead of a blank. This is the backfill
+the block never had: it landed on 2026-08-14, one day before rule 6 took its third test, and is the
+last block of this parcel shape to be asked the question.
+
+**The block was measured rather than remembered, which is the only reason the next paragraph
+exists.** `tools/measure_adoption_tests.py <family> south`, run on all five of its dwellings, prints
+one claimant for the D3 (the carpenters), one for the D1 (the labourers), none at all for the D5,
+and — as at eight blocks before this one — a "second roof" for each of the two trades: the D4 on lot
+6 for the carpenters and the D2 on lot 5 for the labourers.
+
+**WHAT THE SECOND ROOFS PASS ON IS NOT WHAT SIXTEEN REFUSALS HAVE ASSUMED, AND THIS IS THE ENTRY'S
+REAL ADMISSION.** Rule 6's second test asks whether the roof's family is one this layer already
+houses the trade in, and its third whether the roof's division is. The layer houses trades in
+(family, division) PAIRS, and the rule states in its own text that *the three tests are
+independent* — so the two tests read the two projections of that table, and a roof can pass on a
+family taken out of one division and a division taken out of another family. Both second roofs are
+exactly that:
+
+- one carpenter household lives in a D4, and it stands in the **North** Division; all thirteen
+  carpenters this layer houses in the **South** Division live in a D3;
+- four labouring households live in a D2, and all four stand in the **North** or the **West**; all
+  eleven labourers this layer houses in the **South** Division live in a D1.
+
+`tools/measure_adoption_tests.py --pairs`, added here, prints the whole table: **20 (family,
+division) pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1
+narrows the ones that could actually be adopted to **two** — the carpenters' D4/south and the
+labourers' D2/south. Those two pairs are the entire content of the second-roof question ROADMAP K28
+has been collecting evidence on since T-A9.
+
+**The liberty admitted here is that this project has been refusing something it never measured.**
+Nine blocks recorded a refusal of a candidacy each of them described as a trade's second roof; not
+one of them checked that the layer had ever housed that trade in that family in that division, and
+none of them had. The refusals are unchanged and the adoptions they protected are unchanged — the
+conservative reading gave the same answer either way, which is luck rather than method.
+
+**AND THE STRICTER READING IS NOT ADOPTED, BECAUSE IT WOULD REFUSE A HOUSEHOLD THIS LAYER ALREADY
+STANDS ON.** Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted
+in the WEST Division, when this layer housed labourers west of the river only in D2 shanties, argued
+in exactly the projected form. Rule 6 names that adoption as one of the four decisions its third
+test *recovers*, so a pair reading breaks the calibration the rule rests on. The new column reports
+and gates nothing; K28 decides, with both facts committed.
+
+**Consequence:** 104 anonymous roofs now carry an argued occupant rather than 102, and the town
+holds 101 inferred households and 113 inferred persons — none of them named, none of them drawn
+(L1). **Standing roofs are unchanged at 322 and the 665-roof remainder at 343**: this parcel added no
+building and touched no lot. The block's three open lots stay open, with the reasons T-A3 committed
+for each — one refused civic slot, two on the alternating-vacancy assumption — because housing a
+household by filling one would be the fitting-the-model-to-the-drawing rule 6 exists to stop. A
+visitor clicking either adopted roof is told who the layer supposes lived there, that the supposition
+is a hypothesis and not a person, and that the roof itself is still an invention.
+
+**The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed, against 12-of-110
+at T-A15, 61-of-108 at T-A14 and 7-of-102 at T-A11. Two insertions landed in the middle of this
+layer's two largest buckets, which is the case K20 predicts is worst. No grade moved, every
+`name_basis` kept its pool citation, and `check.sh` re-derives all 113.
+
+**How to resolve:** the same evidence the block itself wants — parcel-level tax, deed or assessment
+records naming who held and occupied these lots on Randolph or Washington between Dearborn and State
+in July 1835. A named occupant replaces an inferred one; it never adds a household to the census.
+
+**Covers:** `recon_1835_blk_randolph_dearborn_d1_04.occupants`,
+`recon_1835_blk_randolph_dearborn_d3_01.occupants`
+**Recorded:** 2026-08-15.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

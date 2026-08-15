@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_grocer_west_04",
- "name": "The Kellogg household — a reconstructed grocer (west division)",
+ "name": "The Lyman household — a reconstructed grocer (west division)",
  "division": "west",
  "head": "inf_grocer_west_04",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_grocer_west_04",
-   "name": "Reuben Kellogg",
+   "name": "Chauncey Lyman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

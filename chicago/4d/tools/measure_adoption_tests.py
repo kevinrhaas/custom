@@ -35,6 +35,22 @@ sentence in which "floor" is used as a predicate of the count, and every matched
 is printed so a reader can refuse it. A trade whose argument says nothing is reported as
 NOT STATED, which is a failure — silence is not a pass, exactly as T-A5 held for test 2.
 
+**TESTS 2 AND 3 READ TWO PROJECTIONS OF ONE TABLE, AND T-A3H MEASURED WHAT THAT ADMITS.**
+The layer houses a trade in (family, division) PAIRS. Rule 6 says in its own text that
+its three tests are independent, so test 2 asks the set of families and test 3 the set of
+divisions, and a roof can pass on a family taken from one division and a division taken
+from another family — a pairing this layer has never housed the trade in. That is not a
+corner case: it is every "second roof" any block parcel has ever recorded. The carpenters'
+D4 candidacy rests on one household in the NORTH Division and the labourers' D2 on four in
+the NORTH and WEST, while every carpenter and labourer this layer houses in the SOUTH
+Division is in a D3 or a D1. So the `pair housed` column, and `--pairs`.
+
+**It reports and does not gate, because the stricter reading is not obviously right.**
+Requiring the pair would refuse the fourteenth labouring household — T-A4's D1 adopted in
+the West Division, argued in exactly the projected form — and rule 6 names that adoption
+as one of the four decisions its third test recovers. Choosing between the readings is
+ROADMAP K28's, with both facts in front of it.
+
 Standalone. Not wired into tools/check.sh: it measures a judgement, and a gate that
 asserted the judgement would freeze K28's question shut.
 
@@ -42,6 +58,7 @@ Usage:
     tools/measure_adoption_tests.py D1 south          # one roof family in one division
     tools/measure_adoption_tests.py --roof recon_1835_blk_randolph_clark_d1_06
     tools/measure_adoption_tests.py --floors          # which trades state a floor, and why
+    tools/measure_adoption_tests.py --pairs           # housed pairs vs the projections
 """
 
 from __future__ import annotations
@@ -132,8 +149,9 @@ def report(programme: dict, family: str, division: str, verbose: bool) -> int:
     print(f"method rule 6, evaluated for a {family} roof in the "
           f"{division} division\n")
     print(f"  {'trade':<22}{'1 floor stated':<16}{'2 family':<11}"
-          f"{'3 division':<12}verdict")
+          f"{'3 division':<12}{'verdict':<12}pair housed")
     passing = []
+    projected = []
     for trade in sorted(census):
         pairs = housed.get(trade, set())
         families = {f for f, _ in pairs}
@@ -145,9 +163,13 @@ def report(programme: dict, family: str, division: str, verbose: bool) -> int:
         verdict = "ADOPTABLE" if (t1 and t2 and t3) else "refused"
         if t1 and t2 and t3:
             passing.append(trade)
+            if (family, division) not in pairs:
+                projected.append(trade)
         rule3 = " *" if (not t1 and trade in RULE_3_UNBOUNDED) else ""
+        pair = "yes" if (family, division) in pairs else "NO"
         print(f"  {trade:<22}{('yes' if t1 else 'NOT STATED') + rule3:<16}"
-              f"{('yes' if t2 else 'no'):<11}{('yes' if t3 else 'no'):<12}{verdict}")
+              f"{('yes' if t2 else 'no'):<11}{('yes' if t3 else 'no'):<12}"
+              f"{verdict:<12}{pair}")
         if verbose and evidence:
             for line in evidence:
                 print(f"      floor: {line}")
@@ -160,8 +182,54 @@ def report(programme: dict, family: str, division: str, verbose: bool) -> int:
     print("\n  * method rule 3 names this trade unbounded, but its own argument never "
           "claims a\n    floor, so it fails test 1 as rule 6 is written. That "
           "disagreement is ROADMAP K28.")
+    for trade in projected:
+        pairs = housed.get(trade, set())
+        fam_where = sorted({d for f, d in pairs if f == family})
+        div_what = sorted({f for f, d in pairs if d == division})
+        print(f"\n  {trade}: PASSES ON A PAIR THIS LAYER HAS NEVER HOUSED. It houses no "
+              f"{trade}\n  in a {family} in the {division} division. Test 2 passes on the "
+              f"{family}s it houses\n  this trade in — {', '.join(fam_where)} — and test 3 "
+              f"on the {division} division, where it\n  houses the trade in "
+              f"{', '.join(div_what)}. The verdict is the product of two projections\n"
+              f"  of one table, which is what rule 6 means by "
+              f"\"the three tests are independent\".")
     print("\n  Passing all three is permission, not an instruction. Whether a trade that "
-          "has\n  not asked for a roof may be given one is ROADMAP K28 and is open.")
+          "has\n  not asked for a roof may be given one is ROADMAP K28 and is open, and so "
+          "is\n  whether rule 6's table is a set of PAIRS or two projections of one "
+          "(T-A3h).")
+    return 0
+
+
+def pairs_report(programme: dict) -> int:
+    """Every (family, division) pair this layer houses each trade in.
+
+    Tests 2 and 3 are evaluated against the two PROJECTIONS of this table, so a roof
+    passes on a family taken from one row and a division taken from another. T-A3h
+    measured what that costs: every "second roof" any block parcel has recorded — the
+    carpenters' D4 and the labourers' D2, in the South Division, at nine blocks — is a
+    pair that appears nowhere below. The stricter reading is NOT obviously right and
+    this tool does not take it: requiring the pair would refuse the fourteenth
+    labouring household, a D1 adopted in the West Division when this layer housed
+    labourers west of the river only in D2s, and rule 6 names that adoption as one of
+    the four its third test recovers.
+    """
+    housed = table(programme)
+    print("the (family, division) pairs this layer houses each trade in, and the "
+          "projections\nrule 6's tests 2 and 3 are actually evaluated against\n")
+    for trade in sorted(housed):
+        pairs = sorted(housed[trade])
+        families = sorted({f for f, _ in pairs})
+        divisions = sorted({d for _, d in pairs})
+        cross = [(f, d) for f in families for d in divisions if (f, d) not in pairs]
+        print(f"  {trade}")
+        print(f"    housed:    {', '.join(f'{f}/{d}' for f, d in pairs)}")
+        print(f"    projected: {', '.join(families)} x {', '.join(divisions)}")
+        if cross:
+            print("    ADMITTED BY THE PROJECTIONS AND HOUSED BY NOTHING: "
+                  + ", ".join(f"{f}/{d}" for f, d in cross))
+    print("\n  A pair on the last line passes tests 2 and 3 on evidence that is never "
+          "about\n  the same roof twice. Whether that is a defect or the rule working is "
+          "ROADMAP\n  K28; this prints the fact and decides nothing.")
     return 0
 
 
@@ -189,6 +257,9 @@ def main() -> int:
     ap.add_argument("--roof", help="read the family from a committed structure id")
     ap.add_argument("--floors", action="store_true",
                     help="report test 1 for every trade and quote the evidence")
+    ap.add_argument("--pairs", action="store_true",
+                    help="the (family, division) pairs this layer houses each trade in, "
+                         "against the two projections tests 2 and 3 read")
     ap.add_argument("-v", "--verbose", action="store_true",
                     help="quote the sentence each floor verdict rests on")
     args = ap.parse_args()
@@ -196,6 +267,8 @@ def main() -> int:
     programme = load(PROGRAMME)
     if args.floors:
         return floors(programme)
+    if args.pairs:
+        return pairs_report(programme)
 
     family, division = args.family, args.division
     if args.roof:

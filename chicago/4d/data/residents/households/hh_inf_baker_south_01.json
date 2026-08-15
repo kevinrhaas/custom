@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_baker_south_01",
- "name": "The Stebbins household — a reconstructed baker (south division)",
+ "name": "The Thayer household — a reconstructed baker (south division)",
  "division": "south",
  "head": "inf_baker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_baker_south_01",
-   "name": "Calvin Stebbins",
+   "name": "Harvey Thayer",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_03",
- "name": "The Wilcox household — a reconstructed teamster (north division)",
+ "name": "The Bacon household — a reconstructed teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_03",
-   "name": "Horace Wilcox",
+   "name": "Ira Bacon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
