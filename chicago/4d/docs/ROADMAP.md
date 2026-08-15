@@ -95,8 +95,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | # | lane | parcel | why first |
 |---|---|---|---|
 | 1 | RENDERING | **R-BUG3c** | **owner-reproduced WITH the fix in, twice, on 2026-08-15.** The near ground — road, grass tufts, all texture — is missing below a hard line at a constant distance, and it is NOT the streets. Measured, not guessed; read the box before touching anything |
-| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road quad, dry half included: 13 quads / ~30 m of roadway removed where the centreline is dry land. Kinzie loses 14.2 % of itself |
-| 3 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| 2 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
 | 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
