@@ -2304,6 +2304,14 @@ Lake's own centreline bearing, 390x780). Findings, all measured, none inferred:
    error, not a finding: a ribbon quad's four corners are all at +/- half the track width, so
    there are never vertices ON the centreline. Do not repeat it.)
 
+**SUPERSEDED ON MECHANISM by #145, 2026-08-15 — read that first.** The measurements below stand and
+reproduce; the CONCLUSION drawn from them, that the two are 'different data', was wrong about why.
+#145 found the cause: **the publish step quantises the mesh after the only gate that measures it**, so
+neither ground moved. Both measurements here were taken against the PUBLISHED mirror — which is the
+right target for a visitor-facing bug and the wrong one for asking which source surface is
+authoritative, because the published copy is not the surface either generator emitted. The spread of
+±3 m is the quantisation grid, not a disagreement between the GLB and `heightfield.bin`.
+
 **THE HYPOTHESIS IS CONFIRMED, AND IT IS WORSE THAN STATED — measured 2026-08-15.**
 
 The ground that is DRAWN is not the ground that things are PLACED on, and the gap is an order of

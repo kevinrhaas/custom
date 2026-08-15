@@ -39,6 +39,38 @@ next instance of it.
 **Still open, and honestly open:** the same quantiser moves E and N by up to **153 mm** and nothing
 corrects that. It is invisible on a decimated prairie as far as anyone has checked — and nobody has
 actually checked. That is **R-W6**, along with whether the terrain should ship quantised at all.
+## MEASURED 2026-08-15 — the drawn terrain and the heightfield are DIFFERENT DATA, not a decimation
+
+**R-BUG3c-b.** R-BUG3c-a found the drawn ground sitting 9.6–13.1 cm above `terrain.surfaceHeight()`
+at the owner's pose. This asks which of the two moved, by testing the drawn mesh's **own vertices**
+against the sampler — 5,962 vertices across 30 terrain meshes, water excluded.
+
+Three outcomes were possible and they are mutually exclusive. Near-zero everywhere would mean the
+mesh IS the heightfield, decimated, and the burial is an interpolation artefact of coarse triangles.
+A constant offset would mean a datum shift. Random would mean different data.
+
+| | |
+|---|---|
+| min / max | **−3.077 m / +2.744 m** |
+| 5th / 95th percentile | −2.465 / +1.519 |
+| median | +0.026 |
+| mean ± sd | +0.087 ± **1.036** |
+| vertices within 5 mm | **182 of 5,962 (3.1 %)** |
+
+**It is the third outcome.** The spread is METRES, not centimetres, so this is not coarse-triangle
+interpolation; and the standard deviation is 1.04 m against a mean of 0.09 m, so it is not a datum
+shift either. **The baked terrain GLB and `heightfield.bin` are different surfaces**, roughly
+co-located — the median is 26 mm — and locally disagreeing by up to three metres.
+
+**The 13 cm at the owner's pose was the local value of a much larger disagreement.** Everything
+anchored to the sampler — roads, flora, buildings, collision — is placed against a surface that
+differs from the drawn one by up to 3 m somewhere in the scene.
+
+**Still not established, and this is now the whole question: which one is authoritative.** One of
+these was generated from a terrain spec the other no longer matches, or one is stale. Until that is
+settled nothing should be moved: raising `LIFT_M`, re-baking, or regenerating the heightfield could
+each be the change that destroys the correct surface. The next step is to re-derive both from the
+committed terrain spec and see which reproduces.
 
 ## New 2026-08-15 — the second business-front block, and the second roof each trade was refused
 
