@@ -113,12 +113,11 @@ desktop half belongs to a runner without the per-command ceiling.
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
 | — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
-| 1 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test — and now the **only** open block entry, because T-A16 withdrew the other one. Its three free lots are all NAMED OPEN by T-A3's committed recipe with a reason each, so this parcel amends that recipe rather than filling a lot behind its back · **BOTH placement rules are COMMANDS rather than remembered numbers**: `tools/measure_street_frontage.py <street> <street>` for the face and `tools/measure_adoption_tests.py <family> <division>` for the adoption, and quote what they print — never quote T-A13's Lake 12 / Randolph 2 / South Water 9 (T-A14 refuted it) and never quote T-A14's teamster or laundress candidacies (T-A15 refuted them) · **read T-A15 finding 4 and K31 before applying the end rule**, which is exhausted on this row at 1.02× · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
-| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
-| 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
-| 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
-| 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
-| 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
+| — | TOWN | ~~T-A3h~~ | **DONE 2026-08-15** — the last open block entry, and the two adoptions it predicted are the two it made: `blk_randolph_dearborn`'s D3 to the carpenters and its D1 to the labourers, measured with `tools/measure_adoption_tests.py` rather than recalled. **Its finding is about the other two**: the D4 and the D2 that pass as a "second roof" are pairs this layer has NEVER housed — the D4 evidence is one household in the NORTH, the D2's is four in the NORTH and WEST — so every second-roof refusal K28 has collected is a candidacy built from two projections of one table. Read its box and K28's before quoting any adoption test |
+| 1 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
+| 2 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
+| 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
+| 4 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
 | 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
@@ -213,7 +212,7 @@ programme's own `method` list**: a block roof may be adopted only where the trad
 argument calls its count a floor rather than a bound, AND the roof's family is one this layer
 already houses that trade in. **The adoption is no longer a parcel of its own.** The generator
 carries the gate in both directions, so T-A4 onward applies the rule in the same run as the
-block — `T-A3h` is the one outstanding backfill because its block landed first.
+block — `T-A3h` was the one outstanding backfill because its block landed first, and it is **DONE (2026-08-15)**: every block this lane has placed has now been asked the question, and what the backfill found about the tests themselves is in its box and in K28.
 
 **LANE 3 (ground) is a THIRD lane, opened 2026-08-14** — it touches terrain, sources and the
 infill generator's eligibility rule. It is **disjoint from lane 1** (renderer) but **overlaps
@@ -1088,13 +1087,63 @@ method rule 6) · `tools/generate_block_infill.py` (occupancy + the adoption gat
 `data/structures/recon_*.json` (occupancy only, via the generators) · `data/sidecars/1835/` ·
 `assets/manifest.json` · `docs/LIBERTIES.md` (L94) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A3h — the second block's households · **CLAIMED 2026-08-15 · `steward/t-a3h-second-block-households`**
+### T-A3h — the second block's households · **DONE 2026-08-15 (two adopted, three refused, and the refusals traced)**
 
-The same rule applied to `blk_randolph_dearborn`, which landed before the rule existed. Its
-schedule deals it a D1 and a D3, so the answer is very likely the same two adoptions and a
-one-line recipe change; the point of running it is to confirm that and to leave no block behind
-the rule. **T-A4 onward does this in the same run as the block** — the generator carries the gate
-now, and a separate parcel per block would be bookkeeping rather than an argument.
+**The prediction held and the reason it held was not the one this box gave.** `blk_randolph_dearborn`
+landed on 2026-08-14, a day before rule 6 took its third test, and its five dwellings had never been
+asked the adoption question. Run rather than recalled — `tools/measure_adoption_tests.py <family>
+south`, five times — the block's D3 on lot 0 is adoptable by the **carpenters** and nobody else, its
+D1 on lot 3 by the **labourers** and nobody else, and its D5 by no trade at all. Both are adopted:
+carpenter households **19 → 20**, labouring **22 → 23**, inferred households **99 → 101**, inferred
+persons **111 → 113**, adopted anonymous roofs **102 → 104**. **Standing roofs unchanged at 322 and
+remaining unchanged at 343** — this parcel raises no building, invents no position and moves no
+record. Recorded in L109.
+
+**THE OTHER TWO DWELLINGS ALSO PASS ALL THREE TESTS, AND WHAT THEY PASS ON IS THIS PARCEL'S
+FINDING.** The D4 on lot 6 prints ADOPTABLE for the carpenters and the D2 on lot 5 for the
+labourers, exactly as the "second roof" at eight blocks before this one did. Nobody had asked where
+those verdicts come from:
+
+- this layer houses **one** carpenter in a D4 — `hh_inf_carpenter_north_10`, in the **North**
+  Division — and all thirteen carpenters it houses in the **South** Division are in a D3;
+- it houses **four** labourers in a D2 — the shanties north_a, north_b, west_a, west_b — and all
+  eleven labourers it houses in the **South** Division are in a D1.
+
+**So neither candidacy is a pair this layer has ever housed.** Rule 6 says in its own committed text
+that *the three tests are independent*, so test 2 reads the set of families and test 3 the set of
+divisions, and a roof passes on a family taken out of one division and a division taken out of
+another family. `tools/measure_adoption_tests.py --pairs` (new here) prints the whole table: **20
+(family, division) pairs across 8 trades are admitted by the projections and housed by nothing**, and
+test 1 narrows the ones that can actually be adopted to exactly **two** — the carpenters' D4/south and
+the labourers' D2/south. Those two are the entire content of the second-roof question. Every refusal
+K28 has collected — nine for the labourers, seven for the carpenters — refused a candidacy assembled
+out of evidence that is never about the same roof twice.
+
+**THE STRICTER READING IS NOT OBVIOUSLY RIGHT AND THIS PARCEL DOES NOT TAKE IT.** Requiring the PAIR
+would refuse the **fourteenth labouring household**: T-A4 adopted a D1 in the WEST Division when this
+layer housed labourers west of the river only in D2 shanties, and argued it in exactly the projected
+form — the family from one division, the division from another family. Rule 6 names that adoption as
+one of the four decisions its third test *recovers*, so a pair reading breaks the calibration the
+rule rests on. Both facts are now committed and K28 decides with them in front of it; the tool
+reports the column and gates nothing, because a gate would freeze the question shut.
+
+**The two refused roofs are refused on T-A9's reading, unchanged**, for the ninth and seventh time,
+as a choice rather than a rule. **Nothing was built on the block's three open lots**: they are named
+open in T-A3's committed recipe with a reason each — one for the refused I3 civic slot, two on the
+programme's alternating-vacancy assumption — and filling one to house a household would be the
+fitting-the-model-to-the-drawing rule 6 exists to stop.
+
+**The eleventh K20 measurement is 67 of 111** carried-over invented persons renamed — the highest
+since T-A14's 61-of-108, and for the structural reason K20 predicts: two insertions landed in the
+middle of the two largest buckets this layer has. No grade moved, every `name_basis` kept its pool
+citation, and `check.sh` re-derives all 113.
+
+**Files:** `data/reconstruction/1835_inferred_household_programme.json` (two households, two census
+counts, two arguments) · `tools/measure_adoption_tests.py` (the `pair housed` column and `--pairs`) ·
+`data/residents/households/*.json` · `data/residents/index.json` · `data/structures/recon_1835_blk_randolph_dearborn_{d1_04,d3_01}.json`
+(occupancy only, via the generators) · `data/sidecars/1835/` · `assets/manifest.json` ·
+`docs/LIBERTIES.md` (L109) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js` · `site/chicago/4d/` (publish mirror)
 
 ### K20 — the invented-name allocator is not stable under insertion · **UNCLAIMED**
 
@@ -1343,12 +1392,37 @@ question is only half of it: the other half is **whether rule 6 may hand a roof 
 argument never asked for one**, which is the thing that would actually grow the census as a side
 effect of a drawing. A decision that settles the cap and leaves this open settles nothing.
 
+**AND THERE MAY BE NOTHING TO CAP — T-A3h, 2026-08-15, and read this before claiming.** Every
+second-roof candidacy this lane has recorded is the carpenters' **D4** or the labourers' **D2**, in
+the **South** Division, and **neither is a pair this layer has ever housed**. It houses one carpenter
+in a D4 and that household stands in the NORTH Division; it houses four labourers in a D2 and all
+four stand in the NORTH or the WEST; every carpenter and labourer it houses in the SOUTH is in a D3
+or a D1. The verdicts hold only because rule 6 says *the three tests are independent*, so test 2
+reads the set of families and test 3 the set of divisions and a roof passes on a family from one
+division and a division from another family. `tools/measure_adoption_tests.py --pairs` prints it:
+**20 pairs across 8 trades are admitted by the projections and housed by nothing**, and test 1 leaves
+exactly **two** of them adoptable — which are precisely the two roofs sixteen refusals have been
+about. So the cap question may be a question about a set of candidacies that a pair reading would
+empty.
+
+**It does not follow that the pair reading is right, and the counter-evidence is in the census
+already.** Requiring the pair refuses the **fourteenth labouring household** — T-A4's D1 in the WEST
+Division, adopted when this layer housed labourers west of the river only in D2 shanties, and argued
+in exactly the projected form. Rule 6 names that adoption as one of the four its third test
+*recovers*. A reading that breaks the rule's own calibration set needs an argument, not a
+preference. **This parcel must therefore settle THREE things and not two**: whether the table is
+pairs or projections; whether there is a cap (and it may be moot); and whether a trade that never
+asked for a roof may be handed one. Neither T-A3h nor any block parcel decides it — measuring is
+what a block parcel may do.
+
 **Acceptance:** rule 6 gains a fourth clause **or an explicit statement that there is no cap**,
 in the programme's own `method` list; **it also states whether a roof may be adopted by a trade
-that has not asked for one, because T-A14 showed the two questions are the same question**;
-`tools/generate_inferred_households.py` gates whichever is chosen, so the answer is code rather
-than a habit; the four T-A9 candidates are re-decided under it and the two refusals either stand
-with a reason or are adopted; `tools/check.sh` green.
+that has not asked for one, because T-A14 showed the two questions are the same question**, and
+**whether tests 2 and 3 are read as a pair or as two projections, because T-A3h showed the cap
+question may be empty without it**; `tools/generate_inferred_households.py` gates whichever is
+chosen, so the answer is code rather than a habit; the four T-A9 candidates are re-decided under it
+and the two refusals either stand with a reason or are adopted; **T-A4's fourteenth labouring
+household is re-decided too, because a pair reading refuses it**; `tools/check.sh` green.
 
 ### K29 — the schedule deals log cabins to the town's commercial frontage · **UNCLAIMED · from T-A8 (L99) and T-A9 (L100)**
 

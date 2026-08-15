@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_north_02",
- "name": "The Barnes household — a reconstructed teamster (north division)",
+ "name": "The Cobb household — a reconstructed teamster (north division)",
  "division": "north",
  "head": "inf_teamster_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_north_02",
-   "name": "John Barnes",
+   "name": "William Cobb",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

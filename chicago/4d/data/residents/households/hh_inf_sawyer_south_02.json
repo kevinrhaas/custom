@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_sawyer_south_02",
- "name": "The Nash household — a reconstructed sawyer (south division)",
+ "name": "The Nichols household — a reconstructed sawyer (south division)",
  "division": "south",
  "head": "inf_sawyer_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_sawyer_south_02",
-   "name": "Alanson Nash",
+   "name": "Elisha Nichols",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

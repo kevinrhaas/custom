@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_plasterer_south_01",
- "name": "The Whitcomb household — a reconstructed plasterer (south division)",
+ "name": "The Woodruff household — a reconstructed plasterer (south division)",
  "division": "south",
  "head": "inf_plasterer_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_plasterer_south_01",
-   "name": "Warren Whitcomb",
+   "name": "Jared Woodruff",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

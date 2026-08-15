@@ -144,7 +144,7 @@
   "residents": [
     {
       "household": "hh_inf_blacksmith_south_01",
-      "name": "The Wadsworth household — a reconstructed blacksmith (south division)",
+      "name": "The Wilcox household — a reconstructed blacksmith (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "recon_1835_south_w1_023 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -154,14 +154,14 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Horace Wadsworth",
+          "name": "Ira Wilcox",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "blacksmith",
           "note": "HYPOTHESISED, AND NOT A PERSON. No source names this resident and none is claimed to: the record asserts that a town of 3,265 people in 398 dwellings held at least this many households of this trade, and asserts nothing whatever about any individual. THE NAME IS INVENTED TOO, and `name_basis` beside it says so and says which pool it came from: this record used to carry a bare designation instead, on the reasoning that a surname would make it look like the documented layer, but a town of designations does not read as a town and the grade, this note and name_basis all say plainly which layer this is. No figure is drawn (docs/LIBERTIES.md L1). THE FIRST OF 3 BLACKSMITH HOUSEHOLDS THIS LAYER RECONSTRUCTS. THE OWNER'S OWN EXAMPLE, AND THE ARITHMETIC IS ALREADY IN THE DOCUMENTED LAYER. Five smiths are documented - Asahel Pierce, David McKee at the agency, Matthias Mason of 'Mason & Co.', Lemuel Brown, and the Rev. Mr See whose tools Pierce bought - and the reconstruction schedule allows six W1 blacksmith shops. This parcel builds Mason's documented third smithy and infers three more smith households, which brings the town to the schedule's six shops exactly: the smithies the wagon, plough and horse traffic of a town of 3,265 requires beyond the ones the sources happen to name."
         },
         {
-          "name": "Levi Hubbard",
+          "name": "Reuben Kellogg",
           "relationship": "journeyman",
           "grade": "reconstructed",
           "occupation": "blacksmith",

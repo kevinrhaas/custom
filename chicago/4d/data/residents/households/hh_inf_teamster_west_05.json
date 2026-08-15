@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_teamster_west_05",
- "name": "The Nash household — a reconstructed teamster (west division)",
+ "name": "The Nichols household — a reconstructed teamster (west division)",
  "division": "west",
  "head": "inf_teamster_west_05",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_teamster_west_05",
-   "name": "Chauncey Nash",
+   "name": "Alanson Nichols",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
