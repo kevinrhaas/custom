@@ -20,25 +20,25 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 298,
+  "structure_records": 303,
   "physical_roofs": {
-   "min": 288,
-   "max": 289,
+   "min": 293,
+   "max": 294,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
-   "generated": 184,
+   "generated": 189,
    "inferred_household_programme": 38,
    "pre_existing": 66
   },
   "by_district": {
-   "south": 149,
+   "south": 154,
    "west": 48,
    "north": 81,
    "fort": 10
   },
   "by_group": {
-   "ordinary_dwellings": 129,
+   "ordinary_dwellings": 133,
    "larger_boarding_houses": 8,
    "stores_mixed_use": 32,
    "inns_taverns": 9,
@@ -47,23 +47,23 @@
    "institutional_public": 10,
    "fort_principal": 10,
    "barns_stables": 26,
-   "small_outbuildings": 27
+   "small_outbuildings": 28
   },
   "by_family": {
    "A1": 16,
    "A2": 10,
-   "A3": 14,
+   "A3": 15,
    "A4": 9,
    "A5": 4,
    "C1": 19,
    "C2": 4,
    "C3": 8,
    "C4": 1,
-   "D1": 26,
+   "D1": 27,
    "D2": 17,
-   "D3": 27,
-   "D4": 28,
-   "D5": 19,
+   "D3": 28,
+   "D4": 29,
+   "D5": 20,
    "D6": 9,
    "D7": 3,
    "F1": 4,
@@ -102,10 +102,10 @@
   ]
  },
  "remaining": {
-  "roofs": 377,
+  "roofs": 372,
   "of_target": 665,
   "by_district": {
-   "south": 221,
+   "south": 216,
    "west": 87,
    "north": 69,
    "fort": 0
@@ -116,8 +116,8 @@
     "inns_taverns": 1,
     "institutional_public": 5,
     "larger_boarding_houses": 25,
-    "ordinary_dwellings": 103,
-    "small_outbuildings": 33,
+    "ordinary_dwellings": 99,
+    "small_outbuildings": 32,
     "stores_mixed_use": 17,
     "warehouses_freight": 12,
     "workshops": 1
@@ -141,18 +141,18 @@
   "by_family": {
    "A1": 26,
    "A2": 20,
-   "A3": 26,
+   "A3": 25,
    "A4": 19,
    "A5": 10,
    "C1": 0,
    "C2": 8,
    "C3": 9,
    "C4": 4,
-   "D1": 26,
+   "D1": 25,
    "D2": 21,
-   "D3": 38,
-   "D4": 38,
-   "D5": 39,
+   "D3": 37,
+   "D4": 37,
+   "D5": 38,
    "D6": 20,
    "D7": 15,
    "F1": 4,
@@ -184,14 +184,14 @@
     "H1": 9,
     "H2": 9,
     "H3": 7,
-    "D1": 14,
+    "D1": 13,
     "D2": 11,
-    "D3": 20,
-    "D4": 20,
-    "D5": 20,
+    "D3": 19,
+    "D4": 19,
+    "D5": 19,
     "D6": 10,
     "D7": 8,
-    "A3": 16,
+    "A3": 15,
     "A4": 11,
     "A5": 6,
     "C2": 7,
@@ -233,10 +233,10 @@
     "H3": 1,
     "D1": 6,
     "D2": 5,
-    "D3": 9,
+    "D3": 8,
     "D4": 8,
     "D5": 9,
-    "D6": 4,
+    "D6": 5,
     "D7": 3,
     "A3": 5,
     "A4": 4,
@@ -257,9 +257,9 @@
   }
  },
  "coverage": {
-  "schedulable_on_committed_ground": 39,
+  "schedulable_on_committed_ground": 34,
   "gated_on_coverage": 338,
-  "statement": "39 of the 377 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 338 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 665-roof programme is coverage, not recipes.",
+  "statement": "34 of the 372 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 338 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 665-roof programme is coverage, not recipes.",
   "platted_lots": 152,
   "blocks_named": 21
  },
@@ -345,22 +345,16 @@
    },
    "lots": 8,
    "capacity_roofs": 10,
-   "standing_roofs": 4,
-   "free_lots": 5,
-   "principal_room": 4,
-   "ancillary_room": 1,
-   "headroom": 5,
-   "state": "open",
-   "roofs": 5,
-   "families": {
-    "A3": 1,
-    "D1": 1,
-    "D3": 1,
-    "D4": 1,
-    "D5": 1
-   },
-   "principal": 4,
-   "ancillary": 1
+   "standing_roofs": 9,
+   "free_lots": 1,
+   "principal_room": 0,
+   "ancillary_room": 0,
+   "headroom": 0,
+   "state": "at_capacity",
+   "roofs": 0,
+   "families": {},
+   "principal": 0,
+   "ancillary": 0
   },
   {
    "id": "blk_south_water_dearborn",
@@ -382,12 +376,12 @@
    "state": "open",
    "roofs": 6,
    "families": {
-    "A1": 1,
+    "A3": 1,
+    "D1": 1,
     "D2": 1,
-    "D6": 1,
-    "D7": 1,
-    "H1": 1,
-    "H2": 1
+    "D3": 1,
+    "D4": 1,
+    "D5": 1
    },
    "principal": 5,
    "ancillary": 1
@@ -435,13 +429,13 @@
    "state": "open",
    "roofs": 7,
    "families": {
-    "A2": 1,
+    "A1": 1,
     "A4": 1,
     "C2": 1,
-    "C3": 1,
-    "D3": 1,
-    "D4": 1,
-    "H3": 1
+    "D6": 1,
+    "D7": 1,
+    "H1": 1,
+    "H2": 1
    },
    "principal": 5,
    "ancillary": 2
@@ -627,12 +621,13 @@
    "state": "open",
    "roofs": 8,
    "families": {
-    "A3": 1,
+    "A2": 1,
     "A5": 1,
-    "D1": 1,
+    "C3": 1,
     "D3": 1,
     "D4": 1,
-    "D5": 2,
+    "D5": 1,
+    "H3": 1,
     "I3": 1
    },
    "principal": 6,
@@ -681,8 +676,8 @@
    "state": "open",
    "roofs": 4,
    "families": {
-    "A1": 1,
-    "D2": 1,
+    "A3": 1,
+    "D1": 1,
     "F1": 1,
     "F2": 1
    },
@@ -709,14 +704,14 @@
    "state": "open",
    "roofs": 8,
    "families": {
-    "A2": 1,
+    "A1": 1,
     "A4": 1,
     "C4": 1,
+    "D2": 1,
     "D3": 1,
-    "D6": 1,
-    "F3": 1,
-    "H1": 1,
-    "H2": 1
+    "D4": 1,
+    "D5": 1,
+    "D6": 1
    },
    "principal": 6,
    "ancillary": 2
@@ -741,7 +736,7 @@
    "state": "open",
    "roofs": 1,
    "families": {
-    "D4": 1
+    "F3": 1
    },
    "principal": 1,
    "ancillary": 0
@@ -803,15 +798,15 @@
    "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the block itself is not generated, so it has no measured geometry",
    "roofs": 9,
    "families": {
-    "A1": 1,
+    "A2": 1,
     "A3": 1,
-    "C2": 1,
-    "C3": 1,
     "D1": 1,
     "D3": 1,
+    "D4": 1,
     "D5": 1,
     "D7": 1,
-    "H3": 1
+    "H1": 1,
+    "H2": 1
    },
    "principal": 7,
    "ancillary": 2
@@ -860,19 +855,19 @@
    "waiting_on": "Committed street control reaches State Street on the east and Washington Street on the south; the plat continues past both. No block east of State or south of Washington has four committed centrelines, so none can be named, let alone measured (ROADMAP S9).",
    "roofs": 173,
    "families": {
-    "A1": 11,
+    "A1": 12,
     "A2": 8,
-    "A3": 13,
+    "A3": 12,
     "A4": 9,
     "A5": 5,
-    "C2": 5,
-    "C3": 5,
+    "C2": 6,
+    "C3": 6,
     "C4": 2,
-    "D1": 11,
+    "D1": 10,
     "D2": 9,
     "D3": 15,
-    "D4": 16,
-    "D5": 16,
+    "D4": 15,
+    "D5": 15,
     "D6": 8,
     "D7": 6,
     "F1": 3,
@@ -881,7 +876,7 @@
     "F4": 1,
     "H1": 7,
     "H2": 7,
-    "H3": 5,
+    "H3": 6,
     "I3": 4,
     "T1": 1,
     "W2": 1
@@ -939,10 +934,10 @@
     "A5": 2,
     "D1": 6,
     "D2": 5,
-    "D3": 9,
+    "D3": 8,
     "D4": 8,
     "D5": 9,
-    "D6": 4,
+    "D6": 5,
     "D7": 3,
     "H1": 2,
     "H2": 1,

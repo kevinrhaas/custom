@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_wheelwright_west_01",
-      "name": "The Gallagher household — a reconstructed wheelwright (west division)",
+      "name": "The Hayes household — a reconstructed wheelwright (west division)",
       "division": "west",
       "relation": "worked here",
       "why": "inf_wheelwright_shop_west is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Hugh Gallagher",
+          "name": "Martin Hayes",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "wheelwright",

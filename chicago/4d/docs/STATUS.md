@@ -1,5 +1,67 @@
 # STATUS
 
+## New 2026-08-15 — the fourth business-front block, and the first time the row's "better end" is a measurement
+
+**T-A11.** `blk_south_water_clark` — South Water, Dearborn, Lake, Clark — now carries **five
+anonymous roofs**, four principal and one privy, on four of its five free lots, with lot 1 (the
+Lake-and-Clark corner) left open and lots 0, 6 and 7 held by Harmon & Loomis's store, John Bates
+Jr.'s auction room and the first Tremont House. **Standing roofs 288 → 293; remaining 377 → 372,
+34 of them on covered ground** (was 39). Inferred households 90 → 92, inferred persons 102 → 104.
+Recorded in L102. **The recipe cleared every placement gate on its first run and no tool changed**
+— the fourth block in a row.
+
+**THE ROW HAS PUT ITS BETTER ROOFS "NEARER THE TOWN-CENTRE END" THREE TIMES AND NEVER SAID WHAT WAS
+AT THAT END.** This block's east end is Dearborn Street, and the **Dearborn Street drawbridge** —
+the only crossing of the main stem in July 1835, already a committed structure record, its south
+abutment at the foot of Dearborn on South Water — measures the claim: **35.6 m** from lot 6's
+frontage, 55.5 m from lot 4's, 78.1 m from lot 2's, **101.7 m** from lot 0's, and on the back
+street 126.3 m at lot 7 out to **158.2 m at lot 1**, which is the lot left open. No source says a
+better house stood nearer the bridge, so the arrangement is as invented as it was; what changed is
+that it is invented against a re-derivable number instead of a compass direction.
+
+**AND THE FACE HALF OF THE SAME RULE MEETS ITS FIRST COUNTER-EXAMPLE.** Three parcels have called
+South Water the valuable frontage and Lake the back street. The largest documented footprint on
+this block is on Lake: the first **Tremont House at 139.3 m²**, against 92.9 m² for the auction
+room, 92.9 m² for Harmon & Loomis's store and 46.5 m² for Pruyne & Kimball's drug store. The rule
+is kept — it is a typology for where anonymous dwellings of different tiers go — but it is now
+recorded as *not* a claim about which street was worth more, before four blocks of repetition
+turned it into one.
+
+**T-A7's lap case has a fourth instance and it is the first that costs a lot nothing at all.** The
+drug store laps lot 2 by **4.66 m²**, and **0.00 m² of it is inside the buildable inset**: the
+whole lap lies in the 1.5 m margin strip. Two of the store's corners are 0.70 m and 0.65 m inside
+the platted lot line and the other two are 5.4 m out in the road, a **5.55 m** intrusion into the
+South Water corridor. With L100's 22.1 m² of buildable lap, Kinzie's 9.7 m² and
+`recon_1835_west_018`'s 11.9 m², the case now spans its whole range.
+
+**THE OFFSET THAT ANSWERED THE LAST BLOCK'S LAP DOES ALMOST NOTHING HERE, AND THE MEASUREMENT SAYS
+WHY.** T-A10 moved a shanty west to clear Church's store. On lot 2 the same move buys **0.03 m at
+1.5 m of offset and 0.33 m at 3.0 m** — the 3 m version costing 1.26 m of lot-line margin — where
+half a metre of extra setback buys **0.50 m** by itself. Church's store stood deep inside its lot;
+this one stands in the roadway, so only the setback changes the distance. The cottage is set back
+7.5 m and clears it by **6.83 m** against a 3 m gate, the closest approach in the parcel. The
+lateral offsets left in the recipe are jitter and are labelled jitter.
+
+**FIVE SOUTH DIVISION HOUSEHOLDS LIVE IN A D5, THREE BLOCKS RUNNING HAVE BEEN DEALT ONE, AND NO
+PARCEL HAD EVER RECORDED WHY NONE OF THEM TAKES IT.** Rule 6's family and division tests pass on
+this block's D5 for the baker, the butcher, the blacksmith and both clerks. All five fail test one
+— their committed arguments do not call their counts floors, and two of them cap themselves
+outright ("only one, because a bakehouse serves a great many people and nothing attests a second").
+A refusal nobody writes down is indistinguishable from a rule nobody applied, so it is written down
+now.
+
+**K28 GETS A THIRD PRECEDENT INSTEAD OF A SECOND.** The D4 on lot 2 passes all three tests for the
+carpenters exactly as T-A9's and T-A10's did, and was refused again on the conservative reading.
+Three for three is the ordinary shape of a South Division block, not a recurring edge — the
+question should be settled rather than collect a fourth. The labourers were dealt no D2 here, the
+first block since T-A8 where their second-roof question did not arise.
+
+**THE SIXTH K20 MEASUREMENT IS THE SMALLEST EVER RECORDED: 7 of 102** carried-over invented persons
+renamed, against 72-of-100 at T-A10, 19-of-98 at T-A9, 32-of-96 at T-A8 and 25-of-94 at T-A2h.
+Nothing was fixed in between. It is the hash-position mechanism L101 identified, confirmed from the
+other end of its range, and it is not evidence that the churn is under control. K20 still owns the
+fix.
+
 ## New 2026-08-15 — the third business-front block, and the name churn is three times worse than reported
 
 **T-A10.** `blk_south_water_lasalle` — South Water, Clark, Lake, LaSalle — now carries **seven
