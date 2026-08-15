@@ -3,6 +3,21 @@
 This is the part that makes the project worth doing. It is fixed before there are thirty
 buildings in the dataset, not after.
 
+> **The words, and when they changed (2026-08-15, K23a).** The three levels are
+> **`attested` · `inferred` · `reconstructed`**, and `tools/validate.py` (`CONFIDENCE`)
+> rejects anything else — it is the enforcement, this page is the explanation. Until
+> K23a this page still named them `documented` / `inferred` / `conjectural`, the
+> vocabulary the v76 merge of 2026-08-13 retired; a record written to this page would
+> have failed the build. `documented_range` keeps its name: it is a field, not a level.
+> **ROADMAP K16 proposed a different rename and is superseded** — do not follow it.
+>
+> The rename is not cosmetic, and the middle tier is where it bites. `inferred` used to
+> be the BOTTOM tier, so "an inferred building" meant an invented one. It is now the
+> MIDDLE tier — *reasoned from evidence about this particular thing* — and the bottom
+> tier is `reconstructed`. Prose written under the old sense therefore claims a grade
+> better than its own record, which is exactly the fault K23a swept out of 193 structure
+> records and the building card.
+
 ## Confidence is per attribute, not per building
 
 You will routinely know a building's footprint and location precisely while knowing nothing
@@ -11,21 +26,27 @@ footprint or lie about the roof. So every attribute carries its own.
 
 ```jsonc
 "form": {
-  "stories":  { "value": 2, "confidence": "documented",
+  "stories":  { "value": 2, "confidence": "attested",
                 "sources": ["kinzie_waubun_1856"] },
-  "gallery":  { "value": true, "confidence": "conjectural",
+  "gallery":  { "value": true, "confidence": "reconstructed",
                 "note": "All surviving images are retrospective and disagree. Unresolved." }
 }
 ```
 
 | level | meaning | validator requires |
 |---|---|---|
-| `documented` | a primary or near-primary source directly attests this attribute at the scene date | ≥1 `source_id` resolving in `data/sources/` |
+| `attested` | a primary or near-primary source directly attests this attribute at the scene date | ≥1 `source_id` resolving in `data/sources/` |
 | `inferred` | derived from typology, adjacent evidence, or construction practice of the period and region | a non-empty `note` stating the reasoning |
-| `conjectural` | no evidence; filled for visual completeness only | nothing — but it is surfaced in the build report and rendered distinctly |
+| `reconstructed` | no evidence about *this thing*; invented to fill a demonstrable need of the town, bounded by a typology | a non-empty `note` stating the reasoning — and it is surfaced in the build report and rendered distinctly |
 
-A `conjectural` attribute carrying `sources` is a warning: either the source supports it (so
-it is `documented` or `inferred`) or the citation is decorative.
+**A `reconstructed` attribute may cite `sources`, and usually should.** Under the old
+vocabulary that combination was a warning — *conjectural but cites sources, so either it is
+not conjectural or the citation is decorative.* That rule died with the rename and
+`validate.py` no longer raises it. A reconstructed value is invented WITHIN a bound, and the
+source that establishes the bound — the reconstruction programme, a trade roster, a census
+total — is exactly what makes the invention defensible rather than arbitrary. What it may
+never be is silent: the bottom tier owes its reasoning just as the middle tier does, which is
+the gate that stops an invention nobody can defend from shipping as a reconstruction.
 
 ## Evidence tiers
 
@@ -41,13 +62,13 @@ Not all sources are equal, and the dataset should not pretend otherwise.
 | 6 | decorative or popular cartography | the 1940 Nelson/Winters pictorial map — **orientation and toponyms only; no geometry** |
 
 Tier 5 and 6 sources may inform *inventory* (what existed, roughly where) and *cross-checks*.
-They must never be the sole evidence for a `documented` attribute, and no geometry is traced
+They must never be the sole evidence for an `attested` attribute, and no geometry is traced
 from them.
 
 ### The ladder is enforced, and the enforced copy is the schema (2026-08-10)
 
 Until now this table was prose. The word `tier` did not appear in `tools/validate.py`: every
-other rung of the confidence model had a gate — `documented` owes a resolving source,
+other rung of the confidence model had a gate — `attested` owes a resolving source,
 `inferred` owes stated reasoning, an invention owes an admission in `docs/LIBERTIES.md` —
 while the question all of those assume an answer to, *how good is the source*, was checked by
 nobody. `check_evidence_ladder` is that check, and `tools/tiers.py` reads the ladder out of
@@ -59,8 +80,8 @@ other is a hard failure rather than a silent gap.
 Two sentences in this document state the tier-5 rule and they are not the same rule — the
 table says such a source may not be the *sole* evidence, and the revision below says it "never
 reaches it, alone or in company". The table's reading is the one enforced, because the
-revision exists precisely to stop over-caution making the dataset less accurate: refusing a
-`documented` value that *cites* a retrospective alongside a period survey would punish
+revision exists precisely to stop over-caution making the dataset less accurate: refusing an
+`attested` value that *cites* a retrospective alongside a period survey would punish
 corroboration. A value carried by Wright 1834 and cross-checked against Conley/Stelzer is
 better evidenced than the same value with the map struck out, not worse.
 
@@ -68,12 +89,12 @@ What is enforced, exactly:
 
 | rule | state |
 |---|---|
-| a `documented` value needs at least one source at tier 4 or better | error |
-| a `footprint` graded better than `conjectural` may not cite tier 5-6 | error |
+| an `attested` value needs at least one source at tier 4 or better | error |
+| a `footprint` graded better than `reconstructed` may not cite tier 5-6 | error |
 | a source at tier 5-6 may not declare `asset_use: geometry` | error |
-| a `documented` value with no source at tier 3 or better | **warning, counted** |
+| an `attested` value with no source at tier 3 or better | **warning, counted** |
 
-The last one is a warning on purpose and 21 committed values are in it. `documented` "still
+The last one is a warning on purpose and 21 committed values are in it. `attested` "still
 requires a period source", and the ladder puts first-hand and testimony-derived evidence at
 tiers 1-3; a value resting on nothing but later synthesis is either over-graded or its source
 is under-tiered, and which of those it is can only be settled by reading the page. A page
@@ -86,28 +107,28 @@ decision arrives with a bake attached. Priced and queued in `docs/STATUS.md` § 
 The first reading of the rule above was too strict, and the strictness made the dataset
 *less* accurate rather than more. A researched retrospective — Conley/Stelzer 1933 is the
 case in point — is real evidence about where a building or a bridge stood. Refusing to use
-it left those things tagged `conjectural`, which asserts *no evidence exists*. That is not
+it left those things tagged `reconstructed`, which asserts *no evidence exists*. That is not
 caution; it is a false statement in the modest direction, and this project already holds
 that under-claiming is as wrong as over-claiming (see `generators/archetypes/frame_tavern.py`,
 where the same mistake dithered a well-attested building into a ghost).
 
 So, precisely:
 
-- **`documented`** still requires a period source. A tier-5 map never reaches it, alone or
+- **`attested`** still requires a period source. A tier-5 map never reaches it, alone or
   in company.
 - **`inferred` is available** to a tier-5 source, and is the right tag when a researched
   reconstruction places something. The `note` must name the map, say that it is a
   reconstruction, and say what it shows.
 - **Geometry is still not traced from them.** A pictorial elevation is not a survey: it
   gives you *that a thing was here*, not its outline, its footprint or a shoreline. Outlines
-  come from tier-1 sheets or stay conjectural.
+  come from tier-1 sheets or stay reconstructed.
 
 Judge a tier-5 source by how it was made, not only by its date. Conley worked about two
 years in libraries and archives, and Caroline McIlvaine had thirty years earlier collected
 testimony directly from the last surviving pioneers. That is a real evidentiary chain with
 one weak link, not a decoration. It still gets things wrong — it labels the du Sable/Kinzie
 house "built 1832" against every documentary source (`data/exclusions.json`) — which is
-exactly why it informs `inferred` and never `documented`.
+exactly why it informs `inferred` and never `attested`.
 
 `asset_use` on the source record is the operative switch, and the vocabulary already had the
 right rung: **`orientation` — "toponyms and rough placement only"**. That, not `cross_check`,
@@ -135,7 +156,7 @@ Every structure phase carries `documented_range`. For a given scene, a structure
 covering phase means the structure is excluded from that scene, and the exclusion is reported.
 
 **Do not widen a range to make the build pass.** Narrow it to what is attested and mark the
-phase `conjectural` if that is what it is. A `documented_range` spanning more than about a
+phase `reconstructed` if that is what it is. A `documented_range` spanning more than about a
 dozen years in this period earns a warning on principle.
 
 `data/exclusions.json` records structures that were researched and deliberately left out, with
@@ -146,9 +167,9 @@ helpfully re-add the Saloon Building.
 
 Every renderer implements a toggle that recolors the scene by evidence quality:
 
-- `documented` — renders normally
+- `attested` — renders normally
 - `inferred` — renders tinted
-- `conjectural` — renders as translucent massing
+- `reconstructed` — renders as translucent massing
 
 Implementation is centralized (the generator paints a per-vertex confidence channel; the
 renderer reads it through one shared material patch) so it cannot be forgotten per-building.
@@ -160,7 +181,7 @@ project offers.
 ## Confidence grades the evidence, not the view
 
 A confidence chip answers *how sure are we of this value*. It cannot answer *are you looking at
-it*, and the two come apart in the direction that does the most damage: a `documented` attribute
+it*, and the two come apart in the direction that does the most damage: an `attested` attribute
 the generator never reads renders nothing and still shows the strongest claim the project makes.
 Wolf Point Tavern's painted wolf sign was exactly that for as long as nobody checked.
 
@@ -184,7 +205,7 @@ from its value by construction, which is the only reason it needs no declaration
 
 Record the disagreement in `docs/RESEARCH/<structure_id>.md`, state both readings and their
 sources, pick the best-attested one, and **write down why**. Then reflect the uncertainty in
-the data: a disputed attribute is `conjectural` or `inferred`, never `documented`.
+the data: a disputed attribute is `reconstructed` or `inferred`, never `attested`.
 
 A dispute that cannot be resolved is not a failure. It is the honest state of the evidence, and
 the confidence view is built to show it.

@@ -684,6 +684,7 @@ const terrainLoad = await page.evaluate(() => {
       return {
         household: hh.name,
         name: person?.name,
+        headGrade: (hh.persons.find((p) => p.relationship === 'head') || person)?.grade,
         basisGrade: person?.name_basis?.confidence,
         basisNote: (person?.name_basis?.note || '').slice(0, 60),
         grades: index.vocabulary.grades,
@@ -697,10 +698,70 @@ const terrainLoad = await page.evaluate(() => {
       invented.basisGrade === 'reconstructed'
       && /THE NAME IS INVENTED/.test(invented.basisNote ?? ''),
       `name_basis ${invented.basisGrade} — "${invented.basisNote}"`);
+    // The layer-word in this label was `inferred` until K23a, and so was this
+    // assertion — which is how a name claiming a better grade than its own
+    // record survived a release gate. It is pinned to the HEAD'S OWN GRADE now
+    // rather than to a literal, so the label cannot drift from the record again
+    // and cannot be satisfied by whichever word happens to be in fashion.
     check(`${label}: the household is named for its head and still says which layer it is`,
       /household/.test(invented.household ?? '')
-      && /inferred/.test(invented.household ?? ''),
-      `household "${invented.household}"`);
+      && new RegExp(invented.headGrade ?? 'x').test(invented.household ?? ''),
+      `household "${invented.household}" against head grade ${invented.headGrade}`);
+
+    // --- the prose may not name a level the record is not (K23a) ------------
+    //
+    // Owner-reported from a card on the dev preview: the title read "Inferred A2
+    // barn or carriage shed #08" while every chip beneath it read RECONSTRUCTED.
+    // Both were honest once. `inferred` was the BOTTOM tier under the vocabulary
+    // v76 retired; it is the MIDDLE one now — reasoned from evidence about this
+    // particular thing — which an anonymous count-unit is exactly not. So 193
+    // names were claiming a grade better than their own record, in the largest
+    // text on the card, and nothing in the suite could see it.
+    //
+    // The gate is over the whole registry rather than a sample: this fault
+    // arrived from a generator, so it arrives 193 at a time or not at all.
+    const naming = await page.evaluate(() => {
+      const LEVELS = ['attested', 'inferred', 'reconstructed'];
+      // The words v76 retired. A name may never open with one of these again:
+      // `documented` and `conjectural` were the old top and bottom tiers, and
+      // `recommended` was the word this project renamed away from by name.
+      const RETIRED = ['documented', 'conjectural', 'recommended'];
+      const verdict = (name, grade) => {
+        const first = String(name ?? '').trim().split(/\s+/)[0]
+          .replace(/[^A-Za-z]/g, '').toLowerCase();
+        if (RETIRED.includes(first)) return `names the retired level "${first}"`;
+        if (LEVELS.includes(first) && first !== grade) {
+          return `opens "${first}" over a record graded "${grade}"`;
+        }
+        return null;
+      };
+      const bad = [];
+      let scanned = 0;
+      for (const id of window.__chicago4d.registry.keys()) {
+        const s = window.__chicago4d.registry.get(id)?.sidecar;
+        if (!s?.name) continue;
+        scanned += 1;
+        const why = verdict(s.name, s.documented_range?.confidence);
+        if (why) bad.push(`${id}: "${s.name}" ${why}`);
+      }
+      // Put the fault back, in memory, and require the predicate to name it —
+      // otherwise a gate that scans a clean tree is indistinguishable from a
+      // gate that scans nothing, and this file has shipped that mistake before
+      // (STATUS § 28: a card flag tested against a key the data never wrote).
+      const planted = [
+        verdict('Inferred A1 stable #07', 'reconstructed'),
+        verdict('Recommended A1 stable #07', 'reconstructed'),
+        verdict('Reconstructed A1 stable #07', 'reconstructed'),
+      ];
+      return { bad, scanned, planted };
+    });
+    check(`${label}: no building's name claims a grade its own record does not`,
+      naming.scanned > 100 && naming.bad.length === 0,
+      `${naming.scanned} scanned, ${naming.bad.length} bad — ${naming.bad.slice(0, 3).join(' | ')}`);
+    check(`${label}: that check still catches the fault when it is put back`,
+      naming.planted[0] !== null && naming.planted[1] !== null
+      && naming.planted[2] === null,
+      `planted verdicts: ${JSON.stringify(naming.planted)}`);
 
     // --- hiding a level (K17) ----------------------------------------------
     //

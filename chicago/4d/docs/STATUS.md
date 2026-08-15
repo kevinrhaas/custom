@@ -1,5 +1,53 @@
 # STATUS
 
+## New 2026-08-15 — 193 buildings were named a grade better than their own record, and the release gate was holding it in place
+
+**K23a**, owner-reported from a card on the dev preview. The heading read **"Inferred A1 stable
+#07"** and every chip beneath it read **RECONSTRUCTED**. The heading was the wrong one, on
+**193 structure records** — every anonymous roof this project has ever generated.
+
+**It is the residue of a fix that worked.** The v76 merge of 2026-08-13 moved 9,076 values onto
+`attested / inferred / reconstructed` and re-graded 1,694 that had claimed to be reasoning when
+they were invention. It moved the DATA. The PROSE is hardcoded in the generators, and it did not
+move — so `inferred` went from being the BOTTOM tier (where "Inferred A1 stable" was honest) to
+the MIDDLE one, *reasoned from evidence about this particular thing*, which an anonymous
+count-unit is precisely not. **Nothing about any building changed here**: not a position, a
+dimension, a source or a grade. Only what the card calls them.
+
+**Scale, exactly, so a later sweep can tell drift from a fresh fault.** 193 names; 162
+`symbolic_location` strings; 193 `research_note` openers partitioning cleanly into 142
+`RECOMMENDED / GENERATED`, 31 `INFERRED BUILDING` and 20 `INFERRED / GENERATED`; every
+`change_note` on an anonymous roof; the card's own reconstruction flag; and the household and
+person labels of the K1 layer. **`recommended` is the word this project renamed away from BY NAME
+on 2026-08-13** and then printed on 142 cards for a fortnight.
+
+**Five generators, not the two the parcel listed — and a sixth stage that is not a generator.**
+`generate_inferred_names.py` runs AFTER the household programme and rewrites the household's own
+label. Regenerating households without it deletes every invented resident's name and
+`name_basis` — the whole of K18 — and **the household programme's `--check` cannot see this**,
+because it overlays the naming pass before comparing. `--check` is green either way. The order is
+`generate_inferred_households.py` then `generate_inferred_names.py`, and it is now written into
+ROADMAP K23a where the next person will look.
+
+**The gate was enforcing the fault.** `smoke_renderer.mjs` asserted the household label matched
+`/inferred/`. So the thing that should have caught this was requiring it. That assertion is
+pinned to the head's own `grade` now, and a new whole-registry check fails the release on any
+name opening with a grade its record does not carry, or with any of the three retired words —
+with the fault planted in the same pass, so a gate scanning a clean tree cannot be mistaken for
+a gate scanning nothing.
+
+**Two things outside the app were worse than the cards.** `docs/PROVENANCE.md` — the page you
+send someone to when they ask what the grades mean — still defined `documented / inferred /
+conjectural`, so a record written by following it **fails the build**. And `validate.py`'s own
+errors named the wrong tier: a sourceless `attested` value reported *"documented requires at
+least one source_id"*. Both corrected; ROADMAP K16, which proposed a third vocabulary that never
+shipped, is **CLOSED as superseded**.
+
+**Still open, and it is the half the owner cared most about.** K23b — *say what was INCLUDED at
+each level and where it came from* — is untouched. The names are no longer wrong; the cards still
+do not tell a visitor that a building's footprint, height, roof form and position were all
+invented and only its block was reasoned.
+
 ## New 2026-08-14 — the block where two layers of this reconstruction met on the same ground, and the adoption rule grew a third test
 
 **T-A5.** `blk_randolph_market` — Randolph, Franklin, Washington, Market — is the first South

@@ -1,6 +1,6 @@
 {
   "id": "physicians_office",
-  "name": "Inferred physicians office (physician)",
+  "name": "Reconstructed physicians office (physician)",
   "archetype": "frame_storefront",
   "phases": [
     {
@@ -9,7 +9,7 @@
         "from": "1835-01-01",
         "to": "1835-12-31",
         "confidence": "reconstructed",
-        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof an inferred household requires - eIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
+        "note": "NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the roof a reconstructed household requires - eIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. The argument for the trade's presence in the town is in the household record and in the occupation census at data/reconstruction/1835_inferred_household_programme.json; the argument for THIS BUILDING is only that the household needs somewhere to be."
       },
       "position": {
         "utm_e": 447630.262,
@@ -164,14 +164,14 @@
     "note": "EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution."
   },
   "occupants": {
-    "value": "An inferred household; no name is claimed",
+    "value": "A reconstructed household; no name is claimed",
     "confidence": "reconstructed",
     "sources": [
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "The inferred household this building exists for: hh_inf_physician_south_01 in data/residents/households/. No name is claimed and no figure is drawn."
+    "note": "The reconstructed household this building exists for: hh_inf_physician_south_01 in data/residents/households/. No name is claimed and no figure is drawn."
   },
-  "research_note": "INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, phase two). EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
+  "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). EIGHT DOCUMENTED DOCTORS AND NOT ONE OFFICE. A physician's office and apothecary's back room on the Lake Street frontage, where a doctor is found by people who need one. It is left unnamed on purpose: four of the eight are documented households in this dataset and attaching any of them to an invented building would turn a hypothesis into a false attribution. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
   "review_required": false
 }

@@ -1,6 +1,6 @@
 {
   "id": "recon_1835_west_008",
-  "name": "Inferred W1 blacksmith shop #007",
+  "name": "Reconstructed W1 blacksmith shop #007",
   "archetype": "outbuilding",
   "phases": [
     {
@@ -15,7 +15,7 @@
         "utm_e": 446823.578,
         "utm_n": 4637263.587,
         "rotation_deg": 1.0,
-        "symbolic_location": "Anonymous inferred roof on west of Canal and Lake, behind the Wolf Point sequence",
+        "symbolic_location": "Anonymous reconstructed roof on west of Canal and Lake, behind the Wolf Point sequence",
         "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed West Division cluster w1_canal_lake_mixed. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
@@ -119,7 +119,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the W1 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         }
       },
-      "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+      "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
     }
   ],
   "function": {
@@ -142,6 +142,6 @@
     "roof_condition": "darkened",
     "age_state": "established"
   },
-  "research_note": "INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "review_required": false
 }

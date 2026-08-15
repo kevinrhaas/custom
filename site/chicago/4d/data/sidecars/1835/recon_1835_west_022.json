@@ -1,7 +1,7 @@
 {
   "id": "recon_1835_west_022",
   "phase": "inferred_1835",
-  "name": "Inferred W4 small artisan shop #018",
+  "name": "Reconstructed W4 small artisan shop #018",
   "aka": [],
   "archetype": "outbuilding",
   "asset": "gltf/recon_1835_west_022__inferred_1835.glb",
@@ -14,7 +14,7 @@
     "sources": [],
     "note": "Anonymous count-unit toward the July 1835 programme. No evidence establishes that this particular building existed."
   },
-  "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
+  "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total.",
   "placement": {
     "local_e": -296.24,
     "local_n": -342.214,
@@ -22,7 +22,7 @@
     "position_confidence": "reconstructed",
     "position_sources": [],
     "position_note": "Interpretive placement within the reviewed West Division cluster w2_canal_randolph_teamster. The recipe coordinate is a production-layout control, not a recovered lot. Set back 9.5 m from the recipe coordinate, which placed it inside a platted street corridor; the move is well inside the ±20 m uncertainty the recipe states for its own layout controls.",
-    "symbolic_location": "Anonymous inferred roof on the Canal and Randolph teamster approach",
+    "symbolic_location": "Anonymous reconstructed roof on the Canal and Randolph teamster approach",
     "uncertainty_m": 20,
     "placement_provisional": false,
     "vertical_anchor": "terrain"
@@ -154,7 +154,7 @@
       ]
     }
   ],
-  "research_note": "INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "research_doc": "docs/RESEARCH/inferred_infill_1835.md",
   "review_required": false,
   "reconstruction": {

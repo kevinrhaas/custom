@@ -100,14 +100,14 @@ def person(hh: dict, census: dict, idx: int | None = None, extra: dict | None = 
     base = hh["id"].removeprefix("hh_")
     if extra is None:
         article = "An" if trade[0] in "aeiou" else "A"
-        pid, rel, name = base, "head", f"{article} {trade} (inferred resident, unnamed)"
+        pid, rel, name = base, "head", f"{article} {trade} (reconstructed resident, unnamed)"
         why = (f"THE {ordinal_word(hh['ordinal']).upper()} OF {hh['of']} {trade.upper()} "
-               f"HOUSEHOLDS THIS LAYER INFERS. " + census[occ]["argument"])
+               f"HOUSEHOLDS THIS LAYER RECONSTRUCTS. " + census[occ]["argument"])
     else:
         pid = f"{base}_{extra['relationship'][:1]}{idx}"
         rel = extra["relationship"]
         article = "An" if rel[0] in "aeiou" else "A"
-        name = f"{article} {rel} {trade} (inferred resident, unnamed)"
+        name = f"{article} {rel} {trade} (reconstructed resident, unnamed)"
         why = (f"A {rel} in the same shop. The trade's own argument: "
                + census[occ]["argument"])
     p = {
@@ -162,7 +162,7 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
         if sid is None:
             return ""
         if sid.startswith("recon_"):
-            return ("an anonymous inferred roof already standing on the plat, adopted rather "
+            return ("an anonymous reconstructed roof already standing on the plat, adopted rather "
                     "than duplicated: its existence, position and footprint stay conjectural and "
                     "the adoption adds only the occupant argument")
         if sid in buildings:
@@ -192,7 +192,7 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
 
     return {
         "id": hh["id"],
-        "name": f"An inferred {trade}'s household ({hh['division']} division)",
+        "name": f"A reconstructed {trade}'s household ({hh['division']} division)",
         "division": hh["division"],
         "head": persons[0]["id"],
         "arrival": arrival_block(),
@@ -221,7 +221,7 @@ def household_record(hh: dict, census: dict, buildings: dict) -> dict:
         "touches_removal": False,
         "review_required": False,
         "research_note": (
-            f"INFERRED HOUSEHOLD - {ordinal_word(hh['ordinal'])} of {hh['of']} {trade} households "
+            f"RECONSTRUCTED HOUSEHOLD - {ordinal_word(hh['ordinal'])} of {hh['of']} {trade} households "
             f"in this layer, in the {hh['division']} division. " + census[occ]["argument"] +
             " METHOD: the count comes from the occupation census in "
             "data/reconstruction/1835_inferred_household_programme.json, which calibrates every "
@@ -364,11 +364,11 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         role = b["role"]
         role_lc = role[0].lower() + role[1:]
         trade = label(b["occupation"])
-        name = "Inferred " + b["function"].replace("_", " ") + " (" + trade + ")"
+        name = "Reconstructed " + b["function"].replace("_", " ") + " (" + trade + ")"
         function_value = b["function"]
         exist_conf, exist_src = "reconstructed", None
         exist_note = ("NO EVIDENCE ESTABLISHES THAT THIS PARTICULAR BUILDING EXISTED. It is the "
-                      "roof an inferred household requires - " + role_lc + " The argument for the "
+                      "roof a reconstructed household requires - " + role_lc + " The argument for the "
                       "trade's presence in the town is in the household record and in the "
                       "occupation census at "
                       "data/reconstruction/1835_inferred_household_programme.json; the argument "
@@ -393,10 +393,10 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
                      f"about this one.")
         func_conf, func_src, func_note = "reconstructed", [ANDREAS, SPEC], role
         occ_conf, occ_src = "reconstructed", [ANDREAS, SPEC]
-        occ_note = ("The inferred household this building exists for: "
+        occ_note = ("The reconstructed household this building exists for: "
                     + ", ".join(occupants_hh) + " in data/residents/households/. No name is "
                     "claimed and no figure is drawn.")
-        research = ("INFERRED BUILDING, RAISED FOR AN INFERRED HOUSEHOLD (docs/ROADMAP.md K1, "
+        research = ("RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, "
                     "phase two). " + role + " It is NOT one of the anonymous count-units of the "
                     "665-roof programme: those are placed by aggregate mix and carry no occupant, "
                     "while this one exists because the occupation census says the town held a "
@@ -462,7 +462,7 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
         "phases": [phase],
         "function": attested(function_value, func_conf, func_src, func_note),
         "occupants": attested(
-            p["occupants_value"] if documented else "An inferred household; no name is claimed",
+            p["occupants_value"] if documented else "A reconstructed household; no name is claimed",
             occ_conf, occ_src, occ_note),
         "research_note": research,
         "review_required": False,
@@ -795,7 +795,7 @@ def main() -> int:
     adopted = len({sid for h in load(PROGRAMME)["households"]
                    for sid in (h.get("lives_at"), h.get("works_at"))
                    if sid and sid.startswith("recon_")})
-    print(f"{mode} {len(households)} inferred households ({persons} persons), "
+    print(f"{mode} {len(households)} reconstructed households ({persons} persons), "
           f"{len(records)} structure records, {adopted} anonymous roofs adopted")
     return 0
 

@@ -70,7 +70,7 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | TOWN | **K23a** | owner-reported: 193 invented buildings are NAMED "Inferred" while every grade on them reads reconstructed. 23a is the deterministic sweep; 23b (the card content) is a separate claim |
+| 1 | TOWN | **K23b** | K23a landed 2026-08-15 (the 193 names now match their grade). 23b is the substantive half the owner asked for and is untouched: say what was INCLUDED at each level, and where it came from |
 | 1 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
@@ -1531,7 +1531,11 @@ setting existed; every critic and smoke measurement still reads the default; the
 the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
 and legible there.
 
-### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
+
+> **K23a is DONE (2026-08-15).** 193 names, and the prose around them, now agree with the grade
+> the record carries. **K23b — say what we included at each level — is untouched and is still
+> the substantive half.** Findings below under "K23a — what the sweep actually found".
 
 Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
 inferred right? Like if it was totally invented based on our population household program it was
@@ -1607,6 +1611,73 @@ user-visible string names a level it is not**; a smoke assertion that a record's
 never contradicts its own existence grade — put the fault back and it must name it; the card
 states what was included at each level for one attested, one inferred and one reconstructed
 building. Mobile is where it was reported.
+
+#### K23a — what the sweep actually found · **DONE 2026-08-15**
+
+**The parcel named two generators. There were five, plus a sixth stage nobody had listed.**
+`generate_block_infill.py` and `generate_inferred_infill.py` were the two written down;
+`generate_north_infill.py`, `generate_west_infill.py` and `generate_inferred_households.py`
+carry the same four strings, and `generate_inferred_names.py` is a **second pass that runs after
+the household programme and rewrites the household's own label**. Regenerating the households
+without it silently deleted every invented resident's name and `name_basis` block — the whole of
+K18 — and the diff was the only thing that said so. **`generate_inferred_households.py` then
+`generate_inferred_names.py`, in that order**, or you lose the naming layer; the household
+programme's `--check` hides this by overlaying the naming pass before it compares, so `--check`
+is green either way.
+
+**Four strings per generator, not one.** `name`, `change_note`, `research_note` — and
+`symbolic_location`, which the parcel did not list and which said "Anonymous inferred roof in
+the …" on 162 records. All four now say `reconstructed`.
+
+**"NOT A DOCUMENTED NAMED BUILDING" was wrong twice in one line.** Every `research_note` ended
+by contrasting itself with a tier called `documented`, which has not existed since v76. It reads
+`NOT AN ATTESTED NAMED BUILDING` now.
+
+**The counts, so the next sweep can tell drift from a fresh fault.** 193 names, all on records
+graded `reconstructed` at existence — and the three `research_note` openers partition them
+exactly: 142 `RECOMMENDED / GENERATED`, 31 `INFERRED BUILDING`, 20 `INFERRED / GENERATED`. There
+is no fourth group and no record was missed. `recommended` is the word this project renamed away
+from **by name** on 2026-08-13 and then kept printing on 142 cards for a fortnight.
+
+**Three things outside the app were saying it too, and two of them are worse than the cards:**
+
+- **`docs/PROVENANCE.md` documented a vocabulary the build rejects.** It still defined
+  `documented / inferred / conjectural`. It is the page you send someone to when they ask what
+  the grades mean, so anyone following it would have written a record `validate.py` refuses.
+  Swapped, with a dated note recording the rename and pointing at `CONFIDENCE` as the
+  enforcement. Its `reconstructed` row also had to change MEANING, not just spelling: the old
+  bottom tier meant "no evidence, filled for visual completeness", the new one means "invented
+  within a bound and owing a note", and the rule that a bottom-tier value citing sources is
+  suspicious **died with the rename** — the source that bounds an invention is what makes it
+  defensible. `documented_range` keeps its name; it is a field, not a level.
+- **`validate.py`'s own error messages named the wrong tier.** A missing source on an `attested`
+  value reported *"documented requires at least one source_id"*; a `reconstructed` value with no
+  note reported *"inferred requires a note"*. An error that names a grade the project does not
+  have sends the reader to fix the wrong field.
+- **The smoke's own household assertion required the bug.** It asserted the household label
+  matched `/inferred/` — so the release gate was *holding the fault in place*. It is pinned to
+  the head's own `grade` now rather than to a literal, which is the form that cannot rot.
+
+**What was deliberately NOT changed, and why.**
+
+- **`reconstruction.status: "inferred_anonymous"`, the `inferred_1835` phase id, the
+  `hh_inf_*`/`1835_inferred_household_programme.json` filenames, and the generator filenames.**
+  These are machine identifiers: never printed, and `inferred_anonymous` names the GLB files.
+  The last time this value was renamed, `popup.js` was left testing the old string and **the
+  reconstruction flag silently vanished from 108 cards** — a test on a value nothing carries is
+  always false. Prose moved; keys did not. The card's wording and its key are now decoupled on
+  purpose, with the reason written at the test.
+- **`renderers/web/js/changelog.js` entries v87 and earlier.** They are the historical record and
+  describe what shipped *at the time*, when "recommended reconstruction" was the word actually on
+  the cards. Rewriting a shipped release note to look better is the kind of tidying this project
+  exists not to do.
+
+**Left for a successor, stated rather than quietly skipped.** `docs/PROVENANCE.md`'s *arguments*
+were only re-read where the word-swap made a sentence flatly false. Its § "They may, however,
+carry a position to `inferred`" still glosses the bottom tier as asserting *no evidence exists*,
+which was true of `conjectural` and is only half true of `reconstructed`. That is prose about
+reasoning rather than a mislabelled grade, so it is a separate read against `validate.py` and
+not a line to change in passing.
 
 ### K1 — The inferred-residents programme *(the big one; multi-session; carve into districts)*
 Chicago went from ~350 people (1833) to ~3,265 (late 1835). Build the POPULATION as a dataset,
@@ -2138,12 +2209,22 @@ relief — and `Heightfield.covers()` exists because a structure once landed 832
 reported a perfect fit. (e) Triangle budget: 139 roofs at the ~723 tris the K1 bake averaged is
 ~100 000, against 574 440 of headroom at Full detail. It fits now; it did not before K14.
 
-### K16 — The confidence vocabulary is wrong, and the owner named the fix · **CLAIMED 2026-08-13, expires 2026-08-16**
+### K16 — The confidence vocabulary is wrong, and the owner named the fix · **CLOSED 2026-08-15 — SUPERSEDED, DO NOT FOLLOW**
 
-> **CLAIM — steward, skip.** Held by the interactive session. This is a RENAME across the whole
-> dataset (240+ structure records, flora, fauna, ground claims), the schema, the validator, the
-> liberties gate, the legend and the popup. Half of it applied is worse than none of it. Take K2,
-> K5, K8 or K10.
+> **CLOSED by K23a.** The rename happened, but **not to the words written below**. This parcel
+> proposed `documented / derived / inferred`; what actually shipped in the v76 merge of
+> 2026-08-13 is **`attested / inferred / reconstructed`**, and `tools/validate.py`'s `CONFIDENCE`
+> tuple is the enforcement. Everything from "The rename, which is a rename and not a new tier"
+> onward describes a vocabulary this project does not use — **a record written to the table below
+> fails the build.** `docs/PROVENANCE.md` is the current authority and now carries a dated note
+> saying so.
+>
+> The parcel is kept rather than deleted because its *reasoning* is the reasoning behind the
+> words that did ship, and because it is the origin of the fault K23a swept up: it left the
+> standing instruction to stay "vocabulary-agnostic while K16 is in flight", and under that
+> instruction 193 generated names went on saying `Inferred` for three weeks after `inferred`
+> stopped meaning invented. **That instruction is spent.** Read the strings off
+> `docs/PROVENANCE.md`, not off this section.
 
 The owner's correction, 2026-08-13, in their words: *"I don't want to use inferred in those kind
 of cases where there was some solid research behind it… the government blacksmith shop seems
