@@ -836,6 +836,77 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: the terrain and river report no load problems`,
       terrainLoad.terrainProblems.length === 0,
       terrainLoad.terrainProblems.slice(0, 2).join(' | '));
+
+    // --- the ground you see IS the ground the town stands on (R-BUG3c) ------
+    //
+    // The gate above protects the terrain generator's promise — 30 mm between
+    // its decimated mesh and the heightfield — and it cannot see whether the
+    // promise survived. It measures normals, and this project measured the fit
+    // only at bake time, on the MASTER. The file a browser loads is the
+    // derivative `gltf-transform optimize` writes afterwards, and it quantises
+    // POSITION to 14 bits under one uniform node scale: on a mesh 5,020 m wide
+    // and 8.6 m tall that is a 306 mm vertical lattice. Measured on the shipped
+    // bytes, the ground was up to 228 mm off the field with an rms of 85 mm.
+    //
+    // Everything in the town anchors to the heightfield — collision, buildings,
+    // flora roots, street drape — so the roadway was drawn 22 mm above a sampler
+    // that sat up to 228 mm BELOW the visible ground, and the near field went
+    // under it at a constant radius. That is R-BUG3c, reported twice by the
+    // owner, and three gates missed it because they all compared the render to
+    // itself.
+    //
+    // This one compares the SURFACE THAT IS DRAWN — the tiles, after every load
+    // step — against the sampler the town is placed with, at the tiles' own
+    // vertices. It is not a screenshot and it cannot be fooled by one.
+    const groundFit = await page.evaluate((tol) => {
+      const api = window.__chicago4d;
+      const hf = api.terrain.heightfield;
+      const eMin = hf.originE;
+      const eMax = hf.originE + hf.widthM;
+      const nMin = hf.originN;
+      const nMax = hf.originN + hf.depthM;
+      let worst = 0;
+      let over = 0;
+      let compared = 0;
+      let worstAt = null;
+      api.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
+        const p = o.geometry.getAttribute('position');
+        for (let i = 0; i < p.count; i += 1) {
+          const e = p.getX(i);
+          const n = -p.getZ(i);
+          // The skirt reaches 1.5 km past the modelled box, where there is no
+          // field to be right or wrong about. Scoring it would measure the
+          // sampler's fallback rather than the ground.
+          if (e < eMin || e > eMax || n < nMin || n > nMax) continue;
+          compared += 1;
+          const d = Math.abs(p.getY(i) - api.terrain.surfaceHeight(e, n));
+          if (d > tol) over += 1;
+          if (d > worst) { worst = d; worstAt = { e: +e.toFixed(1), n: +n.toFixed(1) }; }
+        }
+      });
+      return { worst, over, compared, worstAt, fit: api.terrain.groundFit };
+    }, 0.03);
+    // The generator's own MESH_FIT_TOLERANCE_M, deliberately: the promise that
+    // "the ground you stand on is the ground you see" is not weaker for the file
+    // that ships than for the file that does not.
+    check(`${label}: the drawn ground matches the heightfield the town anchors to`,
+      groundFit.compared > 10000 && groundFit.over === 0 && groundFit.worst <= 0.03,
+      `worst ${(groundFit.worst * 1000).toFixed(1)} mm of 30 mm over `
+      + `${groundFit.compared.toLocaleString()} drawn vertices`
+      + (groundFit.worstAt ? ` (at E ${groundFit.worstAt.e}, N ${groundFit.worstAt.n})` : '')
+      + `, ${groundFit.over} beyond tolerance`);
+    // And the renderer's own account of the repair, so a run that stops needing
+    // it — because the terrain stopped shipping quantised — says so out loud
+    // rather than silently doing nothing.
+    check(`${label}: the ground was conformed to the field, with nothing left over`,
+      !!groundFit.fit && groundFit.fit.residual_max_m <= 1e-5,
+      groundFit.fit
+        ? `${groundFit.fit.moved.toLocaleString()} of `
+          + `${groundFit.fit.vertices.toLocaleString()} vertices moved, `
+          + `up to ${(groundFit.fit.correction_max_m * 1000).toFixed(1)} mm; `
+          + `residual ${(groundFit.fit.residual_max_m * 1000).toFixed(4)} mm`
+        : 'the terrain reported no fit at all');
     await page.evaluate(() => {
       const api = window.__chicago4d;
       api.setFly(false);
