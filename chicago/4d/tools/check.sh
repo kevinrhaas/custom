@@ -83,6 +83,14 @@ step "the 665-roof programme reconciles with the town that stands" \
 step "nothing unpermitted stands on reserved ground" \
   python3 tools/measure_reserved_ground.py --gate
 
+# The same question outside the plat, where it is bigger: 26.5 % of the modelled land
+# above the water surface is the United States Reservation or the sand bar across the
+# river mouth, neither was ever open to a private builder, and neither was refused by
+# anything (ROADMAP T-E2). This also carries the under-coverage assertion — the polygons
+# are resolved from the traces, so a terrain extension that outruns them fails here.
+step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
+  python3 tools/measure_no_build_ground.py --gate
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

@@ -55,6 +55,16 @@ PREFIX = "recon_1835_blk_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+# T-E2's refused ground is resolved from the committed traces rather than stored, so the
+# generator asks the same command the gate does instead of keeping its own copy.
+from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
+from measure_no_build_ground import reservation_ring  # noqa: E402
+
+
+def no_build_rings() -> dict[str, list[tuple[float, float]]]:
+    ring, _madison, _section = reservation_ring()
+    return {"fort_dearborn_reservation": ring, "river_mouth_sand_bar": bar_ring()}
+
 # An adopted roof's `occupants` block is authored ONCE, in the household programme's
 # ledger, and handed to whichever generator owns the roof — the arrangement the three
 # earlier anonymous parcels already use. Writing the adoption here as well would put it
@@ -763,6 +773,29 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
             gap = polygon_gap(poly, other)
             if gap < MIN_SEPARATION_M:
                 raise SystemExit(f"{sid} stands {gap:.2f} m from {other_id}")
+
+    # ground that was ever open to a private builder. The five tests around this one
+    # ask where a roof stands relative to other roofs, to lot lines, to the roadway and
+    # to the shape of the land. None of them asks whether the ground was for sale, and
+    # T-A16 found that hole inside the plat before T-E2 found the larger one outside it:
+    # the United States Reservation and the sand bar are a quarter of the modelled land
+    # in this scene and nothing refused a dwelling on either.
+    refused = load(DATA / "reconstruction" / "1835_no_build_ground.json")
+    rings = no_build_rings()
+    for region in refused["regions"]:
+        polygon = rings[region["id"]]
+        permitted = {p["structure_id"]
+                     for p in region["what_may_stand_here"]["permitted"]}
+        for sid, poly in mine:
+            if sid in permitted:
+                continue
+            if any(point_in_ring(p, polygon) for p in poly):
+                raise SystemExit(
+                    f"{sid} stands on {region['name']}, which took no anonymous roof "
+                    f"in 1835. The refusal is authored in 1835_no_build_ground.json and "
+                    f"graded `{region['confidence']}`; read it before writing a recipe "
+                    "here, and withdraw the refusal with its evidence rather than "
+                    "working around it.")
 
     # buildable ground, on the surface the walker uses
     field = Heightfield.load(DATA / "terrain" / "epochs" / "e1834_harbor_cut")
