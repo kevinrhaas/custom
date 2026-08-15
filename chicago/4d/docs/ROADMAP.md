@@ -62,9 +62,26 @@ This is better than a time-saving trick: it forces the measurement to be committ
 anyone knows which candidate cause is guilty, so the fix cannot quietly redefine success. It
 is exactly how R-BUG2 succeeded — *"measure before choosing"* refuted its own prime suspect.
 
-**Use `--stations` and `--only`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
-instead of 12; the smoke takes `--only` for a single viewport while iterating. Full runs
-belong at the end, not in the loop.
+**Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
+instead of 12; `SMOKE_VIEWPORT=mobile` runs one viewport while iterating. Full runs belong at the
+end, not in the loop.
+
+**AND A CEILING THE RUN BUDGET DOES NOT COVER, measured 2026-08-15 (K21): an agent's single
+foreground command is capped at TEN MINUTES, and the desktop half of the smoke does not fit in
+it.** The 150-minute figure above is the *run's* budget; the harness a steward run executes in also
+caps each individual command, and that is the binding constraint for this gate. Measured on this
+runner, serving the published mirror: **`SMOKE_VIEWPORT=mobile` finished in 4 m 43 s, 214 passed /
+0 failed. `SMOKE_VIEWPORT=desktop` was killed at 10 m 00 s having passed 151 with 0 failed** — an
+estimated ~13 minutes end to end, so it fails by about three. Both halves in one command is ~18
+minutes and never fits. The trailing `page.click: Target page … has been closed` in such a log is
+the kill, not a failure.
+
+**So a parcel whose acceptance needs the desktop half cannot self-verify it here, and should say so
+in its PR rather than quietly merging on the mobile half.** `tools/check.sh` — which is the actual
+dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) — is unaffected at
+~90 s. The durable fix is for the smoke to take a test-name or section filter the way it takes
+`SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
+desktop half belongs to a runner without the per-command ceiling.
 
 ### NEXT UP — the unambiguous picks
 
