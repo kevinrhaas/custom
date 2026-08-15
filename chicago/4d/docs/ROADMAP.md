@@ -3603,7 +3603,7 @@ block between crossings. Add a mid-block station on foot before claiming this cl
 
 **Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
 
-### R-W6 — should the terrain ship quantised at all? · **UNCLAIMED · opened 2026-08-15 by R-BUG3c · NOT urgent**
+### R-W6 — should the terrain ship quantised at all? · **CLAIMED 2026-08-15 · lane 1 · opened by R-BUG3c**
 
 R-BUG3c found that the published ground mesh lands on a **306 mm** vertical lattice and fixed
 the consequence rather than the cause: the renderer reads the heights back off the heightfield,
