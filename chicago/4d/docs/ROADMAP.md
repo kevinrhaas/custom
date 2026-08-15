@@ -1400,7 +1400,7 @@ citing a band it does not sit in.
 storefront does not explain it. Decide which is right for a one-storey artisan shop and make the
 five agree, or record why a barber's shop and a gunsmith's are different kinds of building.
 
-### K33 — the note cites a band for values the specification does not bound · **UNCLAIMED · from K25(a) · Effort: S to decide, M to apply**
+### K33 — the note cites a band for values the specification does not bound · **CLAIMED 2026-08-15 · branch `steward/k33-note-splits` · from K25(a) · Effort: S to decide, M to apply**
 
 **Phase:** lane 2 · **Effort:** S to decide, M to apply · data and tools only, no bake
 
