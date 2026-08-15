@@ -1043,7 +1043,13 @@ with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lo
 · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
 no resident, no sidecar, no mesh and no renderer file.
 
-### T-A8…T-An — the remaining blocks · **UNCLAIMED**
+### T-A8…T-An — the remaining blocks · **T-A8 CLAIMED 2026-08-15 (`blk_south_water_franklin`) — DO NOT PICK UP**
+
+> **CLAIM — steward, `blk_south_water_franklin` only.** Taken 2026-08-15 on branch
+> `steward/t-a8-south-water-franklin`; expires 2026-08-16. It is the block T-A7 claimed and
+> returned to the queue with a corrected deal, so it is the one whose numbers have been checked
+> most recently. Another lane-2 run should take `blk_south_water_wells` or `T-V2`; a lane-1 run
+> is unaffected.
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
