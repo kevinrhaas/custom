@@ -1,13 +1,35 @@
-# The changelog is append-at-the-top, so two branches that each ship an entry
-# insert at the same line and collide — every time, whatever the content.
-# union keeps BOTH insertions instead of raising a conflict; the repo's stamp
-# tool then assigns the version numbers (authors write `v: null`).
-# See polecat-platform docs/SHELL-API.md § the fleet changelog contract.
+# THE CHANGELOG IS NOT MERGED WITH `union`, AND THE REASON IS MEASURED.
 #
-# Hazard, accepted knowingly: two branches editing the SAME EXISTING entry
-# differently would keep both copies rather than conflict. The contract check
-# catches that — versions must be strictly decreasing — and editing a shipped
-# entry is rare, while prepending happens every run.
-chicago/4d/renderers/web/js/changelog.js merge=union
-site/chicago/4d/js/changelog.js merge=union
-site/chicago/4d/walk/js/changelog.js merge=union
+# It was, from the day the contract was written, on this reasoning: the file is
+# append-at-the-top, so two branches that each ship an entry insert at the same
+# line and collide every time; union keeps BOTH insertions instead of raising a
+# conflict, and the stamper then assigns the numbers.
+#
+# The stated hazard was "two branches editing the SAME EXISTING entry", called
+# rare, and the everyday prepend was called safe. That is backwards. **The
+# prepend is the case that corrupts**, because union is a LINE union and an
+# entry is not a line: when both sides prepend, the shared closing `    ] },`
+# is common context and survives ONCE, so the first entry swallows the second
+# and the literal is left with an unclosed bracket. The result is still valid
+# JavaScript — `node --check` passes it — so nothing downstream notices until a
+# human reads the file.
+#
+# Measured 2026-08-15: this happened on FIVE consecutive merges in one day
+# (#126, #132, #136, #139, R-BUG4), each needing the same manual repair —
+# rebuild from the base copy and re-stamp. Union did not save one conflict; it
+# converted five loud conflicts into five silent corruptions that had to be
+# repaired by hand anyway.
+#
+# So the changelog merges normally now. Two branches that both ship an entry
+# CONFLICT, loudly, at the moment of the merge, and the resolution is the
+# obvious one: keep both entries, newest first, and re-run
+# `node chicago/4d/tools/stamp-changelog.mjs`.
+#
+# The other half of the old comment claimed "the contract check catches that —
+# versions must be strictly decreasing". IT DID NOT: that check had never been
+# written, which is how two branches each shipped a `v: 93`, and later a `v: 98`,
+# with nothing said. `tools/check-changelog.mjs` enforces it as of 2026-08-15
+# and is verified to fail on an injected duplicate.
+#
+# See polecat-platform docs/SHELL-API.md § the fleet changelog contract. The
+# fleet's other apps carry the same `merge=union` line and the same exposure.

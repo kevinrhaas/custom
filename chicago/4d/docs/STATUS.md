@@ -1,5 +1,38 @@
 # STATUS
 
+## Fixed 2026-08-15 — the changelog's merge driver was corrupting the file, silently, every time
+
+**K27.** `.gitattributes` merged `js/changelog.js` with `merge=union` so that two branches each
+shipping an entry would not conflict. The stated hazard was "two branches editing the same existing
+entry", called rare; the everyday prepend was called safe. **That is backwards.**
+
+Union is a LINE union and a changelog entry is not a line. When both sides prepend, the shared
+closing `    ] },` is common context and survives **once** — so the first entry swallows the second
+and the literal is left with an unclosed bracket. The result is still valid JavaScript, so
+`node --check` passes it and nothing downstream notices.
+
+**Measured: five consecutive merges in one day** (#126, #132, #136, #139 and R-BUG4) each produced
+exactly this corruption and each needed the same manual repair — rebuild from the base copy and
+re-stamp. Union did not prevent a single conflict. It converted five loud conflicts into five silent
+corruptions that had to be repaired by hand regardless.
+
+The changelog merges normally now. Two branches that both ship an entry conflict, loudly, at the
+merge, and the resolution is the obvious one: keep both, newest first, re-run
+`tools/stamp-changelog.mjs`.
+
+**And the second half of that comment was simply untrue.** It claimed "the contract check catches
+that — versions must be strictly decreasing". **That check had never been written.** It is why two
+branches each shipped a `v: 93`, and later a `v: 98`, with nothing said — a duplicate only ever
+surfaced when a merge happened to break a bracket as well. A repeated version is not cosmetic:
+Manager and the launcher key on it, the stamper assigns the next number from the top entry, and the
+promotion pipeline tags `release-vNNN` from it, so a duplicate mis-tags a release and makes two
+entries indistinguishable to every consumer at once. `tools/check-changelog.mjs` now enforces
+strictly-decreasing versions and gap detection, and was **verified to fail on an injected
+duplicate** before being committed.
+
+**The same `merge=union` line and the same exposure exist in the other fleet apps** (polecat-platform
+docs/SHELL-API.md § the fleet changelog contract). This repo is fixed; the fleet is not.
+
 ## MEASURED 2026-08-15 — the ground you see is not the ground the town is anchored to
 
 **R-BUG3c-a.** The owner reproduced the invisible near-field road with the R-BUG3 fix in. The cause
