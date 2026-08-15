@@ -1,5 +1,55 @@
 # STATUS
 
+## Fixed 2026-08-15 — the town was paying a draw call per colour of paint, and the next 399 roofs now cost none
+
+**R-W5a.** The draw-call budget was the one thing both overnight lanes were waiting on: R-G1
+measured **+11 draw calls for 19 new roofs**, straight-lining to about **+240 against a budget of
+80** over the 399 roofs still to come, and it had already parked a block of houses (T-A8, PR #132).
+It is not a growth problem any more. It is **zero**.
+
+**The cause, and it was hiding in plain sight.** `buildings.js` sorts the town into one
+`BatchedMesh` per distinct material, and the key included the base colour. Every one of the 47
+batches was the same `MeshStandardMaterial` in every respect a renderer distinguishes — metalness
+0, **no map of any kind**, `DoubleSide`, opaque, `alphaTest` 0, smooth-shaded. The only fields that
+differed were `color`, with **39 distinct values across 47 batches**, and `roughness`, with 16. The
+town was spending forty-seven draw calls to render two numbers, and buying another one every time a
+block landed carrying a paint nothing else in town used. **R-G1's "+11" was 11 new material
+GROUPS, not 11 objects** — which is precisely why it was uniform at bearings 150° apart: the cost
+counts paints in frame, not buildings.
+
+**The fix carries colour per vertex and is arithmetically identical, which is the only reason it is
+allowed here.** `material.color` is already in the renderer's linear working space; three's
+`<color_fragment>` multiplies `diffuseColor.rgb` by the `color` attribute with no colour-space
+conversion of its own; and the confidence view's tint was already applied *after* that chunk. So
+the shader does the same product in a different order, and a documented white wall still renders at
+the value its record claims, to the bit. Roughness is additionally compared at three decimals,
+which merges the bespoke masters' float32 `0.8999999761581421` with the generated infill's `0.9`.
+
+**`tools/critic_shots.mjs`, source tree, both viewports, before and after on the same `dev`:**
+
+| draw calls | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop before | 75 | 78 | 90 | 66 | 98 | 103 | 96 | 72 | 95 | **109** | 56 |
+| desktop after | 56 | 58 | 60 | 57 | 68 | 70 | 66 | 59 | 62 | **75** | 52 |
+| mobile before | 72 | 74 | 78 | 60 | 82 | 99 | 94 | 72 | 93 | **106** | 49 |
+| mobile after | 54 | 55 | 58 | 51 | 64 | 68 | 64 | 59 | 61 | **73** | 47 |
+
+**Batches 47 → 16; station-viewports over the ≤ 80 budget 11 of 22 → 0 of 22.** A new roof of any
+colour now joins an existing batch, so T-A8 and the 399 roofs behind it cost nothing.
+
+**What it cost, stated in numbers rather than reassurance.** Triangles are **identical to the
+triangle at all 22 station-viewports** — nothing was dropped to buy the calls. The frames are *not*
+byte-identical: 2 of 22 hash the same, and the rest differ on **0.013 % of pixels**, in 7–195
+scattered components whose largest is 56 px, all on building silhouettes — depth ties at coincident
+surfaces resolving the other way under a changed draw order. Worst single pixel 93/255;
+**whole-frame mean |Δ| 0.003–0.005 of one 8-bit count**. No surface anywhere is repainted.
+
+**What it does not do.** It does not touch the water surface, post-processing or dynamic resolution
+(R-W5b, still open, still carrying R-BUG1's river flicker), and it leaves 16 batches where 1 is
+reachable — the roughness half needs a shader patch and is written up as **R-W5a2** with its
+numbers already measured. The budget is met with 5 calls of headroom at the worst station and the
+growth term is zero, so that half buys margin, not a fix.
+
 ## Fixed 2026-08-15 — the road at your feet, the two stations that never stood on one, and a gate that abstained exactly when it should have shouted
 
 **R-BUG3, owner-reported on mobile, on the dev preview with R-BUG2's fix already in:** standing on
@@ -641,7 +691,10 @@ what item 5 was ever about. R-W4 owns the target; it needs a discriminator, or a
 that measures only columns with no structure in them, before its acceptance number means
 anything.
 
-**3. Lane 2 is spending the draw-call budget faster than lane 1 can recover it.** Same two runs,
+**3. Lane 2 is spending the draw-call budget faster than lane 1 can recover it.** **RESOLVED
+2026-08-15 by R-W5a — see the top of this file.** The +11 was 11 new material GROUPS, the growth
+term is now zero, and no station is over budget at either viewport. The reading below is kept as
+the measurement that found it. Same two runs,
 same renderer, +19 structure records (242 → 261, +7.9 %):
 
 | | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
