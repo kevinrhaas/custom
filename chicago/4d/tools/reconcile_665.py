@@ -43,12 +43,20 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RECON = DATA / "reconstruction"
 OUT_PATH = RECON / "1835_665_roof_programme.json"
+
+sys.path.insert(0, str(ROOT / "tools"))
+
+# Lot occupancy is derived in ONE place and imported by both halves of the T-A6 rule.
+# See tools/plat_occupancy.py for why it is a module rather than a copied loop.
+from plat_occupancy import block_of_structure, occupied_lots  # noqa: E402
 
 # Groups are the inventory's own ten, and a family belongs to its group by its letter.
 # The letters are checked against the target itself: each group's families must sum to
@@ -170,9 +178,53 @@ def inside(point, polygon) -> bool:
     return hit
 
 
-def standing_roofs(grid, datum):
+def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
+    """(principal, ancillary) a block can actually take, from its FREE LOTS.
+
+    A block's room was counted in roofs and nothing else until ROADMAP T-A6, and roofs
+    are not what binds it. Three separate things do, and the schedule could see only the
+    first:
+
+    1. the town's own roof ratio — one principal per lot plus ancillary at 154:511 —
+       less what already stands in the block. That is `headroom_roofs`, unchanged.
+    2. **a principal roof needs a FREE LOT.** A lot with somebody's house on it is not
+       headroom, and `standing_roofs` cannot tell the difference: two roofs on one lot
+       and two roofs on two lots subtract the same. Half the open blocks were being dealt
+       principal roofs with nowhere to stand — `blk_south_water_clark` and
+       `blk_lake_market` were dealt seven against six free lots, which no recipe could
+       have written down, and three more were dealt exactly as many as they had free.
+    3. **the block keeps one lot open.** The parcel recipe's own placement rule says so
+       — "a block at capacity is a claim about 1835 that the evidence does not support;
+       the schedule's capacity is a ceiling" — and until now that was a promise each
+       parcel made by hand, which a block dealt exactly its free-lot count could not
+       keep. A rule a parcel can be dealt out of is not a rule.
+
+    And the ancillary count is bounded by the principal one, because the generator's
+    yard-building gate is that an ancillary roof stands in the yard of a principal roof
+    THIS parcel built. `blk_randolph_dearborn` was dealt one ancillary and no principal,
+    so its backfill (T-A3h) was unbuildable for that reason rather than this one — the
+    same blindness, seen from the other end.
+    """
+    principal = max(0, min(free_lots - 1, headroom_roofs))
+    ancillary = min(round(principal * ANCILLARY_PER_PRINCIPAL), headroom_roofs - principal)
+    return principal, max(0, ancillary)
+
+
+def standing_roofs(grid, datum, taken):
     """Every committed structure record, with the physical roofs it puts in the scene and
-    the platted block it stands in, where the grid reaches it."""
+    the platted block it stands in, where the grid reaches it.
+
+    **A roof standing on a block's lot stands in that block**, which is the second half
+    of the T-A7 finding. The block was read off the record's position POINT against the
+    block boundary, and a building placed a metre proud of its own frontage has that
+    point in the roadway: the Exchange Coffee House holds nine tenths of a lot of
+    `blk_south_water_franklin` and was counted as standing in no block at all. Its
+    roof was therefore not subtracted from the headroom of the block it stands in, so
+    the schedule offered that block room a visitor can see is already built on. The
+    occupancy map — derived from the footprint, in `tools/plat_occupancy.py` — answers
+    it where the point cannot.
+    """
+    home = block_of_structure(taken)
     reconciliation = {
         r["structure_id"]: r
         for r in load(RECON / "1835_existing_roof_reconciliation.json")["records"]
@@ -185,8 +237,17 @@ def standing_roofs(grid, datum):
     for path in sorted((DATA / "structures").glob("*.json")):
         record = load(path)
         rid = record["id"]
-        if "reconstruction" in record:
-            block = record["reconstruction"]
+        # WHICH PROGRAMME RAISED THIS ROOF, not merely whether it discloses a family
+        # band. Both answers used to be the same question, because only the anonymous
+        # generators wrote a reconstruction block. Since K21 the inferred-household
+        # layer's 31 buildings carry one too — they are drawn from the same family
+        # bands and now say so in a field — and a bare `"reconstruction" in record`
+        # test moved all 31 out of `inferred_household_programme` and into
+        # `generated`. The totals were unchanged, which is exactly why it is worth a
+        # gate's attention: the ledger would have gone on reporting 665 roofs while
+        # crediting a third of the household layer to a generator that never ran.
+        block = record.get("reconstruction") or {}
+        if block.get("status") == "inferred_anonymous":
             row = {"id": rid, "source": "generated", "district": block["district"],
                    "family": block["family"], "roofs_min": 1, "roofs_max": 1,
                    "programme_phase": block.get("programme_phase")}
@@ -213,8 +274,8 @@ def standing_roofs(grid, datum):
             raise SystemExit(f"{rid} contributes a roof with no family to count it under")
         position = next((p["position"] for p in record["phases"]
                          if p.get("position") and p["position"].get("utm_e") is not None), None)
-        row["block"] = None
-        if position:
+        row["block"] = home.get(rid)
+        if row["block"] is None and position:
             point = (position["utm_e"] - datum["origin_utm_e"],
                      position["utm_n"] - datum["origin_utm_n"])
             for block in grid["blocks"]:
@@ -246,7 +307,10 @@ def programme_document():
             raise SystemExit(f"family targets for {group} sum to {families}, "
                              f"not the group's own total of {row['total']}")
 
-    rows = standing_roofs(grid, datum)
+    # Derived once and used by both halves — which lot each roof holds, and, through
+    # that, which block each roof stands in. Two questions, one measurement.
+    taken = occupied_lots(grid, datum)
+    rows = standing_roofs(grid, datum, taken)
 
     # ---- what stands ------------------------------------------------------------
     built_family: dict[str, int] = {}
@@ -329,23 +393,30 @@ def programme_document():
         lots = len(block["lots"])
         capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
         stands = built_block.get(block["id"], 0)
+        free = lots - len(taken.get(block["id"], ()))
+        rooms = block_rooms(free, max(0, capacity - stands))
         units.append({
             "id": block["id"], "kind": "platted_block",
             "district": district_of_block(block), "bounded_by": block["bounded_by"],
             "lots": lots, "capacity_roofs": capacity, "standing_roofs": stands,
-            "headroom": max(0, capacity - stands),
-            "state": "open" if capacity > stands else "at_capacity",
+            "free_lots": free,
+            "principal_room": rooms[0], "ancillary_room": rooms[1],
+            "headroom": rooms[0] + rooms[1],
+            "state": "open" if rooms[0] + rooms[1] > 0 else "at_capacity",
         })
     for block in grid["omitted"]:
         if block["id"] not in STREET_CONTROL_OMISSIONS:
             continue
         lots = 8
         capacity = lots + round(lots * ANCILLARY_PER_PRINCIPAL)
+        rooms = block_rooms(lots, capacity)
         units.append({
             "id": block["id"], "kind": "platted_block_awaiting_street_control",
             "district": "west" if block["id"].endswith("clinton") else "south",
             "bounded_by": block["bounded_by"], "lots": lots,
-            "capacity_roofs": capacity, "standing_roofs": 0, "headroom": capacity,
+            "capacity_roofs": capacity, "standing_roofs": 0, "free_lots": lots,
+            "principal_room": rooms[0], "ancillary_room": rooms[1],
+            "headroom": rooms[0] + rooms[1],
             "state": "gated",
             "waiting_on": f"{block['reason']} — the street control ROADMAP S9 records as owed",
             "lots_note": "eight lots assumed from the emitted blocks' own subdivision; the "
@@ -401,14 +472,41 @@ def programme_document():
     # Deal each district's remaining families across its units, in schedule order. The
     # deal is what keeps every marginal exact: unit totals, district totals and the
     # 35-family schedule all close.
+    #
+    # A unit takes at most the principal and ancillary roofs it has room for (T-A6), and
+    # a token it cannot take is offered to the next unit rather than dropped, so the
+    # marginals still close. Before T-A6 the deal was a flat slice of `headroom` and the
+    # KIND of roof in the slice was whatever the shuffle produced — which is how a block
+    # with six free lots came to be scheduled seven principal roofs.
     for district in DISTRICTS:
-        tokens = deal(district_families[district])
-        cursor = 0
+        pool = deal(district_families[district])
+        balance_id = BALANCE_UNITS[district][0]
         for unit in units:
             if unit["district"] != district:
                 continue
-            take = tokens[cursor:cursor + unit["headroom"]]
-            cursor += unit["headroom"]
+            if unit["id"] == balance_id:
+                # The district balance is the bucket for roofs no named unit can hold, so
+                # it takes what is left rather than a fixed slice. A roof a block has no
+                # lot for does not stop being one of the 665; it goes back to waiting on
+                # coverage, which is a statement the ledger can make and "nowhere" is not.
+                take, pool = pool, []
+                unit["capacity_roofs"] = unit["headroom"] = len(take)
+            else:
+                take, passed = [], []
+                principal_left = unit.get("principal_room", unit["headroom"])
+                ancillary_left = unit.get("ancillary_room", unit["headroom"])
+                for family in pool:
+                    is_ancillary = group_of(family) in ANCILLARY_GROUPS
+                    room = ancillary_left if is_ancillary else principal_left
+                    if len(take) < unit["headroom"] and room > 0:
+                        take.append(family)
+                        if is_ancillary:
+                            ancillary_left -= 1
+                        else:
+                            principal_left -= 1
+                    else:
+                        passed.append(family)
+                pool = passed
             mix: dict[str, int] = {}
             for family in take:
                 mix[family] = mix.get(family, 0) + 1
@@ -417,8 +515,16 @@ def programme_document():
             unit["principal"] = sum(n for f, n in mix.items()
                                     if group_of(f) not in ANCILLARY_GROUPS)
             unit["ancillary"] = unit["roofs"] - unit["principal"]
-        if cursor != len(tokens):
-            raise SystemExit(f"{district}: {len(tokens) - cursor} roofs were not scheduled")
+            # The room a unit was given and the roofs it was dealt have to agree, or the
+            # next parcel to read this schedule writes a recipe its own generator refuses.
+            if (unit["principal"] > unit.get("principal_room", unit["principal"])
+                    or unit["ancillary"] > unit.get("ancillary_room", unit["ancillary"])):
+                raise SystemExit(
+                    f"{unit['id']}: dealt {unit['principal']} principal / "
+                    f"{unit['ancillary']} ancillary against room for "
+                    f"{unit.get('principal_room')} / {unit.get('ancillary_room')}")
+        if pool:
+            raise SystemExit(f"{district}: {len(pool)} roofs were not scheduled")
 
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")

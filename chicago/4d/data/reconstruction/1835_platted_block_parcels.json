@@ -497,6 +497,224 @@
           "lateral_m": -4.0
         }
       ]
+    },
+    {
+      "block_id": "blk_south_water_franklin",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_franklin",
+      "claimed": "2026-08-15",
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "franklin",
+        "east": "wells"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 3,
+        "free_lots": 6,
+        "headroom": 7,
+        "dealt_roofs": 7,
+        "dealt_principal": 5,
+        "dealt_ancillary": 2,
+        "principal": 5,
+        "ancillary": 2
+      },
+      "families": {
+        "A1": 1,
+        "A3": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1
+      },
+      "arrangement_note": "The first block off the South Water row, bounded by South Water, Wells, Lake and Franklin, and the first block this lane has taken on the town's BUSINESS front rather than one street back from it. It arrives with three roofs standing and none of them anonymous: the Temple Building holds lot 0 at the South Water and Franklin corner, the Exchange Coffee House holds lot 7 at the Lake and Wells corner, and J. H. Kinzie's forwarding store laps the north edge of lot 2 without taking any of its buildable part (T-A7 measured that at 9.7 m², all of it in the 1.5 m margin strip). What is argued here and not found: South Water is the valuable frontage of the pair — it is the river street, it carries every documented commercial roof near this block, and the module's own street hierarchy ranks it above Lake — so the three deepest dwellings the schedule deals take its three free lots, and the two meanest take Lake, the back street. Within each face the better roof stands nearer Wells, because Wells is the town-centre end of this block and Franklin the lumber-and-wharf end: the deep-plan cottage takes lot 6, the two-room lot 4 and the one-room lot 2, and on Lake the log cabin takes lot 5 against the shanty on lot 3. The one-room cottage is also the smallest of the three principal roofs the South Water face gets, which is the arrangement that leaves Kinzie's lap the most room — but the lap did NOT constrain the block, and saying so is the point of measuring it: lot 2's roof stands 7.3 m from that store against a 3 m separation gate, and every other roof this parcel places is further from its own nearest neighbour than that. The half-metre of extra setback on lot 2 was authored with the lap in view and turned out not to be needed. A reader should not have to re-measure to find out whether the standing commercial roofs squeezed this block; they did not. The stable takes the yard of lot 3 — the quiet street's far end once the Lake and Franklin corner is left open — which is the same where-a-town-keeps-a-large-animal-shelter typology the three blocks before this one applied at their own quiet ends, tested here against a fourth geometry rather than repeated. The privy stands behind the two-room cottage on lot 4. None of it is evidence about this block, and no lot is numbered.",
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "The Lake-and-Franklin corner, left open. Franklin is the lumber-and-wharf end of this block and Lake is its back street, so the corner where the two meet is the least attractive residential lot the block has — the same tier reasoning the Randolph and Market parcel applied to its own back-street corner. Which lot within the tier is arbitrary; that a block on the business front is not a completed terrace one street back is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
+        }
+      ],
+      "slots": [
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 6,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.0,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 4,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.0,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 8.0,
+          "lateral_m": -3.0
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 5,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 5.5,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 6.0,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 3,
+          "stands_on": "alley",
+          "fronts": "lake",
+          "setback_m": 5.0,
+          "lateral_m": 4.5
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 4,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": -5.0
+        }
+      ]
+    },
+    {
+      "block_id": "blk_south_water_wells",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_wells",
+      "claimed": "2026-08-15",
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "wells",
+        "east": "lasalle"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 10,
+        "standing_roofs": 2,
+        "free_lots": 7,
+        "headroom": 8,
+        "dealt_roofs": 8,
+        "dealt_principal": 6,
+        "dealt_ancillary": 2,
+        "principal": 6,
+        "ancillary": 2
+      },
+      "families": {
+        "A1": 1,
+        "A3": 1,
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1,
+        "D5": 1,
+        "D6": 1
+      },
+      "arrangement_note": "The second block of the South Water row, bounded by South Water, LaSalle, Lake and Wells, and the first this lane has taken where the standing roofs are a BOARDING HOUSE and its neighbouring stores rather than dwellings. It arrives with lot 6 — the South Water and LaSalle corner — held by Rufus Brown's boarding house, all 89.2 m² of it inside that one lot, so the schedule's seven free lots are 0, 1, 2, 3, 4, 5 and 7 and this parcel builds on six of them. What is argued here and not found, and it is the T-A8 argument tested against a second block of the same row rather than repeated: South Water is the valuable frontage of the pair — it is the river street, it carries every documented commercial roof on this block, and the module's own street hierarchy ranks it above Lake — so the three best dwellings the schedule deals take its three free lots and the three meanest take Lake, the back street. Within each face the better roof stands nearer LaSalle, because LaSalle is the town-centre end of this block and Wells the end that runs back toward the lumber and the wharves: on South Water the one-and-a-half-storey cottage takes lot 4, the deep-plan lot 2 and the two-room lot 0, and on Lake the one-room cottage takes lot 7 against the log cabin on lot 5 and the shanty on lot 3. THE STANDING COMMERCIAL ROOFS DID NOT SQUEEZE THIS BLOCK EITHER, and the measurement is the point of saying so: Jones's grocery, Philo Carpenter's store and Peck's store all stand on the South Water frontage, and all three of them stand NORTH of the lot line — 4.5 m, 6.6 m and 8.2 m inside the platted South Water corridor respectively, with Jones's and Carpenter's lapping no lot of this block at all and Peck's lapping only lot 6, which the boarding house already holds. Not one metre of buildable lot was taken from this parcel by any of them, and the nearest any roof of this parcel comes to any of the three is 7.99 m — the two-room cottage on lot 0 to Jones's grocery — against a 3 m separation gate, and the other two stores are 9.9 m and 20.2 m clear. A reader should not have to re-measure to find out whether the town's business front left room for houses behind it; on this block it did. The stable takes the yard of lot 3 — the quiet street's far end once the Lake and Wells corner is left open — which is the same where-a-town-keeps-a-large-animal-shelter typology the four blocks before this one applied at their own quiet ends, tested here against a fifth geometry rather than assumed. The privy stands behind the two-room cottage on lot 0, at the opposite corner of the block from the stable, so neither yard building shares an alley frontage with the other. None of it is evidence about this block, and no lot is numbered.",
+      "open_lots": [
+        {
+          "lot": 1,
+          "why": "The Lake-and-Wells corner, left open. Wells is the end of this block that runs back toward the lumber yards and the wharves and Lake is its back street, so the corner where the two meet is the least attractive residential lot the block has — the same tier reasoning the South Water and Franklin parcel applied to its own back-street corner one block west, and the Randolph and Market parcel before it. Which lot within the tier is arbitrary; that a block on the business front is not a completed terrace one street back is the programme's own assumption of alternating vacancy, and the schedule's capacity is a ceiling rather than a target."
+        }
+      ],
+      "slots": [
+        {
+          "family": "D6",
+          "inventory_class": "principal_functional",
+          "lot": 4,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.0,
+          "lateral_m": -1.5
+        },
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "lot": 2,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.0,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D4",
+          "inventory_class": "principal_functional",
+          "lot": 0,
+          "stands_on": "street",
+          "fronts": "south_water",
+          "setback_m": 7.5,
+          "lateral_m": -3.0
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "lot": 7,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 5.5,
+          "lateral_m": 1.5
+        },
+        {
+          "family": "D1",
+          "inventory_class": "principal_functional",
+          "lot": 5,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 6.0,
+          "lateral_m": -2.0
+        },
+        {
+          "family": "D2",
+          "inventory_class": "principal_functional",
+          "lot": 3,
+          "stands_on": "street",
+          "fronts": "lake",
+          "setback_m": 6.0,
+          "lateral_m": 2.0
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 3,
+          "stands_on": "alley",
+          "fronts": "lake",
+          "setback_m": 5.0,
+          "lateral_m": -4.5
+        },
+        {
+          "family": "A3",
+          "inventory_class": "ancillary",
+          "lot": 0,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": 5.0
+        }
+      ]
     }
   ]
 }

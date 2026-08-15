@@ -38,6 +38,14 @@ from tiers import tier_ladder, tier_label  # noqa: E402
 CHECK = False
 DRIFT: list[str] = []
 
+# Which write-up a reconstructed building's card points at, by the programme that
+# raised it. A record with no reconstruction block is a researched building and
+# keeps its own per-record dossier path.
+RESEARCH_DOSSIER = {
+    "inferred_anonymous": "docs/RESEARCH/inferred_infill_1835.md",
+    "inferred_household": "docs/RESEARCH/residents_1835_inferred.md",
+}
+
 
 def load(p: Path):
     return json.loads(p.read_text())
@@ -836,9 +844,18 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
             "residents": residents.get(st["id"], []),
             "citations": cite(cited, sources),
             "research_note": st.get("research_note", ""),
-            "research_doc": ("docs/RESEARCH/inferred_infill_1835.md"
-                             if st.get("reconstruction")
-                             else f"docs/RESEARCH/{st['id']}.md"),
+            # A reconstruction block used to mean one dossier, because there was
+            # only one kind of it. Since K21 the inferred-household layer's 31
+            # buildings carry one too, and the layer they belong to is written up
+            # in its own dossier — sending them to the anonymous-infill programme's
+            # write-up would put a visitor in front of a document about aggregate
+            # count-units when the building they clicked exists for a particular
+            # argued household. Keyed on the status rather than on the block's mere
+            # presence, so a third status cannot inherit the wrong dossier by
+            # default; anything with no block keeps its per-record path.
+            "research_doc": RESEARCH_DOSSIER.get(
+                (st.get("reconstruction") or {}).get("status"),
+                f"docs/RESEARCH/{st['id']}.md"),
             "review_required": st.get("review_required", False),
         }
         if st.get("reconstruction"):

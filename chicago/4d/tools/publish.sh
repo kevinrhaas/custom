@@ -147,6 +147,21 @@ s = s.replace('<p class="gate-build" id="gate-build" hidden><!--BUILD_STAMP--></
 p.write_text(s)
 PYEOF
 fi
+# build.json — the machine-readable twin of the stamp above. It was written ONCE,
+# by hand, and then never again: the gate added in R-BUG3c-b's wake found it
+# claiming version 8909332 built 2026-08-13 while the mirror beside it was two
+# days newer. Anything reading it — tools/test_dev_preview.mjs, docs/PIPELINE.md —
+# was reading a stale claim about what shipped. It is regenerated every publish
+# now, from the same two variables the visible stamp uses, so the two cannot
+# disagree.
+cat > "$SITE/build.json" <<JSON
+{
+  "version": "$BUILD_VERSION",
+  "built_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "built_ct": "$BUILD_CT"
+}
+JSON
+
 echo "   build $BUILD_VERSION  $BUILD_CT"
 
 BYTES=$(du -sb "$SITE" | cut -f1)

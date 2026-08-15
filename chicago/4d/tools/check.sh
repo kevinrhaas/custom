@@ -108,6 +108,16 @@ check_js() {
 }
 step "renderer modules parse" check_js
 
+# The ground the town is ANCHORED to and the ground it is DRAWN as, compared on
+# the committed bytes. `generators/terrain_gen.py` refuses to export a mesh more
+# than 30 mm from the heightfield — inside a Blender run this gate cannot make,
+# so nothing re-checked the committed master afterwards, and R-BUG3c was a 306 mm
+# disagreement nobody could see. This asserts the master and REPORTS the shipped
+# derivative, which is quantised by the publish step and conformed at load; the
+# surface actually drawn is asserted by tools/smoke_renderer.mjs.
+step "the ground mesh still meets the heightfield the walker samples" \
+  node tools/measure_terrain_fit.mjs --gate
+
 # The changelog contract, on every run rather than only when somebody remembers
 # it. AGENTS.md has always told an agent to run this by hand before merging, and
 # on 2026-08-13 the file was corrupted BY A MERGE — `.gitattributes` merges it
@@ -115,6 +125,23 @@ step "renderer modules parse" check_js
 # A hand-run check cannot cover a file that a merge rewrites; this one can.
 step "changelog contract" \
   node tools/check-changelog.mjs
+
+# Does the site ship what the repository says it ships? R-BUG3c-b (#145) cost
+# three parcels because the ground a browser loads was quantised by a publish
+# step AFTER the only gate that measured it, and every gate passed because every
+# gate compared a render to another render. #145 fixed that instance and left
+# the general case open in as many words: "Nothing else in this project measures
+# a published artefact against its own source." This is that gate. publish.sh is
+# almost entirely `cp`, so the invariant is total — every published file is
+# byte-identical to its source unless it is on a declared list that has to name
+# what transforms it and which gate measures the SHIPPED form. It found two
+# unchecked files on its first run, one of them a build.json two days stale.
+# Skipped rather than failed when the mirror is absent, so a fresh checkout that
+# has not published yet still gates cleanly.
+if [ -d ../../site/chicago/4d ]; then
+  step "published mirror matches its source" \
+    node tools/check_published.mjs
+fi
 
 # The integration preview's assembler. It lives at the repo root because the
 # deploy workflow does, but nothing else tests it, and it is the only thing that

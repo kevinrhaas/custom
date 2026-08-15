@@ -62,28 +62,100 @@ This is better than a time-saving trick: it forces the measurement to be committ
 anyone knows which candidate cause is guilty, so the fix cannot quietly redefine success. It
 is exactly how R-BUG2 succeeded — *"measure before choosing"* refuted its own prime suspect.
 
-**Use `--stations` and `--only`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
-instead of 12; the smoke takes `--only` for a single viewport while iterating. Full runs
-belong at the end, not in the loop.
+**Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in about
+2 minutes instead of 13; the smoke takes `SMOKE_VIEWPORT=desktop` for a single viewport while
+iterating. Full runs belong at the end, not in the loop. (**Corrected 2026-08-15 by R-W4a**:
+this paragraph promised a `--stations` flag that did not exist and a `--only` flag the smoke
+does not have, so every run that took the advice ran the full set. `--stations` exists now and
+was measured at 2 min 03 s for three desktop stations. The full both-viewport `--metrics` run
+now costs 13 min with R-W4a's second capture.)
+**Updated 2026-08-15 by R-W4c(a), which added a THIRD capture (flower heads hidden).** Measured
+on the same three desktop stations: **3 min 45 s**, against R-W4a's 2 min 58 s for two captures
+and the original 2 min 03 s for one. The full both-viewport run was **not** re-measured — 13 min
+is R-W4a's figure and the third capture will have added to it. `--no-mask` drops both extra
+captures.
+**Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
+instead of 12; `SMOKE_VIEWPORT=mobile` runs one viewport while iterating. Full runs belong at the
+end, not in the loop.
+
+**AND A CEILING THE RUN BUDGET DOES NOT COVER, measured 2026-08-15 (K21): an agent's single
+foreground command is capped at TEN MINUTES, and the desktop half of the smoke does not fit in
+it.** The 150-minute figure above is the *run's* budget; the harness a steward run executes in also
+caps each individual command, and that is the binding constraint for this gate. Measured on this
+runner, serving the published mirror: **`SMOKE_VIEWPORT=mobile` finished in 4 m 43 s, 214 passed /
+0 failed. `SMOKE_VIEWPORT=desktop` was killed at 10 m 00 s having passed 151 with 0 failed** — an
+estimated ~13 minutes end to end, so it fails by about three. Both halves in one command is ~18
+minutes and never fits. The trailing `page.click: Target page … has been closed` in such a log is
+the kill, not a failure.
+
+**So a parcel whose acceptance needs the desktop half cannot self-verify it here, and should say so
+in its PR rather than quietly merging on the mobile half.** `tools/check.sh` — which is the actual
+dev gate (`.github/workflows/chicago-4d-check.yml` runs it and nothing else) — is unaffected at
+~90 s. The durable fix is for the smoke to take a test-name or section filter the way it takes
+`SMOKE_VIEWPORT`, so the desktop half can be run as two commands that each fit; until then, the
+desktop half belongs to a runner without the per-command ceiling.
 
 ### NEXT UP — the unambiguous picks
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | TOWN | **K23b** | K23a landed 2026-08-15 (the 193 names now match their grade). 23b is the substantive half the owner asked for and is untouched: say what was INCLUDED at each level, and where it came from |
-| 1 | RENDERING | **R-REF1** | XS. The calibration reference photograph is not in the repo, and it now blocks BOTH R-W1's target re-anchoring and R-M1's thresholds |
-| 2 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
-| 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
-| 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
-| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
+| — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
+| — | RENDERING | ~~R-W4c(a)~~ | **CLAIMED 2026-08-15 · `steward/r-w4c-what-counts-as-a-flower`** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) lands the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
+| 1 | RENDERING | **R-W4c(b)** | raise the bloom against the figure R-W4c(a) committed — **not against `flower.load`**, which the same parcel measured and found unable to see most of the bloom. Read R-W4c(a)'s box first |
+| 6 | RENDERING | **R-W6** | should the terrain ship quantised at all? 688 KB on a 306 mm lattice against 6.45 MB exact. Opened by R-BUG3c with both numbers measured; a payload decision with an owner-facing cost, and **not urgent** — the ground a visitor stands on is correct either way |
+| — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
+| — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
+| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road panel, dry half included: **28 panels / 62.7 m** of roadway removed where the centreline is dry land |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
+| — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
+| 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
+| 1 | TOWN | **T-A10…** | one open block per run until the 46 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
+| 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
-| 6 | TOWN | **K21** | the adoption tests are silent, not negative, for four trades — a refusal nobody can distinguish from an unanswered question |
+| 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
+growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
+respect a renderer distinguishes — metalness 0, no map of any kind, `DoubleSide`, opaque, no alpha
+test, smooth-shaded. The only fields that differed were `color` (39 distinct values) and
+`roughness` (16). Base colour moved to a per-vertex attribute and left the key, so **47 batches
+became 16** and **11 of 22 station-viewports over the ≤ 80 budget became 0**. Full table and the
+identity proof under R-W5a below. Three things came out of it that are not the number:
+
+- **R-G1's "+11 draw calls per 19 roofs" was 11 new MATERIAL GROUPS, not 11 objects** — which is
+  why it was uniform at bearings 150° apart: it counts paints in frame, not buildings. That term
+  is now **zero by construction**: a new roof of any colour joins an existing batch. T-A8 and the
+  399 roofs behind it are unblocked, and no future block parcel needs to think about this.
+- **Triangles are identical to the triangle at all 22 station-viewports**, which is the proof that
+  nothing was dropped to buy the calls.
+- **The frame is not byte-identical and the difference is quantified rather than waved at**:
+  2 of 22 shots hash the same, the rest differ on ~0.013 % of pixels in scattered 7–56 px specks
+  at building silhouettes — depth ties resolving the other way under a changed draw order — for a
+  whole-frame mean |Δ| of **0.003–0.005 of one 8-bit count**. No surface is repainted; the albedo
+  arithmetic is the same product in a different order.
+
+**R-BUG3 is REOPENED (2026-08-15) — the owner reproduced it WITH the fix in.** What it fixed is
+real and stays; what it claimed is not. See **R-BUG3c** and **R-BUG4** below, and read them before
+quoting any road number. The original write-up follows, corrected:
+
+**R-BUG3's near-field contrast half is done (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
+and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **3.1 of a measured
+ceiling of 3.4 with 80 % perceptible on mobile, 3.2 of 4.3 with 60 % on desktop**, and the alpha
+half of the fix fades to nothing by 40 m, so every band past it is unchanged to the decimal. (Those
+figures are re-measured on the merge of 2026-08-15; an earlier draft of this line quoted *2.8 of
+3.7 / 60 %*, which was one iteration stale and matched neither viewport. The gate prints the bands
+— quote it, do not paraphrase it.) Two things were found
+that are not the fix and matter more. **The near band was empty at both gated stations, because
+neither one stands on a road** — `south_water` is 101 m from its own centreline (T-V2) and
+`from_above` is in the air — so the parcel's own first move, adding `[2, 40]`, measured nothing
+until a station stood on the roadway. And **a band gated on probes SEEN gates itself out exactly
+when the road goes invisible**; the bands are now gated on probes PROJECTED, so that failure is
+loud. Full findings under R-BUG3 below — read them before pointing any gate at anything.
 
 **R-BUG2 is DONE (2026-08-14)** — the owner-reported vanishing roads were **two** faults, not one,
 and the parcel's prime suspect was **refuted by measurement**. The gate could not see any of it and
@@ -91,8 +163,29 @@ now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at rang
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
+**K21 is DONE (2026-08-15)** — the four trades whose adoption test was silent are silent no longer:
+every roof this layer raises now carries the family band its own prose has always named, **29 of 29
+census trades resolve across 44 trade-family pairs**, and a gate fails if a household is ever housed
+on a roof that names no family. No liberty was owed — the value was already committed twice over —
+and rule 6 gains no clause. The parcel's own Watch note was **refuted**: the two sawyer roofs differ
+because they were dealt different families. The real archetype split, and the finding underneath it
+— **54 of 193 roofs sit outside the band their note cites** — are **K25**. Full findings under K21
+below; read the refutation before massing anything off an archetype.
+
+**T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
+building standing proud of its own frontage has its centroid in the road, so four documented
+buildings — the Temple Building, Harmon & Loomis's store, the Chicago Democrat's office and the
+Cook County courthouse — stood on lots the schedule was offering to anonymous roofs. Occupancy is
+now measured by area, in ONE module both halves import. **266 stand and 399 remain, 61 of them on
+covered ground** (was 66). Full findings under T-A7 below; read them before claiming a block.
+
+**T-A6 is DONE (2026-08-15)** — the schedule was dealing five of the ten open blocks roofs their
+own lots could not hold, and the deal now derives lot occupancy the same way the block generator
+does. **266 stand and 399 remain, 66 of them on covered ground** (was 71 — five roofs never had
+anywhere to stand; **re-derived to 61 by T-A7**). Full findings under T-A6 below.
+
 **T-A5 is DONE (2026-08-14)** — `blk_randolph_market` carries eight roofs, so **266 stand and 399
-remain**, 71 of them on covered ground. It is the first block whose standing roofs this project's
+remain**, 71 of them on covered ground (**re-derived to 66 by T-A6**). It is the first block whose standing roofs this project's
 *own inferred-residents layer* had put there, and it **settles the division question T-A4 left
 open**: rule 6 takes three tests, the third being the roof's division, and the written test recovers
 all four adoption decisions made before it. It also found what the tests cannot answer — four trades
@@ -318,6 +411,11 @@ this is not an argument to move it, but W1 should not expect the shadow map to h
 
 ### R-W4 — atmosphere and the mid-field · **SPLIT FOUR WAYS — claim ONE**
 
+> **R-W4a is DONE 2026-08-15** — the metric counted the town's roofs as timber, the
+> discriminator this entry named was measured and REFUTED, and the figure it was replaced with
+> cannot move when a block lands. Findings and the corrected table under R-W4a below.
+> R-W4b/c/d are free and now have a number they can trust.
+
 **Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **After:** R-G0
 
 The largest single visual gap: RENDERING §1 items 1–6. **It was tagged L and that is why it is
@@ -326,9 +424,9 @@ at the top). Each half below is one coherent change with one smoke.
 
 | | parcel | why it stands alone |
 |---|---|---|
-| **R-W4a** | **fix the horizon-timber metric · DO THIS FIRST** | The acceptance number below is currently unmeasurable — see the R-G1 finding at the end of this entry. **Until this lands, no other W4 half can prove anything**, because the headline figure counts gable ends as trees. Touches the metric only, not the renderer. |
+| ~~**R-W4a**~~ | ~~fix the horizon-timber metric~~ · **DONE 2026-08-15** | The headline figure counted gable ends as trees and the acceptance number was unmeasurable. It is measurable now, and it is much worse than it read. Findings below. |
 | **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
-| **R-W4c** | **flower load** | `0.0012` against a 4–6 % target — the largest single accuracy deduction on the historical axis outside the town. `data/flora/` tuning + `flora.js`. |
+| ~~**R-W4c**~~ | ~~flower load~~ · **(a) DONE 2026-08-15, (b) IS THE TUNING HALF** | `0.0012` was not a count of flowers: the recipe's hue cut at 50° runs through the middle of a July prairie's bloom and misses **94.5 %** of it. The render's true bloom at `prairie_west` is **2.19 %**, not 0.12 %. Findings under R-W4c(a) below — **read it before quoting any flower number, and before tuning anything**. |
 | **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
 
 **R-W4a is not bookkeeping.** A town parcel has already handed W4 a pass it did not earn, and
@@ -340,8 +438,11 @@ number is the difference between improving the scene and improving the score.
 `tools/smoke_renderer.mjs`
 
 **Acceptance (RENDERING §5):** vegetated pixels present to the fog-90 % distance; horizon
-timber column coverage **≥ 90 %**; crown fine-detail ratio **≥ 0.6**; depth-band high-pass
-RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %**; the ring seam gone
+timber column coverage **≥ 90 %** — quoted from `horizonTimber.timberOnly.coverageAll` and
+never from `coverageAll`, which counts roofs (R-W4a); crown fine-detail ratio **≥ 0.6**; depth-band high-pass
+RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %** — quoted from
+`flower.bloom` and never from `flower.load`, which counts a yellow coneflower as grass
+(R-W4c(a)), and against a target R-W4c(b) must re-derive before it compares the two; the ring seam gone
 (no constant screen row across all columns). Fog still total by 1500 m (**L17**), and
 `HAZE_MAX = 0.82` on the horizon band is **L35** — a technique that changes what either
 claims gets an appended **Revised** line in `docs/LIBERTIES.md` in the same PR.
@@ -365,18 +466,186 @@ Two further reads from the scored pass: the sky is a single cloudless gradient a
 stations, and the flower load at `prairie_west` is **0.0012** against the honest 4–6 % target —
 the largest single accuracy deduction on the historical axis outside the town itself.
 
+#### R-W4a — DONE 2026-08-15 · the horizon metric was scoring the town, and the discriminator this entry named does not work
+
+**What it was.** `critic_metrics.mjs` counted a horizon column as timbered if anything broke the
+skyline in the band above the land/sky line. A gable end does that as surely as an oak, so the
+figure rose when the town grew — R-G1 measured `prairie_south` moving 0.364 → 0.436 on nineteen
+new roofs with no renderer change — and 399 roofs were still to come.
+
+**The named discriminator was refuted before anything was built.** This entry proposed the G−B
+channel, "since a whitewashed gable is not green". Measured on the 2026-08-15 `dev` build,
+desktop, at the first hit pixel of every broken column: the grey gables at `prairie_south` sit at
+**ΔG−B +22.4** and hazed timber at `prairie_west` ranges **+0.1 to +17.5**. The populations
+overlap completely, because the sky near the horizon is strongly blue-dominant and *every*
+non-sky pixel clears a +3 G−B test by a wide margin — the channel is a not-sky detector, and
+`coverageAll` was reading the same thing twice. **No colour test can work here in principle**:
+L17 makes extinction total by 1500 m, so distant timber and a distant wall converge on the fog
+colour. The atmosphere destroys the evidence the discriminator needs, correctly.
+
+**What was done instead — subtraction, not a heuristic.** `critic_shots.mjs` photographs each
+station twice from the identical pose: once as the visitor sees it, and once with the
+`structures` group's `visible` flag down. `measure()` runs the same recipe on both. The second
+frame's coverage is timber by construction — no threshold, no hue, nothing to tune — and it
+**cannot move when a block lands**. The old number is kept, unchanged in value and computed
+exactly as before, under a name that says what it counts (skyline breaks), so the 2026-08-14
+baseline stays comparable.
+
+**The corrected table — source tree, 2026-08-15 `dev`, both viewports, 11 stations.** `breaks` is
+the old figure; `timber` is the honest one; `town` is the share of the old figure that was roofs.
+
+| station | dsk breaks | dsk **timber** | dsk town | mob breaks | mob **timber** | mob town |
+|---|---|---|---|---|---|---|
+| `sauganash` | 0.638 | **0.477** | 29 % | 0.756 | **0.574** | 33 % |
+| `sauganash_wing` | 0.518 | **0.492** | 20 % | 0.636 | **0.636** | 16 % |
+| `lake_market` | 0.532 | **0.534** | 16 % | 0.697 | **0.597** | 24 % |
+| `first_post_office` | 0.847 | **0.751** | 12 % | 0.919 | **0.698** | 24 % |
+| `forks` | 0.738 | **0.651** | 25 % | 0.749 | **0.818** | 16 % |
+| `green_tree` | 0.737 | **0.745** | 9 % | 0.762 | **0.797** | 3 % |
+| `south_water` | 0.889 | **0.706** | 25 % | 0.836 | **0.362** | 58 % |
+| `from_above` | 0.212 | **0.212** | 0 % | 0.156 | **0.156** | 0 % |
+| `prairie_south` | 0.632 | **0.295** | **62 %** | 0.682 | **0.403** | 49 % |
+| `prairie_west` | 0.830 | **0.894** | 5 % | 0.669 | **0.639** | 21 % |
+| `river_bank` | 0.641 | **0.651** | 1 % | 0.713 | **0.713** | 0 % |
+
+**Three things in that table are worth reading before quoting it:**
+
+- **The worst overstatement is `prairie_south`, where 62 % of the "timber" was the town** — 409
+  of 1053 measured columns broke the skyline on a roof and on nothing else. The station R-G1 used
+  to demonstrate the fault is the station the fault was worst at, which is the fault being
+  self-consistent rather than a coincidence.
+- **The correction runs the OTHER way at six of the twenty-two station-viewports** (`green_tree`,
+  `lake_market`, `prairie_west` desktop, `forks` mobile, `river_bank`), because a building can
+  stand in front of timber and hide it. This is the figure answering "is the horizon timbered",
+  not "can the visitor see timber past the town" — the right question for a target derived from
+  photographs of a treeline, and it is stated here so nobody reads a rise as an improvement.
+- **Nought of twenty-two station-viewports meet the ≥ 90 % target on the honest figure**, against
+  one on the old one. Mean 0.582 against 0.672. **R-W4d inherits a bigger gap than it was
+  promised**, and `from_above` (0.212 / 0.156, town share 0 %) is an aerial pose whose band is
+  not a horizon at all — do not average it in without saying so.
+
+**Cost, measured.** The full 11-station both-viewport `--metrics` run took **13 min 12 s** with
+the second capture, against the ~12 min the budget section quotes without it; on a 3-station
+desktop A/B it went 2 min 03 s → 2 min 58 s, most of the fixed cost being the page load the two
+share. `--no-mask` opts out and says so in the header.
+
+**Putting the town back leaves the frame alone, measured rather than assumed.** The visitor's
+screenshot is taken BEFORE the toggle, so a station's own frame cannot be affected by it; the
+question is whether the NEXT station's is. Same three stations before and after the change, in
+separate browser processes: **5, 9 and 51 differing pixels of 1,024,000** (≤ 0.005 %), inside the
+harness's own documented cross-process residual of 1–43 px and far under its 0.05 % ceiling. The
+`--stability` contract passes with the second capture in it, byte-identical at both stations
+tested, worst metric drift **0**.
+
+**And a doc claim was found false while using it.** The budget section has told every run since
+2026-08-14 to use `critic_shots.mjs --stations a,b,c` for a 3-minute run instead of 12. **That
+flag did not exist**, so every run that followed the advice ran the full set. It exists now.
+
+#### R-W4c(a) — DONE 2026-08-15 · the flower metric cannot see most of a flower, and the gap it reported is 18× too big
+
+**What it was.** R-G1 measured a flower load of `0.0012` at `prairie_west` against a 4–6 %
+target and this file called it "an under-representation of a July prairie by two orders of
+magnitude". The recipe sorts every ground pixel into *plant* or *flower*, and it applies the
+plant test first: `hue ∈ [50°, 180°)` with any chroma at all is plant. **No yellow-through-cyan
+pixel can therefore ever be a flower, however brilliant it is** — and the headline colour of a
+July prairie is the yellow composite.
+
+**The cut runs through the bloom it is sorting, and this project's own records straddle it.**
+Measured on the committed `data/flora/zones/` inflorescence colours:
+
+| record | rgb | hue | counted as |
+|---|---|---|---|
+| `silphium_laciniatum` | 228, 200, 62 | **49.880** | flower |
+| `ratibida_pinnata` | 232, 206, 72 | **50.250** | **the grass it is compared against** |
+| `opuntia_humifusa` | 236, 208, 72 | 49.756 | flower |
+| `nuphar_advena` | 230, 206, 80 | 50.400 | **plant** |
+
+Two yellow composites 0.37° apart land on opposite sides, and nobody looking at the frame could
+tell the pair apart. Of the **97** inflorescence colours in the zone records, **52 are called
+plant, 26 are called neither** — dropped from *both* sides of the ratio, which is where the
+saturated dark purples go (`liatris_pycnostachya`, `vernonia_fasciculata`, `dalea_purpurea`,
+`pontederia_cordata`) — and only **19 are called flower**.
+
+**So the harness was made to take the flowers away, the same subtraction R-W4a used for the
+town.** `critic_shots.mjs` photographs each station a third time with the nine `flora-head-*`
+instanced sets hidden; every ground pixel that moved is a pixel a flower head painted, by
+construction — no hue, no colour threshold, nothing that moves when the palette is re-tuned.
+The heads cast no shadow (`flora.js` sets `castShadow = false` on every set), so hiding them
+cannot change a pixel they did not cover. Both frames are read over the **visitor frame's**
+ground line, so a scape breaking the skyline cannot move the boundary and count its own removal.
+
+**The measurement — source tree, 2026-08-15 `dev`, desktop, the three prairie stations.**
+
+| station | recipe `load` | **true bloom** (of hued ground) | of ground | bloom px | recipe **recall** | recipe **precision** |
+|---|---|---|---|---|---|---|
+| `prairie_west` | 0.0012 | **0.0219** | 0.0202 | 10,843 | **0.055** | 0.998 |
+| `prairie_south` | 0.0024 | **0.0187** | 0.0107 | 9,137 | **0.128** | 0.996 |
+| `river_bank` | 0.0022 | **0.0076** | 0.0057 | 4,131 | **0.284** | 1.000 |
+
+**Where the missing bloom goes, in-frame — this is the whole finding.** Of the 10,843 pixels a
+flower actually painted at `prairie_west`: **5.5 % are called flower, 69.7 % are called PLANT,
+24.9 % are called neither.** The recipe does not merely miss them — a bloom pixel called plant
+is subtracted from the numerator **and added to the denominator**, so the ratio is pushed down
+twice by the same pixel. Precision runs the other way and is near-perfect (0.998): almost
+everything it *does* call a flower is one. It is not over-counting. It is blind.
+
+**Three things follow, and two of them are corrections to this project's own claims.**
+
+- **"Two orders of magnitude" is wrong and is corrected wherever it appears.** The render's
+  bloom at `prairie_west` is **2.19 %**, not 0.12 %. Against a 4–6 % target that is a factor of
+  about two to three — a real gap, worth R-W4c(b), and **eighteen times smaller than the one
+  this file has been quoting**. A parcel sized against the old figure would have been sized
+  against a measurement error.
+- **NEITHER COMPARISON WITH THE 4–6 % TARGET IS SOUND YET, AND R-W4c(b) MUST NOT BE ACCEPTED ON
+  ONE.** That target was derived by running *this same recipe* on the reference photographs
+  (STATUS §00: planting 12.91 %, virgin remnant 1.79–5.54 %). So `0.0012` vs 4–6 % is
+  recipe-against-recipe, which is at least consistent in method but reads a number that is
+  94.5 % blind on our side and blind by an unmeasured amount on the photograph's; and 2.19 % vs
+  4–6 % compares a true count against a blind one. A photograph has no second frame, so its
+  bloom **cannot** be measured by subtraction. **Re-deriving the target with a method of known
+  recall is R-W4c(b)'s first job, before it tunes anything** — otherwise the tuning half will
+  chase a bar that was never on this scale.
+- **What (a) does give (b) is an exact baseline.** Whatever `data/flora/` or `flora.js` is
+  changed to, the bloom it paints is now countable to the pixel and the count cannot be gamed by
+  a palette shift. That is the point of landing the measurement before the fix, and it is why
+  the parcel was split.
+
+**The one limit of the figure, checked rather than waved at.** It counts head pixels **over
+ground only**, because that is `load`'s denominator. A head silhouetted against the sky is
+therefore outside it. Measured whole-frame against ground-only: `prairie_west` 10,873 vs 10,843
+(**30 px**, 0.3 %), `prairie_south` 9,137 vs 9,137 (**0**), `river_bank` 4,240 vs 4,131
+(**109 px**). The restriction costs essentially nothing at these stations and the figure is a
+floor, not an estimate.
+
+**Cost, measured.** Three desktop stations with all three captures: **3 min 45 s**, against the
+2 min 58 s R-W4a measured for the same three with two captures. The third capture is frames, not
+a page load, and `--no-mask` still opts out of both.
+
+**`flower.load` is unchanged in name and in value**, exactly as `coverageAll` was kept by R-W4a,
+so the 2026-08-14 baseline and the photograph-derived target stay comparable to themselves. The
+new reading is `flower.bloom`, and it is `null` for a reference photograph the same way
+`timberOnly` is.
+
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W1
+> **R-W5a is DONE 2026-08-15** (PR on `steward/r-w5a-batch-albedo`). **R-W5b is free**, and so is
+> its successor **R-W5a2** below. Read the R-W5a findings before touching `buildings.js`.
+
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a nothing; R-W5b after R-W1
 
 | | parcel | why it stands alone |
 |---|---|---|
 | **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
 | **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
 
-**Take R-W5a first unless the flicker is what is being asked for.** A budget met by tuning after
-414 roofs have landed is a rewrite; met now, it is a design choice. The two leads R-G1 left are
-in the finding below and neither has been explained.
+**R-W5a is the whole queue's first parcel as of 2026-08-15, and it has NO dependency on R-W1.**
+The `After: R-W1` this section carried was inherited from the unsplit parcel and is true only of
+**R-W5b**, which shares tonemapping and exposure with W1's post chain. Batching touches neither.
+Nothing is gained by holding it behind a parked PR, and the TOWN lane is the reason: **T-A8 and
+every block after it is blocked on this budget**, and each block that lands while it is unmet
+spends more of what is left. A budget met by tuning after 414 roofs have landed is a rewrite; met
+now, it is a design choice. The two leads R-G1 left are in the finding below and neither has been
+explained — start there rather than reaching for a batching library.
 
 **Files:** `renderers/web/js/terrain.js` (water material) · `renderers/web/js/world.js` ·
 `renderers/web/vendor/MANIFEST` (+ EffectComposer/SMAA) · `tools/smoke_renderer.mjs`
@@ -397,6 +666,82 @@ parcel's first question, not its last**, and that a budget met by tuning after t
 stay met overnight. Two leads: `from_above`, which sees the whole town, gained **0**, so
 something already drops these objects at distance; and the +11 is suspiciously uniform across
 bearings 150° apart, which no one has explained.
+
+#### R-W5a — DONE 2026-08-15 · the town was paying a draw call per colour of paint
+
+**What it was.** `buildings.js` groups the town into one `BatchedMesh` per distinct material, and
+the grouping key included the material's base colour. Every one of the 47 batches in the
+2026-08-15 `dev` scene was the same `MeshStandardMaterial` — metalness 0, **no map of any kind**,
+`DoubleSide`, opaque, `alphaTest` 0, smooth-shaded. The only fields that differed were `color`
+(39 distinct values across 47 batches) and `roughness` (16 values). The town was spending 47 draw
+calls to render two numbers.
+
+**What was done.** Base colour moved OUT of the key and INTO the geometry, as a per-vertex `color`
+attribute filled from `material.color`, with the shared batch material left white and
+`vertexColors` on. This is not an approximation: `material.color` is already in the renderer's
+linear working space, three's `<color_fragment>` multiplies `diffuseColor.rgb` by the attribute
+with no colour-space conversion of its own, and the confidence view's tint was **already** applied
+after `<color_fragment>` — so the shader does the identical product in a different order. A
+documented white wall still renders at the value its record claims, to the bit. Roughness and
+metalness are additionally compared at three decimals, which merged two more pairs: the bespoke
+masters carry `0.8999999761581421` (a float32) and the generated infill writes `0.9`, and
+comparing them exactly had split the 0.90 and 0.88 buckets for no reason a visitor could see.
+
+**The result — `tools/critic_shots.mjs`, source tree, both viewports, before and after on the same
+`dev` at 276 structure records:**
+
+| draw calls | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop before | 75 | 78 | 90 | 66 | 98 | 103 | 96 | 72 | 95 | **109** | 56 |
+| desktop after | 56 | 58 | 60 | 57 | 68 | 70 | 66 | 59 | 62 | **75** | 52 |
+| mobile before | 72 | 74 | 78 | 60 | 82 | 99 | 94 | 72 | 93 | **106** | 49 |
+| mobile after | 54 | 55 | 58 | 51 | 64 | 68 | 64 | 59 | 61 | **73** | 47 |
+
+**Batches 47 → 16. Station-viewports over the ≤ 80 budget: 11 of 22 → 0 of 22.** The worst station
+falls 109 → 75 desktop and 106 → 73 mobile.
+
+**The growth term is zero, and that is the point.** R-G1's "+11 draw calls per 19 roofs" was
+**11 new material GROUPS** — new paints, not new objects — which is exactly why it was uniform at
+bearings 150° apart: the cost counts paints in frame, not buildings. A new roof of any colour now
+joins an existing batch, so **T-A8 and the 399 roofs behind it cost nothing in draw calls**, and
+the ~+240 extrapolation is retired rather than deferred. The one residual growth path is a NEW
+ROUGHNESS from a future bespoke bake, which adds one batch and is bounded by the material palette,
+not by the roof count. (`from_above` gaining 0 in R-G1 is consistent with none of those 11 paints
+having an instance in that frame; it is not worth chasing now that the term is zero.)
+
+**Two acceptance facts, measured rather than asserted:**
+
+- **Triangles are identical to the triangle at all 22 station-viewports.** Nothing was dropped,
+  culled or simplified to buy the draw calls.
+- **The frames are not byte-identical, and here is exactly how far apart they are.** 2 of 22 shots
+  hash the same; the rest differ on **0.013 % of pixels** — 15 to 487 pixels per frame, in 7 to
+  195 scattered components whose largest is 56 px, lying on building silhouettes. That is depth
+  ties at coincident surfaces resolving the other way under a changed draw order. Worst single
+  pixel 93/255; **whole-frame mean |Δ| 0.003–0.005 of one 8-bit count**. No surface is repainted.
+
+### R-W5a2 — the last 16 batches → 1 · **UNCLAIMED · from R-W5a · Effort: S**
+
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a (done)
+
+The 16 remaining building batches are one per distinct `roughness` in the town. Carrying roughness
+per-vertex the way R-W5a carried colour would make it **1**, worth about 15 draw calls at every
+station — measured, not estimated: R-W5a's own instrumented run counted 18 structure draw calls
+before the three-decimal merge and 16 after, at every station.
+
+**It needs a shader patch, which is why it was not done in the same run.** `vertexColors` is a
+stock three feature; per-vertex roughness is not, and wants a `_roughness` attribute plus a
+replacement of `#include <roughnessmap_fragment>`, chained onto `confidence.patch`'s
+`onBeforeCompile` the way that patch already chains onto whatever came before it. The `_confidence`
+channel is the proof the pattern works inside a `BatchedMesh` here.
+
+**Take it only when the lane has nothing sharper.** The budget is met with 5 calls of headroom at
+the worst station and the growth term is already zero, so this buys margin, not a fix.
+
+**Files:** `renderers/web/js/buildings.js` · `renderers/web/js/confidence.js` (chaining only)
+
+**Acceptance:** 1 structure batch; draw calls ≤ 80 at all 11 stations, both viewports; triangles
+unchanged to the triangle; the same frame-difference budget R-W5a measured itself against
+(whole-frame mean |Δ| under 0.01 of an 8-bit count); zero page errors.
 
 ### R-W2 — texture the town · **UNCLAIMED · SPLIT**
 
@@ -661,7 +1006,62 @@ loses its pool citation.
 diff whose real content is one addition. Two independent measurements at the same rate; the "buries
 the parcel's real diff" paragraph above is now demonstrated rather than predicted.
 
-### K21 — the adoption tests are silent, not negative, for four trades · **UNCLAIMED · from T-A5 · Effort: S**
+### K21 — the adoption tests are silent, not negative, for four trades · **DONE 2026-08-15**
+
+**The answer was the first of the two the parcel offered, and it was not close.** Every one of the
+31 buildings this layer raises was dealt a crosswalk family by the programme, and every one has
+always *said* so in prose: the footprint note reads "a 16 x 22 ft rectangle from the **D3** family
+band", and each form value cites the same band. What no record carried was the band as a **value**.
+So there was nothing to decide — the assignment is a transcription of a string committed in two
+other places, which is why **it owes `docs/LIBERTIES.md` nothing**: a liberty is an invention, and
+writing down what was already committed invents nothing. The second branch (records deliberately
+outside the typology, rule 6 gaining a fourth clause) was never reached, and rule 6 gains **no new
+clause** — a trade whose families are now readable can still fail the test.
+
+**What it measured, before and after.** Of 29 census trades, **four resolved nothing**
+(`brickmaker`, `packer`, `sawyer`, `wheelwright`) and **eight resolved partly** — 17 households
+stood on 31 roofs that named no family. After: **29 of 29 trades resolve, across 44 trade-family
+pairs**, and the two sawyer households T-A5 refused now read D3 and D2 — facts a parcel can check
+rather than a question it could not ask.
+
+**The gate is the durable half.** `tools/generate_inferred_households.py` now fails if any roof a
+household *lives or works in* names no family in the crosswalk, over both links rather than the
+dwelling alone — a shop's family is as much a claim about the town as a cottage's. A test cannot go
+silent again without a gate saying so, which is the same medicine T-A4's `deferred` gate applied
+one level down.
+
+**The suspicion in the parcel's own Watch note is refuted, and the refutation is the useful part.**
+`inf_sawyer_dwelling_b` masses as an `outbuilding` while `_a` masses as a `frame_dwelling` because
+**they were dealt different families** — D3 and D2 — and each resolves through its own family's
+committed placeholder archetype. The programme says so in the record's own existence note: the
+second sawyer's roof is "a plank dwelling of the schedule's D2 shanty family, which is what the
+meanest end of the building trade lived in". Two dwellings of one trade massed as different kinds
+of thing is the deliberate claim, not a defect. **The real archetype split is elsewhere and the
+Watch note pointed at the wrong record:** five W4 shops, one family, are massed two ways —
+`inf_shoemaker_shop`, `inf_tailor_shop` and `inf_barber_shop` as `frame_storefront` at a 3.25 m
+eave, `inf_gunsmith_shop` and `inf_harness_shop` as `outbuilding` at 2.05 m. All five are
+one-storey, so W4's own licence for the storefront massing ("acceptable only for one-storey
+massing; two-storey shop-house variants need dwelling/storefront openings") does not explain it.
+That is **K25**, with the larger finding it opened.
+
+**Two side effects, both caught by gates rather than by reading.** `tools/reconcile_665.py`
+classified a record by whether it carried a reconstruction block at all, so all 31 moved from
+`inferred_household_programme` into `generated` — totals unchanged, attribution wrong, which is
+precisely the kind of thing a total hides; it keys on the status now. And `compile_scene.py` sent
+every reconstruction-block record to the anonymous-infill dossier, which would have put a visitor
+who clicked a building raised for one argued household in front of a write-up about aggregate
+count-units; the household layer has its own dossier and now points at it. That link is dead on the
+live site for every building on the site — see **K26**.
+
+**Files:** `tools/generate_inferred_households.py`, `tools/compile_scene.py`,
+`tools/reconcile_665.py`, `data/structures.schema.json` (the block gains an `inferred_household`
+status and an `occupation`; `sequence` and `inventory_class` are required of the anonymous status
+only, because a bespoke roof has no parcel slot and inventing one would be a claim),
+`data/reconstruction/1835_inferred_household_programme.json` (rule 6 records the resolution),
+31 structure records + their sidecars.
+
+<details>
+<summary>The parcel as it was written</summary>
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
@@ -699,6 +1099,177 @@ looking at while in the file; it may be the same root cause and it may be a seco
 **Acceptance:** every trade in the occupation census either resolves test 2 or is named as a case
 rule 6 explicitly handles; `tools/check.sh` green; `tools/audit_confidence.py --strict` green; no
 household is added by this parcel.
+
+</details>
+
+### K25 — 54 roofs sit outside the band their own note cites · **UNCLAIMED · from K21 · SPLIT (a) then (b)**
+
+**Phase:** lane 2 for (a), and (b) NEEDS THE BAKE · **Effort:** M
+
+Every reconstructed roof carries the same sentence on every form value: *"Type-level choice within
+the D3 band in the reconstruction specification."* For **54 of 193** records the value is not in
+that band. Measured against `key_geometry_parameters` in
+`data/reconstruction/1835_family_archetype_crosswalk.json`, reading `wall_height_m` as the eave the
+placeholder massing builds it as:
+
+| layer | records | outside | worst |
+|---|---:|---:|---|
+| anonymous infill (`recon_1835_*`) | 162 | **39** | F2 at 17.6 ft against 19–23 |
+| inferred-household (K21's 31) | 31 | **15** | W4 at 6.7 ft against **9–18** |
+
+**The root cause is one line, and it is not a typo.** `inferred_form()` in
+`tools/generate_inferred_households.py` — and its counterparts in the anonymous generators — choose
+every form value from the **archetype**, consulting the family only for a handful of special cases.
+So `outbuilding` hands out a 2.05 m wall whether the family band asks for 7–8 ft (D2, near enough)
+or 9–18 ft (W4, out by a third of the band's floor), and the note attached to that value cites the
+band regardless. **Fifteen of the 54 are within 1 ft and read as rounding** (D3 at 9.1 ft against a
+band ending at 9.0). The other end is not rounding: `inf_laundry_north` is 280 sq ft against an A5
+band of 48–192, and `inf_sawpit_shed` is 720 against W5's 792–2160.
+
+**Why it outranks a tidy-up.** A note that cites a band is a provenance claim — it says the
+invention is *bounded by the specification*, which is the whole defence for inventing it. Where the
+value is outside the band the note is not merely imprecise, it is **wrong about its own source**,
+and it is wrong on 54 buildings at once.
+
+**(a) land the failing measurement.** A gate that reads each form value against its family's
+committed band and fails, committed RED with the numbers above quoted, plus the decision about the
+sub-1-ft cases (widen the tolerance and say why, or accept them as failures). Data and tools only;
+no geometry moves. **(b) turn it green** takes (a)'s numbers as the baseline. Some fixes are a
+number in a table; any that changes a wall height changes the massing and **needs the bake**, so
+(b) ships the data half and says so.
+
+**Do not fix this by widening a band.** The bands are the specification's, not this project's, and
+a band widened to admit the value it was supposed to bound stops being evidence. Where a value
+genuinely belongs outside its band, the record's note must say so in its own words instead of
+citing a band it does not sit in.
+
+**The W4 split rides along.** Five W4 shops, one family, two massings (three `frame_storefront` at
+3.25 m, two `outbuilding` at 2.05 m) and all five one-storey, so the family's own licence for the
+storefront does not explain it. Decide which is right for a one-storey artisan shop and make the
+five agree, or record why a barber's shop and a gunsmith's are different kinds of building.
+
+### K26 — every building card links to a dossier that is not published · **UNCLAIMED · from K21 · Effort: S — a decision, then a line**
+
+**Phase:** lane 1 (renderer or publish) · **Effort:** S
+
+Each sidecar carries `research_doc`, and `popup.js` renders it as a link — `docBase +
+s.research_doc`, so `docs/RESEARCH/<id>.md` relative to the walkthrough. **`tools/publish.sh`
+deliberately does not publish `docs/`** ("the uncompressed GLB masters, the research dossiers and
+the raw dataset all stay in the repo and out of the payload"). So on the deployed site **all 276
+cards link to a 404**, and the card that says the least — an invented building whose whole defence
+is the write-up behind it — is the one whose link is worth the most.
+
+In the repo it is worse than a blanket 404 and better than nothing: **215 of 276** dossier paths
+exist, 61 do not. Thirty of those 61 are documented buildings with no dossier written yet (a
+research debt, not this parcel); the other 31 were K21's, and now point at the dossier that
+actually covers them.
+
+**It is a decision before it is a fix, which is why it is not folded into either.** Three
+candidates: publish `docs/RESEARCH/` (it is markdown a browser will not render, so it wants a
+viewer); link to the file on GitHub (leaves the site, works today, one line); or have the card show
+nothing where the dossier is unreachable rather than offering a link that breaks. The middle one is
+cheapest and honest. **Whatever is chosen, a gate should assert that a card's dossier link
+resolves** — a link nobody clicks in the dev tree is exactly how this survived.
+
+### K28 — may one block raise a trade's count twice? · **UNCLAIMED · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
+
+**Phase:** lane 2, data and tools · **Runner:** improve-runner (no Blender)
+
+Rule 6 (the household programme's `method` list) admits an anonymous block roof into the
+inferred-household census where three tests pass: the trade's committed argument calls its own
+count a floor, the roof's family is one this layer already houses that trade in, and the roof's
+division is one it already houses that trade in. **It says nothing about how many roofs of one
+block a single trade may take**, because until T-A9 no block had offered the case.
+
+`blk_south_water_wells` offered it twice over. Four of its six dwellings pass for one trade or
+the other: the **D3 and the D4** for carpenters (this layer houses one carpenter household in a
+D4, in the North Division) and the **D1 and the D2** for labourers (it houses four labourers in
+D2s). T-A9 adopted one per trade and refused the other two, on the reading that rule 6's own
+opening sentence — *the mix is a claim about the TOWN rather than about what has been drawn* —
+forbids a block's deal from raising a trade's count twice. That is written into both census
+arguments and into `docs/LIBERTIES.md` L100 **as a choice**, so the next parcel can read it back
+and disagree with it.
+
+**Why it is not obvious.** Against the cap: the census argues the trade's count from the town's
+building rate and its documented volumes, so letting the drawing move it is fitting the model to
+the evidence — and the tests are per-ROOF, so a block dealt three D1s would take three labouring
+households on a rule that never meant to grant them. For the cap being wrong: method rule 5 says
+house every household, and a household this layer has already argued for and cannot house is a
+worse outcome than two adoptions on one block; a block's family deal comes from a schedule that
+knows nothing whatever about this census, so two passes on one block is a coincidence rather than
+a bias; and the eight roofs of a block are not a meaningful unit — the same two roofs dealt to
+two blocks would both have been adopted without anybody pausing.
+
+**Acceptance:** rule 6 gains a fourth clause **or an explicit statement that there is no cap**,
+in the programme's own `method` list; `tools/generate_inferred_households.py` gates whichever is
+chosen, so the answer is code rather than a habit; the four T-A9 candidates are re-decided under
+it and the two refusals either stand with a reason or are adopted; `tools/check.sh` green.
+
+### K29 — the schedule deals log cabins to the town's commercial frontage · **UNCLAIMED · from T-A8 (L99) and T-A9 (L100)**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender) · **Effort:** M
+
+**L99 said this had been opened as a ROADMAP parcel and it had not.** The ID that entry names
+was already carrying the confidence-band parcel, so the question has been sitting in a liberty
+with no work item behind it since 2026-08-15. This box is that work item; L100 carries the
+corrected pointer.
+
+The 665-roof programme apportions families **by district**. It has no notion of what a street was
+for, so every time this lane reaches a South Water block the schedule deals it ordinary
+dwellings — `blk_south_water_franklin` got five including a D2 plank shanty, and
+`blk_south_water_wells` got six including a D1 log cabin and a D2 shanty. South Water Street was
+where the town's stores, forwarding houses and warehouses stood in 1835; every documented roof on
+or beside both blocks is one of those. Three South Water blocks remain open and the same thing
+will happen on each.
+
+**This is a re-apportionment, not a block parcel**, which is why neither T-A8 nor T-A9 did it:
+T-A6 and T-A7 both started as blocks and finished as schedule changes, and the two cannot share a
+run. The shape is a frontage term in `tools/reconcile_665.py` — a block face's street decides the
+family mix it may be dealt, with the commercial families (C, F, W) weighted onto the business
+front and the meanest dwelling families weighted off it — argued from the reconstruction
+specification's own street hierarchy and from the documented commercial roofs already standing
+there, not invented as a preference.
+
+**It does not license moving anything already standing.** The blocks T-A8 and T-A9 built keep
+their roofs; a re-apportionment changes what the schedule DEALS, and L99 and L100 stay on the
+record as admissions about the two blocks that were filled before the term existed.
+
+**Acceptance:** the frontage term is derived from a committed source rather than authored as a
+constant; `tools/reconcile_665.py --check` re-derives; the family totals of the 665-roof
+programme are unchanged in aggregate (this moves families between schedule units, it does not
+raise or lower the target); the three open South Water blocks visibly change deal; `check.sh`
+green.
+
+### K30 — three documented stores stand in the middle of South Water Street · **UNCLAIMED · from T-A9 · Effort: S to measure, unknown to fix**
+
+**Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
+
+T-A7 established that a record placed from typed coordinates before the plat module existed can
+stand "a metre or two proud" of its own street frontage, and measured what that does to
+**occupancy**. Nobody had measured the intrusion itself. On `blk_south_water_wells`, T-A9 did:
+**H. Jones's grocery stands 4.5 m, Philo Carpenter's South Water Street store 6.6 m and P. F. W.
+Peck's store 8.2 m inside the platted South Water corridor.** Jones's and Carpenter's lap no lot
+of that block at all — they are wholly in the roadway; Peck's laps only lot 6, which Rufus
+Brown's boarding house already holds.
+
+**It is not a block parcel's business and it did not cost T-A9 anything** (the nearest invented
+roof to any of the three is 7.99 m, against a 3 m gate), but it is a claim about the town that
+nothing in the dataset states: three named, documented commercial buildings are drawn standing in
+a street. Either the street's committed centreline or width is wrong on that stretch, or the
+three positions are, or 1835 South Water Street genuinely had stores encroaching on it — which is
+entirely possible on a frontage street of a boom town and would be a **finding**, not a defect,
+if a source said so.
+
+**Start by measuring all fourteen**, not these three: T-A7 counted fourteen committed records
+whose centroid lands in a roadway and named four of them. The distribution is the finding — a
+handful of deep intrusions on one street is a different problem from a uniform half-metre bias
+across the grid, and the fix differs accordingly.
+
+**Acceptance:** every documented structure's intrusion into every platted corridor is measured
+and committed as a derived table; the three cases above are attributed to a cause with reasoning
+recorded; anything invented in the resolution goes to `docs/LIBERTIES.md`; a gate reports the
+figure so it cannot silently grow. **Do not move a documented building to make a number look
+better** — a position with a source outranks a corridor this project derived.
 
 ### T-A3 — the second refreshed block · **DONE 2026-08-14 (`blk_randolph_dearborn`)**
 
@@ -921,7 +1492,162 @@ household) · `data/structures/recon_1835_blk_randolph_market_*.json` (8, derive
 `data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing · `docs/LIBERTIES.md`
 (L97) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A6…T-An — the remaining blocks · **UNCLAIMED**
+### T-A6 — the schedule learns what a lot is · **DONE 2026-08-15**
+
+**Claimed as `blk_randolph_franklin` and finished as something else, because the block could not
+be built honestly.** Re-deriving the schedule on arrival showed the parcel had been dealt seven
+principal roofs onto seven free lots — every lot filled, no vacancy — and checking the other nine
+open blocks found the same blindness in four more. Full measurement and the three failure shapes
+in `docs/STATUS.md` § "half the open blocks were scheduled roofs their own lots could not hold".
+
+**The one-line version:** a block's room was counted in ROOFS and a principal roof needs a free
+LOT, so `standing_roofs` could not tell two roofs on one lot from two roofs on two.
+`blk_south_water_clark` and `blk_lake_market` were dealt seven principal roofs against six free
+lots — unwritable. `blk_south_water_wells`, `blk_randolph_franklin` and `blk_randolph_clark` were
+dealt exactly their free-lot count, which is writable and worse, because it spends the alternating
+vacancy the recipe's own placement rule promises without anybody deciding to. And
+`blk_randolph_dearborn` (the T-A3h backfill) was dealt one yard building and no principal roof to
+put it behind.
+
+**A rule a parcel can be dealt out of is not a rule.** The vacancy was a promise each parcel kept
+by hand — T-A2 left one lot open, T-A5 two — and a block dealt its exact free-lot count could not
+keep it. It is now a property of the deal: `principal = min(free lots − 1, roof headroom)`,
+`ancillary` bounded by the 154:511 ratio AND by the principals the parcel builds, lot occupancy
+derived by the same footprint-centroid rule `tools/generate_block_infill.py` already uses so the
+two halves cannot disagree again, a token a unit cannot take offered to the next unit rather than
+dropped, and a new assertion that fails the build if a unit is ever dealt past its room.
+
+**Cost: schedulable-on-covered-ground 71 → 66, gated 328 → 333.** Five roofs that never had
+anywhere to stand went back to waiting on coverage. That is the honest number and it is smaller
+than the one this lane had been quoting.
+
+**All ten open blocks are buildable now, and each keeps a lot open.** `blk_randolph_franklin`
+returns to the queue with the corrected mix below. This parcel changed no structure record, no
+resident, no sidecar and no mesh: `tools/reconcile_665.py`, the derived programme, two documents
+and a changelog entry.
+
+**Files:** `tools/reconcile_665.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/STATUS.md` · `docs/ROADMAP.md` · `renderers/web/js/changelog.js`
+
+**What it did not do:** ask whether ONE open lot per block is the right vacancy. The rule now
+guarantees a floor of one, which is what the phase-one parcel assumes and what every parcel so far
+has done or bettered; whether a block of eight lots in 1835 Chicago carried six roofs rather than
+seven is a question for the evidence, not for the apportionment, and nothing here answers it.
+
+### T-A7 — a building stands on the lot it stands on · **DONE 2026-08-15**
+
+**Claimed as `blk_south_water_franklin` and finished as something else, the way T-A6 was, and
+for the neighbouring reason.** T-A6 made a block's room a function of its FREE LOTS. This is
+about how a lot is known to be free at all — and the answer was *the building's centroid is not
+in it*, which is a proxy that fails on precisely the records the plat grid was built to correct.
+
+**The one-line version:** a building placed from typed coordinates before the plat module
+existed can stand a metre or two proud of its own street frontage, so its centroid lands in the
+ROADWAY — and a building whose centroid is in the roadway stands, as far as the schedule can
+tell, on no lot of any block. Fourteen committed records were in that position. Four of them
+are named, documented buildings sitting on lots the schedule was offering to anonymous roofs:
+the **Temple Building** (27 % of it on `blk_south_water_franklin` lot 0), **Harmon & Loomis's
+store** (31 % on `blk_south_water_clark` lot 0), the **Chicago Democrat's office** (34 % on
+`blk_south_water_lasalle` lot 6) and the **Cook County courthouse** (13 % on
+`blk_randolph_lasalle` lot 6). The claimed block was dealt six principal roofs for seven free
+lots when one of those lots has the Temple Building on it.
+
+**The rule now has two tests, in `tools/plat_occupancy.py`, and each answers a different way of
+being wrong.**
+
+1. **A building stands on the lot most of it is on**, measured. This is the same claim the
+   centroid was making, made by area instead of by a point. It is purely additive on the
+   committed dataset: *no record changes lot*, five lots that read free are now known to be
+   taken, and none that read taken became free.
+2. **It occupies that lot only where it reaches the lot's buildable part** — the lot inset by
+   `LOT_MARGIN_M`, the same 1.5 m the generator makes every new roof keep from its own lot
+   lines. A neighbour lapping only into that strip has taken nothing a roof could have used.
+   **J. H. Kinzie's store is the case that earns this test**: 9.7 m² of it lies on
+   `blk_south_water_franklin` lot 2 and none of it inside the buildable inset, so the lot is
+   free and the schedule may still deal it a roof. Without test two the town loses roofs it can
+   honestly have.
+
+**And the second half of the same defect, in the ledger:** a roof was attributed to a block by
+its position POINT, so the same buildings were counted as standing in no block at all — their
+roofs never subtracted from the headroom of the block they physically stand in. The **Exchange
+Coffee House** holds nine tenths of a lot of the claimed block and counted nowhere; so did
+**Harmon & Loomis's store** and the **Tremont House**. A roof standing on a block's lot stands
+in that block, and the ledger now says so.
+
+**One implementation, imported by both halves.** T-A6 required the schedule and the generator to
+derive occupancy the same way and they did — by each carrying its own copy of the rule, which is
+how two copies of one rule drift. `tools/plat_occupancy.py` is now the only implementation;
+`reconcile_665.py` and `generate_block_infill.py` both call it, and `LOT_MARGIN_M` is authored
+there too because the occupancy test reads the same number from the other side.
+
+**Cost: schedulable-on-covered-ground 66 → 61, gated 333 → 338.** Occupied lots 79 → 84. Standing
+roofs are unchanged at 266 and remaining at 399 — nothing was built or removed, five roofs went
+back to waiting on coverage because the ground they were promised is already built on. Four
+blocks lose a lot each: `blk_south_water_franklin` 7 free lots → 6 and 8 roofs → 7,
+`blk_south_water_lasalle` 8 → 7, `blk_south_water_clark` 7 → 5 (it also gains two standing
+roofs), `blk_randolph_lasalle` 5 → 4.
+
+**What it measured and deliberately did NOT call occupancy.** `recon_1835_west_018` laps 11.9 m²
+onto `blk_randolph_clinton` lot 2, where T-A4 stands a principal roof. Test one seats that
+building on lot 4, where 82 % of it is, so lot 2 remains the roof T-A4 put there. A rule that
+called every lap an occupation would have condemned a committed, gated placement on a corner of
+a building — and whether two roofs may stand three metres apart across a conjectural side lot
+line is the separation gate's question, which it passed at the time. The number is recorded here
+so that nobody reads the silence as nobody having looked.
+
+**What it did not do: build the block.** `blk_south_water_franklin` returns to the queue below
+with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lots.
+
+**Files:** `tools/plat_occupancy.py` (new) · `tools/reconcile_665.py` ·
+`tools/generate_block_infill.py` · `data/reconstruction/1835_665_roof_programme.json` (derived)
+· `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
+no resident, no sidecar, no mesh and no renderer file.
+
+### T-A9 — `blk_south_water_wells` · **DONE 2026-08-15**
+
+The second block of the South Water row — bounded by South Water, LaSalle, Lake and Wells —
+carries **eight roofs, six principal and two ancillary**, on six of its seven free lots.
+`brown_boarding_house` holds lot 6 and the Lake-and-Wells corner is left open. **281 stand and
+384 remain, 46 of them on covered ground.** The recipe cleared every placement gate on its first
+run and **no tool changed**, which under T-A8's own text is what a block parcel is supposed to
+look like now. Two adoptions under rule 6: the D3 one-room cottage on lot 7 becomes the
+fourteenth inferred carpenter household, the D1 log cabin on lot 5 the sixteenth labouring one.
+Full admission in `docs/LIBERTIES.md` **L100**.
+
+**Three findings came out of it that are not the block.**
+
+1. **Both adoptable trades were offered a SECOND roof here, and refusing them was a choice
+   rather than a rule.** Read literally, four of the six dwellings pass rule 6's three tests for
+   one trade or the other — the D3 *and the D4* for carpenters (one carpenter household stands in
+   a D4, in the North Division), the D1 *and the D2* for labourers (four stand in D2s). The rule
+   says nothing about how many roofs of one block a single trade may take, because no parcel
+   before this one was offered the case. One per trade was adopted, on the reading that rule 6's
+   own opening sentence — the mix is a claim about the town, not about what has been drawn —
+   forbids a block's deal from raising a trade's count twice. **That reading is written into both
+   census arguments and into L100 as a choice, not smuggled in as a rule**, and **K28** is raised
+   to settle it.
+2. **Three documented stores on this block stand INSIDE the platted South Water corridor** —
+   Jones's grocery by 4.5 m, Philo Carpenter's store by 6.6 m and Peck's store by 8.2 m. T-A7
+   established that a pre-plat record can stand "a metre or two proud" of its frontage and
+   measured the consequence for *occupancy*; nobody had measured the intrusion itself. Two of the
+   three lap no lot of this block at all. It cost this parcel nothing — the nearest any roof here
+   comes to any of them is 7.99 m against a 3 m gate — so it is recorded and opened as **K30**
+   rather than fixed inside a block parcel.
+3. **L99 said it had opened the commercial-frontage question as a ROADMAP parcel and it had
+   not** — the ID it names was already in use for the confidence-band parcel. The question is
+   real and this block is the second instance of it: the programme apportions families by
+   district and has no notion of what a street was for, so it dealt a log cabin and a plank
+   shanty to the town's busiest commercial frontage for the second time running. Opened properly
+   as **K29**.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (8 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/generated/` (8 flagged
+placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L100 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
+### T-A10…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -936,14 +1662,20 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open immediately after T-A5, on ground the project has coverage for — 71 roofs across ten
-entries:** `blk_randolph_franklin` 9 · `blk_randolph_clark` 9 · `blk_randolph_lasalle` 7 ·
-`blk_south_water_franklin` 8 · `blk_south_water_wells` 8 · `blk_south_water_lasalle` 8 (**carries
-the one I3 in the whole open set — defer it per T-A3 unless T-I3 has landed**) ·
-`blk_south_water_clark` 8 · `blk_south_water_dearborn` 6 · `blk_lake_market` 7 ·
-`blk_randolph_dearborn` 1 (an A4 backfill). **This list is a convenience and goes stale the moment
-the next parcel lands** — the schedule re-apportions every open block each time one closes, and it
-moved the I3 between blocks on this very run. Re-derive it, do not trust it.
+**Open after T-A9, on ground the project has coverage for — 46 roofs across eight entries, every
+one of them buildable with a lot left open, and every lot of them now checked against the
+buildings that already stand there:** `blk_south_water_lasalle` 7 (5P+2A) · `blk_south_water_clark`
+5 (4P+1A) · `blk_south_water_dearborn` 6 (5P+1A) · `blk_lake_market` 7 (5P+2A, **carries the one
+I3 in the whole open set — defer it per T-A3 unless T-I3 has landed; the I3 moved here from
+`blk_south_water_clark` when T-A9 re-apportioned, which is exactly why this list is not to be
+trusted**) · `blk_randolph_franklin` 8 (6P+2A) · `blk_randolph_lasalle` 4 (3P+1A) ·
+`blk_randolph_clark` 8 (6P+2A) · `blk_randolph_dearborn` 1 (1P, the A4 backfill turned into a
+principal roof by T-A6, now a C2).
+**This list is a convenience and goes stale the moment the next parcel lands** — the schedule
+re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
+guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block
+is dealt more principal roofs than it has free lots less one, and no block is dealt a yard
+building without a roof to stand it behind.
 
 ---
 
@@ -1187,7 +1919,7 @@ lost result.
 six and merging one is a judgement call about content, not a workflow defect, so it has not
 been made here.
 
-### R-REF1 — commit the reference photograph · **UNCLAIMED · NEXT UP · XS, and it unblocks two parcels**
+### R-REF1 — commit the reference photograph · **DONE 2026-08-15**
 
 `bar/dupage_tallgrass_2018-07-24.jpg` — the verified July Illinois-prairie photograph this
 project calibrates its sky against and reasons about tree-mass contrast from — **is not in the
@@ -1208,7 +1940,157 @@ uncitable calibration reference is a calibration nobody can check.
 **Files:** the image · `data/sources/<id>.json` · `assets/LICENSES.md` · `docs/RENDERING.md`
 **Acceptance:** `tools/check.sh` green; the file resolves; the rights are recorded, not assumed.
 
-### R-M1 — the road gate scores contrast, not lightness · **UNCLAIMED · after R-REF1 · owner ruled 2026-08-14**
+**DONE 2026-08-15.** The file is
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg`, source
+record `saari_2018_dupage_tallgrass`, licence row in `assets/LICENSES.md`, and both R-W1 and
+R-M1 are unblocked. Full findings in `docs/STATUS.md` § "the photograph the sky is calibrated
+against". Four things the next parcel should take from it rather than rediscover:
+
+- **It is the right photograph and the numbers prove it.** `python3 tools/measure_reference.py`
+  (new, Pillow-optional, deliberately outside `check.sh`) reproduces all four sky readings
+  `world.js` quotes to within a few units, with nothing in the renderer touched. Identification
+  never rested on the filename: the Commons description carries the same
+  restoration-not-remnant finding the 2026-08-10 sweep made about this photograph, and the
+  EXIF says 2018-07-24 09:32:25.
+- **The frame is solved: `elevation(row) = (820 − row) / 57.0` degrees**, 14.4° above the
+  horizon to 38.7° below, camera pitch −12.1° — which is the ~12° down-tilt the prairie sweep
+  found independently. **Quote the elevation of any reading.** Both of this project's
+  reference disagreements were two people measuring different heights in one photograph.
+- **The rights are CC BY-SA 4.0 and they bite.** Verbatim redistribution and measurement are
+  cleared; **any crop, resample, texture or LUT is an adaptation** and would put a ShareAlike
+  obligation on this repository. R-M1 may measure it freely — it must not cut a tile out of it.
+- **R-M1's fallback is not needed.** It was written to freeze provisional Weber figures "if the
+  rights forbid committing it". They do not. ~~Derive the thresholds from the photograph.~~
+- **CORRECTED 2026-08-15 by R-M1a: the photograph cannot supply R-M1's thresholds, and this
+  bullet was wrong to promise it could.** It contains no bare-earth surface — widest contiguous
+  bare run **8.2 % of the frame width, at −38.2°**, at the photographer's feet — so there is no
+  dirt track in it to measure a road contrast against. `python3 tools/measure_reference.py`
+  prints the survey. **Nothing else on this list is affected**: the sky, horizon and canopy
+  readings R-REF1 landed all still reproduce, and they are what `world.js` and `trees.js`
+  actually quote. R-REF1 unblocked R-W1's target re-anchoring, which was the other half of what
+  it was for. See R-M1b for what a threshold source would now have to be.
+
+### R-M1a — the two scales, measured and not gated · **DONE 2026-08-15**
+
+**The parcel was split before it was claimed, under the lane's own run-budget rule.** R-M1's
+acceptance names three builds to smoke — the pre-R-BUG2 build, current `dev`, and R-W1's
+branch — and the rule above is that *a parcel whose acceptance needs more than TWO full smoke
+passes must be split before it is claimed*. The seam that rule prescribes is
+**(a) land the measurement and commit its numbers**, **(b) set the bars against them**, and it
+earns more here than the time it saves: the baseline has to exist before anyone knows which
+threshold it will justify, so (b) cannot quietly pick a bar and call it derived.
+
+**What landed.** `weberContrast` and `relativeLuminance` are exported from
+`tools/critic_metrics.mjs` — the first thing in `tools/` to compute Weber, which `trees.js` and
+`LIBERTIES.md` have been quoting by hand — and every road band in `smoke_renderer.mjs` now also
+reports **`weber`** (exposure-invariant road-against-ground contrast, magnitude, median over the
+same probes) and **`groundL`** (median CIE L\* of the ground at those probes, the floor reading).
+**Neither is gated.** Nothing this change touches can alter a pass or a fail, which is the whole
+reason it is safe to land in one smoke: a gate that moves at the same moment as its own baseline
+has no baseline.
+
+**THE BASELINE, `dev@b287b31` + this branch, one full smoke, both viewports.** Gated bands only;
+`weber` is the median magnitude, `n` the probes it is taken over.
+
+| station | band | mobile 390×780 | desktop 1280×800 |
+|---|---|---|---|
+| `south_water` | 40–100 m | 0.1461 (n 34) · L\* 52.7 | 0.1570 (n 33) · L\* 53.5 |
+| `south_water` | 100–250 m | 0.1482 (n 24) · L\* 53.1 | 0.1606 (n 36) · L\* 54.6 |
+| `south_water` | 250–600 m | **0.5217 (n 15)** · L\* 52.0 | 0.1646 (n 11) · L\* 54.7 |
+| `from_above` | 100–250 m | 0.1169 (n 40) · L\* 51.2 | **0.1217 (n 11)** · L\* 51.9 |
+| `from_above` | 250–600 m | 0.1105 (n 150) · L\* 53.5 | 0.0999 (n 327) · L\* 53.9 |
+| `lake_market` | 2–40 m | 0.1190 (n 10) · L\* 51.0 | 0.1326 (n 10) · L\* 51.5 |
+| `lake_market` | 40–100 m | 0.1491 (n 15) · L\* 52.7 | 0.1288 (n 15) · L\* 52.7 |
+| `lake_market` | 100–250 m | 0.1339 (n 43) · L\* 53.5 | **8.8023 (n 23) · L\* 3.0** |
+| `lake_market` | 250–600 m | 0.1274 (n 122) · L\* 56.3 | **0.3965 (n 18)** · L\* 54.4 |
+
+**The implementation is verified against a number this project committed before it existed, and
+did not compute.** R-W1's parked measurement recorded Weber **0.1217** at `from_above`,
+desktop, 100–250 m, `dev@d762a19`, taken by hand at the point of use. This helper reads
+**0.1217 at n 11** against R-W1's **n=11**, on a `dev` that has moved eleven commits since.
+That is a reproduction, not an agreement of adjectives, and it is the evidence that the two
+halves of R-M1 are measuring one quantity. The 250–600 m band is the one that moved —
+0.0940 → 0.0999 (+6.3 %), with ΔL\* 2.36 → 2.4 in step — which is R-BUG3's opaque-and-alpha
+work showing up where R-BUG3 said it would not reach and is worth one line of R-M1b's attention.
+
+**Three things (b) must not walk past, and the first of them is why this half was worth landing
+on its own.**
+
+- **WEBER IS UNBOUNDED BELOW, AND ONE BAND ALREADY PROVES IT. `lake_market`, desktop,
+  100–250 m reads `weber 8.8023` over a ground of `L* 3.0`.** The denominator is the light the
+  ground is carrying, and at that station-band, on that viewport, the road's projected probes
+  land against something almost black — so a ratio that reads 0.13 on the same band at mobile
+  reads **eight point eight** on desktop. Nothing is wrong with the road there; ΔL\* reads 18.0
+  and 100 % perceptible. It is the scale that has no ceiling as its background goes dark.
+  **A median Weber over a band can therefore be set by its darkest probes rather than by its
+  roads**, which is the exact failure the owner's ruling anticipated when it paired the ratio
+  with a floor rather than replacing one bar with the other. (b) has to say what it does about
+  it — exclude probes below the floor, gate the two bars per-probe rather than per-median, or
+  something better — and it must not simply threshold this column. **Had the bars been set in
+  the same PR as the baseline, this is the number they would have been set against.**
+- **`south_water` at 250–600 m is not a band, it is fifteen pixels.** Mobile reads **0.5217**
+  against every other band's 0.10–0.17, on **15 probes seen of 510 projected**, and desktop
+  reads 0.1646 on **11 of 637**. A threshold fitted to that station-band is fitted to whatever
+  those few surviving probes happen to sit against. `ROAD_MIN_PROBES` is 8 and this clears it;
+  the number that should worry a threshold-setter is the seen-to-projected ratio, not the count.
+- **The floor is remarkably flat and that is a finding about the floor, not about the roads.**
+  Every gated band on both viewports reads ground L\* **51–58**. A floor bar anywhere below ~50
+  would never fire on any build this project has shipped, which makes it untestable rather than
+  safe. R-W1's build is the one that moves it — 14–17 % darker — so the floor's value has to be
+  derived against *that* branch or it is decoration.
+
+### R-M1b — set the two bars · **UNCLAIMED · NEXT UP · from R-M1a · Effort: M · BLOCKED ON A THRESHOLD SOURCE**
+
+Take R-M1a's table as the baseline. What is left is R-M1's original acceptance: the new bars
+**fail on the pre-R-BUG2 build** and **pass on current `dev`**, R-W1's branch is re-run against
+them **without re-tuning the streets**, every existing band still reports, and each threshold
+carries its derivation in a comment beside it.
+
+> ### THE DERIVATION SOURCE R-M1 NAMED DOES NOT EXIST. DO NOT SUBSTITUTE A GUESS FOR IT.
+>
+> R-M1 says to derive the thresholds by measuring "what contrast a real dirt track holds
+> against real prairie" in the R-REF1 photograph. **It does not contain a dirt track.**
+> `python3 tools/measure_reference.py` now surveys the land region of the frame and prints it:
+> the widest contiguous bare-earth run anywhere below the horizon is **332 px, 8.2 % of the
+> frame width, at −38.2°** — the bottom edge, at the photographer's own feet, and it is litter
+> and dry stems between plants rather than a surface. The widest run with no green excess at
+> all is **11.1 % at −0.4°**, which is the hazed treeline and is not ground. A track crossing
+> that frame would put a contiguous bare run across a large fraction of the width at some
+> elevation. Nothing in it does. The soil-like *fraction* is 3 % overall and rises to 18.5 %
+> in the bottom 5° — which is exactly why the fraction cannot decide this and the run length
+> can.
+>
+> This is the same shape of error the 2026-08-10 sweep recorded against itself: a brief handed
+> a builder a target — *"Weber 0.036–0.067"* — that **"does not exist in the reference at any
+> threshold"**, and STATUS.md says of it *"that error was the brief's, not the builder's"*.
+> R-M1's threshold clause is the second instance. The sky, horizon and canopy readings the
+> photograph *does* support are untouched by this and still reproduce.
+>
+> **So (b) needs a source, and picking one is above this lane's pay grade.** The honest options,
+> for the owner rather than for a runner:
+>
+> 1. **A second reference photograph** — a documented dirt track through grass, CC-licensed,
+>    committed the way R-REF1 committed this one, measured by the same code. It is R-REF1 again
+>    in full: identification, rights, EXIF, a frame solved so a reading can state its elevation.
+>    Call it **R-REF2**. It is the only option that makes "derived" literally true.
+> 2. **A published detection threshold**, cited as such — Weber contrast at photopic levels for
+>    a large suprathreshold target — with the bar set at a stated multiple of it and the
+>    multiple argued in the comment. Honest, and it is a claim about *eyes*, not about *roads*,
+>    which is a different bar than the parcel asked for and must be labelled as one.
+> 3. **Freeze R-M1a's own baseline as a no-regression bar**, explicitly labelled provisional in
+>    the code the way R-M1's struck-out fallback would have been. It is the weakest: it says
+>    only "no worse than 2026-08-15" and it cannot fail the pre-R-BUG2 build unless the margin
+>    is chosen, which is picking a number with extra steps.
+>
+> **Do not quietly take option 3 and describe it as derived.** If (b) arrives before the owner
+> has ruled, land option 3 *labelled as option 3* and say so in the PR — or leave the bars
+> ungated and say why.
+
+#### R-M1 (spec) — the original parcel definition, kept verbatim
+
+Unchanged except for the threshold-source paragraph, which is struck through below for the
+reason R-M1b states. (a) discharged the helper, the two measurements and the baseline; (b) owns
+everything else in it.
 
 **The decision, made by the owner after R-W1 broke the gate by legitimately changing exposure:
 score exposure-invariant contrast AND keep an absolute floor. Both bars, not a replacement.**
@@ -1230,14 +2112,32 @@ and must not become one — the metric still has to FAIL on the pre-R-BUG2 build
 
 **Weber is a documented standard here, not a shared helper.** `trees.js:856` reasons in Weber
 contrast against the bar photograph and `STATUS.md` / `LIBERTIES.md` quote it, but nothing in
-`tools/` computes it. Expect to write the function.
+`tools/` computes it. Expect to write the function. — **DISCHARGED by R-M1a**:
+`weberContrast` and `relativeLuminance` are exported from `tools/critic_metrics.mjs`, and the
+first thing they were used for reproduced R-W1's hand-taken 0.1217 exactly.
 
-**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
+~~**Derive the thresholds; do not pick them.** Today's `ROAD_MIN_DELTA_L = 1.8` and
 `ROAD_MIN_PERCEPTIBLE = 0.55` were set under one exposure and are now unanchored. The honest
 source is the reference photograph — what contrast does a real dirt track hold against real
-prairie? Hence **R-REF1 first.** If the rights forbid committing it, freeze the measured Weber
+prairie? Hence **R-REF1 first.** ~~If the rights forbid committing it, freeze the measured Weber
 figures from the last agreed-good build (**0.094 at 250–600 m, 0.118 at 100–250 m**, desktop,
-`dev@d762a19`) as a provisional floor and **label them provisional in the code**.
+`dev@d762a19`) as a provisional floor and **label them provisional in the code**.~~
+
+**R-REF1 landed 2026-08-15, so the fallback is off.** The photograph is committed at
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg` and its
+readings reproduce (`python3 tools/measure_reference.py`). **Derive the thresholds from it.**
+Two conditions come with it: quote the **elevation** of every reading — `elevation(row) =
+(820 − row) / 57.0` degrees, the frame runs 14.4° above the horizon to 38.7° below — and
+**measure it, never cut it up**. It is CC BY-SA 4.0: measurement and verbatim redistribution
+are cleared, a crop or a resample is an adaptation that would put ShareAlike on this
+repository (`assets/LICENSES.md`). The Weber figures above stay useful as the last
+agreed-good build's numbers to sanity-check a derived threshold against, which is a different
+job from being the threshold.~~
+
+**STRUCK 2026-08-15 by R-M1a: the photograph contains no dirt track, so it cannot be the
+source.** Measured, printed and reproducible — `python3 tools/measure_reference.py`. See
+R-M1b's box above for what the options now are; the two conditions on *reading* the photograph
+(quote the elevation, never cut it up) stand and apply to anything that measures it.
 
 **Not a user setting, and the reasoning is worth keeping.** The gate runs headless in CI; there
 is no user in the room. Its thresholds are already tunable in the right way — named constants at
@@ -1245,12 +2145,14 @@ the top of `smoke_renderer.mjs` with the reasoning beside them, so a change appe
 gets argued. Moving them to a config file would make them easier to change *without* review,
 which is backwards for a gate.
 
-**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper)
+**Files:** `tools/smoke_renderer.mjs` · `tools/critic_metrics.mjs` (the Weber helper) ·
+`tools/measure_reference.py` (R-M1a, the survey that struck the threshold source)
 **Acceptance:** the new bars fail on the pre-R-BUG2 build and pass on current `dev`; R-W1's
 branch is re-run against them **without re-tuning the streets**; every existing road band still
-reports; thresholds carry their derivation in a comment.
+reports; thresholds carry their derivation in a comment. — **all of it R-M1b's**, except
+"every existing road band still reports", which R-M1a holds green by not gating anything.
 
-### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · AFTER R-BUG3b — never instead of it**
+### R-A1 — a road-legibility accessibility aid · **UNCLAIMED · UNBLOCKED 2026-08-15 by R-BUG3 — never instead of it**
 
 Considered and deliberately deferred, 2026-08-14, because the reasoning matters more than the
 feature. A user control that boosts road contrast **converts a defect into a preference** and
@@ -1260,10 +2162,84 @@ while standing on them"* is not a position worth offering.
 
 **But the accessibility case is real** — contrast sensitivity varies, and a phone screen in
 sunlight is brutal, which is the exact condition R-BUG3 was reported from. So this ships as an
-aid layered on a correct default, **after `R-BUG3b` has made the default correct**, and it
-inherits `K24`'s constraint: the harness measures the default regardless of stored preference.
+aid layered on a correct default — **R-BUG3 made the default correct on 2026-08-15, so the
+precondition is met** — and it inherits `K24`'s constraint: the harness measures the default
+regardless of stored preference. Note what R-BUG3 left standing: the near band's *ceiling* is
+3.4–4.3 L\*, the lowest of any band, and a fifth of near probes cannot clear the threshold even
+fully opaque. The honest fix for that is **R-W2**'s textured coverage, not this aid; shipping
+this one must not be allowed to retire that.
 
-### R-BUG3 — the road is invisible AT YOUR FEET · **UNCLAIMED · NEXT UP · owner-reported**
+### R-BUG3 — the road is invisible AT YOUR FEET · **PARTLY DONE 2026-08-15 · REOPENED as R-BUG3c**
+
+**What it took, and what it refuted.** The near band was added, it failed exactly as this parcel
+predicted — **1.5 L\* with 30 % of probes perceptible at 2–40 m, against 3.4 / 87 % in the very
+next band out** — and it is now **3.1 of a measured ceiling of 3.4, with 80 % perceptible** on
+mobile (3.2 of 4.3 with 60 % on desktop), on the published mirror. Three
+findings came out of it, and only the third is the one this parcel expected:
+
+1. **The near band was EMPTY, and no threshold would have caught this bug.** `[2, 40]` on its own
+   changes nothing, because **neither gated station stands on a road**: `south_water` sits **101 m
+   from the centreline it is named after** (that is T-V2, measured from the committed path) and
+   17 m from the nearest one, and `from_above` is 175 m up. The near band collected **one probe**
+   at the first station and **none** at the second. The parcel's own first move was necessary and
+   nowhere near sufficient — the window was wrong in TWO dimensions, distance and pose, and only
+   the distance one was visible from the failing gate. There is now a third station,
+   `lake_market`, which arrives the way a visitor does — by clicking a verified street-control
+   intersection in the Go to tab — and then turns to look along the centreline it is standing on,
+   a bearing read off the committed path rather than authored here. The arrival pose alone was
+   not enough either: the shipped jump faces a fixed bearing, which at a crossing points
+   diagonally into the block and put **zero** road probes inside 100 m.
+2. **THE PRIME SUSPECT IS REFUTED — no grass is hiding this road.** The harness now re-shoots its
+   road markers with the sward and the trees hidden, so an occluded probe is distinguishable from
+   an absent one, and in the near band **all ten probes are marked either way**. Sward occlusion
+   and the clearing-corridor width are both out, this parcel's non-licence never had to be tested,
+   and `flora.js` is untouched. The gate reports the discrimination on every band from now on
+   (`seen N of M projected (K clear of flora)`) because it is the distinction three gates in a row
+   have failed to draw.
+3. **The fault is candidate 3, and the mechanism is sharper than "alpha".** An alpha here is a
+   **coverage fraction**, and a coverage fraction is only the right picture of a mixture where one
+   pixel spans many patches of it. Up close one pixel spans one patch, which is either earth or
+   grass, and the blend paints a uniform wash instead. The harness measures both ends: the same
+   near probes forced fully **opaque** score **3.4 L\***, so the contrast was in the ribbon's own
+   colour and the shipped alpha was spending under half of it. The near field also has less to spend — the
+   ground underfoot is genuinely darker than at range, **L\* 51.0 against 52.7–56.3** — which is
+   why spending it matters here and not at 250 m. The fix scales alpha by 2.4 inside 15 m, fading
+   to nothing by 40 m; every band past the fade is unchanged to the decimal, which is the
+   arithmetic guarantee and also the measurement. Recorded as **L98**.
+
+**And one lesson for the gates, which is the durable part.** A band gated on *how many probes were
+SEEN* gates itself out at exactly the moment the thing it measures goes wrong: a road nobody can
+see reports n=0 and is indistinguishable from a road that is not there. The bands are now gated on
+how many probes were **PROJECTED** — on screen and therefore owed a picture. That is the third
+time this bug has been a question of what the gate was pointed at, and it is the first fix that
+makes the gate fail loudly rather than quietly abstain.
+
+**One more thing the opaque pass taught, and it is a gate lesson too.** Its first form dropped the
+ribbon into the opaque queue without letting it write depth, so the terrain painted back over it
+and the pass reported a **0.0 ceiling under a perfectly healthy road**. It writes depth now, like
+the marker pass it should always have mirrored. A diagnostic that lies quietly is worse than none,
+and this one lied in the direction of "nothing to see here" — the same direction as everything else
+in this bug's history.
+
+**And a second fault, found by the new station and fixed with it.** At desktop, 100–250 m from the
+crossing, the ribbon scored **0.0 L\*** with the marker pass frontmost: R-BUG2's fault 1 again, its
+polygon offset having been tuned until the bands *at the two stations then gated* passed. Deepened
+to the marker's own values, that band reads **18.0 L\* at 100 % perceptible**. The number was never
+wrong; the sample it was tuned against was.
+
+**Not done here, and deliberately:** the near band has the least headroom of any band a walker
+actually stands in — its opaque ceiling is **3.4 L\* on mobile and 4.3 on desktop**, against
+5.9–6.9 at the same station's 40–100 m and at both aerial bands — and **20 % of near probes on
+mobile, 40 % on desktop, cannot clear the perceptibility threshold even fully opaque**. Say it
+that way rather than "the lowest of any band": at `lake_market` the 600–4000 m band's ceiling is
+lower still (3.2 mobile), which is a road at a kilometre and not the thing this parcel is about.
+L98 names the honest fix — a textured coverage, earth and grass resolved as patches at the scale a
+near pixel can show, so the eye integrates the recorded fraction instead of the blender pre-mixing
+it. That belongs to **R-W2** (texture the town), which is where the 1.4 texture score lives.
+
+<details>
+<summary>The parcel as opened, 2026-08-14</summary>
+
 
 Reported by the owner 2026-08-14, on mobile, on the **dev preview** — so **with the R-BUG2 fix
 already in**: standing on Franklin Street approaching Randolph, the wheel ruts read clearly in
@@ -1321,6 +2297,262 @@ should be wider, that is a change to the record with its reasoning, not a tuning
 the check names it; every existing road band still green; the per-community sward cover check
 untouched and still passing. **Mobile is the report and mobile is the gate** — 390×780 is where
 it was seen.
+
+</details>
+
+### R-BUG3c — the near ground is missing, and it is NOT the streets · **DONE 2026-08-15**
+
+**R-BUG3c-b is DONE (2026-08-15) — NEITHER surface moved. The publish step moves the mesh
+AFTER the only gate that measures it.**
+
+(a) asked which of the two was wrong and refused to guess. The answer is neither: the drawn
+ground and the sampler are both faithful to the terrain spec, and the disagreement is
+introduced between the generator and the browser, by `gltf-transform optimize` in
+`tools/bake.sh`.
+
+**Measured on the committed bytes** — `tools/measure_terrain_fit.mjs`, a third reader of this
+geometry, which decodes `EXT_meshopt_compression` and `KHR_mesh_quantization` the way the
+renderer does and compares vertex heights against the same `heightfield.bin` the walker samples:
+
+| mesh | lattice | mean | rms | max \|Δ\| |
+|---|---|---|---|---|
+| `assets/gltf/` **master** — what the generator gates | float | −0.0 mm | 1.4 mm | **2.5 mm** |
+| `assets/web/` **shipped** — what a browser loads | **306.4 mm** | 5.0 mm | 85.1 mm | **227.6 mm** |
+
+The master honours `MESH_FIT_TOLERANCE_M` to **2.5 mm**, which is the heightfield's own
+quantisation error — it is as exact as the field it is built from. The derivative published
+beside it is off by up to **228 mm**.
+
+**Why, precisely.** `gltf-transform` quantises POSITION to a **bit depth — 14 by default** —
+under ONE UNIFORM node scale, and stores the result in the next integer type up, so the low
+two bits are always zero. The uniform scale is set by the widest axis. This mesh is
+**5,020 m wide** (a 2,020 m box plus `SKIRT_MARGIN_M` = 1.5 km of apron on each side) and
+**8.6 m tall**, an aspect ratio of 580:1, so the vertical rung spacing is
+`5020 / 16383` = **306 mm**. The skirt — whose entire job is to carry the channel past the
+box edge — is what sets the precision of the ground the town stands on.
+
+**And no setting fixes it, which is the part that decides the shape of the fix.** Measured, not
+argued: `--quantize-position 16`, the maximum the format offers, lands on a **76.6 mm** lattice
+(rms 22.0 mm, max 54.4 mm) — still over the 30 mm the generator refuses to export past.
+`--meshopt-level medium` quantises identically and costs 166 KB more. Only `--compress false`
+meets the tolerance, at **6.45 MB against 688 KB**.
+
+**So the renderer reads the heights back off the field at load** —
+`conformGroundToField()` in `js/terrain.js`. Not a correction factor and explicitly not the
+`LIFT_M` fudge (a) forbade: the heightfield is *already* the authority for collision, building
+anchoring, flora roots and street drape, so this makes the surface a visitor SEES the same
+surface as the one the town is placed on, by construction rather than by tolerance. The GLB
+keeps the jobs the field cannot do — the decimated topology, the normals, the `_CONFIDENCE`
+channel. All **124,141** vertices move, by up to **227.6 mm**, and the residual afterwards is
+**0.24 µm**, which is float32 storage and nothing else.
+
+The skirt is carried rather than flattened: it lies outside the box, where `sample()` returns
+its **fallback of 0** instead of clamping, so snapping it naively would have dropped 1.5 km of
+apron onto the water plane. Sampling at the clamped position reproduces the generator's own
+rule for the skirt — "carry each boundary vertex outward, keeping its own height" — and the
+seam at the box edge closes exactly.
+
+**Three gates missed this, and the reason they all missed it is the same.** The normals gate,
+the road-contrast gate and the horizon gate each compare the render to another render. A
+quantised ground is a *correct-looking* ground; it is only wrong relative to a measurement
+none of them held. Two new gates hold it:
+
+- **`tools/check.sh`** — asserts the committed MASTER still meets `MESH_FIT_TOLERANCE_M` and
+  REPORTS the derivative's drift. Nothing re-checked the master after the bake, because the
+  generator's own refusal happens inside a Blender run this gate cannot make; a hand-edited GLB
+  would have sailed through every check in this repo. The derivative is reported and **not**
+  asserted, because it cannot pass and saying so would only assert that a compressor is a
+  compressor.
+- **`tools/smoke_renderer.mjs`** — asserts the surface actually DRAWN, at the tiles' own
+  vertices after every load step, against the sampler the town is placed with. That is the
+  comparison none of the three made. Green at **both** viewports.
+
+**What is NOT repaired, and is a question rather than a defect.** The same quantiser moves E and
+N by up to **153 mm**, which is invisible on a decimated prairie and is why only Y is read back.
+Whether the terrain should ship quantised at all — 688 KB with a lattice, against 6.45 MB
+exact — is a payload decision with an owner-facing cost, so it is **R-W6** below rather than
+something this parcel settled on its own. The fix here makes that answer stop mattering for the
+ground a visitor stands on.
+
+**The gate lesson, for the fourth time on this bug: do not measure the file you built. Measure
+the file you ship.**
+
+**The owner reproduced R-BUG3 on the branch that fixes it**, on mobile, on Lake Street approaching
+Franklin — the same complaint, after the parcel below declared it solved. Reproduced here at that
+exact pose (`walker.teleport` to the committed Lake x Franklin intersection, 52.4 m back, facing
+Lake's own centreline bearing, 390x780). Findings, all measured, none inferred:
+
+1. **It is not the alpha, and no alpha can reach it.** With the streets forced fully OPAQUE,
+   depth-writing, at the marker pass's own polygon offset — nothing able to hide them — the ribbon
+   still reaches only **row 937 of 1560**. The bottom **40 % of the frame contains no roadway at
+   any opacity**. R-BUG3's `NEAR_GAIN` is scaling the alpha of fragments that are not drawn.
+2. **It is not a streets bug.** Per-row high-frequency energy across the same frame collapses from
+   **1.0-2.4 above row 1000 to 0.2 below row 1120** — a 5-10x drop. Below that line there is no
+   road, **no grass tufts and no ground texture at all**: a smooth green wash. Everything that
+   sits on the ground vanishes together, at one radius, which is why the edge is a clean
+   horizontal line — a constant distance from the camera.
+3. **The geometry exists.** `STEP_M = 2.25`, `LIFT_M = 0.022`, and **32 street vertices lie within
+   10 m of the camera** at this pose. Something is burying them; they are not absent.
+   (A first probe reported "no vertex within 1.5 m of the centreline" — that was the PROBE's
+   error, not a finding: a ribbon quad's four corners are all at +/- half the track width, so
+   there are never vertices ON the centreline. Do not repeat it.)
+
+**SUPERSEDED ON MECHANISM by #145, 2026-08-15 — read that first.** The measurements below stand and
+reproduce; the CONCLUSION drawn from them, that the two are 'different data', was wrong about why.
+#145 found the cause: **the publish step quantises the mesh after the only gate that measures it**, so
+neither ground moved. Both measurements here were taken against the PUBLISHED mirror — which is the
+right target for a visitor-facing bug and the wrong one for asking which source surface is
+authoritative, because the published copy is not the surface either generator emitted. The spread of
+±3 m is the quantisation grid, not a disagreement between the GLB and `heightfield.bin`.
+
+**THE HYPOTHESIS IS CONFIRMED, AND IT IS WORSE THAN STATED — measured 2026-08-15.**
+
+The ground that is DRAWN is not the ground that things are PLACED on, and the gap is an order of
+magnitude larger than the road's own lift. Measured at the owner's pose by finding, for each sample
+point, the actual triangle of the ground mesh above it and interpolating its height — no raycaster,
+no assumption about how the mesh is built:
+
+| d (m) | `surfaceHeight()` | drawn ground | drawn − sampled | road placed at | buried |
+|---|---|---|---|---|---|
+| 2 | 0.775 | **0.906** | **+0.131** | 0.797 | yes |
+| 10 | 0.781 | 0.906 | +0.125 | 0.803 | yes |
+| 25 | 0.790 | 0.906 | +0.116 | 0.812 | yes |
+| 50 | 0.805 | 0.906 | +0.101 | 0.827 | yes |
+| 100 | 0.810 | 0.906 | +0.096 | 0.832 | yes |
+
+**The drawn ground sits 9.6–13.1 cm ABOVE the sampler, over the whole hundred metres.** `LIFT_M` is
+**22 mm**. The road is under the visible ground along its entire length here and never had a chance;
+so is every plant rooted by the same sampler, which is why the grass tufts vanish with it.
+
+**Then why is the road visible beyond ~7 m at all?** Because the polygon offset wins at range and
+loses up close: depth-buffer resolution is finest near the camera, so a fixed ~12 cm burial is
+decisively resolvable at 5 m and swamped by the offset at 50 m. The crossover depends on distance
+alone — which is exactly why the edge is a clean horizontal line at a constant radius, the one
+feature of the screenshots no other explanation accounted for.
+
+**The walker is inside the hill.** Eye is at 2.455 with the sampler at 0.775 — 1.68 m of eye height,
+as recorded — but the drawn ground under that same point is 0.906, so a visitor stands **13 cm sunk
+into the terrain they can see**. Collision, building anchoring, flora roots and street drape all use
+the sampler, so this is not only a road bug: **everything in the town is anchored to a surface that
+is not the one on screen.**
+
+**What has NOT been established, and must be before anything is changed.** Which of the two is
+wrong. The drawn mesh is a baked GLB; the sampler reads `heightfield.bin`; both descend from the
+same terrain spec, and this measurement says only that they disagree, not which one moved. Do not
+"fix" this by raising `LIFT_M` — that hides a 13 cm datum disagreement behind a fudge and leaves
+buildings and collision still wrong. Find out why the two disagree.
+
+**The original hypothesis, as written before the measurement:**
+
+**The hypothesis to test FIRST, and it is only a hypothesis.** Roads and flora are both PLACED
+with `terrain.surfaceHeight()`. If the terrain that is DRAWN sits above that sampler near the
+camera, both are buried by the same few centimetres at the same radius — which is the symptom
+exactly. It would also fit **R-BUG1** (the river edge flickering when flying). Measure the drawn
+terrain surface against `surfaceHeight()` before changing anything.
+
+**And the gate lesson, for the third time on this one bug.** R-BUG3 added a station that stands
+*at* the Lake/Market crossing — one of the few places the near ground is intact — and it went
+green. The owner was 172 ft short of an intersection. A station AT a crossing cannot speak for the
+block between crossings. Add a mid-block station on foot before claiming this closed.
+
+**Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
+
+### R-W6 — should the terrain ship quantised at all? · **UNCLAIMED · opened 2026-08-15 by R-BUG3c · NOT urgent**
+
+R-BUG3c found that the published ground mesh lands on a **306 mm** vertical lattice and fixed
+the consequence rather than the cause: the renderer reads the heights back off the heightfield,
+so the ground a visitor stands on is correct whatever the compressor does. This parcel asks
+whether the cause is worth removing.
+
+**The numbers are already measured** — see R-BUG3c's table and
+`tools/measure_terrain_fit.mjs`:
+
+| encoding | size | vertical lattice | max \|Δ\| vs the field |
+|---|---|---|---|
+| shipped today (meshopt, 14-bit) | **688 KB** | 306.4 mm | 227.6 mm |
+| meshopt, 16-bit (the format's max) | 688 KB | 76.6 mm | 54.4 mm |
+| meshopt, `--level medium`, 16-bit | 854 KB | 76.6 mm | 54.4 mm |
+| no compression | **6.45 MB** | float | 2.5 mm |
+
+**What is still open, and it is genuinely a decision rather than a measurement.** 5.8 MB is a
+real cost on the phone this project was reported from twice, and the conforming pass has made
+the height error harmless. What remains wrong is the **horizontal** displacement — E and N move
+by up to **153 mm** — which nothing corrects and which nobody has yet shown a visitor can see.
+
+**So the honest order is: measure the horizontal artefact BEFORE trading 5.8 MB for it.**
+`tools/critic_shots.mjs --metrics` exists for exactly this kind of "can you see it" question.
+If it is invisible at the anchors a visitor is offered, the answer is to keep the 688 KB, raise
+the bit depth to 16 because it is free, and write the reasoning down. Do not answer this by
+preference, and do not answer it by reaching for the uncompressed file because exactness feels
+safer — page weight is a user-facing cost the same way a buried road is.
+
+**One thing to check first, because it may make the whole trade cheap:** the 5,020 m width that
+sets the lattice is mostly `SKIRT_MARGIN_M` — 1.5 km of apron on each side of a 2,020 m box. A
+skirt emitted as its own mesh would shrink the ground's quantisation volume by 2.5×
+(`--quantization-volume mesh` is already the default), which at 16 bits would put the lattice
+near 31 mm for nothing but a generator change. That needs a bake, so it is a proposal to
+`docs/GLB-CONTRACT.md` and `generators/terrain_gen.py`, not a unilateral edit.
+
+**Files:** `tools/bake.sh` · `generators/terrain_gen.py` (skirt split, if taken) ·
+`docs/RENDERING.md` · `docs/GLB-CONTRACT.md` (propose). Measurement first.
+
+### R-BUG4 — a wet corner deletes the whole road quad, dry half included · **DONE 2026-08-15**
+
+**DONE 2026-08-15.** The edge test clips at the waterline now instead of deleting the panel. Each
+end is trimmed on each side INDEPENDENTLY by bisection out from the dry centreline — asymmetric on
+purpose, because a bank road is wet on one side only and shrinking it symmetrically would throw the
+dry verge away too. The centreline test is untouched: a road whose centre is in the river is a
+crossing, and that is a bridge's job.
+
+**Measured on the built geometry, not on a replay of the rule:** 4,843 panels have a dry
+centreline, **all 4,843 now reach the ribbon**, **28 of them clipped at the waterline**, **0**
+dropped as sub-metre slivers, and **62.7 m of roadway recovered**. The `13 quads / ~30 m` first
+recorded here was read off a truncated probe listing and was **half the true figure** — a reminder
+that a sorted table read from its tail is not a total.
+
+The gate asserts the INVARIANT rather than the number: every panel with a dry centreline reaches
+the ribbon, the only permitted absences being sub-metre slivers, which are counted and printed. It
+also asserts that clipping actually happens, so a later simplification back to deleting the panel
+fails in CI rather than in a screenshot. The existing "no street vertex stands on water" assertion
+is unchanged and still passes — the clip stops at dry ground by construction.
+
+
+Owner-reported 2026-08-15 from South Water Street: a clean-edged green quadrilateral punched
+through the roadway ahead. Straight edges mean geometry, and it is the size of one road quad.
+
+`streets.js addRecord` drops a quad when the centreline OR **any of its four corners** is water:
+
+    if (terrain.isWater(a) || terrain.isWater(b) || corners.some(isWater)) { continue; }
+
+The comment says the edge test exists to "keep a bank road from painting over water just because
+its legal corridor reaches it" — a fair aim, and the wrong instrument. **The remedy for "do not
+paint over water" is to CLIP the quad at the waterline, not to delete it**, because deleting takes
+the dry half with it. On a bank road the corridor's outer corner grazes the mask constantly.
+
+Replayed against the shipped mask, per street:
+
+| street | quads | dropped: wet CENTRE | dropped: wet EDGE ONLY | metres deleted | % |
+|---|---|---|---|---|---|
+| Kinzie | 632 | 84 | **6** | 202 | **14.2 %** |
+| Lake | 543 | 34 | 1 | 79 | 6.5 % |
+| Washington | 543 | 20 | 1 | 47 | 3.9 % |
+| Canal | 357 | 13 | 2 | 33 | 4.2 % |
+| Randolph | 544 | 22 | 0 | 49 | 4.0 % |
+| South Water | 341 | 4 | **3** | 16 | 2.1 % |
+
+The **edge-only** column is the indefensible part. **The table above understates it**: it was read
+off a truncated listing, and the whole-town figure measured from the built geometry is **28 panels
+and 62.7 m of roadway deleted while the centreline was dry land a visitor can stand on** — twice
+what was first written down here. Quote the measured figure, not the table. The wet-centre drops are defensible in principle
+(a road genuinely crossing the river) but should be checked against the bridge records rather than
+assumed — 34 quads on Lake is 79 m, and it is worth knowing whether that is one crossing or a
+mask that is too generous.
+
+**Files:** `renderers/web/js/streets.js` (clip, do not drop) · `tools/smoke_renderer.mjs` (a check
+that no street loses a quad whose centreline is dry)
+**Acceptance:** the edge-only deletions go to **zero**; the wet-centre deletions are unchanged or
+justified per street; the South Water hole is gone in a shot at the owner's pose; no road paints
+over water — prove it, do not assert it.
 
 ### B-A1 — does the AO bake earn its nightly? · **UNCLAIMED · NEXT UP (lane 1 or standalone)**
 
@@ -1605,11 +2837,11 @@ setting existed; every critic and smoke measurement still reads the default; the
 the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
 and legible there.
 
-### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
+### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **K23a DONE 2026-08-15 · K23b DONE 2026-08-15 · owner-reported 2026-08-14**
 
-> **K23a is DONE (2026-08-15).** 193 names, and the prose around them, now agree with the grade
-> the record carries. **K23b — say what we included at each level — is untouched and is still
-> the substantive half.** Findings below under "K23a — what the sweep actually found".
+> **BOTH HALVES ARE DONE.** K23a made the prose agree with the grade (193 names); K23b put the
+> per-level summary on the card. Findings under "K23a — what the sweep actually found" and
+> "K23b — what the summary had to decide" below.
 
 Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
 inferred right? Like if it was totally invented based on our population household program it was
@@ -1685,6 +2917,66 @@ user-visible string names a level it is not**; a smoke assertion that a record's
 never contradicts its own existence grade — put the fault back and it must name it; the card
 states what was included at each level for one attested, one inferred and one reconstructed
 building. Mobile is where it was reported.
+
+#### K23b — what the summary had to decide · **DONE 2026-08-15**
+
+**Shipped:** a section at the TOP of every provenance card — `What did we include, and where did
+it come from?` — that partitions every graded claim below it into the three levels, names the
+claims at each, and says where they came from. `renderers/web/js/popup.js` (`basisSection`),
+`renderers/web/css/walk.css`, four assertions in `tools/smoke_renderer.mjs`, and the changelog.
+No data changed and no generator ran: this is entirely a reading of records that already existed.
+
+**Making it a PARTITION is what made it gateable, and that was the design decision.** A summary
+can be written as a highlight reel — *"attested: its size, its position"* — and nothing can then
+check it, because there is no arithmetic to disagree with. Every claim the card renders lands in
+exactly one row instead, so the gate is a RECOUNT: pick every building, tally the confidence chips
+off the rendered card, and require the section's own three numbers to be those numbers.
+**All 276 loaded buildings agree, at both viewports.** The recount deliberately uses the SAME
+selector as the older chip-coverage assertion (`.pop-meta .conf, .pop-sec table.attrs .conf`) —
+two definitions of "a claim on this card" is exactly how a summary would come to disagree with
+the card it summarises while both gates stayed green.
+
+**A citation means a different thing at each level, and one label over all three would have been
+the same category error this card's history is made of.** On an `attested` claim a source is
+where the value came FROM. On a `reconstructed` one it is what BOUNDED an invention — the
+records say so themselves (*"the spec is cited because the invention is bounded by it, which is
+what makes it defensible rather than arbitrary"*) — and 193 anonymous roofs cite
+`owner_chicago_1835_reconstruction_spec_2026` and `andreas_1884_v1` on every attribute they have.
+A single `sources:` line over the summary would have printed a nineteenth-century history as
+attribution for a building nobody claims stood there. The three leads are **From**, **Reasoned
+from** and **Bounded by**.
+
+**Attested is not the same as built, and a summary of what was INCLUDED is exactly where that
+gap does damage.** The Western Hotel's stables are `attested` — a pre-fire account describes the
+wagon yard — and there is nothing of them in the model. **14 records carry an attribute in that
+state.** The rows below have marked it since the `geometry` declaration existed; the summary
+repeats it (`Not in the model: stables`) rather than averaging it into a count of things we
+included. Gated on the discriminating pair: the Western Hotel shows the line, the Sauganash has
+no such attribute and shows nothing.
+
+**An empty level says so in words, and that is the common case rather than the edge case.**
+Across the dataset's 279 records and **3,675 graded claims — 199 attested, 509 inferred, 2,967
+invented — 204 records have no attested claim at all.** A row that rendered only when non-empty
+would go silent on three quarters of the town, at the one moment a visitor most needs telling.
+So the attested row on an anonymous roof reads *"Nothing about this building is attested by a
+source."*
+
+**The finding this parcel did not go looking for: 69 buildings have inventions that nothing is
+recorded as bounding.** `reconstructed` requires a note, not a source — deliberately, and K23a
+argued why the old "a bottom-tier value citing sources is suspicious" rule died with the rename.
+The consequence had never been counted: of the 270 records carrying at least one invented claim,
+**69 cite nothing at all on any of them**, so their `Bounded by` line reads *"Nothing is cited as
+bounding these."* The Sauganash Hotel is one of them — its footprint is the placeholder its own
+note calls a placeholder, and no typology is named beside it. That is honest and it is now
+VISIBLE, which is the point; whether those 69 should acquire a bound is a research question for
+a successor and not something to paper over on the card.
+
+**Two things deliberately not done.** The section does not claim to cover the LIBERTIES — a
+liberty belongs to no attribute, which is why it has its own section — so the lead points at
+"What we made up here" rather than implying three rows of claim labels are the whole of what was
+invented. And the three definitions are the Evidence panel's own words, literally: each is a
+substring of the legend in `index.html`, asserted as such, because two surfaces quietly
+disagreeing about what `inferred` means is the fault K23a spent a run cleaning up.
 
 #### K23a — what the sweep actually found · **DONE 2026-08-15**
 

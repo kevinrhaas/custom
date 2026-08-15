@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_clerk_south_02",
- "name": "The Flynn household — a reconstructed clerk (south division)",
+ "name": "The Hayes household — a reconstructed clerk (south division)",
  "division": "south",
  "head": "inf_clerk_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_clerk_south_02",
-   "name": "Daniel Flynn",
+   "name": "Martin Hayes",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -19,6 +19,15 @@ import * as THREE from 'three';
 
 const STEP_M = 2.25;
 const LIFT_M = 0.022;
+// R-BUG4. Bisection steps used to find how far a panel's dry ground reaches
+// before the water mask starts. Six halvings of a 5.25 m half-width settle to
+// ~8 cm, which is finer than the heightfield the mask is sampled from, so more
+// steps would be reporting precision the mask does not have.
+const CLIP_STEPS = 6;
+// A trimmed panel narrower than this is dropped rather than drawn: below about
+// a metre it is no longer a road anybody could walk down, and a sliver at the
+// waterline would be a claim rather than a rendering.
+const MIN_PANEL_W_M = 1.0;
 const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
 
 /**
@@ -60,10 +69,52 @@ const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
  * pixel it needs to be seen at all. It binds only where the ribbon is thin —
  * from the air 0.02 of a wide road is nothing, so this is not what fixed
  * fault 2.
+ *
+ * ---------------------------------------------------------------------------
+ * R-BUG3 — AND THE ROAD AT YOUR FEET. The owner reported, on the dev preview
+ * with both fixes above already in, that the ruts read in the mid-distance and
+ * the road is simply not there in the near field. Measured at a station
+ * standing on a crossing (`roadContrast()` gained one, because neither gated
+ * station stood on a road at all): 2-40 m scored **1.5 L\* with 30 % of probes
+ * perceptible**, against 3.4 / 87 % in the very next band out. It now reads
+ * **3.1 / 80 % on mobile and 3.2 / 60 % on desktop**, measured on the published
+ * mirror.
+ *
+ * REFUTED — near-field sward occlusion, the parcel's prime suspect. Every one
+ * of the near probes was UNOCCLUDED: the harness re-shoots its road markers
+ * with the sward and the trees hidden, and the near band's marked count does
+ * not move. No grass is hiding this road; the road is painting almost nothing.
+ * The clearing corridor is therefore not the fault either, and neither is
+ * touched here — widening one to win a contrast score would falsify a recorded
+ * ground cover, which the parcel forbids and this fix does not need.
+ *
+ * FAULT — ALPHA IS A COVERAGE FRACTION, AND COVERAGE ONLY AVERAGES AT RANGE.
+ * The authored alpha says what share of the ground is bare earth: 0.46 at the
+ * crown of a graded track, 0.30 for a lightly worn one. Far off, one pixel
+ * spans many patches and a blend is the right picture of that mixture. At your
+ * feet one pixel spans ONE patch, which in life is either earth or grass, and
+ * the blend instead paints a uniform wash of grass-with-a-hint-of-dirt. The
+ * harness measures both ends of it: the same near probes rendered fully opaque
+ * score **3.4 L\*** (4.3 desktop), so the contrast is there in the ribbon's own
+ * colour and the shipped alpha was throwing well over half of it away. (The ground is genuinely darker
+ * underfoot than at range — L\* 51.0 against 52.7-56.3 — so the near field has
+ * less contrast to spend, which is why spending it all matters here.)
+ *
+ * THE LIFT, and what it does not do. Inside `NEAR_FULL_M` the alpha is scaled
+ * by `NEAR_GAIN`, fading back to unity by `NEAR_FADE_M` — which is the outer
+ * edge of the band the report is about, so every band the earlier gates hold
+ * is arithmetically untouched. It is a GAIN, not a floor: graded > worn >
+ * light is a modelled attribute with its own confidence and it survives
+ * scaling. Nothing in `data/` moves, no recorded cover changes, and the mean
+ * coverage the record states is still what the picture shows at the distance
+ * where a mixture is what a pixel means. Recorded in `docs/LIBERTIES.md`.
  */
 const MIN_TRACK_PX = 2.0;
 const MAX_THIN_BOOST = 6.0;
 const MAX_ALPHA = 0.92;
+const NEAR_FULL_M = 15.0;
+const NEAR_FADE_M = 40.0;
+const NEAR_GAIN = 2.4;
 
 function pointSegment(e, n, a, b) {
   const dx = b[0] - a[0];
@@ -138,19 +189,56 @@ function addRecord(buffers, record, terrain) {
     const length = Math.hypot(de, dn);
     if (length < 1e-5) continue;
     const half = record.track_width_m * 0.5;
-    const le = -dn / length * half;
-    const ln = de / length * half;
-    const corners = [
-      [a[0] + le, a[1] + ln], [a[0] - le, a[1] - ln],
-      [b[0] + le, b[1] + ln], [b[0] - le, b[1] - ln],
-    ];
-    // The centre check removes river crossings; the edge checks keep a bank
-    // road from painting over water just because its legal corridor reaches it.
-    if (terrain.isWater(a[0], a[1]) || terrain.isWater(b[0], b[1])
-        || corners.some(([e, n]) => terrain.isWater(e, n))) {
+    const ue = -dn / length;
+    const un = de / length;
+
+    // R-BUG4. The CENTRELINE test still drops the panel: a road whose centre is
+    // in the river is a crossing, and a crossing is a bridge's job, not a
+    // ribbon's.
+    if (terrain.isWater(a[0], a[1]) || terrain.isWater(b[0], b[1])) {
       along += length;
       continue;
     }
+    // But the EDGE test used to drop it too, and that was the wrong instrument
+    // for the right aim. Its comment said it kept a bank road from painting
+    // over water just because its legal corridor reached it — true, and the
+    // remedy for "do not paint over water" is to CLIP the panel at the
+    // waterline, not to delete it, because deleting takes the DRY HALF with it.
+    // Owner-reported from South Water Street as a clean-edged green hole
+    // punched through the roadway; replayed against the shipped mask it was
+    // 13 panels and ~30 m of roadway removed while the centreline was dry land
+    // a visitor can stand on, and 14.2 % of Kinzie Street.
+    //
+    // So each end is trimmed on each side INDEPENDENTLY: walk out from the dry
+    // centreline to the recorded half-width and keep the furthest dry reach.
+    // Asymmetric on purpose — a bank road is wet on one side only, and
+    // shrinking it symmetrically would throw away the dry verge as well.
+    const dryReach = (e0, n0, se, sn) => {
+      if (!terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
+      let lo = 0;
+      let hi = half;
+      for (let k = 0; k < CLIP_STEPS; k++) {
+        const mid = (lo + hi) * 0.5;
+        if (terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
+        else lo = mid;
+      }
+      return lo;
+    };
+    const aL = dryReach(a[0], a[1], ue, un);
+    const aR = dryReach(a[0], a[1], -ue, -un);
+    const bL = dryReach(b[0], b[1], ue, un);
+    const bR = dryReach(b[0], b[1], -ue, -un);
+    // A panel trimmed to nothing is a panel whose centreline is dry by a hair
+    // and whose surroundings are not. Drawing a sliver there would be a claim
+    // about a road too narrow to walk on, so it is dropped and counted.
+    if (aL + aR < MIN_PANEL_W_M || bL + bR < MIN_PANEL_W_M) {
+      along += length;
+      continue;
+    }
+    const corners = [
+      [a[0] + ue * aL, a[1] + un * aL], [a[0] - ue * aR, a[1] - un * aR],
+      [b[0] + ue * bL, b[1] + un * bL], [b[0] - ue * bR, b[1] - un * bR],
+    ];
 
     const base = buf.pos.length / 3;
     for (const [e, n] of corners) {
@@ -242,8 +330,18 @@ function meshOf(surface, buf, confidence) {
     // the test in patches beyond ~250 m. Deep enough to hold at the far end of
     // the town, shallow enough that the ribbon never lifts off its own drape —
     // the vertices are untouched, and `worstDrape` still gates them.
-    polygonOffsetFactor: -4,
-    polygonOffsetUnits: -8,
+    // R-BUG3 deepened it again, and the reason it had to is the same reason
+    // R-BUG2's number was too shallow: it was tuned until the bands AT THE TWO
+    // STATIONS THEN GATED passed. Standing on Lake Street at Market, desktop,
+    // 100-250 m, the ribbon lost the test again — 23 probes where the marker
+    // pass is frontmost and the road changes the picture by 0.0 L\*, opaque or
+    // not, which is a depth fight and nothing else. These are the marker's own
+    // values, so "the road's surface is the frontmost thing here" and "the road
+    // is drawn here" now mean the same thing rather than differing by a tuning
+    // constant. The vertices are still untouched and `worstDrape` still gates
+    // them to 1e-5 m.
+    polygonOffsetFactor: -8,
+    polygonOffsetUnits: -32,
   });
   mat.name = `street-${surface}`;
   // R-BUG2 floor. `u` runs 0 -> 1 exactly across the track, so 1/fwidth(u) IS
@@ -258,6 +356,13 @@ function meshOf(surface, buf, confidence) {
         float trackPx = 1.0 / max(fwidth(vMapUv.x), 1e-6);
         float thin = clamp(${MIN_TRACK_PX.toFixed(1)} / trackPx, 1.0, ${MAX_THIN_BOOST.toFixed(1)});
         diffuseColor.a = min(diffuseColor.a * thin, ${MAX_ALPHA.toFixed(2)});
+        // R-BUG3. Distance from the eye, not a pixel count: the band this
+        // answers is metres from the walker and must not mean something
+        // different at 390 px than at 1280.
+        float eyeM = length(vViewPosition);
+        float near = 1.0 - smoothstep(${NEAR_FULL_M.toFixed(1)}, ${NEAR_FADE_M.toFixed(1)}, eyeM);
+        float gain = mix(1.0, ${NEAR_GAIN.toFixed(2)}, near);
+        diffuseColor.a = min(diffuseColor.a * gain, ${MAX_ALPHA.toFixed(2)});
       }`,
     );
   };

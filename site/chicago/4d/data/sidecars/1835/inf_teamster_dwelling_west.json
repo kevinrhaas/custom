@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_teamster_west_05",
-      "name": "The Hubbard household — a reconstructed teamster (west division)",
+      "name": "The Ingalls household — a reconstructed teamster (west division)",
       "division": "west",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_teamster_dwelling_west is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Asa Hubbard",
+          "name": "Amos Ingalls",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "teamster",
@@ -195,6 +195,14 @@
     }
   ],
   "research_note": "RECONSTRUCTED BUILDING, RAISED FOR A RECONSTRUCTED HOUSEHOLD (docs/ROADMAP.md K1, phase two). The west-side teamster's own roof. It is NOT one of the anonymous count-units of the 665-roof programme: those are placed by aggregate mix and carry no occupant, while this one exists because the occupation census says the town held a household of this trade and no anonymous roof of the right family stood free in this district. It consumes one slot of its district's programme target rather than adding to it - see the accounting block in data/reconstruction/1835_inferred_household_programme.json.",
-  "research_doc": "docs/RESEARCH/inf_teamster_dwelling_west.md",
-  "review_required": false
+  "research_doc": "docs/RESEARCH/residents_1835_inferred.md",
+  "review_required": false,
+  "reconstruction": {
+    "status": "inferred_household",
+    "family": "D4",
+    "district": "west",
+    "programme_phase": "phase2_inferred_households",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "occupation": "teamster"
+  }
 }

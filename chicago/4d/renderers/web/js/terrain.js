@@ -255,11 +255,27 @@ export async function createTerrain({
         return null;
       });
   }
+  let groundFit = null;
   if (ground) {
     confidence?.ensureAttribute(ground.geometry, `terrain ${epochId} ground`);
+    // BEFORE tiling, which splits this geometry into the meshes that are drawn.
+    // See conformGroundToField: the published GLB's heights are quantised onto a
+    // 306 mm lattice and the town is anchored to the heightfield, so the ground a
+    // visitor sees is read back off the field rather than off the compressor.
+    groundFit = conformGroundToField(ground.geometry, heightfield);
+    // 10 µm: four orders of magnitude inside the 30 mm the ground is held to,
+    // and a comfortable margin over the 0.24 µm float32 storage costs.
+    if (groundFit && groundFit.residual_max_m > 1e-5) {
+      problems.push(`terrain ${epochId}: the ground mesh still departs from the heightfield by `
+        + `${(groundFit.residual_max_m * 1000).toFixed(1)} mm after conforming — `
+        + 'the road and the flora are drawn under the ground where it does');
+    }
   } else {
     ground = new THREE.Mesh(gridGeometry(heightfield));
     ground.name = `terrain__${epochId ?? 'flat'}`;
+    // Built from the field itself, so it is conformed by construction.
+    groundFit = { vertices: ground.geometry.attributes.position.count, moved: 0,
+                  correction_max_m: 0, residual_max_m: 0 };
   }
   ground.material = groundMat;
   ground.receiveShadow = true;
@@ -339,6 +355,13 @@ export async function createTerrain({
     meta,
     epochId,
     loaded: heightfield.loaded,
+
+    /** How far the ground a visitor SEES had to move to become the ground the
+     * town is anchored to, and what is left over afterwards. The gate reads
+     * `residual_max_m`; `correction_max_m` is the size of the fault repaired,
+     * and it is a number worth watching rather than asserting, because it
+     * belongs to the compressor and not to this renderer. */
+    groundFit,
 
     /** The one rendered terrain surface in metres at local ENU (e, n).
      * Buildings, streets, trees and plant roots all anchor to this sampler. */
@@ -555,6 +578,88 @@ async function loadGlbMesh(url) {
   found.scale.set(1, 1, 1);
   found.updateMatrix();
   return found;
+}
+
+/**
+ * Put the ground mesh's heights back on the heightfield the town is anchored to.
+ *
+ * THE MESH THAT SHIPS IS NOT THE MESH THE GENERATOR CHECKED. `terrain_gen.py`
+ * ray-casts its decimated ground against the heightfield and refuses to export
+ * past 30 mm, because "the walker's eye is pinned to the heightfield, so it would
+ * visibly float or sink" — and the master it exports honours that to **2.5 mm**.
+ * The file a browser loads is the derivative written afterwards by
+ * `gltf-transform optimize` in `tools/bake.sh`, which quantises POSITION to 14
+ * bits under ONE UNIFORM node scale. That scale is set by the widest axis, and
+ * this mesh is 5,020 m wide (a 2,020 m box plus 1.5 km of skirt) and 8.6 m tall,
+ * so the vertical lattice it lands on is **306 mm**. Measured on the shipped
+ * bytes by `tools/measure_terrain_fit.mjs`: rms 85 mm, max 228 mm. No setting
+ * fixes it — 16 bits is the maximum the format offers and still lands on 77 mm.
+ *
+ * That is the whole of R-BUG3c. The road is drawn 22 mm above the sampler
+ * (`LIFT_M`) onto ground the compressor lifted by up to 228 mm, so near the
+ * camera — where depth resolution is finest and the polygon offset cannot save it
+ * — the roadway, the grass tufts and every rooted plant are simply underneath the
+ * ground, at a constant radius, with the clean horizontal edge the owner
+ * photographed twice.
+ *
+ * So the heights are read back off the field at load. Not a correction factor and
+ * not a fudge: the heightfield is already the authority for collision, for
+ * building anchoring, for flora roots and for street drape, and this makes the
+ * surface a visitor SEES the same surface, by construction rather than by
+ * tolerance. What the GLB is still trusted for is everything the field cannot
+ * carry — the decimated topology, the normals, and the `_CONFIDENCE` channel the
+ * ground dithers under.
+ *
+ * The skirt is carried, not flattened. It lies outside the modelled box, where
+ * `sample()` returns its fallback rather than clamping, and snapping it to that
+ * would drop 1.5 km of apron onto the water plane. Sampling at the clamped
+ * position instead reproduces the generator's own rule for it — "carry each
+ * boundary vertex outward, keeping its own height" — so the seam at the box edge
+ * closes exactly.
+ *
+ * What this does NOT repair: the same quantiser moves E and N by up to 153 mm,
+ * which is invisible on a decimated prairie and is why only Y is read back.
+ * Whether the terrain should ship quantised at all is a separate question; this
+ * makes the answer stop mattering for the ground a visitor stands on.
+ *
+ * @returns {{vertices: number, moved: number, correction_max_m: number,
+ *            residual_max_m: number}|null} null when there is no field to conform to
+ */
+export function conformGroundToField(geometry, hf) {
+  if (!hf?.loaded) return null;
+  const pos = geometry.attributes.position;
+  const eMin = hf.originE;
+  const eMax = hf.originE + hf.widthM;
+  const nMin = hf.originN;
+  const nMax = hf.originN + hf.depthM;
+  let moved = 0;
+  let worst = 0;
+  for (let i = 0; i < pos.count; i += 1) {
+    // glTF is Y-up with +Z south, so ENU north is -z. Clamped into the box: see
+    // the skirt note above.
+    const e = Math.min(eMax, Math.max(eMin, pos.getX(i)));
+    const n = Math.min(nMax, Math.max(nMin, -pos.getZ(i)));
+    const y = hf.sample(e, n);
+    const d = Math.abs(y - pos.getY(i));
+    if (d > 0) {
+      moved += 1;
+      if (d > worst) worst = d;
+    }
+    pos.setY(i, y);
+  }
+  pos.needsUpdate = true;
+  // Re-read rather than assume: every vertex inside the box now holds the
+  // sampler's own answer, so the residual is zero but for float32 storage —
+  // measured at 0.24 µm on the committed ground — and anything larger means this
+  // walked the wrong axis. The gate asserts it rather than trusting the loop.
+  let residual = 0;
+  for (let i = 0; i < pos.count; i += 1) {
+    const e = pos.getX(i);
+    const n = -pos.getZ(i);
+    if (e < eMin || e > eMax || n < nMin || n > nMax) continue;
+    residual = Math.max(residual, Math.abs(pos.getY(i) - hf.sample(e, n)));
+  }
+  return { vertices: pos.count, moved, correction_max_m: worst, residual_max_m: residual };
 }
 
 /**

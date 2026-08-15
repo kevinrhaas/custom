@@ -51,7 +51,7 @@ import { fileURLToPath } from 'node:url';
 
 // The critic harness's PNG reader and its CIE L*, so a road's contrast is
 // measured on the same scale as everything else this project quotes.
-import { decodePng, labL } from './critic_metrics.mjs';
+import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metrics.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -153,6 +153,41 @@ const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
 /**
+ * R-M1a — THE TWO NUMBERS THE BARS ABOVE CANNOT SEE, MEASURED AND NOT YET GATED.
+ *
+ * The owner ruled on 2026-08-14, after R-W1 broke this gate by legitimately
+ * changing exposure: score exposure-invariant CONTRAST **and** keep an absolute
+ * FLOOR. Both bars, not a replacement. The two thresholds above are neither —
+ * ΔL* is compressive, so R-W1 preserved the road/ground ratio to within 0.4 %,
+ * got 14–17 % darker, and lost a bar it had not actually regressed.
+ *
+ * So each band now also reports:
+ *
+ *   weber      |Y(road) − Y(ground)| / Y(ground) on LINEAR luminance, median
+ *              over the same probes. Exposure cancels out of it; see
+ *              `weberContrast` in `critic_metrics.mjs` for why it is that
+ *              quantity and not a bare ratio.
+ *   groundL    median CIE L* of the ground at those probes with the street
+ *              layer hidden — the floor reading. "Is there enough light here to
+ *              distinguish anything at all", which is the failure mode a pure
+ *              ratio would happily pass.
+ *
+ * **They are REPORTED AND NOT GATED, deliberately, and that is R-M1's split
+ * rather than a half-finished job.** This half lands the measurement and commits
+ * its numbers on `dev`; R-M1b sets the bars against them, and against the
+ * pre-R-BUG2 build, which the acceptance requires the new bars still to FAIL.
+ * Landing them silent means this change cannot alter a single pass/fail while
+ * the baseline is being taken — a gate that moves at the same moment as its own
+ * baseline has no baseline.
+ *
+ * **R-M1b has no threshold source yet, and that is the finding of this half.**
+ * The parcel says to derive the bars from the reference photograph — "what
+ * contrast does a real dirt track hold against real prairie". It does not hold
+ * one: `python3 tools/measure_reference.py` now surveys the frame and the widest
+ * contiguous bare-earth run anywhere in it is 8.2 % of the frame width, at
+ * −38.2°, at the photographer's feet. Do not pick a number to fill that gap.
+ */
+/**
  * Two stations because the report was two symptoms: roads that go "in places"
  * on foot, and roads you "lose" when you fly over them. `south_water` looks
  * east down an open street from eye height; `from_above` is the scene's own
@@ -164,10 +199,18 @@ const ROAD_MIN_PROBES = 8;
  * threshold there would be a claim about fog, not about roads.
  */
 const ROAD_STATIONS = [
-  { id: 'south_water', what: 'from the walker’s eye, down an open street', minBands: 2 },
-  { id: 'from_above', what: 'from the air, at the aerial anchor', minBands: 2 },
+  { id: 'south_water', kind: 'anchor', what: 'from the walker’s eye, down an open street', minBands: 2 },
+  { id: 'from_above', kind: 'anchor', what: 'from the air, at the aerial anchor', minBands: 2 },
+  // R-BUG3. Neither anchor above STANDS ON A ROAD — the `south_water` viewpoint
+  // is 101 m from the centreline it is named after (T-V2) and 17 m from the
+  // nearest one — so the near band was empty at both and no threshold could
+  // have caught the owner's report. This station arrives the way a visitor
+  // does, by clicking a verified street-control intersection in the Go to tab,
+  // which puts the roadway under the camera and its coordinates stay in the
+  // compiled index rather than being copied into this gate.
+  { id: 'lake_market', kind: 'intersection', what: 'standing on the crossing itself', minBands: 2 },
 ];
-const ROAD_BANDS = [[40, 100], [100, 250], [250, 600], [600, 4000]];
+const ROAD_BANDS = [[2, 40], [40, 100], [100, 250], [250, 600], [600, 4000]];
 const ROAD_GATED_BEYOND_M = 600;
 
 /** Project the street centrelines, then read R, M and O. Restores what it moved. */
@@ -179,7 +222,36 @@ async function roadContrast(page, station) {
       const el = document.getElementById(id);
       if (el) { el.dataset.roadHidden = el.style.visibility; el.style.visibility = 'hidden'; }
     }
-    a.goTo(st);
+    if (st.kind === 'intersection') {
+      // The visitor's own route: the Go to tab's list is painted at boot, so the
+      // button is in the DOM whether or not the panel is open.
+      document.querySelector(`[data-jump-id="${st.id}"]`)?.click();
+      a.step();
+      // Then turn to look ALONG the street being stood on. The arrival pose
+      // aims at a fixed bearing, which at a crossing points diagonally into the
+      // block and puts no roadway in the frame at all — 0 probes inside 100 m.
+      // The bearing is read off the nearest committed centreline segment, so
+      // the direction is the dataset's and not a number chosen here.
+      const p = a.player;
+      let best = null;
+      for (const rec of a.streets.records) {
+        const path = rec.path;
+        for (let i = 1; i < path.length; i++) {
+          const A = path[i - 1];
+          const B = path[i];
+          const dE = B[0] - A[0];
+          const dN = B[1] - A[1];
+          const len2 = dE * dE + dN * dN;
+          const t = len2 ? Math.max(0, Math.min(1,
+            ((p.e - A[0]) * dE + (p.n - A[1]) * dN) / len2)) : 0;
+          const d = Math.hypot(p.e - (A[0] + t * dE), p.n - (A[1] + t * dN));
+          if (!best || d < best.d) best = { d, bearing: (Math.atan2(dE, dN) * 180) / Math.PI };
+        }
+      }
+      if (best) a.walker.teleport({ yaw_deg: (best.bearing + 360) % 360 });
+    } else {
+      a.goTo(st.id);
+    }
     a.step();
     a.step();
     const cam = a.camera;
@@ -241,16 +313,59 @@ async function roadContrast(page, station) {
     a.step();
   });
   const shotM = await page.screenshot({ type: 'png' });
+  // DIAGNOSTIC PASS — the same markers with the sward and the trees hidden. A
+  // probe marked here but not in `shotM` is a road that is ON SCREEN and
+  // COVERED BY VEGETATION, which the marked-only denominator drops instead of
+  // failing.
   await page.evaluate(() => {
     const a = window.__chicago4d;
+    a.__floraWas = [a.flora?.group?.visible, a.trees?.group?.visible];
+    if (a.flora?.group) a.flora.group.visible = false;
+    if (a.trees?.group) a.trees.group.visible = false;
+    a.step();
+  });
+  const shotMF = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    if (a.flora?.group) a.flora.group.visible = a.__floraWas[0] ?? true;
+    if (a.trees?.group) a.trees.group.visible = a.__floraWas[1] ?? true;
+    delete a.__floraWas;
     for (const [o, m] of a.__roadMarkers) { o.material.dispose(); o.material = m; }
     delete a.__roadMarkers;
     a.streets.group.visible = false;
     a.step();
   });
   const shotO = await page.screenshot({ type: 'png' });
+  // DIAGNOSTIC PASS — the road painted at FULL opacity. A near band that still
+  // scores flat here is not an alpha fault: it is the ribbon and the ground
+  // sharing a lightness.
   await page.evaluate(() => {
     const a = window.__chicago4d;
+    a.streets.group.visible = true;
+    a.__roadOpaque = [];
+    a.streets.group.traverse((o) => {
+      if (!o.material) return;
+      a.__roadOpaque.push([o.material, o.material.transparent, o.material.alphaTest,
+        o.material.depthWrite]);
+      o.material.transparent = false;
+      o.material.alphaTest = 0;
+      // depthWrite WITH it, exactly as the marker pass does. Leaving it false
+      // moves the ribbon into the opaque queue without letting it hold the
+      // depth buffer, so the terrain paints back over it and the band reports
+      // a 0.0 ceiling under a perfectly healthy road — which is what this
+      // measurement read at 100-250 m before the offset above was deepened.
+      o.material.depthWrite = true;
+      o.material.needsUpdate = true;
+    });
+    a.step();
+  });
+  const shotOP = await page.screenshot({ type: 'png' });
+  await page.evaluate(() => {
+    const a = window.__chicago4d;
+    for (const [m, t, at, dw] of a.__roadOpaque) {
+      m.transparent = t; m.alphaTest = at; m.depthWrite = dw; m.needsUpdate = true;
+    }
+    delete a.__roadOpaque;
     a.streets.group.visible = true;
     for (const id of ['hud', 'popup']) {
       const el = document.getElementById(id);
@@ -262,7 +377,9 @@ async function roadContrast(page, station) {
 
   const R = decodePng(shotR);
   const M = decodePng(shotM);
+  const MF = decodePng(shotMF);
   const O = decodePng(shotO);
+  const OP = decodePng(shotOP);
   const scale = R.width / shot.cssWidth;
   const probes = shot.probes.map((p) => ({
     dist: p.dist,
@@ -271,28 +388,77 @@ async function roadContrast(page, station) {
   }));
   // Magenta survives tone mapping as a strongly red-and-blue, weakly green
   // pixel; nothing else in this scene is.
-  const marked = (x, y) => {
-    const i = (y * M.width + x) * 4;
-    return M.data[i] > 140 && M.data[i + 2] > 140 && M.data[i + 1] < 110;
+  const isMagenta = (img, x, y) => {
+    const i = (y * img.width + x) * 4;
+    return img.data[i] > 140 && img.data[i + 2] > 140 && img.data[i + 1] < 110;
   };
+  const marked = (x, y) => isMagenta(M, x, y);
+  const markedBare = (x, y) => isMagenta(MF, x, y);
   const deltaL = (x, y) => {
     const i = (y * R.width + x) * 4;
     return Math.abs(labL(R.data[i], R.data[i + 1], R.data[i + 2])
       - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
+  };
+  const deltaLOpaque = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return Math.abs(labL(OP.data[i], OP.data[i + 1], OP.data[i + 2])
+      - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
+  };
+  // R-M1a. The same two frames on the other two scales: exposure-invariant
+  // contrast, and the absolute light the ground under the road is carrying.
+  // Magnitude, not sign — a road that is DARKER than the ground beside it is
+  // exactly as distinguishable, and `south_water`'s earth is both in one frame.
+  const groundY = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return relativeLuminance(O.data[i], O.data[i + 1], O.data[i + 2]);
+  };
+  const weber = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    const w = weberContrast(relativeLuminance(R.data[i], R.data[i + 1], R.data[i + 2]),
+      groundY(x, y));
+    return w === null ? null : Math.abs(w);
+  };
+  const groundLabL = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return labL(O.data[i], O.data[i + 1], O.data[i + 2]);
   };
   const median = (xs) => {
     const s = xs.slice().sort((a, b) => a - b);
     return s.length ? s[Math.floor(s.length / 2)] : 0;
   };
   const bands = ROAD_BANDS.map(([lo, hi]) => {
-    const ds = probes
-      .filter((p) => p.dist >= lo && p.dist < hi && marked(p.x, p.y))
-      .map((p) => deltaL(p.x, p.y));
+    const inBand = probes.filter((p) => p.dist >= lo && p.dist < hi);
+    const seen = inBand.filter((p) => marked(p.x, p.y));
+    const ds = seen.map((p) => deltaL(p.x, p.y));
+    const op = seen.map((p) => deltaLOpaque(p.x, p.y));
+    const wb = seen.map((p) => weber(p.x, p.y)).filter((w) => w !== null);
+    const gl = seen.map((p) => groundLabL(p.x, p.y));
     return {
       lo, hi, n: ds.length,
+      // R-BUG3. How many road points landed in the frame at all, and how many
+      // of those the marker pass can see once the sward and the trees are
+      // taken away. `nProjected` is what the band is GATED on, so a road that
+      // is on screen and invisible fails here instead of quietly leaving the
+      // sample; `nBare` is what tells occlusion apart from flatness, which is
+      // the distinction three gates in a row failed to draw.
+      nProjected: inBand.length,
+      nBare: inBand.filter((p) => markedBare(p.x, p.y)).length,
+      // The ceiling: the same probes with the ribbon forced opaque. It says how
+      // much contrast the road's own colour has to spend before its alpha
+      // spends it, which is what separates "too transparent" from "the same
+      // lightness as the ground".
+      opaqueDeltaL: median(op),
       medianDeltaL: median(ds),
+      // R-M1a, reported and not gated. `weber` is the exposure-invariant half
+      // of the owner's ruling and `groundL` is the floor half; R-M1b sets the
+      // bars. `weberN` is carried because a band can lose probes to a black
+      // ground the ratio cannot be taken against, and a median over a silently
+      // shorter sample is how this project has mis-stated a number before.
+      weber: median(wb),
+      weberN: wb.length,
+      groundL: median(gl),
       perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
-      gated: ds.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
+      gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };
   });
   return { station, bands };
@@ -569,7 +735,18 @@ const terrainLoad = await page.evaluate(() => {
         box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
       }
       return { box, groundTiles,
-               terrainProblems: api.problems.filter((t) => /terrain|water/i.test(t)) };
+               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
+               // `terrain <epoch>: …` and `water: …`, always at the start of the
+               // string, so a problem ABOUT the ground or the river is recognisable
+               // by its subject. The unanchored `/terrain|water/i` this replaced
+               // matched the word anywhere, and the first block of the town whose
+               // id contains one of them — `blk_south_water_franklin`, ROADMAP T-A8
+               // — turned two ordinary placeholder-asset notes into a reported
+               // terrain load failure. Five of the ten open blocks are
+               // `blk_south_water_*`, so it would have fired on each of them in
+               // turn. This narrows what the filter MATCHES, not what the check
+               // ALLOWS: a real terrain or water problem still has to be zero.
+               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
     // The authored water surface spans the whole modelled box — about 5.4 km by
     // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere
@@ -659,6 +836,77 @@ const terrainLoad = await page.evaluate(() => {
     check(`${label}: the terrain and river report no load problems`,
       terrainLoad.terrainProblems.length === 0,
       terrainLoad.terrainProblems.slice(0, 2).join(' | '));
+
+    // --- the ground you see IS the ground the town stands on (R-BUG3c) ------
+    //
+    // The gate above protects the terrain generator's promise — 30 mm between
+    // its decimated mesh and the heightfield — and it cannot see whether the
+    // promise survived. It measures normals, and this project measured the fit
+    // only at bake time, on the MASTER. The file a browser loads is the
+    // derivative `gltf-transform optimize` writes afterwards, and it quantises
+    // POSITION to 14 bits under one uniform node scale: on a mesh 5,020 m wide
+    // and 8.6 m tall that is a 306 mm vertical lattice. Measured on the shipped
+    // bytes, the ground was up to 228 mm off the field with an rms of 85 mm.
+    //
+    // Everything in the town anchors to the heightfield — collision, buildings,
+    // flora roots, street drape — so the roadway was drawn 22 mm above a sampler
+    // that sat up to 228 mm BELOW the visible ground, and the near field went
+    // under it at a constant radius. That is R-BUG3c, reported twice by the
+    // owner, and three gates missed it because they all compared the render to
+    // itself.
+    //
+    // This one compares the SURFACE THAT IS DRAWN — the tiles, after every load
+    // step — against the sampler the town is placed with, at the tiles' own
+    // vertices. It is not a screenshot and it cannot be fooled by one.
+    const groundFit = await page.evaluate((tol) => {
+      const api = window.__chicago4d;
+      const hf = api.terrain.heightfield;
+      const eMin = hf.originE;
+      const eMax = hf.originE + hf.widthM;
+      const nMin = hf.originN;
+      const nMax = hf.originN + hf.depthM;
+      let worst = 0;
+      let over = 0;
+      let compared = 0;
+      let worstAt = null;
+      api.scene3d.traverse((o) => {
+        if (!o.isMesh || !/^terrain__/.test(o.name || '')) return;
+        const p = o.geometry.getAttribute('position');
+        for (let i = 0; i < p.count; i += 1) {
+          const e = p.getX(i);
+          const n = -p.getZ(i);
+          // The skirt reaches 1.5 km past the modelled box, where there is no
+          // field to be right or wrong about. Scoring it would measure the
+          // sampler's fallback rather than the ground.
+          if (e < eMin || e > eMax || n < nMin || n > nMax) continue;
+          compared += 1;
+          const d = Math.abs(p.getY(i) - api.terrain.surfaceHeight(e, n));
+          if (d > tol) over += 1;
+          if (d > worst) { worst = d; worstAt = { e: +e.toFixed(1), n: +n.toFixed(1) }; }
+        }
+      });
+      return { worst, over, compared, worstAt, fit: api.terrain.groundFit };
+    }, 0.03);
+    // The generator's own MESH_FIT_TOLERANCE_M, deliberately: the promise that
+    // "the ground you stand on is the ground you see" is not weaker for the file
+    // that ships than for the file that does not.
+    check(`${label}: the drawn ground matches the heightfield the town anchors to`,
+      groundFit.compared > 10000 && groundFit.over === 0 && groundFit.worst <= 0.03,
+      `worst ${(groundFit.worst * 1000).toFixed(1)} mm of 30 mm over `
+      + `${groundFit.compared.toLocaleString()} drawn vertices`
+      + (groundFit.worstAt ? ` (at E ${groundFit.worstAt.e}, N ${groundFit.worstAt.n})` : '')
+      + `, ${groundFit.over} beyond tolerance`);
+    // And the renderer's own account of the repair, so a run that stops needing
+    // it — because the terrain stopped shipping quantised — says so out loud
+    // rather than silently doing nothing.
+    check(`${label}: the ground was conformed to the field, with nothing left over`,
+      !!groundFit.fit && groundFit.fit.residual_max_m <= 1e-5,
+      groundFit.fit
+        ? `${groundFit.fit.moved.toLocaleString()} of `
+          + `${groundFit.fit.vertices.toLocaleString()} vertices moved, `
+          + `up to ${(groundFit.fit.correction_max_m * 1000).toFixed(1)} mm; `
+          + `residual ${(groundFit.fit.residual_max_m * 1000).toFixed(4)} mm`
+        : 'the terrain reported no fit at all');
     await page.evaluate(() => {
       const api = window.__chicago4d;
       api.setFly(false);
@@ -1192,6 +1440,142 @@ const terrainLoad = await page.evaluate(() => {
       uncovered.length
         ? uncovered.map((r) => `${r.id} ${r.graded} graded / ${r.chips} shown`).join('; ')
         : `${chipCover.length} building(s), ${chipCover.reduce((a, r) => a + r.graded, 0)} claims`);
+
+    // --- and the summary of those chips, which is what a visitor reads first -
+    // K23b, owner-reported from a card on the dev preview: *"when you say what we
+    // made up, say what we included in the recreation, or what we included in the
+    // inferred building, or what we included in the attested building."* Every
+    // part of the answer was already on the card — nineteen rows, each with its
+    // own chip — and a visitor could read all of it and still not say which parts
+    // of the building in front of them are evidence and which are ours.
+    //
+    // The section is a PARTITION of the claims below it, so the gate is a
+    // recount rather than a presence check: take the chips the assertion above
+    // has just proved complete, tally them by level, and require the summary's
+    // own three numbers to be those numbers. A summary that drifted from the card
+    // it summarises would be a worse fault than no summary, because it would be
+    // read first. Over the WHOLE registry, for the reason that assertion is:
+    // right on the sample and wrong on an anonymous roof is wrong on nearly all
+    // of this town.
+    const basis = await page.evaluate(() => {
+      const flat = (el) => (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+      const rowsOf = () => [...document.querySelectorAll('#popup .pop-basis .basis-row')]
+        .map((r) => {
+          const m = /(\d+) of (\d+)/.exec(flat(r.querySelector('.basis-count')));
+          return {
+            level: r.dataset.level ?? '',
+            count: m ? Number(m[1]) : -1,
+            total: m ? Number(m[2]) : -1,
+            gloss: flat(r.querySelector('.basis-gloss')),
+            what: flat(r.querySelector('.basis-what')),
+            from: flat(r.querySelector('.basis-from')),
+            absent: flat(r.querySelector('.basis-absent')),
+          };
+        });
+      // The same selector the chip-coverage gate above uses, deliberately: the
+      // card's graded claims are whatever that assertion says they are, and two
+      // definitions of "a claim on this card" is how the summary would come to
+      // disagree with the card while both gates stayed green.
+      const tallyOf = () => {
+        const t = { attested: 0, inferred: 0, reconstructed: 0 };
+        for (const c of document.querySelectorAll(
+          '#popup .pop-meta .conf, #popup .pop-sec table.attrs .conf')) {
+          const k = c.textContent.trim();
+          if (k in t) t[k] += 1;
+        }
+        return t;
+      };
+
+      const bad = [];
+      const keep = {};
+      let n = 0;
+      for (const id of window.__chicago4d.registry.keys()) {
+        window.__chicago4d.pick(id);
+        const rows = rowsOf();
+        const tally = tallyOf();
+        const total = tally.attested + tally.inferred + tally.reconstructed;
+        const problems = [];
+        if (rows.length !== 3) problems.push(`${rows.length} level rows, not 3`);
+        for (const r of rows) {
+          if (tally[r.level] === undefined) problems.push(`unknown level "${r.level}"`);
+          else if (r.count !== tally[r.level]) {
+            problems.push(`${r.level} claims ${r.count}, card shows ${tally[r.level]}`);
+          }
+          if (r.total !== total) problems.push(`${r.level} of ${r.total}, card shows ${total}`);
+          if (!r.what) problems.push(`${r.level} lists nothing at all`);
+          if (r.count && !r.from) problems.push(`${r.level} says nothing about where it came from`);
+        }
+        if (problems.length) bad.push(`${id}: ${problems.join('; ')}`);
+        if (['sauganash_hotel', 'recon_1835_south_d3_001', 'western_hotel'].includes(id)) {
+          keep[id] = rows;
+        }
+        n += 1;
+      }
+      const legend = [...document.querySelectorAll('.legend-list li')].map(flat);
+      return {
+        bad, n, legend,
+        saug: keep.sauganash_hotel ?? [],
+        anon: keep.recon_1835_south_d3_001 ?? [],
+        western: keep.western_hotel ?? [],
+      };
+    });
+    const row = (rows, level) => rows.find((r) => r.level === level) ?? {};
+    check(`${label}: the card's per-level summary is a partition of its own claims`,
+      basis.n >= 8 && basis.bad.length === 0 && basis.saug.length === 3 && basis.anon.length === 3,
+      basis.bad.length ? basis.bad.slice(0, 4).join(' | ')
+        : `${basis.n} building(s) summarised`);
+    // The discriminating pair, because a section that printed the same three rows
+    // on every card would pass a recount that only ever compared it to itself on
+    // a well-documented building. The Sauganash is attested by Wau-Bun; the
+    // anonymous roof is a count-unit toward the 665-roof programme and NOTHING
+    // about it is attested — which is the single most useful thing this section
+    // can tell a visitor, so it is said rather than left as a blank row.
+    check(`${label}: and it says what is NOT there, per building rather than stamped`,
+      row(basis.saug, 'attested').count > 0
+      && row(basis.anon, 'attested').count === 0
+      && /Nothing about this building is attested/.test(row(basis.anon, 'attested').what)
+      && row(basis.anon, 'reconstructed').count > 0,
+      `sauganash attested ${row(basis.saug, 'attested').count}, `
+      + `anonymous attested ${row(basis.anon, 'attested').count} `
+      + `("${row(basis.anon, 'attested').what.slice(0, 60)}")`);
+    // What a citation MEANS changes with the level, and one label over all three
+    // would be the category error this card's own history is made of. The
+    // anonymous roof cites the reconstruction spec on every attribute: that is
+    // what BOUNDED an invention, not where a value came from, and reading it as
+    // attribution turns the citation into evidence for a building nobody claims
+    // stood there.
+    check(`${label}: a source on an invention is named as a bound, not as attribution`,
+      /^Bounded by:/.test(row(basis.anon, 'reconstructed').from)
+      && /reconstruction_spec/.test(row(basis.anon, 'reconstructed').from)
+      && /^From:/.test(row(basis.saug, 'attested').from),
+      `invention "${row(basis.anon, 'reconstructed').from.slice(0, 70)}", `
+      + `attested "${row(basis.saug, 'attested').from.slice(0, 70)}"`);
+    // "Included" is a claim about the VIEW, not only about the evidence, and the
+    // two come apart in the direction that does the most damage: the Western
+    // Hotel's stables are ATTESTED — the wagon yard is in a pre-fire account —
+    // and there is nothing of them in the model. Counting that under "attested"
+    // and stopping would be a summary of what we included that named something
+    // we did not. The rows below already carry the mark; the summary repeats it
+    // rather than averaging it away.
+    check(`${label}: and separates what is attested from what is actually built`,
+      row(basis.western, 'attested').count > 0
+      && /^Not in the model:/.test(row(basis.western, 'attested').absent)
+      && /stables/.test(row(basis.western, 'attested').absent)
+      && !row(basis.saug, 'attested').absent,
+      `western "${row(basis.western, 'attested').absent.slice(0, 60)}", `
+      + `sauganash "${row(basis.saug, 'attested').absent}"`);
+    // Two surfaces defining `inferred` differently is the drift K23a spent a run
+    // cleaning up, and prose has no shared renderer to hold it — so the card's
+    // gloss is required to be the Evidence panel's own words, literally.
+    const glossDrift = ['attested', 'inferred', 'reconstructed'].filter((lvl) => {
+      const g = row(basis.saug, lvl).gloss;
+      return !g || !basis.legend.some((li) => li.includes(g));
+    });
+    check(`${label}: the summary defines each level in the Evidence panel's own words`,
+      basis.legend.length >= 3 && glossDrift.length === 0,
+      glossDrift.length
+        ? `${glossDrift.join(', ')} not found in the legend`
+        : `3 glosses matched against ${basis.legend.length} legend entries`);
 
     // Is the shape a bake from the record, or a stand-in?  The established
     // Sauganash asset must remain a real bake while the anonymous phase-one
@@ -1898,8 +2282,68 @@ const terrainLoad = await page.evaluate(() => {
         modern: document.getElementById('street-modern')?.textContent,
         ahead: document.getElementById('street-approach')?.textContent,
       };
+      // R-BUG4. A panel used to be DELETED outright when any one of its four
+      // corners fell on water, which took the dry part of the panel with it —
+      // the owner saw it as a clean-edged green hole punched through South
+      // Water Street. It is clipped at the waterline now. This re-derives the
+      // rule's own arithmetic and asserts the ribbon carries every panel whose
+      // CENTRELINE is dry, so a future "simplification" back to dropping the
+      // panel fails here instead of in a screenshot.
+      const STEP = 2.25;
+      const MIN_W = 1.0;
+      let dryCentrelinePanels = 0;
+      let clippedPanels = 0;
+      let slivers = 0;
+      for (const rec of a.streets.records) {
+        const half = (rec.track_width_m ?? 10.5) * 0.5;
+        const pts = [];
+        for (let i = 1; i < rec.path.length; i++) {
+          const A = rec.path[i - 1];
+          const B = rec.path[i];
+          const d = Math.hypot(B[0] - A[0], B[1] - A[1]);
+          const c = Math.max(1, Math.ceil(d / STEP));
+          for (let j = 0; j < c; j++) {
+            if (!pts.length) pts.push([A[0], A[1]]);
+            const t = (j + 1) / c;
+            pts.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
+          }
+        }
+        for (let i = 1; i < pts.length; i++) {
+          const A = pts[i - 1];
+          const B = pts[i];
+          const de = B[0] - A[0];
+          const dn = B[1] - A[1];
+          const L = Math.hypot(de, dn);
+          if (L < 1e-5) continue;
+          if (a.terrain.isWater(A[0], A[1]) || a.terrain.isWater(B[0], B[1])) continue;
+          dryCentrelinePanels++;
+          const ue = -dn / L;
+          const un = de / L;
+          const reach = (e0, n0, se, sn) => {
+            if (!a.terrain.isWater(e0 + se * half, n0 + sn * half)) return half;
+            let lo = 0;
+            let hi = half;
+            for (let k = 0; k < 6; k++) {
+              const mid = (lo + hi) * 0.5;
+              if (a.terrain.isWater(e0 + se * mid, n0 + sn * mid)) hi = mid;
+              else lo = mid;
+            }
+            return lo;
+          };
+          const aw = reach(A[0], A[1], ue, un) + reach(A[0], A[1], -ue, -un);
+          const bw = reach(B[0], B[1], ue, un) + reach(B[0], B[1], -ue, -un);
+          if (aw < half * 2 - 1e-6 || bw < half * 2 - 1e-6) clippedPanels++;
+          if (aw < MIN_W || bw < MIN_W) slivers++;
+        }
+      }
+      let emittedQuads = 0;
+      a.streets.group.traverse((o) => {
+        if (o.geometry?.index) emittedQuads += o.geometry.index.count / 6;
+      });
+
       return {
         records: a.streets.records.length, vertices, worstDrape, wetVertices,
+        dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
         canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
         treeStations: treeStations.length, wetTreeStations: wetTreeStations.length,
         drownedTreeStations: drownedTreeStations.length,
@@ -1917,21 +2361,42 @@ const terrainLoad = await page.evaluate(() => {
       && streetLayer.worstDrape < 1e-5 && streetLayer.wetVertices === 0,
       `${streetLayer.records} streets, ${streetLayer.vertices} vertices, `
       + `drape ${streetLayer.worstDrape}, wet ${streetLayer.wetVertices}`);
+    // R-BUG4. Every panel whose centreline is dry must reach the ribbon — the
+    // only panels allowed to go missing are those clipped below a walkable
+    // width, and they are counted rather than assumed to be few.
+    check(`${label}: no panel of road is deleted because its EDGE reached the water`,
+      streetLayer.emittedQuads === streetLayer.dryCentrelinePanels - streetLayer.slivers
+      && streetLayer.clippedPanels > 0,
+      `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
+      + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
+      + `${streetLayer.slivers} dropped as narrower than a metre`);
     check(`${label}: no elevated flora sheet can masquerade as a second terrain layer`,
       streetLayer.canopyPresent === false,
       `flora-canopy present ${streetLayer.canopyPresent}`);
 
     // R-BUG2. Draped is not seen: every assertion above passed while the roads
     // were invisible. See `roadContrast()` for what this measures and why.
+    // R-BUG3 added the third station and the near band, and moved the gating
+    // test from "enough probes were SEEN" to "enough probes were PROJECTED" —
+    // under the old test a band nobody can see reports n=0 and gates itself
+    // out, which is indistinguishable from a band with no road in it.
     for (const station of ROAD_STATIONS) {
-      const road = await roadContrast(page, station.id);
+      const road = await roadContrast(page, { id: station.id, kind: station.kind });
       const bands = road.bands.filter((b) => b.gated);
       const bad = bands.filter((b) => b.medianDeltaL < ROAD_MIN_DELTA_L
         || b.perceptible < ROAD_MIN_PERCEPTIBLE);
       const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
-        + (b.n < ROAD_MIN_PROBES ? `n=${b.n} (not gated)`
-          : `ΔL* ${b.medianDeltaL.toFixed(1)}, ${(b.perceptible * 100).toFixed(0)} % `
-            + `perceptible, n=${b.n}${b.gated ? '' : ' (reported only)'}`)).join(' · ');
+        + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
+          : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
+            + `${(b.perceptible * 100).toFixed(0)} % perceptible, `
+            // R-M1a. Both halves of the owner's ruling, measured beside the bar
+            // they are going to join: Weber says how distinguishable the road
+            // is whatever the exposure, groundL says whether there is light to
+            // distinguish it by. Neither is gated yet — R-M1b sets the bars.
+            + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
+            + `${b.groundL.toFixed(1)}, seen ${b.n} of `
+            + `${b.nProjected} projected (${b.nBare} clear of flora)`
+            + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
       check(`${label}: the roads reach the screen ${station.what}`,
         bands.length >= station.minBands && bad.length === 0, report);
       console.log(`        ${station.id}: ${report}`);
