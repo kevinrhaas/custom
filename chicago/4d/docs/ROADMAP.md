@@ -110,7 +110,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A15…** | one open block per run until the 13 are placed — `blk_randolph_franklin` closed at T-A14, so the three open entries are all on the Randolph–Washington row; adopt in the same run under rule 6's three tests · **the face rule is now a COMMAND rather than a remembered number**: run `tools/measure_street_frontage.py <street> <street>` and quote it, never quote T-A13's Lake 12 / Randolph 2 / South Water 9, which T-A14 showed does not reproduce · **and read T-A14 finding 4 before writing a word about a "second roof"** — the D2 and D4 refusals belong to four trades, not two · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
+| — | TOWN | ~~T-A15~~ | **CLAIMED 2026-08-15 · `steward/t-a15-randolph-clark`** — `blk_randolph_clark`, the only open entry carrying H1, H2 and a C2. The next TOWN block pick is `blk_randolph_lasalle` (4) or `blk_randolph_dearborn` (1, deferral only) — re-derive, do not trust this line |
+| 1 | TOWN | **T-A16…** | one open block per run until the 13 are placed — `blk_randolph_franklin` closed at T-A14, so the three open entries are all on the Randolph–Washington row; adopt in the same run under rule 6's three tests · **the face rule is now a COMMAND rather than a remembered number**: run `tools/measure_street_frontage.py <street> <street>` and quote it, never quote T-A13's Lake 12 / Randolph 2 / South Water 9, which T-A14 showed does not reproduce · **and read T-A14 finding 4 before writing a word about a "second roof"** — the D2 and D4 refusals belong to four trades, not two · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1934,6 +1935,13 @@ churn measurement of 100 %. Run them in that order, and measure K20 after the se
 `data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L104 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
+### T-A15 — `blk_randolph_clark` · **CLAIMED 2026-08-15 · `steward/t-a15-randolph-clark`**
+
+The block bounded by Randolph, Dearborn, Washington and Clark — **eight roofs, six principal and
+two ancillary, on seven free lots** — and the first block parcel of this shape to be dealt the
+town's *better* houses: `H1` and `H2`, the two largest dwelling families in the crosswalk, plus a
+`C2` store-residence, none of which any anonymous parcel has ever built. In progress.
 
 ### T-A14 — `blk_randolph_franklin` · **DONE 2026-08-15**
 
