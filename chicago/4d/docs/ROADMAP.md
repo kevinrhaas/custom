@@ -70,7 +70,7 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-W5a** | **+11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — and the budget is what stopped the last TOWN block landing. Every further block spends more of it. This is the one parcel BOTH lanes are waiting on.** R-W5b carries R-BUG1 (the river flicker) |
+| 1 | RENDERING | ~~**R-W5a**~~ | **CLAIMED 2026-08-15 by the steward — take R-M1, R-W4a or a TOWN parcel instead** |
 | 2 | RENDERING | **R-M1** | unblocked by R-REF1 (landed 2026-08-15): the reference photograph is committed, so the road-contrast thresholds can be DERIVED rather than frozen provisional |
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
@@ -390,6 +390,10 @@ stations, and the flower load at `prairie_west` is **0.0012** against the honest
 the largest single accuracy deduction on the historical axis outside the town itself.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
+
+> **R-W5a is CLAIMED 2026-08-15 by the scheduled steward** (branch
+> `steward/r-w5a-batch-albedo`, expires 2026-08-16 — an expired claim is void without
+> ceremony). **R-W5b is free.** Take **R-M1** or **R-W4a** in this lane instead.
 
 **Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a nothing; R-W5b after R-W1
 
