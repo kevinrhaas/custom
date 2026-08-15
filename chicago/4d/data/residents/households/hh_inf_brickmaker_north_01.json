@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_brickmaker_north_01",
- "name": "The Cobb household — a reconstructed brickmaker (north division)",
+ "name": "The Dickinson household — a reconstructed brickmaker (north division)",
  "division": "north",
  "head": "inf_brickmaker_north_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_brickmaker_north_01",
-   "name": "William Cobb",
+   "name": "Henry Dickinson",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

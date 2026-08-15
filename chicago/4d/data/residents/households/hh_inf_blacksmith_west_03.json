@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_west_03",
- "name": "The Ingalls household — a reconstructed blacksmith (west division)",
+ "name": "The Leland household — a reconstructed blacksmith (west division)",
  "division": "west",
  "head": "inf_blacksmith_west_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_west_03",
-   "name": "Amos Ingalls",
+   "name": "Eli Leland",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

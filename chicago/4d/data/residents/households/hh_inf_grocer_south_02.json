@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_grocer_south_02",
- "name": "The Hubbard household — a reconstructed grocer (south division)",
+ "name": "The Ingalls household — a reconstructed grocer (south division)",
  "division": "south",
  "head": "inf_grocer_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_grocer_south_02",
-   "name": "Levi Hubbard",
+   "name": "Eli Ingalls",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

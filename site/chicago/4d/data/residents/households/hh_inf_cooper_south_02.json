@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_south_02",
- "name": "The Whitcomb household — a reconstructed cooper (south division)",
+ "name": "The Wilcox household — a reconstructed cooper (south division)",
  "division": "south",
  "head": "inf_cooper_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_south_02",
-   "name": "Jared Whitcomb",
+   "name": "Ira Wilcox",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
@@ -73,7 +73,7 @@
   },
   {
    "id": "inf_cooper_south_02_a1",
-   "name": "Seth Sawyer",
+   "name": "Abner Sheldon",
    "relationship": "apprentice",
    "grade": "reconstructed",
    "occupation": {

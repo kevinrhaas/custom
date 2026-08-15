@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_plasterer_south_01",
- "name": "The Stiles household — a reconstructed plasterer (south division)",
+ "name": "The Tuttle household — a reconstructed plasterer (south division)",
  "division": "south",
  "head": "inf_plasterer_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_plasterer_south_01",
-   "name": "Abner Stiles",
+   "name": "Luther Tuttle",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

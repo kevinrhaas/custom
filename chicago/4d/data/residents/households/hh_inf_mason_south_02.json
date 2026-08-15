@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_south_02",
- "name": "The Kellogg household — a reconstructed mason (south division)",
+ "name": "The Leland household — a reconstructed mason (south division)",
  "division": "south",
  "head": "inf_mason_south_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_south_02",
-   "name": "Reuben Kellogg",
+   "name": "Hiram Leland",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

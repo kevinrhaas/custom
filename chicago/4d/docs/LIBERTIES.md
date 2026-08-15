@@ -2936,6 +2936,109 @@ invention rather than a claim about Chicago.
 `recon_1835_blk_south_water_clark_*.inferred_1835.footprint`
 **Recorded:** 2026-08-15.
 
+### L103 — Five invented dwellings and a privy on the last block of the business front, and the block where the two readings of the "better end" point in opposite directions
+
+**Decision:** `blk_south_water_dearborn` — bounded by South Water, State, Lake and Dearborn — now
+carries **six anonymous roofs**: five dwellings, one per lot on five of its six free lots, and one
+privy in the yard of lot 0 off the block alley. It is the **fifth and last block of the South Water
+row**: State Street is the platted town's eastern limit, and the fort's reservation lies beyond it.
+The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is
+invented** — which family stands on which lot, which lot is left open, how far each building stands
+back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every
+metre is read off the committed lot polygons of the K7 grid. Two of the six are adopted — the D3
+one-room cottage on lot 4 as a seventeenth inferred carpenter household, the D1 log cabin on lot 5
+as a nineteenth labouring one — and the rest stay anonymous count-units. Lot 1 is held by the
+Mansion House and lot 6 by the Chappel infant school; neither is touched.
+
+**THE TWO READINGS OF THE END RULE SEPARATE ON THIS BLOCK, AND THE PARCEL FOLLOWS THE ONE T-A11
+COMMITTED.** Four parcels have put their better roofs nearer "the town-centre end", and T-A11
+replaced that compass direction with a measurement: the distance to the **Dearborn Street
+drawbridge**, the only crossing of the main stem in July 1835. On the four blocks before this one
+the bridge lay to the EAST and the two readings agreed, so nothing distinguished them. Here the
+bridge is at this block's **west** end, at the foot of Dearborn, and they disagree: lot 0's frontage
+is **36.4 m** from it, lots 2 and 4 are **57.7 m** and **81.7 m**, and lot 6 — the compass reading's
+"better" end — is **106.6 m**. The back street runs the same way, **126.4 m** at lot 1 to **161.1 m**
+at lot 7. The stated criterion is followed, so this block's best dwellings stand at its **west** end
+and the row's arrangement reverses direction for the first time. The arrangement remains an
+invention; what it now has is a criterion that can be re-derived and, on this block, contradicted.
+
+**A THIRD CRITERION WAS TRIED AND IS RECORDED AS UNDECIDABLE RATHER THAN QUIETLY DROPPED.** The
+bridge is one landmark, so the parcel asked a question with no radius and no landmark in it: where
+is the *mass* of documented building, and which lot is nearest to it? The footprint-weighted
+centroid of every documented roof in the dataset — **83 roofs, 19,145 m²** — lands at local
+**E 939, N 123**, which is EAST of this block, and makes lot 6 the nearest lot at **189.9 m** against
+lot 0's **250.8 m**. Excluding the Fort Dearborn reservation — 13 roofs and 10,460 m² of it — moves
+the centroid to **E 737, N 88**, effectively this block's west end, and reverses the answer: lot 0 at
+**95.0 m** against lot 6's **115.9 m**. So the criterion turns entirely on whether a military
+reservation counts as part of the town, which is a judgment and not a measurement, and its whole
+spread across the north tier without the fort is **20.9 m** against the bridge's **70.2 m**. It is
+recorded here because a criterion that cannot decide is worth more written down than re-attempted
+by the next block parcel of some other row.
+
+**K30 gains two more cases and they are on the same street as the first three.** Both of this
+block's documented South Water buildings stand in the platted roadway. The **Chicago American
+office** (92.9 m²) intrudes **6.91 m** into the South Water corridor, and **Frederick Thomas's shop**
+(55.7 m²) intrudes **6.25 m** — so **148.6 m² of documented building on this block's north frontage
+stands on ground the plat calls street**. With T-A9's three (H. Jones's grocery at 4.5 m, Philo
+Carpenter's store at 6.6 m, P. F. W. Peck's at 8.2 m) that is **five documented buildings, all on
+South Water, all between 4.5 and 8.2 m in** — which is the distribution K30 asked for and points at
+one street rather than a uniform bias across the grid. Nothing was moved: a position with a source
+outranks a corridor this project derived, and K30 owns the resolution.
+
+**The T-A7 lap case has a fifth instance, and it is the largest lap that still costs a lot nothing.**
+The Chicago American office laps lot 0 by **10.74 m² of its 92.9 m²** with **0.00 m² inside lot 0's
+buildable inset** — the whole of it in the 1.5 m margin strip. Two of its corners sit **0.78 m** and
+**0.70 m** inside the platted lot line and the other two stand **6.92 m** and **6.84 m** out in the
+road. Against T-A11's drug store (4.66 m², 0.00 m² buildable) and L100's 22.1 m² inside the inset,
+the case now has five measured points, and the two most recent are the two that cost nothing.
+
+**T-A11's refusal of the lateral offset is confirmed on a second block and the numbers are cleaner.**
+From the committed placement of the D5 on lot 0 — 7.5 m of setback, 1.5 m of lateral jitter — moving
+a further **1.5 m** west buys **0.01 m** of clearance from the American office and costs **0.76 m**
+of lot-line margin; **3.0 m** west buys **0.22 m** and costs **2.26 m**; half a metre of extra
+setback buys **0.50 m** and costs neither. The office stands square across the frontage out in the
+roadway, so sliding along the frontage moves nothing — the same geometry T-A11 found, measured
+independently. Nothing was moved: the cottage already clears it by **6.79 m** against a 3 m gate. The
+closest approach in the parcel is the D4 on lot 2, **7.01 m** from Frederick Thomas's shop.
+
+**The D5 was dealt again and refused again, on the reasoning T-A11 wrote down.** Ten households in
+this layer live in a D5 and five of them are South Division — the baker, the butcher, the
+blacksmith and both clerks — and every one of the five fails rule 6's first test, two of them
+emphatically. That refusal is now a citation rather than an argument, which is what writing it down
+bought.
+
+**A fourth consecutive block offered the carpenters a second roof, and the labourers' second-roof
+question returned after skipping one block.** The D4 on lot 2 and the D2 on lot 3 each pass all
+three tests read literally, and both are refused on the same conservative reading, as a choice and
+not a rule. T-A11 asked that a fourth precedent not be collected and that **ROADMAP K28** be settled
+instead; the row has now closed with the question open. Of its five blocks, one dealt neither floor
+trade a second roof, one dealt it to the carpenters alone, and three dealt it to both.
+
+**Consequence:** the town gains its ninth platted block and its fifth — the last — on the business
+front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged
+massing in the confidence view, with the reasoning on the building card. Standing roofs move
+**293 → 299** against the 665-roof target; **366 remain**, 28 of them on ground the project has
+coverage for. Inferred households move 92 → 94 and inferred persons 104 → 106; two more anonymous
+roofs stop being anonymous.
+
+**The seventh K20 measurement is 59 of 104**, against 7-of-102 at T-A11, 72-of-100 at T-A10,
+19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between: the churn is a
+function of where two new person ids hash into their community-and-sex pools, and five measurements
+spanning 7 % to 72 % are what a stable hash order looks like when it is perturbed at a random
+position. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all
+106. K20 still owns the fix.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this block,
+and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes
+for a compatible anonymous roof and never increases the total. Any evidence that states what stood
+on South Water Street between Dearborn and State in July 1835 — a directory, an assessment roll, a
+fire-insurance sheet — discharges the commercial-frontage question (K29) for this block, and until
+then the family mix on it is a bound on invention rather than a claim about Chicago.
+
+**Covers:** `recon_1835_blk_south_water_dearborn_*.inferred_1835.position`,
+`recon_1835_blk_south_water_dearborn_*.inferred_1835.footprint`
+**Recorded:** 2026-08-15.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
