@@ -1,5 +1,56 @@
 # STATUS
 
+## New 2026-08-15 — the twins are all in one parcel, and 40 notes are wrong about their own source
+
+**T-V1(a)**, the measurement half. R-G1 blamed `south_water` for a horizon of one gable repeated,
+and that row had already been fixed twice before this parcel was claimed: the phase-one South
+parcel samples its footprints, and all twelve `phase3` platted-block parcels sample footprint and
+eave. Measured across all **218** anonymous roofs, **every twin in the town is in one parcel** —
+`phase2_north_division_initial`, written before the sampling rule existed. Sixty roofs, twenty-three
+families, **24 distinct massings; 36 of the 60 share a footprint AND an eave with another roof of
+their own family**.
+
+**THE CENSUS FOUND SOMETHING BIGGER THAN THE TWINS.** Every invented dimension carries the note
+*"Type-level choice within the &lt;family&gt; band"*, and that sentence is the entire defence for the
+invention. **40 of the 218 eaves are outside the band their own note cites** — 18 in `phase1_south`,
+17 in `phase2_north`, 5 in `phase2_west`. The phase-one parcel is the sharp case: it samples its
+FOOTPRINT and carries the sentence saying so, while its eave is still one constant per family. So a
+record can hold a true sentence about its plan and a false one about its wall, in the same note
+style, and nothing distinguished them. This is ROADMAP **K25**'s fault measured on a second layer;
+**none of the 40 is fixed here.**
+
+**`tools/measure_massing_variety.py --gate` runs on every `check.sh`.** Its subject is a sentence
+the data itself makes: the 138 records that say `sampled deterministically` are held to it — inside
+the band, unique within family and parcel. **Both clauses were broken on purpose and proved to
+fail** before being trusted. Everything else it reports and does not fail, and the tool's docstring
+says why in as many words: *do not read a pass here as "the town is a distribution"*.
+
+**One real bug, fixed.** The eave floor that keeps an invented outbuilding tall enough to carry its
+own door was `DOOR_HEADROOM_M = 2.05` — a **man** door — applied to every door-carrying family,
+including the wagon doors on W1, W2, W5, F1 and A2. A wagon door is 3.00 m in the clear. It never
+bit because those families stood at a retyped 3.42 m; the moment the North parcel sampled its band,
+`recon_1835_north_w1_*` failed by name at 2.821 m with no header. `eave_floor(family, door)` now
+asks `outbuilding_params.DOOR_SIZE_M` instead of carrying a hand-copied constant — the same fault
+this parcel is about, in miniature. The 90 block records are **byte-identical** across the change.
+The sampling rule itself moved to `tools/family_bands.py`, which both generators now import.
+
+**T-V1(b) IS WRITTEN, MEASURED AND CANNOT LAND HERE — read its ROADMAP box before touching any
+dimension on a baked record.** Wiring the North generator to `family_bands` was implemented and run:
+every placement gate passed (no collision, no corridor intrusion, nothing off the terrain, nothing
+over the 0.35 m relief contract), and it takes **36 twins to 0, 24 distinct massings to 60, and 17
+out-of-band eaves to 0**. It was reverted because the sixty North GLBs are canonical Blender bakes:
+changing a dimension stales all sixty, `validate.py --all` is the dev gate, there is no Blender on
+this runner, and `chicago-4d-bake.yml` bakes **from `dev`** — so the fix cannot pass the gate it must
+pass to reach the branch the bake reads. **That circle stands in front of K25(b) and every parcel
+that would move a dimension on the 128 canonically-baked roofs.** Three routes are written up for
+the owner; choosing one is a policy question and an overnight run did not make it.
+
+**What is unverified here:** the desktop half of `tools/smoke_renderer.mjs` was not run — the harness
+caps a single command at ten minutes and the desktop half needs about thirteen (ROADMAP, "the run
+budget"). `tools/check.sh` and the mobile half both passed. **This parcel changes no data, no
+geometry and no renderer code**: what ships is two new tools, one gate step, an import in the block
+generator whose 90 records are byte-identical, and documentation.
+
 ## New 2026-08-15 — sixteen refusals were made against candidacies this layer never actually had
 
 **T-A3h**, the backfill of `blk_randolph_dearborn` — the one block that landed before rule 6 had its

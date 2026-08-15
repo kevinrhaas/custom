@@ -91,6 +91,15 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# Uniformity is a claim, and no source makes it. 138 of the 218 anonymous records say
+# in their own footprint note that the rectangle was sampled inside the family's
+# authored band; this holds them to it, and prints the census of what still is not —
+# 36 stamped massings and 40 eaves outside the band their own note cites, all of them
+# on parcels whose meshes are canonical bakes (ROADMAP T-V1(b), K25). Read the census;
+# a pass here is not "the town is a distribution".
+step "the anonymous massings that claim a sampled band have one" \
+  python3 tools/measure_massing_variety.py --gate
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
