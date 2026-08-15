@@ -51,7 +51,7 @@ import { fileURLToPath } from 'node:url';
 
 // The critic harness's PNG reader and its CIE L*, so a road's contrast is
 // measured on the same scale as everything else this project quotes.
-import { decodePng, labL } from './critic_metrics.mjs';
+import { decodePng, labL, relativeLuminance, weberContrast } from './critic_metrics.mjs';
 
 // Playwright is installed globally here, and ESM does not honour NODE_PATH, so
 // resolve the global root and import by absolute path.
@@ -152,6 +152,41 @@ const TYPES = {
 const ROAD_MIN_DELTA_L = 1.8;
 const ROAD_MIN_PERCEPTIBLE = 0.55;
 const ROAD_MIN_PROBES = 8;
+/**
+ * R-M1a — THE TWO NUMBERS THE BARS ABOVE CANNOT SEE, MEASURED AND NOT YET GATED.
+ *
+ * The owner ruled on 2026-08-14, after R-W1 broke this gate by legitimately
+ * changing exposure: score exposure-invariant CONTRAST **and** keep an absolute
+ * FLOOR. Both bars, not a replacement. The two thresholds above are neither —
+ * ΔL* is compressive, so R-W1 preserved the road/ground ratio to within 0.4 %,
+ * got 14–17 % darker, and lost a bar it had not actually regressed.
+ *
+ * So each band now also reports:
+ *
+ *   weber      |Y(road) − Y(ground)| / Y(ground) on LINEAR luminance, median
+ *              over the same probes. Exposure cancels out of it; see
+ *              `weberContrast` in `critic_metrics.mjs` for why it is that
+ *              quantity and not a bare ratio.
+ *   groundL    median CIE L* of the ground at those probes with the street
+ *              layer hidden — the floor reading. "Is there enough light here to
+ *              distinguish anything at all", which is the failure mode a pure
+ *              ratio would happily pass.
+ *
+ * **They are REPORTED AND NOT GATED, deliberately, and that is R-M1's split
+ * rather than a half-finished job.** This half lands the measurement and commits
+ * its numbers on `dev`; R-M1b sets the bars against them, and against the
+ * pre-R-BUG2 build, which the acceptance requires the new bars still to FAIL.
+ * Landing them silent means this change cannot alter a single pass/fail while
+ * the baseline is being taken — a gate that moves at the same moment as its own
+ * baseline has no baseline.
+ *
+ * **R-M1b has no threshold source yet, and that is the finding of this half.**
+ * The parcel says to derive the bars from the reference photograph — "what
+ * contrast does a real dirt track hold against real prairie". It does not hold
+ * one: `python3 tools/measure_reference.py` now surveys the frame and the widest
+ * contiguous bare-earth run anywhere in it is 8.2 % of the frame width, at
+ * −38.2°, at the photographer's feet. Do not pick a number to fill that gap.
+ */
 /**
  * Two stations because the report was two symptoms: roads that go "in places"
  * on foot, and roads you "lose" when you fly over them. `south_water` looks
@@ -369,6 +404,24 @@ async function roadContrast(page, station) {
     return Math.abs(labL(OP.data[i], OP.data[i + 1], OP.data[i + 2])
       - labL(O.data[i], O.data[i + 1], O.data[i + 2]));
   };
+  // R-M1a. The same two frames on the other two scales: exposure-invariant
+  // contrast, and the absolute light the ground under the road is carrying.
+  // Magnitude, not sign — a road that is DARKER than the ground beside it is
+  // exactly as distinguishable, and `south_water`'s earth is both in one frame.
+  const groundY = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return relativeLuminance(O.data[i], O.data[i + 1], O.data[i + 2]);
+  };
+  const weber = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    const w = weberContrast(relativeLuminance(R.data[i], R.data[i + 1], R.data[i + 2]),
+      groundY(x, y));
+    return w === null ? null : Math.abs(w);
+  };
+  const groundLabL = (x, y) => {
+    const i = (y * R.width + x) * 4;
+    return labL(O.data[i], O.data[i + 1], O.data[i + 2]);
+  };
   const median = (xs) => {
     const s = xs.slice().sort((a, b) => a - b);
     return s.length ? s[Math.floor(s.length / 2)] : 0;
@@ -378,6 +431,8 @@ async function roadContrast(page, station) {
     const seen = inBand.filter((p) => marked(p.x, p.y));
     const ds = seen.map((p) => deltaL(p.x, p.y));
     const op = seen.map((p) => deltaLOpaque(p.x, p.y));
+    const wb = seen.map((p) => weber(p.x, p.y)).filter((w) => w !== null);
+    const gl = seen.map((p) => groundLabL(p.x, p.y));
     return {
       lo, hi, n: ds.length,
       // R-BUG3. How many road points landed in the frame at all, and how many
@@ -394,6 +449,14 @@ async function roadContrast(page, station) {
       // lightness as the ground".
       opaqueDeltaL: median(op),
       medianDeltaL: median(ds),
+      // R-M1a, reported and not gated. `weber` is the exposure-invariant half
+      // of the owner's ruling and `groundL` is the floor half; R-M1b sets the
+      // bars. `weberN` is carried because a band can lose probes to a black
+      // ground the ratio cannot be taken against, and a median over a silently
+      // shorter sample is how this project has mis-stated a number before.
+      weber: median(wb),
+      weberN: wb.length,
+      groundL: median(gl),
       perceptible: ds.length ? ds.filter((d) => d >= 2).length / ds.length : 0,
       gated: inBand.length >= ROAD_MIN_PROBES && hi <= ROAD_GATED_BEYOND_M,
     };
@@ -2174,7 +2237,13 @@ const terrainLoad = await page.evaluate(() => {
       const report = road.bands.map((b) => `${b.lo}-${b.hi} m: `
         + (b.nProjected < ROAD_MIN_PROBES ? `projects ${b.nProjected}× (not gated)`
           : `ΔL* ${b.medianDeltaL.toFixed(1)} of ${b.opaqueDeltaL.toFixed(1)} opaque, `
-            + `${(b.perceptible * 100).toFixed(0)} % perceptible, seen ${b.n} of `
+            + `${(b.perceptible * 100).toFixed(0)} % perceptible, `
+            // R-M1a. Both halves of the owner's ruling, measured beside the bar
+            // they are going to join: Weber says how distinguishable the road
+            // is whatever the exposure, groundL says whether there is light to
+            // distinguish it by. Neither is gated yet — R-M1b sets the bars.
+            + `weber ${b.weber.toFixed(4)} (n ${b.weberN}) over ground L* `
+            + `${b.groundL.toFixed(1)}, seen ${b.n} of `
             + `${b.nProjected} projected (${b.nBare} clear of flora)`
             + `${b.gated ? '' : ' (reported only)'}`)).join(' · ');
       check(`${label}: the roads reach the screen ${station.what}`,
