@@ -1,5 +1,54 @@
 # STATUS
 
+## New 2026-08-15 — 623 invented details cited a band the specification never wrote, and 42 of them were unfindable
+
+**K33**, the other half of K25's subject, and it is worse in kind: not a value outside its band but
+a value with **no band to be inside**. K25(a) opened it at 581 from the prose census. The measured
+figure is **623 values on 227 of 249 records** — `paint` 220, `chimneys` 93, `board_gap_m` 69,
+`plan` 46, `door`/`door_side` 37 each, `bays` 35, `porch` 23, `goods_door`/`goods_door_side` 8 each,
+`gallery` 4, `shopfront` 1 — **and `roof_pitch_deg` 42.**
+
+**The 42 are the finding, and the reason they were missed is structural.** Five families — A3, A4,
+A5, W4, W5 — write their roof as *"gable or shed"*: a form with no slope in it. Every one of their
+records still carried a note saying the pitch was a type-level choice within the family band.
+K25(a)'s banded half could not see them because **a value with no band is never tested against
+one**, so the tool walked past exactly the records where the fault is total rather than partial.
+The generous keyword was a floor on the prose census; the *classification* was a second floor
+nobody had named.
+
+**Route 2 (split the note) was chosen, and route 3 was measured as unavailable.** Grading these a
+level lower would stale 249 committed GLBs — `generators/mesh_inputs.py` hashes the confidence
+FLOATS into the mesh input recipe, which is the same wall T-V1(b) and K25(b) sit behind. **Prose is
+not hashed**, so the honest repair and the affordable one are the same repair here. That is a
+coincidence and is written up as one, because next time it will not be.
+
+**The note negates the lede rather than dropping a citation.** Every affected value is prefixed by
+a generator paragraph reading *"the spec is cited because the invention is bounded by it"* — the
+exact untrue claim — so a silent removal would have left the false impression standing. The
+replacement opens `NOT BOUNDED BY THE SPECIFICATION, and the sentence above about the invention
+being bounded does not hold for this value`, names the family and the field, and says the value is
+the reconstruction generator's type default. Each parcel's own closing clause is kept verbatim.
+
+**`tools/band_notes.py` is the single predicate**, imported by all five generators that author the
+sentence and by `tools/measure_band_claims.py` that audits it — `family_bands.py`'s lesson, applied
+before it could bite again. The assertion runs in `--gate` and `--strict` and is **absolute: no
+baseline, no allowance**, deliberately unlike the K25 ratchet beside it, because a prose repair
+costs no bake and can block nothing. **Proved in three directions before being trusted:** 623 red
+against the pre-repair data, 0 after, and a hand-planted fresh offender caught. An unclassified
+field carrying a citation also fails, so the next invented fitting cannot inherit one by default.
+
+**Residual, stated rather than tidied:** `sources` on these 623 values still lists the spec while
+the note now says the spec does not bound them. The spec IS the source of the family assignment
+behind the archetype default, so it is not simply wrong — but the two fields no longer agree, and
+that wants a decision rather than a sweep. **No value moved and no geometry moved:** 623 note
+strings, one new tool, five generator call sites, one gate assertion.
+
+**What is unverified here:** the desktop half of `tools/smoke_renderer.mjs` was not run — the
+harness caps a single command at ten minutes and the desktop half needs about thirteen (ROADMAP,
+"the run budget"). `tools/check.sh` and the mobile half both passed. This parcel changes **no
+geometry, no dimension and no renderer code** — only note prose, which is stripped from every mesh
+input hash in this project.
+
 ## New 2026-08-15 — it is 98 values, not 54, and 24 causes, not 98 — and roof pitch had never been measured
 
 **K25(a)**, the measurement half. The parcel was scoped from an eave count taken on 193 records.

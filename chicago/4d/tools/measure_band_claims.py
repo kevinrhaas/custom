@@ -75,13 +75,23 @@ the generator authors whole degrees while the crosswalk authors rise:run. A tole
 wide enough to forgive either is wide enough to forgive a third of a D3's band, and it
 would forgive exactly the fault this parcel exists to name.
 
-**The unspoken-field census is reported and not gated.** The same sentence is attached
-to values the crosswalk authors nothing about — `board_gap_m` on 99 records against a
-specification that names no board gap anywhere, `paint` on 227 against 4 families that
-mention paint at all. A note citing a band that does not speak to the value is a
-different fault from a value outside its band, and a cruder instrument finds it (a
-keyword over the family's authored geometry strings), so it is printed rather than
-asserted. It is the second half of K25's subject and it wants its own parcel.
+**The unspoken-field census was reported and not gated. K33 repaired it and it is now an
+assertion.** The same sentence used to be attached to values the crosswalk authors
+nothing about — `board_gap_m` on 99 records against a specification that names no board
+gap anywhere, `paint` on 227 against 7 families that mention paint at all, and (found by
+K33, and missed by the census above because a value with no band is never tested against
+one) 42 `roof_pitch_deg` values on six families whose roof line is "gable or shed", a
+form with no pitch in it. **623 values in all.** Those notes now say what the value is —
+the reconstruction generator's type default — and say in their first four words that the
+paragraph above them about the invention being bounded does not hold. The rule is
+`tools/band_notes.py`, imported by the five generators that author the note and by this
+tool that audits it, because a claim authored in one file and audited in another drifts.
+
+`--gate` therefore carries two assertions with different shapes, and that asymmetry is
+deliberate. **The K33 assertion is absolute** — a value may cite a band only where the
+family authors one, and there is no baseline and no allowance, because the repair costs
+prose and prose is not in the mesh hash. **The K25 assertion is a ratchet** against a
+committed census, because that repair moves a dimension and a dimension needs a bake.
 
 ## Why (b) cannot follow (a) here
 
@@ -107,6 +117,9 @@ import math
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import band_notes  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STRUCTURES = ROOT / "data" / "structures"
@@ -141,43 +154,11 @@ CITES_BAND_RE = re.compile(r"\b([A-Z]\d)\b[^.;]{0,40}?\bband\b")
 # crosswalk genuinely speaks (so the citation means something and this tool cannot
 # check it); the third is what the crosswalk does not speak to at all.
 BANDED_FIELDS = ("footprint", "wall_height_m", "roof_pitch_deg", "levels", "roof_type")
-PROSE_FIELDS = {
-    "construction": "construction",
-    "bays": "variants",
-    "chimneys": "variants",
-    "plan": "variants",
-    "porch": "variants",
-    "gallery": "variants",
-    "gable_front": "roof",
-    "cladding": "construction",
-    "shopfront": "variants",
-    "goods_door": "variants",
-    "goods_door_side": "variants",
-    "door": "variants",
-    "door_side": "variants",
-    "paint": "variants",
-    "board_gap_m": "construction",
-}
-# The keyword each prose field is looked for under, when asking whether the family's
-# authored geometry says anything about it at all. Deliberately generous: a hit means
-# "the specification mentions this", not "the specification bounds this".
-PROSE_KEYWORDS = {
-    "construction": ("log", "frame", "plank", "board", "brick", "clapboard", "timber"),
-    "bays": ("bay",),
-    "chimneys": ("chimney", "stovepipe", "flue"),
-    "plan": ("plan", "hall", "pen", "room", "passage"),
-    "porch": ("porch", "stoop", "gallery", "veranda"),
-    "gallery": ("gallery", "porch", "veranda"),
-    "gable_front": ("gable",),
-    "cladding": ("clapboard", "board", "plank", "log", "batten", "shingle"),
-    "shopfront": ("shop", "display", "pane", "front"),
-    "goods_door": ("door",),
-    "goods_door_side": ("door",),
-    "door": ("door",),
-    "door_side": ("door",),
-    "paint": ("paint", "whitewash", "unpainted"),
-    "board_gap_m": ("gap", "batten", "chink"),
-}
+# Which fields the crosswalk speaks to in prose rather than in a testable band, and the
+# keyword each is looked for under. Both tables live in `tools/band_notes.py` — the
+# module the five generators import to decide whether a value may cite the band at all —
+# so the sentence that is authored and the sentence that is audited cannot drift apart.
+PROSE_FIELDS = tuple(sorted(band_notes.PROSE_KEYWORDS))
 
 
 def bands() -> dict[str, dict]:
@@ -229,7 +210,10 @@ def cited_family(note: str | None) -> str | None:
 
 def measure() -> dict:
     table = bands()
+    geometry = band_notes.geometry()
     findings: list[dict] = []
+    false_citations: list[dict] = []
+    unclassified: list[dict] = []
     checked = collections.Counter()
     uncited = collections.Counter()
     prose_silent = collections.Counter()
@@ -356,14 +340,26 @@ def measure() -> dict:
                         fail(doc, "levels", "loft = true", f"'{raw}' (=> {lo:g}-{ceiling:g})",
                              "the band authors no loft", marginal=False)
 
-            for field, source_key in PROSE_FIELDS.items():
-                value = form.get(field)
+            # K33's assertion, asked of EVERY value that cites a band — the prose fields
+            # and the banded ones alike. A banded field whose family authors no band is
+            # invisible to the tests above (there is nothing to compare against), which
+            # is exactly how 42 roof pitches cited a band on families whose roof line is
+            # "gable or shed". Silence is the finding, so it has to be asked separately.
+            geom = geometry.get(fam, {})
+            for field, value in sorted(form.items()):
                 if not isinstance(value, dict) or not cited_family(value.get("note")):
                     continue
-                prose_total[field] += 1
-                blob = json.dumps(band["raw"]).lower()
-                if not any(k in blob for k in PROSE_KEYWORDS[field]):
-                    prose_silent[field] += 1
+                state = band_notes.classify(geom, field)
+                if field in PROSE_FIELDS:
+                    prose_total[field] += 1
+                    if state == band_notes.SILENT:
+                        prose_silent[field] += 1
+                if state is None:
+                    unclassified.append({"id": doc["id"], "family": fam, "field": field})
+                elif state == band_notes.SILENT:
+                    false_citations.append({"id": doc["id"], "family": fam,
+                                            "field": field,
+                                            "layer": doc["reconstruction"].get("status", "?")})
 
     findings.sort(key=lambda f: (f["layer"], f["field"], f["id"]))
     return {
@@ -375,6 +371,8 @@ def measure() -> dict:
         "prose_total": dict(prose_total),
         "prose_silent": dict(prose_silent),
         "mismatched_citation": mismatched_citation,
+        "false_citations": false_citations,
+        "unclassified": unclassified,
     }
 
 
@@ -423,13 +421,22 @@ def census(result: dict, verbose: bool = True) -> None:
         for row in result["mismatched_citation"]:
             print(f"     {row}")
 
-    print("\n   the second fault: the same sentence on values the crosswalk does not")
-    print("   speak to at all (reported, not gated — the instrument is a keyword)")
+    print("\n   the second fault (K33): the same sentence on values the crosswalk does")
+    print("   not speak to at all. Repaired 2026-08-15 and now ASSERTED, on every field")
+    print("   that cites a band rather than only the prose ones — the instrument is a")
+    print("   keyword, so a silence it reports is a floor and not an estimate.")
     print("   field            citing the band  of which the family says nothing")
     for field in sorted(result["prose_total"], key=lambda k: -result["prose_silent"].get(k, 0)):
         total = result["prose_total"][field]
         silent = result["prose_silent"].get(field, 0)
         print(f"   {field:<16} {total:>15}  {silent:>32}")
+    false_by_field = collections.Counter(f["field"] for f in result["false_citations"])
+    if false_by_field:
+        print(f"\n   {len(result['false_citations'])} value(s) cite a band their family "
+              f"does not author: {dict(false_by_field)}")
+    else:
+        print("\n   every band citation in the dataset points at something the family "
+              "authors.")
 
 
 def main() -> int:
@@ -464,20 +471,48 @@ def main() -> int:
         print(f"   wrote {BASELINE.relative_to(ROOT)}: {len(findings)} offender(s)")
         return 0
 
+    # K33's assertion, and it is absolute in every mode. There is no baseline for it and
+    # no allowance: unlike a value outside its band, a value citing a band that does not
+    # exist is repaired by rewriting prose, prose is stripped from every mesh input hash
+    # in this project, and so the repair costs no bake and nothing can be blocked behind
+    # it. A new one is a regression the same day it lands.
+    def k33() -> int:
+        bad = result["false_citations"]
+        unclassified = result["unclassified"]
+        if unclassified:
+            print(f"\n   UNCLASSIFIED: {len(unclassified)} value(s) cite a band on a field "
+                  f"neither tools/band_notes.BANDED_FIELDS nor PROSE_KEYWORDS has heard "
+                  f"of, so nothing has decided whether the citation is true. Classify the "
+                  f"field there before authoring it.")
+            for row in unclassified[:20]:
+                print(f"     {row['id']}: {row['field']} ({row['family']})")
+        if bad:
+            print(f"\n   K33: {len(bad)} value(s) cite the family band on a field the "
+                  f"crosswalk does not author for that family. There is no band for the "
+                  f"note to be inside; say what the value is instead "
+                  f"(tools/band_notes.unbounded_note).")
+            for row in bad[:20]:
+                print(f"     {row['id']}: {row['field']} ({row['family']})")
+            if len(bad) > 20:
+                print(f"     ... and {len(bad) - 20} more")
+        return 1 if (bad or unclassified) else 0
+
     if args.strict:
         census(result, verbose=not args.quiet)
+        rc = k33()
         if findings:
             print(f"\n   STRICT: {len(findings)} value(s) outside the band their note "
                   f"cites. Every one is a note that is wrong about its own source.")
             return 1
         print("\n   STRICT: every reconstructed value is inside the band it cites.")
-        return 0
+        return rc
 
     if not args.gate:
         census(result, verbose=not args.quiet)
         return 0
 
     census(result, verbose=False)
+    rc = k33()
     if not BASELINE.exists():
         print(f"\n   no committed census at {BASELINE.relative_to(ROOT)}")
         return 1
@@ -509,7 +544,7 @@ def main() -> int:
         return 1
     print(f"\n   ratchet holds: {len(findings)} offender(s), exactly the committed census. "
           f"This is not a pass mark — read it. K25(b) is the repair, and it needs a bake.")
-    return 0
+    return rc
 
 
 if __name__ == "__main__":

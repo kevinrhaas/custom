@@ -53,6 +53,7 @@ PREFIX = "hh_inf_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+from band_notes import split_notes  # noqa: E402
 from inferred_occupancy import label  # noqa: E402
 
 
@@ -411,8 +412,12 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
 
     spec_note = (f"Type-level choice within the {b['family']} band in the reconstruction "
                  f"specification; it is not evidence for this building.")
-    form = inferred_form(b["archetype"], b["family"], spec_note, w,
-                         building_documented=documented)
+    # ROADMAP K33: the citation is restricted to the values the family actually authors
+    # something for, BEFORE the programme's own overrides land — those carry authored
+    # notes of their own and are not this parcel's to rewrite.
+    form = split_notes(inferred_form(b["archetype"], b["family"], spec_note, w,
+                                     building_documented=documented),
+                       b["family"], spec_note)
     for key, value in (form_over or {}).items():
         form[key] = attested(value, "reconstructed", [ANDREAS] if documented else [SPEC],
                              p.get("form_note") or spec_note)
