@@ -1,5 +1,57 @@
 # STATUS
 
+## New 2026-08-15 — the first block off the business front, and the rule that arranged the row stops meaning anything on it
+
+**T-A13.** `blk_lake_market` — Lake, Franklin, Randolph, Market — now carries **seven anonymous
+roofs**, five principal, a stable and a privy, on five of its six free lots, with lot 3 left open and
+lots 0 and 1 held by the Sauganash Hotel with Philo Carpenter's log drug store, and by the packer's
+dwelling. **Standing roofs 299 → 306; remaining 366 → 359, 21 of them on covered ground** (was 28).
+Inferred households 94 → 96, inferred persons 106 → 108. Recorded in L104. **The recipe cleared every
+placement gate on its first run and no tool changed** — the sixth block in a row. It is the **first
+block of this parcel shape that is not on South Water Street**; every open entry left in the schedule
+is on Randolph.
+
+**The face rule was asserted five times and is measured here, because neither of this block's faces
+is South Water.** Five parcels sent their better dwellings to "the business front" and named that
+front by the street's documented use — which says nothing about a block bounded by Lake and Randolph.
+Counting every documented or inferred structure whose footprint centroid stands within **25 m** of a
+street's committed centreline: **Lake 12, Randolph 2, South Water 9.** Lake's twelve are the
+Sauganash, the Green Tree, the Exchange Coffee House, the Tremont, the Mansion House, both churches,
+Hogan's store, Goss & Cobb's saddlery, Pierce's blacksmith shop, Dole's south warehouse and
+Carpenter's log shop; Randolph's two are the log jail and the Western Hotel. The rule now rests on a
+measurement rather than a habit, **and it is still an invention**: no source says a better dwelling
+stood on the better street.
+
+**The end rule's order survives and its meaning does not, and that is the finding.** T-A11's
+criterion — distance to the Dearborn Street drawbridge — runs **532.2 m** at lot 6 to **600.4 m** at
+lot 0 on the Lake frontage and **576.3 m** at lot 7 to **640.0 m** at lot 1 behind, ordering the lots
+exactly as it has on every block of the row. What changed is the size of the difference. On T-A12's
+block the far end stood **2.93×** as far from the bridge as the near end; here, **1.13×**. The
+absolute spread of the front face is **68.2 m** against T-A12's 70.2 m — the same block, moved half a
+kilometre. **The criterion is now separating two lots a resident would have called the same distance
+from the bridge.** It was followed anyway, because changing criteria on the block where the first
+stops flattering the answer is how an invention starts to look like a finding — but the arrangement
+on this block is closer to arbitrary than on any block of the row, and L104 says so.
+
+**K30 gets its first control measurement, and it is a factor of twenty to forty.** K30 has five
+documented buildings standing 4.5–8.2 m inside the platted South Water corridor and asks whether
+that is one bad stretch of street or a uniform grid bias. The first two documented roofs measured
+against a **different** corridor are on this block: the **Sauganash Hotel intrudes 0.19 m** into the
+Lake corridor and **Philo Carpenter's log drug store 0.22 m** — inside the plat's own precision of
+standing on the kerb line. Two cases are not a survey; they are the control K30 did not have, and
+they point away from a uniform bias. Nothing was moved.
+
+**Two documented roofs share lot 0 and the derived occupancy table names the smaller one.** The
+Sauganash puts 94.33 m² of its 96.0 m² on the lot and the log shop 28.58 m² of its 29.7 m²; the
+source says the shop stood against the Sauganash's public bar and the footprints touch at 0.00 m, so
+the record agrees with itself. `plat_occupancy` names the first holder by id — the log shop — so
+**the town's most-documented building is not the one that table credits with its own corner.** It
+cost this parcel nothing and it will mislead anyone reading that table for what stands where.
+
+**Unverified here:** the desktop half of `smoke_renderer.mjs` does not fit this runner's ten-minute
+per-command ceiling and was not run; the mobile half was, and `tools/check.sh` — which is the dev
+gate — passed. See the run-budget box in ROADMAP.
+
 ## New 2026-08-15 — the business front is built end to end, and the rule that filled it points the other way on its last block
 
 **T-A12.** `blk_south_water_dearborn` — South Water, State, Lake, Dearborn — now carries **six

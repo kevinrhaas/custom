@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_north_02",
- "name": "The Fitzgerald household — a reconstructed blacksmith (north division)",
+ "name": "The Flynn household — a reconstructed blacksmith (north division)",
  "division": "north",
  "head": "inf_blacksmith_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_north_02",
-   "name": "Terence Fitzgerald",
+   "name": "Daniel Flynn",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

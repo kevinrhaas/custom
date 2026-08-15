@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 103,
+  "count": 104,
   "liberties": [
     {
       "id": "L1",
@@ -9004,6 +9004,55 @@
         {
           "label": "Covers",
           "text": "`recon_1835_blk_south_water_dearborn_*.inferred_1835.position`, `recon_1835_blk_south_water_dearborn_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L104",
+      "title": "Five invented dwellings, a stable and a privy on the first block off the business front, and the block where the \"better end\" stops meaning anything",
+      "section": "per_subject",
+      "subjects": [
+        "green_tree_tavern",
+        "mansion_house",
+        "sauganash_hotel",
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_lake_market_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_lake_market_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_lake_market` — bounded by Lake, Franklin, Randolph and Market — now carries **seven anonymous roofs**: five dwellings, one per lot on five of its six free lots, a stable in the yard of lot 6 and a privy in the yard of lot 5, both off the block alley. It is the **first block of this parcel shape that is not on South Water Street**, one row back, at the western limit of the platted South Division against the south branch. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the seven are adopted — the D3 one-room cottage on lot 2 as an eighteenth inferred carpenter household, the D1 log cabin on lot 5 as a twentieth labouring one — and the rest stay anonymous count-units. Lots 0 and 1 arrive taken and neither is touched. **THE FACE RULE WAS ASSERTED FIVE TIMES AND IS MEASURED HERE, BECAUSE NEITHER OF THIS BLOCK'S FACES IS SOUTH WATER.** T-A8 through T-A12 sent their better dwellings to the business front and their meanest to the back street, and named the front by the street's documented use — which says nothing at all about a block bounded by Lake and Randolph. So the question was asked of the committed record instead: **counting every documented or inferred structure whose footprint centroid stands within 25 m of a street's committed centreline, Lake Street carries 12 and Randolph Street carries 2** (and South Water 9). Lake's twelve are the Sauganash Hotel, the Green Tree Tavern, the Exchange Coffee House, the Tremont House, the Mansion House, both churches, Hogan's store, Goss & Cobb's saddlery, Pierce's blacksmith shop, Dole's south warehouse and Philo Carpenter's log drug store; Randolph's two are the log jail and the Western Hotel. The rule is therefore inherited on a measurement rather than on a habit — **but the rule itself is still the invention it always was.** No source says a better dwelling stood on the better street. What the measurement establishes is only which of these two streets the town's own record treats as the front. **THE END RULE'S ORDER SURVIVES AND ITS MEANING DOES NOT, WHICH IS THE FINDING.** T-A11's criterion — distance to the **Dearborn Street drawbridge**, the only crossing of the main stem in July 1835 — runs **532.2 m** at lot 6, **554.9 m** at lot 4, **577.6 m** at lot 2 and **600.4 m** at lot 0 on the Lake frontage, with the back street from **576.3 m** at lot 7 to **640.0 m** at lot 1. The order is the same order it has given on every block, and the arrangement follows it. What has changed is the size of the difference being ordered. On T-A12's block the far end of the front face stood **2.93 times** as far from the bridge as the near end; here it stands **1.13 times** as far. The absolute spread of the front face is **68.2 m** against T-A12's 70.2 m — the same block, moved half a kilometre — so the criterion is now separating two lots that are, in any terms a resident would have used, **the same distance from the bridge**. It was followed anyway, and the reason is recorded rather than the result defended: a committed criterion applied where it is weak stays re-derivable, and swapping to a second criterion on the block where the first stops flattering the answer is how an invention starts to look like a finding. **At this distance the arrangement is closer to arbitrary than on any block of the row, and that is an admission and not a defence.** **K30 gets its first control measurement, on a street that is not South Water.** K30 records five documented buildings standing **4.5 m to 8.2 m** inside the platted South Water corridor and asks whether that is a fault of one stretch of street or a uniform bias across the grid. This block carries the first two documented roofs measured against a different corridor: the **Sauganash Hotel** intrudes **0.19 m** into the Lake corridor and **Philo Carpenter's log drug store 0.22 m** — a twentieth to a fortieth of the South Water figures, and near enough to standing exactly on the kerb line to be inside the plat's own precision. **Two cases are not a survey**, and this entry does not claim they settle it; they are the control K30 did not have, and they point away from a uniform grid bias. Nothing was moved: a position with a source outranks a corridor this project derived. **The block's two documented roofs share one lot, and the occupancy map names the smaller of them.** The Sauganash Hotel puts **94.33 m² of its 96.0 m²** on lot 0 (67.66 m² inside the buildable inset) and Philo Carpenter's log drug store **28.58 m² of its 29.7 m²** (19.43 m² inside it). The source says the shop stood immediately east of and against the Sauganash's public bar, and the two footprints touch at **0.00 m** — so this is the record agreeing with itself rather than a collision. `tools/plat_occupancy.py` names the first holder by id, which is the log shop, so **the town's most-documented building is not the one the occupancy map credits with its own corner.** It costs this parcel nothing, because the lot is taken either way and the map's job is to say a lot is taken by something nameable — but anyone reading the derived occupancy table for what stands where will read the wrong building's name off this lot. **T-A7's lap case has a sixth instance and it is the only one that costs nothing twice.** The packer's dwelling seated on lot 1 laps lot 3 by **9.57 m²** with **0.00 m² inside lot 3's buildable inset**, and lot 3 is the lot this parcel leaves open. **A sixth block offered both floor trades a second roof, and it is the first that is not on South Water Street.** The D4 two-room cottage on lot 4 and the D2 plank shanty on lot 7 each pass rule 6's three tests read literally, and both are refused on the same conservative reading, as a choice and not a rule. T-A11 read three consecutive cases as evidence that the double candidacy is the ordinary shape of a South WATER block; this block shows it is the ordinary shape of **a South Division block of five dwellings, wherever it stands**, so the sample **ROADMAP K28** has to settle is larger than the row that produced it."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its tenth platted block and the first off the business front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **299 → 306** against the 665-roof target; **359 remain, 21 of them on ground the project has coverage for** (was 28). Inferred households move 94 → 96 and inferred persons 106 → 108; two more anonymous roofs stop being anonymous. **The eighth K20 measurement is 67 of 106**, against 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between; six measurements now span 7 % to 72 % and the mechanism is L101's. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 108. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Any evidence that states what stood on Lake Street between Market and Franklin in July 1835 — a directory, an assessment roll, a fire-insurance sheet — discharges the commercial-frontage question (K29) for this block, and until then the family mix on it is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_lake_market_*.inferred_1835.position`, `recon_1835_blk_lake_market_*.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_plasterer_south_01",
- "name": "The Tuttle household — a reconstructed plasterer (south division)",
+ "name": "The Wadsworth household — a reconstructed plasterer (south division)",
  "division": "south",
  "head": "inf_plasterer_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_plasterer_south_01",
-   "name": "Luther Tuttle",
+   "name": "Harvey Wadsworth",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_south_02",
- "name": "The Leland household — a reconstructed mason (south division)",
+ "name": "The Lyman household — a reconstructed mason (south division)",
  "division": "south",
  "head": "inf_mason_south_02",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_south_02",
-   "name": "Hiram Leland",
+   "name": "Chauncey Lyman",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
