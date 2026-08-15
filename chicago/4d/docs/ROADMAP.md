@@ -118,7 +118,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
 | 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
-| 4 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
+| — | TOWN | ~~K25a~~ | **DONE 2026-08-15** — it is **98 values on 80 of 249 records**, not 54 on 193, and **24 causes, not 98**: seven metre values hold all 54 eaves and six degree constants hold all 38 pitches, because the generator authors the archetype's constant and the note cites the family's band. **Roof pitch had never been measured by anything.** The sub-1-ft question is decided — they are failures, and nearness is the diagnosis. Read its box before quoting any band number |
+| 4 | TOWN | **K33** | opened by K25(a): `paint` on 227 records cites a band, and **220 of those families never mention paint**. A note citing a band that does not exist, on a bigger population than K25's. A decision first, then data — no bake |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
 | 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
 
@@ -1275,9 +1276,87 @@ household is added by this parcel.
 
 </details>
 
-### K25 — 54 roofs sit outside the band their own note cites · **UNCLAIMED · from K21 · SPLIT (a) then (b)**
+### K25 — the invention is not bounded by the specification it cites · **(a) DONE 2026-08-15 · from K21 · (b) NEEDS THE BAKE**
 
 **Phase:** lane 2 for (a), and (b) NEEDS THE BAKE · **Effort:** M
+
+**(a) DONE 2026-08-15 — it is 98 values, not 54, and 24 causes, not 98.** The parcel was
+scoped from an eave count taken on 193 records. Measured properly — every reconstructed
+record in the dataset, and every form value the crosswalk authors a testable band for —
+**1135 values were tested against a band and 98 are outside it, on 80 of 249 records**:
+
+| field | tested | outside | near the edge |
+|---|---:|---:|---:|
+| eave (`wall_height_m` vs `eave_ft`) | 249 | **54** | 46 |
+| roof pitch (vs the `roof` rise:run) | 207 | **38** | 38 |
+| storeys + loft (vs `levels`) | 181 | **4** | 1 |
+| footprint (vs `footprint_ft`) | 249 | **2** | 0 |
+| roof form (vs the `roof` prose) | 249 | **0** | — |
+
+The eave figure of 54 survived the widening by coincidence; T-V1(a)'s 40 is its
+anonymous-layer half (40 + 14 household). **Roof pitch had never been measured by
+anything**, and it is the second-largest fault in the dataset's provenance.
+
+**The 98 are 24 causes.** Every offender is one of a handful of archetype constants
+landing on a family whose band nobody checked it against — 13 distinct (family, value)
+pairs hold all 54 eaves and **six values hold all 38 pitches**:
+
+| | value | band | records |
+|---|---|---|---:|
+| eave | 2.78 m = 9.12 ft | D3 8–9 ft | 20 |
+| eave | 2.05 m = 6.73 ft | D2 7–8 ft | 10 |
+| eave | 2.05 m = 6.73 ft | W4 9–18 ft — **the worst, +2.27 ft** | 3 |
+| pitch | 18.0° = 3.90:12 | D2 4:12–8:12 | 21 |
+| pitch | 32.0° = 7.50:12 | A2 8:12–12:12 | 9 |
+| pitch | 38.0° = 9.38:12 | H2/H3 6:12–9:12 | 4 |
+
+**Seven metre values account for all 54 eaves** — 2.05, 2.75, 2.78, 3.25, 5.05, 5.20,
+5.35 — which is the archetype table, not a measurement of anything.
+
+**Pitch has its own mechanism, and it is a unit mismatch.** The crosswalk authors
+rise:run; the generator authors whole degrees. 4:12 is 18.435°, and the shed constant is
+18.0°, so **21 D2 sheds are 0.10 of a 1:12 step under a floor they would have cleared if
+the value had been authored in the band's own units**. All 38 pitch offenders are within
+one step. That is the diagnosis, not a defence — and it tells (b) exactly what to do:
+author the pitch from the band's rise:run rather than from a degree constant.
+
+**The sub-1-ft decision, which (a) owed: they are failures.** 46 of the 54 eaves are
+within a foot and every pitch is within a step, and nearness is exactly what a retyped
+constant looks like — 2.78 m clears D3's 9 ft ceiling by 37 mm because the frame-dwelling
+archetype builds 2.78 m walls, not because anyone measured a cottage. A tolerance wide
+enough to forgive that is wide enough to forgive a third of a D3 band, and it would
+forgive the fault the parcel exists to name. The only slack in the tool is 1.5 mm for the
+metre round-trip; five footprints sat half a millimetre over an edge and are exact whole
+feet in the source, so they are not counted.
+
+**And a second fault the parcel did not know it had.** The same sentence is attached to
+values the crosswalk says nothing about at all: **`paint` on 227 records, 220 of them
+against a family that never mentions paint; `board_gap_m` on 99 against a specification
+that names no board gap anywhere; `chimneys` on 150, 93 of them silent.** A note citing a
+band that does not speak to the value is a different fault from a value outside its band —
+worse in kind, since there is no band to be inside — and the instrument that finds it is a
+keyword over the family's authored strings, so it is **reported and not gated**. It wants
+its own parcel; see **K33** below.
+
+**What shipped.** `tools/measure_band_claims.py` — census, `--strict` (the assertion (b)
+must turn green; it exits 1 today) and `--gate` (a ratchet against the committed census in
+`tools/band_claims_baseline.json`, on every `check.sh`). Both halves of the ratchet were
+broken on purpose and proved to fail before being trusted: planting a 4.9 m D1 wall is
+caught as NEW, and repairing `recon_1835_north_d3_002` without re-writing the baseline is
+caught as an unrecorded repair. **The fault may shrink and may not grow.** No dimension
+moved; the strict assertion is red on purpose and `check.sh` runs the ratchet, because a
+permanently red dev gate would block every unrelated parcel behind it.
+
+**(b) is blocked exactly where T-V1(b) is blocked.** Every offender is on a parcel whose
+meshes are canonical Blender bakes; changing a dimension stales the GLB, `validate.py
+--all` fails a stale GLB, that validator is the dev gate, there is no Blender on the
+improve runner, and `chicago-4d-bake.yml` bakes from `dev`. The repair cannot pass the
+gate it must pass to reach the branch the bake reads. T-V1(b)'s three routes are (b)'s
+routes; choosing one is the owner's.
+
+---
+
+*The original parcel description follows, with its 193-record numbers left as written.*
 
 Every reconstructed roof carries the same sentence on every form value: *"Type-level choice within
 the D3 band in the reconstruction specification."* For **54 of 193** records the value is not in
@@ -1320,6 +1399,45 @@ citing a band it does not sit in.
 3.25 m, two `outbuilding` at 2.05 m) and all five one-storey, so the family's own licence for the
 storefront does not explain it. Decide which is right for a one-storey artisan shop and make the
 five agree, or record why a barber's shop and a gunsmith's are different kinds of building.
+
+### K33 — the note cites a band for values the specification does not bound · **UNCLAIMED · from K25(a) · Effort: S to decide, M to apply**
+
+**Phase:** lane 2 · **Effort:** S to decide, M to apply · data and tools only, no bake
+
+K25(a) measured the values the crosswalk *does* bound. This is the other half, and it is
+worse in kind: **`paint` on 227 records carries "Type-level choice within the D3 band",
+and 220 of those families never mention paint at all.** There is no band to be inside.
+The census, printed by `tools/measure_band_claims.py` on every run:
+
+| field | records citing a band | of which the family's authored geometry says nothing |
+|---|---:|---:|
+| `paint` | 227 | **220** |
+| `chimneys` | 150 | 93 |
+| `board_gap_m` | 99 | **69 — and the specification names no board gap anywhere** |
+| `plan` | 103 | 46 |
+| `door` / `door_side` | 99 | 37 each |
+| `bays` | 103 | 35 |
+| `porch` | 35 | 23 |
+| `gallery` | 4 | 4 |
+| `construction`, `cladding`, `gable_front` | 249 / 21 / 21 | 0 |
+
+**The instrument is a keyword** over the family's `key_geometry_parameters` strings, and
+it is deliberately generous — a hit means the specification *mentions* the thing, not that
+it bounds it. So the true count is a floor, and the field is reported rather than gated
+until the decision below is made.
+
+**It is a decision before it is a fix.** These values are not wrong; a board gap of 12 mm
+on an unpainted plank shed is a perfectly ordinary invention. What is wrong is the
+*citation*: the note says the value is bounded by a specification that does not speak to
+it. Three candidates, and the second is the honest cheap one: extend the crosswalk so the
+specification actually authors these (large, and it would be authoring evidence rather
+than recording it); **or split the note — cite the band only where a band exists, and say
+plainly "the specification does not speak to this; the value is the archetype's default"
+where it does not**; or grade these values a level lower than the ones the band covers.
+
+**Whatever is chosen, `tools/measure_band_claims.py` gains the assertion** — a value may
+cite a band only if the family authors one for it. Until then the census prints and does
+not fail, and this box says why.
 
 ### K26 — every building card links to a dossier that is not published · **UNCLAIMED · from K21 · Effort: S — a decision, then a line**
 

@@ -100,6 +100,17 @@ step "nothing unpermitted stands on refused ground, and the refusal still reache
 step "the anonymous massings that claim a sampled band have one" \
   python3 tools/measure_massing_variety.py --gate
 
+# The same sentence, asked of every reconstructed record and every value the crosswalk
+# authors a testable band for. "Type-level choice within the D3 band" is the entire
+# defence for inventing a building, so a value outside the band it cites is a note that
+# is wrong about its own source — 98 of them, on 80 of 249 records (ROADMAP K25). The
+# strict assertion FAILS today and is meant to: --strict runs it. What runs here is the
+# ratchet, because the repair needs a bake and a permanently red dev gate would block
+# every unrelated parcel behind it. A new offender, or a committed one whose value
+# moved, fails. The fault may shrink and may not grow.
+step "no reconstructed value is newly outside the band its own note cites" \
+  python3 tools/measure_band_claims.py --gate --quiet
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

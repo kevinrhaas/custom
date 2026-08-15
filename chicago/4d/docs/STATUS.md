@@ -1,5 +1,54 @@
 # STATUS
 
+## New 2026-08-15 — it is 98 values, not 54, and 24 causes, not 98 — and roof pitch had never been measured
+
+**K25(a)**, the measurement half. The parcel was scoped from an eave count taken on 193 records.
+Asked properly — every reconstructed record in the dataset and every form value the crosswalk
+authors a testable band for — **1135 values were tested against a band and 98 are outside it, on
+80 of 249 records**: **54 eaves, 38 roof pitches, 4 storey counts, 2 footprints, 0 roof forms.**
+The eave figure of 54 survived the widening by coincidence, and T-V1(a)'s 40 is its anonymous half.
+**Roof pitch had never been measured by anything in this project**, and it is the second-largest
+fault in the dataset's provenance.
+
+**The 98 are 24 causes.** Thirteen (family, value) pairs hold all 54 eaves and **six degree
+constants hold all 38 pitches**: 2.78 m against D3's 8–9 ft on 20 records, 2.05 m against D2's
+7–8 ft on 10 and against **W4's 9–18 ft on 3** (the worst, +2.27 ft), 18.0° against D2's 4:12 floor
+on 21. **Seven metre values account for all 54 eaves** — 2.05, 2.75, 2.78, 3.25, 5.05, 5.20, 5.35 —
+which is the archetype table, not a measurement of anything. The generator picks the value from the
+**archetype** and the note cites the **family**.
+
+**Pitch is a unit mismatch and nothing else.** The crosswalk authors rise:run; the generator authors
+whole degrees. 4:12 is 18.435° and the shed constant is 18.0°, so 21 D2 sheds sit **0.10 of a 1:12
+step** under a floor they would have cleared had the value been authored in the band's own units.
+All 38 are within one step.
+
+**The sub-1-ft question K25 left open is decided: they are failures.** 46 of 54 eaves are within a
+foot and nearness is exactly what a retyped constant looks like. The only slack in the tool is
+1.5 mm for the metre round-trip.
+
+**A second fault, reported and not gated.** The same sentence is on values the specification does
+not bound at all — **`paint` on 227 records, 220 against a family that never mentions paint;
+`board_gap_m` on 99 against a specification that names no board gap anywhere; `chimneys` on 150,
+93 silent.** There is no band to be inside. The instrument is a keyword and therefore a floor, so
+it prints rather than fails, and it is opened as **K33** with the decision it needs stated.
+
+**`tools/measure_band_claims.py --gate` runs on every `check.sh`, as a ratchet.** The strict
+assertion **fails today and is meant to** (`--strict`, exit 1, 98 findings); what gates is the
+committed census in `tools/band_claims_baseline.json` — a new offender, or a committed one whose
+value moved, fails. **Both halves were broken on purpose and proved to fail** before being trusted:
+a planted 4.9 m D1 wall is caught as NEW, and repairing `recon_1835_north_d3_002` without rewriting
+the baseline is caught as an unrecorded repair. The fault may shrink and may not grow.
+
+**K25(b) is blocked exactly where T-V1(b) is blocked** — every offender is on a canonically baked
+parcel, and the repair cannot pass the gate it must pass to reach the branch the bake reads. **No
+dimension moved here.**
+
+**What is unverified here:** the desktop half of `tools/smoke_renderer.mjs` was not run — the
+harness caps a single command at ten minutes and the desktop half needs about thirteen (ROADMAP,
+"the run budget"). `tools/check.sh` and the mobile half both passed. This parcel changes **no data,
+no geometry and no renderer code**: what ships is one new tool, its committed census, one gate step
+and documentation.
+
 ## New 2026-08-15 — the twins are all in one parcel, and 40 notes are wrong about their own source
 
 **T-V1(a)**, the measurement half. R-G1 blamed `south_water` for a horizon of one gable repeated,
