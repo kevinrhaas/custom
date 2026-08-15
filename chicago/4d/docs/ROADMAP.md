@@ -2206,7 +2206,11 @@ it was seen.
 
 </details>
 
-### R-BUG3c — the near ground is missing, and it is NOT the streets · **UNCLAIMED · TOP OF THE RENDERING QUEUE · owner-reproduced 2026-08-15**
+### R-BUG3c — the near ground is missing, and it is NOT the streets · **(a) DONE · (b) CLAIMED 2026-08-15 · owner-reproduced 2026-08-15**
+
+**R-BUG3c-b is CLAIMED (2026-08-15, branch `steward/r-bug3c-b-datum-disagreement`)** — the half
+that answers which of the two moved. (a) proved they disagree by 9.6–13.1 cm and deliberately
+fixed nothing.
 
 **The owner reproduced R-BUG3 on the branch that fixes it**, on mobile, on Lake Street approaching
 Franklin — the same complaint, after the parcel below declared it solved. Reproduced here at that
