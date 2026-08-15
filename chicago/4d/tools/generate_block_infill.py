@@ -36,7 +36,6 @@ import argparse
 import importlib
 import json
 import math
-import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -45,7 +44,6 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 STRUCTURES = DATA / "structures"
 RECIPE_PATH = DATA / "reconstruction" / "1835_platted_block_parcels.json"
-CROSSWALK_PATH = DATA / "reconstruction" / "1835_family_archetype_crosswalk.json"
 INVENTORY_PATH = DATA / "reconstruction" / "1835_building_inventory.json"
 LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
 SOURCE_ID = "owner_chicago_1835_reconstruction_spec_2026"
@@ -76,6 +74,13 @@ from inferred_occupancy import occupancy  # noqa: E402
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, footprints, occupied_lots  # noqa: E402
 
+# The family band, and the one rule that turns it into an instance's dimensions. It
+# used to live in this file; the North Division parcel needed the same arithmetic and
+# had a retyped constant instead, so the rule moved to one module both import
+# (ROADMAP T-V1).
+from family_bands import (dimensions_m, eave_floor, families,  # noqa: E402
+                          stable_fraction, storeys, wall_height_m)
+
 OCCUPANCY = occupancy()
 
 # The same separation the household parcel enforces. A generated building that lands
@@ -91,12 +96,6 @@ MAX_RELIEF_M = 0.30
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def stable_fraction(key: str, slot: int) -> float:
-    import hashlib
-    raw = hashlib.sha256(f"{key}:{slot}".encode()).digest()
-    return int.from_bytes(raw[:4], "big") / 0xFFFFFFFF
 
 
 INVENTED_NOTE = (
@@ -118,83 +117,6 @@ def invented(value, reason: str) -> dict:
 # --------------------------------------------------------------------------
 # the family table, read from the crosswalk
 # --------------------------------------------------------------------------
-
-FOOTPRINT_RE = re.compile(r"^\s*(\d+)x(\d+)\s*-\s*(\d+)x(\d+)")
-RANGE_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*$")
-
-
-def families() -> dict[str, dict]:
-    """Per-family geometry and archetype, as the crosswalk authors them."""
-    table: dict[str, dict] = {}
-    for fam in load(CROSSWALK_PATH)["families"]:
-        geom = fam.get("key_geometry_parameters") or {}
-        entry = {
-            "label": fam.get("label"),
-            "archetype": fam.get("current_placeholder_archetype"),
-            "levels": geom.get("levels"),
-            "eave_ft": geom.get("eave_ft"),
-            "band_ft": None,
-        }
-        m = FOOTPRINT_RE.match(str(geom.get("footprint_ft") or ""))
-        if m:
-            entry["band_ft"] = [int(m.group(1)), int(m.group(2)),
-                                int(m.group(3)), int(m.group(4))]
-        table[fam["id"]] = entry
-    return table
-
-
-def dimensions_m(family: str, band_ft: list[int], key: str) -> tuple[float, float]:
-    """A rectangle sampled deterministically inside the family's authored band.
-
-    The sampling is the phase-one parcel's, unchanged, so the same family reads the
-    same size distribution wherever it stands.
-    """
-    lo_w, lo_d, hi_w, hi_d = band_ft
-    width_ft = lo_w + (hi_w - lo_w) * (.18 + .70 * stable_fraction(key, 1))
-    depth_ft = lo_d + (hi_d - lo_d) * (.15 + .72 * stable_fraction(key, 2))
-    width, depth = width_ft * .3048, depth_ft * .3048
-    # The implemented frame dwelling is eaves-front. Families whose band reaches a
-    # gable-front proportion are held inside the archetype that exists rather than
-    # being drawn as something the generator cannot build.
-    if family.startswith(("D", "H")) and family not in ("D1", "D2") and depth > width * 1.46:
-        width = min(hi_w * .3048, depth / 1.46)
-    return round(width, 3), round(depth, 3)
-
-
-def storeys(levels: str) -> tuple[float, bool]:
-    """(storeys, has a loft) from the crosswalk's `levels` string."""
-    text = str(levels or "1").strip()
-    loft = "loft" in text
-    head = text.split("+")[0].strip()
-    try:
-        return float(head), loft
-    except ValueError:
-        raise SystemExit(f"cannot read a storey count from levels '{levels}'")
-
-
-# A door has to fit under a wall, and two of the small ancillary families are authored
-# with an eave band whose bottom is below the height the implemented outbuilding needs
-# to carry its own man door plus a header — A3 runs 6-7 ft, and a sample at 1.891 m is
-# refused by name. The band is not wrong: the phase-one parcel's privies stand at
-# 2.05 m, which is 6.73 ft and inside it. Uniform sampling across the band is what is
-# wrong. So the sample is taken from the part of the authored band the archetype can
-# actually build, and a family whose whole band is below that floor fails loudly rather
-# than being quietly raised out of its own typology.
-DOOR_HEADROOM_M = 2.05
-
-
-def wall_height_m(family: str, eave_ft: str, key: str, floor: float = 0.0) -> float:
-    m = RANGE_RE.match(str(eave_ft or ""))
-    if not m:
-        raise SystemExit(f"{family}: eave height '{eave_ft}' is not a numeric band")
-    lo, hi = float(m.group(1)) * .3048, float(m.group(2)) * .3048
-    if floor > hi:
-        raise SystemExit(f"{family}: the authored eave band {eave_ft} ft tops out at "
-                         f"{hi:.2f} m, below the {floor:.2f} m its archetype needs to "
-                         f"carry a door")
-    lo = max(lo, floor)
-    return round(lo + (hi - lo) * stable_fraction(key, 8), 3)
-
 
 # --------------------------------------------------------------------------
 # the families this generator refuses to mass, and why each one
@@ -272,16 +194,26 @@ def finish_for(key: str) -> tuple[str, str]:
     return "mixed_patch", "unpainted"
 
 
+def door_kind(family: str) -> str:
+    """What has to get through the opening, which is a claim about the building's use."""
+    if family in ("W1", "W3", "F1", "A2"):
+        return "wagon"
+    if family in ("W2", "A1"):
+        return "stable"
+    return "man"
+
+
 def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dict:
     """Form values, with the storey count and eave height read off the crosswalk."""
     why = (f"Type-level choice within the {family} band in the supplied reconstruction "
            "specification; it is not evidence for this anonymous instance.")
     levels, loft = storeys(spec["levels"])
     construction = "balloon_frame" if stable_fraction(key, 6) < .52 else "braced_frame"
-    # Only the door-carrying outbuilding families take the headroom floor; a house's
-    # eave band is far above it and clamping there would be inventing a storey height.
-    floor = DOOR_HEADROOM_M if family.startswith(("A", "W")) or family in ("D2", "F1") else 0.0
-    wall = wall_height_m(family, spec["eave_ft"], key, floor)
+    # The door is chosen before the eave because the eave floor depends on it: a wagon
+    # door needs a metre more wall than a man door, and asking for the floor without
+    # naming the door is how a band gets sampled below what the archetype can build.
+    door = door_kind(family)
+    wall = wall_height_m(family, spec["eave_ft"], key, eave_floor(family, door))
 
     if family == "D1":
         return {
@@ -324,11 +256,6 @@ def form_for(family: str, spec: dict, key: str, width: float, paint: str) -> dic
         raise SystemExit(f"{family} has no form rule in this generator; add one before "
                          f"a recipe uses it")
 
-    door = "man"
-    if family in ("W1", "W3", "F1", "A2"):
-        door = "wagon"
-    elif family in ("W2", "A1"):
-        door = "stable"
     roof = "shed" if family in ("D2", "A3", "A4") else "gable"
     material = "plank"
     if family == "A1":

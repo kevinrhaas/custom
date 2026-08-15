@@ -115,7 +115,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
 | — | TOWN | ~~T-A3h~~ | **DONE 2026-08-15** — the last open block entry, and the two adoptions it predicted are the two it made: `blk_randolph_dearborn`'s D3 to the carpenters and its D1 to the labourers, measured with `tools/measure_adoption_tests.py` rather than recalled. **Its finding is about the other two**: the D4 and the D2 that pass as a "second roof" are pairs this layer has NEVER housed — the D4 evidence is one household in the NORTH, the D2's is four in the NORTH and WEST — so every second-roof refusal K28 has collected is a candidacy built from two projections of one table. Read its box and K28's before quoting any adoption test |
 | 1 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
-| 2 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
+| — | TOWN | ~~T-V1(a)~~ | **DONE 2026-08-15** — the stamp is **not** at `south_water`: every twin in the town is in the North Division parcel, **36 of its 60 roofs**, and the census found something bigger — **40 eaves outside the band their own note cites**, 18 of them in a parcel that samples its footprints and says so. (b) is written, measured and **blocked by a circular dependency in the pipeline** — read its box before touching any dimension on a baked record |
+| 2 | TOWN | **T-V1(b)** | the sixty North records: **NEEDS ONE BAKE**, and cannot go green on the improve runner. A policy question for the owner, not an engineering one |
 | 3 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 4 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
 | — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
@@ -1551,7 +1552,119 @@ in L93.
 `data/structures/recon_1835_blk_randolph_dearborn_*.json` (9, derived) · `data/sidecars/1835/` ·
 `assets/…` placeholder massing · `docs/LIBERTIES.md` (L93) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-V1 — the anonymous town reads as one gable stamped a dozen times · **UNCLAIMED · NEXT UP · from R-G1**
+### T-V1 — the anonymous town reads as one gable stamped a dozen times · **(a) DONE 2026-08-15 · (b) NEXT UP, AND IT NEEDS ONE BAKE**
+
+**(a) is the measurement and the rule; (b) is the sixty records, and (b) cannot go green on the
+improve runner.** Read the box before quoting any uniformity number.
+
+#### T-V1(a) — the census, the shared rule, and the door bug it found · **DONE 2026-08-15**
+
+**The parcel is not where R-G1 said it was.** T-V1 named `south_water` — the South Division
+business street — and by the time it was claimed that row had already been fixed twice over: the
+phase-one South parcel samples its footprints, and every one of the twelve `phase3` platted-block
+parcels samples footprint AND eave. Measured across all 218 anonymous roofs, **every twin is in
+one parcel**: `phase2_north_division_initial`. Sixty roofs, twenty-three families, **24 distinct
+massings — 36 of the 60 share a footprint AND an eave with another roof of their own family**.
+The West approaches parcel does not sample either, and has no twins only because its twenty roofs
+are spread thin across families.
+
+**`tools/measure_massing_variety.py --gate` is the census, and it runs on every `check.sh`.** It
+gates a sentence the data itself makes: 138 records say in their own footprint note that the
+rectangle was `sampled deterministically` inside the family's authored band, and the gate holds
+them to it — inside the band, and unique within family and parcel. Both clauses were **broken on
+purpose and proved to fail** before being trusted (a 9.90 m A1 against a band topping at 6.10 m;
+a duplicated phase-one D3 rectangle). Everything else it **reports and does not fail**, for the
+reason in T-V1(b) below.
+
+**The census found something bigger than the twins, and it is K25's subject rather than R-G1's.**
+Every invented dimension carries the note *"Type-level choice within the &lt;family&gt; band"*, and that
+sentence is the whole defence for the invention — the building is made up, but made up inside the
+specification. **40 of the 218 eaves are outside the band their own note cites**: 18 in
+`phase1_south`, 17 in `phase2_north`, 5 in `phase2_west`. The phase-one parcel is the sharp case,
+because it samples its FOOTPRINT and carries the sentence saying so while its eave is still one
+constant per family — so a record can carry a true sentence about its plan and a false one about
+its wall, in the same note style, and nothing distinguished them until now. **(a) fixes none of
+the 40.** It counts them, names them by id, and prints them on every build.
+
+**One real bug, found by the arithmetic and fixed.** `DOOR_HEADROOM_M` is 2.05 m, the phase-one
+privies' height, and it was applied as the eave floor for **every** door-carrying family —
+including the wagon doors on W1, W2, W5, F1 and A2. A wagon door is **3.00 m in the clear** and
+`outbuilding_params` refuses a wall that cannot header it. It never bit, because those families
+stood at a retyped 3.42 m that happened to clear it; the moment the North parcel sampled its own
+band, `recon_1835_north_w1_*` failed by name at 2.821 m. `eave_floor(family, door)` now asks
+`generators/archetypes/outbuilding_params.DOOR_SIZE_M` how much room the door needs instead of
+carrying a constant copied out by hand — **which is the same fault this parcel is about, in
+miniature**. The block parcels' 90 records are **byte-identical** across the change: their wagon
+and stable families (A1, A2) have band floors already above the new requirement.
+
+**And the rule now lives in one place.** `tools/family_bands.py` holds `families()`,
+`dimensions_m()`, `wall_height_m()`, `storeys()`, `stable_fraction()` and `eave_floor()`, lifted
+verbatim out of `tools/generate_block_infill.py`, which now imports them. The block generator's
+own docstring already said family geometry comes from the crosswalk and not from a generator
+file; this makes that true of the second generator that needs it.
+
+**Files:** `tools/family_bands.py` (new) · `tools/measure_massing_variety.py` (new) ·
+`tools/generate_block_infill.py` · `tools/check.sh` · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+#### T-V1(b) — the sixty North records · **NEXT UP · Effort: S to write, and it NEEDS ONE BAKE**
+
+**The work is done and measured; what it cannot do is land here.** Wiring
+`generate_north_infill.py` to `family_bands` — deriving width, depth and eave per record from the
+family band instead of from a retyped constant and from `width_ft`/`depth_ft` columns in
+`1835_north_division_initial_parcel.json` — was implemented and run during (a). Every one of the
+North generator's placement gates passed on the sampled footprints: **no collision, no platted-
+corridor intrusion, no roof off the modelled terrain, no perimeter over the 0.35 m relief
+contract, and every archetype accepted its parameters.** The result, measured:
+
+| | before | after |
+|---|---:|---:|
+| duplicate (footprint + eave) instances of 60 | **36** | **0** |
+| distinct massings | 24 | **60** |
+| eaves outside their own family band | **17** | **0** |
+
+**IT WAS REVERTED, AND THE REASON IS A CIRCULAR DEPENDENCY THE PIPELINE HAS, NOT A DOUBT ABOUT
+THE WORK.** The sixty North roofs' GLBs are canonical Blender bakes (`kind: "generated"`), not
+placeholders. Changing a dimension changes the resolved archetype parameters, which is exactly
+what `generators/mesh_inputs.py` hashes, so **all 60 committed meshes go stale at once** and
+`tools/validate.py --all` fails — which is the dev gate, so the PR cannot merge. There is no
+Blender on the improve runner and installing one is forbidden. And
+`.github/workflows/chicago-4d-bake.yml` **bakes from `dev`**: it can only rebuild what has
+already landed. So the change cannot reach `dev` through a gate it turns red on the way, and the
+thing that would turn it green only runs after it lands.
+
+**Do not "fix" this by re-stamping `assets/manifest.json`.** That would leave sixty meshes showing
+the old building under a hash claiming freshness, which is the precise failure the staleness gate
+was built for (`run_stale_check`, and the note above it). **Do not** run
+`generators/inferred_placeholder.py` over them either: it stands aside for a canonical bake by
+design, and the one time it did not it silently replaced 113 KB archetypes with 4.9 KB flagged
+boxes and every gate stayed green.
+
+**Three routes, for the owner to pick:**
+1. **Dispatch `chicago-4d-bake.yml` against the branch** — needs the workflow's "bake from dev"
+   step to accept a ref, which is a workflow edit and therefore an owner-visible change.
+2. **Let the gate merge red once**, on an explicitly labelled PR, and let the nightly bake green
+   `dev` the same night. Cheapest, and it costs the invariant that `dev` is always green.
+3. **Pair the parcel with a bake PR** — land (b)'s data and the rebuilt GLBs in one commit,
+   produced by a dispatched bake off a branch that already carries the data.
+
+Route 2 is what the bake workflow's own note (*"a change to data is picked up by the nightly"*)
+appears to assume, and nothing in `docs/PIPELINE.md` says a red merge is permitted. **It is a
+policy question, not an engineering one, so it is not being decided by an overnight run.**
+
+**The same wall stands in front of K25(b) and every other parcel that would move a dimension on
+the 128 canonically-baked anonymous roofs**, which is why it is written here at length rather than
+in a commit message.
+
+**(b) still owes**, when it lands: the roof-pitch half (deferred deliberately — the crosswalk
+authors pitch as `7:12-10:12` **coupled to a committed `ridge_ft` band**, so sampling pitch without
+gating the ridge would put ridges outside a band their own note cites, which is the fault this
+parcel is fixing); a `docs/LIBERTIES.md` entry for extending the sampling rule to a fourth parcel;
+`tools/audit_confidence.py --strict` green (it was, on the reverted implementation); and the
+`south_water`, `prairie_west` and `prairie_south` critic frames re-shot **after** the bake, since
+before it they cannot show a difference.
+
+#### T-V1 (spec) — the original parcel definition
+
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender) · **Effort:** M
 
