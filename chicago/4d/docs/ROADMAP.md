@@ -110,7 +110,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| 1 | TOWN | **T-A10…** | one open block per run until the 46 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
+| 1 | TOWN | **T-A11…** | one open block per run until the 39 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** · *read K28 before adopting: T-A9 was offered a second roof per trade and refused it as a choice, not a rule* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1173,6 +1173,14 @@ resolves** — a link nobody clicks in the dev tree is exactly how this survived
 
 ### K28 — may one block raise a trade's count twice? · **UNCLAIMED · from T-A9 · Effort: S — a decision, then a `method` clause and a gate**
 
+> **THE ID IS USED TWICE AND THIS IS THE ROADMAP ONE.** The published-mirror gate that landed as
+> PR #147 ("gate the published mirror against its own source", recorded at the top of
+> `docs/STATUS.md`) also shipped under the name K28 and has no ROADMAP entry of its own. Every
+> `K28` citation in `docs/LIBERTIES.md` (L100, L101) and in the census arguments of
+> `1835_inferred_household_programme.json` means **this** parcel — the rule-6 question below.
+> Noted by T-A10, which met the collision while citing it; renumbering landed work is not a block
+> parcel's call.
+
 **Phase:** lane 2, data and tools · **Runner:** improve-runner (no Blender)
 
 Rule 6 (the household programme's `method` list) admits an anonymous block roof into the
@@ -1647,7 +1655,60 @@ Full admission in `docs/LIBERTIES.md` **L100**.
 placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L100 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A10…T-An — the remaining blocks · **UNCLAIMED**
+### T-A10 — `blk_south_water_lasalle` · **DONE 2026-08-15**
+
+The third block of the South Water row — bounded by South Water, Clark, Lake and LaSalle — carries
+**seven roofs, five principal and two ancillary**, on five of its six free lots. Lot 1 (the
+Lake-and-LaSalle corner) is left open; lot 6 is held by the Chicago Democrat's office and lot 5 by
+Thomas Church's store, both derived by `tools/plat_occupancy.py` rather than authored. **288 stand
+and 377 remain, 39 of them on covered ground.** The recipe cleared every placement gate on its
+first run and **no tool changed** — the third block in a row, which under T-A8's own text is what a
+block parcel should look like now. Two adoptions under rule 6: the D3 one-room cottage on lot 0
+becomes the fifteenth inferred carpenter household, the D1 log cabin on lot 7 the seventeenth
+labouring one. Full admission in `docs/LIBERTIES.md` **L101**.
+
+**Four findings came out of it that are not the block.**
+
+1. **The first block of the row that arrived with a documented roof on BOTH faces**, which is the
+   first real test of the frontage argument rather than a repeat of it. T-A8 and T-A9 could send
+   their meanest roofs to an empty back street; Church's store already stands on this one's Lake
+   frontage. The arrangement was applied anyway — a log cabin and a plank shanty on a frontage that
+   already carries a documented store — and L101 records that it is the same invention made with
+   less room rather than a new one.
+2. **T-A7's lap case has a third instance and it is the largest by a factor of two.** Church's
+   store is seated on lot 5 by test one (59.3 m² of 92.9 m² against 33.6 m² on lot 3), but
+   **22.1 m² of the lot 3 lap falls inside lot 3's buildable inset** — where Kinzie's 9.7 m² fell
+   entirely outside it and `recon_1835_west_018`'s 11.9 m² was ruled a lap on a corner. It cost the
+   parcel nothing (the shanty was offset west and clears the store by **7.56 m** against a 3 m
+   gate, the closest approach in the whole parcel) so nothing was moved, but the case now has three
+   measured points and the largest of them is inside the strip test two was written to protect.
+3. **K28 is not a one-off, and that is the argument for settling it.** This block offered the
+   identical pair of double candidacies T-A9 met — the D3 and the D4 for carpenters, the D1 and the
+   D2 for labourers. Two consecutive blocks dealing both floor trades both of their families is
+   what a five-or-six-dwelling South Division block looks like, not a coincidence. One per trade
+   was adopted again, on T-A9's reading, recorded as a choice in both census arguments and L101.
+4. **The `K28` id is used twice in this repository** — for the rule-6 question below, and for the
+   published-mirror gate that landed as PR #147 with no ROADMAP entry of its own. Both are real and
+   neither is wrong; the collision is in the label. A disambiguation line is added at K28's heading
+   so existing citations resolve. Renumbering landed work is not a block parcel's call, which is
+   why this is a note rather than an edit.
+
+**And one number about this project rather than about the town: the fifth K20 measurement is
+72 of 100**, against 19-of-98 at T-A9. Inserting two households renamed nearly three quarters of the
+layer's invented names. No grade moved and `check.sh` re-derives all 102, so it is churn — but the
+"a fifth of the layer" description every earlier entry used is now wrong, and the mechanism is
+visible rather than mysterious: `tools/generate_inferred_names.py` deals names round-robin through
+each community-and-sex pool in a stable hash order of person id, so one new person landing early in
+a large bucket renames everything after it. K20's fix still belongs in its own parcel.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (7 new) ·
+`data/residents/` (2 new households, 2 new persons, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L101 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
+
+### T-A11…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own

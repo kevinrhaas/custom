@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_south_01",
- "name": "The Kellogg household — a reconstructed shoemaker (south division)",
+ "name": "The Leland household — a reconstructed shoemaker (south division)",
  "division": "south",
  "head": "inf_shoemaker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_south_01",
-   "name": "Levi Kellogg",
+   "name": "Eli Leland",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

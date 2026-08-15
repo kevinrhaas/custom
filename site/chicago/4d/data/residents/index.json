@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 160,
-  "persons": 196,
+  "households": 162,
+  "persons": 198,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 100
+   "reconstructed": 102
   }
  },
  "households": [
@@ -1011,6 +1011,20 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_15",
+   "file": "households/hh_inf_carpenter_south_15.json",
+   "head": "inf_carpenter_south_15",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_lasalle_d3_03",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1468,6 +1482,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_south_water_wells_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_17",
+   "file": "households/hh_inf_labourer_south_17.json",
+   "head": "inf_labourer_south_17",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_south_water_lasalle_d1_04",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

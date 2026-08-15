@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_shoemaker_south_02",
- "name": "The Sawyer household — a reconstructed shoemaker (south division)",
+ "name": "The Sheldon household — a reconstructed shoemaker (south division)",
  "division": "south",
  "head": "inf_shoemaker_south_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_shoemaker_south_02",
-   "name": "Seth Sawyer",
+   "name": "Abner Sheldon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

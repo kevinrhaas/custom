@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_painter_north_01",
- "name": "The Nichols household — a reconstructed painter (north division)",
+ "name": "The Parmelee household — a reconstructed painter (north division)",
  "division": "north",
  "head": "inf_painter_north_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_painter_north_01",
-   "name": "Alanson Nichols",
+   "name": "Orrin Parmelee",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

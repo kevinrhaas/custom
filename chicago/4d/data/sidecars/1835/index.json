@@ -2509,6 +2509,48 @@
       "asset": "gltf/recon_1835_blk_south_water_franklin_d5_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_south_water_lasalle_a1_06",
+      "name": "Reconstructed A1 stable #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a1_06.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_a1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_a3_07",
+      "name": "Reconstructed A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_a3_07.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d1_04",
+      "name": "Reconstructed D1 older log dwelling #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d1_04.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d1_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d2_05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d2_05.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d3_03",
+      "name": "Reconstructed D3 one-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d3_03.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d3_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d4_02.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_lasalle_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_lasalle_d5_01.json",
+      "asset": "gltf/recon_1835_blk_south_water_lasalle_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_south_water_wells_a1_07",
       "name": "Reconstructed A1 stable #07",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_wells_a1_07.json",

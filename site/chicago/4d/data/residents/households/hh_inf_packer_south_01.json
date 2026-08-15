@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_packer_south_01",
- "name": "The Sheldon household — a reconstructed packer (south division)",
+ "name": "The Stebbins household — a reconstructed packer (south division)",
  "division": "south",
  "head": "inf_packer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_packer_south_01",
-   "name": "Silas Sheldon",
+   "name": "Seth Stebbins",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

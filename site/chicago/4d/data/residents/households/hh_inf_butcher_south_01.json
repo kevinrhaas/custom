@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_butcher_south_01",
- "name": "The Whitcomb household — a reconstructed butcher (south division)",
+ "name": "The Wilcox household — a reconstructed butcher (south division)",
  "division": "south",
  "head": "inf_butcher_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_butcher_south_01",
-   "name": "Jared Whitcomb",
+   "name": "Ira Wilcox",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

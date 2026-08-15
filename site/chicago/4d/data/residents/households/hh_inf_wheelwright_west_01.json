@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_wheelwright_west_01",
- "name": "The Flynn household — a reconstructed wheelwright (west division)",
+ "name": "The Gallagher household — a reconstructed wheelwright (west division)",
  "division": "west",
  "head": "inf_wheelwright_west_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_wheelwright_west_01",
-   "name": "Daniel Flynn",
+   "name": "Hugh Gallagher",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

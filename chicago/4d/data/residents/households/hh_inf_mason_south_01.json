@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_south_01",
- "name": "The Crandall household — a reconstructed mason (south division)",
+ "name": "The Dickinson household — a reconstructed mason (south division)",
  "division": "south",
  "head": "inf_mason_south_01",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_south_01",
-   "name": "James Crandall",
+   "name": "Henry Dickinson",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
