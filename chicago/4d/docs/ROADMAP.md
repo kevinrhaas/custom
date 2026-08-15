@@ -967,7 +967,23 @@ guarantees a floor of one, which is what the phase-one parcel assumes and what e
 has done or bettered; whether a block of eight lots in 1835 Chicago carried six roofs rather than
 seven is a question for the evidence, not for the apportionment, and nothing here answers it.
 
-### T-A7…T-An — the remaining blocks · **UNCLAIMED**
+### T-A7 — `blk_south_water_franklin` · **CLAIMED 2026-08-15, expires 2026-08-17**
+
+The first South Water Street block off the schedule, bounded by South Water, Wells, Lake and
+Franklin. The schedule deals it **eight roofs — six principal, two ancillary — onto seven free
+lots of eight**, with no institutional family, so on paper it is the plain T-A5 shape.
+
+**On arrival it is not.** Three documented buildings stand on this block's ground — the Temple
+Building, J. H. Kinzie's store and the Exchange Coffee House — and the occupancy rule can see
+exactly one of them. Measurement and the parcel's finding are recorded under the claim as the
+run works it.
+
+Files: `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `tools/reconcile_665.py` ·
+`tools/generate_block_infill.py` · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js`. **No renderer file.**
+
+### T-A8…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
