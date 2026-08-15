@@ -1409,6 +1409,14 @@ with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lo
 · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
 no resident, no sidecar, no mesh and no renderer file.
 
+### T-A9 — `blk_south_water_wells` · **CLAIMED 2026-08-15**
+
+The second block of the South Water row, bounded by South Water, LaSalle, Lake and Wells.
+The schedule at this arrival date deals it **8 roofs — 6 principal + 2 ancillary** across
+seven free lots; `brown_boarding_house` already holds lot 6, the South Water and LaSalle
+corner. No refused family in the deal, so nothing to defer. One block, one run, under the
+rules T-A2h/T-A4/T-A5/T-A6/T-A7 already wrote into the tools.
+
 ### T-A8…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
