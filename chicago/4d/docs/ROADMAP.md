@@ -69,6 +69,11 @@ this paragraph promised a `--stations` flag that did not exist and a `--only` fl
 does not have, so every run that took the advice ran the full set. `--stations` exists now and
 was measured at 2 min 03 s for three desktop stations. The full both-viewport `--metrics` run
 now costs 13 min with R-W4a's second capture.)
+**Updated 2026-08-15 by R-W4c(a), which added a THIRD capture (flower heads hidden).** Measured
+on the same three desktop stations: **3 min 45 s**, against R-W4a's 2 min 58 s for two captures
+and the original 2 min 03 s for one. The full both-viewport run was **not** re-measured — 13 min
+is R-W4a's figure and the third capture will have added to it. `--no-mask` drops both extra
+captures.
 **Use `--stations` and `SMOKE_VIEWPORT`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
 instead of 12; `SMOKE_VIEWPORT=mobile` runs one viewport while iterating. Full runs belong at the
 end, not in the loop.
@@ -95,7 +100,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | # | lane | parcel | why first |
 |---|---|---|---|
 | — | RENDERING | ~~R-BUG3c~~ | **DONE 2026-08-15** — neither surface moved: the publish step quantises the ground onto a **306 mm** vertical lattice AFTER the only gate that measures it, burying the road and the flora by up to **228 mm**. The heights are read back off the field at load, and two gates now hold the file that SHIPS. Read the box before quoting any ground number |
-| 1 | RENDERING | **R-W4c** | the flower load is **0.0012** against a 4–6 % target — R-G1's largest single accuracy deduction outside the town, self-contained, one smoke · *promoted 2026-08-15 when R-W4a landed the metric it was waiting behind* |
+| — | RENDERING | ~~R-W4c(a)~~ | **CLAIMED 2026-08-15 · `steward/r-w4c-what-counts-as-a-flower`** — the flower-load recipe's hue cut at 50° runs through the middle of a July prairie's bloom, so `0.0012` is not a count of flowers. (a) lands the honest measurement; **(b) is the tuning half and must take (a)'s committed numbers as its baseline** |
+| 1 | RENDERING | **R-W4c(b)** | raise the bloom against the figure R-W4c(a) committed — **not against `flower.load`**, which the same parcel measured and found unable to see most of the bloom. Read R-W4c(a)'s box first |
 | 6 | RENDERING | **R-W6** | should the terrain ship quantised at all? 688 KB on a 306 mm lattice against 6.45 MB exact. Opened by R-BUG3c with both numbers measured; a payload decision with an owner-facing cost, and **not urgent** — the ground a visitor stands on is correct either way |
 | — | RENDERING | ~~R-BUG4~~ | **DONE 2026-08-15** — the wet-corner rule deleted the dry half of a road panel with the wet half. Clipped at the waterline now: **28 panels / 62.7 m** of roadway recovered, and the gate asserts the invariant rather than the number |
 | — | RENDERING | ~~R-W4a~~ | **DONE 2026-08-15** — the horizon figure counted the town's roofs as timber (62 % of it at `prairie_south`), the G−B discriminator this project named was measured and **refuted**, and the replacement cannot move when a block lands. Read its box before quoting any horizon number |
@@ -420,7 +426,7 @@ at the top). Each half below is one coherent change with one smoke.
 |---|---|---|
 | ~~**R-W4a**~~ | ~~fix the horizon-timber metric~~ · **DONE 2026-08-15** | The headline figure counted gable ends as trees and the acceptance number was unmeasurable. It is measurable now, and it is much worse than it read. Findings below. |
 | **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
-| **R-W4c** | **flower load** | `0.0012` against a 4–6 % target — the largest single accuracy deduction on the historical axis outside the town. `data/flora/` tuning + `flora.js`. |
+| ~~**R-W4c**~~ | ~~flower load~~ · **(a) DONE 2026-08-15, (b) IS THE TUNING HALF** | `0.0012` was not a count of flowers: the recipe's hue cut at 50° runs through the middle of a July prairie's bloom and misses **94.5 %** of it. The render's true bloom at `prairie_west` is **2.19 %**, not 0.12 %. Findings under R-W4c(a) below — **read it before quoting any flower number, and before tuning anything**. |
 | **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
 
 **R-W4a is not bookkeeping.** A town parcel has already handed W4 a pass it did not earn, and
@@ -434,7 +440,9 @@ number is the difference between improving the scene and improving the score.
 **Acceptance (RENDERING §5):** vegetated pixels present to the fog-90 % distance; horizon
 timber column coverage **≥ 90 %** — quoted from `horizonTimber.timberOnly.coverageAll` and
 never from `coverageAll`, which counts roofs (R-W4a); crown fine-detail ratio **≥ 0.6**; depth-band high-pass
-RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %**; the ring seam gone
+RMS non-collapsing, far band **≥ 0.75×** reference; flower load **4–6 %** — quoted from
+`flower.bloom` and never from `flower.load`, which counts a yellow coneflower as grass
+(R-W4c(a)), and against a target R-W4c(b) must re-derive before it compares the two; the ring seam gone
 (no constant screen row across all columns). Fog still total by 1500 m (**L17**), and
 `HAZE_MAX = 0.82` on the horizon band is **L35** — a technique that changes what either
 claims gets an appended **Revised** line in `docs/LIBERTIES.md` in the same PR.
@@ -532,6 +540,91 @@ tested, worst metric drift **0**.
 **And a doc claim was found false while using it.** The budget section has told every run since
 2026-08-14 to use `critic_shots.mjs --stations a,b,c` for a 3-minute run instead of 12. **That
 flag did not exist**, so every run that followed the advice ran the full set. It exists now.
+
+#### R-W4c(a) — DONE 2026-08-15 · the flower metric cannot see most of a flower, and the gap it reported is 18× too big
+
+**What it was.** R-G1 measured a flower load of `0.0012` at `prairie_west` against a 4–6 %
+target and this file called it "an under-representation of a July prairie by two orders of
+magnitude". The recipe sorts every ground pixel into *plant* or *flower*, and it applies the
+plant test first: `hue ∈ [50°, 180°)` with any chroma at all is plant. **No yellow-through-cyan
+pixel can therefore ever be a flower, however brilliant it is** — and the headline colour of a
+July prairie is the yellow composite.
+
+**The cut runs through the bloom it is sorting, and this project's own records straddle it.**
+Measured on the committed `data/flora/zones/` inflorescence colours:
+
+| record | rgb | hue | counted as |
+|---|---|---|---|
+| `silphium_laciniatum` | 228, 200, 62 | **49.880** | flower |
+| `ratibida_pinnata` | 232, 206, 72 | **50.250** | **the grass it is compared against** |
+| `opuntia_humifusa` | 236, 208, 72 | 49.756 | flower |
+| `nuphar_advena` | 230, 206, 80 | 50.400 | **plant** |
+
+Two yellow composites 0.37° apart land on opposite sides, and nobody looking at the frame could
+tell the pair apart. Of the **97** inflorescence colours in the zone records, **52 are called
+plant, 26 are called neither** — dropped from *both* sides of the ratio, which is where the
+saturated dark purples go (`liatris_pycnostachya`, `vernonia_fasciculata`, `dalea_purpurea`,
+`pontederia_cordata`) — and only **19 are called flower**.
+
+**So the harness was made to take the flowers away, the same subtraction R-W4a used for the
+town.** `critic_shots.mjs` photographs each station a third time with the nine `flora-head-*`
+instanced sets hidden; every ground pixel that moved is a pixel a flower head painted, by
+construction — no hue, no colour threshold, nothing that moves when the palette is re-tuned.
+The heads cast no shadow (`flora.js` sets `castShadow = false` on every set), so hiding them
+cannot change a pixel they did not cover. Both frames are read over the **visitor frame's**
+ground line, so a scape breaking the skyline cannot move the boundary and count its own removal.
+
+**The measurement — source tree, 2026-08-15 `dev`, desktop, the three prairie stations.**
+
+| station | recipe `load` | **true bloom** (of hued ground) | of ground | bloom px | recipe **recall** | recipe **precision** |
+|---|---|---|---|---|---|---|
+| `prairie_west` | 0.0012 | **0.0219** | 0.0202 | 10,843 | **0.055** | 0.998 |
+| `prairie_south` | 0.0024 | **0.0187** | 0.0107 | 9,137 | **0.128** | 0.996 |
+| `river_bank` | 0.0022 | **0.0076** | 0.0057 | 4,131 | **0.284** | 1.000 |
+
+**Where the missing bloom goes, in-frame — this is the whole finding.** Of the 10,843 pixels a
+flower actually painted at `prairie_west`: **5.5 % are called flower, 69.7 % are called PLANT,
+24.9 % are called neither.** The recipe does not merely miss them — a bloom pixel called plant
+is subtracted from the numerator **and added to the denominator**, so the ratio is pushed down
+twice by the same pixel. Precision runs the other way and is near-perfect (0.998): almost
+everything it *does* call a flower is one. It is not over-counting. It is blind.
+
+**Three things follow, and two of them are corrections to this project's own claims.**
+
+- **"Two orders of magnitude" is wrong and is corrected wherever it appears.** The render's
+  bloom at `prairie_west` is **2.19 %**, not 0.12 %. Against a 4–6 % target that is a factor of
+  about two to three — a real gap, worth R-W4c(b), and **eighteen times smaller than the one
+  this file has been quoting**. A parcel sized against the old figure would have been sized
+  against a measurement error.
+- **NEITHER COMPARISON WITH THE 4–6 % TARGET IS SOUND YET, AND R-W4c(b) MUST NOT BE ACCEPTED ON
+  ONE.** That target was derived by running *this same recipe* on the reference photographs
+  (STATUS §00: planting 12.91 %, virgin remnant 1.79–5.54 %). So `0.0012` vs 4–6 % is
+  recipe-against-recipe, which is at least consistent in method but reads a number that is
+  94.5 % blind on our side and blind by an unmeasured amount on the photograph's; and 2.19 % vs
+  4–6 % compares a true count against a blind one. A photograph has no second frame, so its
+  bloom **cannot** be measured by subtraction. **Re-deriving the target with a method of known
+  recall is R-W4c(b)'s first job, before it tunes anything** — otherwise the tuning half will
+  chase a bar that was never on this scale.
+- **What (a) does give (b) is an exact baseline.** Whatever `data/flora/` or `flora.js` is
+  changed to, the bloom it paints is now countable to the pixel and the count cannot be gamed by
+  a palette shift. That is the point of landing the measurement before the fix, and it is why
+  the parcel was split.
+
+**The one limit of the figure, checked rather than waved at.** It counts head pixels **over
+ground only**, because that is `load`'s denominator. A head silhouetted against the sky is
+therefore outside it. Measured whole-frame against ground-only: `prairie_west` 10,873 vs 10,843
+(**30 px**, 0.3 %), `prairie_south` 9,137 vs 9,137 (**0**), `river_bank` 4,240 vs 4,131
+(**109 px**). The restriction costs essentially nothing at these stations and the figure is a
+floor, not an estimate.
+
+**Cost, measured.** Three desktop stations with all three captures: **3 min 45 s**, against the
+2 min 58 s R-W4a measured for the same three with two captures. The third capture is frames, not
+a page load, and `--no-mask` still opts out of both.
+
+**`flower.load` is unchanged in name and in value**, exactly as `coverageAll` was kept by R-W4a,
+so the 2026-08-14 baseline and the photograph-derived target stay comparable to themselves. The
+new reading is `flower.bloom`, and it is `null` for a reference photograph the same way
+`timberOnly` is.
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 

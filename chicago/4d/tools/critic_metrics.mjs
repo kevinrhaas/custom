@@ -56,6 +56,12 @@
  *                       walls or roofs feeds them into the denominator or worse,
  *                       so this figure is only meaningful at the open-prairie
  *                       stations. It is reported everywhere and quoted there.
+ *                       A SECOND HONEST LIMIT, measured by R-W4c: the hue cut at
+ *                       50 deg that separates "plant" from "flower" runs through
+ *                       the middle of a July prairie's own bloom, so this figure
+ *                       is not a count of flowers. `flower.bloom` is, measured
+ *                       on a third capture with the heads hidden, and it says
+ *                       how much of this recipe's answer was ever about them.
  *
  * Every threshold above is a measurement convention, not a claim about 1835.
  *
@@ -505,17 +511,121 @@ export function measure(img, opts = {}) {
     ? decile.reduce((s, v) => s + v, 0) / decile.length : null;
 
   // --- flower load -------------------------------------------------------- //
+  //
+  // THE RECIPE IS UNCHANGED IN VALUE AND IN NAME. It is the figure the 4-6 %
+  // target was derived with — the reference photographs were read by this same
+  // classifier — so replacing it would strand the target, and the 2026-08-14
+  // baseline with it. What R-W4c adds is a measurement of what it counts.
+  //
+  // THE CUT AT hue 50 RUNS THROUGH THE BLOOM IT IS SORTING. A pixel is "plant"
+  // if its hue is in [50, 180) and it carries any chroma at all, and that test
+  // is applied FIRST, so no yellow-through-cyan pixel can ever be a flower
+  // however brilliant it is. A July prairie's headline colour is the yellow
+  // composite. Measured on this project's own committed records, the two
+  // compass-plant-family yellows land on opposite sides of the cut half a
+  // degree apart: `silphium_laciniatum` (228,200,62) is hue 49.880 and counts
+  // as a FLOWER, `ratibida_pinnata` (232,206,72) is hue 50.250 and counts as
+  // the GRASS it is being compared against. `opuntia_humifusa` 49.756 is a
+  // flower; `nuphar_advena` 50.400 is not. Nobody looking at the frame could
+  // tell those pairs apart, and the classifier puts one in the numerator and
+  // the other in the denominator. Of the 97 inflorescence colours in
+  // `data/flora/zones/`, 52 are called plant, 26 are called neither — dropped
+  // from BOTH sides, which is where the saturated dark purples go — and 19 are
+  // called flower.
+  //
+  // SO THE HARNESS ASKS THE RENDERER TO TAKE THE FLOWERS AWAY, the same
+  // subtraction R-W4a used for the town. The nine `flora-head-*` instanced sets
+  // are hidden and the station is photographed a third time; every ground pixel
+  // that changed is a pixel a flower head painted, by construction — no hue, no
+  // threshold on colour, nothing to tune, and nothing that moves when the
+  // palette is re-tuned. `bloom.headPixels` is that count. `bloom.recipeRecall`
+  // and `bloom.recipePrecision` then hold the recipe above to it: what share of
+  // the real flower pixels did it call flowers, and what share of what it
+  // called flowers were ever flowers at all.
+  //
+  // The heads cast no shadow (`flora.js` sets `castShadow = false` on every
+  // instanced set), so hiding them cannot change a pixel they did not cover.
+  // Both frames are read over the VISITOR frame's ground line, because the
+  // question is about the visitor's ground: a scape breaking the skyline would
+  // otherwise move the boundary and count its own removal as ground.
   let plantHued = 0; let flowerHued = 0;
+  const CALLED_PLANT = 1; const CALLED_FLOWER = 2; const CALLED_NEITHER = 3;
+  const called = opts.withoutFlowerHeads ? new Uint8Array(W * H) : null;
   for (let x = 0; x < W; x++) {
     for (let y = Math.min(boundary[x], H); y < H; y++) {
       const p = (y * W + x) * 4;
       const { hue, sat } = hueSat(data[p], data[p + 1], data[p + 2]);
       const L = labL(data[p], data[p + 1], data[p + 2]);
-      if (hue >= 50 && hue < 180 && sat >= 0.08) { plantHued++; continue; }
+      if (hue >= 50 && hue < 180 && sat >= 0.08) {
+        plantHued++;
+        if (called) called[y * W + x] = CALLED_PLANT;
+        continue;
+      }
       const chromatic = sat >= 0.25 && L >= 60;
       const white = sat <= 0.12 && L >= 75;
-      if (chromatic || white) flowerHued++;
+      if (chromatic || white) {
+        flowerHued++;
+        if (called) called[y * W + x] = CALLED_FLOWER;
+      } else if (called) {
+        called[y * W + x] = CALLED_NEITHER;
+      }
     }
+  }
+
+  // --- bloom, by subtraction ---------------------------------------------- //
+  let bloom = null;
+  const noHeads = opts.withoutFlowerHeads ?? null;
+  if (noHeads) {
+    if (noHeads.width !== W || noHeads.height !== H) {
+      throw new Error('withoutFlowerHeads frame is a different size');
+    }
+    // A pixel counts as painted by a head when a channel moves by more than
+    // this. The two frames come from ONE browser process with the animation
+    // clock held and only a `visible` flag between them, so the honest value is
+    // 0; the margin is here so that an antialiased edge resolving the other way
+    // cannot be read as a flower. It is reported, because a threshold nobody
+    // can see is a threshold nobody can check.
+    const delta = opts.bloomDeltaTolerance ?? 4;
+    const nd = noHeads.data;
+    let headPixels = 0; let calledFlower = 0; let calledPlant = 0; let calledNeither = 0;
+    let ground = 0;
+    for (let x = 0; x < W; x++) {
+      for (let y = Math.min(boundary[x], H); y < H; y++) {
+        ground++;
+        const p = (y * W + x) * 4;
+        const moved = Math.max(
+          Math.abs(data[p] - nd[p]),
+          Math.abs(data[p + 1] - nd[p + 1]),
+          Math.abs(data[p + 2] - nd[p + 2]),
+        );
+        if (moved <= delta) continue;
+        headPixels++;
+        const c = called[y * W + x];
+        if (c === CALLED_FLOWER) calledFlower++;
+        else if (c === CALLED_PLANT) calledPlant++;
+        else calledNeither++;
+      }
+    }
+    const hued = plantHued + flowerHued;
+    bloom = {
+      deltaTolerance: delta,
+      groundPixels: ground,
+      headPixels,
+      // The share of the frame's ground a flower head actually paints. No
+      // classifier is involved on either side of this ratio.
+      shareOfGround: ground ? round(headPixels / ground, 5) : null,
+      // The same numerator against the denominator `load` uses, which is the
+      // closest this can get to an apples-to-apples reading of the 4-6 % target
+      // without a fourth capture that hides the sward as well.
+      shareOfHued: hued ? round(headPixels / hued, 5) : null,
+      headPixelsCalledFlower: calledFlower,
+      headPixelsCalledPlant: calledPlant,
+      headPixelsCalledNeither: calledNeither,
+      // Of the pixels a flower painted, the share the recipe called a flower.
+      recipeRecall: headPixels ? round(calledFlower / headPixels, 4) : null,
+      // Of the pixels the recipe called a flower, the share a flower painted.
+      recipePrecision: flowerHued ? round(calledFlower / flowerHued, 4) : null,
+    };
   }
 
   return {
@@ -557,6 +667,10 @@ export function measure(img, opts = {}) {
       plantHuedPixels: plantHued,
       flowerHuedPixels: flowerHued,
       load: plantHued + flowerHued ? round(flowerHued / (plantHued + flowerHued), 4) : null,
+      // Flowers and only flowers, measured on the head-free capture. Null for a
+      // reference photograph, which has no second frame — the same way
+      // `timberOnly` is.
+      bloom,
     },
   };
 }
