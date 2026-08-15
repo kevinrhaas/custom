@@ -569,7 +569,18 @@ const terrainLoad = await page.evaluate(() => {
         box = { w: +(b.max.x - b.min.x).toFixed(1), d: +(b.max.z - b.min.z).toFixed(1) };
       }
       return { box, groundTiles,
-               terrainProblems: api.problems.filter((t) => /terrain|water/i.test(t)) };
+               // ANCHORED, and the anchor is the whole point. `js/terrain.js` emits
+               // `terrain <epoch>: …` and `water: …`, always at the start of the
+               // string, so a problem ABOUT the ground or the river is recognisable
+               // by its subject. The unanchored `/terrain|water/i` this replaced
+               // matched the word anywhere, and the first block of the town whose
+               // id contains one of them — `blk_south_water_franklin`, ROADMAP T-A8
+               // — turned two ordinary placeholder-asset notes into a reported
+               // terrain load failure. Five of the ten open blocks are
+               // `blk_south_water_*`, so it would have fired on each of them in
+               // turn. This narrows what the filter MATCHES, not what the check
+               // ALLOWS: a real terrain or water problem still has to be zero.
+               terrainProblems: api.problems.filter((t) => /^\s*(terrain|water)\b/i.test(t)) };
     });
     // The authored water surface spans the whole modelled box — about 5.4 km by
     // 4.2 km. The FALLBACK is a 2400 m square at the datum. Those are nowhere

@@ -47,9 +47,40 @@ a provenance failure. K20's own text says the fix belongs in its own parcel; it 
 along with a block three times, and it is the reason this PR's diff is 47 files wide for a change
 whose real content is seven buildings.
 
+**AND IT DOES NOT SHIP. THE DESKTOP DRAW-CALL BUDGET IS EXCEEDED AND THIS PARCEL IS WHAT EXCEEDED
+IT.** `tools/check.sh` is green. The mobile viewport is green — 419 assertions, zero page errors.
+The desktop viewport fails four assertions for one reason. Measured on the published mirror at
+1280×800, both runs full and in the foreground:
+
+| | draw calls | budget | verdict |
+|---|---|---|---|
+| `dev@52641c4` (baseline) | **75** | 80 | pass |
+| this branch, +7 roofs | **84** | 80 | **fail**, and the three per-tier detail ceilings with it |
+
+**Seven roofs cost nine draw calls.** R-G1 projected +11 per 19 records; the observed rate here is
+steeper, and it was spent against five calls of headroom. This is **R-W5a**, arriving earlier than
+its own straight line predicted, and the operational consequence is blunt: **lane 2 cannot land
+another block until R-W5a lands.** Nine open blocks remain and not one of them is smaller than the
+one that broke it.
+
+**Three things were NOT done to make it green**, listed because each is a tempting shortcut. The
+budget was not raised — an assertion moved to admit what it was measuring is not a gate. Roofs were
+not dropped — the schedule deals seven, and building five to satisfy a frame rate is fitting the
+town to the renderer. R-W5a was not fixed in this run — it is a lane 1 parcel with a lane 1 PR
+already in flight, and batching the scene is a unit of its own.
+
+**One renderer-adjacent fix IS in this branch, because the parcel could not be diagnosed without
+it.** `tools/smoke_renderer.mjs` filtered terrain problems with `/terrain|water/i` against the
+whole message, so `blk_south_water_franklin` — the first block whose id contains the word — turned
+two ordinary placeholder-asset notes into a reported terrain load failure. Anchored to
+`/^\s*(terrain|water)\b/i`, which is what the code's own comment always claimed, and verified
+against real `terrain <epoch>: …` and `water: …` messages in both directions. Five of the ten open
+blocks are `blk_south_water_*`.
+
 **What this parcel did NOT do.** It did not re-apportion the schedule (K25), it did not fix the
-name allocator (K20), and it did not answer whether one open lot per block is the right vacancy —
-the question T-A6 left standing and nothing here touches.
+name allocator (K20), it did not fix the draw-call budget (R-W5a), and it did not answer whether
+one open lot per block is the right vacancy — the question T-A6 left standing and nothing here
+touches.
 
 ## New 2026-08-15 — a lot was called free because a building's centroid was in the road
 

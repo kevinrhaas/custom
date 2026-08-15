@@ -74,8 +74,8 @@ belong at the end, not in the loop.
 | 2 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
-| 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A9…** | one open block per run until the 54 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on |
+| **0** | RENDERING | **R-W5a** | **NOW THE WHOLE FLEET'S CRITICAL PATH.** T-A8 measured the town at **84 draw calls against a budget of 80** and is parked on a `hold` PR because of it. Lane 2 cannot land another block until this does. R-W5b carries R-BUG1 (the river flicker) |
+| ~~1~~ | TOWN | **T-A9… — BLOCKED BY R-W5a, DO NOT CLAIM** | one open block per run until the 54 are placed, *once the draw-call budget allows one*; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -90,13 +90,18 @@ now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at rang
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
 
-**T-A8 is DONE (2026-08-15)** — the first block filled in on South Water Street, the town's business
+**T-A8 is BUILT AND PARKED (2026-08-15) — AND IT BLOCKS THE LANE** — the first block filled in on South Water Street, the town's business
 front, and the first block parcel since T-A5 that built a block rather than repairing the arithmetic
 under one. **273 stand and 392 remain, 54 of them on covered ground.** It also found what a block
 parcel cannot fix from inside itself: the schedule apportions families by DISTRICT and knows nothing
 about what a street was for, so it dealt a commercial frontage five ordinary dwellings and a plank
 shanty. Built as dealt, written down, opened as **K25** — and it recurs on six of the ten open
-blocks. Full findings under T-A8 below; read K25 before claiming any `blk_south_water_*` block.
+blocks. **But the parcel does not ship**: seven roofs took the desktop scene from **75 draw calls
+to 84** against a budget of 80, so the block is built, green on `check.sh`, green on mobile, and
+parked on an open PR with the `hold` label until **R-W5a** lands. **DO NOT CLAIM ANOTHER BLOCK
+PARCEL UNTIL IT DOES** — the gate will refuse it, and every remaining open block is at least as
+large as this one. Full findings under T-A8 below; read K25 before claiming any `blk_south_water_*`
+block.
 
 **T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
 building standing proud of its own frontage has its centroid in the road, so four documented
@@ -392,6 +397,16 @@ the largest single accuracy deduction on the historical axis outside the town it
 |---|---|---|
 | **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
 | **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
+
+**MEASURED AT THE WALL, 2026-08-15 (T-A8), AND THE WALL IS HERE.** This stopped being a
+projection: `dev@52641c4` renders the published town in **75 desktop draw calls**; adding ONE
+block — `blk_south_water_franklin`, seven roofs — renders it in **84**, against the budget of
+**80**. That is **+9 calls for 7 records**, steeper than the +11-per-19 rate R-G1 measured, and it
+spends the last five calls of headroom and four more. T-A8 is built, green on `tools/check.sh`,
+green on the whole mobile viewport, and **parked on a `hold` PR** because of this parcel. **Lane 2
+is stopped until this lands** — nine open blocks remain and none is smaller than the one that
+broke it. The budget was deliberately not raised and the block was deliberately not shrunk; both
+refusals are recorded under T-A8.
 
 **Take R-W5a first unless the flicker is what is being asked for.** A budget met by tuning after
 414 roofs have landed is a rewrite; met now, it is a design choice. The two leads R-G1 left are
@@ -1051,7 +1066,40 @@ with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lo
 · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
 no resident, no sidecar, no mesh and no renderer file.
 
-### T-A8 — `blk_south_water_franklin`, and the street the share-out cannot see · **DONE 2026-08-15**
+### T-A8 — `blk_south_water_franklin`, and the street the share-out cannot see · **BUILT AND PARKED 2026-08-15 — BLOCKED BY R-W5a**
+
+> **THE BLOCK IS BUILT AND IT CANNOT SHIP.** `tools/check.sh` is green and the mobile half of the
+> smoke is green — 419 assertions pass, zero page errors — but the **desktop draw-call budget is
+> exceeded and the parcel is what exceeded it**. Measured on the published mirror, both runs at
+> 1280×800: `dev@52641c4` renders the town in **75 draw calls** against a budget of **80**; this
+> branch renders it in **84**. Seven roofs cost **nine draw calls** and four of them are over the
+> line, which also fails the three per-tier detail ceilings for the same single reason.
+>
+> **This is the R-W5a wall arriving, and arriving earlier than the straight line predicted.** R-G1
+> measured +11 calls per 19 records and projected +240 over the 414 roofs then remaining; this
+> parcel measures **+9 for 7**, which is a steeper rate than that projection, on a budget with
+> **five calls of headroom left**. The practical consequence is the thing to take away: **lane 2
+> cannot land another block until R-W5a lands.** Not "should not" — the gate refuses it, and the
+> nine remaining open blocks are each larger than or equal to this one.
+>
+> **What was NOT done to make it pass**, each rejected for a stated reason. The budget was not
+> raised: an assertion moved to admit the thing it was measuring is not a gate. Roofs were not
+> dropped from the block: the schedule deals seven and building five to satisfy a renderer is
+> fitting the town to the frame rate. R-W5a was not fixed here: it is a LANE 1 parcel, lane 1 has
+> a PR in flight (#126), and batching the scene is a unit of its own rather than a rider on a
+> block.
+>
+> **The one renderer-adjacent change that IS here**, because the parcel could not be diagnosed
+> without it: `tools/smoke_renderer.mjs`'s terrain filter matched `/terrain|water/i` anywhere in a
+> problem string, so this block — the first whose id contains the word — reported two ordinary
+> placeholder-asset notes as a terrain load failure. It is anchored to `/^\s*(terrain|water)\b/i`
+> now, which is what the surrounding comment always said it meant. That narrows what the filter
+> MATCHES, not what the check ALLOWS, and it was proved against both real terrain messages before
+> and after. Five of the ten open blocks are `blk_south_water_*`, so it would have fired on each.
+>
+> **To finish this parcel:** land R-W5a, rebase this branch, re-run the desktop smoke, merge. The
+> data half needs no rework — `check.sh` passes and every placement gate cleared on its first run.
+
 
 **Standing roofs 266 → 273; remaining 392, 54 of them on covered ground.** Five dwellings on five
 of the six free lots and two yard buildings off the alley, on the block bounded by South Water,
