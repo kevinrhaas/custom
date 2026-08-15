@@ -368,6 +368,9 @@ this is not an argument to move it, but W1 should not expect the shadow map to h
 
 ### R-W4 — atmosphere and the mid-field · **SPLIT FOUR WAYS — claim ONE**
 
+> **R-W4a is CLAIMED 2026-08-15** by the run on `steward/r-w4a-timber-metric`. It touches
+> `tools/critic_metrics.mjs` and `tools/critic_shots.mjs` only. R-W4b/c/d are free.
+
 **Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **After:** R-G0
 
 The largest single visual gap: RENDERING §1 items 1–6. **It was tagged L and that is why it is
