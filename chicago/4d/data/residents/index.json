@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 170,
-  "persons": 206,
+  "households": 171,
+  "persons": 207,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 110
+   "reconstructed": 111
   }
  },
  "households": [
@@ -1608,6 +1608,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_randolph_franklin_d1_06",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_22",
+   "file": "households/hh_inf_labourer_south_22.json",
+   "head": "inf_labourer_south_22",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_clark_d1_06",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

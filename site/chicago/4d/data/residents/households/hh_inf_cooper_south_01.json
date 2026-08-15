@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_south_01",
- "name": "The Fitzgerald household — a reconstructed cooper (south division)",
+ "name": "The Flynn household — a reconstructed cooper (south division)",
  "division": "south",
  "head": "inf_cooper_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_south_01",
-   "name": "Terence Fitzgerald",
+   "name": "Daniel Flynn",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

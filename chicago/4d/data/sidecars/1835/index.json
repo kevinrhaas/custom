@@ -2305,6 +2305,54 @@
       "asset": "gltf/recon_1835_blk_lake_market_d5_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_clark_a3_08",
+      "name": "Reconstructed A3 privy #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_a3_08.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_a3_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_a4_07",
+      "name": "Reconstructed A4 woodshed or storage shed #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_a4_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_a4_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_c2_01",
+      "name": "Reconstructed C2 store-residence #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_c2_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_c2_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d1_06",
+      "name": "Reconstructed D1 older log dwelling #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d1_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d2_05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_d6_04",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_d6_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_d6_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_h1_03",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_h1_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_h1_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clark_h2_02",
+      "name": "Reconstructed H2 merchant or professional house #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clark_h2_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_clark_h2_02__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_clinton_a1_06",
       "name": "Reconstructed A1 stable #06",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a1_06.json",
