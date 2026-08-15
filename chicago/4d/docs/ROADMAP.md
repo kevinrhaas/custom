@@ -70,11 +70,11 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | TOWN | **K23** | owner-reported: 193 invented buildings are NAMED "Inferred" while every grade on them reads reconstructed — the largest text on the card claims a level better than its own record |
+| 1 | TOWN | **K23a** | owner-reported: 193 invented buildings are NAMED "Inferred" while every grade on them reads reconstructed. 23a is the deterministic sweep; 23b (the card content) is a separate claim |
 | 1 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
-| 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
-| 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
+| 4 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
 | 1 | TOWN | **T-A6…** | one open block per run until the 71 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5) |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -318,11 +318,24 @@ shadow is 0.354 × the height of what casts it, so the frame carries almost no s
 and form must come from the IBL and from W3's AO — the hour is a recorded, reasoned choice and
 this is not an argument to move it, but W1 should not expect the shadow map to help it.
 
-### R-W4 — atmosphere and the mid-field · **UNCLAIMED · NEXT UP**
+### R-W4 — atmosphere and the mid-field · **SPLIT FOUR WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **Effort:** L · **After:** R-G0
+**Phase:** RENDERING §4 W4 · **Runner:** improve-runner · **After:** R-G0
 
-The largest single visual gap: RENDERING §1 items 1–6.
+The largest single visual gap: RENDERING §1 items 1–6. **It was tagged L and that is why it is
+split** — the run budget is 150 minutes and one smoke pass is 26 of them (see the budget section
+at the top). Each half below is one coherent change with one smoke.
+
+| | parcel | why it stands alone |
+|---|---|---|
+| **R-W4a** | **fix the horizon-timber metric · DO THIS FIRST** | The acceptance number below is currently unmeasurable — see the R-G1 finding at the end of this entry. **Until this lands, no other W4 half can prove anything**, because the headline figure counts gable ends as trees. Touches the metric only, not the renderer. |
+| **R-W4b** | **the ring seam** | Self-contained, and the fix shape is already known from the sward (vary the radius per patch). `flora.js`. |
+| **R-W4c** | **flower load** | `0.0012` against a 4–6 % target — the largest single accuracy deduction on the historical axis outside the town. `data/flora/` tuning + `flora.js`. |
+| **R-W4d** | **the mid-field itself** | Vegetated pixels to the fog-90 % distance, crown fine-detail ≥ 0.6, depth-band high-pass RMS. The bulk, and the part that genuinely needs the others' numbers to be trustworthy first. |
+
+**R-W4a is not bookkeeping.** A town parcel has already handed W4 a pass it did not earn, and
+the same thing will happen again on every block that lands. Fixing the metric before chasing the
+number is the difference between improving the scene and improving the score.
 
 **Files:** `renderers/web/js/flora.js` · `renderers/web/js/trees.js` ·
 `renderers/web/js/world.js` (horizon band) · `data/flora/` (tuning only) ·
@@ -354,9 +367,18 @@ Two further reads from the scored pass: the sky is a single cloudless gradient a
 stations, and the flower load at `prairie_west` is **0.0012** against the honest 4–6 % target —
 the largest single accuracy deduction on the historical axis outside the town itself.
 
-### R-W5 — water, post-lite, dynamic resolution · **UNCLAIMED**
+### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
-**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **Effort:** M · **After:** R-W1
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W1
+
+| | parcel | why it stands alone |
+|---|---|---|
+| **R-W5a** | **the draw-call budget and batching** | **The more urgent half, and it is not really about water at all.** R-G1 measured lane 2 adding **exactly +11 draw calls per 19 structure records**; the straight-line over the 414 roofs still to come is **+240 against a budget of 80**. This is being spent right now, every time a block lands. Independent of the water surface. |
+| **R-W5b** | **the water surface, post-lite, dynamic resolution** | RENDERING §1 item 13, EffectComposer/SMAA, and **R-BUG1** — the river edge that flickers when flying, which the owner reported. Owns `terrain.js`'s water material. |
+
+**Take R-W5a first unless the flicker is what is being asked for.** A budget met by tuning after
+414 roofs have landed is a rewrite; met now, it is a design choice. The two leads R-G1 left are
+in the finding below and neither has been explained.
 
 **Files:** `renderers/web/js/terrain.js` (water material) · `renderers/web/js/world.js` ·
 `renderers/web/vendor/MANIFEST` (+ EffectComposer/SMAA) · `tools/smoke_renderer.mjs`
@@ -382,10 +404,15 @@ bearings 150° apart, which no one has explained.
 
 **Phase:** RENDERING §4 W2 · **Effort:** L · **After:** R-W1
 
-**The no-Blender half (improve-runner, claimable now):** the material sheet — which surfaces
-exist, what each is made of, tiling rates, and which archetype parameter selects it — plus
-the records and archetype params that name them. **Files:** `docs/RESEARCH/materials.md`
-(new) · `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only).
+**The no-Blender half is itself TWO parcels — claim ONE:**
+
+| | parcel | scope |
+|---|---|---|
+| **R-W2a** | **the material sheet** | Research and write it: which surfaces exist, what each is made of, its **roughness** (not only colour and tiling rate — see the R-G1 finding below), tiling rates, and which archetype parameter selects it. **Files:** `docs/RESEARCH/materials.md` (new) only. No code, no records, so no smoke — it is a document, and it is the input everything downstream needs. |
+| **R-W2b** | **wire the sheet in** | Take R-W2a's committed sheet and make the params and records name its surfaces. **Files:** `generators/archetypes/*_params.py` · `data/structures/*.json` (material fields only). Re-derives through the generators' `--check`. |
+
+**R-W2a costs almost nothing to run and unblocks the rest** — it is reading and writing, not
+rendering. Do not merge the two: a sheet argued and a sheet applied are different reviews.
 
 **The bake half (nightly bake, arrives as a dev-targeted PR):** UV layout, atlas generation
 and the actual textured GLBs. The `ktx` binary is installed on the bake runner as of
@@ -405,16 +432,20 @@ and a tiling rate.
 
 **Phase:** RENDERING §4 W3 · **Effort:** M · **After:** R-W2
 
-**The no-Blender half:** the AO cage specification — RENDERING §1 item 10 says the bake works
-end to end and fails because clapboard courses and window reveals a centimetre off the wall
-occlude each other (measured mean 0.265, 69 % of texels below half). It needs a **low-poly AO
-cage**, not tuning. Write the cage rule into the archetype params. **Files:**
-`generators/archetypes/*.py` (cage emission) · `docs/RESEARCH/ao-cage.md` (new).
+**The no-Blender work is THREE parcels — claim ONE. They are genuinely unrelated jobs that were
+filed together only because RENDERING §4 groups them:**
+
+| | parcel | scope |
+|---|---|---|
+| **R-W3a** | **the AO cage rule** | §1 item 10: the bake works end to end and fails because clapboard courses and window reveals a centimetre off the wall occlude each other (mean 0.265, 69 % of texels below half). It needs a **low-poly cage**, not tuning. **Files:** `docs/RESEARCH/ao-cage.md` (new) · `generators/archetypes/*.py` (cage emission). |
+| **R-W3b** | **cascaded shadows** | `renderers/web/js/world.js` only — today one 1024² map on a ±60 m follow ortho, nothing beyond 60 m. **Touches no generator and no record**, so it shares nothing with 3a and can run beside it. |
+| **R-W3c** | **openings** | The silhouette failure R-G1 names: no reveal, no sill, no sash, no muntin anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. Archetype geometry. |
 
 **The bake half (nightly bake):** re-bake with the cage and flip `baked_ao` on the 244 assets.
+**After R-W3a**, and see `B-A1` before assuming the nightly should be the thing that runs it.
 
-**Also here, improve-runner:** cascaded shadows in `renderers/web/js/world.js` — today one
-1024² map on a ±60 m follow ortho, nothing beyond 60 m.
+**3a and 3c are the same conversation about the same few centimetres of wall** (R-G1 says so),
+so whoever takes one should read the other — but they ship separately.
 
 **From R-G1 (geometry scored 4.6) — AO is carrying more than it looks like it is.** At the
 scene's 70.5° sun a shadow is 0.354 × the height that casts it, so the only cast shadow legible
@@ -1532,6 +1563,15 @@ current one it is the MIDDLE tier — *reasoned from evidence about this particu
 is exactly what an anonymous roof dealt by the household programme is **not**. So every one of
 the 193 names now claims a grade **better than its own record**, in the largest text on the card.
 This is the v76 fault surviving in the most visible place in the app.
+
+**SPLIT — claim ONE. A and B are a mechanical sweep and a design question, and bundling them
+means the sweep waits on the design.**
+
+- **K23a — make the prose agree with the grade.** Part A below. Deterministic, re-derives
+  through the generators' `--check`, and it stops the app contradicting itself on screen. Ship
+  it on its own.
+- **K23b — say what we actually did, per level.** Part B below. This one needs a wording
+  decision and a card layout, and it should not hold up 193 names that are currently wrong.
 
 **Part A — make the prose agree with the grade.** Fix it in the GENERATORS, not the records:
 they are `--check` gated, so the records must re-derive rather than be hand-edited. Sweep the
