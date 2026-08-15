@@ -1,5 +1,54 @@
 # STATUS
 
+## Fixed 2026-08-15 — a quarter of the modelled land was never open to a builder, and nothing said so
+
+**T-E2**, lane 3's first parcel after T-E1 registered the 1830 sheet. Two grounds outside the plat
+are now refused: the **United States Reservation** east of State Street and the **sand bar across
+the river mouth**.
+
+**The number is the argument.** Of the **121.18 ha** of modelled land standing above the water
+surface in this scene, **32.10 ha — 26.5 %** is one or the other: the reservation 22.57 ha, the bar
+9.53 ha. Every gate this project had asked whether a placement cleared its neighbours, its lot
+lines, the platted roadway, the modelled terrain and the relief. None of them asked whether the
+ground was ever for sale. L107 found that hole inside the plat five days' work ago and closed it
+for blocks; this is the same hole where it is four times bigger.
+
+**Nothing moved, because nothing was there yet — and that is luck, not a rule.** Seventeen
+structure records stand on the two grounds and all seventeen keep their places: the fort's stockade,
+parade and eleven buildings, the garrison garden, the 1832 lighthouse, Beaubien's homestead and
+barn, and the south pier, which touches both. **Zero anonymous roofs.** Every recipe so far has been
+keyed to a platted block, and the reservation was never platted, so the ground was spared by the
+order the work happened in. The gate lands green on the day it is written, and both of its
+assertions were proved to fail before it was trusted: removing one permission fails it by name, and
+shrinking the bar polygon to a sliver fails the under-coverage count with 11,100 cells.
+
+**THE REFUSAL IS DOCUMENTED; THE BOUNDARY IS INFERRED, DERIVED, AND HONESTLY SHORT.** Andreas gives
+the reservation as 75.69 acres, the southwest fractional quarter of Section 10 — unplatted, outside
+the town's own eastern boundary, and under Beaubien's five-week-old pre-emption claim on the scene
+date. Not one vertex of the polygon is authored: its west and south sides are the quarter's two
+survey lines resolved from the single control point `wright_1834_gcps.json` **G1**, whose own note
+has said since the datum work that Madison's line continues east as the reservation's south
+boundary; its third side is the committed waterline the trace already calls the reservation's lake
+shore. **The derived polygon comes to 65.70 acres against the documented 75.69 — 13.2 % short — and
+it is not tuned to close the gap.** The candidates (a meander line east of the 1834 waterline, the
+trace's own +/-20 m, a shore trace that leaves its window south of Madison) are named and none is
+measured.
+
+**So the polygon is a floor, and the floor is checked rather than trusted.** The gate re-counts, on
+every `check.sh`, the cells of modelled land above the water surface that stand east of the west
+line, north of Madison, south of the main stem and inside neither polygon. Today that count is
+**zero** — the polygons reach every square metre of ground the terrain models there. **T-E3 extends
+the terrain east and south, and that is the parcel this assertion exists to catch.**
+
+**Still open, and honestly open:** four structures the 1830 plate draws — Mark Beaubien's,
+Elijah Wentworth's cabin, La Framboise's cabin and store, Porter's log cabin — have no record, no
+exclusion and no tested survival to 1835-07-01. T-E2 lists them as open questions rather than
+inventing dispositions, in the new disposition table at the foot of
+`docs/RESEARCH/chicago_1830_claims.md`. **Mark Beaubien's is the one inside the modelled area.**
+The reservation's own residue is recorded too: the 562 cells the first pass flagged as
+unclassified turned out to be entirely the waterline tolerance band, every one of them between
+-0.10 m and 0.00 m, and none of them ground.
+
 ## New 2026-08-15 — the town's public square was being offered to invented houses, and two documented ones were already standing on it
 
 **T-A16.** `blk_randolph_lasalle` — Randolph, Clark, Washington, LaSalle — was claimed as the last

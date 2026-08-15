@@ -118,8 +118,9 @@ desktop half belongs to a runner without the per-command ceiling.
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
 | 5 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test |
 | 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
-| — | GROUND | ~~T-E2~~ | **CLAIMED 2026-08-15 · `steward/t-e2-ground-that-stays-empty`** — the reservation and the sand bar must refuse roofs before the ground that holds them exists |
-| 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+| — | GROUND | ~~T-E2~~ | **DONE 2026-08-15** — 26.5 % of the modelled land above the water surface is the reservation or the bar, and every gate this project had would have built on it. Nothing moved: **zero** anonymous roofs were there. Read its box before quoting any buildable-ground figure |
+| 1 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) · **it is now also the parcel T-E2's under-coverage assertion is waiting for** |
+
 | 3 | GROUND | **T-E5** | the public square **was a pond** in this project's own committed fauna data and renders as dry prairie with three public buildings on it. Opened by T-A16 |
 
 **R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
@@ -2327,7 +2328,78 @@ each reading, because they do not agree on everything.
 `what_it_does_not_supply` list that names the 1830-vs-1835 problem and the "present outlet"
 label explicitly.
 
-### T-E2 — the ground that must stay empty · **CLAIMED 2026-08-15 · `steward/t-e2-ground-that-stays-empty`**
+### T-E2 — the ground that must stay empty · **DONE 2026-08-15**
+
+Two grounds outside the plat are withdrawn from the buildable town: the **United States
+Reservation** east of State Street and the **sand bar across the river mouth**. The refusal is
+authored in `data/reconstruction/1835_no_build_ground.json`, enforced in
+`tools/generate_block_infill.py` before any placement test that could mask it, and gated by
+`tools/measure_no_build_ground.py --gate` as a step of `tools/check.sh`. Full admission in
+`docs/LIBERTIES.md` **L108**.
+
+**The measurement is the parcel.** Of the **121.18 ha** of modelled land standing above the water
+surface, **32.10 ha — 26.5 %** is one of the two: the reservation **22.57 ha**, the bar **9.53 ha**.
+Every gate this project had asked whether a placement cleared its neighbours, its lot lines, the
+platted roadway, the modelled terrain and the relief; **none of them asked whether the ground was
+ever for sale.** L107 found that hole inside the plat at T-A16. This is the same hole, four times
+larger, outside it.
+
+**Four findings that are not the polygons.**
+
+1. **Nothing had to move, and that is an accident rather than a rule.** Seventeen structure records
+   stand on the two grounds — the fort's stockade, parade and eleven buildings, the garrison garden,
+   the 1832 lighthouse, Beaubien's homestead and barn, and the south pier, which touches both
+   because that is what a pier run out through a bar does — and **zero anonymous roofs**. Every
+   recipe to date was keyed to a platted block and the reservation was never platted. T-A16 was not
+   so lucky: two documented cottages had been standing on the public square for five days.
+2. **The refusal is `documented` and the boundary is `inferred`, and grading them together would
+   have been the error.** Andreas gives 75.69 acres, the southwest fractional quarter of Section 10,
+   unplatted, outside the town's eastern boundary, under Beaubien's pre-emption claim filed five
+   weeks before the scene date. The polygon is a different claim: **no vertex of it is authored.**
+   Its west and south sides are the quarter's two survey lines resolved from one committed control
+   point — G1, State & Madison, whose own note has said since the datum work that *Madison's line
+   continues east as the reservation's south boundary* — carried on the plat's east-west bearing,
+   which Lake, Randolph and Washington agree on to the sixth decimal. Its third side is the
+   committed waterline the trace itself calls *the Fort Dearborn reservation's lake shore*.
+3. **The derived polygon is 13.2 % short of the documented acreage and is NOT tuned to close it:
+   65.70 acres against 75.69.** Three candidates, none measured — a fractional quarter is surveyed
+   to the lake's meander line, which lies east of the 1834 waterline and encloses the old southward
+   channel's water; the traced shore carries +/-20 m; the shore trace's own note says it leaves its
+   window south of Madison. **So the polygon is a FLOOR**, and the floor is asserted rather than
+   hoped: the gate re-counts every cell of modelled land above the water surface that stands east of
+   the west line, north of Madison, south of the main stem and inside neither polygon. **It is zero
+   today**, and it is what will fail when **T-E3** extends the terrain past the traced shore.
+4. **562 cells looked like a hole and were not one.** The first pass flagged that many unclassified
+   dry cells between the reservation's east bank and the bar; measured, every one of them lies
+   between **-0.10 m and 0.00 m** — the waterline tolerance band the buildable test carries, not
+   ground. Above the water surface the count is zero, which is why the gate is written against the
+   water surface rather than against the tolerance.
+
+**Both assertions were proved to fail before either was trusted**, the standard K27 and K28 were
+held to: removing one permitted entry fails the gate by name, and shrinking the bar polygon to a
+sliver fails the under-coverage count with **11,100** cells.
+
+**The four open questions this parcel did not close, and did not pretend to.** The 1830 plate draws
+**Mark Beaubien's**, **Elijah Wentworth's cabin**, **La Framboise's cabin and store** and
+**Porter's log cabin**; none has a record, an exclusion, or a tested survival to 1835-07-01. The
+new disposition table at the foot of `docs/RESEARCH/chicago_1830_claims.md` accounts for every
+structure the plate draws and lists these four as open, which is the disposition T-E2's acceptance
+allows and the only honest one available from an 1884 land-title compilation. **Mark Beaubien's is
+the one inside the modelled area and is the one worth taking first.** T-E2 made no new structure
+record and no new exclusion.
+
+**What it costs the roof programme: nothing that was owed.** The 177 roofs in
+`south_plat_beyond_committed_control` wait on street control reaching east of State and south of
+Washington. This parcel removes an answer that was never available — the ground immediately east of
+State is not coming, at any date, because it is the reservation.
+
+**Files:** `data/reconstruction/1835_no_build_ground.json` (new) ·
+`tools/measure_no_build_ground.py` (new) · `tools/generate_block_infill.py` · `tools/check.sh` ·
+`docs/RESEARCH/chicago_1830_claims.md` · `docs/LIBERTIES.md` L108 + `data/liberties.json` ·
+`docs/STATUS.md` · `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror.
+**No structure record changed, and no geometry was baked.**
+
+### T-E2 (spec) — the original parcel definition
 
 The owner's read — *"I don't think houses are in much of it because of Fort Dearborn"* — is
 the substance of this parcel, and it is a claim to be evidenced, not assumed.

@@ -3431,6 +3431,73 @@ positions of the two cottages remain claimed by the entry that has always claime
 by this one.
 **Recorded:** 2026-08-15.
 
+### L108 — A quarter of the modelled land was federal ground or a sand bar, and nothing refused a house on either
+
+**Decision:** two grounds outside the plat are withdrawn from the buildable town. The **United
+States Reservation** — the 75.69-acre military reservation east of State Street — and the **sand
+bar across the river mouth** take no roof of the 665-roof programme's anonymous infill. Seventeen
+structure records stand on them and every one keeps its place: the fort's stockade, parade and
+eleven buildings, the garrison garden, the 1832 lighthouse, Col. Jean Baptiste Beaubien's homestead
+and barn, and the south pier, which touches both because a pier run out from a shore through a bar
+does. Nothing moved and nothing was deleted. The refusal is authored in
+`data/reconstruction/1835_no_build_ground.json`, enforced in `tools/generate_block_infill.py`, and
+gated by `tools/measure_no_build_ground.py --gate` as a step of `tools/check.sh`.
+
+**Why:** the infill generators test a placement for clearance from its neighbours, for its own lot
+lines, for the platted roadway, for modelled terrain and for relief. Not one of those five asks
+whether the ground was ever open to a private builder. L107 found that hole inside the plat two
+parcels ago; outside the plat it is larger, and nobody had measured it. **32.10 ha of the 121.18 ha
+of modelled land standing above the water surface in this scene — 26.5 % of it — is the reservation
+(22.57 ha) or the bar (9.53 ha).** Every gate this project had would have let an invented dwelling
+for an invented household stand on any of it.
+
+**THE REFUSAL IS DOCUMENTED AND THE BOUNDARY IS INFERRED, and they are graded separately because
+they are not the same claim.** Andreas I, scan p. 183 gives the reservation as 75.69 acres, the
+southwest fractional quarter of Section 10, T39N R14E. It was unplatted in 1835 — the August 1833
+town order has South Water Street pitched only *from the United States Reservation to Randolph
+Street* — and State Street was the town's own eastern boundary on the south side, with the
+reservation beyond it. It was federal ground under an active claim on the scene date: Beaubien's
+pre-emption certificate for the whole of it is dated 1835-05-28 and was recorded 1835-06-26 at
+$94.61, about five weeks old on 1835-07-01. Ground the United States has not sold, that carries no
+street and no lot line, is not ground on which to invent a dwelling. The bar needs no argument
+beyond what it is, and the committed trace already declines to claim any elevation for it at all:
+*a bar is a surface a few feet of lake stage moves, no source gives its height.*
+
+**THE INVENTION IS THE BOUNDARY, AND IT IS DERIVED RATHER THAN DRAWN.** Not one vertex is authored.
+The reservation's west and south sides are the two survey lines of the fractional quarter, resolved
+from a single committed control point — `wright_1834_gcps.json` G1, State & Madison, whose own note
+has said since the datum work that it is the *PLSS section corner: sections 9/10/15/16* and that
+*Madison's line continues east as the reservation's south boundary* — carried on the plat's
+east-west bearing, which Lake, Randolph and Washington agree on to the sixth decimal. Its third side
+is the committed waterline whose own name in the trace is *the Fort Dearborn reservation's lake
+shore*. The bar is the committed `bar` polygon, unmodified. The tool re-derives all of it on every
+`check.sh`, the same discipline `data/datum.json` is held to.
+
+**AND THE DERIVED POLYGON DOES NOT AGREE WITH THE DOCUMENTED ACREAGE, WHICH IS RECORDED RATHER THAN
+TUNED AWAY: 65.70 acres against Andreas's 75.69, 13.2 % short.** Three candidate causes and not one
+of them measured — a fractional quarter is surveyed to the lake's meander line, which lies east of
+the 1834 waterline and encloses the water of the old southward channel; the traced shore carries
++/-20 m because it is drafted off a cadastral plat; and the shore trace's own note says it leaves
+its window south of Madison. **So the polygon is a floor, not the reservation**, and the honest
+consequence is stated as an assertion rather than a hope: no cell of the committed heightfield
+standing above the water surface, east of the west line, north of Madison and south of the main
+stem, falls outside the two polygons. The count is **zero**, it is re-counted on every `check.sh`,
+and it is the assertion that will fail when T-E3 extends the terrain past the traced shore.
+
+**Consequence:** no invented roof stands anywhere it would not have stood, because none was there
+to move — the gate lands green on the day it is written. Every recipe so far has been keyed to a
+platted block and the reservation was never platted, so the ground was spared by the order the work
+happened in rather than by any rule. What the parcel removes is an answer that was never available:
+the 177 roofs the schedule holds in `south_plat_beyond_committed_control` wait on street control
+reaching east of State and south of Washington, and the ground immediately east of State is not
+coming at any date.
+
+**How to resolve:** a survey plat of the reservation, or the Book of Original Entry, would move the
+boundary from `inferred` toward the acreage it is 13.2 % short of and would say where the meander
+line ran. A source stating in terms what the reservation permitted would settle the permission list.
+The refusal itself is unlikely to move; the boundary is what wants better evidence.
+**Recorded:** 2026-08-15.
+
 
 ## Resolved
 
