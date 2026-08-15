@@ -82,6 +82,43 @@ function scanShape(text) {
 const shape = scanShape(src);
 if (shape.problem) problems.push(shape.problem);
 if (!shape.entries.length) problems.push('no entries found — the `{ v: N,` header shape changed');
+
+// The versions must be strictly decreasing down the file. `.gitattributes` has
+// asserted since the changelog contract was written that "the contract check
+// catches that", and until 2026-08-15 IT DID NOT — the check was never written.
+// That is how two branches each shipped a `v: 93` and later a `v: 98` into the
+// same literal without a murmur: nothing compared one entry's number with the
+// next. It only surfaced when a merge happened to break a bracket as well.
+//
+// A duplicate is not cosmetic. Manager and the polecat.live launcher key on the
+// version, the stamper assigns the next number from the top entry, and the
+// promotion pipeline tags `release-vNNN` from it — so a repeated number
+// mis-tags a release and makes two different entries indistinguishable to
+// every consumer at once.
+{
+  const numbered = shape.entries.filter((e) => e.v !== 'null').map((e) => ({ ...e, n: Number(e.v) }));
+  for (let i = 1; i < numbered.length; i++) {
+    const prev = numbered[i - 1];
+    const cur = numbered[i];
+    if (cur.n === prev.n) {
+      problems.push(`line ${cur.line}: entry v${cur.n} repeats the version of the entry above it `
+        + `(line ${prev.line}) — two branches each assigned it. The stamper assigns numbers; `
+        + 'authors write `v: null`');
+      break;
+    }
+    if (cur.n > prev.n) {
+      problems.push(`line ${cur.line}: entry v${cur.n} is NEWER than v${prev.n} above it `
+        + `(line ${prev.line}) — the file is newest-first, so versions must decrease`);
+      break;
+    }
+  }
+  if (numbered.length > 1 && numbered[0].n !== numbered.length + numbered[0].n - numbered.at(-1).n
+      && numbered.at(-1).n !== numbered[0].n - (numbered.length - 1)) {
+    problems.push(`the numbering has ${numbered[0].n - numbered.at(-1).n + 1 - numbered.length} `
+      + `gap(s): v${numbered[0].n} down to v${numbered.at(-1).n} over ${numbered.length} entries. `
+      + 'A gap means an entry was dropped in a merge');
+  }
+}
 for (let i = 0; i < shape.entries.length; i++) {
   const e = shape.entries[i];
   if (e.depth === 1) continue;
