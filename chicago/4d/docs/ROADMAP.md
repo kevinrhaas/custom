@@ -672,7 +672,10 @@ loses its pool citation.
 diff whose real content is one addition. Two independent measurements at the same rate; the "buries
 the parcel's real diff" paragraph above is now demonstrated rather than predicted.
 
-### K21 — the adoption tests are silent, not negative, for four trades · **UNCLAIMED · from T-A5 · Effort: S**
+### K21 — the adoption tests are silent, not negative, for four trades · **CLAIMED 2026-08-15 — DO NOT PICK UP · from T-A5 · Effort: S**
+
+> Held by the scheduled steward on branch `steward/k21-family-test` (PR into `dev`). Expires
+> 2026-08-16; an expired claim is void without ceremony. Take **T-I3** or **T-V1** instead.
 
 **Phase:** lane 2, data only · **Runner:** improve-runner (no Blender)
 
