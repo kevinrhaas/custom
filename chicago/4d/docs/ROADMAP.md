@@ -70,11 +70,11 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | ~~**R-W5a**~~ | **CLAIMED 2026-08-15 by the steward — take R-M1, R-W4a or a TOWN parcel instead** |
-| 2 | RENDERING | **R-M1** | unblocked by R-REF1 (landed 2026-08-15): the reference photograph is committed, so the road-contrast thresholds can be DERIVED rather than frozen provisional |
-| 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
-| 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
-| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **blocked behind R-W5a on the draw-call budget** |
+| 1 | RENDERING | **R-M1** | unblocked by R-REF1 (landed 2026-08-15): the reference photograph is committed, so the road-contrast thresholds can be DERIVED rather than frozen provisional |
+| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
+| 4 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
+| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -82,6 +82,26 @@ belong at the end, not in the loop.
 | 6 | TOWN | **K21** | the adoption tests are silent, not negative, for four trades — a refusal nobody can distinguish from an unanswered question |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+
+**R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
+growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
+respect a renderer distinguishes — metalness 0, no map of any kind, `DoubleSide`, opaque, no alpha
+test, smooth-shaded. The only fields that differed were `color` (39 distinct values) and
+`roughness` (16). Base colour moved to a per-vertex attribute and left the key, so **47 batches
+became 16** and **11 of 22 station-viewports over the ≤ 80 budget became 0**. Full table and the
+identity proof under R-W5a below. Three things came out of it that are not the number:
+
+- **R-G1's "+11 draw calls per 19 roofs" was 11 new MATERIAL GROUPS, not 11 objects** — which is
+  why it was uniform at bearings 150° apart: it counts paints in frame, not buildings. That term
+  is now **zero by construction**: a new roof of any colour joins an existing batch. T-A8 and the
+  399 roofs behind it are unblocked, and no future block parcel needs to think about this.
+- **Triangles are identical to the triangle at all 22 station-viewports**, which is the proof that
+  nothing was dropped to buy the calls.
+- **The frame is not byte-identical and the difference is quantified rather than waved at**:
+  2 of 22 shots hash the same, the rest differ on ~0.013 % of pixels in scattered 7–56 px specks
+  at building silhouettes — depth ties resolving the other way under a changed draw order — for a
+  whole-frame mean |Δ| of **0.003–0.005 of one 8-bit count**. No surface is repainted; the albedo
+  arithmetic is the same product in a different order.
 
 **R-BUG3 is DONE (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
 and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **3.1 of a measured
@@ -391,9 +411,8 @@ the largest single accuracy deduction on the historical axis outside the town it
 
 ### R-W5 — water, post-lite, dynamic resolution · **SPLIT TWO WAYS — claim ONE**
 
-> **R-W5a is CLAIMED 2026-08-15 by the scheduled steward** (branch
-> `steward/r-w5a-batch-albedo`, expires 2026-08-16 — an expired claim is void without
-> ceremony). **R-W5b is free.** Take **R-M1** or **R-W4a** in this lane instead.
+> **R-W5a is DONE 2026-08-15** (PR on `steward/r-w5a-batch-albedo`). **R-W5b is free**, and so is
+> its successor **R-W5a2** below. Read the R-W5a findings before touching `buildings.js`.
 
 **Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a nothing; R-W5b after R-W1
 
@@ -430,6 +449,82 @@ parcel's first question, not its last**, and that a budget met by tuning after t
 stay met overnight. Two leads: `from_above`, which sees the whole town, gained **0**, so
 something already drops these objects at distance; and the +11 is suspiciously uniform across
 bearings 150° apart, which no one has explained.
+
+#### R-W5a — DONE 2026-08-15 · the town was paying a draw call per colour of paint
+
+**What it was.** `buildings.js` groups the town into one `BatchedMesh` per distinct material, and
+the grouping key included the material's base colour. Every one of the 47 batches in the
+2026-08-15 `dev` scene was the same `MeshStandardMaterial` — metalness 0, **no map of any kind**,
+`DoubleSide`, opaque, `alphaTest` 0, smooth-shaded. The only fields that differed were `color`
+(39 distinct values across 47 batches) and `roughness` (16 values). The town was spending 47 draw
+calls to render two numbers.
+
+**What was done.** Base colour moved OUT of the key and INTO the geometry, as a per-vertex `color`
+attribute filled from `material.color`, with the shared batch material left white and
+`vertexColors` on. This is not an approximation: `material.color` is already in the renderer's
+linear working space, three's `<color_fragment>` multiplies `diffuseColor.rgb` by the attribute
+with no colour-space conversion of its own, and the confidence view's tint was **already** applied
+after `<color_fragment>` — so the shader does the identical product in a different order. A
+documented white wall still renders at the value its record claims, to the bit. Roughness and
+metalness are additionally compared at three decimals, which merged two more pairs: the bespoke
+masters carry `0.8999999761581421` (a float32) and the generated infill writes `0.9`, and
+comparing them exactly had split the 0.90 and 0.88 buckets for no reason a visitor could see.
+
+**The result — `tools/critic_shots.mjs`, source tree, both viewports, before and after on the same
+`dev` at 276 structure records:**
+
+| draw calls | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop before | 75 | 78 | 90 | 66 | 98 | 103 | 96 | 72 | 95 | **109** | 56 |
+| desktop after | 56 | 58 | 60 | 57 | 68 | 70 | 66 | 59 | 62 | **75** | 52 |
+| mobile before | 72 | 74 | 78 | 60 | 82 | 99 | 94 | 72 | 93 | **106** | 49 |
+| mobile after | 54 | 55 | 58 | 51 | 64 | 68 | 64 | 59 | 61 | **73** | 47 |
+
+**Batches 47 → 16. Station-viewports over the ≤ 80 budget: 11 of 22 → 0 of 22.** The worst station
+falls 109 → 75 desktop and 106 → 73 mobile.
+
+**The growth term is zero, and that is the point.** R-G1's "+11 draw calls per 19 roofs" was
+**11 new material GROUPS** — new paints, not new objects — which is exactly why it was uniform at
+bearings 150° apart: the cost counts paints in frame, not buildings. A new roof of any colour now
+joins an existing batch, so **T-A8 and the 399 roofs behind it cost nothing in draw calls**, and
+the ~+240 extrapolation is retired rather than deferred. The one residual growth path is a NEW
+ROUGHNESS from a future bespoke bake, which adds one batch and is bounded by the material palette,
+not by the roof count. (`from_above` gaining 0 in R-G1 is consistent with none of those 11 paints
+having an instance in that frame; it is not worth chasing now that the term is zero.)
+
+**Two acceptance facts, measured rather than asserted:**
+
+- **Triangles are identical to the triangle at all 22 station-viewports.** Nothing was dropped,
+  culled or simplified to buy the draw calls.
+- **The frames are not byte-identical, and here is exactly how far apart they are.** 2 of 22 shots
+  hash the same; the rest differ on **0.013 % of pixels** — 15 to 487 pixels per frame, in 7 to
+  195 scattered components whose largest is 56 px, lying on building silhouettes. That is depth
+  ties at coincident surfaces resolving the other way under a changed draw order. Worst single
+  pixel 93/255; **whole-frame mean |Δ| 0.003–0.005 of one 8-bit count**. No surface is repainted.
+
+### R-W5a2 — the last 16 batches → 1 · **UNCLAIMED · from R-W5a · Effort: S**
+
+**Phase:** RENDERING §4 W5 · **Runner:** improve-runner · **After:** R-W5a (done)
+
+The 16 remaining building batches are one per distinct `roughness` in the town. Carrying roughness
+per-vertex the way R-W5a carried colour would make it **1**, worth about 15 draw calls at every
+station — measured, not estimated: R-W5a's own instrumented run counted 18 structure draw calls
+before the three-decimal merge and 16 after, at every station.
+
+**It needs a shader patch, which is why it was not done in the same run.** `vertexColors` is a
+stock three feature; per-vertex roughness is not, and wants a `_roughness` attribute plus a
+replacement of `#include <roughnessmap_fragment>`, chained onto `confidence.patch`'s
+`onBeforeCompile` the way that patch already chains onto whatever came before it. The `_confidence`
+channel is the proof the pattern works inside a `BatchedMesh` here.
+
+**Take it only when the lane has nothing sharper.** The budget is met with 5 calls of headroom at
+the worst station and the growth term is already zero, so this buys margin, not a fix.
+
+**Files:** `renderers/web/js/buildings.js` · `renderers/web/js/confidence.js` (chaining only)
+
+**Acceptance:** 1 structure batch; draw calls ≤ 80 at all 11 stations, both viewports; triangles
+unchanged to the triangle; the same frame-difference budget R-W5a measured itself against
+(whole-frame mean |Δ| under 0.01 of an 8-bit count); zero page errors.
 
 ### R-W2 — texture the town · **UNCLAIMED · SPLIT**
 

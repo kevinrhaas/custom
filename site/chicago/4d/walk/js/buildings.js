@@ -19,11 +19,13 @@
  *     by walking *up* the ancestors, and a raycast is resolved through a batch
  *     id we recorded when we built the batch.
  *
- *  3. **One material per batch.** `BatchedMesh` renders one material, so the
- *     buildings become one batch per distinct material. Materials that are
- *     identical in every rendered respect are collapsed first, so the five
- *     materials of one tavern become five draw calls and the five materials of
- *     a hundred taverns still become five draw calls.
+ *  3. **One material per batch, and the batch does not care what colour the
+ *     building is.** `BatchedMesh` renders one material, so the buildings become
+ *     one batch per distinct material. Materials identical in every rendered
+ *     respect are collapsed, and BASE COLOUR IS CARRIED PER VERTEX rather than
+ *     per material (see `materialKey`), so two walls that differ only in paint
+ *     share a draw call. The five materials of one tavern become a handful of
+ *     draw calls and the five materials of a hundred taverns still do.
  */
 
 import * as THREE from 'three';
@@ -133,12 +135,13 @@ function applyExistence(geo, rule) {
  * good, and a later geometry carrying an extra one has it silently ignored.
  * Normalising up front means the batch never depends on load order.
  */
-function normalizeGeometry(src, matrix, confidence, label) {
+function normalizeGeometry(src, matrix, material, confidence, label) {
   const geo = new THREE.BufferGeometry();
   const position = src.getAttribute('position');
   if (!position) throw new Error(`${label}: geometry has no POSITION`);
 
   geo.setAttribute('position', toFloatAttribute(position, 3));
+  geo.setAttribute('color', albedoAttribute(material, position.count));
   geo.setAttribute('normal', src.getAttribute('normal')
     ? toFloatAttribute(src.getAttribute('normal'), 3)
     : new THREE.BufferAttribute(new Float32Array(position.count * 3), 3));
@@ -161,13 +164,69 @@ function normalizeGeometry(src, matrix, confidence, label) {
   return { geo, warning };
 }
 
-/** Two materials that render identically should not cost two draw calls. */
+/**
+ * The material's base colour, written once per vertex.
+ *
+ * `material.color` is already in the renderer's linear working space (three
+ * converts on assignment, and glTF's `baseColorFactor` is linear to begin
+ * with), and three's `<color_fragment>` chunk multiplies `diffuseColor.rgb` by
+ * the `color` attribute with no colour-space conversion of its own. So copying
+ * `.r/.g/.b` straight in and leaving the shared material white is EXACTLY the
+ * arithmetic that was happening before — the same product, in a different
+ * order. That exactness is the whole licence for this: a documented white wall
+ * still renders at the value its record claims, to the bit.
+ */
+function albedoAttribute(material, count) {
+  const c = material?.color;
+  const r = c ? c.r : 1, g = c ? c.g : 1, b = c ? c.b : 1;
+  const out = new Float32Array(count * 3);
+  for (let i = 0; i < count; i += 1) {
+    out[i * 3] = r; out[i * 3 + 1] = g; out[i * 3 + 2] = b;
+  }
+  return new THREE.BufferAttribute(out, 3);
+}
+
+/**
+ * Two materials that render identically should not cost two draw calls — and
+ * COLOUR IS NOT PART OF THE ANSWER, because colour is carried per vertex.
+ *
+ * This is R-W5a, and the measurement is what makes the case. Every one of the
+ * 47 building batches in the 2026-08-15 scene was the same
+ * `MeshStandardMaterial`: metalness 0, no map of any kind, `DoubleSide`,
+ * opaque, no alpha test, smooth-shaded. The ONLY fields that differed were
+ * `color` — 39 distinct values across 47 batches — and `roughness`, which takes
+ * 16 values. So the town was paying 47 draw calls to render two numbers, and it
+ * paid ANOTHER one every time a block landed carrying a paint colour nothing
+ * else in the town used: R-G1 measured exactly +11 draw calls for 19 new roofs,
+ * and the straight line over the 399 roofs still to come was about +240 against
+ * a budget of 80.
+ *
+ * Taking `color` out of the key collapses those 47 to 16 and, far more
+ * importantly, makes a new roof's paint FREE: a block can land any colour it
+ * likes without adding a batch. Roughness is left in the key deliberately — it
+ * would need a shader patch to carry per-vertex, and 16 batches is already
+ * inside the budget with room. The remaining 16 → 1 is written up under R-W5a
+ * in docs/ROADMAP.md with its own numbers.
+ *
+ * `emissive` stays in the key: nothing in this dataset uses it, and if
+ * something ever does, a glowing material is not something to merge silently
+ * into a batch of dark ones.
+ *
+ * Roughness and metalness are compared at THREE DECIMALS, which costs two more
+ * batches than it sounds and is not a tolerance dialled by eye. The town is
+ * baked by two pipelines: the bespoke masters carry roughness as a float32
+ * (`0.8999999761581421`) and the generated infill writes the decimal it
+ * authored (`0.9`). Those are the same number to any renderer, and comparing
+ * them exactly split the 0.90 and 0.88 buckets in two for no reason a visitor
+ * could ever see. Nothing in the dataset uses two roughness values closer than
+ * 0.01 on purpose.
+ */
 function materialKey(m) {
+  const near = (v) => (typeof v === 'number' ? v.toFixed(3) : '-');
   return [
     m.type,
-    m.color?.getHexString() ?? '-',
     m.emissive?.getHexString() ?? '-',
-    m.roughness ?? '-', m.metalness ?? '-',
+    near(m.roughness), near(m.metalness),
     m.map?.uuid ?? '-', m.normalMap?.uuid ?? '-', m.aoMap?.uuid ?? '-',
     m.side, m.transparent ? 't' : 'o', m.alphaTest ?? 0, m.flatShading ? 'f' : 's',
   ].join('|');
@@ -214,9 +273,10 @@ export function createBuildings({ registry, confidence, terrain }) {
 
     for (const { mesh, matrix } of meshes) {
       const label = `${record.id}/${mesh.name || 'mesh'}`;
+      const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       let prepared;
       try {
-        prepared = normalizeGeometry(mesh.geometry, matrix, confidence, label);
+        prepared = normalizeGeometry(mesh.geometry, matrix, material, confidence, label);
         // After the channel exists and is float — see existenceFloor for why the
         // building's own existence grade governs what its parts may claim.
         applyExistence(prepared.geo, existenceFloor(record));
@@ -226,11 +286,16 @@ export function createBuildings({ registry, confidence, terrain }) {
       }
       if (prepared.warning) problems.push(prepared.warning);
 
-      const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
       const key = materialKey(material);
       let bucket = groups.get(key);
       if (!bucket) {
         material.side = material.side ?? THREE.FrontSide;
+        // The batch's own colour is now the identity, and every vertex carries
+        // its building's paint. Whitening the shared material is what makes the
+        // multiply come out unchanged — see albedoAttribute.
+        material.vertexColors = true;
+        material.color = new THREE.Color(1, 1, 1);
+        material.name = `merged-r${(material.roughness ?? 1).toFixed(2)}`;
         confidence.patch(material);
         bucket = { material, entries: [] };
         groups.set(key, bucket);
