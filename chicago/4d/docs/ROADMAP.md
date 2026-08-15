@@ -1921,6 +1921,16 @@ churn measurement of 100 %. Run them in that order, and measure K20 after the se
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L104 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
+### T-A14 — `blk_randolph_franklin` · **CLAIMED 2026-08-15 · `steward/t-a14-randolph-franklin`**
+
+The first block of the row TWO streets back — bounded by Randolph, Wells, Washington and Franklin —
+and the first block of this parcel shape **neither of whose faces the town's record calls a front**.
+Eight roofs dealt (6 principal + 2 ancillary) onto seven free lots; lot 2 is held by Harmon's log
+cabin, derived by `tools/plat_occupancy.py`. The face rule arrives here with nothing to inherit:
+T-A13 measured Randolph at 2 structures within 25 m of its centreline against Lake's 12, and
+Washington has never been measured at all. Working it under T-A13's measured test rather than a
+compass.
+
 ### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
