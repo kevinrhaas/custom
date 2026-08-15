@@ -75,7 +75,7 @@ belong at the end, not in the loop.
 | 3 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 4 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half |
 | 5 | RENDERING | **R-W5a** | +11 draw calls per 19 roofs, ~+240 coming against a budget of 80 — being spent every time a block lands. R-W5b carries R-BUG1 (the river flicker) |
-| 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on |
+| 1 | TOWN | **T-A9…** | one open block per run until the 54 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -89,6 +89,14 @@ and the parcel's prime suspect was **refuted by measurement**. The gate could no
 now can: `roadContrast()` scores the fault at **0.3 L\* / 14 %** on foot at range and **1.1 L\* /
 0 %** from the air, against **4.0 / 92 %** and **2.9 / 91 %** with the fix. Full findings under
 R-BUG2 below — read the refutation before reaching for a mip-filter fix anywhere else.
+
+**T-A8 is DONE (2026-08-15)** — the first block filled in on South Water Street, the town's business
+front, and the first block parcel since T-A5 that built a block rather than repairing the arithmetic
+under one. **273 stand and 392 remain, 54 of them on covered ground.** It also found what a block
+parcel cannot fix from inside itself: the schedule apportions families by DISTRICT and knows nothing
+about what a street was for, so it dealt a commercial frontage five ordinary dwellings and a plank
+shanty. Built as dealt, written down, opened as **K25** — and it recurs on six of the ten open
+blocks. Full findings under T-A8 below; read K25 before claiming any `blk_south_water_*` block.
 
 **T-A7 is DONE (2026-08-15)** — a lot was known to be free by the *absence of a centroid*, and a
 building standing proud of its own frontage has its centroid in the road, so four documented
@@ -1043,13 +1051,42 @@ with its corrected deal — 7 roofs, 5 principal and 2 ancillary, on six free lo
 · `docs/ROADMAP.md` · `docs/STATUS.md` · `renderers/web/js/changelog.js`. No structure record,
 no resident, no sidecar, no mesh and no renderer file.
 
-### T-A8…T-An — the remaining blocks · **T-A8 CLAIMED 2026-08-15 (`blk_south_water_franklin`) — DO NOT PICK UP**
+### T-A8 — `blk_south_water_franklin`, and the street the share-out cannot see · **DONE 2026-08-15**
 
-> **CLAIM — steward, `blk_south_water_franklin` only.** Taken 2026-08-15 on branch
-> `steward/t-a8-south-water-franklin`; expires 2026-08-16. It is the block T-A7 claimed and
-> returned to the queue with a corrected deal, so it is the one whose numbers have been checked
-> most recently. Another lane-2 run should take `blk_south_water_wells` or `T-V2`; a lane-1 run
-> is unaffected.
+**Standing roofs 266 → 273; remaining 392, 54 of them on covered ground.** Five dwellings on five
+of the six free lots and two yard buildings off the alley, on the block bounded by South Water,
+Wells, Lake and Franklin. Lot 1, the Lake-and-Franklin corner, is left open. Two households
+adopted — a thirteenth carpenter and a fifteenth labourer; households **84 → 86**, persons
+**96 → 98**. Recorded in L98. **The recipe cleared every placement gate on its first run and no
+tool changed**, which is the shape T-A2 said these would settle into and which T-A6 and T-A7 both
+interrupted by finding something wrong underneath.
+
+**The finding is about the SHARE-OUT and it is opened as K25 rather than fixed here.** This is the
+first block filled in on the town's business front, and the schedule dealt it five ordinary
+dwellings including a D2 plank shanty, because `tools/reconcile_665.py` apportions by district and
+has no notion of what a street was for. Six of the ten open blocks front a commercial street, so it
+recurs. The block was built as dealt and the defect written down — re-apportioning the schedule is
+the change T-A6 and T-A7 each turned out to be, and neither could be done in the same run as a
+block. Full measurement in `docs/STATUS.md` § "five invented houses on the town's business front".
+
+**T-A7's second test is vindicated by measurement.** T-A7 left lot 2 schedulable because Kinzie's
+store laps it only inside the margin strip; this is the block where an over-generous call would
+have hurt. The lot 2 roof stands **7.3 m** from that store against a 3.0 m gate, and every other
+roof here is further from its own nearest neighbour.
+
+**Both adoptable trades passed rule 6 on one block, a first since the third test landed.** Exactly
+two trades call their own counts a floor, this block was dealt exactly their two families in
+exactly their division, and both were adopted. Taking only one to keep the parcel to a single
+adoption would have been a preference dressed as caution.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` (one block appended) ·
+`data/reconstruction/1835_inferred_household_programme.json` (two households, two census
+paragraphs) · `data/structures/recon_1835_blk_south_water_franklin_*.json` (7, derived) ·
+`data/residents/` · `data/sidecars/1835/` · `assets/…` placeholder massing ·
+`docs/LIBERTIES.md` (L98) · `docs/ROADMAP.md` · `docs/STATUS.md` ·
+`renderers/web/js/changelog.js` · `site/chicago/4d/` (publish mirror)
+
+### T-A9…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
 prefix in its claim heading so two runs cannot take the same one. **Read the schedule at your own
@@ -1685,6 +1722,50 @@ instead, and **pushes that to `main` before starting the work** — a claim that
 a branch protects nothing. Respect any claim you find. Claims carry an expiry, and an expired
 one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
 Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
+
+### K25 — the roof share-out is blind to what a street was for · **UNCLAIMED · from T-A8 · Effort: M**
+
+`tools/reconcile_665.py` apportions the 665-roof programme's families across the platted blocks by
+**district** — south, north, west — and by nothing else. A block is a bag of lots with a division
+attached. So `blk_south_water_franklin`, on the street where every documented roof for two hundred
+metres either side is a store, a warehouse or a forwarding house, was dealt **five ordinary
+dwellings and one of them a D2 plank shanty**, and T-A8 built them, because a parcel that overrides
+the apportionment on the day it meets an awkward result is choosing the picture it prefers.
+
+**It recurs, and the count is the argument for doing this before the next block.** Six of the ten
+open blocks front a commercial street: `blk_south_water_wells`, `blk_south_water_lasalle`,
+`blk_south_water_clark`, `blk_south_water_dearborn`, `blk_lake_market` and the one T-A8 has now
+built. Every one of them will be dealt the same district-average mix. The town's business front will
+end up looking like its residential fringe, one honest parcel at a time.
+
+**What the evidence supports, and what it does not.** The dataset already knows which streets were
+commercial — it holds the documented commercial buildings and their positions, and `K1`'s own
+placement rule says *"businesses toward the river and the built streets; residences further out"*.
+That rule is applied to the INFERRED-RESIDENTS layer and never reached the block share-out. So this
+is not new research; it is one of this project's own committed rules being applied in the second
+place it belongs. What is NOT supported is a claim about how commercial any particular block was:
+the fix is an apportionment bias with its reasoning recorded, not a finding about South Water
+Street, and it must not silently become one.
+
+**The trap.** The family targets are a fixed total (`data/reconstruction/1835_building_inventory.json`)
+and every roof moved off a commercial frontage has to land somewhere else. A bias that quietly
+raises the total, or that leaves families unplaceable because their remaining blocks are all
+residential, is worse than the blindness it replaces. The assertion T-A6 added — a unit is never
+dealt past its room — is the model for the one this needs.
+
+**Files:** `tools/reconcile_665.py` · `data/reconstruction/1835_665_roof_programme.json` (derived) ·
+`data/reconstruction/1835_building_inventory.json` (possibly, for the frontage classification) ·
+`docs/LIBERTIES.md` · `docs/ROADMAP.md` · `docs/STATUS.md`
+
+**Acceptance:** the schedule's family mix for a commercial-frontage block differs from a residential
+one and the difference is derived rather than typed; the 665 total is unchanged and every family
+still places; `tools/check.sh` green; a liberty note recording the bias as an invention. **It changes
+no structure record** — like T-A6 and T-A7 it is a schedule parcel, so the blocks already built stay
+exactly as they are and only the undealt blocks move.
+
+**What it must NOT do:** re-deal a block that has already been built. T-A8's five dwellings on South
+Water are committed, recorded in L98 and cited in a shipped changelog entry; the honest repair is
+that the NEXT commercial block is dealt better, not that this one is quietly re-written.
 
 ### K24 — Let the visitor choose the light · **UNCLAIMED · owner-requested 2026-08-14 · AFTER #125**
 

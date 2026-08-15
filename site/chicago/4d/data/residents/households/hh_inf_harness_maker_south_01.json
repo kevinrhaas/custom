@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_harness_maker_south_01",
- "name": "The Fairbanks household — a reconstructed harness maker (south division)",
+ "name": "The Fisk household — a reconstructed harness maker (south division)",
  "division": "south",
  "head": "inf_harness_maker_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_harness_maker_south_01",
-   "name": "Joseph Fairbanks",
+   "name": "Benjamin Fisk",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

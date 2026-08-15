@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 97,
+  "count": 98,
   "liberties": [
     {
       "id": "L1",
@@ -8748,6 +8748,53 @@
         {
           "label": "Recorded",
           "text": "2026-08-14."
+        }
+      ]
+    },
+    {
+      "id": "L98",
+      "title": "Five invented dwellings on the town's business front, and the two trades the rule let in",
+      "section": "per_subject",
+      "subjects": [
+        "exchange_coffee_house",
+        "temple_building"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_south_water_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_south_water_franklin` — bounded by South Water, Wells, Lake and Franklin — now carries **seven anonymous roofs**: five dwellings, one per lot on five of its six free lots, and two yard buildings off the block alley. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the seven are adopted — the D3 one-room cottage on lot 2 as a thirteenth inferred carpenter household, the D1 log cabin on lot 5 as a fifteenth labouring one — and the other five stay anonymous count-units. **What is new here is the STREET, and it is the largest admission in this entry.** L94, L95 and L97 recorded blocks one street back from the business front. This is the first block this lane has filled *on* that front: South Water Street was where the town's stores, forwarding houses and warehouses stood in 1835, and every documented roof standing on or beside this block is one of them — the Temple Building on lot 0, the Exchange Coffee House on lot 7, J. H. Kinzie's forwarding store lapping lot 2's north edge, Newberry & Dole's warehouse immediately west and H. Jones's store immediately east. The schedule dealt this block **five ordinary dwellings, one of them a D2 plank shanty**, and the parcel built them, because the apportionment is the programme's claim and not this parcel's to overturn on the day it meets it. **But it is very likely wrong in this particular, and nothing in the dataset currently said so**: the 665-roof programme apportions families by DISTRICT and has no notion of what a street was for, so it will keep dealing cabins to commercial frontage every time this lane reaches one. Opened as ROADMAP **K25** rather than fixed here, because re-apportioning the schedule is the change T-A6 and T-A7 both turned out to be, and neither could be done in the same run as a block. A visitor standing on South Water Street in this scene is looking at five invented dwellings on the town's busiest commercial block, and the invention to distrust is the family mix rather than the buildings themselves. **What the standing roofs did NOT do, measured rather than assumed.** T-A7 found Kinzie's store lapping 9.7 m² onto lot 2, all of it inside the 1.5 m margin strip, and left the lot schedulable. That was the right call and this parcel is the test of it: the roof placed on lot 2 stands **7.3 m** from Kinzie's store against a 3 m separation gate, and every other roof here is further still from its own nearest neighbour. The commercial buildings already on this block did not squeeze it, the recipe cleared every placement gate on its first run, and no tool changed. **Both adoptable trades passed on one block, which had not happened since the rule took its third test.** Rule 6 admits a roof only where the trade's committed argument calls its own count a floor, the roof's family is one this layer already houses that trade in, and the roof's division is too. Exactly two trades pass the first test — carpenter and labourer — and this block was dealt a D3 and a D1 in the South Division, which are precisely the family each of them is housed in there. Adopting only one, to keep the parcel to a single adoption the way every parcel before it did, would have been a preference dressed as caution; both were adopted and the rule is what chose. The inventions admitted are the thirteenth carpenter household and the fifteenth labouring one: no source names either, no source counts either, and the arithmetic that carries them is the building-rate argument L83 records for the whole layer."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its fifth platted block and its first on the business front, whose presence, lots, positions and footprints a visitor can see are interpretive — flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **266 → 273** against the 665-roof target; **392 remain**, 54 of them on ground the project has coverage for. Inferred households move 84 → 86 and inferred persons 96 → 98; two more anonymous roofs stop being anonymous. **And a third measurement of K20, the largest yet**: inserting two households renamed **28 of the 84 carried-over inferred households and 32 of the 96 carried-over invented persons**, against 25-of-94 measured at T-A2h and 17-of-33-touched at T-A5. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 98, so this is churn and not a provenance failure — but a two-household parcel now rewrites a third of the layer's names, and K20's own text says the fix belongs in its own parcel rather than riding along with a block. It is left riding along, visibly, for the third time."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. The commercial-frontage question (K25) is discharged by any evidence that states what stood on South Water Street between Franklin and Wells in July 1835 — a directory, an assessment roll or a fire-insurance sheet would settle it — and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_south_water_franklin_*.inferred_1835.position`, `recon_1835_blk_south_water_franklin_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
         }
       ]
     },
