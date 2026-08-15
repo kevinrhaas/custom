@@ -51,6 +51,11 @@
  *                       stations. It is reported everywhere and quoted there.
  *
  * Every threshold above is a measurement convention, not a claim about 1835.
+ *
+ * Two exported colour helpers are not frame metrics and have no thresholds:
+ * `relativeLuminance` (linear Y) and `weberContrast` (R-M1's exposure-invariant
+ * scale). They live here so that anything measuring contrast in this project
+ * measures it the same way — see the block over `weberContrast`.
  */
 
 import zlib from 'node:zlib';
@@ -149,6 +154,52 @@ export function labL(r, g, b) {
   const Y = 0.2126 * SRGB_LIN[r] + 0.7152 * SRGB_LIN[g] + 0.0722 * SRGB_LIN[b];
   const f = Y > 0.008856 ? Math.cbrt(Y) : 7.787 * Y + 16 / 116;
   return 116 * f - 16;
+}
+
+/**
+ * Rec.709 relative luminance in LINEAR light, 0..1, from gamma-encoded sRGB.
+ * This is the Y that `labL` then compresses; kept separate because the two
+ * answer different questions and one of them is not compressive.
+ */
+export function relativeLuminance(r, g, b) {
+  return 0.2126 * SRGB_LIN[r] + 0.7152 * SRGB_LIN[g] + 0.0722 * SRGB_LIN[b];
+}
+
+/**
+ * Weber contrast — `(Y_target − Y_background) / Y_background`, on linear
+ * luminance, signed, `null` where the background carries no light to divide by.
+ *
+ * WHY THIS FILE OWNS IT, and why it is not a rewrite of `labL`. Both scales are
+ * right about different things and R-M1 is the parcel that needs both.
+ *
+ *   `labL` is PERCEPTUAL. Equal steps are roughly equal perceived difference —
+ *   but only under a fixed adaptation state. That precondition held for as long
+ *   as the renderer's exposure was fixed, and R-W1 is the first change to break
+ *   it: it preserved the road/ground ratio to within 0.4 % and still lost the
+ *   road gate, because the whole scene got 14–17 % darker and ΔL* is
+ *   compressive. ΔL* did not fail there; its assumption did.
+ *
+ *   Weber is EXPOSURE-INVARIANT by construction. Scale both terms by any k and
+ *   the k cancels, so it answers "is the road distinguishable from the ground"
+ *   without also answering "how bright is the scene". That is exactly the
+ *   separation the owner ruled for on 2026-08-14: score contrast, and keep an
+ *   absolute floor beside it, because contrast sensitivity genuinely collapses
+ *   at low luminance and a ratio alone would pass a scene too dark to see
+ *   anything in. Neither number is a replacement for the other.
+ *
+ * The BACKGROUND is the denominator, which is what makes it Weber rather than a
+ * bare ratio: it is the surface the target is being picked out from. For the
+ * road gate that is the same pixel with the street layer hidden, so a road on
+ * grass and a road on mud are held to one standard.
+ *
+ * `trees.js` already reasons in this quantity against the reference photograph
+ * (0.625 tree-mass-against-sky there, 0.655 in the scene) and `LIBERTIES.md`
+ * quotes it, but until now nothing in `tools/` computed it, so every figure was
+ * produced by hand at the point of use.
+ */
+export function weberContrast(targetY, backgroundY) {
+  if (!(backgroundY > 0)) return null;
+  return (targetY - backgroundY) / backgroundY;
 }
 
 /** Hue in degrees and HSL-style saturation, from gamma-encoded sRGB. */

@@ -40,6 +40,18 @@ project already owns a reference set: the twelve pre-fire pictorial plates in
 reference) and the verified tallgrass photograph set from the 2026-08-10 prairie sweep, with
 its two methodology corrections (§1) inherited by every future loop.
 
+**The calibration photograph is in the repository as of 2026-08-15** (R-REF1):
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg`, source
+record `saari_2018_dupage_tallgrass`, CC BY-SA 4.0 and cleared for verbatim redistribution
+and measurement but **not** for asset derivation. It is the file `world.js` calls
+`bar/dupage_tallgrass_2018-07-24.jpg`, and until R-REF1 it existed in no checkout — so every
+sky number in the renderer was a quotation nobody could check. `python3
+tools/measure_reference.py` re-measures it, and **all four quoted sky readings reproduce to
+within a few units**. Its frame is solved as well as committed: 57.0 px/deg vertical, the
+horizon at row 820, so `elevation(row) = (820 − row) / 57.0` degrees above the horizon.
+**State the elevation of any reading taken from it** — the readings this project has
+disagreed about were taken at different heights in the frame, not from different photographs.
+
 **Second: the gap to AAA is mostly not the renderer.** Joliet's own status, after building
 the full PBR + IBL + CSM + SSAO + TAA chain: "the gap is content density — foliage, clutter,
 decals, wear passes, set dressing, and the sheer number of authored props per square metre —
@@ -674,6 +686,28 @@ recipes in Appendix B.
 | Published site | ≤ 25 MB until H2's sanctioned raise (~100 MB) | validate.py + §8 |
 | Page errors | zero, at 390×780 AND 1280×800, every renderer | AGENTS.md |
 | Fog extinction | total by 1500 m, every renderer, every mode | LIBERTIES L17 |
+
+**Note 1 — the ref-derived rows can now be re-derived, and should be.** Every row sourced to
+"STATUS §00" is a number measured off the July tallgrass reference, and until 2026-08-15 the
+photograph was in no checkout: the targets were quotations, and a builder who disagreed with
+one had nothing to open. **R-REF1 committed it** —
+`data/sources/assets/saari_2018_dupage_tallgrass/dupage_tallgrass_2018-07-24.jpg`, source
+record `saari_2018_dupage_tallgrass` — and `python3 tools/measure_reference.py` reproduces
+all four sky readings `world.js` quotes to within a few units. Two consequences for anyone
+touching this table:
+
+- **Re-anchor by measuring, not by re-quoting.** `tools/critic_metrics.mjs` was built so the
+  same recipes can measure a reference and a frame; the reference now exists to point them
+  at. A target that a re-measurement moves should move, with the measurement quoted.
+- **Every reading carries its elevation.** The frame is 57.0 px/deg vertical with the horizon
+  at row 820, so `elevation(row) = (820 − row) / 57.0` degrees, the frame reaches 14.4° above
+  the horizon, and the camera was pitched −12.1°. Two of this project's own reference
+  disagreements have turned out to be two people measuring different heights in the same
+  photograph — one of them cost a whole tuning round (§1's look-angle correction).
+- **It may be measured; it may not be derived from.** CC BY-SA 4.0: verbatim redistribution
+  and measurement are cleared, any crop or resample is an adaptation carrying ShareAlike.
+  `assets/LICENSES.md` holds the clearance. And it is still not evidence for flower load —
+  it is a restoration planting, and §1's correction to 4–6 % stands.
 
 ---
 
