@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_tailor_south_01",
- "name": "The Eastman household — a reconstructed tailor (south division)",
+ "name": "The Fairbanks household — a reconstructed tailor (south division)",
  "division": "south",
  "head": "inf_tailor_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_tailor_south_01",
-   "name": "Charles Eastman",
+   "name": "Joseph Fairbanks",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

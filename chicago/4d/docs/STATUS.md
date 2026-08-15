@@ -1,5 +1,87 @@
 # STATUS
 
+## New 2026-08-15 — five invented houses on the town's business front, and the share-out that put them there
+
+**T-A8**, and it is the first block parcel since T-A5 that actually built a block: T-A6 and T-A7
+each set out to fill one in and finished up repairing the arithmetic that decides what a block may
+be dealt. `blk_south_water_franklin` — South Water, Wells, Lake, Franklin — now carries **seven
+anonymous roofs**, five principal and two yard buildings, on five of its six free lots, with lot 1
+(the Lake-and-Franklin corner) left open. **Standing roofs 266 → 273; remaining 399 → 392, 54 of
+them on covered ground** (was 61). Inferred households 84 → 86, inferred persons 96 → 98; totals
+158 households and 194 people. Recorded in L99.
+
+**The recipe cleared every placement gate on its first run and no tool changed**, which is the
+shape T-A2 predicted these would settle into and which T-A6 and T-A7 both interrupted.
+
+**THE FINDING IS ABOUT THE SHARE-OUT, NOT ABOUT THIS BLOCK, AND IT IS OPENED AS K25.** This is the
+first block this lane has filled on South Water Street — the town's business front, where every
+documented roof on or beside the block is commercial: the Temple Building, the Exchange Coffee
+House, J. H. Kinzie's forwarding store, Newberry & Dole's warehouse west and H. Jones's store east.
+The 665-roof programme dealt it **five ordinary dwellings, one of them a D2 plank shanty**, because
+`tools/reconcile_665.py` apportions families by DISTRICT and has no notion of what a street was
+for. The block was built as dealt — the apportionment is the programme's claim and overriding it by
+hand on the day it produces an awkward result is how a reconstruction becomes a picture somebody
+liked — but the defect is now written down in three places rather than absorbed silently, and it
+will recur on `blk_south_water_wells`, `blk_south_water_lasalle`, `blk_south_water_clark`,
+`blk_south_water_dearborn` and `blk_lake_market`: **six of the ten open blocks front a commercial
+street.**
+
+**T-A7's second test is vindicated by measurement, which is what this block was in a position to
+do.** T-A7 left lot 2 schedulable because Kinzie's store laps it only inside the 1.5 m margin
+strip. If that had been too generous, this parcel is where it would have failed. It did not: the
+lot 2 roof stands **7.3 m** from Kinzie's store against a 3.0 m separation gate, and every other
+roof this parcel places is further from its own nearest neighbour than that.
+
+**Both adoptable trades passed rule 6 on one block, for the first time since the rule took its
+third test.** Exactly two trades' committed arguments call their own counts a floor — carpenter and
+labourer — and this block was dealt a D3 and a D1 in the South Division, which is precisely the
+family each is already housed in there. Both were adopted (13th carpenter, 15th labourer). Adopting
+only one, as every parcel before this did, would have been a preference rather than the rule
+choosing.
+
+**K20 measured a third time, and it is the worst reading yet.** Inserting two households renamed
+**28 of the 84 carried-over inferred households and 32 of the 96 carried-over invented persons** —
+a third of the layer — against 25-of-94 at T-A2h and 17-of-33-touched at T-A5. No grade moved, no
+`name_basis` lost its pool citation, and `check.sh` re-derives all 98, so this is churn rather than
+a provenance failure. K20's own text says the fix belongs in its own parcel; it has now ridden
+along with a block three times, and it is the reason this PR's diff is 47 files wide for a change
+whose real content is seven buildings.
+
+**AND IT DOES NOT SHIP. THE DESKTOP DRAW-CALL BUDGET IS EXCEEDED AND THIS PARCEL IS WHAT EXCEEDED
+IT.** `tools/check.sh` is green. The mobile viewport is green — 419 assertions, zero page errors.
+The desktop viewport fails four assertions for one reason. Measured on the published mirror at
+1280×800, both runs full and in the foreground:
+
+| | draw calls | budget | verdict |
+|---|---|---|---|
+| `dev@52641c4` (baseline) | **75** | 80 | pass |
+| this branch, +7 roofs | **84** | 80 | **fail**, and the three per-tier detail ceilings with it |
+
+**Seven roofs cost nine draw calls.** R-G1 projected +11 per 19 records; the observed rate here is
+steeper, and it was spent against five calls of headroom. This is **R-W5a**, arriving earlier than
+its own straight line predicted, and the operational consequence is blunt: **lane 2 cannot land
+another block until R-W5a lands.** Nine open blocks remain and not one of them is smaller than the
+one that broke it.
+
+**Three things were NOT done to make it green**, listed because each is a tempting shortcut. The
+budget was not raised — an assertion moved to admit what it was measuring is not a gate. Roofs were
+not dropped — the schedule deals seven, and building five to satisfy a frame rate is fitting the
+town to the renderer. R-W5a was not fixed in this run — it is a lane 1 parcel with a lane 1 PR
+already in flight, and batching the scene is a unit of its own.
+
+**One renderer-adjacent fix IS in this branch, because the parcel could not be diagnosed without
+it.** `tools/smoke_renderer.mjs` filtered terrain problems with `/terrain|water/i` against the
+whole message, so `blk_south_water_franklin` — the first block whose id contains the word — turned
+two ordinary placeholder-asset notes into a reported terrain load failure. Anchored to
+`/^\s*(terrain|water)\b/i`, which is what the code's own comment always claimed, and verified
+against real `terrain <epoch>: …` and `water: …` messages in both directions. Five of the ten open
+blocks are `blk_south_water_*`.
+
+**What this parcel did NOT do.** It did not re-apportion the schedule (K25), it did not fix the
+name allocator (K20), it did not fix the draw-call budget (R-W5a), and it did not answer whether
+one open lot per block is the right vacancy — the question T-A6 left standing and nothing here
+touches.
+
 ## REOPENED 2026-08-15 — the owner reproduced the invisible road WITH the fix in, and it is not the streets
 
 Reported again the same evening, mobile, Lake Street approaching Franklin — after the entry below

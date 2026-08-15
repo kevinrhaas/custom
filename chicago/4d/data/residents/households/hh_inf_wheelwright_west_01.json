@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_wheelwright_west_01",
- "name": "The Duffy household — a reconstructed wheelwright (west division)",
+ "name": "The Fitzgerald household — a reconstructed wheelwright (west division)",
  "division": "west",
  "head": "inf_wheelwright_west_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_wheelwright_west_01",
-   "name": "Edward Duffy",
+   "name": "Terence Fitzgerald",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {
