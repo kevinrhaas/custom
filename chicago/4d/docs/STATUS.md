@@ -1,5 +1,59 @@
 # STATUS
 
+## New 2026-08-15 — the block opposite the courthouse, and two of yesterday's three adoption candidacies do not reproduce
+
+**T-A15.** `blk_randolph_clark` — Randolph, Dearborn, Washington, Clark — now carries **eight
+anonymous roofs**: a store-residence, five dwellings, a woodshed and a privy, on six of its seven
+free lots, with lot 1 left open and lot 0 held by the inferred gunsmith's shop. **Standing roofs
+314 → 322; remaining 351 → 343, 5 of them on covered ground** (was 13). Inferred households 98 → 99,
+inferred persons 110 → 111. Recorded in **L106**. **The recipe cleared every placement gate on its
+first run** — the eighth block in a row. The block stands across Clark Street from the public square
+(county courthouse, both Wright buildings to let, the estray pen) with Dearborn Street, the bridge
+street, for its east face; it is the first block parcel dealt **both** larger house families at once
+and the first to stand a **`C2` store-residence**. One adoption: the `D1` log cabin on lot 3 becomes
+the twenty-second inferred labouring household.
+
+**TWO OF T-A14's THREE ADOPTION CANDIDACIES DO NOT REPRODUCE, AND THIS IS THE HEADLINE.** The entry
+directly below records that its `D2` passes all three of method rule 6's tests for the
+**laundresses** and its `D4` for the **teamsters**. Tests 2 and 3 hold for both. **Test 1 does
+not**: rule 6 asks whether the trade's *own argument* states in its committed text that its count is
+a floor rather than a bound, and neither of those arguments contains any such statement — the only
+occurrence of the word in the laundress argument is Andreas's *"with the floor covered besides"*, a
+plank floor in a boarding house. Only the **carpenters** and the **labourers** state it.
+`tools/measure_adoption_tests.py` is committed so the next parcel **runs** rule 6 rather than
+recalling it, and prints the sentence each verdict rests on. The T-A14 entry below and L105 are left
+standing verbatim; what is corrected is the method. **K28's question narrows**: not "may a trade
+that has not asked for a roof be given one" but "does test 1 mean the trade's own text, or method
+rule 3's list of unbounded trades" — two readings that disagree for exactly two trades. Run on this
+block's `D2`, exactly one trade passes: the labourers, taking a second roof, refused for the eighth
+time on the same conservative reading.
+
+**The face rule reproduced exactly — the first time that can be said.** `tools/
+measure_street_frontage.py randolph washington` returns Randolph 7 research / 7 inferred-household
+against Washington 1 / 0, the same 14 against 1 T-A14 measured on the same pair, from a command
+rather than from a memory. The third layer read 18 and 12 and is excluded, not merged.
+
+**The face rule ranks dwellings, and this block had a store, so the rule was EXTENDED — see K32.**
+A store-residence's claim on the better frontage was taken to be functional rather than social, so
+the `C2` took Randolph's third free lot and the `D6` that would have had it went to the head of the
+back street. That is an invention about 1835 commerce made by an agent; it is flagged rather than
+left to repeat, and **K29 is circling the same question from the other side**.
+
+**THE END RULE IS EXHAUSTED ON THIS ROW — see K31.** Distance to the Dearborn Street drawbridge runs
+**318.3 / 321.1 / 325.8 m** across the Randolph frontage and 376.4 → 388.2 m behind. Far/near on the
+front face is **1.02×** against T-A14's 1.11, T-A13's 1.13 and T-A12's 2.93, and the absolute spread
+is **7.5 m** — under a third of one lot's 24.6 m frontage. The cause is geometric: the bridge bears
+**10.4° east of north** from the block centre while the face runs east–west, so the criterion sees
+only **18 %** of any along-street displacement. It was followed anyway on T-A13's reasoning, and on
+this block a stronger criterion agrees with it (lot 6 is the corner on Dearborn, the bridge street),
+which is exactly what K31 must not assume holds elsewhere. **Do not quote the end rule as if it
+ordered anything on the Randolph–Washington row without re-measuring it.**
+
+**Unverified here:** the desktop half of `tools/smoke_renderer.mjs` — this parcel changes data and
+docs only, and the desktop half does not fit the runner's ten-minute per-command ceiling (see
+ROADMAP § THE RUN BUDGET). `tools/check.sh` and the mobile half of the smoke were both run green
+against the published mirror.
+
 ## New 2026-08-15 — a block with no front, and the face rule's first measurement does not reproduce
 
 **T-A14.** `blk_randolph_franklin` — Randolph, Wells, Washington, Franklin — now carries **eight

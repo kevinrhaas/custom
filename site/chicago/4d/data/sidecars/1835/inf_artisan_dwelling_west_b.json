@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_wheelwright_west_01",
-      "name": "The Kelly household — a reconstructed wheelwright (west division)",
+      "name": "The Lynch household — a reconstructed wheelwright (west division)",
       "division": "west",
       "relation": "lived here",
       "why": "THE HOUSEHOLD IS HOUSED, WHICH IS THE POINT OF THE LAYER. inf_artisan_dwelling_west_b is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. Which roof of the right family and district a hypothesised household occupies is not evidence about that roof; the household needed a dwelling and the programme assigned it one.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "Michael Kelly",
+          "name": "James Lynch",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "wheelwright",

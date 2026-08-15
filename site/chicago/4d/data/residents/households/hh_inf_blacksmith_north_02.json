@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_blacksmith_north_02",
- "name": "The Gallagher household — a reconstructed blacksmith (north division)",
+ "name": "The Hayes household — a reconstructed blacksmith (north division)",
  "division": "north",
  "head": "inf_blacksmith_north_02",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_blacksmith_north_02",
-   "name": "Hugh Gallagher",
+   "name": "Martin Hayes",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

@@ -110,8 +110,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
-| — | TOWN | ~~T-A15~~ | **CLAIMED 2026-08-15 · `steward/t-a15-randolph-clark`** — `blk_randolph_clark`, the only open entry carrying H1, H2 and a C2. The next TOWN block pick is `blk_randolph_lasalle` (4) or `blk_randolph_dearborn` (1, deferral only) — re-derive, do not trust this line |
-| 1 | TOWN | **T-A16…** | one open block per run until the 13 are placed — `blk_randolph_franklin` closed at T-A14, so the three open entries are all on the Randolph–Washington row; adopt in the same run under rule 6's three tests · **the face rule is now a COMMAND rather than a remembered number**: run `tools/measure_street_frontage.py <street> <street>` and quote it, never quote T-A13's Lake 12 / Randolph 2 / South Water 9, which T-A14 showed does not reproduce · **and read T-A14 finding 4 before writing a word about a "second roof"** — the D2 and D4 refusals belong to four trades, not two · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
+| — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
+| 1 | TOWN | **T-A16…** | one open block per run until the 5 are placed — `blk_randolph_clark` closed at T-A15, so the two open entries are `blk_randolph_lasalle` (4 roofs, 3P+1A) and `blk_randolph_dearborn` (1, a `C3` that can only be deferred, so still not a block parcel); adopt in the same run under rule 6's three tests · **BOTH rules are now COMMANDS rather than remembered numbers**: run `tools/measure_street_frontage.py <street> <street>` for the face and `tools/measure_adoption_tests.py <family> <division>` for the adoption, and quote what they print — never quote T-A13's Lake 12 / Randolph 2 / South Water 9 (T-A14 refuted it) and never quote T-A14's teamster or laundress candidacies (T-A15 refuted them) · **read T-A15 finding 4 and K31 before applying the end rule**, which is exhausted on this row at 1.02× · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -1936,12 +1936,124 @@ churn measurement of 100 %. Run them in that order, and measure K20 after the se
 (7 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L104 · `docs/STATUS.md` ·
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **No tool file.**
 
-### T-A15 — `blk_randolph_clark` · **CLAIMED 2026-08-15 · `steward/t-a15-randolph-clark`**
+### T-A15 — `blk_randolph_clark` · **DONE 2026-08-15**
 
-The block bounded by Randolph, Dearborn, Washington and Clark — **eight roofs, six principal and
-two ancillary, on seven free lots** — and the first block parcel of this shape to be dealt the
-town's *better* houses: `H1` and `H2`, the two largest dwelling families in the crosswalk, plus a
-`C2` store-residence, none of which any anonymous parcel has ever built. In progress.
+The block bounded by Randolph, Dearborn, Washington and Clark — across Clark Street from the public
+square with the county courthouse on it, and with Dearborn Street, the bridge street, for its east
+face — carries **eight roofs, six principal and two ancillary**, on six of its seven free lots. Lot
+0 is held by the inferred gunsmith's shop, derived by `tools/plat_occupancy.py`; lot 1 is left open.
+**322 stand and 343 remain, 5 of them on covered ground.** The recipe cleared every placement gate
+on its first run — the eighth block in a row. It is the first block parcel dealt **both** larger
+house families at once (`H1` + `H2`) and the first to stand a **`C2` store-residence**, though
+`blk_randolph_wells` built an H1 and an H2 at T-A2 and four C2 roofs already stand elsewhere: what
+is new is the combination. One adoption under rule 6: the `D1` log cabin on lot 3 becomes the
+twenty-second inferred labouring household. Full admission in `docs/LIBERTIES.md` **L106**. It is
+the **second block parcel of this shape to commit a tool**, `tools/measure_adoption_tests.py`, for
+the reason in finding 3.
+
+**Four findings came out of it that are not the block.**
+
+1. **The face rule reproduces exactly, which is what T-A14's tool was for.** `tools/
+   measure_street_frontage.py randolph washington` returns Randolph 7 research / 7
+   inferred-household and Washington 1 / 0 — the same 14 against 1 T-A14 measured on the same pair,
+   from a command rather than from a memory. The third layer (this programme's own output) read 18
+   and 12 and is excluded, not merged. **This is the first block parcel whose face measurement was
+   inherited rather than re-argued**, which is the whole return on committing the tool.
+2. **The face rule ranks DWELLINGS and this block had a STORE, so the rule was extended.** The
+   extension: a store-residence's claim on the better frontage is functional rather than social —
+   it is the only one of six roofs whose purpose requires that a stranger can find it — so the `C2`
+   takes Randolph's third free lot and the `D6` that would have had it goes to the head of the back
+   street. Opened as **K32** rather than left as a private decision: the next block dealt a
+   commercial family follows it or refutes it.
+3. **Two of T-A14's three adoption candidacies do not reproduce, and the fix is a command.** T-A14
+   recorded that its `D2` passes all three of rule 6's tests for the **laundresses** and its `D4`
+   for the **teamsters**. Tests 2 and 3 hold. Test 1 does not: rule 6 asks whether the trade's OWN
+   ARGUMENT states in its committed text that its count is a floor, and neither argument contains
+   any such statement — the only occurrence of the word in the laundress argument is Andreas's "with
+   the floor covered besides", a plank floor in a boarding house. Only the carpenters and the
+   labourers state it. `tools/measure_adoption_tests.py` is committed here so the tests are RUN, and
+   it prints the sentence each verdict rests on. **K28's question narrows**: not "may a trade that
+   has not asked for a roof be given one" but "does test 1 mean the trade's own text or method rule
+   3's list of unbounded trades". The two readings disagree for exactly two trades. Measured by the
+   command, this block's `D2` admits exactly one claimant — the labourers, taking a second roof —
+   and it is refused for the eighth time on the same conservative reading.
+4. **The end rule is exhausted, and the reason is geometry rather than this block.** Distance to the
+   Dearborn Street drawbridge runs **318.3 / 321.1 / 325.8 m** across the Randolph frontage and
+   376.4 → 388.2 m behind. Far/near on the front face is **1.02×**, against T-A14's 1.11, T-A13's
+   1.13 and T-A12's 2.93, and the absolute spread is **7.5 m** — under a third of one lot's 24.6 m
+   frontage. The bridge bears **10.4° east of north** from the block centre while the face runs
+   east–west, so the criterion sees sin(10.4°) = **18 %** of any along-street displacement: 49.3 m
+   between the lot 2 and lot 6 centroids projects to 8.9 m, and 7.5 m survives. Followed anyway on
+   T-A13's reasoning; the successor question is **K31**. On this block a stronger criterion agrees
+   — lot 6 is the corner on Dearborn Street, the street that carries the bridge — which is why
+   following the exhausted rule cost nothing here and is exactly what K31 must not assume elsewhere.
+
+**The tenth K20 measurement is 12 of 110** carried-over invented persons renamed, against 61-of-108
+at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at
+T-A9 and 32-of-96 at T-A8. Eight measurements span 7 % to 72 % with nothing fixed or broken between
+them; this is the second-lowest. K20 still owns the fix.
+
+**Files:** `data/reconstruction/1835_platted_block_parcels.json` ·
+`data/reconstruction/1835_inferred_household_programme.json` · `data/structures/` (8 new) ·
+`data/residents/` (1 new household, 1 new person, K20 churn) ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) · `assets/gltf/` + `assets/web/`
+(8 flagged placeholder GLBs, no Blender) · sidecars · `docs/LIBERTIES.md` L106 · `docs/STATUS.md` ·
+`docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
+`tools/measure_adoption_tests.py`, new, standalone, not wired into `check.sh`.**
+
+### K31 — the end rule is exhausted on the Randolph–Washington row · **UNCLAIMED · from T-A15 · Effort: S to decide, S to apply**
+
+T-A11's criterion — the better roof goes to the free lot nearest the Dearborn Street drawbridge —
+has thinned on every block since it was written: **2.93× at T-A12, 1.13× at T-A13, 1.11× at T-A14,
+1.02× at T-A15**, where it separated three lots by **7.5 m across a 74 m block face**. T-A15
+measured the cause and it is not the town: the bridge bears **10.4° east of north** from that block
+while the face runs east–west, so the criterion can only see **sin(10.4°) = 18 %** of a displacement
+along the street. Every remaining block on this row is in the same position or worse, and the two
+`platted_block_awaiting_street_control` entries on South Water are not.
+
+**The question is not whether to keep it — it is what replaces it, and the answer must not be
+chosen on a block where it agrees with the old rule.** T-A15's own lot 6 is the trap: it wins under
+distance-as-measured AND under frontage on the bridge street, so that block cannot discriminate
+between the two. Candidates worth measuring, on a block where they disagree:
+
+- **distance along the street network** to the bridge rather than straight-line — restores the
+  discrimination the projection destroys, and is what a resident actually walked;
+- **frontage on a named through street** (Dearborn to the bridge, Lake and South Water to the
+  business front) — a claim about the street rather than about the corner;
+- **nothing at all**: declare the within-face order arbitrary on blocks under some measured
+  threshold and say so per block, rather than dressing rounding up as reasoning. **This is a
+  legitimate answer** and probably the honest one for a 7.5 m spread.
+
+Whatever lands, the deliverable is the same shape as `tools/measure_street_frontage.py`: a command
+that prints the number, so the next block inherits it. Do NOT retro-fit the answer to blocks
+already built — L102 onward record what was done and why, and this document is append-only.
+
+### K32 — may the face rule rank a store? · **UNCLAIMED · from T-A15 · Effort: S — a decision, then a clause**
+
+The face rule as committed at T-A13 and T-A14 ranks **dwellings**: the best take the better street,
+the meanest take the back one. `blk_randolph_clark` was the first block dealt a **`C2`
+store-residence** and the rule said nothing about it. T-A15 extended it — a store's claim on the
+better frontage is functional rather than social, being the only roof whose purpose requires a
+stranger can find it — and put the `C2` on Randolph, displacing a `D6` to the back street.
+
+**That extension is an invention about 1835 commerce made by an agent, and it needs settling before
+it repeats.** The schedule still holds `C1`…`C4`, `F1`…`F4`, `H3`, `I3`, `T1`, `W1`…`W5` for blocks
+not yet built, so the same question arrives again the moment a `W` workshop or an `F` warehouse is
+dealt — and a warehouse's answer is plainly the opposite of a store's, because a warehouse wants the
+river and not the crowd. Three readings to choose between:
+
+1. **rank by claim on frontage** (T-A15's): commerce > better dwelling > meaner dwelling, with the
+   ranking authored per inventory group in `1835_building_inventory.json` rather than per parcel;
+2. **rank dwellings only** and place non-dwellings by their own function — the store to the busiest
+   frontage, the warehouse to the water, the workshop to the alley — which is more honest about
+   there being two rules and not one;
+3. **refuse the question**: leave non-dwelling placement to the arrangement note of whichever parcel
+   meets it, as T-A15 in effect did, and accept that it will not reproduce.
+
+Reading 2 is the likeliest and is the one K29 ("the schedule deals log cabins to the town's
+commercial frontage") is already circling from the other side; the two should probably be settled
+together. Whatever lands belongs in the recipe's `placement_rule`, where the generator can be made
+to check it, rather than in prose a later parcel has to remember.
 
 ### T-A14 — `blk_randolph_franklin` · **DONE 2026-08-15**
 
@@ -2020,14 +2132,15 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A14, re-derived from the programme that parcel committed — 13 roofs across three
-entries, and the re-apportionment moved the pieces again:** `blk_randolph_clark` 8 (6P+2A, and the
-only open entry carrying H1, H2 and a C2) · `blk_randolph_lasalle` 4 (3P+1A) ·
-`blk_randolph_dearborn` 1. **The I3 that had moved four times is gone from the schedule and a C3 has
-taken its place on `blk_randolph_dearborn`** — that entry is still not a block parcel for the same
-reason, one dealt roof that can only be deferred with its reason, so T-A3h's "backfill, now a D3"
-stays stale. **The South Water row is closed, Lake and Market with it, and Randolph and Franklin
-now too**; every open entry is on the Randolph–Washington row.
+**Open after T-A15, re-derived from the programme that parcel committed — 5 roofs across two
+entries:** `blk_randolph_lasalle` 4 (3P+1A: A1, D3, D4, D5) · `blk_randolph_dearborn` 1 (a C3).
+`blk_randolph_lasalle` is **the public square block** — it already carries the Cook County
+courthouse, the estray pen and both Wright buildings to let, so it arrives with four of eight lots
+taken and is the first open entry whose standing roofs are all research-layer records rather than
+this programme's own. `blk_randolph_dearborn` is still not a block parcel for the same reason it was
+not one after T-A14: one dealt roof that can only be deferred with its reason, so T-A3h's "backfill,
+now a D3" stays stale. **The South Water row is closed, Lake and Market with it, and Randolph at
+Franklin and at Clark now too**; both open entries are on the Randolph–Washington row.
 **This list is a convenience and goes stale the moment the next parcel lands** — the schedule
 re-apportions every open block each time one closes. Re-derive it, do not trust it. What T-A6
 guarantees, and what the list itself does not, is that whatever you re-derive will FIT: no block

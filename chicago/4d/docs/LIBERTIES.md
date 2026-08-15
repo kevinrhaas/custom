@@ -3231,6 +3231,121 @@ mix on this block is a bound on invention rather than a claim about Chicago.
 **Recorded:** 2026-08-15.
 
 
+### L106 — A store and the town's two best houses invented opposite the courthouse, and the adoption tests made a command because two of the last block's three candidacies do not reproduce
+
+**Decision:** `blk_randolph_clark` — bounded by Randolph, Dearborn, Washington and Clark —
+now carries **eight anonymous roofs**: a store-residence, five dwellings on five more of its
+seven free lots, a woodshed in the yard of lot 6 and a privy in the yard of lot 3, both off
+the block alley. It is the twelfth block of this parcel shape, the first to be dealt **both**
+of the crosswalk's larger house families together (`H1` and `H2`), and the first block parcel
+to stand a **`C2` store-residence** — though four `C2` roofs already stand elsewhere in the
+town and `blk_randolph_wells` built an `H1` and an `H2` at T-A2, so what is new is the
+combination and not the families. The ceiling and the family mix are the 665-roof programme's
+schedule and **everything below that is invented** — which family stands on which lot, which
+lot is left open, how far each building stands back from its frontage and how far it sits to
+one side. No coordinate is authored: every metre is read off the committed lot polygons of the
+K7 grid. One of the eight is adopted — the `D1` log cabin on lot 3, as the twenty-second
+inferred labouring household — and the rest stay anonymous count-units. Lot 0 arrives taken,
+by the inferred gunsmith's shop, and is not touched.
+
+**THE SCHEDULE PUT THE TOWN'S BETTER HOUSES OPPOSITE THE COURTHOUSE, AND THAT IS A
+COINCIDENCE.** This block's west face stands across Clark Street from the public square block,
+which carries the Cook County courthouse, both Wright buildings to let and the estray pen; its
+east face is Dearborn Street, the street of the only crossing of the main stem in July 1835.
+Being dealt the merchant house, the larger one-and-a-half-storey house and the store on that
+block reads like the programme recognising where it is. It is not: the apportionment is a
+district remainder spread across schedule units by `tools/reconcile_665.py`, which knows
+nothing about what stands across the street. **The agreement is recorded here so that no later
+parcel mistakes it for evidence**, which is the same failure mode the third-layer exclusion at
+L105 exists to prevent.
+
+**THE FACE RULE REPRODUCES EXACTLY, WHICH IS THE FIRST TIME THAT SENTENCE CAN BE WRITTEN.**
+`tools/measure_street_frontage.py randolph washington`, the command L105 committed: **Randolph
+7 research-layer records and 7 inferred-household buildings, Washington 1 and 0** — the same
+14 against 1 that L105 measured on the same pair of streets, from a tool rather than from a
+memory. Washington Street's entire documented 1835 frontage is still the estray pen. So
+Randolph's three free lots take the better roofs. The rule is still the invention it always
+was: no source says a better dwelling stood on the better street.
+
+**THE FACE RULE WAS EXTENDED HERE, NOT APPLIED, AND THE EXTENSION IS THE THING TO ARGUE
+WITH.** As committed at T-A13 and T-A14 the rule ranks **dwellings**; this is the first block
+that had to place a **store**. The extension made is that a store-residence's claim on the
+better frontage is functional rather than social — it is the only roof of the six whose
+purpose requires that a stranger can find it. So the `C2` takes Randolph and the `D6`
+one-and-a-half-storey cottage, which would have taken that lot under the rule as written, goes
+to the head of the back street. **This is an invention about which street a shopkeeper would
+have chosen, made by an agent and not by a source**, and it is flagged as ROADMAP K32 so the
+next block dealt a commercial family follows it or refutes it rather than re-deciding it
+privately.
+
+**THE END RULE IS EXHAUSTED ON THIS BLOCK AND THE REASON IS GEOMETRIC.** T-A11's criterion —
+distance to the Dearborn Street drawbridge — runs **318.3 m** at lot 6, **321.1 m** at lot 4
+and **325.8 m** at lot 2 on the Randolph frontage, and 376.4 / 378.8 / 382.7 / 388.2 m behind.
+The far end of the front face stands **1.02 times** as far from the bridge as the near end,
+against T-A14's 1.11, T-A13's 1.13 and T-A12's 2.93, and the front face's absolute spread is
+**7.5 m** — less than a third of one lot's 24.6 m frontage. The bridge bears **10.4° east of
+north** from the block centre while the block face runs east–west, so the criterion sees only
+sin(10.4°) = **18 %** of any displacement along the street: the 49.3 m between the lot 2 and
+lot 6 centroids projects to 8.9 m of range, and 7.5 m is what survives. **A criterion that
+separates three lots by 7.5 m is not ordering them, it is breaking a tie with rounding.** It
+was followed anyway, for T-A13's reason, and the successor question is opened as ROADMAP K31
+rather than answered here. On this block a stronger criterion agrees with it — lot 6 is the
+block's corner on Dearborn Street, the street that carries the bridge — which is why following
+the exhausted rule costs nothing here and is exactly what K31 must not assume elsewhere.
+
+**TWO OF L105's THREE ADOPTION CANDIDACIES DO NOT REPRODUCE, AND THIS IS THIS ENTRY'S SHARPEST
+ADMISSION.** L105 recorded that the `D2` its block was dealt passes all three of method rule
+6's tests for the **laundresses** and the `D4` for the **teamsters**, both being trades method
+rule 3 argues from the town's building rate rather than from a roof cap. Tests 2 and 3 hold
+for both. **Test 1 does not.** Rule 6 asks whether the trade's *own argument* states in its
+committed text that its count is **a floor rather than a bound**, and neither of those two
+arguments contains any such statement — the only occurrence of the word in the laundress
+argument is Andreas's *"with the floor covered besides"*, which is a plank floor in a boarding
+house. Only the **carpenters** and the **labourers** state it, and they have since they were
+written. L105's sentences stay verbatim, because this document is append-only and the
+candidacies it named are real under the other reading; what is corrected is the method.
+`tools/measure_adoption_tests.py` is committed with this parcel so the next block **runs** rule
+6 instead of recalling it, and prints the sentence each verdict rests on. **ROADMAP K28's
+question narrows as a result**: not "may a trade that has not asked for a roof be given one",
+but "does test 1 mean the trade's own text or method rule 3's list of unbounded trades" — two
+readings that disagree for exactly two trades.
+
+**THE `D2` IS REFUSED FOR THE EIGHTH TIME, AND THIS TIME THE TESTS WERE RUN.** Measured by the
+new command, exactly one trade passes all three on a South Division `D2`: the **labourers**,
+taking a second roof, on the same conservative reading that has refused it seven times before.
+The `D1` on lot 3 passes for the labourers as a first roof of its own kind and is adopted. The
+`C2`, both `H` roofs and the `D6` pass for no trade at all — the grocers hold the `C2` family
+in this division but their count is capped by a roof target rather than stated as a floor, and
+the boarding-house keepers hold `H1` and `H2` only in the North Division.
+
+**Consequence:** the town gains its twelfth platted block, whose presence, lots, positions and
+footprints a visitor can see are interpretive: flagged massing in the confidence view, with the
+reasoning on the building card. Standing roofs move **314 → 322** against the 665-roof target;
+**343 remain, 5 of them on ground the project has coverage for** (was 13). Inferred households
+move 98 → 99 and inferred persons 110 → 111; one more anonymous roof stops being anonymous.
+The eight roofs ship as **flagged placeholder GLBs** — no Blender runs on the improve runner —
+so their massing is the archetype's until the nightly bake reaches them.
+
+**The tenth K20 measurement is 12 of 110** carried-over invented persons renamed, against
+61-of-108 at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at
+T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Eight measurements now span 7 % to 72 % with
+nothing fixed or broken between them, and this is the second-lowest. No grade moved, every
+`name_basis` kept its pool citation and `check.sh` re-derives all 111. K20 still owns the fix.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this
+block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery
+substitutes for a compatible anonymous roof and never increases the total. Anything that states
+what stood on Randolph or Washington Street between Clark and Dearborn in July 1835 — a
+directory, an assessment roll, a fire-insurance sheet — bounds the arrangement above, and the
+block facing the courthouse across Clark Street is likelier than most to have left such a
+record. Until then the family mix here is a bound on invention rather than a claim about
+Chicago.
+
+**Covers:** `recon_1835_blk_randolph_clark_*.inferred_1835.position`,
+`recon_1835_blk_randolph_clark_*.inferred_1835.footprint`
+**Recorded:** 2026-08-15.
+
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**
