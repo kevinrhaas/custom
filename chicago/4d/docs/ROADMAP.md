@@ -38,12 +38,40 @@ Two lanes, opened on the owner's instruction of 2026-08-14 alongside the activat
   now branches off `dev` and PRs into `dev`. A parcel needing new geometry ships the
   data/archetype half and says so.
 
+### THE RUN BUDGET IS 150 MINUTES, AND THE SMOKE COSTS 26 OF THEM
+
+Set 2026-08-14 on the owner's instruction — *"if it's too long we will want to break it into
+pieces"* — after a run was cancelled at exactly 150 minutes having committed nothing.
+
+**The arithmetic, measured rather than estimated.** `steward-improve` allows 150 minutes
+(raised from 90 that day, because runs of 95, 81 and 70 minutes were real work being destroyed
+at the ceiling). One `tools/smoke_renderer.mjs` pass costs **~26 minutes** at both viewports.
+`tools/critic_shots.mjs --metrics` costs ~12 minutes for the full station set, ~3 with
+`--stations`. So a parcel gets **roughly four smoke-equivalents in total**, and it also has to
+read, think, write, publish and open a PR inside that.
+
+**The rule: a parcel whose acceptance needs more than TWO full smoke passes must be split
+before it is claimed.** Measure-then-fix parcels are the ones that breach this, and they split
+along a seam they already have:
+
+- **(a) land the failing gate** — build the measurement, prove it fails on the current build,
+  commit it red with the numbers quoted. One smoke.
+- **(b) fix it green** — take (a)'s committed numbers as the baseline. One smoke.
+
+This is better than a time-saving trick: it forces the measurement to be committed *before*
+anyone knows which candidate cause is guilty, so the fix cannot quietly redefine success. It
+is exactly how R-BUG2 succeeded — *"measure before choosing"* refuted its own prime suspect.
+
+**Use `--stations` and `--only`.** `critic_shots.mjs --stations a,b,c` runs in 3 minutes
+instead of 12; the smoke takes `--only` for a single viewport while iterating. Full runs
+belong at the end, not in the loop.
+
 ### NEXT UP — the unambiguous picks
 
 | # | lane | parcel | why first |
 |---|---|---|---|
 | 1 | TOWN | **K23** | owner-reported: 193 invented buildings are NAMED "Inferred" while every grade on them reads reconstructed — the largest text on the card claims a level better than its own record |
-| 1 | RENDERING | **R-BUG3** | owner-reported on mobile: the road is invisible AT YOUR FEET — R-BUG2's gate starts at 40 m and never looked closer |
+| 1 | RENDERING | **R-BUG3a** | owner-reported on mobile: the road is invisible AT YOUR FEET. R-BUG2's gate starts at 40 m and never looked closer. 3a lands the near-field band RED and stops — one smoke |
 | 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis |
 | 3 | RENDERING | **R-W4** | the largest single visual gap in the measured baseline; R-G1 scored atmosphere 4.2 |
 | 4 | RENDERING | **R-W5** | after W1; carries R-BUG1, and now the draw-call finding below |
@@ -211,11 +239,47 @@ parcels, **T-V1** and **T-V2**, for the two failures that are data rather than r
 ### R-W1 — calibrated light and environment · **PARKED on PR #125 (`hold`) — DO NOT REDO**
 
 **The work is done and measured; it is one assertion short of green.** Take the branch
-`steward/r-w1-calibrated-light`, not a blank sheet. What it needs is the aerial half of
-R-BUG2's road-contrast gate settled — `south_water` still passes, only `from_above` fails,
-and the gate must not be weakened. The parcel's findings, its numbers and the two candidate
-causes are in the PR and in `docs/STATUS.md` § "the town was lit by a sky that does not
-exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
+`steward/r-w1-calibrated-light`, not a blank sheet.
+
+> ### THE BLOCKER IS SETTLED. DO NOT RE-DERIVE IT.
+>
+> **A run burned its entire 150-minute budget on 2026-08-14 (`31848983349`) re-deriving this
+> and was cancelled mid-smoke with nothing committed.** The answer below was obtained in one
+> targeted measurement. Start from it.
+>
+> The PR named two candidate causes. **Cause 1 (the scene is 16 % dimmer) is CONFIRMED.
+> Cause 2 (a near-uniform indirect specular term compressing road against grass) is REFUTED.**
+>
+> Measured with the gate's own probe construction at `from_above`, desktop 1280×800, source
+> tree, `dev@d762a19` vs branch `9c69a93` — but recording **linear luminance** alongside ΔL\*,
+> because the two causes have opposite signatures there: dimming is multiplicative and
+> preserves the road/ground ratio; a specular pedestal is additive and collapses it.
+>
+> | band | Weber contrast dev → branch | ΔL\* | perceptible |
+> |---|---|---|---|
+> | 100–250 m (n=11) | 0.1217 → 0.1176 (**−3.4 %**) | 2.87 → 2.60 | 91 % → 91 % |
+> | 250–600 m (n=326) | 0.0940 → 0.0904 (**−3.8 %**) | 2.36 → 2.12 | 63 % → **52 %** |
+>
+> Ground scales ×0.862, road ×0.866. **The ratio moved 0.4 %** — the road is physically as
+> distinguishable as it was; the scene is darker and ΔL\* is compressive.
+>
+> **What actually fails is narrower than "the aerial band":** the median 2.12 clears the 1.8
+> bar. It is the *fraction* bar in the farthest gated band only — **52 % perceptible against
+> 55 % required**, a three-point miss. 100–250 m never moved.
+>
+> **Do not re-tune the street alpha.** It tunes content to a metric artefact, makes roads more
+> contrasty than the sky lighting them warrants, and guarantees another re-tune at every
+> lighting change — the streets were tuned under the rig this PR proved was 1.86× too bright.
+>
+> The live question is whether the gate should score an **exposure-invariant contrast** (Weber,
+> which this repo already uses for tree-mass contrast against the reference photograph) **plus
+> an absolute floor** so a scene cannot go black and pass. That is strictly stronger than
+> today's single bar, not a relaxation — but it is a change to what "can you see the road"
+> means, so **it is the owner's call, not a runner's.** Full working:
+> `kevinrhaas/custom#125` (issue comment, 2026-08-14).
+
+Everything else it needs is in the PR and in `docs/STATUS.md` § "the town was lit by a sky that
+does not exist". Everything else in lane 1 (R-W4, R-W5, R-W2, R-W3) is untouched and free. Lane 1's other parcels
 (R-W4, R-W5, R-W2, R-W3) are untouched by it and R-W4 is the one to take instead; any
 lane-2 or lane-3 parcel may run alongside it, since this one touches only
 `renderers/web/js/world.js`, `tools/smoke_renderer.mjs` and the vendor manifest.
@@ -1111,11 +1175,18 @@ measurement was sound and the fix was real; the window was wrong.
 measured the geometry and never asked whether the road reached the screen; the second asked, but
 only past 40 m. A gate answers exactly the question it was pointed at.
 
-**First move — extend the bands to the near field**, e.g. a `[2, 40]` band (below ~2 m the
-surface is under the camera and degenerate). `roadContrast()` already has the machinery: the
-opaque-marker denominator **M** works identically here, and a road occluded by grass stays in
-the sample and scores as a road that covers a pixel and does not change it — exactly the
-signature wanted. Expect it to FAIL on the current build; that failure is the acceptance.
+**SPLIT IN TWO — see "the run budget is 150 minutes" above. Claim ONE.**
+
+**R-BUG3a — land the near-field band, red.** Extend `ROAD_BANDS` with a `[2, 40]` band (below
+~2 m the surface is under the camera and degenerate). `roadContrast()` already has the
+machinery: the opaque-marker denominator **M** works identically here, and a road occluded by
+grass stays in the sample and scores as *a road that covers a pixel and does not change it* —
+exactly the signature wanted. **Commit it FAILING, with the measured numbers quoted**, and stop.
+One smoke pass. That failure is this half's acceptance, and committing it before anyone knows
+which cause is guilty is what stops the fix redefining success.
+
+**R-BUG3b — turn it green.** Takes R-BUG3a's committed numbers as the baseline and works the
+candidates below. One smoke pass. **Do not start until 3a has landed.**
 
 **Candidate mechanisms — measure before choosing.** That instruction is what saved R-BUG2 from
 a fix that would have made things worse, and it applies again:
