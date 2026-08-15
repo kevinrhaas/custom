@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 152,
-  "persons": 188,
+  "households": 156,
+  "persons": 192,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 92
+   "reconstructed": 96
   }
  },
  "households": [
@@ -955,6 +955,34 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_11",
+   "file": "households/hh_inf_carpenter_south_11.json",
+   "head": "inf_carpenter_south_11",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_wells_d3_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_carpenter_south_12",
+   "file": "households/hh_inf_carpenter_south_12.json",
+   "head": "inf_carpenter_south_12",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_market_d3_04",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1375,6 +1403,20 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_labourer_south_13",
+   "file": "households/hh_inf_labourer_south_13.json",
+   "head": "inf_labourer_south_13",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_wells_d1_06",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_labourer_west_11",
    "file": "households/hh_inf_labourer_west_11.json",
    "head": "inf_labourer_west_11",
@@ -1398,6 +1440,20 @@
     "reconstructed": 1
    },
    "lives_at": "inf_labourer_shanty_west_b",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_west_14",
+   "file": "households/hh_inf_labourer_west_14.json",
+   "head": "inf_labourer_west_14",
+   "division": "west",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_clinton_d1_03",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false

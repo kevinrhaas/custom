@@ -254,7 +254,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                     "frame block because no boarding-house generator is implemented."
                     if family == "H2" else "")
     return {
-        "id": sid, "name": f"Inferred {family} {function} #{seq:03d}",
+        "id": sid, "name": f"Reconstructed {family} {function} #{seq:03d}",
         "archetype": archetype_for(family),
         "phases": [{
             "id": PHASE_ID,
@@ -266,7 +266,7 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                 "utm_e": round(float(datum["origin_utm_e"]) + local_e, 3),
                 "utm_n": round(float(datum["origin_utm_n"]) + local_n, 3),
                 "rotation_deg": bearing,
-                "symbolic_location": f"Anonymous inferred roof on {where}",
+                "symbolic_location": f"Anonymous reconstructed roof on {where}",
                 "confidence": "reconstructed",
                 "note": ("Interpretive placement within the reviewed West Division cluster "
                          f"{row['cluster']}. The recipe coordinate is a production-layout "
@@ -279,12 +279,12 @@ def make_record(row: dict, seq: int, datum: dict) -> dict:
                 "note": f"A {width_ft:g} × {depth_ft:g} ft rectangle assigned by the reconstruction recipe within the {family} family band; no individual dimensions are documented."
             },
             "form": form_for(family, seq, paint),
-            "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+            "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": inferred(function, f"Assigned from the {family} family to satisfy the aggregate West Division mix; no occupant or individual use is known."),
         **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
-        "research_note": ("INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. "
+        "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. "
                           "Aggregate mix follows the supplied specification; exact presence, "
                           "position, footprint, finish and instance-level form are interpretive."
                           + mapping_note),

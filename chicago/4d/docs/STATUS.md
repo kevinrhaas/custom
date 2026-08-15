@@ -1,5 +1,450 @@
 # STATUS
 
+## New 2026-08-15 — 193 buildings were named a grade better than their own record, and the release gate was holding it in place
+
+**K23a**, owner-reported from a card on the dev preview. The heading read **"Inferred A1 stable
+#07"** and every chip beneath it read **RECONSTRUCTED**. The heading was the wrong one, on
+**193 structure records** — every anonymous roof this project has ever generated.
+
+**It is the residue of a fix that worked.** The v76 merge of 2026-08-13 moved 9,076 values onto
+`attested / inferred / reconstructed` and re-graded 1,694 that had claimed to be reasoning when
+they were invention. It moved the DATA. The PROSE is hardcoded in the generators, and it did not
+move — so `inferred` went from being the BOTTOM tier (where "Inferred A1 stable" was honest) to
+the MIDDLE one, *reasoned from evidence about this particular thing*, which an anonymous
+count-unit is precisely not. **Nothing about any building changed here**: not a position, a
+dimension, a source or a grade. Only what the card calls them.
+
+**Scale, exactly, so a later sweep can tell drift from a fresh fault.** 193 names; 162
+`symbolic_location` strings; 193 `research_note` openers partitioning cleanly into 142
+`RECOMMENDED / GENERATED`, 31 `INFERRED BUILDING` and 20 `INFERRED / GENERATED`; every
+`change_note` on an anonymous roof; the card's own reconstruction flag; and the household and
+person labels of the K1 layer. **`recommended` is the word this project renamed away from BY NAME
+on 2026-08-13** and then printed on 142 cards for a fortnight.
+
+**Five generators, not the two the parcel listed — and a sixth stage that is not a generator.**
+`generate_inferred_names.py` runs AFTER the household programme and rewrites the household's own
+label. Regenerating households without it deletes every invented resident's name and
+`name_basis` — the whole of K18 — and **the household programme's `--check` cannot see this**,
+because it overlays the naming pass before comparing. `--check` is green either way. The order is
+`generate_inferred_households.py` then `generate_inferred_names.py`, and it is now written into
+ROADMAP K23a where the next person will look.
+
+**The gate was enforcing the fault.** `smoke_renderer.mjs` asserted the household label matched
+`/inferred/`. So the thing that should have caught this was requiring it. That assertion is
+pinned to the head's own `grade` now, and a new whole-registry check fails the release on any
+name opening with a grade its record does not carry, or with any of the three retired words —
+with the fault planted in the same pass, so a gate scanning a clean tree cannot be mistaken for
+a gate scanning nothing.
+
+**Two things outside the app were worse than the cards.** `docs/PROVENANCE.md` — the page you
+send someone to when they ask what the grades mean — still defined `documented / inferred /
+conjectural`, so a record written by following it **fails the build**. And `validate.py`'s own
+errors named the wrong tier: a sourceless `attested` value reported *"documented requires at
+least one source_id"*. Both corrected; ROADMAP K16, which proposed a third vocabulary that never
+shipped, is **CLOSED as superseded**.
+
+**Still open, and it is the half the owner cared most about.** K23b — *say what was INCLUDED at
+each level and where it came from* — is untouched. The names are no longer wrong; the cards still
+do not tell a visitor that a building's footprint, height, roof form and position were all
+invented and only its block was reasoned.
+
+## New 2026-08-14 — the block where two layers of this reconstruction met on the same ground, and the adoption rule grew a third test
+
+**T-A5.** `blk_randolph_market` — Randolph, Franklin, Washington, Market — is the first South
+Division block of the Randolph row and now carries **eight anonymous roofs**: four dwellings, one
+per lot on four of the six free lots, and four yard buildings off the block alley. **Standing roofs
+258 → 266; remaining 407 → 399, 71 of them on ground the project has coverage for.** Households
+**155 → 156**, persons **191 → 192**. Recorded in **L97**. The parcel authors no coordinates: every
+metre is read off the committed K7 lot polygons, which is what has made every block since T-A2 a
+recipe entry rather than a geometry argument. The recipe cleared every one of the generator's
+placement gates on its first run — no lot-line, separation, corridor, relief or occupancy failure
+to iterate against — which is what the accumulated gates of T-A2 through T-A4 were for.
+
+**The block was already built on by THIS project's other half.** L95 recorded the first
+partly-built block and the roofs in its way came from the pre-plat West Division density recipe.
+Here the two standing roofs are `inf_sawyer_dwelling_a` and `_b` — the dwellings of the occupation
+census's own two sawyer households, placed from typed local-ENU coordinates before the plat module
+existed. The layer that argues who the town held and the layer that fills its blocks have now
+collided, and the T-A4 machinery absorbed it without a change: occupancy derived from the committed
+footprints, lots 4 and 6 refused a second principal roof, headroom spent on the six free lots.
+
+**Where the vacancy falls was decided by arithmetic, and the parcel says so rather than dressing it
+up.** Both standing roofs sit on the Randolph face, so the two lots free there are exactly the two
+the frontage-value typology wants for the better cottages, and the programme's alternating vacancy
+has nowhere to fall but Washington. Had the schedule dealt one roof fewer the pattern would have
+read as deliberate. `arrangement_note` and L97 both state it.
+
+### The third adoption test — the question T-A4 left open, settled
+
+T-A2h's rule 6 had **two** tests: the trade's committed argument must call its count a floor, and
+the roof's family must be one this layer already houses that trade in. T-A4 met a case neither
+covered — a D3 carpenter roof on the first West Division block, when all eleven carpenter
+households stood north or south — and refused it **by hand**, leaving the question to T-A5.
+
+**Rule 6 now has three tests**, the third being the roof's **division**. It is the family test made
+about the other axis of the same table: where a trade lived is as much a claim about the town as
+what it lived in. **It was checked against every adoption decision taken before it and recovers all
+four** — T-A2h's carpenter adopted, T-A2h's labourer adopted, T-A4's labourer adopted, T-A4's
+carpenter refused. A test that had to be told those answers would be a preference; one that
+recovers them is a rule. This block's D3 on lot 7 passes all three, so a twelfth carpenter household
+is inferred (carpenter 11 → 12) and the other seven roofs stay anonymous count-units.
+
+### What the test cannot answer, and it is not about the trades — **K21**
+
+The sawyers whose two roofs stand on this very block **pass test 1** — their argument reads "two
+sawyer households are inferred, **the smallest number that answers the demand**" — and fail test 2
+for a reason that has nothing to do with sawyers: their dwellings are bespoke
+`inf_sawyer_dwelling_*` records carrying no `reconstruction.family` at all, so the question "which
+family does this layer house that trade in" has nothing to read. **Four trades of twenty-nine are
+housed that way and only that way** — brickmaker, packer, sawyer, wheelwright — and eight more are
+partly so. For those four the second test is **silent, not negative**, and silence is currently
+being read as refusal. That is the conservative direction and it is not the same thing. Opened as
+ROADMAP K21.
+
+### K20 measured again, from a one-household insertion
+
+Inserting a single household renamed **17 of the 33** carried-over invented persons in the touched
+household files, because the name allocator deals by index. T-A2h's two-person insertion renamed
+25 of 94; this is the same defect at the same rate and it is still open. Nothing about anybody's
+argued history changed — only the invented name attached to it. The churn is why this parcel's diff
+touches 24 household files for one addition.
+
+## Fixed 2026-08-14 — the roads were invisible, every street check was green, and the prime suspect was innocent
+
+R-BUG2, owner-reported: *"the town roads seem to disappear in places and when you fly over them
+you lose them."* True at both viewports. **Two independent faults**, and the mechanism the parcel
+named as most likely turned out to be the one thing that was helping.
+
+**The gate could not see any of it, and that is the first thing that was wrong.**
+`tools/smoke_renderer.mjs` asserted seventeen street records, ~100 000 vertices, drape error under
+1e-5 m, no vertex over water — all true, all green, all beside the point. **Draped is not seen.**
+Nothing in this repository asked whether a road reached the screen.
+
+**What the new check does.** `roadContrast()` holds the scene at two anchors a visitor is offered —
+`south_water` at eye height down an open street, `from_above` at the aerial anchor — and takes
+three frames: the real render **R**, the same geometry drawn as an opaque marker with a
+deliberately deeper polygon offset **M**, and the scene with the streets hidden **O**. A probe on a
+committed centreline counts only where **M** reached the screen, so roads genuinely hidden behind a
+building, a tree or a rise leave the sample rather than scoring as faults, while a road losing the
+depth fight to the terrain stays in it. The score is `|L*(R) − L*(O)|` on the critic harness's own
+`labL`. Bars: median **ΔL\* ≥ 1.8** and **≥ 55 %** of probes at ΔL\* ≥ 2 per band, gated to 600 m.
+
+**Measured with the fault in — both bars fail, which is the acceptance:** `south_water` 250–600 m
+**0.3 L\*, 14 % perceptible**; `from_above` 100–250 m **1.1 L\*, 0 % of eleven probes**. With the
+fix, desktop: `south_water` **4.2 / 3.9 / 4.0** across 40–100, 100–250, 250–600 m at 70 / 89 / 92 %,
+`from_above` **2.9 / 2.4** at 91 / 63 %.
+
+**Fault 1 — the depth fight, and it is the reported "in places".** A road is earth painted flat on
+the terrain at the same height, held in front by one unit of polygon offset. Depth precision
+degrades with distance, so past ~250 m the terrain won in patches. `−4 / −8` alone took the failing
+band to **3.3 L\* / 71 %**. No vertex moved; `worstDrape` still gates at 1e-5 m.
+
+**Fault 2 — the road was 4 % opaque, and it is the reported loss from the air.** At the aerial
+anchor the ribbon is wide, unoccluded and wins depth, and it still scored 1.1 / 0 % — *neither* the
+offset *nor* the thin-ribbon rule moved that band at all. A lightly worn track's alpha was
+`0.08 + ruts*0.54 − crown*0.04`: 8 % earth over 92 % prairie away from the ruts, 4 % at the crown.
+Baselines raised to **0.54 / 0.38 / 0.28**, modulation shape and class ordering untouched, recorded
+as **L96** amending L79 — which already recorded these numbers as invention rather than measurement.
+
+**Refuted — mip-averaged alpha falling under `alphaTest`.** The parcel's prime suspect, and the
+shape of the v74 treeline bug. Turning mipmaps off made **every** band worse (`south_water`
+250–600 m: 22 % of probes reaching the screen with mips, **6 %** without). The mip chain is holding
+a sub-pixel ribbon together, not erasing it. `minFilter` is unchanged, and the instruction to
+measure before choosing is what stopped a "fix" that would have made this worse.
+
+**Not acted on:** `transparent: true` with `alphaTest` does sort a town-wide mesh on a meaningless
+bounding-sphere centre, and the opaque queue measured slightly better — but an unblended
+alpha-tested fragment draws at full strength, which would make every road solid and delete the
+graded/worn/light distinction the dataset carries. If the sort ever bites, the answer is
+per-record `renderOrder`, not opacity.
+
+**What this cost the gate to learn:** `from_above` is an aerial anchor, and leaving the camera
+there broke the horizon-timber check downstream — it reads the band the tree solver builds around
+the camera and reported nought of nought covered bearings. A measurement that moves the camera owes
+the next one its pose back.
+
+## New 2026-08-14 — the first block across the river, on ground that was already partly built
+
+**T-A4.** `blk_randolph_clinton` — Randolph, Canal, Washington, Clinton — is the first West
+Division block the plat module reaches and now carries **seven anonymous roofs**: four dwellings on
+four lots, three yard buildings off the alley. The town stands at **258 roofs of 665**; 407 remain
+and **79 of those have modelled ground**. One lot is left bare on purpose. The geometry half was a
+recipe entry and nothing else, exactly as T-A2 predicted for the third time running — what this
+block cost was in the gates, and it is the first one that could have found this.
+
+**Three roofs were already standing on it, and nothing could see them.** Every block parcel so far
+arrived at empty ground, so treating all eight lots as free was correct twice and would have been
+wrong here: `recon_1835_west_018`, `_019` and `_021` sit inside this block, placed from typed
+coordinates months before the plat module existed, and **no record of theirs names a lot** because
+there were no lots to name. The one-principal-per-lot check reads only the records the parcel
+builds, so an occupied lot and a free one were the same thing to it, and **the separation gate does
+not close the difference: two principal roofs twelve metres apart on one twenty-five-metre lot pass
+every test in the file.** A second house on somebody's lot would not have looked like a defect from
+any direction — the town would simply have been slightly denser than the ground it stands on.
+
+**The fix derives the answer rather than asking for it.** Which lots are taken is read off the
+committed footprints of the records that stand there; a recipe that had to be told would be a
+second opinion about the same ground, which is the defect the plat module was built to retire. Two
+gates ride with it. A yard building must stand on a lot this parcel gave a principal roof, because
+a yard building behind somebody else's house is a claim about their household. And **every lot of
+the block must now be built on, already occupied, or named open with its reasoning** — those three
+were counted in three places and nothing made them meet, so a lot could have been called open in
+the recipe with a house standing on it, which is a false statement about the town in the file that
+documents the town. All five refusals were verified by committing each one deliberately.
+
+**Two things this block exposed by not being South.** The visitor-facing location line on every
+generated record read *"South Division"* as a literal — true of every record that had ever existed
+and wrong on all seven of these, which is the shape of defect only a first case finds. And the
+665-roof ledger attributed **every anonymous roof in the West Division to the Wolf Point recipe**,
+because until today that was the same set: it read the seven new roofs as seven of that recipe's
+own placements emitted out of order and refused to derive at all. It counts by the programme phase
+each record names now, and the West recipe's remainder holds at **35**, unchanged, with seven West
+roofs standing beside it.
+
+**One household adopted, one refused, and the refusal is about the rule rather than the roof.** The
+block deals a D1 and a D3 — the two families T-A2h's rule admits. The D1 log cabin is adopted: the
+labourer's count is a floor by its own committed text, D1 is the family this layer houses nine of
+its eleven housed labourers in, and this layer **already places two labouring households in the
+West Division**, so nothing crosses a division line the programme had not already argued.
+Households **154 → 155**, persons **190 → 191**. The D3 carpenter is refused: rule 6's two tests
+are silent on division and all eleven carpenter households stand north or south, so a twelfth west
+of the river would be a new claim about where the town's carpenters lived, arriving as a side
+effect of a block parcel — the exact failure mode rule 6 exists to prevent. **Whether the rule
+takes a division test is now ROADMAP T-A5's to settle**, once, rather than each parcel's to decide
+again. No human figure is drawn (L1), unchanged.
+
+## New 2026-08-14 — the baseline scored: **4.18 of 10**, and two of the three headline numbers were measuring the wrong thing
+
+**R-G1.** The scored half of G0.2 is in, and the bar it was measured against is the one §0 says
+can actually be held: eight axes, 1–10, five named stations, written justification, a specific
+fix for every axis under 8, against this project's own reference set — the twelve pre-fire
+pictorial plates and the verified tallgrass photographs — and never against a commercial game
+frame. Pass is **mean ≥ 8.0 with no axis below 7**. The baseline is **4.18**, and **every one of
+the eight axes is below 7**. That is the number later phases have to beat, and it is recorded
+before W1 touches the renderer precisely so that there is something to beat.
+
+**The protocol's independence condition is satisfied and worth stating.** This parcel wrote no
+code at all — `git diff --stat` for it is three documents and a changelog entry — and the run
+that built `tools/critic_shots.mjs` and `tools/critic_metrics.mjs` was a different one. The
+scorer read the frames.
+
+### The scores
+
+| station | light | material | texture | geometry | atmosphere | post | composition | history | mean |
+|---|---|---|---|---|---|---|---|---|---|
+| `sauganash` | 3 | 3 | 1 | 5 | 4 | 4 | 6 | 7 | **4.13** |
+| `first_post_office` | 3 | 4 | 1 | 6 | 4 | 4 | 7 | 8 | **4.63** |
+| `south_water` | 3 | 3 | 1 | 3 | 4 | 4 | 4 | 5 | **3.38** |
+| `prairie_west` | 5 | 5 | 2 | 5 | 4 | 4 | 6 | 7 | **4.75** |
+| `river_bank` | 2 | 3 | 2 | 4 | 5 | 3 | 6 | 7 | **4.00** |
+| **axis mean** | **3.2** | **3.6** | **1.4** | **4.6** | **4.2** | **3.8** | **5.8** | **6.8** | **4.18** |
+
+Desktop 1280×800. The mobile set was captured and measured in the same run and is **not
+scored** — the rubric is a reading of frames and five stations at one viewport is what the
+protocol asks for; a second viewport would double the reading without changing which phase owns
+anything. Six stations (`sauganash_wing`, `lake_market`, `forks`, `green_tree`, `from_above`,
+`prairie_south`) were read for context and deliberately not scored.
+
+**Texture at 1.4 is the floor of the whole exercise and it is not a surprise** — §1 item 9 says
+there are zero texture maps on 244 assets, and the frames show it: clapboard is *geometry*, a
+roof is one flat value, chinking is a second flat value, and the only texture in a town frame is
+the ground. **Historical accuracy at 6.8 is the ceiling**, and it is the axis this project is
+actually good at: at `first_post_office` the footprint is Andreas twice over, the position is
+surveyed, and the unresolved reads are carried on the record instead of being resolved into the
+geometry. The gap between 1.4 and 6.8 is the shape of this project — the research is ahead of
+the rendering by five points on a ten-point scale.
+
+### Why each axis scored what it did, and the one fix that moves it
+
+Every axis is below 8, so every axis carries a fix and a phase. The fixes are written into
+`docs/ROADMAP.md` against the parcel that owns them.
+
+**Lighting & shadow — 3.2 → W1.** The only cast shadow legible in the five frames is each
+chimney's, on the roof beside it. The directional light casts and the ground receives, so the
+shadow map is not switched off — it is geometry: at 12:30 on 1 July at
+41.89° N the sun stands **70.5°** up and a shadow is **0.354 ×** the height of what throws it, so
+a house's shadow lies under its own eaves and a walker's frame carries almost no shadow
+information. The scene note chose that hour deliberately, to light the south elevation the
+records call white, and the trade is sound — but its cost has never been written down, and it is
+this: **form has to be carried by something other than shadow, and the two candidates are both
+switched off** (AO is `baked_ao: false` on all 244 assets, §1 item 10; environment lighting is
+built and not installed, §1 item 11). Against that, `HemisphereLight` at **2.4** under a
+`DirectionalLight` at **3.0** is a 0.44 fill ratio, which flattens what little modelling the
+angle leaves. *Fix: W1 installs the exposed HDRI, and the hemisphere and bounce come DOWN in the
+same change — the trap already written on the parcel. Nothing here argues for moving the hour.*
+
+**Material realism — 3.6 → W2 (no-Blender half).** Every surface is one flat colour. A roof, a
+whitewashed clapboard wall, a hewn log and its chinking, and a chimney differ only in hue —
+there is no roughness variation anywhere in the town, so nothing reads as painted, weathered or
+wet. The Wau-Bun blue shutters at `sauganash` sit at the same value as the glazing beside them.
+*Fix: the material sheet W2's no-Blender half is already scoped to write — which surfaces exist,
+what each is made of, and which archetype parameter selects it.*
+
+**Texture detail & tiling — 1.4 → W2.** Zero texture maps on 244 assets; the ground is the only
+textured surface in a town frame and its near field is a grazing-angle smear. The axis cannot
+rise until W2's bake half lands. *Fix: W2, both halves; nothing else moves this.*
+
+**Geometric detail & silhouette — 4.6 → W2/W3, and one item for lane 2.** Massing is good — the
+`sauganash` ell and knee wall, `first_post_office`'s eave overhang and log ends, `river_bank`'s
+cordgrass — and openings are where the silhouette fails: no reveal, no sill, no sash, no muntin
+anywhere in the set, so the 6-over-6 rhythm the Green Tree plate documents does not exist. The
+worse failure is at `south_water`, and it is a **data** failure rather than a rendering one: the
+horizon row of the business street is one gable stamped a dozen times at even spacing, where the
+research knows a store, an auction room, two newspaper offices and a warehouse. *Fix: openings to
+W3's cage work and W2's params; the repeated stamp to lane 2 — the anonymous placeholder massing
+needs per-record variation in width, pitch and eave height drawn from the family band it already
+carries.*
+
+**Atmosphere — 4.2 → W4.** The sky is a cloudless gradient at every station, and the 200–1500 m
+band holds nothing for the haze to act on, so the far treeline meets its sky with no separation
+at four of the five. The one place it works is `river_bank`, where the far shore genuinely
+recedes — the 2026-08-13 far-timber fix is visible in the frame. *Fix: W4, items 1–6, plus a sky
+that is not a single gradient.*
+
+**Post-processing — 3.8 → W5.** Tone mapping and nothing else. Visible stair-stepping on the
+`sauganash` ridge and along the water/vegetation boundary at `river_bank`, where the water plane
+also shows rectangular stepping against the emergent stand. *Fix: W5's SMAA pass, and R-BUG1 is
+in the same frame.*
+
+**Composition — 5.8 → the anchors, not a phase.** Four of the five stations frame their subject
+honestly. `south_water` does not: 60 % of its frame is foreground grass and the business street
+it is named for is a 40-pixel band on the horizon. An anchor a visitor is offered should show the
+thing it is named after. *Fix: `south_water`'s anchor in `data/scenes/1835.json` wants a position
+on the street rather than in the field south of it — one record, no code, and it is the cheapest
+point on this whole table.*
+
+**Historical accuracy — 6.8 → mostly earned, one real deduction.** `first_post_office` scores 8:
+evidence footprint, surveyed position, unresolved reads carried on the record. The deduction is
+at `south_water` (5) for the same repeated stamp — uniformity that no source claims, understating
+what the research knows — and at `prairie_west` (7) for a flower load of **0.0012** against the
+honest 4–6 % target, an under-representation of a July prairie by two orders of magnitude that is
+recorded but not yet fixed. *Fix: W4 for the flower load; lane 2 for the stamp.*
+
+### The three findings that are not scores
+
+**1. Two of the three numbers §1 item 7 rests on are measuring the canopy, not shadow.** The
+baseline recorded "shadows still clip to literal black — 12,063 pure `(0,0,0)` pixels at
+`river_bank`, 11,015 at `first_post_office`" and a darkest ground decile as low as **L 0.93**.
+Both are real measurements and both are attributed to the wrong surface. Connected components of
+the literal-black mask, with their bounding boxes:
+
+| station | literal black | components | of it in components lying **entirely above** the median land/sky row |
+|---|---|---|---|
+| `first_post_office` | 11,015 | 9 | **100 %** (largest 8,376 px, x957–1144 y42–117 — the crown at top right) |
+| `river_bank` | 12,063 | 14 | **94 %** (six crown clusters, all y ≤ 230, boundary row 369) |
+| `prairie_south` | 2,315 | 10 | **99.7 %** (all y ≤ 261, boundary row 395) |
+| `sauganash_wing` | 61 | 1 | **100 %** (one crown edge) |
+
+Not one literal-black pixel in the desktop set is on shaded ground. They are the shaded side of
+the near-tree canopy — the `timber` `MeshStandardMaterial`, vertex-coloured, quantising to zero
+where a leaf faces away from a 70.5° sun. The darkest-decile figure is the same surface reached
+a second way: the metric finds "ground" as everything below the per-column land/sky line, and in
+a column carrying a tree that line is the *top of the crown*, so the crown counts as ground.
+Measured at `river_bank`: **63,711 pixels at L < 2, of which 95.7 % lie above the median land/sky
+row**; the decile pool is ~55,000, so the L 0.93 reading is a canopy measurement end to end.
+`south_water` 92.7 %, `first_post_office` 88.6 %. **`sauganash_wing` and `lake_market` are the
+exceptions** — their near-black is 90–94 % *below* that row and is a different population, not
+diagnosed here.
+
+Consequence, and it changes what W1 does: **raising the shadow floor will not move either
+number.** What lights a leaf facing away from the sun is the environment term W1 exists to
+install, or a floor on the crown's darkest albedo. The fix stays in W1; the mechanism named in
+§1 item 7 does not survive.
+
+**2. The horizon-timber metric cannot tell a treeline from a townscape, and the town just moved
+it.** The recipe counts a horizon column as timbered if any pixel in the band above the land/sky
+line falls 3 luma below, or 3 G−B above, the sky extrapolated from the 20 rows over it. A gable
+end breaking the skyline satisfies that as surely as an oak. Re-running the harness on today's
+`dev` — with **no renderer change since the baseline** (`git diff --stat 282dd9a..HEAD --
+renderers/` is `changelog.js`, 41 lines, and nothing else) — nine stations reproduce their timber
+figures and **`prairie_south` moves from 0.364 to 0.436 all / 0.340 to 0.441 centre**, a 20 %
+gain. What changed between the two runs is 19 anonymous roofs (T-A2 and T-A3), and the frame
+shows them: the left third of `prairie_south`'s skyline is grey gable ends. **The § 5 target of
+≥ 90 % horizon timber coverage can therefore be satisfied by building the town**, which is not
+what item 5 was ever about. R-W4 owns the target; it needs a discriminator, or a second metric
+that measures only columns with no structure in them, before its acceptance number means
+anything.
+
+**3. Lane 2 is spending the draw-call budget faster than lane 1 can recover it.** Same two runs,
+same renderer, +19 structure records (242 → 261, +7.9 %):
+
+| | `sauganash` | `s'nash_wing` | `lake_market` | `f_post_office` | `forks` | `green_tree` | `south_water` | `from_above` | `prairie_south` | `prairie_west` | `river_bank` |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| desktop baseline | 65 | 66 | 78 | 66 | 87 | 91 | 85 | 67 | 73 | 97 | 56 |
+| desktop today | 65 | 77 | 89 | 66 | 98 | 102 | 96 | 67 | 84 | 108 | 56 |
+| mobile baseline | 62 | 63 | 66 | 60 | 82 | 88 | 83 | 61 | 71 | 94 | 49 |
+| mobile today | 62 | 72 | 77 | 60 | 82 | 99 | 94 | 61 | 82 | 105 | 49 |
+
+**Exactly +11 desktop at seven of eleven stations and exactly 0 at the other four** — and
+triangles rose by only 244–562, so this is per-object cost, not geometry. Stations over the
+**≤ 80** budget go **4 → 6** on desktop and **4 → 5** on mobile; the worst goes 97 → 108. The
+uniformity is the part nobody has explained: +11 at bearings 150° apart, and +0 at `from_above`,
+which sees the whole town. **Straight-line extrapolation on the remaining 414 roofs is about
++240 draw calls** against a budget of 80. That is not a reason to slow lane 2 down — the roofs
+are the product — but the budget cannot be met by tuning after the fact, and R-W5 should treat
+batching as its first question rather than its last. The `from_above` zero is a lead: something
+already drops these objects at distance.
+
+### What this does not do
+
+It changes no code, moves no building and re-measures no reference photograph. The §5 targets
+that were set from the uncommitted 2026-08-10 sweep still need re-anchoring by measuring a
+reference plate through `tools/critic_metrics.mjs`, which is still a one-line job and is still
+not done. And a rubric score is one reader's judgement with its reasoning attached — the fixes
+below are the durable half, not the number.
+
+## New 2026-08-14 — two roofs of ten given an occupant, and the rule that refused the other eight
+
+**T-A2h.** The parcel was expected to argue about the town's trade mix. What it found is that a
+block parcel puts ten dwellings on the plat faster than any such argument can move, so the
+question that mattered was **who is allowed to start one**. The occupation census is a claim about
+Chicago — 3,265 people in 398 dwellings, calibrated against Andreas's 1833 roster — and a census
+that grows every time somebody draws a cottage is a census fitted to the model. Two of
+`blk_randolph_wells`'s ten roofs are adopted into the inferred-household layer; the other eight
+stay anonymous count-units, which is what they already were.
+
+**The rule now lives in the household programme's own `method` list**, where the next parcel will
+read it. A block roof may be adopted only where BOTH tests pass: the trade's committed argument
+states in its own text that its count is a **floor rather than a bound**, and the roof's family is
+one this layer **already houses that trade in**.
+
+- **Two of twenty-nine trades pass the first test** — the carpenter (*"the shop count is a floor
+  under the trade, not a measure of it"*) and the labourer (*"still a small fraction of what 3,265
+  people implies"*). Everything else states a ceiling — the plasterer's and the drover's say *"and
+  no more"* outright — or is bounded by a workshop or store family's roof target. Two apparent
+  further matches are a false positive worth naming: *floor* appears in the laundress and
+  boarding-house-keeper entries only inside the Andreas quotation *"with the floor covered
+  besides"*.
+- **The second test, measured against the layer as it stands, picks the same two families.** All 8
+  of the layer's adopted labouring households live in a D1 and 9 of its 10 carpenters in a D3 —
+  and a D1 log cabin and a D3 one-room cottage are two of the seven dwellings this block deals.
+  The tests were derived independently and agreed on the first block they were applied to, which
+  is the only reason to trust either of them.
+- **Households 152 → 154, persons 188 → 190, adopted anonymous roofs 83 → 85, standing roofs
+  unchanged at 251.** This parcel built nothing, moved nothing and regraded nothing. The two
+  roofs' presence, position and footprint are exactly as invented after the adoption as before it;
+  what they gain is an argued occupant instead of a blank. Recorded as **L94**.
+- **The H1 and H2 houses are the refusal worth keeping.** The schedule allows 18 larger houses and
+  14 merchant or professional houses in the whole town, and their occupants are the most likely
+  people in this dataset to be nameable. Inventing an anonymous merchant into one would break the
+  programme's own rule never to infer a person where a documented one is available. Those two want
+  T-I3's treatment — a reading of the record — and not a draw from a census.
+- **The adoption is authored once and gated in both directions.** `tools/generate_block_infill.py`
+  now reads the household ledger through `tools/inferred_occupancy.py`, exactly as the three
+  earlier anonymous parcels do, so no generated record is hand-edited and the drift check that
+  makes these parcels trustworthy still binds. A household pointed at an ancillary roof fails by
+  name — a yard building serves the lot it stands behind, and nobody lives in a privy — and a roof
+  the ledger names that no recipe builds fails by name. **Verified by doing each.**
+- **What it churned and did not fix, recorded as ROADMAP K20.** Adding two people renamed **25 of
+  the 94** reconstructed residents. The invented-name allocator deals names round each pool by
+  index within a bucket, so an insertion shifts everyone after it. No grade moved and every name
+  re-derives under `--check`, but the generator's own docstring says the assignment is a function
+  of a person's id when it is a function of the whole population — and every future block parcel
+  will rewrite a quarter of the town's invented names as a side effect until that is fixed.
+
+**Gates:** `tools/check.sh` green; `node tools/smoke_renderer.mjs` green at 390×780 and 1280×800,
+zero page errors, run against the source tree and again with `--published`.
+
 ## New 2026-08-14 — a block filled in, and the table nothing had ever read
 
 **T-A2.** `blk_randolph_wells` — Randolph, LaSalle, Washington, Wells — stood empty and now
@@ -179,10 +624,10 @@ collide** (`docs/ROADMAP.md` → "THE OVERNIGHT LANES"): lane 1 RENDERING touche
 tool files, lane 2 TOWN COMPLETION touches data only. **R-G0** (the critic harness), **T-A1**
 (the 665-roof reconciliation) and the first two blocks off the reconciled schedule (**T-A2**,
 **T-A3**) are all in, so the NEXT UP picks are **R-W1** (light) and **R-W4** (atmosphere) in
-lane 1; **T-A2h** (the ten new roofs' households), **T-A4…** (one open block per run) and
-**T-I3** (the civic roofs T-A3 refused — research, not massing) in lane 2. Today's count is
-**261 structure records — 251 physical roofs of a 665 target — 152 households, 188 persons**.
-Everything arrives as a PR into `dev` and waits there.
+lane 1; **T-A4…** (one open block per run, now adopting in the same run) and **T-I3** (the
+civic roofs T-A3 refused — research, not massing) in lane 2. **T-A2h** is in too. Today's
+count is **261 structure records — 251 physical roofs of a 665 target — 154 households, 190
+persons**. Everything arrives as a PR into `dev` and waits there.
 
 
 Honest state of the project. Things that are unverified stay labeled unverified; a gate that

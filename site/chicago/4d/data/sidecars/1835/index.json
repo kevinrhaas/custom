@@ -1952,181 +1952,181 @@
     },
     {
       "id": "inf_artisan_dwelling_west_a",
-      "name": "Inferred dwelling (blacksmith)",
+      "name": "Reconstructed dwelling (blacksmith)",
       "sidecar": "sidecars/1835/inf_artisan_dwelling_west_a.json",
       "asset": "gltf/inf_artisan_dwelling_west_a__inferred_1835.glb"
     },
     {
       "id": "inf_artisan_dwelling_west_b",
-      "name": "Inferred dwelling (wheelwright)",
+      "name": "Reconstructed dwelling (wheelwright)",
       "sidecar": "sidecars/1835/inf_artisan_dwelling_west_b.json",
       "asset": "gltf/inf_artisan_dwelling_west_b__inferred_1835.glb"
     },
     {
       "id": "inf_bakery_lake",
-      "name": "Inferred bakery (baker)",
+      "name": "Reconstructed bakery (baker)",
       "sidecar": "sidecars/1835/inf_bakery_lake.json",
       "asset": "gltf/inf_bakery_lake__inferred_1835.glb"
     },
     {
       "id": "inf_barber_shop",
-      "name": "Inferred barber shop (barber-surgeon)",
+      "name": "Reconstructed barber shop (barber-surgeon)",
       "sidecar": "sidecars/1835/inf_barber_shop.json",
       "asset": "gltf/inf_barber_shop__inferred_1835.glb"
     },
     {
       "id": "inf_blacksmith_shop_west",
-      "name": "Inferred blacksmith shop (blacksmith)",
+      "name": "Reconstructed blacksmith shop (blacksmith)",
       "sidecar": "sidecars/1835/inf_blacksmith_shop_west.json",
       "asset": "gltf/inf_blacksmith_shop_west__inferred_1835.glb"
     },
     {
       "id": "inf_boatman_cabin_north",
-      "name": "Inferred dwelling (boatman)",
+      "name": "Reconstructed dwelling (boatman)",
       "sidecar": "sidecars/1835/inf_boatman_cabin_north.json",
       "asset": "gltf/inf_boatman_cabin_north__inferred_1835.glb"
     },
     {
       "id": "inf_brickmaker_dwelling_north",
-      "name": "Inferred dwelling (brickmaker)",
+      "name": "Reconstructed dwelling (brickmaker)",
       "sidecar": "sidecars/1835/inf_brickmaker_dwelling_north.json",
       "asset": "gltf/inf_brickmaker_dwelling_north__inferred_1835.glb"
     },
     {
       "id": "inf_butcher_market",
-      "name": "Inferred butcher shop (butcher)",
+      "name": "Reconstructed butcher shop (butcher)",
       "sidecar": "sidecars/1835/inf_butcher_market.json",
       "asset": "gltf/inf_butcher_market__inferred_1835.glb"
     },
     {
       "id": "inf_carpenter_dwelling_north",
-      "name": "Inferred dwelling (carpenter)",
+      "name": "Reconstructed dwelling (carpenter)",
       "sidecar": "sidecars/1835/inf_carpenter_dwelling_north.json",
       "asset": "gltf/inf_carpenter_dwelling_north__inferred_1835.glb"
     },
     {
       "id": "inf_cooperage_south",
-      "name": "Inferred cooperage (cooper)",
+      "name": "Reconstructed cooperage (cooper)",
       "sidecar": "sidecars/1835/inf_cooperage_south.json",
       "asset": "gltf/inf_cooperage_south__inferred_1835.glb"
     },
     {
       "id": "inf_cooperage_south_branch",
-      "name": "Inferred cooperage (cooper)",
+      "name": "Reconstructed cooperage (cooper)",
       "sidecar": "sidecars/1835/inf_cooperage_south_branch.json",
       "asset": "gltf/inf_cooperage_south_branch__inferred_1835.glb"
     },
     {
       "id": "inf_grocery_west",
-      "name": "Inferred store residence (grocer)",
+      "name": "Reconstructed store residence (grocer)",
       "sidecar": "sidecars/1835/inf_grocery_west.json",
       "asset": "gltf/inf_grocery_west__inferred_1835.glb"
     },
     {
       "id": "inf_gunsmith_shop",
-      "name": "Inferred gunsmith shop (gunsmith)",
+      "name": "Reconstructed gunsmith shop (gunsmith)",
       "sidecar": "sidecars/1835/inf_gunsmith_shop.json",
       "asset": "gltf/inf_gunsmith_shop__inferred_1835.glb"
     },
     {
       "id": "inf_harness_shop",
-      "name": "Inferred harness shop (harness maker)",
+      "name": "Reconstructed harness shop (harness maker)",
       "sidecar": "sidecars/1835/inf_harness_shop.json",
       "asset": "gltf/inf_harness_shop__inferred_1835.glb"
     },
     {
       "id": "inf_labourer_shanty_north_a",
-      "name": "Inferred dwelling (labourer)",
+      "name": "Reconstructed dwelling (labourer)",
       "sidecar": "sidecars/1835/inf_labourer_shanty_north_a.json",
       "asset": "gltf/inf_labourer_shanty_north_a__inferred_1835.glb"
     },
     {
       "id": "inf_labourer_shanty_north_b",
-      "name": "Inferred dwelling (labourer)",
+      "name": "Reconstructed dwelling (labourer)",
       "sidecar": "sidecars/1835/inf_labourer_shanty_north_b.json",
       "asset": "gltf/inf_labourer_shanty_north_b__inferred_1835.glb"
     },
     {
       "id": "inf_labourer_shanty_west_a",
-      "name": "Inferred dwelling (labourer)",
+      "name": "Reconstructed dwelling (labourer)",
       "sidecar": "sidecars/1835/inf_labourer_shanty_west_a.json",
       "asset": "gltf/inf_labourer_shanty_west_a__inferred_1835.glb"
     },
     {
       "id": "inf_labourer_shanty_west_b",
-      "name": "Inferred dwelling (labourer)",
+      "name": "Reconstructed dwelling (labourer)",
       "sidecar": "sidecars/1835/inf_labourer_shanty_west_b.json",
       "asset": "gltf/inf_labourer_shanty_west_b__inferred_1835.glb"
     },
     {
       "id": "inf_laundry_north",
-      "name": "Inferred wash house (laundress)",
+      "name": "Reconstructed wash house (laundress)",
       "sidecar": "sidecars/1835/inf_laundry_north.json",
       "asset": "gltf/inf_laundry_north__inferred_1835.glb"
     },
     {
       "id": "inf_mason_dwelling_north",
-      "name": "Inferred dwelling (mason)",
+      "name": "Reconstructed dwelling (mason)",
       "sidecar": "sidecars/1835/inf_mason_dwelling_north.json",
       "asset": "gltf/inf_mason_dwelling_north__inferred_1835.glb"
     },
     {
       "id": "inf_packer_dwelling",
-      "name": "Inferred dwelling (packer)",
+      "name": "Reconstructed dwelling (packer)",
       "sidecar": "sidecars/1835/inf_packer_dwelling.json",
       "asset": "gltf/inf_packer_dwelling__inferred_1835.glb"
     },
     {
       "id": "inf_sawpit_shed",
-      "name": "Inferred sawpit shed (sawyer)",
+      "name": "Reconstructed sawpit shed (sawyer)",
       "sidecar": "sidecars/1835/inf_sawpit_shed.json",
       "asset": "gltf/inf_sawpit_shed__inferred_1835.glb"
     },
     {
       "id": "inf_sawyer_dwelling_a",
-      "name": "Inferred dwelling (sawyer)",
+      "name": "Reconstructed dwelling (sawyer)",
       "sidecar": "sidecars/1835/inf_sawyer_dwelling_a.json",
       "asset": "gltf/inf_sawyer_dwelling_a__inferred_1835.glb"
     },
     {
       "id": "inf_sawyer_dwelling_b",
-      "name": "Inferred dwelling (sawyer)",
+      "name": "Reconstructed dwelling (sawyer)",
       "sidecar": "sidecars/1835/inf_sawyer_dwelling_b.json",
       "asset": "gltf/inf_sawyer_dwelling_b__inferred_1835.glb"
     },
     {
       "id": "inf_shoemaker_shop",
-      "name": "Inferred shoemaker shop (shoemaker)",
+      "name": "Reconstructed shoemaker shop (shoemaker)",
       "sidecar": "sidecars/1835/inf_shoemaker_shop.json",
       "asset": "gltf/inf_shoemaker_shop__inferred_1835.glb"
     },
     {
       "id": "inf_tailor_shop",
-      "name": "Inferred tailor shop (tailor)",
+      "name": "Reconstructed tailor shop (tailor)",
       "sidecar": "sidecars/1835/inf_tailor_shop.json",
       "asset": "gltf/inf_tailor_shop__inferred_1835.glb"
     },
     {
       "id": "inf_teamster_dwelling_south",
-      "name": "Inferred dwelling (teamster)",
+      "name": "Reconstructed dwelling (teamster)",
       "sidecar": "sidecars/1835/inf_teamster_dwelling_south.json",
       "asset": "gltf/inf_teamster_dwelling_south__inferred_1835.glb"
     },
     {
       "id": "inf_teamster_dwelling_west",
-      "name": "Inferred dwelling (teamster)",
+      "name": "Reconstructed dwelling (teamster)",
       "sidecar": "sidecars/1835/inf_teamster_dwelling_west.json",
       "asset": "gltf/inf_teamster_dwelling_west__inferred_1835.glb"
     },
     {
       "id": "inf_teamster_stable_west",
-      "name": "Inferred stable and wagon yard (teamster)",
+      "name": "Reconstructed stable and wagon yard (teamster)",
       "sidecar": "sidecars/1835/inf_teamster_stable_west.json",
       "asset": "gltf/inf_teamster_stable_west__inferred_1835.glb"
     },
     {
       "id": "inf_wheelwright_shop_west",
-      "name": "Inferred wheelwright shop (wheelwright)",
+      "name": "Reconstructed wheelwright shop (wheelwright)",
       "sidecar": "sidecars/1835/inf_wheelwright_shop_west.json",
       "asset": "gltf/inf_wheelwright_shop_west__inferred_1835.glb"
     },
@@ -2246,7 +2246,7 @@
     },
     {
       "id": "physicians_office",
-      "name": "Inferred physicians office (physician)",
+      "name": "Reconstructed physicians office (physician)",
       "sidecar": "sidecars/1835/physicians_office.json",
       "asset": "gltf/physicians_office__inferred_1835.glb"
     },
@@ -2263,884 +2263,974 @@
       "asset": "gltf/pruyne_kimball_drugstore__frame_1830s.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_clinton_a1_06",
+      "name": "Reconstructed A1 stable #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a1_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a1_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_a2_05",
+      "name": "Reconstructed A2 barn or carriage shed #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a2_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a2_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_a3_07",
+      "name": "Reconstructed A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_a3_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d1_03",
+      "name": "Reconstructed D1 older log dwelling #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d1_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d1_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d3_04",
+      "name": "Reconstructed D3 one-room frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d3_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d3_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d4_02",
+      "name": "Reconstructed D4 two-room frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d4_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d4_02__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_clinton_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_clinton_d5_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_clinton_d5_01__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_dearborn_a1_07",
-      "name": "Inferred A1 stable #07",
+      "name": "Reconstructed A1 stable #07",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a1_07.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a1_07__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_a2_08",
-      "name": "Inferred A2 barn or carriage shed #08",
+      "name": "Reconstructed A2 barn or carriage shed #08",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a2_08.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a2_08__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_a3_09",
-      "name": "Inferred A3 privy #09",
+      "name": "Reconstructed A3 privy #09",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a3_09.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a3_09__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_a4_06",
-      "name": "Inferred A4 woodshed or storage shed #06",
+      "name": "Reconstructed A4 woodshed or storage shed #06",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_a4_06.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_a4_06__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d1_04",
-      "name": "Inferred D1 older log dwelling #04",
+      "name": "Reconstructed D1 older log dwelling #04",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d1_04.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d1_04__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d2_05",
-      "name": "Inferred D2 rough plank dwelling or shanty #05",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #05",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d2_05.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d2_05__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d3_01",
-      "name": "Inferred D3 one-room frame cottage #01",
+      "name": "Reconstructed D3 one-room frame cottage #01",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d3_01.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d3_01__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d4_03",
-      "name": "Inferred D4 two-room frame cottage #03",
+      "name": "Reconstructed D4 two-room frame cottage #03",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d4_03.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d4_03__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_dearborn_d5_02",
-      "name": "Inferred D5 deep-plan frame cottage #02",
+      "name": "Reconstructed D5 deep-plan frame cottage #02",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_dearborn_d5_02.json",
       "asset": "gltf/recon_1835_blk_randolph_dearborn_d5_02__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_randolph_market_a1_07",
+      "name": "Reconstructed A1 stable #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a1_07.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_a1_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_a2_08",
+      "name": "Reconstructed A2 barn or carriage shed #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a2_08.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_a2_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_a3_05",
+      "name": "Reconstructed A3 privy #05",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a3_05.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_a3_05__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_a4_06",
+      "name": "Reconstructed A4 woodshed or storage shed #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_a4_06.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_a4_06__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d3_04",
+      "name": "Reconstructed D3 one-room frame cottage #04",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d3_04.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d3_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d4_03",
+      "name": "Reconstructed D4 two-room frame cottage #03",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d4_03.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d4_03__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d5_01",
+      "name": "Reconstructed D5 deep-plan frame cottage #01",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d5_01.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d5_01__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_randolph_market_d6_02",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #02",
+      "sidecar": "sidecars/1835/recon_1835_blk_randolph_market_d6_02.json",
+      "asset": "gltf/recon_1835_blk_randolph_market_d6_02__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_randolph_wells_a1_08",
-      "name": "Inferred A1 stable #08",
+      "name": "Reconstructed A1 stable #08",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_a1_08.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_a1_08__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_a3_09",
-      "name": "Inferred A3 privy #09",
+      "name": "Reconstructed A3 privy #09",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_a3_09.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_a3_09__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_a4_10",
-      "name": "Inferred A4 woodshed or storage shed #10",
+      "name": "Reconstructed A4 woodshed or storage shed #10",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_a4_10.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_a4_10__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_d1_06",
-      "name": "Inferred D1 older log dwelling #06",
+      "name": "Reconstructed D1 older log dwelling #06",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_d1_06.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_d1_06__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_d2_07",
-      "name": "Inferred D2 rough plank dwelling or shanty #07",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #07",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_d2_07.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_d2_07__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_d3_05",
-      "name": "Inferred D3 one-room frame cottage #05",
+      "name": "Reconstructed D3 one-room frame cottage #05",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_d3_05.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_d3_05__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_d4_04",
-      "name": "Inferred D4 two-room frame cottage #04",
+      "name": "Reconstructed D4 two-room frame cottage #04",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_d4_04.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_d4_04__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_d5_03",
-      "name": "Inferred D5 deep-plan frame cottage #03",
+      "name": "Reconstructed D5 deep-plan frame cottage #03",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_d5_03.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_d5_03__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_h1_02",
-      "name": "Inferred H1 larger one-and-a-half-story house #02",
+      "name": "Reconstructed H1 larger one-and-a-half-story house #02",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_h1_02.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_h1_02__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_randolph_wells_h2_01",
-      "name": "Inferred H2 merchant or professional house #01",
+      "name": "Reconstructed H2 merchant or professional house #01",
       "sidecar": "sidecars/1835/recon_1835_blk_randolph_wells_h2_01.json",
       "asset": "gltf/recon_1835_blk_randolph_wells_h2_01__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a1_008",
-      "name": "Inferred A1 stable #008",
+      "name": "Reconstructed A1 stable #008",
       "sidecar": "sidecars/1835/recon_1835_north_a1_008.json",
       "asset": "gltf/recon_1835_north_a1_008__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a1_032",
-      "name": "Inferred A1 stable #032",
+      "name": "Reconstructed A1 stable #032",
       "sidecar": "sidecars/1835/recon_1835_north_a1_032.json",
       "asset": "gltf/recon_1835_north_a1_032__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a1_036",
-      "name": "Inferred A1 stable #036",
+      "name": "Reconstructed A1 stable #036",
       "sidecar": "sidecars/1835/recon_1835_north_a1_036.json",
       "asset": "gltf/recon_1835_north_a1_036__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a1_050",
-      "name": "Inferred A1 stable #050",
+      "name": "Reconstructed A1 stable #050",
       "sidecar": "sidecars/1835/recon_1835_north_a1_050.json",
       "asset": "gltf/recon_1835_north_a1_050__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a2_033",
-      "name": "Inferred A2 barn or carriage shed #033",
+      "name": "Reconstructed A2 barn or carriage shed #033",
       "sidecar": "sidecars/1835/recon_1835_north_a2_033.json",
       "asset": "gltf/recon_1835_north_a2_033__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a2_048",
-      "name": "Inferred A2 barn or carriage shed #048",
+      "name": "Reconstructed A2 barn or carriage shed #048",
       "sidecar": "sidecars/1835/recon_1835_north_a2_048.json",
       "asset": "gltf/recon_1835_north_a2_048__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a2_059",
-      "name": "Inferred A2 barn or carriage shed #059",
+      "name": "Reconstructed A2 barn or carriage shed #059",
       "sidecar": "sidecars/1835/recon_1835_north_a2_059.json",
       "asset": "gltf/recon_1835_north_a2_059__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a3_009",
-      "name": "Inferred A3 privy #009",
+      "name": "Reconstructed A3 privy #009",
       "sidecar": "sidecars/1835/recon_1835_north_a3_009.json",
       "asset": "gltf/recon_1835_north_a3_009__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a3_034",
-      "name": "Inferred A3 privy #034",
+      "name": "Reconstructed A3 privy #034",
       "sidecar": "sidecars/1835/recon_1835_north_a3_034.json",
       "asset": "gltf/recon_1835_north_a3_034__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a3_051",
-      "name": "Inferred A3 privy #051",
+      "name": "Reconstructed A3 privy #051",
       "sidecar": "sidecars/1835/recon_1835_north_a3_051.json",
       "asset": "gltf/recon_1835_north_a3_051__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a4_010",
-      "name": "Inferred A4 woodshed or storage shed #010",
+      "name": "Reconstructed A4 woodshed or storage shed #010",
       "sidecar": "sidecars/1835/recon_1835_north_a4_010.json",
       "asset": "gltf/recon_1835_north_a4_010__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a4_035",
-      "name": "Inferred A4 woodshed or storage shed #035",
+      "name": "Reconstructed A4 woodshed or storage shed #035",
       "sidecar": "sidecars/1835/recon_1835_north_a4_035.json",
       "asset": "gltf/recon_1835_north_a4_035__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a4_052",
-      "name": "Inferred A4 woodshed or storage shed #052",
+      "name": "Reconstructed A4 woodshed or storage shed #052",
       "sidecar": "sidecars/1835/recon_1835_north_a4_052.json",
       "asset": "gltf/recon_1835_north_a4_052__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a5_011",
-      "name": "Inferred A5 small utility building #011",
+      "name": "Reconstructed A5 small utility building #011",
       "sidecar": "sidecars/1835/recon_1835_north_a5_011.json",
       "asset": "gltf/recon_1835_north_a5_011__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_a5_049",
-      "name": "Inferred A5 small utility building #049",
+      "name": "Reconstructed A5 small utility building #049",
       "sidecar": "sidecars/1835/recon_1835_north_a5_049.json",
       "asset": "gltf/recon_1835_north_a5_049__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_c1_020",
-      "name": "Inferred C1 small shop or office #020",
+      "name": "Reconstructed C1 small shop or office #020",
       "sidecar": "sidecars/1835/recon_1835_north_c1_020.json",
       "asset": "gltf/recon_1835_north_c1_020__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_c1_047",
-      "name": "Inferred C1 small shop or office #047",
+      "name": "Reconstructed C1 small shop or office #047",
       "sidecar": "sidecars/1835/recon_1835_north_c1_047.json",
       "asset": "gltf/recon_1835_north_c1_047__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_c2_027",
-      "name": "Inferred C2 store-residence #027",
+      "name": "Reconstructed C2 store-residence #027",
       "sidecar": "sidecars/1835/recon_1835_north_c2_027.json",
       "asset": "gltf/recon_1835_north_c2_027__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_001",
-      "name": "Inferred D1 older log dwelling #001",
+      "name": "Reconstructed D1 older log dwelling #001",
       "sidecar": "sidecars/1835/recon_1835_north_d1_001.json",
       "asset": "gltf/recon_1835_north_d1_001__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_013",
-      "name": "Inferred D1 older log dwelling #013",
+      "name": "Reconstructed D1 older log dwelling #013",
       "sidecar": "sidecars/1835/recon_1835_north_d1_013.json",
       "asset": "gltf/recon_1835_north_d1_013__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_023",
-      "name": "Inferred D1 older log dwelling #023",
+      "name": "Reconstructed D1 older log dwelling #023",
       "sidecar": "sidecars/1835/recon_1835_north_d1_023.json",
       "asset": "gltf/recon_1835_north_d1_023__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_053",
-      "name": "Inferred D1 older log dwelling #053",
+      "name": "Reconstructed D1 older log dwelling #053",
       "sidecar": "sidecars/1835/recon_1835_north_d1_053.json",
       "asset": "gltf/recon_1835_north_d1_053__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_054",
-      "name": "Inferred D1 older log dwelling #054",
+      "name": "Reconstructed D1 older log dwelling #054",
       "sidecar": "sidecars/1835/recon_1835_north_d1_054.json",
       "asset": "gltf/recon_1835_north_d1_054__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d1_060",
-      "name": "Inferred D1 older log dwelling #060",
+      "name": "Reconstructed D1 older log dwelling #060",
       "sidecar": "sidecars/1835/recon_1835_north_d1_060.json",
       "asset": "gltf/recon_1835_north_d1_060__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d2_003",
-      "name": "Inferred D2 rough plank dwelling or shanty #003",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #003",
       "sidecar": "sidecars/1835/recon_1835_north_d2_003.json",
       "asset": "gltf/recon_1835_north_d2_003__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d2_014",
-      "name": "Inferred D2 rough plank dwelling or shanty #014",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #014",
       "sidecar": "sidecars/1835/recon_1835_north_d2_014.json",
       "asset": "gltf/recon_1835_north_d2_014__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d2_029",
-      "name": "Inferred D2 rough plank dwelling or shanty #029",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #029",
       "sidecar": "sidecars/1835/recon_1835_north_d2_029.json",
       "asset": "gltf/recon_1835_north_d2_029__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d2_046",
-      "name": "Inferred D2 rough plank dwelling or shanty #046",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #046",
       "sidecar": "sidecars/1835/recon_1835_north_d2_046.json",
       "asset": "gltf/recon_1835_north_d2_046__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_002",
-      "name": "Inferred D3 one-room frame cottage #002",
+      "name": "Reconstructed D3 one-room frame cottage #002",
       "sidecar": "sidecars/1835/recon_1835_north_d3_002.json",
       "asset": "gltf/recon_1835_north_d3_002__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_006",
-      "name": "Inferred D3 one-room frame cottage #006",
+      "name": "Reconstructed D3 one-room frame cottage #006",
       "sidecar": "sidecars/1835/recon_1835_north_d3_006.json",
       "asset": "gltf/recon_1835_north_d3_006__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_016",
-      "name": "Inferred D3 one-room frame cottage #016",
+      "name": "Reconstructed D3 one-room frame cottage #016",
       "sidecar": "sidecars/1835/recon_1835_north_d3_016.json",
       "asset": "gltf/recon_1835_north_d3_016__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_024",
-      "name": "Inferred D3 one-room frame cottage #024",
+      "name": "Reconstructed D3 one-room frame cottage #024",
       "sidecar": "sidecars/1835/recon_1835_north_d3_024.json",
       "asset": "gltf/recon_1835_north_d3_024__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_038",
-      "name": "Inferred D3 one-room frame cottage #038",
+      "name": "Reconstructed D3 one-room frame cottage #038",
       "sidecar": "sidecars/1835/recon_1835_north_d3_038.json",
       "asset": "gltf/recon_1835_north_d3_038__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_042",
-      "name": "Inferred D3 one-room frame cottage #042",
+      "name": "Reconstructed D3 one-room frame cottage #042",
       "sidecar": "sidecars/1835/recon_1835_north_d3_042.json",
       "asset": "gltf/recon_1835_north_d3_042__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d3_055",
-      "name": "Inferred D3 one-room frame cottage #055",
+      "name": "Reconstructed D3 one-room frame cottage #055",
       "sidecar": "sidecars/1835/recon_1835_north_d3_055.json",
       "asset": "gltf/recon_1835_north_d3_055__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_004",
-      "name": "Inferred D4 two-room frame cottage #004",
+      "name": "Reconstructed D4 two-room frame cottage #004",
       "sidecar": "sidecars/1835/recon_1835_north_d4_004.json",
       "asset": "gltf/recon_1835_north_d4_004__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_012",
-      "name": "Inferred D4 two-room frame cottage #012",
+      "name": "Reconstructed D4 two-room frame cottage #012",
       "sidecar": "sidecars/1835/recon_1835_north_d4_012.json",
       "asset": "gltf/recon_1835_north_d4_012__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_017",
-      "name": "Inferred D4 two-room frame cottage #017",
+      "name": "Reconstructed D4 two-room frame cottage #017",
       "sidecar": "sidecars/1835/recon_1835_north_d4_017.json",
       "asset": "gltf/recon_1835_north_d4_017__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_025",
-      "name": "Inferred D4 two-room frame cottage #025",
+      "name": "Reconstructed D4 two-room frame cottage #025",
       "sidecar": "sidecars/1835/recon_1835_north_d4_025.json",
       "asset": "gltf/recon_1835_north_d4_025__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_039",
-      "name": "Inferred D4 two-room frame cottage #039",
+      "name": "Reconstructed D4 two-room frame cottage #039",
       "sidecar": "sidecars/1835/recon_1835_north_d4_039.json",
       "asset": "gltf/recon_1835_north_d4_039__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_043",
-      "name": "Inferred D4 two-room frame cottage #043",
+      "name": "Reconstructed D4 two-room frame cottage #043",
       "sidecar": "sidecars/1835/recon_1835_north_d4_043.json",
       "asset": "gltf/recon_1835_north_d4_043__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d4_056",
-      "name": "Inferred D4 two-room frame cottage #056",
+      "name": "Reconstructed D4 two-room frame cottage #056",
       "sidecar": "sidecars/1835/recon_1835_north_d4_056.json",
       "asset": "gltf/recon_1835_north_d4_056__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d5_019",
-      "name": "Inferred D5 deep-plan frame cottage #019",
+      "name": "Reconstructed D5 deep-plan frame cottage #019",
       "sidecar": "sidecars/1835/recon_1835_north_d5_019.json",
       "asset": "gltf/recon_1835_north_d5_019__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d5_026",
-      "name": "Inferred D5 deep-plan frame cottage #026",
+      "name": "Reconstructed D5 deep-plan frame cottage #026",
       "sidecar": "sidecars/1835/recon_1835_north_d5_026.json",
       "asset": "gltf/recon_1835_north_d5_026__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d5_037",
-      "name": "Inferred D5 deep-plan frame cottage #037",
+      "name": "Reconstructed D5 deep-plan frame cottage #037",
       "sidecar": "sidecars/1835/recon_1835_north_d5_037.json",
       "asset": "gltf/recon_1835_north_d5_037__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d5_041",
-      "name": "Inferred D5 deep-plan frame cottage #041",
+      "name": "Reconstructed D5 deep-plan frame cottage #041",
       "sidecar": "sidecars/1835/recon_1835_north_d5_041.json",
       "asset": "gltf/recon_1835_north_d5_041__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d5_057",
-      "name": "Inferred D5 deep-plan frame cottage #057",
+      "name": "Reconstructed D5 deep-plan frame cottage #057",
       "sidecar": "sidecars/1835/recon_1835_north_d5_057.json",
       "asset": "gltf/recon_1835_north_d5_057__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d6_021",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #021",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #021",
       "sidecar": "sidecars/1835/recon_1835_north_d6_021.json",
       "asset": "gltf/recon_1835_north_d6_021__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d6_044",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #044",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #044",
       "sidecar": "sidecars/1835/recon_1835_north_d6_044.json",
       "asset": "gltf/recon_1835_north_d6_044__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d6_058",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #058",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #058",
       "sidecar": "sidecars/1835/recon_1835_north_d6_058.json",
       "asset": "gltf/recon_1835_north_d6_058__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_d7_031",
-      "name": "Inferred D7 small two-story frame house #031",
+      "name": "Reconstructed D7 small two-story frame house #031",
       "sidecar": "sidecars/1835/recon_1835_north_d7_031.json",
       "asset": "gltf/recon_1835_north_d7_031__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_f1_022",
-      "name": "Inferred F1 freight or storage shed #022",
+      "name": "Reconstructed F1 freight or storage shed #022",
       "sidecar": "sidecars/1835/recon_1835_north_f1_022.json",
       "asset": "gltf/recon_1835_north_f1_022__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_h1_007",
-      "name": "Inferred H1 small boarding house #007",
+      "name": "Reconstructed H1 small boarding house #007",
       "sidecar": "sidecars/1835/recon_1835_north_h1_007.json",
       "asset": "gltf/recon_1835_north_h1_007__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_h2_030",
-      "name": "Inferred H2 medium boarding house #030",
+      "name": "Reconstructed H2 medium boarding house #030",
       "sidecar": "sidecars/1835/recon_1835_north_h2_030.json",
       "asset": "gltf/recon_1835_north_h2_030__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_h3_045",
-      "name": "Inferred H3 large boarding house #045",
+      "name": "Reconstructed H3 large boarding house #045",
       "sidecar": "sidecars/1835/recon_1835_north_h3_045.json",
       "asset": "gltf/recon_1835_north_h3_045__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_i2_015",
-      "name": "Inferred I2 schoolhouse or meeting hall #015",
+      "name": "Reconstructed I2 schoolhouse or meeting hall #015",
       "sidecar": "sidecars/1835/recon_1835_north_i2_015.json",
       "asset": "gltf/recon_1835_north_i2_015__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_t1_028",
-      "name": "Inferred T1 small inn or tavern #028",
+      "name": "Reconstructed T1 small inn or tavern #028",
       "sidecar": "sidecars/1835/recon_1835_north_t1_028.json",
       "asset": "gltf/recon_1835_north_t1_028__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_w1_018",
-      "name": "Inferred W1 blacksmith shop #018",
+      "name": "Reconstructed W1 blacksmith shop #018",
       "sidecar": "sidecars/1835/recon_1835_north_w1_018.json",
       "asset": "gltf/recon_1835_north_w1_018__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_w2_005",
-      "name": "Inferred W2 carpenter or joiner shop #005",
+      "name": "Reconstructed W2 carpenter or joiner shop #005",
       "sidecar": "sidecars/1835/recon_1835_north_w2_005.json",
       "asset": "gltf/recon_1835_north_w2_005__inferred_1835.glb"
     },
     {
       "id": "recon_1835_north_w5_040",
-      "name": "Inferred W5 large workshop #040",
+      "name": "Reconstructed W5 large workshop #040",
       "sidecar": "sidecars/1835/recon_1835_north_w5_040.json",
       "asset": "gltf/recon_1835_north_w5_040__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a1_046",
-      "name": "Inferred A1 stable #046",
+      "name": "Reconstructed A1 stable #046",
       "sidecar": "sidecars/1835/recon_1835_south_a1_046.json",
       "asset": "gltf/recon_1835_south_a1_046__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a2_047",
-      "name": "Inferred A2 barn or carriage shed #047",
+      "name": "Reconstructed A2 barn or carriage shed #047",
       "sidecar": "sidecars/1835/recon_1835_south_a2_047.json",
       "asset": "gltf/recon_1835_south_a2_047__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a3_041",
-      "name": "Inferred A3 privy #041",
+      "name": "Reconstructed A3 privy #041",
       "sidecar": "sidecars/1835/recon_1835_south_a3_041.json",
       "asset": "gltf/recon_1835_south_a3_041__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a3_043",
-      "name": "Inferred A3 privy #043",
+      "name": "Reconstructed A3 privy #043",
       "sidecar": "sidecars/1835/recon_1835_south_a3_043.json",
       "asset": "gltf/recon_1835_south_a3_043__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a3_045",
-      "name": "Inferred A3 privy #045",
+      "name": "Reconstructed A3 privy #045",
       "sidecar": "sidecars/1835/recon_1835_south_a3_045.json",
       "asset": "gltf/recon_1835_south_a3_045__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a4_042",
-      "name": "Inferred A4 woodshed or storage shed #042",
+      "name": "Reconstructed A4 woodshed or storage shed #042",
       "sidecar": "sidecars/1835/recon_1835_south_a4_042.json",
       "asset": "gltf/recon_1835_south_a4_042__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a4_048",
-      "name": "Inferred A4 woodshed or storage shed #048",
+      "name": "Reconstructed A4 woodshed or storage shed #048",
       "sidecar": "sidecars/1835/recon_1835_south_a4_048.json",
       "asset": "gltf/recon_1835_south_a4_048__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_a5_044",
-      "name": "Inferred A5 small utility building #044",
+      "name": "Reconstructed A5 small utility building #044",
       "sidecar": "sidecars/1835/recon_1835_south_a5_044.json",
       "asset": "gltf/recon_1835_south_a5_044__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c1_003",
-      "name": "Inferred C1 small shop or office #003",
+      "name": "Reconstructed C1 small shop or office #003",
       "sidecar": "sidecars/1835/recon_1835_south_c1_003.json",
       "asset": "gltf/recon_1835_south_c1_003__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c1_010",
-      "name": "Inferred C1 small shop or office #010",
+      "name": "Reconstructed C1 small shop or office #010",
       "sidecar": "sidecars/1835/recon_1835_south_c1_010.json",
       "asset": "gltf/recon_1835_south_c1_010__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c1_018",
-      "name": "Inferred C1 small shop or office #018",
+      "name": "Reconstructed C1 small shop or office #018",
       "sidecar": "sidecars/1835/recon_1835_south_c1_018.json",
       "asset": "gltf/recon_1835_south_c1_018__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c2_007",
-      "name": "Inferred C2 store-residence #007",
+      "name": "Reconstructed C2 store-residence #007",
       "sidecar": "sidecars/1835/recon_1835_south_c2_007.json",
       "asset": "gltf/recon_1835_south_c2_007__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c2_036",
-      "name": "Inferred C2 store-residence #036",
+      "name": "Reconstructed C2 store-residence #036",
       "sidecar": "sidecars/1835/recon_1835_south_c2_036.json",
       "asset": "gltf/recon_1835_south_c2_036__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c3_015",
-      "name": "Inferred C3 narrow two-story store #015",
+      "name": "Reconstructed C3 narrow two-story store #015",
       "sidecar": "sidecars/1835/recon_1835_south_c3_015.json",
       "asset": "gltf/recon_1835_south_c3_015__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c3_037",
-      "name": "Inferred C3 narrow two-story store #037",
+      "name": "Reconstructed C3 narrow two-story store #037",
       "sidecar": "sidecars/1835/recon_1835_south_c3_037.json",
       "asset": "gltf/recon_1835_south_c3_037__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_c3_040",
-      "name": "Inferred C3 narrow two-story store #040",
+      "name": "Reconstructed C3 narrow two-story store #040",
       "sidecar": "sidecars/1835/recon_1835_south_c3_040.json",
       "asset": "gltf/recon_1835_south_c3_040__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d1_021",
-      "name": "Inferred D1 older log dwelling #021",
+      "name": "Reconstructed D1 older log dwelling #021",
       "sidecar": "sidecars/1835/recon_1835_south_d1_021.json",
       "asset": "gltf/recon_1835_south_d1_021__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d1_033",
-      "name": "Inferred D1 older log dwelling #033",
+      "name": "Reconstructed D1 older log dwelling #033",
       "sidecar": "sidecars/1835/recon_1835_south_d1_033.json",
       "asset": "gltf/recon_1835_south_d1_033__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d2_005",
-      "name": "Inferred D2 rough plank dwelling or shanty #005",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #005",
       "sidecar": "sidecars/1835/recon_1835_south_d2_005.json",
       "asset": "gltf/recon_1835_south_d2_005__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d2_024",
-      "name": "Inferred D2 rough plank dwelling or shanty #024",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #024",
       "sidecar": "sidecars/1835/recon_1835_south_d2_024.json",
       "asset": "gltf/recon_1835_south_d2_024__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_001",
-      "name": "Inferred D3 one-room frame cottage #001",
+      "name": "Reconstructed D3 one-room frame cottage #001",
       "sidecar": "sidecars/1835/recon_1835_south_d3_001.json",
       "asset": "gltf/recon_1835_south_d3_001__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_008",
-      "name": "Inferred D3 one-room frame cottage #008",
+      "name": "Reconstructed D3 one-room frame cottage #008",
       "sidecar": "sidecars/1835/recon_1835_south_d3_008.json",
       "asset": "gltf/recon_1835_south_d3_008__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_013",
-      "name": "Inferred D3 one-room frame cottage #013",
+      "name": "Reconstructed D3 one-room frame cottage #013",
       "sidecar": "sidecars/1835/recon_1835_south_d3_013.json",
       "asset": "gltf/recon_1835_south_d3_013__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_017",
-      "name": "Inferred D3 one-room frame cottage #017",
+      "name": "Reconstructed D3 one-room frame cottage #017",
       "sidecar": "sidecars/1835/recon_1835_south_d3_017.json",
       "asset": "gltf/recon_1835_south_d3_017__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_022",
-      "name": "Inferred D3 one-room frame cottage #022",
+      "name": "Reconstructed D3 one-room frame cottage #022",
       "sidecar": "sidecars/1835/recon_1835_south_d3_022.json",
       "asset": "gltf/recon_1835_south_d3_022__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d3_027",
-      "name": "Inferred D3 one-room frame cottage #027",
+      "name": "Reconstructed D3 one-room frame cottage #027",
       "sidecar": "sidecars/1835/recon_1835_south_d3_027.json",
       "asset": "gltf/recon_1835_south_d3_027__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_002",
-      "name": "Inferred D4 two-room frame cottage #002",
+      "name": "Reconstructed D4 two-room frame cottage #002",
       "sidecar": "sidecars/1835/recon_1835_south_d4_002.json",
       "asset": "gltf/recon_1835_south_d4_002__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_006",
-      "name": "Inferred D4 two-room frame cottage #006",
+      "name": "Reconstructed D4 two-room frame cottage #006",
       "sidecar": "sidecars/1835/recon_1835_south_d4_006.json",
       "asset": "gltf/recon_1835_south_d4_006__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_009",
-      "name": "Inferred D4 two-room frame cottage #009",
+      "name": "Reconstructed D4 two-room frame cottage #009",
       "sidecar": "sidecars/1835/recon_1835_south_d4_009.json",
       "asset": "gltf/recon_1835_south_d4_009__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_014",
-      "name": "Inferred D4 two-room frame cottage #014",
+      "name": "Reconstructed D4 two-room frame cottage #014",
       "sidecar": "sidecars/1835/recon_1835_south_d4_014.json",
       "asset": "gltf/recon_1835_south_d4_014__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_019",
-      "name": "Inferred D4 two-room frame cottage #019",
+      "name": "Reconstructed D4 two-room frame cottage #019",
       "sidecar": "sidecars/1835/recon_1835_south_d4_019.json",
       "asset": "gltf/recon_1835_south_d4_019__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_025",
-      "name": "Inferred D4 two-room frame cottage #025",
+      "name": "Reconstructed D4 two-room frame cottage #025",
       "sidecar": "sidecars/1835/recon_1835_south_d4_025.json",
       "asset": "gltf/recon_1835_south_d4_025__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d4_030",
-      "name": "Inferred D4 two-room frame cottage #030",
+      "name": "Reconstructed D4 two-room frame cottage #030",
       "sidecar": "sidecars/1835/recon_1835_south_d4_030.json",
       "asset": "gltf/recon_1835_south_d4_030__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d5_004",
-      "name": "Inferred D5 deep-plan frame cottage #004",
+      "name": "Reconstructed D5 deep-plan frame cottage #004",
       "sidecar": "sidecars/1835/recon_1835_south_d5_004.json",
       "asset": "gltf/recon_1835_south_d5_004__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d5_011",
-      "name": "Inferred D5 deep-plan frame cottage #011",
+      "name": "Reconstructed D5 deep-plan frame cottage #011",
       "sidecar": "sidecars/1835/recon_1835_south_d5_011.json",
       "asset": "gltf/recon_1835_south_d5_011__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d5_016",
-      "name": "Inferred D5 deep-plan frame cottage #016",
+      "name": "Reconstructed D5 deep-plan frame cottage #016",
       "sidecar": "sidecars/1835/recon_1835_south_d5_016.json",
       "asset": "gltf/recon_1835_south_d5_016__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d5_028",
-      "name": "Inferred D5 deep-plan frame cottage #028",
+      "name": "Reconstructed D5 deep-plan frame cottage #028",
       "sidecar": "sidecars/1835/recon_1835_south_d5_028.json",
       "asset": "gltf/recon_1835_south_d5_028__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d5_034",
-      "name": "Inferred D5 deep-plan frame cottage #034",
+      "name": "Reconstructed D5 deep-plan frame cottage #034",
       "sidecar": "sidecars/1835/recon_1835_south_d5_034.json",
       "asset": "gltf/recon_1835_south_d5_034__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d6_012",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #012",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #012",
       "sidecar": "sidecars/1835/recon_1835_south_d6_012.json",
       "asset": "gltf/recon_1835_south_d6_012__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d6_020",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #020",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #020",
       "sidecar": "sidecars/1835/recon_1835_south_d6_020.json",
       "asset": "gltf/recon_1835_south_d6_020__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d6_031",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #031",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #031",
       "sidecar": "sidecars/1835/recon_1835_south_d6_031.json",
       "asset": "gltf/recon_1835_south_d6_031__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_d7_035",
-      "name": "Inferred D7 small two-story frame house #035",
+      "name": "Reconstructed D7 small two-story frame house #035",
       "sidecar": "sidecars/1835/recon_1835_south_d7_035.json",
       "asset": "gltf/recon_1835_south_d7_035__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_f1_038",
-      "name": "Inferred F1 freight or storage shed #038",
+      "name": "Reconstructed F1 freight or storage shed #038",
       "sidecar": "sidecars/1835/recon_1835_south_f1_038.json",
       "asset": "gltf/recon_1835_south_f1_038__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_f2_039",
-      "name": "Inferred F2 narrow two-story warehouse #039",
+      "name": "Reconstructed F2 narrow two-story warehouse #039",
       "sidecar": "sidecars/1835/recon_1835_south_f2_039.json",
       "asset": "gltf/recon_1835_south_f2_039__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_w1_023",
-      "name": "Inferred W1 blacksmith shop #023",
+      "name": "Reconstructed W1 blacksmith shop #023",
       "sidecar": "sidecars/1835/recon_1835_south_w1_023.json",
       "asset": "gltf/recon_1835_south_w1_023__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_w2_026",
-      "name": "Inferred W2 carpenter or joiner shop #026",
+      "name": "Reconstructed W2 carpenter or joiner shop #026",
       "sidecar": "sidecars/1835/recon_1835_south_w2_026.json",
       "asset": "gltf/recon_1835_south_w2_026__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_w3_029",
-      "name": "Inferred W3 cooper, wagon, or wheelwright shop #029",
+      "name": "Reconstructed W3 cooper, wagon, or wheelwright shop #029",
       "sidecar": "sidecars/1835/recon_1835_south_w3_029.json",
       "asset": "gltf/recon_1835_south_w3_029__inferred_1835.glb"
     },
     {
       "id": "recon_1835_south_w4_032",
-      "name": "Inferred W4 small artisan shop #032",
+      "name": "Reconstructed W4 small artisan shop #032",
       "sidecar": "sidecars/1835/recon_1835_south_w4_032.json",
       "asset": "gltf/recon_1835_south_w4_032__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_001",
-      "name": "Inferred D1 older log dwelling #001",
+      "name": "Reconstructed D1 older log dwelling #001",
       "sidecar": "sidecars/1835/recon_1835_west_001.json",
       "asset": "gltf/recon_1835_west_001__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_002",
-      "name": "Inferred D3 one-room frame cottage #002",
+      "name": "Reconstructed D3 one-room frame cottage #002",
       "sidecar": "sidecars/1835/recon_1835_west_002.json",
       "asset": "gltf/recon_1835_west_002__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_003",
-      "name": "Inferred D4 two-room frame cottage #003",
+      "name": "Reconstructed D4 two-room frame cottage #003",
       "sidecar": "sidecars/1835/recon_1835_west_003.json",
       "asset": "gltf/recon_1835_west_003__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_005",
-      "name": "Inferred D6 one-and-a-half-story frame cottage #004",
+      "name": "Reconstructed D6 one-and-a-half-story frame cottage #004",
       "sidecar": "sidecars/1835/recon_1835_west_005.json",
       "asset": "gltf/recon_1835_west_005__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_006",
-      "name": "Inferred H1 small boarding house #005",
+      "name": "Reconstructed H1 small boarding house #005",
       "sidecar": "sidecars/1835/recon_1835_west_006.json",
       "asset": "gltf/recon_1835_west_006__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_007",
-      "name": "Inferred C1 small shop or office #006",
+      "name": "Reconstructed C1 small shop or office #006",
       "sidecar": "sidecars/1835/recon_1835_west_007.json",
       "asset": "gltf/recon_1835_west_007__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_008",
-      "name": "Inferred W1 blacksmith shop #007",
+      "name": "Reconstructed W1 blacksmith shop #007",
       "sidecar": "sidecars/1835/recon_1835_west_008.json",
       "asset": "gltf/recon_1835_west_008__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_009",
-      "name": "Inferred W2 carpenter or joiner shop #008",
+      "name": "Reconstructed W2 carpenter or joiner shop #008",
       "sidecar": "sidecars/1835/recon_1835_west_009.json",
       "asset": "gltf/recon_1835_west_009__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_010",
-      "name": "Inferred A1 stable #009",
+      "name": "Reconstructed A1 stable #009",
       "sidecar": "sidecars/1835/recon_1835_west_010.json",
       "asset": "gltf/recon_1835_west_010__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_011",
-      "name": "Inferred A3 privy #010",
+      "name": "Reconstructed A3 privy #010",
       "sidecar": "sidecars/1835/recon_1835_west_011.json",
       "asset": "gltf/recon_1835_west_011__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_012",
-      "name": "Inferred A4 woodshed or storage shed #011",
+      "name": "Reconstructed A4 woodshed or storage shed #011",
       "sidecar": "sidecars/1835/recon_1835_west_012.json",
       "asset": "gltf/recon_1835_west_012__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_014",
-      "name": "Inferred D1 older log dwelling #012",
+      "name": "Reconstructed D1 older log dwelling #012",
       "sidecar": "sidecars/1835/recon_1835_west_014.json",
       "asset": "gltf/recon_1835_west_014__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_015",
-      "name": "Inferred D2 rough plank dwelling or shanty #013",
+      "name": "Reconstructed D2 rough plank dwelling or shanty #013",
       "sidecar": "sidecars/1835/recon_1835_west_015.json",
       "asset": "gltf/recon_1835_west_015__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_016",
-      "name": "Inferred D3 one-room frame cottage #014",
+      "name": "Reconstructed D3 one-room frame cottage #014",
       "sidecar": "sidecars/1835/recon_1835_west_016.json",
       "asset": "gltf/recon_1835_west_016__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_018",
-      "name": "Inferred D5 deep-plan frame cottage #015",
+      "name": "Reconstructed D5 deep-plan frame cottage #015",
       "sidecar": "sidecars/1835/recon_1835_west_018.json",
       "asset": "gltf/recon_1835_west_018__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_019",
-      "name": "Inferred D7 small two-story frame house #016",
+      "name": "Reconstructed D7 small two-story frame house #016",
       "sidecar": "sidecars/1835/recon_1835_west_019.json",
       "asset": "gltf/recon_1835_west_019__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_021",
-      "name": "Inferred W3 cooper, wagon or wheelwright shop #017",
+      "name": "Reconstructed W3 cooper, wagon or wheelwright shop #017",
       "sidecar": "sidecars/1835/recon_1835_west_021.json",
       "asset": "gltf/recon_1835_west_021__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_022",
-      "name": "Inferred W4 small artisan shop #018",
+      "name": "Reconstructed W4 small artisan shop #018",
       "sidecar": "sidecars/1835/recon_1835_west_022.json",
       "asset": "gltf/recon_1835_west_022__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_023",
-      "name": "Inferred A1 stable #019",
+      "name": "Reconstructed A1 stable #019",
       "sidecar": "sidecars/1835/recon_1835_west_023.json",
       "asset": "gltf/recon_1835_west_023__inferred_1835.glb"
     },
     {
       "id": "recon_1835_west_024",
-      "name": "Inferred A2 barn or carriage shed #020",
+      "name": "Reconstructed A2 barn or carriage shed #020",
       "sidecar": "sidecars/1835/recon_1835_west_024.json",
       "asset": "gltf/recon_1835_west_024__inferred_1835.glb"
     },

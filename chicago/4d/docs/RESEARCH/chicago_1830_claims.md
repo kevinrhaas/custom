@@ -1,0 +1,135 @@
+# "Map of Chicago in 1830" — what it is, and what it cannot be asked
+
+**Parcel T-E1** (`docs/ROADMAP.md`, lane 3). Written 2026-08-14 after the owner supplied two
+scans and asked that the town's eastward and southward extension "match the real geographic
+maps of the city".
+
+**Source record:** `data/sources/andreas_1884_chicago_1830_map.json`
+
+---
+
+## Identification — verified, not inferred
+
+The sheet is the engraved fold-out inset in **Andreas, *History of Chicago*, vol. 1 (1884),
+facing pp. 112–113**, imaged as **leaf `n240`** of the Internet Archive item
+`historyofchicago01andr`.
+
+The identification was made by opening the page image and reading the title banner, and it is
+cross-fixed independently: leaf `n242` is p. 113 and carries the Harrison harbour map already
+registered here as `harrison_1830_river_mouth`, which pins the leaf-to-page offset. Leaf `n241`
+is the inset's blank verso, on which the map shows through mirrored.
+
+Rights were already settled: the volume is registered as `andreas_1884_v1`, public domain.
+
+**Two different plates in this volume are called "Chicago in 1830."** The volume's own table of
+illustrations lists `Chicago in 1830 (inset) 112, 113` under MAPS and `Chicago in 1830 164`
+under VIEWS. They are not the same document. **Cite the leaf, never the name.**
+
+**The owner supplied two images and they are not the same document either.** The detailed
+issue corresponds to this plate. The simplified line-art version — fewer trees, a decorative
+banner, a reduced label set — is a different rendering whose publication has **not** been
+identified. It must not be cited as this source. Anything read only from the line-art version
+is currently uncited and cannot ground a claim.
+
+---
+
+## The finding that governs every use of this sheet
+
+The plate carries a printed note, transcribed from the scan at 3× magnification:
+
+> **NOTE.**—The names given on various tracts of land are those of the primary patentees, or
+> persons by whom entry was made, entered or patented between the years 1828 and 1836. The
+> Information is taken from "Book of Original Entry." Streets as shown were laid out
+> subsequent to 1830.
+
+### 1. It is a land-title map. A name is not a house.
+
+The names are **who took title**, not who lived there, and not that anything was built. This is
+the single most important constraint on the sheet, and it cuts directly against the intuition
+that a densely-named map shows a densely-settled town. It does not. It shows a densely-*entered*
+one.
+
+**Consequence for the roof programme:** a named tract may **never** license an anonymous roof.
+Lane 3's eligibility rule (T-E4) must not read "named ⇒ buildable". If anything, the sheet is
+evidence for the owner's instinct that houses were *not* spread across this ground — the
+handful of structures the plate bothers to draw and label is a far better guide to where
+building had actually happened than the wall of names is.
+
+### 2. The entry window runs past our scene date.
+
+**1828 to 1836.** The scene is **1835-07-01**. Some names on this sheet belong to people who had
+not yet entered the land when the scene is set, and the sheet does not date individual entries.
+Treating it as a snapshot of 1835 imports up to a year and a half of later history.
+
+Where a specific tract's entry date matters, it has to come from the Book of Original Entry
+itself or another dated source — not from this plate.
+
+### 3. It is an 1884 compilation that labels its anachronisms "present".
+
+The sheet layers later features onto an 1830 base and marks several of them *present*, meaning
+present **in 1884** — fifty-four years after its nominal date. Observed on the plate:
+
+| label on the sheet | what it actually is | in 1835? |
+|---|---|---|
+| **"PRESENT CANAL"** (dashed) | the Illinois & Michigan Canal | **no** — not completed until 1848 |
+| **"Present Court House Square"** | a later civic siting | not as drawn |
+| **"present outlet of river"** (coloured issue) | the post-cut mouth | the cut is 1834; the label is 1884's present, not ours |
+| the street grid | later survey | **no** — the plate's own note says the streets postdate 1830 |
+
+**Every "present" on this plate is an anachronism of half a century.** A runner who traces the
+canal would add a waterway that did not exist in 1835 by more than a decade.
+
+---
+
+## Division of labour, fixed
+
+This is the table already in `docs/ROADMAP.md` lane 3, restated with the evidence now in hand:
+
+| element | driver | why |
+|---|---|---|
+| lake shore, sand bar, harbour cut, piers, old southward channel | **Wright 1834** | a survey, five years closer, already the master warping raster |
+| the pre-cut bar and the old mouth in detail | **`harrison_1830_river_mouth`** | a U.S. civil engineer's harbour survey — **already registered**, and a better sheet for the bar than this one |
+| street and block geometry | **Thompson plat 1830** + **Hathaway 1834** | this plate disclaims its own streets |
+| land entry, owners, Canal Land / School Section extent | **this plate** | the thing it is actually good for |
+
+**Note for T-E2:** the sand bar half of that parcel may need no new evidence at all. The
+Harrison plate — already held, already public domain — draws the bar, the "Sand and Gravel"
+ground and the old southward channel in plan. Check it before going looking.
+
+---
+
+## Named structures the plate draws
+
+These are the buildings the plate chose to draw and label, transcribed from leaf `n240` at
+1.9× magnification. **This is a reading list, not a set of claims** — each still needs its own
+record, its own citation and a standing-on-1835-07-01 test before it can enter the scene, and
+several are certainly outside the modelled area.
+
+- Miller's house · Elijah Wentworth's cabin · Robinson's trading house · La Framboise's cabin
+  and store · Mark Beaubien's · "Present Court House Square" (see the anachronism table)
+- Porter's log cabin · Billy Caldwell's frame house · the Kinzie house · Fort Dearborn with its
+  garden, grove and field · "Entered by John Baptiste Beaubien" · "102½ Acres Entered by Robert
+  A. Kinzie"
+- Slaughter house on the north branch (Clybourn's, on the reading of the engraved hand)
+
+Tract names read on the sheet, north and west of the town, as a starting index for T-E4:
+Joshua Sackett, Henry W. Cleaveland, Horatio A. Cleaveland, John Ludby, William Bennett,
+Charles Taylor, Lyman Meacham, Harvey Meacham, Joseph Davenport, William Davenport, William
+Filkins, George W. Cassidy and assignee, Jedidiah Wooley, Ansel Chipman, D. Hunter, W. L.
+Newberry, Temple and Brown, Sedgwick, Alexander McDole, Daniel Elston, Philo Carpenter, Wright,
+Hiram Huganin, Jefferson T. Cross, Zachariah Grant, Edmund S. Kimberly, William H. Scott,
+Francis C. Blanchard.
+
+**Hands differ and several readings are uncertain** (McDole/McDale, Filkins/Filkian, Ludby,
+Huganin). Any of these used in a record must be re-read at full resolution and the reading
+recorded, not carried over from this list.
+
+---
+
+## Open questions this parcel did not settle
+
+1. **The line-art issue is unidentified.** Find its publication or stop using it.
+2. **Individual entry dates.** The sheet gives a 1828–1836 window and no per-tract dates. The
+   Book of Original Entry would settle which tracts were entered before 1835-07-01.
+3. **Whether the plate's drawn structures were standing on 1835-07-01.** Each is a per-record
+   question; the plate's nominal 1830 date is not an answer, in either direction.

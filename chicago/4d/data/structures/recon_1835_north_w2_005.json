@@ -1,6 +1,6 @@
 {
   "id": "recon_1835_north_w2_005",
-  "name": "Inferred W2 carpenter or joiner shop #005",
+  "name": "Reconstructed W2 carpenter or joiner shop #005",
   "archetype": "outbuilding",
   "phases": [
     {
@@ -15,7 +15,7 @@
         "utm_e": 447705.748,
         "utm_n": 4637555.372,
         "rotation_deg": 180.0,
-        "symbolic_location": "Anonymous inferred roof in North Division cluster north_water_west; between the north bank and Michigan Street",
+        "symbolic_location": "Anonymous reconstructed roof in North Division cluster north_water_west; between the north bank and Michigan Street",
         "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed North Division cluster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
@@ -119,7 +119,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the W2 band in the supplied reconstruction specification; it is not evidence for this anonymous North Division instance."
         }
       },
-      "change_note": "Inferred anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+      "change_note": "Reconstructed anonymous July 1835 North Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
     }
   ],
   "function": {
@@ -137,7 +137,7 @@
       "andreas_1884_v1",
       "owner_chicago_1835_reconstruction_spec_2026"
     ],
-    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the workplace of an inferred carpenter's household (5 of 10 this layer infers): hh_inf_carpenter_north_05 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the workplace of an inferred carpenter's household (5 of 12 this layer infers): hh_inf_carpenter_north_05 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
   },
   "reconstruction": {
     "status": "inferred_anonymous",
@@ -151,6 +151,6 @@
     "roof_condition": "darkened",
     "age_state": "recent"
   },
-  "research_note": "RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "review_required": false
 }

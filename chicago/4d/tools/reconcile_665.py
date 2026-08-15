@@ -188,7 +188,8 @@ def standing_roofs(grid, datum):
         if "reconstruction" in record:
             block = record["reconstruction"]
             row = {"id": rid, "source": "generated", "district": block["district"],
-                   "family": block["family"], "roofs_min": 1, "roofs_max": 1}
+                   "family": block["family"], "roofs_min": 1, "roofs_max": 1,
+                   "programme_phase": block.get("programme_phase")}
         elif rid in reconciliation:
             entry = reconciliation[rid]
             count = entry["inventory_roof_count"] if entry["inventory_eligible"] else 0
@@ -353,7 +354,14 @@ def programme_document():
     # The West recipe's own remainder, derived two ways and required to agree: its 55
     # reviewed placements less the ones already emitted as records, and the placements its
     # instantiation block holds back for standing beyond the modelled terrain box.
-    west_built = sum(1 for r in rows if r["source"] == "generated" and r["district"] == "west")
+    # Counted by the phase each record names, not by the district it stands in. Every
+    # anonymous roof in the West Division came from this one recipe until a platted block
+    # parcel reached `blk_randolph_clinton`, so "generated and west" and "emitted by the
+    # West recipe" were the same set — and the first West block parcel put seven roofs
+    # into the district that this recipe never wrote, which read here as seven of its own
+    # placements having been emitted out of order. The recipe's id IS the programme phase
+    # its records carry, so the question can be asked exactly.
+    west_built = sum(1 for r in rows if r.get("programme_phase") == west_recipe["id"])
     west_outer = west_recipe["roof_totals"]["all"] - west_built
     beyond_box = sum(1 for p in west_recipe["placements"]
                      if p["center_local_enu_m"][0] < WEST_INSTANTIATION_BLOCK_E)

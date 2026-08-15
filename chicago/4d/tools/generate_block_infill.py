@@ -55,6 +55,15 @@ PREFIX = "recon_1835_blk_"
 sys.path.insert(0, str(ROOT / "generators"))
 sys.path.insert(0, str(ROOT / "tools"))
 
+# An adopted roof's `occupants` block is authored ONCE, in the household programme's
+# ledger, and handed to whichever generator owns the roof — the arrangement the three
+# earlier anonymous parcels already use. Writing the adoption here as well would put it
+# in two places and let them disagree, and hand-editing a generated record would fail
+# the drift check that makes these parcels trustworthy in the first place.
+from inferred_occupancy import occupancy  # noqa: E402
+
+OCCUPANCY = occupancy()
+
 # The same separation the household parcel enforces. A generated building that lands
 # three metres from another one is not a dense town, it is two records occupying one
 # yard, and nothing downstream can tell them apart.
@@ -469,7 +478,12 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
     ancillary = slot["inventory_class"] == "ancillary"
     bounded = block["bounded_by"]
     faces = bounded["south"] if fronts_alley else slot["fronts"]
-    where = (f"Anonymous inferred roof in the South Division block bounded by "
+    # The division is the block's own, not this generator's. Both blocks before
+    # `blk_randolph_clinton` were South Division, so a literal "South Division" here
+    # read correctly on every record that existed and would have written the wrong
+    # division into the visitor-facing location line of the first West one.
+    where = (f"Anonymous reconstructed roof in the {block['district'].title()} Division "
+             f"block bounded by "
              f"{bounded['north'].replace('_', ' ').title()}, "
              f"{bounded['east'].replace('_', ' ').title()}, "
              f"{bounded['south'].replace('_', ' ').title()} and "
@@ -505,7 +519,7 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                if family.startswith("H") else "")
     return {
         "id": sid,
-        "name": f"Inferred {family} {function} #{seq:02d}",
+        "name": f"Reconstructed {family} {function} #{seq:02d}",
         "archetype": spec["archetype"],
         "phases": [{
             "id": PHASE_ID,
@@ -526,11 +540,12 @@ def make_record(block: dict, slot: dict, lot_index: int, frame: dict,
                 "note": f"A {width:.2f} × {depth:.2f} m rectangle sampled deterministically inside the {family} family's authored footprint band; no individual dimensions are documented."
             },
             "form": form_for(family, spec, sid, width, paint),
-            "change_note": "Inferred anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+            "change_note": "Reconstructed anonymous July 1835 block infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
         }],
         "function": invented(function, f"Assigned from the {family} family to satisfy the block's scheduled mix; no occupant or individual use is known."),
+        **({"occupants": OCCUPANCY[sid]} if sid in OCCUPANCY else {}),
         "reconstruction": reconstruction,
-        "research_note": ("RECOMMENDED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. The "
+        "research_note": ("RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. The "
                           "block, its scheduled roof count and its family mix follow the "
                           "665-roof programme; exact presence, lot, position, footprint, "
                           "finish and instance-level form are interpretive." + mapping),
@@ -630,6 +645,97 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     if len(set(used)) != len(used):
         raise SystemExit(f"{block['block_id']}: two principal roofs on one lot")
 
+    # every other placed footprint in the dataset, in this block's local frame
+    others = []
+    for path in sorted(STRUCTURES.glob("*.json")):
+        doc = load(path)
+        if doc["id"] in {sid for sid, _ in mine}:
+            continue
+        for phase in doc.get("phases") or []:
+            pos = phase.get("position") or {}
+            poly = (phase.get("footprint") or {}).get("polygon") or []
+            if pos.get("utm_e") is None or len(poly) < 3:
+                continue
+            others.append((doc["id"], world_polygon({"phases": [phase]}, datum)))
+
+    # --- the lots this block ALREADY carries -------------------------------
+    #
+    # The check above asks whether this parcel put two roofs on one lot. It has
+    # never been able to ask the question that matters on an occupied block —
+    # whether the lot was free in the first place — because it reads only the
+    # records this parcel builds, and the two blocks before this one were empty.
+    # `blk_randolph_clinton` is the first block off the schedule that was not:
+    # three roofs from the pre-plat West parcel stand on three of its eight lots,
+    # placed from typed coordinates before the plat module existed, so nothing in
+    # the dataset says which lot they are on. A free lot and a lot with somebody
+    # else's house on it looked identical here, and the three-metre separation
+    # gate does not close the difference: two principal roofs can stand twelve
+    # metres apart on one twenty-five-metre lot and pass every test in this file.
+    #
+    # A lot is occupied by the footprint standing on it, so occupancy is DERIVED
+    # from the committed records rather than authored in the recipe — a recipe
+    # that had to be told which lots were taken would be a second opinion about
+    # the same ground, which is the defect the plat module exists to retire.
+    occupied: dict[int, str] = {}
+    for other_id, other in others:
+        centre = (sum(p[0] for p in other) / len(other),
+                  sum(p[1] for p in other) / len(other))
+        for index, frame in enumerate(frames):
+            if point_in_polygon(centre, frame["polygon"]):
+                occupied.setdefault(index, other_id)
+    for record in records:
+        recon = record["reconstruction"]
+        index, holder = recon["lot_index"], occupied.get(recon["lot_index"])
+        if holder is None:
+            continue
+        if recon["inventory_class"] == "principal_functional":
+            raise SystemExit(f"{block['block_id']}: lot {index} already carries "
+                             f"{holder}, so a principal roof cannot stand on it. The "
+                             f"schedule's headroom is the block's, not the lot's")
+        raise SystemExit(f"{block['block_id']}: the yard building on lot {index} "
+                         f"stands behind {holder}, which this parcel did not build. A "
+                         f"yard building is a claim about the household on its own lot")
+    for record in records:
+        recon = record["reconstruction"]
+        if (recon["inventory_class"] != "principal_functional"
+                and recon["lot_index"] not in set(used)):
+            raise SystemExit(f"{block['block_id']}: the yard building on lot "
+                             f"{recon['lot_index']} stands behind no roof — an ancillary "
+                             f"building serves the lot it is in the yard of")
+
+    # Every lot is built on, already taken, or open, and the recipe says which.
+    # Without this the three classes are counted in three places and nothing makes
+    # them meet: a lot could be called open in the recipe while a house stood on it,
+    # which is a false statement about the town in the file that documents the town.
+    open_entries = block.get("open_lots")
+    if open_entries is None:
+        single = block.get("open_lot")
+        open_entries = [single] if single else []
+    named_open = [int(entry["lot"]) for entry in open_entries]
+    if len(set(named_open)) != len(named_open):
+        raise SystemExit(f"{block['block_id']}: a lot is named open twice")
+    for entry in open_entries:
+        if len((entry.get("why") or "").split()) < 12:
+            raise SystemExit(f"{block['block_id']}: lot {entry['lot']} is left open "
+                             f"without saying why. Which lot is arbitrary, and an "
+                             f"arbitrary choice nobody wrote down is indistinguishable "
+                             f"from a slot that went missing")
+    classes = {"built on by this parcel": set(used),
+               "already carrying a roof": set(occupied),
+               "named open in the recipe": set(named_open)}
+    for name, indices in classes.items():
+        for other_name, other_indices in classes.items():
+            if name < other_name and indices & other_indices:
+                raise SystemExit(f"{block['block_id']}: lot(s) "
+                                 f"{sorted(indices & other_indices)} are both {name} "
+                                 f"and {other_name}")
+    accounted = set().union(*classes.values())
+    if accounted != set(range(len(frames))):
+        missing = sorted(set(range(len(frames))) - accounted)
+        raise SystemExit(f"{block['block_id']}: lot(s) {missing} are neither built on, "
+                         f"already occupied, nor named open. Every lot of a block this "
+                         f"parcel claims has to be accounted for")
+
     # every footprint inside its own lot, clear of the conjectural side lines
     for record, (sid, poly) in zip(records, mine):
         lot = frames[record["reconstruction"]["lot_index"]]["polygon"]
@@ -653,17 +759,6 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
                              f"{lanes[street]['name']} corridor")
 
     # nothing within three metres of anything else in the dataset
-    others = []
-    for path in sorted(STRUCTURES.glob("*.json")):
-        doc = load(path)
-        if doc["id"] in {sid for sid, _ in mine}:
-            continue
-        for phase in doc.get("phases") or []:
-            pos = phase.get("position") or {}
-            poly = (phase.get("footprint") or {}).get("polygon") or []
-            if pos.get("utm_e") is None or len(poly) < 3:
-                continue
-            others.append((doc["id"], world_polygon({"phases": [phase]}, datum)))
     for sid, poly in mine:
         for other_id, other in others + [(s, p) for s, p in mine if s != sid]:
             gap = polygon_gap(poly, other)
@@ -724,6 +819,25 @@ def records_from_inputs() -> list[dict]:
     ids = [r["id"] for r in records]
     if len(set(ids)) != len(ids):
         raise SystemExit("two block slots produced the same record id")
+
+    # The adoption gate, in both directions. A household may name a roof this generator
+    # owns, but only a PRINCIPAL one: an A-family roof is a stable, a privy or a woodshed
+    # standing behind somebody's lot, and housing a household in one would be inventing an
+    # occupant for a shed. The other direction — a roof the ledger names and no recipe
+    # builds — would leave an adoption pointing at nothing, which is how a household
+    # quietly loses its dwelling when a recipe is edited.
+    by_id = {r["id"]: r for r in records}
+    for sid in sorted(sid for sid in OCCUPANCY if sid.startswith(PREFIX)):
+        record = by_id.get(sid)
+        if record is None:
+            raise SystemExit(f"the inferred-household programme adopts {sid}, which no "
+                             f"block recipe builds")
+        recon = record["reconstruction"]
+        if recon["inventory_class"] != "principal_functional":
+            raise SystemExit(f"{sid} is an ancillary {recon['family']} roof and cannot be "
+                             f"adopted: a yard building serves the lot it stands behind, "
+                             f"and an adoption is a claim about who lived or worked in a "
+                             f"building")
     return records
 
 

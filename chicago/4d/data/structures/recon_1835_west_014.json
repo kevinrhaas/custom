@@ -1,6 +1,6 @@
 {
   "id": "recon_1835_west_014",
-  "name": "Inferred D1 older log dwelling #012",
+  "name": "Reconstructed D1 older log dwelling #012",
   "archetype": "log_dwelling",
   "phases": [
     {
@@ -15,7 +15,7 @@
         "utm_e": 446855.957,
         "utm_n": 4637188.143,
         "rotation_deg": 0.0,
-        "symbolic_location": "Anonymous inferred roof on the Canal and Randolph teamster approach",
+        "symbolic_location": "Anonymous reconstructed roof on the Canal and Randolph teamster approach",
         "confidence": "reconstructed",
         "note": "Interpretive placement within the reviewed West Division cluster w2_canal_randolph_teamster. The recipe coordinate is a production-layout control, not a recovered lot.",
         "derivation": {
@@ -103,7 +103,7 @@
           "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Type-level choice within the D1 band in the supplied reconstruction specification; it is not evidence for this anonymous West Division instance."
         }
       },
-      "change_note": "Inferred anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
+      "change_note": "Reconstructed anonymous July 1835 West Division infill; a better-evidenced named roof substitutes for a compatible count-unit rather than increasing the 665-roof total."
     }
   ],
   "function": {
@@ -126,6 +126,6 @@
     "roof_condition": "weathered",
     "age_state": "recent"
   },
-  "research_note": "INFERRED / GENERATED, NOT A DOCUMENTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
   "review_required": false
 }

@@ -21,6 +21,50 @@ const STEP_M = 2.25;
 const LIFT_M = 0.022;
 const LEVEL = { attested: 0, inferred: 0.5, reconstructed: 1 };
 
+/**
+ * WHY A ROAD READS AT ALL — R-BUG2, and the two separate faults behind it.
+ *
+ * The owner reported roads that "disappear in places, and when you fly over
+ * them you lose them". Three mechanisms were proposed; the harness measured
+ * them at unoccluded road pixels (see `roadContrast()` in
+ * `tools/smoke_renderer.mjs`), and only two of the three are real.
+ *
+ * REFUTED — mip-averaged alpha falling under `alphaTest`. Plausible, and the
+ * shape of the v74 treeline bug, but turning mipmaps OFF made every band WORSE
+ * (south_water 250-600 m: 22 % of probes reached the screen with mips, 6 %
+ * without). The mip chain is holding a sub-pixel ribbon together, not erasing
+ * it. `minFilter` is left alone.
+ *
+ * FAULT 1, at eye level and at range — THE DEPTH FIGHT. A road 250-600 m out
+ * along South Water Street was unoccluded, in front of the camera, and changed
+ * the picture by **0.3 L\*** (14 % of probes perceptible). One unit of polygon
+ * offset is nothing once depth precision has degraded that far, so the coplanar
+ * terrain won the test in patches — the reported "in places". Deepening the
+ * offset alone took that band to **3.3 L\* / 71 %**.
+ *
+ * FAULT 2, from the air — THE ROAD IS 4 % OPAQUE. From `from_above` the ribbon
+ * is many pixels wide, unoccluded, and wins the depth test, and it still moved
+ * the picture by **1.1 L\*** with ZERO probes perceptible at 100-250 m. The
+ * cause is the authored alpha: for a lightly worn track `body` was
+ * `0.08 + ruts*0.54 - crown*0.04`, so away from the two wheel ruts the surface
+ * was 8 % earth over 92 % prairie, and at the crown 4 %. A road nobody can see
+ * is not a subtle road. The baselines below are raised so the FAINTEST surface
+ * still reads, while the ordering graded > worn > light — which is a modelled
+ * attribute with its own confidence — is preserved. Recorded in
+ * `docs/LIBERTIES.md`.
+ *
+ * FLOOR, for the thin end — a ribbon narrower than this many screen pixels has
+ * its alpha scaled up in proportion, capped, so that a track receding to the
+ * horizon fades rather than dropping out. Same principle as the
+ * `MIN_SILHOUETTE_PX` floor in `trees.js`: never let a feature fall below the
+ * pixel it needs to be seen at all. It binds only where the ribbon is thin —
+ * from the air 0.02 of a wide road is nothing, so this is not what fixed
+ * fault 2.
+ */
+const MIN_TRACK_PX = 2.0;
+const MAX_THIN_BOOST = 6.0;
+const MAX_ALPHA = 0.92;
+
 function pointSegment(e, n, a, b) {
   const dx = b[0] - a[0];
   const dn = b[1] - a[1];
@@ -151,11 +195,16 @@ function roadTexture(surface) {
       image.data[i] = Math.max(0, Math.min(255, base[0] + grain - wet));
       image.data[i + 1] = Math.max(0, Math.min(255, base[1] + grain * 0.74 - wet));
       image.data[i + 2] = Math.max(0, Math.min(255, base[2] + grain * 0.48 - wet * 0.58));
+      // Baselines raised for R-BUG2 fault 2 — see the note at the top of the
+      // file. The modulation shape (ruts up, crown down) and the graded > worn
+      // > light ordering are unchanged; only the floor each surface starts
+      // from moved, from 0.54/0.20/0.08 to 0.54/0.38/0.28. The faintest
+      // surface now bottoms out at 0.24 rather than 0.04.
       const body = graded
         ? 0.54 + ruts * 0.25 - crown * 0.08
-        : light ? 0.08 + ruts * 0.54 - crown * 0.04
-          : 0.20 + ruts * 0.55 - crown * 0.08;
-      image.data[i + 3] = Math.round(255 * edge * Math.max(0, Math.min(0.92, body)));
+        : light ? 0.28 + ruts * 0.54 - crown * 0.04
+          : 0.38 + ruts * 0.55 - crown * 0.08;
+      image.data[i + 3] = Math.round(255 * edge * Math.max(0, Math.min(MAX_ALPHA, body)));
     }
   }
   ctx.putImageData(image, 0, 0);
@@ -189,10 +238,29 @@ function meshOf(surface, buf, confidence) {
     metalness: 0,
     side: THREE.DoubleSide,
     polygonOffset: true,
-    polygonOffsetFactor: -1,
-    polygonOffsetUnits: -1,
+    // R-BUG2 fault 1. -1/-1 is a fraction of a depth unit and the terrain won
+    // the test in patches beyond ~250 m. Deep enough to hold at the far end of
+    // the town, shallow enough that the ribbon never lifts off its own drape —
+    // the vertices are untouched, and `worstDrape` still gates them.
+    polygonOffsetFactor: -4,
+    polygonOffsetUnits: -8,
   });
   mat.name = `street-${surface}`;
+  // R-BUG2 floor. `u` runs 0 -> 1 exactly across the track, so 1/fwidth(u) IS
+  // the ribbon's width in screen pixels — no uniform, no viewport to keep in
+  // sync, and correct under any field of view. Set BEFORE confidence.patch(),
+  // which chains whatever it finds here rather than replacing it.
+  mat.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      '#include <map_fragment>',
+      `#include <map_fragment>
+      {
+        float trackPx = 1.0 / max(fwidth(vMapUv.x), 1e-6);
+        float thin = clamp(${MIN_TRACK_PX.toFixed(1)} / trackPx, 1.0, ${MAX_THIN_BOOST.toFixed(1)});
+        diffuseColor.a = min(diffuseColor.a * thin, ${MAX_ALPHA.toFixed(2)});
+      }`,
+    );
+  };
   confidence?.patch(mat);
   const mesh = new THREE.Mesh(geo, mat);
   mesh.name = `streets-${surface}`;
