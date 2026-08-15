@@ -216,7 +216,10 @@ export function weberContrast(targetY, backgroundY) {
 }
 
 /** Hue in degrees and HSL-style saturation, from gamma-encoded sRGB. */
-function hueSat(r, g, b) {
+// Exported so a second tool can score the flower recipe against the subtraction
+// ground truth with THIS colour maths rather than a copy of it (R-W4c(b1)). A
+// re-implementation that drifted by a degree would be a measurement of the copy.
+export function hueSat(r, g, b) {
   const mx = Math.max(r, g, b);
   const mn = Math.min(r, g, b);
   const d = mx - mn;

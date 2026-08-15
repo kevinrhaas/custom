@@ -2704,8 +2704,16 @@ states one:
       titled "*Restored* tallgrass prairie" and described as a "Prairie planting" on a former
       agricultural field — a seed mix on plowed ground, and restorations are bought for being
       forb-rich. The never-plowed Woodworth stand is the better analogue for unmanaged 1835
-      prairie. Measured flower load: planting 12.91 %, virgin remnant 1.79–5.54 %. The honest
-      target is **4–6 %, not 13.89 %**.
+      prairie. ~~Measured flower load: planting 12.91 %, virgin remnant 1.79–5.54 %. The honest
+      target is **4–6 %, not 13.89 %**.~~ **THE CORRECTION WAS RIGHT AND ITS NUMBERS ARE
+      WITHDRAWN, 2026-08-15 by R-W4c(b1).** Neither clause survives checking. **No never-plowed
+      remnant photograph is committed to this repository and no source record describes one** —
+      the phrase occurs once in `data/sources/`, inside the record of the planting, citing
+      nothing — so the 1.79–5.54 % half is unsourced. And 12.91 % does not reproduce: the
+      committed recipe reads **5.54 %** on that frame, 7.02 % on its nearest quarter and 25.82 %
+      with its two tests reordered. **There is therefore no 4–6 % target**, and this file must
+      not be read as setting one. `node tools/measure_bloom_target.mjs` prints all of it;
+      ROADMAP § R-W4c(b1) carries the reasoning and the three routes out.
     - **Two rounds were judged at the wrong look-angle.** The shot harness set no pitch while
       the reference photographer had tilted down ~12°, so every "nearest quarter" number
       compared the photograph at 2 m against our render at 4 m — and near-field vegetation was
