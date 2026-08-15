@@ -1,0 +1,698 @@
+{
+  "$note": "ROADMAP K25(a). Every form value in this project's reconstructed buildings that sits outside the family band its own note cites. This file is a RATCHET, not an allowance: tools/check.sh fails on any offender that is not here and on any listed offender whose value has moved. K25(b) empties it and deletes it. Regenerate with tools/measure_band_claims.py --write-baseline, and only ever to record a repair.",
+  "counts": {
+    "eave": 54,
+    "footprint": 2,
+    "levels": 4,
+    "pitch": 38
+  },
+  "measured": "2026-08-15",
+  "offenders": {
+    "inf_artisan_dwelling_west_a:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "inf_artisan_dwelling_west_b:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "inf_brickmaker_dwelling_north:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "inf_grocery_west:eave": {
+      "band": "11-13 ft",
+      "detail": "+0.34 ft outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "10.66 ft (3.25 m)"
+    },
+    "inf_grocery_west:pitch": {
+      "band": "33.7-42.5 deg (8:12-11:12)",
+      "detail": "+0.7 deg / +0.21 of a 1:12 step outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "33.0 deg (= 7.79:12)"
+    },
+    "inf_gunsmith_shop:eave": {
+      "band": "9-18 ft",
+      "detail": "+2.27 ft outside",
+      "family": "W4",
+      "marginal": false,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_harness_shop:eave": {
+      "band": "9-18 ft",
+      "detail": "+2.27 ft outside",
+      "family": "W4",
+      "marginal": false,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_labourer_shanty_north_a:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_labourer_shanty_north_a:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "inf_labourer_shanty_north_b:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_labourer_shanty_north_b:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "inf_labourer_shanty_west_a:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_labourer_shanty_west_a:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "inf_labourer_shanty_west_b:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_labourer_shanty_west_b:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "inf_laundry_north:eave": {
+      "band": "7-9 ft",
+      "detail": "+0.27 ft outside",
+      "family": "A5",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_laundry_north:footprint": {
+      "band": "6x8-12x16 ft",
+      "detail": "14.00 ft wide against 6-12; 20.00 ft deep against 8-16",
+      "family": "A5",
+      "marginal": false,
+      "value": "14.00x20.00 ft"
+    },
+    "inf_packer_dwelling:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "inf_sawpit_shed:footprint": {
+      "band": "22x36-36x60 ft",
+      "detail": "20.00 ft wide against 22-36",
+      "family": "W5",
+      "marginal": false,
+      "value": "20.00x36.00 ft"
+    },
+    "inf_sawpit_shed:levels": {
+      "band": "'1' (=> 1-1)",
+      "detail": "the band authors no loft",
+      "family": "W5",
+      "marginal": false,
+      "value": "loft = true"
+    },
+    "inf_sawyer_dwelling_a:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "inf_sawyer_dwelling_b:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "inf_sawyer_dwelling_b:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "inf_teamster_stable_west:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_blk_lake_market_d2_04:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_randolph_clark_c2_01:levels": {
+      "band": "'1.5' (=> 1.5-1.5)",
+      "detail": "+0.5 levels outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "1.5 storey + loft = 2"
+    },
+    "recon_1835_blk_randolph_clark_d2_05:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_randolph_clark_h1_03:pitch": {
+      "band": "33.7-42.5 deg (8:12-11:12)",
+      "detail": "+1.5 deg / +0.59 of a 1:12 step outside",
+      "family": "H1",
+      "marginal": true,
+      "value": "44.0 deg (= 11.59:12)"
+    },
+    "recon_1835_blk_randolph_clark_h2_02:pitch": {
+      "band": "26.6-36.9 deg (6:12-9:12)",
+      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
+      "family": "H2",
+      "marginal": true,
+      "value": "38.0 deg (= 9.38:12)"
+    },
+    "recon_1835_blk_randolph_clinton_a2_05:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_blk_randolph_dearborn_a2_08:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_blk_randolph_dearborn_d2_05:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_randolph_franklin_d2_05:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_randolph_market_a2_08:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_blk_randolph_wells_d2_07:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_randolph_wells_h1_02:pitch": {
+      "band": "33.7-42.5 deg (8:12-11:12)",
+      "detail": "+1.5 deg / +0.59 of a 1:12 step outside",
+      "family": "H1",
+      "marginal": true,
+      "value": "44.0 deg (= 11.59:12)"
+    },
+    "recon_1835_blk_randolph_wells_h2_01:pitch": {
+      "band": "26.6-36.9 deg (6:12-9:12)",
+      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
+      "family": "H2",
+      "marginal": true,
+      "value": "38.0 deg (= 9.38:12)"
+    },
+    "recon_1835_blk_south_water_dearborn_d2_04:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_south_water_franklin_d2_05:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_south_water_lasalle_d2_05:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_blk_south_water_wells_d2_06:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_north_a2_033:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_north_a2_048:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_north_a2_059:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_north_a5_011:eave": {
+      "band": "7-9 ft",
+      "detail": "+0.27 ft outside",
+      "family": "A5",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_a5_049:eave": {
+      "band": "7-9 ft",
+      "detail": "+0.27 ft outside",
+      "family": "A5",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_c2_027:eave": {
+      "band": "11-13 ft",
+      "detail": "+0.34 ft outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "10.66 ft (3.25 m)"
+    },
+    "recon_1835_north_c2_027:pitch": {
+      "band": "33.7-42.5 deg (8:12-11:12)",
+      "detail": "+0.7 deg / +0.21 of a 1:12 step outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "33.0 deg (= 7.79:12)"
+    },
+    "recon_1835_north_d2_003:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_d2_003:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_north_d2_014:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_d2_014:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_north_d2_029:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_d2_029:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_north_d2_046:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_north_d2_046:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_north_d3_002:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_006:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_016:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_024:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_038:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_042:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d3_055:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_north_d7_031:eave": {
+      "band": "17-19 ft",
+      "detail": "+0.43 ft outside",
+      "family": "D7",
+      "marginal": true,
+      "value": "16.57 ft (5.05 m)"
+    },
+    "recon_1835_north_h2_030:eave": {
+      "band": "18-21 ft",
+      "detail": "+0.94 ft outside",
+      "family": "H2",
+      "marginal": true,
+      "value": "17.06 ft (5.2 m)"
+    },
+    "recon_1835_north_h2_030:pitch": {
+      "band": "26.6-36.9 deg (6:12-9:12)",
+      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
+      "family": "H2",
+      "marginal": true,
+      "value": "38.0 deg (= 9.38:12)"
+    },
+    "recon_1835_north_h3_045:eave": {
+      "band": "18-22 ft",
+      "detail": "+0.94 ft outside",
+      "family": "H3",
+      "marginal": true,
+      "value": "17.06 ft (5.2 m)"
+    },
+    "recon_1835_north_h3_045:pitch": {
+      "band": "26.6-36.9 deg (6:12-9:12)",
+      "detail": "+1.1 deg / +0.38 of a 1:12 step outside",
+      "family": "H3",
+      "marginal": true,
+      "value": "38.0 deg (= 9.38:12)"
+    },
+    "recon_1835_north_w5_040:levels": {
+      "band": "'1' (=> 1-1)",
+      "detail": "the band authors no loft",
+      "family": "W5",
+      "marginal": false,
+      "value": "loft = true"
+    },
+    "recon_1835_south_a2_047:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    },
+    "recon_1835_south_a4_042:eave": {
+      "band": "6-8 ft",
+      "detail": "+1.02 ft outside",
+      "family": "A4",
+      "marginal": false,
+      "value": "9.02 ft (2.75 m)"
+    },
+    "recon_1835_south_a4_048:eave": {
+      "band": "6-8 ft",
+      "detail": "+1.02 ft outside",
+      "family": "A4",
+      "marginal": false,
+      "value": "9.02 ft (2.75 m)"
+    },
+    "recon_1835_south_a5_044:eave": {
+      "band": "7-9 ft",
+      "detail": "+0.02 ft outside",
+      "family": "A5",
+      "marginal": true,
+      "value": "9.02 ft (2.75 m)"
+    },
+    "recon_1835_south_c2_007:eave": {
+      "band": "11-13 ft",
+      "detail": "+0.34 ft outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "10.66 ft (3.25 m)"
+    },
+    "recon_1835_south_c2_036:eave": {
+      "band": "11-13 ft",
+      "detail": "+0.34 ft outside",
+      "family": "C2",
+      "marginal": true,
+      "value": "10.66 ft (3.25 m)"
+    },
+    "recon_1835_south_c3_015:eave": {
+      "band": "18-22 ft",
+      "detail": "+0.45 ft outside",
+      "family": "C3",
+      "marginal": true,
+      "value": "17.55 ft (5.35 m)"
+    },
+    "recon_1835_south_c3_037:eave": {
+      "band": "18-22 ft",
+      "detail": "+0.45 ft outside",
+      "family": "C3",
+      "marginal": true,
+      "value": "17.55 ft (5.35 m)"
+    },
+    "recon_1835_south_c3_040:eave": {
+      "band": "18-22 ft",
+      "detail": "+0.45 ft outside",
+      "family": "C3",
+      "marginal": true,
+      "value": "17.55 ft (5.35 m)"
+    },
+    "recon_1835_south_d2_005:eave": {
+      "band": "7-8 ft",
+      "detail": "+1.02 ft outside",
+      "family": "D2",
+      "marginal": false,
+      "value": "9.02 ft (2.75 m)"
+    },
+    "recon_1835_south_d2_005:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_south_d2_024:eave": {
+      "band": "7-8 ft",
+      "detail": "+1.02 ft outside",
+      "family": "D2",
+      "marginal": false,
+      "value": "9.02 ft (2.75 m)"
+    },
+    "recon_1835_south_d2_024:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_south_d3_001:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d3_008:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d3_013:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d3_017:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d3_022:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d3_027:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_south_d7_035:eave": {
+      "band": "17-19 ft",
+      "detail": "+0.43 ft outside",
+      "family": "D7",
+      "marginal": true,
+      "value": "16.57 ft (5.05 m)"
+    },
+    "recon_1835_south_f2_039:eave": {
+      "band": "19-23 ft",
+      "detail": "+1.45 ft outside",
+      "family": "F2",
+      "marginal": false,
+      "value": "17.55 ft (5.35 m)"
+    },
+    "recon_1835_west_002:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_west_015:eave": {
+      "band": "7-8 ft",
+      "detail": "+0.27 ft outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_west_015:pitch": {
+      "band": "18.4-33.7 deg (4:12-8:12)",
+      "detail": "+0.4 deg / +0.10 of a 1:12 step outside",
+      "family": "D2",
+      "marginal": true,
+      "value": "18.0 deg (= 3.90:12)"
+    },
+    "recon_1835_west_016:eave": {
+      "band": "8-9 ft",
+      "detail": "+0.12 ft outside",
+      "family": "D3",
+      "marginal": true,
+      "value": "9.12 ft (2.78 m)"
+    },
+    "recon_1835_west_019:eave": {
+      "band": "17-19 ft",
+      "detail": "+0.43 ft outside",
+      "family": "D7",
+      "marginal": true,
+      "value": "16.57 ft (5.05 m)"
+    },
+    "recon_1835_west_021:levels": {
+      "band": "'1' (=> 1-1)",
+      "detail": "the band authors no loft",
+      "family": "W3",
+      "marginal": false,
+      "value": "loft = true"
+    },
+    "recon_1835_west_022:eave": {
+      "band": "9-18 ft",
+      "detail": "+2.27 ft outside",
+      "family": "W4",
+      "marginal": false,
+      "value": "6.73 ft (2.05 m)"
+    },
+    "recon_1835_west_024:pitch": {
+      "band": "33.7-45.0 deg (8:12-12:12)",
+      "detail": "+1.7 deg / +0.50 of a 1:12 step outside",
+      "family": "A2",
+      "marginal": true,
+      "value": "32.0 deg (= 7.50:12)"
+    }
+  }
+}
