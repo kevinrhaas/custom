@@ -84,8 +84,12 @@ belong at the end, not in the loop.
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
 
 **R-BUG3 is DONE (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
-and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **2.8 of a measured
-ceiling of 3.7 / 60 %**, with every band past 40 m unchanged to the decimal. Two things were found
+and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **3.1 of a measured
+ceiling of 3.4 with 80 % perceptible on mobile, 3.2 of 4.3 with 60 % on desktop**, and the alpha
+half of the fix fades to nothing by 40 m, so every band past it is unchanged to the decimal. (Those
+figures are re-measured on the merge of 2026-08-15; an earlier draft of this line quoted *2.8 of
+3.7 / 60 %*, which was one iteration stale and matched neither viewport. The gate prints the bands
+— quote it, do not paraphrase it.) Two things were found
 that are not the fix and matter more. **The near band was empty at both gated stations, because
 neither one stands on a road** — `south_water` is 101 m from its own centreline (T-V2) and
 `from_above` is in the air — so the parcel's own first move, adding `[2, 40]`, measured nothing
@@ -1466,8 +1470,12 @@ polygon offset having been tuned until the bands *at the two stations then gated
 to the marker's own values, that band reads **18.0 L\* at 100 % perceptible**. The number was never
 wrong; the sample it was tuned against was.
 
-**Not done here, and deliberately:** the near ceiling of 3.4 L\* is itself the lowest of any band
-(the others sit at 5.9–6.9), and 20 % of near probes cannot clear the threshold even fully opaque.
+**Not done here, and deliberately:** the near band has the least headroom of any band a walker
+actually stands in — its opaque ceiling is **3.4 L\* on mobile and 4.3 on desktop**, against
+5.9–6.9 at the same station's 40–100 m and at both aerial bands — and **20 % of near probes on
+mobile, 40 % on desktop, cannot clear the perceptibility threshold even fully opaque**. Say it
+that way rather than "the lowest of any band": at `lake_market` the 600–4000 m band's ceiling is
+lower still (3.2 mobile), which is a road at a kilometre and not the thing this parcel is about.
 L98 names the honest fix — a textured coverage, earth and grass resolved as patches at the scale a
 near pixel can show, so the eye integrates the recorded fraction instead of the blender pre-mixing
 it. That belongs to **R-W2** (texture the town), which is where the 1.4 texture score lives.

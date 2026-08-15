@@ -56,9 +56,13 @@ It writes depth now, as the marker pass always did. A diagnostic that lies quiet
 no diagnostic, and this one lied in the direction of *nothing to see here* — the same direction as
 every other instrument in this bug's history.
 
-**What is not fixed.** The near band's ceiling — 3.4 L\* fully opaque — is the lowest of any band
-(the rest sit at 5.9–6.9), and **20 % of near probes cannot clear the perceptibility threshold even
-at full opacity**. Opacity has nearly run out as an instrument here. L98 names the honest
+**What is not fixed.** The near band has the least headroom of any band a walker actually stands
+in: its ceiling fully opaque is **3.4 L\* on mobile and 4.3 on desktop**, against 5.9–6.9 at the
+same station's 40–100 m and at both aerial bands — and **20 % of near probes on mobile, 40 % on
+desktop, cannot clear the perceptibility threshold even at full opacity**. (Not "the lowest of any
+band", which an earlier draft of this said: at that station the 600–4000 m band is lower still, and
+that is a road at a kilometre rather than one underfoot.) Opacity has nearly run out as an
+instrument here. L98 names the honest
 successor: a textured coverage, earth and grass resolved as patches at the scale a near pixel can
 show, so the eye integrates the recorded fraction rather than the blender pre-mixing it. That
 belongs to **R-W2**, where the 1.4 texture score already lives.
