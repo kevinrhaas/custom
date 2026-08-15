@@ -1275,9 +1275,11 @@ household is added by this parcel.
 
 </details>
 
-### K25 — 54 roofs sit outside the band their own note cites · **UNCLAIMED · from K21 · SPLIT (a) then (b)**
+### K25 — 54 roofs sit outside the band their own note cites · **(a) CLAIMED 2026-08-15 · from K21 · SPLIT (a) then (b)**
 
 **Phase:** lane 2 for (a), and (b) NEEDS THE BAKE · **Effort:** M
+**(a) claimed 2026-08-15 on `steward/k25a-band-claims`** — the measurement half. Data, tools
+and docs only; no dimension moves.
 
 Every reconstructed roof carries the same sentence on every form value: *"Type-level choice within
 the D3 band in the reconstruction specification."* For **54 of 193** records the value is not in
