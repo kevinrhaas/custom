@@ -7,15 +7,19 @@
  *   node tools/critic_shots.mjs --published         shoot the published mirror
  *   node tools/critic_shots.mjs --viewport desktop  one viewport, while iterating
  *   node tools/critic_shots.mjs --stations a,b      a subset, while iterating
- *   node tools/critic_shots.mjs --no-mask           skip the structure-free frame
+ *   node tools/critic_shots.mjs --no-mask           skip the masked frames
  *   node tools/critic_shots.mjs --out DIR           default /tmp/critic
  *
- * `--metrics` captures each station TWICE — the visitor's frame, and the same
- * pose with the town's `structures` group hidden — because no property of one
- * frame separates a gable end from an oak on the horizon (R-W4a; the argument
- * and the numbers are in `critic_metrics.mjs`). The second capture costs frames
- * rather than a page load, and `--no-mask` opts out for a run that only wants
- * the cheap readings.
+ * `--metrics` captures each station THREE times — the visitor's frame, the same
+ * pose with the town's `structures` group hidden, and the same pose with the
+ * nine `flora-head-*` sets hidden. Twice because no property of one frame
+ * separates a gable end from an oak on the horizon (R-W4a); three times because
+ * no property of one frame separates a yellow coneflower from the grass under
+ * it either — the flower-load recipe's hue cut at 50° runs through the middle
+ * of a July prairie's own bloom (R-W4c). Both arguments, with their numbers,
+ * are in `critic_metrics.mjs`. The extra captures cost frames rather than a
+ * page load, and `--no-mask` opts out for a run that only wants the cheap
+ * readings.
  *
  * WHY THIS EXISTS. Every rendering round this project has run was judged in
  * adjectives, or in numbers from a harness that was never committed — so no two
@@ -91,9 +95,11 @@ const ONLY = value('--viewport', '');
 // loudly, because a filtered run is not the baseline and must never be quoted
 // as one.
 const PICK = value('--stations', '').split(',').map((s) => s.trim()).filter(Boolean);
-// `--no-mask` drops the structure-free second capture (R-W4a). It costs frames,
-// not a page load, and without it the only horizon figure is the one that counts
-// gables as trees — so it is opt-OUT, and a run that opts out says so.
+// `--no-mask` drops the structure-free capture (R-W4a) and the head-free one
+// (R-W4c). They cost frames, not a page load, and without them the only horizon
+// figure is the one that counts gables as trees and the only flower figure is
+// the one that counts coneflowers as grass — so it is opt-OUT, and a run that
+// opts out says so.
 const NO_MASK = flag('--no-mask');
 const PORT = Number(process.env.CRITIC_PORT || 4191);
 const YEAR = process.env.CRITIC_YEAR || '1835';
@@ -246,6 +252,7 @@ function compareMetrics(a, b) {
     ['depthBandHighPassRms.mid', (m) => m.depthBandHighPassRms.mid],
     ['depthBandHighPassRms.near', (m) => m.depthBandHighPassRms.near],
     ['flower.load', (m) => m.flower.load],
+    ['flower.bloom.shareOfHued', (m) => m.flower.bloom?.shareOfHued],
     ['landSky.skyFraction', (m) => m.landSky.skyFraction],
   ];
   let worst = null; let value = null;
@@ -385,6 +392,36 @@ async function round(viewportName, viewport, dir) {
           for (let i = 0; i < 2; i++) await window.__chicago4d.capture(4);
         });
       }
+
+      // THE THIRD CAPTURE, for the same reason and by the same means (R-W4c).
+      // The flower-load recipe sorts a ground pixel into "plant" or "flower" on
+      // a hue cut at 50°, and a July prairie's own bloom straddles it: the
+      // committed record for `ratibida_pinnata` is hue 50.250 and counts as
+      // grass, `silphium_laciniatum` is 49.880 and counts as a flower. So the
+      // harness hides the nine `flora-head-*` instanced sets and photographs the
+      // pose again; every ground pixel that moved is one a flower painted, and
+      // `critic_metrics.mjs` holds the recipe to it. Frames, not a page load —
+      // and `--no-mask` opts out of this capture with the other one.
+      const heads = await page.evaluate(async (on) => {
+        const flora = window.__chicago4d.scene3d.getObjectByName('flora');
+        if (!flora) return 0;
+        const sets = [];
+        flora.traverse((o) => { if (o.name.startsWith('flora-head-')) sets.push(o); });
+        for (const s of sets) s.visible = on;
+        for (let i = 0; i < 2; i++) await window.__chicago4d.capture(4);
+        return sets.length;
+      }, false);
+      if (!heads) {
+        problems.push(`${viewportName}/${st.id}: no "flora-head-*" sets to hide — `
+          + 'the bloom figure cannot be measured');
+      } else {
+        await canvas.screenshot({ path: path.join(dir, `${st.id}__noflower.png`) });
+        await page.evaluate(async () => {
+          const flora = window.__chicago4d.scene3d.getObjectByName('flora');
+          flora.traverse((o) => { if (o.name.startsWith('flora-head-')) o.visible = true; });
+          for (let i = 0; i < 2; i++) await window.__chicago4d.capture(4);
+        });
+      }
     }
     const pitchOff = Math.abs(arrived.pitchDeg - st.expectPitch);
     if (pitchOff > 0.5) {
@@ -435,8 +472,11 @@ for (const [name, viewport] of VIEWPORTS) {
   if (WANT_METRICS || WANT_STABILITY) {
     for (const s of manifest.viewports[name].shots) {
       const bare = path.join(dir, `${s.id}__bare.png`);
+      const noflower = path.join(dir, `${s.id}__noflower.png`);
       s.metrics = measure(decodePng(fs.readFileSync(path.join(dir, `${s.id}.png`))), {
         withoutStructures: fs.existsSync(bare) ? decodePng(fs.readFileSync(bare)) : null,
+        withoutFlowerHeads: fs.existsSync(noflower)
+          ? decodePng(fs.readFileSync(noflower)) : null,
       });
     }
   }
@@ -457,8 +497,11 @@ for (const [name, viewport] of VIEWPORTS) {
       const b = decodePng(fs.readFileSync(path.join(dir2, `${s.id}.png`)));
       const diff = pixelDiff(a, b);
       const bare2 = path.join(dir2, `${s.id}__bare.png`);
+      const noflower2 = path.join(dir2, `${s.id}__noflower.png`);
       const metricDrift = compareMetrics(s.metrics, measure(b, {
         withoutStructures: fs.existsSync(bare2) ? decodePng(fs.readFileSync(bare2)) : null,
+        withoutFlowerHeads: fs.existsSync(noflower2)
+          ? decodePng(fs.readFileSync(noflower2)) : null,
       }));
       s.stability = {
         byte_identical: other.sha256 === s.sha256,
@@ -508,7 +551,13 @@ if (WANT_METRICS) {
     ['literal black px', (m) => m.shadow.literalBlackPixels],
     ['high-pass RMS far', (m) => m.depthBandHighPassRms.far],
     ['high-pass RMS near', (m) => m.depthBandHighPassRms.near],
-    ['flower load', (m) => m.flower.load],
+    // The recipe's answer, then what the head-free capture says it was about.
+    ['flower load (recipe)', (m) => m.flower.load],
+    ['BLOOM share of hued', (m) => m.flower.bloom?.shareOfHued ?? null],
+    ['BLOOM share of ground', (m) => m.flower.bloom?.shareOfGround ?? null],
+    ['bloom px', (m) => m.flower.bloom?.headPixels ?? null],
+    ['…recipe recall', (m) => m.flower.bloom?.recipeRecall ?? null],
+    ['…recipe precision', (m) => m.flower.bloom?.recipePrecision ?? null],
   ];
   for (const st of STATIONS) {
     for (const [label, read] of rows) {
