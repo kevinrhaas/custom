@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_cooper_south_03",
- "name": "The Sawyer household — a reconstructed cooper (south division)",
+ "name": "The Sheldon household — a reconstructed cooper (south division)",
  "division": "south",
  "head": "inf_cooper_south_03",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_cooper_south_03",
-   "name": "Seth Sawyer",
+   "name": "Abner Sheldon",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

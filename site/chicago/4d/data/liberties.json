@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 104,
+  "count": 105,
   "liberties": [
     {
       "id": "L1",
@@ -9053,6 +9053,56 @@
         {
           "label": "Covers",
           "text": "`recon_1835_blk_lake_market_*.inferred_1835.position`, `recon_1835_blk_lake_market_*.inferred_1835.footprint`"
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-08-15."
+        }
+      ]
+    },
+    {
+      "id": "L105",
+      "title": "Six invented dwellings, a stable and a privy on a block with no front, and the face rule made a command because its first measurement did not reproduce",
+      "section": "per_subject",
+      "subjects": [
+        "western_hotel"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "footprint"
+        },
+        {
+          "domain": "structure",
+          "structure": "recon_1835_blk_randolph_franklin_*",
+          "phase": "inferred_1835",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-08-15",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`blk_randolph_franklin` — bounded by Randolph, Wells, Washington and Franklin — now carries **eight anonymous roofs**: six dwellings, one per lot on six of its seven free lots, a stable in the yard of lot 6 and a privy in the yard of lot 3, both off the block alley. It is the first block of this parcel shape on the row **two streets back** from the business front, and the first **neither of whose faces the town's own record calls a front**. The ceiling and the family mix are the 665-roof programme's schedule and **everything below that is invented** — which family stands on which lot, which lot is left open, how far each building stands back from its frontage and how far it sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot polygons of the K7 grid. Two of the eight are adopted — the D3 one-room cottage on lot 7 as a nineteenth inferred carpenter household, the D1 log cabin on lot 3 as a twenty-first labouring one — and the rest stay anonymous count-units. Lot 2 arrives taken, by Harmon's log cabin, and is not touched. **THE FACE RULE'S FIRST MEASUREMENT DOES NOT REPRODUCE, AND THAT IS THIS ENTRY'S FIRST ADMISSION.** T-A13 (L104, immediately above) chose between Lake and Randolph by counting structures within 25 m of each street's committed centreline and recorded **Lake 12, Randolph 2, South Water 9**. Those three numbers cannot be recovered from the committed record under the filter L104's own text states — \"every documented or inferred structure whose footprint centroid stands within 25 m\" — and the filter that would produce them is not written down anywhere in this repository. **L104's numbers are left standing verbatim, because this document is append-only and was true as written**; what is corrected is the method, not the entry. The measurement is now a committed command, `tools/measure_street_frontage.py`, so the next block inherits something it can run. **MEASURED BY THAT COMMAND, THE ANSWER FOR THIS BLOCK IS NOT CLOSE.** Counting structure records whose footprint centroid stands within 25 m of a committed centreline, and reporting the three evidence layers separately rather than merged: **Randolph carries 7 research-layer records and 7 inferred-household buildings; Washington carries 1 research-layer record and no inferred-household building at all.** Randolph's seven are Newberry & Dole's south-branch slaughterhouse, the log jail, the Cook County courthouse, both Wright buildings to let, Harmon's log cabin and the Western Hotel. **Washington Street's entire documented 1835 frontage is the estray pen** — the town's pound for stray animals. So the three best dwellings the schedule deals take Randolph's three free lots and the three meanest take Washington."
+        },
+        {
+          "label": "The rule is still the invention it always was",
+          "text": "no source says a better dwelling stood on the better street. What the measurement establishes is only which of two streets the town's own record treats as the front. **THE THIRD LAYER IS EXCLUDED, AND THIS BLOCK IS THE DEMONSTRATION OF WHY.** The anonymous roofs the block parcels themselves place stood at **15 on Randolph and 9 on Washington** when this arrangement was chosen, and read **18 and 12** the moment this parcel built. A face rule that counted that layer would be reading the programme's own output back as evidence — the row of blocks built along South Water is the entire reason South Water looks built up in it — and would drift a little further from the town's record with every block. The tool reports the layers separately and never sums them. **THE END RULE'S SPREAD HAS THINNED FOR THE SECOND BLOCK RUNNING.** T-A11's criterion — distance to the **Dearborn Street drawbridge**, the only crossing of the main stem in July 1835 — runs **527.8 m** at lot 6, **546.1 m** at lot 4 and **584.0 m** at lot 0 on the Randolph frontage, with the back street from **568.5 m** at lot 7 to **621.0 m** at lot 1. The order is the order the criterion has given on every block. The far end of the front face stands **1.11 times** as far from the bridge as the near end, against T-A13's 1.13 and T-A12's 2.93, and the absolute spread of the front face is **56.2 m** against T-A13's 68.2 m. As at T-A13, the criterion is separating lots that a resident would have called the same distance from the bridge, and **the arrangement it produces is closer to arbitrary than ordered.** It was followed anyway, for T-A13's reason and recorded here rather than defended. **THE \"SECOND ROOF\" QUESTION IS NOT WHAT SIX BLOCKS HAVE CALLED IT.** Every block of this shape since T-A9 has recorded the D4 and the D2 it was dealt as *second* roofs for the carpenters and the labourers, passing rule 6's three tests read literally and refused on a conservative reading. Both were dealt here and both are refused again. But the D4 is also the **first** roof of the **teamsters**, and the D2 the first roof of the **laundresses** — two more of the four trades method rule 2 argues from the town's building rate rather than from a roof cap, each housed in that one family and in no other, and each already placed in the South Division. Both pass all three tests, and **no block parcel has ever named them.** Sixteen anonymous D2 and D4 roofs stand in the South Division today under exactly that description. **ROADMAP K28** is therefore settling a larger question than the one it was opened on: not whether a trade may take a second roof, but whether rule 6 admits a roof for a trade that has not asked for one."
+        },
+        {
+          "label": "Consequence",
+          "text": "the town gains its eleventh platted block and its first on a row with no front, whose presence, lots, positions and footprints a visitor can see are interpretive: flagged massing in the confidence view, with the reasoning on the building card. Standing roofs move **306 → 314** against the 665-roof target; **351 remain, 13 of them on ground the project has coverage for** (was 21). Inferred households move 96 → 98 and inferred persons 108 → 110; two more anonymous roofs stop being anonymous. **The ninth K20 measurement is 61 of 108**, against 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Nothing was fixed or broken in between; seven measurements now span 7 % to 72 % and the mechanism is L101's. No grade moved, every `name_basis` kept its pool citation and `check.sh` re-derives all 110. K20 still owns the fix."
+        },
+        {
+          "label": "How to resolve",
+          "text": "parcel-level tax, deed, assessment or surveyed building evidence for this block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery substitutes for a compatible anonymous roof and never increases the total. Any evidence that states what stood on Randolph or Washington Street between Franklin and Wells in July 1835 — a directory, an assessment roll, a fire-insurance sheet — bounds the arrangement above, and until then the family mix on this block is a bound on invention rather than a claim about Chicago."
+        },
+        {
+          "label": "Covers",
+          "text": "`recon_1835_blk_randolph_franklin_*.inferred_1835.position`, `recon_1835_blk_randolph_franklin_*.inferred_1835.footprint`"
         },
         {
           "label": "Recorded",

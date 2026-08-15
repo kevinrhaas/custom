@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_joiner_south_01",
- "name": "The Parmelee household — a reconstructed joiner (south division)",
+ "name": "The Pratt household — a reconstructed joiner (south division)",
  "division": "south",
  "head": "inf_joiner_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_joiner_south_01",
-   "name": "Orrin Parmelee",
+   "name": "Elisha Pratt",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

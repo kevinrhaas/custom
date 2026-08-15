@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_mason_north_03",
- "name": "The Hubbard household — a reconstructed mason (north division)",
+ "name": "The Ingalls household — a reconstructed mason (north division)",
  "division": "north",
  "head": "inf_mason_north_03",
  "arrival": {
@@ -45,7 +45,7 @@
  "persons": [
   {
    "id": "inf_mason_north_03",
-   "name": "Asa Hubbard",
+   "name": "Amos Ingalls",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

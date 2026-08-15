@@ -128,12 +128,12 @@
   ]
  },
  "counts": {
-  "households": 168,
-  "persons": 204,
+  "households": 170,
+  "persons": 206,
   "by_grade": {
    "attested": 76,
    "inferred": 20,
-   "reconstructed": 108
+   "reconstructed": 110
   }
  },
  "households": [
@@ -1067,6 +1067,20 @@
    "review_required": false
   },
   {
+   "id": "hh_inf_carpenter_south_19",
+   "file": "households/hh_inf_carpenter_south_19.json",
+   "head": "inf_carpenter_south_19",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_franklin_d3_04",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
    "id": "hh_inf_clerk_north_03",
    "file": "households/hh_inf_clerk_north_03.json",
    "head": "inf_clerk_north_03",
@@ -1580,6 +1594,20 @@
     "reconstructed": 1
    },
    "lives_at": "recon_1835_blk_lake_market_d1_05",
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_inf_labourer_south_21",
+   "file": "households/hh_inf_labourer_south_21.json",
+   "head": "inf_labourer_south_21",
+   "division": "south",
+   "persons": 1,
+   "grades": {
+    "reconstructed": 1
+   },
+   "lives_at": "recon_1835_blk_randolph_franklin_d1_06",
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
