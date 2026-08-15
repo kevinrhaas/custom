@@ -38,7 +38,8 @@
  "summary": {
   "blocks": 19,
   "omitted": 5,
-  "lots": 152,
+  "reserved": 1,
+  "lots": 144,
   "block_frontage_ft": {
    "min": 309.6,
    "median": 323.4,
@@ -3864,211 +3865,20 @@
    "frontage_m": 98.95,
    "frontage_ft": 324.6,
    "depth_m": 110.93,
-   "lots_per_face": 4,
-   "alley_local_enu_m": [
-    [
-     462.76,
-     -321.15
+   "alley_local_enu_m": null,
+   "lots": [],
+   "reserved": {
+    "reserved_for": "public",
+    "name": "The Public Square",
+    "confidence": "inferred",
+    "sources": [
+     "andreas_1884_v1",
+     "chicagology_prefire273"
     ],
-    [
-     561.7,
-     -321.95
-    ],
-    [
-     561.67,
-     -327.44
-    ],
-    [
-     462.72,
-     -326.64
-    ]
-   ],
-   "lots": [
-    {
-     "tier": "north",
-     "frontage_m": 24.74,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       463.07,
-       -268.43
-      ],
-      [
-       487.81,
-       -268.63
-      ],
-      [
-       487.49,
-       -321.35
-      ],
-      [
-       462.76,
-       -321.15
-      ]
-     ]
-    },
-    {
-     "tier": "south",
-     "frontage_m": 24.73,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       462.72,
-       -326.64
-      ],
-      [
-       487.46,
-       -326.84
-      ],
-      [
-       487.14,
-       -379.56
-      ],
-      [
-       462.41,
-       -379.36
-      ]
-     ]
-    },
-    {
-     "tier": "north",
-     "frontage_m": 24.74,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       487.81,
-       -268.63
-      ],
-      [
-       512.55,
-       -268.83
-      ],
-      [
-       512.23,
-       -321.55
-      ],
-      [
-       487.49,
-       -321.35
-      ]
-     ]
-    },
-    {
-     "tier": "south",
-     "frontage_m": 24.73,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       487.46,
-       -326.84
-      ],
-      [
-       512.2,
-       -327.04
-      ],
-      [
-       511.87,
-       -379.76
-      ],
-      [
-       487.14,
-       -379.56
-      ]
-     ]
-    },
-    {
-     "tier": "north",
-     "frontage_m": 24.74,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       512.55,
-       -268.83
-      ],
-      [
-       537.3,
-       -269.03
-      ],
-      [
-       536.97,
-       -321.75
-      ],
-      [
-       512.23,
-       -321.55
-      ]
-     ]
-    },
-    {
-     "tier": "south",
-     "frontage_m": 24.73,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       512.2,
-       -327.04
-      ],
-      [
-       536.93,
-       -327.24
-      ],
-      [
-       536.6,
-       -379.96
-      ],
-      [
-       511.87,
-       -379.76
-      ]
-     ]
-    },
-    {
-     "tier": "north",
-     "frontage_m": 24.74,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       537.3,
-       -269.03
-      ],
-      [
-       562.04,
-       -269.23
-      ],
-      [
-       561.7,
-       -321.95
-      ],
-      [
-       536.97,
-       -321.75
-      ]
-     ]
-    },
-    {
-     "tier": "south",
-     "frontage_m": 24.73,
-     "depth_m": 52.72,
-     "polygon": [
-      [
-       536.93,
-       -327.24
-      ],
-      [
-       561.67,
-       -327.44
-      ],
-      [
-       561.33,
-       -380.16
-      ],
-      [
-       536.6,
-       -379.96
-      ]
-     ]
-    }
-   ]
+    "authored_in": "data/reconstruction/1835_reserved_ground.json",
+    "note": "This block is not subdivided. See the reservation record for the evidence and for what may stand here."
+   },
+   "lots_per_face_withheld": 4
   },
   {
    "id": "blk_randolph_clark",

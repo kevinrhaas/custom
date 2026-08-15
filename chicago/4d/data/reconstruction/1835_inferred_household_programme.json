@@ -1395,15 +1395,21 @@
       "district": "south",
       "family": "D4",
       "center_local_enu_m": [
-        485,
-        -274
+        426.68,
+        -234.78
       ],
       "footprint_ft": [
         18,
         26
       ],
-      "rotation_deg": 0,
-      "anchor_shift_steps": 0
+      "rotation_deg": 0.34,
+      "anchor_shift_steps": 0,
+      "symbolic_location": "South Division, on the Randolph Street frontage of the block bounded by Lake, LaSalle, Randolph and Wells",
+      "stands_on_lot": {
+        "block_id": "blk_lake_wells",
+        "lot_index": 7,
+        "note": "The lot is a conjectural subdivision of a defensible block face; recorded so the placement can be re-derived, not because any source numbers a lot here."
+      }
     },
     {
       "id": "wright_building_to_let_b",
@@ -1412,15 +1418,21 @@
       "district": "south",
       "family": "D4",
       "center_local_enu_m": [
-        511,
-        -274
+        549.88,
+        -235.79
       ],
       "footprint_ft": [
         18,
         26
       ],
-      "rotation_deg": 0,
-      "anchor_shift_steps": 0
+      "rotation_deg": 0.36,
+      "anchor_shift_steps": 0,
+      "symbolic_location": "South Division, on the Randolph Street frontage of the block bounded by Lake, Clark, Randolph and LaSalle, facing the public square across the street",
+      "stands_on_lot": {
+        "block_id": "blk_lake_lasalle",
+        "lot_index": 7,
+        "note": "The lot is a conjectural subdivision of a defensible block face; recorded so the placement can be re-derived, not because any source numbers a lot here."
+      }
     },
     {
       "id": "heacock_house_monroe",
@@ -2226,7 +2238,7 @@
       "position": [
         "reconstructed",
         null,
-        "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
+        "INVENTED, AND MOVED OFF THE PUBLIC SQUARE 2026-08-15 (ROADMAP T-A16). The advertisement gives no address at all, so this is a band assignment and not a reading of any source. WHAT WAS WRONG WITH THE OLD ONE. Both buildings were placed together in 'the South Division band the recipes use for ordinary dwellings', and that band ran across the block bounded by Randolph, Clark, Washington and LaSalle - the public square, which carried the county's estray pen, its log jail and its court-house, and which this project's own ground control names as such. The old placement was tested for clearance and for buildable ground, which is every question this project knew how to ask; none of them was whether the ground was for sale. WHERE THEY WENT, AND BY WHAT RULE. Each building takes the nearest free platted lot that no committed block recipe has already spoken for - the recipes name their open lots and say why, and taking one would rewrite a parcel that has already landed. Under that rule the pair moves 83 m and 69 m, onto the Randolph Street frontage of the two blocks directly across Randolph from the square, which is the least this record can move and still stand on ground the town was selling. THE COORDINATE IS COMPUTED, NOT TYPED: the lot's own street edge and inward axis, with a 5.0 m setback, through the same lot frame every anonymous roof in the town is placed by. WHAT IS STILL INVENTED: the block, the lot, the setback, and that the two buildings stood near each other at all. One advertisement offering two buildings is not a statement that they shared a holding, and the pair is no longer on one block - the ground to keep them on one was 200 m further away and faced two different streets, which would have been a worse answer bought with a better-sounding sentence."
       ],
       "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented.",
       "occupants": [
@@ -2245,7 +2257,8 @@
         "bays": 3,
         "chimneys": 1,
         "paint": "unpainted"
-      }
+      },
+      "symbolic_location": "South Division, on the Randolph Street frontage of the block bounded by Lake, LaSalle, Randolph and Wells"
     },
     "heacock_house_monroe": {
       "occupants_value": "Russel E. Heacock and his household of seven",
@@ -2302,7 +2315,7 @@
       "position": [
         "reconstructed",
         null,
-        "INVENTED. The advertisement gives no address at all. Both buildings are placed together in the South Division band the recipes use for ordinary dwellings, because rental cottages let by a merchant belong among ordinary dwellings and not on the commercial frontage."
+        "INVENTED, AND MOVED OFF THE PUBLIC SQUARE 2026-08-15 (ROADMAP T-A16). The advertisement gives no address at all, so this is a band assignment and not a reading of any source. WHAT WAS WRONG WITH THE OLD ONE. Both buildings were placed together in 'the South Division band the recipes use for ordinary dwellings', and that band ran across the block bounded by Randolph, Clark, Washington and LaSalle - the public square, which carried the county's estray pen, its log jail and its court-house, and which this project's own ground control names as such. The old placement was tested for clearance and for buildable ground, which is every question this project knew how to ask; none of them was whether the ground was for sale. WHERE THEY WENT, AND BY WHAT RULE. Each building takes the nearest free platted lot that no committed block recipe has already spoken for - the recipes name their open lots and say why, and taking one would rewrite a parcel that has already landed. Under that rule the pair moves 83 m and 69 m, onto the Randolph Street frontage of the two blocks directly across Randolph from the square, which is the least this record can move and still stand on ground the town was selling. THE COORDINATE IS COMPUTED, NOT TYPED: the lot's own street edge and inward axis, with a 5.0 m setback, through the same lot frame every anonymous roof in the town is placed by. WHAT IS STILL INVENTED: the block, the lot, the setback, and that the two buildings stood near each other at all. One advertisement offering two buildings is not a statement that they shared a holding, and the pair is no longer on one block - the ground to keep them on one was 200 m further away and faced two different streets, which would have been a worse answer bought with a better-sounding sentence."
       ],
       "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 18 x 26 ft is the schedule's D4 two-room frame cottage: what a merchant builds to let. Every number is invented.",
       "occupants": [
@@ -2321,7 +2334,8 @@
         "bays": 3,
         "chimneys": 1,
         "paint": "unpainted"
-      }
+      },
+      "symbolic_location": "South Division, on the Randolph Street frontage of the block bounded by Lake, Clark, Randolph and LaSalle, facing the public square across the street"
     }
   },
   "documented_household_links": [

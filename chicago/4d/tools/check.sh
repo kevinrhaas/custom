@@ -75,6 +75,14 @@ step "the platted block and lot grid re-derives from the module" \
 step "the 665-roof programme reconciles with the town that stands" \
   python3 tools/reconcile_665.py --check
 
+# Ground the town held in common is not building ground, and every gate this project
+# had asked whether a building CLEARED the roadway, stood inside its own lot lines and
+# missed its neighbours — never whether the ground it stood on was for sale. Two
+# documented rental cottages spent five days standing on the public square for exactly
+# that reason (ROADMAP T-A16). The reservation is authored data; this runs it.
+step "nothing unpermitted stands on reserved ground" \
+  python3 tools/measure_reserved_ground.py --gate
+
 # The datum must remain the output of its committed ground control, never a
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \

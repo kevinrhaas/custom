@@ -395,7 +395,7 @@ def programme_document():
         stands = built_block.get(block["id"], 0)
         free = lots - len(taken.get(block["id"], ()))
         rooms = block_rooms(free, max(0, capacity - stands))
-        units.append({
+        unit = {
             "id": block["id"], "kind": "platted_block",
             "district": district_of_block(block), "bounded_by": block["bounded_by"],
             "lots": lots, "capacity_roofs": capacity, "standing_roofs": stands,
@@ -403,7 +403,23 @@ def programme_document():
             "principal_room": rooms[0], "ancillary_room": rooms[1],
             "headroom": rooms[0] + rooms[1],
             "state": "open" if rooms[0] + rooms[1] > 0 else "at_capacity",
-        })
+        }
+        # A block the town held in common is not headroom. It reaches here with no lots
+        # at all — the plat module withholds the subdivision (ROADMAP T-A16) — so the
+        # arithmetic above already gives it nothing; what this does is stop it reading
+        # as a block that happens to be full. `at_capacity` would be a claim that the
+        # square was built out, which is the opposite of what the evidence says.
+        hold = block.get("reserved")
+        if hold:
+            unit["kind"] = "platted_block_reserved"
+            unit["state"] = "reserved"
+            unit["reserved"] = hold
+            unit["waiting_on"] = (
+                f"nothing — {hold['name']} is not building ground. The reservation is "
+                f"graded `{hold['confidence']}` and authored in {hold['authored_in']}; "
+                "the roofs it would have taken are in this district's balance."
+            )
+        units.append(unit)
     for block in grid["omitted"]:
         if block["id"] not in STREET_CONTROL_OMISSIONS:
             continue

@@ -111,7 +111,8 @@ desktop half belongs to a runner without the per-command ceiling.
 | 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
 | 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
 | — | TOWN | ~~T-A15~~ | **DONE 2026-08-15** — `blk_randolph_clark`, the block opposite the courthouse: the first with a store on it, the face rule EXTENDED to rank one (**K32**), the end rule measured at **1.02× / 7.5 m** and declared exhausted (**K31**), and **two of T-A14's three adoption candidacies refuted** — the laundress and teamster arguments never claim a floor, so they fail rule 6's test 1. Read finding 3 before quoting any adoption test |
-| 1 | TOWN | **T-A16** | **CLAIMED 2026-08-15 · `steward/t-a16-randolph-lasalle`** — `blk_randolph_lasalle`, the public square block (4 roofs, 3P+1A). One open block per run until the 5 are placed — `blk_randolph_clark` closed at T-A15, so the two open entries are `blk_randolph_lasalle` (4 roofs, 3P+1A) and `blk_randolph_dearborn` (1, a `C3` that can only be deferred, so still not a block parcel); adopt in the same run under rule 6's three tests · **BOTH rules are now COMMANDS rather than remembered numbers**: run `tools/measure_street_frontage.py <street> <street>` for the face and `tools/measure_adoption_tests.py <family> <division>` for the adoption, and quote what they print — never quote T-A13's Lake 12 / Randolph 2 / South Water 9 (T-A14 refuted it) and never quote T-A14's teamster or laundress candidacies (T-A15 refuted them) · **read T-A15 finding 4 and K31 before applying the end rule**, which is exhausted on this row at 1.02× · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
+| — | TOWN | ~~T-A16~~ | **DONE 2026-08-15** — `blk_randolph_lasalle` is **the public square** and is not a building site. It was withdrawn rather than built: no lots, no roofs, a gate, and **two documented buildings moved off it**. The block parcel's own gates all passed on the old placement, because not one of them asks whether the ground was for sale. Read its box before scheduling anything anywhere |
+| 1 | TOWN | **T-A3h** | the one-line backfill of `blk_randolph_dearborn` under the T-A2h rule, now with T-A5's third test — and now the **only** open block entry, because T-A16 withdrew the other one. Its three free lots are all NAMED OPEN by T-A3's committed recipe with a reason each, so this parcel amends that recipe rather than filling a lot behind its back · **BOTH placement rules are COMMANDS rather than remembered numbers**: `tools/measure_street_frontage.py <street> <street>` for the face and `tools/measure_adoption_tests.py <family> <division>` for the adoption, and quote what they print — never quote T-A13's Lake 12 / Randolph 2 / South Water 9 (T-A14 refuted it) and never quote T-A14's teamster or laundress candidacies (T-A15 refuted them) · **read T-A15 finding 4 and K31 before applying the end rule**, which is exhausted on this row at 1.02× · *read T-A13's note on `generate_inferred_names.py` before measuring K20* |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
 | 4 | TOWN | **T-I3** | the civic roofs T-A3 refused; research, not massing |
@@ -119,6 +120,7 @@ desktop half belongs to a runner without the per-command ceiling.
 | 6 | TOWN | **K25a** | 54 of 193 roofs sit outside the band their own note cites, and the note is the whole defence for the invention. (a) lands the measurement red — data and tools only, no bake |
 | 1 | GROUND | **T-E2** | the reservation and the sand bar must refuse roofs before the ground that holds them exists |
 | 2 | GROUND | **T-E3** | the heightfield east (= `S2e`, whose first pass already measured the box) |
+| 3 | GROUND | **T-E5** | the public square **was a pond** in this project's own committed fauna data and renders as dry prairie with three public buildings on it. Opened by T-A16 |
 
 **R-W5a is DONE (2026-08-15) — the town was paying one draw call per COLOUR OF PAINT, and the
 growth term is now zero.** All 47 building batches were the same `MeshStandardMaterial` in every
@@ -2117,6 +2119,86 @@ still owns the fix.
 `docs/ROADMAP.md` · `renderers/web/js/changelog.js` · the published mirror. **One tool file:
 `tools/measure_street_frontage.py`, new, standalone, not wired into `check.sh`.**
 
+### T-A16 — `blk_randolph_lasalle` is the public square · **DONE 2026-08-15 · the block was WITHDRAWN, not built**
+
+The thirteenth block parcel claimed the last open entry on the Randolph–Washington row and
+**could not build it**. `blk_randolph_lasalle` — Randolph, Clark, Washington, LaSalle — is
+**the public square**: Andreas calls it *the square* and *the court-house square*, this
+project's own ground control names its corners *NW / SE corner of the Public Square block*,
+and it carries three of the county's own buildings — the estray pen on its south-west corner
+(March 1833, Chicago's first public building), the log jail on its north-west (fall 1833) and
+the first Cook County court-house (1835). The 665-roof programme was dealing it an `A1`, a
+`D3`, a `D4` and a `D5`.
+
+So the parcel reserved it instead. `data/reconstruction/1835_reserved_ground.json` is the
+authored reservation; the plat module emits the block **with no lots**; `reconcile_665.py`
+reports it `platted_block_reserved` / `state: reserved` and deals it nothing;
+`generate_block_infill.py` refuses a recipe that names it, by name and before it builds
+anything; and `tools/measure_reserved_ground.py --gate` is a step of `check.sh`. Full
+admission in `docs/LIBERTIES.md` **L107**. It is the first parcel of this shape to commit no
+structure record at all, and the third to commit a tool.
+
+**Four findings came out of it that are not the block.**
+
+1. **Every placement gate this project has passed the two buildings that were standing on the
+   square.** `wright_building_to_let_a` and `_b` — John Wright's two documented cottages to
+   let — were placed in *"the South Division band the recipes use for ordinary dwellings"*,
+   and that band ran across the square. The placement was tested for clearance from other
+   buildings, for its own lot lines, for the platted roadway and for buildable ground. **Not
+   one of those questions is whether the ground was for sale**, which is why a documented
+   private building could stand on the county's square through every gate the project owns.
+   The new gate is the one that asks it.
+2. **The defect is upstream of the schedule, in the plat module.** `generate_plat_lots.py`
+   subdivides every block it can build into four lots to a face, because that is what the
+   Thompson module says a block is. Drawing eight lot lines across the square asserted a
+   subdivision that this project has never read on any sheet, and everything downstream
+   believed it. The reservation therefore withdraws the **lots**, not merely the schedule's
+   permission to use them: the grid drops 152 → **144 lots**, and `lots_per_face_withheld`
+   records what the module would have drawn.
+3. **The reservation is `inferred` and is not promoted.** No source this project holds says in
+   terms that the square was reserved from sale. What it holds is the block's name, the
+   county's three buildings on it, the dossier's own reading of the rest of it — *"open,
+   unimproved, fenced or unfenced prairie block"* — and one period description of the ground
+   itself: *"Our public Square was then a pond, where the Indians had trapped the muskrat, and
+   where the first settlers hunted ducks"* (`chicagology_prefire273`, rung 2). Three readings
+   from three directions, none of them a house, and the grade stays in the middle tier where
+   the evidence puts it.
+4. **The pond is documented and is not modelled** — the terrain carries no standing water here
+   and the marsh flora zone is a buffer of the mapped water, so the square renders as dry
+   prairie. A second false statement about the same ground, smaller than the one fixed and not
+   fixed here. Opened as **T-E5**.
+
+**Where the two cottages went.** Each takes the nearest free platted lot **that no committed
+block recipe has already spoken for** — the recipes name their open lots and say why, and
+taking one would rewrite a parcel that has landed. Building *a* moves **83 m** to lot 7 of
+`blk_lake_wells`, building *b* **69 m** to lot 7 of `blk_lake_lasalle`, both on the Randolph
+frontage facing the square. The pair is **split**, and that is stated rather than hidden: the
+only ground that would have kept them on one block was 200 m further off and faced two
+different streets, and one advertisement offering two buildings was never a statement that
+they shared a holding.
+
+**The eleventh K20 measurement is 0 of 111** carried-over invented persons renamed, against
+12-of-110 at T-A15, 61-of-108 at T-A14, 67-of-106 at T-A13, 59-of-104 at T-A12, 7-of-102 at
+T-A11, 72-of-100 at T-A10, 19-of-98 at T-A9 and 32-of-96 at T-A8. Zero for a structural reason
+and not a lucky one — **this parcel inserts and removes no person, so the allocator has nothing
+to shift.** Nine measurements in, that is the first evidence about *what* perturbs it, and K20
+should start there.
+
+**Ledger:** standing roofs unchanged at **322**; **343 remain, 1 of them on ground the project
+has coverage for** (was 5 — the square held four of the five). Lane 2 is now one block entry
+from having nowhere to build, which is what LANE 3 exists for.
+
+**Files:** `data/reconstruction/1835_reserved_ground.json` (new) ·
+`data/reconstruction/1835_inferred_household_programme.json` ·
+`data/reconstruction/1835_665_roof_programme.json` (derived) ·
+`data/traces/vectors/thompson_lots.json` (derived) · `data/structures/` (2 moved, 0 new) ·
+sidecars · `docs/LIBERTIES.md` L107 · `docs/STATUS.md` · `docs/ROADMAP.md` ·
+`renderers/web/js/changelog.js` · the published mirror. **Four tool files:
+`tools/measure_reserved_ground.py` (new, and wired into `check.sh`),
+`tools/generate_plat_lots.py`, `tools/reconcile_665.py`, `tools/generate_block_infill.py`** —
+the ROADMAP asks a parcel that edits the block generator to say what was genuinely new, and
+this is it: **the generator had no concept of ground that is not for sale.**
+
 ### T-A13…T-An — the remaining blocks · **UNCLAIMED**
 
 One block per run, same shape, until the schedule is exhausted. Each names its own block
@@ -2132,8 +2214,10 @@ three-test adoption rule (T-A2h + T-A5) all live in code or in the programme's `
 T-A5 changed no tool at all. A run that finds itself editing `tools/generate_block_infill.py` has
 met something genuinely new and should say what it was in its ROADMAP entry.
 
-**Open after T-A15, re-derived from the programme that parcel committed — 5 roofs across two
-entries:** `blk_randolph_lasalle` 4 (3P+1A: A1, D3, D4, D5) · `blk_randolph_dearborn` 1 (a C3).
+**Open after T-A16, re-derived from the programme that parcel committed — 1 roof across ONE
+entry:** `blk_randolph_dearborn` 1 (a `D3`). **`blk_randolph_lasalle` is gone from this list for
+good**: T-A16 found it was the public square and reserved it, so the four roofs it held went back
+to the district balance. The row is closed.
 `blk_randolph_lasalle` is **the public square block** — it already carries the Cook County
 courthouse, the estray pen and both Wright buildings to let, so it arrives with four of eight lots
 taken and is the first open entry whose standing roofs are all research-layer records rather than
@@ -2296,6 +2380,35 @@ enforced by the generator; the reconciliation still balances; no roof stands on 
 reservation, water, or unmodelled ground.
 
 ---
+
+### T-E5 — the public square was a pond, and it renders as dry prairie · **UNCLAIMED · opened 2026-08-15 by T-A16 · Effort: M**
+
+`data/fauna/zones/f04_marsh.json` carries the finding in its own note: *"The Public Square —
+Randolph to Washington, Clark to LaSalle — 'was then a pond, where the Indians had trapped the
+muskrat, and where the first settlers hunted ducks'"*, from `chicagology_prefire273` at rung 2, and
+`docs/research/08-fauna.md` line 44 and `docs/research/02-flora.md` line 40 carry the same water and
+the slough draining it past the Tremont House site to the river at the foot of State Street. The
+terrain carries none of it: there is no standing water on this block in any committed epoch, the
+marsh flora zone's extent is a **buffer of the mapped water** so it plants nothing here, and the
+square therefore renders as dry prairie with a pound, a jail and a court-house standing on it.
+
+**Three things to settle before any ground moves**, and the third is the one that will bite.
+
+1. **How much of the block, and when.** The quotation is a recollection published in 1857 of a
+   period the writer dates loosely; *"was then"* is not July 1835. `data/exclusions.json` is the
+   place for a researched-and-excluded reading if the pond turns out to predate the scene date —
+   the estray pen went up on this block in March 1833 and a pound is not built in a pond.
+2. **The slough is the same feature and is already half-recorded** — `docs/research/01-terrain-
+   hydrology.md` row 14 gives its route documented and its depth and width conjectural. Whatever
+   lands here should land with it rather than modelling a pond that drains nowhere.
+3. **Three committed structures stand on this block**, two of them on corners Andreas gives. Water
+   under a documented building is a worse error than no water at all, so the deliverable is
+   probably a wet **part** of the square with the three public buildings clear of it — which is a
+   claim about extent that no source reached supports. If it cannot be made honestly, the honest
+   answer is a `docs/LIBERTIES.md` entry saying the square is drawn dry and why.
+
+**Not urgent, and not a blocker for anything** — no roof is scheduled here now that T-A16 has
+reserved the block.
 
 ## Bugs found and not yet fixed
 
