@@ -672,7 +672,7 @@ recipes in Appendix B.
 
 | metric | target | source of target |
 |---|---|---|
-| Horizon timber column coverage | ≥ 90 % (ref: 100 % in every band) | STATUS §00 |
+| Horizon timber column coverage | ≥ 90 % (ref: 100 % in every band) — quote `timberOnly`, never `coverageAll` (R-W4a) | STATUS §00 |
 | Crown fine-detail ratio | ≥ 0.6 (ref 0.61–0.64) | STATUS §00 |
 | Sunlit crown warmth (G−B) | ≥ +10 (ref +13..+24) | STATUS §00 |
 | Shadowed darkest decile | L ≥ 14, no literal (0,0,0) (ref L 14–27) | STATUS §00 |
@@ -852,8 +852,15 @@ correction). Every number quotes its anchor and viewport.
 
 - **Depth-band high-pass RMS**: locate the land/sky boundary per column; take three bands
   downward from it; 5×5 high-pass; RMS per band. Collapse toward the far band is the tell.
-- **Horizon timber coverage**: per column, detect non-sky structure within the band above
-  the land/sky boundary; report % of columns overall and across the central two-thirds.
+- **Horizon timber coverage**: per column, detect a break in the sky's own extrapolated
+  gradient within the band above the land/sky boundary; report % of columns overall and
+  across the central two-thirds. **Measured on a second capture of the same pose with the
+  town's `structures` group hidden** — a gable end breaks a skyline exactly as an oak does,
+  and no property of one frame separates them (R-W4a measured the proposed G−B
+  discriminator: gables +22.4, hazed timber +0.1..+17.5, complete overlap; and L17's total
+  extinction by 1500 m converges both on the fog colour by design). The visitor's frame is
+  still reported, as **skyline-break** coverage, which is not a timber figure and is never
+  what this row is quoting.
 - **Crown fine-detail ratio**: ratio of fine-scale (high-frequency) to coarse-scale energy
   over crown-masked pixels at 20–60 m; reference 0.61–0.64.
 - **Color checks**: sunlit-crown G−B; shadowed-region darkest-decile L in Lab.
