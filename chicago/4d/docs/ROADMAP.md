@@ -1377,6 +1377,58 @@ a branch protects nothing. Respect any claim you find. Claims carry an expiry, a
 one is void without ceremony: an abandoned claim must not become a permanent lock on a parcel.
 Small parcels do not need this — the cost of claiming exceeds the cost of a collision.
 
+### K24 — Let the visitor choose the light · **UNCLAIMED · owner-requested 2026-08-14 · AFTER #125**
+
+Owner, on being told R-W1 makes the scene 16 % dimmer and that holding the old brightness would
+collapse albedo retention to 62 %: *"Can you make this an option in settings?"*
+
+**It dissolves the trade-off rather than picking a side.** R-W1's argument for its own magnitude
+is sound — a real sky is blue, and scaling it to carry a warm lamp's luminance destroys the wall
+colours the dataset documents. But "correct and dim" and "bright and wrong" is a false choice
+when the visitor can be handed the dial.
+
+**Settings already has the shape for this.** `hud.js` `wireRange(id, label, key, fmt)` drives
+`speed`, `eyeHeight` and `fov`; `s-units` is the select pattern; everything persists additively
+into `chicago4d.settings`. Nothing new is needed structurally.
+
+**The precedent to copy is the eye-height slider**, and it is exactly the right one. It prints
+`— period eye level` when it sits on the researched default, *"so moving off it is a visible
+choice instead of a silent drift"* (`hud.js`). A light control needs the same treatment: the
+default position is the one calibrated against a verified July prairie photograph, and it should
+say so on its face.
+
+**The thing this must not become.** This project grades every claim by evidence. A brightness
+control must read as a **viewing accommodation, like the units toggle** — the same scene, easier
+to see — and never as a claim about how bright 1835 was. Label it so that no reading of the UI
+suggests the brighter setting is an alternative reconstruction. The risk is concrete: a visitor
+who moves the dial and then forms a judgement about the town's colours is judging under a light
+this project has just measured as **1.86× the luminance and 2.85× the red** of its own sky.
+
+**The non-negotiable: calibration stays anchored to the DEFAULT.** `tools/critic_shots.mjs`,
+`tools/light_probe.mjs` and every gate in `smoke_renderer.mjs` measure the default setting and
+must keep doing so. If a gate can be made to pass by moving this control, the control has become
+a way to launder a failure — add an assertion that the default rendering is unchanged by the
+setting's existence, and that the harness reads the default regardless of stored preference.
+
+**Open design question, worth deciding rather than defaulting:** a two-way choice between named
+rigs, or a continuous exposure slider with the calibrated point marked? The slider matches the
+eye-height precedent and is friendlier; the toggle is harder to misread as "accuracy dial".
+Recommendation: **slider, with the calibrated default named in the readout** — but say which was
+chosen and why.
+
+**Sequencing:** this touches `world.js`, which **PR #125 rewrites substantially**. It must land
+**after** #125 resolves or it will conflict badly. It also does **not** unblock #125 — that PR's
+road-gate failure occurs at the *default* setting, and a preference control does not change it.
+
+**Files:** `renderers/web/js/world.js` · `renderers/web/js/hud.js` · `renderers/web/index.html`
+(the control) · `tools/smoke_renderer.mjs` (default-unchanged assertion) · `docs/index.html` (Help)
+
+**Acceptance:** `tools/check.sh` green; the setting persists across reload and does not break an
+existing stored `chicago4d.settings`; the default rendering is byte-comparable to before the
+setting existed; every critic and smoke measurement still reads the default; the readout names
+the calibrated position; **mobile 390×780 is a release gate** and the control must be reachable
+and legible there.
+
 ### K23 — The invented buildings are still NAMED "Inferred", and the card never says what we made up · **UNCLAIMED · NEXT UP · owner-reported 2026-08-14**
 
 Owner, from a card on the dev preview: *"these are recreated structures, recreations, not
