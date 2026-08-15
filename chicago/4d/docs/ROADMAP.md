@@ -1088,7 +1088,7 @@ method rule 6) · `tools/generate_block_infill.py` (occupancy + the adoption gat
 `data/structures/recon_*.json` (occupancy only, via the generators) · `data/sidecars/1835/` ·
 `assets/manifest.json` · `docs/LIBERTIES.md` (L94) · `docs/ROADMAP.md` · `docs/STATUS.md`
 
-### T-A3h — the second block's households · **UNCLAIMED**
+### T-A3h — the second block's households · **CLAIMED 2026-08-15 · `steward/t-a3h-second-block-households`**
 
 The same rule applied to `blk_randolph_dearborn`, which landed before the rule existed. Its
 schedule deals it a D1 and a D3, so the answer is very likely the same two adoptions and a
