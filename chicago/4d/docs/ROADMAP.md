@@ -70,10 +70,12 @@ belong at the end, not in the loop.
 
 | # | lane | parcel | why first |
 |---|---|---|---|
-| 1 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
+| 1 | RENDERING | **R-BUG3c** | **owner-reproduced WITH the fix in, twice, on 2026-08-15.** The near ground — road, grass tufts, all texture — is missing below a hard line at a constant distance, and it is NOT the streets. Measured, not guessed; read the box before touching anything |
+| 2 | RENDERING | **R-BUG4** | XS, owner-reported. A wet CORNER deletes a whole road quad, dry half included: 13 quads / ~30 m of roadway removed where the centreline is dry land. Kinzie loses 14.2 % of itself |
+| 3 | RENDERING | **R-W4a** | the horizon-timber metric counts gable ends as trees, so W4's headline number is unmeasurable and a town parcel already banked a false pass. Prior to every other W4 half · *promoted 2026-08-15: R-M1b, which was #1, is blocked on the owner* |
 | — | RENDERING | ~~R-M1~~ | **R-M1a DONE 2026-08-15** — the two scales are measured and their baseline is committed. **R-M1b is NOT a pick: it is blocked on a threshold source, because the photograph R-M1 named to derive from contains no dirt track.** Read R-M1b's box before touching it |
-| 2 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
-| 3 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
+| 4 | RENDERING | **R-W1** | RENDERING §4: "W1+W4 alone retire most of §1" — and R-G1 scored lighting **3.2**, the second-worst axis · *parked on PR #125 with `hold`* |
+| 5 | RENDERING | **R-W5a2** | the last 16 batches → 1, opened by R-W5a with its numbers already measured. **Not needed for the budget** — take it only when the lane has nothing sharper |
 | 1 | TOWN | **T-A8…** | one open block per run until the 61 are placed; adopt in the same run under rule 6's three tests — the division question is settled (T-A5), and since T-A6/T-A7 every open block is guaranteed to fit the roofs it is dealt on lots nothing already stands on · **UNBLOCKED 2026-08-15 by R-W5a: a block's roofs now cost ZERO draw calls whatever they are painted** |
 | 2 | TOWN | **T-V2** | XS, one record: the `south_water` anchor points at a field, not at the street it is named for — **R-BUG3 measured it at 101 m from its own centreline**, and 17 m from the nearest one |
 | 3 | TOWN | **T-V1** | the anonymous town reads as one gable stamped a dozen times — R-G1's cheapest accuracy point |
@@ -103,7 +105,11 @@ identity proof under R-W5a below. Three things came out of it that are not the n
   whole-frame mean |Δ| of **0.003–0.005 of one 8-bit count**. No surface is repainted; the albedo
   arithmetic is the same product in a different order.
 
-**R-BUG3 is DONE (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
+**R-BUG3 is REOPENED (2026-08-15) — the owner reproduced it WITH the fix in.** What it fixed is
+real and stays; what it claimed is not. See **R-BUG3c** and **R-BUG4** below, and read them before
+quoting any road number. The original write-up follows, corrected:
+
+**R-BUG3's near-field contrast half is done (2026-08-15)** — the owner-reported invisible-at-your-feet road was **the alpha,
 and NOT the grass**: the near band scored **1.5 L\* / 30 %** and now scores **3.1 of a measured
 ceiling of 3.4 with 80 % perceptible on mobile, 3.2 of 4.3 with 60 % on desktop**, and the alpha
 half of the fix fades to nothing by 40 m, so every band past it is unchanged to the decimal. (Those
@@ -1681,7 +1687,7 @@ regardless of stored preference. Note what R-BUG3 left standing: the near band's
 fully opaque. The honest fix for that is **R-W2**'s textured coverage, not this aid; shipping
 this one must not be allowed to retire that.
 
-### R-BUG3 — the road is invisible AT YOUR FEET · **DONE 2026-08-15**
+### R-BUG3 — the road is invisible AT YOUR FEET · **PARTLY DONE 2026-08-15 · REOPENED as R-BUG3c**
 
 **What it took, and what it refuted.** The near band was added, it failed exactly as this parcel
 predicted — **1.5 L\* with 30 % of probes perceptible at 2–40 m, against 3.4 / 87 % in the very
@@ -1811,6 +1817,78 @@ untouched and still passing. **Mobile is the report and mobile is the gate** —
 it was seen.
 
 </details>
+
+### R-BUG3c — the near ground is missing, and it is NOT the streets · **UNCLAIMED · TOP OF THE RENDERING QUEUE · owner-reproduced 2026-08-15**
+
+**The owner reproduced R-BUG3 on the branch that fixes it**, on mobile, on Lake Street approaching
+Franklin — the same complaint, after the parcel below declared it solved. Reproduced here at that
+exact pose (`walker.teleport` to the committed Lake x Franklin intersection, 52.4 m back, facing
+Lake's own centreline bearing, 390x780). Findings, all measured, none inferred:
+
+1. **It is not the alpha, and no alpha can reach it.** With the streets forced fully OPAQUE,
+   depth-writing, at the marker pass's own polygon offset — nothing able to hide them — the ribbon
+   still reaches only **row 937 of 1560**. The bottom **40 % of the frame contains no roadway at
+   any opacity**. R-BUG3's `NEAR_GAIN` is scaling the alpha of fragments that are not drawn.
+2. **It is not a streets bug.** Per-row high-frequency energy across the same frame collapses from
+   **1.0-2.4 above row 1000 to 0.2 below row 1120** — a 5-10x drop. Below that line there is no
+   road, **no grass tufts and no ground texture at all**: a smooth green wash. Everything that
+   sits on the ground vanishes together, at one radius, which is why the edge is a clean
+   horizontal line — a constant distance from the camera.
+3. **The geometry exists.** `STEP_M = 2.25`, `LIFT_M = 0.022`, and **32 street vertices lie within
+   10 m of the camera** at this pose. Something is burying them; they are not absent.
+   (A first probe reported "no vertex within 1.5 m of the centreline" — that was the PROBE's
+   error, not a finding: a ribbon quad's four corners are all at +/- half the track width, so
+   there are never vertices ON the centreline. Do not repeat it.)
+
+**The hypothesis to test FIRST, and it is only a hypothesis.** Roads and flora are both PLACED
+with `terrain.surfaceHeight()`. If the terrain that is DRAWN sits above that sampler near the
+camera, both are buried by the same few centimetres at the same radius — which is the symptom
+exactly. It would also fit **R-BUG1** (the river edge flickering when flying). Measure the drawn
+terrain surface against `surfaceHeight()` before changing anything.
+
+**And the gate lesson, for the third time on this one bug.** R-BUG3 added a station that stands
+*at* the Lake/Market crossing — one of the few places the near ground is intact — and it went
+green. The owner was 172 ft short of an intersection. A station AT a crossing cannot speak for the
+block between crossings. Add a mid-block station on foot before claiming this closed.
+
+**Do not re-declare this done from a passing gate.** Shoot the frame and look at it.
+
+### R-BUG4 — a wet corner deletes the whole road quad, dry half included · **UNCLAIMED · XS, and it is a real hole in the town**
+
+Owner-reported 2026-08-15 from South Water Street: a clean-edged green quadrilateral punched
+through the roadway ahead. Straight edges mean geometry, and it is the size of one road quad.
+
+`streets.js addRecord` drops a quad when the centreline OR **any of its four corners** is water:
+
+    if (terrain.isWater(a) || terrain.isWater(b) || corners.some(isWater)) { continue; }
+
+The comment says the edge test exists to "keep a bank road from painting over water just because
+its legal corridor reaches it" — a fair aim, and the wrong instrument. **The remedy for "do not
+paint over water" is to CLIP the quad at the waterline, not to delete it**, because deleting takes
+the dry half with it. On a bank road the corridor's outer corner grazes the mask constantly.
+
+Replayed against the shipped mask, per street:
+
+| street | quads | dropped: wet CENTRE | dropped: wet EDGE ONLY | metres deleted | % |
+|---|---|---|---|---|---|
+| Kinzie | 632 | 84 | **6** | 202 | **14.2 %** |
+| Lake | 543 | 34 | 1 | 79 | 6.5 % |
+| Washington | 543 | 20 | 1 | 47 | 3.9 % |
+| Canal | 357 | 13 | 2 | 33 | 4.2 % |
+| Randolph | 544 | 22 | 0 | 49 | 4.0 % |
+| South Water | 341 | 4 | **3** | 16 | 2.1 % |
+
+The **edge-only** column is the indefensible part: **13 quads, ~30 m of roadway, deleted while the
+centreline was dry land a visitor can stand on.** The wet-centre drops are defensible in principle
+(a road genuinely crossing the river) but should be checked against the bridge records rather than
+assumed — 34 quads on Lake is 79 m, and it is worth knowing whether that is one crossing or a
+mask that is too generous.
+
+**Files:** `renderers/web/js/streets.js` (clip, do not drop) · `tools/smoke_renderer.mjs` (a check
+that no street loses a quad whose centreline is dry)
+**Acceptance:** the edge-only deletions go to **zero**; the wet-centre deletions are unchanged or
+justified per street; the South Water hole is gone in a shot at the owner's pose; no road paints
+over water — prove it, do not assert it.
 
 ### B-A1 — does the AO bake earn its nightly? · **UNCLAIMED · NEXT UP (lane 1 or standalone)**
 

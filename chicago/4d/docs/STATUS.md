@@ -1,5 +1,28 @@
 # STATUS
 
+## REOPENED 2026-08-15 — the owner reproduced the invisible road WITH the fix in, and it is not the streets
+
+Reported again the same evening, mobile, Lake Street approaching Franklin — after the entry below
+declared it solved. Reproduced at that exact pose. **Forced fully opaque, depth-writing, at the
+marker pass's own polygon offset, the ribbon still reaches only row 937 of 1560: the bottom 40 %
+of the frame holds no roadway at any opacity.** And it is not a streets fault — per-row detail
+energy falls from 1.0-2.4 above row 1000 to 0.2 below row 1120, so the road, the grass tufts and
+the ground texture all vanish together at one radius. The geometry is present (32 street vertices
+within 10 m); something is burying it. Recorded as **R-BUG3c**, top of the rendering queue, with
+the untested hypothesis named and the instruction to measure the drawn terrain against
+`terrain.surfaceHeight()` before changing anything.
+
+**The gate went green because its new station stands AT a crossing** — one of the few places the
+near ground is intact — and the owner was 172 ft short of one. Third time on this bug that the
+answer was where the gate was pointed, and the parcel that wrote that lesson down repeated it.
+
+A second, separate fault came out of the same reports (**R-BUG4**): `addRecord` drops a whole road
+quad when ANY of its four corners is water, dry half included. **13 quads / ~30 m of roadway
+deleted while the centreline is dry land**; Kinzie loses 14.2 % of itself. Clip at the waterline,
+do not discard.
+
+## Partly fixed 2026-08-15 — the road at a crossing, the two stations that never stood on one, and a gate that abstained exactly when it should have shouted
+
 ## New 2026-08-15 — the road gate can now see contrast as well as lightness, and the photograph it was told to calibrate against has no road in it
 
 **R-M1a.** The owner ruled on 2026-08-14 that the road gate should score exposure-invariant
