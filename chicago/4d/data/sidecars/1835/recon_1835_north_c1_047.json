@@ -176,7 +176,7 @@
   "residents": [
     {
       "household": "hh_inf_painter_north_01",
-      "name": "The Newell household — a reconstructed painter (north division)",
+      "name": "The Nichols household — a reconstructed painter (north division)",
       "division": "north",
       "relation": "worked here",
       "why": "recon_1835_north_c1_047 is an anonymous reconstructed roof already standing on the plat, adopted rather than duplicated: its existence, position and footprint stay conjectural and the adoption adds only the occupant argument. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -186,7 +186,7 @@
       "basis": "An anonymous roof of the reconstruction programme, ADOPTED by this household rather than raised for it. The roof's own existence and position stay conjectural; what the adoption adds is an argued occupant instead of an anonymous count-unit.",
       "persons": [
         {
-          "name": "Erastus Newell",
+          "name": "Alanson Nichols",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "painter",

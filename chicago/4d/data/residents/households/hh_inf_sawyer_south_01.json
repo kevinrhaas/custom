@@ -1,6 +1,6 @@
 {
  "id": "hh_inf_sawyer_south_01",
- "name": "The Lynch household — a reconstructed sawyer (south division)",
+ "name": "The Mahoney household — a reconstructed sawyer (south division)",
  "division": "south",
  "head": "inf_sawyer_south_01",
  "arrival": {
@@ -48,7 +48,7 @@
  "persons": [
   {
    "id": "inf_sawyer_south_01",
-   "name": "James Lynch",
+   "name": "John Mahoney",
    "relationship": "head",
    "grade": "reconstructed",
    "occupation": {

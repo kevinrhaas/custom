@@ -2668,6 +2668,85 @@ about Chicago.
 `recon_1835_blk_south_water_franklin_*.inferred_1835.footprint`
 **Recorded:** 2026-08-15.
 
+
+### L100 — Six invented dwellings on the business front's second block, and the second roof each trade was refused
+
+**Decision:** `blk_south_water_wells` — bounded by South Water, LaSalle, Lake and Wells — now
+carries **eight anonymous roofs**: six dwellings, one per lot on six of its seven free lots, and
+two yard buildings off the block alley. The ceiling and the family mix are the 665-roof
+programme's schedule and **everything below that is invented** — which family stands on which
+lot, which lot is left open, how far each building stands back from its frontage and how far it
+sits to one side of its lot. No coordinate is authored: every metre is read off the committed lot
+polygons of the K7 grid. Two of the eight are adopted — the D3 one-room cottage on lot 7 as a
+fourteenth inferred carpenter household, the D1 log cabin on lot 5 as a sixteenth labouring one —
+and the other six stay anonymous count-units. Lot 6, the South Water and LaSalle corner, was
+already held by Rufus Brown's boarding house and is untouched.
+
+**The commercial-frontage admission L99 made stands unchanged and is now doubled.** This is the
+second block this lane has filled *on* South Water Street, and the schedule again dealt it
+ordinary dwellings — including a D1 log cabin and a D2 plank shanty — on the town's busiest
+commercial block, because the 665-roof programme apportions families by DISTRICT and has no
+notion of what a street was for. The parcel built them for L99's reason: the apportionment is the
+programme's claim and not a block parcel's to overturn on the day it meets it. A visitor standing
+on South Water Street between Wells and LaSalle in this scene is looking at three invented
+dwellings on a commercial frontage, and the invention to distrust is the family mix rather than
+the buildings themselves. L99 said it had opened this as a ROADMAP parcel; **it had not** — the
+ID it names was already in use for something else — so it is opened here as **K29** and this
+entry, not the liberty before it, is the one that carries the pointer.
+
+**What the standing roofs did NOT do, measured rather than assumed, and the measurement is
+larger than L99's.** Three documented stores stand on this block's South Water frontage —
+Jones's grocery, Philo Carpenter's store and Peck's store — and all three of them stand NORTH of
+the lot line, **4.5 m, 6.6 m and 8.2 m inside the platted South Water corridor** respectively.
+Jones's and Carpenter's lap no lot of this block at all; Peck's laps only lot 6, which the
+boarding house already holds with all 89.2 m² of itself. Not one metre of buildable lot was taken
+from this parcel by any of them, the nearest any roof here comes to any of the three is **7.99 m**
+against a 3 m separation gate, and the recipe cleared every placement gate on its first run with
+no tool changed. **The intrusion figures are a finding in their own right and are not this
+parcel's to fix**: T-A7 established that pre-plat records can stand "a metre or two proud" of
+their frontage, and these three are standing in the middle of the street. Opened as ROADMAP
+**K30**.
+
+**Both adoptable trades were offered a SECOND roof on this block and both were held to one.**
+Rule 6 admits a roof only where the trade's committed argument calls its own count a floor, the
+roof's family is one this layer already houses that trade in, and the roof's division is too.
+Read literally, four of this block's six dwellings pass for one trade or the other: the D3 and
+the D4 for carpenters (this layer houses one carpenter in a D4, in the North Division), the D1
+and the D2 for labourers (it houses four labourers in D2s). One roof per trade was adopted and
+the other two were refused — **a choice, not a rule, and it is recorded as a choice.** Rule 6
+opens by saying the family mix is a claim about the TOWN rather than about what has been drawn,
+and letting one block's deal raise a trade's count twice is the fitting-the-model-to-the-drawing
+the rule exists to stop; but the rule does not say so, and every parcel since T-A2h has simply
+never been offered the case. The inventions admitted are the fourteenth carpenter household and
+the sixteenth labouring one: no source names either, no source counts either, and the arithmetic
+that carries them is the building-rate argument L83 records for the whole layer. The refusal is
+opened as ROADMAP **K28** so that the next parcel meets a decision rather than this precedent.
+
+**Consequence:** the town gains its sixth platted block and its second on the business front,
+whose presence, lots, positions and footprints a visitor can see are interpretive — flagged
+massing in the confidence view, with the reasoning on the building card. Standing roofs move
+**273 → 281** against the 665-roof target; **384 remain**, 46 of them on ground the project has
+coverage for. Inferred households move 86 → 88 and inferred persons 98 → 100; two more anonymous
+roofs stop being anonymous. **And a fourth measurement of K20**: inserting two households renamed
+**19 of the 98 carried-over invented persons**, against 32-of-96 at T-A8, 25-of-94 at T-A2h and
+17-of-33-touched at T-A5. No grade moved, every `name_basis` kept its pool citation and
+`check.sh` re-derives all 100, so this is churn and not a provenance failure — but it is the
+fourth block parcel in a row to rewrite a fifth of the layer's names as a side effect, and K20's
+own text says the fix belongs in its own parcel rather than riding along with a block. It is left
+riding along, visibly, for the fourth time.
+
+**How to resolve:** parcel-level tax, deed, assessment or surveyed building evidence for this
+block, and a reading of Thompson's lot numbering from the sheets themselves. A named discovery
+substitutes for a compatible anonymous roof and never increases the total. The
+commercial-frontage question (K29) is discharged by any evidence that states what stood on South
+Water Street between Wells and LaSalle in July 1835 — a directory, an assessment roll or a
+fire-insurance sheet would settle it — and until then the family mix on this block is a bound on
+invention rather than a claim about Chicago.
+
+**Covers:** `recon_1835_blk_south_water_wells_*.inferred_1835.position`,
+`recon_1835_blk_south_water_wells_*.inferred_1835.footprint`
+**Recorded:** 2026-08-15.
+
 ## Resolved
 
 Entries here were true when they were written and are kept verbatim, with a **Resolved:**

@@ -145,7 +145,7 @@
   "residents": [
     {
       "household": "hh_inf_sawyer_south_01",
-      "name": "The Lynch household — a reconstructed sawyer (south division)",
+      "name": "The Mahoney household — a reconstructed sawyer (south division)",
       "division": "south",
       "relation": "worked here",
       "why": "inf_sawpit_shed is a structure record this parcel raises for the purpose, because no roof of the right family stood free in this district. The workplace is assigned from the reconstruction schedule's workshop and store families for this trade.",
@@ -155,7 +155,7 @@
       "basis": "THIS BUILDING IS IN THE MODEL BECAUSE OF THIS HOUSEHOLD. Neither is documented: the household is inferred from the town's demonstrable needs and the roof was raised to house it. Its existence, position and size are all inventions, and the chips above say so.",
       "persons": [
         {
-          "name": "James Lynch",
+          "name": "John Mahoney",
           "relationship": "head",
           "grade": "reconstructed",
           "occupation": "sawyer",
